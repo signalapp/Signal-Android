@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:orientation="vertical"
+			  android:layout_width="fill_parent"
+			  android:layout_height="fill_parent"
+			  android:padding="5dip">
+
+			<LinearLayout android:orientation="horizontal"
+						  android:layout_width="fill_parent"
+						  android:layout_height="wrap_content"
+						  android:padding="5dip">
+						  
+				<TextView android:layout_width="wrap_content"
+						  android:layout_height="wrap_content"
+						  android:padding="5dip"
+						  android:text="Identity Name:" />
+						  
+				<EditText android:layout_width="fill_parent"
+						  android:layout_height="wrap_content"
+						  android:padding="5dip"
+						  android:id="@+id/identity_name"
+						  android:text="" />			  
+			</LinearLayout>
+			
+			<LinearLayout android:orientation="horizontal"
+						  android:layout_width="fill_parent"
+						  android:layout_height="wrap_content"
+						  android:padding="5dip">
+			
+				<Button android:layout_width="100dip"
+						android:layout_height="wrap_content"
+						android:visibility="visible"
+						android:padding="5dip"
+						android:gravity="center"
+						android:id="@+id/ok_button"
+						android:text="Ok"/>
+						
+				<Button android:layout_width="100dip"
+						android:layout_height="wrap_content"
+						android:visibility="visible"
+						android:padding="5dip"
+						android:gravity="center"
+						android:id="@+id/cancel_button"
+						android:text="Cancel"/>			  			  
+			</LinearLayout>
+</LinearLayout>

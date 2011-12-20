@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+<org.thoughtcrime.securesms.components.RecipientsPanel
+	android:id="@+id/key_recipients"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:visibility="visible"
+	/>
+                                
+                <Button android:id="@+id/send_key_button"
+                        android:layout_marginLeft="5dip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/buttonStyle"
+                        android:layout_below="@id/key_recipients"
+                        android:layout_alignRight="@id/key_recipients"
+                        android:text="Send"
+                    />
+                    
+                <Button android:id="@+id/cancel_key_button"
+                		android:layout_marginLeft="5dip"
+                		android:layout_width="wrap_content"
+                		android:layout_height="wrap_content"
+                		style="?android:attr/buttonStyle"
+                		android:layout_toLeftOf="@id/send_key_button"
+                        android:layout_below="@id/key_recipients"
+                        android:text="Cancel"
+                        />
+                		
+                		
+    </RelativeLayout>
+
+

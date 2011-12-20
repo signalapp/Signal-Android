@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.ConversationHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:paddingRight="10dip" 
+    >
+
+    <ImageView android:id="@+id/unread_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"
+        android:src="@drawable/ic_sms_unread_msg_indicator" />
+        
+<!--   <android.widget.QuickContactBadge android:id="@+id/contact_photo"-->
+<!--   									 android:layout_width="60dp"-->
+<!--   									 android:layout_height="60dp"-->
+<!--   									 android:cropToPadding="true"-->
+<!--   									 android:scaleType="centerCrop"-->
+<!--   									 android:layout_toRightOf="@id/unread_indicator"-->
+<!--   									 android:visibility="gone" />-->
+
+	<ImageView android:id="@+id/contact_photo"
+			   android:layout_width="60dp"
+			   android:layout_height="60dp"
+			   android:cropToPadding="true"
+			   android:scaleType="centerCrop"
+			   android:layout_toRightOf="@id/unread_indicator"
+			   android:visibility="gone" />
+
+
+   <ImageView android:id="@+id/key_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"
+        android:src="@drawable/key_exchange_indicator" />
+        
+    <CheckBox android:id="@+id/checkbox"
+    		  android:layout_width="wrap_content"
+    		  android:layout_height="wrap_content"
+    		  android:layout_alignParentRight="true"
+    		  android:layout_alignParentTop="true"
+    		  android:visibility="gone" />
+
+    <TextView android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:layout_marginTop="6dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginLeft="5dip"
+        android:layout_alignTop="@id/unread_indicator"
+        android:layout_toRightOf="@id/contact_photo"
+        android:layout_toLeftOf="@id/checkbox"
+        android:layout_alignWithParentIfMissing="true"
+        android:ellipsize="marquee"  
+        android:textColor="#000000"/>
+        
+         
+    <TextView android:id="@+id/date"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="5dip"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorSecondary"
+        android:singleLine="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
+
+    <ImageView android:id="@+id/error"
+        android:layout_marginLeft="3dip"
+        android:visibility="invisible"
+        android:layout_toLeftOf="@id/date"
+        android:layout_alignBottom="@id/date"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_list_alert_sms_failed" />
+
+     <ImageView android:id="@+id/attachment"
+        android:layout_marginLeft="3dip"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_toLeftOf="@id/error"
+        android:layout_alignBottom="@id/date"
+        android:src="@drawable/ic_attachment_universal_small" />
+
+    <TextView android:id="@+id/subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:singleLine="true"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="5dip"
+        android:layout_alignBottom="@id/unread_indicator"
+        android:layout_toRightOf="@id/contact_photo"
+        android:layout_toLeftOf="@id/date"
+        android:ellipsize="end" />
+
+</org.thoughtcrime.securesms.ConversationHeaderView>
+         

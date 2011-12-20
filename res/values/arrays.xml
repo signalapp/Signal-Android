@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string-array name="minutes_hours">
+  	<item>minutes</item>
+  	<item>hours</item>
+  </string-array>
+
+  <string-array name="pref_led_color_entries">
+    <item>Green</item>
+    <item>Red</item>
+    <item>Blue</item>
+    <item>Orange</item>
+    <item>Cyan</item>
+    <item>Magenta</item>
+  </string-array>
+  
+
+  <string-array name="pref_led_color_values" translatable="false">
+    <item>green</item>
+    <item>red</item>
+    <item>blue</item>
+    <item>yellow</item>
+    <item>cyan</item>
+    <item>magenta</item>
+  </string-array>
+  
+  <string-array name="pref_led_blink_pattern_entries">
+    <item>Fast</item>
+    <item>Normal</item>
+    <item>Slow</item>
+    <item>Custom</item>
+  </string-array>
+  <string-array name="pref_led_blink_pattern_values"
+    translatable="false">
+    <item>300,300</item>
+    <item>500,2000</item>
+    <item>3000,3000</item>
+    <item>custom</item>
+  </string-array>
+  
+</resources>

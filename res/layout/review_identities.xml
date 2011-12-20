@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical">
+
+		<ListView android:id="@android:id/list" 
+    		android:layout_width="fill_parent"
+    		android:layout_height="fill_parent"
+    		android:drawSelectorOnTop="false"
+    		android:scrollbarStyle="insideOverlay"
+    		android:fadingEdgeLength="16dip" />
+    		
+		<TextView android:id="@id/android:empty"
+				  android:layout_width="wrap_content"
+				  android:layout_height="wrap_content" 
+				  android:text="You don't currently have any identity keys in your trust database."
+				  android:textAppearance="?android:attr/textAppearanceMedium"
+				  android:padding="10dip" />
+
+ </LinearLayout>

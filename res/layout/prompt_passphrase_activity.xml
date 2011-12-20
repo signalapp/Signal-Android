@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:id="@+id/RelativeLayout01" 
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    xmlns:android="http://schemas.android.com/apk/res/android">
+	
+<!--	<ImageView android:id="@+id/icon"-->
+<!--			   android:layout_width="wrap_content"-->
+<!--			   android:layout_height="wrap_content"-->
+<!--			   android:src="@drawable/key_square"-->
+<!--			   android:layout_alignParentLeft="true"-->
+<!--			   android:layout_alignParentTop="true"-->
+<!--			   android:layout_margin="15dip" />-->
+<!--			    -->
+<!--	<TextView android:layout_width="wrap_content" -->
+<!--			  android:layout_height="wrap_content"-->
+<!--			  android:layout_toRightOf="@id/icon"-->
+<!--			  android:layout_alignBaseline="@id/icon"  -->
+<!--			  android:text="Enter Passphrase" -->
+<!--			  android:textSize="20dip"-->
+<!--			  android:id="@+id/enter_passphrase_label" />-->
+			  
+	<EditText android:inputType="textPassword" 
+			  android:layout_height="wrap_content" 
+			  android:id="@+id/passphrase_edit" 
+			  android:password="true" 
+			  android:layout_below="@id/icon" 
+			  android:layout_width="fill_parent" 
+			  android:layout_margin="15dip"></EditText>
+
+	<Button android:layout_height="wrap_content" 
+			android:text="Cancel"  
+			android:layout_width="70dip" 
+			android:id="@+id/cancel_button" 
+			android:layout_marginRight="15dip"
+			android:layout_alignParentRight="true" 
+			android:layout_below="@id/passphrase_edit" ></Button>
+
+	<Button android:layout_below="@id/passphrase_edit"  
+			android:layout_width="70dip" 
+			android:layout_height="wrap_content" 
+			android:text="OK" 
+			android:layout_toLeftOf="@id/cancel_button" 
+			android:id="@+id/ok_button"  
+			android:layout_marginRight="15dip" ></Button>
+
+</RelativeLayout>

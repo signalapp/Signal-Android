@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2007-2008 Esmertec AG.
+ * Copyright (C) 2007-2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="Use Settings">
+    <CheckBoxPreference android:defaultValue="true"
+                      android:key="pref_all_sms"
+                      android:summary="Use TextSecure for viewing and storing all incoming text messages"
+                      android:title="Use for all SMS" />
+
+    <CheckBoxPreference android:defaultValue="true"
+                      android:key="pref_all_mms"
+                      android:summary="Use TextSecure for viewing and storing all incoming multimedia messages"
+                      android:title="Use for all MMS" />
+    
+   </PreferenceCategory>
+
+  <PreferenceCategory android:title="Input Settings">
+    <CheckBoxPreference android:defaultValue="false"
+                      android:key="pref_enter_sends"
+                      android:summary="Pressing the enter key will send text messages"
+                      android:title="Enter Sends" />
+   </PreferenceCategory>
+
+  <PreferenceCategory android:title="Display Settings">
+  
+    <Preference         android:key="pref_choose_identity"
+					  	android:title="Choose Identity"
+ 					  	android:summary="Choose your contact entry from the contacts list."/>
+  
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_dark_threads"
+                        android:summary="Display dark background in thread list"
+                        android:title="Dark Thread List Theme" />
+  
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_dark_conversation"
+                        android:summary="Display dark background in conversation view"
+                        android:title="Dark Conversation Theme" />
+                        
+    <CheckBoxPreference android:defaultValue="true"
+    					android:key="pref_conversation_list_icons"
+    					android:summary="Show contact photo icons in list of conversation threads"
+    					android:title="List Photos" />
+    
+    <CheckBoxPreference android:defaultValue="true"
+    					android:key="pref_conversation_icons"
+    					android:summary="Show contact photo icons in conversation"
+    					android:title="Conversation Photos" />
+  </PreferenceCategory>
+  
+   <PreferenceCategory android:title="Encryption Settings">
+   
+  	<Preference android:key="pref_change_passphrase"
+			  	android:title="Change Passphrase"
+ 			  	android:summary="Change my passphrase"/>
+   
+   	<CheckBoxPreference android:defaultValue="true"
+   						android:key="pref_auto_complete_key_exchange"
+   						android:title="Complete Key Exchanges"
+   						android:summary="Automatically complete key exchanges for new sessions or for existing sessions with the same identity key" />
+   
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_key_tag_whitespace"
+                        android:summary="Include a whitespace tag at the end of every non-encrypted message"
+                        android:title="Include whitespace tag" />
+                      
+    <CheckBoxPreference android:defaultValue="true"
+    					android:key="pref_send_identity_key"
+    					android:summary="Sign key exchange messages with identity key"
+    					android:title="Sign Key Exchange" />
+    					
+    <CheckBoxPreference android:defaultValue="false"
+    					android:key="pref_timeout_passphrase"
+    					android:summary="Forget passphrase from memory after some interval"
+    					android:title="Timeout passphrase" />
+    					
+    
+    <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
+    					android:key="pref_timeout_interval"
+    					android:defaultValue="300"
+    					android:title="Timeout interval"
+    					android:summary="The amount of time to wait before forgetting passphrase from memory"
+    					android:dependency="pref_timeout_passphrase"
+    					android:dialogTitle="Select Passphrase Timeout" />
+    
+   </PreferenceCategory>
+   
+  <PreferenceCategory android:title="Identity Key Settings">
+ 	<Preference android:key="pref_view_identity"
+			  	android:title="View My Identity Key"
+ 			  	android:summary="View my identity key"/>
+ 			  	
+ 	<Preference android:key="pref_export_identity"
+			  	android:title="Export My Identity Key"
+ 			  	android:summary="Export my identity key"/>
+ 
+ 	<Preference android:key="pref_import_identity"
+			  	android:title="Import Contact's Key"
+ 			  	android:summary="Import an identity key from a contact"/>
+ 
+ 	<Preference android:key="pref_manage_identity"
+			  	android:title="Manage Identity Keys"
+ 			  	android:summary="Manage configured identity keys"/>  
+  </PreferenceCategory>
+ 
+  <PreferenceCategory android:title="Notification Settings">
+    <CheckBoxPreference android:key="pref_key_enable_notifications"
+                        android:title="Notifications"
+                        android:summary="Display message notifications in status bar"
+                        android:defaultValue="true" />
+    <ListPreference
+					  android:key="pref_led_color"
+					  android:defaultValue="green"
+					  android:title="LED Color"
+					  android:dependency="pref_key_enable_notifications"
+					  android:summary="Change notification LED color"
+					  android:entries="@array/pref_led_color_entries"
+					  android:entryValues="@array/pref_led_color_values"
+					  android:dialogTitle="Select LED Color" />
+					  
+	<org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
+                      android:key="pref_led_blink"
+                      android:defaultValue="500,2000"
+                      android:title="LED Blink Pattern"
+                      android:dependency="pref_key_enable_notifications"
+                      android:summary="Change notification LED blink pattern"
+                      android:entries="@array/pref_led_blink_pattern_entries"
+                      android:entryValues="@array/pref_led_blink_pattern_values"
+                      android:dialogTitle="LED Blink Pattern" />	
+                                          
+    
+    <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
+                        android:dependency="pref_key_enable_notifications"
+                        android:key="pref_key_ringtone"
+                        android:title="Select ringtone"
+                        android:ringtoneType="notification"
+                        android:defaultValue="content://settings/system/notification_sound" />
+    <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
+                        android:dependency="pref_key_enable_notifications"
+                        android:key="pref_key_vibrate"
+                        android:defaultValue="true"
+                        android:title="Vibrate"
+                        android:summary="Also vibrate when notified" />
+  </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10px">
+
+	<TextView android:id="@+id/description_text"
+			  android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:layout_marginBottom="5px" 
+			  android:text="You have received a message from someone who supports TextSecure encrypted sessions.  Would you like to initiate a key exchange so you can communicate securely?"/>
+			   
+	<LinearLayout android:layout_width="fill_parent"
+				  android:layout_height="wrap_content"
+				  android:layout_marginTop="10px"
+				  android:orientation="horizontal">
+				  
+		<Button android:id="@+id/initiate_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Initiate Exchange"
+				android:gravity="center"/>
+				
+		<Button android:id="@+id/cancel_button"
+				android:text="Cancel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"/>
+	</LinearLayout>
+</LinearLayout>

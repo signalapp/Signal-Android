@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:id="@+id/ScrollView" 
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent"
+			xmlns:android="http://schemas.android.com/apk/res/android">
+	
+<LinearLayout android:id="@+id/LinearLayout" 
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" 
+				android:orientation="vertical"
+				android:padding="8px"
+				xmlns:android="http://schemas.android.com/apk/res/android">
+
+<TextView android:text="To get started, please enter a passphrase that will be used to locally encrypt your data.  This should be a strong passphrase."
+		  android:textSize="19dip" 
+		  android:id="@+id/create_pass_label" 
+		  android:layout_width="fill_parent" 
+		  android:layout_height="wrap_content"
+		  android:layout_margin="10dip"/>
+		  
+<EditText android:id="@+id/passphrase_edit" 
+	      android:layout_height="wrap_content" 
+	      android:layout_width="fill_parent" 
+	      android:password="true"
+	      android:layout_margin="10dip"/>
+
+<TextView  
+	      android:layout_width="wrap_content" 
+	      android:layout_height="wrap_content" 
+	      android:id="@+id/repeat_label" 
+	      android:textSize="19dip"
+	      android:layout_margin="10dip"
+	      android:text="Repeat:"></TextView>
+	      
+<EditText  
+          android:layout_height="wrap_content" 
+          android:layout_width="fill_parent" 
+          android:password="true"
+          android:layout_margin="10dip"
+          android:id="@+id/passphrase_edit_repeat"></EditText>
+          
+<RelativeLayout
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:id="@+id/RelativeLayout"
+		>
+<Button android:layout_width="100dip" 
+        android:layout_height="wrap_content" 
+        android:id="@+id/cancel_button" android:text="Cancel" 
+        android:layout_below="@id/passphrase_edit_repeat" 
+        android:layout_alignParentRight="true"></Button>
+        
+<Button android:layout_below="@id/passphrase_edit_repeat" 
+	    android:layout_width="100dip" 
+	    android:layout_height="wrap_content" 
+	    android:text="Ok" android:id="@+id/ok_button" 
+	    android:layout_toLeftOf="@id/cancel_button"></Button>
+	    </RelativeLayout>
+
+</LinearLayout>
+</ScrollView>

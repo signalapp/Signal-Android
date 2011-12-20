@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:paddingLeft="0dip"
+    android:paddingRight="12dip">
+
+    <ImageView android:id="@+id/call_type_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:paddingLeft="14dip"
+        android:paddingRight="11dip"        
+        android:gravity="center_vertical"
+    />
+
+<!--    <ImageView android:id="@+id/call_icon"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="fill_parent"-->
+<!---->
+<!--        android:paddingLeft="14dip"-->
+<!--        android:paddingRight="11dip"-->
+<!--        -->
+<!--        android:gravity="center_vertical"-->
+<!--        android:src="@android:drawable/sym_action_call"-->
+<!--        android:background="@android:drawable/list_selector_background"-->
+<!--    />-->
+
+    <View android:id="@+id/divider"
+        android:layout_width="1dip"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@id/call_type_icon"
+        android:layout_marginRight="11dip"
+
+        android:background="@drawable/divider_vertical_dark"
+    />
+
+    
+    <TextView android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="9dip"
+        android:layout_marginTop="5dip"
+
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:singleLine="true"
+    />
+
+    <TextView android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/divider"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="-10dip"
+
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold"
+    />
+
+    <TextView android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_toRightOf="@id/label"
+        android:layout_toLeftOf="@id/date"
+        android:layout_alignBaseline="@id/label"
+        android:layout_alignWithParentIfMissing="true"
+
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+    />
+
+
+    <CheckedTextView android:id="@+id/line1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/divider"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/label"
+        android:layout_alignWithParentIfMissing="true"
+
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:singleLine="true"
+        android:gravity="center_vertical"
+        
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:ellipsize="marquee"     
+    />
+    
+</RelativeLayout>

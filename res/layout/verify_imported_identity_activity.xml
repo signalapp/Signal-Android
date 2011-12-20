@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+<TableLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:shrinkColumns="1">
+
+    <TableRow>
+        <TextView
+        	android:textSize="12sp"
+            android:text="Identity name:\n"
+            android:padding="3dip" />
+        <EditText
+        	android:id="@+id/identity_name"
+            android:text=""
+            android:padding="3dip" />
+    </TableRow>
+
+
+    <TableRow>
+        <TextView
+        	android:textSize="12sp"
+            android:text="Imported identity:\n"
+            android:padding="3dip" />
+        <TextView
+           	android:textSize="20sp"
+           	android:typeface="monospace"        
+        	android:id="@+id/imported_identity"
+            android:text=""
+            android:padding="3dip" />
+    </TableRow>
+    
+    <TableRow>
+    	<LinearLayout android:orientation="horizontal"
+    				  android:layout_width="fill_parent"
+    				  android:layout_height="wrap_content"
+    				  android:layout_gravity="center"
+    				  android:layout_span="2">
+
+	   		<Button android:id="@+id/verified_button"
+	   				android:padding="15dip"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Verified!"/>
+
+	   		<Button android:id="@+id/compare_button"
+	   				android:padding="15dip"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Compare"/>
+						
+			<Button android:id="@+id/cancel_button"
+					android:padding="15dip"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Cancel" />
+		</LinearLayout>
+    
+    </TableRow>    
+    
+</TableLayout>
+</ScrollView>

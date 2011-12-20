@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+<TableLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:shrinkColumns="1">
+
+    <TableRow>
+        <TextView
+        	android:textSize="12sp"
+            android:text="Your friend reads this:"
+            android:padding="3dip" />
+        <TextView
+           	android:textSize="20sp"
+           	android:typeface="monospace"        
+        	android:id="@+id/friend_reads"
+            android:text=""
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="You read this:"
+            android:textSize="12sp"            
+            android:padding="3dip" />
+        <TextView
+        	android:id="@+id/you_read"
+        	android:textSize="20sp"
+           	android:typeface="monospace"                	
+            android:text=""
+            android:padding="3dip" />
+    </TableRow>
+    
+    <TableRow>
+    	<LinearLayout android:orientation="horizontal"
+    				  android:layout_width="fill_parent"
+    				  android:layout_height="wrap_content"
+    				  android:layout_gravity="center"
+    				  android:layout_span="2">
+
+	   		<Button android:id="@+id/verified_button"
+	   				android:padding="10dip"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Verified!"/>
+	
+	   		<Button android:id="@+id/abort_button"
+	   				android:padding="10dip"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Abort"/>
+					
+			<Button android:id="@+id/compare_button"
+	   				android:padding="10dip"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Compare"/>			
+					
+			<Button android:id="@+id/cancel_button"
+					android:padding="10dip"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Cancel" />
+		</LinearLayout>
+    
+    </TableRow>    
+    
+</TableLayout>
+</ScrollView>
+<!---->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="fill_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="vertical"-->
+<!--    android:padding="10px">-->
+<!--			  -->
+<!--	<TextView android:id="@+id/your_fingerprint"-->
+<!--			  android:layout_width="fill_parent"-->
+<!--			  android:layout_height="wrap_content" -->
+<!--			  android:layout_marginBottom="10px"/>-->
+<!---->
+<!--	<TextView android:id="@+id/their_fingerprint"-->
+<!--			  android:layout_width="fill_parent"-->
+<!--			  android:layout_height="wrap_content"-->
+<!--			  android:layout_marginBottom="20px" />-->
+<!--			  -->
+<!--	<LinearLayout android:layout_width="fill_parent"-->
+<!--				  android:layout_height="wrap_content"-->
+<!--				  android:orientation="horizontal">-->
+<!--				  -->
+<!--		<Button android:id="@+id/ok_button"-->
+<!--				android:paddingLeft="30px"-->
+<!--				android:paddingRight="30px"-->
+<!--				android:layout_width="wrap_content"-->
+<!--				android:layout_height="wrap_content"-->
+<!--				android:layout_marginRight="15px"-->
+<!--				android:text="Ok"-->
+<!--				android:gravity="right"/>-->
+<!--				-->
+<!--	</LinearLayout>-->
+<!--</LinearLayout>-->
+<!---->
+<!---->

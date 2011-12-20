@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2008 Esmertec AG.
+ * Copyright (C) 2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+		<RelativeLayout android:layout_width="fill_parent"
+						android:layout_height="43dip"
+						android:background="@drawable/iphone_bar_top">
+												
+			<ImageView
+				android:id="@+id/secure_indicator"
+				android:visibility="gone"
+				android:paddingLeft="5.0dip" 
+				android:paddingRight="2.0dip" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:src="@drawable/ic_lock_iphone" 
+				android:adjustViewBounds="false" 
+				android:layout_alignParentLeft="true" 
+				android:layout_centerVertical="true" />
+
+<!--			<ImageView-->
+<!--				android:id="@+id/secure_indicator_yellow"-->
+<!--				android:visibility="gone"-->
+<!--				android:paddingLeft="5.0dip" -->
+<!--				android:paddingRight="2.0dip" -->
+<!--				android:layout_width="wrap_content" -->
+<!--				android:layout_height="wrap_content" -->
+<!--				android:src="@drawable/ic_lock_iphone_yellow2" -->
+<!--				android:adjustViewBounds="false" -->
+<!--				android:layout_alignParentLeft="true" -->
+<!--				android:layout_centerVertical="true" />-->
+
+			<ImageView
+				android:id="@+id/secure_indicator_red"
+				android:visibility="gone"
+				android:paddingLeft="5.0dip" 
+				android:paddingRight="2.0dip" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:src="@drawable/ic_lock_iphone_red2" 
+				android:adjustViewBounds="false" 
+				android:layout_alignParentLeft="true" 
+				android:layout_centerVertical="true" />
+				
+<!--			<ImageView-->
+<!--				android:id="@+id/secure_indicator_green"-->
+<!--				android:visibility="gone"-->
+<!--				android:paddingLeft="5.0dip" -->
+<!--				android:paddingRight="2.0dip" -->
+<!--				android:layout_width="wrap_content" -->
+<!--				android:layout_height="wrap_content" -->
+<!--				android:src="@drawable/ic_lock_iphone_red2" -->
+<!--				android:adjustViewBounds="false" -->
+<!--				android:layout_alignParentLeft="true" -->
+<!--				android:layout_centerVertical="true" />-->
+			
+<!--			<ImageView-->
+<!--				android:id="@+id/secure_indicator_question"-->
+<!--				android:visibility="gone"-->
+<!--				android:paddingLeft="0.0dip"-->
+<!--				android:paddingRight="2.0dip"-->
+<!--				android:layout_width="wrap_content"-->
+<!--				android:layout_height="wrap_content"-->
+<!--				android:src="@drawable/ic_lock_iphone_question"-->
+<!--				android:adjustViewBounds="false"-->
+<!--				android:layout_toRightOf="@id/secure_indicator_green"-->
+<!--				android:layout_centerVertical="true" />-->
+			
+			
+			<TextView
+				android:id="@+id/title_bar"
+			    android:textSize="18.0dip" 
+			    android:textStyle="bold" 
+			    android:textColor="#ffffffff" 
+			    android:singleLine="true" 
+			    style="?android:windowTitleStyle"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
+				android:gravity="center" />
+				
+<!--			<ImageView-->
+<!--				android:id="@+id/settings_button"-->
+<!--				android:paddingLeft="2.0dip" -->
+<!--				android:paddingRight="5.0dip" -->
+<!--				android:layout_width="wrap_content" -->
+<!--				android:layout_height="wrap_content" -->
+<!--				android:src="@drawable/ic_settings_iphone" -->
+<!--				android:adjustViewBounds="false" -->
+<!--				android:layout_alignParentRight="true" -->
+<!--				android:layout_centerVertical="true" />-->
+
+		</RelativeLayout>
+		
+<org.thoughtcrime.securesms.components.RecipientsPanel
+	android:id="@+id/recipients"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:visibility="gone"
+	/>
+
+    <LinearLayout
+    	android:id="@+id/layout_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/white_background"
+        android:gravity="bottom">
+
+        <ListView
+            android:id="@+id/conversation"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:listSelector="@drawable/chat_history_selector"
+            android:drawSelectorOnTop="true"
+            android:transcriptMode="alwaysScroll"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarStyle="insideInset"
+            android:stackFromBottom="true"
+            android:visibility="gone"
+            android:fadingEdge="none"
+            android:layout_marginBottom="1dip"
+            android:cacheColorHint="@android:color/white"
+        android:dividerHeight="0px" android:divider="#ffffffff"/>
+    
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:paddingBottom="5dip"
+                android:background="@drawable/bottombar_landscape_565">
+  
+               <LinearLayout
+                 android:id="@+id/attachment_editor"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 android:visibility="gone">
+
+				<ImageView
+			        android:id="@+id/attachment_thumbnail"
+			        android:layout_width="fill_parent"
+			        android:layout_height="150dip"
+			        android:layout_weight="1" />
+					
+			    <LinearLayout
+			        android:orientation="vertical"
+			        android:layout_width="wrap_content"
+			        android:layout_height="fill_parent"
+			        android:gravity="center_vertical">
+			
+<!--			        <Button-->
+<!--			            android:id="@+id/view_image_button"-->
+<!--			            style="?android:attr/buttonStyleSmall"-->
+<!--			            android:layout_width="100dip"-->
+<!--			            android:layout_height="50dip"-->
+<!--			            android:text="View" />-->
+<!--			-->
+<!--			        <Button-->
+<!--			            android:id="@+id/replace_image_button"-->
+<!--			            style="?android:attr/buttonStyleSmall"-->
+<!--			            android:layout_width="100dip"-->
+<!--			            android:layout_height="50dip"-->
+<!--			            android:text="Replace" />-->
+			
+			        <Button
+			            android:id="@+id/remove_image_button"
+			            style="?android:attr/buttonStyleSmall"
+			            android:layout_width="100dip"
+			            android:layout_height="50dip"
+			            android:text="Remove" />
+			
+			    </LinearLayout>
+
+           </LinearLayout>
+  
+  
+  
+                <LinearLayout
+                    android:id="@+id/bottom_panel"
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dip"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/editor_with_counter"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:addStatesFromChildren="true"
+                        android:background="@android:drawable/edit_text">
+
+                        <EditText
+                            android:id="@+id/embedded_text_editor"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:autoText="true"
+                            android:capitalize="sentences"
+                            android:nextFocusRight="@+id/send_button"
+                            android:hint="Type to compose"
+                            android:maxLines="4"
+                            android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
+                            android:imeOptions="actionSend|flagNoEnterAction"
+                            android:background="@null"
+                            android:maxLength="1000"
+                        />
+    
+                        <TextView
+                            android:id="@+id/text_counter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#88000000"
+                            android:textColor="#ffffffff"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:paddingLeft="3dip"
+                            android:paddingRight="3dip"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:visibility="gone"
+                        />
+                    </RelativeLayout>
+
+                    <Button android:id="@+id/send_button"
+                        android:layout_marginLeft="5dip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        style="?android:attr/buttonStyle"
+                        android:layout_gravity="center_vertical"
+                        android:nextFocusLeft="@+id/embedded_text_editor"
+                        android:text="Send"
+                    />
+                </LinearLayout>
+                       <TextView android:id="@+id/space_left"
+                       			 android:paddingLeft="5dip"
+         		   				 android:layout_width="fill_parent"
+         		   				 android:layout_height="wrap_content"
+         		   				 android:text="160/160 (1)"
+         		   		/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

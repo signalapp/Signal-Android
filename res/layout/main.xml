@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical">
+
+		<RelativeLayout android:id="@+id/title_bar_container"
+						android:layout_width="fill_parent"
+						android:layout_height="43dip"
+						android:background="@drawable/iphone_bar_top"
+						android:layout_alignParentTop="true">
+			<TextView
+			    android:textSize="18.0dip" 
+			    android:textStyle="bold" 
+			    android:textColor="#ffffffff" 
+			    android:singleLine="true" 
+			    style="?android:windowTitleStyle"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="TextSecure"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
+				android:gravity="center" />
+
+<!--			<ImageView-->
+<!--				android:id="@+id/settings_button"-->
+<!--				android:paddingLeft="2.0dip" -->
+<!--				android:paddingRight="5.0dip" -->
+<!--				android:layout_width="wrap_content" -->
+<!--				android:layout_height="wrap_content" -->
+<!--				android:src="@drawable/ic_settings_iphone" -->
+<!--				android:adjustViewBounds="false" -->
+<!--				android:layout_alignParentRight="true" -->
+<!--				android:layout_centerVertical="true" />-->
+
+		</RelativeLayout>
+				
+		<EditText android:id="@+id/search_text"
+           			  android:layout_height="wrap_content"
+            		  android:capitalize="sentences"
+            		  android:autoText="true"
+            		  android:singleLine="true"
+            		  android:hint="Search"
+            		  android:paddingRight="50dip"
+            		  android:layout_margin="10dip"
+            		  android:layout_width="fill_parent"
+            		  android:layout_alignParentBottom="true"
+            		  android:visibility="gone"/>
+            		  
+        <ImageView android:id="@+id/search_close"
+        		   android:layout_height="wrap_content"
+        		   android:layout_width="wrap_content"
+        		   android:layout_alignParentRight="true"
+        		   android:layout_alignParentBottom="true"
+        		   android:layout_marginRight="16dip"
+        		   android:layout_marginBottom="20dip"
+        		   android:src="@android:drawable/btn_dialog"
+        		   android:visibility="gone"
+        		   />
+			
+		<ListView android:id="@android:id/list" 
+			style="?android:attr/listViewWhiteStyle"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:drawSelectorOnTop="false"
+    		android:scrollbarStyle="insideOverlay"
+    		android:fadingEdgeLength="16dip"
+    		android:background="@android:color/white"
+    		android:cacheColorHint="@android:color/white"
+    		android:layout_below="@id/title_bar_container"
+    		android:layout_above="@id/search_text" />
+    		
+    	<ProgressBar android:id="@+id/search_progress"
+    				 android:layout_width="wrap_content"
+    				 android:layout_height="wrap_content"
+    				 android:indeterminate="true"
+    				 android:layout_centerInParent="true"
+    				 android:visibility="gone" />
+    		
+<!--		<LinearLayout android:orientation="horizontal"-->
+<!--					  android:layout_width="fill_parent"-->
+<!--					  android:layout_height="wrap_content">-->
+					  
+<!--			<TextView android:layout_width="wrap_content"-->
+<!--					  android:layout_height="wrap_content"-->
+<!--					  android:layout_margin="10dip"-->
+<!--					  android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--        			  android:singleLine="true" -->
+<!--					  android:text="Search:" />-->
+					  
+
+<!--			-->
+<!--			<EditText android:layout_width="fill_parent"-->
+<!--					  android:layout_height="wrap_content"-->
+<!--					  android:layout_margin="10dip"-->
+<!--					  android:id="@+id/search_text" />-->
+					  
+<!--		</LinearLayout>-->
+    		
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@+id/ScrollView" 
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent"
+			xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dip">
+
+	<TextView android:id="@+id/description_text"
+			  android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:textSize="17dip"
+			  android:layout_marginBottom="5dip" />
+			  
+	<TextView android:id="@+id/signature_text"
+			  android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:textSize="17dip"
+			  android:textStyle="italic"
+			  android:layout_marginBottom="10dip" />
+			  
+	<LinearLayout android:layout_width="fill_parent"
+				  android:layout_height="wrap_content"
+				  android:orientation="horizontal">
+				  
+		<Button android:id="@+id/verify_session_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Session"
+				android:visibility="gone"
+				android:gravity="center" />		  
+
+		<Button android:id="@+id/verify_identity_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Identities"
+				android:visibility="gone"
+				android:gravity="center" />		  
+				  
+		<Button android:id="@+id/ok_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Complete Exchange"
+				android:gravity="center"/>
+				
+		<Button android:id="@+id/cancel_button"
+				android:text="Cancel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"/>
+	</LinearLayout>
+</LinearLayout>
+</ScrollView>
+
+

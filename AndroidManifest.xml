@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="org.thoughtcrime.securesms"
+      android:versionCode="20"
+      android:versionName="0.5.6">
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="false">
+        <activity android:name=".SecureSMS"
+                  android:label="@string/app_name"
+                  android:launchMode="singleTask"
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"
+                  >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+	          	<action android:name="android.intent.action.SENDTO"/>
+              	<category android:name="android.intent.category.DEFAULT" />                  	
+               	<data android:scheme="sms" />
+               	<data android:scheme="smsto" />
+            </intent-filter>			                   
+        </activity>
+
+	<activity android:name=".AutoInitiateActivity" android:theme="@android:style/Theme.Dialog" android:label="TextSecure Messaging Detected" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".ApplicationPreferencesActivity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+    <activity android:name=".ComposeMessageActivity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".PassphraseCreateActivity" android:theme="@android:style/Theme.Dialog" android:label="Create Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".PassphrasePromptActivity" android:theme="@android:style/Theme.Dialog" android:label="Enter Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".PassphraseChangeActivity" android:theme="@android:style/Theme.Dialog" android:label="Change Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>	
+	<activity android:name=".SendKeyActivity" android:theme="@android:style/Theme.Dialog" android:label="Initiate Key Exchange" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".ReceiveKeyActivity" android:theme="@android:style/Theme.Dialog" android:label="Complete Key Exchange" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".VerifyKeysActivity" android:theme="@android:style/Theme.Dialog" android:label="Verify Session" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".VerifyIdentityActivity" android:theme="@android:style/Theme.Dialog" android:label="Verify Identity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".VerifyImportedIdentityActivity" android:theme="@android:style/Theme.Dialog" android:label="Verify Imported Identity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>	
+	<activity android:name=".ViewIdentityActivity" android:theme="@android:style/Theme.Dialog" android:label="Public Identity Key" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".SaveIdentityActivity" android:theme="@android:style/Theme.Dialog" android:label="Save Identity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".ReviewIdentitiesActivity" android:theme="@android:style/Theme.Dialog" android:label="Manage Identity Keys (Long click)" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".ContactSelectionActivity" android:label="Contact Selection" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".ContactSelectionListActivity" android:label="Contact Selection" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+	<activity android:name=".GroupSelectionListActivity" android:label="Group Selection" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>	
+	<activity android:name=".ContactSelectionRecentActivity" android:label="Recent Calls Selection" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>	
+
+	
+	<service android:enabled="true" android:name=".service.KeyCachingService"></service>
+	<service android:enabled="true" android:name=".service.SendReceiveService"></service>
+	
+<!--	<receiver android:name=".service.BootListener" -->
+<!-- 			  android:enabled="true" -->
+<!-- 			  android:exported="false">-->
+<!--    		<intent-filter>-->
+<!--        		<action android:name="android.intent.action.BOOT_COMPLETED" />-->
+<!--    		</intent-filter>-->
+<!--	</receiver>-->
+	
+	<receiver android:name=".service.SmsListener"
+			  android:enabled="true"
+			  android:exported="true">
+			 <intent-filter android:priority="1001">
+			 	<action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
+			 </intent-filter>
+			 <intent-filter>
+			 	<action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"></action>
+			 </intent-filter>
+	</receiver>
+
+	<receiver android:name=".service.MmsListener"
+			  android:enabled="true"
+			  android:exported="true"
+			  android:permission="android.permission.BROADCAST_WAP_PUSH">
+			 <intent-filter android:priority="1001">
+			 	<action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED"></action>
+			 	<data android:mimeType="application/vnd.wap.mms-message" />
+			 </intent-filter>
+	</receiver>
+		
+	<provider android:name=".providers.PartProvider" android:authorities="org.thoughtcrime.provider.securesms" />
+	
+       <uses-library android:name="android.test.runner" />
+</application>
+
+<uses-sdk android:minSdkVersion="4" />
+
+<permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
+	        android:label="Access to TextSecure Secrets"
+	        android:protectionLevel="signature" />    
+
+<uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"></uses-permission>
+<uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"></uses-permission>
+<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
+<uses-permission android:name="android.permission.WRITE_CONTACTS"></uses-permission>
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+<uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+<uses-permission android:name="android.permission.RECEIVE_MMS"></uses-permission>
+<uses-permission android:name="android.permission.READ_SMS"></uses-permission>
+<uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+<uses-permission android:name="android.permission.WRITE_SMS"></uses-permission>
+<uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+<instrumentation android:name="android.test.InstrumentationTestRunner"
+       android:targetPackage="org.thoughtcrime.securesms.tests" android:label="Tests for My App" />
+
+</manifest> 
