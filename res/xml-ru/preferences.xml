@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2007-2008 Esmertec AG.
+ * Copyright (C) 2007-2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="Настройки использования">
+    <CheckBoxPreference android:defaultValue="true"
+                      android:key="pref_all_sms"
+                      android:summary="Использовать TextSecure для просмотра и хранения всех входящих текстовых сообщений"
+                      android:title="Использовать для всех SMS" />
+
+    <CheckBoxPreference android:defaultValue="true"
+                      android:key="pref_all_mms"
+                      android:summary="Использовать TextSecure для просмотра и хранения всех мультимедийных сообщений"
+                      android:title="Использовать для всех MMS" />
+    
+   </PreferenceCategory>
+
+  <PreferenceCategory android:title="Настройки ввода">
+    <CheckBoxPreference android:defaultValue="false"
+                      android:key="pref_enter_sends"
+                      android:summary="Нажатие на кнопку ввода отправит текстовое сообщение"
+                      android:title="Ввод отправляет" />
+   </PreferenceCategory>
+
+  <PreferenceCategory android:title="Настройки отображения">
+  
+    <Preference         android:key="pref_choose_identity"
+					  	android:title="Выбрать личный контакт"
+ 					  	android:summary="Выберите ваш контакт из списка доступных"/>
+  
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_dark_threads"
+                        android:summary="Показывать тёмный фон в списке бесед"
+                        android:title="Тёмный фон для списка бесед" />
+  
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_dark_conversation"
+                        android:summary="Показывать тёмный фон при отображении беседы"
+                        android:title="Тёмный фон при отображении беседы" />
+                        
+    <CheckBoxPreference android:defaultValue="true"
+    					android:key="pref_conversation_list_icons"
+    					android:summary="Показывать изображения контактов в списке бесед"
+    					android:title="Изображения контактов в списке бесед" />
+    
+    <CheckBoxPreference android:defaultValue="true"
+    					android:key="pref_conversation_icons"
+    					android:summary="Показывать изображение контакта при беседе"
+    					android:title="Изображения при беседе" />
+  </PreferenceCategory>
+  
+   <PreferenceCategory android:title="Настройки шифрования">
+   
+  	<Preference android:key="pref_change_passphrase"
+			  	android:title="Изменить парольную фразу"
+ 			  	android:summary="Изменить мою парольную фразу"/>
+   
+   	<CheckBoxPreference android:defaultValue="true"
+   						android:key="pref_auto_complete_key_exchange"
+   						android:title="Завершать обмен ключами"
+   						android:summary="Автоматически завершать обмен ключами для новых сессий с одним и тем же ключём идентификации" />
+   
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_key_tag_whitespace"
+                        android:summary="Вставлять пустую метку в конце каждого нешифрованного сообщения"
+                        android:title="Вставлять пустую метку" />
+                      
+    <CheckBoxPreference android:defaultValue="true"
+    					android:key="pref_send_identity_key"
+    					android:summary="Подписывать сообщения обмена ключами с помощью ключа идентификации"
+    					android:title="Подписывать обмен ключами" />
+    					
+    <CheckBoxPreference android:defaultValue="false"
+    					android:key="pref_timeout_passphrase"
+    					android:summary="Забыть парольную фразу через некоторое время"
+    					android:title="Забывать парольную фразу" />
+    					
+    
+    <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
+    					android:key="pref_timeout_interval"
+    					android:defaultValue="300"
+    					android:title="Период запоминания"
+    					android:summary="Промежуток времени после которого парольная фраза будет удалена из памяти"
+    					android:dependency="pref_timeout_passphrase"
+    					android:dialogTitle="Выберите период запоминания" />
+    
+   </PreferenceCategory>
+   
+  <PreferenceCategory android:title="Настройки ключа идентификации">
+ 	<Preference android:key="pref_view_identity"
+			  	android:title="Показать мой идентификационный ключ"
+ 			  	android:summary="Показать мой идентификационный ключ"/>
+ 			  	
+ 	<Preference android:key="pref_export_identity"
+			  	android:title="Экспортировать мой идентификационный ключ"
+ 			  	android:summary="Экспортировать мой идентификационный ключ"/>
+ 
+ 	<Preference android:key="pref_import_identity"
+			  	android:title="Импортировать ключ контакта"
+ 			  	android:summary="Импортировать идентификационный ключ от контакта"/>
+ 
+ 	<Preference android:key="pref_manage_identity"
+			  	android:title="Управление идентификационными ключами"
+ 			  	android:summary="Управление настроинными идентификационными ключами"/>  
+  </PreferenceCategory>
+ 
+  <PreferenceCategory android:title="Настройки уведомлений">
+    <CheckBoxPreference android:key="pref_key_enable_notifications"
+                        android:title="Уведомления"
+                        android:summary="Показывать уведомления о сообщениях в статусной строке"
+                        android:defaultValue="true" />
+    <ListPreference
+					  android:key="pref_led_color"
+					  android:defaultValue="green"
+					  android:title="Цвет СИД"
+					  android:dependency="pref_key_enable_notifications"
+					  android:summary="Изменить цвет уведомления через СИД"
+					  android:entries="@array/pref_led_color_entries"
+					  android:entryValues="@array/pref_led_color_values"
+					  android:dialogTitle="Выберите цвет СИД" />
+					  
+	<org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
+                      android:key="pref_led_blink"
+                      android:defaultValue="500,2000"
+                      android:title="Скорость мерцания СИД"
+                      android:dependency="pref_key_enable_notifications"
+                      android:summary="Изменить скорость мерцания СИД"
+                      android:entries="@array/pref_led_blink_pattern_entries"
+                      android:entryValues="@array/pref_led_blink_pattern_values"
+                      android:dialogTitle="Скорость мерцания СИД" />	
+                                          
+    
+    <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
+                        android:dependency="pref_key_enable_notifications"
+                        android:key="pref_key_ringtone"
+                        android:title="Выбрать звук"
+                        android:ringtoneType="notification"
+                        android:defaultValue="content://settings/system/notification_sound" />
+    <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
+                        android:dependency="pref_key_enable_notifications"
+                        android:key="pref_key_vibrate"
+                        android:defaultValue="true"
+                        android:title="Вибрировать"
+                        android:summary="Вибрировать при поступившем уведомлении" />
+  </PreferenceCategory>
+</PreferenceScreen>

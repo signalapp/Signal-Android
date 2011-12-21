@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright 2009, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:paddingLeft="14dip"
+    android:paddingRight="5dip"
+>
+
+    <ImageView android:id="@+id/presence"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dip"
+        android:layout_centerVertical="true"
+
+        android:gravity="center"
+        android:scaleType="centerInside"
+    />
+
+    <TextView android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="-8dip"
+
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold"
+        android:visibility = "gone"
+    />
+
+    <TextView android:id="@+id/number"
+    	android:visibility = "gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_toRightOf="@id/label"
+        android:layout_alignBaseline="@id/label"
+        android:layout_toLeftOf="@id/presence"
+        android:layout_alignWithParentIfMissing="true"
+
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+    />
+
+    <TextView android:id="@+id/name"
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+        android:layout_above="@id/label"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/presence"
+        android:layout_marginBottom="1dip"
+
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical|left"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+    />
+
+</RelativeLayout>

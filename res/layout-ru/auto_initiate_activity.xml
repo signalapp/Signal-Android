@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10px">
+
+	<TextView android:id="@+id/description_text"
+			  android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:layout_marginBottom="5px" 
+			  android:text="Вы получили сообщения от кого-то, кто поддерживает шифрованные сообщения с помощью TextSecure. Вы хотите начать обмен ключами для того чтобы общаться безопасно?"/>
+			   
+	<LinearLayout android:layout_width="fill_parent"
+				  android:layout_height="wrap_content"
+				  android:layout_marginTop="10px"
+				  android:orientation="horizontal">
+				  
+		<Button android:id="@+id/initiate_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Начать обмен"
+				android:gravity="center"/>
+				
+		<Button android:id="@+id/cancel_button"
+				android:text="Отменить"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"/>
+	</LinearLayout>
+</LinearLayout>
