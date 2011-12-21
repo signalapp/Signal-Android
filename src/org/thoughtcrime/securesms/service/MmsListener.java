@@ -33,7 +33,7 @@ import android.util.Log;
 public class MmsListener extends BroadcastReceiver {
 
   private boolean isRelevent(Context context, Intent intent) {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ECLAIR)
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT)
       return false;
 		
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.ALL_MMS_PERF, true))

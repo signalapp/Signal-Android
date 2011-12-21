@@ -77,7 +77,7 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
     super.onCreate(icicle);
     addPreferencesFromResource(R.xml.preferences);
         
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ECLAIR) {
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT) {
       CheckBoxPreference mmsPreference = (CheckBoxPreference)this.findPreference("pref_all_mms");
       mmsPreference.setChecked(false);
       mmsPreference.setEnabled(false);
@@ -133,7 +133,7 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
   }
    
   public static boolean showIcon() {
-    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR;
+    return Build.VERSION.SDK_INT > Build.VERSION_CODES.DONUT;
   }
 
   private void handleIdentitySelection(Intent data) {

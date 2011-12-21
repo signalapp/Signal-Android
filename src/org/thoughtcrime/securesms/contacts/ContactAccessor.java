@@ -50,7 +50,7 @@ public abstract class ContactAccessor {
     if (sInstance == null) {
       String className;
 
-      if (Integer.parseInt(Build.VERSION.SDK) < Build.VERSION_CODES.ECLAIR) 
+      if (Integer.parseInt(Build.VERSION.SDK) <= Build.VERSION_CODES.DONUT) 
         className = "ContactAccessorOldApi";
       else 
         className = "ContactAccessorNewApi";

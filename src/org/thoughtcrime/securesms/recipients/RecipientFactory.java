@@ -47,7 +47,7 @@ public class RecipientFactory {
         
     int sdkVersion = Integer.parseInt(Build.VERSION.SDK);
         
-    if (sdkVersion < Build.VERSION_CODES.ECLAIR) className = "OldRecipientProvider";
+    if (sdkVersion <= Build.VERSION_CODES.DONUT) className = "OldRecipientProvider";
     else                                         className = "NewRecipientProvider";
 
     try {
