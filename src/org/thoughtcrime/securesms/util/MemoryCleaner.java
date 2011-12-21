@@ -34,30 +34,43 @@ import android.util.Log;
 
 public class MemoryCleaner {
 
+  // XXX This is basically not happening for now.
+  // The problem is that now secrets are moving
+  // through both Intents and binder calls, which
+  // means sometimes they're shared memory and sometimes
+  // they're not.  We're going to need to do a lot more
+  // work in order to accurately keep track of when to
+  // wipe this within an Activity lifecycle.  =(
   public static void clean(MasterSecret masterSecret) {
-    try {
-      SecretKeySpec cipherKey = masterSecret.getEncryptionKey();
-      SecretKeySpec macKey    = masterSecret.getMacKey();
-      
-      Field keyField = SecretKeySpec.class.getDeclaredField("key");
-      keyField.setAccessible(true);
-      
-      byte[] cipherKeyField = (byte[]) keyField.get(cipherKey);
-      byte[] macKeyField    = (byte[]) keyField.get(macKey);
-      
-      Arrays.fill(cipherKeyField, (byte)0x00);
-      Arrays.fill(macKeyField, (byte)0x00);
-      
-    } catch (NoSuchFieldException nsfe) {
-      Log.w("MemoryCleaner", nsfe);
-    } catch (IllegalArgumentException e) {
-      Log.w("MemoryCleaner", e);
-    } catch (IllegalAccessException e) {
-      Log.w("MemoryCleaner", e);
-    }
+//    if (masterSecret == null)
+//      return;
+//	  
+//    try {
+//      SecretKeySpec cipherKey = masterSecret.getEncryptionKey();
+//      SecretKeySpec macKey    = masterSecret.getMacKey();
+//      
+//      Field keyField = SecretKeySpec.class.getDeclaredField("key");
+//      keyField.setAccessible(true);
+//      
+//      byte[] cipherKeyField = (byte[]) keyField.get(cipherKey);
+//      byte[] macKeyField    = (byte[]) keyField.get(macKey);
+//      
+//      Arrays.fill(cipherKeyField, (byte)0x00);
+//      Arrays.fill(macKeyField, (byte)0x00);
+//      
+//    } catch (NoSuchFieldException nsfe) {
+//      Log.w("MemoryCleaner", nsfe);
+//    } catch (IllegalArgumentException e) {
+//      Log.w("MemoryCleaner", e);
+//    } catch (IllegalAccessException e) {
+//      Log.w("MemoryCleaner", e);
+//    }
   }
   
   public static void clean(String string) {
+    if (string == null)
+      return;
+    
     try {
       Field charArrayField = String.class.getDeclaredField("value");
       charArrayField.setAccessible(true);
