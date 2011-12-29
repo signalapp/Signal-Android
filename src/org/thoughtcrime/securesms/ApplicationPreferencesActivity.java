@@ -147,7 +147,7 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
     String contactName      = ContactAccessor.getInstance().getNameFromContact(this, uri);
 		
     if (identityKey == null) {
-      Dialogs.displayAlert(this, "Not found!", "No valid identity key was found in the specified contact.", android.R.drawable.ic_dialog_alert);
+      Dialogs.displayAlert(this, "Not found!", getString(R.string.no_valid_identity_key_was_found_in_the_specified_contact_), android.R.drawable.ic_dialog_alert);
       return;
     }
 				
@@ -182,13 +182,13 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
           .getString(IDENTITY_PREF, null);
 			
       if (!IdentityKeyUtil.hasIdentityKey(ApplicationPreferencesActivity.this)) {
-        Toast.makeText(ApplicationPreferencesActivity.this, "You don't have an identity key!", Toast.LENGTH_LONG).show();
+        Toast.makeText(ApplicationPreferencesActivity.this, getString(R.string.you_don_t_have_an_identity_key), Toast.LENGTH_LONG).show();
         return true;
       }
 			
       if (contactUri == null) {
         	Toast.makeText(ApplicationPreferencesActivity.this, 
-        	               "You have not yet defined a contact for yourself! Select one in the Settings menu.", 
+        	               getString(R.string.you_have_not_yet_defined_a_contact_for_yourself), 
         	               Toast.LENGTH_LONG).show();
         	return true;
       }
@@ -196,7 +196,7 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
       ContactAccessor.getInstance().insertIdentityKey(ApplicationPreferencesActivity.this, Uri.parse(contactUri), 
                                                       IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
 			
-      Toast.makeText(ApplicationPreferencesActivity.this, "Exported to contacts database!", Toast.LENGTH_LONG).show();
+      Toast.makeText(ApplicationPreferencesActivity.this, getString(R.string.exported_to_contacts_database), Toast.LENGTH_LONG).show();
 
       return true;
     }
@@ -211,7 +211,7 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
         startActivityForResult(importIntent, IMPORT_IDENTITY_ID);
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this, 
-                       "You need to have entered your passphrase before importing keys...", 
+                       getString(R.string.you_need_to_have_entered_your_passphrase_before_importing_keys_), 
                        Toast.LENGTH_LONG).show();
       }
 			
@@ -229,7 +229,7 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
         startActivity(manageIntent);
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this, 
-                       "You need to have entered your passphrase before managing keys...", 
+        		getString(R.string.you_need_to_have_entered_your_passphrase_before_managing_keys_), 
                        Toast.LENGTH_LONG).show();
       }
 			
@@ -244,7 +244,7 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
       if (settings.getBoolean("passphrase_initialized", false)) {	    		
         startActivity(new Intent(ApplicationPreferencesActivity.this, PassphraseChangeActivity.class));
       } else {
-        Toast.makeText(ApplicationPreferencesActivity.this, "You haven't set a passphrase yet!", Toast.LENGTH_LONG).show();
+        Toast.makeText(ApplicationPreferencesActivity.this, getString(R.string.you_haven_t_set_a_passphrase_yet_), Toast.LENGTH_LONG).show();
       }
 
       return true;

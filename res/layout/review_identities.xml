@@ -15,7 +15,7 @@
 		<TextView android:id="@id/android:empty"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content" 
-				  android:text="You don't currently have any identity keys in your trust database."
+				  android:text="@string/you_don_t_currently_have_any_identity_keys_in_your_trust_database_"
 				  android:textAppearance="?android:attr/textAppearanceMedium"
 				  android:padding="10dip" />
 

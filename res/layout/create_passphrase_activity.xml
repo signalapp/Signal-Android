@@ -12,7 +12,7 @@
 				android:padding="8px"
 				xmlns:android="http://schemas.android.com/apk/res/android">
 
-<TextView android:text="To get started, please enter a passphrase that will be used to locally encrypt your data.  This should be a strong passphrase."
+<TextView android:text="@string/to_get_started_please_enter_a_passphrase"
 		  android:textSize="19dip" 
 		  android:id="@+id/create_pass_label" 
 		  android:layout_width="fill_parent" 
@@ -54,7 +54,7 @@
 <Button android:layout_below="@id/passphrase_edit_repeat" 
 	    android:layout_width="100dip" 
 	    android:layout_height="wrap_content" 
-	    android:text="Ok" android:id="@+id/ok_button" 
+	    android:text="@string/ok" android:id="@+id/ok_button" 
 	    android:layout_toLeftOf="@id/cancel_button"></Button>
 	    </RelativeLayout>
 

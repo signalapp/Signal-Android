@@ -34,16 +34,18 @@ import android.database.Cursor;
 public class DecryptingConversationListAdapter extends ConversationListAdapter {
 	
   private final MasterCipher bodyCipher;
-	
+  private Context context;
+  
   public DecryptingConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
     super(context, cursor);
     this.bodyCipher   = new MasterCipher(masterSecret);
+    this.context = context;
   }
 	
   @Override
   protected void setBody(Cursor cursor, MessageRecord message) {
     String body = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET));
-    if (body == null || body.equals("")) body = "(No subject)";
+    if (body == null || body.equals("")) body = context.getString(R.string._no_subject_);
     MessageDisplayHelper.setDecryptedMessageBody(body, message, bodyCipher);
   }
 }

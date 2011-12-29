@@ -54,31 +54,32 @@ public class MessageNotifier {
 
   public static final int NOTIFICATION_ID = 1338;
 	
-  private static String buildTickerMessage(int count, Recipients recipients) {
+  private static String buildTickerMessage(Context context, int count, Recipients recipients) {
     Recipient recipient   = recipients.getPrimaryRecipient();
     StringBuilder builder = new StringBuilder();
     builder.append('(');
     builder.append(count);
     builder.append(')');
-    builder.append(" New messages");
+    builder.append(context.getString(R.string._new_messages));
 		
     if (recipient != null) {
-      builder.append(", most recent from: ");				
+      builder.append(", ");
+      builder.append(context.getString(R.string.most_recent_from_));				
       builder.append(recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     }
 		
     return builder.toString();
   }
 	
-  private static String buildTitleMessage(int count) {
-    return "(" + count + ") New Messages";
+  private static String buildTitleMessage(Context context, int count) {
+    return "(" + count + ") " + context.getString(R.string._new_messages);
   }
 	
-  private static String buildSubtitleMessage(Recipients recipients) {
+  private static String buildSubtitleMessage(Context context, Recipients recipients) {
     Recipient recipient = recipients.getPrimaryRecipient();
 		
     if (recipient != null) {
-      return "Most recent from: " + (recipient.getName() == null ? recipient.getNumber() : recipient.getName());
+      return context.getString(R.string.most_recent_from_) + (recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     }
 		
     return null;
@@ -180,9 +181,9 @@ public class MessageNotifier {
       else if (c == null || !c.moveToFirst())                         return;
 			
       Recipients recipients      = getMostRecentRecipients(context, c);
-      String ticker              = buildTickerMessage(c.getCount(), recipients);
-      String title               = buildTitleMessage(c.getCount());
-      String subtitle            = buildSubtitleMessage(recipients);
+      String ticker              = buildTickerMessage(context,c.getCount(), recipients);
+      String title               = buildTitleMessage(context, c.getCount());
+      String subtitle            = buildSubtitleMessage(context, recipients);
       PendingIntent launchIntent = buildPendingIntent(context, c, recipients);
 			
       sendNotification(context, manager, launchIntent, ticker, title, subtitle, signal);

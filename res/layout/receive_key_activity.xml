@@ -37,18 +37,18 @@
 		<Button android:id="@+id/verify_identity_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Identities"
+				android:text="@string/identities"
 				android:visibility="gone"
 				android:gravity="center" />		  
 				  
 		<Button android:id="@+id/ok_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Complete Exchange"
+				android:text="@string/complete_exchange"
 				android:gravity="center"/>
 				
 		<Button android:id="@+id/cancel_button"
-				android:text="Cancel"
+				android:text="@string/cancel"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:gravity="center"/>

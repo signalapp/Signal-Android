@@ -20,7 +20,7 @@
 
     <TableRow>
         <TextView
-            android:text="New passphrase:"
+            android:text="@string/new_passphrase_"
             android:textSize="12sp"            
             android:padding="3dip" />
             
@@ -33,7 +33,7 @@
 
     <TableRow>
         <TextView
-            android:text="Repeat new passphrase:"
+            android:text="@string/repeat_new_passphrase_"
             android:textSize="12sp"            
             android:padding="3dip" />
             

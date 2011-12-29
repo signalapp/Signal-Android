@@ -10,7 +10,7 @@
     <TableRow>
         <TextView
         	android:textSize="12sp"
-            android:text="Their identity:\n(They read)"
+            android:text="@string/their_identity_n_they_read_"
             android:padding="3dip" />
         <TextView
            	android:textSize="20sp"
@@ -22,7 +22,7 @@
 
     <TableRow>
         <TextView
-            android:text="Your identity:\n(You read)"
+            android:text="@string/your_identity_n_you_read_"
             android:textSize="12sp"            
             android:padding="3dip" />
         <TextView
@@ -44,25 +44,25 @@
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Verified!"/>
+					android:text="@string/verified_"/>
 	
 	   		<Button android:id="@+id/abort_button"
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Abort"/>
+					android:text="@string/abort"/>
 					
 			<Button android:id="@+id/compare_button"
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Compare"/>
+					android:text="@string/compare"/>
 					
 			<Button android:id="@+id/cancel_button"
 					android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Cancel" />
+					android:text="@string/cancel" />
 			
 		</LinearLayout>    
     </TableRow>    

@@ -74,7 +74,7 @@ public class GroupSelectionListActivity extends ListActivity {
   public boolean onPrepareOptionsMenu(Menu menu) {
     super.onPrepareOptionsMenu(menu);
     menu.clear();
-    menu.add(0, MENU_OPTION_EXIT, Menu.NONE, "Finished!").setIcon(android.R.drawable.ic_menu_set_as);
+    menu.add(0, MENU_OPTION_EXIT, Menu.NONE, R.string.finished_).setIcon(android.R.drawable.ic_menu_set_as);
 
     return true;
   }
@@ -210,8 +210,8 @@ public class GroupSelectionListActivity extends ListActivity {
 		
     public void aggregateContactsAndExit() {
       progressDialog = new ProgressDialog(GroupSelectionListActivity.this);
-      progressDialog.setTitle("Aggregating Contacts");
-      progressDialog.setMessage("Aggregating group contacts...");
+      progressDialog.setTitle(R.string.aggregating_contacts);
+      progressDialog.setMessage(getString(R.string.aggregating_group_contacts_));
       progressDialog.setCancelable(false);
       progressDialog.setIndeterminate(true);
       progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

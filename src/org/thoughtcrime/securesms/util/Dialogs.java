@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import org.thoughtcrime.securesms.R;
 
 public class Dialogs {
 
@@ -26,7 +27,7 @@ public class Dialogs {
     alertDialog.setTitle(title);
     alertDialog.setMessage(message);
     alertDialog.setIcon(icon);
-    alertDialog.setPositiveButton("Ok", null);
+    alertDialog.setPositiveButton(R.string.ok, null);
     alertDialog.show();
   }
 }
