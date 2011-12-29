@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.service;
 
 import java.util.ArrayList;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionCipher;

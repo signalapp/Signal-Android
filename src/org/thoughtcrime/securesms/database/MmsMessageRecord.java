@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.thoughtcrime.securesms.ConversationItem;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 

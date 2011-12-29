@@ -1,6 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.IOException;
+import org.thoughtcrime.securesms.R;
 
 /**
  * DER NumericString object - this is an ascii string of characters {0,1,2,3,4,5,6,7,8,9, }.

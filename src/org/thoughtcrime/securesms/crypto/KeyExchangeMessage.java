@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 import java.io.IOException;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.LocalKeyRecord;
 import org.thoughtcrime.securesms.protocol.Message;
 import org.thoughtcrime.securesms.protocol.Prefix;

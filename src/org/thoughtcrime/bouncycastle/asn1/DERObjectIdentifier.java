@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigInteger;
+import org.thoughtcrime.securesms.R;
 
 public class DERObjectIdentifier
     extends ASN1Object

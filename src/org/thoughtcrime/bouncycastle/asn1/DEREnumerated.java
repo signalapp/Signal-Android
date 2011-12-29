@@ -1,6 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
 import org.bouncycastle.util.Arrays;
+import org.thoughtcrime.securesms.R;
 
 import java.io.IOException;
 import java.math.BigInteger;

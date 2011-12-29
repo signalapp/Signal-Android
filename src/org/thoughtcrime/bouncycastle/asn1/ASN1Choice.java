@@ -1,5 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * Marker interface for CHOICE objects - if you implement this in a role your
  * own object any attempt to tag the object implicitly will convert the tag to

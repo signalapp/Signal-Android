@@ -1,6 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
 import java.util.Vector;
+import org.thoughtcrime.securesms.R;
 
 /**
  * a general class for building up a vector of DER encodable objects -

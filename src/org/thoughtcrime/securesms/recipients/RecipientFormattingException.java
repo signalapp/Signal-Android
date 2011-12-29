@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
+import org.thoughtcrime.securesms.R;
+
 public class RecipientFormattingException extends Exception {
   public RecipientFormattingException() {
     super();

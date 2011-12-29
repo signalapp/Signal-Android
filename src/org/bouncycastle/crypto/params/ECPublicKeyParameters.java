@@ -1,6 +1,7 @@
 package org.bouncycastle.crypto.params;
 
 import org.bouncycastle.math.ec.ECPoint;
+import org.thoughtcrime.securesms.R;
 
 public class ECPublicKeyParameters
     extends ECKeyParameters

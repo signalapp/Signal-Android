@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.protocol.Message;
 import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
@@ -42,7 +43,7 @@ public class MultipartMessageHandler {
   private final HashMap<String, Integer>  idMap           = new HashMap<String, Integer>();
 	
   private String spliceMessage(String prefix, byte[][] messageParts) {
-    Log.w("MultipartMessageHandler", "Have complete message fragments, splicing...");
+    Log.d("MultipartMessageHandler", "Have complete message fragments, splicing...");
     int totalMessageLength = 0;
 		
     for (int i=0;i<messageParts.length;i++) {
@@ -64,7 +65,7 @@ public class MultipartMessageHandler {
     for (int i=0;i<partialMessages.length;i++)
       if (partialMessages[i] == null) return false;
 		
-    Log.w("MultipartMessageHandler", "Buffer complete!");
+    Log.d("MultipartMessageHandler", "Buffer complete!");
 		
     return true;
   }
@@ -72,13 +73,13 @@ public class MultipartMessageHandler {
   private byte[][] findOrAllocateMultipartBuffer(String sender, int identifier, int count) {
     String key = sender + identifier;
 		
-    Log.w("MultipartMessageHandler", "Getting multipart buffer...");
+    Log.d("MultipartMessageHandler", "Getting multipart buffer...");
 		
     if (partialMessages.containsKey(key)) {
-      Log.w("MultipartMessageHandler", "Returning existing multipart buffer...");
+      Log.d("MultipartMessageHandler", "Returning existing multipart buffer...");
       return partialMessages.get(key);
     } else {
-      Log.w("MultipartMessageHandler", "Creating new multipart buffer: " + count);
+      Log.d("MultipartMessageHandler", "Creating new multipart buffer: " + count);
       byte[][] multipartBuffer = new byte[count][];
       partialMessages.put(key, multipartBuffer);
       return multipartBuffer;
@@ -101,12 +102,12 @@ public class MultipartMessageHandler {
   }
 	
   private String processMultipartMessage(String prefix, int index, int count, String sender, int identifier, byte[] decodedMessage) {
-    Log.w("MultipartMessageHandler", "Processing multipart message...");
+    Log.d("MultipartMessageHandler", "Processing multipart message...");
     decodedMessage        = stripMultipartTransportLayer(index, decodedMessage);
     byte[][] messageParts = findOrAllocateMultipartBuffer(sender, identifier, count);
     messageParts[index]   = decodedMessage;
 		
-    Log.w("MultipartMessageHandler", "Filled buffer at index: " + index);
+    Log.d("MultipartMessageHandler", "Filled buffer at index: " + index);
 		
     if (!isComplete(messageParts))
       return null;
@@ -116,7 +117,7 @@ public class MultipartMessageHandler {
   }
 	
   private String processSinglePartMessage(String prefix, byte[] decodedMessage) {
-    Log.w("MultipartMessageHandler", "Processing single part message...");
+    Log.d("MultipartMessageHandler", "Processing single part message...");
     decodedMessage[MULTIPART_OFFSET] = decodedMessage[VERSION_OFFSET];
     return prefix + Base64.encodeBytesWithoutPadding(decodedMessage, 1, decodedMessage.length-1);
   }
@@ -126,8 +127,8 @@ public class MultipartMessageHandler {
       byte[] decodedMessage  = Base64.decodeWithoutPadding(message);
       int currentVersion     = Conversions.highBitsToInt(decodedMessage[VERSION_OFFSET]);
 			
-      Log.w("MultipartMessageHandler", "Decoded message with version: " + currentVersion);
-      Log.w("MultipartMessageHandler", "Decoded message: " + Hex.toString(decodedMessage));
+      Log.d("MultipartMessageHandler", "Decoded message with version: " + currentVersion);
+      Log.d("MultipartMessageHandler", "Decoded message: " + Hex.toString(decodedMessage));
 			
       if (currentVersion < MULTIPART_SUPPORTED_AFTER_VERSION)
 	throw new AssertionError("Caller should have checked this.");
@@ -136,7 +137,7 @@ public class MultipartMessageHandler {
       int multipartCount     = Conversions.lowBitsToInt(decodedMessage[MULTIPART_OFFSET]);
       int identifier         = decodedMessage[IDENTIFIER_OFFSET] & 0xFF;
 			
-      Log.w("MultipartMessageHandler", "Multipart Info: (" + multipartIndex + "/" + multipartCount + ") ID: " + identifier); 
+      Log.d("MultipartMessageHandler", "Multipart Info: (" + multipartIndex + "/" + multipartCount + ") ID: " + identifier); 
 			
       if (multipartIndex >= multipartCount)
 	return message;
@@ -150,7 +151,7 @@ public class MultipartMessageHandler {
   }
 	
   private ArrayList<String> buildSingleMessage(byte[] decodedMessage, WirePrefix prefix) {
-    Log.w("MultipartMessageHandler", "Adding transport info to single-part message...");
+    Log.d("MultipartMessageHandler", "Adding transport info to single-part message...");
 		
     ArrayList<String> list            = new ArrayList<String>();
     byte[] messageWithMultipartHeader = new byte[decodedMessage.length + 1];
@@ -161,7 +162,7 @@ public class MultipartMessageHandler {
     String encodedMessage             = Base64.encodeBytesWithoutPadding(messageWithMultipartHeader);
 		
     list.add(prefix.calculatePrefix(encodedMessage) + encodedMessage);
-    Log.w("MultipartMessageHandler", "Complete fragment size: " + list.get(list.size()-1).length());
+    Log.d("MultipartMessageHandler", "Complete fragment size: " + list.get(list.size()-1).length());
 
     return list;
   }
@@ -183,7 +184,7 @@ public class MultipartMessageHandler {
   }
 	
   private ArrayList<String> buildMultipartMessage(String recipient, byte[] decodedMessage, WirePrefix prefix) {
-    Log.w("MultipartMessageHandler", "Building multipart message...");
+    Log.d("MultipartMessageHandler", "Building multipart message...");
 		
     ArrayList<String> list            = new ArrayList<String>();
     byte versionByte                  = decodedMessage[0];
@@ -199,7 +200,7 @@ public class MultipartMessageHandler {
       segment[1]      = Conversions.intsToByteHighAndLow(segmentIndex++, segmentCount);
       segment[2]      = id;
 
-      Log.w("MultipartMessageHandler", "Fragment: (" + segmentIndex + "/" + segmentCount +") -- ID: " + id);
+      Log.d("MultipartMessageHandler", "Fragment: (" + segmentIndex + "/" + segmentCount +") -- ID: " + id);
 			
       System.arraycopy(decodedMessage, messageOffset, segment, 3, segmentSize-3);
       messageOffset  += segmentSize-3;
@@ -207,7 +208,7 @@ public class MultipartMessageHandler {
       String encodedSegment = Base64.encodeBytesWithoutPadding(segment);
       list.add(prefix.calculatePrefix(encodedSegment) + encodedSegment);
 			
-      Log.w("MultipartMessageHandler", "Complete fragment size: " + list.get(list.size()-1).length());
+      Log.d("MultipartMessageHandler", "Complete fragment size: " + list.get(list.size()-1).length());
     }
 		
     return list;

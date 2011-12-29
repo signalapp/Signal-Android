@@ -29,6 +29,7 @@ import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.math.ec.ECCurve;
 import org.bouncycastle.math.ec.ECFieldElement;
 import org.bouncycastle.math.ec.ECPoint;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.LocalKeyRecord;
 import org.thoughtcrime.securesms.database.RemoteKeyRecord;
 import org.thoughtcrime.securesms.database.SessionRecord;

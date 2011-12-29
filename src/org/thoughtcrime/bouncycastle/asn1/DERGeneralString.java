@@ -1,6 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.IOException;
+import org.thoughtcrime.securesms.R;
 
 public class DERGeneralString 
     extends ASN1Object implements DERString

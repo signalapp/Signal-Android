@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterCipher;

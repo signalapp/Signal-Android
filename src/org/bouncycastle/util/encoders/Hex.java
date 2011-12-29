@@ -3,6 +3,7 @@ package org.bouncycastle.util.encoders;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import org.thoughtcrime.securesms.R;
 
 public class Hex
 {

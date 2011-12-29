@@ -1,5 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
+import org.thoughtcrime.securesms.R;
+
 class DERFactory
 {
     static final DERSequence EMPTY_SEQUENCE = new DERSequence();

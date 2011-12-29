@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.mms;
 
 import java.io.IOException;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.TransportDetails;
 import org.thoughtcrime.securesms.util.Base64;
 

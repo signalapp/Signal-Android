@@ -1,6 +1,7 @@
 package org.bouncycastle.crypto;
 
 import java.security.SecureRandom;
+import org.thoughtcrime.securesms.R;
 
 /**
  * The base class for parameters to key generators.

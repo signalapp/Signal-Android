@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
+import org.thoughtcrime.securesms.R;
 
 /**
  * Generalized time object.

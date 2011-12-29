@@ -153,8 +153,8 @@ public class ConversationItem extends LinearLayout {
   }
 	
   private void setMmsNotificationAttributes(MmsMessageRecord messageRecord) {
-    String messageSize = "Message size: " + messageRecord.getMessageSize() + " KB";
-    String expires     = "Expires: " + DateUtils.getRelativeTimeSpanString(getContext(), messageRecord.getExpiration(), false);
+    String messageSize = getContext().getString(R.string.message_size_) + messageRecord.getMessageSize() + " KB";
+    String expires     = getContext().getString(R.string.expires_) + DateUtils.getRelativeTimeSpanString(getContext(), messageRecord.getExpiration(), false);
 		
     dateText.setText(messageSize + "\n" + expires);
 		
@@ -213,11 +213,13 @@ public class ConversationItem extends LinearLayout {
     Recipient recipient = messageRecord.getMessageRecipient();
     String body         = messageRecord.getBody();
 		
-    if      (messageRecord.isKeyExchange() && messageRecord.isOutgoing())           body    = "\nSent key exchange message";
-    else if (messageRecord.isProcessedKeyExchange() && !messageRecord.isOutgoing()) body    = "\nReceived and processed key exchange message.";
-    else if (messageRecord.isStaleKeyExchange())                                    body    = "\nError, received stale key exchange message.";
-    else if (messageRecord.isKeyExchange() && !messageRecord.isOutgoing())          body    = "\nReceived key exchange message, click to process";
-    else if (messageRecord.isOutgoing())                                            address = "Me: ";
+    if      (messageRecord.isKeyExchange() && messageRecord.isOutgoing())           body    = "\n" + getContext().getString(R.string.sent_key_exchange_message);
+    else if (messageRecord.isProcessedKeyExchange() && !messageRecord.isOutgoing()) body    = "\n" + getContext().getString(
+			R.string.received_and_processed_key_exchange_message_);
+    else if (messageRecord.isStaleKeyExchange())                                    body    = "\n" + getContext().getString(R.string.error_received_stale_key_exchange_message_);
+    else if (messageRecord.isKeyExchange() && !messageRecord.isOutgoing())          body    = "\n" + getContext().getString(
+			R.string.received_key_exchange_message_click_to_process);
+    else if (messageRecord.isOutgoing())                                            address = getContext().getString(R.string.me_);
     else                                                                            address = (recipient.getName() == null ? recipient.getNumber() : recipient.getName()) + ": ";
 		
     bodyText.setText(address + body, TextView.BufferType.SPANNABLE);
@@ -294,7 +296,7 @@ public class ConversationItem extends LinearLayout {
   }
 	
   private void setDate(long date) {
-    dateText.setText("Sent: " + DateUtils.getRelativeTimeSpanString(getContext(), date, false));
+    dateText.setText(getContext().getString(R.string.sent_) + DateUtils.getRelativeTimeSpanString(getContext(), date, false));
   }
 	
   private void setStatusIcons(MessageRecord messageRecord) {
@@ -385,8 +387,8 @@ public class ConversationItem extends LinearLayout {
 		
     private void saveToSdCard() {
       progressDialog = new ProgressDialog(context);
-      progressDialog.setTitle("Saving Attachment");
-      progressDialog.setMessage("Saving attachment to SD card...");
+      progressDialog.setTitle(R.string.saving_attachment);
+      progressDialog.setMessage(getContext().getString(R.string.saving_attachment_to_sd_card_));
       progressDialog.setCancelable(false);
       progressDialog.setIndeterminate(true);
       progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -396,10 +398,10 @@ public class ConversationItem extends LinearLayout {
 		
     public boolean onLongClick(View v) {
       AlertDialog.Builder builder = new AlertDialog.Builder(context);
-      builder.setTitle("Save to SD Card?");
+      builder.setTitle(R.string.save_to_sd_card_);
       builder.setIcon(android.R.drawable.ic_dialog_alert);
       builder.setCancelable(true);
-      builder.setMessage("This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted, would you like to continue?");
+      builder.setMessage(R.string.this_media_has_been_stored_in_an_encrypted_database);
       builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
           saveToSdCard();
@@ -415,13 +417,13 @@ public class ConversationItem extends LinearLayout {
     public void handleMessage(Message message) {
       switch (message.what) {
       case FAILURE:
-        Toast.makeText(context, "Error while saving attachment to SD card!", Toast.LENGTH_LONG);
+        Toast.makeText(context, R.string.error_while_saving_attachment_to_sd_card_, Toast.LENGTH_LONG);
         break;
       case SUCCESS:
-        Toast.makeText(context, "Success!", Toast.LENGTH_LONG);
+        Toast.makeText(context, R.string.success_, Toast.LENGTH_LONG);
         break;
       case WRITE_ACCESS_FAILURE:
-        Toast.makeText(context, "Unable to write to SD Card!", Toast.LENGTH_LONG);
+        Toast.makeText(context, R.string.unable_to_write_to_sd_card_, Toast.LENGTH_LONG);
         break;
       }
 			
@@ -455,10 +457,10 @@ public class ConversationItem extends LinearLayout {
 		
     public void onClick(View v) {
       AlertDialog.Builder builder = new AlertDialog.Builder(context);
-      builder.setTitle("View secure media?");
+      builder.setTitle(R.string.view_secure_media_);
       builder.setIcon(android.R.drawable.ic_dialog_alert);
       builder.setCancelable(true);
-      builder.setMessage("This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk.  Are you sure that you would like to do this?");
+      builder.setMessage(R.string.this_media_has_been_stored_in_an_encrypted_database);
       builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
           fireIntent();

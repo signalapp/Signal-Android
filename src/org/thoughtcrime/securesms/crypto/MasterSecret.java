@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.bouncycastle.util.Arrays;
+import org.thoughtcrime.securesms.R;
 
 import android.os.Parcel;
 import android.os.Parcelable;

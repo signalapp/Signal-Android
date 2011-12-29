@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.database;
 
 import javax.crypto.spec.SecretKeySpec;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionCipher;

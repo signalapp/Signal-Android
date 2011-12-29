@@ -1,6 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.IOException;
+import org.thoughtcrime.securesms.R;
 
 /**
  * DER TaggedObject - in ASN.1 notation this is any object preceded by

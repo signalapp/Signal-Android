@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKey;
 
 import android.content.ContentResolver;

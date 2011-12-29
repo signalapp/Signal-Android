@@ -16,6 +16,8 @@
 
 package com.google.zxing.integration.android;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * <p>Encapsulates the result of a barcode scan invoked through {@link IntentIntegrator}.</p>
  *

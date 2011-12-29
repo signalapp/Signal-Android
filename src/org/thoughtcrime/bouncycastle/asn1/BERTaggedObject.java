@@ -2,6 +2,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import org.thoughtcrime.securesms.R;
 
 /**
  * BER TaggedObject - in ASN.1 notation this is any object preceded by

@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import org.thoughtcrime.securesms.R;
+
 public class InvalidKeyException extends Exception {
 
   public InvalidKeyException() {

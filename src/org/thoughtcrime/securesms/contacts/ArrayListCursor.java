@@ -20,6 +20,7 @@ import android.database.CursorWindow;
 
 import java.lang.System;
 import java.util.ArrayList;
+import org.thoughtcrime.securesms.R;
 
 /**
  * A convenience class that presents a two-dimensional ArrayList

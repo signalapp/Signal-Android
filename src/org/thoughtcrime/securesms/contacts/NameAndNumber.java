@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.contacts;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * Name and number tuple.
  * 

@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import org.thoughtcrime.securesms.R;
+
 public class InvalidMacException extends Exception {
 
   public InvalidMacException() {

@@ -1,5 +1,7 @@
 package org.bouncycastle.crypto;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * interface that a public/private key pair generator should conform to.
  */

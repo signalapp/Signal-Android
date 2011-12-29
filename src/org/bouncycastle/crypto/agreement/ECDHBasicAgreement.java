@@ -8,6 +8,7 @@ import org.bouncycastle.crypto.BasicAgreement;
 import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
+import org.thoughtcrime.securesms.R;
 
 /**
  * P1363 7.2.1 ECSVDP-DH

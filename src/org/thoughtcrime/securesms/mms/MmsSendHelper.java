@@ -27,6 +27,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Hex;
 
 import ws.com.google.android.mms.MmsException;

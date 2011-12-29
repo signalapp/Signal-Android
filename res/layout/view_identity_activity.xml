@@ -10,7 +10,7 @@
     <TableRow>
         <TextView
         	android:textSize="12sp"
-            android:text="Your identity:"
+            android:text="@string/your_identity_"
             android:padding="3dip" />
         <TextView
            	android:textSize="20sp"
@@ -32,14 +32,14 @@
 	   				android:padding="5dip"
 					android:layout_width="100dip"
 					android:layout_height="wrap_content"
-					android:text="Ok"/>
+					android:text="@string/ok"/>
 					
 			<Button android:id="@+id/compare_button"
 					android:layout_margin="10dip"
 					android:padding="5dip"
 					android:layout_width="100dip"
 					android:layout_height="wrap_content"
-					android:text="Compare" />
+					android:text="@string/compare" />
 					
 	
 		</LinearLayout>

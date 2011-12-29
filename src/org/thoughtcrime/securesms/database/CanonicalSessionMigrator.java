@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.database;
 
 import java.io.File;
+import org.thoughtcrime.securesms.R;
 
 import android.content.Context;
 import android.util.Log;

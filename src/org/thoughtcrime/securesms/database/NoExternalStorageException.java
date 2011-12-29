@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import org.thoughtcrime.securesms.R;
+
 public class NoExternalStorageException extends Exception {
 
   public NoExternalStorageException() {

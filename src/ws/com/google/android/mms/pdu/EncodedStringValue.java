@@ -24,6 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import org.thoughtcrime.securesms.R;
 
 /**
  * Encoded-string-value = Text-string | Value-length Char-set Text-string

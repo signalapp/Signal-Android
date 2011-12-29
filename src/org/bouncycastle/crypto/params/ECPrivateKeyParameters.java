@@ -1,6 +1,7 @@
 package org.bouncycastle.crypto.params;
 
 import java.math.BigInteger;
+import org.thoughtcrime.securesms.R;
 
 public class ECPrivateKeyParameters
     extends ECKeyParameters

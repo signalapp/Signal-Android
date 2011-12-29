@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import android.content.Context;

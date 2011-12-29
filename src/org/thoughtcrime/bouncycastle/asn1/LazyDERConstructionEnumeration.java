@@ -2,6 +2,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 
 import java.util.Enumeration;
 import java.io.IOException;
+import org.thoughtcrime.securesms.R;
 
 class LazyDERConstructionEnumeration
     implements Enumeration

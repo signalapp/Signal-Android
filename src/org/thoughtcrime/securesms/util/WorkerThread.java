@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.util;
 
 import java.util.List;
+import org.thoughtcrime.securesms.R;
 
 public class WorkerThread extends Thread {
 	

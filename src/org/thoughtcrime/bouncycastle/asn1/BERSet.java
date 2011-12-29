@@ -2,6 +2,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import org.thoughtcrime.securesms.R;
 
 public class BERSet
     extends DERSet

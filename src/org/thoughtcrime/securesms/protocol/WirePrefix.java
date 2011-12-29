@@ -20,6 +20,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Base64;
 
 import android.util.Log;

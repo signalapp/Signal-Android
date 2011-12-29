@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import org.thoughtcrime.securesms.R;
+
 public class MediaTooLargeException extends Exception {
 
   public MediaTooLargeException() {

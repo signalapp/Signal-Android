@@ -85,7 +85,7 @@ public class ContactSelectionActivity extends TabActivity implements TabHost.OnT
     Intent intent = new Intent(this, GroupSelectionListActivity.class);
     	
     tabHost.addTab(tabHost.newTabSpec("groups")
-		   .setIndicator("Groups", getResources().getDrawable(android.R.drawable.ic_menu_share))
+		   .setIndicator(getString(R.string.groups), getResources().getDrawable(android.R.drawable.ic_menu_share))
 		   .setContent(intent));
   }
     
@@ -93,7 +93,7 @@ public class ContactSelectionActivity extends TabActivity implements TabHost.OnT
     Intent intent = new Intent(this, ContactSelectionRecentActivity.class);
     	
     tabHost.addTab(tabHost.newTabSpec("recent")
-		   .setIndicator("Recent", getResources().getDrawable(android.R.drawable.ic_menu_call))
+		   .setIndicator(getString(R.string.recent), getResources().getDrawable(android.R.drawable.ic_menu_call))
 		   .setContent(intent));
   }
 	
@@ -101,7 +101,7 @@ public class ContactSelectionActivity extends TabActivity implements TabHost.OnT
     Intent intent = new Intent(this, ContactSelectionListActivity.class);
 
     tabHost.addTab(tabHost.newTabSpec("contacts")
-		   .setIndicator("Contacts", getResources().getDrawable(android.R.drawable.ic_menu_agenda))
+		   .setIndicator(getString(R.string.contacts), getResources().getDrawable(android.R.drawable.ic_menu_agenda))
 		   .setContent(intent));
   }
 

@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.service;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 
 import android.content.BroadcastReceiver;

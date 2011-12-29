@@ -1,6 +1,7 @@
 package org.bouncycastle.math.ec;
 
 import java.math.BigInteger;
+import org.thoughtcrime.securesms.R;
 
 /**
  * Interface for classes encapsulating a point multiplication algorithm

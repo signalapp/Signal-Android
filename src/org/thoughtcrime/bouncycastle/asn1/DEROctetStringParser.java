@@ -2,6 +2,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.InputStream;
 import java.io.IOException;
+import org.thoughtcrime.securesms.R;
 
 public class DEROctetStringParser
     implements ASN1OctetStringParser

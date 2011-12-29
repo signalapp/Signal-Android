@@ -1,6 +1,7 @@
 package org.bouncycastle.math.ec;
 
 import java.math.BigInteger;
+import org.thoughtcrime.securesms.R;
 
 /**
  * Class holding methods for point multiplication based on the window

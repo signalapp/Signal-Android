@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Vector;
+import org.thoughtcrime.securesms.R;
 
 abstract public class ASN1Set
     extends ASN1Object

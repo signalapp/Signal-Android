@@ -3,6 +3,7 @@ package org.bouncycastle.math.ec;
 import java.math.BigInteger;
 
 import org.thoughtcrime.bouncycastle.asn1.x9.X9IntegerConverter;
+import org.thoughtcrime.securesms.R;
 
 /**
  * base class for points on elliptic curves.

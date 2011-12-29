@@ -18,7 +18,7 @@
                         style="?android:attr/buttonStyle"
                         android:layout_below="@id/key_recipients"
                         android:layout_alignRight="@id/key_recipients"
-                        android:text="Send"
+                        android:text="@string/send"
                     />
                     
                 <Button android:id="@+id/cancel_key_button"
@@ -28,7 +28,7 @@
                 		style="?android:attr/buttonStyle"
                 		android:layout_toLeftOf="@id/send_key_button"
                         android:layout_below="@id/key_recipients"
-                        android:text="Cancel"
+                        android:text="@string/cancel"
                         />
                 		
                 		

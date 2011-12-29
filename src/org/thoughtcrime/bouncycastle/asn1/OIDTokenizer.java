@@ -1,5 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * class for breaking up an OID into it's component tokens, ala
  * java.util.StringTokenizer. We need this class as some of the

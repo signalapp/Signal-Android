@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.thoughtcrime.securesms.R;
 
 import android.telephony.PhoneNumberUtils;
 

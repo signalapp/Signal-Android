@@ -1,6 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
 import org.bouncycastle.util.io.Streams;
+import org.thoughtcrime.securesms.R;
 
 import java.io.EOFException;
 import java.io.InputStream;

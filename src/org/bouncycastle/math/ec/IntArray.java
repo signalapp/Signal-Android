@@ -1,6 +1,7 @@
 package org.bouncycastle.math.ec;
 
 import org.bouncycastle.util.Arrays;
+import org.thoughtcrime.securesms.R;
 
 import java.math.BigInteger;
 

@@ -76,8 +76,8 @@ public class ReviewIdentitiesActivity extends ListActivity {
 	
   @Override
   public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-    menu.add(0, MENU_OPTION_VIEW, Menu.NONE, "View Key");
-    menu.add(0, MENU_OPTION_DELETE, Menu.NONE, "Delete");
+    menu.add(0, MENU_OPTION_VIEW, Menu.NONE, R.string.view_key);
+    menu.add(0, MENU_OPTION_DELETE, Menu.NONE, R.string.delete);
   }
 
   @Override
@@ -115,17 +115,17 @@ public class ReviewIdentitiesActivity extends ListActivity {
       startActivity(viewIntent);
     } catch (InvalidKeyException ike) {
       Log.w("ReviewIdentitiesActivity", ike);
-      Toast.makeText(this, "Unable to view corrupted identity key!", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.unable_to_view_corrupted_identity_key_, Toast.LENGTH_LONG).show();
     } catch (IOException e) {
       Log.w("ReviewIdentitiesActivity", e);
-      Toast.makeText(this, "Unable to view corrupted identity key!", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.unable_to_view_corrupted_identity_key_, Toast.LENGTH_LONG).show();
     }
   }
 	
   private void deleteIdentity(String name, String keyString) {
     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-    alertDialog.setTitle("Delete identity?");
-    alertDialog.setMessage("Are you sure that you wish to permanently delete this identity key?");
+    alertDialog.setTitle(R.string.delete_identity_);
+    alertDialog.setMessage(R.string.are_you_sure_that_you_wish_to_permanently_delete_this_identity_key_);
     alertDialog.setCancelable(true);
     alertDialog.setNegativeButton(R.string.no, null);
     alertDialog.setPositiveButton(R.string.yes, new DeleteIdentityListener(name, keyString));

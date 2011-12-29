@@ -1,5 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
+import org.thoughtcrime.securesms.R;
+
 class BERFactory
 {
     static final BERSequence EMPTY_SEQUENCE = new BERSequence();

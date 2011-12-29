@@ -33,6 +33,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
 import org.bouncycastle.crypto.agreement.ECDHBasicAgreement;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.InvalidKeyIdException;
 import org.thoughtcrime.securesms.database.LocalKeyRecord;
 import org.thoughtcrime.securesms.database.RemoteKeyRecord;

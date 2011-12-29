@@ -3,6 +3,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import org.thoughtcrime.securesms.R;
 
 public class DEROutputStream
     extends FilterOutputStream implements DERTags

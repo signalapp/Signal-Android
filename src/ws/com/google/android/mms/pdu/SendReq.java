@@ -19,6 +19,7 @@ package ws.com.google.android.mms.pdu;
 
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import ws.com.google.android.mms.InvalidHeaderValueException;
 
 public class SendReq extends MultimediaMessagePdu {

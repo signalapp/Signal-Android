@@ -1,5 +1,7 @@
 package org.bouncycastle.util;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * General array utilities.
  */

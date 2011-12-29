@@ -3,6 +3,7 @@ package org.bouncycastle.crypto.params;
 import java.security.SecureRandom;
 
 import org.bouncycastle.crypto.KeyGenerationParameters;
+import org.thoughtcrime.securesms.R;
 
 public class ECKeyGenerationParameters
     extends KeyGenerationParameters

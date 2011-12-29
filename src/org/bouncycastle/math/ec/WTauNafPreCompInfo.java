@@ -1,5 +1,7 @@
 package org.bouncycastle.math.ec;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * Class holding precomputation data for the WTNAF (Window
  * <code>&tau;</code>-adic Non-Adjacent Form) algorithm.

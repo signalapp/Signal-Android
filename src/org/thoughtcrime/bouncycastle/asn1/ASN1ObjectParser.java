@@ -1,6 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.InputStream;
+import org.thoughtcrime.securesms.R;
 
 /**
  * @deprecated will be removed

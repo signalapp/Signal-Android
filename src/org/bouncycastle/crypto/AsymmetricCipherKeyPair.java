@@ -1,5 +1,7 @@
 package org.bouncycastle.crypto;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * a holding class for public/private parameter pairs.
  */

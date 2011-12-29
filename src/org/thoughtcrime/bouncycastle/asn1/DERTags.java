@@ -1,5 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
+import org.thoughtcrime.securesms.R;
+
 public interface DERTags
 {
     public static final int BOOLEAN             = 0x01;

@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.providers.PartProvider;
 
 import ws.com.google.android.mms.ContentType;
