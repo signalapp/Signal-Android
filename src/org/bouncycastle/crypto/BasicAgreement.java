@@ -1,6 +1,7 @@
 package org.bouncycastle.crypto;
 
 import java.math.BigInteger;
+import org.thoughtcrime.securesms.R;
 
 /**
  * The basic interface that basic Diffie-Hellman implementations

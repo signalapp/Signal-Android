@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.service;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 
 import ws.com.google.android.mms.pdu.GenericPdu;

@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.bouncycastle.util.Arrays;
+import org.thoughtcrime.securesms.R;
 
 /**
  * Base class for an application specific object

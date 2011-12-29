@@ -33,6 +33,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.ShortBufferException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import org.thoughtcrime.securesms.R;
 
 import android.util.Log;
 

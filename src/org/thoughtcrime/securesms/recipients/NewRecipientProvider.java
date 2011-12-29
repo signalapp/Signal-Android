@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.recipients;
 
 import java.io.InputStream;
+import org.thoughtcrime.securesms.R;
 
 
 import android.content.ContentUris;

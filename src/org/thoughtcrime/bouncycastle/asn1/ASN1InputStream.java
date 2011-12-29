@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.bouncycastle.util.io.Streams;
+import org.thoughtcrime.securesms.R;
 
 /**
  * a general purpose ASN.1 decoder - note: this class differs from the

@@ -2,6 +2,7 @@ package org.bouncycastle.util.encoders;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import org.thoughtcrime.securesms.R;
 
 /**
  * Encode and decode byte arrays (typically from binary to 7-bit ASCII 

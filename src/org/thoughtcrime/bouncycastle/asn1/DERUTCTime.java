@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.SimpleTimeZone;
+import org.thoughtcrime.securesms.R;
 
 /**
  * UTC time object.

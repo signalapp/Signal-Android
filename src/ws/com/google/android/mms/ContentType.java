@@ -18,6 +18,7 @@
 package ws.com.google.android.mms;
 
 import java.util.ArrayList;
+import org.thoughtcrime.securesms.R;
 
 public class ContentType {
     public static final String MMS_MESSAGE       = "application/vnd.wap.mms-message";

@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;

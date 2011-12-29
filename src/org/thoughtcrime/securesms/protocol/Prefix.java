@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.protocol;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * Prefixes for identifying encrypted message types.  In hindsight, seems
  * like these could have been DB columns or a single DB column with a bitmask

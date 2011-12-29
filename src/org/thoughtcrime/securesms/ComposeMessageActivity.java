@@ -224,18 +224,18 @@ public class ComposeMessageActivity extends Activity {
     menu.clear();
 
     if (recipients != null && recipients.isSingleRecipient())
-      menu.add(0, MENU_OPTION_CALL, Menu.NONE, "Call").setIcon(android.R.drawable.ic_menu_call);
+      menu.add(0, MENU_OPTION_CALL, Menu.NONE, R.string.call).setIcon(android.R.drawable.ic_menu_call);
 			
-    menu.add(0, MENU_OPTION_DELETE_THREAD, Menu.NONE, "Delete Thread").setIcon(android.R.drawable.ic_menu_delete);
-    menu.add(0, MENU_OPTION_ADD_ATTACHMENT, Menu.NONE, "Add Attachment").setIcon(R.drawable.ic_menu_attachment);
+    menu.add(0, MENU_OPTION_DELETE_THREAD, Menu.NONE, R.string.delete_thread).setIcon(android.R.drawable.ic_menu_delete);
+    menu.add(0, MENU_OPTION_ADD_ATTACHMENT, Menu.NONE, R.string.add_attachment).setIcon(R.drawable.ic_menu_attachment);
 		
     if (recipients != null && recipients.isSingleRecipient() && SessionRecord.hasSession(this, recipients.getPrimaryRecipient())) {
-      SubMenu secureSettingsMenu = menu.addSubMenu("Secure Session Options").setIcon(android.R.drawable.ic_menu_more);
-      secureSettingsMenu.add(0, MENU_OPTION_VERIFY_KEYS, Menu.NONE, "Verify Secure Session").setIcon(R.drawable.ic_lock_message_sms);
-      secureSettingsMenu.add(0, MENU_OPTION_VERIFY_IDENTITY, Menu.NONE, "Verify Recipient Identity").setIcon(android.R.drawable.ic_menu_zoom);
-      secureSettingsMenu.add(0, MENU_OPTION_DELETE_KEYS, Menu.NONE, "Abort Secure Session").setIcon(android.R.drawable.ic_menu_revert);
+      SubMenu secureSettingsMenu = menu.addSubMenu(R.string.secure_session_options).setIcon(android.R.drawable.ic_menu_more);
+      secureSettingsMenu.add(0, MENU_OPTION_VERIFY_KEYS, Menu.NONE, R.string.verify_secure_session).setIcon(R.drawable.ic_lock_message_sms);
+      secureSettingsMenu.add(0, MENU_OPTION_VERIFY_IDENTITY, Menu.NONE, R.string.verify_recipient_identity).setIcon(android.R.drawable.ic_menu_zoom);
+      secureSettingsMenu.add(0, MENU_OPTION_DELETE_KEYS, Menu.NONE, R.string.abort_secure_session).setIcon(android.R.drawable.ic_menu_revert);
     } else if (recipients != null && recipients.isSingleRecipient()) {
-      menu.add(0, MENU_OPTION_START_SESSION, Menu.NONE, "Start Secure Session").setIcon(R.drawable.ic_lock_message_sms);
+      menu.add(0, MENU_OPTION_START_SESSION, Menu.NONE, R.string.start_secure_session).setIcon(R.drawable.ic_lock_message_sms);
     }
 
     return true;
@@ -266,22 +266,22 @@ public class ComposeMessageActivity extends Activity {
 
   private void createSendButtonContextMenu(ContextMenu menu) {
     if (sendEncrypted)	
-      menu.add(SEND_BUTTON_GROUP, MENU_OPTION_SEND_CLEARTEXT, Menu.NONE, "Send unencrypted");
+      menu.add(SEND_BUTTON_GROUP, MENU_OPTION_SEND_CLEARTEXT, Menu.NONE, R.string.send_unencrypted);
 		
   }
 	
   private void createMessageItemContextMenu(ContextMenu menu) {
-    menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_COPY, Menu.NONE, "Copy text");
-    menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_DELETE, Menu.NONE, "Delete");
-    menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_DETAILS, Menu.NONE, "Message Details");
-    menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_FORWARD, Menu.NONE, "Forward message");
+    menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_COPY, Menu.NONE, R.string.copy_text);
+    menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_DELETE, Menu.NONE, R.string.delete);
+    menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_DETAILS, Menu.NONE, R.string.message_details);
+    menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_FORWARD, Menu.NONE, R.string.forward_message);
 
     Cursor cursor                     = ((CursorAdapter)conversationAdapter).getCursor();
     ConversationItem conversationItem = (ConversationItem)(conversationAdapter.newView(this, cursor, null));
     MessageRecord messageRecord       = conversationItem.getMessageRecord();
 
     if (messageRecord.isFailedDecryptType())
-      menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_REDECRYPT, Menu.NONE, "Attempt decrypt again");
+      menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_REDECRYPT, Menu.NONE, R.string.attempt_decrypt_again);
   }
 	
   @Override
@@ -335,10 +335,10 @@ public class ComposeMessageActivity extends Activity {
     Recipient recipient         = recipients.getPrimaryRecipient();
     String recipientName        = (recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Initiate Secure Session?");
+    builder.setTitle(R.string.initiate_secure_session_);
     builder.setIcon(android.R.drawable.ic_dialog_info);
     builder.setCancelable(true);
-    builder.setMessage("Initiate secure session with " + recipientName + "?");
+    builder.setMessage(getString(R.string.initiate_secure_session_with_) + recipientName + "?");
     builder.setPositiveButton(R.string.yes, new InitiateSecureSessionListener());
     builder.setNegativeButton(R.string.no, null);
     builder.show();
@@ -346,10 +346,10 @@ public class ComposeMessageActivity extends Activity {
 	
   private void abortSecureSession() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Abort Secure Session Confirmation");
+    builder.setTitle(R.string.abort_secure_session_confirmation);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
     builder.setCancelable(true);
-    builder.setMessage("Are you sure that you want to abort this secure session?");
+    builder.setMessage(R.string.are_you_sure_that_you_want_to_abort_this_secure_session_);
     builder.setPositiveButton(R.string.yes, new AbortSessionListener());
     builder.setNegativeButton(R.string.no, null);
     builder.show();
@@ -372,11 +372,11 @@ public class ComposeMessageActivity extends Activity {
 
     SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Message Details");
+    builder.setTitle(R.string.message_details);
     builder.setIcon(android.R.drawable.ic_dialog_info);
     builder.setCancelable(false);
-    builder.setMessage("Sender: " + sender + "\nTransport: " + transport.toUpperCase() + "\nSent/Received: " + dateFormatter.format(new Date(date)));
-    builder.setPositiveButton("Ok", null);
+    builder.setMessage(getString(R.string.sender_) + sender + "\n" + getString(R.string.transport_) + transport.toUpperCase() + "\n" + getString(R.string.sent_received_) + dateFormatter.format(new Date(date)));
+    builder.setPositiveButton(R.string.ok, null);
     builder.show();
   }
 	
@@ -403,12 +403,12 @@ public class ComposeMessageActivity extends Activity {
   private void deleteMessage(MessageRecord messageRecord) {
     long messageId   = messageRecord.getId();
     String transport = messageRecord.isMms() ? "mms" : "sms";
-
+    
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Delete Message Confirmation");
+    builder.setTitle(getString(R.string.delete_message_confirmation));
     builder.setIcon(android.R.drawable.ic_dialog_alert);
     builder.setCancelable(true);
-    builder.setMessage("Are you sure that you want to permanently delete this message?");
+    builder.setMessage(R.string.are_you_sure_that_you_want_to_permanently_delete_this_message_);
     builder.setPositiveButton(R.string.yes, new DeleteMessageListener(messageId, transport));
     builder.setNegativeButton(R.string.no, null);
     builder.show();		
@@ -416,10 +416,10 @@ public class ComposeMessageActivity extends Activity {
 	
   private void deleteThread() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Delete Thread Confirmation");
+    builder.setTitle(R.string.delete_thread_confirmation);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
     builder.setCancelable(true);
-    builder.setMessage("Are you sure that you want to permanently delete this conversation?");
+    builder.setMessage(R.string.are_you_sure_that_you_want_to_permanently_delete_this_conversation_);
     builder.setPositiveButton(R.string.yes, new DeleteThreadListener());
     builder.setNegativeButton(R.string.no, null);
     builder.show();
@@ -428,7 +428,7 @@ public class ComposeMessageActivity extends Activity {
   private void addAttachment() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setIcon(R.drawable.ic_dialog_attach);
-    builder.setTitle("Add attachment");
+    builder.setTitle(R.string.add_attachment);
     builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());		
     builder.show();
   }
@@ -450,7 +450,7 @@ public class ComposeMessageActivity extends Activity {
       attachmentManager.setImage(imageUri);
     } catch (IOException e) {
       attachmentManager.clear();
-      Toast.makeText(this, "Sorry, there was an error setting your attachment.", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.sorry_there_was_an_error_setting_your_attachment_, Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
   }
@@ -460,11 +460,11 @@ public class ComposeMessageActivity extends Activity {
       attachmentManager.setVideo(videoUri);			
     } catch (IOException e) {
       attachmentManager.clear();
-      Toast.makeText(this, "Sorry, there was an error setting your attachment.", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.sorry_there_was_an_error_setting_your_attachment_, Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
-      Toast.makeText(this, "Sorry, the selected video exceeds message size restrictions.", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.sorry_the_selected_video_exceeds_message_size_restrictions_, Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
   }
@@ -474,11 +474,11 @@ public class ComposeMessageActivity extends Activity {
       attachmentManager.setAudio(audioUri);			
     } catch (IOException e) {
       attachmentManager.clear();
-      Toast.makeText(this, "Sorry, there was an error setting your attachment.", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.sorry_there_was_an_error_setting_your_attachment_, Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);			
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
-      Toast.makeText(this, "Sorry, the selected audio exceeds message size restrictions.", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.sorry_the_selected_audio_exceeds_message_size_restrictions_, Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);			
     }
   }
@@ -550,7 +550,7 @@ public class ComposeMessageActivity extends Activity {
     this.registerForContextMenu(sendButton);
 		
     if (getIntent().getStringExtra("forwarded_message") != null)
-      composeText.setText("FWD: " + getIntent().getStringExtra("forwarded_message"));
+      composeText.setText(getString(R.string.fwd_) + getIntent().getStringExtra("forwarded_message"));
   }
 
   private void initializeTitleBarSecurity() {
@@ -572,7 +572,7 @@ public class ComposeMessageActivity extends Activity {
 			
       titleBar.setText(name);
     } else {
-      titleBar.setText("Compose Message");
+      titleBar.setText(R.string.compose_message);
     }		
 
     initializeTitleBarSecurity();
@@ -623,7 +623,7 @@ public class ComposeMessageActivity extends Activity {
     String rawText       = composeText.getText().toString();
 		
     if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent()) 
-      throw new InvalidMessageException("Message is empty!");
+      throw new InvalidMessageException(getString(R.string.message_is_empty_));
 		
     if (!sendEncrypted && sp.getBoolean(ApplicationPreferencesActivity.WHITESPACE_PREF, true) && rawText.length() <= 145)
       rawText = rawText + "             ";
@@ -667,10 +667,10 @@ public class ComposeMessageActivity extends Activity {
       sendComplete(recipients, allocatedThreadId);
       MessageNotifier.updateNotification(ComposeMessageActivity.this, false);
     } catch (RecipientFormattingException ex) {
-      Toast.makeText(ComposeMessageActivity.this, "Recipient is not a valid SMS or email address!", Toast.LENGTH_LONG).show();
+      Toast.makeText(ComposeMessageActivity.this, R.string.recipient_is_not_a_valid_sms_or_email_address_, Toast.LENGTH_LONG).show();
       Log.w("compose", ex);
     } catch (InvalidMessageException ex) {
-      Toast.makeText(ComposeMessageActivity.this, "Message is empty!", Toast.LENGTH_SHORT).show();
+      Toast.makeText(ComposeMessageActivity.this, R.string.message_is_empty_, Toast.LENGTH_SHORT).show();
       Log.w("compose", ex);
     } catch (MmsException e) {
       Log.w("ComposeMessageActivity", e);
@@ -743,15 +743,15 @@ public class ComposeMessageActivity extends Activity {
     public void onClick(View clicked) {
       String message = null;
 			
-      if      (clicked == greyLock)   message = "This session is verified to be authentic.";
-      else if (clicked == redLock)    message = "Warning, this session has not yet been verified to be authentic.  You should verify your session or the identity key of the person you are communicating with.";
+      if      (clicked == greyLock)   message = getString(R.string.this_session_is_verified_to_be_authentic_);
+      else if (clicked == redLock)    message = getString(R.string.warning_this_session_has_not_yet_been_verified_to_be_authentic);
 			
       AlertDialog.Builder builder = new AlertDialog.Builder(ComposeMessageActivity.this);
-      builder.setTitle("Authenticity");
+      builder.setTitle(R.string.authenticity);
       builder.setIcon(android.R.drawable.ic_dialog_info);
       builder.setCancelable(false);
       builder.setMessage(message);
-      builder.setPositiveButton("Ok", null);
+      builder.setPositiveButton(R.string.ok, null);
       builder.show();
     }		
   }

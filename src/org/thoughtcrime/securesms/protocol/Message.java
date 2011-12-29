@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.protocol;
 
 import java.nio.ByteBuffer;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.InvalidMessageException;
 import org.thoughtcrime.securesms.crypto.PublicKey;

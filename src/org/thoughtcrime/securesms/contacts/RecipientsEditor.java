@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms.contacts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;

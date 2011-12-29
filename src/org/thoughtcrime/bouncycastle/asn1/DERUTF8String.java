@@ -1,6 +1,7 @@
 package org.thoughtcrime.bouncycastle.asn1;
 
 import org.bouncycastle.util.Strings;
+import org.thoughtcrime.securesms.R;
 
 import java.io.IOException;
 

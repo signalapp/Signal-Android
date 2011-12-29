@@ -3,6 +3,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import org.thoughtcrime.securesms.R;
 
 class IndefiniteLengthInputStream
     extends LimitedInputStream

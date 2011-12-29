@@ -17,6 +17,8 @@
 
 package ws.com.google.android.mms;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * A generic exception that is thrown by the Mms client.
  */

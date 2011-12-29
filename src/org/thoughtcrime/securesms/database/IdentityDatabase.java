@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.database;
 
 import java.io.IOException;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterCipher;

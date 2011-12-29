@@ -2,6 +2,7 @@ package org.thoughtcrime.bouncycastle.asn1.x9;
 
 import org.bouncycastle.math.ec.ECCurve;
 import org.bouncycastle.math.ec.ECFieldElement;
+import org.thoughtcrime.securesms.R;
 
 import java.math.BigInteger;
 

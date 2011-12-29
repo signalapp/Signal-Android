@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.sms;
 
 import java.io.IOException;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.crypto.TransportDetails;
 import org.thoughtcrime.securesms.protocol.Prefix;
@@ -52,7 +53,7 @@ public class SmsTransportDetails implements TransportDetails {
   public byte[] encodeMessage(byte[] messageWithMac) {
     String encodedMessage = Base64.encodeBytesWithoutPadding(messageWithMac);
 		
-    Log.w("SmsTransportDetails", "Encoded Message Length: " + encodedMessage.length());
+    Log.d("SmsTransportDetails", "Encoded Message Length: " + encodedMessage.length());
     return (Prefix.ASYMMETRIC_ENCRYPT + encodedMessage).getBytes();
   }
 	
@@ -90,7 +91,7 @@ public class SmsTransportDetails implements TransportDetails {
       paddedBodySize = getMaxBodySizeForCurrentRecordCount(messageBody.length);
     }
 		
-    Log.w("SessionCipher", "Padding message body out to: " + paddedBodySize);
+    Log.d("SessionCipher", "Padding message body out to: " + paddedBodySize);
 		
     byte[] paddedBody = new byte[paddedBodySize];
     //		byte[] bodyBytes  = messageBody.getBytes();

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.KeyPair;
 import org.thoughtcrime.securesms.crypto.KeyUtil;

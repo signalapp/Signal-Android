@@ -17,6 +17,8 @@
 
 package ws.com.google.android.mms;
 
+import org.thoughtcrime.securesms.R;
+
 /**
  * Thrown when an invalid header value was set.
  */

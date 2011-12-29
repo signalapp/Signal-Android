@@ -12,6 +12,7 @@ import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.math.ec.ECConstants;
 import org.bouncycastle.math.ec.ECPoint;
+import org.thoughtcrime.securesms.R;
 
 public class ECKeyPairGenerator
     implements AsymmetricCipherKeyPairGenerator, ECConstants

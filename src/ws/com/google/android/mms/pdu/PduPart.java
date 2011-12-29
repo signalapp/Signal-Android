@@ -21,6 +21,7 @@ import android.net.Uri;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.thoughtcrime.securesms.R;
 
 /**
  * The pdu part.

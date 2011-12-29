@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import org.thoughtcrime.securesms.R;
+
 public class InvalidKeyIdException extends Exception {
 
   public InvalidKeyIdException() {

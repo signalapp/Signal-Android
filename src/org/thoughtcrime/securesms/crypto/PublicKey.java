@@ -21,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.math.ec.ECPoint;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Hex;
 

@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.service;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -46,7 +47,7 @@ public class MmsDownloader extends MmscProcessor {
   private void handleDownloadMms(DownloadItem item) {
     if (!isConnectivityPossible()) {
       DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
-      toastHandler.makeToast("No connectivity available for MMS download, try again later...");
+      toastHandler.makeToast(context.getString(R.string.no_connectivity_available_for_mms_download_try_again_later_));
       Log.w("MmsDownloadService", "Unable to download MMS, please try again later.");
     } else {
       DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_CONNECTING);
@@ -95,11 +96,11 @@ public class MmsDownloader extends MmscProcessor {
 			
     } catch (IOException e) {
       DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_SOFT_FAILURE);
-      toastHandler.makeToast("Error connecting to MMS provider...");
+      toastHandler.makeToast(context.getString(R.string.error_connecting_to_mms_provider_));
       Log.w("MmsDownloader", e);
     } catch (MmsException e) {
       DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_HARD_FAILURE);
-      toastHandler.makeToast("Error downloading MMS!");
+      toastHandler.makeToast(context.getString(R.string.error_downloading_mms_));
       Log.w("MmsDownloader", e);
     }
   }
@@ -108,7 +109,7 @@ public class MmsDownloader extends MmscProcessor {
     if (!isConnected()) {
       if (!isConnectivityPossible() && !pendingMessages.isEmpty()) {
 	DatabaseFactory.getMmsDatabase(context).markDownloadState(pendingMessages.remove().getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
-	toastHandler.makeToast("No connectivity available for MMS download, try again later...");
+	toastHandler.makeToast(context.getString(R.string.no_connectivity_available_for_mms_download_try_again_later_));
 	Log.w("MmsDownloadService", "Unable to download MMS, please try again later.");
 	finishConnectivity();
       }

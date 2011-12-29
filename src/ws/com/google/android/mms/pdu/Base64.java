@@ -17,6 +17,8 @@
 
 package ws.com.google.android.mms.pdu;
 
+import org.thoughtcrime.securesms.R;
+
 public class Base64 {
     /**
      * Used to get the number of Quadruples.

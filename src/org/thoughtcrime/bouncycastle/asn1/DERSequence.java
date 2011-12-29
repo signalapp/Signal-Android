@@ -3,6 +3,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Enumeration;
+import org.thoughtcrime.securesms.R;
 
 public class DERSequence
     extends ASN1Sequence

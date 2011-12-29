@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import org.thoughtcrime.securesms.R;
+
 public class InvalidMessageException extends Exception {
 
   public InvalidMessageException() {

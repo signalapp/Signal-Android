@@ -20,6 +20,7 @@ package ws.com.google.android.mms.pdu;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import org.thoughtcrime.securesms.R;
 
 public class PduBody {
     private Vector<PduPart> mParts = null;

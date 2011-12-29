@@ -2,6 +2,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.IOException;
 import java.io.InputStream;
+import org.thoughtcrime.securesms.R;
 
 public class BERTaggedObjectParser
     implements ASN1TaggedObjectParser

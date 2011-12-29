@@ -1,5 +1,7 @@
 package org.bouncycastle.crypto.params;
 
+import org.thoughtcrime.securesms.R;
+
 public class ECKeyParameters
     extends AsymmetricKeyParameter
 {

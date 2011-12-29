@@ -65,7 +65,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
         MemoryCleaner.clean(passphrase);
         setMasterSecret(masterSecret);
       } catch (InvalidPassphraseException ipe) {
-        Toast.makeText(getApplicationContext(), "Invalid Passphrase!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), R.string.invalid_passphrase_, Toast.LENGTH_SHORT).show();
       }
     }
   }

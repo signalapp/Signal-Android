@@ -1,6 +1,7 @@
 package org.bouncycastle.math.ec;
 
 import java.math.BigInteger;
+import org.thoughtcrime.securesms.R;
 
 /**
  * Class representing an element of <code><b>Z</b>[&tau;]</code>. Let

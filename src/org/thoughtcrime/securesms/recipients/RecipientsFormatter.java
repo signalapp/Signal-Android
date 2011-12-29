@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.recipients;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import org.thoughtcrime.securesms.R;
 
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;

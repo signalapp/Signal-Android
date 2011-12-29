@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageRecord;

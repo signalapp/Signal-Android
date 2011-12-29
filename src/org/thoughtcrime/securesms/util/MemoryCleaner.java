@@ -21,6 +21,7 @@ import java.util.Arrays;
 
 import javax.crypto.spec.SecretKeySpec;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import android.util.Log;

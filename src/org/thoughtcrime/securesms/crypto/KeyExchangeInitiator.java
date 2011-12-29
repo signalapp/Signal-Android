@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import java.util.LinkedList;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.LocalKeyRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;

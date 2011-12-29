@@ -24,6 +24,7 @@ import java.util.zip.CRC32;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.crypto.TransportDetails;
 import org.thoughtcrime.securesms.util.Conversions;

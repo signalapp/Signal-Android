@@ -9,7 +9,7 @@
 			  android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
 			  android:layout_marginBottom="5px" 
-			  android:text="You have received a message from someone who supports TextSecure encrypted sessions.  Would you like to initiate a key exchange so you can communicate securely?"/>
+			  android:text="@string/you_have_received_a_message_from_someone_who_supports_textsecure"/>
 			   
 	<LinearLayout android:layout_width="fill_parent"
 				  android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
 		<Button android:id="@+id/initiate_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Initiate Exchange"
+				android:text="@string/initiate_exchange"
 				android:gravity="center"/>
 				
 		<Button android:id="@+id/cancel_button"

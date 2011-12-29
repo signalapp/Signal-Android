@@ -2,6 +2,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 
 import org.bouncycastle.util.encoders.Hex;
 import org.bouncycastle.util.Arrays;
+import org.thoughtcrime.securesms.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

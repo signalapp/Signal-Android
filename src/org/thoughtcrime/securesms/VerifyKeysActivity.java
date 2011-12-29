@@ -120,10 +120,10 @@ public class VerifyKeysActivity extends KeyScanningActivity {
   private class AbortListener implements OnClickListener {
     public void onClick(View v) {
       AlertDialog.Builder builder = new AlertDialog.Builder(VerifyKeysActivity.this);
-      builder.setTitle("Abort Secure Session Confirmation");
+      builder.setTitle(R.string.abort_secure_session_confirmation);
       builder.setIcon(android.R.drawable.ic_dialog_alert);
       builder.setCancelable(true);
-      builder.setMessage("Are you sure that you want to abort this secure session?");
+      builder.setMessage(R.string.are_you_sure_that_you_want_to_abort_this_secure_session_);
       builder.setPositiveButton(R.string.yes, new AbortConfirmListener());
       builder.setNegativeButton(R.string.no, null);
       builder.show();
@@ -139,12 +139,12 @@ public class VerifyKeysActivity extends KeyScanningActivity {
 
   @Override
   protected String getDisplayString() {
-    return "Get my fingerprint scanned";
+    return getString(R.string.get_my_fingerprint_scanned);
   }
 	
   @Override
   protected String getScanString() {
-    return "Scan their fingerprint";
+    return getString(R.string.scan_their_fingerprint);
   }
 
   @Override
@@ -159,22 +159,22 @@ public class VerifyKeysActivity extends KeyScanningActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return "WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.";
+    return getString(R.string.warning_the_scanned_key_does_not_match);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return "NOT Verified!";
+    return getString(R.string.not_verified_);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return "Their key is correct. It is also necessary to get your fingerprint scanned as well.";
+    return getString(R.string.their_key_is_correct);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return "Verified!";
+    return getString(R.string.verified_);
   }
 	
   private class FingerprintKey implements SerializableKey {

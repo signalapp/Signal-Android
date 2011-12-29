@@ -69,7 +69,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
 		
     try {
       if (!passphrase.equals(passphraseRepeat)) {
-        Toast.makeText(getApplicationContext(), "Passphrases Don't Match!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), R.string.passphrases_don_t_match_, Toast.LENGTH_SHORT).show();
         this.newPassphrase.setText("");
         this.repeatPassphrase.setText("");
       } else {
@@ -81,7 +81,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
         setMasterSecret(masterSecret);
       }
     } catch (InvalidPassphraseException e) {
-      Toast.makeText(this, "Incorrect old passphrase!", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.incorrect_old_passphrase_, Toast.LENGTH_LONG).show();
       this.originalPassphrase.setText("");
     }
   }

@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.protocol.Prefix;

@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import org.thoughtcrime.securesms.R;
+
 public interface RedPhoneCallTypes {
   public static final int INCOMING = 1023;
   public static final int OUTGOING = 1024;

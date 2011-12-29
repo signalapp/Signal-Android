@@ -27,6 +27,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.thoughtcrime.securesms.R;
 
 import ws.com.google.android.mms.MmsException;
 

@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 
 public class CharacterCalculator {

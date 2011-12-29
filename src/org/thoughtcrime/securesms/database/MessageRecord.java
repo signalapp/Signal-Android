@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.database;
 
 import org.thoughtcrime.securesms.ConversationItem;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 

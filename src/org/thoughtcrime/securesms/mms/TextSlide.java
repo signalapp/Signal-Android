@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mms;
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import ws.com.google.android.mms.ContentType;

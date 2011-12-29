@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.recipients;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.thoughtcrime.securesms.R;
 
 public class Recipient implements Parcelable {
 

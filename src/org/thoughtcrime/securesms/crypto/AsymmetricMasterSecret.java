@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
+import org.thoughtcrime.securesms.R;
 
 /**
  * When a user first initializes TextSecure, a few secrets

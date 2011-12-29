@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import org.thoughtcrime.securesms.R;
+
 public interface SerializableKey {
   public byte[] serialize();
 }

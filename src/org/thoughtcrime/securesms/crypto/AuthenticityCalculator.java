@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SessionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;

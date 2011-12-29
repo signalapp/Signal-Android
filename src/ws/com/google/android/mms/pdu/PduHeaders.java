@@ -21,6 +21,7 @@ import ws.com.google.android.mms.InvalidHeaderValueException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.thoughtcrime.securesms.R;
 
 public class PduHeaders {
     /**

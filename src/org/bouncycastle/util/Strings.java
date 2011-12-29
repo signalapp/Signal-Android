@@ -2,6 +2,7 @@ package org.bouncycastle.util;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Vector;
+import org.thoughtcrime.securesms.R;
 
 public final class Strings
 {

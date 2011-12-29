@@ -2,6 +2,7 @@ package org.bouncycastle.util.encoders;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import org.thoughtcrime.securesms.R;
 
 public class HexEncoder
     implements Encoder

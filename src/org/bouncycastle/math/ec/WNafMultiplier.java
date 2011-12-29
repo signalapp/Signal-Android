@@ -1,6 +1,7 @@
 package org.bouncycastle.math.ec;
 
 import java.math.BigInteger;
+import org.thoughtcrime.securesms.R;
 
 /**
  * Class implementing the WNAF (Window Non-Adjacent Form) multiplication

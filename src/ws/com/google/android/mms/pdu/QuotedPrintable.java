@@ -18,6 +18,7 @@
 package ws.com.google.android.mms.pdu;
 
 import java.io.ByteArrayOutputStream;
+import org.thoughtcrime.securesms.R;
 
 public class QuotedPrintable {
     private static byte ESCAPE_CHAR = '=';

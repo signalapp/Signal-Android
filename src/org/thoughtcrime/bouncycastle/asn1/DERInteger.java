@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 import org.bouncycastle.util.Arrays;
+import org.thoughtcrime.securesms.R;
 
 public class DERInteger
     extends ASN1Object

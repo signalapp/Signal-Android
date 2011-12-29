@@ -1,6 +1,7 @@
 package org.bouncycastle.crypto;
 
 import java.math.BigInteger;
+import org.thoughtcrime.securesms.R;
 
 /**
  * interface for classes implementing algorithms modeled similar to the Digital Signature Alorithm.

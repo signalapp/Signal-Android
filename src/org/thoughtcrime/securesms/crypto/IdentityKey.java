@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.math.ec.ECPoint;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Hex;
 
 import android.os.Parcel;

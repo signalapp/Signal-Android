@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.sms;
 
 import java.util.Iterator;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -83,7 +84,7 @@ public class MessageSender {
       if (!isSecure) messageId = DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageSent(masterSecret, PhoneNumberUtils.formatNumber(recipient.getNumber()), threadId, message, System.currentTimeMillis());
       else	     messageId = DatabaseFactory.getEncryptingSmsDatabase(context).insertSecureMessageSent(masterSecret, PhoneNumberUtils.formatNumber(recipient.getNumber()), threadId, message, System.currentTimeMillis());
 
-      Log.w("SMSSender", "Got message id for new message: " + messageId);
+      Log.d("SMSSender", "Got message id for new message: " + messageId);
       Intent intent = new Intent(SendReceiveService.SEND_SMS_ACTION, null, context, SendReceiveService.class);
       intent.putExtra("message_id", messageId);
       context.startService(intent);

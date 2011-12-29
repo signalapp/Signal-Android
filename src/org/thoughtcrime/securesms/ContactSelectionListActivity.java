@@ -78,9 +78,9 @@ public class ContactSelectionListActivity extends ListActivity {
     super.onPrepareOptionsMenu(menu);
     menu.clear();
 		
-    menu.add(0, MENU_OPTION_EXIT, Menu.NONE, "Finished!").setIcon(android.R.drawable.ic_menu_set_as);
-    menu.add(0, MENU_OPTION_SELECT_ALL, Menu.NONE, "Select all").setIcon(android.R.drawable.ic_menu_add);
-    menu.add(0, MENU_OPTION_UNSELECT_ALL, Menu.NONE, "Unselect all").setIcon(android.R.drawable.ic_menu_revert);
+    menu.add(0, MENU_OPTION_EXIT, Menu.NONE, R.string.finished_).setIcon(android.R.drawable.ic_menu_set_as);
+    menu.add(0, MENU_OPTION_SELECT_ALL, Menu.NONE, R.string.select_all).setIcon(android.R.drawable.ic_menu_add);
+    menu.add(0, MENU_OPTION_UNSELECT_ALL, Menu.NONE, R.string.unselect_all).setIcon(android.R.drawable.ic_menu_revert);
 
     return true;
   }
@@ -173,9 +173,9 @@ public class ContactSelectionListActivity extends ListActivity {
     }
 		
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Select for " + contactData.name);
+    builder.setTitle(getString(R.string.select_for_) + contactData.name);
     builder.setMultiChoiceItems(options, null, new DiscriminatorClickedListener(contactData));
-    builder.setPositiveButton("Ok", new DiscriminatorFinishedListener(contactData, textView));
+    builder.setPositiveButton(R.string.ok, new DiscriminatorFinishedListener(contactData, textView));
     builder.setOnCancelListener(new DiscriminatorFinishedListener(contactData, textView));
     builder.show();
   }

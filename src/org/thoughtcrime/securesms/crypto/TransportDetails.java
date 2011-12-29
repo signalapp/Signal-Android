@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 import java.io.IOException;
+import org.thoughtcrime.securesms.R;
 
 
 public interface TransportDetails {	

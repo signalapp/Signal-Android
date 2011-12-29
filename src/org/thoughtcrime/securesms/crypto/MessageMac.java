@@ -23,6 +23,7 @@ import java.util.Arrays;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Hex;
 
 import android.util.Log;

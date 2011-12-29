@@ -70,7 +70,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
     String passphraseRepeat = this.passphraseRepeatEdit.getText().toString();
 		
     if (!passphrase.equals(passphraseRepeat)) {
-      Toast.makeText(getApplicationContext(), "Passphrases Don't Match!", Toast.LENGTH_SHORT).show();
+      Toast.makeText(getApplicationContext(), R.string.passphrases_don_t_match_, Toast.LENGTH_SHORT).show();
       this.passphraseEdit.setText("");
       this.passphraseRepeatEdit.setText("");
     } else {
@@ -97,8 +97,8 @@ public class PassphraseCreateActivity extends PassphraseActivity {
 		
     public void generate() {
       progressDialog = new ProgressDialog(PassphraseCreateActivity.this);
-      progressDialog.setTitle("Generating KeyPair");
-      progressDialog.setMessage("Generating a local encryption keypair...");
+      progressDialog.setTitle(R.string.generating_keypair);
+      progressDialog.setMessage(getString(R.string.generating_a_local_encryption_keypair_));
       progressDialog.setCancelable(false);
       progressDialog.setIndeterminate(true);
       progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

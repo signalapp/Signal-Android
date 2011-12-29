@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import org.bouncycastle.math.ec.ECConstants;
 import org.bouncycastle.math.ec.ECCurve;
 import org.bouncycastle.math.ec.ECPoint;
+import org.thoughtcrime.securesms.R;
 
 public class ECDomainParameters
     implements ECConstants

@@ -2,6 +2,7 @@ package org.thoughtcrime.bouncycastle.asn1;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import org.thoughtcrime.securesms.R;
 
 /**
  * DER UniversalString object.

@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.service;
 
 import java.util.LinkedList;
+import org.thoughtcrime.securesms.R;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

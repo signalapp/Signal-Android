@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.database;
 
 import java.io.UnsupportedEncodingException;
+import org.thoughtcrime.securesms.R;
 
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;

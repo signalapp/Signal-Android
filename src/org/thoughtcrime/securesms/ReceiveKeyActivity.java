@@ -91,18 +91,18 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private void initializeCorruptedKeyText() {
-    descriptionText.setText("ERROR:\n\nYou have received a corrupted public key.  This key can not be processed, please re-initiate a secure session.");
+    descriptionText.setText("ERROR:" + "\n\n" + getString(R.string.you_have_received_a_corrupted_public_key));
     confirmButton.setVisibility(View.GONE);
   }
 	
   private void initializeBadVersionText() {
-    descriptionText.setText("ERROR:\n\nYou have received a public key from an unsupported version of the protocol.  This key can not be processed, please re-initiate a secure session.");
+    descriptionText.setText("ERROR:" + "\n\n" + getString(R.string.you_have_received_a_public_key));
     confirmButton.setVisibility(View.GONE);		
   }
 	
   private void initializeSignatureText() {
     if (!keyExchangeMessage.hasIdentityKey()) {
-      signatureText.setText("This key exchange message does not include an identity signature.");
+      signatureText.setText(R.string.this_key_exchange_message_does_not_include_an_identity_signature_);
       return;
     }
 		
@@ -110,29 +110,28 @@ public class ReceiveKeyActivity extends Activity {
     String identityName     = DatabaseFactory.getIdentityDatabase(this).getNameForIdentity(masterSecret, identityKey);
 		
     if (identityName == null) {
-      signatureText.setText("This key exchange message includes an identity signature, but you do not yet trust it.");
+      signatureText.setText(R.string.this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it_);
     } else {
-      signatureText.setText("This key exchange message includes an identity signature which you trust for: " + identityName);
+      signatureText.setText(getString(R.string.this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_) + identityName);
     }
   }
 	
   private void initializeTextForExistingSession() {
     if (keyExchangeProcessor.isRemoteKeyExchangeForExistingSession(keyExchangeMessage)) {
-      descriptionText.setText("This is the key that you sent to start your current encrypted session with " + recipient.toShortString());
+      descriptionText.setText(getString(R.string.this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_) + recipient.toShortString());
       this.confirmButton.setVisibility(View.GONE);
       this.verifySessionButton.setVisibility(View.VISIBLE);
       this.verifyIdentityButton.setVisibility(View.VISIBLE);
     } else if (keyExchangeProcessor.isLocalKeyExchangeForExistingSession(keyExchangeMessage)) {
-      descriptionText.setText("This is the key that you received to start your current encrypted session with " + recipient.toShortString());
+      descriptionText.setText(getString(R.string.this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_) + recipient.toShortString());
       this.confirmButton.setVisibility(View.GONE);
       this.verifySessionButton.setVisibility(View.VISIBLE);
       this.verifyIdentityButton.setVisibility(View.VISIBLE);
     } else {
-      descriptionText.setText("You have received a Key Exchange message from " + recipient.toShortString() + "." +
-			      "\n\nWARNING:  You already have an encrypted session with this contact."  +
-			      " If you choose to accept this key exchange message, it will destroy your " +
-			      "existing session and you will have to re-authenticate.  Would you like to complete " +
-			      "this key exchange?");
+      descriptionText.setText(getString(R.string.you_have_received_a_key_exchange_message_from_) + recipient.toShortString() + "." +
+			      "\n\n" + getString(R.string.warning_you_already_have_an_encrypted_session_with_this_contact_)  +
+			      getString(R.string._if_you_choose_to_accept_this_key_exchange_message_it_will_destroy_your_) +
+			      getString(R.string.existing_session_and_you_will_have_to_re_authenticate_would_you_like_to_complete_this_key_exchange_));
       this.confirmButton.setVisibility(View.VISIBLE);
       this.verifyIdentityButton.setVisibility(View.GONE);
       this.verifySessionButton.setVisibility(View.GONE);
@@ -141,17 +140,15 @@ public class ReceiveKeyActivity extends Activity {
 	
   private void initializeTextForNewSession() {
     if (keyExchangeProcessor.hasInitiatedSession() && !this.sent)
-      descriptionText.setText("You have received a Key Exchange message from " + recipient.toShortString() + 
-			      ".  You have previously initiated a session with this contact, " + 
-			      "and by accepting this key you will complete the key exchange.  " + 
-			      "Would you like to complete this key exchange?");
+      descriptionText.setText(R.string.you_have_received_a_key_exchange_message_from_ + recipient.toShortString() + 
+			      "." +  getString(R.string.you_have_previously_initiated_a_session_with_this_contact_and_by_accepting_this_key_you_will_complete_the_key_exchange_) + 
+			      getString(R.string.would_you_like_to_complete_this_key_exchange_));
     else if (keyExchangeProcessor.hasInitiatedSession() && this.sent)
-      descriptionText.setText("You have initiated a Key Exchange message with " + recipient.toShortString() + 
-			      " but have not yet received a reply.");
+      descriptionText.setText(getString(R.string.you_have_initiated_a_key_exchange_message_with_) + recipient.toShortString() + 
+    		  getString(R.string._but_have_not_yet_received_a_reply_));
     else if (!keyExchangeProcessor.hasInitiatedSession() && !this.sent)
-      descriptionText.setText("You have received a Key Exchange message from " + recipient.toShortString() + 
-			      ".  You have no existing session with this contact, would you like " + 
-			      "to complete this key exchange?");
+      descriptionText.setText(R.string.you_have_received_a_key_exchange_message_from_ + recipient.toShortString() + 
+			      "." + getString(R.string.you_have_no_existing_session_with_this_contact_would_you_like_to_complete_this_key_exchange_));
   }
 	
   private void initializeKey() throws InvalidKeyException, InvalidVersionException {

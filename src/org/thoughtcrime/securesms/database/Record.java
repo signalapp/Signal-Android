@@ -24,6 +24,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Conversions;
 
 import android.content.Context;

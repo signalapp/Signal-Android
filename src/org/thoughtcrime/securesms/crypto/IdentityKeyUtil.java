@@ -30,6 +30,7 @@ import org.thoughtcrime.bouncycastle.asn1.ASN1Object;
 import org.thoughtcrime.bouncycastle.asn1.ASN1Sequence;
 import org.thoughtcrime.bouncycastle.asn1.DERInteger;
 import org.thoughtcrime.bouncycastle.asn1.DERSequence;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Combiner;
 import org.thoughtcrime.securesms.util.Conversions;

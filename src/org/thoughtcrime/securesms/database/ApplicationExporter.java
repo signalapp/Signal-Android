@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import org.thoughtcrime.securesms.R;
 
 import android.content.Context;
 import android.os.Environment;

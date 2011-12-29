@@ -19,6 +19,7 @@ package ws.com.google.android.mms.pdu;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import org.thoughtcrime.securesms.R;
 
 public class CharacterSets {
     /**

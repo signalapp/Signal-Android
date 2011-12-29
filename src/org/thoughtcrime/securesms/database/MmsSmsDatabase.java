@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.database;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.thoughtcrime.securesms.R;
 
 import android.content.Context;
 import android.database.Cursor;

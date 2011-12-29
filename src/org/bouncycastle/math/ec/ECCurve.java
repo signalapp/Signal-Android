@@ -2,6 +2,7 @@ package org.bouncycastle.math.ec;
 
 import java.math.BigInteger;
 import java.util.Random;
+import org.thoughtcrime.securesms.R;
 
 /**
  * base class for an elliptic curve

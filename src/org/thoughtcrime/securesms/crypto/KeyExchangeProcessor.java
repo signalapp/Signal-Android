@@ -20,6 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.bouncycastle.util.Arrays;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.LocalKeyRecord;
 import org.thoughtcrime.securesms.database.RemoteKeyRecord;
 import org.thoughtcrime.securesms.database.SessionRecord;

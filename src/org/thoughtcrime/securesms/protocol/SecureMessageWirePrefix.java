@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.protocol;
 
+import org.thoughtcrime.securesms.R;
+
 public class SecureMessageWirePrefix extends WirePrefix {
 
   @Override
