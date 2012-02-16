@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.lang.BhoTyper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -118,13 +119,17 @@ public class SecureSMS extends ListActivity {
   private NewKeyReceiver receiver;
   private boolean havePromptedForPassphrase = false;
   private boolean batchMode                 = false;
-
+  
+  BhoTyper bho;
 	
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.main);
+    
+    bho = new BhoTyper(this, getWindow().getDecorView().findViewById(android.R.id.content));
+    
     initializeKillReceiver();
     initializeSenderReceiverService();
     initializeResources();

@@ -206,7 +206,7 @@ public class KeyCachingService extends Service {
       } catch (IllegalAccessException e) {
         Log.w("KeyCachingService", "Unable to invoke startForeground", e);
       }
-
+      
       return;
     }
         
@@ -235,4 +235,5 @@ public class KeyCachingService extends Service {
     notificationManager.cancel(id);
     setForeground(false);
   }
+  
 }
