@@ -17,11 +17,11 @@
 package org.thoughtcrime.securesms;
 
 import org.thoughtcrime.securesms.crypto.IdentityKey;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * Activity for displaying an identity key.
@@ -30,9 +30,9 @@ import android.widget.TextView;
  */
 public class ViewIdentityActivity extends KeyScanningActivity {
 
-  private TextView identityFingerprint;
-  private Button compareButton;
-  private Button okButton;
+  private BhoTextView identityFingerprint;
+  private BhoButton compareButton;
+  private BhoButton okButton;
   private IdentityKey identityKey;
 	
   @Override
@@ -60,9 +60,9 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 	
   private void initializeResources() {
     this.identityKey         = (IdentityKey)getIntent().getParcelableExtra("identity_key");
-    this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
-    this.okButton	         = (Button)findViewById(R.id.ok_button);
-    this.compareButton       = (Button)findViewById(R.id.compare_button);
+    this.identityFingerprint = (BhoTextView)findViewById(R.id.identity_fingerprint);
+    this.okButton	         = (BhoButton)findViewById(R.id.ok_button);
+    this.compareButton       = (BhoButton)findViewById(R.id.compare_button);
   }
 	
   private class CompareListener implements View.OnClickListener {

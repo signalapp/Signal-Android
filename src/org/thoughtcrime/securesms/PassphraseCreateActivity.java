@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoEditText;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import android.app.ProgressDialog;
@@ -28,8 +30,6 @@ import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -39,10 +39,10 @@ import android.widget.Toast;
  */
 public class PassphraseCreateActivity extends PassphraseActivity {
 
-  private EditText	   passphraseEdit;
-  private EditText	   passphraseRepeatEdit;
-  private Button       okButton;
-  private Button       cancelButton;
+  private BhoEditText	   passphraseEdit;
+  private BhoEditText	   passphraseRepeatEdit;
+  private BhoButton       okButton;
+  private BhoButton       cancelButton;
 	
   public PassphraseCreateActivity() {	}
 
@@ -56,10 +56,10 @@ public class PassphraseCreateActivity extends PassphraseActivity {
   }
 	
   private void initializeResources() {
-    this.passphraseEdit       = (EditText) findViewById(R.id.passphrase_edit);
-    this.passphraseRepeatEdit = (EditText) findViewById(R.id.passphrase_edit_repeat);
-    this.okButton             = (Button) findViewById(R.id.ok_button);
-    this.cancelButton         = (Button) findViewById(R.id.cancel_button);
+    this.passphraseEdit       = (BhoEditText) findViewById(R.id.passphrase_edit);
+    this.passphraseRepeatEdit = (BhoEditText) findViewById(R.id.passphrase_edit_repeat);
+    this.okButton             = (BhoButton) findViewById(R.id.ok_button);
+    this.cancelButton         = (BhoButton) findViewById(R.id.cancel_button);
 		
     this.okButton.setOnClickListener(new OkButtonClickListener());
     this.cancelButton.setOnClickListener(new CancelButtonClickListener());

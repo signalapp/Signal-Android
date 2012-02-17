@@ -34,6 +34,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import android.widget.TextView;
 
 /**
@@ -51,9 +52,9 @@ public class ConversationHeaderView extends RelativeLayout {
   private Recipients recipients;
   private long       threadId;
   private boolean    first;
-  private TextView   subjectView;
-  private TextView   fromView;
-  private TextView   dateView;
+  private BhoTextView   subjectView;
+  private BhoTextView   fromView;
+  private BhoTextView   dateView;
   private View       unreadIndicator;
   private View       keyIndicator;
   private CheckBox   checkbox;
@@ -75,9 +76,9 @@ public class ConversationHeaderView extends RelativeLayout {
 		
     this.context         = context;
     this.selectedThreads = selectedThreads;
-    this.subjectView     = (TextView)findViewById(R.id.subject);
-    this.fromView        = (TextView)findViewById(R.id.from);
-    this.dateView        = (TextView)findViewById(R.id.date);
+    this.subjectView     = (BhoTextView)findViewById(R.id.subject);
+    this.fromView        = (BhoTextView)findViewById(R.id.from);
+    this.dateView        = (BhoTextView)findViewById(R.id.date);
     this.unreadIndicator = findViewById(R.id.unread_indicator);
     this.keyIndicator    = findViewById(R.id.key_indicator);
     this.contactPhoto    = (ImageView)findViewById(R.id.contact_photo);		

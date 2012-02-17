@@ -42,7 +42,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckedTextView;
+import org.thoughtcrime.securesms.lang.BhoCheckedTextView;
 import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -151,7 +151,7 @@ public class GroupSelectionListActivity extends ListActivity {
 	
   private class GroupItemView extends LinearLayout {
     private GroupData groupData;
-    private CheckedTextView name;
+    private BhoCheckedTextView name;
 
     public GroupItemView(Context context) {
       super(context);
@@ -159,7 +159,7 @@ public class GroupSelectionListActivity extends ListActivity {
       LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       li.inflate(R.layout.contact_selection_group_item, this, true);
 
-      this.name   = (CheckedTextView)findViewById(R.id.name);
+      this.name   = (BhoCheckedTextView)findViewById(R.id.name);
     }
 
     public void selected() {

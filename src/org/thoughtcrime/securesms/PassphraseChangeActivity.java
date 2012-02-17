@@ -19,13 +19,13 @@ package org.thoughtcrime.securesms;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoEditText;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -35,11 +35,11 @@ import android.widget.Toast;
  */
 
 public class PassphraseChangeActivity extends PassphraseActivity {
-  private EditText	originalPassphrase;
-  private EditText	newPassphrase;
-  private EditText	repeatPassphrase;
-  private Button	  okButton;
-  private Button	  cancelButton;
+  private BhoEditText	originalPassphrase;
+  private BhoEditText	newPassphrase;
+  private BhoEditText	repeatPassphrase;
+  private BhoButton	  okButton;
+  private BhoButton	  cancelButton;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -51,12 +51,12 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   }
 	
   private void initializeResources() {
-    this.originalPassphrase = (EditText) findViewById(R.id.old_passphrase);
-    this.newPassphrase      = (EditText) findViewById(R.id.new_passphrase);
-    this.repeatPassphrase   = (EditText) findViewById(R.id.repeat_passphrase);
+    this.originalPassphrase = (BhoEditText) findViewById(R.id.old_passphrase);
+    this.newPassphrase      = (BhoEditText) findViewById(R.id.new_passphrase);
+    this.repeatPassphrase   = (BhoEditText) findViewById(R.id.repeat_passphrase);
 
-    this.okButton           = (Button) findViewById(R.id.ok_button);
-    this.cancelButton       = (Button) findViewById(R.id.cancel_button);
+    this.okButton           = (BhoButton) findViewById(R.id.ok_button);
+    this.cancelButton       = (BhoButton) findViewById(R.id.cancel_button);
 		
     this.okButton.setOnClickListener(new OkButtonClickListener());
     this.cancelButton.setOnClickListener(new CancelButtonClickListener());

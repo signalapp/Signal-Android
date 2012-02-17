@@ -34,7 +34,7 @@
         android:scaleType="centerInside"
     />
 
-    <TextView android:id="@+id/label"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -48,7 +48,7 @@
         android:visibility = "visible"
     />
 
-    <TextView android:id="@+id/number"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/number"
     	android:visibility = "visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
     />
 
-    <CheckedTextView android:id="@+id/name"
+    <org.thoughtcrime.securesms.lang.BhoCheckedTextView android:id="@+id/name"
         android:layout_width="0dip"
         android:layout_height="0dip"
         android:layout_above="@id/label"

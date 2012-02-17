@@ -8,11 +8,11 @@
     android:shrinkColumns="1">
 
     <TableRow>
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
         	android:textSize="12sp"
             android:text="@string/identity_name"
             android:padding="3dip" />
-        <EditText
+        <org.thoughtcrime.securesms.lang.BhoEditText
         	android:id="@+id/identity_name"
             android:text=""
             android:padding="3dip" />
@@ -20,11 +20,11 @@
 
 
     <TableRow>
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
         	android:textSize="12sp"
             android:text="@string/imported_identity"
             android:padding="3dip" />
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
            	android:textSize="20sp"
            	android:typeface="monospace"        
         	android:id="@+id/imported_identity"
@@ -39,19 +39,19 @@
     				  android:layout_gravity="center"
     				  android:layout_span="2">
 
-	   		<Button android:id="@+id/verified_button"
+	   		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/verified_button"
 	   				android:padding="15dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/verified_"/>
 
-	   		<Button android:id="@+id/compare_button"
+	   		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/compare_button"
 	   				android:padding="15dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/compare"/>
 						
-			<Button android:id="@+id/cancel_button"
+			<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/cancel_button"
 					android:padding="15dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"

@@ -25,19 +25,19 @@
         android:layout_height="fill_parent"
         android:gravity="left"
         android:layout_weight="1">
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/SeekBarOnLabel"
           android:text="On For:"
           android:paddingTop="5sp" />
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
           android:id="@+id/SeekBarOnMsLabel"
           android:layout_width="40dip"
           android:layout_height="wrap_content"
           android:text="0"
           android:gravity="right" />
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_margin="0dip"
@@ -61,19 +61,19 @@
         android:layout_height="fill_parent"
         android:gravity="left"
         android:layout_weight="1">
-      <TextView
+      <org.thoughtcrime.securesms.lang.BhoTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/SeekBarOffLabel"
         android:text="Off For:"
         android:paddingTop="5sp" />
-      <TextView
+      <org.thoughtcrime.securesms.lang.BhoTextView
         android:id="@+id/SeekBarOffMsLabel"
         android:layout_width="40dip"
         android:layout_height="wrap_content"
         android:text="0"
         android:gravity="right" />
-      <TextView
+      <org.thoughtcrime.securesms.lang.BhoTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="0dip"

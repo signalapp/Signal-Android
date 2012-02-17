@@ -28,8 +28,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoEditText;
 import android.widget.Toast;
 
 /**
@@ -43,9 +43,9 @@ public class SaveIdentityActivity extends Activity {
   private MasterSecret masterSecret;
   private IdentityKey identityKey;
 	
-  private EditText identityName;
-  private Button okButton;
-  private Button cancelButton;
+  private BhoEditText identityName;
+  private BhoButton okButton;
+  private BhoButton cancelButton;
 	
   @Override
   public void onCreate(Bundle bundle) {
@@ -66,9 +66,9 @@ public class SaveIdentityActivity extends Activity {
 
     this.masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
     this.identityKey  = (IdentityKey)getIntent().getParcelableExtra("identity_key");
-    this.identityName = (EditText)findViewById(R.id.identity_name);
-    this.okButton     = (Button)findViewById(R.id.ok_button);
-    this.cancelButton = (Button)findViewById(R.id.cancel_button);
+    this.identityName = (BhoEditText)findViewById(R.id.identity_name);
+    this.okButton     = (BhoButton)findViewById(R.id.ok_button);
+    this.cancelButton = (BhoButton)findViewById(R.id.cancel_button);
 		
     if ((nameSuggestion != null) && (nameSuggestion.trim().length() > 0)) {
       this.identityName.setText(nameSuggestion);

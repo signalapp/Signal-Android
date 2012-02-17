@@ -19,13 +19,13 @@ package org.thoughtcrime.securesms;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoEditText;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -35,9 +35,9 @@ import android.widget.Toast;
  */
 public class PassphrasePromptActivity extends PassphraseActivity {
 
-  private EditText passphraseText;
-  private Button okButton;
-  private Button cancelButton;
+  private BhoEditText passphraseText;
+  private BhoButton okButton;
+  private BhoButton cancelButton;
 		
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 	
   private void initializeResources() {
-    passphraseText = (EditText)findViewById(R.id.passphrase_edit);
-    okButton       = (Button)findViewById(R.id.ok_button);
-    cancelButton   = (Button)findViewById(R.id.cancel_button);
+    passphraseText = (BhoEditText)findViewById(R.id.passphrase_edit);
+    okButton       = (BhoButton)findViewById(R.id.ok_button);
+    cancelButton   = (BhoButton)findViewById(R.id.cancel_button);
 		
     okButton.setOnClickListener(new OkButtonClickListener());
     cancelButton.setOnClickListener(new CancelButtonClickListener());

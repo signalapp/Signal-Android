@@ -41,11 +41,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import org.thoughtcrime.securesms.lang.BhoCheckedTextView;
+
 import android.widget.CheckedTextView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 
 /**
  * Activity for selecting a list of contacts.  Displayed inside
@@ -218,9 +220,9 @@ public class ContactSelectionListActivity extends ListActivity {
 	
   private class ContactItemView extends RelativeLayout {
     private ContactData contactData;
-    private CheckedTextView name;
-    private TextView number;
-    private TextView label;
+    private BhoCheckedTextView name;
+    private BhoTextView number;
+    private BhoTextView label;
     private long id;
 
     public ContactItemView(Context context) {
@@ -229,9 +231,9 @@ public class ContactSelectionListActivity extends ListActivity {
       LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       li.inflate(R.layout.contact_selection_list_item, this, true);
 
-      this.name   = (CheckedTextView)findViewById(R.id.name);
-      this.number = (TextView)findViewById(R.id.number);
-      this.label  = (TextView)findViewById(R.id.label);
+      this.name   = (BhoCheckedTextView)findViewById(R.id.name);
+      this.number = (BhoTextView)findViewById(R.id.number);
+      this.label  = (BhoTextView)findViewById(R.id.label);
     }
 
     public void selected() {
@@ -268,11 +270,11 @@ public class ContactSelectionListActivity extends ListActivity {
 	
   private class DiscriminatorFinishedListener implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
     private final ContactData contactData;
-    private final CheckedTextView textView;
+    private final BhoCheckedTextView textView;
 		
     public DiscriminatorFinishedListener(ContactData contactData, CheckedTextView textView) {
       this.contactData = contactData;
-      this.textView    = textView;
+      this.textView    = (BhoCheckedTextView) textView;
     }
 
     public void onClick(DialogInterface dialog, int which) {

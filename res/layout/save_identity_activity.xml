@@ -11,12 +11,12 @@
 						  android:layout_height="wrap_content"
 						  android:padding="5dip">
 						  
-				<TextView android:layout_width="wrap_content"
+				<org.thoughtcrime.securesms.lang.BhoTextView android:layout_width="wrap_content"
 						  android:layout_height="wrap_content"
 						  android:padding="5dip"
 						  android:text="@string/identity_name_" />
 						  
-				<EditText android:layout_width="fill_parent"
+				<org.thoughtcrime.securesms.lang.BhoEditText android:layout_width="fill_parent"
 						  android:layout_height="wrap_content"
 						  android:padding="5dip"
 						  android:id="@+id/identity_name"
@@ -28,7 +28,7 @@
 						  android:layout_height="wrap_content"
 						  android:padding="5dip">
 			
-				<Button android:layout_width="100dip"
+				<org.thoughtcrime.securesms.lang.BhoButton android:layout_width="100dip"
 						android:layout_height="wrap_content"
 						android:visibility="visible"
 						android:padding="5dip"
@@ -36,7 +36,7 @@
 						android:id="@+id/ok_button"
 						android:text="Ok"/>
 						
-				<Button android:layout_width="100dip"
+				<org.thoughtcrime.securesms.lang.BhoButton android:layout_width="100dip"
 						android:layout_height="wrap_content"
 						android:visibility="visible"
 						android:padding="5dip"

@@ -12,7 +12,7 @@
     		android:scrollbarStyle="insideOverlay"
     		android:fadingEdgeLength="16dip" />
     		
-		<TextView android:id="@id/android:empty"
+		<org.thoughtcrime.securesms.lang.BhoTextView android:id="@id/android:empty"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content" 
 				  android:text="@string/you_don_t_currently_have_any_identity_keys_in_your_trust_database_"

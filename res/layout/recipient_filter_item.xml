@@ -29,14 +29,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView android:id="@+id/name"
+        <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/name"
             style="?android:attr/dropDownItemStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
         />
 
-        <TextView android:id="@+id/label"
+        <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/label"
             style="?android:attr/dropDownItemStyle"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         />
     </LinearLayout>
 
-    <TextView android:id="@+id/number"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/number"
         style="?android:attr/dropDownItemStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

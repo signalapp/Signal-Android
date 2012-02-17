@@ -16,13 +16,14 @@
  */
 package org.thoughtcrime.securesms;
 
+import org.thoughtcrime.securesms.lang.BhoTextView;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 /**
  * Activity for displaying user identity keys.
@@ -31,7 +32,7 @@ import android.widget.TextView;
  */
 public class IdentityKeyView extends RelativeLayout {
 	
-  private TextView identityName;
+  private BhoTextView identityName;
   private ImageView validImage;
   private ImageView invalidImage;
 	
@@ -55,7 +56,7 @@ public class IdentityKeyView extends RelativeLayout {
   }
 	
   private void initializeResources() {
-    this.identityName = (TextView)findViewById(R.id.identity_name);
+    this.identityName = (BhoTextView)findViewById(R.id.identity_name);
     this.validImage   = (ImageView)findViewById(R.id.valid_indicator);
     this.invalidImage = (ImageView)findViewById(R.id.invalid_indicator);
   }

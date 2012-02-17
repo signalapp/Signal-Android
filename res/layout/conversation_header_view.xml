@@ -43,7 +43,7 @@
     		  android:layout_alignParentTop="true"
     		  android:visibility="gone" />
 
-    <TextView android:id="@+id/from"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -59,7 +59,7 @@
         android:textColor="#000000"/>
         
          
-    <TextView android:id="@+id/date"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/date"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="5dip"
         android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
         android:layout_alignBottom="@id/date"
         android:src="@drawable/ic_attachment_universal_small" />
 
-    <TextView android:id="@+id/subject"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"

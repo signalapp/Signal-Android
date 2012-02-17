@@ -41,12 +41,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckedTextView;
+import org.thoughtcrime.securesms.lang.BhoCheckedTextView;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 
 /**
  * Displays a list of recently used contacts for multi-select.  Displayed
@@ -173,10 +173,10 @@ public class ContactSelectionRecentActivity extends ListActivity {
     private ContactData contactData;
     private Context context;
     private ImageView callTypeIcon;
-    private TextView date;
-    private TextView label;
-    private TextView number;
-    private CheckedTextView line1;		
+    private BhoTextView date;
+    private BhoTextView label;
+    private BhoTextView number;
+    private BhoCheckedTextView line1;		
 
     public CallItemView(Context context) {
       super(context);
@@ -186,10 +186,10 @@ public class ContactSelectionRecentActivity extends ListActivity {
 
       this.context      = context;
       this.callTypeIcon = (ImageView)       findViewById(R.id.call_type_icon);
-      this.date         = (TextView)        findViewById(R.id.date);
-      this.label        = (TextView)        findViewById(R.id.label);
-      this.number       = (TextView)        findViewById(R.id.number);
-      this.line1        = (CheckedTextView) findViewById(R.id.line1);
+      this.date         = (BhoTextView)        findViewById(R.id.date);
+      this.label        = (BhoTextView)        findViewById(R.id.label);
+      this.number       = (BhoTextView)        findViewById(R.id.number);
+      this.line1        = (BhoCheckedTextView) findViewById(R.id.line1);
     }
 
     public void selected() {

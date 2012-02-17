@@ -23,6 +23,8 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -31,8 +33,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * Activity for displaying sent/received session keys.
@@ -42,13 +42,13 @@ import android.widget.TextView;
 
 public class ReceiveKeyActivity extends Activity {
 
-  private TextView descriptionText;
-  private TextView signatureText;
+  private BhoTextView descriptionText;
+  private BhoTextView signatureText;
 	
-  private Button confirmButton;
-  private Button cancelButton;
-  private Button verifySessionButton;
-  private Button verifyIdentityButton;
+  private BhoButton confirmButton;
+  private BhoButton cancelButton;
+  private BhoButton verifySessionButton;
+  private BhoButton verifyIdentityButton;
 	
   private Recipient recipient;
   private long      threadId;
@@ -155,12 +155,12 @@ public class ReceiveKeyActivity extends Activity {
   }
 	
   private void initializeResources() {
-    this.descriptionText      = (TextView) findViewById(R.id.description_text);
-    this.signatureText        = (TextView) findViewById(R.id.signature_text);
-    this.confirmButton        = (Button)   findViewById(R.id.ok_button);
-    this.cancelButton         = (Button)   findViewById(R.id.cancel_button);
-    this.verifyIdentityButton = (Button)findViewById(R.id.verify_identity_button);
-    this.verifySessionButton  = (Button)findViewById(R.id.verify_session_button);
+    this.descriptionText      = (BhoTextView) findViewById(R.id.description_text);
+    this.signatureText        = (BhoTextView) findViewById(R.id.signature_text);
+    this.confirmButton        = (BhoButton)   findViewById(R.id.ok_button);
+    this.cancelButton         = (BhoButton)   findViewById(R.id.cancel_button);
+    this.verifyIdentityButton = (BhoButton)findViewById(R.id.verify_identity_button);
+    this.verifySessionButton  = (BhoButton)findViewById(R.id.verify_session_button);
     this.recipient            = getIntent().getParcelableExtra("recipient");
     this.threadId             = getIntent().getLongExtra("thread_id", -1);
     this.masterSecret         = (MasterSecret)getIntent().getParcelableExtra("master_secret");

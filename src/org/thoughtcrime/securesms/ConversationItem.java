@@ -28,6 +28,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsMessageRecord;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -75,8 +77,8 @@ public class ConversationItem extends LinearLayout {
   private MessageRecord messageRecord;
   private MasterSecret  masterSecret;
 
-  private final TextView bodyText;
-  private final TextView dateText;
+  private final BhoTextView bodyText;
+  private final BhoTextView dateText;
   private final ImageView pendingImage;
   private final ImageView secureImage;
   private final ImageView failedImage;
@@ -84,8 +86,8 @@ public class ConversationItem extends LinearLayout {
   private final ImageView contactPhoto;
 	
   private final ImageView mmsThumbnail;
-  private final Button    mmsDownloadButton;
-  private final TextView  mmsDownloadingLabel;
+  private final BhoButton    mmsDownloadButton;
+  private final BhoTextView  mmsDownloadingLabel;
 		
   private final FailedIconClickListener failedIconClickListener   = new FailedIconClickListener();
   private final MmsDownloadClickListener mmsDownloadClickListener = new MmsDownloadClickListener();
@@ -99,15 +101,15 @@ public class ConversationItem extends LinearLayout {
     li.inflate(R.layout.conversation_item, this);
 		
     this.context             = context;
-    this.bodyText            = (TextView) findViewById(R.id.conversation_item_body);
-    this.dateText            = (TextView) findViewById(R.id.conversation_item_date);
+    this.bodyText            = (BhoTextView) findViewById(R.id.conversation_item_body);
+    this.dateText            = (BhoTextView) findViewById(R.id.conversation_item_date);
     this.pendingImage        = (ImageView)findViewById(R.id.sms_pending_indicator);
     this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
     this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
     this.keyImage            = (ImageView)findViewById(R.id.key_exchange_indicator);
     this.mmsThumbnail        = (ImageView)findViewById(R.id.image_view);
-    this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
-    this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
+    this.mmsDownloadButton   = (BhoButton)   findViewById(R.id.mms_download_button);
+    this.mmsDownloadingLabel = (BhoTextView) findViewById(R.id.mms_label_downloading);
     this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
 		
     setOnClickListener(clickListener);

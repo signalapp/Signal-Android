@@ -74,13 +74,15 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
+import org.thoughtcrime.securesms.lang.BhoButton;
 import android.widget.CursorAdapter;
-import android.widget.EditText;
+import org.thoughtcrime.securesms.lang.BhoEditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import android.widget.Toast;
 
 /**
@@ -121,11 +123,11 @@ public class ComposeMessageActivity extends Activity {
   private ConversationAdapter conversationAdapter;
   private ListView conversationView;
   private RecipientsPanel recipientsPanel;
-  private EditText composeText;
+  private BhoEditText composeText;
   private ImageButton addContactButton;
-  private Button sendButton;
-  private TextView charactersLeft;
-  private TextView titleBar;
+  private BhoButton sendButton;
+  private BhoTextView charactersLeft;
+  private BhoTextView titleBar;
 	
   private View greyLock;
   private View redLock;
@@ -524,11 +526,11 @@ public class ComposeMessageActivity extends Activity {
     recipients          = getIntent().getParcelableExtra("recipients");
     threadId            = getIntent().getLongExtra("thread_id", -1);
     addContactButton    = (ImageButton)findViewById(R.id.contacts_button);
-    sendButton          = (Button)findViewById(R.id.send_button);
-    composeText         = (EditText)findViewById(R.id.embedded_text_editor);
+    sendButton          = (BhoButton)findViewById(R.id.send_button);
+    composeText         = (BhoEditText)findViewById(R.id.embedded_text_editor);
     masterSecret        = (MasterSecret)getIntent().getParcelableExtra("master_secret");
-    charactersLeft      = (TextView)findViewById(R.id.space_left);
-    titleBar            = (TextView)findViewById(R.id.title_bar);
+    charactersLeft      = (BhoTextView)findViewById(R.id.space_left);
+    titleBar            = (BhoTextView)findViewById(R.id.title_bar);
     greyLock            = findViewById(R.id.secure_indicator);
     redLock             = findViewById(R.id.secure_indicator_red);
 		

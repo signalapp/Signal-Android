@@ -23,14 +23,14 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <Button android:id="@+id/btn_download_msg"
+    <org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/btn_download_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:text="@string/download"
         android:visibility="gone" />
 
-    <TextView android:id="@+id/label_downloading"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/label_downloading"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_marginLeft="5dp"

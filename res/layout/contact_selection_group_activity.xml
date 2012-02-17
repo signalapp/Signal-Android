@@ -32,7 +32,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="true">
-        <TextView android:id="@+id/emptyText"
+        <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/emptyText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/no_contacts_"

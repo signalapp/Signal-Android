@@ -77,7 +77,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
-import android.widget.EditText;
+import org.thoughtcrime.securesms.lang.BhoEditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -112,24 +112,20 @@ public class SecureSMS extends ListActivity {
   private static final int DELETE_THREAD_ID   = 102;
   private static final int ADD_CONTACT_ID     = 103;
 	
-  private EditText searchBox;
+  private BhoEditText searchBox;
   private ConversationHeaderView headerView;
   private MasterSecret masterSecret;
   private KillActivityReceiver killActivityReceiver;
   private NewKeyReceiver receiver;
   private boolean havePromptedForPassphrase = false;
   private boolean batchMode                 = false;
-  
-  BhoTyper bho;
-	
+  	
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.main);
-    
-    bho = new BhoTyper(this, getWindow().getDecorView().findViewById(android.R.id.content));
-    
+        
     initializeKillReceiver();
     initializeSenderReceiverService();
     initializeResources();
@@ -156,6 +152,7 @@ public class SecureSMS extends ListActivity {
     Log.w("securesms", "restart called...");
     initializeColors();
     Eula.showEula(this);
+    
   }
   
   @Override
@@ -460,7 +457,7 @@ public class SecureSMS extends ListActivity {
 	
   private void initializeSearchListener() {
     SearchTextListener listener = new SearchTextListener();
-    searchBox                   = (EditText)findViewById(R.id.search_text);
+    searchBox                   = (BhoEditText)findViewById(R.id.search_text);
     searchBox.addTextChangedListener(listener);
     this.getListView().setOnKeyListener(listener);
   }

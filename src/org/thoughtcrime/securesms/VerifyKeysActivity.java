@@ -20,6 +20,8 @@ import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SerializableKey;
 import org.thoughtcrime.securesms.database.SessionRecord;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -29,8 +31,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * Activity for verifying session keys.
@@ -43,12 +43,12 @@ public class VerifyKeysActivity extends KeyScanningActivity {
   private byte[] yourFingerprintBytes;
   private byte[] theirFingerprintBytes;
 	
-  private TextView yourFingerprint;
-  private TextView theirFingerprint;
-  private Button verifiedButton;
-  private Button abortButton;
-  private Button cancelButton;
-  private Button compareButton;
+  private BhoTextView yourFingerprint;
+  private BhoTextView theirFingerprint;
+  private BhoButton verifiedButton;
+  private BhoButton abortButton;
+  private BhoButton cancelButton;
+  private BhoButton compareButton;
   private Recipient recipient;
   private MasterSecret masterSecret;
 	
@@ -78,12 +78,12 @@ public class VerifyKeysActivity extends KeyScanningActivity {
   private void initializeResources() {
     this.recipient        = (Recipient)this.getIntent().getParcelableExtra("recipient");
     this.masterSecret     = (MasterSecret)this.getIntent().getParcelableExtra("master_secret");
-    this.yourFingerprint  = (TextView)findViewById(R.id.you_read);
-    this.theirFingerprint = (TextView)findViewById(R.id.friend_reads);
-    this.verifiedButton   = (Button)findViewById(R.id.verified_button);
-    this.abortButton      = (Button)findViewById(R.id.abort_button);
-    this.cancelButton     = (Button)findViewById(R.id.cancel_button);
-    this.compareButton    = (Button)findViewById(R.id.compare_button);
+    this.yourFingerprint  = (BhoTextView)findViewById(R.id.you_read);
+    this.theirFingerprint = (BhoTextView)findViewById(R.id.friend_reads);
+    this.verifiedButton   = (BhoButton)findViewById(R.id.verified_button);
+    this.abortButton      = (BhoButton)findViewById(R.id.abort_button);
+    this.cancelButton     = (BhoButton)findViewById(R.id.cancel_button);
+    this.compareButton    = (BhoButton)findViewById(R.id.compare_button);
   }
 	
   private void initializeFingerprints() {

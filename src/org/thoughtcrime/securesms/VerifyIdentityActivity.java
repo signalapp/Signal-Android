@@ -21,6 +21,8 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SessionRecord;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -29,8 +31,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -43,13 +43,13 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private Recipient recipient;
   private MasterSecret masterSecret;
 	
-  private TextView localIdentityFingerprint;
-  private TextView remoteIdentityFingerprint;
+  private BhoTextView localIdentityFingerprint;
+  private BhoTextView remoteIdentityFingerprint;
 	
-  private Button verifiedButton;
-  private Button abortButton;
-  private Button cancelButton;
-  private Button compareButton;
+  private BhoButton verifiedButton;
+  private BhoButton abortButton;
+  private BhoButton cancelButton;
+  private BhoButton compareButton;
 	
   @Override
   public void onCreate(Bundle state) {
@@ -101,14 +101,14 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 	
   private void initializeResources() {
-    localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
-    remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
+    localIdentityFingerprint  = (BhoTextView)findViewById(R.id.you_read);
+    remoteIdentityFingerprint = (BhoTextView)findViewById(R.id.friend_reads);
     recipient                 = (Recipient)this.getIntent().getParcelableExtra("recipient");
     masterSecret              = (MasterSecret)this.getIntent().getParcelableExtra("master_secret");
-    verifiedButton            = (Button)findViewById(R.id.verified_button);
-    abortButton               = (Button)findViewById(R.id.abort_button);
-    cancelButton              = (Button)findViewById(R.id.cancel_button);
-    compareButton             = (Button)findViewById(R.id.compare_button);
+    verifiedButton            = (BhoButton)findViewById(R.id.verified_button);
+    abortButton               = (BhoButton)findViewById(R.id.abort_button);
+    cancelButton              = (BhoButton)findViewById(R.id.cancel_button);
+    compareButton             = (BhoButton)findViewById(R.id.compare_button);
   }
 	
   private void abortSession() {

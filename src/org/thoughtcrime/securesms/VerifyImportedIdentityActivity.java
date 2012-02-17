@@ -20,6 +20,9 @@ import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoEditText;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -44,12 +47,12 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
   private MasterSecret masterSecret;
   private String contactName;
   private IdentityKey identityKey;
-  private EditText identityName;
-  private TextView identityFingerprint;
+  private BhoEditText identityName;
+  private BhoTextView identityFingerprint;
 	
-  private Button compareButton;
-  private Button verifiedButton;
-  private Button cancelButton;
+  private BhoButton compareButton;
+  private BhoButton verifiedButton;
+  private BhoButton cancelButton;
 	
   @Override
   public void onCreate(Bundle state) {
@@ -81,13 +84,13 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
 	
   private void initializeResources() {
     masterSecret        = (MasterSecret)this.getIntent().getParcelableExtra("master_secret");
-    identityFingerprint = (TextView)findViewById(R.id.imported_identity);
-    identityName        = (EditText)findViewById(R.id.identity_name);
+    identityFingerprint = (BhoTextView)findViewById(R.id.imported_identity);
+    identityName        = (BhoEditText)findViewById(R.id.identity_name);
     identityKey         = (IdentityKey)this.getIntent().getParcelableExtra("identity_key");
     contactName         = (String)this.getIntent().getStringExtra("contact_name");
-    verifiedButton      = (Button)findViewById(R.id.verified_button);
-    cancelButton        = (Button)findViewById(R.id.cancel_button);
-    compareButton       = (Button)findViewById(R.id.compare_button);
+    verifiedButton      = (BhoButton)findViewById(R.id.verified_button);
+    cancelButton        = (BhoButton)findViewById(R.id.cancel_button);
+    compareButton       = (BhoButton)findViewById(R.id.compare_button);
   }
 			
   private class CancelButtonListener implements View.OnClickListener {

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="10px">
 
-	<TextView android:id="@+id/description_text"
+	<org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/description_text"
 			  android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
 			  android:layout_marginBottom="5px" 
@@ -16,13 +16,13 @@
 				  android:layout_marginTop="10px"
 				  android:orientation="horizontal">
 				  
-		<Button android:id="@+id/initiate_button"
+		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/initiate_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/initiate_exchange"
 				android:gravity="center"/>
 				
-		<Button android:id="@+id/cancel_button"
+		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/cancel_button"
 				android:text="Cancel"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"

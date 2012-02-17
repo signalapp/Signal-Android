@@ -33,7 +33,7 @@ import android.provider.Contacts.People;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import org.thoughtcrime.securesms.lang.BhoButton;
 import android.widget.ImageButton;
 
 /**
@@ -51,8 +51,8 @@ public class SendKeyActivity extends Activity {
   private MasterSecret masterSecret;
   private RecipientsPanel recipientsPanel;
   private ImageButton addContactButton;
-  private Button sendButton;
-  private Button cancelButton;
+  private BhoButton sendButton;
+  private BhoButton cancelButton;
 		
   @Override
   protected void onCreate(Bundle state) {
@@ -99,8 +99,8 @@ public class SendKeyActivity extends Activity {
   private void initializeResources() {
     recipientsPanel     = (RecipientsPanel)findViewById(R.id.key_recipients);
     addContactButton    = (ImageButton)findViewById(R.id.contacts_button);
-    sendButton          = (Button)findViewById(R.id.send_key_button);
-    cancelButton        = (Button)findViewById(R.id.cancel_key_button);
+    sendButton          = (BhoButton)findViewById(R.id.send_key_button);
+    cancelButton        = (BhoButton)findViewById(R.id.cancel_key_button);
     masterSecret        = (MasterSecret)getIntent().getParcelableExtra("master_secret");
 
     Recipient defaultRecipient = (Recipient)getIntent().getParcelableExtra("recipient");

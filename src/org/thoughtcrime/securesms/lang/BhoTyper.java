@@ -15,18 +15,24 @@ import android.widget.TextView;
 
 public class BhoTyper {
 	
-	private String bhoTag = "******************* LANG SERVICE **************";
-	
+	public static String BHOTAG = "******************* LANG SERVICE **************";
+	public static String FONT = "monlambodyig.ttf";
 	
 	Typeface bho;
 	ArrayList<TextView> textViews = new ArrayList<TextView>();
 	Context c;
+	View root;
 	
 	public BhoTyper(Context c, View root) {
 		this.c = c;
-		bho = Typeface.createFromAsset(this.c.getAssets(), Constants.FONT);
+		this.root = root;
+		bho = Typeface.createFromAsset(this.c.getAssets(), FONT);
 	    
-	    parseForTextViews(root);
+		refreshBho();
+	}
+	
+	public void refreshBho() {
+		parseForTextViews(this.root);
 
 	    for(View v : textViews) {
 	    	if(!(v instanceof android.widget.EditText)) {
@@ -56,9 +62,5 @@ public class BhoTyper {
 					parseForTextViews((View) vg.getChildAt(v));
 			}
 		} catch(ClassCastException e) {}
-	}
-	
-	public static class Constants {
-		public static String FONT = "monlambodyig.ttf"; 
 	}
 }

@@ -88,7 +88,7 @@
 <!--				android:layout_centerVertical="true" />-->
 			
 			
-			<TextView
+			<org.thoughtcrime.securesms.lang.BhoTextView
 				android:id="@+id/title_bar"
 			    android:textSize="18.0dip" 
 			    android:textStyle="bold" 
@@ -190,7 +190,7 @@
 <!--			            android:layout_height="50dip"-->
 <!--			            android:text="Replace" />-->
 			
-			        <Button
+			        <org.thoughtcrime.securesms.lang.BhoButton
 			            android:id="@+id/remove_image_button"
 			            style="?android:attr/buttonStyleSmall"
 			            android:layout_width="100dip"

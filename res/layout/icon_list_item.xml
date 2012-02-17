@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <TextView android:id="@+id/text1"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:textColor="@drawable/text_color_black"
