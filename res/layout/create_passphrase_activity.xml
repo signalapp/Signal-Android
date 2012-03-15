@@ -45,11 +45,11 @@
 		android:layout_width="wrap_content"
 		android:id="@+id/RelativeLayout"
 		>
-<Button android:layout_width="100dip" 
+<org.thoughtcrime.securesms.lang.BhoButton android:layout_width="100dip" 
         android:layout_height="wrap_content" 
         android:id="@+id/cancel_button" android:text="Cancel" 
         android:layout_below="@id/passphrase_edit_repeat" 
-        android:layout_alignParentRight="true"></Button>
+        android:layout_alignParentRight="true"></org.thoughtcrime.securesms.lang.BhoButton>
         
 <org.thoughtcrime.securesms.lang.BhoButton android:layout_below="@id/passphrase_edit_repeat" 
 	    android:layout_width="100dip" 
