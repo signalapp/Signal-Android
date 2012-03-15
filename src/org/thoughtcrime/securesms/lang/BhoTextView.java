@@ -20,6 +20,16 @@ public class BhoTextView extends TextView {
 		
 	}
 	
+	public BhoTextView(Context context) {
+		super(context);
+		this.c = context;
+		
+		if(t == null)
+			t = Typeface.createFromAsset(this.c.getAssets(), BhoTyper.FONT);
+		
+		setTypeface(t);
+	}
+	
 	@Override
 	public void setTypeface(Typeface typeface) {
 		super.setTypeface(typeface);
