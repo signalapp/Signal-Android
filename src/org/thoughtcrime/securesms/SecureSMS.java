@@ -36,8 +36,8 @@ import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.lang.BhoContextualMenu;
-import org.thoughtcrime.securesms.lang.BhoContextualMenu.BhoAdapter;
 import org.thoughtcrime.securesms.lang.BhoTyper;
+
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -76,12 +76,9 @@ import android.view.ContextMenu;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.view.View.OnCreateContextMenuListener;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
@@ -297,7 +294,6 @@ public class SecureSMS extends ListActivity {
       Recipients recipients = RecipientFactory.getRecipientsForIds(this, recipientId);
       
       BhoContextualMenu m = new BhoContextualMenu(this);
-      
       final Map<Integer, String> opts = new HashMap<Integer, String>();
       opts.put(VIEW_THREAD_ID, getString(R.string.view_thread));
       
@@ -318,19 +314,7 @@ public class SecureSMS extends ListActivity {
 		    String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
 		    Recipients recipients = RecipientFactory.getRecipientsForIds(SecureSMS.this, recipientId);
 		    
-		    int item = -1;
-		    int match = 0;
-		    
-		    Iterator<Integer> i = opts.keySet().iterator();
-		    while(i.hasNext()) {
-		    	int opt = i.next();
-		    	if(match == which)
-		    		item = opt;
-		    	
-		    	match++;
-		    }
-		    
-		    switch(item) {
+		    switch(BhoTyper.getIntValueFromContextualMenu(opts, which)) {
 		    case VIEW_THREAD_ID:
 		        createConversation(threadId, recipients);
 		        break;

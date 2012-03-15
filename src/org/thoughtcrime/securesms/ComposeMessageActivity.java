@@ -19,6 +19,9 @@ package org.thoughtcrime.securesms;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.thoughtcrime.securesms.components.RecipientsPanel;
 import org.thoughtcrime.securesms.crypto.AuthenticityCalculator;
@@ -75,6 +78,9 @@ import android.view.View.OnKeyListener;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoContextualMenu;
+import org.thoughtcrime.securesms.lang.BhoTyper;
+
 import android.widget.CursorAdapter;
 import org.thoughtcrime.securesms.lang.BhoEditText;
 import android.widget.ImageButton;
@@ -267,11 +273,85 @@ public class ComposeMessageActivity extends Activity {
   }
 
   private void createSendButtonContextMenu(ContextMenu menu) {
+    if (sendEncrypted) {
+    	BhoContextualMenu m = new BhoContextualMenu(this);
+    	final Map<Integer, String> opts = new HashMap<Integer, String>();
+    	opts.put(MENU_OPTION_SEND_CLEARTEXT, getString(R.string.send_unencrypted));
+    	
+    	m.setAdapter(m.setOpts(opts), new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				switch (BhoTyper.getIntValueFromContextualMenu(opts, which)) {
+			    case MENU_OPTION_SEND_CLEARTEXT: 
+			    	sendMessage(false); 
+			    	break;
+				}
+				
+			}
+		});
+    	m.show();
+    }
+		
+  }
+  
+  private void createMessageItemContextMenu(ContextMenu menu) {
+	  Cursor cursor                     = ((CursorAdapter)conversationAdapter).getCursor();
+	  ConversationItem conversationItem = (ConversationItem)(conversationAdapter.newView(this, cursor, null));
+	  MessageRecord messageRecord       = conversationItem.getMessageRecord();
+	  
+	  BhoContextualMenu m = new BhoContextualMenu(this);
+      final Map<Integer, String> opts = new HashMap<Integer, String>();
+      opts.put(MENU_OPTION_COPY, getString(R.string.copy_text));
+      opts.put(MENU_OPTION_DELETE, getString(R.string.delete));
+      opts.put(MENU_OPTION_DETAILS, getString(R.string.message_details));
+      opts.put(MENU_OPTION_FORWARD, getString(R.string.forward_message));
+      
+      if(messageRecord.isFailedDecryptType())
+    	  opts.put(MENU_OPTION_REDECRYPT, getString(R.string.attempt_decrypt_again));
+      
+      m.setAdapter(m.setOpts(opts), new DialogInterface.OnClickListener() {
+  		
+  		@Override
+  		public void onClick(DialogInterface dialog, int which) {
+  			Cursor cursor                     = ((CursorAdapter)conversationAdapter).getCursor();
+  		    ConversationItem conversationItem = (ConversationItem)(conversationAdapter.newView(ComposeMessageActivity.this, cursor, null));
+  		    String address                    = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
+  		    String body                       = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
+  		    MessageRecord messageRecord       = conversationItem.getMessageRecord();
+  		    
+  		    switch(BhoTyper.getIntValueFromContextualMenu(opts, which)) {
+  		    case MENU_OPTION_COPY:      
+  		    	copyMessageToClipboard(messageRecord);
+  		    	break;
+  		    case MENU_OPTION_DELETE:    
+  		    	deleteMessage(messageRecord);
+  		    	break;
+  		    case MENU_OPTION_DETAILS:   
+  		    	displayMessageDetails(messageRecord);
+  		    	break;
+  		    case MENU_OPTION_REDECRYPT: 
+  		    	redecryptMessage(messageRecord, address, body);
+  		    	break;
+  		    case MENU_OPTION_FORWARD:
+  		    	forwardMessage(messageRecord);
+  		    	break;
+  		    }
+  		}
+      
+      });
+      m.show();
+      
+  }
+
+  /*
+
+  private void createSendButtonContextMenu(ContextMenu menu) {
     if (sendEncrypted)	
       menu.add(SEND_BUTTON_GROUP, MENU_OPTION_SEND_CLEARTEXT, Menu.NONE, R.string.send_unencrypted);
 		
   }
-	
+  
   private void createMessageItemContextMenu(ContextMenu menu) {
     menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_COPY, Menu.NONE, R.string.copy_text);
     menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_DELETE, Menu.NONE, R.string.delete);
@@ -285,6 +365,7 @@ public class ComposeMessageActivity extends Activity {
     if (messageRecord.isFailedDecryptType())
       menu.add(MESSAGE_ITEM_GROUP, MENU_OPTION_REDECRYPT, Menu.NONE, R.string.attempt_decrypt_again);
   }
+  */
 	
   @Override
   public boolean onContextItemSelected(MenuItem item) {
