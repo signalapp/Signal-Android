@@ -17,21 +17,14 @@
     	android:layout_height="wrap_content"
     	android:orientation="horizontal">
     	
-<!--       <android.widget.QuickContactBadge android:id="@+id/contact_photo"-->
-<!--   									 android:layout_width="60dp"-->
-<!--   									 android:layout_height="60dp"-->
-<!--   									 android:cropToPadding="true"-->
-<!--   									 android:layout_marginRight="10px"-->
-<!--   									 android:scaleType="centerCrop"-->
-<!--   									 android:visibility="gone" />-->
-
-    <ImageView android:id="@+id/contact_photo"
-			   android:layout_width="60dp"
-			   android:layout_height="60dp"
-			   android:cropToPadding="true"
-			   android:layout_marginRight="10px"
-			   android:scaleType="centerCrop"
-		       android:visibility="gone" />
+       <android.widget.QuickContactBadge android:id="@+id/contact_photo"
+   									 android:layout_width="60dp"
+   									 android:layout_height="60dp"
+   									 android:cropToPadding="true"
+   									 android:layout_marginRight="10px"
+   									 android:scaleType="centerCrop"
+   									 android:src="@drawable/ic_contact_picture"
+   									 android:visibility="gone" />
 
     <LinearLayout android:id="@+id/conversation_item_parent"
         android:layout_width="fill_parent"

@@ -32,7 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -57,7 +57,7 @@ public class ConversationHeaderView extends RelativeLayout {
   private View       unreadIndicator;
   private View       keyIndicator;
   private CheckBox   checkbox;
-  private ImageView  contactPhoto;
+  private QuickContactBadge  contactPhoto;
     
   public ConversationHeaderView(Context context, boolean first) {
     this(context, (Set<Long>)null);
@@ -80,7 +80,7 @@ public class ConversationHeaderView extends RelativeLayout {
     this.dateView        = (TextView)findViewById(R.id.date);
     this.unreadIndicator = findViewById(R.id.unread_indicator);
     this.keyIndicator    = findViewById(R.id.key_indicator);
-    this.contactPhoto    = (ImageView)findViewById(R.id.contact_photo);		
+    this.contactPhoto    = (QuickContactBadge)findViewById(R.id.contact_photo);		
     this.checkbox        = (CheckBox)findViewById(R.id.checkbox);
 	
     intializeListeners();
@@ -122,7 +122,7 @@ public class ConversationHeaderView extends RelativeLayout {
         contactPhoto.setVisibility(View.GONE);
       } else {	
         contactPhoto.setImageBitmap(message.getRecipients().getPrimaryRecipient().getContactPhoto());
-        contactPhoto.setBackgroundResource(R.drawable.light_border_background);
+        contactPhoto.assignContactFromPhone(message.getRecipients().getPrimaryRecipient().getNumber(), false);
         contactPhoto.setVisibility(View.VISIBLE);
       }
     }
