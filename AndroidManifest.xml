@@ -78,7 +78,7 @@
        <uses-library android:name="android.test.runner" />
 </application>
 
-<uses-sdk android:minSdkVersion="4" />
+<uses-sdk android:minSdkVersion="8" />
 
 <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
 	        android:label="Access to TextSecure Secrets"
