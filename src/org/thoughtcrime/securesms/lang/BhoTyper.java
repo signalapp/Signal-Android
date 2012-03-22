@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.lang;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.ironrabbit.TibConvert;
 
@@ -50,6 +52,22 @@ public class BhoTyper {
 	    		((EditText) v).setHint(bhoHint);
 	    	}
 	    }
+	}
+	
+	public static int getIntValueFromContextualMenu(Map<Integer, String> opts, int which) {
+		int item = -1;
+	    int match = 0;
+	    
+	    Iterator<Integer> i = opts.keySet().iterator();
+	    while(i.hasNext()) {
+	    	int opt = i.next();
+	    	if(match == which)
+	    		item = opt;
+	    	
+	    	match++;
+	    }
+	    
+	    return item;
 	}
 	
 	private void parseForTextViews(View view) {

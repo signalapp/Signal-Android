@@ -18,7 +18,10 @@ package org.thoughtcrime.securesms;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -32,7 +35,9 @@ import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.lang.BhoContextualMenu;
 import org.thoughtcrime.securesms.lang.BhoTyper;
+
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -279,26 +284,53 @@ public class SecureSMS extends ListActivity {
     clearNotifications();
     initializeReceivers();
     checkCachingService();
-  }	
-	
+  }
+    
   @Override
   public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
     if (((AdapterView.AdapterContextMenuInfo)menuInfo).position > 0) {
       Cursor cursor         = ((CursorAdapter)this.getListAdapter()).getCursor();
       String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
       Recipients recipients = RecipientFactory.getRecipientsForIds(this, recipientId);
-
-      menu.add(0, VIEW_THREAD_ID, Menu.NONE, R.string.view_thread);
-			
-      if (recipients.isSingleRecipient()) {
-        if (recipients.getPrimaryRecipient().getName() != null) {
-          menu.add(0, VIEW_CONTACT_ID, Menu.NONE, R.string.view_contact);
-        } else {
-          menu.add(0, ADD_CONTACT_ID, Menu.NONE, R.string.add_to_contacts);
-        }
+      
+      BhoContextualMenu m = new BhoContextualMenu(this);
+      final Map<Integer, String> opts = new HashMap<Integer, String>();
+      opts.put(VIEW_THREAD_ID, getString(R.string.view_thread));
+      
+      if(recipients.isSingleRecipient()) {
+    	  if(recipients.getPrimaryRecipient().getName() != null)
+    		  opts.put(VIEW_CONTACT_ID, getString(R.string.view_contact));
+    	  else
+    		  opts.put(ADD_CONTACT_ID, getString(R.string.add_to_contacts));
       }
-			
-      menu.add(0, DELETE_THREAD_ID, Menu.NONE, R.string.delete_thread);			
+      
+      opts.put(DELETE_THREAD_ID, getString(R.string.delete_thread));
+      m.setAdapter(m.setOpts(opts), new DialogInterface.OnClickListener() {
+		
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			Cursor cursor         = ((CursorAdapter) SecureSMS.this.getListAdapter()).getCursor();
+			long threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+		    String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
+		    Recipients recipients = RecipientFactory.getRecipientsForIds(SecureSMS.this, recipientId);
+		    
+		    switch(BhoTyper.getIntValueFromContextualMenu(opts, which)) {
+		    case VIEW_THREAD_ID:
+		        createConversation(threadId, recipients);
+		        break;
+		      case VIEW_CONTACT_ID:
+		        viewContact(recipients.getPrimaryRecipient());
+		        break;
+		      case ADD_CONTACT_ID:
+		        addContact(recipients.getPrimaryRecipient());
+		        break;
+		      case DELETE_THREAD_ID:
+		        deleteThread(threadId);
+		        break;
+		    }
+		}
+      });
+      m.show();
     }
   }
 	
@@ -928,6 +960,7 @@ public class SecureSMS extends ListActivity {
       }
     }
   }
+
 }
     
  

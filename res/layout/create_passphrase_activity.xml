@@ -49,13 +49,13 @@
         android:layout_height="wrap_content" 
         android:id="@+id/cancel_button" android:text="Cancel" 
         android:layout_below="@id/passphrase_edit_repeat" 
-        android:layout_alignParentRight="true"></org.thoughtcrime.securesms.lang.BhoButton>
+        android:layout_alignParentRight="true" />
         
 <org.thoughtcrime.securesms.lang.BhoButton android:layout_below="@id/passphrase_edit_repeat" 
 	    android:layout_width="100dip" 
 	    android:layout_height="wrap_content" 
 	    android:text="@string/ok" android:id="@+id/ok_button" 
-	    android:layout_toLeftOf="@id/cancel_button"></org.thoughtcrime.securesms.lang.BhoButton>
+	    android:layout_toLeftOf="@id/cancel_button" />
 	    </RelativeLayout>
 
 </LinearLayout>
