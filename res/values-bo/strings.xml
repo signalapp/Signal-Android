@@ -4,8 +4,7 @@
   <string name="yes">གཏན་འཁེལ།</string>
   <string name="no">རྩིས་མེད་གཏོང་།</string>
   <string name="you_don_t_have_an_identity_key">ཁྱེད་ལ་ངོས་འཛིན་བྱེད་ཀྱི་ལྡེ་མིག་མི་འདུག</string>
-  <string name="you_have_not_yet_defined_a_contact_for_yourself">ཁྱེད་ཀྱིས་འབྲེལ་ལམ་བྱ་ཡུལ་གསལ་བཤད་བྱས་མི་འདུག སྒྲིག་བཀོད་འདེམ་ཐོ་ལས་བདམས་པར་ཞུ༏
-</string>
+  <string name="you_have_not_yet_defined_a_contact_for_yourself">ཁྱེད་ཀྱིས་འབྲེལ་ལམ་བྱ་ཡུལ་གསལ་བཤད་བྱས་མི་འདུག སྒྲིག་བཀོད་འདེམ་ཐོ་ལས་བདམས་པར་ཞུ༏\n</string>
   <string name="exported_to_contacts_database">འབྲེལ་གཏུག་ཆ་ཚང་གཞི་གྲངས་མཛོད་ནང་ཕྱིར་འདོན་བྱས།</string>
   <string name="you_need_to_have_entered_your_passphrase_before_importing_keys_">ཁྱོད་ཀྱིས་ལྡེ་མིག་ནང་འཇུག་མ་བྱས་སྔོན་ལ་གསང་གྲངས་འཇོག་དགོས།</string>
   <string name="you_need_to_have_entered_your_passphrase_before_managing_keys_">ཁྱོད་ཀྱིས་ལྡེ་མིག་དོ་དམ་མ་བྱས་སྔོན་ལ་གསང་གྲངས་འཇོག་དགོས།</string>
@@ -19,57 +18,38 @@
   <string name="verify_recipient_identity">འཕྲིན་ཐུང་སྦྱོར་ཡུལ་གྱི་ངོ་བོ་བདེན་དཔང་བྱེད།</string>
   <string name="abort_secure_session">བདེ་འཇགས་གཏམ་གླེང་མཚམས་འཇོག</string>
   <string name="start_secure_session">བདེ་འཇགས་གཏམ་གླེང་འགོ་བརྩམ།</string>
-  <string name="send_unencrypted">གསང་སྡོམ་མིན་པའི་འཕྲིན་ཐུང་བསྐུར།
-</string>
-  <string name="copy_text">འཕྲིན་ཐུང་འདྲ་བཟོ་བྱེད།
-</string>
+  <string name="send_unencrypted">གསང་སྡོམ་མིན་པའི་འཕྲིན་ཐུང་བསྐུར།\n</string>
+  <string name="copy_text">འཕྲིན་ཐུང་འདྲ་བཟོ་བྱེད།\n</string>
   <string name="delete">སུབ།</string>
   <string name="message_details">འཕྲིན་ཐུང་ཞིབ་ཆ།</string>
   <string name="forward_message">འཕྲིན་ཐུང་བརྒྱུད་འགྲེམ་བྱེད།</string>
-  <string name="attempt_decrypt_again">གསང་ཡིག་བཀྲོལ་བར་ཡང་བསྐྱར་འབད་བརྩོན་བྱེད།
-
-
-</string>
-  <string name="initiate_secure_session_">བདེ་འཇགས་ཀྱི་གཏམ་གླེང་འགོ་བརྩམ་གྱི་ཡིན་ནམ།
-</string>
+  <string name="attempt_decrypt_again">གསང་ཡིག་བཀྲོལ་བར་ཡང་བསྐྱར་འབད་བརྩོན་བྱེད།\n\n\n</string>
+  <string name="initiate_secure_session_">བདེ་འཇགས་ཀྱི་གཏམ་གླེང་འགོ་བརྩམ་གྱི་ཡིན་ནམ།\n</string>
   <string name="initiate_secure_session_with_">བདེ་འཇགས་ཀྱི་གཏམ་གླེང་བྱ་ཡུལ།</string>
   <string name="abort_secure_session_confirmation">བདེ་འཇགས་གཏམ་གླེང་གི་ར་སྤྲོད་མཚམས་འཇོག</string>
   <string name="are_you_sure_that_you_want_to_abort_this_secure_session_">ཁྱོད་ཀྱིས་བདེ་འཇགས་གཏམ་དངོས་སུ་གླེང་མཚམས་འཇོག་རྒྱུ་ཡིན་ནམ།</string>
   <string name="sender_">འཕྲིན་ཐུང་གཏོང་མཁན།</string>
-  <string name="transport_">བརྒྱུད་འདྲེན་བྱེད།
-</string>
+  <string name="transport_">བརྒྱུད་འདྲེན་བྱེད།\n</string>
   <string name="sent_received_">བསྐུར་ཟིན། འབྱོར་ཟིན།</string>
-  <string name="delete_message_confirmation">འཕྲིན་ཐུང་སུབ།
-</string>
+  <string name="delete_message_confirmation">འཕྲིན་ཐུང་སུབ།\n</string>
   <string name="ok">འགྲིག</string>
-  <string name="are_you_sure_that_you_want_to_permanently_delete_this_message_">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།
-</string>
+  <string name="are_you_sure_that_you_want_to_permanently_delete_this_message_">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།\n</string>
   <string name="delete_thread_confirmation">འཕྲིན་ཐུང་སྐུད་རིམ་ཆ་ཚང་སུབ་ན་སྒྲིག་ཀྱི་རེད་དམ།</string>
   <string name="are_you_sure_that_you_want_to_permanently_delete_this_conversation_">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་སྐུད་རིམ་ཆ་ཚང་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="sorry_there_was_an_error_setting_your_attachment_">དགོངས་དག ཁྱོད་ཀྱི་ཟུར་སྣོན་ལ་སྒྲིག་བཟོ་བྱེད་པར་ནོར་འཁྲུལ་ཞིག་འདུག
-</string>
-  <string name="sorry_the_selected_video_exceeds_message_size_restrictions_">དགོངས་དག ཁྱོད་ཀྱིས་བདམས་པའི་བརྙན་རིས་དེ་གཏན་ཁེལ་བྱས་ཡོད་པའི་ཚད་ལས་བརྒལ་འདུག
-</string>
-  <string name="sorry_the_selected_audio_exceeds_message_size_restrictions_">ཁྱོད་ཀྱིས་བདམས་པའི་སྒྲ་ཟློས་དེ་གཏན་ཁེལ་བྱས་ཡོད་པའི་ཚད་ལས་བརྒལ་འདུག
-</string>
+  <string name="sorry_there_was_an_error_setting_your_attachment_">དགོངས་དག ཁྱོད་ཀྱི་ཟུར་སྣོན་ལ་སྒྲིག་བཟོ་བྱེད་པར་ནོར་འཁྲུལ་ཞིག་འདུག\n</string>
+  <string name="sorry_the_selected_video_exceeds_message_size_restrictions_">དགོངས་དག ཁྱོད་ཀྱིས་བདམས་པའི་བརྙན་རིས་དེ་གཏན་ཁེལ་བྱས་ཡོད་པའི་ཚད་ལས་བརྒལ་འདུག\n</string>
+  <string name="sorry_the_selected_audio_exceeds_message_size_restrictions_">ཁྱོད་ཀྱིས་བདམས་པའི་སྒྲ་ཟློས་དེ་གཏན་ཁེལ་བྱས་ཡོད་པའི་ཚད་ལས་བརྒལ་འདུག\n</string>
   <string name="fwd_">བརྒྱུད་འགྲེམ།</string>
   <string name="compose_message">འཕྲིན་ཐུང་བྲིས།</string>
   <string name="message_is_empty_">འཕྲིན་ཐུང་མེད།</string>
-  <string name="recipient_is_not_a_valid_sms_or_email_address_">འཕྲིན་ཐུང་འབྱོར་ཡུལ་གྱི་ཨང་གྲངས་དང་། ཡང་ན་དྲ་ཡིག་ཁ་བྱང་གང་རུང་ཁུངས་ལྡན་མ་རེད།
-
-
-</string>
+  <string name="recipient_is_not_a_valid_sms_or_email_address_">འཕྲིན་ཐུང་འབྱོར་ཡུལ་གྱི་ཨང་གྲངས་དང་། ཡང་ན་དྲ་ཡིག་ཁ་བྱང་གང་རུང་ཁུངས་ལྡན་མ་རེད།\n\n\n</string>
   <string name="this_session_is_verified_to_be_authentic_">གཏམ་གླེང་འདི་ཚད་ལྡན་ཡིན་པ་ར་སྤྲོད་བྱས།</string>
-  <string name="warning_this_session_has_not_yet_been_verified_to_be_authentic">ཉེན་བརྡ། གཏམ་གླེང་འདི་ཚད་ལྡན་ཡིན་པ་ར་སྤྲོད་བྱས་མེད། ཁྱོད་ཀྱིས་འབྲེལ་གཏུགས་བྱ་ཡུལ་གྱི་གཏམ་གླེང་ངམ་ཡང་ན་ངོས་འཛིན་ལྡེ་མིག་ར་སྤྲོད་བྱ་དགོས།
-</string>
-  <string name="authenticity">ཁུངས་དག་ར་སྦྲོད།
-</string>
+  <string name="warning_this_session_has_not_yet_been_verified_to_be_authentic">ཉེན་བརྡ། གཏམ་གླེང་འདི་ཚད་ལྡན་ཡིན་པ་ར་སྤྲོད་བྱས་མེད། ཁྱོད་ཀྱིས་འབྲེལ་གཏུགས་བྱ་ཡུལ་གྱི་གཏམ་གླེང་ངམ་ཡང་ན་ངོས་འཛིན་ལྡེ་མིག་ར་སྤྲོད་བྱ་དགོས།\n</string>
+  <string name="authenticity">ཁུངས་དག་ར་སྦྲོད།\n</string>
   <string name="groups">སྡེ་ཚན་ཁག</string>
-  <string name="recent">ཉེ་ཆར་གཏང་བའི་འཕྲིན་ཐུང་།
-</string>
+  <string name="recent">ཉེ་ཆར་གཏང་བའི་འཕྲིན་ཐུང་།\n</string>
   <string name="contacts">འབྲེལ་གཏུག</string>
-  <string name="finished_">མཇུག་རྫོགས་སོ།
-</string>
+  <string name="finished_">མཇུག་རྫོགས་སོ།\n</string>
   <string name="select_all">ཚང་མ་འདེམས།</string>
   <string name="unselect_all">འདེམས་པ་ཡོངས་རྫོགས་མེད་པར་ཟོས།</string>
   <string name="select_for_"> ཆེད་དུ་འདེམས།</string>
