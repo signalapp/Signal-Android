@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <!--ENGLISH STRINGS-->
   <string name="app_name">TextSecure</string>
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
@@ -207,4 +208,47 @@
   <string name="you_read_this_">You read this:</string>
   <string name="your_identity_">Your identity:</string>
   <string name="are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_this_recipient">Are you sure that you would like to mark this as a valid identity key for all future correspondence with this recipient?  You should only do this if you have actually verified the fingerprint.</string>
+  <!--PREFERENCES STRINGS-->
+  <string name="use_settings_title">Use Settings</string>
+  <string name="pref_all_sms_summary">Use TextSecure for viewing and storing all incoming text messages</string>
+  <string name="pref_all_sms_title">Use for all SMS</string>
+  <string name="pref_all_mms_summary">Use TextSecure for viewing and storing all incoming multimedia messages</string>
+  <string name="pref_all_mms_title">Use for all MMS</string>
+  <string name="input_settings_title">Input Settings</string>
+  <string name="pref_enter_sends_summary">Pressing the enter key will send text messages</string>
+  <string name="pref_enter_sends_title">Enter Sends</string>
+  <string name="display_settings_title">Display Settings</string>
+  <string name="pref_choose_identity_summary">Choose your contact entry from the contacts list.</string>
+  <string name="pref_choose_identity_title">Choose Identity</string>
+  <string name="pref_dark_threads_title">Dark Thread List Theme</string>
+  <string name="pref_dark_threads_summary">Display dark background in thread list</string>
+  <string name="pref_dark_conversation_title">Dark Conversation Theme</string>
+  <string name="pref_dark_conversation_summary">Display dark background in conversation view</string>
+  <string name="pref_conversation_list_icons_title">List Photos</string>
+  <string name="pref_conversation_list_icons_summary">Show contact photo icons in list of conversation threads</string>
+  <string name="pref_conversation_icons_title">Conversation Photos</string>
+  <string name="pref_conversation_icons_summary">Show contact photo icons in conversation</string>
+  <string name="encryption_settings_title">Encryption Settings</string>
+  <string name="pref_change_passphrase_summary">Change my passphrase</string>
+  <string name="pref_change_passphrase_title">Change Passphrase</string>
+  <string name="pref_auto_complete_key_exchange_title">Complete Key Exchanges</string>
+  <string name="pref_auto_complete_key_exchange_summary">Automatically complete key exchanges for new sessions or for existing sessions with the same identity key</string>
+  <string name="pref_key_tag_whitespace_title">Include whitespace tag</string>
+  <string name="pref_key_tag_whitespace_summary">Include a whitespace tag at the end of every non-encrypted message</string>
+  <string name="pref_send_identity_key_title">Sign Key Exchange</string>
+  <string name="pref_send_identity_key_summary">Sign key exchange messages with identity key</string>
+  <string name="pref_timeout_passphrase_summary">Forget passphrase from memory after some interval</string>
+  <string name="pref_timeout_passphrase_title">Timeout passphrase</string>
+  <string name="pref_timeout_interval_title">Timeout interval</string>
+  <string name="pref_timeout_interval_summary">The amount of time to wait before forgetting passphrase from memory</string>
+  <string name="notification_settings_title">Notification Settings</string>
+  <string name="pref_key_enable_notifications_title">Notifications</string>
+  <string name="pref_key_enable_notifications_summary">Display message notifications in status bar</string>
+  <string name="pref_led_color_title">LED Color</string>
+  <string name="pref_led_color_summary">Change notification LED color</string>
+  <string name="pref_led_blink_title">LED Blink Pattern</string>
+  <string name="pref_led_blink_summary">Change notification LED blink pattern</string>
+  <string name="pref_key_ringtone_title">Select ringtone</string>
+  <string name="pref_key_vibrate_summary">Also vibrate when notified</string>
+  <string name="pref_key_vibrate_title">Vibrate</string>
 </resources>

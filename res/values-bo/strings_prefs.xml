@@ -35,7 +35,7 @@
   <string name="import_contact_s_key">འབྲེལ་མིང་ནས་ལྡེ་མིག་ནང་འདྲེན་བགྱིད།</string>
   <string name="import_an_identity_key_from_a_contact"> འབྲེལ་མིང་ཞིག་ནས་ངོ་རྟགས་ལྡེ་མིག་ནང་འདྲེན་བགྱིད།</string>
   <string name="manage_identity_keys">ངོ་རྟགས་ལྡེ་མིག་རྣམས་ལ་དོ་དམ་བྱོས།</string>
-  <string name="manage_configured_identity_keys">Manage configured identity keys</string>
+  <string name="manage_configured_identity_keys">སྡེབ་སྒྲིག་བྱས་ཟིན་པའི་ངོ་རྟགས་ལྡེ་མིག་ལ་དོ་དམ་བྱོས།</string>
   <string name="notification_settings">བརྡ་གཏོང་སྒྲིག་བཟོ།</string>
   <string name="notifications">བརྡ་གཏོང་།</string>
   <string name="display_message_notifications_in_status_bar">འཕྲིན་ཐུང་གི་བརྡ་གཏོང་དེ་རྣམ་པའི་ཚན་བྱང་གི་ནང་དུ་སྟོན།</string>

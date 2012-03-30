@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <!--ENGLISH STRINGS-->
   <string name="app_name">འཕྲིན་ཐུང་བདེ་འཇགས།</string>
   <string name="yes">གཏན་འཁེལ།</string>
   <string name="no">རྩིས་མེད་གཏོང་།</string>
@@ -207,4 +208,47 @@
   <string name="you_read_this_">འདི་ཀློགས:</string>
   <string name="your_identity_">ཁྱེད་ཀྱི་ངོ་རྟགས།</string>
   <string name="are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_this_recipient">ཁྱེད་ཀྱི་དངོས་གནས་འཕྲིན་ཐུང་གཏང་ཡུལ་འདི་དང་ལྷན་དུ་མ་འོངས་འབྲེལ་བ་བྱ་རྒྱུའི་ཆེད་ངོས་འཛིན་ལྡེ་མིག་དེ་ཁུངས་ཐུབ་ཡིན་པའི་རྟགས་རྒྱག་རྒྱུ་ཡིན་ནམ།</string>
+  <!--PREFERENCES STRINGS-->
+  <string name="use_settings_title">སྒྲིག་བཟོ་བརྗེས།</string>
+  <string name="pref_all_sms_summary">ནང་ཡོང་འཕྲིན་ཐུང་ཚང་མར་བལྟ་བ་དང་ཉར་བ་ལ། ཡི་གེའི་ཉེན་སྲུང་བེད་སྤྱོད་ཐོངས།</string>
+  <string name="pref_all_sms_title">SMS ཚང་མའི་ཆེད་དུ་བེད་སྤྱོད་ཐོངས།</string>
+  <string name="pref_all_mms_summary">སྣ་མང་འཕྲིན་ཐུང་རིགས་ལ་ཉར་ཚགས་དང་ཞིབ་ལྟའི་ཆེད་དུ། ཡི་གེའི་ཉེན་སྲུང་བེད་སྤྱོད་ཐོངས།</string>
+  <string name="pref_all_mms_title">MMS ཚང་མའི་ཆེད་དུ་བེད་སྤྱོད་ཐོངས།</string>
+  <string name="input_settings_title">Input Settings</string>
+  <string name="pref_enter_sends_summary">ནང་འཛུལ་ལྡེ་མིག་ལ་བསྣུན་ནས་འཕྲིན་ཐུང་གཏོང་།</string>
+  <string name="pref_enter_sends_title">གཏོང་བ་ནང་འཇུག་བྱོས།</string>
+  <string name="display_settings_title">Display Settings</string>
+  <string name="pref_choose_identity_summary">འབྲེལ་ཐོ་ནས་ཁྱེད་ཀྱིས་འབྲེལ་བ་བྱེད་ས་དེ་གདམ།</string>
+  <string name="pref_choose_identity_title">ངོ་རྟགས་གདམ།</string>
+  <string name="pref_dark_threads_title">Dark Thread List Theme</string>
+  <string name="pref_dark_threads_summary">སྐུད་རིམ་མིང་ཐོའི་ནང་གི་ལྗོངས་ནག་པོ་དེ་སྟོན།</string>
+  <string name="pref_dark_conversation_title">Dark Conversation Theme</string>
+  <string name="pref_dark_conversation_summary">Display dark background in conversation view</string>
+  <string name="pref_conversation_list_icons_title">List Photos</string>
+  <string name="pref_conversation_list_icons_summary">Show contact photo icons in list of conversation threads</string>
+  <string name="pref_conversation_icons_title">Conversation Photos</string>
+  <string name="pref_conversation_icons_summary">Show contact photo icons in conversation</string>
+  <string name="encryption_settings_title">Encryption Settings</string>
+  <string name="pref_change_passphrase_summary">ཁྱེད་ཀྱི་གསང་ཚིག་བརྗེ་བོ་རྒྱོབས།</string>
+  <string name="pref_change_passphrase_title">Change Passphrase</string>
+  <string name="pref_auto_complete_key_exchange_title">ལྡེ་མིག་བརྗེ་ལེན་ཚར་བ་བྱོས།</string>
+  <string name="pref_auto_complete_key_exchange_summary">ལྡེ་མིག་གི་ངོ་རྟགས་གཅིག་པའི་ད་ཡོད་སྡེ་ཚན་ཞིག་གམ་ཡང་ན་སྡེ་ཚན་གསར་བ་ཞིག་གི་སླད་དུ། རང་བཞིན་ནས་ལྡེ་མིག་བརྗེ་ལེན་དེ་འགྲུབ་པ་བྱོས།</string>
+  <string name="pref_key_tag_whitespace_title">དཀར་ངོས་ཀྱི་འཛེར་མ་དེ་མཉམ་དུ་སྦྱར།</string>
+  <string name="pref_key_tag_whitespace_summary">གསང་སྡོམ་མ་ཡིན་པའི་འཕྲིན་ཐུང་རེ་རེའི་རྗེས་སུ། དཀར་ངོས་ཀྱི་འཛེར་མ་དེ་སྦྱར།</string>
+  <string name="pref_send_identity_key_title">ལྡེ་མིག་བརྗེ་བསྒྱུར་དེར་སྲིབ་རྟགས་རྒྱོབས།</string>
+  <string name="pref_send_identity_key_summary">ཡོང་མཐུན་གྱི་ལྡེ་མིག་དེའི་མཉམ་དུ། འཕྲིན་ཐུང་བརྗེ་བསྒྱུར་གྱི་ལྡེ་མིག་དེར་སྲིབ་རྟགས་རྒྱོབས།</string>
+  <string name="pref_timeout_passphrase_summary">དུས་བརྒལ་གྱི་དབར་ནས། དྲན་ཐོ་ནས་གསང་ཚིག་བརྗེད།</string>
+  <string name="pref_timeout_passphrase_title">གསང་ཚིག་གི་དུས་ཚོད་ཡོལ་འདུག</string>
+  <string name="pref_timeout_interval_title">Timeout interval</string>
+  <string name="pref_timeout_interval_summary">The amount of time to wait before forgetting passphrase from memory</string>
+  <string name="notification_settings_title">བརྡ་གཏོང་སྒྲིག་བཟོ།</string>
+  <string name="pref_key_enable_notifications_title">བརྡ་གཏོང་།</string>
+  <string name="pref_key_enable_notifications_summary">འཕྲིན་ཐུང་གི་བརྡ་གཏོང་དེ་རྣམ་པའི་ཚན་བྱང་གི་ནང་དུ་སྟོན།</string>
+  <string name="pref_led_color_title">LED ཡི་ཚོན།</string>
+  <string name="pref_led_color_summary">LED ཡི་ཚོན་གྱི་བརྡ་གཏོང་བརྗེས།</string>
+  <string name="pref_led_blink_title">LED Blink Pattern</string>
+  <string name="pref_led_blink_summary">Change notification LED blink pattern</string>
+  <string name="pref_key_ringtone_title">དྲིལ་སྒྲ་གདམ།</string>
+  <string name="pref_key_vibrate_summary">Also vibrate when notified</string>
+  <string name="pref_key_vibrate_title"> འདར་བཅུག</string>
 </resources>
