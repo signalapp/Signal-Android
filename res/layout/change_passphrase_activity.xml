@@ -8,23 +8,23 @@
     android:stretchColumns="1">
 
     <TableRow>
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
         	android:textSize="12sp"
             android:text="Old passphrase:"
             android:padding="3dip" />
-        <EditText android:id="@+id/old_passphrase" 
+        <org.thoughtcrime.securesms.lang.BhoEditText android:id="@+id/old_passphrase" 
 			      android:layout_height="wrap_content" 
 	    		  android:layout_width="fill_parent" 
 			      android:password="true"/>
     </TableRow>
 
     <TableRow>
-        <TextView
-            android:text="New passphrase:"
+        <org.thoughtcrime.securesms.lang.BhoTextView
+            android:text="@string/new_passphrase_"
             android:textSize="12sp"            
             android:padding="3dip" />
             
-        <EditText android:id="@+id/new_passphrase" 
+        <org.thoughtcrime.securesms.lang.BhoEditText android:id="@+id/new_passphrase" 
 			      android:layout_height="wrap_content" 
 	  			  android:layout_width="fill_parent" 
 			      android:password="true"
@@ -32,12 +32,12 @@
     </TableRow>
 
     <TableRow>
-        <TextView
-            android:text="Repeat new passphrase:"
+        <org.thoughtcrime.securesms.lang.BhoTextView
+            android:text="@string/repeat_new_passphrase_"
             android:textSize="12sp"            
             android:padding="3dip" />
             
-        <EditText android:id="@+id/repeat_passphrase" 
+        <org.thoughtcrime.securesms.lang.BhoEditText android:id="@+id/repeat_passphrase" 
 			      android:layout_height="wrap_content" 
 	  			  android:layout_width="fill_parent" 
 			      android:password="true"
@@ -46,13 +46,13 @@
 
     
     <TableRow>
-   		<Button android:id="@+id/ok_button"
+   		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/ok_button"
    				android:padding="10dip"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Ok"/>
 
-   		<Button android:id="@+id/cancel_button"
+   		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/cancel_button"
    				android:padding="10dip"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"

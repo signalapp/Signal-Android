@@ -28,8 +28,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoEditText;
 import android.widget.Toast;
 
 /**
@@ -43,9 +43,9 @@ public class SaveIdentityActivity extends Activity {
   private MasterSecret masterSecret;
   private IdentityKey identityKey;
 	
-  private EditText identityName;
-  private Button okButton;
-  private Button cancelButton;
+  private BhoEditText identityName;
+  private BhoButton okButton;
+  private BhoButton cancelButton;
 	
   @Override
   public void onCreate(Bundle bundle) {
@@ -66,9 +66,9 @@ public class SaveIdentityActivity extends Activity {
 
     this.masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
     this.identityKey  = (IdentityKey)getIntent().getParcelableExtra("identity_key");
-    this.identityName = (EditText)findViewById(R.id.identity_name);
-    this.okButton     = (Button)findViewById(R.id.ok_button);
-    this.cancelButton = (Button)findViewById(R.id.cancel_button);
+    this.identityName = (BhoEditText)findViewById(R.id.identity_name);
+    this.okButton     = (BhoButton)findViewById(R.id.ok_button);
+    this.cancelButton = (BhoButton)findViewById(R.id.cancel_button);
 		
     if ((nameSuggestion != null) && (nameSuggestion.trim().length() > 0)) {
       this.identityName.setText(nameSuggestion);
@@ -83,7 +83,7 @@ public class SaveIdentityActivity extends Activity {
   private class OkListener implements View.OnClickListener {
     public void onClick(View v) {
       if (identityName.getText() == null || identityName.getText().toString().trim().length() == 0) {
-        Toast.makeText(SaveIdentityActivity.this, "You must specify a name for this identity!", Toast.LENGTH_LONG).show();
+        Toast.makeText(SaveIdentityActivity.this, R.string.you_must_specify_a_name_for_this_identity_, Toast.LENGTH_LONG).show();
         return;
       }
 			
@@ -91,16 +91,16 @@ public class SaveIdentityActivity extends Activity {
         DatabaseFactory.getIdentityDatabase(SaveIdentityActivity.this).saveIdentity(masterSecret, identityKey, identityName.getText().toString());
       } catch (InvalidKeyException e) {
         AlertDialog.Builder builder = new AlertDialog.Builder(SaveIdentityActivity.this);
-        builder.setTitle("Identity Name Exists!");
-        builder.setMessage("An identity key with the specified name already exists.");
-        builder.setPositiveButton("Manage Identities", new DialogInterface.OnClickListener() {					
+        builder.setTitle(R.string.identity_name_exists_);
+        builder.setMessage(R.string.an_identity_key_with_the_specified_name_already_exists_);
+        builder.setPositiveButton(R.string.manage_identities, new DialogInterface.OnClickListener() {					
           public void onClick(DialogInterface dialog, int which) {
             Intent intent = new Intent(SaveIdentityActivity.this, ReviewIdentitiesActivity.class);
             intent.putExtra("master_secret", masterSecret);
             startActivity(intent);
           }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton(R.string.cancel, null);
         builder.show();
         return;
       }

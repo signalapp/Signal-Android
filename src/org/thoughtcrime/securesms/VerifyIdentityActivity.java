@@ -21,6 +21,8 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SessionRecord;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -29,8 +31,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -43,13 +43,13 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private Recipient recipient;
   private MasterSecret masterSecret;
 	
-  private TextView localIdentityFingerprint;
-  private TextView remoteIdentityFingerprint;
+  private BhoTextView localIdentityFingerprint;
+  private BhoTextView remoteIdentityFingerprint;
 	
-  private Button verifiedButton;
-  private Button abortButton;
-  private Button cancelButton;
-  private Button compareButton;
+  private BhoButton verifiedButton;
+  private BhoButton abortButton;
+  private BhoButton cancelButton;
+  private BhoButton compareButton;
 	
   @Override
   public void onCreate(Bundle state) {
@@ -69,7 +69,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 		
   private void initializeLocalIdentityKey() {
     if (!IdentityKeyUtil.hasIdentityKey(this)) {
-      localIdentityFingerprint.setText("You do not have an identity key.");
+      localIdentityFingerprint.setText(R.string.you_do_not_have_an_identity_key_);
       return;
     }
 		
@@ -81,7 +81,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     IdentityKey identityKey     = sessionRecord.getIdentityKey();
 		
     if (identityKey == null) {
-      remoteIdentityFingerprint.setText("Recipient has no identity key.");
+      remoteIdentityFingerprint.setText(R.string.recipient_has_no_identity_key_);
       verifiedButton.setEnabled(false);
     } else {
       remoteIdentityFingerprint.setText(identityKey.getFingerprint());
@@ -101,14 +101,14 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 	
   private void initializeResources() {
-    localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
-    remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
+    localIdentityFingerprint  = (BhoTextView)findViewById(R.id.you_read);
+    remoteIdentityFingerprint = (BhoTextView)findViewById(R.id.friend_reads);
     recipient                 = (Recipient)this.getIntent().getParcelableExtra("recipient");
     masterSecret              = (MasterSecret)this.getIntent().getParcelableExtra("master_secret");
-    verifiedButton            = (Button)findViewById(R.id.verified_button);
-    abortButton               = (Button)findViewById(R.id.abort_button);
-    cancelButton              = (Button)findViewById(R.id.cancel_button);
-    compareButton             = (Button)findViewById(R.id.compare_button);
+    verifiedButton            = (BhoButton)findViewById(R.id.verified_button);
+    abortButton               = (BhoButton)findViewById(R.id.abort_button);
+    cancelButton              = (BhoButton)findViewById(R.id.cancel_button);
+    compareButton             = (BhoButton)findViewById(R.id.compare_button);
   }
 	
   private void abortSession() {
@@ -143,9 +143,9 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private class AbortButtonListener implements View.OnClickListener {
     public void onClick(View v) {
       AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(VerifyIdentityActivity.this);
-      dialogBuilder.setTitle("Abort Session?");
+      dialogBuilder.setTitle(R.string.abort_session_);
       dialogBuilder.setIcon(android.R.drawable.ic_dialog_info);
-      dialogBuilder.setMessage("Are you sure that you would like to abort this secure session?");
+      dialogBuilder.setMessage(R.string.are_you_sure_that_you_would_like_to_abort_this_secure_session_);
       dialogBuilder.setCancelable(true);
       dialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface arg0, int arg1) {
@@ -161,9 +161,9 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private class VerifiedButtonListener implements View.OnClickListener {
     public void onClick(View v) {
       AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(VerifyIdentityActivity.this);
-      dialogBuilder.setTitle("Save Identity Key?");
+      dialogBuilder.setTitle(R.string.save_identity_key_);
       dialogBuilder.setIcon(android.R.drawable.ic_dialog_info);
-      dialogBuilder.setMessage("Are you sure that you would like to mark this as a valid identity key for all future correspondence with this recipient?  You should only do this if you have actually verified the fingerprint.");
+      dialogBuilder.setMessage(R.string.are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_this_recipient);
       dialogBuilder.setCancelable(true);
       dialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface arg0, int arg1) {
@@ -179,7 +179,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   @Override
   protected void initiateDisplay() {
     if (!IdentityKeyUtil.hasIdentityKey(this)) {
-      Toast.makeText(this, "You don't have an identity key!", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.you_don_t_have_an_identity_key_, Toast.LENGTH_LONG).show();
       return;
     }
 		
@@ -192,7 +192,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     IdentityKey identityKey     = sessionRecord.getIdentityKey();
 		
     if (identityKey == null) {
-      Toast.makeText(this, "Recipient has no identity key!", Toast.LENGTH_LONG);
+      Toast.makeText(this, R.string.recipient_has_no_identity_key_, Toast.LENGTH_LONG);
     } else {
       super.initiateScan();
     }		
@@ -200,12 +200,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 	
   @Override
   protected String getScanString() {
-    return "Scan their key to compare";
+    return getString(R.string.scan_their_key_to_compare);
   }
 
   @Override
   protected String getDisplayString() {
-    return "Get my key scanned";
+    return getString(R.string.get_my_key_scanned);
   }
 
   @Override
@@ -221,21 +221,21 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return "WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.";
+    return getString(R.string.warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully_);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return "NOT Verified!";
+    return getString(R.string.not_verified_);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return "Their key is correct. It is also necessary to verify your key with them as well.";
+    return getString(R.string.their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well_);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return "Verified!";
+    return getString(R.string.verified_);
   }
 }

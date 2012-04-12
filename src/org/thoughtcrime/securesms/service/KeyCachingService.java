@@ -161,10 +161,10 @@ public class KeyCachingService extends Service {
   }
 	
   private void foregroundService() {
-    Notification notification  = new Notification(R.drawable.icon, "TextSecure Passphrase Cached", System.currentTimeMillis());
+    Notification notification  = new Notification(R.drawable.icon, getString(R.string.textsecure_passphrase_cached), System.currentTimeMillis());
     Intent intent              = new Intent(this, SecureSMS.class);
     PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-    notification.setLatestEventInfo(getApplicationContext(), "TextSecure Cached", "TextSecure Passphrase Cached", launchIntent);
+    notification.setLatestEventInfo(getApplicationContext(), getString(R.string.textsecure_cached), getString(R.string.textsecure_passphrase_cached), launchIntent);
 		
     stopForegroundCompat(SERVICE_RUNNING_ID);
     startForegroundCompat(SERVICE_RUNNING_ID, notification);
@@ -206,7 +206,7 @@ public class KeyCachingService extends Service {
       } catch (IllegalAccessException e) {
         Log.w("KeyCachingService", "Unable to invoke startForeground", e);
       }
-
+      
       return;
     }
         
@@ -235,4 +235,5 @@ public class KeyCachingService extends Service {
     notificationManager.cancel(id);
     setForeground(false);
   }
+  
 }

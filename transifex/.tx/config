@@ -1,0 +1,12 @@
+[main]
+host = https://www.transifex.net
+lang_map = en_AU:en-au,en_CA:en-rCA,en_GB:en-rGB,fr_CA:fr-rCA,pt_BR:pt-rBR,sr@latin:sr-latn,zh_CN:zh-rCN,zh_HK:zh-rHK,zh_TW:zh-rTW,da_DK:da-rDK,de_DE:de,fr_FR:fr,es_ES:es,hu_HU:hu,sv_SE:sv-rSE
+
+[textsecure.preference-strings]
+file_filter = res/values-<lang>/strings_prefs.xml
+source_lang = en
+
+[textsecure.core-app-strings]
+file_filter = res/values-<lang>/strings.xml
+source_lang = en
+

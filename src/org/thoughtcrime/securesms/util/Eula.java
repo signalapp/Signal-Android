@@ -60,14 +60,14 @@ public class Eula {
                 Activity.MODE_PRIVATE);
         if (!preferences.getBoolean(PREFERENCE_EULA_ACCEPTED, false)) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle("End User License Agreement");
+            builder.setTitle(R.string.end_user_license_agreement);
             builder.setCancelable(true);
-            builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     accept(activity);
                 }
             });
-            builder.setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.refuse, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     refuse(activity);
                 }
@@ -105,8 +105,8 @@ public class Eula {
 	        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 	        builder.setMessage(readFile(activity, R.raw.disclaimer));
 	        builder.setCancelable(true);
-	        builder.setTitle("Please Note");
-	        builder.setPositiveButton("I understand", new DialogInterface.OnClickListener() {				
+	        builder.setTitle(R.string.please_note);
+	        builder.setPositiveButton(R.string.i_understand, new DialogInterface.OnClickListener() {				
 				public void onClick(DialogInterface dialog, int which) {
 					acceptDisclaimer(activity);
 				}

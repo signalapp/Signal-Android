@@ -20,6 +20,8 @@ import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SerializableKey;
 import org.thoughtcrime.securesms.database.SessionRecord;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -29,8 +31,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * Activity for verifying session keys.
@@ -43,12 +43,12 @@ public class VerifyKeysActivity extends KeyScanningActivity {
   private byte[] yourFingerprintBytes;
   private byte[] theirFingerprintBytes;
 	
-  private TextView yourFingerprint;
-  private TextView theirFingerprint;
-  private Button verifiedButton;
-  private Button abortButton;
-  private Button cancelButton;
-  private Button compareButton;
+  private BhoTextView yourFingerprint;
+  private BhoTextView theirFingerprint;
+  private BhoButton verifiedButton;
+  private BhoButton abortButton;
+  private BhoButton cancelButton;
+  private BhoButton compareButton;
   private Recipient recipient;
   private MasterSecret masterSecret;
 	
@@ -78,12 +78,12 @@ public class VerifyKeysActivity extends KeyScanningActivity {
   private void initializeResources() {
     this.recipient        = (Recipient)this.getIntent().getParcelableExtra("recipient");
     this.masterSecret     = (MasterSecret)this.getIntent().getParcelableExtra("master_secret");
-    this.yourFingerprint  = (TextView)findViewById(R.id.you_read);
-    this.theirFingerprint = (TextView)findViewById(R.id.friend_reads);
-    this.verifiedButton   = (Button)findViewById(R.id.verified_button);
-    this.abortButton      = (Button)findViewById(R.id.abort_button);
-    this.cancelButton     = (Button)findViewById(R.id.cancel_button);
-    this.compareButton    = (Button)findViewById(R.id.compare_button);
+    this.yourFingerprint  = (BhoTextView)findViewById(R.id.you_read);
+    this.theirFingerprint = (BhoTextView)findViewById(R.id.friend_reads);
+    this.verifiedButton   = (BhoButton)findViewById(R.id.verified_button);
+    this.abortButton      = (BhoButton)findViewById(R.id.abort_button);
+    this.cancelButton     = (BhoButton)findViewById(R.id.cancel_button);
+    this.compareButton    = (BhoButton)findViewById(R.id.compare_button);
   }
 	
   private void initializeFingerprints() {
@@ -120,10 +120,10 @@ public class VerifyKeysActivity extends KeyScanningActivity {
   private class AbortListener implements OnClickListener {
     public void onClick(View v) {
       AlertDialog.Builder builder = new AlertDialog.Builder(VerifyKeysActivity.this);
-      builder.setTitle("Abort Secure Session Confirmation");
+      builder.setTitle(R.string.abort_secure_session_confirmation);
       builder.setIcon(android.R.drawable.ic_dialog_alert);
       builder.setCancelable(true);
-      builder.setMessage("Are you sure that you want to abort this secure session?");
+      builder.setMessage(R.string.are_you_sure_that_you_want_to_abort_this_secure_session_);
       builder.setPositiveButton(R.string.yes, new AbortConfirmListener());
       builder.setNegativeButton(R.string.no, null);
       builder.show();
@@ -139,12 +139,12 @@ public class VerifyKeysActivity extends KeyScanningActivity {
 
   @Override
   protected String getDisplayString() {
-    return "Get my fingerprint scanned";
+    return getString(R.string.get_my_fingerprint_scanned);
   }
 	
   @Override
   protected String getScanString() {
-    return "Scan their fingerprint";
+    return getString(R.string.scan_their_fingerprint);
   }
 
   @Override
@@ -159,22 +159,22 @@ public class VerifyKeysActivity extends KeyScanningActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return "WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.";
+    return getString(R.string.warning_the_scanned_key_does_not_match);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return "NOT Verified!";
+    return getString(R.string.not_verified_);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return "Their key is correct. It is also necessary to get your fingerprint scanned as well.";
+    return getString(R.string.their_key_is_correct);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return "Verified!";
+    return getString(R.string.verified_);
   }
 	
   private class FingerprintKey implements SerializableKey {

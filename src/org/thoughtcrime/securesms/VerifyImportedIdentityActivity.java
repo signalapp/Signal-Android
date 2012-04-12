@@ -20,6 +20,9 @@ import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoEditText;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -44,12 +47,12 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
   private MasterSecret masterSecret;
   private String contactName;
   private IdentityKey identityKey;
-  private EditText identityName;
-  private TextView identityFingerprint;
+  private BhoEditText identityName;
+  private BhoTextView identityFingerprint;
 	
-  private Button compareButton;
-  private Button verifiedButton;
-  private Button cancelButton;
+  private BhoButton compareButton;
+  private BhoButton verifiedButton;
+  private BhoButton cancelButton;
 	
   @Override
   public void onCreate(Bundle state) {
@@ -81,13 +84,13 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
 	
   private void initializeResources() {
     masterSecret        = (MasterSecret)this.getIntent().getParcelableExtra("master_secret");
-    identityFingerprint = (TextView)findViewById(R.id.imported_identity);
-    identityName        = (EditText)findViewById(R.id.identity_name);
+    identityFingerprint = (BhoTextView)findViewById(R.id.imported_identity);
+    identityName        = (BhoEditText)findViewById(R.id.identity_name);
     identityKey         = (IdentityKey)this.getIntent().getParcelableExtra("identity_key");
     contactName         = (String)this.getIntent().getStringExtra("contact_name");
-    verifiedButton      = (Button)findViewById(R.id.verified_button);
-    cancelButton        = (Button)findViewById(R.id.cancel_button);
-    compareButton       = (Button)findViewById(R.id.compare_button);
+    verifiedButton      = (BhoButton)findViewById(R.id.verified_button);
+    cancelButton        = (BhoButton)findViewById(R.id.cancel_button);
+    compareButton       = (BhoButton)findViewById(R.id.compare_button);
   }
 			
   private class CancelButtonListener implements View.OnClickListener {
@@ -106,14 +109,15 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
   private class VerifiedButtonListener implements View.OnClickListener {
     public void onClick(View v) {
       if (identityName.getText() == null || identityName.getText().length() == 0) {
-        Toast.makeText(VerifyImportedIdentityActivity.this, "You must specify a name for this contact!", Toast.LENGTH_LONG);
+        Toast.makeText(VerifyImportedIdentityActivity.this, R.string.you_must_specify_a_name_for_this_contact_, Toast.LENGTH_LONG);
         return;
       }
 			
       AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(VerifyImportedIdentityActivity.this);
-      dialogBuilder.setTitle("Save Identity Key?");
+      dialogBuilder.setTitle(R.string.save_identity_key_);
       dialogBuilder.setIcon(android.R.drawable.ic_dialog_info);
-      dialogBuilder.setMessage("Are you sure that you would like to mark this as a valid identity key for all future correspondence with " + identityName.getText() + "?  You should only do this if you have actually verified the fingerprint.");
+      dialogBuilder.setMessage(getString(R.string.are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_,identityName.getText()) + 
+      getString(R.string.you_should_only_do_this_if_you_have_actually_verified_the_fingerprint_));
       dialogBuilder.setCancelable(true);
       dialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface arg0, int arg1) {
@@ -122,7 +126,7 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
           } catch (InvalidKeyException ike) {
             Log.w("VerifiedButtonListener", ike);
             Dialogs.displayAlert(VerifyImportedIdentityActivity.this, "Error saving identity key!", 
-                                 "This identity key or an identity key with the same name already exists.  Please edit your key database.", 
+                                 getString(R.string.this_identity_key_or_an_identity_key_with_the_same_name_already_exists), 
                                  android.R.drawable.ic_dialog_alert);
             return;
           }
@@ -137,12 +141,12 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
 	
   @Override
   protected String getScanString() {
-    return "Scan to compare";
+    return getString(R.string.scan_to_compare);
   }
 
   @Override
   protected String getDisplayString() {
-    return "Get scanned to compare";
+    return getString(R.string.get_scanned_to_compare);
   }
 
   @Override
@@ -157,21 +161,21 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return  "WARNING, the scanned key DOES NOT match!";
+    return  getString(R.string.warning_the_scanned_key_does_not_match_);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return "NOT Verified!";
+    return getString(R.string.not_verified_);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return "The scanned key matches!";
+    return getString(R.string.the_scanned_key_matches_);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return "Verified!";
+    return getString(R.string.verified_);
   }
 }

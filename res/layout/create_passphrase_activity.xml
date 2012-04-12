@@ -12,50 +12,50 @@
 				android:padding="8px"
 				xmlns:android="http://schemas.android.com/apk/res/android">
 
-<TextView android:text="To get started, please enter a passphrase that will be used to locally encrypt your data.  This should be a strong passphrase."
+<org.thoughtcrime.securesms.lang.BhoTextView android:text="@string/to_get_started_please_enter_a_passphrase"
 		  android:textSize="19dip" 
 		  android:id="@+id/create_pass_label" 
 		  android:layout_width="fill_parent" 
 		  android:layout_height="wrap_content"
 		  android:layout_margin="10dip"/>
 		  
-<EditText android:id="@+id/passphrase_edit" 
+<org.thoughtcrime.securesms.lang.BhoEditText android:id="@+id/passphrase_edit" 
 	      android:layout_height="wrap_content" 
 	      android:layout_width="fill_parent" 
 	      android:password="true"
 	      android:layout_margin="10dip"/>
 
-<TextView  
+<org.thoughtcrime.securesms.lang.BhoTextView  
 	      android:layout_width="wrap_content" 
 	      android:layout_height="wrap_content" 
 	      android:id="@+id/repeat_label" 
 	      android:textSize="19dip"
 	      android:layout_margin="10dip"
-	      android:text="Repeat:"></TextView>
+	      android:text="Repeat:"></org.thoughtcrime.securesms.lang.BhoTextView>
 	      
-<EditText  
+<org.thoughtcrime.securesms.lang.BhoEditText  
           android:layout_height="wrap_content" 
           android:layout_width="fill_parent" 
           android:password="true"
           android:layout_margin="10dip"
-          android:id="@+id/passphrase_edit_repeat"></EditText>
+          android:id="@+id/passphrase_edit_repeat"></org.thoughtcrime.securesms.lang.BhoEditText>
           
 <RelativeLayout
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:id="@+id/RelativeLayout"
 		>
-<Button android:layout_width="100dip" 
+<org.thoughtcrime.securesms.lang.BhoButton android:layout_width="100dip" 
         android:layout_height="wrap_content" 
         android:id="@+id/cancel_button" android:text="Cancel" 
         android:layout_below="@id/passphrase_edit_repeat" 
-        android:layout_alignParentRight="true"></Button>
+        android:layout_alignParentRight="true" />
         
-<Button android:layout_below="@id/passphrase_edit_repeat" 
+<org.thoughtcrime.securesms.lang.BhoButton android:layout_below="@id/passphrase_edit_repeat" 
 	    android:layout_width="100dip" 
 	    android:layout_height="wrap_content" 
-	    android:text="Ok" android:id="@+id/ok_button" 
-	    android:layout_toLeftOf="@id/cancel_button"></Button>
+	    android:text="@string/ok" android:id="@+id/ok_button" 
+	    android:layout_toLeftOf="@id/cancel_button" />
 	    </RelativeLayout>
 
 </LinearLayout>

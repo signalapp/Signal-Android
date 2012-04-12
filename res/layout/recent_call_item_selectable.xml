@@ -50,7 +50,7 @@
     />
 
     
-    <TextView android:id="@+id/date"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -62,7 +62,7 @@
         android:singleLine="true"
     />
 
-    <TextView android:id="@+id/label"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/divider"
@@ -76,7 +76,7 @@
         android:textStyle="bold"
     />
 
-    <TextView android:id="@+id/number"
+    <org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dip"
@@ -91,7 +91,7 @@
     />
 
 
-    <CheckedTextView android:id="@+id/line1"
+    <org.thoughtcrime.securesms.lang.BhoCheckedTextView android:id="@+id/line1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/divider"

@@ -30,7 +30,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import org.thoughtcrime.securesms.lang.BhoButton;
 
 /**
  * Activity which prompts the user to initiate a secure
@@ -65,8 +65,8 @@ public class AutoInitiateActivity extends Activity {
     this.recipient    = (Recipient)this.getIntent().getParcelableExtra("recipient");
     this.masterSecret = (MasterSecret)this.getIntent().getParcelableExtra("masterSecret");
 		
-    ((Button)findViewById(R.id.initiate_button)).setOnClickListener(new OkListener());		
-    ((Button)findViewById(R.id.cancel_button)).setOnClickListener(new CancelListener());
+    ((BhoButton)findViewById(R.id.initiate_button)).setOnClickListener(new OkListener());		
+    ((BhoButton)findViewById(R.id.cancel_button)).setOnClickListener(new CancelListener());
   }
 	
   private void initiateKeyExchange() {

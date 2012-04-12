@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:paddingRight="10dip">
 
-	<TextView android:id="@+id/identity_name"
+	<org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/identity_name"
 			  android:layout_width="wrap_content"
 			  android:layout_height="wrap_content"
 	          android:textAppearance="?android:attr/textAppearanceMedium"

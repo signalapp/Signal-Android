@@ -8,11 +8,11 @@
     android:shrinkColumns="1">
 
     <TableRow>
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
         	android:textSize="12sp"
-            android:text="Their identity:\n(They read)"
+            android:text="@string/their_identity_n_they_read_"
             android:padding="3dip" />
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
            	android:textSize="20sp"
            	android:typeface="monospace"        
         	android:id="@+id/friend_reads"
@@ -21,11 +21,11 @@
     </TableRow>
 
     <TableRow>
-        <TextView
-            android:text="Your identity:\n(You read)"
+        <org.thoughtcrime.securesms.lang.BhoTextView
+            android:text="@string/your_identity_n_you_read_"
             android:textSize="12sp"            
             android:padding="3dip" />
-        <TextView
+        <org.thoughtcrime.securesms.lang.BhoTextView
         	android:id="@+id/you_read"
         	android:textSize="20sp"
            	android:typeface="monospace"                	
@@ -40,29 +40,29 @@
     				  android:layout_gravity="center"
     				  android:layout_span="2">
 
-	   		<Button android:id="@+id/verified_button"
+	   		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/verified_button"
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Verified!"/>
+					android:text="@string/verified_"/>
 	
-	   		<Button android:id="@+id/abort_button"
+	   		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/abort_button"
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Abort"/>
+					android:text="@string/abort"/>
 					
-			<Button android:id="@+id/compare_button"
+			<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/compare_button"
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Compare"/>
+					android:text="@string/compare"/>
 					
-			<Button android:id="@+id/cancel_button"
+			<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/cancel_button"
 					android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Cancel" />
+					android:text="@string/cancel" />
 			
 		</LinearLayout>    
     </TableRow>    

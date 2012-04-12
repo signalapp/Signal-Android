@@ -10,13 +10,13 @@
     android:orientation="vertical"
     android:padding="10dip">
 
-	<TextView android:id="@+id/description_text"
+	<org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/description_text"
 			  android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
 			  android:textSize="17dip"
 			  android:layout_marginBottom="5dip" />
 			  
-	<TextView android:id="@+id/signature_text"
+	<org.thoughtcrime.securesms.lang.BhoTextView android:id="@+id/signature_text"
 			  android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
 			  android:textSize="17dip"
@@ -27,28 +27,28 @@
 				  android:layout_height="wrap_content"
 				  android:orientation="horizontal">
 				  
-		<Button android:id="@+id/verify_session_button"
+		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/verify_session_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Session"
 				android:visibility="gone"
 				android:gravity="center" />		  
 
-		<Button android:id="@+id/verify_identity_button"
+		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/verify_identity_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Identities"
+				android:text="@string/identities"
 				android:visibility="gone"
 				android:gravity="center" />		  
 				  
 		<Button android:id="@+id/ok_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Complete Exchange"
+				android:text="@string/complete_exchange"
 				android:gravity="center"/>
 				
-		<Button android:id="@+id/cancel_button"
-				android:text="Cancel"
+		<org.thoughtcrime.securesms.lang.BhoButton android:id="@+id/cancel_button"
+				android:text="@string/cancel"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:gravity="center"/>

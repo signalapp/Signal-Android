@@ -17,11 +17,11 @@
 package org.thoughtcrime.securesms;
 
 import org.thoughtcrime.securesms.crypto.IdentityKey;
+import org.thoughtcrime.securesms.lang.BhoButton;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * Activity for displaying an identity key.
@@ -30,9 +30,9 @@ import android.widget.TextView;
  */
 public class ViewIdentityActivity extends KeyScanningActivity {
 
-  private TextView identityFingerprint;
-  private Button compareButton;
-  private Button okButton;
+  private BhoTextView identityFingerprint;
+  private BhoButton compareButton;
+  private BhoButton okButton;
   private IdentityKey identityKey;
 	
   @Override
@@ -47,7 +47,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 	
   private void initializeFingerprint() {
     if (identityKey == null) {
-      identityFingerprint.setText("You do not have an identity key.");
+      identityFingerprint.setText(R.string.you_do_not_have_an_identity_key_);
     } else {
       identityFingerprint.setText(identityKey.getFingerprint());
     }
@@ -60,9 +60,9 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 	
   private void initializeResources() {
     this.identityKey         = (IdentityKey)getIntent().getParcelableExtra("identity_key");
-    this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
-    this.okButton	         = (Button)findViewById(R.id.ok_button);
-    this.compareButton       = (Button)findViewById(R.id.compare_button);
+    this.identityFingerprint = (BhoTextView)findViewById(R.id.identity_fingerprint);
+    this.okButton	         = (BhoButton)findViewById(R.id.ok_button);
+    this.compareButton       = (BhoButton)findViewById(R.id.compare_button);
   }
 	
   private class CompareListener implements View.OnClickListener {
@@ -80,12 +80,12 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getScanString() {
-    return "Scan to compare";
+    return getString(R.string.scan_to_compare);
   }
 
   @Override
   protected String getDisplayString() {
-    return "Get scanned to compare";
+    return getString(R.string.get_scanned_to_compare);
   }
 
   @Override
@@ -100,21 +100,21 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return  "WARNING, the scanned key DOES NOT match!";
+    return  getString(R.string.warning_the_scanned_key_does_not_match_);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return "NOT Verified!";
+    return getString(R.string.not_verified_);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return "The scanned key matches!";
+    return getString(R.string.the_scanned_key_matches_);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return "Verified!";
+    return getString(R.string.verified_);
   }
 }

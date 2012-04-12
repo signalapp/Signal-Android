@@ -41,11 +41,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import org.thoughtcrime.securesms.lang.BhoCheckedTextView;
+
 import android.widget.CheckedTextView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import org.thoughtcrime.securesms.lang.BhoTextView;
 
 /**
  * Activity for selecting a list of contacts.  Displayed inside
@@ -78,9 +80,9 @@ public class ContactSelectionListActivity extends ListActivity {
     super.onPrepareOptionsMenu(menu);
     menu.clear();
 		
-    menu.add(0, MENU_OPTION_EXIT, Menu.NONE, "Finished!").setIcon(android.R.drawable.ic_menu_set_as);
-    menu.add(0, MENU_OPTION_SELECT_ALL, Menu.NONE, "Select all").setIcon(android.R.drawable.ic_menu_add);
-    menu.add(0, MENU_OPTION_UNSELECT_ALL, Menu.NONE, "Unselect all").setIcon(android.R.drawable.ic_menu_revert);
+    menu.add(0, MENU_OPTION_EXIT, Menu.NONE, R.string.finished_).setIcon(android.R.drawable.ic_menu_set_as);
+    menu.add(0, MENU_OPTION_SELECT_ALL, Menu.NONE, R.string.select_all).setIcon(android.R.drawable.ic_menu_add);
+    menu.add(0, MENU_OPTION_UNSELECT_ALL, Menu.NONE, R.string.unselect_all).setIcon(android.R.drawable.ic_menu_revert);
 
     return true;
   }
@@ -173,9 +175,9 @@ public class ContactSelectionListActivity extends ListActivity {
     }
 		
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Select for " + contactData.name);
+    builder.setTitle(getString(R.string.select_for_) + contactData.name);
     builder.setMultiChoiceItems(options, null, new DiscriminatorClickedListener(contactData));
-    builder.setPositiveButton("Ok", new DiscriminatorFinishedListener(contactData, textView));
+    builder.setPositiveButton(R.string.ok, new DiscriminatorFinishedListener(contactData, textView));
     builder.setOnCancelListener(new DiscriminatorFinishedListener(contactData, textView));
     builder.show();
   }
@@ -218,9 +220,9 @@ public class ContactSelectionListActivity extends ListActivity {
 	
   private class ContactItemView extends RelativeLayout {
     private ContactData contactData;
-    private CheckedTextView name;
-    private TextView number;
-    private TextView label;
+    private BhoCheckedTextView name;
+    private BhoTextView number;
+    private BhoTextView label;
     private long id;
 
     public ContactItemView(Context context) {
@@ -229,9 +231,9 @@ public class ContactSelectionListActivity extends ListActivity {
       LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       li.inflate(R.layout.contact_selection_list_item, this, true);
 
-      this.name   = (CheckedTextView)findViewById(R.id.name);
-      this.number = (TextView)findViewById(R.id.number);
-      this.label  = (TextView)findViewById(R.id.label);
+      this.name   = (BhoCheckedTextView)findViewById(R.id.name);
+      this.number = (BhoTextView)findViewById(R.id.number);
+      this.label  = (BhoTextView)findViewById(R.id.label);
     }
 
     public void selected() {
@@ -268,11 +270,11 @@ public class ContactSelectionListActivity extends ListActivity {
 	
   private class DiscriminatorFinishedListener implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
     private final ContactData contactData;
-    private final CheckedTextView textView;
+    private final BhoCheckedTextView textView;
 		
     public DiscriminatorFinishedListener(ContactData contactData, CheckedTextView textView) {
       this.contactData = contactData;
-      this.textView    = textView;
+      this.textView    = (BhoCheckedTextView) textView;
     }
 
     public void onClick(DialogInterface dialog, int which) {

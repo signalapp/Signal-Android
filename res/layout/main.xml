@@ -10,7 +10,7 @@
 						android:layout_height="43dip"
 						android:background="@drawable/iphone_bar_top"
 						android:layout_alignParentTop="true">
-			<TextView
+			<org.thoughtcrime.securesms.lang.BhoTextView
 			    android:textSize="18.0dip" 
 			    android:textStyle="bold" 
 			    android:textColor="#ffffffff" 
@@ -18,7 +18,7 @@
 			    style="?android:windowTitleStyle"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="TextSecure"
+				android:text="@string/app_name"
 				android:layout_centerHorizontal="true"
 				android:layout_centerVertical="true"
 				android:gravity="center" />
@@ -36,12 +36,12 @@
 
 		</RelativeLayout>
 				
-		<EditText android:id="@+id/search_text"
+		<org.thoughtcrime.securesms.lang.BhoEditText android:id="@+id/search_text"
            			  android:layout_height="wrap_content"
             		  android:capitalize="sentences"
             		  android:autoText="true"
             		  android:singleLine="true"
-            		  android:hint="Search"
+            		  android:hint="@string/search"
             		  android:paddingRight="50dip"
             		  android:layout_margin="10dip"
             		  android:layout_width="fill_parent"

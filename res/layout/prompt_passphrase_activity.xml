@@ -21,28 +21,28 @@
 <!--			  android:textSize="20dip"-->
 <!--			  android:id="@+id/enter_passphrase_label" />-->
 			  
-	<EditText android:inputType="textPassword" 
+	<org.thoughtcrime.securesms.lang.BhoEditText android:inputType="textPassword" 
 			  android:layout_height="wrap_content" 
 			  android:id="@+id/passphrase_edit" 
 			  android:password="true" 
 			  android:layout_below="@id/icon" 
 			  android:layout_width="fill_parent" 
-			  android:layout_margin="15dip"></EditText>
+			  android:layout_margin="15dip"></org.thoughtcrime.securesms.lang.BhoEditText>
 
-	<Button android:layout_height="wrap_content" 
+	<org.thoughtcrime.securesms.lang.BhoButton android:layout_height="wrap_content" 
 			android:text="Cancel"  
 			android:layout_width="70dip" 
 			android:id="@+id/cancel_button" 
 			android:layout_marginRight="15dip"
 			android:layout_alignParentRight="true" 
-			android:layout_below="@id/passphrase_edit" ></Button>
+			android:layout_below="@id/passphrase_edit" ></org.thoughtcrime.securesms.lang.BhoButton>
 
-	<Button android:layout_below="@id/passphrase_edit"  
+	<org.thoughtcrime.securesms.lang.BhoButton android:layout_below="@id/passphrase_edit"  
 			android:layout_width="70dip" 
 			android:layout_height="wrap_content" 
 			android:text="OK" 
 			android:layout_toLeftOf="@id/cancel_button" 
 			android:id="@+id/ok_button"  
-			android:layout_marginRight="15dip" ></Button>
+			android:layout_marginRight="15dip" ></org.thoughtcrime.securesms.lang.BhoButton>
 
 </RelativeLayout>

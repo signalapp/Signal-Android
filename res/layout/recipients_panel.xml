@@ -11,7 +11,7 @@
         android:background="@drawable/white_background"
         android:orientation="vertical" >
         
-        <org.thoughtcrime.securesms.contacts.RecipientsEditor android:id="@+id/recipients_text"
+        <org.thoughtcrime.securesms.lang.BhoRecipientsEditor android:id="@+id/recipients_text"
            android:layout_height="wrap_content"
             android:capitalize="sentences"
             android:autoText="true"

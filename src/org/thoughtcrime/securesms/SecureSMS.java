@@ -18,7 +18,10 @@ package org.thoughtcrime.securesms;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -32,6 +35,9 @@ import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.lang.BhoContextualMenu;
+import org.thoughtcrime.securesms.lang.BhoTyper;
+
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -76,7 +82,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
-import android.widget.EditText;
+import org.thoughtcrime.securesms.lang.BhoEditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -111,20 +117,20 @@ public class SecureSMS extends ListActivity {
   private static final int DELETE_THREAD_ID   = 102;
   private static final int ADD_CONTACT_ID     = 103;
 	
-  private EditText searchBox;
+  private BhoEditText searchBox;
   private ConversationHeaderView headerView;
   private MasterSecret masterSecret;
   private KillActivityReceiver killActivityReceiver;
   private NewKeyReceiver receiver;
   private boolean havePromptedForPassphrase = false;
   private boolean batchMode                 = false;
-
-	
+  	
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.main);
+        
     initializeKillReceiver();
     initializeSenderReceiverService();
     initializeResources();
@@ -151,6 +157,7 @@ public class SecureSMS extends ListActivity {
     Log.w("securesms", "restart called...");
     initializeColors();
     Eula.showEula(this);
+    
   }
   
   @Override
@@ -187,30 +194,30 @@ public class SecureSMS extends ListActivity {
   }
 	
   private void prepareNormalMenu(Menu menu) {
-    menu.add(0, MENU_BATCH_MODE, Menu.NONE, "Batch Mode").setIcon(android.R.drawable.ic_menu_share);
+    menu.add(0, MENU_BATCH_MODE, Menu.NONE, R.string.batch_mode).setIcon(android.R.drawable.ic_menu_share);
 		
-    if (masterSecret != null) menu.add(0, MENU_SEND_KEY, Menu.NONE, "Secure Session").setIcon(R.drawable.ic_lock_message_sms);
-    else           			  menu.add(0, MENU_PASSPHRASE_KEY, Menu.NONE, "Enter passphrase").setIcon(R.drawable.ic_lock_message_sms);
+    if (masterSecret != null) menu.add(0, MENU_SEND_KEY, Menu.NONE, R.string.secure_session).setIcon(R.drawable.ic_lock_message_sms);
+    else           			  menu.add(0, MENU_PASSPHRASE_KEY, Menu.NONE, R.string.enter_passphrase).setIcon(R.drawable.ic_lock_message_sms);
 
-    menu.add(0, MENU_SEARCH, Menu.NONE, "Search").setIcon(android.R.drawable.ic_menu_search);
-    menu.add(0, MENU_PREFERENCES_KEY, Menu.NONE, "Settings").setIcon(android.R.drawable.ic_menu_preferences);	
+    menu.add(0, MENU_SEARCH, Menu.NONE, R.string.search).setIcon(android.R.drawable.ic_menu_search);
+    menu.add(0, MENU_PREFERENCES_KEY, Menu.NONE, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences);	
 		
-    SubMenu importExportMenu = menu.addSubMenu("Import/Export").setIcon(android.R.drawable.ic_menu_save);
-    importExportMenu.add(0, MENU_EXPORT, Menu.NONE, "Export To SD Card").setIcon(android.R.drawable.ic_menu_save);
-    importExportMenu.add(0, MENU_IMPORT, Menu.NONE, "Import From SD Card").setIcon(android.R.drawable.ic_menu_revert);
+    SubMenu importExportMenu = menu.addSubMenu(R.string.import_export).setIcon(android.R.drawable.ic_menu_save);
+    importExportMenu.add(0, MENU_EXPORT, Menu.NONE, R.string.export_to_sd_card).setIcon(android.R.drawable.ic_menu_save);
+    importExportMenu.add(0, MENU_IMPORT, Menu.NONE, R.string.import_from_sd_card).setIcon(android.R.drawable.ic_menu_revert);
 		
-    SubMenu moreMenu = menu.addSubMenu("More").setIcon(android.R.drawable.ic_menu_more);
+    SubMenu moreMenu = menu.addSubMenu(R.string.more).setIcon(android.R.drawable.ic_menu_more);
 
     if (masterSecret != null)
-      moreMenu.add(0, MENU_CLEAR_PASSPHRASE, Menu.NONE, "Clear Passphrase").setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+      moreMenu.add(0, MENU_CLEAR_PASSPHRASE, Menu.NONE, R.string.clear_passphrase).setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 
   }
 	
   private void prepareBatchModeMenu(Menu menu) {
-    menu.add(0, MENU_EXIT_BATCH, Menu.NONE, "Normal Mode").setIcon(android.R.drawable.ic_menu_set_as);
-    menu.add(0, MENU_DELETE_SELECTED_THREADS, Menu.NONE, "Delete Selected").setIcon(android.R.drawable.ic_menu_delete);
-    menu.add(0, MENU_SELECT_ALL_THREADS, Menu.NONE, "Select All").setIcon(android.R.drawable.ic_menu_add);
-    menu.add(0, MENU_CLEAR_SELECTION, Menu.NONE, "Unselect All").setIcon(android.R.drawable.ic_menu_revert);
+    menu.add(0, MENU_EXIT_BATCH, Menu.NONE, R.string.normal_mode).setIcon(android.R.drawable.ic_menu_set_as);
+    menu.add(0, MENU_DELETE_SELECTED_THREADS, Menu.NONE, R.string.delete_selected).setIcon(android.R.drawable.ic_menu_delete);
+    menu.add(0, MENU_SELECT_ALL_THREADS, Menu.NONE, R.string.select_all).setIcon(android.R.drawable.ic_menu_add);
+    menu.add(0, MENU_CLEAR_SELECTION, Menu.NONE, R.string.unselect_all).setIcon(android.R.drawable.ic_menu_revert);
   }
 	
   @Override
@@ -277,26 +284,53 @@ public class SecureSMS extends ListActivity {
     clearNotifications();
     initializeReceivers();
     checkCachingService();
-  }	
-	
+  }
+    
   @Override
   public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
     if (((AdapterView.AdapterContextMenuInfo)menuInfo).position > 0) {
       Cursor cursor         = ((CursorAdapter)this.getListAdapter()).getCursor();
       String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
       Recipients recipients = RecipientFactory.getRecipientsForIds(this, recipientId);
-
-      menu.add(0, VIEW_THREAD_ID, Menu.NONE, "View thread");
-			
-      if (recipients.isSingleRecipient()) {
-        if (recipients.getPrimaryRecipient().getName() != null) {
-          menu.add(0, VIEW_CONTACT_ID, Menu.NONE, "View contact");
-        } else {
-          menu.add(0, ADD_CONTACT_ID, Menu.NONE, "Add to contacts");
-        }
+      
+      BhoContextualMenu m = new BhoContextualMenu(this);
+      final Map<Integer, String> opts = new HashMap<Integer, String>();
+      opts.put(VIEW_THREAD_ID, getString(R.string.view_thread));
+      
+      if(recipients.isSingleRecipient()) {
+    	  if(recipients.getPrimaryRecipient().getName() != null)
+    		  opts.put(VIEW_CONTACT_ID, getString(R.string.view_contact));
+    	  else
+    		  opts.put(ADD_CONTACT_ID, getString(R.string.add_to_contacts));
       }
-			
-      menu.add(0, DELETE_THREAD_ID, Menu.NONE, "Delete thread");			
+      
+      opts.put(DELETE_THREAD_ID, getString(R.string.delete_thread));
+      m.setAdapter(m.setOpts(opts), new DialogInterface.OnClickListener() {
+		
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			Cursor cursor         = ((CursorAdapter) SecureSMS.this.getListAdapter()).getCursor();
+			long threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+		    String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
+		    Recipients recipients = RecipientFactory.getRecipientsForIds(SecureSMS.this, recipientId);
+		    
+		    switch(BhoTyper.getIntValueFromContextualMenu(opts, which)) {
+		    case VIEW_THREAD_ID:
+		        createConversation(threadId, recipients);
+		        break;
+		      case VIEW_CONTACT_ID:
+		        viewContact(recipients.getPrimaryRecipient());
+		        break;
+		      case ADD_CONTACT_ID:
+		        addContact(recipients.getPrimaryRecipient());
+		        break;
+		      case DELETE_THREAD_ID:
+		        deleteThread(threadId);
+		        break;
+		    }
+		}
+      });
+      m.show();
     }
   }
 	
@@ -345,10 +379,10 @@ public class SecureSMS extends ListActivity {
   private void deleteSelectedThreads() {
     AlertDialog.Builder alert = new AlertDialog.Builder(this);
     alert.setIcon(android.R.drawable.ic_dialog_alert);
-    alert.setTitle("Delete threads?");
-    alert.setMessage("Are you sure you wish to delete ALL selected conversation threads?");
+    alert.setTitle(R.string.delete_threads_);
+    alert.setMessage(R.string.are_you_sure_you_wish_to_delete_all_selected_conversation_threads_);
     alert.setCancelable(true);
-    alert.setPositiveButton("Delete", new DialogInterface.OnClickListener() {			
+    alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {			
       public void onClick(DialogInterface dialog, int which) {
         Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter()).getBatchSelections();
 				
@@ -356,7 +390,7 @@ public class SecureSMS extends ListActivity {
           DatabaseFactory.getThreadDatabase(SecureSMS.this).deleteConversations(selectedConversations);
       }
     });
-    alert.setNegativeButton("Cancel", null);
+    alert.setNegativeButton(R.string.cancel, null);
     alert.show();
   }
 	
@@ -455,7 +489,7 @@ public class SecureSMS extends ListActivity {
 	
   private void initializeSearchListener() {
     SearchTextListener listener = new SearchTextListener();
-    searchBox                   = (EditText)findViewById(R.id.search_text);
+    searchBox                   = (BhoEditText)findViewById(R.id.search_text);
     searchBox.addTextChangedListener(listener);
     this.getListView().setOnKeyListener(listener);
   }
@@ -538,12 +572,12 @@ public class SecureSMS extends ListActivity {
     if (listView.getHeaderViewsCount() > 0) return;
 		
     ArrayList<Recipient> dummyList        = new ArrayList<Recipient>();
-    dummyList.add(new Recipient("New Message", null, null));
+    dummyList.add(new Recipient(getString(R.string.new_message), null, null));
 		
     Recipients recipients                 = new Recipients(dummyList);		
     headerView                            = new ConversationHeaderView(this, true);
     MessageRecord messageRecord           = new MessageRecord(-1, recipients, 0, 0, true, -1);
-    messageRecord.setBody("Compose new message.");
+    messageRecord.setBody(getString(R.string.compose_new_message_));
     headerView.set(messageRecord, false);
     //		headerView.setBackgroundColor(Color.TRANSPARENT);
 		
@@ -560,10 +594,10 @@ public class SecureSMS extends ListActivity {
 
   private void deleteThread(long threadId) {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Delete Thread Confirmation");
+    builder.setTitle(R.string.delete_thread_confirmation);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
     builder.setCancelable(true);
-    builder.setMessage("Are you sure that you want to permanently delete this conversation?");
+    builder.setMessage(R.string.are_you_sure_that_you_want_to_permanently_delete_this_conversation_);
     builder.setPositiveButton(R.string.yes, new DeleteThreadListener(threadId));
     builder.setNegativeButton(R.string.no, null);
     builder.show();
@@ -683,8 +717,8 @@ public class SecureSMS extends ListActivity {
     private void continueExport() {			
       task           = TASK_EXPORT;
       progressDialog = new ProgressDialog(SecureSMS.this);
-      progressDialog.setTitle("Exporting Database and Keys");
-      progressDialog.setMessage("Exporting your SMS database, keys, and settings...");
+      progressDialog.setTitle(R.string.exporting_database_and_keys);
+      progressDialog.setMessage(getString(R.string.exporting_your_sms_database_keys_and_settings_));
       progressDialog.setCancelable(false);
       progressDialog.setIndeterminate(true);
       progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -695,8 +729,8 @@ public class SecureSMS extends ListActivity {
     private void continueImport() {
       task           = TASK_IMPORT;
       progressDialog = new ProgressDialog(SecureSMS.this);
-      progressDialog.setTitle("Importing Database and Keys");
-      progressDialog.setMessage("Importnig your SMS database, keys, and settings...");
+      progressDialog.setTitle(R.string.importing_database_and_keys);
+      progressDialog.setMessage(getString(R.string.importing_your_sms_database_keys_and_settings_));
       progressDialog.setCancelable(false);
       progressDialog.setIndeterminate(true);
       progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -712,15 +746,15 @@ public class SecureSMS extends ListActivity {
 		
     public void importFromSd() {
       AlertDialog.Builder alertBuilder = new AlertDialog.Builder(SecureSMS.this);
-      alertBuilder.setTitle("Import Database and Settings?");
-      alertBuilder.setMessage("Import TextSecure database, keys, and settings from the SD Card?\n\nWARNING: This will clobber any existing messages, keys, and settings!");
+      alertBuilder.setTitle(R.string.import_database_and_settings_);
+      alertBuilder.setMessage(getString(R.string.import_textsecure_database_keys_and_settings_from_the_sd_card_1) + "\n\n" + getString(R.string.import_textsecure_database_keys_and_settings_from_the_sd_card_2));
       alertBuilder.setCancelable(false);
       alertBuilder.setPositiveButton("Import", new DialogInterface.OnClickListener() {				
         public void onClick(DialogInterface dialog, int which) {
           continueImport();
         }
       });
-      alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+      alertBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
         }
       });
@@ -729,15 +763,15 @@ public class SecureSMS extends ListActivity {
 		
     public void export() {
       AlertDialog.Builder alertBuilder = new AlertDialog.Builder(SecureSMS.this);
-      alertBuilder.setTitle("Export Database?");
-      alertBuilder.setMessage("Export TextSecure database, keys, and settings to the SD Card?");
+      alertBuilder.setTitle(R.string.export_database_);
+      alertBuilder.setMessage(R.string.export_textsecure_database_keys_and_settings_to_the_sd_card_);
       alertBuilder.setCancelable(false);
-      alertBuilder.setPositiveButton("Export", new DialogInterface.OnClickListener() {				
+      alertBuilder.setPositiveButton(R.string.export, new DialogInterface.OnClickListener() {				
         public void onClick(DialogInterface dialog, int which) {
           continueExport();
         }
       });
-      alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+      alertBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
         }
       });
@@ -748,20 +782,20 @@ public class SecureSMS extends ListActivity {
     public void handleMessage(Message message) {
       switch (message.what) {
       case ERROR_NO_SD:
-        Toast.makeText(SecureSMS.this, "No SD card found!", Toast.LENGTH_LONG).show();
+        Toast.makeText(SecureSMS.this, R.string.no_sd_card_found_, Toast.LENGTH_LONG).show();
         break;
       case ERROR_IO:
-        Toast.makeText(SecureSMS.this, "Error exporting to SD!", Toast.LENGTH_LONG).show();
+        Toast.makeText(SecureSMS.this, R.string.error_exporting_to_sd_, Toast.LENGTH_LONG).show();
         break;
       case COMPLETE:
         switch (task) {
         case TASK_IMPORT:
-          Toast.makeText(SecureSMS.this, "Import Successful!", Toast.LENGTH_LONG).show();
+          Toast.makeText(SecureSMS.this, R.string.import_successful_, Toast.LENGTH_LONG).show();
           addConversationItems();
           promptForPassphrase();
           break;
         case TASK_EXPORT:
-          Toast.makeText(SecureSMS.this, "Export Successful!", Toast.LENGTH_LONG).show();
+          Toast.makeText(SecureSMS.this, R.string.export_successful_, Toast.LENGTH_LONG).show();
           break;
         }
         break;
@@ -876,8 +910,8 @@ public class SecureSMS extends ListActivity {
 
     private void continueMigration() {			
       progressDialog = new ProgressDialog(SecureSMS.this);
-      progressDialog.setTitle("Migrating Database");
-      progressDialog.setMessage("Migrating your SMS database...");
+      progressDialog.setTitle(R.string.migrating_database);
+      progressDialog.setMessage(getString(R.string.migrating_your_sms_database_));
       progressDialog.setMax(10000);
       progressDialog.setCancelable(false);
       progressDialog.setIndeterminate(false);
@@ -893,15 +927,15 @@ public class SecureSMS extends ListActivity {
 		
     public void migrate() {
       AlertDialog.Builder alertBuilder = new AlertDialog.Builder(SecureSMS.this);
-      alertBuilder.setTitle("Copy System Text Message Database?");
-      alertBuilder.setMessage("Current versions of TextSecure use an encrypted database that is separate from the default system database.  Would you like to copy your existing text messages into TextSecure's encrypted database?  Your default system database will be unaffected.");
+      alertBuilder.setTitle(R.string.copy_system_text_message_database_);
+      alertBuilder.setMessage(R.string.current_versions_of_textsecure_use_an_encrypted_database);
       alertBuilder.setCancelable(false);
-      alertBuilder.setPositiveButton("Copy", new DialogInterface.OnClickListener() {				
+      alertBuilder.setPositiveButton(R.string.copy, new DialogInterface.OnClickListener() {				
         public void onClick(DialogInterface dialog, int which) {
           continueMigration();
         }
       });
-      alertBuilder.setNegativeButton("Don't copy", new DialogInterface.OnClickListener() {
+      alertBuilder.setNegativeButton(R.string.don_t_copy, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
           cancelMigration();
         }
@@ -926,6 +960,7 @@ public class SecureSMS extends ListActivity {
       }
     }
   }
+
 }
     
  

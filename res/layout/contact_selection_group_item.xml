@@ -23,7 +23,7 @@
     android:paddingLeft="14dip"
     android:paddingRight="5dip">
 
-    <CheckedTextView android:id="@+id/name"
+    <org.thoughtcrime.securesms.lang.BhoCheckedTextView android:id="@+id/name"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
         android:layout_marginBottom="1dip"

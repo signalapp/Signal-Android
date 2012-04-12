@@ -72,7 +72,7 @@ public abstract class KeyScanningActivity extends Activity {
         Dialogs.displayAlert(this, getNotVerifiedTitle(), getNotVerifiedMessage(), android.R.drawable.ic_dialog_alert);
       }
     } else {
-      Toast.makeText(this, "No scanned key found!", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.no_scanned_key_found_, Toast.LENGTH_LONG).show();
     }
   }
 	
