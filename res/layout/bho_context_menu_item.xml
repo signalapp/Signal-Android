@@ -3,9 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
-    <org.thoughtcrime.securesms.lang.BhoTextView
+    <org.thoughtcrime.securesms.lang.BhoTextView style="@style/contextual_menu_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/menuItemText"
-        android:text="hello i am a custom" />
+        android:id="@+id/menuItemText" />
 </LinearLayout>

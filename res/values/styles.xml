@@ -11,4 +11,11 @@
 	    <item name="android:backgroundDimEnabled">false</item>
 	    <item name="android:background">@android:color/transparent</item>
 	</style>
+	
+	<style name="contextual_menu_text">
+	    <item name="android:textColor">#ff000000</item>
+	    <item name="android:textSize">20dip</item>
+	    <item name="android:paddingLeft">10dip</item>
+	    <item name="android:paddingTop">6dip</item>
+	</style>
 </resources>
