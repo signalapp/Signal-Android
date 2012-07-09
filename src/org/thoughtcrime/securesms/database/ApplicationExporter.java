@@ -107,7 +107,7 @@ public class ApplicationExporter {
     }
   }
 	
-  public static void exoprtToSd(Context context) throws NoExternalStorageException, IOException {
+  public static void exportToSd(Context context) throws NoExternalStorageException, IOException {
     verifyExternalStorageForExport();
     exportDirectory(context, "");
     //		exportDirectory(context, "databases");
