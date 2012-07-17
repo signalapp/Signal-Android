@@ -1,5 +1,5 @@
 /** 
- * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2012 Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +22,8 @@ import java.util.regex.Pattern;
 import android.telephony.PhoneNumberUtils;
 
 public class NumberUtil {
-	
-  private static final String emailExpression = "^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";  
-  private static final Pattern emailPattern   = Pattern.compile(emailExpression, Pattern.CASE_INSENSITIVE);  
+
+  private static final Pattern emailPattern = android.util.Patterns.EMAIL_ADDRESS;  
 	
   public static boolean isValidEmail(String number) {
     Matcher matcher = emailPattern.matcher(number);
