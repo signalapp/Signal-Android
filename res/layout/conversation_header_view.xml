@@ -2,7 +2,7 @@
 <org.thoughtcrime.securesms.ConversationHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:paddingRight="10dip" 
+    android:paddingRight="10dip"
     >
 
     <ImageView android:id="@+id/unread_indicator"
@@ -11,22 +11,14 @@
         android:layout_alignParentLeft="true"
         android:visibility="invisible"
         android:src="@drawable/ic_sms_unread_msg_indicator" />
-        
-<!--   <android.widget.QuickContactBadge android:id="@+id/contact_photo"-->
-<!--   									 android:layout_width="60dp"-->
-<!--   									 android:layout_height="60dp"-->
-<!--   									 android:cropToPadding="true"-->
-<!--   									 android:scaleType="centerCrop"-->
-<!--   									 android:layout_toRightOf="@id/unread_indicator"-->
-<!--   									 android:visibility="gone" />-->
 
-	<ImageView android:id="@+id/contact_photo"
-			   android:layout_width="60dp"
-			   android:layout_height="60dp"
-			   android:cropToPadding="true"
-			   android:scaleType="centerCrop"
-			   android:layout_toRightOf="@id/unread_indicator"
-			   android:visibility="gone" />
+    <QuickContactBadge android:id="@+id/contact_photo"
+                       android:layout_width="60dp"
+                       android:layout_height="60dp"
+                       android:cropToPadding="true"
+                       android:scaleType="centerCrop"
+                       android:layout_toRightOf="@id/unread_indicator"
+                       android:visibility="gone" />
 
 
    <ImageView android:id="@+id/key_indicator"
@@ -35,13 +27,13 @@
         android:layout_alignParentLeft="true"
         android:visibility="invisible"
         android:src="@drawable/key_exchange_indicator" />
-        
+
     <CheckBox android:id="@+id/checkbox"
-    		  android:layout_width="wrap_content"
-    		  android:layout_height="wrap_content"
-    		  android:layout_alignParentRight="true"
-    		  android:layout_alignParentTop="true"
-    		  android:visibility="gone" />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:layout_alignParentTop="true"
+              android:visibility="gone" />
 
     <TextView android:id="@+id/from"
         android:layout_width="wrap_content"
@@ -55,10 +47,10 @@
         android:layout_toRightOf="@id/contact_photo"
         android:layout_toLeftOf="@id/checkbox"
         android:layout_alignWithParentIfMissing="true"
-        android:ellipsize="marquee"  
+        android:ellipsize="marquee"
         android:textColor="#000000"/>
-        
-         
+
+
     <TextView android:id="@+id/date"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="5dip"
@@ -101,4 +93,3 @@
         android:ellipsize="end" />
 
 </org.thoughtcrime.securesms.ConversationHeaderView>
-         

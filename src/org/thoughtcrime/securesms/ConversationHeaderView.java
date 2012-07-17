@@ -17,8 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.format.DateUtils;
 import android.text.style.StyleSpan;
@@ -27,7 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -48,23 +46,22 @@ public class ConversationHeaderView extends RelativeLayout {
   private final Context   context;
   private       Set<Long> selectedThreads;
 
-  private Recipients recipients;
-  private long       threadId;
-  private boolean    first;
-  private TextView   subjectView;
-  private TextView   fromView;
-  private TextView   dateView;
-  private View       unreadIndicator;
-  private View       keyIndicator;
-  private CheckBox   checkbox;
-  private ImageView  contactPhoto;
+  private Recipients        recipients;
+  private long              threadId;
+  private boolean           first;
+  private TextView          subjectView;
+  private TextView          fromView;
+  private TextView          dateView;
+  private View              unreadIndicator;
+  private View              keyIndicator;
+  private CheckBox          checkbox;
+  private QuickContactBadge contactPhoto;
 
   public ConversationHeaderView(Context context, boolean first) {
     this(context, (Set<Long>)null);
 
     this.first = true;
     contactPhoto.setVisibility(View.GONE);
-    this.setBackgroundColor(Color.TRANSPARENT);
   }
 
   public ConversationHeaderView(Context context, Set<Long> selectedThreads) {
@@ -80,7 +77,7 @@ public class ConversationHeaderView extends RelativeLayout {
     this.dateView        = (TextView)findViewById(R.id.date);
     this.unreadIndicator = findViewById(R.id.unread_indicator);
     this.keyIndicator    = findViewById(R.id.key_indicator);
-    this.contactPhoto    = (ImageView)findViewById(R.id.contact_photo);
+    this.contactPhoto    = (QuickContactBadge)findViewById(R.id.contact_photo);
     this.checkbox        = (CheckBox)findViewById(R.id.checkbox);
 
     intializeListeners();
@@ -117,13 +114,9 @@ public class ConversationHeaderView extends RelativeLayout {
       if (batchMode) checkbox.setVisibility(View.VISIBLE);
       else           checkbox.setVisibility(View.GONE);
 
-      if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.CONVERSATION_ICONS_LIST_PREF, ApplicationPreferencesActivity.showIcon())) {
-        contactPhoto.setVisibility(View.GONE);
-      } else {
-        contactPhoto.setImageBitmap(message.getRecipients().getPrimaryRecipient().getContactPhoto());
-        contactPhoto.setBackgroundResource(R.drawable.light_border_background);
-        contactPhoto.setVisibility(View.VISIBLE);
-      }
+      contactPhoto.setImageBitmap(this.recipients.getPrimaryRecipient().getContactPhoto());
+      contactPhoto.assignContactFromPhone(this.recipients.getPrimaryRecipient().getNumber(), true);
+      contactPhoto.setVisibility(View.VISIBLE);
     }
   }
 
