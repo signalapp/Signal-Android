@@ -17,8 +17,12 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -43,16 +47,13 @@ import java.util.Set;
 
 public class ConversationHeaderView extends RelativeLayout {
 
-  private final Context   context;
-  private       Set<Long> selectedThreads;
-
+  private Set<Long>         selectedThreads;
   private Recipients        recipients;
   private long              threadId;
   private boolean           first;
   private TextView          subjectView;
   private TextView          fromView;
   private TextView          dateView;
-  private View              unreadIndicator;
   private View              keyIndicator;
   private CheckBox          checkbox;
   private QuickContactBadge contactPhoto;
@@ -70,12 +71,10 @@ public class ConversationHeaderView extends RelativeLayout {
     LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     li.inflate(R.layout.conversation_header_view, this, true);
 
-    this.context         = context;
     this.selectedThreads = selectedThreads;
     this.subjectView     = (TextView)findViewById(R.id.subject);
     this.fromView        = (TextView)findViewById(R.id.from);
     this.dateView        = (TextView)findViewById(R.id.date);
-    this.unreadIndicator = findViewById(R.id.unread_indicator);
     this.keyIndicator    = findViewById(R.id.key_indicator);
     this.contactPhoto    = (QuickContactBadge)findViewById(R.id.contact_photo);
     this.checkbox        = (CheckBox)findViewById(R.id.checkbox);
@@ -85,13 +84,12 @@ public class ConversationHeaderView extends RelativeLayout {
 
   public ConversationHeaderView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    this.context = context;
   }
 
   public void set(MessageRecord message, boolean batchMode) {
     this.recipients = message.getRecipients();
     this.threadId   = message.getThreadId();
-    this.fromView.setText(formatFrom(recipients, message.getCount()));
+    this.fromView.setText(formatFrom(recipients, message.getCount(), message.getRead()));
 
     if (message.isKeyExchange())
       this.subjectView.setText("Key exchange message...", TextView.BufferType.SPANNABLE);
@@ -108,7 +106,7 @@ public class ConversationHeaderView extends RelativeLayout {
       this.checkbox.setChecked(selectedThreads.contains(threadId));
 
     clearIndicators();
-    setIndicators(message.getRead(), message.isKeyExchange());
+    setIndicators(message.isKeyExchange());
 
     if (!first) {
       if (batchMode) checkbox.setVisibility(View.VISIBLE);
@@ -126,16 +124,28 @@ public class ConversationHeaderView extends RelativeLayout {
 
   private void clearIndicators() {
     this.keyIndicator.setVisibility(View.INVISIBLE);
-    this.unreadIndicator.setVisibility(View.INVISIBLE);
   }
 
-  private void setIndicators(boolean read, boolean key) {
-    if (!read && key) this.keyIndicator.setVisibility(View.VISIBLE);
-    else if (!read)	  this.unreadIndicator.setVisibility(View.VISIBLE);
+  private void setIndicators(boolean key) {
+    if (key) this.keyIndicator.setVisibility(View.VISIBLE);
   }
 
-  private String formatFrom(Recipients from, long count) {
-    return from.toShortString() + (count > 0 ? " (" + count + ")" : "");
+  private CharSequence formatFrom(Recipients from, long count, boolean read) {
+    SpannableStringBuilder builder = new SpannableStringBuilder(from.toShortString());
+
+    if (count > 0) {
+      builder.append(" " + count);
+      builder.setSpan(new ForegroundColorSpan(Color.parseColor("#66333333")),
+                      from.toShortString().length(), builder.length(),
+                      Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    }
+
+    if (!read) {
+      builder.setSpan(new StyleSpan(Typeface.BOLD), 0, builder.length(),
+                      Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    }
+
+    return builder;
   }
 
   public Recipients getRecipients() {

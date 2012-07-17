@@ -61,7 +61,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.ApplicationExporter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -75,7 +74,6 @@ import org.thoughtcrime.securesms.util.Eula;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -89,6 +87,7 @@ import java.util.Set;
 
 public class SecureSMS extends SherlockListActivity {
 
+  private static final int MENU_NEW_MESSAGE             = 0;
   private static final int MENU_SEND_KEY                = 1;
   private static final int MENU_PASSPHRASE_KEY          = 2;
   private static final int MENU_PREFERENCES_KEY         = 3;
@@ -187,30 +186,54 @@ public class SecureSMS extends SherlockListActivity {
   }
 
   private void prepareNormalMenu(Menu menu) {
-    menu.add(0, MENU_BATCH_MODE, Menu.NONE, "Batch Mode").setIcon(android.R.drawable.ic_menu_share);
+    menu.add(0, MENU_BATCH_MODE, Menu.NONE, "Batch Mode")
+      .setIcon(android.R.drawable.ic_menu_share);
 
-    if (masterSecret != null) menu.add(0, MENU_SEND_KEY, Menu.NONE, "Secure Session").setIcon(R.drawable.ic_lock_message_sms);
-    else           			  menu.add(0, MENU_PASSPHRASE_KEY, Menu.NONE, "Enter passphrase").setIcon(R.drawable.ic_lock_message_sms);
+    if (masterSecret != null) {
+      menu.add(0, MENU_SEND_KEY, Menu.NONE, "Secure Session")
+        .setIcon(R.drawable.ic_lock_message_sms);
+    } else {
+      menu.add(0, MENU_PASSPHRASE_KEY, Menu.NONE, "Enter passphrase")
+        .setIcon(R.drawable.ic_lock_message_sms);
+    }
 
-    menu.add(0, MENU_SEARCH, Menu.NONE, "Search").setIcon(android.R.drawable.ic_menu_search);
-    menu.add(0, MENU_PREFERENCES_KEY, Menu.NONE, "Settings").setIcon(android.R.drawable.ic_menu_preferences);
+    menu.add(0, MENU_NEW_MESSAGE, Menu.NONE, "New Message")
+      .setIcon(R.drawable.ic_menu_msg_compose_holo_dark)
+      .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-    SubMenu importExportMenu = menu.addSubMenu("Import/Export").setIcon(android.R.drawable.ic_menu_save);
-    importExportMenu.add(0, MENU_EXPORT, Menu.NONE, "Export To SD Card").setIcon(android.R.drawable.ic_menu_save);
-    importExportMenu.add(0, MENU_IMPORT, Menu.NONE, "Import From SD Card").setIcon(android.R.drawable.ic_menu_revert);
+    menu.add(0, MENU_SEARCH, Menu.NONE, "Search")
+      .setIcon(R.drawable.ic_menu_search_holo_dark)
+      .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-    SubMenu moreMenu = menu.addSubMenu("More").setIcon(android.R.drawable.ic_menu_more);
+    menu.add(0, MENU_PREFERENCES_KEY, Menu.NONE, "Settings")
+      .setIcon(android.R.drawable.ic_menu_preferences);
 
-    if (masterSecret != null)
-      moreMenu.add(0, MENU_CLEAR_PASSPHRASE, Menu.NONE, "Clear Passphrase").setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+    SubMenu importExportMenu = menu.addSubMenu("Import/Export")
+      .setIcon(android.R.drawable.ic_menu_save);
+    importExportMenu.add(0, MENU_EXPORT, Menu.NONE, "Export To SD Card")
+      .setIcon(android.R.drawable.ic_menu_save);
+    importExportMenu.add(0, MENU_IMPORT, Menu.NONE, "Import From SD Card")
+      .setIcon(android.R.drawable.ic_menu_revert);
 
+    if (masterSecret != null) {
+      menu.add(0, MENU_CLEAR_PASSPHRASE, Menu.NONE, "Clear Passphrase")
+      .setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+    }
   }
 
   private void prepareBatchModeMenu(Menu menu) {
-    menu.add(0, MENU_EXIT_BATCH, Menu.NONE, "Normal Mode").setIcon(android.R.drawable.ic_menu_set_as);
-    menu.add(0, MENU_DELETE_SELECTED_THREADS, Menu.NONE, "Delete Selected").setIcon(android.R.drawable.ic_menu_delete);
-    menu.add(0, MENU_SELECT_ALL_THREADS, Menu.NONE, "Select All").setIcon(android.R.drawable.ic_menu_add);
-    menu.add(0, MENU_CLEAR_SELECTION, Menu.NONE, "Unselect All").setIcon(android.R.drawable.ic_menu_revert);
+    menu.add(0, MENU_EXIT_BATCH, Menu.NONE, "Normal Mode")
+      .setIcon(android.R.drawable.ic_menu_set_as);
+
+    menu.add(0, MENU_DELETE_SELECTED_THREADS, Menu.NONE, "Delete Selected")
+      .setIcon(R.drawable.ic_menu_trash_holo_dark)
+      .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+    menu.add(0, MENU_SELECT_ALL_THREADS, Menu.NONE, "Select All")
+      .setIcon(android.R.drawable.ic_menu_add);
+
+    menu.add(0, MENU_CLEAR_SELECTION, Menu.NONE, "Unselect All")
+      .setIcon(android.R.drawable.ic_menu_revert);
   }
 
   @Override
@@ -218,6 +241,9 @@ public class SecureSMS extends SherlockListActivity {
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
+    case MENU_NEW_MESSAGE:
+        createConversation(-1, null);
+        return true;
     case MENU_SEND_KEY:
       Intent intent = new Intent(this, SendKeyActivity.class);
       intent.putExtra("master_secret", masterSecret);
@@ -435,7 +461,6 @@ public class SecureSMS extends SherlockListActivity {
       else                                                  DecryptingQueue.schedulePendingDecrypts(this, masterSecret);
     }
 
-    addNewMessageItem();
     addConversationItems();
     createConversationIfNecessary(this.getIntent());
   }
@@ -465,9 +490,7 @@ public class SecureSMS extends SherlockListActivity {
 
   @Override
   protected void onListItemClick(ListView l, View v, int position, long id) {
-    if (position == 0) {
-      createConversation(-1, null);
-    } else if (v instanceof ConversationHeaderView) {
+    if (v instanceof ConversationHeaderView) {
       ConversationHeaderView headerView = (ConversationHeaderView) v;
       createConversation(headerView.getThreadId(), headerView.getRecipients());
     }
@@ -507,23 +530,6 @@ public class SecureSMS extends SherlockListActivity {
     intent.putExtra("thread_id", threadId);
     intent.putExtra("master_secret", masterSecret);
     startActivity(intent);
-  }
-
-  private void addNewMessageItem() {
-    ListView listView = getListView();
-    if (listView.getHeaderViewsCount() > 0) return;
-
-    ArrayList<Recipient> dummyList        = new ArrayList<Recipient>();
-    dummyList.add(new Recipient("New Message", null, null));
-
-    Recipients recipients                 = new Recipients(dummyList);
-    headerView                            = new ConversationHeaderView(this, true);
-    MessageRecord messageRecord           = new MessageRecord(-1, recipients, 0, 0, true, -1);
-    messageRecord.setBody("Compose new message.");
-    headerView.set(messageRecord, false);
-    //		headerView.setBackgroundColor(Color.TRANSPARENT);
-
-    listView.addHeaderView(headerView, null, true);
   }
 
   private void addConversationItems() {

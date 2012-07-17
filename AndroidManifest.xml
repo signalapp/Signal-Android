@@ -13,6 +13,7 @@
         <activity android:name=".SecureSMS"
                   android:label="@string/app_name"
                   android:launchMode="singleTask"
+                  android:uiOptions="splitActionBarWhenNarrow"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"
                   >
             <intent-filter>
