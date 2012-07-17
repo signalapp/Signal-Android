@@ -12,22 +12,13 @@
         android:visibility="invisible"
         android:src="@drawable/ic_sms_unread_msg_indicator" />
         
-<!--   <android.widget.QuickContactBadge android:id="@+id/contact_photo"-->
-<!--   									 android:layout_width="60dp"-->
-<!--   									 android:layout_height="60dp"-->
-<!--   									 android:cropToPadding="true"-->
-<!--   									 android:scaleType="centerCrop"-->
-<!--   									 android:layout_toRightOf="@id/unread_indicator"-->
-<!--   									 android:visibility="gone" />-->
-
-	<ImageView android:id="@+id/contact_photo"
-			   android:layout_width="60dp"
-			   android:layout_height="60dp"
-			   android:cropToPadding="true"
-			   android:scaleType="centerCrop"
-			   android:layout_toRightOf="@id/unread_indicator"
-			   android:visibility="gone" />
-
+   <android.widget.QuickContactBadge android:id="@+id/contact_photo"
+   									 android:layout_width="60dp"
+   									 android:layout_height="60dp"
+   									 android:cropToPadding="true"
+   									 android:scaleType="centerCrop"
+   									 android:layout_toRightOf="@id/unread_indicator"
+   									 android:visibility="gone" />
 
    <ImageView android:id="@+id/key_indicator"
         android:layout_width="wrap_content"

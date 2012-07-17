@@ -58,6 +58,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -81,7 +82,7 @@ public class ConversationItem extends LinearLayout {
   private final ImageView secureImage;
   private final ImageView failedImage;
   private final ImageView keyImage;
-  private final ImageView contactPhoto;
+  private final QuickContactBadge contactPhoto;
 	
   private final ImageView mmsThumbnail;
   private final Button    mmsDownloadButton;
@@ -108,7 +109,7 @@ public class ConversationItem extends LinearLayout {
     this.mmsThumbnail        = (ImageView)findViewById(R.id.image_view);
     this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
-    this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
+    this.contactPhoto        = (QuickContactBadge)findViewById(R.id.contact_photo);
 		
     setOnClickListener(clickListener);
     this.failedImage.setOnClickListener(failedIconClickListener);
@@ -248,12 +249,14 @@ public class ConversationItem extends LinearLayout {
         Recipient recipient = RecipientFactory.getRecipientForUri(context, Uri.parse(configuredContact));
         if (recipient != null) {
           contactPhoto.setImageBitmap(recipient.getContactPhoto());
+  	  	  contactPhoto.assignContactUri(Uri.parse(configuredContact));
           return;
         }
       } 
 			
       if (hasLocalNumber()) {
         contactPhoto.setImageBitmap(RecipientFactory.getRecipientsFromString(context, getLocalNumber()).getPrimaryRecipient().getContactPhoto());
+        contactPhoto.assignContactFromPhone(getLocalNumber(), false);
       } else {
         contactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture));
       }
@@ -272,8 +275,12 @@ public class ConversationItem extends LinearLayout {
       return;
     }
 		
-    if (!messageRecord.isOutgoing()) contactPhoto.setImageBitmap(recipient.getContactPhoto());
-    else                             setContactPhotoForUserIdentity();
+    if (!messageRecord.isOutgoing()) { 
+      contactPhoto.setImageBitmap(recipient.getContactPhoto());
+      contactPhoto.assignContactFromPhone(recipient.getNumber(), false);
+    } else { 
+      setContactPhotoForUserIdentity();
+    }
 		
     contactPhoto.setVisibility(View.VISIBLE);
   }

@@ -210,7 +210,8 @@ public class KeyCachingService extends Service {
       return;
     }
         
-    setForeground(true);
+    //setForeground(true);
+    startForeground(id, notification);
     notificationManager.notify(id, notification);
   }
     
@@ -233,6 +234,7 @@ public class KeyCachingService extends Service {
     }
         
     notificationManager.cancel(id);
-    setForeground(false);
+    //setForeground(false);
+    stopForeground(true);
   }
 }
