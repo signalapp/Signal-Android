@@ -664,7 +664,7 @@ public class SecureSMS extends ListActivity {
     public void run() {
       try {
         switch (task) {
-        case TASK_EXPORT: ApplicationExporter.exoprtToSd(SecureSMS.this);   break;
+        case TASK_EXPORT: ApplicationExporter.exportToSd(SecureSMS.this);   break;
         case TASK_IMPORT: ApplicationExporter.importFromSd(SecureSMS.this); break;
         }
       } catch (NoExternalStorageException e) {
