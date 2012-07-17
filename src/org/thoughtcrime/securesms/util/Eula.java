@@ -20,17 +20,14 @@ package org.thoughtcrime.securesms.util;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.Closeable;
-import java.io.InputStreamReader;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.SecureSMS;
+
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Displays an EULA ("End User License Agreement") that the user has to accept before
@@ -42,79 +39,33 @@ import org.thoughtcrime.securesms.SecureSMS;
 public class Eula {
     private static final String PREFERENCE_EULA_ACCEPTED = "eula.accepted";
     private static final String PREFERENCES_EULA = "eula";
-    
+
     private static final String PREFERENCE_DISCLAIMER_ACCEPTED = "disclaimer.accepted";
 
     public static boolean seenDisclaimer(final Activity activity) {
-    	return activity.getSharedPreferences(PREFERENCES_EULA, Activity.MODE_PRIVATE).getBoolean(PREFERENCE_DISCLAIMER_ACCEPTED, false);
-    }
-    
-    /**
-     * Displays the EULA if necessary. This method should be called from the onCreate()
-     * method of your main Activity.
-     *
-     * @param activity The Activity to finish if the user rejects the EULA.
-     */    
-    public static void showEula(final SecureSMS activity) {
-        final SharedPreferences preferences = activity.getSharedPreferences(PREFERENCES_EULA,
-                Activity.MODE_PRIVATE);
-        if (!preferences.getBoolean(PREFERENCE_EULA_ACCEPTED, false)) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle("End User License Agreement");
-            builder.setCancelable(true);
-            builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    accept(activity);
-                }
-            });
-            builder.setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    refuse(activity);
-                }
-            });
-            builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                public void onCancel(DialogInterface dialog) {
-                    refuse(activity);
-                }
-            });
-            builder.setMessage(readFile(activity, R.raw.eula));
-            builder.create().show();
-        } else {
-        	activity.eulaComplete();
-        }
+      return activity.getSharedPreferences(PREFERENCES_EULA, Activity.MODE_PRIVATE).getBoolean(PREFERENCE_DISCLAIMER_ACCEPTED, false);
     }
 
     private static void acceptDisclaimer(SecureSMS activity) {
-    	activity.getSharedPreferences(PREFERENCES_EULA, Activity.MODE_PRIVATE).edit().putBoolean(PREFERENCE_DISCLAIMER_ACCEPTED, true).commit();
-    	activity.eulaComplete();
-    }
-    
-    private static void accept(SecureSMS activity) {
-        activity.getSharedPreferences(PREFERENCES_EULA, Activity.MODE_PRIVATE).edit().putBoolean(PREFERENCE_EULA_ACCEPTED, true).commit();
-        showDisclaimer(activity);
-    }
-
-    private static void refuse(Activity activity) {
-    	Intent intent = new Intent(Intent.ACTION_DELETE, Uri.parse("package:org.thoughtcrime.securesms"));
-    	activity.startActivity(intent);
-        activity.finish();
+      activity.getSharedPreferences(PREFERENCES_EULA, Activity.MODE_PRIVATE).edit().putBoolean(PREFERENCE_DISCLAIMER_ACCEPTED, true).commit();
+      activity.eulaComplete();
     }
 
     public static void showDisclaimer(final SecureSMS activity) {
-    	if (!seenDisclaimer(activity)) {
-	        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-	        builder.setMessage(readFile(activity, R.raw.disclaimer));
-	        builder.setCancelable(true);
-	        builder.setTitle("Please Note");
-	        builder.setPositiveButton("I understand", new DialogInterface.OnClickListener() {				
-				public void onClick(DialogInterface dialog, int which) {
-					acceptDisclaimer(activity);
-				}
-			});
-	        builder.create().show();
-    	} else {
-    		activity.eulaComplete();
-    	}
+      if (!seenDisclaimer(activity)) {
+          final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+          builder.setMessage(readFile(activity, R.raw.disclaimer));
+          builder.setCancelable(true);
+          builder.setTitle("Please Note");
+          builder.setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          acceptDisclaimer(activity);
+        }
+      });
+          builder.create().show();
+      } else {
+        activity.eulaComplete();
+      }
     }
 
     private static CharSequence readFile(Activity activity, int id) {
