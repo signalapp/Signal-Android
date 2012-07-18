@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Batch Mode"
+          android:id="@+id/menu_batch_mode"
+          android:icon="@android:drawable/ic_menu_share" />
+
+    <item android:title="Search"
+          android:id="@+id/menu_search"
+          android:icon="@drawable/ic_menu_search_holo_dark"
+          android:actionViewClass="android.widget.SearchView"
+          android:showAsAction="ifRoom|collapseActionView" />
+
+</menu>

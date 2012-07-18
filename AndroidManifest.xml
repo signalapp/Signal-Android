@@ -10,7 +10,7 @@
                  android:label="@string/app_name"
                  android:theme="@style/Theme.Sherlock.Light.DarkActionBar">
 
-        <activity android:name=".SecureSMS"
+        <activity android:name=".ConversationListActivity"
                   android:label="@string/app_name"
                   android:launchMode="singleTask"
                   android:uiOptions="splitActionBarWhenNarrow"

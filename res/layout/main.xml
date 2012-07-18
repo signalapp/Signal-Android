@@ -5,43 +5,12 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-        <EditText android:id="@+id/search_text"
-                         android:layout_height="wrap_content"
-                      android:capitalize="sentences"
-                      android:autoText="true"
-                      android:singleLine="true"
-                      android:hint="Search"
-                      android:paddingRight="50dip"
-                      android:layout_margin="10dip"
-                      android:layout_width="fill_parent"
-                      android:layout_alignParentBottom="true"
-                      android:visibility="gone"/>
-
-        <ImageView android:id="@+id/search_close"
-                   android:layout_height="wrap_content"
-                   android:layout_width="wrap_content"
-                   android:layout_alignParentRight="true"
-                   android:layout_alignParentBottom="true"
-                   android:layout_marginRight="16dip"
-                   android:layout_marginBottom="20dip"
-                   android:src="@android:drawable/btn_dialog"
-                   android:visibility="gone"
-                   />
-
         <ListView android:id="@android:id/list"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:drawSelectorOnTop="false"
                   android:scrollbarStyle="insideOverlay"
                   android:fadingEdgeLength="16dip"
-                  android:layout_alignParentTop="true"
-                  android:layout_above="@id/search_text" />
-
-        <ProgressBar android:id="@+id/search_progress"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:indeterminate="true"
-                     android:layout_centerInParent="true"
-                     android:visibility="gone" />
+                  android:layout_alignParentTop="true"/>
 
 </RelativeLayout>

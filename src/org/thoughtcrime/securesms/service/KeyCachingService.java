@@ -29,8 +29,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.SecureSMS;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 /**
@@ -141,7 +141,7 @@ public class KeyCachingService extends Service {
 
   private void foregroundService() {
     Notification notification  = new Notification(R.drawable.icon, "TextSecure Passphrase Cached", System.currentTimeMillis());
-    Intent intent              = new Intent(this, SecureSMS.class);
+    Intent intent              = new Intent(this, ConversationListActivity.class);
     PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
     notification.setLatestEventInfo(getApplicationContext(), "TextSecure Cached", "TextSecure Passphrase Cached", launchIntent);
 
