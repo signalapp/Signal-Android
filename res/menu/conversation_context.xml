@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Copy text"
+          android:id="@+id/menu_context_copy" />
+
+    <item android:title="Delete message"
+          android:id="@+id/menu_context_delete_message" />
+
+    <item android:title="Message details"
+          android:id="@+id/menu_context_details" />
+
+    <item android:title="Forward message"
+          android:id="@+id/menu_context_forward" />
+</menu>

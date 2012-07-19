@@ -145,7 +145,7 @@ public class ConversationListActivity extends SherlockFragmentActivity
       return;
     }
 
-    Intent intent = new Intent(this, ComposeMessageActivity.class);
+    Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra("recipients", recipients);
     intent.putExtra("thread_id", threadId);
     intent.putExtra("master_secret", masterSecret);

@@ -30,7 +30,7 @@
 
     <activity android:name=".AutoInitiateActivity" android:theme="@android:style/Theme.Dialog" android:label="TextSecure Messaging Detected" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".ApplicationPreferencesActivity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
-    <activity android:name=".ComposeMessageActivity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
+    <activity android:name=".ConversationActivity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".PassphraseCreateActivity" android:theme="@android:style/Theme.Dialog" android:label="Create Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".PassphrasePromptActivity" android:theme="@android:style/Theme.Dialog" android:label="Enter Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".PassphraseChangeActivity" android:theme="@android:style/Theme.Dialog" android:label="Change Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>

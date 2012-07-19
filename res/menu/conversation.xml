@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Call"
+          android:id="@+id/menu_call"
+          android:icon="@drawable/ic_menu_call"
+          android:showAsAction="ifRoom" />
+
+    <item android:title="Add attachment"
+          android:id="@+id/menu_add_attachment"
+          android:icon="@drawable/ic_menu_attach" />
+
+    <item android:title="Delete thread"
+          android:id="@+id/menu_delete_thread"
+          android:icon="@android:drawable/ic_menu_delete" />
+
+</menu>
