@@ -29,19 +29,19 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/SeekBarOnLabel"
-          android:text="On For:"
+          android:text="@string/onFor"
           android:paddingTop="5sp" />
         <TextView
           android:id="@+id/SeekBarOnMsLabel"
           android:layout_width="40dip"
           android:layout_height="wrap_content"
-          android:text="0"
+          android:text="@string/zero"
           android:gravity="right" />
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_margin="0dip"
-          android:text="ms" />
+          android:text="@string/ms" />
       </LinearLayout>
       <LinearLayout
         android:orientation="horizontal"
@@ -65,19 +65,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/SeekBarOffLabel"
-        android:text="Off For:"
+        android:text="@string/offFor"
         android:paddingTop="5sp" />
       <TextView
         android:id="@+id/SeekBarOffMsLabel"
         android:layout_width="40dip"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="@string/zero"
         android:gravity="right" />
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="0dip"
-        android:text="ms" />
+        android:text="@string/ms" />
       </LinearLayout>
       <LinearLayout
         android:orientation="horizontal"

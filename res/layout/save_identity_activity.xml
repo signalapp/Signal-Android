@@ -14,13 +14,12 @@
 				<TextView android:layout_width="wrap_content"
 						  android:layout_height="wrap_content"
 						  android:padding="5dip"
-						  android:text="Identity Name:" />
+						  android:text="@string/identityName" />
 						  
 				<EditText android:layout_width="fill_parent"
 						  android:layout_height="wrap_content"
 						  android:padding="5dip"
-						  android:id="@+id/identity_name"
-						  android:text="" />			  
+						  android:id="@+id/identity_name" />			  
 			</LinearLayout>
 			
 			<LinearLayout android:orientation="horizontal"
@@ -34,7 +33,7 @@
 						android:padding="5dip"
 						android:gravity="center"
 						android:id="@+id/ok_button"
-						android:text="Ok"/>
+						android:text="@string/ok"/>
 						
 				<Button android:layout_width="100dip"
 						android:layout_height="wrap_content"
@@ -42,6 +41,6 @@
 						android:padding="5dip"
 						android:gravity="center"
 						android:id="@+id/cancel_button"
-						android:text="Cancel"/>			  			  
+						android:text="@string/cancel"/>			  			  
 			</LinearLayout>
 </LinearLayout>

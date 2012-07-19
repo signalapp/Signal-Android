@@ -30,7 +30,7 @@
 			  android:layout_margin="15dip"></EditText>
 
 	<Button android:layout_height="wrap_content" 
-			android:text="Cancel"  
+			android:text="@string/cancel"  
 			android:layout_width="70dip" 
 			android:id="@+id/cancel_button" 
 			android:layout_marginRight="15dip"
@@ -40,7 +40,7 @@
 	<Button android:layout_below="@id/passphrase_edit"  
 			android:layout_width="70dip" 
 			android:layout_height="wrap_content" 
-			android:text="OK" 
+			android:text="@string/ok" 
 			android:layout_toLeftOf="@id/cancel_button" 
 			android:id="@+id/ok_button"  
 			android:layout_marginRight="15dip" ></Button>

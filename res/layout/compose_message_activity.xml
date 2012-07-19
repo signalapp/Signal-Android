@@ -195,7 +195,7 @@
 			            style="?android:attr/buttonStyleSmall"
 			            android:layout_width="100dip"
 			            android:layout_height="50dip"
-			            android:text="Remove" />
+			            android:text="@string/remove" />
 			
 			    </LinearLayout>
 
@@ -259,14 +259,14 @@
                         style="?android:attr/buttonStyle"
                         android:layout_gravity="center_vertical"
                         android:nextFocusLeft="@+id/embedded_text_editor"
-                        android:text="Send"
+                        android:text="@string/send"
                     />
                 </LinearLayout>
                        <TextView android:id="@+id/space_left"
                        			 android:paddingLeft="5dip"
          		   				 android:layout_width="fill_parent"
          		   				 android:layout_height="wrap_content"
-         		   				 android:text="160/160 (1)"
+         		   				 android:text="@string/onesixty"
          		   		/>
             </LinearLayout>
         </ScrollView>

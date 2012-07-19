@@ -10,26 +10,24 @@
     <TableRow>
         <TextView
         	android:textSize="12sp"
-            android:text="Your friend reads this:"
+            android:text="@string/theyRead"
             android:padding="3dip" />
         <TextView
            	android:textSize="20sp"
            	android:typeface="monospace"        
         	android:id="@+id/friend_reads"
-            android:text=""
             android:padding="3dip" />
     </TableRow>
 
     <TableRow>
         <TextView
-            android:text="You read this:"
+            android:text="@string/youRead"
             android:textSize="12sp"            
             android:padding="3dip" />
         <TextView
         	android:id="@+id/you_read"
         	android:textSize="20sp"
            	android:typeface="monospace"                	
-            android:text=""
             android:padding="3dip" />
     </TableRow>
     
@@ -44,25 +42,25 @@
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Verified!"/>
+					android:text="@string/verified"/>
 	
 	   		<Button android:id="@+id/abort_button"
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Abort"/>
+					android:text="@string/abort"/>
 					
 			<Button android:id="@+id/compare_button"
 	   				android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Compare"/>			
+					android:text="@string/compare"/>			
 					
 			<Button android:id="@+id/cancel_button"
 					android:padding="10dip"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Cancel" />
+					android:text="@string/cancel" />
 		</LinearLayout>
     
     </TableRow>    
