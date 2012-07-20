@@ -32,10 +32,16 @@
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
+    <activity android:name=".PassphrasePromptActivity"
+              android:theme="@style/Theme.Sherlock.Dialog"
+              android:label="Enter Passphrase"
+              android:launchMode="singleInstance"
+              android:windowSoftInputMode="stateVisible"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
+
     <activity android:name=".AutoInitiateActivity" android:theme="@android:style/Theme.Dialog" android:label="TextSecure Messaging Detected" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".ApplicationPreferencesActivity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".PassphraseCreateActivity" android:theme="@android:style/Theme.Dialog" android:label="Create Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
-    <activity android:name=".PassphrasePromptActivity" android:theme="@android:style/Theme.Dialog" android:label="Enter Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".PassphraseChangeActivity" android:theme="@android:style/Theme.Dialog" android:label="Change Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".SendKeyActivity" android:theme="@android:style/Theme.Dialog" android:label="Initiate Key Exchange" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".ReceiveKeyActivity" android:theme="@android:style/Theme.Dialog" android:label="Complete Key Exchange" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
