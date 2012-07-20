@@ -20,6 +20,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,7 @@ public class ConversationAdapter extends CursorAdapter {
   private final Recipients recipients;
   private final MasterSecret masterSecret;
   private final MasterCipher masterCipher;
+  private final LayoutInflater inflater;
 
   private boolean dataChanged;
 
@@ -76,6 +78,8 @@ public class ConversationAdapter extends CursorAdapter {
     this.dataChanged            = false;
     this.failedIconClickHandler = failedIconClickHandler;
     this.messageRecordCache     = initializeCache();
+    this.inflater               = (LayoutInflater)context
+                                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     DatabaseFactory.getThreadDatabase(context).setRead(threadId);
     MessageNotifier.updateNotification(context, false);
@@ -107,10 +111,35 @@ public class ConversationAdapter extends CursorAdapter {
 
   @Override
   public View newView(Context context, Cursor cursor, ViewGroup parent) {
-    ConversationItem view = new ConversationItem(context);
-    bindView(view, context, cursor);
+    View view;
 
+    int type = getItemViewType(cursor);
+
+    if (type == 0) view = inflater.inflate(R.layout.conversation_item_sent, parent, false);
+    else           view = inflater.inflate(R.layout.conversation_item_received, parent, false);
+
+    bindView(view, context, cursor);
     return view;
+  }
+
+  @Override
+  public int getViewTypeCount() {
+    return 2;
+  }
+
+  @Override
+  public int getItemViewType(int position) {
+    Cursor cursor = (Cursor)getItem(position);
+    return getItemViewType(cursor);
+  }
+
+  private int getItemViewType(Cursor cursor) {
+    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
+    String type                 = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.TRANSPORT));
+    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
+
+    if (messageRecord.isOutgoing()) return 0;
+    else                            return 1;
   }
 
   private MessageRecord getNewMmsMessageRecord(long messageId, Cursor cursor) {

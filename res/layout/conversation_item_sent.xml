@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.ConversationItem
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/conversation_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dip"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+        <LinearLayout android:id="@+id/indicators_parent"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_vertical"
+                      android:orientation="vertical"
+                      android:layout_alignParentLeft="true">
+
+            <ImageView
+                android:id="@+id/key_exchange_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/key"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/sms_pending_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_sms_mms_pending"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/sms_secure_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_lock_small"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/sms_failed_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_sms_mms_not_delivered"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/conversation_item_parent"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_toRightOf="@id/indicators_parent"
+                      android:layout_toLeftOf="@+id/contact_photo"
+                      android:orientation="vertical" >
+
+            <TextView android:id="@+id/conversation_item_body"
+                android:autoLink="all"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:linksClickable="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:gravity="right"
+                android:textColor="#ff000000"
+                android:textSize="16sp" />
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mms_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="7dip"
+                android:paddingBottom="7dip">
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:maxWidth="178dip"
+                    android:maxHeight="178dip"
+                    android:adjustViewBounds="true"
+                    android:background="@android:drawable/picture_frame"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/play_slideshow_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mms_play_btn"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mms_download_controls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button android:id="@+id/mms_download_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Download"
+                    android:visibility="gone" />
+
+                <TextView android:id="@+id/mms_label_downloading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:text="Downloading"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+             <TextView android:id="@+id/conversation_item_date"
+                android:autoLink="all"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:linksClickable="false"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:gravity="right"
+                android:textColor="#ffcccccc"
+                android:paddingTop="1dip"/>
+
+        </LinearLayout>
+
+        <view  xmlns:android="http://schemas.android.com/apk/res/android"
+               class="org.thoughtcrime.securesms.components.ImageDivet"
+               position="left"
+               android:id="@id/contact_photo"
+               android:layout_alignParentRight="true"
+               android:layout_width="60dp"
+               android:layout_height="60dp"
+               android:cropToPadding="true"
+               android:layout_marginLeft="10dip"
+               android:layout_marginRight="0dip"
+               android:padding="0dip"
+               android:scaleType="centerCrop" />
+
+
+    </RelativeLayout>
+</org.thoughtcrime.securesms.ConversationItem>
