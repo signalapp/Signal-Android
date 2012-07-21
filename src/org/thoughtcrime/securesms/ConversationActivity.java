@@ -211,6 +211,7 @@ public class ConversationActivity extends SherlockFragmentActivity {
     case R.id.menu_abort_session:        handleAbortSecureSession();                   return true;
     case R.id.menu_verify_recipient:     handleVerifyRecipient();                      return true;
     case R.id.menu_verify_session:       handleVerifySession();                        return true;
+    case android.R.id.home:              finish();                                     return true;
     }
 
     return false;
