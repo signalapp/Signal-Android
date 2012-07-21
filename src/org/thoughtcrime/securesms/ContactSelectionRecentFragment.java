@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,35 +10,21 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.thoughtcrime.securesms;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.RedPhoneCallTypes;
-
-import android.app.ListActivity;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.CallLog.Calls;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.text.format.DateUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
@@ -48,102 +34,82 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockListFragment;
+
+import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.RedPhoneCallTypes;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Displays a list of recently used contacts for multi-select.  Displayed
  * by the ContactSelectionActivity in a tab frame, and ultimately used by
  * ComposeMessageActivity for selecting destination message contacts.
- * 
+ *
  * @author Moxie Marlinspike
  *
  */
-public class ContactSelectionRecentActivity extends ListActivity {
-	
-  private final HashMap<Long, ContactData> selectedContacts = new HashMap<Long, ContactData>(); 
+public class ContactSelectionRecentFragment extends SherlockListFragment
+    implements LoaderManager.LoaderCallbacks<Cursor>
+{
 
-  private static final int MENU_OPTION_EXIT         = 1;
-	
+  private final HashMap<Long, ContactData> selectedContacts = new HashMap<Long, ContactData>();
+
   @Override
-  protected void onCreate(Bundle icicle) {
-    super.onCreate(icicle);
-		
-    setContentView(R.layout.contact_selection_recent_activity);
+  public void onActivityCreated(Bundle icicle) {
+    super.onActivityCreated(icicle);
+
     initializeResources();
-    displayContacts();
-  }
-	
-  @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
-    super.onPrepareOptionsMenu(menu);
-    menu.clear();		
-    menu.add(0, MENU_OPTION_EXIT, Menu.NONE, "Finished!").setIcon(android.R.drawable.ic_menu_set_as);
-    return true;
+    initializeCursor();
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    super.onOptionsItemSelected(item);
-		
-    switch (item.getItemId()) {
-    case MENU_OPTION_EXIT: saveAndExit(); return true;
-    }
-		
-    return false;
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.contact_selection_recent_activity, container, false);
   }
 
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event)  {
-    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-      saveAndExit();
-      return true;
-    }
-
-    return super.onKeyDown(keyCode, event);
+  public void onListItemClick(ListView l, View v, int position, long id) {
+    ((CallItemView)v).selected();
   }
-			
-  private void saveAndExit() {
+
+  private void initializeCursor() {
+    setListAdapter(new ContactSelectionListAdapter(getActivity(), null));
+    this.getLoaderManager().initLoader(0, null, this);
+  }
+
+  public Recipients getSelectedContacts() {
     List<Recipient> recipientList = new LinkedList<Recipient>();
-		
+
     for (ContactData contactData : selectedContacts.values()) {
       for (NumberData numberData : contactData.numbers) {
         recipientList.add(new Recipient(contactData.name, numberData.number, null));
       }
     }
-		
-    Intent resultIntent = getIntent();
-    resultIntent.putExtra("recipients", new Recipients(recipientList));
-		
-    if (getParent() == null) setResult(RESULT_OK, resultIntent);
-    else                     getParent().setResult(RESULT_OK, resultIntent);
-		
-    finish();		
+
+    return new Recipients(recipientList);
   }
-	
+
   private void addSingleNumberContact(ContactData contactData) {
     selectedContacts.put(contactData.id, contactData);
   }
-	
+
   private void removeContact(ContactData contactData) {
     selectedContacts.remove(contactData.id);
   }
-	
-  private void displayContacts() {
-    Cursor cursor = getContentResolver().query(Calls.CONTENT_URI, null, null, null, Calls.DEFAULT_SORT_ORDER);		
-    startManagingCursor(cursor);
 
-    setListAdapter(new ContactSelectionListAdapter(this, cursor));
-  }
-	
   private void initializeResources() {
     this.getListView().setFocusable(true);
   }
 
-  @Override
-  protected void onListItemClick(ListView l, View v, int position, long id) {
-    ((CallItemView)v).selected();
-  }
-	
   private class ContactSelectionListAdapter extends CursorAdapter {
-		
+
     public ContactSelectionListAdapter(Context context, Cursor c) {
       super(context, c);
     }
@@ -164,11 +130,11 @@ public class ContactSelectionRecentActivity extends ListActivity {
       String number = cursor.getString(cursor.getColumnIndexOrThrow(Calls.NUMBER));
       int type      = cursor.getInt(cursor.getColumnIndexOrThrow(Calls.TYPE));
       long date     = cursor.getLong(cursor.getColumnIndexOrThrow(Calls.DATE));
-									
+
       ((CallItemView)view).set(id, name, label, number, type, date);
-    }		
-  }	
-	
+    }
+  }
+
   private class CallItemView extends RelativeLayout {
     private ContactData contactData;
     private Context context;
@@ -176,7 +142,7 @@ public class ContactSelectionRecentActivity extends ListActivity {
     private TextView date;
     private TextView label;
     private TextView number;
-    private CheckedTextView line1;		
+    private CheckedTextView line1;
 
     public CallItemView(Context context) {
       super(context);
@@ -194,41 +160,59 @@ public class ContactSelectionRecentActivity extends ListActivity {
 
     public void selected() {
       line1.toggle();
-			
+
       if (line1.isChecked()) {
         addSingleNumberContact(contactData);
       } else {
         removeContact(contactData);
-      }			
+      }
     }
 
     public void set(long id, String name, String label, String number, int type, long date) {
       if( name == null ) {
-        name = ContactAccessor.getInstance().getNameForNumber(ContactSelectionRecentActivity.this, number);
+        name = ContactAccessor.getInstance().getNameForNumber(getActivity(), number);
       }
-			
+
       this.line1.setText((name == null || name.equals("")) ? number : name);
       this.number.setText((name == null || name.equals("")) ? "" : number);
       this.label.setText(label);
       this.date.setText(DateUtils.getRelativeDateTimeString(context, date, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, DateUtils.FORMAT_ABBREV_RELATIVE));
-			
+
       if      (type == Calls.INCOMING_TYPE || type == RedPhoneCallTypes.INCOMING) callTypeIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_call_log_list_incoming_call));
       else if (type == Calls.OUTGOING_TYPE || type == RedPhoneCallTypes.OUTGOING) callTypeIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_call_log_list_outgoing_call));
       else if (type == Calls.MISSED_TYPE   || type == RedPhoneCallTypes.MISSED)   callTypeIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_call_log_list_missed_call));
-			
+
       this.contactData = new ContactData();
-			
+
       if (name != null)
         this.contactData.name = name;
-			
+
       this.contactData.id      = id;
       this.contactData.numbers = new LinkedList<ContactAccessor.NumberData>();
       this.contactData.numbers.add(new NumberData(null, number));
-			
+
       if (selectedContacts.containsKey(id))
         this.line1.setChecked(true);
       else
         this.line1.setChecked(false);
     }
-  }	
+  }
+
+  @Override
+  public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+    return new CursorLoader(getActivity(), Calls.CONTENT_URI,
+                            null, null, null,
+                            Calls.DEFAULT_SORT_ORDER);
+  }
+
+  @Override
+  public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
+    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+  }
+
+  @Override
+  public void onLoaderReset(Loader<Cursor> arg0) {
+    ((CursorAdapter)getListAdapter()).changeCursor(null);
+  }
+
 }

@@ -39,6 +39,11 @@
               android:windowSoftInputMode="stateVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
+    <activity android:name=".ContactSelectionActivity"
+              android:label="Select Contacts"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
+
+
     <activity android:name=".AutoInitiateActivity" android:theme="@android:style/Theme.Dialog" android:label="TextSecure Messaging Detected" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".ApplicationPreferencesActivity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".PassphraseCreateActivity" android:theme="@android:style/Theme.Dialog" android:label="Create Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
@@ -51,11 +56,6 @@
     <activity android:name=".ViewIdentityActivity" android:theme="@android:style/Theme.Dialog" android:label="Public Identity Key" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".SaveIdentityActivity" android:theme="@android:style/Theme.Dialog" android:label="Save Identity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".ReviewIdentitiesActivity" android:theme="@android:style/Theme.Dialog" android:label="Manage Identity Keys (Long click)" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
-    <activity android:name=".ContactSelectionActivity" android:label="Contact Selection" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
-    <activity android:name=".ContactSelectionListActivity" android:label="Contact Selection" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
-    <activity android:name=".GroupSelectionListActivity" android:label="Group Selection" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
-    <activity android:name=".ContactSelectionRecentActivity" android:label="Recent Calls Selection" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
-
 
     <service android:enabled="true" android:name=".service.KeyCachingService"></service>
     <service android:enabled="true" android:name=".service.SendReceiveService"></service>
