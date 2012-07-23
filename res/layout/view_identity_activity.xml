@@ -32,7 +32,7 @@
                     android:padding="5dip"
                     android:layout_width="100dip"
                     android:layout_height="wrap_content"
-                    android:text="Compare" />
+                    android:text="QR Code" />
 
             <Button android:id="@+id/ok_button"
                     android:layout_margin="10dip"
