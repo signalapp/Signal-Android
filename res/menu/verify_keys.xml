@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Verified"
+          android:id="@+id/menu_session_verified"
+          android:icon="@drawable/ic_menu_done_holo_dark"
+          android:showAsAction="ifRoom" />
+</menu>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Compare"
+          android:id="@+id/menu_barcode"
+          android:icon="@drawable/ic_menu_barcode"
+          android:showAsAction="ifRoom">
+
+        <menu>
+            <item android:title="Scan to compare"
+                  android:id="@+id/menu_scan"/>
+
+            <item android:title="Get scanned to compare"
+                  android:id="@+id/menu_get_scanned"/>
+
+        </menu>
+
+    </item>
+</menu>
