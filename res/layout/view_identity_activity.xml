@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="16dip">
 <TableLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -9,12 +11,12 @@
 
     <TableRow>
         <TextView
-            android:textSize="12sp"
-            android:text="Your identity:"
-            android:padding="3dip" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Identity:"
+            android:layout_marginRight="7dip" />
         <TextView
-               android:textSize="20sp"
-               android:typeface="monospace"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:typeface="monospace"
             android:id="@+id/identity_fingerprint"
             android:text=""
             android:padding="3dip" />
