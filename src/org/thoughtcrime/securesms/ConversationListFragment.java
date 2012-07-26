@@ -23,35 +23,33 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.Set;
 
 
 public class ConversationListFragment extends SherlockListFragment
-  implements LoaderManager.LoaderCallbacks<Cursor>
+  implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
 {
 
   private ConversationSelectedListener listener;
   private MasterSecret masterSecret;
-  private boolean isBatchMode = false;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -64,7 +62,7 @@ public class ConversationListFragment extends SherlockListFragment
 
     setHasOptionsMenu(true);
     initializeListAdapter();
-    registerForContextMenu(getListView());
+    initializeBatchListener();
 
     getLoaderManager().initLoader(0, null, this);
   }
@@ -77,57 +75,18 @@ public class ConversationListFragment extends SherlockListFragment
 
   @Override
   public void onPrepareOptionsMenu(Menu menu) {
-    MenuInflater inflater = this.getSherlockActivity().getSupportMenuInflater();
-
-    if      (this.isBatchMode)          inflater.inflate(R.menu.conversation_list_batch, menu);
-    else if (this.masterSecret == null) inflater.inflate(R.menu.conversation_list_locked, menu);
-    else                                inflater.inflate(R.menu.conversation_list, menu);
+    if (this.masterSecret != null) {
+      MenuInflater inflater = this.getSherlockActivity().getSupportMenuInflater();
+      inflater.inflate(R.menu.conversation_list, menu);
+    }
 
     super.onPrepareOptionsMenu(menu);
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    super.onOptionsItemSelected(item);
-
-    switch (item.getItemId()) {
-    case R.id.menu_batch_mode:      handleSwitchBatchMode(true);  return true;
-    case R.id.menu_delete_selected: handleDeleteAllSelected();    return true;
-    case R.id.menu_select_all:      handleSelectAllThreads();     return true;
-    case R.id.menu_unselect_all:    handleUnselectAllThreads();   return true;
-    case R.id.menu_normal_mode:     handleSwitchBatchMode(false); return true;
-    }
-
-    return false;
-  }
-
-  @Override
-  public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-    android.view.MenuInflater inflater = this.getSherlockActivity().getMenuInflater();
-    menu.clear();
-
-    inflater.inflate(R.menu.conversation_list_context, menu);
-  }
-
-  @Override
-  public boolean onContextItemSelected(android.view.MenuItem item) {
-    Cursor cursor         = ((CursorAdapter)this.getListAdapter()).getCursor();
-    long threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
-    String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
-    Recipients recipients = RecipientFactory.getRecipientsForIds(getActivity(), recipientId);
-
-    switch(item.getItemId()) {
-    case R.id.menu_context_view:   handleCreateConversation(threadId, recipients); return true;
-    case R.id.menu_context_delete: handleDeleteThread(threadId);                   return true;
-    }
-
-    return false;
-  }
-
-  @Override
   public void onListItemClick(ListView l, View v, int position, long id) {
-    if (v instanceof ConversationHeaderView) {
-      ConversationHeaderView headerView = (ConversationHeaderView) v;
+    if (v instanceof ConversationListItem) {
+      ConversationListItem headerView = (ConversationListItem) v;
       handleCreateConversation(headerView.getThreadId(), headerView.getRecipients());
     }
   }
@@ -135,6 +94,22 @@ public class ConversationListFragment extends SherlockListFragment
   public void setMasterSecret(MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
     initializeListAdapter();
+  }
+
+  private void initializeBatchListener() {
+    getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+      @Override
+      public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
+        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
+        getSherlockActivity().startActionMode(ConversationListFragment.this);
+
+        adapter.initializeBatchMode(true);
+        adapter.addToBatchSet(((ConversationListItem)v).getThreadId());
+        adapter.notifyDataSetChanged();
+
+        return true;
+      }
+    });
   }
 
   private void initializeListAdapter() {
@@ -145,12 +120,6 @@ public class ConversationListFragment extends SherlockListFragment
     }
 
     getLoaderManager().restartLoader(0, null, this);
-  }
-
-  private void handleSwitchBatchMode(boolean batchMode) {
-    this.isBatchMode = batchMode;
-    ((ConversationListAdapter)this.getListAdapter()).initializeBatchMode(batchMode);
-    this.getSherlockActivity().invalidateOptionsMenu();
   }
 
   private void handleDeleteAllSelected() {
@@ -174,24 +143,6 @@ public class ConversationListFragment extends SherlockListFragment
 
     alert.setNegativeButton("Cancel", null);
     alert.show();
-  }
-
-  private void handleDeleteThread(final long threadId) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle("Delete Thread Confirmation");
-    builder.setIcon(android.R.drawable.ic_dialog_alert);
-    builder.setCancelable(true);
-    builder.setMessage("Are you sure that you want to permanently delete this conversation?");
-    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        if (threadId > 0) {
-          DatabaseFactory.getThreadDatabase(getActivity()).deleteConversation(threadId);
-        }
-      }
-    });
-    builder.setNegativeButton(R.string.no, null);
-    builder.show();
   }
 
   private void handleSelectAllThreads() {
@@ -224,6 +175,39 @@ public class ConversationListFragment extends SherlockListFragment
   public interface ConversationSelectedListener {
     public void onCreateConversation(long threadId, Recipients recipients);
 }
+
+  @Override
+  public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+    MenuInflater inflater = getSherlockActivity().getSupportMenuInflater();
+    inflater.inflate(R.menu.conversation_list_batch, menu);
+
+    LayoutInflater layoutInflater = getSherlockActivity().getLayoutInflater();
+    View actionModeView = layoutInflater.inflate(R.layout.conversation_fragment_cab, null);
+
+    mode.setCustomView(actionModeView);
+
+    return true;
+  }
+
+  @Override
+  public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+    return false;
+  }
+
+  @Override
+  public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+    switch (item.getItemId()) {
+    case R.id.menu_select_all:      handleSelectAllThreads(); return true;
+    case R.id.menu_delete_selected: handleDeleteAllSelected(); return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public void onDestroyActionMode(ActionMode mode) {
+    ((ConversationListAdapter)getListAdapter()).initializeBatchMode(false);
+  }
 
 }
 

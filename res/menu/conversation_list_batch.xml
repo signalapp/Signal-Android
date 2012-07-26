@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Normal Mode"
-          android:id="@+id/menu_normal_mode"
-          android:icon="@android:drawable/ic_menu_set_as" />
 
     <item android:title="Delete Selected"
           android:id="@+id/menu_delete_selected"
@@ -11,10 +8,10 @@
 
     <item android:title="Select All"
           android:id="@+id/menu_select_all"
-          android:icon="@android:drawable/ic_menu_add" />
+          android:icon="@drawable/ic_menu_selectall_holo_dark" />
 
-    <item android:title="Unselect All"
-          android:id="@+id/menu_unselect_all"
-          android:icon="@android:drawable/ic_menu_revert" />
+<!--     <item android:title="Unselect All" -->
+<!--           android:id="@+id/menu_unselect_all" -->
+<!--           android:icon="@android:drawable/ic_menu_revert" /> -->
 
 </menu>

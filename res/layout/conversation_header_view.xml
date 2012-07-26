@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.ConversationHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.ConversationListItem xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:paddingRight="10dip"
@@ -81,4 +81,4 @@
         android:layout_toLeftOf="@id/date"
         android:ellipsize="end" />
 
-</org.thoughtcrime.securesms.ConversationHeaderView>
+</org.thoughtcrime.securesms.ConversationListItem>

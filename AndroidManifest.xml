@@ -79,7 +79,6 @@
 
     <activity android:name=".ApplicationPreferencesActivity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".PassphraseCreateActivity" android:theme="@android:style/Theme.Dialog" android:label="Create Passphrase" android:launchMode="singleInstance" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
-    <activity android:name=".SendKeyActivity" android:theme="@android:style/Theme.Dialog" android:label="Initiate Key Exchange" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".ReceiveKeyActivity" android:theme="@android:style/Theme.Dialog" android:label="Complete Key Exchange" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".VerifyImportedIdentityActivity" android:theme="@android:style/Theme.Dialog" android:label="Verify Imported Identity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
 

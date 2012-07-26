@@ -45,7 +45,7 @@ import java.util.Set;
  * @author Moxie Marlinspike
  */
 
-public class ConversationHeaderView extends RelativeLayout {
+public class ConversationListItem extends RelativeLayout {
 
   private Set<Long>         selectedThreads;
   private Recipients        recipients;
@@ -58,14 +58,14 @@ public class ConversationHeaderView extends RelativeLayout {
   private CheckBox          checkbox;
   private QuickContactBadge contactPhoto;
 
-  public ConversationHeaderView(Context context, boolean first) {
+  public ConversationListItem(Context context, boolean first) {
     this(context, (Set<Long>)null);
 
     this.first = true;
     contactPhoto.setVisibility(View.GONE);
   }
 
-  public ConversationHeaderView(Context context, Set<Long> selectedThreads) {
+  public ConversationListItem(Context context, Set<Long> selectedThreads) {
     super(context);
 
     LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,7 +82,7 @@ public class ConversationHeaderView extends RelativeLayout {
     intializeListeners();
   }
 
-  public ConversationHeaderView(Context context, AttributeSet attrs) {
+  public ConversationListItem(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
