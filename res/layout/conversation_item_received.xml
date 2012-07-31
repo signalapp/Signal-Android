@@ -106,7 +106,7 @@
        <LinearLayout android:id="@+id/indicators_parent"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_gravity="center_vertical"
+                      android:layout_centerVertical="true"
                       android:orientation="vertical"
                       android:layout_alignParentRight="true">
 
@@ -115,15 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/key"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/sms_pending_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_sms_mms_pending"
+                android:src="@drawable/ic_menu_login"
                 android:visibility="gone" />
 
             <ImageView

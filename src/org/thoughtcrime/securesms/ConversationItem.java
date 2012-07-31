@@ -76,7 +76,6 @@ public class ConversationItem extends LinearLayout {
 
   private  TextView bodyText;
   private  TextView dateText;
-  private  ImageView pendingImage;
   private  ImageView secureImage;
   private  ImageView failedImage;
   private  ImageView keyImage;
@@ -107,7 +106,6 @@ public class ConversationItem extends LinearLayout {
 
     this.bodyText            = (TextView) findViewById(R.id.conversation_item_body);
     this.dateText            = (TextView) findViewById(R.id.conversation_item_date);
-    this.pendingImage        = (ImageView)findViewById(R.id.sms_pending_indicator);
     this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
     this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
     this.keyImage            = (ImageView)findViewById(R.id.key_exchange_indicator);
@@ -212,7 +210,7 @@ public class ConversationItem extends LinearLayout {
   private void setBodyText(MessageRecord messageRecord) {
     String body = messageRecord.getBody();
 
-    if      (messageRecord.isKeyExchange() && messageRecord.isOutgoing())           body    = "\nSent key exchange message";
+    if      (messageRecord.isKeyExchange() && messageRecord.isOutgoing())           body    = "\nKey exchange message";
     else if (messageRecord.isProcessedKeyExchange() && !messageRecord.isOutgoing()) body    = "\nReceived and processed key exchange message.";
     else if (messageRecord.isStaleKeyExchange())                                    body    = "\nError, received stale key exchange message.";
     else if (messageRecord.isKeyExchange() && !messageRecord.isOutgoing())          body    = "\nReceived key exchange message, click to process";
@@ -250,12 +248,6 @@ public class ConversationItem extends LinearLayout {
   private void setBodyImage(MessageRecord messageRecord) {
     Recipient recipient = messageRecord.getMessageRecipient();
 
-    if (messageRecord.isKeyExchange())
-    {
-      contactPhoto.setVisibility(View.GONE);
-      return;
-    }
-
     if (!messageRecord.isOutgoing()) contactPhoto.setImageBitmap(recipient.getContactPhoto());
     else                             setContactPhotoForUserIdentity();
 
@@ -281,7 +273,6 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setStatusIcons(MessageRecord messageRecord) {
-    pendingImage.setVisibility(messageRecord.isPending() ? View.VISIBLE : View.GONE);
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     keyImage.setVisibility(messageRecord.isKeyExchange() ? View.VISIBLE : View.GONE);
