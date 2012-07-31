@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+                 android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="16dip"
+              android:layout_marginRight="16dip"
+              android:layout_marginTop="5dip"
+              android:layout_marginBottom="5dip"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:text="Identity Name:" />
+
+    <EditText android:layout_height="wrap_content"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:padding="16dip">
+              android:id="@+id/identity_name"
+              android:layout_margin="16dip"/>
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:padding="5dip"
-                      android:text="Identity Name:" />
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_marginBottom="16dip"
+                  android:gravity="right">
 
-            <EditText android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:padding="5dip"
-                      android:id="@+id/identity_name"
-                      android:text="" />
+        <TableLayout android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:stretchColumns="*">
+            <TableRow>
+                <Button android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Cancel"
+                        android:id="@+id/cancel_button"
+                        android:layout_marginRight="15dip"
+                        android:layout_marginLeft="16dip"/>
 
-            <LinearLayout android:layout_width="fill_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:layout_marginBottom="16dip"
-                          android:gravity="right">
-
-                <TableLayout android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:stretchColumns="*">
-                    <TableRow>
-
-                        <Button android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:visibility="visible"
-                                android:layout_marginRight="17dip"
-                                android:id="@+id/cancel_button"
-                                android:text="Cancel"/>
-
-                        <Button android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:visibility="visible"
-                                android:id="@+id/ok_button"
-                                android:text="Ok"/>
-
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
+                <Button android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="OK"
+                        android:id="@+id/ok_button"
+                        android:layout_marginRight="16dip"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
 </LinearLayout>
