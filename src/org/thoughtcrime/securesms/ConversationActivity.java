@@ -365,8 +365,8 @@ public class ConversationActivity extends SherlockFragmentActivity {
     if (isSingleExistingConversation() &&
         KeyUtil.isSessionFor(this, recipients.getPrimaryRecipient()))
     {
-      sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_lock_small, 0);
-      sendButton.setCompoundDrawablePadding(10);
+      sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_menu_lock_holo_light, 0);
+      sendButton.setCompoundDrawablePadding(15);
       this.sendEncrypted       = true;
       this.characterCalculator = new EncryptedCharacterCalculator();
     } else {
