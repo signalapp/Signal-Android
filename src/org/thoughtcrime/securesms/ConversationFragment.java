@@ -47,8 +47,6 @@ public class ConversationFragment extends SherlockListFragment
     initializeResources();
     initializeListAdapter();
     registerForContextMenu(getListView());
-
-    getLoaderManager().initLoader(0, null, this);
   }
 
   @Override
@@ -73,6 +71,13 @@ public class ConversationFragment extends SherlockListFragment
     }
 
     return false;
+  }
+
+  public void reload(Recipients recipients, long threadId) {
+    this.recipients = recipients;
+    this.threadId   = threadId;
+
+    initializeListAdapter();
   }
 
   private void handleCopyMessage(MessageRecord message) {
@@ -141,17 +146,15 @@ public class ConversationFragment extends SherlockListFragment
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      this.setListAdapter(new ConversationAdapter(recipients, threadId, getActivity(), masterSecret, new FailedIconClickHandler()));
+      this.setListAdapter(new ConversationAdapter(recipients, threadId, getActivity(),
+                                                  masterSecret, new FailedIconClickHandler()));
+      getLoaderManager().initLoader(0, null, this);
     }
   }
 
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    if (this.threadId != -1) {
-      return new ConversationLoader(getActivity(), threadId);
-    } else {
-      return null;
-    }
+    return new ConversationLoader(getActivity(), threadId);
   }
 
   @Override

@@ -551,9 +551,12 @@ public class ConversationActivity extends SherlockFragmentActivity {
     this.threadId   = threadId;
 
     if (this.recipientsPanel.getVisibility() == View.VISIBLE) {
-      ///XXX call down to fragment!  ??
+      ConversationFragment fragment
+        = (ConversationFragment)this.getSupportFragmentManager()
+          .findFragmentById(R.id.fragment_content);
 
-//      initializeConversationAdapter();
+      fragment.reload(recipients, threadId);
+
       this.recipientsPanel.setVisibility(View.GONE);
       initializeTitleBar();
     }
