@@ -33,13 +33,13 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
     <activity android:name=".PassphraseCreateActivity"
-              android:theme="@style/Theme.Sherlock.Dialog"
+              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="Create Passphrase"
               android:launchMode="singleInstance"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
     <activity android:name=".PassphrasePromptActivity"
-              android:theme="@style/Theme.Sherlock.Dialog"
+              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="Enter Passphrase"
               android:launchMode="singleInstance"
               android:windowSoftInputMode="stateVisible"
@@ -50,17 +50,17 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
     <activity android:name=".AutoInitiateActivity"
-              android:theme="@style/Theme.Sherlock.Dialog"
+              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="TextSecure Messaging Detected"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
     <activity android:name=".ViewIdentityActivity"
-              android:theme="@style/Theme.Sherlock.Dialog"
+              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="Public Identity Key"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
     <activity android:name=".PassphraseChangeActivity"
-              android:theme="@style/Theme.Sherlock.Dialog"
+              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="Change Passphrase"
               android:launchMode="singleInstance"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
@@ -74,7 +74,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
     <activity android:name=".SaveIdentityActivity"
-              android:theme="@style/Theme.Sherlock.Dialog"
+              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="Save Identity"
               android:windowSoftInputMode="stateVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
