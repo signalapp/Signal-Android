@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -50,6 +51,7 @@ public class ConversationListFragment extends SherlockListFragment
 
   private ConversationSelectedListener listener;
   private MasterSecret masterSecret;
+  private String queryFilter = "";
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -75,9 +77,13 @@ public class ConversationListFragment extends SherlockListFragment
 
   @Override
   public void onPrepareOptionsMenu(Menu menu) {
-    if (this.masterSecret != null) {
-      MenuInflater inflater = this.getSherlockActivity().getSupportMenuInflater();
+    MenuInflater inflater = this.getSherlockActivity().getSupportMenuInflater();
+
+    if (this.masterSecret != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
       inflater.inflate(R.menu.conversation_list, menu);
+      initializeSearch((android.widget.SearchView)menu.findItem(R.id.menu_search).getActionView());
+    } else {
+      inflater.inflate(R.menu.conversation_list_empty, menu);
     }
 
     super.onPrepareOptionsMenu(menu);
@@ -94,6 +100,21 @@ public class ConversationListFragment extends SherlockListFragment
   public void setMasterSecret(MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
     initializeListAdapter();
+  }
+
+  private void initializeSearch(android.widget.SearchView searchView) {
+    searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String query) {
+        ConversationListFragment.this.queryFilter = query;
+        ConversationListFragment.this.getLoaderManager().restartLoader(0, null, ConversationListFragment.this);
+        return true;
+      }
+      @Override
+      public boolean onQueryTextChange(String newText) {
+        return onQueryTextSubmit(newText);
+      }
+    });
   }
 
   private void initializeBatchListener() {
@@ -159,7 +180,7 @@ public class ConversationListFragment extends SherlockListFragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationListLoader(getActivity(), null);
+    return new ConversationListLoader(getActivity(), queryFilter);
   }
 
   @Override

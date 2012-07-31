@@ -4,7 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.content.CursorLoader;
 
+import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+
+import java.util.List;
 
 public class ConversationListLoader extends CursorLoader {
 
@@ -19,7 +22,13 @@ public class ConversationListLoader extends CursorLoader {
 
   @Override
   public Cursor loadInBackground() {
-    return DatabaseFactory.getThreadDatabase(context).getConversationList();
-  }
+    if (filter != null && filter.trim().length() != 0) {
+      List<String> numbers = ContactAccessor.getInstance()
+          .getNumbersForThreadSearchFilter(filter, context.getContentResolver());
 
+      return DatabaseFactory.getThreadDatabase(context).getFilteredConversationList(numbers);
+    } else {
+      return DatabaseFactory.getThreadDatabase(context).getConversationList();
+    }
+  }
 }
