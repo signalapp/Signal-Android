@@ -142,7 +142,7 @@ public class MessageNotifier {
     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
     if (!sp.getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true)) return;
 
-    Notification notification    = new Notification(R.drawable.stat_notify_sms, ticker, System.currentTimeMillis());
+    Notification notification    = new Notification(R.drawable.icon_notification, ticker, System.currentTimeMillis());
     String ringtone              = sp.getString(ApplicationPreferencesActivity.RINGTONE_PREF, null);
     boolean vibrate              = sp.getBoolean(ApplicationPreferencesActivity.VIBRATE_PREF, true);
     String ledColor              = sp.getString(ApplicationPreferencesActivity.LED_COLOR_PREF, "green");
