@@ -5,58 +5,70 @@
             android:layout_height="fill_parent"
             xmlns:android="http://schemas.android.com/apk/res/android">
 
-<LinearLayout android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8px"
-                xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:paddingLeft="16dip"
+                  android:paddingRight="16dip"
+                  android:orientation="vertical">
 
-<TextView android:text="Please enter a passphrase that will be used to locally encrypt your data.  This should be a strong passphrase."
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:id="@+id/create_pass_label"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_margin="10dip"/>
+        <TextView android:text="Please choose a passphrase that will be used to locally encrypt your data.  This should be a strong passphrase."
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dip"
+                  android:layout_marginBottom="10dip"/>
 
-<EditText android:id="@+id/passphrase_edit"
-          android:layout_height="wrap_content"
-          android:layout_width="fill_parent"
-          android:password="true"
-          android:layout_margin="10dip"/>
+        <TextView android:text="Passphrase:"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="5dip"/>
 
-<TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/repeat_label"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:layout_margin="10dip"
-          android:text="Repeat:"></TextView>
+        <EditText android:id="@+id/passphrase_edit"
+                  android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"
+                  android:password="true"/>
 
-<EditText
-          android:layout_height="wrap_content"
-          android:layout_width="fill_parent"
-          android:password="true"
-          android:layout_margin="10dip"
-          android:id="@+id/passphrase_edit_repeat"></EditText>
+        <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/repeat_label"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:layout_marginBottom="5dip"
+                  android:layout_marginTop="10dip"
+                  android:text="Repeat:"/>
 
-<RelativeLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/RelativeLayout"
-        >
-<Button android:layout_width="100dip"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancel_button" android:text="Cancel"
-        android:layout_below="@id/passphrase_edit_repeat"
-        android:layout_alignParentRight="true"></Button>
+        <EditText
+                  android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"
+                  android:password="true"
+                  android:id="@+id/passphrase_edit_repeat"/>
 
-<Button android:layout_below="@id/passphrase_edit_repeat"
-        android:layout_width="100dip"
-        android:layout_height="wrap_content"
-        android:text="Ok" android:id="@+id/ok_button"
-        android:layout_toLeftOf="@id/cancel_button"></Button>
-        </RelativeLayout>
+        <LinearLayout android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="16dip"
+                      android:gravity="right">
 
-</LinearLayout>
+            <TableLayout android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:stretchColumns="*">
+                <TableRow>
+                    <Button android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Cancel"
+                            android:id="@+id/cancel_button"
+                            android:layout_marginRight="15dip"
+                            android:layout_marginLeft="16dip"/>
+
+                    <Button android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OK"
+                            android:id="@+id/ok_button"
+                            android:layout_marginRight="16dip"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

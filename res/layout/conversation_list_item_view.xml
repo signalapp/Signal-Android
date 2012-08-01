@@ -10,13 +10,6 @@
                        android:layout_centerVertical="true"
                        android:layout_alignParentLeft="true" />
 
-   <ImageView android:id="@+id/key_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:visibility="invisible"
-        android:src="@drawable/key_exchange_indicator" />
-
     <CheckBox android:id="@+id/checkbox"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"

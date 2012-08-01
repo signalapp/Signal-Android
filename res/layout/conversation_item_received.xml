@@ -15,7 +15,7 @@
         <view  xmlns:android="http://schemas.android.com/apk/res/android"
                class="org.thoughtcrime.securesms.components.ImageDivet"
                position="right"
-               android:id="@id/contact_photo"
+               android:id="@+id/contact_photo"
                android:layout_alignParentLeft="true"
                android:layout_width="60dp"
                android:layout_height="60dp"

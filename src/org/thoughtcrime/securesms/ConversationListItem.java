@@ -54,7 +54,6 @@ public class ConversationListItem extends RelativeLayout {
   private TextView          subjectView;
   private TextView          fromView;
   private TextView          dateView;
-  private View              keyIndicator;
   private CheckBox          checkbox;
   private QuickContactBadge contactPhoto;
 
@@ -69,13 +68,12 @@ public class ConversationListItem extends RelativeLayout {
     super(context);
 
     LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    li.inflate(R.layout.conversation_header_view, this, true);
+    li.inflate(R.layout.conversation_list_item_view, this, true);
 
     this.selectedThreads = selectedThreads;
     this.subjectView     = (TextView)findViewById(R.id.subject);
     this.fromView        = (TextView)findViewById(R.id.from);
     this.dateView        = (TextView)findViewById(R.id.date);
-    this.keyIndicator    = findViewById(R.id.key_indicator);
     this.contactPhoto    = (QuickContactBadge)findViewById(R.id.contact_photo);
     this.checkbox        = (CheckBox)findViewById(R.id.checkbox);
 
@@ -105,9 +103,6 @@ public class ConversationListItem extends RelativeLayout {
     if (selectedThreads != null)
       this.checkbox.setChecked(selectedThreads.contains(threadId));
 
-    clearIndicators();
-    setIndicators(message.isKeyExchange());
-
     if (!first) {
       if (batchMode) checkbox.setVisibility(View.VISIBLE);
       else           checkbox.setVisibility(View.GONE);
@@ -120,14 +115,6 @@ public class ConversationListItem extends RelativeLayout {
 
   private void intializeListeners() {
     checkbox.setOnCheckedChangeListener(new CheckedChangedListener());
-  }
-
-  private void clearIndicators() {
-    this.keyIndicator.setVisibility(View.INVISIBLE);
-  }
-
-  private void setIndicators(boolean key) {
-    if (key) this.keyIndicator.setVisibility(View.VISIBLE);
   }
 
   private CharSequence formatFrom(Recipients from, long count, boolean read) {
