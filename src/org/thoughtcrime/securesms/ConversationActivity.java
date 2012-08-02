@@ -121,7 +121,7 @@ public class ConversationActivity extends SherlockFragmentActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    initializeSecurity(recipients);
+    initializeSecurity();
     initializeTitleBar();
     calculateCharactersRemaining();
   }
@@ -184,14 +184,14 @@ public class ConversationActivity extends SherlockFragmentActivity {
     MenuInflater inflater = this.getSupportMenuInflater();
     menu.clear();
 
-    if (isSingleExistingConversation() && sendEncrypted)
+    if (isSingleConversation() && sendEncrypted)
     {
       if (isAuthenticatedSession()) {
         inflater.inflate(R.menu.conversation_secure_verified, menu);
       } else {
         inflater.inflate(R.menu.conversation_secure_unverified, menu);
       }
-    } else if (isSingleExistingConversation()) {
+    } else if (isSingleConversation()) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
@@ -238,20 +238,20 @@ public class ConversationActivity extends SherlockFragmentActivity {
 
   private void handleVerifyRecipient() {
     Intent verifyIdentityIntent = new Intent(this, VerifyIdentityActivity.class);
-    verifyIdentityIntent.putExtra("recipient", recipients.getPrimaryRecipient());
+    verifyIdentityIntent.putExtra("recipient", getRecipients().getPrimaryRecipient());
     verifyIdentityIntent.putExtra("master_secret", masterSecret);
     startActivity(verifyIdentityIntent);
   }
 
   private void handleVerifySession() {
     Intent verifyKeysIntent = new Intent(this, VerifyKeysActivity.class);
-    verifyKeysIntent.putExtra("recipient", recipients.getPrimaryRecipient());
+    verifyKeysIntent.putExtra("recipient", getRecipients().getPrimaryRecipient());
     verifyKeysIntent.putExtra("master_secret", masterSecret);
     startActivity(verifyKeysIntent);
   }
 
   private void handleStartSecureSession() {
-    Recipient recipient         = recipients.getPrimaryRecipient();
+    final Recipient recipient   = getRecipients().getPrimaryRecipient();
     String recipientName        = (recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("Initiate Secure Session?");
@@ -262,7 +262,7 @@ public class ConversationActivity extends SherlockFragmentActivity {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         KeyExchangeInitiator.initiate(ConversationActivity.this, masterSecret,
-                                      recipients.getPrimaryRecipient(), true);
+                                      recipient, true);
       }
     });
 
@@ -279,9 +279,9 @@ public class ConversationActivity extends SherlockFragmentActivity {
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        if (recipients != null && recipients.isSingleRecipient()) {
-          KeyUtil.abortSessionFor(ConversationActivity.this, recipients.getPrimaryRecipient());
-          initializeSecurity(recipients);
+        if (isSingleConversation()) {
+          KeyUtil.abortSessionFor(ConversationActivity.this, getRecipients().getPrimaryRecipient());
+          initializeSecurity();
           initializeTitleBar();
         }
       }
@@ -332,25 +332,26 @@ public class ConversationActivity extends SherlockFragmentActivity {
     String title    = null;
     String subtitle = null;
 
-    if (isSingleExistingConversation()) {
+    if (isSingleConversation()) {
 
       if (sendEncrypted) {
         title = AuthenticityCalculator.getAuthenticatedName(this,
-                                                            recipients.getPrimaryRecipient(),
+                                                            getRecipients().getPrimaryRecipient(),
                                                             masterSecret);
       }
 
       if (title == null || title.trim().length() == 0) {
-        title = recipients.getPrimaryRecipient().getName();
+        title = getRecipients().getPrimaryRecipient().getName();
       }
 
       if (title == null || title.trim().length() == 0) {
-        title = recipients.getPrimaryRecipient().getNumber();
+        title = getRecipients().getPrimaryRecipient().getNumber();
       } else {
-        subtitle = recipients.getPrimaryRecipient().getNumber();
+        subtitle = getRecipients().getPrimaryRecipient().getNumber();
       }
     } else {
-      title = "Compose Message";
+      title    = "Compose Message";
+      subtitle = "";
     }
 
     this.getSupportActionBar().setTitle(title);
@@ -361,9 +362,9 @@ public class ConversationActivity extends SherlockFragmentActivity {
     this.invalidateOptionsMenu();
   }
 
-  private void initializeSecurity(Recipients recipients) {
-    if (isSingleExistingConversation() &&
-        KeyUtil.isSessionFor(this, recipients.getPrimaryRecipient()))
+  private void initializeSecurity() {
+    if (isSingleConversation() &&
+        KeyUtil.isSessionFor(this, getRecipients().getPrimaryRecipient()))
     {
       sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_menu_lock_holo_light, 0);
       sendButton.setCompoundDrawablePadding(15);
@@ -430,7 +431,7 @@ public class ConversationActivity extends SherlockFragmentActivity {
           return;
 
         if (intent.getLongExtra("thread_id", -1) == threadId) {
-          initializeSecurity(recipients);
+          initializeSecurity();
           initializeTitleBar();
           calculateCharactersRemaining();
         }
@@ -514,19 +515,24 @@ public class ConversationActivity extends SherlockFragmentActivity {
     return this.recipients != null && this.threadId != -1;
   }
 
-  private boolean isSingleExistingConversation() {
-    return this.recipients != null && this.recipients.isSingleRecipient();
+  private boolean isSingleConversation() {
+    return getRecipients() != null && getRecipients().isSingleRecipient();
   }
 
   private boolean isAuthenticatedSession() {
     return AuthenticityCalculator.isAuthenticated(this,
-                                                  recipients.getPrimaryRecipient(),
+                                                  getRecipients().getPrimaryRecipient(),
                                                   masterSecret);
   }
 
-  private Recipients getRecipients() throws RecipientFormattingException {
-    if (isExistingConversation()) return this.recipients;
-    else                          return recipientsPanel.getRecipients();
+  private Recipients getRecipients() {
+    try {
+      if (isExistingConversation()) return this.recipients;
+      else                          return recipientsPanel.getRecipients();
+    } catch (RecipientFormattingException rfe) {
+      Log.w("ConversationActivity", rfe);
+      return null;
+    }
   }
 
   private String getMessage() throws InvalidMessageException {
@@ -559,12 +565,17 @@ public class ConversationActivity extends SherlockFragmentActivity {
 
       this.recipientsPanel.setVisibility(View.GONE);
       initializeTitleBar();
+      initializeSecurity();
     }
   }
 
   private void sendMessage(boolean sendEncrypted) {
     try {
       Recipients recipients   = getRecipients();
+
+      if (recipients == null)
+        throw new RecipientFormattingException("Badly formatted");
+
       String message          = getMessage();
       long allocatedThreadId;
 
@@ -622,7 +633,9 @@ public class ConversationActivity extends SherlockFragmentActivity {
 
   private class RecipientsPanelChangeListener implements RecipientsPanel.RecipientsPanelChangedListener {
     public void onRecipientsPanelUpdate(Recipients recipients) {
-      initializeSecurity(recipients);
+      initializeSecurity();
+      initializeTitleBar();
+      calculateCharactersRemaining();
     }
   }
 
