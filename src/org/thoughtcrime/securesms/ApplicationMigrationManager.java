@@ -2,21 +2,25 @@ package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.SmsMigrator;
+import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 
-public class ApplicationMigrationManager extends Handler implements Runnable {
+public class ApplicationMigrationManager extends Handler {
+
   private ProgressDialog progressDialog;
+  private ApplicationMigrationListener listener;
 
   private final Context context;
   private final MasterSecret masterSecret;
-
-  private ApplicationMigrationListener listener;
 
   public ApplicationMigrationManager(Context context,
                                      MasterSecret masterSecret)
@@ -29,30 +33,38 @@ public class ApplicationMigrationManager extends Handler implements Runnable {
     this.listener = listener;
   }
 
-  public void run() {
-    SmsMigrator.migrateDatabase(context, masterSecret, this);
+  private void displayMigrationProgress() {
+    progressDialog = new ProgressDialog(context);
+    progressDialog.setTitle("Migrating Database");
+    progressDialog.setMessage("Migrating text message database...");
+    progressDialog.setMax(10000);
+    progressDialog.setCancelable(false);
+    progressDialog.setIndeterminate(false);
+    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+    progressDialog.show();
   }
 
   public void migrate() {
+    context.bindService(new Intent(context, ApplicationMigrationService.class),
+                        serviceConnection, Context.BIND_AUTO_CREATE);
+  }
+
+  private void displayMigrationPrompt() {
     AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
     alertBuilder.setTitle("Copy System Text Message Database?");
-    alertBuilder.setMessage("Current versions of TextSecure use an encrypted database that is " +
+    alertBuilder.setMessage("TextSecure uses an encrypted database that is " +
                             "separate from the default system database.  Would you like to " +
                             "copy your existing text messages into TextSecure's encrypted " +
                             "database?  Your default system database will be unaffected.");
     alertBuilder.setCancelable(false);
+
     alertBuilder.setPositiveButton("Copy", new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle("Migrating Database");
-        progressDialog.setMessage("Migrating your SMS database...");
-        progressDialog.setMax(10000);
-        progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(false);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.show();
-
-        new Thread(ApplicationMigrationManager.this).start();
+        displayMigrationProgress();
+        Intent intent = new Intent(context, ApplicationMigrationService.class);
+        intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
+        intent.putExtra("master_secret", masterSecret);
+        context.startService(intent);
       }
     });
 
@@ -71,16 +83,20 @@ public class ApplicationMigrationManager extends Handler implements Runnable {
   @Override
   public void handleMessage(Message message) {
     switch (message.what) {
-    case SmsMigrator.PROGRESS_UPDATE:
-      progressDialog.incrementProgressBy(message.arg1);
-      progressDialog.setSecondaryProgress(0);
+    case ApplicationMigrationService.PROGRESS_UPDATE:
+      if (progressDialog != null) {
+        progressDialog.setProgress(message.arg1);
+        progressDialog.setSecondaryProgress(message.arg2);
+      }
       break;
-    case SmsMigrator.SECONDARY_PROGRESS_UPDATE:
-      progressDialog.incrementSecondaryProgressBy(message.arg1);
-      break;
-    case SmsMigrator.COMPLETE:
-      progressDialog.dismiss();
-      listener.applicationMigrationComplete();
+    case ApplicationMigrationService.PROGRESS_COMPLETE:
+      if (progressDialog != null) {
+        progressDialog.dismiss();
+      }
+
+      if (listener != null) {
+        listener.applicationMigrationComplete();
+      }
       break;
     }
   }
@@ -88,4 +104,19 @@ public class ApplicationMigrationManager extends Handler implements Runnable {
   public static interface ApplicationMigrationListener {
     public void applicationMigrationComplete();
   }
+
+  private ServiceConnection serviceConnection = new ServiceConnection() {
+    public void onServiceConnected(ComponentName className, IBinder service) {
+      ApplicationMigrationService applicationMigrationService
+        = ((ApplicationMigrationService.ApplicationMigrationBinder)service).getService();
+
+      if (applicationMigrationService.isMigrating()) displayMigrationProgress();
+      else                                           displayMigrationPrompt();
+
+      applicationMigrationService.setHandler(ApplicationMigrationManager.this);
+    }
+
+    public void onServiceDisconnected(ComponentName name) {}
+  };
+
 }

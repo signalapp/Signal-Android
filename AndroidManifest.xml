@@ -87,8 +87,9 @@
     <activity android:name=".ReceiveKeyActivity" android:theme="@android:style/Theme.Dialog" android:label="Complete Key Exchange" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
     <activity android:name=".VerifyImportedIdentityActivity" android:theme="@android:style/Theme.Dialog" android:label="Verify Imported Identity" android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"></activity>
 
-    <service android:enabled="true" android:name=".service.KeyCachingService"></service>
-    <service android:enabled="true" android:name=".service.SendReceiveService"></service>
+    <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
+    <service android:enabled="true" android:name=".service.KeyCachingService"/>
+    <service android:enabled="true" android:name=".service.SendReceiveService"/>
 
 <!--	<receiver android:name=".service.BootListener" -->
 <!-- 			  android:enabled="true" -->

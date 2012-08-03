@@ -22,9 +22,11 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.crypto.IdentityKey;
@@ -41,7 +43,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  *
  */
 
-public class ApplicationPreferencesActivity extends PreferenceActivity {
+public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
   private static final int   PICK_IDENTITY_CONTACT        = 1;
   private static final int   IMPORT_IDENTITY_ID           = 2;
@@ -69,6 +71,9 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
   @Override
   protected void onCreate(Bundle icicle) {
     super.onCreate(icicle);
+
+    this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     addPreferencesFromResource(R.xml.preferences);
 
     this.findPreference(IDENTITY_PREF).setOnPreferenceClickListener(new IdentityPreferenceClickListener());
@@ -111,6 +116,15 @@ public class ApplicationPreferencesActivity extends PreferenceActivity {
   public void onDestroy() {
     MemoryCleaner.clean((MasterSecret)getIntent().getParcelableExtra("master_secret"));
     super.onDestroy();
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+    case android.R.id.home: finish(); return true;
+    }
+
+    return false;
   }
 
   private void handleIdentitySelection(Intent data) {
