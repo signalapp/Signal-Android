@@ -182,8 +182,9 @@ public class RecipientFactory {
 
     if (NumberUtil.isValidSmsOrEmail(recipient))
       return getRecipientForNumber(context, recipient);
-				
-    throw new RecipientFormattingException("Recipient: " + recipient + " is badly formatted.");
+
+    Log.e("RecipientFactory", "Recipient: " + recipient + " is badly formatted.");
+    return getRecipientForNumber(context, recipient);
   }
 
   public static void clearCache() {
