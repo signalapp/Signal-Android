@@ -29,7 +29,7 @@
         </activity>
 
     <activity android:name=".ConversationActivity"
-              android:windowSoftInputMode="stateHidden"
+              android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"/>
 
     <activity android:name=".PassphraseCreateActivity"
