@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_sms_mms_not_delivered"
+                android:src="@drawable/ic_list_alert_sms_failed"
                 android:visibility="gone" />
         </LinearLayout>
 

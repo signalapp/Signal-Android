@@ -81,7 +81,9 @@ import java.io.IOException;
  * @author Moxie Marlinspike
  *
  */
-public class ConversationActivity extends SherlockFragmentActivity {
+public class ConversationActivity extends SherlockFragmentActivity
+    implements ConversationFragment.ConversationFragmentListener
+  {
 
   private static final int PICK_CONTACT               = 1;
   private static final int PICK_IMAGE                 = 2;
@@ -677,5 +679,10 @@ public class ConversationActivity extends SherlockFragmentActivity {
 
       return false;
     }
+  }
+
+  @Override
+  public void setComposeText(String text) {
+    this.composeText.setText(text);
   }
 }

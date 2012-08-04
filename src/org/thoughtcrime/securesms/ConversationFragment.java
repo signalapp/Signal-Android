@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -30,6 +31,8 @@ import java.text.SimpleDateFormat;
 public class ConversationFragment extends SherlockListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
 {
+
+  private ConversationFragmentListener listener;
 
   private MasterSecret masterSecret;
   private Recipients   recipients;
@@ -71,6 +74,12 @@ public class ConversationFragment extends SherlockListFragment
     }
 
     return false;
+  }
+
+  @Override
+  public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    this.listener = (ConversationFragmentListener)activity;
   }
 
   public void reload(Recipients recipients, long threadId) {
@@ -170,10 +179,14 @@ public class ConversationFragment extends SherlockListFragment
   private class FailedIconClickHandler extends Handler {
     @Override
     public void handleMessage(android.os.Message message) {
-      assert(false);
-//      String failedMessageText = (String)message.obj;
-//      ConversationActivity.this.composeText.setText(failedMessageText);
+      if (listener != null) {
+        listener.setComposeText((String)message.obj);
+      }
     }
+  }
+
+  public interface ConversationFragmentListener {
+    public void setComposeText(String text);
   }
 
 }

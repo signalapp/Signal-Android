@@ -135,10 +135,7 @@ public class ConversationItem extends LinearLayout {
 
   public void setMessageRecord(MessageRecord messageRecord) {
     setBody(messageRecord);
-    setDate(messageRecord.getDate());
-
     setStatusIcons(messageRecord);
-
     setEvents(messageRecord);
   }
 
@@ -268,10 +265,6 @@ public class ConversationItem extends LinearLayout {
     return (number != null) && (number.trim().length() > 0);
   }
 
-  private void setDate(long date) {
-    dateText.setText(DateUtils.getRelativeTimeSpanString(getContext(), date, false));
-  }
-
   private void setStatusIcons(MessageRecord messageRecord) {
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
@@ -280,6 +273,12 @@ public class ConversationItem extends LinearLayout {
     mmsThumbnail.setVisibility(View.GONE);
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
+
+    if      (messageRecord.isFailed())  dateText.setText("Error sending message");
+    else if (messageRecord.isPending()) dateText.setText("Sending...");
+    else    dateText.setText(DateUtils.getRelativeTimeSpanString(getContext(),
+                                                                 messageRecord.getDate(),
+                                                                 false));
   }
 
   private void setEvents(MessageRecord messageRecord) {
