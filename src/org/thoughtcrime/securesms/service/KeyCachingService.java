@@ -75,6 +75,8 @@ public class KeyCachingService extends Service {
 
   @Override
   public void onStart(Intent intent, int startId) {
+    if (intent == null) return;
+
     if (intent.getAction() != null && intent.getAction().equals(CLEAR_KEY_ACTION))
       handleClearKey();
     else if (intent.getAction() != null && intent.getAction().equals(ACTIVITY_START_EVENT))

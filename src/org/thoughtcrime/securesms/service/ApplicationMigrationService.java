@@ -34,6 +34,8 @@ public class ApplicationMigrationService extends Service
 
   @Override
   public void onStart(Intent intent, int startId) {
+    if (intent == null) return;
+
     if (intent.getAction() != null && intent.getAction().equals(MIGRATE_DATABASE)) {
       handleDatabaseMigration((MasterSecret)intent.getParcelableExtra("master_secret"));
     }
