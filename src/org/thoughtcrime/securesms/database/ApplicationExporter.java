@@ -60,14 +60,18 @@ public class ApplicationExporter {
         throw new NoExternalStorageException();
   }
 
-  private static void migrateFile(File from, File to) throws IOException {
-    if (from.exists()) {
-      FileChannel source      = new FileInputStream(from).getChannel();
-      FileChannel destination = new FileOutputStream(to).getChannel();
+  private static void migrateFile(File from, File to) {
+    try {
+      if (from.exists()) {
+        FileChannel source      = new FileInputStream(from).getChannel();
+        FileChannel destination = new FileOutputStream(to).getChannel();
 
-      destination.transferFrom(source, 0, source.size());
-      source.close();
-      destination.close();
+        destination.transferFrom(source, 0, source.size());
+        source.close();
+        destination.close();
+      }
+    } catch (IOException ioe) {
+      Log.w("ApplicationExporter", ioe);
     }
   }
 
@@ -104,9 +108,7 @@ public class ApplicationExporter {
 
       File[] contents = directory.listFiles();
 
-      for (int i=0;i<contents.length;i++) {
-        File exportedFile = contents[i];
-
+      for (File exportedFile : contents) {
         if (exportedFile.isFile()) {
           File localFile = new File(importDirectory.getAbsolutePath() + File.separator + exportedFile.getName());
           migrateFile(exportedFile, localFile);

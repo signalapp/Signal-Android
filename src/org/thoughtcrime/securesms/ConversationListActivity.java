@@ -185,8 +185,6 @@ public class ConversationListActivity extends SherlockFragmentActivity
         Intent clearKeyIntent = new Intent(KeyCachingService.CLEAR_KEY_ACTION, null,
                                            ConversationListActivity.this, KeyCachingService.class);
         startService(clearKeyIntent);
-
-        DatabaseFactory.getInstance(ConversationListActivity.this).close();
       }
     };
 
