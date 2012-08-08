@@ -197,6 +197,10 @@ public class ConversationActivity extends SherlockFragmentActivity
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
+    if (isSingleConversation()) {
+      inflater.inflate(R.menu.conversation_callable, menu);
+    }
+
     inflater.inflate(R.menu.conversation, menu);
     super.onPrepareOptionsMenu(menu);
     return true;
@@ -206,14 +210,14 @@ public class ConversationActivity extends SherlockFragmentActivity
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
-    case R.id.menu_call:                 handleDial(recipients.getPrimaryRecipient()); return true;
-    case R.id.menu_delete_thread:        handleDeleteThread();                         return true;
-    case R.id.menu_add_attachment:       handleAddAttachment();                        return true;
-    case R.id.menu_start_secure_session: handleStartSecureSession();                   return true;
-    case R.id.menu_abort_session:        handleAbortSecureSession();                   return true;
-    case R.id.menu_verify_recipient:     handleVerifyRecipient();                      return true;
-    case R.id.menu_verify_session:       handleVerifySession();                        return true;
-    case android.R.id.home:              finish();                                     return true;
+    case R.id.menu_call:                 handleDial(getRecipients().getPrimaryRecipient()); return true;
+    case R.id.menu_delete_thread:        handleDeleteThread();                              return true;
+    case R.id.menu_add_attachment:       handleAddAttachment();                             return true;
+    case R.id.menu_start_secure_session: handleStartSecureSession();                        return true;
+    case R.id.menu_abort_session:        handleAbortSecureSession();                        return true;
+    case R.id.menu_verify_recipient:     handleVerifyRecipient();                           return true;
+    case R.id.menu_verify_session:       handleVerifySession();                             return true;
+    case android.R.id.home:              finish();                                          return true;
     }
 
     return false;
