@@ -4,3 +4,7 @@ project.properties
 .settings
 bin/
 gen/
+.idea/
+TextSecure.iml
+out
+tests
