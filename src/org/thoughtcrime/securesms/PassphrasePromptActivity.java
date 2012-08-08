@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -59,7 +60,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private class OkButtonClickListener implements OnClickListener {
     public void onClick(View v) {
       try {
-        String passphrase         = passphraseText.getText().toString();
+        Editable text             = passphraseText.getText();
+        String passphrase         = (text == null ? "" : text.toString());
         MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(PassphrasePromptActivity.this, passphrase);
 
         MemoryCleaner.clean(passphrase);
