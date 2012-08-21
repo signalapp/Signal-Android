@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2007-2008 Esmertec AG.
+ * Copyright (C) 2007-2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="استخدم الإعدادات">
+    <CheckBoxPreference android:defaultValue="true"
+                      android:key="pref_all_sms"
+                      android:summary="استخدم TextSecure لعرض وتخزين كافة الرسائل النصية الواردة"
+                      android:title="استعمال لجميع الرسائل القصيرة" />
+
+    <CheckBoxPreference android:defaultValue="true"
+                      android:key="pref_all_mms"
+                      android:summary="استعمال TextSecure لعرض وتخزين جميع رسائل الوسائط المتعددة الواردة (MMS)"
+                      android:title="استعمال لجميع MMS" />
+
+   </PreferenceCategory>
+
+  <PreferenceCategory android:title="إعدادات الإدخال">
+    <CheckBoxPreference android:defaultValue="false"
+                      android:key="pref_enter_sends"
+                      android:summary="سوف يسبب الضغط على  ENTER رسال الرسائل النصية"
+                      android:title="Enter يرسل" />
+   </PreferenceCategory>
+
+  <PreferenceCategory android:title="إعدادات الشاشة">
+
+    <Preference         android:key="pref_choose_identity"
+                          android:title="اختيار الهوية"
+                           android:summary="اختيار نفسك من قائمة الأسماء."/>
+
+  </PreferenceCategory>
+
+   <PreferenceCategory android:title="إعدادات التشفير">
+
+      <Preference android:key="pref_change_passphrase"
+                  android:title="تغيير كلمة السر"
+                   android:summary="تغيير كلمة السر الخاصة بي"/>
+
+       <CheckBoxPreference android:defaultValue="true"
+                           android:key="pref_auto_complete_key_exchange"
+                           android:title="تبادل مفاتيح كاملة"
+                           android:summary="إكمال تلقائيا التبادلات الرئيسية للدورات الجديدة أو القائمة لجلسات مع المفتاح نفس الهوية" />
+
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_key_tag_whitespace"
+                        android:summary="علامة بيضاء في نهاية كل رسالة غير مشفرة"
+                        android:title="إرفاق علامة بيضاء" />
+
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_send_identity_key"
+                        android:summary="توقيع تبادل الرسائل باستخدام المفتاح الهوية"
+                        android:title="توقيع تبادل المفاتيح" />
+
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_timeout_passphrase"
+                        android:summary=" يرجى محو كلمة السر من الذاكرة بعد فترة"
+                        android:title="مهلة كلمة المرور" />
+
+
+    <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
+                        android:key="pref_timeout_interval"
+                        android:defaultValue="300"
+                        android:title="مهلة كلمة المرور"
+                        android:summary="مقدار الوقت للانتظار قبل محو كلمة السر من الذاكرة"
+                        android:dependency="pref_timeout_passphrase"
+                        android:dialogTitle="حدد مهلة كلمة السر" />
+
+   </PreferenceCategory>
+
+  <PreferenceCategory android:title="إعدادات مفتاح الهوية">
+     <Preference android:key="pref_view_identity"
+                  android:title="عرض مفتاح هويتي"
+                   android:summary="عرض مفتاح هويتي"/>
+
+     <Preference android:key="pref_export_identity"
+                  android:title="تصدير مفتاح هويتي"
+                   android:summary="تصدير مفتاح هويتي"/>
+
+     <Preference android:key="pref_import_identity"
+                  android:title="استيراد رمز الشخص"
+                   android:summary="استيراد مفتاح الهوية من قائمة جهات الاتصال"/>
+
+     <Preference android:key="pref_manage_identity"
+                  android:title="إدارة مفاتيح الهوية"
+                   android:summary="إدارة مفاتيح الهوية"/>
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="إعدادات الإشعارات">
+    <CheckBoxPreference android:key="pref_key_enable_notifications"
+                        android:title="إشعارات"
+                        android:summary="عرض إشعارات الرسائل في شريط الحالة"
+                        android:defaultValue="true" />
+    <ListPreference
+                      android:key="pref_led_color"
+                      android:defaultValue="green"
+                      android:title="LED لون"
+                      android:dependency="pref_key_enable_notifications"
+                      android:summary="تغيير لون LED"
+                      android:entries="@array/pref_led_color_entries"
+                      android:entryValues="@array/pref_led_color_values"
+                      android:dialogTitle="حدد لون LED" />
+
+    <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
+                      android:key="pref_led_blink"
+                      android:defaultValue="500,2000"
+                      android:title="LED نمط"
+                      android:dependency="pref_key_enable_notifications"
+                      android:summary="تغيير نمط LED"
+                      android:entries="@array/pref_led_blink_pattern_entries"
+                      android:entryValues="@array/pref_led_blink_pattern_values"
+                      android:dialogTitle="حدد نمط LED" />
+
+
+    <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
+                        android:dependency="pref_key_enable_notifications"
+                        android:key="pref_key_ringtone"
+                        android:title="حدد النغمة"
+                        android:ringtoneType="notification"
+                        android:defaultValue="content://settings/system/notification_sound" />
+    <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
+                        android:dependency="pref_key_enable_notifications"
+                        android:key="pref_key_vibrate"
+                        android:defaultValue="true"
+                        android:title="هز"
+                        android:summary="الاهتزاز أيضا عند وصول رسالة" />
+  </PreferenceCategory>
+</PreferenceScreen>
