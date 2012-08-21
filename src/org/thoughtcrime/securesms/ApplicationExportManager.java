@@ -71,17 +71,13 @@ public class ApplicationExportManager extends Handler implements Runnable {
     Log.w("ApplicationExportManager", "Context: " + context);
     AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
     alertBuilder.setTitle("Export Database?");
-    alertBuilder.setMessage("Export TextSecure database, keys, and settings to the SD Card? \n\n If you want to export a different directory, enter the folder below:");
+    alertBuilder.setMessage("Export TextSecure database, keys, and settings to the SD Card?");
     alertBuilder.setCancelable(false);
 
-	final EditText input = new EditText(this);
-    alert.setView(input);
-	
     alertBuilder.setPositiveButton("Export", new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
-	    String directory = input.getText();
-        task             = TASK_EXPORT;
-        progressDialog   = new ProgressDialog(context);
+        task           = TASK_EXPORT;
+        progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Exporting Database and Keys");
         progressDialog.setMessage("Exporting your SMS database, keys, and settings...");
         progressDialog.setCancelable(false);
@@ -101,7 +97,7 @@ public class ApplicationExportManager extends Handler implements Runnable {
   public void run() {
     try {
       switch (task) {
-      case TASK_EXPORT: ApplicationExporter.exportToSd(context, directory);   break;
+      case TASK_EXPORT: ApplicationExporter.exportToSd(context);   break;
       case TASK_IMPORT: ApplicationExporter.importFromSd(context); break;
       }
     } catch (NoExternalStorageException e) {

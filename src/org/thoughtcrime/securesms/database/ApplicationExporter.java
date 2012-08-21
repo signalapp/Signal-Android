@@ -28,9 +28,9 @@ import java.nio.channels.FileChannel;
 
 public class ApplicationExporter {
 
-  public static void exportToSd(Context context, String directory) throws NoExternalStorageException, IOException {
+  public static void exportToSd(Context context) throws NoExternalStorageException, IOException {
     verifyExternalStorageForExport();
-    exportDirectory(context, "", directory);
+    exportDirectory(context, "");
   }
 
   public static void importFromSd(Context context) throws NoExternalStorageException, IOException {
@@ -40,12 +40,7 @@ public class ApplicationExporter {
 
   private static String getExportDirectoryPath() {
     File sdDirectory  = Environment.getExternalStorageDirectory();
-	if (directory = ''){
     return sdDirectory.getAbsolutePath() + File.separator + "TextSecureExport";
-	}
-	else {
-	  return directory + "TextSecureExport"
-	  }
   }
 
   private static void verifyExternalStorageForExport() throws NoExternalStorageException {
