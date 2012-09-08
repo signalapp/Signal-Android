@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.LocalKeyRecord;
 import org.thoughtcrime.securesms.database.RemoteKeyRecord;
+import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -98,13 +99,9 @@ public class AutoInitiateActivity extends SherlockActivity {
                  Recipient recipient, String message, long threadId)
   {
     return
-      isMessageTagged(message)             &&
-      isThreadQualified(context, threadId) &&
-      isExchangeQualified(context, masterSecret, recipient);
-  }
-
-  private static boolean isMessageTagged(String message) {
-    return message.endsWith("             ");
+        Tag.isTagged(message)                &&
+        isThreadQualified(context, threadId) &&
+        isExchangeQualified(context, masterSecret, recipient);
   }
 
   private static boolean isThreadQualified(Context context, long threadId) {

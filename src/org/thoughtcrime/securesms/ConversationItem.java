@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsMessageRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -211,10 +212,11 @@ public class ConversationItem extends LinearLayout {
   private void setBodyText(MessageRecord messageRecord) {
     String body = messageRecord.getBody();
 
-    if      (messageRecord.isKeyExchange() && messageRecord.isOutgoing())           body    = "\n" + getContext().getString(R.string.key_exchange_message2);
-    else if (messageRecord.isProcessedKeyExchange() && !messageRecord.isOutgoing()) body    = "\n" + getContext().getString(R.string.received_and_processed_key_exchange_message);
-    else if (messageRecord.isStaleKeyExchange())                                    body    = "\n" + getContext().getString(R.string.error_received_stale_key_exchange_message);
-    else if (messageRecord.isKeyExchange() && !messageRecord.isOutgoing())          body    = "\n" + getContext().getString(R.string.received_key_exchange_message_click_to_process);
+    if      (messageRecord.isKeyExchange() && messageRecord.isOutgoing())           body = "\n" + getContext().getString(R.string.key_exchange_message2);
+    else if (messageRecord.isProcessedKeyExchange() && !messageRecord.isOutgoing()) body = "\n" + getContext().getString(R.string.received_and_processed_key_exchange_message);
+    else if (messageRecord.isStaleKeyExchange())                                    body = "\n" + getContext().getString(R.string.error_received_stale_key_exchange_message);
+    else if (messageRecord.isKeyExchange() && !messageRecord.isOutgoing())          body = "\n" + getContext().getString(R.string.received_key_exchange_message_click_to_process);
+    else if (messageRecord.isOutgoing() && Tag.isTagged(body))                      body = Tag.stripTag(body);
 
     bodyText.setText(body, TextView.BufferType.SPANNABLE);
 

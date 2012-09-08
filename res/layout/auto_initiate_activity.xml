@@ -9,12 +9,15 @@
     <TextView android:id="@+id/description_text"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="5dip"
               android:layout_marginBottom="5dip"
-              android:text="@string/you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_key_exchange_so_you_can_communicate_securely"/>
+              android:textAppearance="?android:attr/textAppearanceMedium"                
+              android:text="@string/you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session"/>
 
     <LinearLayout android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="10dip"
+                  android:layout_marginBottom="10dip"
                   android:orientation="horizontal">
 
         <Button android:id="@+id/initiate_button"

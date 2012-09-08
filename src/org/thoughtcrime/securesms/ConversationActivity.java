@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -59,6 +58,7 @@ import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -542,14 +542,13 @@ public class ConversationActivity extends SherlockFragmentActivity
   }
 
   private String getMessage() throws InvalidMessageException {
-    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-    String rawText       = composeText.getText().toString();
+    String rawText = composeText.getText().toString();
 
     if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent())
       throw new InvalidMessageException(getString(R.string.message_is_empty_exclamation));
 
-    if (!sendEncrypted && sp.getBoolean(ApplicationPreferencesActivity.WHITESPACE_PREF, true) && rawText.length() <= 145)
-      rawText = rawText + "             ";
+    if (!sendEncrypted && Tag.isTaggable(this, rawText))
+      rawText = Tag.getTaggedMessage(rawText);
 
     return rawText;
   }

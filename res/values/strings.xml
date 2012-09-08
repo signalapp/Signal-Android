@@ -204,7 +204,7 @@
     <string name="most_recent_from_s">Most recent from: %s</string>
     
     <!-- auto_initiate_activity -->
-    <string name="you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_key_exchange_so_you_can_communicate_securely">You have received a message from someone who supports TextSecure encrypted sessions.  Would you like to initiate a key exchange so you can communicate securely?</string>
+    <string name="you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">You have received a message from someone who supports TextSecure encrypted sessions.  Would you like to initiate a secure session?</string>
     <string name="initiate_exchange">Initiate Exchange</string>
     
     <!-- change_passphrase_activity -->
