@@ -3,4 +3,387 @@
     <string name="app_name">TextSecure</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    
+    <!-- ApplicationExportManager -->
+    <string name="import_database_and_settings_title">Import Database and Settings?</string>
+    <string name="import_database_and_settings_message">Import TextSecure database, keys, and settings from the SD Card?\n\nWARNING: This will clobber any existing messages, keys, and  settings!</string>
+    <string name="importing_database_and_keys">Importing Database and Keys</string>
+    <string name="importing_your_sms_database_keys_and_settings">Importing your SMS database, keys, and settings...</string>
+    <string name="export_database_question">Export Database?</string>
+    <string name="export_textsecure_database_keys_and_settings_prompt">Export TextSecure database, keys, and settings to the SD Card?</string>
+    <string name="exporting_database_and_keys">Exporting Database and Keys</string>
+    <string name="exporting_your_sms_database_keys_and_settings">Exporting your SMS database, keys, and settings...</string>
+    <string name="no_sd_card_found_exclamation">No SD card found!</string>
+    <string name="error_exporting_to_sd_exclamation">Error exporting to SD!</string>
+    <string name="import_successful_exclamation">Import Successful!</string>
+    <string name="export_successful_exclamation">Export Successful!</string>
+    
+    <!-- ApplicationMigrationManager -->
+    <string name="migrating_database">Migrating Database</string>
+    <string name="migrating_text_message_database">Migrating text message database...</string>
+    <string name="copy_system_text_message_database_question">Copy System Text Message Database?</string>
+    <string name="copy_system_text_message_database_explanation">TextSecure uses an encrypted database that is separate from the default system database.  Would you like to copy your existing text messages into TextSecure\'s encrypted database?  Your default system database will be unaffected.</string>
+    <string name="copy">Copy</string>
+    <string name="dont_copy">Don\'t copy</string>
+    
+    <!-- ApplicationPreferencesActivity -->
+    <string name="not_found_exclamation">Not found!</string>
+    <string name="no_valid_identity_key_was_found_in_the_specified_contact">No valid identity key was found in the specified contact.</string>
+    <string name="you_don_t_have_an_identity_key_exclamation">You don\'t have an identity key!</string>
+    <string name="you_have_not_yet_defined_a_contact_for_yourself">You have not yet defined a contact for yourself! Select one in the Settings menu.</string>
+    <string name="exported_to_contacts_database">Exported to contacts database!</string>
+    <string name="you_need_to_have_entered_your_passphrase_before_importing_keys">You need to have entered your passphrase before importing keys...</string>
+    <string name="you_need_to_have_entered_your_passphrase_before_managing_keys">You need to have entered your passphrase before managing keys...</string>
+    <string name="you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
+    
+    <!-- ConversationItem -->
+    <string name="message_size_d_kb">Message size: %d KB</string>
+    <string name="expires_s">Expires: %s</string>
+    <string name="error_sending_message">Error sending message</string>
+    <string name="sending">Sending...</string>
+    <string name="saving_attachment">Saving Attachment</string>
+    <string name="saving_attachment_to_sd_card">Saving attachment to SD card...</string>
+    <string name="save_to_sd_card">Save to SD Card?</string>
+    <string name="this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted, would you like to continue?</string>
+    <string name="error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
+    <string name="success_exclamation">Success!</string>
+    <string name="unable_to_write_to_sd_card_exclamation">Unable to write to SD Card!</string>
+    <string name="view_secure_media_question">View secure media?</string>
+    <string name="this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk.  Are you sure that you would like to do this?</string>
+    <string name="key_exchange_message2">Key exchange message</string>
+    <string name="received_and_processed_key_exchange_message">Received and processed key exchange message.</string>
+    <string name="error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
+    <string name="received_key_exchange_message_click_to_process">Received key exchange message, click to process</string>
+    
+    <!-- ConversationActivity -->
+    <string name="initiate_secure_session_question">Initiate Secure Session?</string>
+    <string name="initiate_secure_session_with_s_question">Initiate secure session with %s?</string>
+    <string name="abort_secure_session_confirmation">Abort Secure Session Confirmation</string>
+    <string name="are_you_sure_that_you_want_to_abort_this_secure_session_question">Are you sure that you want to abort this secure session?</string>
+    <string name="delete_thread_confirmation">Delete Thread Confirmation</string>
+    <string name="are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Are you sure that you want to permanently delete this conversation?</string>
+    <string name="add_attachment">Add attachment</string>
+    <string name="compose_message">Compose Message</string>
+    <string name="sorry_there_was_an_error_setting_your_attachment">Sorry, there was an error setting your attachment.</string>
+    <string name="sorry_the_selected_video_exceeds_message_size_restrictions">Sorry, the selected video exceeds message size restrictions.</string>
+    <string name="sorry_the_selected_audio_exceeds_message_size_restrictions">Sorry, the selected audio exceeds message size restrictions.</string>
+    <string name="recipient_is_not_a_valid_sms_or_email_address_exclamation">Recipient is not a valid SMS or email address!</string>
+    <string name="message_is_empty_exclamation">Message is empty!</string>
+    
+    <!-- ConversationFragment -->
+    <string name="message_details">Message details</string>
+    <string name="sender_s_transport_s_sent_received_s">Sender: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
+
+    <!-- ConversationListAdapter -->
+    <string name="encrypted_message_enter_passphrase">"Encrypted message, enter passphrase... "</string>
+    <string name="key_exchange_message">Key exchange message...</string>
+    
+    <!-- ConversationListFragment -->
+    <string name="delete_threads_question">Delete threads?</string>
+    <string name="are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Are you sure you wish to delete ALL selected conversation threads?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- KeyScanningActivity -->
+    <string name="no_scanned_key_found_exclamation">No scanned key found!</string>
+    
+    <!-- PassphraseChangeActivity -->
+    <string name="passphrases_dont_match_exclamation">Passphrases Don\'t Match!</string>
+    <string name="incorrect_old_passphrase_exclamation">Incorrect old passphrase!</string>
+    
+    <!-- PassphraseCreateActivity -->
+    <string name="generating_keypair">Generating KeyPair</string>
+    <string name="generating_a_local_encryption_keypair">Generating a local encryption keypair...</string>
+    
+    <!-- PassphrasePromptActivity -->
+    <string name="invalid_passphrase_exclamation">Invalid Passphrase!</string>
+    
+    <!-- ReceiveKeyActivity -->
+    <string name="error_you_have_received_a_corrupted_public_key">ERROR:\n\nYou have received a corrupted public key.  This key can not be processed, please re-initiate a secure session.</string>
+    <string name="error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERROR:\n\nYou have received a public key from an unsupported version of the protocol.  This key can not be processed, please re-initiate a secure session.</string>
+    <string name="this_key_exchange_message_does_not_include_an_identity_signature">This key exchange message does not include an identity signature.</string>
+    <string name="this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">This key exchange message includes an identity signature, but you do not yet trust it.</string>
+    <string name="this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">This key exchange message includes an identity signature which you trust for: %s</string>
+    <string name="this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_s">This is the key that you sent to start your current encrypted session with %s</string>
+    <string name="this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s">This is the key that you received to start your current encrypted session with %s</string>
+    <string name="you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session">You have received a Key Exchange message from %s.\n\nWARNING:  You already have an encrypted session with this contact.  If you choose to accept this key exchange message, it will destroy your existing session and you will have to re-authenticate.  Would you like to complete this key exchange?</string>
+    <string name="you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">You have received a Key Exchange message from %s.  You have previously initiated a session with this contact, and by accepting this key you will complete the key exchange.  Would you like to complete this key exchange?</string>
+    <string name="you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">You have initiated a Key Exchange message with %s but have not yet received a reply.</string>
+    <string name="you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">You have received a Key Exchange message from %s.  You have no existing session with this contact, would you like to complete this key exchange?</string>
+    
+    <!-- ReviewIdentitiesActivity -->
+    <string name="unable_to_view_corrupted_identity_key_exclamation">Unable to view corrupted identity key!</string>
+    
+    <!-- SaveIdentityActivity -->
+    <string name="you_must_specify_a_name_for_this_identity_exclamation">You must specify a name for this identity!</string>
+    <string name="identity_name_exists_exclamation">Identity Name Exists!</string>
+    <string name="an_identity_key_with_the_specified_name_already_exists">An identity key with the specified name already exists.</string>
+    <string name="manage_identities">Manage Identities</string>
+    
+    <!-- VerifyIdentityActivity -->
+    <string name="mark_identity_verified_question">Mark Identity Verified?</string>
+    <string name="are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified">Are you sure you have validated the recipients\' identity fingerprint and would like to mark it as verified?</string>
+    <string name="mark_verified">Mark Verified</string>
+    <string name="you_do_not_have_an_identity_key">You do not have an identity key.</string>
+    <string name="recipient_has_no_identity_key">Recipient has no identity key.</string>
+    <string name="recipient_has_no_identity_key_exclamation">Recipient has no identity key!</string>
+    <string name="scan_their_key_to_compare">Scan their key to compare</string>
+    <string name="get_my_key_scanned">Get my key scanned</string>
+    <string name="warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.</string>
+    <string name="not_verified_exclamation">NOT Verified!</string>
+    <string name="their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Their key is correct. It is also necessary to verify your key with them as well.</string>
+    <string name="verified_exclamation">Verified!</string>
+    
+    <!-- VerifyImportedIdentityActivity -->
+    <string name="you_must_specify_a_name_for_this_contact_exclamation">You must specify a name for this contact!</string>
+    <string name="save_identity_key_question">Save Identity Key?</string>
+    <string name="error_saving_identity_key_exclamation">Error saving identity key!</string>
+    <string name="this_identity_key_or_an_identity_key_with_the_same_name_already_exists_please_edit_your_key_database">This identity key or an identity key with the same name already exists.  Please edit your key database.</string>
+    <string name="scan_to_compare">Scan to compare</string>
+    <string name="get_scanned_to_compare">Get scanned to compare</string>
+    <string name="not_verified_exclamation2">NOT Verified!</string>
+    <string name="warning_the_scanned_key_does_not_match_exclamation">WARNING, the scanned key DOES NOT match!</string>
+    <string name="the_scanned_key_matches_exclamation">The scanned key matches!</string>
+    <string name="verified_exclamation2">Verified!</string>
+    <string name="are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s">Are you sure that you would like to mark this as a valid identity key for all future correspondence with %s?  You should only do this if you have actually verified the fingerprint.</string>
+    
+    <!-- VerifyKeysActivity -->
+    <string name="mark_session_verified_question">Mark Session Verified?</string>
+    <string name="are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified">Are you sure that you have validated these fingerprints and would like to mark this session as verified?</string>
+    <string name="mark_verified2">Mark Verified</string>
+    <string name="get_my_fingerprint_scanned">Get my fingerprint scanned</string>
+    <string name="scan_their_fingerprint">Scan their fingerprint</string>
+    <string name="warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.</string>
+    <string name="not_verified_exclamation3">NOT Verified!</string>
+    <string name="their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Their key is correct. It is also necessary to get your fingerprint scanned as well.</string>
+    <string name="verified_exclamation3">Verified!</string>
+    
+    <!-- ViewIdentityActivity -->
+    <string name="you_do_not_have_an_identity_key2">You do not have an identity key.</string>
+    <string name="scan_to_compare2">Scan to compare</string>
+    <string name="get_scanned_to_compare2">Get scanned to compare</string>
+    <string name="warning_the_scanned_key_does_not_match_exclamation2">WARNING, the scanned key DOES NOT match!</string>
+    <string name="not_verified_exclamation4">NOT Verified!</string>
+    <string name="the_scanned_key_matches_exclamation2">The scanned key matches!</string>
+    <string name="verified_exclamation4">Verified!</string>
+    
+    <!-- KeyExchangeInitiator -->
+    <string name="initiate_despite_existing_request_question">Initiate Despite Existing Request?</string>
+    <string name="youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">You\'ve already sent a session initiation request to this recipient, are you sure you\'d like to send another?  This will invalidate the first request.</string>
+    <string name="send">Send</string>
+    
+    <!-- MessageDisplayHelper -->
+    <string name="bad_encrypted_message">Bad encrypted message...</string>
+    <string name="decrypting_please_wait">Decrypting, please wait...</string>
+    <string name="message_encrypted_for_non_existing_session">Message encrypted for non-existing session...</string>
+    <string name="decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question">Decryption error: local message corrupted, MAC doesn\'t match. Potential tampering?</string>
+    
+    <!-- MmsDatabase -->
+    <string name="connecting_to_mms_server">Connecting to MMS server...</string>
+    <string name="downloading_mms">Downloading MMS...</string>
+    <string name="mms_download_failed">MMS Download failed!</string>
+    <string name="downloading">Downloading...</string>
+    <string name="anonymous">Anonymous</string>
+    
+    <!-- MmsMessageRecord -->
+    <string name="decrypting_mms_please_wait">Decrypting MMS, please wait...</string>
+    <string name="bad_encrypted_mms_message">Bad encrypted MMS message...</string>
+    <string name="mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session...</string>
+
+    <!-- ApplicationMigrationService -->
+    <string name="migrating">Migrating</string>
+    <string name="migrating_system_text_messages">Migrating System Text Messages</string>
+    
+    <!-- KeyCachingService -->
+    <string name="textsecure_passphrase_cached">TextSecure Passphrase Cached</string>
+    <string name="textsecure_cached">TextSecure Cached</string>
+    
+    <!-- MessageNotifier -->
+    <string name="_d_new_messages">(%d) New messages</string>
+    <string name="_d_new_messages_most_recent_from_s">(%1$d) New messages, most recent from: %2$s</string>
+    <string name="most_recent_from_s">Most recent from: %s</string>
+    
+    <!-- auto_initiate_activity -->
+    <string name="you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_key_exchange_so_you_can_communicate_securely">You have received a message from someone who supports TextSecure encrypted sessions.  Would you like to initiate a key exchange so you can communicate securely?</string>
+    <string name="initiate_exchange">Initiate Exchange</string>
+    
+    <!-- change_passphrase_activity -->
+    <string name="old_passphrase">Old passphrase:</string>
+    <string name="new_passphrase">New passphrase:</string>
+    <string name="repeat_new_passphrase">Repeat new passphrase:</string>
+    
+    <!-- contact_selection_group_activity -->
+    <!-- contact_selection_list_activity -->
+    <string name="no_contacts">No contacts.</string>
+    
+    <!-- contact_selection_recent_activity -->
+    <string name="no_recent_calls">No recent calls.</string>
+    
+    <!-- conversation_activity -->
+    <string name="type_message">Type message</string>
+    <string name="send2">Send</string>
+    <string name="remove">Remove</string>    
+    
+    <!-- conversation_fragment_cab -->
+    <string name="batch_selection_mode">Batch Selection Mode</string>
+    
+    <!-- create_passphrase_activity -->
+    <string name="please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Please choose a passphrase that will be used to locally encrypt your data.  This should be a strong passphrase.</string>
+    <string name="passphrase">Passphrase:</string>
+    <string name="repeat">Repeat:</string>
+    
+    <!-- mms_download_view -->
+    <string name="download">Download</string>
+    <string name="downloading">Downloading</string>
+    
+    <!-- receive_key_activity -->
+    <string name="session">Session</string>
+    <string name="identities">Identities</string>
+    <string name="complete_exchange">Complete Exchange</string>
+    
+    <!-- recipients_panel -->
+    <string name="to">To</string>
+    
+    <!-- review_identities -->
+    <string name="you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don\'t currently have any identity keys in your trust database.</string>
+    
+    <!-- save_identity_activity -->
+    <string name="identity_name">Identity Name:</string>
+    
+    <!-- verify_identity_activity -->
+    <string name="their_identity_they_read">Their identity (they read):</string>
+    <string name="your_identity_you_read">Your identity (you read):</string>
+    
+    <!-- verify_import_identity_activity -->
+    <string name="identity_name_n">Identity name:\\n</string>
+    <string name="imported_identity_n">Imported identity:\\n</string>
+    <string name="verified5">Verified!</string>
+    <string name="compare5">Compare</string>
+    
+    <!-- verify_keys_activity -->
+    <string name="they_read_this">They read this:</string>
+    <string name="you_read_this">You read this:</string>
+    
+    <!-- view_identity_activity -->
+    <string name="identity5">Identity:</string>
+    <string name="qr_code">QR Code</string>
+
+    <!-- AndroidManifest.xml -->
+    
+    <string name="create_passphrase">Create Passphrase</string>
+    <string name="enter_passphrase">Enter Passphrase</string>
+    <string name="select_contacts">Select Contacts</string>
+    <string name="textsecure_messaging_detected">TextSecure Messaging Detected</string>
+    <string name="public_identity_key">Public Identity Key</string>
+    <string name="change_passphrase2">Change Passphrase</string>
+    <string name="verify_session">Verify Session</string>
+    <string name="verify_identity">Verify Identity</string>
+    <string name="save_identity">Save Identity</string>
+    <string name="manage_identity_keys2">Manage Identity Keys</string>
+    <string name="complete_key_exchange">Complete Key Exchange</string>
+    <string name="verify_imported_identity">Verify Imported Identity</string>
+        
+    <!-- preferences.xml -->
+    
+    <string name="use_settings">Use Settings</string>
+    <string name="use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
+    <string name="use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for viewing and storing all incoming multimedia messages</string>
+    <string name="input_settings">Input Settings</string>
+    <string name="pressing_the_enter_key_will_send_text_messages">Pressing the enter key will send text messages</string>
+    <string name="display_settings">Display Settings</string>
+    <string name="choose_identity">Choose Identity</string>
+    <string name="choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
+    <string name="encryption_settings">Encryption Settings</string>
+    <string name="change_passphrase">Change Passphrase</string>
+    <string name="change_my_passphrase">Change my passphrase</string>
+    <string name="complete_key_exchanges">Complete Key Exchanges</string>
+    <string name="automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatically complete key exchanges for new sessions or for existing sessions with the same identity key</string>
+    <string name="include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Include a whitespace tag at the end of every non-encrypted message</string>
+    <string name="include_whitespace_tag">Include whitespace tag</string>
+    <string name="sign_key_exchange_messages_with_identity_key">Sign key exchange messages with identity key</string>
+    <string name="sign_key_exchange">Sign Key Exchange</string>
+    <string name="forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
+    <string name="timeout_passphrase">Timeout passphrase</string>
+    <string name="identity_key_settings">Identity Key Settings</string>
+    <string name="view_my_identity_key">View my identity key</string>
+    <string name="export_my_identity_key">Export my identity key</string>
+    <string name="import_contacts_key">Import Contact\'s Key</string>
+    <string name="import_an_identity_key_from_a_contact">Import an identity key from a contact</string>
+    <string name="manage_identity_keys">Manage Identity Keys</string>
+    <string name="manage_configured_identity_keys">Manage configured identity keys</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="notifications">Notifications</string>
+    <string name="display_message_notifications_in_status_bar">Display message notifications in status bar</string>
+    <string name="led_color">LED Color</string>
+    <string name="change_notification_led_color">Change notification LED color</string>
+    <string name="select_led_color">Select LED Color</string>
+    <string name="select_ringtone">Select ringtone</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="also_vibrate_when_notified">Also vibrate when notified</string>
+    
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    
+    <!-- contact_selection_list -->
+    <string name="menu_select_all">Select All</string>
+    <string name="menu_unselect_all">Unselect All</string>
+    
+    <!-- contact_selection -->
+    <string name="menu_finished">Finished</string>
+    
+    <!-- conversation_button_context -->
+    <string name="menu_send_unencrypted">Send unencrypted</string>
+    
+    <!-- conversation_callable -->
+    <string name="menu_call">Call</string>
+    
+    <!-- conversation_context -->
+    <string name="menu_message_details">Message details</string>    
+    <string name="menu_copy_text">Copy text</string>
+    <string name="menu_delete_message">Delete message</string>
+    <string name="menu_forward_message">Forward message</string>
+    
+    <!-- conversation_insecure -->
+    <string name="menu_start_secure_session">Start Secure Session</string>
+    
+    <!-- conversation_list_batch -->
+    <string name="menu_delete_selected">Delete Selected</string>
+    <string name="menu_select_all">Select All</string>
+    
+    <!-- conversation_list -->
+    <string name="menu_search">Search</string>
+
+    <!-- conversation_secure_verified -->
+    <!-- conversation_secure_unverified -->
+    <string name="menu_security">Security</string>
+    <string name="menu_verify_session">Verify Session</string>
+    <string name="menu_verify_recipient">Verify Recipient</string>
+    <string name="menu_abort_secure_session">Abort Secure Session</string>
+    
+    <!-- conversation -->
+    <string name="menu_add_attachment">Add attachment</string>
+    <string name="menu_delete_thread">Delete thread</string>
+    <string name="menu_compare">Compare</string>
+    
+    <!-- key_scanning -->
+    <string name="menu_get_scanned_to_compare">Get scanned to compare</string>
+    <string name="menu_scan_to_compare">Scan to compare</string>
+    
+    <!-- text_secure_locked -->
+    <string name="menu_unlock">Unlock</string>
+    
+    <!-- text_secure_normal -->
+    <string name="menu_new_message">New Message</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_import_export">Import/Export</string>
+    <string name="menu_import">Import</string>
+    <string name="menu_export">Export</string>
+    <string name="menu_clear_passphrase">Clear Passphrase</string>
+    
+    <!-- verify_keys -->
+    <string name="menu_verified">Verified</string>
+    
+    <!-- EOF -->
+    
 </resources>

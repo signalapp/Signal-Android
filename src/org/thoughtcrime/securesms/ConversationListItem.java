@@ -90,7 +90,7 @@ public class ConversationListItem extends RelativeLayout {
     this.fromView.setText(formatFrom(recipients, message.getCount(), message.getRead()));
 
     if (message.isKeyExchange())
-      this.subjectView.setText("Key exchange message...", TextView.BufferType.SPANNABLE);
+      this.subjectView.setText(R.string.key_exchange_message, TextView.BufferType.SPANNABLE);
     else
       this.subjectView.setText(message.getBody(), TextView.BufferType.SPANNABLE);
 

@@ -14,7 +14,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Their identity (they read):"
+                android:text="@string/their_identity_they_read"
                 android:padding="7dip" />
 
         <TextView
@@ -29,7 +29,7 @@
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Your identity (you read):"
+                android:text="@string/your_identity_you_read"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:padding="7dip" />
 

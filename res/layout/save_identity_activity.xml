@@ -11,7 +11,7 @@
               android:layout_marginTop="5dip"
               android:layout_marginBottom="5dip"
               android:textAppearance="?android:attr/textAppearanceMedium"
-              android:text="Identity Name:" />
+              android:text="@string/identity_name" />
 
     <EditText android:layout_height="wrap_content"
               android:layout_width="fill_parent"
@@ -30,14 +30,14 @@
             <TableRow>
                 <Button android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Cancel"
+                        android:text="@string/cancel"
                         android:id="@+id/cancel_button"
                         android:layout_marginRight="15dip"
                         android:layout_marginLeft="16dip"/>
 
                 <Button android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="OK"
+                        android:text="@android:string/ok"
                         android:id="@+id/ok_button"
                         android:layout_marginRight="16dip"/>
             </TableRow>

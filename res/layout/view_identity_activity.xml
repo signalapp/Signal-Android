@@ -12,7 +12,7 @@
     <TableRow>
         <TextView
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Identity:"
+            android:text="@string/identity5"
             android:layout_marginRight="7dip" />
         <TextView
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -34,14 +34,14 @@
                     android:padding="5dip"
                     android:layout_width="100dip"
                     android:layout_height="wrap_content"
-                    android:text="QR Code" />
+                    android:text="@string/qr_code" />
 
             <Button android:id="@+id/ok_button"
                     android:layout_margin="10dip"
                     android:padding="5dip"
                     android:layout_width="100dip"
                     android:layout_height="wrap_content"
-                    android:text="Ok"/>
+                    android:text="@android:string/ok"/>
 
         </LinearLayout>
 

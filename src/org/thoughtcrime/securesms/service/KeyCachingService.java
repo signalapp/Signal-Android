@@ -142,10 +142,13 @@ public class KeyCachingService extends Service {
   }
 
   private void foregroundService() {
-    Notification notification  = new Notification(R.drawable.icon_cached, "TextSecure Passphrase Cached", System.currentTimeMillis());
+    Notification notification  = new Notification(R.drawable.icon_cached,
+                                                  getString(R.string.textsecure_passphrase_cached),
+                                                  System.currentTimeMillis());
     Intent intent              = new Intent(this, ConversationListActivity.class);
     PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-    notification.setLatestEventInfo(getApplicationContext(), "TextSecure Cached", "TextSecure Passphrase Cached", launchIntent);
+    notification.setLatestEventInfo(getApplicationContext(), getString(R.string.textsecure_cached),
+                                    getString(R.string.textsecure_passphrase_cached), launchIntent);
 
     stopForeground(true);
     startForeground(SERVICE_RUNNING_ID, notification);

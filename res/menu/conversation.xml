@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Add attachment"
+    <item android:title="@string/menu_add_attachment"
           android:id="@+id/menu_add_attachment"
           android:icon="@drawable/ic_menu_attach" />
 
-    <item android:title="Delete thread"
+    <item android:title="@string/menu_delete_thread"
           android:id="@+id/menu_delete_thread"
           android:icon="@android:drawable/ic_menu_delete" />
 

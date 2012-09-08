@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Unlock"
+    <item android:title="@string/menu_unlock"
           android:id="@+id/menu_unlock"
           android:showAsAction="ifRoom" />
 

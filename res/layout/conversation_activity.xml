@@ -59,26 +59,12 @@
                     android:layout_height="fill_parent"
                     android:gravity="center_vertical">
 
-<!--			        <Button-->
-<!--			            android:id="@+id/view_image_button"-->
-<!--			            style="?android:attr/buttonStyleSmall"-->
-<!--			            android:layout_width="100dip"-->
-<!--			            android:layout_height="50dip"-->
-<!--			            android:text="View" />-->
-<!--			-->
-<!--			        <Button-->
-<!--			            android:id="@+id/replace_image_button"-->
-<!--			            style="?android:attr/buttonStyleSmall"-->
-<!--			            android:layout_width="100dip"-->
-<!--			            android:layout_height="50dip"-->
-<!--			            android:text="Replace" />-->
-
                     <Button
                         android:id="@+id/remove_image_button"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="100dip"
                         android:layout_height="50dip"
-                        android:text="Remove" />
+                        android:text="@string/remove" />
 
                 </LinearLayout>
 
@@ -108,7 +94,7 @@
                             android:autoText="true"
                             android:capitalize="sentences"
                             android:nextFocusRight="@+id/send_button"
-                            android:hint="Type message"
+                            android:hint="@string/type_message"
                             android:maxLines="4"
                             android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
                             android:imeOptions="actionSend|flagNoEnterAction"
@@ -121,7 +107,7 @@
                         android:layout_height="fill_parent"
                         android:layout_gravity="center_vertical"
                         android:nextFocusLeft="@+id/embedded_text_editor"
-                        android:text="Send"
+                        android:text="@string/send2"
                         android:padding="8dip"
                     />
                 </LinearLayout>

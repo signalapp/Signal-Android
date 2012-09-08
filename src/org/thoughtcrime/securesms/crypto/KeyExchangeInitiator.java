@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import java.util.LinkedList;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.LocalKeyRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -33,16 +34,16 @@ public class KeyExchangeInitiator {
   public static void initiate(final Context context, final MasterSecret masterSecret, final Recipient recipient, boolean promptOnExisting) {
     if (promptOnExisting && hasInitiatedSession(context, masterSecret, recipient)) {
       AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-      dialog.setTitle("Initiate Despite Existing Request?");
-      dialog.setMessage("You've already sent a session initiation request to this recipient, are you sure you'd like to send another?  This will invalidate the first request.");
+      dialog.setTitle(R.string.initiate_despite_existing_request_question);
+      dialog.setMessage(R.string.youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure);
       dialog.setIcon(android.R.drawable.ic_dialog_alert);
       dialog.setCancelable(true);
-      dialog.setPositiveButton("Send", new DialogInterface.OnClickListener() {					
+      dialog.setPositiveButton(R.string.send, new DialogInterface.OnClickListener() {					
         public void onClick(DialogInterface dialog, int which) {
           initiateKeyExchange(context, masterSecret, recipient);
         }
       });
-      dialog.setNegativeButton("Cancel", null);
+      dialog.setNegativeButton(R.string.cancel, null);
       dialog.show();
     } else {
       initiateKeyExchange(context, masterSecret, recipient);

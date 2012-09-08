@@ -127,10 +127,10 @@ public class ReviewIdentitiesActivity extends SherlockListActivity {
       startActivity(viewIntent);
     } catch (InvalidKeyException ike) {
       Log.w("ReviewIdentitiesActivity", ike);
-      Toast.makeText(this, "Unable to view corrupted identity key!", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.unable_to_view_corrupted_identity_key_exclamation, Toast.LENGTH_LONG).show();
     } catch (IOException e) {
       Log.w("ReviewIdentitiesActivity", e);
-      Toast.makeText(this, "Unable to view corrupted identity key!", Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.unable_to_view_corrupted_identity_key_exclamation, Toast.LENGTH_LONG).show();
     }
   }
 

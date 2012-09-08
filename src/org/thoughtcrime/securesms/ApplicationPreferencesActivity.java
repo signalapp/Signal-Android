@@ -138,7 +138,10 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
     String contactName      = ContactAccessor.getInstance().getNameFromContact(this, uri);
 
     if (identityKey == null) {
-      Dialogs.displayAlert(this, "Not found!", "No valid identity key was found in the specified contact.", android.R.drawable.ic_dialog_alert);
+      Dialogs.displayAlert(this,
+                           getString(R.string.not_found_exclamation),
+                           getString(R.string.no_valid_identity_key_was_found_in_the_specified_contact),
+                           android.R.drawable.ic_dialog_alert);
       return;
     }
 
@@ -173,13 +176,15 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
           .getString(IDENTITY_PREF, null);
 
       if (!IdentityKeyUtil.hasIdentityKey(ApplicationPreferencesActivity.this)) {
-        Toast.makeText(ApplicationPreferencesActivity.this, "You don't have an identity key!", Toast.LENGTH_LONG).show();
+        Toast.makeText(ApplicationPreferencesActivity.this,
+                       R.string.you_don_t_have_an_identity_key_exclamation,
+                       Toast.LENGTH_LONG).show();
         return true;
       }
 
       if (contactUri == null) {
           Toast.makeText(ApplicationPreferencesActivity.this,
-                         "You have not yet defined a contact for yourself! Select one in the Settings menu.",
+                         R.string.you_have_not_yet_defined_a_contact_for_yourself,
                          Toast.LENGTH_LONG).show();
           return true;
       }
@@ -187,7 +192,9 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
       ContactAccessor.getInstance().insertIdentityKey(ApplicationPreferencesActivity.this, Uri.parse(contactUri),
                                                       IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
 
-      Toast.makeText(ApplicationPreferencesActivity.this, "Exported to contacts database!", Toast.LENGTH_LONG).show();
+      Toast.makeText(ApplicationPreferencesActivity.this,
+                     R.string.exported_to_contacts_database,
+                     Toast.LENGTH_LONG).show();
 
       return true;
     }
@@ -202,7 +209,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
         startActivityForResult(importIntent, IMPORT_IDENTITY_ID);
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this,
-                       "You need to have entered your passphrase before importing keys...",
+                       R.string.you_need_to_have_entered_your_passphrase_before_importing_keys,
                        Toast.LENGTH_LONG).show();
       }
 
@@ -220,7 +227,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
         startActivity(manageIntent);
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this,
-                       "You need to have entered your passphrase before managing keys...",
+                       R.string.you_need_to_have_entered_your_passphrase_before_managing_keys,
                        Toast.LENGTH_LONG).show();
       }
 
@@ -235,7 +242,9 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
       if (settings.getBoolean("passphrase_initialized", false)) {
         startActivity(new Intent(ApplicationPreferencesActivity.this, PassphraseChangeActivity.class));
       } else {
-        Toast.makeText(ApplicationPreferencesActivity.this, "You haven't set a passphrase yet!", Toast.LENGTH_LONG).show();
+        Toast.makeText(ApplicationPreferencesActivity.this,
+                       R.string.you_havent_set_a_passphrase_yet,
+                       Toast.LENGTH_LONG).show();
       }
 
       return true;

@@ -187,7 +187,7 @@ public class ConversationAdapter extends CursorAdapter {
     if (body == null)
       message.setBody("");
     else
-      MessageDisplayHelper.setDecryptedMessageBody(body, message, masterCipher);
+      MessageDisplayHelper.setDecryptedMessageBody(context, body, message, masterCipher);
   }
 
   @Override

@@ -54,31 +54,27 @@ public class MessageNotifier {
 
   public static final int NOTIFICATION_ID = 1338;
 
-  private static String buildTickerMessage(int count, Recipients recipients) {
+  private static String buildTickerMessage(Context context, int count, Recipients recipients) {
     Recipient recipient   = recipients.getPrimaryRecipient();
-    StringBuilder builder = new StringBuilder();
-    builder.append('(');
-    builder.append(count);
-    builder.append(')');
-    builder.append(" New messages");
 
-    if (recipient != null) {
-      builder.append(", most recent from: ");
-      builder.append(recipient.getName() == null ? recipient.getNumber() : recipient.getName());
+    if (recipient == null) {
+      return String.format(context.getString(R.string._d_new_messages), count);
+    } else {
+      return String.format(context.getString(R.string._d_new_messages_most_recent_from_s), count,
+                           recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     }
-
-    return builder.toString();
   }
 
-  private static String buildTitleMessage(int count) {
-    return "(" + count + ") New Messages";
+  private static String buildTitleMessage(Context context, int count) {
+    return String.format(context.getString(R.string._d_new_messages), count);
   }
 
-  private static String buildSubtitleMessage(Recipients recipients) {
+  private static String buildSubtitleMessage(Context context, Recipients recipients) {
     Recipient recipient = recipients.getPrimaryRecipient();
 
     if (recipient != null) {
-      return "Most recent from: " + (recipient.getName() == null ? recipient.getNumber() : recipient.getName());
+      return String.format(context.getString(R.string.most_recent_from_s),
+                           (recipient.getName() == null ? recipient.getNumber() : recipient.getName()));
     }
 
     return null;
@@ -98,15 +94,15 @@ public class MessageNotifier {
   private static Recipients getMostRecentRecipients(Context context, Cursor c) {
     if (c != null && c.moveToLast()) {
       try {
-  String type = c.getString(c.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+        String type = c.getString(c.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
 
-  if (type.equals("sms"))
-    return getSmsRecipient(context, c);
-  else
-    return getMmsRecipient(context, c);
+        if (type.equals("sms"))
+          return getSmsRecipient(context, c);
+        else
+          return getMmsRecipient(context, c);
 
       } catch (RecipientFormattingException e) {
-  return new Recipients(new LinkedList<Recipient>());
+        return new Recipients(new LinkedList<Recipient>());
       }
     }
 
@@ -126,8 +122,8 @@ public class MessageNotifier {
       Log.w("SmsNotifier", "Adding thread_id to pending intent: " + threadId);
 
       if (recipients.getPrimaryRecipient() != null) {
-  intent.putExtra("recipients", recipients);
-  intent.putExtra("thread_id", threadId);
+        intent.putExtra("recipients", recipients);
+        intent.putExtra("thread_id", threadId);
       }
 
       intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
@@ -180,9 +176,9 @@ public class MessageNotifier {
       else if (c == null || !c.moveToFirst())                         return;
 
       Recipients recipients      = getMostRecentRecipients(context, c);
-      String ticker              = buildTickerMessage(c.getCount(), recipients);
-      String title               = buildTitleMessage(c.getCount());
-      String subtitle            = buildSubtitleMessage(recipients);
+      String ticker              = buildTickerMessage(context, c.getCount(), recipients);
+      String title               = buildTitleMessage(context, c.getCount());
+      String subtitle            = buildSubtitleMessage(context, recipients);
       PendingIntent launchIntent = buildPendingIntent(context, c, recipients);
 
       sendNotification(context, manager, launchIntent, ticker, title, subtitle, signal);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Search"
+    <item android:title="@string/menu_search"
           android:id="@+id/menu_search"
           android:icon="@drawable/ic_menu_search_holo_dark"
           android:actionViewClass="android.widget.SearchView"

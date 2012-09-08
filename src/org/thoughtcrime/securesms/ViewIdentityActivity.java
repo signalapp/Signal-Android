@@ -47,7 +47,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   private void initializeFingerprint() {
     if (identityKey == null) {
-      identityFingerprint.setText("You do not have an identity key.");
+      identityFingerprint.setText(R.string.you_do_not_have_an_identity_key2);
     } else {
       identityFingerprint.setText(identityKey.getFingerprint());
     }
@@ -79,12 +79,12 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getScanString() {
-    return "Scan to compare";
+    return getString(R.string.scan_to_compare2);
   }
 
   @Override
   protected String getDisplayString() {
-    return "Get scanned to compare";
+    return getString(R.string.get_scanned_to_compare2);
   }
 
   @Override
@@ -99,21 +99,21 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return  "WARNING, the scanned key DOES NOT match!";
+    return  getString(R.string.warning_the_scanned_key_does_not_match_exclamation2);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return "NOT Verified!";
+    return getString(R.string.not_verified_exclamation4);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return "The scanned key matches!";
+    return getString(R.string.the_scanned_key_matches_exclamation2);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return "Verified!";
+    return getString(R.string.verified_exclamation4);
   }
 }

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Security"
+    <item android:title="@string/menu_security"
           android:id="@+id/menu_security"
           android:icon="@drawable/ic_menu_lock_unverified_holo_dark"
           android:showAsAction="ifRoom">
           <menu>
-              <item android:title="Verify Session"
+              <item android:title="@string/menu_verify_session"
                     android:id="@+id/menu_verify_session" />
 
-              <item android:title="Verify Recipient"
+              <item android:title="@string/menu_verify_recipient"
                     android:id="@+id/menu_verify_recipient"/>
 
-              <item android:title="Abort Secure Session"
+              <item android:title="@string/menu_abort_secure_session"
                     android:id="@+id/menu_abort_session"/>
 
           </menu>

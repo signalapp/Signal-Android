@@ -16,7 +16,7 @@
             android:capitalize="sentences"
             android:autoText="true"
             android:singleLine="true"
-            android:hint="To"
+            android:hint="@string/to"
             android:paddingRight="45dip"
             android:layout_width="fill_parent"/>
 

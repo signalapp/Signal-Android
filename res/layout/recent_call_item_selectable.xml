@@ -11,15 +11,13 @@
         android:layout_height="fill_parent"
         android:paddingLeft="14dip"
         android:paddingRight="11dip"        
-        android:gravity="center_vertical"
-    />
+        android:gravity="center_vertical" />
 
     <View android:id="@+id/divider"
         android:layout_width="1dip"
         android:layout_height="fill_parent"
         android:layout_toRightOf="@id/call_type_icon"
-        android:layout_marginRight="11dip"
-    />
+        android:layout_marginRight="11dip" />
     
     <TextView android:id="@+id/date"
         android:layout_width="wrap_content"
@@ -28,10 +26,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="9dip"
         android:layout_marginTop="5dip"
-
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:singleLine="true"
-    />
+        android:singleLine="true" />
 
     <TextView android:id="@+id/label"
         android:layout_width="wrap_content"
@@ -40,12 +36,10 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dip"
         android:layout_marginTop="-10dip"
-
         android:singleLine="true"
         android:ellipsize="marquee"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textStyle="bold"
-    />
+        android:textStyle="bold" />
 
     <TextView android:id="@+id/number"
         android:layout_width="wrap_content"
@@ -55,11 +49,9 @@
         android:layout_toLeftOf="@id/date"
         android:layout_alignBaseline="@id/label"
         android:layout_alignWithParentIfMissing="true"
-
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-    />
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
     <CheckedTextView android:id="@+id/line1"
@@ -75,7 +67,6 @@
         android:gravity="center_vertical"
         
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:ellipsize="marquee"     
-    />
+        android:ellipsize="marquee"/>
     
 </RelativeLayout>

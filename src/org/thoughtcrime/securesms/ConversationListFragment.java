@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -102,7 +103,8 @@ public class ConversationListFragment extends SherlockListFragment
     initializeListAdapter();
   }
 
-  private void initializeSearch(android.widget.SearchView searchView) {
+  @SuppressLint({ "NewApi", "NewApi" })
+private void initializeSearch(android.widget.SearchView searchView) {
     searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
@@ -146,11 +148,11 @@ public class ConversationListFragment extends SherlockListFragment
   private void handleDeleteAllSelected() {
     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
     alert.setIcon(android.R.drawable.ic_dialog_alert);
-    alert.setTitle("Delete threads?");
-    alert.setMessage("Are you sure you wish to delete ALL selected conversation threads?");
+    alert.setTitle(R.string.delete_threads_question);
+    alert.setMessage(R.string.are_you_sure_you_wish_to_delete_all_selected_conversation_threads);
     alert.setCancelable(true);
 
-    alert.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+    alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
             .getBatchSelections();
@@ -162,7 +164,7 @@ public class ConversationListFragment extends SherlockListFragment
       }
     });
 
-    alert.setNegativeButton("Cancel", null);
+    alert.setNegativeButton(R.string.cancel, null);
     alert.show();
   }
 

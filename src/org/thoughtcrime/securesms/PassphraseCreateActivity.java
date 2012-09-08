@@ -57,8 +57,8 @@ public class PassphraseCreateActivity extends PassphraseActivity {
   private void initializeResources() {
     this.passphraseEdit       = (EditText) findViewById(R.id.passphrase_edit);
     this.passphraseRepeatEdit = (EditText) findViewById(R.id.passphrase_edit_repeat);
-    this.okButton             = (Button) findViewById(R.id.ok_button);
-    this.cancelButton         = (Button) findViewById(R.id.cancel_button);
+    this.okButton             = (Button)   findViewById(R.id.ok_button);
+    this.cancelButton         = (Button)   findViewById(R.id.cancel_button);
 
     this.okButton.setOnClickListener(new OkButtonClickListener());
     this.cancelButton.setOnClickListener(new CancelButtonClickListener());
@@ -69,7 +69,8 @@ public class PassphraseCreateActivity extends PassphraseActivity {
     String passphraseRepeat = this.passphraseRepeatEdit.getText().toString();
 
     if (!passphrase.equals(passphraseRepeat)) {
-      Toast.makeText(getApplicationContext(), "Passphrases Don't Match!", Toast.LENGTH_SHORT).show();
+      Toast.makeText(getApplicationContext(), R.string.passphrases_dont_match_exclamation,
+                     Toast.LENGTH_SHORT).show();
       this.passphraseEdit.setText("");
       this.passphraseRepeatEdit.setText("");
     } else {
@@ -96,8 +97,8 @@ public class PassphraseCreateActivity extends PassphraseActivity {
 
     public void generate() {
       progressDialog = new ProgressDialog(PassphraseCreateActivity.this);
-      progressDialog.setTitle("Generating KeyPair");
-      progressDialog.setMessage("Generating a local encryption keypair...");
+      progressDialog.setTitle(R.string.generating_keypair);
+      progressDialog.setMessage(getString(R.string.generating_a_local_encryption_keypair));
       progressDialog.setCancelable(false);
       progressDialog.setIndeterminate(true);
       progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

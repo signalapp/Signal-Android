@@ -64,10 +64,9 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
   protected void handleVerified() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
-    builder.setTitle("Mark Session Verified?");
-    builder.setMessage("Are you sure that you have validated these fingerprints and " +
-                       "would like to mark this session as verified?");
-    builder.setPositiveButton("Mark Verified", new DialogInterface.OnClickListener() {
+    builder.setTitle(R.string.mark_session_verified_question);
+    builder.setMessage(R.string.are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified);
+    builder.setPositiveButton(R.string.mark_verified2, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         SessionRecord sessionRecord = new SessionRecord(VerifyKeysActivity.this, masterSecret,
@@ -78,7 +77,7 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
       }
     });
 
-    builder.setNegativeButton("Cancel", null);
+    builder.setNegativeButton(R.string.cancel, null);
     builder.show();
   }
 
@@ -100,12 +99,12 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
 
   @Override
   protected String getDisplayString() {
-    return "Get my fingerprint scanned";
+    return getString(R.string.get_my_fingerprint_scanned);
   }
 
   @Override
   protected String getScanString() {
-    return "Scan their fingerprint";
+    return getString(R.string.scan_their_fingerprint);
   }
 
   @Override
@@ -120,22 +119,22 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return "WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.";
+    return getString(R.string.warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return "NOT Verified!";
+    return getString(R.string.not_verified_exclamation3);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return "Their key is correct. It is also necessary to get your fingerprint scanned as well.";
+    return getString(R.string.their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return "Verified!";
+    return getString(R.string.verified_exclamation3);
   }
 
   private class FingerprintKey implements SerializableKey {

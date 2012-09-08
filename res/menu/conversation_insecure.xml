@@ -5,7 +5,7 @@
           android:icon="@drawable/ic_menu_lock_holo_dark"
           android:showAsAction="ifRoom">
           <menu>
-              <item android:title="Start Secure Session"
+              <item android:title="@string/menu_start_secure_session"
                     android:id="@+id/menu_start_secure_session" />
 
           </menu>

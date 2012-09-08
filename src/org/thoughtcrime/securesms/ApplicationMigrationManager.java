@@ -35,8 +35,8 @@ public class ApplicationMigrationManager extends Handler {
 
   private void displayMigrationProgress() {
     progressDialog = new ProgressDialog(context);
-    progressDialog.setTitle("Migrating Database");
-    progressDialog.setMessage("Migrating text message database...");
+    progressDialog.setTitle(context.getString(R.string.migrating_database));
+    progressDialog.setMessage(context.getString(R.string.migrating_text_message_database));
     progressDialog.setMax(10000);
     progressDialog.setCancelable(false);
     progressDialog.setIndeterminate(false);
@@ -51,14 +51,11 @@ public class ApplicationMigrationManager extends Handler {
 
   private void displayMigrationPrompt() {
     AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-    alertBuilder.setTitle("Copy System Text Message Database?");
-    alertBuilder.setMessage("TextSecure uses an encrypted database that is " +
-                            "separate from the default system database.  Would you like to " +
-                            "copy your existing text messages into TextSecure's encrypted " +
-                            "database?  Your default system database will be unaffected.");
+    alertBuilder.setTitle(R.string.copy_system_text_message_database_question);
+    alertBuilder.setMessage(R.string.copy_system_text_message_database_explanation);
     alertBuilder.setCancelable(false);
 
-    alertBuilder.setPositiveButton("Copy", new DialogInterface.OnClickListener() {
+    alertBuilder.setPositiveButton(R.string.copy, new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         displayMigrationProgress();
         Intent intent = new Intent(context, ApplicationMigrationService.class);
@@ -68,7 +65,7 @@ public class ApplicationMigrationManager extends Handler {
       }
     });
 
-    alertBuilder.setNegativeButton("Don't copy", new DialogInterface.OnClickListener() {
+    alertBuilder.setNegativeButton(R.string.dont_copy, new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE)
           .edit()

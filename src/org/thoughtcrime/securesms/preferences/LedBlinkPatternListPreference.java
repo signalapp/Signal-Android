@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,14 +10,11 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.thoughtcrime.securesms.preferences;
-
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.R;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -30,25 +27,28 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.SeekBar.OnSeekBarChangeListener;
+
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.R;
 
 /**
  * List preference for LED blink pattern notification.
- * 
+ *
  * @author Moxie Marlinspike
  */
 
 public class LedBlinkPatternListPreference extends ListPreference implements OnSeekBarChangeListener {
-	
+
   private Context context;
   private SeekBar seekBarOn;
   private SeekBar seekBarOff;
 
   private TextView seekBarOnLabel;
   private TextView seekBarOffLabel;
-    
+
   private boolean dialogInProgress;
 
   public LedBlinkPatternListPreference(Context context) {
@@ -62,9 +62,9 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
   }
 
   @Override
-    protected void onDialogClosed(boolean positiveResult) {
+  protected void onDialogClosed(boolean positiveResult) {
     super.onDialogClosed(positiveResult);
-        
+
     if (positiveResult) {
       String blinkPattern = PreferenceManager.getDefaultSharedPreferences(context).getString(ApplicationPreferencesActivity.LED_BLINK_PREF, "500,2000");
       if (blinkPattern.equals("custom")) showDialog();
@@ -77,7 +77,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
     seekBarOn.setProgress(Integer.parseInt(patternArray[0]));
     seekBarOff.setProgress(Integer.parseInt(patternArray[1]));
   }
-    
+
   private void initializeDialog(View view) {
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setIcon(android.R.drawable.ic_dialog_info);
@@ -88,7 +88,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
     builder.setPositiveButton(android.R.string.ok, new CustomDialogClickListener());
     builder.show();
   }
-    
+
   private void showDialog() {
     LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View view               = inflater.inflate(R.layout.led_pattern_dialog, null);
@@ -104,12 +104,12 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
     initializeSeekBarValues();
     initializeDialog(view);
     dialogInProgress = true;
-        
+
     dialogInProgress = true;
   }
 
   @Override
-    protected void onRestoreInstanceState(Parcelable state) {
+  protected void onRestoreInstanceState(Parcelable state) {
     super.onRestoreInstanceState(state);
     if (dialogInProgress) {
       showDialog();
@@ -117,7 +117,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
   }
 
   @Override
-    protected View onCreateDialogView() {
+  protected View onCreateDialogView() {
     dialogInProgress = false;
     return super.onCreateDialogView();
   }
@@ -138,25 +138,25 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
 
   private class CustomDialogCancelListener implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
     public void onClick(DialogInterface dialog, int which) {
-      dialogInProgress = false;			
+      dialogInProgress = false;
     }
 
     public void onCancel(DialogInterface dialog) {
       dialogInProgress = false;
-    }   	
+    }
   }
-    
+
   private class CustomDialogClickListener implements DialogInterface.OnClickListener {
 
     public void onClick(DialogInterface dialog, int which) {
       String pattern   = seekBarOnLabel.getText() + "," + seekBarOffLabel.getText();
       dialogInProgress = false;
-            
+
       SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
       preferences.edit().putString(ApplicationPreferencesActivity.LED_BLINK_PREF_CUSTOM, pattern).commit();
       Toast.makeText(context, "Custom LED blink pattern set!", Toast.LENGTH_LONG).show();
     }
-    	
+
   }
-    
+
 }

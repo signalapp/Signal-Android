@@ -10,7 +10,7 @@
     <TableRow>
         <TextView
             android:textSize="12sp"
-            android:text="Old passphrase:"
+            android:text="@string/old_passphrase"
             android:padding="3dip" />
 
         <EditText android:id="@+id/old_passphrase"
@@ -21,7 +21,7 @@
 
     <TableRow>
         <TextView
-            android:text="New passphrase:"
+            android:text="@string/new_passphrase"
             android:textSize="12sp"
             android:padding="3dip" />
 
@@ -34,7 +34,7 @@
 
     <TableRow>
         <TextView
-            android:text="Repeat new passphrase:"
+            android:text="@string/repeat_new_passphrase"
             android:textSize="12sp"
             android:padding="3dip" />
 
@@ -51,13 +51,13 @@
                    android:padding="10dip"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Cancel"/>
+                   android:text="@string/cancel"/>
 
            <Button android:id="@+id/ok_button"
                    android:padding="10dip"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Ok"/>
+                   android:text="@android:string/ok"/>
     </TableRow>
   </TableLayout>
 </ScrollView>

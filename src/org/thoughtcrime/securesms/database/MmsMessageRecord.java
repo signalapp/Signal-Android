@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,18 +10,21 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.thoughtcrime.securesms.database;
 
-import java.util.Iterator;
-import java.util.List;
+import android.content.Context;
 
 import org.thoughtcrime.securesms.ConversationItem;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class MmsMessageRecord extends MessageRecord {
 
@@ -33,14 +36,14 @@ public class MmsMessageRecord extends MessageRecord {
   private long mailbox;
   private int status;
   private byte[] transactionId;
-	
-  public MmsMessageRecord(MessageRecord record, SlideDeck slideDeck, long mailbox) {
-    super(record);		
+
+  public MmsMessageRecord(Context context, MessageRecord record, SlideDeck slideDeck, long mailbox) {
+    super(record);
     this.slideDeck      = slideDeck;
     this.isNotification = false;
     this.mailbox        = mailbox;
-		
-    setBodyIfTextAvailable();
+
+    setBodyIfTextAvailable(context);
   }
 
   public MmsMessageRecord(MessageRecord record, byte[] contentLocation, long messageSize, long expiry, int status, byte[] transactionId) {
@@ -52,53 +55,54 @@ public class MmsMessageRecord extends MessageRecord {
     this.status          = status;
     this.transactionId   = transactionId;
   }
-	
+
   public byte[] getTransactionId() {
     return transactionId;
   }
-	
+
   public int getStatus() {
     return this.status;
   }
-	
+
   @Override
-    public boolean isOutgoing() {
+  public boolean isOutgoing() {
     return MmsDatabase.Types.isOutgoingMmsBox(mailbox);
   }
-	
+
   @Override
-    public boolean isPending() {
+  public boolean isPending() {
     return MmsDatabase.Types.isPendingMmsBox(mailbox);
   }
-	
+
   @Override
-    public boolean isFailed() {
+  public boolean isFailed() {
     return MmsDatabase.Types.isFailedMmsBox(mailbox);
   }
-	
+
   @Override
-    public boolean isSecure() {
+  public boolean isSecure() {
     return MmsDatabase.Types.isSecureMmsBox(mailbox);
   }
-	
+
   // This is the double-dispatch pattern, don't refactor
   // this into the base class.
+  @Override
   public void setOnConversationItem(ConversationItem item) {
     item.setMessageRecord(this);
   }
-	
+
   public byte[] getContentLocation() {
     return contentLocation;
   }
-	
+
   public long getMessageSize() {
     return (messageSize + 1023) / 1024;
   }
-	
+
   public long getExpiration() {
     return expiry * 1000;
   }
-	
+
   public boolean isNotification() {
     return isNotification;
   }
@@ -106,41 +110,42 @@ public class MmsMessageRecord extends MessageRecord {
   public SlideDeck getSlideDeck() {
     return slideDeck;
   }
-	
+
   private void setBodyFromSlidesIfTextAvailable() {
     List<Slide> slides = slideDeck.getSlides();
     Iterator<Slide> i = slides.iterator();
-		
+
     while (i.hasNext()) {
       Slide slide = i.next();
-			
+
       if (slide.hasText())
-	setBody(slide.getText());
-    }		
+        setBody(slide.getText());
+    }
   }
-	
-  private void setBodyIfTextAvailable() {
+
+  private void setBodyIfTextAvailable(Context context) {
     switch ((int)mailbox) {
     case MmsDatabase.Types.MESSAGE_BOX_DECRYPTING_INBOX:
-      setBody("Decrypting MMS, please wait...");
+      setBody(context.getString(R.string.decrypting_mms_please_wait));
       setEmphasis(true);
       return;
     case MmsDatabase.Types.MESSAGE_BOX_DECRYPT_FAILED_INBOX:
-      setBody("Bad encrypted MMS message...");
+      setBody(context.getString(R.string.bad_encrypted_mms_message));
       setEmphasis(true);
       return;
     case MmsDatabase.Types.MESSAGE_BOX_NO_SESSION_INBOX:
-      setBody("MMS message encrypted for non-existing session...");
+      setBody(context
+          .getString(R.string.mms_message_encrypted_for_non_existing_session));
       setEmphasis(true);
       return;
     }
-		
+
     setBodyFromSlidesIfTextAvailable();
   }
-	
+
   @Override
     public boolean isMms() {
     return true;
   }
-	
+
 }
