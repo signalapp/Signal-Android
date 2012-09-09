@@ -12,7 +12,6 @@
         android:maxLines="1"
         android:singleLine="true"
         android:layout_gravity="center_vertical"
-        android:layout_centerVertical="true"
         android:textAppearance="?android:attr/textAppearanceMediumInverse"
         android:layout_weight="1"
         android:layout_width="wrap_content"

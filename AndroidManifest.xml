@@ -6,6 +6,28 @@
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14"/>
 
+    <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
+            android:label="Access to TextSecure Secrets"
+            android:protectionLevel="signature" />    
+    
+	<uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"></uses-permission>
+	<uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"></uses-permission>
+	<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
+	<uses-permission android:name="android.permission.WRITE_CONTACTS"></uses-permission>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+	<uses-permission android:name="android.permission.RECEIVE_MMS"></uses-permission>
+	<uses-permission android:name="android.permission.READ_SMS"></uses-permission>
+	<uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+	<uses-permission android:name="android.permission.WRITE_SMS"></uses-permission>
+	<uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        
     <application android:icon="@drawable/icon"
                  android:label="@string/app_name"
                  android:theme="@style/Theme.Sherlock.Light.DarkActionBar">
@@ -131,33 +153,11 @@
              </intent-filter>
     </receiver>
 
-    <provider android:name=".providers.PartProvider" android:authorities="org.thoughtcrime.provider.securesms" />
+    <provider android:name=".providers.PartProvider" 
+              android:authorities="org.thoughtcrime.provider.securesms" />
 
        <uses-library android:name="android.test.runner" />
 </application>
-
-<permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
-            android:label="Access to TextSecure Secrets"
-            android:protectionLevel="signature" />
-
-<uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"></uses-permission>
-<uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"></uses-permission>
-<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
-<uses-permission android:name="android.permission.WRITE_CONTACTS"></uses-permission>
-<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-<uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
-<uses-permission android:name="android.permission.RECEIVE_MMS"></uses-permission>
-<uses-permission android:name="android.permission.READ_SMS"></uses-permission>
-<uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
-<uses-permission android:name="android.permission.WRITE_SMS"></uses-permission>
-<uses-permission android:name="android.permission.VIBRATE"></uses-permission>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
 <instrumentation android:name="android.test.InstrumentationTestRunner"
        android:targetPackage="org.thoughtcrime.securesms.tests" android:label="Tests for My App" />

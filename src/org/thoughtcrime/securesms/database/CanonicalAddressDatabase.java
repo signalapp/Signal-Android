@@ -119,7 +119,7 @@ public class CanonicalAddressDatabase {
 
   private long getCanonicalAddressFromCache(String address) {
     if (addressCache.containsKey(address))
-      return new Long(addressCache.get(address));
+      return Long.valueOf(addressCache.get(address));
 
     return -1L;
   }

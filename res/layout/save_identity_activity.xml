@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                 android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
-    <TextView android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="16dip"
-              android:layout_marginRight="16dip"
-              android:layout_marginTop="5dip"
-              android:layout_marginBottom="5dip"
-              android:textAppearance="?android:attr/textAppearanceMedium"
-              android:text="@string/identity_name" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:layout_marginTop="5dip"
+        android:text="@string/identity_name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText android:layout_height="wrap_content"
-              android:layout_width="fill_parent"
-              android:id="@+id/identity_name"
-              android:layout_margin="16dip"/>
+    <EditText
+        android:id="@+id/identity_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dip"
+        tools:ignore="TextFields" />
 
-    <LinearLayout android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:layout_marginBottom="16dip"
-                  android:gravity="right">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dip"
+        android:gravity="right"
+        android:orientation="horizontal" >
 
-        <TableLayout android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:stretchColumns="*">
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            tools:ignore="UselessParent" >
+
             <TableRow>
-                <Button android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/cancel"
-                        android:id="@+id/cancel_button"
-                        android:layout_marginRight="15dip"
-                        android:layout_marginLeft="16dip"/>
 
-                <Button android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@android:string/ok"
-                        android:id="@+id/ok_button"
-                        android:layout_marginRight="16dip"/>
+                <Button
+                    android:id="@+id/cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dip"
+                    android:layout_marginRight="15dip"
+                    android:text="@string/cancel" />
+
+                <Button
+                    android:id="@+id/ok_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dip"
+                    android:text="@android:string/ok" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
+
 </LinearLayout>

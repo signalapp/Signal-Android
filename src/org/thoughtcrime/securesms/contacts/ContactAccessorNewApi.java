@@ -185,7 +185,7 @@ public class ContactAccessorNewApi extends ContactAccessor {
         return rawContactIds;
 
       while (cursor.moveToNext()) {
-        rawContactIds.add(new Long(cursor.getLong(0)));
+        rawContactIds.add(Long.valueOf(cursor.getLong(0)));
       }
     } finally {
       if (cursor != null)

@@ -28,7 +28,7 @@
         <EditText android:id="@+id/passphrase_edit"
                   android:layout_height="wrap_content"
                   android:layout_width="fill_parent"
-                  android:password="true"/>
+                  android:inputType="textPassword"/>
 
         <TextView
                   android:layout_width="fill_parent"
@@ -42,7 +42,7 @@
         <EditText
                   android:layout_height="wrap_content"
                   android:layout_width="fill_parent"
-                  android:password="true"
+                  android:inputType="textPassword"
                   android:id="@+id/passphrase_edit_repeat"/>
 
         <LinearLayout android:layout_width="fill_parent"

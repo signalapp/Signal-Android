@@ -4,7 +4,7 @@
 			android:layout_height="fill_parent">
 <TableLayout 
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:shrinkColumns="1">
 
     <TableRow>
