@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[textsecure-official.master]
+file_filter = res/values-<lang>/strings.xml
+source_file = res/values/strings.xml
+source_lang = en
+type = ANDROID
+
