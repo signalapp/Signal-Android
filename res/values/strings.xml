@@ -196,7 +196,7 @@
     
     <!-- KeyCachingService -->
     <string name="textsecure_passphrase_cached">TextSecure Passphrase Cached</string>
-    <string name="textsecure_cached">TextSecure Cached</string>
+    <string name="passphrase_cached">Passphrase Cached</string>
     
     <!-- MessageNotifier -->
     <string name="_d_new_messages">(%d) New messages</string>

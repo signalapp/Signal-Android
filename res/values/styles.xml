@@ -11,4 +11,15 @@
 	    <item name="android:backgroundDimEnabled">false</item>
 	    <item name="android:background">@android:color/transparent</item>
 	</style>
+	
+	
+	<style name="NotificationText">
+      <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+	<style name="NotificationTitle">
+      <item name="android:textColor">?android:attr/textColorPrimary</item>
+      <item name="android:textStyle">bold</item>
+    </style>
+	
 </resources>

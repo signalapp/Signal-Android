@@ -23,10 +23,12 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.ConversationListActivity;
@@ -141,17 +143,37 @@ public class KeyCachingService extends Service {
     }
   }
 
-  private void foregroundService() {
+  private void foregroundServiceModern() {
+    Notification notification = new Notification(R.drawable.icon_cached, null, System.currentTimeMillis());
+    RemoteViews remoteViews   = new RemoteViews(getPackageName(), R.layout.key_caching_notification);
+
+    Intent intent = new Intent(this, KeyCachingService.class);
+    intent.setAction(PASSPHRASE_EXPIRED_EVENT);
+    PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
+    remoteViews.setOnClickPendingIntent(R.id.lock_cache_icon, pendingIntent);
+
+    notification.contentView  = remoteViews;
+
+    stopForeground(true);
+    startForeground(SERVICE_RUNNING_ID, notification);
+  }
+
+  private void foregroundServiceLegacy() {
     Notification notification  = new Notification(R.drawable.icon_cached,
                                                   getString(R.string.textsecure_passphrase_cached),
                                                   System.currentTimeMillis());
     Intent intent              = new Intent(this, ConversationListActivity.class);
     PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-    notification.setLatestEventInfo(getApplicationContext(), getString(R.string.textsecure_cached),
+    notification.setLatestEventInfo(getApplicationContext(), getString(R.string.passphrase_cached),
                                     getString(R.string.textsecure_passphrase_cached), launchIntent);
 
     stopForeground(true);
     startForeground(SERVICE_RUNNING_ID, notification);
+  }
+
+  private void foregroundService() {
+    if (Build.VERSION.SDK_INT >= 11) foregroundServiceModern();
+    else                             foregroundServiceLegacy();
   }
 
   private void broadcastNewSecret() {
