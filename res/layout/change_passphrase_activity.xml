@@ -7,14 +7,14 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dip"
-        android:layout_marginRight="16dip"
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip"
         android:orientation="vertical" >
 
         <TextView
             android:padding="3dip"
             android:text="@string/old_passphrase"
-            android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
 
