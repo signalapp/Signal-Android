@@ -146,6 +146,8 @@ public class ConversationListActivity extends SherlockFragmentActivity
       return;
     }
 
+    Log.w("ConversationListActivity", "Creating conversation: " + threadId);
+
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra("recipients", recipients);
     intent.putExtra("thread_id", threadId);
@@ -314,10 +316,12 @@ public class ConversationListActivity extends SherlockFragmentActivity
   }
 
   private void createConversationIfNecessary(Intent intent) {
+    Log.w("ConversationListActivity", "createConversationIfNecessary called");
     long thread           = intent.getLongExtra("thread_id", -1L);
     Recipients recipients = null;
 
     if (intent.getAction() != null && intent.getAction().equals("android.intent.action.SENDTO")) {
+      Log.w("ConversationListActivity", "Intent has sendto action...");
       try {
         recipients = RecipientFactory.getRecipientsFromString(this, intent.getData().getSchemeSpecificPart());
         thread     = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
@@ -329,6 +333,7 @@ public class ConversationListActivity extends SherlockFragmentActivity
     }
 
     if (recipients != null) {
+      Log.w("ConversationListActivity", "Creating conversation: " + thread + " , " + recipients);
       createConversation(thread, recipients);
       intent.putExtra("thread_id", -1L);
       intent.putExtra("recipients", (Parcelable)null);
