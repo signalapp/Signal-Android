@@ -27,6 +27,8 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.provider.Contacts.Intents;
+import android.provider.ContactsContract.QuickContact;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.format.DateUtils;
@@ -249,10 +251,24 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setBodyImage(MessageRecord messageRecord) {
-    Recipient recipient = messageRecord.getMessageRecipient();
+    final Recipient recipient = messageRecord.getMessageRecipient();
 
-    if (!messageRecord.isOutgoing()) contactPhoto.setImageBitmap(recipient.getContactPhoto());
-    else                             setContactPhotoForUserIdentity();
+    if (!messageRecord.isOutgoing()) {
+      contactPhoto.setImageBitmap(recipient.getContactPhoto());
+      contactPhoto.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (recipient.getContactUri() != null) {
+            QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
+          } else {
+           Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
+           context.startActivity(intent);
+          }
+        }
+      });
+    } else {
+      setContactPhotoForUserIdentity();
+    }
 
     contactPhoto.setVisibility(View.VISIBLE);
   }
