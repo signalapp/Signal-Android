@@ -23,9 +23,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -53,6 +55,16 @@ import java.util.LinkedList;
 public class MessageNotifier {
 
   public static final int NOTIFICATION_ID = 1338;
+
+  private static Bitmap buildContactPhoto(Recipients recipients) {
+    Recipient recipient = recipients.getPrimaryRecipient();
+
+    if (recipient == null) {
+      return null;
+    } else {
+      return recipient.getContactPhoto();
+    }
+  }
 
   private static String buildTickerMessage(Context context, int count, Recipients recipients) {
     Recipient recipient   = recipients.getPrimaryRecipient();
@@ -132,13 +144,14 @@ public class MessageNotifier {
     return PendingIntent.getActivity(context, 0, intent, 0);
   }
 
-  private static void sendNotification(Context context, NotificationManager manager, PendingIntent launchIntent,
-               String ticker, String title, String subtitle, boolean signal)
+  private static void sendNotification(Context context, NotificationManager manager,
+                                       PendingIntent launchIntent, Bitmap contactPhoto,
+                                       String ticker, String title,
+                                       String subtitle, boolean signal)
   {
     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
     if (!sp.getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true)) return;
 
-    Notification notification    = new Notification(R.drawable.icon_notification, ticker, System.currentTimeMillis());
     String ringtone              = sp.getString(ApplicationPreferencesActivity.RINGTONE_PREF, null);
     boolean vibrate              = sp.getBoolean(ApplicationPreferencesActivity.VIBRATE_PREF, true);
     String ledColor              = sp.getString(ApplicationPreferencesActivity.LED_COLOR_PREF, "green");
@@ -146,21 +159,26 @@ public class MessageNotifier {
     String ledBlinkPatternCustom = sp.getString(ApplicationPreferencesActivity.LED_BLINK_PREF_CUSTOM, "500,2000");
     String[] blinkPatternArray   = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
 
-    notification.setLatestEventInfo(context, title, subtitle, launchIntent);
-    notification.sound          = TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone);
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+    builder.setSmallIcon(R.drawable.icon_notification);
+    builder.setLargeIcon(contactPhoto);
+    builder.setTicker(ticker);
+    builder.setContentTitle(title);
+    builder.setContentText(subtitle);
+    builder.setContentIntent(launchIntent);
+    builder.setSound(TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone));
+
     if (signal && vibrate)
-      notification.defaults  |= Notification.DEFAULT_VIBRATE;
+      builder.setDefaults(Notification.DEFAULT_VIBRATE);
 
-    notification.flags         |= Notification.FLAG_SHOW_LIGHTS;
-    notification.ledARGB        = Color.parseColor(ledColor);//0xff00ff00;
-    notification.ledOnMS        = Integer.parseInt(blinkPatternArray[0]);
-    notification.ledOffMS       = Integer.parseInt(blinkPatternArray[1]);
+    builder.setLights(Color.parseColor(ledColor), Integer.parseInt(blinkPatternArray[0]), Integer.parseInt(blinkPatternArray[1]));
 
-    manager.notify(NOTIFICATION_ID, notification);
+    manager.notify(NOTIFICATION_ID, builder.build());
   }
 
   private static void flashNotification(Context context, NotificationManager manager) {
-    sendNotification(context, manager, buildPendingIntent(context, null, null), "(1) New Messages", "(1) New Messages", null, true);
+    sendNotification(context, manager, buildPendingIntent(context, null, null),
+                     null, "(1) New Messages", "(1) New Messages", null, true);
   }
 
   public static void updateNotification(Context context, boolean signal) {
@@ -180,8 +198,10 @@ public class MessageNotifier {
       String title               = buildTitleMessage(context, c.getCount());
       String subtitle            = buildSubtitleMessage(context, recipients);
       PendingIntent launchIntent = buildPendingIntent(context, c, recipients);
+      Bitmap contactPhoto        = buildContactPhoto(recipients);
 
-      sendNotification(context, manager, launchIntent, ticker, title, subtitle, signal);
+      sendNotification(context, manager, launchIntent, contactPhoto,
+                       ticker, title, subtitle, signal);
     } finally {
       if (c != null)
         c.close();
