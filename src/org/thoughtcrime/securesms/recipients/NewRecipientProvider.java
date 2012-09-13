@@ -75,7 +75,8 @@ public class NewRecipientProvider extends RecipientProvider {
     try {
       if (cursor != null && cursor.moveToFirst()) {
         Uri contactUri      = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
-        Bitmap contactPhoto = getContactPhoto(context, contactUri);
+        Bitmap contactPhoto = getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
+                                                                            cursor.getLong(2)+""));
 
         Recipient recipient = new Recipient(cursor.getString(0), number, contactUri, contactPhoto);
         return recipient;
