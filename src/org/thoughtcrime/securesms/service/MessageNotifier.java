@@ -184,7 +184,7 @@ public class MessageNotifier {
       sendNotification(context, manager, launchIntent, ticker, title, subtitle, signal);
     } finally {
       if (c != null)
-  c.close();
+        c.close();
     }
   }
 
