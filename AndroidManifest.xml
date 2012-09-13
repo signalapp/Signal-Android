@@ -75,7 +75,7 @@
 
     <activity android:name=".AutoInitiateActivity"
               android:theme="@style/Theme.Sherlock.Light.Dialog"
-              android:label="@string/textsecure_messaging_detected"
+              android:label="@string/textsecure_detected"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ViewIdentityActivity"

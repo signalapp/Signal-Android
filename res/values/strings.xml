@@ -273,7 +273,7 @@
     <string name="create_passphrase">Create Passphrase</string>
     <string name="enter_passphrase">Enter Passphrase</string>
     <string name="select_contacts">Select Contacts</string>
-    <string name="textsecure_messaging_detected">TextSecure Messaging Detected</string>
+    <string name="textsecure_detected">TextSecure Detected</string>
     <string name="public_identity_key">Public Identity Key</string>
     <string name="change_passphrase2">Change Passphrase</string>
     <string name="verify_session">Verify Session</string>
