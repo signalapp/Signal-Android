@@ -8,3 +8,4 @@ gen/
 TextSecure.iml
 out
 tests
+lint.xml
