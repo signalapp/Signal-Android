@@ -32,6 +32,13 @@ whispersystems@lists.riseup.net
 
 https://lists.riseup.net/www/info/whispersystems
 
+Translation
+------------
+
+Interested in helping to translate TextSecure? Contribute here:
+
+https://www.transifex.com/projects/p/textsecure-official/
+
 Cryptography Notice
 ------------
 
