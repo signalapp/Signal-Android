@@ -31,6 +31,11 @@ public class SmsListener extends BroadcastReceiver {
   private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
 
   private boolean isExemption(SmsMessage message, String messageBody) {
+	// ignore OTP messages from Sparebank1 (Norwegian bank)
+	if (messageBody.startsWith("Sparebank1://otp?")) {
+      return (true);
+    }
+	
     // Sprint Visual Voicemail
     return 
       message.getOriginatingAddress().length() < 7 && 
