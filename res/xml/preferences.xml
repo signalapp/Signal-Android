@@ -79,7 +79,7 @@
                         android:title="@string/timeout_interval_title"
                         android:summary="@string/timeout_interval_summary"
                         android:dependency="pref_timeout_passphrase"
-                        android:dialogTitle="Select Passphrase Timeout" />
+                        android:dialogTitle="@string/timeout_interval_dialogtitle" />
    </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/identity_key_settings">

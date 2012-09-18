@@ -262,6 +262,7 @@
   <string name="sign_key_exchange">Signer nøkkelutveksling</string>
   <string name="forget_passphrase_from_memory_after_some_interval">Fjern passord fra minnet etter et gitt intervall</string>
   <string name="timeout_passphrase">Passordtimeout</string>
+  <string name="timeout_interval_dialogtitle">Velg passordtimeout</string>
   <string name="timeout_interval_title">Timeoutintervall</string>
   <string name="timeout_interval_summary">Hvor lang tid det skal gå før passordet slettes fra minnet</string>
   <string name="identity_key_settings">Innstillinger for ID-nøkkel</string>

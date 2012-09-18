@@ -303,6 +303,7 @@
     <string name="sign_key_exchange">Sign Key Exchange</string>
     <string name="forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
     <string name="timeout_passphrase">Timeout passphrase</string>
+    <string name="timeout_interval_dialogtitle">Select Passphrase Timeout</string>
     <string name="timeout_interval_title">Timeout interval</string>
     <string name="timeout_interval_summary">The amount of time to wait before forgetting passphrase from memory</string>
     <string name="identity_key_settings">Identity Key Settings</string>
