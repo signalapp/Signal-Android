@@ -6,7 +6,7 @@
           android:icon="@drawable/ic_menu_trash_holo_dark"
           android:showAsAction="ifRoom" />
 
-    <item android:title="@string/menu_select_all"
+    <item android:title="@string/menu_select_all2"
           android:id="@+id/menu_select_all"
           android:icon="@drawable/ic_menu_selectall_holo_dark" />
 

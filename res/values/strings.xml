@@ -232,10 +232,6 @@
     <string name="passphrase">Passphrase:</string>
     <string name="repeat">Repeat:</string>
     
-    <!-- mms_download_view -->
-    <string name="download">Download</string>
-    <string name="downloading">Downloading</string>
-    
     <!-- receive_key_activity -->
     <string name="session">Session</string>
     <string name="identities">Identities</string>
@@ -349,7 +345,7 @@
     
     <!-- conversation_list_batch -->
     <string name="menu_delete_selected">Delete Selected</string>
-    <string name="menu_select_all">Select All</string>
+    <string name="menu_select_all2">Select All</string>
     
     <!-- conversation_list -->
     <string name="menu_search">Search</string>
