@@ -320,7 +320,8 @@
     <string name="change_notification_led_color">Change notification LED color</string>
     <string name="led_blink_pattern_title">LED Blink Pattern</string>
     <string name="led_blink_pattern_summary">Change notification LED blink pattern</string>
-    <string name="led_blink_pattern_dialogtitle">LED Blink Pattern</string>
+    <string name="led_blink_pattern_dialogtitle">Set Custom LED Blink Pattern</string>
+    <string name="led_blink_pattern_toast">Custom LED blink pattern set!</string>
     <string name="select_led_color">Select LED Color</string>
     <string name="select_ringtone">Select ringtone</string>
     <string name="vibrate">Vibrate</string>

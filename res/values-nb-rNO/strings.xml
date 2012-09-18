@@ -278,7 +278,8 @@
   <string name="led_color">LED farge</string>
   <string name="led_blink_pattern_title">LED blinkemønster</string>
   <string name="led_blink_pattern_summary">Endre LED-varslingens blinkemønster</string>
-  <string name="led_blink_pattern_dialogtitle">LED blinkemønster</string>  
+  <string name="led_blink_pattern_dialogtitle">Sett LED blinkemønster</string>
+  <string name="led_blink_pattern_toast">LED blinkemønster endret!</string>
   <string name="change_notification_led_color">Endre farge på LED varsling</string>
   <string name="select_led_color">Velg LED farge</string>
   <string name="select_ringtone">Velg varslingstone</string>
