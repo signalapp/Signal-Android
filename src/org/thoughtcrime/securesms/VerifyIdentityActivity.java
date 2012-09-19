@@ -85,7 +85,7 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
       }
     });
 
-    builder.setNegativeButton("Cancel", null);
+    builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
   }
 

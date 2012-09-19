@@ -42,7 +42,7 @@ public class ApplicationExportManager extends Handler implements Runnable {
     alertBuilder.setTitle(R.string.import_database_and_settings_title);
     alertBuilder.setMessage(R.string.import_database_and_settings_message);
     alertBuilder.setCancelable(false);
-    alertBuilder.setPositiveButton("Import", new DialogInterface.OnClickListener() {
+    alertBuilder.setPositiveButton(R.string.menu_import, new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         task           = TASK_IMPORT;
         progressDialog = new ProgressDialog(context);
@@ -61,7 +61,7 @@ public class ApplicationExportManager extends Handler implements Runnable {
       }
     });
 
-    alertBuilder.setNegativeButton("Cancel", null);
+    alertBuilder.setNegativeButton(android.R.string.cancel, null);
     alertBuilder.create().show();
   }
 
@@ -72,8 +72,8 @@ public class ApplicationExportManager extends Handler implements Runnable {
     alertBuilder.setTitle(R.string.export_database_question);
     alertBuilder.setMessage(R.string.export_textsecure_database_keys_and_settings_prompt);
     alertBuilder.setCancelable(false);
-
-    alertBuilder.setPositiveButton("Export", new DialogInterface.OnClickListener() {
+    
+    alertBuilder.setPositiveButton(R.string.menu_export, new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         task           = TASK_EXPORT;
         progressDialog = new ProgressDialog(context);
@@ -89,7 +89,7 @@ public class ApplicationExportManager extends Handler implements Runnable {
       }
     });
 
-    alertBuilder.setNegativeButton("Cancel", null);
+    alertBuilder.setNegativeButton(android.R.string.cancel, null);
     alertBuilder.create().show();
   }
 

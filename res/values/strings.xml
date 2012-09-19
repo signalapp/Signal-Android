@@ -73,7 +73,9 @@
     <!-- ConversationFragment -->
     <string name="message_details">Message details</string>
     <string name="sender_s_transport_s_sent_received_s">Sender: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
-
+	<string name="delete_message_dialogtitle">Confirm Message Delete</string>
+	<string name="are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+	
     <!-- ConversationListAdapter -->
     <string name="encrypted_message_enter_passphrase">"Encrypted message, enter passphrase... "</string>
     <string name="key_exchange_message">Key exchange message...</string>
@@ -113,6 +115,9 @@
     
     <!-- ReviewIdentitiesActivity -->
     <string name="unable_to_view_corrupted_identity_key_exclamation">Unable to view corrupted identity key!</string>
+    <string name="delete_identity_dialogtitle">Delete identity?</string>
+    <string name="delete_identity_are_you_sure_you_want_to_delete_this_identity_key">Are you sure that you wish to permanently delete this identity key?</string>
+    <string name="invalid_identity">Invalid Identity!</string>
     
     <!-- SaveIdentityActivity -->
     <string name="you_must_specify_a_name_for_this_identity_exclamation">You must specify a name for this identity!</string>
@@ -213,8 +218,12 @@
     <string name="repeat_new_passphrase">Repeat new passphrase:</string>
     
     <!-- contact_selection_group_activity -->
+    
     <!-- contact_selection_list_activity -->
     <string name="no_contacts">No contacts.</string>
+    
+    <!-- contact_selection_list_fragment -->
+    <string name="select_for_dialogtitle">Select for</string>    
     
     <!-- contact_selection_recent_activity -->
     <string name="no_recent_calls">No recent calls.</string>
@@ -282,9 +291,12 @@
     <!-- preferences.xml -->
     
     <string name="use_settings">Use Settings</string>
+    <string name="use_textsecure_for_viewing_and_storing_all_incoming_text_messages_title">Use for all SMS</string>
+    <string name="use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages_title">Use for all MMS</string>
     <string name="use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
     <string name="use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for viewing and storing all incoming multimedia messages</string>
     <string name="input_settings">Input Settings</string>
+    <string name="pressing_the_enter_key_will_send_text_messages_title">Enter sends message</string>    
     <string name="pressing_the_enter_key_will_send_text_messages">Pressing the enter key will send text messages</string>
     <string name="display_settings">Display Settings</string>
     <string name="choose_identity">Choose Identity</string>
@@ -300,6 +312,9 @@
     <string name="sign_key_exchange">Sign Key Exchange</string>
     <string name="forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
     <string name="timeout_passphrase">Timeout passphrase</string>
+    <string name="timeout_interval_dialogtitle">Select Passphrase Timeout</string>
+    <string name="timeout_interval_title">Timeout interval</string>
+    <string name="timeout_interval_summary">The amount of time to wait before forgetting passphrase from memory</string>
     <string name="identity_key_settings">Identity Key Settings</string>
     <string name="view_my_identity_key">View my identity key</string>
     <string name="export_my_identity_key">Export my identity key</string>
@@ -312,6 +327,10 @@
     <string name="display_message_notifications_in_status_bar">Display message notifications in status bar</string>
     <string name="led_color">LED Color</string>
     <string name="change_notification_led_color">Change notification LED color</string>
+    <string name="led_blink_pattern_title">LED Blink Pattern</string>
+    <string name="led_blink_pattern_summary">Change notification LED blink pattern</string>
+    <string name="led_blink_pattern_dialogtitle">Set Custom LED Blink Pattern</string>
+    <string name="led_blink_pattern_toast">Custom LED blink pattern set!</string>
     <string name="select_led_color">Select LED Color</string>
     <string name="select_ringtone">Select ringtone</string>
     <string name="vibrate">Vibrate</string>

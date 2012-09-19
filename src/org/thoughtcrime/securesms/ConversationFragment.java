@@ -103,10 +103,10 @@ public class ConversationFragment extends SherlockListFragment
     final String transport = message.isMms() ? "mms" : "sms";
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle("Delete Message Confirmation");
+    builder.setTitle(R.string.delete_message_dialogtitle);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
     builder.setCancelable(true);
-    builder.setMessage("Are you sure that you want to permanently delete this message?");
+    builder.setMessage(R.string.are_you_sure_you_want_to_permanently_delete_this_message);
 
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override

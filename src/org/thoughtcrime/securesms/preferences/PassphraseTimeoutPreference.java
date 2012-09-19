@@ -44,8 +44,8 @@ public class PassphraseTimeoutPreference extends DialogPreference {
   public PassphraseTimeoutPreference(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.setDialogLayoutResource(R.layout.passphrase_timeout_dialog);
-    this.setPositiveButtonText("Ok");
-    this.setNegativeButtonText("Cancel");		
+    this.setPositiveButtonText(android.R.string.ok);
+    this.setNegativeButtonText(android.R.string.cancel);		
   }
 	
   @Override
