@@ -73,7 +73,10 @@
   <!--ConversationFragment-->
   <string name="message_details">Meldingsdetaljer</string>
   <string name="sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt:%3$s</string>
-
+  <string name="delete_message_dialogtitle">Bekreft sletting</string>
+  <string name="are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker å slette denne meldingen?</string>
+  
+  
   <!--ConversationListAdapter-->
   <string name="encrypted_message_enter_passphrase">Kryptert melding, tast inn passord...</string>
   <string name="key_exchange_message">Nøkkelutvekslingsmelding...</string>
@@ -216,9 +219,12 @@
   <string name="repeat_new_passphrase">Gjenta nytt passord:</string>
   
   <!--contact_selection_group_activity-->
-  
+
   <!--contact_selection_list_activity-->
   <string name="no_contacts">Ingen kontakter.</string>
+  
+  <!-- contact_selection_list_fragment -->
+  <string name="select_for_dialogtitle">Velg for</string>    
   
   <!--contact_selection_recent_activity-->
   <string name="no_recent_calls">Ingen nye samtaler.</string>

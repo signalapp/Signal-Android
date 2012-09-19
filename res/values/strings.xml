@@ -73,7 +73,9 @@
     <!-- ConversationFragment -->
     <string name="message_details">Message details</string>
     <string name="sender_s_transport_s_sent_received_s">Sender: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
-
+	<string name="delete_message_dialogtitle">Confirm Message Delete</string>
+	<string name="are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+	
     <!-- ConversationListAdapter -->
     <string name="encrypted_message_enter_passphrase">"Encrypted message, enter passphrase... "</string>
     <string name="key_exchange_message">Key exchange message...</string>
@@ -216,8 +218,12 @@
     <string name="repeat_new_passphrase">Repeat new passphrase:</string>
     
     <!-- contact_selection_group_activity -->
+    
     <!-- contact_selection_list_activity -->
     <string name="no_contacts">No contacts.</string>
+    
+    <!-- contact_selection_list_fragment -->
+    <string name="select_for_dialogtitle">Select for</string>    
     
     <!-- contact_selection_recent_activity -->
     <string name="no_recent_calls">No recent calls.</string>
