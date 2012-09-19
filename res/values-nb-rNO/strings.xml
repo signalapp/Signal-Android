@@ -3,6 +3,7 @@
   <string name="app_name">TextSecure</string>
   <string name="yes">Ja</string>
   <string name="no">Nei</string>
+  
   <!--ApplicationExportManager-->
   <string name="import_database_and_settings_title">Importer database og instillinger?</string>
   <string name="import_database_and_settings_message">Importer TextSecure meldingsdatabase, nøkler og innstillinger fra SD-kort? \n\nADVARSEL: Dette vil overskrive eksisterende meldinger, nøkler og innstillinger!</string>
@@ -16,6 +17,7 @@
   <string name="error_exporting_to_sd_exclamation">Feil ved export til SD-kort!</string>
   <string name="import_successful_exclamation">Import vellykket!</string>
   <string name="export_successful_exclamation">Eksport vellykket!</string>
+
   <!--ApplicationMigrationManager-->
   <string name="migrating_database">Migrerer databasen</string>
   <string name="migrating_text_message_database">Migrerer SMS databasen...</string>
@@ -23,6 +25,7 @@
   <string name="copy_system_text_message_database_explanation">TextSecure bruker en kryptert meldingsdatabase som er adskilt fra systemets SMS database. Vil du kopiere dine eksisterende tekstmeldinger til TextSecures krypterte database? Systemets SMS database vil ikke påvirkes.</string>
   <string name="copy">Kopier</string>
   <string name="dont_copy">Ikke kopier</string>
+
   <!--ApplicationPreferencesActivity-->
   <string name="not_found_exclamation">Ikke funnet!</string>
   <string name="no_valid_identity_key_was_found_in_the_specified_contact">Ingen gyldig ID-nøkkel ble funnet i den angitte kontakten.</string>
@@ -32,6 +35,7 @@
   <string name="you_need_to_have_entered_your_passphrase_before_importing_keys">Du må taste inn passordet før du importerer nøkler...</string>
   <string name="you_need_to_have_entered_your_passphrase_before_managing_keys">Du må taste inn passordet før du administrerer nøkler...</string>
   <string name="you_havent_set_a_passphrase_yet">Du har ikke definert et passord ennå!</string>
+
   <!--ConversationItem-->
   <string name="message_size_d_kb">Meldingsstørrelse: %d KB</string>
   <string name="expires_s">Utløper: %s</string>
@@ -50,6 +54,7 @@
   <string name="received_and_processed_key_exchange_message">Nøkkelutvekslingsmelding mottatt og behandlet.</string>
   <string name="error_received_stale_key_exchange_message">Feil, fikk gammel nøkkelutvekslingsmelding.</string>
   <string name="received_key_exchange_message_click_to_process">Nøkkelutvekslingsmelding mottatt, klikk for å behandle</string>
+
   <!--ConversationActivity-->
   <string name="initiate_secure_session_question">Starte sikker sesjon?</string>
   <string name="initiate_secure_session_with_s_question">Starte sikker sesjon med %s?</string>
@@ -64,27 +69,35 @@
   <string name="sorry_the_selected_audio_exceeds_message_size_restrictions">Beklager, den valgte lydfilen overstiger begrensningene til meldingsstørrelse.</string>
   <string name="recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottakeren er ikke en gyldig SMS- eller e-postadresse!</string>
   <string name="message_is_empty_exclamation">Meldingen er tom!</string>
+
   <!--ConversationFragment-->
   <string name="message_details">Meldingsdetaljer</string>
   <string name="sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt:%3$s</string>
+
   <!--ConversationListAdapter-->
   <string name="encrypted_message_enter_passphrase">Kryptert melding, tast inn passord...</string>
   <string name="key_exchange_message">Nøkkelutvekslingsmelding...</string>
+
   <!--ConversationListFragment-->
   <string name="delete_threads_question">Slette trådene?</string>
   <string name="are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Er du sikker på at du vil slette ALLE valgte samtaletråder?</string>
   <string name="delete">Slett</string>
   <string name="cancel">Avbryt</string>
+
   <!--KeyScanningActivity-->
   <string name="no_scanned_key_found_exclamation">Ingen skannet nøkkel funnet!</string>
+
   <!--PassphraseChangeActivity-->
   <string name="passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
+
   <!--PassphraseCreateActivity-->
   <string name="generating_keypair">Genererer nøkkelpar</string>
   <string name="generating_a_local_encryption_keypair">Genererer et lokalt nøkkelpar for kryptering...</string>
+
   <!--PassphrasePromptActivity-->
   <string name="invalid_passphrase_exclamation">Feil passord!</string>
+
   <!--ReceiveKeyActivity-->
   <string name="error_you_have_received_a_corrupted_public_key">EN FEIL HAR OPPSTÅTT:\n\nDu har mottatt en korrupt offentlig nøkkel. Denne nøkkelen kan ikke prosesseres; vær vennlig å gjenoppta en sikker sesjon.</string>
   <string name="error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">EN FEIL HAR OPPSTÅTT: \n\nDu har mottatt en offentlig nøkkel fra en usupportert versjon av protokollen. Denne nøkkelen kan ikke prosesseres; vær vennlig å gjenoppta en sikker sesjon.</string>
@@ -97,13 +110,19 @@
   <string name="you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">Du har mottatt en nøkkelutvekslingsmelding fra %s. Du har tidligere initiert en sesjon med denne kontakten. Ved å akseptere denne nøkkelen vil du fullføre nøkkelutvekslingen. Ønsker du å fullføre denne nøkkelutvekslingen?</string>
   <string name="you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">Du har initiert en nøkkelutveksling med %s men du har ennå ikke fått noe svar på denne.</string>
   <string name="you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">Du har mottatt en nøkkelutvekslingsmelding fra %s. Du har ingen eksisterende sesjon med denne kontakten. Ønsker du å fullføre nøkkelutvekslingen?</string>
+
   <!--ReviewIdentitiesActivity-->
   <string name="unable_to_view_corrupted_identity_key_exclamation">Klarer ikke å vise korrupt ID-nøkkel!</string>
+  <string name="delete_identity_dialogtitle">Slett identitet?</string>
+  <string name="delete_identity_are_you_sure_you_want_to_delete_this_identity_key">Er du helt sikker på at du ønsker å slette denne ID-nøkkelen?</string>
+  <string name="invalid_identity">Ugyldig identitet!</string>
+    
   <!--SaveIdentityActivity-->
   <string name="you_must_specify_a_name_for_this_identity_exclamation">Du må gi denne identiten et navn!</string>
   <string name="identity_name_exists_exclamation">Navnet på denne identiten finnes fra før!</string>
   <string name="an_identity_key_with_the_specified_name_already_exists">En ID-nøkkel med det angitte navnet finnes allerede.</string>
   <string name="manage_identities">Administrere identiteter</string>
+  
   <!--VerifyIdentityActivity-->
   <string name="mark_identity_verified_question">Merk ID som bekreftet?</string>
   <string name="are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified">Er du sikker på at du har validert mottakerens ID-fingeravtrykk og ønsker å markere det som bekreftet?</string>
@@ -111,12 +130,13 @@
   <string name="you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
   <string name="recipient_has_no_identity_key_exclamation">Mottakeren har ingen ID-nøkkel!</string>
-  <string name="scan_their_key_to_compare">Skann deres nøkkel for å sammenligne</string>
-  <string name="get_my_key_scanned">Få min nøkkel skannet</string>
+  <string name="scan_their_key_to_compare">Skann motpartens nøkkel for sammenligning</string>
+  <string name="get_my_key_scanned">Vis nøkkel for skanning</string>
   <string name="warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME! Vær vennlig å sjekke fingeravtrykkets tekst nøye.</string>
   <string name="not_verified_exclamation">IKKE bekreftet!</string>
   <string name="their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Nøkkelen deres er korrekt. Det er også nødvendig å bekrefte nøkkelen din med dem også.</string>
   <string name="verified_exclamation">Bekreftet!</string>
+  
   <!--VerifyImportedIdentityActivity-->
   <string name="you_must_specify_a_name_for_this_contact_exclamation">Du må gi denne kontakten et navn!</string>
   <string name="save_identity_key_question">Lagre ID-nøkkel?</string>
@@ -129,16 +149,18 @@
   <string name="the_scanned_key_matches_exclamation">Den skannede nøkkelen stemmer overens!</string>
   <string name="verified_exclamation2">Bekreftet!</string>
   <string name="are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s">Er du sikker på at du ønsker å markere denne som en gyldig ID-nøkkel for videre korrespondanse med %s? Du bør bare gjøre dette hvis du faktisk har bekreftet fingeravtrykket.</string>
+  
   <!--VerifyKeysActivity-->
   <string name="mark_session_verified_question">Merk sesjonen som bekreftet?</string>
   <string name="are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified">Er du sikker på at du har validert disse fingeravtrykkene og ønsker å markere denne sesjonen som bekreftet?</string>
   <string name="mark_verified2">Merk som bekreftet</string>
-  <string name="get_my_fingerprint_scanned">Få mitt fingeravtrykk skannet</string>
+  <string name="get_my_fingerprint_scanned">Vis fingeravtrykk for skanning</string>
   <string name="scan_their_fingerprint">Skann motpartens fingeravtrykk</string>
   <string name="warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME! Vær vennlig å sjekke fingeravtrykkets tekst nøye.</string>
   <string name="not_verified_exclamation3">IKKE bekreftet!</string>
   <string name="their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Motpartens nøkkel er korrekt. Det er også nødvendig å få ditt fingeravtrykk skannet.</string>
   <string name="verified_exclamation3">Bekreftet!</string>
+  
   <!--ViewIdentityActivity-->
   <string name="you_do_not_have_an_identity_key2">Du har ingen ID-nøkkel.</string>
   <string name="scan_to_compare2">Skann for å sammenligne</string>
@@ -147,84 +169,109 @@
   <string name="not_verified_exclamation4">IKKE bekreftet!</string>
   <string name="the_scanned_key_matches_exclamation2">Den skannede nøkkelen stemmer overens!</string>
   <string name="verified_exclamation4">Bekreftet!</string>
+  
   <!--KeyExchangeInitiator-->
   <string name="initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
   <string name="youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har allerede sendt en forespørsel om å initiere en sesjon til denne mottakeren. Er du sikker på at du vil sende en til? Dette vil ugyldiggjøre tidligere forespørsel.</string>
   <string name="send">Send</string>
+  
   <!--MessageDisplayHelper-->
   <string name="bad_encrypted_message">Ugyldig kryptert melding...</string>
   <string name="decrypting_please_wait">Dekrypterer, vennligst vent...</string>
   <string name="message_encrypted_for_non_existing_session">Melding kryptert for en ikke-eksisterende sesjon...</string>
   <string name="decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question">Feil ved dekryptering: Lokal melding korrupt, MAC\'en stemmer ikke. Potensiell tukling?</string>
+  
   <!--MmsDatabase-->
   <string name="connecting_to_mms_server">Kobler til MMS tjener...</string>
   <string name="downloading_mms">Laster ned MMS...</string>
   <string name="mms_download_failed">MMS nedlasting feilet!</string>
   <string name="downloading">Laster ned...</string>
   <string name="anonymous">Anonym</string>
+  
   <!--MmsMessageRecord-->
   <string name="decrypting_mms_please_wait">Dekrypterer MMS, vennligst vent...</string>
   <string name="bad_encrypted_mms_message">Ugyldig kryptert MMS...</string>
   <string name="mms_message_encrypted_for_non_existing_session">MMS kryptert for en ikke-eksisterende sesjon...</string>
+  
   <!--ApplicationMigrationService-->
   <string name="migrating">Migrerer</string>
   <string name="migrating_system_text_messages">Migrerer systemets SMS meldinger</string>
+  
   <!--KeyCachingService-->
   <string name="textsecure_passphrase_cached">TextSecure passordet er bufret</string>
   <string name="passphrase_cached">Passord bufret</string>
+  
   <!--MessageNotifier-->
   <string name="_d_new_messages">(%d) Nye meldinger</string>
   <string name="_d_new_messages_most_recent_from_s">(%1$d) Nye meldinger, sist mottatt fra: %2$s</string>
   <string name="most_recent_from_s">Sist mottatt fra: %s</string>
+  
   <!--auto_initiate_activity-->
   <string name="you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har mottatt en melding fra noen som støtter TextSecure krypterte sesjoner. Ønsker du å initiere en sikker sesjon?</string>
   <string name="initiate_exchange">Start nøkkelutveksling</string>
+  
   <!--change_passphrase_activity-->
   <string name="old_passphrase">Gammelt passord:</string>
   <string name="new_passphrase">Nytt passord:</string>
   <string name="repeat_new_passphrase">Gjenta nytt passord:</string>
+  
   <!--contact_selection_group_activity-->
+  
   <!--contact_selection_list_activity-->
   <string name="no_contacts">Ingen kontakter.</string>
+  
   <!--contact_selection_recent_activity-->
   <string name="no_recent_calls">Ingen nye samtaler.</string>
+  
   <!--conversation_activity-->
   <string name="type_message">Skriv melding</string>
   <string name="send2">Send</string>
   <string name="remove">Slett</string>
+  
   <!--conversation_fragment_cab-->
   <string name="batch_selection_mode">Batch-valg modus</string>
+  
   <!--create_passphrase_activity-->
   <string name="please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Velg et passord som skal brukes til kryptering av dine lokale data. Dette bør være et passord med en viss kompleksitet.</string>
   <string name="passphrase">Passord:</string>
   <string name="repeat">Repeter:</string>
+  
   <!--mms_download_view-->
   <string name="download">Last ned</string>
   <string name="downloading">Laster ned...</string>
+  
   <!--receive_key_activity-->
   <string name="session">Sesjon</string>
   <string name="identities">Identiteter</string>
   <string name="complete_exchange">Fullfør utveksling</string>
+  
   <!--recipients_panel-->
   <string name="to">Til</string>
+  
   <!--review_identities-->
   <string name="you_don_t_currently_have_any_identity_keys_in_your_trust_database">Du har ingen ID-nøkler som du stoler på.</string>
+  
   <!--save_identity_activity-->
   <string name="identity_name">Identitetens navn:</string>
+  
   <!--verify_identity_activity-->
   <string name="their_identity_they_read">Deres identitet (de leser):</string>
   <string name="your_identity_you_read">Din identitet (du leser):</string>
+  
   <!--verify_import_identity_activity-->
   <string name="identity_name_n">Identitetens navn:\\n</string>
   <string name="imported_identity_n">Importert identitet:\\n</string>
   <string name="verified5">Bekreftet!</string>
   <string name="compare5">Sammenlign</string>
+  
   <!--verify_keys_activity-->
   <string name="they_read_this">De leser dette:</string>
   <string name="you_read_this">Du leser dette:</string>
+  
   <!--view_identity_activity-->
   <string name="identity5">Identitet:</string>
   <string name="qr_code">QR kode</string>
+  
   <!--AndroidManifest.xml-->
   
   <string name="create_passphrase">Opprett passord</string>
@@ -239,6 +286,7 @@
   <string name="manage_identity_keys2">Administrer ID-nøkler</string>
   <string name="complete_key_exchange">Fullfør nøkkelutveksling</string>
   <string name="verify_imported_identity">Bekreft importert identitet</string>
+  
   <!--preferences.xml-->
   <string name="use_settings">Innstillinger for bruk</string>
   <string name="use_textsecure_for_viewing_and_storing_all_incoming_text_messages_title">Benytt for all SMS</string>
@@ -278,52 +326,67 @@
   <string name="led_color">LED farge</string>
   <string name="led_blink_pattern_title">LED blinkemønster</string>
   <string name="led_blink_pattern_summary">Endre LED-varslingens blinkemønster</string>
-  <string name="led_blink_pattern_dialogtitle">Sett LED blinkemønster</string>
+  <string name="led_blink_pattern_dialogtitle">Velg LED blinkemønster</string>
   <string name="led_blink_pattern_toast">LED blinkemønster endret!</string>
   <string name="change_notification_led_color">Endre farge på LED varsling</string>
   <string name="select_led_color">Velg LED farge</string>
   <string name="select_ringtone">Velg varslingstone</string>
   <string name="vibrate">Vibrasjon</string>
   <string name="also_vibrate_when_notified">Også vibrere ved varsling</string>
+  
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
+  
   <!--contact_selection_list-->
   <string name="menu_select_all">Merk alt</string>
   <string name="menu_unselect_all">Avmarker alt</string>
+  
   <!--contact_selection-->
   <string name="menu_finished">Avslutt</string>
+  
   <!--conversation_button_context-->
   <string name="menu_send_unencrypted">Send ukryptert</string>
+  
   <!--conversation_callable-->
   <string name="menu_call">Ring</string>
+  
   <!--conversation_context-->
   <string name="menu_message_details">Meldingsdetaljer</string>
   <string name="menu_copy_text">Kopier tekst</string>
   <string name="menu_delete_message">Slett melding</string>
   <string name="menu_forward_message">Videresend melding</string>
+  
   <!--conversation_insecure-->
   <string name="menu_start_secure_session">Start sikker sesjon</string>
+  
   <!--conversation_list_batch-->
   <string name="menu_delete_selected">Slett merkede</string>
   <string name="menu_select_all">Merk alt</string>
+  
   <!--conversation_list-->
   <string name="menu_search">Søk</string>
+  
   <!--conversation_secure_verified-->
+  
   <!--conversation_secure_unverified-->
   <string name="menu_security">Sikkerhet</string>
   <string name="menu_verify_session">Bekreft sesjon</string>
   <string name="menu_verify_recipient">Bekreft mottaker</string>
   <string name="menu_abort_secure_session">Abryt sikker sesjon</string>
+  
   <!--conversation-->
   <string name="menu_add_attachment">Legg til vedlegg</string>
   <string name="menu_delete_thread">Slett tråd</string>
   <string name="menu_compare">Sammenlign</string>
+  
   <!--key_scanning-->
   <string name="menu_get_scanned_to_compare">La den skannes for å sammenligne</string>
   <string name="menu_scan_to_compare">Skann for å sammenligne</string>
+  
   <!--text_secure_locked-->
   <string name="menu_unlock">Lås opp</string>
+  
   <!--text_secure_normal-->
   <string name="menu_new_message">Ny melding</string>
   <string name="menu_settings">Innstillinger</string>
@@ -331,7 +394,9 @@
   <string name="menu_import">Importer</string>
   <string name="menu_export">Eksporter</string>
   <string name="menu_clear_passphrase">Fjern bufret passord</string>
+  
   <!--verify_keys-->
   <string name="menu_verified">Bekreftet</string>
+  
   <!--EOF-->
 </resources>
