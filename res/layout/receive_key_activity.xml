@@ -30,21 +30,21 @@
 		<Button android:id="@+id/verify_session_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/session"
+				android:text="@string/receive_key_activity__session"
 				android:visibility="gone"
 				android:gravity="center" />		  
 
 		<Button android:id="@+id/verify_identity_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/identities"
+				android:text="@string/receive_key_activity__identities"
 				android:visibility="gone"
 				android:gravity="center" />		  
 				  
 		<Button android:id="@+id/ok_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/complete_exchange"
+				android:text="@string/receive_key_activity__complete_exchange"
 				android:gravity="center"/>
 				
 		<Button android:id="@+id/cancel_button"

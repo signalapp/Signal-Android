@@ -78,10 +78,10 @@ public class ConversationListAdapter extends CursorAdapter  {
     if (body == null) body = "(No subject)";
 
     if (body.startsWith(Prefix.SYMMETRIC_ENCRYPT) || body.startsWith(Prefix.ASYMMETRIC_ENCRYPT) || body.startsWith(Prefix.ASYMMETRIC_LOCAL_ENCRYPT)) {
-      message.setBody(context.getString(R.string.encrypted_message_enter_passphrase));
+      message.setBody(context.getString(R.string.ConversationListAdapter_encrypted_message_enter_passphrase));
       message.setEmphasis(true);
     } else if (body.startsWith(Prefix.KEY_EXCHANGE)) {
-      message.setBody(context.getString(R.string.key_exchange_message));
+      message.setBody(context.getString(R.string.ConversationListAdapter_key_exchange_message));
       message.setEmphasis(true);
     } else {
       message.setBody(body);

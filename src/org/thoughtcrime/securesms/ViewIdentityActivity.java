@@ -47,7 +47,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   private void initializeFingerprint() {
     if (identityKey == null) {
-      identityFingerprint.setText(R.string.you_do_not_have_an_identity_key2);
+      identityFingerprint.setText(R.string.ViewIdentityActivity_you_do_not_have_an_identity_key);
     } else {
       identityFingerprint.setText(identityKey.getFingerprint());
     }
@@ -79,12 +79,12 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getScanString() {
-    return getString(R.string.scan_to_compare2);
+    return getString(R.string.ViewIdentityActivity_scan_to_compare);
   }
 
   @Override
   protected String getDisplayString() {
-    return getString(R.string.get_scanned_to_compare2);
+    return getString(R.string.ViewIdentityActivity_get_scanned_to_compare);
   }
 
   @Override
@@ -99,21 +99,21 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return  getString(R.string.warning_the_scanned_key_does_not_match_exclamation2);
+    return  getString(R.string.ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return getString(R.string.not_verified_exclamation4);
+    return getString(R.string.ViewIdentityActivity_not_verified_exclamation);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return getString(R.string.the_scanned_key_matches_exclamation2);
+    return getString(R.string.ViewIdentityActivity_the_scanned_key_matches_exclamation);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return getString(R.string.verified_exclamation4);
+    return getString(R.string.ViewIdentityActivity_verified_exclamation);
   }
 }

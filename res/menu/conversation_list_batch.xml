@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/menu_delete_selected"
+    <item android:title="@string/conversation_list_batch__menu_delete_selected"
           android:id="@+id/menu_delete_selected"
           android:icon="@drawable/ic_menu_trash_holo_dark"
           android:showAsAction="ifRoom" />
 
-    <item android:title="@string/menu_select_all2"
+    <item android:title="@string/conversation_list_batch__menu_select_all"
           android:id="@+id/menu_select_all"
           android:icon="@drawable/ic_menu_selectall_holo_dark" />
 

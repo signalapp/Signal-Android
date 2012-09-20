@@ -148,11 +148,11 @@ private void initializeSearch(android.widget.SearchView searchView) {
   private void handleDeleteAllSelected() {
     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
     alert.setIcon(android.R.drawable.ic_dialog_alert);
-    alert.setTitle(R.string.delete_threads_question);
-    alert.setMessage(R.string.are_you_sure_you_wish_to_delete_all_selected_conversation_threads);
+    alert.setTitle(R.string.ConversationListFragment_delete_threads_question);
+    alert.setMessage(R.string.ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads);
     alert.setCancelable(true);
 
-    alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+    alert.setPositiveButton(R.string.ConversationListFragment_delete, new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
             .getBatchSelections();
@@ -164,7 +164,7 @@ private void initializeSearch(android.widget.SearchView searchView) {
       }
     });
 
-    alert.setNegativeButton(R.string.cancel, null);
+    alert.setNegativeButton(R.string.ConversationListFragment_cancel, null);
     alert.show();
   }
 

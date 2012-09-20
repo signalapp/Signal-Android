@@ -139,8 +139,8 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
     if (identityKey == null) {
       Dialogs.displayAlert(this,
-                           getString(R.string.not_found_exclamation),
-                           getString(R.string.no_valid_identity_key_was_found_in_the_specified_contact),
+                           getString(R.string.ApplicationPreferenceActivity_not_found_exclamation),
+                           getString(R.string.ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact),
                            android.R.drawable.ic_dialog_alert);
       return;
     }
@@ -177,14 +177,14 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
       if (!IdentityKeyUtil.hasIdentityKey(ApplicationPreferencesActivity.this)) {
         Toast.makeText(ApplicationPreferencesActivity.this,
-                       R.string.you_don_t_have_an_identity_key_exclamation,
+                       R.string.ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation,
                        Toast.LENGTH_LONG).show();
         return true;
       }
 
       if (contactUri == null) {
           Toast.makeText(ApplicationPreferencesActivity.this,
-                         R.string.you_have_not_yet_defined_a_contact_for_yourself,
+                         R.string.ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself,
                          Toast.LENGTH_LONG).show();
           return true;
       }
@@ -193,7 +193,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
                                                       IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
 
       Toast.makeText(ApplicationPreferencesActivity.this,
-                     R.string.exported_to_contacts_database,
+                     R.string.ApplicationPreferenceActivity_exported_to_contacts_database,
                      Toast.LENGTH_LONG).show();
 
       return true;
@@ -209,7 +209,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
         startActivityForResult(importIntent, IMPORT_IDENTITY_ID);
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this,
-                       R.string.you_need_to_have_entered_your_passphrase_before_importing_keys,
+                       R.string.ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys,
                        Toast.LENGTH_LONG).show();
       }
 
@@ -227,7 +227,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
         startActivity(manageIntent);
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this,
-                       R.string.you_need_to_have_entered_your_passphrase_before_managing_keys,
+                       R.string.ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys,
                        Toast.LENGTH_LONG).show();
       }
 
@@ -243,7 +243,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
         startActivity(new Intent(ApplicationPreferencesActivity.this, PassphraseChangeActivity.class));
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this,
-                       R.string.you_havent_set_a_passphrase_yet,
+                       R.string.ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet,
                        Toast.LENGTH_LONG).show();
       }
 

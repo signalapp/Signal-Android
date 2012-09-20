@@ -16,7 +16,7 @@
         android:singleLine="true"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
-        android:text="@string/passphrase_cached"
+        android:text="@string/KeyCachingService_passphrase_cached"
         />
 
    <TextView android:id="@+id/text2"
@@ -28,7 +28,7 @@
         android:singleLine="true"
         android:fadingEdge="horizontal"
         android:ellipsize="marquee"
-        android:text="@string/textsecure_passphrase_cached"
+        android:text="@string/KeyCachingService_textsecure_passphrase_cached"
         />
     </LinearLayout>
     

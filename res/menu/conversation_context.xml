@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/menu_copy_text"
+    <item android:title="@string/conversation_context__menu_copy_text"
           android:id="@+id/menu_context_copy" />
 
-    <item android:title="@string/menu_delete_message"
+    <item android:title="@string/conversation_context__menu_delete_message"
           android:id="@+id/menu_context_delete_message" />
 
-    <item android:title="@string/menu_message_details"
+    <item android:title="@string/conversation_context__menu_message_details"
           android:id="@+id/menu_context_details" />
 
-    <item android:title="@string/menu_forward_message"
+    <item android:title="@string/conversation_context__menu_forward_message"
           android:id="@+id/menu_context_forward" />
 </menu>

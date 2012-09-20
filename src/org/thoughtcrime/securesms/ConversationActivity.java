@@ -260,10 +260,11 @@ public class ConversationActivity extends SherlockFragmentActivity
     final Recipient recipient   = getRecipients().getPrimaryRecipient();
     String recipientName        = (recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.initiate_secure_session_question);
+    builder.setTitle(R.string.ConversationActivity_initiate_secure_session_question);
     builder.setIcon(android.R.drawable.ic_dialog_info);
     builder.setCancelable(true);
-    builder.setMessage(String.format(getString(R.string.initiate_secure_session_with_s_question), recipientName));
+    builder.setMessage(String.format(getString(R.string.ConversationActivity_initiate_secure_session_with_s_question),
+                       recipientName));
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
@@ -278,10 +279,10 @@ public class ConversationActivity extends SherlockFragmentActivity
 
   private void handleAbortSecureSession() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.abort_secure_session_confirmation);
+    builder.setTitle(R.string.ConversationActivity_abort_secure_session_confirmation);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
     builder.setCancelable(true);
-    builder.setMessage(R.string.are_you_sure_that_you_want_to_abort_this_secure_session_question);
+    builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
@@ -306,10 +307,10 @@ public class ConversationActivity extends SherlockFragmentActivity
 
   private void handleDeleteThread() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.delete_thread_confirmation);
+    builder.setTitle(R.string.ConversationActivity_delete_thread_confirmation);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
     builder.setCancelable(true);
-    builder.setMessage(R.string.are_you_sure_that_you_want_to_permanently_delete_this_conversation_question);
+    builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
@@ -327,7 +328,7 @@ public class ConversationActivity extends SherlockFragmentActivity
   private void handleAddAttachment() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setIcon(R.drawable.ic_dialog_attach);
-    builder.setTitle(R.string.add_attachment);
+    builder.setTitle(R.string.ConversationActivity_add_attachment);
     builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
     builder.show();
   }
@@ -356,7 +357,7 @@ public class ConversationActivity extends SherlockFragmentActivity
         subtitle = getRecipients().getPrimaryRecipient().getNumber();
       }
     } else {
-      title    = getString(R.string.compose_message);
+      title    = getString(R.string.ConversationActivity_compose_message);
       subtitle = "";
     }
 
@@ -473,7 +474,7 @@ public class ConversationActivity extends SherlockFragmentActivity
       attachmentManager.setImage(imageUri);
     } catch (IOException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.sorry_there_was_an_error_setting_your_attachment,
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
@@ -484,12 +485,12 @@ public class ConversationActivity extends SherlockFragmentActivity
       attachmentManager.setVideo(videoUri);
     } catch (IOException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.sorry_there_was_an_error_setting_your_attachment,
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.sorry_the_selected_video_exceeds_message_size_restrictions,
+      Toast.makeText(this, R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
@@ -500,12 +501,12 @@ public class ConversationActivity extends SherlockFragmentActivity
       attachmentManager.setAudio(audioUri);
     } catch (IOException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.sorry_there_was_an_error_setting_your_attachment,
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.sorry_the_selected_audio_exceeds_message_size_restrictions,
+      Toast.makeText(this, R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
@@ -545,7 +546,7 @@ public class ConversationActivity extends SherlockFragmentActivity
     String rawText = composeText.getText().toString();
 
     if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent())
-      throw new InvalidMessageException(getString(R.string.message_is_empty_exclamation));
+      throw new InvalidMessageException(getString(R.string.ConversationActivity_message_is_empty_exclamation));
 
     if (!sendEncrypted && Tag.isTaggable(this, rawText))
       rawText = Tag.getTaggedMessage(rawText);
@@ -600,11 +601,11 @@ public class ConversationActivity extends SherlockFragmentActivity
       MessageNotifier.updateNotification(ConversationActivity.this, false);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
-                     R.string.recipient_is_not_a_valid_sms_or_email_address_exclamation,
+                     R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
                      Toast.LENGTH_LONG).show();
       Log.w("compose", ex);
     } catch (InvalidMessageException ex) {
-      Toast.makeText(ConversationActivity.this, R.string.message_is_empty_exclamation,
+      Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
                      Toast.LENGTH_SHORT).show();
       Log.w("compose", ex);
     } catch (MmsException e) {

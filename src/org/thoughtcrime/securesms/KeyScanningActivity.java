@@ -78,7 +78,8 @@ public abstract class KeyScanningActivity extends SherlockActivity {
         Dialogs.displayAlert(this, getNotVerifiedTitle(), getNotVerifiedMessage(), android.R.drawable.ic_dialog_alert);
       }
     } else {
-      Toast.makeText(this, R.string.no_scanned_key_found_exclamation, Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.KeyScanningActivity_no_scanned_key_found_exclamation,
+                     Toast.LENGTH_LONG).show();
     }
   }
 

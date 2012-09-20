@@ -107,15 +107,15 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
     public void onClick(View v) {
       if (identityName.getText() == null || identityName.getText().length() == 0) {
         Toast.makeText(VerifyImportedIdentityActivity.this,
-                       R.string.you_must_specify_a_name_for_this_contact_exclamation,
+                       R.string.VerifyImportedIdentityActivity_you_must_specify_a_name_for_this_contact_exclamation,
                        Toast.LENGTH_LONG);
         return;
       }
 
       AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(VerifyImportedIdentityActivity.this);
-      dialogBuilder.setTitle(R.string.save_identity_key_question);
+      dialogBuilder.setTitle(R.string.VerifyImportedIdentityActivity_save_identity_key_question);
       dialogBuilder.setIcon(android.R.drawable.ic_dialog_info);
-      dialogBuilder.setMessage(String.format(getString(R.string.are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s), identityName.getText()));
+      dialogBuilder.setMessage(String.format(getString(R.string.VerifyImportedIdentityActivity_are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s), identityName.getText()));
       dialogBuilder.setCancelable(true);
       dialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface arg0, int arg1) {
@@ -124,8 +124,8 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
           } catch (InvalidKeyException ike) {
             Log.w("VerifiedButtonListener", ike);
             Dialogs.displayAlert(VerifyImportedIdentityActivity.this,
-                                 getString(R.string.error_saving_identity_key_exclamation),
-                                 getString(R.string.this_identity_key_or_an_identity_key_with_the_same_name_already_exists_please_edit_your_key_database),
+                                 getString(R.string.VerifyImportedIdentityActivity_error_saving_identity_key_exclamation),
+                                 getString(R.string.VerifyImportedIdentityActivity_this_identity_key_or_an_identity_key_with_the_same_name_already_exists_please_edit_your_key_database),
                                  android.R.drawable.ic_dialog_alert);
             return;
           }
@@ -140,12 +140,12 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getScanString() {
-    return getString(R.string.scan_to_compare);
+    return getString(R.string.VerifyImportedIdentityActivity_scan_to_compare);
   }
 
   @Override
   protected String getDisplayString() {
-    return getString(R.string.get_scanned_to_compare);
+    return getString(R.string.VerifyImportedIdentityActivity_get_scanned_to_compare);
   }
 
   @Override
@@ -160,21 +160,21 @@ public class VerifyImportedIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return  getString(R.string.warning_the_scanned_key_does_not_match_exclamation);
+    return  getString(R.string.VerifyImportedIdentityActivity_warning_the_scanned_key_does_not_match_exclamation);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return getString(R.string.not_verified_exclamation2);
+    return getString(R.string.VerifyImportedIdentityActivity_not_verified_exclamation);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return getString(R.string.the_scanned_key_matches_exclamation);
+    return getString(R.string.VerifyImportedIdentityActivity_the_scanned_key_matches_exclamation);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return getString(R.string.verified_exclamation2);
+    return getString(R.string.VerifyImportedIdentityActivity_verified_exclamation);
   }
 }

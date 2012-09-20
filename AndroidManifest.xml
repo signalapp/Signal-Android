@@ -58,58 +58,58 @@
 
     <activity android:name=".PassphraseCreateActivity"
               android:theme="@style/Theme.Sherlock.Light.Dialog"
-              android:label="@string/create_passphrase"
+              android:label="@string/AndroidManifest__create_passphrase"
               android:launchMode="singleInstance"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphrasePromptActivity"
               android:theme="@style/Theme.Sherlock.Light.Dialog"
-              android:label="@string/enter_passphrase"
+              android:label="@string/AndroidManifest__enter_passphrase"
               android:launchMode="singleInstance"
               android:windowSoftInputMode="stateVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ContactSelectionActivity"
-              android:label="@string/select_contacts"
+              android:label="@string/AndroidManifest__select_contacts"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".AutoInitiateActivity"
               android:theme="@style/Theme.Sherlock.Light.Dialog"
-              android:label="@string/textsecure_detected"
+              android:label="@string/AndroidManifest__textsecure_detected"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ViewIdentityActivity"
               android:theme="@style/Theme.Sherlock.Light.Dialog"
-              android:label="@string/public_identity_key"
+              android:label="@string/AndroidManifest__public_identity_key"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphraseChangeActivity"
               android:theme="@style/Theme.Sherlock.Light.Dialog"
-              android:label="@string/change_passphrase2"
+              android:label="@string/AndroidManifest__change_passphrase"
               android:launchMode="singleInstance"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".VerifyKeysActivity"
-              android:label="@string/verify_session"
+              android:label="@string/AndroidManifest__verify_session"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".VerifyIdentityActivity"
-              android:label="@string/verify_identity"
+              android:label="@string/AndroidManifest__verify_identity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".SaveIdentityActivity"
               android:theme="@style/Theme.Sherlock.Light.Dialog"
-              android:label="@string/save_identity"
+              android:label="@string/AndroidManifest__save_identity"
               android:windowSoftInputMode="stateVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ReviewIdentitiesActivity"
-              android:label="@string/manage_identity_keys2"
+              android:label="@string/AndroidManifest__manage_identity_keys"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ReceiveKeyActivity" 
               android:theme="@style/Theme.Sherlock.Light.Dialog" 
-              android:label="@string/complete_key_exchange" 
+              android:label="@string/AndroidManifest__complete_key_exchange" 
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     
     <activity android:name=".ApplicationPreferencesActivity" 
@@ -117,7 +117,7 @@
 
     <activity android:name=".VerifyImportedIdentityActivity" 
               android:theme="@style/Theme.Sherlock.Light.Dialog" 
-              android:label="@string/verify_imported_identity" 
+              android:label="@string/AndroidManifest__verify_imported_identity" 
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>

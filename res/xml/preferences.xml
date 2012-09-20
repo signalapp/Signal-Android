@@ -18,59 +18,59 @@
  */
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-  <PreferenceCategory android:title="@string/use_settings">
+  <PreferenceCategory android:title="@string/preferences__use_settings">
     <CheckBoxPreference android:defaultValue="true"
                       android:key="pref_all_sms"
-                      android:summary="@string/use_textsecure_for_viewing_and_storing_all_incoming_text_messages"
+                      android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages"
                       android:title="Use for all SMS" />
 
     <CheckBoxPreference android:defaultValue="true"
                       android:key="pref_all_mms"
-                      android:summary="@string/use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
+                      android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
                       android:title="Use for all MMS" />
 
    </PreferenceCategory>
 
-  <PreferenceCategory android:title="@string/input_settings">
+  <PreferenceCategory android:title="@string/preferences__input_settings">
     <CheckBoxPreference android:defaultValue="false"
                       android:key="pref_enter_sends"
-                      android:summary="@string/pressing_the_enter_key_will_send_text_messages"
+                      android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
                       android:title="Enter Sends" />
    </PreferenceCategory>
 
-  <PreferenceCategory android:title="@string/display_settings">
+  <PreferenceCategory android:title="@string/preferences__display_settings">
 
     <Preference         android:key="pref_choose_identity"
-                          android:title="@string/choose_identity"
-                           android:summary="@string/choose_your_contact_entry_from_the_contacts_list"/>
+                          android:title="@string/preferences__choose_identity"
+                           android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
 
   </PreferenceCategory>
 
-   <PreferenceCategory android:title="@string/encryption_settings">
+   <PreferenceCategory android:title="@string/preferences__encryption_settings">
 
       <Preference android:key="pref_change_passphrase"
-                  android:title="@string/change_passphrase"
-                   android:summary="@string/change_my_passphrase"/>
+                  android:title="@string/preferences__change_passphrase"
+                   android:summary="@string/preferences__change_my_passphrase"/>
 
        <CheckBoxPreference android:defaultValue="true"
                            android:key="pref_auto_complete_key_exchange"
-                           android:title="@string/complete_key_exchanges"
-                           android:summary="@string/automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
+                           android:title="@string/preferences__complete_key_exchanges"
+                           android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
 
     <CheckBoxPreference android:defaultValue="true"
                         android:key="pref_key_tag_whitespace"
-                        android:summary="@string/include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message"
-                        android:title="@string/include_whitespace_tag" />
+                        android:summary="@string/preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message"
+                        android:title="@string/preferences__include_whitespace_tag" />
 
     <CheckBoxPreference android:defaultValue="true"
                         android:key="pref_send_identity_key"
-                        android:summary="@string/sign_key_exchange_messages_with_identity_key"
-                        android:title="@string/sign_key_exchange" />
+                        android:summary="@string/preferences__sign_key_exchange_messages_with_identity_key"
+                        android:title="@string/preferences__sign_key_exchange" />
 
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_timeout_passphrase"
-                        android:summary="@string/forget_passphrase_from_memory_after_some_interval"
-                        android:title="@string/timeout_passphrase" />
+                        android:summary="@string/preferences__forget_passphrase_from_memory_after_some_interval"
+                        android:title="@string/preferences__timeout_passphrase" />
 
 
     <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
@@ -83,38 +83,38 @@
 
    </PreferenceCategory>
 
-  <PreferenceCategory android:title="@string/identity_key_settings">
+  <PreferenceCategory android:title="@string/preferences__identity_key_settings">
      <Preference android:key="pref_view_identity"
-                  android:title="@string/view_my_identity_key"
-                   android:summary="@string/view_my_identity_key"/>
+                  android:title="@string/preferences__view_my_identity_key"
+                   android:summary="@string/preferences__view_my_identity_key"/>
 
      <Preference android:key="pref_export_identity"
-                  android:title="@string/export_my_identity_key"
-                   android:summary="@string/export_my_identity_key"/>
+                  android:title="@string/preferences__export_my_identity_key"
+                   android:summary="@string/preferences__export_my_identity_key"/>
 
      <Preference android:key="pref_import_identity"
-                  android:title="@string/import_contacts_key"
-                   android:summary="@string/import_an_identity_key_from_a_contact"/>
+                  android:title="@string/preferences__import_contacts_key"
+                   android:summary="@string/preferences__import_an_identity_key_from_a_contact"/>
 
      <Preference android:key="pref_manage_identity"
-                  android:title="@string/manage_identity_keys"
-                   android:summary="@string/manage_configured_identity_keys"/>
+                  android:title="@string/preferences__manage_identity_keys"
+                   android:summary="@string/preferences__manage_configured_identity_keys"/>
   </PreferenceCategory>
 
-  <PreferenceCategory android:title="@string/notification_settings">
+  <PreferenceCategory android:title="@string/preferences__notification_settings">
     <CheckBoxPreference android:key="pref_key_enable_notifications"
-                        android:title="@string/notifications"
-                        android:summary="@string/display_message_notifications_in_status_bar"
+                        android:title="@string/preferences__notifications"
+                        android:summary="@string/preferences__display_message_notifications_in_status_bar"
                         android:defaultValue="true" />
     <ListPreference
                       android:key="pref_led_color"
                       android:defaultValue="green"
-                      android:title="@string/led_color"
+                      android:title="@string/preferences__led_color"
                       android:dependency="pref_key_enable_notifications"
-                      android:summary="@string/change_notification_led_color"
+                      android:summary="@string/preferences__change_notification_led_color"
                       android:entries="@array/pref_led_color_entries"
                       android:entryValues="@array/pref_led_color_values"
-                      android:dialogTitle="@string/select_led_color" />
+                      android:dialogTitle="@string/preferences__select_led_color" />
 
     <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
                       android:key="pref_led_blink"
@@ -130,14 +130,14 @@
     <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
                         android:dependency="pref_key_enable_notifications"
                         android:key="pref_key_ringtone"
-                        android:title="@string/select_ringtone"
+                        android:title="@string/preferences__select_ringtone"
                         android:ringtoneType="notification"
                         android:defaultValue="content://settings/system/notification_sound" />
     <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
                         android:dependency="pref_key_enable_notifications"
                         android:key="pref_key_vibrate"
                         android:defaultValue="true"
-                        android:title="@string/vibrate"
-                        android:summary="@string/also_vibrate_when_notified" />
+                        android:title="@string/preferences__vibrate"
+                        android:summary="@string/preferences__also_vibrate_when_notified" />
   </PreferenceCategory>
 </PreferenceScreen>

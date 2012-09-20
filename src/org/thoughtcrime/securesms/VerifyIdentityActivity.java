@@ -62,10 +62,11 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
   protected void handleVerified() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
-    builder.setTitle(R.string.mark_identity_verified_question);
-    builder.setMessage(R.string.are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified);
+    builder.setTitle(R.string.VerifyIdentityActivity_mark_identity_verified_question);
+    builder.setMessage(R.string.VerifyIdentityActivity_are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified);
 
-    builder.setPositiveButton(R.string.mark_verified, new DialogInterface.OnClickListener() {
+    builder.setPositiveButton(R.string.VerifyIdentityActivity_mark_verified,
+                              new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         SessionRecord sessionRecord = new SessionRecord(VerifyIdentityActivity.this,
@@ -91,7 +92,7 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
 
   private void initializeLocalIdentityKey() {
     if (!IdentityKeyUtil.hasIdentityKey(this)) {
-      localIdentityFingerprint.setText(R.string.you_do_not_have_an_identity_key);
+      localIdentityFingerprint.setText(R.string.VerifyIdentityActivity_you_do_not_have_an_identity_key);
       return;
     }
 
@@ -103,7 +104,7 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
     IdentityKey identityKey     = sessionRecord.getIdentityKey();
 
     if (identityKey == null) {
-      remoteIdentityFingerprint.setText(R.string.recipient_has_no_identity_key);
+      remoteIdentityFingerprint.setText(R.string.VerifyIdentityActivity_recipient_has_no_identity_key);
     } else {
       remoteIdentityFingerprint.setText(identityKey.getFingerprint());
     }
@@ -124,7 +125,9 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
   @Override
   protected void initiateDisplay() {
     if (!IdentityKeyUtil.hasIdentityKey(this)) {
-      Toast.makeText(this, R.string.you_don_t_have_an_identity_key_exclamation, Toast.LENGTH_LONG).show();
+      Toast.makeText(this,
+                     R.string.VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation,
+                     Toast.LENGTH_LONG).show();
       return;
     }
 
@@ -137,7 +140,8 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
     IdentityKey identityKey     = sessionRecord.getIdentityKey();
 
     if (identityKey == null) {
-      Toast.makeText(this, R.string.recipient_has_no_identity_key_exclamation, Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.VerifyIdentityActivity_recipient_has_no_identity_key_exclamation,
+                     Toast.LENGTH_LONG).show();
     } else {
       super.initiateScan();
     }
@@ -145,12 +149,12 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
 
   @Override
   protected String getScanString() {
-    return getString(R.string.scan_their_key_to_compare);
+    return getString(R.string.VerifyIdentityActivity_scan_their_key_to_compare);
   }
 
   @Override
   protected String getDisplayString() {
-    return getString(R.string.get_my_key_scanned);
+    return getString(R.string.VerifyIdentityActivity_get_my_key_scanned);
   }
 
   @Override
@@ -166,21 +170,21 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return getString(R.string.warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully);
+    return getString(R.string.VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return getString(R.string.not_verified_exclamation);
+    return getString(R.string.VerifyIdentityActivity_not_verified_exclamation);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return getString(R.string.their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well);
+    return getString(R.string.VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return getString(R.string.verified_exclamation);
+    return getString(R.string.VerifyIdentityActivity_verified_exclamation);
   }
 }

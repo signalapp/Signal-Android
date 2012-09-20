@@ -92,13 +92,13 @@ public class MessageDisplayHelper {
       }
 
       if (isUnreadableAsymmetricMessage(message.getType())) {
-        message.setBody(context.getString(R.string.bad_encrypted_message));
+        message.setBody(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
         message.setEmphasis(true);
       } else if (isInProcessAsymmetricMessage(body, message.getType())) {
-        message.setBody(context.getString(R.string.decrypting_please_wait));
+        message.setBody(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
         message.setEmphasis(true);
       } else if (isRogueAsymmetricMessage(message.getType())) {
-        message.setBody(context.getString(R.string.message_encrypted_for_non_existing_session));
+        message.setBody(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
         message.setEmphasis(true);
       } else if (isKeyExchange(body)) {
         message.setKeyExchange(true);
@@ -117,7 +117,7 @@ public class MessageDisplayHelper {
         message.setEmphasis(false);
       }
     } catch (InvalidMessageException ime) {
-      message.setBody(context.getString(R.string.decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question));
+      message.setBody(context.getString(R.string.MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question));
       message.setEmphasis(true);
     }
   }

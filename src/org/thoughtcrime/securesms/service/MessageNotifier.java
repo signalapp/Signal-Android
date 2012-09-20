@@ -70,22 +70,22 @@ public class MessageNotifier {
     Recipient recipient   = recipients.getPrimaryRecipient();
 
     if (recipient == null) {
-      return String.format(context.getString(R.string._d_new_messages), count);
+      return String.format(context.getString(R.string.MessageNotifier_d_new_messages), count);
     } else {
-      return String.format(context.getString(R.string._d_new_messages_most_recent_from_s), count,
+      return String.format(context.getString(R.string.MessageNotifier_d_new_messages_most_recent_from_s), count,
                            recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     }
   }
 
   private static String buildTitleMessage(Context context, int count) {
-    return String.format(context.getString(R.string._d_new_messages), count);
+    return String.format(context.getString(R.string.MessageNotifier_d_new_messages), count);
   }
 
   private static String buildSubtitleMessage(Context context, Recipients recipients) {
     Recipient recipient = recipients.getPrimaryRecipient();
 
     if (recipient != null) {
-      return String.format(context.getString(R.string.most_recent_from_s),
+      return String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
                            (recipient.getName() == null ? recipient.getNumber() : recipient.getName()));
     }
 

@@ -64,7 +64,7 @@
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="100dip"
                         android:layout_height="50dip"
-                        android:text="@string/remove" />
+                        android:text="@string/conversation_activity__remove" />
 
                 </LinearLayout>
 
@@ -94,7 +94,7 @@
                             android:autoText="true"
                             android:capitalize="sentences"
                             android:nextFocusRight="@+id/send_button"
-                            android:hint="@string/type_message"
+                            android:hint="@string/conversation_activity__type_message"
                             android:maxLines="4"
                             android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
                             android:imeOptions="actionSend|flagNoEnterAction"
@@ -107,7 +107,7 @@
                         android:layout_height="fill_parent"
                         android:layout_gravity="center_vertical"
                         android:nextFocusLeft="@+id/embedded_text_editor"
-                        android:text="@string/send2"
+                        android:text="@string/conversation_activity__send"
                         android:padding="8dip"
                     />
                 </LinearLayout>

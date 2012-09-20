@@ -80,7 +80,8 @@ public class ApplicationMigrationService extends Service
 
   private Notification initializeBackgroundNotification() {
     Intent intent               = new Intent(this, ConversationListActivity.class);
-    Notification notification   = new Notification(R.drawable.icon, getString(R.string.migrating),
+    Notification notification   = new Notification(R.drawable.icon,
+                                                   getString(R.string.ApplicationMigrationService_migrating),
                                                    System.currentTimeMillis());
 
     notification.flags       = notification.flags | Notification.FLAG_ONGOING_EVENT;
@@ -89,7 +90,8 @@ public class ApplicationMigrationService extends Service
 
     notification.contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
     notification.contentView.setImageViewResource(R.id.status_icon, R.drawable.icon);
-    notification.contentView.setTextViewText(R.id.status_text, getString(R.string.migrating_system_text_messages));
+    notification.contentView.setTextViewText(R.id.status_text,
+                                             getString(R.string.ApplicationMigrationService_migrating_system_text_messages));
     notification.contentView.setProgressBar(R.id.status_progress, 10000, 0, false);
 
     stopForeground(true);

@@ -12,14 +12,14 @@
                   android:paddingRight="16dip"
                   android:orientation="vertical">
 
-        <TextView android:text="@string/please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase"
+        <TextView android:text="@string/create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase"
                   android:textAppearance="?android:attr/textAppearanceMedium"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="10dip"
                   android:layout_marginBottom="10dip"/>
 
-        <TextView android:text="@string/passphrase"
+        <TextView android:text="@string/create_passphrase_activity__passphrase"
                   android:textAppearance="?android:attr/textAppearanceMedium"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                   android:textAppearance="?android:attr/textAppearanceMedium"
                   android:layout_marginBottom="5dip"
                   android:layout_marginTop="10dip"
-                  android:text="@string/repeat"/>
+                  android:text="@string/create_passphrase_activity__repeat"/>
 
         <EditText
                   android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 <TableRow>
                     <Button android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:text="@string/cancel"
+                            android:text="@android:string/cancel"
                             android:id="@+id/cancel_button"
                             android:layout_marginRight="15dip"
                             android:layout_marginLeft="16dip"/>

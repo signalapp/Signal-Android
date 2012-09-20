@@ -91,18 +91,18 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private void initializeCorruptedKeyText() {
-    descriptionText.setText(R.string.error_you_have_received_a_corrupted_public_key);
+    descriptionText.setText(R.string.ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key);
     confirmButton.setVisibility(View.GONE);
   }
 
   private void initializeBadVersionText() {
-    descriptionText.setText(R.string.error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol);
+    descriptionText.setText(R.string.ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol);
     confirmButton.setVisibility(View.GONE);
   }
 
   private void initializeSignatureText() {
     if (!keyExchangeMessage.hasIdentityKey()) {
-      signatureText.setText(R.string.this_key_exchange_message_does_not_include_an_identity_signature);
+      signatureText.setText(R.string.ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature);
       return;
     }
 
@@ -110,25 +110,25 @@ public class ReceiveKeyActivity extends Activity {
     String identityName     = DatabaseFactory.getIdentityDatabase(this).getNameForIdentity(masterSecret, identityKey);
 
     if (identityName == null) {
-      signatureText.setText(R.string.this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it);
+      signatureText.setText(R.string.ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it);
     } else {
-      signatureText.setText(String.format(getString(R.string.this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s), identityName));
+      signatureText.setText(String.format(getString(R.string.ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s), identityName));
     }
   }
 
   private void initializeTextForExistingSession() {
     if (keyExchangeProcessor.isRemoteKeyExchangeForExistingSession(keyExchangeMessage)) {
-      descriptionText.setText(String.format(getString(R.string.this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_s), recipient.toShortString()));
+      descriptionText.setText(String.format(getString(R.string.ReceiveKeyActivity_this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_s), recipient.toShortString()));
       this.confirmButton.setVisibility(View.GONE);
       this.verifySessionButton.setVisibility(View.VISIBLE);
       this.verifyIdentityButton.setVisibility(View.VISIBLE);
     } else if (keyExchangeProcessor.isLocalKeyExchangeForExistingSession(keyExchangeMessage)) {
-      descriptionText.setText(String.format(getString(R.string.this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s), recipient.toShortString()));
+      descriptionText.setText(String.format(getString(R.string.ReceiveKeyActivity_this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s), recipient.toShortString()));
       this.confirmButton.setVisibility(View.GONE);
       this.verifySessionButton.setVisibility(View.VISIBLE);
       this.verifyIdentityButton.setVisibility(View.VISIBLE);
     } else {
-      descriptionText.setText(String.format(getString(R.string.you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session), recipient.toShortString()));
+      descriptionText.setText(String.format(getString(R.string.ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session), recipient.toShortString()));
       this.confirmButton.setVisibility(View.VISIBLE);
       this.verifyIdentityButton.setVisibility(View.GONE);
       this.verifySessionButton.setVisibility(View.GONE);
@@ -137,11 +137,11 @@ public class ReceiveKeyActivity extends Activity {
 
   private void initializeTextForNewSession() {
     if (keyExchangeProcessor.hasInitiatedSession() && !this.sent)
-      descriptionText.setText(String.format(getString(R.string.you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated), recipient.toShortString()));
+      descriptionText.setText(String.format(getString(R.string.ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated), recipient.toShortString()));
     else if (keyExchangeProcessor.hasInitiatedSession() && this.sent)
-      descriptionText.setText(String.format(getString(R.string.you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply), recipient.toShortString()));
+      descriptionText.setText(String.format(getString(R.string.ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply), recipient.toShortString()));
     else if (!keyExchangeProcessor.hasInitiatedSession() && !this.sent)
-      descriptionText.setText(String.format(getString(R.string.you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session), recipient.toShortString()));
+      descriptionText.setText(String.format(getString(R.string.ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session), recipient.toShortString()));
   }
 
   private void initializeKey() throws InvalidKeyException, InvalidVersionException {

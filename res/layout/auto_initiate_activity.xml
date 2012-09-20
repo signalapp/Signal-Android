@@ -12,7 +12,7 @@
               android:layout_marginTop="5dip"
               android:layout_marginBottom="5dip"
               android:textAppearance="?android:attr/textAppearanceMedium"                
-              android:text="@string/you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session"/>    
+              android:text="@string/auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session"/>    
 
     <LinearLayout android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
@@ -28,11 +28,11 @@
 		        <Button android:id="@+id/initiate_button"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
-		                android:text="@string/initiate_exchange"
+		                android:text="@string/auto_initiate_activity__initiate_exchange"
 		                android:gravity="center"/>
 		
 		        <Button android:id="@+id/cancel_button"
-		                android:text="@string/cancel"
+		                android:text="@android:string/cancel"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:gravity="center"/>

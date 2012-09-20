@@ -64,9 +64,10 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
   protected void handleVerified() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setIcon(android.R.drawable.ic_dialog_alert);
-    builder.setTitle(R.string.mark_session_verified_question);
-    builder.setMessage(R.string.are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified);
-    builder.setPositiveButton(R.string.mark_verified2, new DialogInterface.OnClickListener() {
+    builder.setTitle(R.string.VerifyKeysActivity_mark_session_verified_question);
+    builder.setMessage(R.string.VerifyKeysActivity_are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified);
+    builder.setPositiveButton(R.string.VerifyKeysActivity_mark_verified,
+                              new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         SessionRecord sessionRecord = new SessionRecord(VerifyKeysActivity.this, masterSecret,
@@ -77,7 +78,7 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
       }
     });
 
-    builder.setNegativeButton(R.string.cancel, null);
+    builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
   }
 
@@ -99,12 +100,12 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
 
   @Override
   protected String getDisplayString() {
-    return getString(R.string.get_my_fingerprint_scanned);
+    return getString(R.string.VerifyKeysActivity_get_my_fingerprint_scanned);
   }
 
   @Override
   protected String getScanString() {
-    return getString(R.string.scan_their_fingerprint);
+    return getString(R.string.VerifyKeysActivity_scan_their_fingerprint);
   }
 
   @Override
@@ -119,22 +120,22 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
 
   @Override
   protected String getNotVerifiedMessage() {
-    return getString(R.string.warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2);
+    return getString(R.string.VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2);
   }
 
   @Override
   protected String getNotVerifiedTitle() {
-    return getString(R.string.not_verified_exclamation3);
+    return getString(R.string.VerifyKeysActivity_not_verified_exclamation);
   }
 
   @Override
   protected String getVerifiedMessage() {
-    return getString(R.string.their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well);
+    return getString(R.string.VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well);
   }
 
   @Override
   protected String getVerifiedTitle() {
-    return getString(R.string.verified_exclamation3);
+    return getString(R.string.VerifyKeysActivity_verified_exclamation);
   }
 
   private class FingerprintKey implements SerializableKey {

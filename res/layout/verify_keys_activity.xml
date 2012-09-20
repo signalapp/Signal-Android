@@ -14,7 +14,7 @@
                    android:layout_height="wrap_content"
                    android:layout_width="fill_parent"
                    android:textAppearance="?android:attr/textAppearanceLarge"
-                   android:text="@string/they_read_this"
+                   android:text="@string/verify_keys_activity__they_read_this"
                    android:padding="7dip" />
 
                <TextView
@@ -31,7 +31,7 @@
                    android:layout_height="wrap_content"
                    android:layout_width="fill_parent"
                    android:textAppearance="?android:attr/textAppearanceLarge"
-                   android:text="@string/you_read_this"
+                   android:text="@string/verify_keys_activity__you_read_this"
                    android:padding="7dip" />
 
                <TextView

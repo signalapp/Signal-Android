@@ -75,7 +75,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     try {
       if (!passphrase.equals(passphraseRepeat)) {
         Toast.makeText(getApplicationContext(),
-                       R.string.passphrases_dont_match_exclamation,
+                       R.string.PassphraseChangeActivity_passphrases_dont_match_exclamation,
                        Toast.LENGTH_SHORT).show();
         this.newPassphrase.setText("");
         this.repeatPassphrase.setText("");
@@ -88,7 +88,8 @@ public class PassphraseChangeActivity extends PassphraseActivity {
         setMasterSecret(masterSecret);
       }
     } catch (InvalidPassphraseException e) {
-      Toast.makeText(this, R.string.incorrect_old_passphrase_exclamation, Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.PassphraseChangeActivity_incorrect_old_passphrase_exclamation,
+                     Toast.LENGTH_LONG).show();
       this.originalPassphrase.setText("");
     }
   }

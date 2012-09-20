@@ -13,7 +13,7 @@
 
         <TextView
             android:padding="3dip"
-            android:text="@string/old_passphrase"
+            android:text="@string/change_passphrase_activity__old_passphrase"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
@@ -27,7 +27,7 @@
 
         <TextView
             android:padding="3dip"
-            android:text="@string/new_passphrase"
+            android:text="@string/change_passphrase_activity__new_passphrase"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -43,7 +43,7 @@
             android:padding="3dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/repeat_new_passphrase"
+            android:text="@string/change_passphrase_activity__repeat_new_passphrase"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
@@ -74,7 +74,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dip"
                         android:layout_marginRight="15dip"
-                        android:text="@string/cancel" />
+                        android:text="@android:string/cancel" />
 
                     <Button
                         android:id="@+id/ok_button"

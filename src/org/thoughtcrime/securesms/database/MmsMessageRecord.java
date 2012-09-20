@@ -126,16 +126,16 @@ public class MmsMessageRecord extends MessageRecord {
   private void setBodyIfTextAvailable(Context context) {
     switch ((int)mailbox) {
     case MmsDatabase.Types.MESSAGE_BOX_DECRYPTING_INBOX:
-      setBody(context.getString(R.string.decrypting_mms_please_wait));
+      setBody(context.getString(R.string.MmsMessageRecord_decrypting_mms_please_wait));
       setEmphasis(true);
       return;
     case MmsDatabase.Types.MESSAGE_BOX_DECRYPT_FAILED_INBOX:
-      setBody(context.getString(R.string.bad_encrypted_mms_message));
+      setBody(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
       setEmphasis(true);
       return;
     case MmsDatabase.Types.MESSAGE_BOX_NO_SESSION_INBOX:
       setBody(context
-          .getString(R.string.mms_message_encrypted_for_non_existing_session));
+          .getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
       setEmphasis(true);
       return;
     }

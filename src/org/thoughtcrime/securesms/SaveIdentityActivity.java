@@ -86,7 +86,7 @@ public class SaveIdentityActivity extends SherlockActivity {
     public void onClick(View v) {
       if (identityName.getText() == null || identityName.getText().toString().trim().length() == 0) {
         Toast.makeText(SaveIdentityActivity.this,
-                       R.string.you_must_specify_a_name_for_this_identity_exclamation,
+                       R.string.SaveIdentityActivity_you_must_specify_a_name_for_this_identity_exclamation,
                        Toast.LENGTH_LONG).show();
         return;
       }
@@ -95,16 +95,17 @@ public class SaveIdentityActivity extends SherlockActivity {
         DatabaseFactory.getIdentityDatabase(SaveIdentityActivity.this).saveIdentity(masterSecret, identityKey, identityName.getText().toString());
       } catch (InvalidKeyException e) {
         AlertDialog.Builder builder = new AlertDialog.Builder(SaveIdentityActivity.this);
-        builder.setTitle(R.string.identity_name_exists_exclamation);
-        builder.setMessage(R.string.an_identity_key_with_the_specified_name_already_exists);
-        builder.setPositiveButton(R.string.manage_identities, new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.SaveIdentityActivity_identity_name_exists_exclamation);
+        builder.setMessage(R.string.SaveIdentityActivity_an_identity_key_with_the_specified_name_already_exists);
+        builder.setPositiveButton(R.string.SaveIdentityActivity_manage_identities,
+                                  new DialogInterface.OnClickListener() {
           public void onClick(DialogInterface dialog, int which) {
             Intent intent = new Intent(SaveIdentityActivity.this, ReviewIdentitiesActivity.class);
             intent.putExtra("master_secret", masterSecret);
             startActivity(intent);
           }
         });
-        builder.setNegativeButton(R.string.cancel, null);
+        builder.setNegativeButton(android.R.string.cancel, null);
         builder.show();
         return;
       }

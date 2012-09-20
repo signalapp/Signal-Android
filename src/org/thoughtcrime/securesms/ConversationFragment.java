@@ -130,10 +130,11 @@ public class ConversationFragment extends SherlockListFragment
 
     SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle(R.string.message_details);
+    builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(android.R.drawable.ic_dialog_info);
     builder.setCancelable(false);
-    builder.setMessage(String.format(getSherlockActivity().getString(R.string.sender_s_transport_s_sent_received_s),
+    builder.setMessage(String.format(getSherlockActivity()
+                                     .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
                                      sender, transport.toUpperCase(),
                                      dateFormatter.format(new Date(date))));
     builder.setPositiveButton(android.R.string.ok, null);

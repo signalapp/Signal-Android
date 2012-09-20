@@ -150,7 +150,7 @@ public class MmsDatabase extends Database {
       if (encodedFrom != null)
         return new String(encodedFrom.getTextString(), CharacterSets.MIMENAME_ISO_8859_1);
       else
-        return context.getString(R.string.anonymous);
+        return context.getString(R.string.MmsDatabase_anonymous);
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);
     }
@@ -563,12 +563,12 @@ public class MmsDatabase extends Database {
       Log.w("MmsDatabase", "Getting label for status: " + status);
 
       switch (status) {
-      case DOWNLOAD_CONNECTING:   return context.getString(R.string.connecting_to_mms_server);
-      case DOWNLOAD_INITIALIZED:  return context.getString(R.string.downloading_mms);
-      case DOWNLOAD_HARD_FAILURE: return context.getString(R.string.mms_download_failed);
+      case DOWNLOAD_CONNECTING:   return context.getString(R.string.MmsDatabase_connecting_to_mms_server);
+      case DOWNLOAD_INITIALIZED:  return context.getString(R.string.MmsDatabase_downloading_mms);
+      case DOWNLOAD_HARD_FAILURE: return context.getString(R.string.MmsDatabase_mms_download_failed);
       }
 
-      return context.getString(R.string.downloading);
+      return context.getString(R.string.MmsDatabase_downloading);
     }
 
     public static boolean isHardError(int status) {

@@ -39,16 +39,16 @@ public class ApplicationExportManager extends Handler implements Runnable {
 
   public void importDatabase() {
     AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-    alertBuilder.setTitle(R.string.import_database_and_settings_title);
-    alertBuilder.setMessage(R.string.import_database_and_settings_message);
+    alertBuilder.setTitle(R.string.ApplicationExportManager_import_database_and_settings_title);
+    alertBuilder.setMessage(R.string.ApplicationExportManager_import_database_and_settings_message);
     alertBuilder.setCancelable(false);
     alertBuilder.setPositiveButton("Import", new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         task           = TASK_IMPORT;
         progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle(context.getString(R.string.importing_database_and_keys));
+        progressDialog.setTitle(context.getString(R.string.ApplicationExportManager_importing_database_and_keys));
         progressDialog.setMessage(context
-            .getString(R.string.importing_your_sms_database_keys_and_settings));
+                                  .getString(R.string.ApplicationExportManager_importing_your_sms_database_keys_and_settings));
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -69,17 +69,17 @@ public class ApplicationExportManager extends Handler implements Runnable {
   public void exportDatabase() {
     Log.w("ApplicationExportManager", "Context: " + context);
     AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-    alertBuilder.setTitle(R.string.export_database_question);
-    alertBuilder.setMessage(R.string.export_textsecure_database_keys_and_settings_prompt);
+    alertBuilder.setTitle(R.string.ApplicationExportManager_export_database_question);
+    alertBuilder.setMessage(R.string.ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt);
     alertBuilder.setCancelable(false);
 
     alertBuilder.setPositiveButton("Export", new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         task           = TASK_EXPORT;
         progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle(context.getString(R.string.exporting_database_and_keys));
+        progressDialog.setTitle(context.getString(R.string.ApplicationExportManager_exporting_database_and_keys));
         progressDialog.setMessage(context
-            .getString(R.string.exporting_your_sms_database_keys_and_settings));
+            .getString(R.string.ApplicationExportManager_exporting_your_sms_database_keys_and_settings));
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -117,18 +117,22 @@ public class ApplicationExportManager extends Handler implements Runnable {
   public void handleMessage(Message message) {
     switch (message.what) {
     case ERROR_NO_SD:
-      Toast.makeText(context, R.string.no_sd_card_found_exclamation, Toast.LENGTH_LONG).show();
+      Toast.makeText(context, R.string.ApplicationExportManager_no_sd_card_found_exclamation,
+                     Toast.LENGTH_LONG).show();
       break;
     case ERROR_IO:
-      Toast.makeText(context, R.string.error_exporting_to_sd_exclamation, Toast.LENGTH_LONG).show();
+      Toast.makeText(context, R.string.ApplicationExportManager_error_exporting_to_sd_exclamation,
+                     Toast.LENGTH_LONG).show();
       break;
     case COMPLETE:
       switch (task) {
       case TASK_IMPORT:
-        Toast.makeText(context, R.string.import_successful_exclamation, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.ApplicationExportManager_import_successful_exclamation,
+                       Toast.LENGTH_LONG).show();
         break;
       case TASK_EXPORT:
-        Toast.makeText(context, R.string.export_successful_exclamation, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.ApplicationExportManager_export_successful_exclamation,
+                       Toast.LENGTH_LONG).show();
         break;
       }
       break;
