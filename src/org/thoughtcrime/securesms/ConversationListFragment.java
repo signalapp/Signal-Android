@@ -161,6 +161,7 @@ private void initializeSearch(android.widget.SearchView searchView) {
           DatabaseFactory.getThreadDatabase(getActivity())
             .deleteConversations(selectedConversations);
         }
+        MessageNotifier.updateNotification(getActivity(), false);
       }
     });
 
