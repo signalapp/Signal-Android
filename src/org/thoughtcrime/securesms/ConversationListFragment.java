@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.MessageNotifier;
 
 import java.util.Set;
 
@@ -161,6 +162,7 @@ private void initializeSearch(android.widget.SearchView searchView) {
           DatabaseFactory.getThreadDatabase(getActivity())
             .deleteConversations(selectedConversations);
         }
+        MessageNotifier.updateNotification(getActivity(), false);
       }
     });
 
