@@ -117,6 +117,9 @@
     
     <!-- ReviewIdentitiesActivity -->
     <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Unable to view corrupted identity key!</string>
+    <string name="ReviewIdentitiesActivity_delete_identity_dialogtitle">Delete identity?</string>
+    <string name="ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key">Are you sure that you wish to permanently delete this identity key?</string>
+    <string name="ReviewIdentitiesActivity_invalid_identity">Invalid Identity!</string
     
     <!-- SaveIdentityActivity -->
     <string name="SaveIdentityActivity_you_must_specify_a_name_for_this_identity_exclamation">You must specify a name for this identity!</string>
