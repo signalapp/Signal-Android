@@ -159,10 +159,9 @@ private void initializeSearch(android.widget.SearchView searchView) {
             .getBatchSelections();
 
         if (!selectedConversations.isEmpty()) {
-          DatabaseFactory.getThreadDatabase(getActivity())
-            .deleteConversations(selectedConversations);
+          DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
+          MessageNotifier.updateNotification(getActivity(), false);
         }
-        MessageNotifier.updateNotification(getActivity(), false);
       }
     });
 
