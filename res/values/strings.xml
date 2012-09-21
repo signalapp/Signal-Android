@@ -321,6 +321,15 @@
     <string name="preferences__select_ringtone">Select ringtone</string>
     <string name="preferences__vibrate">Vibrate</string>
     <string name="preferences__also_vibrate_when_notified">Also vibrate when notified</string>
+    <string name="preferences__pref_all_sms_title">Use for all SMS</string>
+    <string name="preferences__pref_all_mms_title">Use for all MMS</string>    
+    <string name="preferences__pref_enter_sends_title">Enter sends</string>
+    <string name="preferences__pref_timeout_interval_dialogtitle">Select Passphrase Timeout</string>
+    <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
+    <string name="preferences__pref_timeout_interval_summary">The amount of time to wait before forgetting passphrase from memory</string>
+    <string name="preferences__pref_led_blink_title">LED Blink Pattern</string>
+    <string name="preferences__pref_led_blink_summary">Change notification LED blink pattern</string>
+    <string name="preferences__pref_led_blink_dialogtitle">Select LED Blink Pattern</string>
     
     <!-- **************************************** -->
     <!-- menus -->
