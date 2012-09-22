@@ -3,6 +3,7 @@
     <string name="app_name">TextSecure</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="delete">Delete</string>
     
     <!-- ApplicationExportManager -->
     <string name="ApplicationExportManager_import_database_and_settings_title">Import Database and Settings?</string>
@@ -73,7 +74,9 @@
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
     <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
-
+	<string name="ConversationFragment_delete_message_dialogtitle">Confirm Message Delete</string>
+	<string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+    
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_encrypted_message_enter_passphrase">"Encrypted message, enter passphrase... "</string>
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
@@ -81,8 +84,6 @@
     <!-- ConversationListFragment -->
     <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
     <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Are you sure you wish to delete ALL selected conversation threads?</string>
-    <string name="ConversationListFragment_delete">Delete</string>
-    <string name="ConversationListFragment_cancel">Cancel</string>
     
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
@@ -117,6 +118,9 @@
     
     <!-- ReviewIdentitiesActivity -->
     <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Unable to view corrupted identity key!</string>
+    <string name="ReviewIdentitiesActivity_delete_identity_dialogtitle">Delete identity?</string>
+    <string name="ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key">Are you sure that you wish to permanently delete this identity key?</string>
+    <string name="ReviewIdentitiesActivity_invalid_identity">Invalid Identity!</string>
     
     <!-- SaveIdentityActivity -->
     <string name="SaveIdentityActivity_you_must_specify_a_name_for_this_identity_exclamation">You must specify a name for this identity!</string>
@@ -221,6 +225,9 @@
     <!-- contact_selection_list_activity -->
     <string name="contact_selection_group_activity__no_contacts">No contacts.</string>
     
+    <!-- ContactSelectionListFragment-->
+    <string name="ContactSelectionlistFragment__select_for">Select for</string>
+    
     <!-- contact_selection_recent_activity -->
     <string name="contact_selection_recent_activity__no_recent_calls">No recent calls.</string>
     
@@ -287,9 +294,12 @@
     <!-- preferences.xml -->
     
     <string name="preferences__use_settings">Use Settings</string>
+    <string name="preferences__pref_all_sms_title">Use for all SMS</string>
+    <string name="preferences__pref_all_mms_title">Use for all MMS</string> 
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for viewing and storing all incoming multimedia messages</string>
     <string name="preferences__input_settings">Input Settings</string>
+    <string name="preferences__pref_enter_sends_title">Enter sends</string>
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the enter key will send text messages</string>
     <string name="preferences__display_settings">Display Settings</string>
     <string name="preferences__choose_identity">Choose Identity</string>
@@ -305,6 +315,9 @@
     <string name="preferences__sign_key_exchange">Sign Key Exchange</string>
     <string name="preferences__forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
     <string name="preferences__timeout_passphrase">Timeout passphrase</string>
+    <string name="preferences__pref_timeout_interval_dialogtitle">Select Passphrase Timeout</string>
+    <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
+    <string name="preferences__pref_timeout_interval_summary">The amount of time to wait before forgetting passphrase from memory</string>
     <string name="preferences__identity_key_settings">Identity Key Settings</string>
     <string name="preferences__view_my_identity_key">View my identity key</string>
     <string name="preferences__export_my_identity_key">Export my identity key</string>
@@ -317,8 +330,11 @@
     <string name="preferences__display_message_notifications_in_status_bar">Display message notifications in status bar</string>
     <string name="preferences__led_color">LED Color</string>
     <string name="preferences__change_notification_led_color">Change notification LED color</string>
+    <string name="preferences__pref_led_blink_title">LED Blink Pattern</string>
+    <string name="preferences__pref_led_blink_summary">Change notification LED blink pattern</string>
+    <string name="preferences__pref_led_blink_dialogtitle">Select LED Blink Pattern</string>
     <string name="preferences__select_led_color">Select LED Color</string>
-    <string name="preferences__select_ringtone">Select ringtone</string>
+    <string name="preferences__select_ringtone">Select Ring Tone</string>
     <string name="preferences__vibrate">Vibrate</string>
     <string name="preferences__also_vibrate_when_notified">Also vibrate when notified</string>
     
