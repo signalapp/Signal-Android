@@ -154,9 +154,9 @@ public class ContactSelectionListFragment extends SherlockListFragment
     }
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle("Select for " + contactData.name);
+    builder.setTitle(R.string.ContactSelectionlistFragment_select_for + " " + contactData.name);
     builder.setMultiChoiceItems(options, null, new DiscriminatorClickedListener(contactData));
-    builder.setPositiveButton("Ok", new DiscriminatorFinishedListener(contactData, textView));
+    builder.setPositiveButton(android.R.string.ok, new DiscriminatorFinishedListener(contactData, textView));
     builder.setOnCancelListener(new DiscriminatorFinishedListener(contactData, textView));
     builder.show();
   }

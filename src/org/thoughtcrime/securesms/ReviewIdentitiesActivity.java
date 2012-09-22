@@ -83,7 +83,7 @@ public class ReviewIdentitiesActivity extends SherlockListActivity {
 
   @Override
   public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-    menu.add(0, MENU_OPTION_DELETE, Menu.NONE, "Delete");
+    menu.add(0, MENU_OPTION_DELETE, Menu.NONE, R.string.delete);
   }
 
   @Override
@@ -138,8 +138,8 @@ public class ReviewIdentitiesActivity extends SherlockListActivity {
 
   private void deleteIdentity(String name, String keyString) {
     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-    alertDialog.setTitle("Delete identity?");
-    alertDialog.setMessage("Are you sure that you wish to permanently delete this identity key?");
+    alertDialog.setTitle(R.string.ReviewIdentitiesActivity_delete_identity);
+    alertDialog.setMessage(R.string.ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key);
     alertDialog.setCancelable(true);
     alertDialog.setNegativeButton(R.string.no, null);
     alertDialog.setPositiveButton(R.string.yes, new DeleteIdentityListener(name, keyString));
@@ -192,7 +192,7 @@ public class ReviewIdentitiesActivity extends SherlockListActivity {
       }
 
       if (!valid)
-        identityName = "Invalid Identity!";
+        identityName = getString(R.string.ReviewIdentitiesActivity_invalid_identity);
 
       ((IdentityKeyView)view).set(identityName, identityKeyString);
     }
