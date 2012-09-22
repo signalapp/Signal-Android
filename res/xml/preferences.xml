@@ -22,12 +22,12 @@
     <CheckBoxPreference android:defaultValue="true"
                       android:key="pref_all_sms"
                       android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages"
-                      android:title="Use for all SMS" />
+                      android:title="@string/preferences__pref_all_sms_title" />
 
     <CheckBoxPreference android:defaultValue="true"
                       android:key="pref_all_mms"
                       android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
-                      android:title="Use for all MMS" />
+                      android:title="@string/preferences__pref_all_mms_title" />
 
    </PreferenceCategory>
 
@@ -35,7 +35,7 @@
     <CheckBoxPreference android:defaultValue="false"
                       android:key="pref_enter_sends"
                       android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
-                      android:title="Enter Sends" />
+                      android:title="@string/preferences__pref_enter_sends_title" />
    </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__display_settings">
@@ -76,10 +76,10 @@
     <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
                         android:key="pref_timeout_interval"
                         android:defaultValue="300"
-                        android:title="Timeout interval"
-                        android:summary="The amount of time to wait before forgetting passphrase from memory"
+                        android:title="@string/preferences__pref_timeout_interval_title"
+                        android:summary="@string/preferences__pref_timeout_interval_summary"
                         android:dependency="pref_timeout_passphrase"
-                        android:dialogTitle="Select Passphrase Timeout" />
+                        android:dialogTitle="@string/preferences__pref_timeout_interval_dialogtitle" />
 
    </PreferenceCategory>
 
@@ -119,12 +119,12 @@
     <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
                       android:key="pref_led_blink"
                       android:defaultValue="500,2000"
-                      android:title="LED Blink Pattern"
+                      android:title="@string/preferences__pref_led_blink_title"
                       android:dependency="pref_key_enable_notifications"
-                      android:summary="Change notification LED blink pattern"
+                      android:summary="@string/preferences__pref_led_blink_summary"
                       android:entries="@array/pref_led_blink_pattern_entries"
                       android:entryValues="@array/pref_led_blink_pattern_values"
-                      android:dialogTitle="LED Blink Pattern" />
+                      android:dialogTitle="@string/preferences__pref_led_blink_dialogtitle" />
 
 
     <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
