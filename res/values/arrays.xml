@@ -2,17 +2,17 @@
 <resources>
 
   <string-array name="minutes_hours">
-  	<item>minutes</item>
-  	<item>hours</item>
+  	<item>@string/preferences__minutes</item>
+  	<item>@string/preferences__hours</item>
   </string-array>
 
   <string-array name="pref_led_color_entries">
-    <item>Green</item>
-    <item>Red</item>
-    <item>Blue</item>
-    <item>Orange</item>
-    <item>Cyan</item>
-    <item>Magenta</item>
+    <item>@string/preferences__green</item>
+    <item>@string/preferences__red</item>
+    <item>@string/preferences__blue</item>
+    <item>@string/preferences__orange</item>
+    <item>@string/preferences__cyan</item>
+    <item>@string/preferences__magenta</item>
   </string-array>
   
 
@@ -26,10 +26,10 @@
   </string-array>
   
   <string-array name="pref_led_blink_pattern_entries">
-    <item>Fast</item>
-    <item>Normal</item>
-    <item>Slow</item>
-    <item>Custom</item>
+    <item>@string/preferences__fast</item>
+    <item>@string/preferences__normal</item>
+    <item>@string/preferences__slow</item>
+    <item>@string/preferences__custom</item>
   </string-array>
   <string-array name="pref_led_blink_pattern_values"
     translatable="false">
