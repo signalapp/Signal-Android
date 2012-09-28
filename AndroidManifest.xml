@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.thoughtcrime.securesms"
-      android:versionCode="27"
-      android:versionName="0.7.2">
+      android:versionCode="28"
+      android:versionName="0.7.3">
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16"/>
 
