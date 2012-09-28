@@ -1,0 +1,357 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">TextSecure</string>
+  <string name="yes">Si</string>
+  <string name="no">No</string>
+  <string name="delete">Borrar</string>
+  <!--ApplicationExportManager-->
+  <string name="ApplicationExportManager_import_database_and_settings_title">¿Importar la base de datos y las preferencias?</string>
+  <string name="ApplicationExportManager_import_database_and_settings_message">¿Desea importar la base de datos TextSecure, claves y preferencias desde la tarjeta SD?\n\nADVERTENCIA: Esto escribirá sobre cualquier mensaje existente, claves y preferencias anteriores.</string>
+  <string name="ApplicationExportManager_importing_database_and_keys">Importando base de datos y claves</string>
+  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Importando su base de datos SMS, claves y preferencias...</string>
+  <string name="ApplicationExportManager_export_database_question">¿Exportar la base de datos?</string>
+  <string name="ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt">¿Exportar la base de datos TextSecure, claves y preferencias a la tarjeta SD?</string>
+  <string name="ApplicationExportManager_exporting_database_and_keys">Exportando la base de datos y claves</string>
+  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">Exportando su base de datos SMS, claves y preferencias...</string>
+  <string name="ApplicationExportManager_no_sd_card_found_exclamation">¡No se encontró ninguna tarjeta SD!</string>
+  <string name="ApplicationExportManager_error_exporting_to_sd_exclamation">¡Error al exportar a la tarjeta SD!</string>
+  <string name="ApplicationExportManager_import_successful_exclamation">¡Importación exitosa!</string>
+  <string name="ApplicationExportManager_export_successful_exclamation">¡Exportación exitosa!</string>
+  <string name="ApplicationExportManager_import">Importar</string>
+  <string name="ApplicationExportManager_export">Exportar</string>
+  <!--ApplicationMigrationManager-->
+  <string name="ApplicationMigrationManager_migrating_database">MIgrando la base de datos</string>
+  <string name="ApplicationMigrationManager_migrating_text_message_database">Migrando la base de datos de mensajes de texto...</string>
+  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">¿Desea copiar la base de datos de mensajes de texto del sistema?</string>
+  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure usa una base de datos cifrada, separa de la base de datos predeterminada por el sistema.  ¿Le gustaría copiar sus mensajes de texto existentes en la base cifrada de TextSecure? Su base de datos predeterminada en el sistema no será afectada. </string>
+  <string name="ApplicationMigrationManager_copy">Copiar</string>
+  <string name="ApplicationMigrationManager_dont_copy">No copiar</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferenceActivity_not_found_exclamation">¡No encontrado!</string>
+  <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">No se ha encontrado una clave de identidad válida en el contacto especificado.</string>
+  <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">¡Aún no tiene una clave de identidad!</string>
+  <string name="ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself">No ha definido aún un contacto para usted mismo. Seleccione uno en el menú de Preferencias</string>
+  <string name="ApplicationPreferenceActivity_exported_to_contacts_database">Exportado a la base de datos de contactos</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Necesita ingresar una frase de contraseña antes de importar claves...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Necesita ingresar su frase de contraseña antes de gestionar sus claves...</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡No ha elegido aún una frase de contraseña!</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">Tamaño del mensaje: %d KB</string>
+  <string name="ConversationItem_expires_s">Expira: %s</string>
+  <string name="ConversationItem_error_sending_message">Error al enviar el mensaje</string>
+  <string name="ConversationItem_sending">Enviando...</string>
+  <string name="ConversationItem_saving_attachment">Guardando el archivo adjunto</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Guardando el archivo adjunto a la tarjeta SD</string>
+  <string name="ConversationItem_save_to_sd_card">¿Guardar a la tarjeta SD?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Este archivo ha sido guardado en una base de datos cifrada. La versión que usted guardará en la tarjeta SD ya no estará cifrada. ¿Desea continuar?</string>
+  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error al guardar el archivo adjunto en la tarjeta SD</string>
+  <string name="ConversationItem_success_exclamation">¡Éxito!</string>
+  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">No es posible escribir en la tarjeta SD</string>
+  <string name="ConversationItem_view_secure_media_question">¿Ver archivos de medios seguros?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este archivo se ha guardado en una base de datos cifrada. Desafortunadamente, para verlo necesita un visualizador de contenidos externo que requiere que los datos sean temporalmente descifrados y copiados en el disco. ¿Está seguro que desea hacer esto?</string>
+  <string name="ConversationItem_key_exchange_message">Mensaje de intercambio de claves</string>
+  <string name="ConversationItem_received_and_processed_key_exchange_message">Mensaje de intercambio de claves recibido y procesado.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Error, recibió un mensaje de intercambio de claves expirado.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Ha recibido un mensaje de intercambio de claves, haga clic para proceder</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">¿Iniciar una sesión segura?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">¿Iniciar sesión segura con %s?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Abandonar la confirmación de sesión segura</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">¿Está seguro de que desea abandonar esta sesión segura?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Confirmar borrado de conversación</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">¿Está seguro de que desea borrar esta conversación permanentemente?</string>
+  <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
+  <string name="ConversationActivity_compose_message">Escribir mensaje</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lo sentimos, hubo un error en su archivo adjunto.</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Lo sentimos, el video seleccionado excede las restricciones de tamaño del mensaje.</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lo sentimos, el audio seleccionado excede las restricciones de tamaño del mensaje.</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatario no es un SMS o correo electrónico válido</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">Detalles del mensaje</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remitente: %1$s\nTransporte: %2$s\nEnviado/Recibido:%3$s</string>
+  <string name="ConversationFragment_confirm_message_delete">Confirmar borrado del mensaje</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">¿Está seguro que desea borrar permanentemente este mensaje?</string>
+  <!--ConversationListAdapter-->
+  <string name="ConversationListAdapter_encrypted_message_enter_passphrase">Mensaje cifrado, ingrese la frase de contraseña...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Mensaje de intercambio de claves...</string>
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_delete_threads_question">¿Borrar las conversaciones?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">¿Está seguro de que quiere borrar TODAS las conversaciones seleccionadas?</string>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
+  <!--KeyScanningActivity-->
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las frases de contraseña no coinciden!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Frase de contraseña anterior incorrecta!</string>
+  <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">¡Las frases de contraseña no coinciden!</string>
+  <string name="PassphraseCreateActivity_generating_keypair">Generando Par de Claves</string>
+  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">Generando un par de claves de cifrado local...</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de contraseña inválida</string>
+  <!--ReceiveKeyActivity-->
+  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERROR:\n\nHa recibido una clave pública dañada.  Esta clave no puede ser procesada, por favor reinicie su sesión segura. </string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERROR:\n\nHa recibido una clave pública de una versión no soportada del protocolo. Esta clave no puede ser procesada, por favor reinicie la sesión segura.</string>
+  <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">Este mensaje de intercambio de claves no incluye una firma de identidad.</string>
+  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Este mensaje de intercambio de claves incluye una firma de identidad, pero aún no la considera de confianza.</string>
+  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Este mensaje de intercambio de claves incluye una firma de identidad en la que usted confía para: %s</string>
+  <string name="ReceiveKeyActivity_this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_s">Esta es la clave que ha enviado para iniciar la sesión cifrada actual con %s</string>
+  <string name="ReceiveKeyActivity_this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s">Esta es la clave que ha recibido para iniciar la sesión cifrada actual con %s</string>
+  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session">Ha recibido un mensaje de intercambio de claves de %s.\n\nADVERTENCIA:  Usted ya tiene una sesión cifrada con este contacto. Si elige aceptar este mensaje de intercambio de claves, destruirá su sesión existente y deberá re-autentificarse.  ¿Le gustaría completar este intercambio de claves? </string>
+  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">Ha recibido un mensaje de intercambio de claves de %s.  Usted ha iniciado una sesión con este contacto previamente, y al aceptar esta clave completará el intercambio. ¿Le gustaría completar este intercambio de claves?</string>
+  <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">Ha iniciado un mensaje de intercambio de claves con %s pero aún no ha recibido una respuesta.</string>
+  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">Ha recibido un mensaje de intercambio de claves de %s. Aún no ha iniciado una sesión con este contacto. ¿Le gustaría completar este intercambio de claves?</string>
+  <!--ReviewIdentitiesActivity-->
+  <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">¡No es posible ver la clave de identidad dañada!</string>
+  <string name="ReviewIdentitiesActivity_delete_identity">¿Borrar identidad?</string>
+  <string name="ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key">¿Está seguro que desea eliminar permanentemente esta clave de identidad?</string>
+  <string name="ReviewIdentitiesActivity_invalid_identity">¡Identidad inválida!</string>
+  <!--SaveIdentityActivity-->
+  <string name="SaveIdentityActivity_you_must_specify_a_name_for_this_identity_exclamation">Debe especificar un nombre para esta identidad</string>
+  <string name="SaveIdentityActivity_identity_name_exists_exclamation">El nombre de la identidad ya existe</string>
+  <string name="SaveIdentityActivity_an_identity_key_with_the_specified_name_already_exists">Una clave de identidad con el nombre especificado ya existe.</string>
+  <string name="SaveIdentityActivity_manage_identities">Gestionar identidades</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_mark_identity_verified_question">¿Marcar identidad como verificada?</string>
+  <string name="VerifyIdentityActivity_are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified">¿Está seguro de que ha validado la huella de identidad de este destinatario y desea marcarlo como verificado?</string>
+  <string name="VerifyIdentityActivity_mark_verified">Marcar como verificado</string>
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">No tiene ninguna clave de identidad.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">El destinatario no tiene clave de identidad.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">¡El destinatario no tiene clave de identidad!</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Escanear la clave de ellos, para comparar</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">Escanear mi clave</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVERTENCIA: la clave escaneada NO coincide. Por favor verifique el texto de la huella cuidadosamente.</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">¡NO verificado!</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La clave de ellos es correcta. También es necesario verificar su clave con ellos.</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">¡Verificado!</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">¡No tiene ninguna clave de identidad!</string>
+  <!--VerifyImportedIdentityActivity-->
+  <string name="VerifyImportedIdentityActivity_you_must_specify_a_name_for_this_contact_exclamation">¡Debe especificar un nombre para este contacto!</string>
+  <string name="VerifyImportedIdentityActivity_save_identity_key_question">¿Guardar clave de identidad?</string>
+  <string name="VerifyImportedIdentityActivity_error_saving_identity_key_exclamation">Error al guardar la clave de identidad</string>
+  <string name="VerifyImportedIdentityActivity_this_identity_key_or_an_identity_key_with_the_same_name_already_exists_please_edit_your_key_database">Esta clave de identidad o una clave de identidad con el mismo nombre ya existe.  Por favor edite su base de datos de claves.</string>
+  <string name="VerifyImportedIdentityActivity_scan_to_compare">Escanear para comparar</string>
+  <string name="VerifyImportedIdentityActivity_get_scanned_to_compare">Escanear para comparar</string>
+  <string name="VerifyImportedIdentityActivity_not_verified_exclamation">¡NO verificado!</string>
+  <string name="VerifyImportedIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVERTENCIA, ¡la clave escaneada NO coincide!</string>
+  <string name="VerifyImportedIdentityActivity_the_scanned_key_matches_exclamation">¡La clave escaneada coincide!</string>
+  <string name="VerifyImportedIdentityActivity_verified_exclamation">¡Verificado!</string>
+  <string name="VerifyImportedIdentityActivity_are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s">¿Está seguro de que desa marcar como válida esta clave de identidad para toda la correspondencia futura con %s?  Sólo debe hacer esto si realmente ha verificado su huella digital.</string>
+  <!--VerifyKeysActivity-->
+  <string name="VerifyKeysActivity_mark_session_verified_question">¿Marcar la sesión como verificada?</string>
+  <string name="VerifyKeysActivity_are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified">¿Está seguro de que desea validar estas huellas digitales y quisiera marcar esta sesión como verificada?</string>
+  <string name="VerifyKeysActivity_mark_verified">Marcar como verificado</string>
+  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Escanear mi huella digital</string>
+  <string name="VerifyKeysActivity_scan_their_fingerprint">Escanear su huella digital</string>
+  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ADVERTENCIA, la clave escaneada NO coincide. Por favor verifique cuidadosamente el texto de la huella digital. </string>
+  <string name="VerifyKeysActivity_not_verified_exclamation">¡NO verificado!</string>
+  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">La clave es correcta. Es también necesario escanear su huella digital.</string>
+  <string name="VerifyKeysActivity_verified_exclamation">¡Verificado!</string>
+  <!--ViewIdentityActivity-->
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Usted no tiene una clave de identidad.</string>
+  <string name="ViewIdentityActivity_scan_to_compare">Escanear para comparar</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">Escanear su clave para comparar</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVERTENCIA, la clave escaneada NO coincide</string>
+  <string name="ViewIdentityActivity_not_verified_exclamation">¡NO verificado!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">¡La clave escaneada coincide!</string>
+  <string name="ViewIdentityActivity_verified_exclamation">¡Verificado!</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la petición existente?</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Ya ha enviado una petición de inicio de sesión a este destinatario, ¿está seguro de que quiere enviar otra? Esto invalidará la primera petición. </string>
+  <string name="KeyExchangeInitiator_send">Enviar</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado incorrecto...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Descifrando, por favor espere...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensaje cifrado para una sesión no existente...</string>
+  <string name="MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question">Error de descifrado: mensaje local dañado, MAC no coincide. ¿Posible manipulación?</string>
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">Conectando con el servidor MMS...</string>
+  <string name="MmsDatabase_downloading_mms">Descargado MMS...</string>
+  <string name="MmsDatabase_mms_download_failed">Falló la descarga del MMS</string>
+  <string name="MmsDatabase_downloading">Descargando...</string>
+  <string name="MmsDatabase_anonymous">Anónimo</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Descifrando MMS, por favor espere...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS mal cifrado</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaje MMS cifrado para sesión no existente...</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_migrating">Migrando</string>
+  <string name="ApplicationMigrationService_migrating_system_text_messages">Migrando los mensajes de texto del sistema</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">Frase de contraseña de TextSecure en memoria caché</string>
+  <string name="KeyCachingService_passphrase_cached">Frase de contraseña en memoria caché</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages">(%d) Nuevos mensajes</string>
+  <string name="MessageNotifier_d_new_messages_most_recent_from_s">(%1$d) Nuevos mensajes, el más reciente de: %2$s</string>
+  <string name="MessageNotifier_most_recent_from_s">Mensaje más reciente de: %s</string>
+  <!--auto_initiate_activity-->
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Ha recibido un mensaje de alguien que tiene soporte para sesiones cifradas de TextSecure. ¿Desea iniciar una sesión segura?</string>
+  <string name="auto_initiate_activity__initiate_exchange">Iniciar intercambio</string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">Frase de contraseña anterior:</string>
+  <string name="change_passphrase_activity__new_passphrase">Nueva frase de contraseña:</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Repita la nueva frase de contraseña:</string>
+  <!--contact_selection_group_activity-->
+  <!--contact_selection_list_activity-->
+  <string name="contact_selection_group_activity__no_contacts">No hay contactos.</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">No hay llamadas recientes.</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message">Escribir mensaje</string>
+  <string name="conversation_activity__send">Enviar</string>
+  <string name="conversation_activity__remove">Eliminar</string>
+  <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección múltiple</string>
+  <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Por favor escoja una frase de contraseña que se usará de forma local para cifrar sus datos. Debe elegir una clave de contraseña fuerte. </string>
+  <string name="create_passphrase_activity__passphrase">Frase de contraseña:</string>
+  <string name="create_passphrase_activity__repeat">Repetir:</string>
+  <!--receive_key_activity-->
+  <string name="receive_key_activity__session">Sesión</string>
+  <string name="receive_key_activity__identities">Identidades</string>
+  <string name="receive_key_activity__complete_exchange">Completar el intercambio</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to">Para</string>
+  <!--review_identities-->
+  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">En este momento no tiene ninguna clave de identidad en su base de datos de confianza.</string>
+  <!--save_identity_activity-->
+  <string name="save_identity_activity__identity_name">Nombre de la identidad:</string>
+  <!--verify_identity_activity-->
+  <string name="verify_identity_activity__their_identity_they_read">Identidad de ellos (ellos leen):</string>
+  <string name="verify_identity_activity__your_identity_you_read">Su identidad (usted lee):</string>
+  <!--verify_import_identity_activity-->
+  <string name="verify_import_identity_activity__identity_name_n">Nombre de la identidad:\\n</string>
+  <string name="verify_import_identity_activity__imported_identity_n">Identidad importada:\\n</string>
+  <string name="verify_import_identity_activity__verified">¡Verificado!</string>
+  <string name="verify_import_identity_activity__compare">Comparar</string>
+  <!--verify_keys_activity-->
+  <string name="verify_keys_activity__they_read_this">Ellos leen esto:</string>
+  <string name="verify_keys_activity__you_read_this">Usted lee esto:</string>
+  <!--view_identity_activity-->
+  <string name="view_identity_activity__identity">Identidad:</string>
+  <string name="view_identity_activity__qr_code">Código QR</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">Crear frase de contraseña</string>
+  <string name="AndroidManifest__enter_passphrase">Ingresar frase de contraseña</string>
+  <string name="AndroidManifest__select_contacts">Seleccionar Contactos</string>
+  <string name="AndroidManifest__textsecure_detected">TextSecure detectado</string>
+  <string name="AndroidManifest__public_identity_key">Clave de Identidad Pública</string>
+  <string name="AndroidManifest__change_passphrase">Cambiar la frase de contraseña</string>
+  <string name="AndroidManifest__verify_session">Verificar sesión</string>
+  <string name="AndroidManifest__verify_identity">Verificar identidad</string>
+  <string name="AndroidManifest__save_identity">Guardar identidad</string>
+  <string name="AndroidManifest__manage_identity_keys">Gestionar claves de identidad</string>
+  <string name="AndroidManifest__complete_key_exchange">Completar el intercambio de claves</string>
+  <string name="AndroidManifest__verify_imported_identity">Ver identidad importada</string>
+  <!--preferences.xml-->
+  <string name="preferences__use_settings">Preferencias de uso</string>
+  <string name="preferences__pref_all_sms_title">Usar para todos los SMS</string>
+  <string name="preferences__pref_all_mms_title">Usar para todos los MMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Usar TextSecure para ver y guardar todos los mensajes de texto entrantes</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Usar TextSecure para ver y guardar todos los mensajes multimedia entrantes</string>
+  <string name="preferences__input_settings">Preferencias de escritura</string>
+  <string name="preferences__pref_enter_sends_title">Envío con la tecla de entrada</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Presionar la tecla de entrada enviará sus mensajes de texto</string>
+  <string name="preferences__display_settings">Mostrar preferencias</string>
+  <string name="preferences__choose_identity">Elegir identidad</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elija su registro de contacto de la lista de contactos.</string>
+  <string name="preferences__encryption_settings">Preferencias de cifrado</string>
+  <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
+  <string name="preferences__change_my_passphrase">Cambiar mi frase de contraseña</string>
+  <string name="preferences__complete_key_exchanges">Completar intercambios de clave</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automáticamente los intercambios de clave para nuevas sesiones o para sesiones existentes con la misma clave de identidad</string>
+  <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Incluir una etiqueta de espacio en blanco al final de cada mensaje no cifrado</string>
+  <string name="preferences__include_whitespace_tag">Incluir etiqueta de espacio en blanco</string>
+  <string name="preferences__sign_key_exchange_messages_with_identity_key">Firmar los mensajes de intercambio de claves con su clave de identidad</string>
+  <string name="preferences__sign_key_exchange">Firmar el intercambio de claves</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Olvidar la frase de contraseña de la memoria después de un intervalo de tiempo</string>
+  <string name="preferences__timeout_passphrase">Expirar la frase de contraseña</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar la expiración de la frase de contraseña</string>
+  <string name="preferences__pref_timeout_interval_title">Intervalo de expiración</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">El intervalo de tiempo a esperar antes de olvidar la frase de contraseña de la memoria</string>
+  <string name="preferences__identity_key_settings">Preferencias de clave de identidad</string>
+  <string name="preferences__view_my_identity_key">Ver mi clave de identidad</string>
+  <string name="preferences__export_my_identity_key">Exportar mi clave de identidad</string>
+  <string name="preferences__import_contacts_key">Importar la clave del contacto</string>
+  <string name="preferences__import_an_identity_key_from_a_contact">Importar una clave de identidad de un contacto</string>
+  <string name="preferences__manage_identity_keys">Gestionar las claves de identidad</string>
+  <string name="preferences__manage_configured_identity_keys">Gestionar las claves de identidad configuradas</string>
+  <string name="preferences__notification_settings">Preferencias de notificación</string>
+  <string name="preferences__notifications">Notificaciones</string>
+  <string name="preferences__display_message_notifications_in_status_bar">Desplegar notificaciones de mensaje en la barra de estado</string>
+  <string name="preferences__led_color">Color LED</string>
+  <string name="preferences__change_notification_led_color">Cambiar el color LED de la notificación</string>
+  <string name="preferences__pref_led_blink_title">Patrón de parpadeo del LED</string>
+  <string name="preferences__change_notification_blink_pattern">Cambiar el patrón de parpadeo de la notificación LED</string>
+  <string name="preferences__pref_led_blink_dialogtitle">Seleccionar un patrón e parpadeo del LED</string>
+  <string name="preferences__select_led_color">Seleccionar color LED</string>
+  <string name="preferences__select_ringtone">Seleccionar tono</string>
+  <string name="preferences__vibrate">Vibración</string>
+  <string name="preferences__also_vibrate_when_notified">También vibrar con notificaciones</string>
+  <string name="preferences__minutes">minutos</string>
+  <string name="preferences__hours">horas</string>
+  <string name="preferences__green">Verde</string>
+  <string name="preferences__red">Rojo</string>
+  <string name="preferences__blue">Azul</string>
+  <string name="preferences__orange">Naranja</string>
+  <string name="preferences__cyan">Turquesa</string>
+  <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__fast">Rápido</string>
+  <string name="preferences__normal">Normal</string>
+  <string name="preferences__slow">Despacio</string>
+  <string name="preferences__custom">Personalizado</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">Seleccionar todo</string>
+  <string name="contact_selection_list__menu_unselect_all">Deseleccionar todo</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">Terminado</string>
+  <!--conversation_button_context-->
+  <string name="conversation_button_context__menu_send_unencrypted">Enviar sin cifrado</string>
+  <!--conversation_callable-->
+  <string name="conversation_callable__menu_call">Llamar</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">Detalles del mensaje</string>
+  <string name="conversation_context__menu_copy_text">Copiar texto</string>
+  <string name="conversation_context__menu_delete_message">Borrar mensaje</string>
+  <string name="conversation_context__menu_forward_message">Reenviar mensaje</string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__menu_start_secure_session">Iniciar sesión segura</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">Borrar lo seleccionado</string>
+  <string name="conversation_list_batch__menu_select_all">Seleccionar todo</string>
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">Buscar</string>
+  <!--conversation_secure_verified-->
+  <!--conversation_secure_unverified-->
+  <string name="conversation_secure_verified__menu_security">Seguridad</string>
+  <string name="conversation_secure_verified__menu_verify_session">Verificar sesión</string>
+  <string name="conversation_secure_verified__menu_verify_recipient">Verificar destinatario</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Abandonar la sesión segura</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">Añadir archivo adjunto</string>
+  <string name="conversation__menu_delete_thread">Borrar conversación</string>
+  <string name="conversation__menu_compare">Comparar</string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">Comparar</string>
+  <string name="key_scanning__menu_get_scanned_to_compare">Escanear mi clave para comparar</string>
+  <string name="key_scanning__menu_scan_to_compare">Escanear para comparar</string>
+  <!--text_secure_locked-->
+  <string name="text_secure_locked__menu_unlock">Desbloquear</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">Nuevo mensaje</string>
+  <string name="text_secure_normal__menu_settings">Preferencias</string>
+  <string name="text_secure_normal__menu_import_export">Importar/Exportar</string>
+  <string name="text_secure_normal__menu_import">Importar</string>
+  <string name="text_secure_normal__menu_export">Exportar</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Eliminar frase de contraseña</string>
+  <!--verify_keys-->
+  <string name="verify_keys__menu_verified">Verificado</string>
+  <!--EOF-->
+</resources>
