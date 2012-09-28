@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.util.InvalidMessageException;
 
 import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 public class MessageDisplayHelper {
 

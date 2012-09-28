@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.mms;
 
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 

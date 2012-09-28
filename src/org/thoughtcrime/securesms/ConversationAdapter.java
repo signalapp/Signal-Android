@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.service.MessageNotifier;
 import ws.com.google.android.mms.MmsException;
 
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
