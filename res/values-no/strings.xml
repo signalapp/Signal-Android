@@ -292,6 +292,21 @@
   <string name="preferences__select_ringtone">Velg varslingstone</string>
   <string name="preferences__vibrate">Vibrasjon</string>
   <string name="preferences__also_vibrate_when_notified">Også vibrere ved varsling</string>
+  
+  <string name="preferences__minutes">minutes</string>
+  <string name="preferences__hours">hours</string>
+  <string name="preferences__green">Green</string>
+  <string name="preferences__red">Red</string>        
+  <string name="preferences__blue">Blue</string>
+  <string name="preferences__orange">Orange</string>
+  <string name="preferences__cyan">Cyan</string>
+  <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__fast">Fast</string>
+  <string name="preferences__normal">Normal</string>
+  <string name="preferences__slow">Slow</string>
+  <string name="preferences__custom">Custom</string>
+     
+  
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
