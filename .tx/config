@@ -1,5 +1,7 @@
 [main]
 host = https://www.transifex.com
+lang_map = fr_CA:fr-rCA,pt_BR:pt-rBR,pt_PT:pt,zh_CN:zh-rCN,zh_HK:zh-rHK,zh_TW:zh-rTW,da_DK:da-rDK,de_DE:de,fr_FR:fr,es_ES:es,hu_HU:hu,sv_SE:sv-rSE
+
 
 [textsecure-official.master]
 file_filter = res/values-<lang>/strings.xml
