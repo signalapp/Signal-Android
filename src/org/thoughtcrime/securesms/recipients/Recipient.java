@@ -50,9 +50,10 @@ public class Recipient implements Parcelable {
   }
 
   public Recipient(Parcel in) {
-    this.name       = in.readString();
-    this.number     = in.readString();
-    this.contactUri = in.readParcelable(null);
+    this.name         = in.readString();
+    this.number       = in.readString();
+    this.contactUri   = in.readParcelable(null);
+    this.contactPhoto = in.readParcelable(null);
   }
 
   public Uri getContactUri() {
@@ -75,6 +76,7 @@ public class Recipient implements Parcelable {
     dest.writeString(name);
     dest.writeString(number);
     dest.writeParcelable(contactUri, 0);
+    dest.writeParcelable(contactPhoto, 0);
   }
 
   public String toShortString() {

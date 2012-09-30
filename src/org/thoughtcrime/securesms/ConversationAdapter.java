@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.service.MessageNotifier;
 import ws.com.google.android.mms.MmsException;
 
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
@@ -175,8 +174,8 @@ public class ConversationAdapter extends CursorAdapter {
 
     MessageRecord messageRecord;
 
-    if (type.equals("mms"))	messageRecord = getNewMmsMessageRecord(messageId, cursor);
-    else					messageRecord = getNewSmsMessageRecord(messageId, cursor);
+    if (type.equals("mms")) messageRecord = getNewMmsMessageRecord(messageId, cursor);
+    else                    messageRecord = getNewSmsMessageRecord(messageId, cursor);
 
     messageRecordCache.put(type + messageId, messageRecord);
     return messageRecord;
