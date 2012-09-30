@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.recipients;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
@@ -146,7 +145,7 @@ public class RecipientFactory {
     int end      = recipient.indexOf('>');
     String value = recipient.substring(begin + 1, end);
 
-    if (PhoneNumberUtils.isWellFormedSmsAddress(value))
+    if (NumberUtil.isValidSmsOrEmail(value))
       return value;
     else
       throw new RecipientFormattingException("Bracketed value: " + value + " is not valid.");

@@ -421,9 +421,9 @@ public class MmsDatabase extends Database {
     database.delete(TABLE_NAME, null, null);
   }
 
-  public Cursor getCarrierMmsInformation() {
+  public Cursor getCarrierMmsInformation(String apn) {
     Uri uri          = Uri.withAppendedPath(Uri.parse("content://telephony/carriers"), "current");
-    String selection = "type = 'mms'";
+    String selection = (apn == null || apn.trim().length() == 0) ? null : String.format("apn = '%s'", apn.trim());
 
     return context.getContentResolver().query(uri, null, selection, null, null);
   }
