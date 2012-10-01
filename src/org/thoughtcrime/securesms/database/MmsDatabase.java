@@ -268,11 +268,11 @@ public class MmsDatabase extends Database {
 
       while (cursor.moveToNext()) {
         long messageId     = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-      	long outboxType    = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
-      	PduHeaders headers = getHeadersFromCursor(cursor);
-      	addr.getAddressesForId(messageId, headers);
-      	PduBody body       = parts.getParts(messageId, true);
-      	requests[i++]      = new SendReq(headers, body, messageId, outboxType);
+        long outboxType    = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
+        PduHeaders headers = getHeadersFromCursor(cursor);
+        addr.getAddressesForId(messageId, headers);
+        PduBody body       = parts.getParts(messageId, true);
+        requests[i++]      = new SendReq(headers, body, messageId, outboxType);
       }
 
       return requests;
@@ -342,7 +342,7 @@ public class MmsDatabase extends Database {
     ContentValues contentValues = getContentValuesFromHeader(headers);
 
     if (!isSecure) contentValues.put(MESSAGE_BOX, Types.MESSAGE_BOX_OUTBOX);
-    else		   contentValues.put(MESSAGE_BOX, Types.MESSAGE_BOX_SECURE_OUTBOX);
+    else           contentValues.put(MESSAGE_BOX, Types.MESSAGE_BOX_SECURE_OUTBOX);
 
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(READ, 1);
@@ -412,7 +412,6 @@ public class MmsDatabase extends Database {
     }
   }
 
-
   public void deleteAllThreads() {
     DatabaseFactory.getPartDatabase(context).deleteAllParts();
     DatabaseFactory.getMmsAddressDatabase(context).deleteAllAddresses();
@@ -448,7 +447,7 @@ public class MmsDatabase extends Database {
       return headers;
     } finally {
       if (cursor != null)
-	cursor.close();
+        cursor.close();
     }
   }
 
@@ -535,9 +534,8 @@ public class MmsDatabase extends Database {
     public static final int DOWNLOAD_INITIALIZED     = 1;
     public static final int DOWNLOAD_NO_CONNECTIVITY = 2;
     public static final int DOWNLOAD_CONNECTING      = 3;
-    public static final int	DOWNLOAD_SOFT_FAILURE    = 4;
-    public static final int	DOWNLOAD_HARD_FAILURE	 = 5;
-
+    public static final int DOWNLOAD_SOFT_FAILURE    = 4;
+    public static final int DOWNLOAD_HARD_FAILURE    = 5;
 
     public static boolean isSecureMmsBox(long mailbox) {
       return mailbox == Types.MESSAGE_BOX_SECURE_OUTBOX || mailbox == Types.MESSAGE_BOX_SECURE_SENT || mailbox == Types.MESSAGE_BOX_SECURE_INBOX;
@@ -574,9 +572,5 @@ public class MmsDatabase extends Database {
     public static boolean isHardError(int status) {
       return status == DOWNLOAD_HARD_FAILURE;
     }
-
-
   }
-
-
 }

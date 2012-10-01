@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -22,7 +22,7 @@ public class CharacterCalculator {
 
   public CharacterState calculateCharacters(int charactersSpent) {
     int maxMessageSize;
-		
+
     if (charactersSpent <= SmsTransportDetails.SMS_SIZE) {
       maxMessageSize = SmsTransportDetails.SMS_SIZE;
     } else {
@@ -30,21 +30,21 @@ public class CharacterCalculator {
     }
 
     int messagesSpent = charactersSpent / maxMessageSize;
-		
+
     if (((charactersSpent % maxMessageSize) > 0) || (messagesSpent == 0))
       messagesSpent++;
-		
+
     int charactersRemaining = (maxMessageSize * messagesSpent) - charactersSpent;
 
     return new CharacterState(messagesSpent, charactersRemaining, maxMessageSize);
   }
-	
-	
+
+
   public class CharacterState {
     public int charactersRemaining;
     public int messagesSpent;
     public int maxMessageSize;
-		
+
     public CharacterState(int messagesSpent, int charactersRemaining, int maxMessageSize) {
       this.messagesSpent       = messagesSpent;
       this.charactersRemaining = charactersRemaining;

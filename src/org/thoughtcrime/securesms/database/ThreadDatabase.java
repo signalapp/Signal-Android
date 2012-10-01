@@ -54,13 +54,12 @@ public class ThreadDatabase extends Database {
     super(context, databaseHelper);
   }
 
-
   private long[] getRecipientIds(Recipients recipients) {
     Set<Long> recipientSet = new HashSet<Long>();
     List<Recipient> recipientList = recipients.getRecipientsList();
 
     for (Recipient recipient : recipientList) {
-      //			String number = NumberUtil.filterNumber(recipient.getNumber());
+      //  String number = NumberUtil.filterNumber(recipient.getNumber());
       String number = recipient.getNumber();
       recipientSet.add(Long.valueOf(DatabaseFactory.getAddressDatabase(context).getCanonicalAddress(number)));
     }
@@ -229,12 +228,12 @@ public class ThreadDatabase extends Database {
       cursor = db.query(TABLE_NAME, new String[]{ID}, where, recipientsArg, null, null, null);
 
       if (cursor != null && cursor.moveToFirst())
-	return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+        return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
       else
-	return -1L;
+        return -1L;
     } finally {
       if (cursor != null)
-	cursor.close();
+        cursor.close();
     }
   }
 
@@ -250,12 +249,12 @@ public class ThreadDatabase extends Database {
       cursor = db.query(TABLE_NAME, new String[]{ID}, where, recipientsArg, null, null, null);
 
       if (cursor != null && cursor.moveToFirst())
-	return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+        return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
       else
-	return createThreadForRecipients(recipientsList, recipientIds.length);
+        return createThreadForRecipients(recipientsList, recipientIds.length);
     } finally {
       if (cursor != null)
-	cursor.close();
+        cursor.close();
     }
   }
 
@@ -273,22 +272,18 @@ public class ThreadDatabase extends Database {
 
     try {
       cursor = mmsSmsDatabase.getConversationSnippet(threadId);
-      if (cursor != null && cursor.moveToFirst())
-	updateThread(threadId, count,
-		     cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY)),
-		     cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.DATE)));
-      else
-	deleteThread(threadId);
+      if (cursor != null && cursor.moveToFirst()) {
+        updateThread(threadId, count,
+                     cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY)),
+                     cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.DATE)));
+      } else {
+        deleteThread(threadId);
+      }
     } finally {
       if (cursor != null)
-	cursor.close();
+        cursor.close();
     }
 
     notifyConversationListListeners();
   }
-
-
-
-
-
 }

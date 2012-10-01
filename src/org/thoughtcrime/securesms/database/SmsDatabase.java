@@ -117,12 +117,12 @@ public class SmsDatabase extends Database {
     try {
       cursor = db.rawQuery(sql, sqlArgs);
       if (cursor != null && cursor.moveToFirst())
-	return cursor.getLong(0);
+        return cursor.getLong(0);
       else
-	return -1;
+        return -1;
     } finally {
       if (cursor != null)
-	cursor.close();
+        cursor.close();
     }
   }
 
@@ -134,10 +134,10 @@ public class SmsDatabase extends Database {
       cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, THREAD_ID + " = ?", new String[] {threadId+""}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst())
-	return cursor.getInt(0);
+        return cursor.getInt(0);
     } finally {
       if (cursor != null)
-	cursor.close();
+        cursor.close();
     }
 
     return 0;
@@ -201,7 +201,7 @@ public class SmsDatabase extends Database {
 
   public long insertMessageSent(String address, long threadId, String body, long date, long type) {
     ContentValues contentValues = new ContentValues(6);
-    //		contentValues.put(ADDRESS, NumberUtil.filterNumber(address));
+    //  contentValues.put(ADDRESS, NumberUtil.filterNumber(address));
     contentValues.put(ADDRESS, address);
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(BODY, body);
@@ -292,7 +292,7 @@ public class SmsDatabase extends Database {
 
   /*package*/ SQLiteStatement createInsertStatement(SQLiteDatabase database) {
     return database.compileStatement("INSERT INTO " + TABLE_NAME + " (" + ADDRESS + ", " + PERSON + ", " + DATE + ", " + PROTOCOL + ", " + READ + ", " + STATUS + ", " + TYPE + ", " + REPLY_PATH_PRESENT + ", " + SUBJECT + ", " + BODY + ", " + SERVICE_CENTER + ", THREAD_ID) " +
-				     " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                     " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   }
 
   public static class Types {

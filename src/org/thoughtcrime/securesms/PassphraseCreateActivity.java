@@ -36,14 +36,15 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  *
  * @author Moxie Marlinspike
  */
+
 public class PassphraseCreateActivity extends PassphraseActivity {
 
-  private EditText	   passphraseEdit;
-  private EditText	   passphraseRepeatEdit;
-  private Button       okButton;
-  private Button       cancelButton;
+  private EditText passphraseEdit;
+  private EditText passphraseRepeatEdit;
+  private Button   okButton;
+  private Button   cancelButton;
 
-  public PassphraseCreateActivity() {	}
+  public PassphraseCreateActivity() { }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {

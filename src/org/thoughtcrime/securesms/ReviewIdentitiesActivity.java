@@ -177,11 +177,11 @@ public class ReviewIdentitiesActivity extends SherlockListActivity {
       boolean valid;
 
       String identityKeyString = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.IDENTITY_KEY));
-      String identityName   	 = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.IDENTITY_NAME));
+      String identityName      = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.IDENTITY_NAME));
 
       try {
         String mac             = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.MAC));
-        valid              	   = masterCipher.verifyMacFor(identityName + identityKeyString, Base64.decode(mac));
+        valid                  = masterCipher.verifyMacFor(identityName + identityKeyString, Base64.decode(mac));
         identityKey            = new IdentityKey(Base64.decode(identityKeyString), 0);
       } catch (InvalidKeyException ike) {
         Log.w("ReviewIdentitiesActivity",ike);

@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -46,7 +46,7 @@ public class Hex {
   public static String dump(byte[] bytes) {
     return dump(bytes, 0, bytes.length);
   }
-  
+
   public static String dump(byte[] bytes, int offset, int length) {
     StringBuffer buf = new StringBuffer();
     int lines = ((length - 1) / 16) + 1;
@@ -59,7 +59,7 @@ public class Hex {
       appendDumpLine(buf, i, bytes, lineOffset, lineLength);
       buf.append(EOL);
     }
-    
+
     return buf.toString();
   }
 
@@ -78,12 +78,12 @@ public class Hex {
       int idx = i + lineOffset;
       if (i < lineLength) {
         int b = bytes[idx];
-	appendHexChar(buf, b);
+        appendHexChar(buf, b);
       } else {
-      	buf.append("  ");
+        buf.append("  ");
       }
       if ((i % 2) == 1) {
-      	buf.append(' ');
+        buf.append(' ');
       }
     }
 

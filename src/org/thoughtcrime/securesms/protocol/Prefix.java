@@ -31,6 +31,6 @@ public class Prefix {
   public static final String ASYMMETRIC_ENCRYPT       = "?TextSecureAsymmetricEncrypt";
   public static final String ASYMMETRIC_LOCAL_ENCRYPT = "?TextSecureAsymmetricLocalEncrypt";
   public static final String PROCESSED_KEY_EXCHANGE   = "?TextSecureKeyExchangd";
-  public static final String STALE_KEY_EXCHANGE	      = "?TextSecureKeyExchangs";
+  public static final String STALE_KEY_EXCHANGE       = "?TextSecureKeyExchangs";
 
 }

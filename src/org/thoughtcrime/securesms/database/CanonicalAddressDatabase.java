@@ -86,7 +86,7 @@ public class CanonicalAddressDatabase {
       }
     } finally {
       if (cursor != null)
-	cursor.close();
+        cursor.close();
     }
   }
 
@@ -154,12 +154,12 @@ public class CanonicalAddressDatabase {
     }
 
     @Override
-      public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) {
       db.execSQL(DATABASE_CREATE);
     }
 
     @Override
-      public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
   }

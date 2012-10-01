@@ -208,8 +208,8 @@ public class SessionRecord extends Record {
         Log.w("SessionRecord", "No session information found.");
         return;
       } catch (IOException ioe) {
-        	Log.w("keyrecord", ioe);
-        	// XXX
+        Log.w("keyrecord", ioe);
+        // XXX
       }
     }
   }
@@ -223,5 +223,4 @@ public class SessionRecord extends Record {
 
     return null;
   }
-
 }
