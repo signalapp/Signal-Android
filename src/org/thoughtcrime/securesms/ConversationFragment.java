@@ -150,12 +150,12 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void handleResendMessage(MessageRecord message) {
-	    Intent resendIntent = new Intent(getActivity(), ConversationActivity.class);
-	    resendIntent.putExtra("recipients", message.getRecipients());
-	    resendIntent.putExtra("resent_message", message.getBody());
-	    resendIntent.putExtra("master_secret", masterSecret);
-	    startActivity(resendIntent);
-	  }  
+    Intent resendIntent = new Intent(getActivity(), ConversationActivity.class);
+    resendIntent.putExtra("recipients", message.getRecipients());
+    resendIntent.putExtra("resent_message", message.getBody());
+    resendIntent.putExtra("master_secret", masterSecret);
+    startActivity(resendIntent);
+  }  
   
   private void initializeResources() {
     this.masterSecret = (MasterSecret)this.getActivity().getIntent()
