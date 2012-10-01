@@ -71,6 +71,7 @@ public class ConversationFragment extends SherlockListFragment
     case R.id.menu_context_delete_message: handleDeleteMessage(messageRecord);   return true;
     case R.id.menu_context_details:        handleDisplayDetails(messageRecord);  return true;
     case R.id.menu_context_forward:        handleForwardMessage(messageRecord);  return true;
+    case R.id.menu_context_resend:         handleResendMessage(messageRecord);  return true;
     }
 
     return false;
@@ -148,6 +149,14 @@ public class ConversationFragment extends SherlockListFragment
     startActivity(composeIntent);
   }
 
+  private void handleResendMessage(MessageRecord message) {
+    Intent resendIntent = new Intent(getActivity(), ConversationActivity.class);
+    resendIntent.putExtra("recipients", message.getRecipients());
+    resendIntent.putExtra("resent_message", message.getBody());
+    resendIntent.putExtra("master_secret", masterSecret);
+    startActivity(resendIntent);
+  }  
+  
   private void initializeResources() {
     this.masterSecret = (MasterSecret)this.getActivity().getIntent()
                           .getParcelableExtra("master_secret");
