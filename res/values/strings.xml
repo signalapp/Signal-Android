@@ -417,5 +417,8 @@
     <string name="verify_keys__menu_verified">Verified</string>
     
     <!-- EOF -->
+    <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
+    <string name="AttachmentTypeSelectorAdapter_video">Video</string>
+    <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
     
 </resources>
