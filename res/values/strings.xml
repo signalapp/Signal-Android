@@ -374,7 +374,8 @@
     <string name="conversation_context__menu_copy_text">Copy text</string>
     <string name="conversation_context__menu_delete_message">Delete message</string>
     <string name="conversation_context__menu_forward_message">Forward message</string>
-    
+    <string name="conversation_context__menu_resend_message">Resend message</string>
+        
     <!-- conversation_insecure -->
     <string name="conversation_insecure__menu_start_secure_session">Start Secure Session</string>
     

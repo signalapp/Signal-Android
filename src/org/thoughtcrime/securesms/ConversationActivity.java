@@ -410,6 +410,9 @@ public class ConversationActivity extends SherlockFragmentActivity
 
     registerForContextMenu(sendButton);
 
+    if (getIntent().getStringExtra("resent_message") != null)
+        composeText.setText(getIntent().getStringExtra("resent_message"));
+    
     if (getIntent().getStringExtra("forwarded_message") != null)
       composeText.setText("FWD: " + getIntent().getStringExtra("forwarded_message"));
   }
