@@ -11,3 +11,4 @@ tests
 lint.xml
 local.properties
 ant.properties
+.DS_Store
