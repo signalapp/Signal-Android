@@ -19,8 +19,8 @@ package ws.com.google.android.mms.pdu;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.util.Log;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -177,7 +177,7 @@ public class PduComposer {
             default:
                 return null;
         }
-        
+
         Log.w("PduComposer", "Returning: " + mMessage.size() + " bytes...");
 
         return mMessage.toByteArray();
@@ -761,7 +761,7 @@ public class PduComposer {
      */
     private int makeSendReqPdu() {
     	Log.w("PduComposer", "Making send request...");
-    	
+
         if (mMessage == null) {
             mMessage = new ByteArrayOutputStream();
             mPosition = 0;
@@ -839,11 +839,7 @@ public class PduComposer {
         appendOctet(PduHeaders.CONTENT_TYPE);
 
         //  Message body
-        makeMessageBody();
-        
-        Log.w("PduComposer", "Returning success...");
-
-        return PDU_COMPOSE_SUCCESS;  // Composing the message is OK
+        return makeMessageBody();
     }
 
     /**
