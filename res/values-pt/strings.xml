@@ -67,6 +67,7 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lamento, o áudio seleccionado excede as restrições de tamanho da mensagem</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatário não é um endereço SMS ou email válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">A mensagem está vazia!</string>
+  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remetente: %1$s⏎ Transporte: %2$s⏎ Enviadas/Recebidas:%3$s</string>
@@ -354,4 +355,7 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
   <!--EOF-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Áudio</string>
 </resources>
