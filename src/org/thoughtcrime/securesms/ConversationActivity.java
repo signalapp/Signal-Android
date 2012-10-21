@@ -73,6 +73,8 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import ws.com.google.android.mms.MmsException;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -199,6 +201,8 @@ public class ConversationActivity extends SherlockFragmentActivity
 
     if (isSingleConversation()) {
       inflater.inflate(R.menu.conversation_callable, menu);
+    } else if (isGroupConversation()) {
+      inflater.inflate(R.menu.conversation_group_options, menu);
     }
 
     inflater.inflate(R.menu.conversation, menu);
@@ -217,6 +221,7 @@ public class ConversationActivity extends SherlockFragmentActivity
     case R.id.menu_abort_session:        handleAbortSecureSession();                        return true;
     case R.id.menu_verify_recipient:     handleVerifyRecipient();                           return true;
     case R.id.menu_verify_session:       handleVerifySession();                             return true;
+    case R.id.menu_group_recipients:     handleDisplayGroupRecipients();                    return true;
     case android.R.id.home:              finish();                                          return true;
     }
 
@@ -305,6 +310,22 @@ public class ConversationActivity extends SherlockFragmentActivity
     startActivity(dialIntent);
   }
 
+  private void handleDisplayGroupRecipients() {
+    List<String> recipientStrings = new LinkedList<String>();
+
+    for (Recipient recipient : getRecipients().getRecipientsList()) {
+      recipientStrings.add(recipient.getName());
+    }
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(R.string.ConversationActivity_group_conversation_recipients);
+    builder.setIcon(R.drawable.ic_groups_holo_dark);
+    builder.setCancelable(true);
+    builder.setItems(recipientStrings.toArray(new String[]{}), null);
+    builder.setPositiveButton(android.R.string.ok, null);
+    builder.show();
+  }
+
   private void handleDeleteThread() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.ConversationActivity_delete_thread_confirmation);
@@ -356,6 +377,10 @@ public class ConversationActivity extends SherlockFragmentActivity
       } else {
         subtitle = getRecipients().getPrimaryRecipient().getNumber();
       }
+    } else if (isGroupConversation()) {
+      title    = getString(R.string.ConversationActivity_group_conversation);
+      subtitle = String.format(getString(R.string.ConversationActivity_d_recipients_in_group),
+                               getRecipients().getRecipientsList().size());
     } else {
       title    = getString(R.string.ConversationActivity_compose_message);
       subtitle = "";
@@ -524,6 +549,10 @@ public class ConversationActivity extends SherlockFragmentActivity
 
   private boolean isSingleConversation() {
     return getRecipients() != null && getRecipients().isSingleRecipient();
+  }
+
+  private boolean isGroupConversation() {
+    return getRecipients() != null && !getRecipients().isSingleRecipient();
   }
 
   private boolean isAuthenticatedSession() {

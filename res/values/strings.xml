@@ -79,6 +79,9 @@
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Recipient is not a valid SMS or email address!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message is empty!</string>
     <string name="ConversationActivity_forward_message_prefix">FWD</string>
+    <string name="ConversationActivity_group_conversation_recipients">Group Conversation Recipients</string>
+    <string name="ConversationActivity_group_conversation">Group Conversation</string>
+    <string name="ConversationActivity_d_recipients_in_group">%d recipients in group</string>    
     
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -404,6 +407,9 @@
     <string name="conversation__menu_delete_thread">Delete thread</string>
     <string name="conversation__menu_compare">Compare</string>
     
+    <!-- conversation_group_options -->
+    <string name="convesation_group_options__recipients_list">Recipients list</string>
+    
     <!-- key_scanning -->
     <string name="key_scanning__menu_compare">Compare</string>
     <string name="key_scanning__menu_get_scanned_to_compare">Get scanned to compare</string>
@@ -422,9 +428,10 @@
     
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
+
+    <!-- Misc. piggybacking -->
+    <string name="PlayStoreListing">TextSecure is a security enhanced text messaging application that serves as a full replacement for the default text messaging application.  Messages to other TextSecure users are encrypted over the air, and all text messages are stored in an encrypted database on the device. If your phone is lost or stolen, your messages will be safe, and communication with other TextSecure users can\'t be monitored over the air.</string>
     
     <!-- EOF -->
-
-    <string name="PlayStoreListing">TextSecure is a security enhanced text messaging application that serves as a full replacement for the default text messaging application.  Messages to other TextSecure users are encrypted over the air, and all text messages are stored in an encrypted database on the device. If your phone is lost or stolen, your messages will be safe, and communication with other TextSecure users can\'t be monitored over the air.</string>
     
 </resources>
