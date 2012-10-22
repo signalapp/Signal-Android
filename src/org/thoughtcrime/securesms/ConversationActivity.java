@@ -106,7 +106,7 @@ public class ConversationActivity extends SherlockFragmentActivity
 
   private Recipients recipients;
   private long threadId;
-  private boolean sendEncrypted;
+  private boolean isEncryptedConversation;
 
   private CharacterCalculator characterCalculator = new CharacterCalculator();
 
@@ -188,7 +188,7 @@ public class ConversationActivity extends SherlockFragmentActivity
     MenuInflater inflater = this.getSupportMenuInflater();
     menu.clear();
 
-    if (isSingleConversation() && sendEncrypted)
+    if (isSingleConversation() && isEncryptedConversation)
     {
       if (isAuthenticatedSession()) {
         inflater.inflate(R.menu.conversation_secure_verified, menu);
@@ -230,7 +230,7 @@ public class ConversationActivity extends SherlockFragmentActivity
 
   @Override
   public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-    if (sendEncrypted) {
+    if (isEncryptedConversation) {
       android.view.MenuInflater inflater = getMenuInflater();
       inflater.inflate(R.menu.conversation_button_context, menu);
     }
@@ -239,7 +239,7 @@ public class ConversationActivity extends SherlockFragmentActivity
   @Override
   public boolean onContextItemSelected(android.view.MenuItem item) {
     switch (item.getItemId()) {
-    case R.id.menu_context_send_unencrypted: sendMessage(false); return true;
+    case R.id.menu_context_send_unencrypted: sendMessage(true); return true;
     }
 
     return false;
@@ -362,7 +362,7 @@ public class ConversationActivity extends SherlockFragmentActivity
 
     if (isSingleConversation()) {
 
-      if (sendEncrypted) {
+      if (isEncryptedConversation) {
         title = AuthenticityCalculator.getAuthenticatedName(this,
                                                             getRecipients().getPrimaryRecipient(),
                                                             masterSecret);
@@ -400,12 +400,12 @@ public class ConversationActivity extends SherlockFragmentActivity
     {
       sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_menu_lock_holo_light, 0);
       sendButton.setCompoundDrawablePadding(15);
-      this.sendEncrypted       = true;
-      this.characterCalculator = new EncryptedCharacterCalculator();
+      this.isEncryptedConversation = true;
+      this.characterCalculator     = new EncryptedCharacterCalculator();
     } else {
       sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-      this.sendEncrypted       = false;
-      this.characterCalculator = new CharacterCalculator();
+      this.isEncryptedConversation = false;
+      this.characterCalculator     = new CharacterCalculator();
     }
 
     calculateCharactersRemaining();
@@ -577,7 +577,7 @@ public class ConversationActivity extends SherlockFragmentActivity
     if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent())
       throw new InvalidMessageException(getString(R.string.ConversationActivity_message_is_empty_exclamation));
 
-    if (!sendEncrypted && Tag.isTaggable(this, rawText))
+    if (!isEncryptedConversation && Tag.isTaggable(this, rawText))
       rawText = Tag.getTaggedMessage(rawText);
 
     return rawText;
@@ -604,7 +604,7 @@ public class ConversationActivity extends SherlockFragmentActivity
     }
   }
 
-  private void sendMessage(boolean sendEncrypted) {
+  private void sendMessage(boolean forcePlaintext) {
     try {
       Recipients recipients   = getRecipients();
 
@@ -617,13 +617,13 @@ public class ConversationActivity extends SherlockFragmentActivity
       if (attachmentManager.isAttachmentPresent()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, attachmentManager.getSlideDeck(), message,
-                                                  sendEncrypted);
+                                                  forcePlaintext);
       } else if (recipients.isEmailRecipient()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
-                                                  threadId, new SlideDeck(), message, sendEncrypted);
+                                                  threadId, new SlideDeck(), message, forcePlaintext);
       } else {
         allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret, recipients,
-                                               threadId, message, sendEncrypted);
+                                               threadId, message, forcePlaintext);
       }
 
       sendComplete(recipients, allocatedThreadId);
@@ -679,7 +679,7 @@ public class ConversationActivity extends SherlockFragmentActivity
 
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     public void onClick(View v) {
-      sendMessage(sendEncrypted);
+      sendMessage(false);
     }
 
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

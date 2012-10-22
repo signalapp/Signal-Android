@@ -16,13 +16,16 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.util.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Recipients implements Parcelable {
@@ -42,6 +45,12 @@ public class Recipients implements Parcelable {
 
   public Recipients(List<Recipient> recipients) {
     this.recipients = recipients;
+  }
+
+  public Recipients(final Recipient recipient) {
+    this.recipients = new LinkedList<Recipient>() {{
+      add(recipient);
+    }};
   }
 
   public Recipients(Parcel in) {
@@ -66,6 +75,30 @@ public class Recipients implements Parcelable {
     }
 
     return false;
+  }
+
+  public Recipients getSecureSessionRecipients(Context context) {
+    List<Recipient> secureRecipients = new LinkedList<Recipient>();
+
+    for (Recipient recipient : recipients) {
+      if (KeyUtil.isSessionFor(context, recipient)) {
+        secureRecipients.add(recipient);
+      }
+    }
+
+    return new Recipients(secureRecipients);
+  }
+
+  public Recipients getInsecureSessionRecipients(Context context) {
+    List<Recipient> insecureRecipients = new LinkedList<Recipient>();
+
+    for (Recipient recipient : recipients) {
+      if (!KeyUtil.isSessionFor(context, recipient)) {
+        insecureRecipients.add(recipient);
+      }
+    }
+
+    return new Recipients(insecureRecipients);
   }
 
   public boolean isEmpty() {
