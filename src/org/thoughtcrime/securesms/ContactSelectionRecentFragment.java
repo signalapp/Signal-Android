@@ -182,13 +182,7 @@ public class ContactSelectionRecentFragment extends SherlockListFragment
       else if (type == Calls.OUTGOING_TYPE || type == RedPhoneCallTypes.OUTGOING) callTypeIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_call_log_list_outgoing_call));
       else if (type == Calls.MISSED_TYPE   || type == RedPhoneCallTypes.MISSED)   callTypeIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_call_log_list_missed_call));
 
-      this.contactData = new ContactData();
-
-      if (name != null)
-        this.contactData.name = name;
-
-      this.contactData.id      = id;
-      this.contactData.numbers = new LinkedList<ContactAccessor.NumberData>();
+      this.contactData = new ContactData(id, name);
       this.contactData.numbers.add(new NumberData(null, number));
 
       if (selectedContacts.containsKey(id))

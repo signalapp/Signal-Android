@@ -12,6 +12,7 @@ import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -20,7 +21,6 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.ApplicationExportManager.ApplicationExportListener;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -249,7 +249,7 @@ public class ConversationListActivity extends SherlockFragmentActivity
       }
     };
 
-    getContentResolver().registerContentObserver(ContactAccessor.getInstance().getContactsUri(),
+    getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI,
                                                  true, observer);
   }
 

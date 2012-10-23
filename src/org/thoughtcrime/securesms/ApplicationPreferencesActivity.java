@@ -23,18 +23,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+
+import java.util.List;
 
 /**
  * The Activity for application preference display and management.
@@ -62,6 +66,8 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
 
+  private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
+
   private static final String VIEW_MY_IDENTITY_PREF        = "pref_view_identity";
   private static final String EXPORT_MY_IDENTITY_PREF      = "pref_export_identity";
   private static final String IMPORT_CONTACT_IDENTITY_PREF = "pref_import_identity";
@@ -76,12 +82,18 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
     addPreferencesFromResource(R.xml.preferences);
 
-    this.findPreference(IDENTITY_PREF).setOnPreferenceClickListener(new IdentityPreferenceClickListener());
-    this.findPreference(VIEW_MY_IDENTITY_PREF).setOnPreferenceClickListener(new ViewMyIdentityClickListener());
-    this.findPreference(EXPORT_MY_IDENTITY_PREF).setOnPreferenceClickListener(new ExportMyIdentityClickListener());
-    this.findPreference(IMPORT_CONTACT_IDENTITY_PREF).setOnPreferenceClickListener(new ImportContactIdentityClickListener());
-    this.findPreference(MANAGE_IDENTITIES_PREF).setOnPreferenceClickListener(new ManageIdentitiesClickListener());
-    this.findPreference(CHANGE_PASSPHRASE_PREF).setOnPreferenceClickListener(new ChangePassphraseClickListener());
+    initializeIdentitySelection();
+
+    this.findPreference(VIEW_MY_IDENTITY_PREF)
+      .setOnPreferenceClickListener(new ViewMyIdentityClickListener());
+    this.findPreference(EXPORT_MY_IDENTITY_PREF)
+      .setOnPreferenceClickListener(new ExportMyIdentityClickListener());
+    this.findPreference(IMPORT_CONTACT_IDENTITY_PREF)
+      .setOnPreferenceClickListener(new ImportContactIdentityClickListener());
+    this.findPreference(MANAGE_IDENTITIES_PREF)
+      .setOnPreferenceClickListener(new ManageIdentitiesClickListener());
+    this.findPreference(CHANGE_PASSPHRASE_PREF)
+      .setOnPreferenceClickListener(new ChangePassphraseClickListener());
   }
 
   @Override
@@ -127,10 +139,38 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
     return false;
   }
 
+  private void initializeIdentitySelection() {
+    ContactIdentityManager identity = ContactIdentityManager.getInstance(this);
+
+    if (identity.isSelfIdentityAutoDetected()) {
+      Preference preference = this.findPreference(DISPLAY_CATEGORY_PREF);
+      this.getPreferenceScreen().removePreference(preference);
+    } else {
+      Uri contactUri = identity.getSelfIdentityUri();
+
+      if (contactUri != null) {
+        String contactName = ContactAccessor.getInstance().getNameFromContact(this, contactUri);
+        this.findPreference(IDENTITY_PREF)
+          .setSummary(String.format(getString(R.string.ApplicationPreferencesActivity_currently_s),
+                      contactName));
+      }
+
+      this.findPreference(IDENTITY_PREF)
+        .setOnPreferenceClickListener(new IdentityPreferenceClickListener());
+    }
+  }
+
   private void handleIdentitySelection(Intent data) {
-    Uri contactData = data.getData();
-    if (contactData != null)
-      PreferenceManager.getDefaultSharedPreferences(this).edit().putString(IDENTITY_PREF, contactData.toString()).commit();
+    Uri contactUri = data.getData();
+
+    if (contactUri != null) {
+      SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+      String contactUriString       = contactUri.toString();
+
+      preferences.edit().putString(IDENTITY_PREF, contactUriString).commit();
+
+      initializeIdentitySelection();
+    }
   }
 
   private void importIdentityKey(Uri uri) {
@@ -154,7 +194,8 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
   private class IdentityPreferenceClickListener implements Preference.OnPreferenceClickListener {
     public boolean onPreferenceClick(Preference preference) {
-      Intent intent = ContactAccessor.getInstance().getIntentForContactSelection();
+      Intent intent = new Intent(Intent.ACTION_PICK);
+      intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
       startActivityForResult(intent, PICK_IDENTITY_CONTACT);
       return true;
     }
@@ -172,9 +213,6 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
   private class ExportMyIdentityClickListener implements Preference.OnPreferenceClickListener {
     public boolean onPreferenceClick(Preference preference) {
-      String contactUri = PreferenceManager.getDefaultSharedPreferences(ApplicationPreferencesActivity.this)
-          .getString(IDENTITY_PREF, null);
-
       if (!IdentityKeyUtil.hasIdentityKey(ApplicationPreferencesActivity.this)) {
         Toast.makeText(ApplicationPreferencesActivity.this,
                        R.string.ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation,
@@ -182,14 +220,18 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
         return true;
       }
 
-      if (contactUri == null) {
+      List<Long> rawContactIds = ContactIdentityManager
+                                   .getInstance(ApplicationPreferencesActivity.this)
+                                   .getSelfIdentityRawContactIds();
+
+      if (rawContactIds== null) {
           Toast.makeText(ApplicationPreferencesActivity.this,
                          R.string.ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself,
                          Toast.LENGTH_LONG).show();
           return true;
       }
 
-      ContactAccessor.getInstance().insertIdentityKey(ApplicationPreferencesActivity.this, Uri.parse(contactUri),
+      ContactAccessor.getInstance().insertIdentityKey(ApplicationPreferencesActivity.this, rawContactIds,
                                                       IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
 
       Toast.makeText(ApplicationPreferencesActivity.this,
@@ -205,7 +247,8 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
       MasterSecret masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
 
       if (masterSecret != null) {
-        Intent importIntent = ContactAccessor.getInstance().getIntentForContactSelection();
+        Intent importIntent = new Intent(Intent.ACTION_PICK);
+        importIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
         startActivityForResult(importIntent, IMPORT_IDENTITY_ID);
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this,

@@ -30,6 +30,7 @@
     <string name="ApplicationMigrationManager_dont_copy">Don\'t copy</string>
     
     <!-- ApplicationPreferencesActivity -->
+    <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>    
     <string name="ApplicationPreferenceActivity_not_found_exclamation">Not found!</string>
     <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">No valid identity key was found in the specified contact.</string>
     <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">You don\'t have an identity key!</string>

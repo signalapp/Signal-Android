@@ -292,11 +292,7 @@ public class ContactSelectionListFragment extends SherlockListFragment
         if (!isChecked)
           throw new AssertionError("We shouldn't be unchecking data that doesn't exist.");
 
-        existing         = new ContactData();
-        existing.id      = contactData.id;
-        existing.name    = contactData.name;
-        existing.numbers = new LinkedList<NumberData>();
-
+        existing = new ContactData(contactData.id, contactData.name);
         selectedContacts.put(existing.id, existing);
       }
 

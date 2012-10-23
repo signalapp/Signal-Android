@@ -26,10 +26,8 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.PreferenceManager;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
-import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
@@ -43,6 +41,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -52,7 +51,6 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 
 import java.io.File;
@@ -231,24 +229,16 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setContactPhotoForUserIdentity() {
-    String configuredContact = PreferenceManager.getDefaultSharedPreferences(context).getString(ApplicationPreferencesActivity.IDENTITY_PREF, null);
+    Uri selfIdentityContact = ContactIdentityManager.getInstance(context).getSelfIdentityUri();
 
-    try {
-      if (configuredContact != null) {
-        Recipient recipient = RecipientFactory.getRecipientForUri(context, Uri.parse(configuredContact));
-        if (recipient != null) {
-          contactPhoto.setImageBitmap(recipient.getContactPhoto());
-          return;
-        }
+    if (selfIdentityContact!= null) {
+      Recipient recipient = RecipientFactory.getRecipientForUri(context, selfIdentityContact);
+      if (recipient != null) {
+        contactPhoto.setImageBitmap(recipient.getContactPhoto());
+        return;
       }
-
-      if (hasLocalNumber()) {
-        contactPhoto.setImageBitmap(RecipientFactory.getRecipientsFromString(context, getLocalNumber()).getPrimaryRecipient().getContactPhoto());
-      } else {
-        contactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture));
-      }
-    } catch (RecipientFormattingException rfe) {
-      Log.w("ConversationItem", rfe);
+    } else {
+      contactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture));
     }
   }
 
@@ -278,15 +268,6 @@ public class ConversationItem extends LinearLayout {
   private void setBody(MessageRecord messageRecord) {
     setBodyText(messageRecord);
     setBodyImage(messageRecord);
-  }
-
-  private String getLocalNumber() {
-    return ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
-  }
-
-  private boolean hasLocalNumber() {
-    String number = getLocalNumber();
-    return (number != null) && (number.trim().length() > 0);
   }
 
   private void setStatusIcons(MessageRecord messageRecord) {

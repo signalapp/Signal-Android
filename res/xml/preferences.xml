@@ -38,7 +38,7 @@
                       android:title="@string/preferences__pref_enter_sends_title" />
    </PreferenceCategory>
 
-  <PreferenceCategory android:title="@string/preferences__display_settings">
+  <PreferenceCategory android:title="@string/preferences__display_settings" android:key="pref_display_category">
 
     <Preference         android:key="pref_choose_identity"
                           android:title="@string/preferences__choose_identity"
