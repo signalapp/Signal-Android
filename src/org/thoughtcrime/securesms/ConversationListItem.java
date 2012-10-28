@@ -33,7 +33,7 @@ import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.database.MessageRecord;
+import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.Set;
@@ -84,22 +84,22 @@ public class ConversationListItem extends RelativeLayout {
     super(context, attrs);
   }
 
-  public void set(MessageRecord message, boolean batchMode) {
-    this.recipients = message.getRecipients();
-    this.threadId   = message.getThreadId();
-    this.fromView.setText(formatFrom(recipients, message.getCount(), message.getRead()));
+  public void set(ThreadRecord thread, boolean batchMode) {
+    this.recipients = thread.getRecipients();
+    this.threadId   = thread.getThreadId();
+    this.fromView.setText(formatFrom(recipients, thread.getCount(), thread.isRead()));
 
-    if (message.isKeyExchange())
+    if (thread.isKeyExchange())
       this.subjectView.setText(R.string.ConversationListItem_key_exchange_message,
                                TextView.BufferType.SPANNABLE);
     else
-      this.subjectView.setText(message.getBody(), TextView.BufferType.SPANNABLE);
+      this.subjectView.setText(thread.getBody(), TextView.BufferType.SPANNABLE);
 
-    if (message.getEmphasis())
+    if (thread.getEmphasis())
       ((Spannable)this.subjectView.getText()).setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, this.subjectView.getText().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-    if (message.getDate() > 0)
-      this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), message.getDate(), false));
+    if (thread.getDate() > 0)
+      this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), thread.getDate(), false));
 
     if (selectedThreads != null)
       this.checkbox.setChecked(selectedThreads.contains(threadId));

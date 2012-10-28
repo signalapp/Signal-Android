@@ -49,7 +49,7 @@ public class MmsDatabase extends Database {
   public  static final String TABLE_NAME         = "mms";
   public  static final String ID                 = "_id";
   private static final String THREAD_ID          = "thread_id";
-  private static final String DATE               = "date";
+  public  static final String DATE               = "date";
   public  static final String MESSAGE_BOX        = "msg_box";
   private static final String READ               = "read";
   private static final String MESSAGE_ID         = "m_id";

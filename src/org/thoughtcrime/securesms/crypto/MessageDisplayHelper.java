@@ -16,17 +16,11 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import android.content.Context;
-
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MessageRecord;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 
 import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
 
 public class MessageDisplayHelper {
 
@@ -38,30 +32,6 @@ public class MessageDisplayHelper {
       return this.size() > MAX_CACHE_SIZE;
     }
   };
-
-  private static boolean isUnreadableAsymmetricMessage(long type) {
-    return type == SmsDatabase.Types.FAILED_DECRYPT_TYPE;
-  }
-
-  private static boolean isInProcessAsymmetricMessage(String body, long type) {
-    return type == SmsDatabase.Types.DECRYPT_IN_PROGRESS_TYPE || (type == 0 && body.startsWith(Prefix.ASYMMETRIC_ENCRYPT)) || (type == 0 && body.startsWith(Prefix.ASYMMETRIC_LOCAL_ENCRYPT));
-  }
-
-  private static boolean isRogueAsymmetricMessage(long type) {
-    return type == SmsDatabase.Types.NO_SESSION_TYPE;
-  }
-
-  private static boolean isKeyExchange(String body) {
-    return body.startsWith(Prefix.KEY_EXCHANGE);
-  }
-
-  private static boolean isProcessedKeyExchange(String body) {
-    return body.startsWith(Prefix.PROCESSED_KEY_EXCHANGE);
-  }
-
-  private static boolean isStaleKeyExchange(String body) {
-    return body.startsWith(Prefix.STALE_KEY_EXCHANGE);
-  }
 
   private static String checkCacheForBody(String body) {
     if (decryptedBodyCache.containsKey(body)) {
@@ -77,50 +47,19 @@ public class MessageDisplayHelper {
     return null;
   }
 
-  public static void setDecryptedMessageBody(Context context, String body,
-                                             MessageRecord message, MasterCipher bodyCipher)
-  {
-    try {
-      if (body.startsWith(Prefix.SYMMETRIC_ENCRYPT)) {
-        String cacheResult = checkCacheForBody(body);
-        if (cacheResult != null) {
-          body = cacheResult;
-        } else {
-          String decryptedBody = bodyCipher.decryptBody(body.substring(Prefix.SYMMETRIC_ENCRYPT.length()));
-          decryptedBodyCache.put(body, new SoftReference<String>(decryptedBody));
-          body = decryptedBody;
-        }
-      }
+  public static String getDecryptedMessageBody(MasterCipher bodyCipher, String body) throws InvalidMessageException {
+    if (body.startsWith(Prefix.SYMMETRIC_ENCRYPT)) {
+      String cacheResult = checkCacheForBody(body);
 
-      if (isUnreadableAsymmetricMessage(message.getType())) {
-        message.setBody(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
-        message.setEmphasis(true);
-      } else if (isInProcessAsymmetricMessage(body, message.getType())) {
-        message.setBody(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
-        message.setEmphasis(true);
-      } else if (isRogueAsymmetricMessage(message.getType())) {
-        message.setBody(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
-        message.setEmphasis(true);
-      } else if (isKeyExchange(body)) {
-        message.setKeyExchange(true);
-        message.setEmphasis(true);
-        message.setBody(body);
-      } else if (isProcessedKeyExchange(body)) {
-        message.setProcessedKeyExchange(true);
-        message.setEmphasis(true);
-        message.setBody(body);
-      } else if (isStaleKeyExchange(body)) {
-        message.setStaleKeyExchange(true);
-        message.setEmphasis(true);
-        message.setBody(body);
-      } else {
-        message.setBody(body);
-        message.setEmphasis(false);
-      }
-    } catch (InvalidMessageException ime) {
-      message.setBody(context.getString(R.string.MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question));
-      message.setEmphasis(true);
+      if (cacheResult != null)
+        return cacheResult;
+
+      String decryptedBody = bodyCipher.decryptBody(body.substring(Prefix.SYMMETRIC_ENCRYPT.length()));
+      decryptedBodyCache.put(body, new SoftReference<String>(decryptedBody));
+
+      return decryptedBody;
     }
-  }
 
+    return body;
+  }
 }

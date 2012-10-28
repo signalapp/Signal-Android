@@ -43,9 +43,10 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.protocol.Tag;
@@ -126,90 +127,27 @@ public class ConversationItem extends LinearLayout {
     this.masterSecret      = masterSecret;
     this.failedIconHandler = failedIconHandler;
 
-    // Double-dispatch back to methods below.
-    messageRecord.setOnConversationItem(this);
+    setBodyText(messageRecord);
+    setStatusIcons(messageRecord);
+    setContactPhoto(messageRecord);
+    setEvents(messageRecord);
+
+    if (messageRecord instanceof NotificationMmsMessageRecord) {
+      setNotificationMmsAttributes((NotificationMmsMessageRecord)messageRecord);
+    } else if (messageRecord instanceof MediaMmsMessageRecord) {
+      setMediaMmsAttributes((MediaMmsMessageRecord)messageRecord);
+    }
   }
 
   public MessageRecord getMessageRecord() {
     return messageRecord;
   }
 
-  public void setMessageRecord(MessageRecord messageRecord) {
-    setBody(messageRecord);
-    setStatusIcons(messageRecord);
-    setEvents(messageRecord);
-  }
-
-  public void setMessageRecord(MmsMessageRecord messageRecord) {
-    setMessageRecord((MessageRecord)messageRecord);
-
-    if (messageRecord.isNotification())
-      setMmsNotificationAttributes(messageRecord);
-    else
-      setMmsMediaAttributes(messageRecord);
-  }
-
-  private void setMmsNotificationAttributes(MmsMessageRecord messageRecord) {
-    String messageSize = String.format(getContext()
-                                       .getString(R.string.ConversationItem_message_size_d_kb),
-                                       messageRecord.getMessageSize());
-    String expires     = String.format(getContext()
-                                       .getString(R.string.ConversationItem_expires_s),
-                                       DateUtils.getRelativeTimeSpanString(getContext(),
-                                                                           messageRecord.getExpiration(),
-                                                                           false));
-
-    dateText.setText(messageSize + "\n" + expires);
-
-    if (MmsDatabase.Types.isDisplayDownloadButton(messageRecord.getStatus())) {
-      mmsDownloadButton.setVisibility(View.VISIBLE);
-      mmsDownloadingLabel.setVisibility(View.GONE);
-    } else {
-      mmsDownloadingLabel.setText(MmsDatabase.Types.getLabelForStatus(context, messageRecord.getStatus()));
-      mmsDownloadButton.setVisibility(View.GONE);
-      mmsDownloadingLabel.setVisibility(View.VISIBLE);
-    }
-
-    if (MmsDatabase.Types.isHardError(messageRecord.getStatus()))
-      failedImage.setVisibility(View.VISIBLE);
-  }
-
-  private void setMmsMediaAttributes(MmsMessageRecord messageRecord) {
-    SlideDeck slideDeck = messageRecord.getSlideDeck();
-    List<Slide> slides  = slideDeck.getSlides();
-
-    Iterator<Slide> iterator = slides.iterator();
-
-    while (iterator.hasNext()) {
-      Slide slide = iterator.next();
-      if (slide.hasImage()) {
-        mmsThumbnail.setImageBitmap(slide.getThumbnail());
-        mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
-        mmsThumbnail.setOnLongClickListener(new ThumbnailSaveListener(slide));
-        mmsThumbnail.setVisibility(View.VISIBLE);
-        return;
-      }
-    }
-
-    mmsThumbnail.setVisibility(View.GONE);
-  }
-
   public void setHandler(Handler failedIconHandler) {
     this.failedIconHandler = failedIconHandler;
   }
 
-  private void checkForAutoInitiate(MessageRecord messageRecord) {
-    if (AutoInitiateActivity.isValidAutoInitiateSituation(context, masterSecret, messageRecord.getRecipients().getPrimaryRecipient(), messageRecord.getBody(), messageRecord.getThreadId())) {
-      AutoInitiateActivity.exemptThread(context, messageRecord.getThreadId());
-      Intent intent = new Intent();
-      intent.setClass(context, AutoInitiateActivity.class);
-      intent.putExtra("threadId", messageRecord.getThreadId());
-      intent.putExtra("masterSecret", masterSecret);
-      intent.putExtra("recipient", messageRecord.getRecipients().getPrimaryRecipient());
-
-      context.startActivity(intent);
-    }
-  }
+  /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
     String body = messageRecord.getBody();
@@ -228,46 +166,12 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private void setContactPhotoForUserIdentity() {
-    Uri selfIdentityContact = ContactIdentityManager.getInstance(context).getSelfIdentityUri();
-
-    if (selfIdentityContact!= null) {
-      Recipient recipient = RecipientFactory.getRecipientForUri(context, selfIdentityContact);
-      if (recipient != null) {
-        contactPhoto.setImageBitmap(recipient.getContactPhoto());
-        return;
-      }
-    } else {
-      contactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture));
-    }
-  }
-
-  private void setBodyImage(MessageRecord messageRecord) {
-    final Recipient recipient = messageRecord.getMessageRecipient();
-
-    if (!messageRecord.isOutgoing()) {
-      contactPhoto.setImageBitmap(recipient.getContactPhoto());
-      contactPhoto.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (recipient.getContactUri() != null) {
-            QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
-          } else {
-           Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
-           context.startActivity(intent);
-          }
-        }
-      });
-    } else {
+  private void setContactPhoto(MessageRecord messageRecord) {
+    if (messageRecord.isOutgoing()) {
       setContactPhotoForUserIdentity();
+    } else {
+      setContactPhotoForRecipient(messageRecord.getIndividualRecipient());
     }
-
-    contactPhoto.setVisibility(View.VISIBLE);
-  }
-
-  private void setBody(MessageRecord messageRecord) {
-    setBodyText(messageRecord);
-    setBodyImage(messageRecord);
   }
 
   private void setStatusIcons(MessageRecord messageRecord) {
@@ -289,9 +193,111 @@ public class ConversationItem extends LinearLayout {
   private void setEvents(MessageRecord messageRecord) {
     setClickable(messageRecord.isKeyExchange() && !messageRecord.isOutgoing());
 
-    if (!messageRecord.isOutgoing() && messageRecord.getRecipients().isSingleRecipient())
-      checkForAutoInitiate(messageRecord);
+    if (!messageRecord.isOutgoing() && messageRecord.getRecipients().isSingleRecipient()) {
+      checkForAutoInitiate(messageRecord.getIndividualRecipient(),
+                           messageRecord.getBody(),
+                           messageRecord.getThreadId());
+    }
   }
+
+  private void setNotificationMmsAttributes(NotificationMmsMessageRecord messageRecord) {
+    String messageSize = String.format(getContext()
+                                       .getString(R.string.ConversationItem_message_size_d_kb),
+                                       messageRecord.getMessageSize());
+    String expires     = String.format(getContext()
+                                       .getString(R.string.ConversationItem_expires_s),
+                                       DateUtils.getRelativeTimeSpanString(getContext(),
+                                                                           messageRecord.getExpiration(),
+                                                                           false));
+
+    dateText.setText(messageSize + "\n" + expires);
+
+    if (MmsDatabase.Types.isDisplayDownloadButton(messageRecord.getStatus())) {
+      mmsDownloadButton.setVisibility(View.VISIBLE);
+      mmsDownloadingLabel.setVisibility(View.GONE);
+    } else {
+      mmsDownloadingLabel.setText(MmsDatabase.Types.getLabelForStatus(context, messageRecord.getStatus()));
+      mmsDownloadButton.setVisibility(View.GONE);
+      mmsDownloadingLabel.setVisibility(View.VISIBLE);
+    }
+  }
+
+  private void setMediaMmsAttributes(MediaMmsMessageRecord messageRecord) {
+    SlideDeck slideDeck = messageRecord.getSlideDeck();
+
+    if (slideDeck != null) {
+      List<Slide> slides  = slideDeck.getSlides();
+
+      Iterator<Slide> iterator = slides.iterator();
+
+      while (iterator.hasNext()) {
+        Slide slide = iterator.next();
+        if (slide.hasImage()) {
+          mmsThumbnail.setImageBitmap(slide.getThumbnail());
+          mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
+          mmsThumbnail.setOnLongClickListener(new ThumbnailSaveListener(slide));
+          mmsThumbnail.setVisibility(View.VISIBLE);
+          return;
+        }
+      }
+    }
+
+    mmsThumbnail.setVisibility(View.GONE);
+  }
+
+  /// Helper Methods
+
+  private void checkForAutoInitiate(Recipient recipient, String body, long threadId) {
+    if (AutoInitiateActivity.isValidAutoInitiateSituation(context, masterSecret, recipient,
+                                                          body, threadId))
+    {
+      AutoInitiateActivity.exemptThread(context, threadId);
+
+      Intent intent = new Intent();
+      intent.setClass(context, AutoInitiateActivity.class);
+      intent.putExtra("threadId", threadId);
+      intent.putExtra("masterSecret", masterSecret);
+      intent.putExtra("recipient", recipient);
+
+      context.startActivity(intent);
+    }
+  }
+
+
+  private void setContactPhotoForUserIdentity() {
+    Uri selfIdentityContact = ContactIdentityManager.getInstance(context).getSelfIdentityUri();
+
+    if (selfIdentityContact!= null) {
+      Recipient recipient = RecipientFactory.getRecipientForUri(context, selfIdentityContact);
+      if (recipient != null) {
+        contactPhoto.setImageBitmap(recipient.getContactPhoto());
+        return;
+      }
+    } else {
+      contactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture));
+    }
+
+    contactPhoto.setVisibility(View.VISIBLE);
+  }
+
+  private void setContactPhotoForRecipient(final Recipient recipient) {
+    contactPhoto.setImageBitmap(recipient.getContactPhoto());
+    contactPhoto.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (recipient.getContactUri() != null) {
+          QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
+        } else {
+          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
+          context.startActivity(intent);
+        }
+      }
+    });
+
+    contactPhoto.setVisibility(View.VISIBLE);
+  }
+
+  /// Event handlers
 
   private void handleKeyExchangeClicked() {
     Intent intent = new Intent(context, ReceiveKeyActivity.class);
@@ -452,15 +458,16 @@ public class ConversationItem extends LinearLayout {
 
   private class MmsDownloadClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      Log.w("MmsDownloadClickListener", "Content location: " + new String(((MmsMessageRecord)messageRecord).getContentLocation()));
+      NotificationMmsMessageRecord notificationRecord = (NotificationMmsMessageRecord)messageRecord;
+      Log.w("MmsDownloadClickListener", "Content location: " + new String(notificationRecord.getContentLocation()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
 
       Intent intent = new Intent(context, SendReceiveService.class);
-      intent.putExtra("content_location", new String(((MmsMessageRecord)messageRecord).getContentLocation()));
-      intent.putExtra("message_id", ((MmsMessageRecord)messageRecord).getId());
-      intent.putExtra("transaction_id", ((MmsMessageRecord)messageRecord).getTransactionId());
-      intent.putExtra("thread_id", ((MmsMessageRecord)messageRecord).getThreadId());
+      intent.putExtra("content_location", new String(notificationRecord.getContentLocation()));
+      intent.putExtra("message_id", notificationRecord.getId());
+      intent.putExtra("transaction_id", notificationRecord.getTransactionId());
+      intent.putExtra("thread_id", notificationRecord.getThreadId());
       intent.setAction(SendReceiveService.DOWNLOAD_MMS_ACTION);
       context.startService(intent);
     }

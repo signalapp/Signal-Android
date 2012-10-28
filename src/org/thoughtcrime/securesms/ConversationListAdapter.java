@@ -23,9 +23,8 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.protocol.Prefix;
+import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -68,28 +67,19 @@ public class ConversationListAdapter extends CursorAdapter  {
     long count            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
     long read             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
 
-    MessageRecord message = new MessageRecord(-1, recipients, date, count, read == 1, threadId);
-    setBody(cursor, message);
+    ThreadRecord thread = new ThreadRecord(context, recipients, date, count, read == 1, threadId);
+    setBody(cursor, thread);
 
-    ((ConversationListItem)view).set(message, batchMode);
+    ((ConversationListItem)view).set(thread, batchMode);
   }
 
-  protected void filterBody(MessageRecord message, String body) {
+  protected void filterBody(ThreadRecord thread, String body) {
     if (body == null) body = "(No subject)";
-
-    if (body.startsWith(Prefix.SYMMETRIC_ENCRYPT) || body.startsWith(Prefix.ASYMMETRIC_ENCRYPT) || body.startsWith(Prefix.ASYMMETRIC_LOCAL_ENCRYPT)) {
-      message.setBody(context.getString(R.string.ConversationListAdapter_encrypted_message_enter_passphrase));
-      message.setEmphasis(true);
-    } else if (body.startsWith(Prefix.KEY_EXCHANGE)) {
-      message.setBody(context.getString(R.string.ConversationListAdapter_key_exchange_message));
-      message.setEmphasis(true);
-    } else {
-      message.setBody(body);
-    }
+    thread.setBody(body);
   }
 
-  protected void setBody(Cursor cursor, MessageRecord message) {
-    filterBody(message, cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET)));
+  protected void setBody(Cursor cursor, ThreadRecord thread) {
+    filterBody(thread, cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET)));
   }
 
   public void addToBatchSet(long threadId) {

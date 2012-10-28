@@ -22,8 +22,9 @@ import android.database.Cursor;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MessageDisplayHelper;
-import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.util.InvalidMessageException;
 
 /**
  * A ConversationListAdapter that decrypts encrypted message bodies.
@@ -43,9 +44,16 @@ public class DecryptingConversationListAdapter extends ConversationListAdapter {
   }
 
   @Override
-  protected void setBody(Cursor cursor, MessageRecord message) {
+  protected void setBody(Cursor cursor, ThreadRecord thread) {
     String body = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET));
     if (body == null || body.equals("")) body = "(No subject)";
-    MessageDisplayHelper.setDecryptedMessageBody(context, body, message, bodyCipher);
+
+    try {
+      String decryptedBody = MessageDisplayHelper.getDecryptedMessageBody(bodyCipher, body);
+      thread.setBody(decryptedBody);
+    } catch (InvalidMessageException ime) {
+      thread.setBody(context.getString(R.string.MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question));
+      thread.setEmphasis(true);
+    }
   }
 }

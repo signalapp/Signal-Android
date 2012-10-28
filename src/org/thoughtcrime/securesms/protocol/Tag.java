@@ -19,7 +19,7 @@ public class Tag {
   }
 
   public static boolean isTagged(String message) {
-    return message.matches(".*[^\\s]" + WHITESPACE_TAG + "$");
+    return message != null && message.matches(".*[^\\s]" + WHITESPACE_TAG + "$");
   }
 
   public static String getTaggedMessage(String message) {

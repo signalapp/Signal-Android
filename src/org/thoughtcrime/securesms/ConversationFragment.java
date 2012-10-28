@@ -21,8 +21,8 @@ import com.actionbarsherlock.app.SherlockListFragment;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessageRecord;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.sql.Date;
@@ -98,9 +98,8 @@ public class ConversationFragment extends SherlockListFragment
     clipboard.setText(body);
   }
 
-  private void handleDeleteMessage(MessageRecord message) {
+  private void handleDeleteMessage(final MessageRecord message) {
     final long messageId   = message.getId();
-    final String transport = message.isMms() ? "mms" : "sms";
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_confirm_message_delete);
@@ -111,7 +110,7 @@ public class ConversationFragment extends SherlockListFragment
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        if (transport.equals("mms")) {
+        if (message.isMms()) {
           DatabaseFactory.getMmsDatabase(getActivity()).delete(messageId);
         } else {
           DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageId);
@@ -165,7 +164,8 @@ public class ConversationFragment extends SherlockListFragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationLoader(getActivity(), threadId);
+    return new ConversationLoader(getActivity(), threadId,
+                                  (recipients != null && !recipients.isSingleRecipient()));
   }
 
   @Override

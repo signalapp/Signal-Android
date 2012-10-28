@@ -48,6 +48,7 @@ class ContactIdentityManagerICS extends ContactIdentityManager {
     return true;
   }
 
+  @SuppressLint("NewApi")
   @Override
   public List<Long> getSelfIdentityRawContactIds() {
     List<Long> results = new LinkedList<Long>();
