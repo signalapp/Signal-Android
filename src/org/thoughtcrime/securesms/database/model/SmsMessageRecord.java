@@ -40,11 +40,12 @@ public class SmsMessageRecord extends MessageRecord {
   public SmsMessageRecord(Context context, long id,
                           Recipients recipients,
                           Recipient individualRecipient,
-                          long date, long type, long threadId)
+                          long date, long type, long threadId,
+                          GroupData groupData)
   {
-  super(id, recipients, individualRecipient, date, threadId);
-  this.context = context.getApplicationContext();
-  this.type    = type;
+    super(id, recipients, individualRecipient, date, threadId, groupData);
+    this.context = context.getApplicationContext();
+    this.type    = type;
   }
 
   public long getType() {
@@ -82,7 +83,7 @@ public class SmsMessageRecord extends MessageRecord {
 
   @Override
   public boolean isPending() {
-    return SmsDatabase.Types.isPendingMessageType(getType());
+    return SmsDatabase.Types.isPendingMessageType(getType()) || isGroupDeliveryPending();
   }
 
   @Override
@@ -94,18 +95,5 @@ public class SmsMessageRecord extends MessageRecord {
   public boolean isMms() {
     return false;
   }
-
-  public static class GroupData {
-    public final int groupSize;
-    public final int groupSentCount;
-    public final int groupSendFailedCount;
-
-    public GroupData(int groupSize, int groupSentCount, int groupSendFailedCount) {
-      this.groupSize            = groupSize;
-      this.groupSentCount       = groupSentCount;
-      this.groupSendFailedCount = groupSendFailedCount;
-    }
-  }
-
 
 }

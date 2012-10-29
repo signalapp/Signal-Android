@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord.GroupData;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -63,8 +64,6 @@ import java.util.LinkedHashMap;
 public class ConversationAdapter extends CursorAdapter {
 
   private static final int MAX_CACHE_SIZE = 40;
-
-
 
   private final TouchListener touchListener = new TouchListener();
   private final LinkedHashMap<String,MessageRecord> messageRecordCache;
@@ -147,19 +146,36 @@ public class ConversationAdapter extends CursorAdapter {
     long date           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE));
     long box            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
     Recipient recipient = getIndividualRecipientFor(null);
+    GroupData groupData = null;
 
     SlideDeck slideDeck;
 
     try {
       MultimediaMessagePdu pdu = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret).getMediaMessage(messageId);
       slideDeck                = new SlideDeck(context, masterSecret, pdu.getBody());
+
+      if (recipients != null && !recipients.isSingleRecipient()) {
+        int groupSize       = pdu.getTo().length;
+        int groupSent       = MmsDatabase.Types.isFailedMmsBox(box) ? 0 : groupSize;
+        int groupSendFailed = groupSize - groupSent;
+
+        if (groupSize <= 1) {
+          groupSize       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.GROUP_SIZE));
+          groupSent       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.MMS_GROUP_SENT_COUNT));
+          groupSendFailed = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.MMS_GROUP_SEND_FAILED_COUNT));
+        }
+
+        Log.w("ConversationAdapter", "MMS GroupSize: " + groupSize + " , GroupSent: " + groupSent + " , GroupSendFailed: " + groupSendFailed);
+
+        groupData = new MessageRecord.GroupData(groupSize, groupSent, groupSendFailed);
+      }
     } catch (MmsException me) {
       Log.w("ConversationAdapter", me);
       slideDeck = null;
     }
 
     return new MediaMmsMessageRecord(context, id, recipients, recipient,
-                                     date, threadId, slideDeck, box);
+                                     date, threadId, slideDeck, box, groupData);
   }
 
   private NotificationMmsMessageRecord getNotificationMmsMessageRecord(long messageId, Cursor cursor) {
@@ -190,17 +206,22 @@ public class ConversationAdapter extends CursorAdapter {
     String body         = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
     String address      = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
     Recipient recipient = getIndividualRecipientFor(address);
-//    MessageRecord.GroupData groupData = null;
-//
-//    if (recipients != null && recipients.isSingleRecipient()) {
-//      int groupSize       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SIZE));
-//      int groupSent       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SENT_COUNT));
-//      int groupSendFailed = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SEND_FAILED_COUNT));
-//
-//      groupData = new MessageRecord.GroupData(groupSize, groupSent, groupSendFailed);
-//    }
+
+    MessageRecord.GroupData groupData = null;
+
+    if (recipients != null && !recipients.isSingleRecipient()) {
+      int groupSize       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.GROUP_SIZE));
+      int groupSent       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SENT_COUNT));
+      int groupSendFailed = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SEND_FAILED_COUNT));
+
+      Log.w("ConversationAdapter", "GroupSize: " + groupSize + " , GroupSent: " + groupSent + " , GroupSendFailed: " + groupSendFailed);
+
+      groupData = new MessageRecord.GroupData(groupSize, groupSent, groupSendFailed);
+    }
+
     SmsMessageRecord messageRecord = new SmsMessageRecord(context, messageId, recipients,
-                                                          recipient, date, type, threadId);
+                                                          recipient, date, type, threadId,
+                                                          groupData);
 
     if (body == null) {
       body = "";

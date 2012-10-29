@@ -28,10 +28,62 @@ import java.util.Set;
 
 public class MmsSmsDatabase extends Database {
 
-  public static final String TRANSPORT = "transport_type";
+  public static final String TRANSPORT                   = "transport_type";
+  public static final String GROUP_SIZE                  = "group_size";
+  public static final String SMS_GROUP_SENT_COUNT        = "sms_group_sent_count";
+  public static final String SMS_GROUP_SEND_FAILED_COUNT = "sms_group_sent_failed_count";
+  public static final String MMS_GROUP_SENT_COUNT        = "mms_group_sent_count";
+  public static final String MMS_GROUP_SEND_FAILED_COUNT = "mms_group_sent_failed_count";
 
   public MmsSmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
+  }
+
+  public Cursor getCollatedGroupConversation(long threadId) {
+    String smsCaseSecurity = "CASE " + SmsDatabase.TYPE + " " +
+                             "WHEN " + SmsDatabase.Types.SENT_TYPE             + " THEN 1 " +
+                             "WHEN " + SmsDatabase.Types.SENT_PENDING          + " THEN 1 " +
+                             "WHEN " + SmsDatabase.Types.ENCRYPTED_OUTBOX_TYPE + " THEN 1 " +
+                             "WHEN " + SmsDatabase.Types.FAILED_TYPE           + " THEN 1 " +
+                             "WHEN " + SmsDatabase.Types.ENCRYPTING_TYPE       + " THEN 2 " +
+                             "WHEN " + SmsDatabase.Types.SECURE_SENT_TYPE      + " THEN 2 " +
+                             "ELSE 0 END";
+
+    String mmsCaseSecurity = "CASE " + MmsDatabase.MESSAGE_BOX + " " +
+                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_OUTBOX        + " THEN 'insecure' " +
+                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SENT          + " THEN 'insecure' " +
+                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SENT_FAILED   + " THEN 'insecure' " +
+                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SECURE_OUTBOX + " THEN 'secure' " +
+                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SECURE_SENT   + " THEN 'secure' " +
+                             "ELSE 0 END";
+
+    String mmsGroupSentCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " " +
+                               "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SENT        + " THEN 1 " +
+                               "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SECURE_SENT + " THEN 1 " +
+                               "ELSE 0 END)";
+
+    String smsGroupSentCount = "SUM(CASE " + SmsDatabase.TYPE + " " +
+                               "WHEN " + SmsDatabase.Types.SENT_TYPE        + " THEN 1 " +
+                               "WHEN " + SmsDatabase.Types.SECURE_SENT_TYPE + " THEN 1 " +
+                               "ELSE 0 END)";
+
+    String mmsGroupSentFailedCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " " +
+                                     "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SENT_FAILED + " THEN 1 " +
+                                     "ELSE 0 END)";
+
+    String smsGroupSentFailedCount = "SUM(CASE " + SmsDatabase.TYPE + " " +
+                                     "WHEN " + SmsDatabase.Types.FAILED_TYPE + " THEN 1 " +
+                                     "ELSE 0 END)";
+
+    String[] projection = {"_id", "body", "type", "address", "subject", "normalized_date AS date", "m_type", "msg_box", "transport_type", "COUNT(_id) AS group_size", mmsGroupSentCount + " AS mms_group_sent_count", mmsGroupSentFailedCount + " AS mms_group_sent_failed_count", smsGroupSentCount + " AS sms_group_sent_count", smsGroupSentFailedCount + " AS sms_group_sent_failed_count", smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
+    String order        = "normalized_date ASC";
+    String selection    = "thread_id = " + threadId;
+    String groupBy      = "normalized_date / 1000, sms_collate, mms_collate";
+
+    Cursor cursor = queryTables(projection, selection, order, groupBy, null);
+    setNotifyConverationListeners(cursor, threadId);
+
+    return cursor;
   }
 
   public Cursor getConversation(long threadId) {
@@ -39,7 +91,7 @@ public class MmsSmsDatabase extends Database {
     String order           = "normalized_date ASC";
     String selection       = "thread_id = " + threadId;
 
-    Cursor cursor = queryTables(projection, selection, order, null);
+    Cursor cursor = queryTables(projection, selection, order, null, null);
     setNotifyConverationListeners(cursor, threadId);
 
     return cursor;
@@ -50,7 +102,7 @@ public class MmsSmsDatabase extends Database {
     String order           = "normalized_date DESC";
     String selection       = "thread_id = " + threadId;
 
-    Cursor cursor = queryTables(projection, selection, order, "1");
+    Cursor cursor = queryTables(projection, selection, order, null, "1");
     return cursor;
   }
 
@@ -59,7 +111,7 @@ public class MmsSmsDatabase extends Database {
     String order           = "normalized_date ASC";
     String selection       = "read = 0";
 
-    Cursor cursor = queryTables(projection, selection, order, null);
+    Cursor cursor = queryTables(projection, selection, order, null, null);
     return cursor;
   }
 
@@ -70,7 +122,7 @@ public class MmsSmsDatabase extends Database {
     return count;
   }
 
-  private Cursor queryTables(String[] projection, String selection, String order, String limit) {
+  private Cursor queryTables(String[] projection, String selection, String order, String groupBy, String limit) {
     String[] mmsProjection = {"date * 1000 AS normalized_date", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "transport_type"};
     String[] smsProjection = {"date * 1 AS normalized_date", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "transport_type"};
 
@@ -110,7 +162,7 @@ public class MmsSmsDatabase extends Database {
     SQLiteQueryBuilder outerQueryBuilder = new SQLiteQueryBuilder();
     outerQueryBuilder.setTables("(" + unionQuery + ")");
 
-    String query      = outerQueryBuilder.buildQuery(projection, null, null, null, null, null, limit);
+    String query      = outerQueryBuilder.buildQuery(projection, null, null, groupBy, null, null, limit);
 
     Log.w("MmsSmsDatabase", "Executing query: " + query);
     SQLiteDatabase db = databaseHelper.getReadableDatabase();

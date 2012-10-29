@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord.GroupData;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -78,6 +79,7 @@ public class ConversationItem extends LinearLayout {
 
   private  TextView bodyText;
   private  TextView dateText;
+  private  TextView groupStatusText;
   private  ImageView secureImage;
   private  ImageView failedImage;
   private  ImageView keyImage;
@@ -108,6 +110,7 @@ public class ConversationItem extends LinearLayout {
 
     this.bodyText            = (TextView) findViewById(R.id.conversation_item_body);
     this.dateText            = (TextView) findViewById(R.id.conversation_item_date);
+    this.groupStatusText     = (TextView) findViewById(R.id.group_message_status);
     this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
     this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
     this.keyImage            = (ImageView)findViewById(R.id.key_exchange_indicator);
@@ -130,6 +133,7 @@ public class ConversationItem extends LinearLayout {
     setBodyText(messageRecord);
     setStatusIcons(messageRecord);
     setContactPhoto(messageRecord);
+    setGroupMessageStatus(messageRecord);
     setEvents(messageRecord);
 
     if (messageRecord instanceof NotificationMmsMessageRecord) {
@@ -197,6 +201,22 @@ public class ConversationItem extends LinearLayout {
       checkForAutoInitiate(messageRecord.getIndividualRecipient(),
                            messageRecord.getBody(),
                            messageRecord.getThreadId());
+    }
+  }
+
+  private void setGroupMessageStatus(MessageRecord messageRecord) {
+    GroupData groupData = messageRecord.getGroupData();
+
+    if (groupData != null) {
+      String status = String.format("Sent (%d/%d)", groupData.groupSentCount, groupData.groupSize);
+
+      if (groupData.groupSendFailedCount != 0)
+        status = status + String.format(", Failed (%d/%d)", groupData.groupSendFailedCount, groupData.groupSize);
+
+      this.groupStatusText.setText(status);
+      this.groupStatusText.setVisibility(View.VISIBLE);
+    } else {
+      this.groupStatusText.setVisibility(View.GONE);
     }
   }
 

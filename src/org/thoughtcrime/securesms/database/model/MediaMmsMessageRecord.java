@@ -43,9 +43,9 @@ public class MediaMmsMessageRecord extends MessageRecord {
 
   public MediaMmsMessageRecord(Context context, long id, Recipients recipients,
                                Recipient individualRecipient, long date, long threadId,
-                               SlideDeck slideDeck, long mailbox)
+                               SlideDeck slideDeck, long mailbox, GroupData groupData)
   {
-    super(id, recipients, individualRecipient, date, threadId);
+    super(id, recipients, individualRecipient, date, threadId, groupData);
     this.slideDeck = slideDeck;
     this.mailbox   = mailbox;
 

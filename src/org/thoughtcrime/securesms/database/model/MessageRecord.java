@@ -31,14 +31,17 @@ public abstract class MessageRecord extends DisplayRecord {
 
   private final Recipient individualRecipient;
   private final long id;
+  private final GroupData groupData;
 
   public MessageRecord(long id, Recipients recipients,
                        Recipient individualRecipient,
-                       long date, long threadId)
+                       long date, long threadId,
+                       GroupData groupData)
   {
     super(recipients, date, threadId);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
+    this.groupData           = groupData;
   }
 
   public abstract boolean isOutgoing();
@@ -67,17 +70,29 @@ public abstract class MessageRecord extends DisplayRecord {
     return individualRecipient;
   }
 
-//
-//  public static class GroupData {
-//    public final int groupSize;
-//    public final int groupSentCount;
-//    public final int groupSendFailedCount;
-//
-//    public GroupData(int groupSize, int groupSentCount, int groupSendFailedCount) {
-//      this.groupSize            = groupSize;
-//      this.groupSentCount       = groupSentCount;
-//      this.groupSendFailedCount = groupSendFailedCount;
-//    }
-//  }
+  public GroupData getGroupData() {
+    return this.groupData;
+  }
+
+  protected boolean isGroupDeliveryPending() {
+    if (this.groupData != null) {
+      return groupData.groupSentCount + groupData.groupSendFailedCount < groupData.groupSize;
+    }
+
+    return false;
+  }
+
+  public static class GroupData {
+    public final int groupSize;
+    public final int groupSentCount;
+    public final int groupSendFailedCount;
+
+    public GroupData(int groupSize, int groupSentCount, int groupSendFailedCount) {
+      this.groupSize            = groupSize;
+      this.groupSentCount       = groupSentCount;
+      this.groupSendFailedCount = groupSendFailedCount;
+    }
+  }
+
 
 }

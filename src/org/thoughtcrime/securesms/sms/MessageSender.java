@@ -76,6 +76,8 @@ public class MessageSender {
     if (threadId == -1)
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
 
+    long date = System.currentTimeMillis();
+
     for (Recipient recipient : recipients.getRecipientsList()) {
       boolean isSecure = KeyUtil.isSessionFor(context, recipient) && !forcePlaintext;
 
@@ -85,12 +87,12 @@ public class MessageSender {
         messageId = DatabaseFactory.getEncryptingSmsDatabase(context)
                       .insertMessageSent(masterSecret,
                                          PhoneNumberUtils.formatNumber(recipient.getNumber()),
-                                         threadId, message, System.currentTimeMillis());
+                                         threadId, message, date);
       } else {
         messageId = DatabaseFactory.getEncryptingSmsDatabase(context)
                       .insertSecureMessageSent(masterSecret,
                                                PhoneNumberUtils.formatNumber(recipient.getNumber()),
-                                               threadId, message, System.currentTimeMillis());
+                                               threadId, message, date);
       }
 
       Log.w("SMSSender", "Got message id for new message: " + messageId);

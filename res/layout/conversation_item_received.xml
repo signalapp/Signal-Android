@@ -77,7 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Download"
+                    android:text="@string/conversation_item_received__download"
                     android:visibility="gone" />
 
                 <TextView android:id="@+id/mms_label_downloading"
@@ -86,21 +86,39 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:text="Downloading"
+                    android:text="@string/conversation_item_received__downloading"
                     android:visibility="gone" />
 
             </LinearLayout>
 
-             <TextView android:id="@+id/conversation_item_date"
-                android:autoLink="all"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:linksClickable="false"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:gravity="left"
-                android:textColor="#ffcccccc"
-                android:paddingTop="1dip"/>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:gravity="left">
 
+		      <TextView android:id="@+id/group_message_status"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:linksClickable="false"
+		                android:textAppearance="?android:attr/textAppearanceSmall"
+		                android:layout_gravity="left"
+		                android:textColor="#ffcccccc"
+		                android:visibility="gone"
+		                android:layout_marginRight="8dip"
+		                android:paddingTop="1dip"/>
+                
+
+		      <TextView android:id="@+id/conversation_item_date"
+		                android:autoLink="all"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:linksClickable="false"
+		                android:textAppearance="?android:attr/textAppearanceSmall"
+		                android:layout_gravity="left"
+		                android:textColor="#ffcccccc"
+		                android:paddingTop="1dip"/>
+		      </LinearLayout>             
+             
         </LinearLayout>
 
        <LinearLayout android:id="@+id/indicators_parent"

@@ -10,21 +10,21 @@ public class ConversationLoader extends CursorLoader {
 
   private final Context context;
   private final long threadId;
-//  private final boolean isGroupConversation;
+  private final boolean isGroupConversation;
 
   public ConversationLoader(Context context, long threadId, boolean isGroupConversation) {
     super(context);
     this.context             = context.getApplicationContext();
     this.threadId            = threadId;
-//    this.isGroupConversation = isGroupConversation;
+    this.isGroupConversation = isGroupConversation;
   }
 
   @Override
   public Cursor loadInBackground() {
-//    if (!isGroupConversation) {
+    if (!isGroupConversation) {
       return DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId);
-//    } else {
-//      return DatabaseFactory.getMmsSmsDatabase(context).getCollatedGroupConversation(threadId);
-//    }
+    } else {
+      return DatabaseFactory.getMmsSmsDatabase(context).getCollatedGroupConversation(threadId);
+    }
   }
 }
