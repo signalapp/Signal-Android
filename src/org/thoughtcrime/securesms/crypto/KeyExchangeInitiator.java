@@ -58,7 +58,7 @@ public class KeyExchangeInitiator {
     LinkedList<Recipient> list = new LinkedList<Recipient>();
     list.add(recipient);
 
-    MessageSender.send(context, masterSecret, new Recipients(list), -1, message.serialize(), false);
+    MessageSender.send(context, masterSecret, new Recipients(list), -1, message.serialize(), true);
   }
 
   private static boolean hasInitiatedSession(Context context, MasterSecret masterSecret, Recipient recipient) {
