@@ -39,7 +39,6 @@ import java.util.Set;
  */
 
 public class SmsDatabase extends Database {
-  public  static final String TRANSPORT          = "transport_type";
 
   public  static final String TABLE_NAME         = "sms";
   public  static final String ID                 = "_id";
@@ -61,6 +60,13 @@ public class SmsDatabase extends Database {
     PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " + STATUS + " INTEGER DEFAULT -1,"        +
     TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " + SUBJECT + " TEXT, " + BODY + " TEXT, " +
     SERVICE_CENTER + " TEXT);";
+
+  public static final String[] CREATE_INDEXS = {
+    "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
+    "CREATE INDEX IF NOT EXISTS sms_read_index ON " + TABLE_NAME + " (" + READ + ");",
+    "CREATE INDEX IF NOT EXISTS sms_read_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + THREAD_ID + ");",
+    "CREATE INDEX IF NOT EXISTS sms_type_index ON " + TABLE_NAME + " (" + TYPE + ");"
+  };
 
   public SmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);

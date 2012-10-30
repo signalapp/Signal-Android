@@ -89,6 +89,13 @@ public class MmsDatabase extends Database {
     CONTENT_CLASS + " INTEGER, " + RESPONSE_TEXT + " TEXT, " + DELIVERY_TIME + " INTEGER, "     +
     DELIVERY_REPORT + " INTEGER);";
 
+  public static final String[] CREATE_INDEXS = {
+    "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
+    "CREATE INDEX IF NOT EXISTS mms_read_index ON " + TABLE_NAME + " (" + READ + ");",
+    "CREATE INDEX IF NOT EXISTS mms_read_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + THREAD_ID + ");",
+    "CREATE INDEX IF NOT EXISTS mms_message_box_index ON " + TABLE_NAME + " (" + MESSAGE_BOX + ");"
+  };
+
   public MmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }

@@ -66,6 +66,10 @@ public class PartDatabase extends Database {
     CONTENT_LOCATION + " TEXT, " + CONTENT_TYPE_START + " INTEGER, "                +
     CONTENT_TYPE_TYPE + " TEXT, " + ENCRYPTED + " INTEGER, " + DATA + " TEXT);";
 
+  public static final String[] CREATE_INDEXS = {
+    "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");"
+  };
+
   public PartDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }

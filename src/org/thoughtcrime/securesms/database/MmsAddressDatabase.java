@@ -42,6 +42,10 @@ public class MmsAddressDatabase extends Database {
     MMS_ID + " INTEGER, " +  TYPE + " INTEGER, " + ADDRESS + " TEXT, " +
     ADDRESS_CHARSET + " INTEGER);";
 
+  public static final String[] CREATE_INDEXS = {
+    "CREATE INDEX IF NOT EXISTS mms_addresses_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
+  };
+
   public MmsAddressDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }

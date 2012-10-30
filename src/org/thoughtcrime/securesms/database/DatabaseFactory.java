@@ -26,7 +26,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 public class DatabaseFactory {
 
   private static final int INTRODUCED_IDENTITIES_VERSION = 2;
-  private static final int DATABASE_VERSION              = 2;
+  private static final int INTRODUCED_INDEXES_VERSION    = 3;
+  private static final int DATABASE_VERSION              = 3;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -140,20 +141,42 @@ public class DatabaseFactory {
     }
 
     @Override
-      public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) {
       db.execSQL(SmsDatabase.CREATE_TABLE);
       db.execSQL(MmsDatabase.CREATE_TABLE);
       db.execSQL(PartDatabase.CREATE_TABLE);
       db.execSQL(ThreadDatabase.CREATE_TABLE);
       db.execSQL(MmsAddressDatabase.CREATE_TABLE);
       db.execSQL(IdentityDatabase.CREATE_TABLE);
+
+      executeStatements(db, SmsDatabase.CREATE_INDEXS);
+      executeStatements(db, MmsDatabase.CREATE_INDEXS);
+      executeStatements(db, PartDatabase.CREATE_INDEXS);
+      executeStatements(db, ThreadDatabase.CREATE_INDEXS);
+      executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
+
       //  db.execSQL(CanonicalAddress.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-      if (oldVersion < INTRODUCED_IDENTITIES_VERSION)
+      if (oldVersion < INTRODUCED_IDENTITIES_VERSION) {
         db.execSQL(IdentityDatabase.CREATE_TABLE);
+      }
+
+      if (oldVersion < INTRODUCED_INDEXES_VERSION) {
+        executeStatements(db, SmsDatabase.CREATE_INDEXS);
+        executeStatements(db, MmsDatabase.CREATE_INDEXS);
+        executeStatements(db, PartDatabase.CREATE_INDEXS);
+        executeStatements(db, ThreadDatabase.CREATE_INDEXS);
+        executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
+      }
     }
+
+    private void executeStatements(SQLiteDatabase db, String[] statements) {
+      for (String statement : statements)
+        db.execSQL(statement);
+    }
+
   }
 }

@@ -50,6 +50,10 @@ public class ThreadDatabase extends Database {
     READ + " INTEGER DEFAULT 1, " + TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, " +
     HAS_ATTACHMENT + " INTEGER DEFAULT 0);";
 
+  public static final String[] CREATE_INDEXS = {
+    "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_IDS + ");",
+  };
+
   public ThreadDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
