@@ -19,8 +19,6 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.util.Log;
 
-import org.apache.http.HttpHost;
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
@@ -30,34 +28,25 @@ import org.apache.http.client.methods.HttpGet;
 import ws.com.google.android.mms.MmsException;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class MmsDownloadHelper extends MmsCommunication {
 
   private static byte[] makeRequest(MmsConnectionParameters connectionParameters, String url)
       throws ClientProtocolException, IOException
   {
-    try {
-      HttpClient client   = constructHttpClient(connectionParameters);
-      URI hostUrl         = new URI(url);
-      HttpHost target     = new HttpHost(hostUrl.getHost(), hostUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
-      HttpRequest request = new HttpGet(url);
+    HttpClient client = constructHttpClient(connectionParameters);
+    HttpGet request   = new HttpGet(url);
 
-      request.setParams(client.getParams());
-      request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+    request.setParams(client.getParams());
+    request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
 
-      HttpResponse response = client.execute(target, request);
-      StatusLine status     = response.getStatusLine();
+    HttpResponse response = client.execute(request);
+    StatusLine status     = response.getStatusLine();
 
-      if (status.getStatusCode() != 200)
-	throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
+    if (status.getStatusCode() != 200)
+      throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
 
-      return parseResponse(response.getEntity());
-    } catch (URISyntaxException use) {
-      Log.w("MmsDownlader", use);
-      throw new IOException("Bad URI syntax");
-    }
+    return parseResponse(response.getEntity());
   }
 
   public static byte[] retrieveMms(Context context, String url, String apn) throws IOException {
