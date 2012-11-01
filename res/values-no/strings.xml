@@ -35,6 +35,10 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Du må taste inn passordet før du importerer nøkler...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Du må taste inn passordet før du administrerer nøkler...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke definert et passord ennå!</string>
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meldingsstørrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Utløper: %s</string>
@@ -339,6 +343,7 @@
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
   <string name="conversation__menu_delete_thread">Slett tråd</string>
   <string name="conversation__menu_compare">Sammenlign</string>
+  <!--conversation_group_options-->
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Sammenlign</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Få den skannet for å sammenlikne</string>
@@ -354,8 +359,9 @@
   <string name="text_secure_normal__menu_clear_passphrase">Fjern passord</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekreftet</string>
+  <!--Misc. piggybacking-->
+  <string name="PlayStoreListing">TextSecure er en tekstmeldingsapplikasjon hvor sikkerheten er forbedret. TextSecure fungerer som en full erstatning for mobilterminalens standard SMS/MMS applikasjon. Meldinger til andre TextSecure brukere sendes kryptert, og alle meldinger lagres i en kryptert database på mobilterminalen. Dersom telefonen blir stjålet eller mistet, vil meldingene være trygge, og kommunikasjon med andre TextSecure brukere kan ikke overvåkes.</string>
   <!--EOF-->
-  <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
-  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+  <string name="conversation_item_sent__download">Last ned</string>
+  <string name="conversation_item_received__download">Last ned</string>
 </resources>

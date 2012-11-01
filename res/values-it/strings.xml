@@ -35,6 +35,7 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Devi inserire la tua password prima di importare le chiavi...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Devi inserire la tua password prima di controllare le chiavi...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
+  <!--AttachmentTypeSelectorAdapter-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Dimensione Messaggio: %d KB</string>
   <string name="ConversationItem_expires_s">Scadenza: %s</string>
@@ -338,6 +339,7 @@
   <string name="conversation__menu_add_attachment">Aggiungi allegato</string>
   <string name="conversation__menu_delete_thread">Cancella conversazione</string>
   <string name="conversation__menu_compare">Controlla</string>
+  <!--conversation_group_options-->
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Controlla</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Scansionato per controllare</string>
@@ -353,5 +355,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Cancella password</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificato</string>
+  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>
