@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.util.Log;
 
-import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
@@ -30,37 +29,28 @@ import org.apache.http.entity.ByteArrayEntity;
 import ws.com.google.android.mms.MmsException;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class MmsSendHelper extends MmsCommunication {
 
   private static byte[] makePost(MmsConnectionParameters parameters, byte[] mms) throws ClientProtocolException, IOException {
     Log.w("MmsSender", "Sending MMS1 of length: " + mms.length);
-    try {
-      HttpClient client      = constructHttpClient(parameters);
-      URI hostUrl            = new URI(parameters.getMmsc());
-      HttpHost target        = new HttpHost(hostUrl.getHost(), hostUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
-      HttpPost request       = new HttpPost(parameters.getMmsc());
-      ByteArrayEntity entity = new ByteArrayEntity(mms);
+    HttpClient client      = constructHttpClient(parameters);
+    HttpPost request       = new HttpPost(parameters.getMmsc());
+    ByteArrayEntity entity = new ByteArrayEntity(mms);
 
-      entity.setContentType("application/vnd.wap.mms-message");
+    entity.setContentType("application/vnd.wap.mms-message");
 
-      request.setEntity(entity);
-      request.setParams(client.getParams());
-      request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+    request.setEntity(entity);
+    request.setParams(client.getParams());
+    request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
 
-      HttpResponse response = client.execute(target, request);
-      StatusLine status     = response.getStatusLine();
+    HttpResponse response = client.execute(request);
+    StatusLine status     = response.getStatusLine();
 
-      if (status.getStatusCode() != 200)
-	throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
+    if (status.getStatusCode() != 200)
+      throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
 
-      return parseResponse(response.getEntity());
-    } catch (URISyntaxException use) {
-      Log.w("MmsDownlader", use);
-      throw new IOException("Bad URI syntax");
-    }
+    return parseResponse(response.getEntity());
   }
 
   public static byte[] sendMms(Context context, byte[] mms, String apn) throws IOException {
