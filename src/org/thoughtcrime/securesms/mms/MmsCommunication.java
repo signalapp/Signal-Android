@@ -59,19 +59,19 @@ public class MmsCommunication {
         throw new MmsException("No carrier MMS information available.");
 
       do {
-	String mmsc  = cursor.getString(cursor.getColumnIndexOrThrow("mmsc"));
-	String proxy = cursor.getString(cursor.getColumnIndexOrThrow("mmsproxy"));
-	String port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
+        String mmsc  = cursor.getString(cursor.getColumnIndexOrThrow("mmsc"));
+        String proxy = cursor.getString(cursor.getColumnIndexOrThrow("mmsproxy"));
+        String port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
 
-	if (mmsc != null && !mmsc.equals(""))
-	  return new MmsConnectionParameters(mmsc, proxy, port);
+        if (mmsc != null && !mmsc.equals(""))
+          return new MmsConnectionParameters(mmsc, proxy, port);
 
       } while (cursor.moveToNext());
 
       throw new MmsException("No carrier MMS information available.");
     } finally {
       if (cursor != null)
-	cursor.close();
+        cursor.close();
     }
   }
 
@@ -155,7 +155,7 @@ public class MmsCommunication {
 
     public int getPort() {
       if (port == null || port.trim().length() == 0)
-	return 80;
+        return 80;
 
       return Integer.parseInt(port);
     }
