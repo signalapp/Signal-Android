@@ -29,6 +29,11 @@
                       android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
                       android:title="@string/preferences__pref_all_mms_title" />
 
+    <CheckBoxPreference android:defaultValue="true"
+                      android:key="pref_intercept_flash_messages"
+                      android:summary="@string/preferences__let_textsecure_intercept_type_0_messages"
+                      android:title="@string/preferences__pref_intercept_flash_messages_title" />
+    
    </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__input_settings">
