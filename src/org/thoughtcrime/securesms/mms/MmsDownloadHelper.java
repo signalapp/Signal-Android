@@ -50,14 +50,16 @@ public class MmsDownloadHelper extends MmsCommunication {
   }
 
   public static byte[] retrieveMms(Context context, String url, String apn) throws IOException {
-    try {
-      MmsConnectionParameters connectionParameters = getMmsConnectionParameters(context, apn);
+    MmsConnectionParameters connectionParameters;
 
-      checkRouteToHost(context, connectionParameters, url);
-      return makeRequest(connectionParameters, url);
+    try {
+      connectionParameters = getMmsConnectionParameters(context, apn);
     } catch (MmsException me) {
-      Log.w("MmsDownloader", me);
-      throw new IOException("Problem configuring MmsConnectionParameters.");
+      Log.w("MmsDownloadHelper", me);
+      connectionParameters = new MmsConnectionParameters(null, null, null);
     }
+
+    checkRouteToHost(context, connectionParameters, url);
+    return makeRequest(connectionParameters, url);
   }
 }
