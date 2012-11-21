@@ -65,6 +65,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
+  public static final String INTERCEPT_FLASH_MESSAGES_PREF    = "pref_intercept_flash_messages";
 
   private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
 

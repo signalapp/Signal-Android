@@ -74,10 +74,15 @@ public class SmsListener extends BroadcastReceiver {
       return false;
 		
     if (isExemption(message, messageBody))
-      return false;
-			
+      return false;   
+     
+	if(message.getMessageClass() == SmsMessage.MessageClass.CLASS_0) {
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_intercept_flash_messages", true))
+          return false;	 
+	}
+    
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
-      return true;		
+      return true;	
 
     return WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody);
   }
