@@ -54,8 +54,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="?android:attr/textColorSecondary"
         android:singleLine="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignBottom="@id/contact_photo_frame"        
+        android:layout_alignParentRight="true"/>
 
     <ImageView android:id="@+id/error"
         android:layout_marginLeft="3dip"
