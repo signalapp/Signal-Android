@@ -24,6 +24,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.PhoneNumberUtils;
@@ -35,6 +36,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -434,6 +436,10 @@ public class ConversationActivity extends SherlockFragmentActivity
     composeText.setOnEditorActionListener(sendButtonListener);
 
     registerForContextMenu(sendButton);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+    }
 
     if (getIntent().getStringExtra("forwarded_message") != null)
       composeText.setText(getString(R.string.ConversationActivity_forward_message_prefix)+": " + getIntent().getStringExtra("forwarded_message"));

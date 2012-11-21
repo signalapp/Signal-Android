@@ -9,11 +9,13 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -299,6 +301,10 @@ public class ConversationListActivity extends SherlockFragmentActivity
   }
 
   private void initializeResources() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+    }
+
     this.fragment = (ConversationListFragment)this.getSupportFragmentManager()
         .findFragmentById(R.id.fragment_content);
   }
