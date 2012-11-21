@@ -75,6 +75,9 @@ public class SmsListener extends BroadcastReceiver {
 		
     if (isExemption(message, messageBody))
       return false;
+    
+    if(message.getMessageClass() == SmsMessage.MessageClass.CLASS_0)
+      return false;
 			
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
       return true;		
