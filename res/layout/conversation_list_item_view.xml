@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationListItem xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="wrap_content"
     android:paddingRight="10dip"
     >
 
-    <QuickContactBadge android:id="@+id/contact_photo"
-                       style="?android:attr/quickContactBadgeStyleWindowLarge"
-                       android:layout_centerVertical="true"
-                       android:layout_alignParentLeft="true" />
-
+    <FrameLayout android:id="@+id/contact_photo_frame" 
+                 android:layout_width="wrap_content" 
+                 android:layout_height="wrap_content"
+                 android:layout_centerVertical="true"
+                 android:layout_alignParentLeft="true"
+                 android:visibility="visible">
+	    <QuickContactBadge android:id="@+id/contact_photo_badge"
+	                       style="?android:attr/quickContactBadgeStyleWindowLarge"
+	                       android:visibility="gone" />
+	
+	    <ImageView android:id="@+id/contact_photo_image"
+	               android:layout_width="60dp"
+	               android:layout_height="60dp"
+	               android:cropToPadding="true"
+	               android:scaleType="centerCrop" 
+	               android:visibility="gone" />    	        
+    </FrameLayout>
+    
     <CheckBox android:id="@+id/checkbox"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -25,8 +38,8 @@
         android:layout_marginTop="6dip"
         android:layout_marginRight="5dip"
         android:layout_marginLeft="5dip"
-        android:layout_alignTop="@id/contact_photo"
-        android:layout_toRightOf="@id/contact_photo"
+        android:layout_alignTop="@id/contact_photo_frame"
+        android:layout_toRightOf="@id/contact_photo_frame"
         android:layout_toLeftOf="@id/checkbox"
         android:layout_alignWithParentIfMissing="true"
         android:ellipsize="marquee"
@@ -69,8 +82,8 @@
         android:singleLine="true"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="5dip"
-        android:layout_alignBottom="@id/contact_photo"
-        android:layout_toRightOf="@id/contact_photo"
+        android:layout_alignBottom="@id/contact_photo_frame"
+        android:layout_toRightOf="@id/contact_photo_frame"
         android:layout_toLeftOf="@id/date"
         android:ellipsize="end" />
 

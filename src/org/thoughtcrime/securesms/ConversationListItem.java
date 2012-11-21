@@ -17,8 +17,13 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Contacts.Intents;
+import android.provider.ContactsContract.QuickContact;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
@@ -29,11 +34,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.Set;
@@ -47,22 +54,17 @@ import java.util.Set;
 
 public class ConversationListItem extends RelativeLayout {
 
+  private Context           context;
   private Set<Long>         selectedThreads;
   private Recipients        recipients;
   private long              threadId;
-  private boolean           first;
   private TextView          subjectView;
   private TextView          fromView;
   private TextView          dateView;
   private CheckBox          checkbox;
-  private QuickContactBadge contactPhoto;
 
-  public ConversationListItem(Context context, boolean first) {
-    this(context, (Set<Long>)null);
-
-    this.first = true;
-    contactPhoto.setVisibility(View.GONE);
-  }
+  private ImageView         contactPhotoImage;
+  private QuickContactBadge contactPhotoBadge;
 
   public ConversationListItem(Context context, Set<Long> selectedThreads) {
     super(context);
@@ -70,13 +72,17 @@ public class ConversationListItem extends RelativeLayout {
     LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     li.inflate(R.layout.conversation_list_item_view, this, true);
 
+    this.context         = context;
     this.selectedThreads = selectedThreads;
     this.subjectView     = (TextView)findViewById(R.id.subject);
     this.fromView        = (TextView)findViewById(R.id.from);
     this.dateView        = (TextView)findViewById(R.id.date);
-    this.contactPhoto    = (QuickContactBadge)findViewById(R.id.contact_photo);
     this.checkbox        = (CheckBox)findViewById(R.id.checkbox);
 
+    this.contactPhotoBadge = (QuickContactBadge)findViewById(R.id.contact_photo_badge);
+    this.contactPhotoImage = (ImageView)findViewById(R.id.contact_photo_image);
+
+    initializeContactWidgetVisibility();
     intializeListeners();
   }
 
@@ -104,18 +110,48 @@ public class ConversationListItem extends RelativeLayout {
     if (selectedThreads != null)
       this.checkbox.setChecked(selectedThreads.contains(threadId));
 
-    if (!first) {
-      if (batchMode) checkbox.setVisibility(View.VISIBLE);
-      else           checkbox.setVisibility(View.GONE);
+    if (batchMode) checkbox.setVisibility(View.VISIBLE);
+    else           checkbox.setVisibility(View.GONE);
 
-      contactPhoto.setImageBitmap(this.recipients.getPrimaryRecipient().getContactPhoto());
-      contactPhoto.assignContactFromPhone(this.recipients.getPrimaryRecipient().getNumber(), true);
-      contactPhoto.setVisibility(View.VISIBLE);
-    }
+    setContactPhoto(this.recipients.getPrimaryRecipient());
   }
 
   private void intializeListeners() {
     checkbox.setOnCheckedChangeListener(new CheckedChangedListener());
+  }
+
+  private void initializeContactWidgetVisibility() {
+    if (isBadgeEnabled()) {
+      contactPhotoBadge.setVisibility(View.VISIBLE);
+      contactPhotoImage.setVisibility(View.GONE);
+    } else {
+      contactPhotoBadge.setVisibility(View.GONE);
+      contactPhotoImage.setVisibility(View.VISIBLE);
+    }
+  }
+
+  private void setContactPhoto(final Recipient recipient) {
+    if (isBadgeEnabled()) {
+      contactPhotoBadge.setImageBitmap(recipient.getContactPhoto());
+      contactPhotoBadge.assignContactFromPhone(recipient.getNumber(), true);
+    } else {
+      contactPhotoImage.setImageBitmap(recipient.getContactPhoto());
+      contactPhotoImage.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (recipient.getContactUri() != null) {
+            QuickContact.showQuickContact(context, contactPhotoImage, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
+          } else {
+            Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
+            context.startActivity(intent);
+          }
+        }
+      });
+    }
+  }
+
+  private boolean isBadgeEnabled() {
+    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
   }
 
   private CharSequence formatFrom(Recipients from, long count, boolean read) {
