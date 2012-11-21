@@ -428,10 +428,11 @@ public class MmsDatabase extends Database {
   }
 
   public Cursor getCarrierMmsInformation(String apn) {
-    Uri uri          = Uri.withAppendedPath(Uri.parse("content://telephony/carriers"), "current");
-    String selection = (apn == null || apn.trim().length() == 0) ? null : String.format("apn = '%s'", apn.trim());
+    Uri uri                = Uri.withAppendedPath(Uri.parse("content://telephony/carriers"), "current");
+    String selection       = (apn == null || apn.trim().length() == 0) ? null : "apn = ?";
+    String[] selectionArgs = (apn == null || apn.trim().length() == 0) ? null : new String[] {apn.trim()};
 
-    return context.getContentResolver().query(uri, null, selection, null, null);
+    return context.getContentResolver().query(uri, null, selection, selectionArgs, null);
   }
 
   private PduHeaders getHeadersForId(long messageId) throws MmsException {
