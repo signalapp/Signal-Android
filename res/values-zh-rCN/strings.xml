@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">TextSecure</string>
+  <string name="yes">是</string>
+  <string name="no">否</string>
+  <string name="delete">删除</string>
+  <!--ApplicationExportManager-->
+  <string name="ApplicationExportManager_import_database_and_settings_title">导入数据库和设置？</string>
+  <string name="ApplicationExportManager_import_database_and_settings_message">从 SD 卡导入 TextSecure 数据库、密钥和设置？ 警告： 这将覆盖所有现有消息、密钥和设置！</string>
+  <string name="ApplicationExportManager_importing_database_and_keys">正在导入数据库和密钥</string>
+  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">正在导入您的短信数据库、密钥和设置...</string>
+  <string name="ApplicationExportManager_export_database_question">导出数据库？</string>
+  <string name="ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt">导出 TextSecure 数据库、密钥和设置到 SD 卡？</string>
+  <string name="ApplicationExportManager_exporting_database_and_keys">正在导出数据库和密钥</string>
+  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">正在导出您的短信数据库、密钥和设置...</string>
+  <string name="ApplicationExportManager_no_sd_card_found_exclamation">未找到 SD 卡！</string>
+  <string name="ApplicationExportManager_error_exporting_to_sd_exclamation">导出到 SD 时出现错误！</string>
+  <string name="ApplicationExportManager_import_successful_exclamation">导入成功！</string>
+  <string name="ApplicationExportManager_export_successful_exclamation">导出成功！</string>
+  <string name="ApplicationExportManager_import">导入</string>
+  <string name="ApplicationExportManager_export">导出</string>
+  <!--ApplicationMigrationManager-->
+  <string name="ApplicationMigrationManager_migrating_database">正在迁移数据库</string>
+  <string name="ApplicationMigrationManager_migrating_text_message_database">正在迁移文本消息数据库...</string>
+  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">复制系统文本消息数据库？</string>
+  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure 使用与默认系统数据库分离的加密数据库。  是否要复制现有文本消息到 TextSecure 的加密数据库？  您的默认系统数据库将不受影响。</string>
+  <string name="ApplicationMigrationManager_copy">复制</string>
+  <string name="ApplicationMigrationManager_dont_copy">不复制</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">当前： %s</string>
+  <string name="ApplicationPreferenceActivity_not_found_exclamation">未找到！</string>
+  <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">指定联系人未找到有效身份密钥。</string>
+  <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">您没有身份密钥！</string>
+  <string name="ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself">您还未为自己定义联系人！ 在“设置”菜单中设置一个。</string>
+  <string name="ApplicationPreferenceActivity_exported_to_contacts_database">导出到联系人数据库！</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">您需要在导入密钥之前输入密码...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">您需要在管理密钥之前输入密码...</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您还未设置密码！</string>
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">图片</string>
+  <string name="AttachmentTypeSelectorAdapter_video">视频</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">音频</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">邮件大小： %d KB</string>
+  <string name="ConversationItem_expires_s">到期： %s</string>
+  <string name="ConversationItem_error_sending_message">发送邮件时出现错误</string>
+  <string name="ConversationItem_sending">正在发送...</string>
+  <string name="ConversationItem_saving_attachment">正在保存附件</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">正在将附件保存到 SD 卡...</string>
+  <string name="ConversationItem_save_to_sd_card">保存到 SD 卡？</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">该媒体已存储在加密数据库中。 您保存到 SD 卡的版本将不再加密，是否继续？</string>
+  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">将附件保存到 SD 卡时出现错误！</string>
+  <string name="ConversationItem_success_exclamation">成功！</string>
+  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">无法写入 SD 卡！</string>
+  <string name="ConversationItem_view_secure_media_question">查看安全媒体？</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">该媒体已存储在加密数据库中。 很遗憾，当前要使用外部内容查看器查看需要将数据临时解密并写入磁盘。  是否确定要这么做？</string>
+  <string name="ConversationItem_key_exchange_message">密钥交换信息</string>
+  <string name="ConversationItem_received_and_processed_key_exchange_message">已接收和处理过的密钥交换信息</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">错误，收到旧密钥交换消息。</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">已收到并处理完密钥交换消息。</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">启动安全会话？</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">使用 %s 启动安全会话？</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">中止安全会话确认</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">是否确定要中止此安全会话？</string>
+  <string name="ConversationActivity_delete_thread_confirmation">删除线程确认</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">是否确定要永久删除此对话？</string>
+  <string name="ConversationActivity_add_attachment">添加附件</string>
+  <string name="ConversationActivity_compose_message">编辑邮件</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">很抱歉，设置附件时出现错误。</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">很抱歉，选定视频超过邮件大小限制。</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">很抱歉，选定音频超过邮件大小限制。</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人不是有效的短信或电子邮件地址！</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">邮件为空！</string>
+  <string name="ConversationActivity_forward_message_prefix">转发</string>
+  <string name="ConversationActivity_group_conversation_recipients">多人对话接收人</string>
+  <string name="ConversationActivity_group_conversation">对人对话</string>
+  <string name="ConversationActivity_d_recipients_in_group">小组中有 %d 个接收人</string>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">邮件详细信息</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">发件人： %1$s\n传输： %2$s\n已发送/接收：%3$s</string>
+  <string name="ConversationFragment_confirm_message_delete">确认邮件删除</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">是否确定要永久删除此邮件？</string>
+  <!--ConversationListAdapter-->
+  <string name="ConversationListAdapter_encrypted_message_enter_passphrase">加密邮件，输入密码... </string>
+  <string name="ConversationListAdapter_key_exchange_message">密钥交换消息...</string>
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_delete_threads_question">删除线程？</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">是否确定要删除所有选定对话线程？</string>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">密钥交换消息...</string>
+  <!--KeyScanningActivity-->
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">未找到已扫描密钥！</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">密码不匹配！</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
+  <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">密码不匹配！</string>
+  <string name="PassphraseCreateActivity_generating_keypair">正在生成密钥对</string>
+  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">正在生成本地加密密钥对...</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">无效密码！</string>
+  <!--ReceiveKeyActivity-->
+  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">错误：\n\n您收到的公钥已损坏。  该密钥无法处理，请重新启动安全会话。</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">错误：\n\n您收到来自不支持协议版本的公钥。  该密钥无法处理，请重新启动安全会话。</string>
+  <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">该密钥交换消息不包括身份签名。</string>
+  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">该密钥交换消息包含身份签名，但是您还未信任它。</string>
+  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">该密钥交换消息包含您信任的身份签名： %s</string>
+  <string name="ReceiveKeyActivity_this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_s">这是您发送以启动与 %s 的当前加密会话的密钥</string>
+  <string name="ReceiveKeyActivity_this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s">这是您收到以启动与 %s 的当前加密会话的密钥</string>
+  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session">您收到来自 %s 的密钥交换消息。\n\n警告：  您正与该联系人进行加密会话。  如果选择接收该密钥交换消息，这将中断现有会话并对您进行重新身份验证。  是否要完成此密钥交换？</string>
+  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">您收到来自 %s 的密钥交换消息。您之前已启动与该联系人的会话，访问该密钥后，您将完成密钥交换。  是否要完成此密钥交换？</string>
+  <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">您已经收到来自 %s 的密钥交换消息。您与该联系人当前没有会话，是否要完成该密钥交换？</string>
+  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">您已经收到来自 %s 的密钥交换消息。您与该联系人当前没有会话，是否要完成该密钥交换？</string>
+  <!--ReviewIdentitiesActivity-->
+  <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">无法查看已损坏的身份密钥！</string>
+  <string name="ReviewIdentitiesActivity_delete_identity">删除身份？</string>
+  <string name="ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key">是否确定要永久删除此身份密钥？</string>
+  <string name="ReviewIdentitiesActivity_invalid_identity">无效身份！</string>
+  <!--SaveIdentityActivity-->
+  <string name="SaveIdentityActivity_you_must_specify_a_name_for_this_identity_exclamation">您必须为此身份指定一个名称！</string>
+  <string name="SaveIdentityActivity_identity_name_exists_exclamation">身份名称已存在！</string>
+  <string name="SaveIdentityActivity_an_identity_key_with_the_specified_name_already_exists">带指定名称的身份密钥已经存在。</string>
+  <string name="SaveIdentityActivity_manage_identities">管理身份</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_mark_identity_verified_question">标记身份为已验证？</string>
+  <string name="VerifyIdentityActivity_are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified">是否确定已验证收件人的身份指纹并标记为已验证？</string>
+  <string name="VerifyIdentityActivity_mark_verified">标记为已验证</string>
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">收件人没有身份密钥。</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">收件人没有身份密钥！</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">扫描他们的密钥以进行比较</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">扫描我的密钥</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告，扫描的密钥不匹配！ 请仔细检查指纹文本。</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">未验证！</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">他们的密钥正确。 还需要他们验证您的密钥。</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">已验证！</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">您没有身份密钥！</string>
+  <!--VerifyImportedIdentityActivity-->
+  <string name="VerifyImportedIdentityActivity_you_must_specify_a_name_for_this_contact_exclamation">您必须为此联系人指定一个名称！</string>
+  <string name="VerifyImportedIdentityActivity_save_identity_key_question">保存身份密钥？</string>
+  <string name="VerifyImportedIdentityActivity_error_saving_identity_key_exclamation">保存身份密钥时出现错误！</string>
+  <string name="VerifyImportedIdentityActivity_this_identity_key_or_an_identity_key_with_the_same_name_already_exists_please_edit_your_key_database">此身份密钥或具有相同名称的身份密钥已经存在。  请编辑您的密钥数据库。</string>
+  <string name="VerifyImportedIdentityActivity_scan_to_compare">扫描进行比较</string>
+  <string name="VerifyImportedIdentityActivity_get_scanned_to_compare">进行扫描以比较</string>
+  <string name="VerifyImportedIdentityActivity_not_verified_exclamation">未验证！</string>
+  <string name="VerifyImportedIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告，扫描的密钥不匹配！</string>
+  <string name="VerifyImportedIdentityActivity_the_scanned_key_matches_exclamation">扫描的密钥匹配！</string>
+  <string name="VerifyImportedIdentityActivity_verified_exclamation">已验证！</string>
+  <string name="VerifyImportedIdentityActivity_are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s">是否确定要标记这为有效身份密钥，以用于与 %s 的所有未来通信？  您应仅在实际验证过指纹后这么做。</string>
+  <!--VerifyKeysActivity-->
+  <string name="VerifyKeysActivity_mark_session_verified_question">标记会话已验证？</string>
+  <string name="VerifyKeysActivity_are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified">是否确定要验证这些指纹并标记此会话为已验证？</string>
+  <string name="VerifyKeysActivity_mark_verified">标记为已验证</string>
+  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">扫描我的指纹</string>
+  <string name="VerifyKeysActivity_scan_their_fingerprint">扫描他们的指纹</string>
+  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">警告，扫描的密钥不匹配！ 请仔细检查指纹文本。</string>
+  <string name="VerifyKeysActivity_not_verified_exclamation">未验证！</string>
+  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">他们的密钥正确。 还需要扫描您的指纹。</string>
+  <string name="VerifyKeysActivity_verified_exclamation">已验证！</string>
+  <!--ViewIdentityActivity-->
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>
+  <string name="ViewIdentityActivity_scan_to_compare">扫描进行比较</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">进行扫描以进行比较</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告，扫描的密钥不匹配！</string>
+  <string name="ViewIdentityActivity_not_verified_exclamation">未验证！</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">扫描的密钥匹配！</string>
+  <string name="ViewIdentityActivity_verified_exclamation">已验证！</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">启动 Despite Existing Request？</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">您已经发送会话启动请求到此收件人，是否确定要再次发送？  这将使第一个请求无效。</string>
+  <string name="KeyExchangeInitiator_send">发送</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">加密消息错误...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">正在解密，请稍后...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">已为不存在的会话加密消息...</string>
+  <string name="MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question">解密错误： 本地消息已损坏，MAC 不匹配。 潜在篡改？</string>
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">正在连接到彩信服务器...</string>
+  <string name="MmsDatabase_downloading_mms">正在下载彩信...</string>
+  <string name="MmsDatabase_mms_download_failed">彩信下载失败！</string>
+  <string name="MmsDatabase_downloading">正在下载...</string>
+  <string name="MmsDatabase_anonymous">匿名</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">正在解密彩信，请稍后...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">加密彩信消息错误...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">已为不存在的会话加密彩信消息...</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_migrating">正在迁移</string>
+  <string name="ApplicationMigrationService_migrating_system_text_messages">正在迁移系统文本消息</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">TextSecure 密码已缓存</string>
+  <string name="KeyCachingService_passphrase_cached">密码已缓存</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages">(%d) 新邮件</string>
+  <string name="MessageNotifier_d_new_messages_most_recent_from_s">(%1$d) 新邮件，最新邮件来自： %2$s</string>
+  <string name="MessageNotifier_most_recent_from_s">最新邮件来自： %s</string>
+  <!--auto_initiate_activity-->
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">您收到一条支持 TextSecure 加密会话的人发送的消息。  是否要启动安全会话？</string>
+  <string name="auto_initiate_activity__initiate_exchange">启动交换</string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">旧密码：</string>
+  <string name="change_passphrase_activity__new_passphrase">新密码：</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">重复新密码：</string>
+  <!--contact_selection_group_activity-->
+  <!--contact_selection_list_activity-->
+  <string name="contact_selection_group_activity__no_contacts">没有联系人。</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">选择</string>
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">没有最近呼叫。</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message">输入消息</string>
+  <string name="conversation_activity__send">发送</string>
+  <string name="conversation_activity__remove">删除</string>
+  <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
+  <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">请选择用于本地加密数据的密码。  这应是强密码。</string>
+  <string name="create_passphrase_activity__passphrase">密码：</string>
+  <string name="create_passphrase_activity__repeat">重复：</string>
+  <!--receive_key_activity-->
+  <string name="receive_key_activity__session">会话</string>
+  <string name="receive_key_activity__identities">身份</string>
+  <string name="receive_key_activity__complete_exchange">完成交换</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to">收件人</string>
+  <!--review_identities-->
+  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">您的信任数据库当前没有任何身份密钥。</string>
+  <!--save_identity_activity-->
+  <string name="save_identity_activity__identity_name">身份名称：</string>
+  <!--verify_identity_activity-->
+  <string name="verify_identity_activity__their_identity_they_read">他们的身份（他们读取）：</string>
+  <string name="verify_identity_activity__your_identity_you_read">您的身份（您读取）：</string>
+  <!--verify_import_identity_activity-->
+  <string name="verify_import_identity_activity__identity_name_n">身份名称：\</string>
+  <string name="verify_import_identity_activity__imported_identity_n">导入的身份：\</string>
+  <string name="verify_import_identity_activity__verified">已验证！</string>
+  <string name="verify_import_identity_activity__compare">比较</string>
+  <!--verify_keys_activity-->
+  <string name="verify_keys_activity__they_read_this">他们读取这个：</string>
+  <string name="verify_keys_activity__you_read_this">您读取这个：</string>
+  <!--view_identity_activity-->
+  <string name="view_identity_activity__identity">身份：</string>
+  <string name="view_identity_activity__qr_code">QR 代码</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">创建密码</string>
+  <string name="AndroidManifest__enter_passphrase">输入密码</string>
+  <string name="AndroidManifest__select_contacts">选择联系人</string>
+  <string name="AndroidManifest__textsecure_detected">检测到 TextSecure</string>
+  <string name="AndroidManifest__public_identity_key">身份公钥</string>
+  <string name="AndroidManifest__change_passphrase">更改密码</string>
+  <string name="AndroidManifest__verify_session">验证会话</string>
+  <string name="AndroidManifest__verify_identity">验证身份</string>
+  <string name="AndroidManifest__save_identity">保存身份</string>
+  <string name="AndroidManifest__manage_identity_keys">管理身份密钥</string>
+  <string name="AndroidManifest__complete_key_exchange">完成密钥交换</string>
+  <string name="AndroidManifest__verify_imported_identity">验证已导入身份</string>
+  <!--preferences.xml-->
+  <string name="preferences__use_settings">使用设置</string>
+  <string name="preferences__pref_all_sms_title">用于所有短信</string>
+  <string name="preferences__pref_all_mms_title">用于所有彩信</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">使用 TextSecure 查看和存储所有入站文本消息</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">使用 TextSecure 查看和存储所有入站多媒体消息</string>
+  <string name="preferences__input_settings">输入设置</string>
+  <string name="preferences__pref_enter_sends_title">输入发送</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下 enter 键将发送文本消息</string>
+  <string name="preferences__display_settings">显示设置</string>
+  <string name="preferences__choose_identity">选择身份</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择您的联系人条目。</string>
+  <string name="preferences__encryption_settings">加密设置</string>
+  <string name="preferences__change_passphrase">更改密码</string>
+  <string name="preferences__change_my_passphrase">更改我的密码</string>
+  <string name="preferences__complete_key_exchanges">完成密钥交换</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">使用同一身份密钥自动完成新会话或现有会话的密钥交换</string>
+  <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">在每个非加密消息末尾包含空白标签</string>
+  <string name="preferences__include_whitespace_tag">包含空白标签</string>
+  <string name="preferences__sign_key_exchange_messages_with_identity_key">使用身份密钥签名密钥交换消息</string>
+  <string name="preferences__sign_key_exchange">签名密钥交换</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">在一段时间后忘记内存中的密码</string>
+  <string name="preferences__timeout_passphrase">超时密码</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">选择密码超时</string>
+  <string name="preferences__pref_timeout_interval_title">超时间隔</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">忘记内存中的密码前等待的时间长度</string>
+  <string name="preferences__identity_key_settings">身份密钥设置</string>
+  <string name="preferences__view_my_identity_key">查看我的身份密钥</string>
+  <string name="preferences__export_my_identity_key">导出我的身份密钥</string>
+  <string name="preferences__import_contacts_key">导入联系人密钥</string>
+  <string name="preferences__import_an_identity_key_from_a_contact">从联系人导入身份密钥</string>
+  <string name="preferences__manage_identity_keys">管理身份密钥</string>
+  <string name="preferences__manage_configured_identity_keys">管理配置的身份密钥</string>
+  <string name="preferences__notification_settings">通知设置</string>
+  <string name="preferences__notifications">通知</string>
+  <string name="preferences__display_message_notifications_in_status_bar">在状态栏显示邮件通知</string>
+  <string name="preferences__led_color">LED 颜色</string>
+  <string name="preferences__change_notification_led_color">更改通知 LED 颜色</string>
+  <string name="preferences__pref_led_blink_title">LED 闪烁模式</string>
+  <string name="preferences__change_notification_blink_pattern">更改通知 LED 闪烁模式</string>
+  <string name="preferences__pref_led_blink_dialogtitle">选择 LED 闪烁模式</string>
+  <string name="preferences__select_led_color">选择 LED 颜色</string>
+  <string name="preferences__select_ringtone">选择铃声</string>
+  <string name="preferences__vibrate">振动</string>
+  <string name="preferences__also_vibrate_when_notified">通知时同时振动</string>
+  <string name="preferences__minutes">分钟</string>
+  <string name="preferences__hours">小时</string>
+  <string name="preferences__green">绿色</string>
+  <string name="preferences__red">红色</string>
+  <string name="preferences__blue">蓝色</string>
+  <string name="preferences__orange">橙色</string>
+  <string name="preferences__cyan">青色</string>
+  <string name="preferences__magenta">洋红色</string>
+  <string name="preferences__fast">快速</string>
+  <string name="preferences__normal">正常</string>
+  <string name="preferences__slow">缓慢</string>
+  <string name="preferences__custom">自定义</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">选择所有</string>
+  <string name="contact_selection_list__menu_unselect_all">取消选择所有</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">已完成</string>
+  <!--conversation_button_context-->
+  <string name="conversation_button_context__menu_send_unencrypted">发送未加密</string>
+  <!--conversation_callable-->
+  <string name="conversation_callable__menu_call">呼叫</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">邮件详细信息</string>
+  <string name="conversation_context__menu_copy_text">复制文本</string>
+  <string name="conversation_context__menu_delete_message">删除邮件</string>
+  <string name="conversation_context__menu_forward_message">转发邮件</string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__menu_start_secure_session">启动安全会话</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">删除选定项</string>
+  <string name="conversation_list_batch__menu_select_all">选择所有</string>
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">搜索</string>
+  <!--conversation_secure_verified-->
+  <!--conversation_secure_unverified-->
+  <string name="conversation_secure_verified__menu_security">安全性</string>
+  <string name="conversation_secure_verified__menu_verify_session">验证会话</string>
+  <string name="conversation_secure_verified__menu_verify_recipient">验证收件人</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">中止安全会话</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">添加附件</string>
+  <string name="conversation__menu_delete_thread">删除线程</string>
+  <string name="conversation__menu_compare">比较</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">接收人列表</string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">比较</string>
+  <string name="key_scanning__menu_get_scanned_to_compare">进行扫描以进行比较</string>
+  <string name="key_scanning__menu_scan_to_compare">扫描进行比较</string>
+  <!--text_secure_locked-->
+  <string name="text_secure_locked__menu_unlock">解锁</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">新邮件</string>
+  <string name="text_secure_normal__menu_settings">设置</string>
+  <string name="text_secure_normal__menu_import_export">导入/导出</string>
+  <string name="text_secure_normal__menu_import">导入</string>
+  <string name="text_secure_normal__menu_export">导出</string>
+  <string name="text_secure_normal__menu_clear_passphrase">清除密码</string>
+  <!--verify_keys-->
+  <string name="verify_keys__menu_verified">已验证</string>
+  <!--Misc. piggybacking-->
+  <string name="PlayStoreListing">TextSecure 是一个安全增强文本消息应用程序，用于完全替代默认文本消息应用程序。 无线发送给其他 TextSecure 用户的消息都经过加密，同时所有文本消息都存储在设备的加密数据库中。 如果电话丢失或被盗，您的消息将保持安全，同时无法空中监控与其他 TextSecure 用户的无线通信。</string>
+  <!--EOF-->
+  <string name="conversation_item_sent__download">下载</string>
+  <string name="conversation_item_sent__downloading">正在下载</string>
+  <string name="conversation_item_received__download">下载</string>
+  <string name="conversation_item_received__downloading">正在下载</string>
+</resources>
