@@ -25,10 +25,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.NumberUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -54,8 +55,11 @@ public class RecipientFactory {
   }
 
   public static Recipients getRecipientsForIds(Context context, String recipientIds) {
-    ArrayList<Recipient> results = new ArrayList<Recipient>();
-    StringTokenizer tokenizer    = new StringTokenizer(recipientIds.trim(), " ");
+    if (recipientIds == null || recipientIds.trim().length() == 0)
+      return new Recipients(new LinkedList<Recipient>());
+
+    List<Recipient> results   = new LinkedList<Recipient>();
+    StringTokenizer tokenizer = new StringTokenizer(recipientIds.trim(), " ");
 
     while (tokenizer.hasMoreTokens()) {
       String recipientId  = tokenizer.nextToken();
@@ -87,8 +91,8 @@ public class RecipientFactory {
   }
 
   public static Recipients getRecipientsFromString(Context context, String rawText) throws RecipientFormattingException {
-    ArrayList<Recipient> results = new ArrayList<Recipient>();
-    StringTokenizer tokenizer    = new StringTokenizer(rawText, ",");
+    List<Recipient> results   = new LinkedList<Recipient>();
+    StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
 
     while (tokenizer.hasMoreTokens()) {
       Recipient recipient = parseRecipient(context, tokenizer.nextToken());
