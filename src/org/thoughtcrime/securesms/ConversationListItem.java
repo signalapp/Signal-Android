@@ -131,6 +131,8 @@ public class ConversationListItem extends RelativeLayout {
   }
 
   private void setContactPhoto(final Recipient recipient) {
+    if (recipient == null) return;
+
     if (isBadgeEnabled()) {
       contactPhotoBadge.setImageBitmap(recipient.getContactPhoto());
       contactPhotoBadge.assignContactFromPhone(recipient.getNumber(), true);
