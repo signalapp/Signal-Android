@@ -17,11 +17,9 @@
 package org.thoughtcrime.securesms;
 
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -61,8 +59,19 @@ public class PassphraseCreateActivity extends PassphraseActivity {
     this.okButton             = (Button)   findViewById(R.id.ok_button);
     this.cancelButton         = (Button)   findViewById(R.id.cancel_button);
 
-    this.okButton.setOnClickListener(new OkButtonClickListener());
-    this.cancelButton.setOnClickListener(new CancelButtonClickListener());
+    this.okButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        verifyAndSavePassphrases();
+      }
+    });
+
+    this.cancelButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        finish();
+      }
+    });
   }
 
   private void verifyAndSavePassphrases() {
@@ -76,28 +85,18 @@ public class PassphraseCreateActivity extends PassphraseActivity {
       this.passphraseEdit.setText("");
       this.passphraseRepeatEdit.setText("");
     } else {
-      MasterSecret masterSecret = MasterSecretUtil.generateMasterSecret(this, passphrase);
-      MemoryCleaner.clean(passphrase); // We do this, but the edit boxes are basically impossible to clean up.
+      // We do this, but the edit boxes are basically impossible to clean up.
       MemoryCleaner.clean(passphraseRepeat);
-      new AsymmetricSecretGenerator(masterSecret).generate();
+      new SecretGenerator().execute(passphrase);
     }
   }
 
-  private class AsymmetricSecretGenerator extends Handler implements Runnable {
+  private class SecretGenerator extends AsyncTask<String, Void, Void> {
     private ProgressDialog progressDialog;
-    private MasterSecret masterSecret;
+    private MasterSecret   masterSecret;
 
-    public AsymmetricSecretGenerator(MasterSecret masterSecret) {
-      this.masterSecret = masterSecret;
-    }
-
-    public void run() {
-      MasterSecretUtil.generateAsymmetricMasterSecret(PassphraseCreateActivity.this, masterSecret);
-      IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this, masterSecret);
-      this.obtainMessage().sendToTarget();
-    }
-
-    public void generate() {
+    @Override
+    protected void onPreExecute() {
       progressDialog = new ProgressDialog(PassphraseCreateActivity.this);
       progressDialog.setTitle(R.string.PassphraseCreateActivity_generating_keypair);
       progressDialog.setMessage(getString(R.string.PassphraseCreateActivity_generating_a_local_encryption_keypair));
@@ -105,25 +104,27 @@ public class PassphraseCreateActivity extends PassphraseActivity {
       progressDialog.setIndeterminate(true);
       progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
       progressDialog.show();
-      new Thread(this).start();
     }
 
     @Override
-    public void handleMessage(Message message) {
+    protected Void doInBackground(String... params) {
+      String passphrase = params[0];
+      masterSecret      = MasterSecretUtil.generateMasterSecret(PassphraseCreateActivity.this,
+                                                                passphrase);
+
+      // We do this, but the edit boxes are basically impossible to clean up.
+      MemoryCleaner.clean(passphrase);
+
+      MasterSecretUtil.generateAsymmetricMasterSecret(PassphraseCreateActivity.this, masterSecret);
+      IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this, masterSecret);
+
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void param) {
       progressDialog.dismiss();
       setMasterSecret(masterSecret);
-    }
-  }
-
-  private class CancelButtonClickListener implements OnClickListener {
-    public void onClick(View v) {
-      finish();
-    }
-  }
-
-  private class OkButtonClickListener implements OnClickListener {
-    public void onClick(View v) {
-      verifyAndSavePassphrases();
     }
   }
 
