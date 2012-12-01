@@ -140,9 +140,16 @@ public class RecipientFactory {
     return recipient;
   }
 
+  private static boolean hasBracketedNumber(String recipient) {
+    int openBracketIndex = recipient.indexOf('<');
+
+    return (openBracketIndex != -1) &&
+           (recipient.indexOf('>', openBracketIndex) != -1);
+  }
+
   private static String parseBracketedNumber(String recipient) throws RecipientFormattingException {
     int begin    = recipient.indexOf('<');
-    int end      = recipient.indexOf('>');
+    int end      = recipient.indexOf('>', begin);
     String value = recipient.substring(begin + 1, end);
 
     if (NumberUtil.isValidSmsOrEmail(value))
@@ -157,7 +164,7 @@ public class RecipientFactory {
     if( recipient.length() == 0 )
       return null;
 
-    if ((recipient.indexOf('<') != -1) && (recipient.indexOf('>') != -1))
+    if (hasBracketedNumber(recipient))
       return getRecipientForNumber(context, parseBracketedNumber(recipient));
 
     if (NumberUtil.isValidSmsOrEmail(recipient))
