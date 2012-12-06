@@ -137,7 +137,8 @@
 
     <receiver android:name=".service.SmsListener"
               android:enabled="true"
-              android:exported="true">
+              android:exported="true"
+              android:permission="android.permission.BROADCAST_SMS">
              <intent-filter android:priority="1001">
                  <action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
              </intent-filter>
