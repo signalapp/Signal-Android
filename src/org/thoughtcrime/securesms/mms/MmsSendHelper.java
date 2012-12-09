@@ -26,8 +26,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 
-import ws.com.google.android.mms.MmsException;
-
 import java.io.IOException;
 
 public class MmsSendHelper extends MmsCommunication {
@@ -59,8 +57,8 @@ public class MmsSendHelper extends MmsCommunication {
       MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn);
       checkRouteToHost(context, parameters, parameters.getMmsc());
       return makePost(parameters, mms);
-    } catch (MmsException me) {
-      Log.w("MmsSender", me);
+    } catch (ApnUnavailableException aue) {
+      Log.w("MmsSender", aue);
       throw new IOException("Failed to get MMSC information...");
     }
   }

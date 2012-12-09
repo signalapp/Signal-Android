@@ -17,9 +17,13 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -37,11 +41,10 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.service.MmsDownloader;
 import org.thoughtcrime.securesms.util.Conversions;
-
-import ws.com.google.android.mms.MmsException;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -49,14 +52,35 @@ import java.net.InetAddress;
 
 public class MmsCommunication {
 
-  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn)
-      throws MmsException
+  protected static MmsConnectionParameters getLocallyConfiguredMmsConnectionParameters(Context context)
+      throws ApnUnavailableException
   {
-    Cursor cursor = DatabaseFactory.getMmsDatabase(context).getCarrierMmsInformation(apn);
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    if (preferences.getBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, false)) {
+      String mmsc = preferences.getString(ApplicationPreferencesActivity.MMSC_HOST_PREF, null);
+
+      if (mmsc == null || !mmsc.startsWith("http"))
+        throw new ApnUnavailableException("Malformed locally configured MMSC: " + mmsc);
+
+      String proxy = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_PREF, null);
+
+      return new MmsConnectionParameters(mmsc, proxy, null);
+    }
+
+    throw new ApnUnavailableException("No locally configured parameters available");
+  }
+
+  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn)
+      throws ApnUnavailableException
+  {
+    Cursor cursor = null;
 
     try {
+      cursor = DatabaseFactory.getMmsDatabase(context).getCarrierMmsInformation(apn);
+
       if (cursor == null || !cursor.moveToFirst())
-        throw new MmsException("No carrier MMS information available.");
+        return getLocallyConfiguredMmsConnectionParameters(context);
 
       do {
         String mmsc  = cursor.getString(cursor.getColumnIndexOrThrow("mmsc"));
@@ -68,7 +92,10 @@ public class MmsCommunication {
 
       } while (cursor.moveToNext());
 
-      throw new MmsException("No carrier MMS information available.");
+      return getLocallyConfiguredMmsConnectionParameters(context);
+    } catch (SQLiteException sqe) {
+      Log.w("MmsCommunication", sqe);
+      return getLocallyConfiguredMmsConnectionParameters(context);
     } finally {
       if (cursor != null)
         cursor.close();

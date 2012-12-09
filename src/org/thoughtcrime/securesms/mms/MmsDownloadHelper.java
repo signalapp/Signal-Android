@@ -25,8 +25,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
-import ws.com.google.android.mms.MmsException;
-
 import java.io.IOException;
 
 public class MmsDownloadHelper extends MmsCommunication {
@@ -54,8 +52,8 @@ public class MmsDownloadHelper extends MmsCommunication {
 
     try {
       connectionParameters = getMmsConnectionParameters(context, apn);
-    } catch (MmsException me) {
-      Log.w("MmsDownloadHelper", me);
+    } catch (ApnUnavailableException aue) {
+      Log.w("MmsDownloadHelper", aue);
       connectionParameters = new MmsConnectionParameters(null, null, null);
     }
 
