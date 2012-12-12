@@ -39,7 +39,7 @@ public class RecipientFactory {
   private static final Map<String,Recipient> recipientIdCache  = Collections.synchronizedMap(new LRUHashMap<String,Recipient>());
   private static final Map<Uri,Recipient>    recipientUriCache = Collections.synchronizedMap(new HashMap<Uri,Recipient>());
 
-  private static final RecipientProvider provider = new NewRecipientProvider();
+  private static final RecipientProvider provider = new RecipientProvider();
 
   public static RecipientProvider getRecipientProvider() {
     return provider;
