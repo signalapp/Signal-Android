@@ -94,13 +94,13 @@ public class MessageNotifier {
 
   private static Recipients getSmsRecipient(Context context, Cursor c) throws RecipientFormattingException {
     String address        = c.getString(c.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
-    return RecipientFactory.getRecipientsFromString(context, address);
+    return RecipientFactory.getRecipientsFromString(context, address, false);
   }
 
   private static Recipients getMmsRecipient(Context context, Cursor c) throws RecipientFormattingException {
     long messageId        = c.getLong(c.getColumnIndexOrThrow(MmsDatabase.ID));
     String address        = DatabaseFactory.getMmsDatabase(context).getMessageRecipient(messageId);
-    return RecipientFactory.getRecipientsFromString(context, address);
+    return RecipientFactory.getRecipientsFromString(context, address, false);
   }
 
   private static Recipients getMostRecentRecipients(Context context, Cursor c) {

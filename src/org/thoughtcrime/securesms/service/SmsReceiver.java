@@ -102,7 +102,7 @@ public class SmsReceiver {
   private void storeKeyExchangeMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true)) {
       try {
-        Recipient recipient                   = new Recipient(null, message.getDisplayOriginatingAddress(), null);
+        Recipient recipient                   = new Recipient(null, message.getDisplayOriginatingAddress(), null, null);
         KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(messageBody);
         KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
 

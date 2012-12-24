@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,8 +45,9 @@ public class CanonicalAddressDatabase {
 
   private static CanonicalAddressDatabase instance;
   private final DatabaseHelper databaseHelper;
-  private final HashMap<String,Long> addressCache = new HashMap<String,Long>();
-  private final Map<String,String> idCache        = Collections.synchronizedMap(new HashMap<String,String>());
+
+  private final Map<String,Long> addressCache = Collections.synchronizedMap(new HashMap<String,Long>());
+  private final Map<String,String> idCache    = Collections.synchronizedMap(new HashMap<String,String>());
 
   public static CanonicalAddressDatabase getInstance(Context context) {
     synchronized (lock) {
@@ -58,18 +60,45 @@ public class CanonicalAddressDatabase {
 
   private CanonicalAddressDatabase(Context context) {
     databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    fillCache();
+  }
+
+  private void fillCache() {
+    Cursor cursor = null;
+
+    try {
+      SQLiteDatabase db = databaseHelper.getReadableDatabase();
+      cursor            = db.query(TABLE, null, null, null, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        long id        = cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN));
+        String address = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS_COLUMN));
+
+        if (address == null || address.trim().length() == 0)
+          address = "Anonymous";
+
+        idCache.put(id+"", address);
+        addressCache.put(address, id);
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
   }
 
   public String getAddressFromId(String id) {
     if (id == null || id.trim().equals("")) return "Anonymous";
 
     String cachedAddress = idCache.get(id);
+
     if (cachedAddress != null)
       return cachedAddress;
 
     Cursor cursor = null;
 
     try {
+      Log.w("CanonicalAddressDatabase", "Hitting DB on query [ID].");
+
       SQLiteDatabase db = databaseHelper.getReadableDatabase();
       cursor            = db.query(TABLE, null, ID_COLUMN + " = ?", new String[] {id+""}, null, null, null);
 
@@ -127,7 +156,7 @@ public class CanonicalAddressDatabase {
   private long getCanonicalAddressFromDatabase(String address) {
     Cursor cursor = null;
     try {
-      SQLiteDatabase db           = databaseHelper.getReadableDatabase();
+      SQLiteDatabase db           = databaseHelper.getWritableDatabase();
       String[] selectionArguments = new String[] {address};
       cursor                      = db.query(TABLE, ID_PROJECTION, SELECTION, selectionArguments, null, null, null);
 

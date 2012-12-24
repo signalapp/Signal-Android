@@ -140,7 +140,7 @@ public class MmsDatabase extends Database {
     try {
       EncodedStringValue encodedString = headers.getEncodedStringValue(PduHeaders.FROM);
       String fromString                = new String(encodedString.getTextString(), CharacterSets.MIMENAME_ISO_8859_1);
-      Recipients recipients            = RecipientFactory.getRecipientsFromString(context, fromString);
+      Recipients recipients            = RecipientFactory.getRecipientsFromString(context, fromString, false);
       return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);

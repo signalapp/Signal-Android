@@ -175,7 +175,7 @@ public class SmsSender {
 
   private String getAsymmetricEncrypt(MasterSecret masterSecret, String body, String address) {
     synchronized (SessionCipher.CIPHER_LOCK) {
-      SessionCipher cipher = new SessionCipher(context, masterSecret, new Recipient(null, address, null), new SmsTransportDetails());
+      SessionCipher cipher = new SessionCipher(context, masterSecret, new Recipient(null, address, null, null), new SmsTransportDetails());
       return new String(cipher.encryptMessage(body.getBytes()));
     }
   }

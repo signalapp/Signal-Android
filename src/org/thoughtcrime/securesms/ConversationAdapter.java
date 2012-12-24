@@ -266,10 +266,10 @@ public class ConversationAdapter extends CursorAdapter {
 
     try {
       if (address == null) recipient = recipients.getPrimaryRecipient();
-      else                 recipient = RecipientFactory.getRecipientsFromString(context, address).getPrimaryRecipient();
+      else                 recipient = RecipientFactory.getRecipientsFromString(context, address, false).getPrimaryRecipient();
     } catch (RecipientFormattingException e) {
       Log.w("ConversationAdapter", e);
-      recipient = new Recipient("Unknown", "Unknown", null);
+      recipient = new Recipient("Unknown", "Unknown", null, null);
     }
 
     return recipient;

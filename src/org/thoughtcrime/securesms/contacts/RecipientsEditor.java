@@ -17,15 +17,6 @@
 
 package org.thoughtcrime.securesms.contacts;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
-
 import android.content.Context;
 import android.telephony.PhoneNumberUtils;
 import android.text.Annotation;
@@ -39,10 +30,19 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MotionEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.MultiAutoCompleteTextView;
+
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provide UI for editing the recipients of multi-media messages.
@@ -52,7 +52,7 @@ public class RecipientsEditor extends MultiAutoCompleteTextView {
     private final RecipientsEditorTokenizer mTokenizer;
     private char mLastSeparator = ',';
     private Context mContext;
-    
+
     public RecipientsEditor(Context context, AttributeSet attrs) {
         super(context, attrs, android.R.attr.autoCompleteTextViewStyle);
         mContext = context;
@@ -131,7 +131,7 @@ public class RecipientsEditor extends MultiAutoCompleteTextView {
     public Recipients constructContactsFromInput() {
     	Recipients r = null;
         try {
-			r = RecipientFactory.getRecipientsFromString(mContext, mTokenizer.getRawString() );
+			r = RecipientFactory.getRecipientsFromString(mContext, mTokenizer.getRawString(), false);
 		} catch (RecipientFormattingException e) {
 			Log.w( "RecipientsEditor", e);
 		}

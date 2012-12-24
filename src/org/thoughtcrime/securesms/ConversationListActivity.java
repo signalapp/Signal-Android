@@ -329,7 +329,7 @@ public class ConversationListActivity extends SherlockFragmentActivity
     if (intent.getAction() != null && intent.getAction().equals("android.intent.action.SENDTO")) {
       Log.w("ConversationListActivity", "Intent has sendto action...");
       try {
-        recipients = RecipientFactory.getRecipientsFromString(this, intent.getData().getSchemeSpecificPart());
+        recipients = RecipientFactory.getRecipientsFromString(this, intent.getData().getSchemeSpecificPart(), false);
         thread     = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
       } catch (RecipientFormattingException rfe) {
         recipients = null;

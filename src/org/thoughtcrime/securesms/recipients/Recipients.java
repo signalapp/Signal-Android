@@ -21,6 +21,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.thoughtcrime.securesms.crypto.KeyUtil;
+import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.NumberUtil;
 
 import java.util.ArrayList;
@@ -66,6 +67,12 @@ public class Recipients implements Parcelable {
     assert(!this.recipients.isEmpty());
     this.recipients = this.recipients.subList(0, 1);
     return this;
+  }
+
+  public void setListener(RecipientModifiedListener listener) {
+    for (Recipient recipient : recipients) {
+      recipient.setListener(listener);
+    }
   }
 
   public boolean isEmailRecipient() {

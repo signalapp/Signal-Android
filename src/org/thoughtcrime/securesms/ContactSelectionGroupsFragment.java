@@ -95,7 +95,7 @@ public class ContactSelectionGroupsFragment extends SherlockListFragment
 
       for (ContactData contactData : contactDataList) {
         for (NumberData numberData : contactData.numbers) {
-          recipientList.add(new Recipient(contactData.name, numberData.number, null));
+          recipientList.add(new Recipient(contactData.name, numberData.number, null, null));
         }
       }
     }

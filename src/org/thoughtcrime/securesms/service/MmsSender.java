@@ -108,7 +108,7 @@ public class MmsSender extends MmscProcessor {
 
   private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipient, byte[] pduBytes) {
     synchronized (SessionCipher.CIPHER_LOCK) {
-      SessionCipher cipher = new SessionCipher(context, masterSecret, new Recipient(null, recipient, null), new TextTransport());
+      SessionCipher cipher = new SessionCipher(context, masterSecret, new Recipient(null, recipient, null, null), new TextTransport());
       return cipher.encryptMessage(pduBytes);
     }
   }

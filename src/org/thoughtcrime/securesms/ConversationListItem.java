@@ -22,6 +22,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.text.Spannable;
@@ -30,7 +31,6 @@ import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -52,7 +52,9 @@ import java.util.Set;
  * @author Moxie Marlinspike
  */
 
-public class ConversationListItem extends RelativeLayout {
+public class ConversationListItem extends RelativeLayout
+                                  implements Recipient.RecipientModifiedListener
+{
 
   private Context           context;
   private Set<Long>         selectedThreads;
@@ -62,18 +64,26 @@ public class ConversationListItem extends RelativeLayout {
   private TextView          fromView;
   private TextView          dateView;
   private CheckBox          checkbox;
+  private long              count;
+  private boolean           read;
 
   private ImageView         contactPhotoImage;
   private QuickContactBadge contactPhotoBadge;
 
-  public ConversationListItem(Context context, Set<Long> selectedThreads) {
+  private final Handler handler = new Handler();
+
+  public ConversationListItem(Context context) {
     super(context);
+    this.context = context;
+  }
 
-    LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    li.inflate(R.layout.conversation_list_item_view, this, true);
+  public ConversationListItem(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    this.context = context;
+  }
 
-    this.context         = context;
-    this.selectedThreads = selectedThreads;
+  @Override
+  protected void onFinishInflate() {
     this.subjectView     = (TextView)findViewById(R.id.subject);
     this.fromView        = (TextView)findViewById(R.id.from);
     this.dateView        = (TextView)findViewById(R.id.date);
@@ -86,14 +96,14 @@ public class ConversationListItem extends RelativeLayout {
     intializeListeners();
   }
 
-  public ConversationListItem(Context context, AttributeSet attrs) {
-    super(context, attrs);
-  }
+  public void set(ThreadRecord thread, Set<Long> selectedThreads, boolean batchMode) {
+    this.selectedThreads = selectedThreads;
+    this.recipients      = thread.getRecipients();
+    this.threadId        = thread.getThreadId();
+    this.count           = thread.getCount();
+    this.read            = thread.isRead();
 
-  public void set(ThreadRecord thread, boolean batchMode) {
-    this.recipients = thread.getRecipients();
-    this.threadId   = thread.getThreadId();
-    this.fromView.setText(formatFrom(recipients, thread.getCount(), thread.isRead()));
+    this.fromView.setText(formatFrom(recipients, count, read));
 
     if (thread.isKeyExchange())
       this.subjectView.setText(R.string.ConversationListItem_key_exchange_message,
@@ -114,6 +124,7 @@ public class ConversationListItem extends RelativeLayout {
     else           checkbox.setVisibility(View.GONE);
 
     setContactPhoto(this.recipients.getPrimaryRecipient());
+    this.recipients.setListener(this);
   }
 
   private void intializeListeners() {
@@ -187,5 +198,16 @@ public class ConversationListItem extends RelativeLayout {
       if (isChecked) selectedThreads.add(threadId);
       else           selectedThreads.remove(threadId);
     }
+  }
+
+  @Override
+  public void onModified(Recipient recipient) {
+    handler.post(new Runnable() {
+      @Override
+      public void run() {
+        ConversationListItem.this.fromView.setText(formatFrom(recipients, count, read));
+        setContactPhoto(ConversationListItem.this.recipients.getPrimaryRecipient());
+      }
+    });
   }
 }

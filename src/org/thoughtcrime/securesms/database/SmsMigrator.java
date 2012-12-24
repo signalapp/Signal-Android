@@ -128,7 +128,7 @@ public class SmsMigrator {
 
     try {
       if (sb.length() == 0) return null;
-      else                  return RecipientFactory.getRecipientsFromString(context, sb.toString());
+      else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
     } catch (RecipientFormattingException rfe) {
       Log.w("SmsMigrator", rfe);
       return null;

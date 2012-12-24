@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
@@ -37,9 +38,10 @@ import java.util.Set;
  *
  * @author Moxie Marlinspike
  */
-public class ConversationListAdapter extends CursorAdapter  {
+public class ConversationListAdapter extends CursorAdapter {
 
   private final Context context;
+  private final LayoutInflater inflater;
 
   private final Set<Long> batchSet = Collections.synchronizedSet(new HashSet<Long>());
   private boolean batchMode        = false;
@@ -47,21 +49,19 @@ public class ConversationListAdapter extends CursorAdapter  {
   public ConversationListAdapter(Context context, Cursor cursor) {
     super(context, cursor);
     this.context = context;
+    this.inflater = LayoutInflater.from(context);
   }
 
   @Override
   public View newView(Context context, Cursor cursor, ViewGroup parent) {
-    ConversationListItem view = new ConversationListItem(context, batchSet);
-    bindView(view, context, cursor);
-
-    return view;
+    return inflater.inflate(R.layout.conversation_list_item_view, parent, false);
   }
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
     long threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
     String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
-    Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientId);
+    Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientId, true);
 
     long date             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
     long count            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
@@ -70,7 +70,7 @@ public class ConversationListAdapter extends CursorAdapter  {
     ThreadRecord thread = new ThreadRecord(context, recipients, date, count, read == 1, threadId);
     setBody(cursor, thread);
 
-    ((ConversationListItem)view).set(thread, batchMode);
+    ((ConversationListItem)view).set(thread, batchSet, batchMode);
   }
 
   protected void filterBody(ThreadRecord thread, String body) {

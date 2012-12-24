@@ -84,7 +84,7 @@ public class SmsDatabase extends Database {
 
   private long insertMessageReceived(SmsMessage message, String body, long type) {
     List<Recipient> recipientList = new ArrayList<Recipient>(1);
-    recipientList.add(new Recipient(null, message.getDisplayOriginatingAddress(), null));
+    recipientList.add(new Recipient(null, message.getDisplayOriginatingAddress(), null, null));
     Recipients recipients         = new Recipients(recipientList);
 
     long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);

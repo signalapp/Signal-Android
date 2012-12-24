@@ -51,8 +51,8 @@ import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.protocol.Tag;
+import org.thoughtcrime.securesms.recipients.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 
 import java.io.File;
@@ -283,20 +283,9 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-
   private void setContactPhotoForUserIdentity() {
-    Uri selfIdentityContact = ContactIdentityManager.getInstance(context).getSelfIdentityUri();
-
-    if (selfIdentityContact!= null) {
-      Recipient recipient = RecipientFactory.getRecipientForUri(context, selfIdentityContact);
-      if (recipient != null) {
-        contactPhoto.setImageBitmap(recipient.getContactPhoto());
-        return;
-      }
-    } else {
-      contactPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_contact_picture));
-    }
-
+    Uri uri = ContactIdentityManager.getInstance(context).getSelfIdentityUri();
+    contactPhoto.setImageBitmap(ContactPhotoFactory.getLocalUserContactPhoto(context, uri));
     contactPhoto.setVisibility(View.VISIBLE);
   }
 

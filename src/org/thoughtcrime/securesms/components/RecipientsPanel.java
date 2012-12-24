@@ -81,7 +81,7 @@ public class RecipientsPanel extends RelativeLayout {
 
   public Recipients getRecipients() throws RecipientFormattingException {
     String rawText        = recipientsText.getText().toString();
-    Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(), rawText);
+    Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(), rawText, false);
 
     if (recipients.isEmpty())
       throw new RecipientFormattingException("Recipient List Is Empty!");
