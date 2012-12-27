@@ -16,6 +16,10 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 public class Util {
 
   public static byte[] combine(byte[] one, byte[] two) {
@@ -60,6 +64,10 @@ public class Util {
     splitString[count-1] = string.substring((count-1) * maxLength);
 
     return splitString;
+  }
+
+  public static ExecutorService newSingleThreadedLifoExecutor() {
+    return new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
   }
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {

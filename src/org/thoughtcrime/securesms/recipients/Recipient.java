@@ -20,8 +20,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -46,38 +49,33 @@ public class Recipient implements Parcelable {
   private RecipientModifiedListener listener;
   private boolean asynchronousUpdateComplete = false;
 
-//  public Recipient(String name, String number, Uri contactUri, Bitmap contactPhoto) {
-//    this(name, number, contactPhoto);
-//    this.contactUri = contactUri;
-//  }
+  public Recipient(String number, Bitmap contactPhoto,
+                   ListenableFutureTask<RecipientDetails> future)
+  {
+    this.number = number;
+    this.contactPhoto.set(contactPhoto);
 
-//  public Recipient(String number, Bitmap contactPhoto,
-//                   ListenableFutureTask<RecipientDetails> future)
-//  {
-//    this.number       = number;
-//    this.contactUri   = null;
-//    this.contactPhoto.set(contactPhoto);
-//
-//    future.setListener(new FutureTaskListener<RecipientDetails>() {
-//      @Override
-//      public void onSuccess(RecipientDetails result) {
-//        if (result != null) {
-//          Recipient.this.name.set(result.name);
-//          Recipient.this.contactPhoto.set(result.avatar);
-//
-//          synchronized(this) {
-//            if (listener == null) asynchronousUpdateComplete = true;
-//            else                  listener.onModified(Recipient.this);
-//          }
-//        }
-//      }
-//
-//      @Override
-//      public void onFailure(Throwable error) {
-//        Log.w("Recipient", error);
-//      }
-//    });
-//  }
+    future.setListener(new FutureTaskListener<RecipientDetails>() {
+      @Override
+      public void onSuccess(RecipientDetails result) {
+        if (result != null) {
+          Recipient.this.name.set(result.name);
+          Recipient.this.contactUri.set(result.contactUri);
+          Recipient.this.contactPhoto.set(result.avatar);
+
+          synchronized(this) {
+            if (listener == null) asynchronousUpdateComplete = true;
+            else                  listener.onModified(Recipient.this);
+          }
+        }
+      }
+
+      @Override
+      public void onFailure(Throwable error) {
+        Log.w("Recipient", error);
+      }
+    });
+  }
 
   public Recipient(String name, String number, Uri contactUri, Bitmap contactPhoto) {
     this.number = number;
@@ -110,18 +108,18 @@ public class Recipient implements Parcelable {
     return 0;
   }
 
-  public void updateAsynchronousContent(RecipientDetails result) {
-    if (result != null) {
-      Recipient.this.name.set(result.name);
-      Recipient.this.contactUri.set(result.contactUri);
-      Recipient.this.contactPhoto.set(result.avatar);
-
-      synchronized(this) {
-        if (listener == null) asynchronousUpdateComplete = true;
-        else                  listener.onModified(Recipient.this);
-      }
-    }
-  }
+//  public void updateAsynchronousContent(RecipientDetails result) {
+//    if (result != null) {
+//      Recipient.this.name.set(result.name);
+//      Recipient.this.contactUri.set(result.contactUri);
+//      Recipient.this.contactPhoto.set(result.avatar);
+//
+//      synchronized(this) {
+//        if (listener == null) asynchronousUpdateComplete = true;
+//        else                  listener.onModified(Recipient.this);
+//      }
+//    }
+//  }
 
   public synchronized void setListener(RecipientModifiedListener listener) {
     this.listener = listener;
