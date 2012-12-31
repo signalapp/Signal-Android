@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
 
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.NumberUtil;
 
