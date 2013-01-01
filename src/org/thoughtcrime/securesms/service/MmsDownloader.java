@@ -71,20 +71,20 @@ public class MmsDownloader extends MmscProcessor {
                                                              getApnInformation());
       RetrieveConf retrieved = (RetrieveConf)new PduParser(pdu).parse();
 
+      if (retrieved == null)
+        throw new IOException("Bad retrieved PDU");
+
       for (int i=0;i<retrieved.getBody().getPartsNum();i++) {
-	Log.w("MmsDownloader", "Sent MMS part of content-type: " + new String(retrieved.getBody().getPart(i).getContentType()));
+        Log.w("MmsDownloader", "Sent MMS part of content-type: " +
+              new String(retrieved.getBody().getPart(i).getContentType()));
       }
 
-      if (retrieved == null)
-	throw new IOException("Bad retrieved PDU");
-
-
       if (retrieved.getSubject() != null && WirePrefix.isEncryptedMmsSubject(retrieved.getSubject().getString())) {
-	long messageId = mmsDatabase.insertSecureMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
-	if (item.getMasterSecret() != null)
-	  DecryptingQueue.scheduleDecryption(context, item.getMasterSecret(), messageId, item.getThreadId(), retrieved);
-      } else {
-	mmsDatabase.insertMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
+        long messageId = mmsDatabase.insertSecureMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
+        if (item.getMasterSecret() != null)
+          DecryptingQueue.scheduleDecryption(context, item.getMasterSecret(), messageId, item.getThreadId(), retrieved);
+        } else {
+          mmsDatabase.insertMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
       }
 
       mmsDatabase.delete(item.getMessageId());
@@ -93,7 +93,7 @@ public class MmsDownloader extends MmscProcessor {
       //			MmsSendHelper.sendMms(context, new PduComposer(context, notifyResponse).make());
 
       if (this.pendingMessages.isEmpty())
-	finishConnectivity();
+        finishConnectivity();
 
     } catch (IOException e) {
       DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_SOFT_FAILURE);
@@ -109,10 +109,10 @@ public class MmsDownloader extends MmscProcessor {
   protected void handleConnectivityChange() {
     if (!isConnected()) {
       if (!isConnectivityPossible() && !pendingMessages.isEmpty()) {
-	DatabaseFactory.getMmsDatabase(context).markDownloadState(pendingMessages.remove().getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
-	toastHandler.makeToast("No connectivity available for MMS download, try again later...");
-	Log.w("MmsDownloadService", "Unable to download MMS, please try again later.");
-	finishConnectivity();
+        DatabaseFactory.getMmsDatabase(context).markDownloadState(pendingMessages.remove().getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
+        toastHandler.makeToast("No connectivity available for MMS download, try again later...");
+        Log.w("MmsDownloadService", "Unable to download MMS, please try again later.");
+        finishConnectivity();
       }
 
       return;
@@ -125,10 +125,10 @@ public class MmsDownloader extends MmscProcessor {
   public void process(MasterSecret masterSecret, Intent intent) {
     if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_ACTION)) {
       DownloadItem item = new DownloadItem(intent.getLongExtra("message_id", -1),
-					   intent.getLongExtra("thread_id", -1),
-					   intent.getStringExtra("content_location"),
-					   intent.getByteArrayExtra("transaction_id"),
-					   masterSecret);
+                                           intent.getLongExtra("thread_id", -1),
+                                           intent.getStringExtra("content_location"),
+                                           intent.getByteArrayExtra("transaction_id"),
+                                           masterSecret);
 
       handleDownloadMms(item);
     } else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_CONNECTIVITY_ACTION)) {
@@ -174,9 +174,7 @@ public class MmsDownloader extends MmscProcessor {
   }
 
   @Override
-    protected String getConnectivityAction() {
+  protected String getConnectivityAction() {
     return SendReceiveService.DOWNLOAD_MMS_CONNECTIVITY_ACTION;
   }
-
-
 }
