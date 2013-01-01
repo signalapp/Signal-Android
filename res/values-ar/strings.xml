@@ -205,6 +205,10 @@
   <string name="conversation_activity__type_message">اكتب الرسالة</string>
   <string name="conversation_activity__send">ارسال</string>
   <string name="conversation_activity__remove">إزالة</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">تحميل</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">تحميل</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع الدفعات</string>
   <!--create_passphrase_activity-->
@@ -357,6 +361,4 @@
   <string name="verify_keys__menu_verified">تم التحقق!</string>
   <!--Misc. piggybacking-->
   <!--EOF-->
-  <string name="conversation_item_sent__download">تحميل</string>
-  <string name="conversation_item_received__download">تحميل</string>
 </resources>

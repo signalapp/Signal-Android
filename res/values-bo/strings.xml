@@ -213,6 +213,12 @@
   <string name="conversation_activity__type_message">འཕྲིན་ཐུང་ཕྲིས། </string>
   <string name="conversation_activity__send">ཐོངས། </string>
   <string name="conversation_activity__remove">ཕྱིར་ཕུད། </string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">ཕབ་ལེན་བྱོས། </string>
+  <string name="conversation_item_sent__downloading">ཕབ་ལེན་བྱེད་བཞིན་ཡོད། </string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">ཕབ་ལེན་བྱོས། </string>
+  <string name="conversation_item_received__downloading">ཕབ་ལེན་བྱེད་བཞིན་ཡོད། </string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">སྡེ་ཚན་སྒྲིགས། </string>
   <!--create_passphrase_activity-->
@@ -367,8 +373,4 @@
   <!--Misc. piggybacking-->
   <string name="PlayStoreListing">ཡི་གེའི་ཉེན་སྲུང་ནི། བདེ་སྲུང་ཡར་ཐོན་ཅན་གྱི་འཕྲིན་ཐུང་ཉེར་སྤྱོད་མ་ལག་ཞིག་ཡིན་ཞིང་དེས་སོར་གནས་འཕྲིན་ཐུང་ཉེར་སྤྱོད་ཀྱི་ཚབ་ལྟ་བུ་བྱེད་ཀྱི་ཡོད། ཡི་གེའི་ཉེན་སྲུང་བེད་སྤྱོད་གཏོང་མཁན་ནང་ཕན་ཚུན་བར་གྱི་འཕྲིན་ཐུང་དག་གསང་སྡོམ་བྱས་ཡོད་པའི་མ་ཟད་འཕྲིན་ཡིག་ཚང་མ་མ་ལག་གི་གསང་སྡོམ་རེའུ་མིག་གི་ཁོངས་སུ་ཉར་ཡོད། གལ་སྲིད་ཁྱེད་རང་གི་ལག་འཁྱེར་ཁ་པར་བོར་བའམ་བརྐུས་བ་སོགས་བྱུང་ན། ཁྱེད་ཀྱི་འཕྲིན་ཐུང་དག་བདེ་འཇགས་ཡིན་ལ་ཡི་གེའི་ཉེན་སྲུང་བེད་སྤྱོད་གཏོང་མཁན་གཞན་དེ་ཡང་དྲ་ལམ་ནས་བྱ་ར་བྱེད་མི་ཐུབ། </string>
   <!--EOF-->
-  <string name="conversation_item_sent__download">ཕབ་ལེན་བྱོས། </string>
-  <string name="conversation_item_sent__downloading">ཕབ་ལེན་བྱེད་བཞིན་ཡོད། </string>
-  <string name="conversation_item_received__download">ཕབ་ལེན་བྱོས། </string>
-  <string name="conversation_item_received__downloading">ཕབ་ལེན་བྱེད་བཞིན་ཡོད། </string>
 </resources>

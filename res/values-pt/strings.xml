@@ -27,6 +27,7 @@
   <string name="ApplicationMigrationManager_copy">Copiar</string>
   <string name="ApplicationMigrationManager_dont_copy">Não copiar</string>
   <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Correntemente: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">Não encontrado!</string>
   <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">Não foi encontrada uma chave de identidade válida para o contacto especificado.</string>
   <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">Não tem uma chave de identidade!</string>
@@ -72,6 +73,9 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatário não é um endereço SMS ou email válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">A mensagem está vazia!</string>
   <string name="ConversationActivity_forward_message_prefix">FWD</string>
+  <string name="ConversationActivity_group_conversation_recipients">Agrupar destinatários de conversa</string>
+  <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d destinatários no grupo</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remetente: %1$s⏎ Transporte: %2$s⏎ Enviadas/Recebidas:%3$s</string>
@@ -209,6 +213,12 @@
   <string name="conversation_activity__type_message">Digite a mensagem</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Remover</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Transferir</string>
+  <string name="conversation_item_sent__downloading">A transferir</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Transferir</string>
+  <string name="conversation_item_received__downloading">A transferir</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selecção em grupo</string>
   <!--create_passphrase_activity-->
@@ -309,6 +319,11 @@
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lento</string>
   <string name="preferences__custom">Personalizado</string>
+  <string name="preferences__advanced_mms_access_point_names">Avançado: APN de MMS</string>
+  <string name="preferences__enable_local_apns">Habilitar APNs locais</string>
+  <string name="preferences__use_apn_information_configured_here_when_system_apn_information_is_unavailable">Usar informação de APN configurada aqui caso informação de APN do sistema não esteja disponível.</string>
+  <string name="preferences__mmsc_url_required">URL do MMSC (Necessário)</string>
+  <string name="preferences__mms_proxy_optional">Proxy MMS (Opcional)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -344,6 +359,7 @@
   <string name="conversation__menu_delete_thread">Apagar conversa</string>
   <string name="conversation__menu_compare">Comparar</string>
   <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Comparar</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Apresente o código QR para comparar</string>
@@ -360,5 +376,6 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
   <!--Misc. piggybacking-->
+  <string name="PlayStoreListing">TextSecure é umaaplicação de mensagens seguras que funciona como uma alternativa integral à aplicação de mensagens por omissão. Mensagens para outros utilizadores TextSecure são cifradas em trânsito e todas as mensagens são armazenadas numa base de dados cifrada no dispositivo. Se o seu telemóvel for perdido ou roubado, as suas mensages estarão seguras e comunicações com outros utilizadores TextSecure não podem ser monitorizadas em trânsito.</string>
   <!--EOF-->
 </resources>

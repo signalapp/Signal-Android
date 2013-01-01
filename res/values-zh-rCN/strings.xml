@@ -213,6 +213,12 @@
   <string name="conversation_activity__type_message">输入消息</string>
   <string name="conversation_activity__send">发送</string>
   <string name="conversation_activity__remove">删除</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">下载</string>
+  <string name="conversation_item_sent__downloading">正在下载</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">下载</string>
+  <string name="conversation_item_received__downloading">正在下载</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
   <!--create_passphrase_activity-->
@@ -367,8 +373,4 @@
   <!--Misc. piggybacking-->
   <string name="PlayStoreListing">TextSecure 是一个安全增强文本消息应用程序，用于完全替代默认文本消息应用程序。 无线发送给其他 TextSecure 用户的消息都经过加密，同时所有文本消息都存储在设备的加密数据库中。 如果电话丢失或被盗，您的消息将保持安全，同时无法空中监控与其他 TextSecure 用户的无线通信。</string>
   <!--EOF-->
-  <string name="conversation_item_sent__download">下载</string>
-  <string name="conversation_item_sent__downloading">正在下载</string>
-  <string name="conversation_item_received__download">下载</string>
-  <string name="conversation_item_received__downloading">正在下载</string>
 </resources>

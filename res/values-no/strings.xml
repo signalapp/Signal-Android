@@ -213,6 +213,12 @@
   <string name="conversation_activity__type_message">Skriv melding</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slett</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Last ned</string>
+  <string name="conversation_item_sent__downloading">Laster ned</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Last ned</string>
+  <string name="conversation_item_received__downloading">Laster ned</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch-valg modus</string>
   <!--create_passphrase_activity-->
@@ -313,6 +319,11 @@
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Sakte</string>
   <string name="preferences__custom">Tilpasset</string>
+  <string name="preferences__advanced_mms_access_point_names">Avansert: MMS Aksesspunkt navn (APN)</string>
+  <string name="preferences__enable_local_apns">Aktiver lokale APN\'er</string>
+  <string name="preferences__use_apn_information_configured_here_when_system_apn_information_is_unavailable">Benytt APN informasjonen som er konfigurert her når systemets APN informasjon er utilgjengelig.</string>
+  <string name="preferences__mmsc_url_required">MMSC URL (Påkrevd)</string>
+  <string name="preferences__mms_proxy_optional">MMS Proxy (Opsjon)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -367,8 +378,4 @@
   <!--Misc. piggybacking-->
   <string name="PlayStoreListing">TextSecure er en tekstmeldingsapplikasjon hvor sikkerheten er forbedret. TextSecure fungerer som en full erstatning for mobilterminalens standard SMS/MMS applikasjon. Meldinger til andre TextSecure brukere sendes kryptert, og alle meldinger lagres i en kryptert database på mobilterminalen. Dersom telefonen blir stjålet eller mistet, vil meldingene være trygge, og kommunikasjon med andre TextSecure brukere kan ikke overvåkes.</string>
   <!--EOF-->
-  <string name="conversation_item_sent__download">Last ned</string>
-  <string name="conversation_item_sent__downloading">Laster ned</string>
-  <string name="conversation_item_received__download">Last ned</string>
-  <string name="conversation_item_received__downloading">Laster ned</string>
 </resources>

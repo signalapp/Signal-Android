@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecur</string>
+  <string name="app_name">TextSecure</string>
   <string name="yes">Sì</string>
   <string name="no">No</string>
   <string name="delete">Cancella</string>
   <!--ApplicationExportManager-->
   <string name="ApplicationExportManager_import_database_and_settings_title">Importare il Database e le Impostazioni?</string>
   <string name="ApplicationExportManager_import_database_and_settings_message">Importare il Database, le chiavi e le impostazioni di TextSecure dalla memoria SD?\nATTENZIONE: Questa operazione sovrascriverà ogni messaggio, chiave e impostazione esistente!</string>
-  <string name="ApplicationExportManager_importing_database_and_keys">Stò importando il Database e le chiavi</string>
-  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Stò importando il database degli SMS, le chiavi e le impostazioni...</string>
+  <string name="ApplicationExportManager_importing_database_and_keys">Sto importando il Database e le chiavi</string>
+  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Sto importando il database degli SMS, le chiavi e le impostazioni...</string>
   <string name="ApplicationExportManager_export_database_question">Esportare il Database?</string>
   <string name="ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt">Esportare il Database, le chiavi e le impostazioni di TextSecure nella memoria SD?</string>
-  <string name="ApplicationExportManager_exporting_database_and_keys">Stò esportando il Database e le chiavi</string>
-  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">Stò esportando il database degli SMS, le chiavi e le impostazioni...</string>
+  <string name="ApplicationExportManager_exporting_database_and_keys">Sto esportando il Database e le chiavi</string>
+  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">Sto esportando il database degli SMS, le chiavi e le impostazioni...</string>
   <string name="ApplicationExportManager_no_sd_card_found_exclamation">Nessuna memoria SD trovata!</string>
   <string name="ApplicationExportManager_error_exporting_to_sd_exclamation">Errore durante l\'esportazione sulla memoria SD!</string>
   <string name="ApplicationExportManager_import_successful_exclamation">Importazione completata!</string>
@@ -205,6 +205,8 @@
   <string name="conversation_activity__type_message">Inserisci il messaggio</string>
   <string name="conversation_activity__send">Invia</string>
   <string name="conversation_activity__remove">Elimina</string>
+  <!--conversation_item_sent-->
+  <!--conversation_item_received-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
   <!--create_passphrase_activity-->
@@ -305,6 +307,8 @@
   <string name="preferences__normal">Normale</string>
   <string name="preferences__slow">Lento</string>
   <string name="preferences__custom">Personalizzato</string>
+  <string name="preferences__mmsc_url_required">URL MMSC (Richiesto)</string>
+  <string name="preferences__mms_proxy_optional">Proxy MMS (Facoltativo)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

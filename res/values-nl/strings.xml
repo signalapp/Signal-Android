@@ -213,6 +213,12 @@
   <string name="conversation_activity__type_message">Typ bericht</string>
   <string name="conversation_activity__send">Verstuur</string>
   <string name="conversation_activity__remove">Verwijder</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Download</string>
+  <string name="conversation_item_sent__downloading">Downloaden</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Download</string>
+  <string name="conversation_item_received__downloading">Downloaden</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Selecteer Meerdere Tegelijk</string>
   <!--create_passphrase_activity-->
@@ -313,6 +319,11 @@
   <string name="preferences__normal">Normaal</string>
   <string name="preferences__slow">Langzaam</string>
   <string name="preferences__custom">Aangepast</string>
+  <string name="preferences__advanced_mms_access_point_names">Geavanceerd: MMS Toegangspuntnamen</string>
+  <string name="preferences__enable_local_apns">Lokale APNs gebruiken</string>
+  <string name="preferences__use_apn_information_configured_here_when_system_apn_information_is_unavailable">Gebruik de hier ingestelde APN informatie wanneer de de APN informatie van het systeem niet beschikbaar is.</string>
+  <string name="preferences__mmsc_url_required">MMSC URL (Vereist)</string>
+  <string name="preferences__mms_proxy_optional">MMS Proxy (Optioneel)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -367,8 +378,4 @@
   <!--Misc. piggybacking-->
   <string name="PlayStoreListing">TextSecure is een tekstberichtapplicatie met verbeterde beveiliging die dient als een volledige vervanger voor de standaard tekstberichtapplicatie. Berichten naar andere TextSecure gebruikers worden versleuteld en alle tekstberichten worden opgeslagen in een versleutelde database op uw telefoon. Wanneer uw telefoon kwijt of gestolen is, zijn uw berichten veilig en communicatie met andere TextSecure gebruikers kan niet afgeluisterd worden.</string>
   <!--EOF-->
-  <string name="conversation_item_sent__download">Download</string>
-  <string name="conversation_item_sent__downloading">Downloaden</string>
-  <string name="conversation_item_received__download">Download</string>
-  <string name="conversation_item_received__downloading">Downloaden</string>
 </resources>

@@ -27,6 +27,7 @@
   <string name="ApplicationMigrationManager_copy">Copier</string>
   <string name="ApplicationMigrationManager_dont_copy">Ne pas copier</string>
   <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Actuellement : %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">Introuvable !</string>
   <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">Aucune clé d’identité valide n’a été trouvée dans le contact indiqué.</string>
   <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">Vous n’avez aucune clé d’identité !</string>
@@ -212,6 +213,12 @@
   <string name="conversation_activity__type_message">Entrez le message</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__remove">Supprimer</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Télécharger</string>
+  <string name="conversation_item_sent__downloading">Téléchargement</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Télécharger</string>
+  <string name="conversation_item_received__downloading">Téléchargement</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de sélection par lot</string>
   <!--create_passphrase_activity-->
@@ -312,6 +319,11 @@
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lent</string>
   <string name="preferences__custom">Personnalisé</string>
+  <string name="preferences__advanced_mms_access_point_names">Avancé : Noms des Points d’Accès MMS</string>
+  <string name="preferences__enable_local_apns">Activer les NPAs locaux</string>
+  <string name="preferences__use_apn_information_configured_here_when_system_apn_information_is_unavailable">Utiliser les informations NPA configurées ici quand les informations NPA du système ne sont pas disponibles.</string>
+  <string name="preferences__mmsc_url_required">URL MMSC (Obligatoire)</string>
+  <string name="preferences__mms_proxy_optional">Proxy MMS (Facultatif)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -366,6 +378,4 @@
   <!--Misc. piggybacking-->
   <string name="PlayStoreListing">TextSecure est une application de messagerie texte avec une sécurité améliorée, qui constitue une alternative complète à l’application de messagerie texte par défaut. Les messages à d’autres utilisateurs de TextSecure sont chiffrés à la volée, et tous les messages sont stockés dans une base de données chiffrée sur l’appareil. Si votre téléphone est perdu ou volé, vos messages seront en sécurité, et les communications avec d’autres utilisateurs de TextSecure ne peuvent pas être espionnées à la volée.</string>
   <!--EOF-->
-  <string name="conversation_item_sent__download">Télécharger</string>
-  <string name="conversation_item_received__download">Télécharger</string>
 </resources>

@@ -36,6 +36,9 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Bevor Sie Schlüssel verwalten können, müssen Sie ihr Passwort eingeben...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sie haben noch kein Passwort festgelegt!</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Größe der Nachricht: %d KB</string>
   <string name="ConversationItem_expires_s">Läuft ab in: %s</string>
@@ -68,6 +71,7 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Die ausgewählte Audiodatei überschreitet leider die maximal mögliche Nachrichtengröße.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Der angegeben Empfänger ist keine gültige SMS oder E-Mail Adresse!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Die Nachricht ist leer!</string>
+  <string name="ConversationActivity_forward_message_prefix">Weiterleiten</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s Transport: %2$s Gesendet/Empfangen:%3$s</string>
@@ -205,6 +209,10 @@
   <string name="conversation_activity__type_message">Nachricht schreiben</string>
   <string name="conversation_activity__send">Senden</string>
   <string name="conversation_activity__remove">Löschen</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Download</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Download</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mehrfachauswahl</string>
   <!--create_passphrase_activity-->
@@ -357,6 +365,4 @@
   <string name="verify_keys__menu_verified">Verifiziert</string>
   <!--Misc. piggybacking-->
   <!--EOF-->
-  <string name="conversation_item_sent__download">Download</string>
-  <string name="conversation_item_received__download">Download</string>
 </resources>
