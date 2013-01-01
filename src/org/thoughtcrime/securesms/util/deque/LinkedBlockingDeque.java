@@ -9,13 +9,12 @@
  * it here for backwards compatibility.
  */
 
-package org.thoughtcrime.securesms.util;
+package org.thoughtcrime.securesms.util.deque;
 
 import java.util.AbstractQueue;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;

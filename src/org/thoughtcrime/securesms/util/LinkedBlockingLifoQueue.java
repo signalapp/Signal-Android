@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
+import org.thoughtcrime.securesms.util.deque.LinkedBlockingDeque;
+
 public class LinkedBlockingLifoQueue<E> extends LinkedBlockingDeque<E> {
   @Override
   public void put(E runnable) throws InterruptedException {
