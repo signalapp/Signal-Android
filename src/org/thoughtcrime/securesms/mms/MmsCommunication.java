@@ -96,6 +96,9 @@ public class MmsCommunication {
     } catch (SQLiteException sqe) {
       Log.w("MmsCommunication", sqe);
       return getLocallyConfiguredMmsConnectionParameters(context);
+    } catch (SecurityException se) {
+      Log.w("MmsCommunication", se);
+      return getLocallyConfiguredMmsConnectionParameters(context);
     } finally {
       if (cursor != null)
         cursor.close();
