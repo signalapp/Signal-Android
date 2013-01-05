@@ -152,8 +152,13 @@
                           android:dependency="pref_use_local_apns" />
       
       <EditTextPreference android:key="pref_apn_mms_proxy"
-                          android:title="@string/preferences__mms_proxy_optional"
+                          android:title="@string/preferences__mms_proxy_host_optional"
                           android:dependency="pref_use_local_apns" />
+      
+      <EditTextPreference android:key="pref_apn_mms_proxy_port"
+                          android:title="@string/preferences__mms_proxy_port_optional"
+                          android:dependency="pref_use_local_apns"
+                          android:inputType="number" />      
   </PreferenceCategory>
   
 </PreferenceScreen>

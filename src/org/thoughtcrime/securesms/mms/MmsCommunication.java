@@ -63,9 +63,10 @@ public class MmsCommunication {
       if (mmsc == null || !mmsc.startsWith("http"))
         throw new ApnUnavailableException("Malformed locally configured MMSC: " + mmsc);
 
-      String proxy = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_PREF, null);
+      String proxy = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF, null);
+      String port  = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF, null);
 
-      return new MmsConnectionParameters(mmsc, proxy, null);
+      return new MmsConnectionParameters(mmsc, proxy, port);
     }
 
     throw new ApnUnavailableException("No locally configured parameters available");
@@ -180,6 +181,9 @@ public class MmsCommunication {
     }
 
     public String getProxy() {
+      if (!hasProxy())
+        return null;
+
       return proxy;
     }
 

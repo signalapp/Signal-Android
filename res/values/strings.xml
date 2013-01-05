@@ -374,7 +374,8 @@
     <string name="preferences__enable_local_apns">Enable local APNs</string>
     <string name="preferences__use_apn_information_configured_here_when_system_apn_information_is_unavailable">Use APN information configured here when system APN information is unavailable.</string>
     <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
-    <string name="preferences__mms_proxy_optional">MMS Proxy (Optional)</string>
+    <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
+    <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>
     
                                     
     <!-- **************************************** -->

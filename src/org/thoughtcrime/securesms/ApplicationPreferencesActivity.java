@@ -77,7 +77,8 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
   public static final String USE_LOCAL_MMS_APNS_PREF = "pref_use_local_apns";
   public static final String MMSC_HOST_PREF          = "pref_apn_mmsc_host";
-  public static final String MMSC_PROXY_PREF         = "pref_apn_mms_proxy";
+  public static final String MMSC_PROXY_HOST_PREF    = "pref_apn_mms_proxy";
+  public static final String MMSC_PROXY_PORT_PREF    = "pref_apn_mms_proxy_port";
 
   @Override
   protected void onCreate(Bundle icicle) {
@@ -144,38 +145,31 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
     return false;
   }
-  
+
+  private void initializeEditTextSummary(final EditTextPreference preference) {
+    if (preference.getText() == null) {
+      preference.setSummary("Not set");
+    } else {
+      preference.setSummary(preference.getText());
+    }
+
+    preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+      @Override
+      public boolean onPreferenceChange(Preference pref, Object newValue) {
+        preference.setSummary(newValue == null ? "Not set" : (String)newValue);
+        return true;
+      }
+    });
+  }
+
   private void initializeEditTextSummaries() {
-    final EditTextPreference mmscUrlPreference  = (EditTextPreference)this.findPreference(MMSC_HOST_PREF);
-    final EditTextPreference mmsProxyPreference = (EditTextPreference)this.findPreference(MMSC_PROXY_PREF);
-    
-    if (mmscUrlPreference.getText() == null) {
-      mmscUrlPreference.setSummary("Not set");
-    } else {
-      mmscUrlPreference.setSummary(mmscUrlPreference.getText());
-    }
-    
-    if (mmsProxyPreference.getText() == null) {
-      mmsProxyPreference.setSummary("Not set");
-    } else {
-      mmsProxyPreference.setSummary(mmsProxyPreference.getText());      
-    }
-    
-    mmscUrlPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {      
-      @Override
-      public boolean onPreferenceChange(Preference preference, Object newValue) {
-        mmscUrlPreference.setSummary(newValue == null ? "Not set" : (String)newValue);
-        return true;
-      }
-    });
-    
-    mmsProxyPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-      @Override
-      public boolean onPreferenceChange(Preference preference, Object newValue) {
-        mmsProxyPreference.setSummary(newValue == null ? "Not set" : (String)newValue);
-        return true;
-      }
-    });
+    final EditTextPreference mmscUrlPreference      = (EditTextPreference)this.findPreference(MMSC_HOST_PREF);
+    final EditTextPreference mmsProxyHostPreference = (EditTextPreference)this.findPreference(MMSC_PROXY_HOST_PREF);
+    final EditTextPreference mmsProxyPortPreference = (EditTextPreference)this.findPreference(MMSC_PROXY_PORT_PREF);
+
+    initializeEditTextSummary(mmscUrlPreference);
+    initializeEditTextSummary(mmsProxyHostPreference);
+    initializeEditTextSummary(mmsProxyPortPreference);
   }
 
   private void initializeIdentitySelection() {
