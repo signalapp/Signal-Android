@@ -144,8 +144,8 @@
   <PreferenceCategory android:title="@string/preferences__advanced_mms_access_point_names">
       <CheckBoxPreference android:key="pref_use_local_apns"
                           android:defaultValue="false"
-                          android:title="@string/preferences__enable_local_apns"
-                          android:summary="@string/preferences__use_apn_information_configured_here_when_system_apn_information_is_unavailable"/>
+                          android:title="@string/preferences__enable_fallback_mmsc"
+                          android:summary="@string/preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable"/>
       
       <EditTextPreference android:key="pref_apn_mmsc_host"
                           android:title="@string/preferences__mmsc_url_required"

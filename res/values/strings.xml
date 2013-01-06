@@ -372,8 +372,8 @@
     <string name="preferences__slow">Slow</string>
     <string name="preferences__custom">Custom</string>
     <string name="preferences__advanced_mms_access_point_names">Advanced: MMS Access Point Names</string>
-    <string name="preferences__enable_local_apns">Enable local APNs</string>
-    <string name="preferences__use_apn_information_configured_here_when_system_apn_information_is_unavailable">Use APN information configured here when system APN information is unavailable.</string>
+    <string name="preferences__enable_fallback_mmsc">Enable Fallback MMSC</string>
+    <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Use MMSC information configured here when system APN information is unavailable.</string>
     <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
     <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
     <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>
