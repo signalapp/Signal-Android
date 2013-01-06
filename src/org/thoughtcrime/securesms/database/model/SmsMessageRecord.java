@@ -36,16 +36,19 @@ public class SmsMessageRecord extends MessageRecord {
 
   private final Context context;
   private final long type;
+  private final long dateSent;
 
   public SmsMessageRecord(Context context, long id,
                           Recipients recipients,
                           Recipient individualRecipient,
-                          long date, long type, long threadId,
+                          long dateSent, long dateReceived,
+                          long type, long threadId,
                           GroupData groupData)
   {
-    super(id, recipients, individualRecipient, date, threadId, groupData);
-    this.context = context.getApplicationContext();
-    this.type    = type;
+    super(id, recipients, individualRecipient, dateSent, dateReceived, threadId, groupData);
+    this.context  = context.getApplicationContext();
+    this.type     = type;
+    this.dateSent = dateSent;
   }
 
   public long getType() {

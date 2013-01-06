@@ -45,7 +45,8 @@ public class SmsDatabase extends Database {
   public  static final String THREAD_ID          = "thread_id";
   public  static final String ADDRESS            = "address";
   public  static final String PERSON             = "person";
-  public  static final String DATE               = "date";
+  public  static final String DATE_RECEIVED      = "date";
+  public  static final String DATE_SENT          = "date_sent";
   public  static final String PROTOCOL           = "protocol";
   public  static final String READ               = "read";
   public  static final String STATUS             = "status";
@@ -56,10 +57,10 @@ public class SmsDatabase extends Database {
   public  static final String SERVICE_CENTER     = "service_center";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " integer PRIMARY KEY, "                +
-    THREAD_ID + " INTEGER, " + ADDRESS + " TEXT, " + PERSON + " INTEGER, " + DATE  + " INTEGER, "    +
-    PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " + STATUS + " INTEGER DEFAULT -1,"        +
-    TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " + SUBJECT + " TEXT, " + BODY + " TEXT, " +
-    SERVICE_CENTER + " TEXT);";
+    THREAD_ID + " INTEGER, " + ADDRESS + " TEXT, " + PERSON + " INTEGER, " + DATE_RECEIVED  + " INTEGER, " +
+    DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
+    STATUS + " INTEGER DEFAULT -1," + TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " +
+    SUBJECT + " TEXT, " + BODY + " TEXT, " + SERVICE_CENTER + " TEXT);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -82,7 +83,7 @@ public class SmsDatabase extends Database {
     notifyConversationListeners(getThreadIdForMessage(id));
   }
 
-  private long insertMessageReceived(SmsMessage message, String body, long type) {
+  private long insertMessageReceived(SmsMessage message, String body, long type, long timeSent) {
     List<Recipient> recipientList = new ArrayList<Recipient>(1);
     recipientList.add(new Recipient(null, message.getDisplayOriginatingAddress(), null, null));
     Recipients recipients         = new Recipients(recipientList);
@@ -91,7 +92,8 @@ public class SmsDatabase extends Database {
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getDisplayOriginatingAddress());
-    values.put(DATE, Long.valueOf(System.currentTimeMillis()));
+    values.put(DATE_RECEIVED, Long.valueOf(System.currentTimeMillis()));
+    values.put(DATE_SENT, timeSent);
     values.put(PROTOCOL, message.getProtocolIdentifier());
     values.put(READ, Integer.valueOf(0));
 
@@ -198,11 +200,12 @@ public class SmsDatabase extends Database {
   }
 
   public long insertSecureMessageReceived(SmsMessage message, String body) {
-    return insertMessageReceived(message, body, Types.DECRYPT_IN_PROGRESS_TYPE);
+    return insertMessageReceived(message, body, Types.DECRYPT_IN_PROGRESS_TYPE,
+                                 message.getTimestampMillis());
   }
 
   public long insertMessageReceived(SmsMessage message, String body) {
-    return insertMessageReceived(message, body, Types.INBOX_TYPE);
+    return insertMessageReceived(message, body, Types.INBOX_TYPE, message.getTimestampMillis());
   }
 
   public long insertMessageSent(String address, long threadId, String body, long date, long type) {
@@ -211,7 +214,8 @@ public class SmsDatabase extends Database {
     contentValues.put(ADDRESS, address);
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(BODY, body);
-    contentValues.put(DATE, date);
+    contentValues.put(DATE_RECEIVED, date);
+    contentValues.put(DATE_SENT, date);
     contentValues.put(READ, 1);
     contentValues.put(TYPE, type);
 
@@ -297,8 +301,20 @@ public class SmsDatabase extends Database {
   }
 
   /*package*/ SQLiteStatement createInsertStatement(SQLiteDatabase database) {
-    return database.compileStatement("INSERT INTO " + TABLE_NAME + " (" + ADDRESS + ", " + PERSON + ", " + DATE + ", " + PROTOCOL + ", " + READ + ", " + STATUS + ", " + TYPE + ", " + REPLY_PATH_PRESENT + ", " + SUBJECT + ", " + BODY + ", " + SERVICE_CENTER + ", THREAD_ID) " +
-                                     " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    return database.compileStatement("INSERT INTO " + TABLE_NAME + " (" + ADDRESS + ", " +
+                                                                      PERSON + ", " +
+                                                                      DATE_SENT + ", " +
+                                                                      DATE_RECEIVED  + ", " +
+                                                                      PROTOCOL + ", " +
+                                                                      READ + ", " +
+                                                                      STATUS + ", " +
+                                                                      TYPE + ", " +
+                                                                      REPLY_PATH_PRESENT + ", " +
+                                                                      SUBJECT + ", " +
+                                                                      BODY + ", " +
+                                                                      SERVICE_CENTER +
+                                                                      ", THREAD_ID) " +
+                                     " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   }
 
   public static class Types {

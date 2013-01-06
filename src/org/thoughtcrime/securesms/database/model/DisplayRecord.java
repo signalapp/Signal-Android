@@ -30,7 +30,8 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public abstract class DisplayRecord {
 
   private final Recipients recipients;
-  private final long date;
+  private final long dateSent;
+  private final long dateReceived;
   private final long threadId;
 
   private String body;
@@ -39,11 +40,12 @@ public abstract class DisplayRecord {
   protected boolean processedKeyExchange;
   protected boolean staleKeyExchange;
 
-  public DisplayRecord(Recipients recipients, long date, long threadId) {
-    this.threadId   = threadId;
-    this.recipients = recipients;
-    this.date       = date;
-    this.emphasis   = false;
+  public DisplayRecord(Recipients recipients, long dateSent, long dateReceived, long threadId) {
+    this.threadId     = threadId;
+    this.recipients   = recipients;
+    this.dateSent     = dateSent;
+    this.dateReceived = dateReceived;
+    this.emphasis     = false;
   }
 
   public void setEmphasis(boolean emphasis) {
@@ -81,8 +83,12 @@ public abstract class DisplayRecord {
     return recipients;
   }
 
-  public long getDate() {
-    return date;
+  public long getDateSent() {
+    return dateSent;
+  }
+
+  public long getDateReceived() {
+    return dateReceived;
   }
 
   public long getThreadId() {

@@ -49,7 +49,8 @@ public class MmsDatabase extends Database {
   public  static final String TABLE_NAME         = "mms";
   public  static final String ID                 = "_id";
   private static final String THREAD_ID          = "thread_id";
-  public  static final String DATE               = "date";
+  public  static final String DATE_SENT          = "date";
+  public  static final String DATE_RECEIVED      = "date_received";
   public  static final String MESSAGE_BOX        = "msg_box";
   private static final String READ               = "read";
   private static final String MESSAGE_ID         = "m_id";
@@ -78,7 +79,7 @@ public class MmsDatabase extends Database {
   private static final String DELIVERY_REPORT    = "d_rpt";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
-    THREAD_ID + " INTEGER, " + DATE + " INTEGER, " + MESSAGE_BOX + " INTEGER, "                 +
+    THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + "INTEGER, " + MESSAGE_BOX + " INTEGER, " +
     READ + " INTEGER DEFAULT 0, " + MESSAGE_ID + " TEXT, " + SUBJECT + " TEXT, "                +
     SUBJECT_CHARSET + " INTEGER, " + CONTENT_TYPE + " TEXT, " + CONTENT_LOCATION + " TEXT, "    +
     EXPIRY + " INTEGER, " + MESSAGE_CLASS + " TEXT, " + MESSAGE_TYPE + " INTEGER, "             +
@@ -297,6 +298,10 @@ public class MmsDatabase extends Database {
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(CONTENT_LOCATION, contentLocation);
     contentValues.put(STATUS, Types.DOWNLOAD_INITIALIZED);
+    contentValues.put(DATE_RECEIVED, System.currentTimeMillis() / 1000);
+
+    if (!contentValues.containsKey(DATE_SENT))
+      contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
 
     long messageId = insertMediaMessage(retrieved, contentValues);
     return messageId;
@@ -327,8 +332,10 @@ public class MmsDatabase extends Database {
       contentValues.put(MESSAGE_BOX, Types.MESSAGE_BOX_INBOX);
       contentValues.put(THREAD_ID, threadId);
       contentValues.put(STATUS, Types.DOWNLOAD_INITIALIZED);
-      if (!contentValues.containsKey(DATE))
-        contentValues.put(DATE, System.currentTimeMillis() / 1000);
+      contentValues.put(DATE_RECEIVED, System.currentTimeMillis() / 1000);
+
+      if (!contentValues.containsKey(DATE_SENT))
+        contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
 
       long messageId = db.insert(TABLE_NAME, null, contentValues);
       addressDatabase.insertAddressesForId(messageId, headers);
@@ -353,6 +360,7 @@ public class MmsDatabase extends Database {
 
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(READ, 1);
+    contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
 
     long messageId = insertMediaMessage(sendRequest, contentValues);
     DatabaseFactory.getThreadDatabase(context).setRead(threadId);
@@ -480,7 +488,7 @@ public class MmsDatabase extends Database {
     phb.addOctet(REPORT_ALLOWED, PduHeaders.REPORT_ALLOWED);
     phb.addOctet(RETRIEVE_STATUS, PduHeaders.RETRIEVE_STATUS);
     phb.addOctet(STATUS, PduHeaders.STATUS);
-    phb.addLong(DATE, PduHeaders.DATE);
+    phb.addLong(DATE_SENT, PduHeaders.DATE);
     phb.addLong(DELIVERY_TIME, PduHeaders.DELIVERY_TIME);
     phb.addLong(EXPIRY, PduHeaders.EXPIRY);
     phb.addLong(MESSAGE_SIZE, PduHeaders.MESSAGE_SIZE);
@@ -510,7 +518,7 @@ public class MmsDatabase extends Database {
     cvb.add(REPORT_ALLOWED, headers.getOctet(PduHeaders.REPORT_ALLOWED));
     cvb.add(RETRIEVE_STATUS, headers.getOctet(PduHeaders.RETRIEVE_STATUS));
     cvb.add(STATUS, headers.getOctet(PduHeaders.STATUS));
-    cvb.add(DATE, headers.getLongInteger(PduHeaders.DATE));
+    cvb.add(DATE_SENT, headers.getLongInteger(PduHeaders.DATE));
     cvb.add(DELIVERY_TIME, headers.getLongInteger(PduHeaders.DELIVERY_TIME));
     cvb.add(EXPIRY, headers.getLongInteger(PduHeaders.EXPIRY));
     cvb.add(MESSAGE_SIZE, headers.getLongInteger(PduHeaders.MESSAGE_SIZE));

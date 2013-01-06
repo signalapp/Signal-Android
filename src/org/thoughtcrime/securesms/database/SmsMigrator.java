@@ -77,17 +77,18 @@ public class SmsMigrator {
   {
     addStringToStatement(statement, cursor, 1, SmsDatabase.ADDRESS);
     addIntToStatement(statement, cursor, 2, SmsDatabase.PERSON);
-    addIntToStatement(statement, cursor, 3, SmsDatabase.DATE);
-    addIntToStatement(statement, cursor, 4, SmsDatabase.PROTOCOL);
-    addIntToStatement(statement, cursor, 5, SmsDatabase.READ);
-    addIntToStatement(statement, cursor, 6, SmsDatabase.STATUS);
-    addIntToStatement(statement, cursor, 7, SmsDatabase.TYPE);
-    addIntToStatement(statement, cursor, 8, SmsDatabase.REPLY_PATH_PRESENT);
-    addStringToStatement(statement, cursor, 9, SmsDatabase.SUBJECT);
-    addEncryptedStringToStatement(context, statement, cursor, masterSecret, 10, SmsDatabase.BODY);
-    addStringToStatement(statement, cursor, 11, SmsDatabase.SERVICE_CENTER);
+    addIntToStatement(statement, cursor, 3, SmsDatabase.DATE_SENT);
+    addIntToStatement(statement, cursor, 4, SmsDatabase.DATE_RECEIVED);
+    addIntToStatement(statement, cursor, 5, SmsDatabase.PROTOCOL);
+    addIntToStatement(statement, cursor, 6, SmsDatabase.READ);
+    addIntToStatement(statement, cursor, 7, SmsDatabase.STATUS);
+    addIntToStatement(statement, cursor, 8, SmsDatabase.TYPE);
+    addIntToStatement(statement, cursor, 9, SmsDatabase.REPLY_PATH_PRESENT);
+    addStringToStatement(statement, cursor, 10, SmsDatabase.SUBJECT);
+    addEncryptedStringToStatement(context, statement, cursor, masterSecret, 11, SmsDatabase.BODY);
+    addStringToStatement(statement, cursor, 12, SmsDatabase.SERVICE_CENTER);
 
-    statement.bindLong(12, threadId);
+    statement.bindLong(13, threadId);
   }
 
   private static String getTheirCanonicalAddress(Context context, String theirRecipientId) {

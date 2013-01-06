@@ -190,7 +190,9 @@ public class ConversationItem extends LinearLayout {
     if      (messageRecord.isFailed())  dateText.setText(R.string.ConversationItem_error_sending_message);
     else if (messageRecord.isPending()) dateText.setText(R.string.ConversationItem_sending);
     else    dateText.setText(DateUtils.getRelativeTimeSpanString(getContext(),
-                                                                 messageRecord.getDate(),
+                                                                 (messageRecord.isOutgoing() ?
+                                                                     messageRecord.getDateSent() :
+                                                                     messageRecord.getDateReceived()),
                                                                  false));
   }
 

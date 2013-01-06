@@ -35,10 +35,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public MessageRecord(long id, Recipients recipients,
                        Recipient individualRecipient,
-                       long date, long threadId,
-                       GroupData groupData)
+                       long dateSent, long dateReceived,
+                       long threadId, GroupData groupData)
   {
-    super(recipients, date, threadId);
+    super(recipients, dateSent, dateReceived, threadId);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.groupData           = groupData;

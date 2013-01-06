@@ -37,11 +37,11 @@ public class NotificationMmsMessageRecord extends MessageRecord {
   private final byte[] transactionId;
 
   public NotificationMmsMessageRecord(long id, Recipients recipients, Recipient individualRecipient,
-                                      long date, long threadId, byte[] contentLocation,
-                                      long messageSize, long expiry,
+                                      long dateSent, long dateReceived, long threadId,
+                                      byte[] contentLocation, long messageSize, long expiry,
                                       int status, byte[] transactionId)
   {
-    super(id, recipients, individualRecipient, date, threadId, null);
+    super(id, recipients, individualRecipient, dateSent, dateReceived, threadId, null);
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;
     this.expiry          = expiry;
@@ -59,7 +59,6 @@ public class NotificationMmsMessageRecord extends MessageRecord {
   public int getStatus() {
     return this.status;
   }
-
 
   public byte[] getContentLocation() {
     return contentLocation;

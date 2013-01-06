@@ -35,6 +35,9 @@ public class MmsSmsDatabase extends Database {
   public static final String MMS_GROUP_SENT_COUNT        = "mms_group_sent_count";
   public static final String MMS_GROUP_SEND_FAILED_COUNT = "mms_group_sent_failed_count";
 
+  public static final String DATE_SENT     = "date_sent";
+  public static final String DATE_RECEIVED = "date_received";
+
   public MmsSmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
@@ -75,10 +78,10 @@ public class MmsSmsDatabase extends Database {
                                      "WHEN " + SmsDatabase.Types.FAILED_TYPE + " THEN 1 " +
                                      "ELSE 0 END)";
 
-    String[] projection = {"_id", "body", "type", "address", "subject", "normalized_date AS date", "m_type", "msg_box", "transport_type", "COUNT(_id) AS group_size", mmsGroupSentCount + " AS mms_group_sent_count", mmsGroupSentFailedCount + " AS mms_group_sent_failed_count", smsGroupSentCount + " AS sms_group_sent_count", smsGroupSentFailedCount + " AS sms_group_sent_failed_count", smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
-    String order        = "normalized_date ASC";
+    String[] projection = {"_id", "body", "type", "address", "subject", "normalized_date_sent AS date_sent", "normalized_date_received AS date_received", "m_type", "msg_box", "transport_type", "COUNT(_id) AS group_size", mmsGroupSentCount + " AS mms_group_sent_count", mmsGroupSentFailedCount + " AS mms_group_sent_failed_count", smsGroupSentCount + " AS sms_group_sent_count", smsGroupSentFailedCount + " AS sms_group_sent_failed_count", smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
+    String order        = "normalized_date_received ASC";
     String selection    = "thread_id = " + threadId;
-    String groupBy      = "normalized_date / 1000, sms_collate, mms_collate";
+    String groupBy      = "normalized_date_sent / 1000, sms_collate, mms_collate";
 
     Cursor cursor = queryTables(projection, selection, order, groupBy, null);
     setNotifyConverationListeners(cursor, threadId);
@@ -87,8 +90,11 @@ public class MmsSmsDatabase extends Database {
   }
 
   public Cursor getConversation(long threadId) {
-    String[] projection    = {"_id", "body", "type", "address", "subject", "normalized_date AS date", "m_type", "msg_box", "transport_type"};
-    String order           = "normalized_date ASC";
+    String[] projection    = {"_id", "body", "type", "address", "subject",
+                              "normalized_date_sent AS date_sent",
+                              "normalized_date_received AS date_received",
+                              "m_type", "msg_box", "transport_type"};
+    String order           = "normalized_date_received ASC";
     String selection       = "thread_id = " + threadId;
 
     Cursor cursor = queryTables(projection, selection, order, null, null);
@@ -98,8 +104,11 @@ public class MmsSmsDatabase extends Database {
   }
 
   public Cursor getConversationSnippet(long threadId) {
-    String[] projection    = {"_id", "body", "type", "address", "subject", "normalized_date AS date", "m_type", "msg_box", "transport_type"};
-    String order           = "normalized_date DESC";
+    String[] projection    = {"_id", "body", "type", "address", "subject",
+                              "normalized_date_sent AS date_sent",
+                              "normalized_date_received AS date_received",
+                              "m_type", "msg_box", "transport_type"};
+    String order           = "normalized_date_received DESC";
     String selection       = "thread_id = " + threadId;
 
     Cursor cursor = queryTables(projection, selection, order, null, "1");
@@ -107,8 +116,11 @@ public class MmsSmsDatabase extends Database {
   }
 
   public Cursor getUnread() {
-    String[] projection    = {"_id", "body", "read", "type", "address", "subject", "thread_id", "normalized_date AS date", "m_type", "msg_box", "transport_type"};
-    String order           = "normalized_date ASC";
+    String[] projection    = {"_id", "body", "read", "type", "address", "subject", "thread_id",
+                              "normalized_date_sent AS date_sent",
+                              "normalized_date_received AS date_received",
+                              "m_type", "msg_box", "transport_type"};
+    String order           = "normalized_date_received ASC";
     String selection       = "read = 0";
 
     Cursor cursor = queryTables(projection, selection, order, null, null);
@@ -123,8 +135,8 @@ public class MmsSmsDatabase extends Database {
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String groupBy, String limit) {
-    String[] mmsProjection = {"date * 1000 AS normalized_date", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "transport_type"};
-    String[] smsProjection = {"date * 1 AS normalized_date", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "transport_type"};
+    String[] mmsProjection = {"date * 1000 AS normalized_date_sent", "date_received * 1000 AS normalized_date_received", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "transport_type"};
+    String[] smsProjection = {"date_sent * 1 AS normalized_date_sent", "date * 1 AS normalized_date_received", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "transport_type"};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -140,6 +152,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add("m_type");
     mmsColumnsPresent.add("msg_box");
     mmsColumnsPresent.add("date");
+    mmsColumnsPresent.add("date_received");
     mmsColumnsPresent.add("read");
     mmsColumnsPresent.add("thread_id");
 
@@ -149,12 +162,13 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add("type");
     smsColumnsPresent.add("address");
     smsColumnsPresent.add("subject");
+    smsColumnsPresent.add("date_sent");
     smsColumnsPresent.add("date");
     smsColumnsPresent.add("read");
     smsColumnsPresent.add("thread_id");
 
-    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery("transport_type", mmsProjection, mmsColumnsPresent, 0, "mms", selection, null, null, null);
-    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery("transport_type", smsProjection, smsColumnsPresent, 0, "sms", selection, null, null, null);
+    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery("transport_type", mmsProjection, mmsColumnsPresent, 2, "mms", selection, null, null, null);
+    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery("transport_type", smsProjection, smsColumnsPresent, 2, "sms", selection, null, null, null);
 
     SQLiteQueryBuilder unionQueryBuilder = new SQLiteQueryBuilder();
     String unionQuery = unionQueryBuilder.buildUnionQuery(new String[] {smsSubQuery, mmsSubQuery}, order, null);

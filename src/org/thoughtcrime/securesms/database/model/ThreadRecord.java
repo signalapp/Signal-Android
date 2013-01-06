@@ -38,7 +38,7 @@ public class ThreadRecord extends DisplayRecord {
                       long date, long count,
                       boolean read, long threadId)
   {
-    super(recipients, date, threadId);
+    super(recipients, date, date, threadId);
     this.context = context.getApplicationContext();
     this.count   = count;
     this.read    = read;
@@ -66,6 +66,10 @@ public class ThreadRecord extends DisplayRecord {
 
   public boolean isRead() {
     return read;
+  }
+
+  public long getDate() {
+    return getDateReceived();
   }
 
 }

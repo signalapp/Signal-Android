@@ -27,7 +27,8 @@ public class DatabaseFactory {
 
   private static final int INTRODUCED_IDENTITIES_VERSION = 2;
   private static final int INTRODUCED_INDEXES_VERSION    = 3;
-  private static final int DATABASE_VERSION              = 3;
+  private static final int INTRODUCED_DATE_SENT_VERSION  = 4;
+  private static final int DATABASE_VERSION              = 4;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -170,6 +171,21 @@ public class DatabaseFactory {
         executeStatements(db, PartDatabase.CREATE_INDEXS);
         executeStatements(db, ThreadDatabase.CREATE_INDEXS);
         executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
+      }
+
+      if (oldVersion < INTRODUCED_DATE_SENT_VERSION) {
+        db.beginTransaction();
+        db.execSQL("ALTER TABLE " + SmsDatabase.TABLE_NAME +
+                   " ADD COLUMN " + SmsDatabase.DATE_SENT + " INTEGER;");
+        db.execSQL("UPDATE " + SmsDatabase.TABLE_NAME +
+                   " SET " + SmsDatabase.DATE_SENT + " = " + SmsDatabase.DATE_RECEIVED + ";");
+
+        db.execSQL("ALTER TABLE " + MmsDatabase.TABLE_NAME +
+                   " ADD COLUMN " + MmsDatabase.DATE_RECEIVED + " INTEGER;");
+        db.execSQL("UPDATE " + MmsDatabase.TABLE_NAME +
+                   " SET " + MmsDatabase.DATE_RECEIVED + " = " + MmsDatabase.DATE_SENT + ";");
+        db.setTransactionSuccessful();
+        db.endTransaction();
       }
     }
 

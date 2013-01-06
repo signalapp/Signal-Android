@@ -123,19 +123,30 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void handleDisplayDetails(MessageRecord message) {
-    String sender    = message.getRecipients().getPrimaryRecipient().getNumber();
-    String transport = message.isMms() ? "mms" : "sms";
-    long date        = message.getDate();
+    String sender     = message.getRecipients().getPrimaryRecipient().getNumber();
+    String transport  = message.isMms() ? "mms" : "sms";
+    long dateReceived = message.getDateReceived();
+    long dateSent     = message.getDateSent();
 
     SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(android.R.drawable.ic_dialog_info);
     builder.setCancelable(false);
-    builder.setMessage(String.format(getSherlockActivity()
-                                     .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
-                                     sender, transport.toUpperCase(),
-                                     dateFormatter.format(new Date(date))));
+
+    if (dateReceived == dateSent || message.isOutgoing()) {
+      builder.setMessage(String.format(getSherlockActivity()
+                                       .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
+                                       sender, transport.toUpperCase(),
+                                       dateFormatter.format(new Date(dateSent))));
+    } else {
+      builder.setMessage(String.format(getSherlockActivity()
+                                       .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
+                                       sender, transport.toUpperCase(),
+                                       dateFormatter.format(new Date(dateSent)),
+                                       dateFormatter.format(new Date(dateReceived))));
+    }
+
     builder.setPositiveButton(android.R.string.ok, null);
     builder.show();
   }

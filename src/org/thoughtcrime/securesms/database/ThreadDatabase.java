@@ -279,7 +279,7 @@ public class ThreadDatabase extends Database {
       if (cursor != null && cursor.moveToFirst()) {
         updateThread(threadId, count,
                      cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY)),
-                     cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.DATE)));
+                     cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED)));
       } else {
         deleteThread(threadId);
       }

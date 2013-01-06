@@ -143,7 +143,8 @@ public class ConversationAdapter extends CursorAdapter {
 
   private MediaMmsMessageRecord getMediaMmsMessageRecord(long messageId, Cursor cursor) {
     long id             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
-    long date           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE));
+    long dateSent       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_SENT));
+    long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
     long box            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
     Recipient recipient = getIndividualRecipientFor(null);
     GroupData groupData = null;
@@ -175,13 +176,15 @@ public class ConversationAdapter extends CursorAdapter {
     }
 
     return new MediaMmsMessageRecord(context, id, recipients, recipient,
-                                     date, threadId, slideDeck, box, groupData);
+                                     dateSent, dateReceived, threadId,
+                                     slideDeck, box, groupData);
   }
 
   private NotificationMmsMessageRecord getNotificationMmsMessageRecord(long messageId, Cursor cursor) {
     Recipient recipient = getIndividualRecipientFor(null);
     long id             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
-    long date           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE));
+    long dateSent       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_SENT));
+    long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
 
     NotificationInd notification;
 
@@ -192,7 +195,8 @@ public class ConversationAdapter extends CursorAdapter {
       notification = new NotificationInd(new PduHeaders());
     }
 
-    return new NotificationMmsMessageRecord(id, recipients, recipient, date, threadId,
+    return new NotificationMmsMessageRecord(id, recipients, recipient,
+                                            dateSent, dateReceived, threadId,
                                             notification.getContentLocation(),
                                             notification.getMessageSize(),
                                             notification.getExpiry(),
@@ -201,7 +205,8 @@ public class ConversationAdapter extends CursorAdapter {
   }
 
   private SmsMessageRecord getSmsMessageRecord(long messageId, Cursor cursor) {
-    long date           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.DATE));
+    long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
+    long dateSent       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_SENT));
     long type           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
     String body         = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
     String address      = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
@@ -220,8 +225,8 @@ public class ConversationAdapter extends CursorAdapter {
     }
 
     SmsMessageRecord messageRecord = new SmsMessageRecord(context, messageId, recipients,
-                                                          recipient, date, type, threadId,
-                                                          groupData);
+                                                          recipient, dateSent, dateReceived,
+                                                          type, threadId, groupData);
 
     if (body == null) {
       body = "";
