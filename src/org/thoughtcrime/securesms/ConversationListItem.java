@@ -103,6 +103,7 @@ public class ConversationListItem extends RelativeLayout
     this.count           = thread.getCount();
     this.read            = thread.isRead();
 
+    this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
 
     if (thread.isKeyExchange())
@@ -124,7 +125,10 @@ public class ConversationListItem extends RelativeLayout
     else           checkbox.setVisibility(View.GONE);
 
     setContactPhoto(this.recipients.getPrimaryRecipient());
-    this.recipients.setListener(this);
+  }
+
+  public void unbind() {
+    this.recipients.removeListener(this);
   }
 
   private void intializeListeners() {

@@ -143,6 +143,7 @@ private void initializeSearch(android.widget.SearchView searchView) {
       this.setListAdapter(new DecryptingConversationListAdapter(getActivity(), null, masterSecret));
     }
 
+    getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
   }
 

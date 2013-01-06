@@ -67,7 +67,17 @@ public class Util {
   }
 
   public static ExecutorService newSingleThreadedLifoExecutor() {
-    return new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
+
+    executor.execute(new Runnable() {
+      @Override
+      public void run() {
+//        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+        Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+      }
+    });
+
+    return executor;
   }
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {

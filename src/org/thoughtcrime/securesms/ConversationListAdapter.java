@@ -21,6 +21,7 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.CursorAdapter;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -38,7 +39,7 @@ import java.util.Set;
  *
  * @author Moxie Marlinspike
  */
-public class ConversationListAdapter extends CursorAdapter {
+public class ConversationListAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
 
   private final Context context;
   private final LayoutInflater inflater;
@@ -113,5 +114,10 @@ public class ConversationListAdapter extends CursorAdapter {
     }
 
     this.notifyDataSetChanged();
+  }
+
+  @Override
+  public void onMovedToScrapHeap(View view) {
+    ((ConversationListItem)view).unbind();
   }
 }

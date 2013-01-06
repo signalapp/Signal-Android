@@ -69,9 +69,15 @@ public class Recipients implements Parcelable {
     return this;
   }
 
-  public void setListener(RecipientModifiedListener listener) {
+  public void addListener(RecipientModifiedListener listener) {
     for (Recipient recipient : recipients) {
-      recipient.setListener(listener);
+      recipient.addListener(listener);
+    }
+  }
+
+  public void removeListener(RecipientModifiedListener listener) {
+    for (Recipient recipient : recipients) {
+      recipient.removeListener(listener);
     }
   }
 

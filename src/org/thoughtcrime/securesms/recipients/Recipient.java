@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.HashSet;
 
 public class Recipient implements Parcelable {
 
@@ -40,33 +40,35 @@ public class Recipient implements Parcelable {
     }
   };
 
-  private final AtomicReference<String> name         = new AtomicReference<String>(null);
-  private final AtomicReference<Bitmap> contactPhoto = new AtomicReference<Bitmap>(null);
-  private final AtomicReference<Uri>    contactUri   = new AtomicReference<Uri>(null);
-
   private final String number;
+  private final HashSet<RecipientModifiedListener> listeners = new HashSet<RecipientModifiedListener>();
 
-  private RecipientModifiedListener listener;
-  private boolean asynchronousUpdateComplete = false;
+  private String name;
+  private Bitmap contactPhoto;
+  private Uri    contactUri;
 
   public Recipient(String number, Bitmap contactPhoto,
                    ListenableFutureTask<RecipientDetails> future)
   {
-    this.number = number;
-    this.contactPhoto.set(contactPhoto);
+    this.number       = number;
+    this.contactPhoto = contactPhoto;
 
     future.setListener(new FutureTaskListener<RecipientDetails>() {
       @Override
       public void onSuccess(RecipientDetails result) {
         if (result != null) {
-          Recipient.this.name.set(result.name);
-          Recipient.this.contactUri.set(result.contactUri);
-          Recipient.this.contactPhoto.set(result.avatar);
+          HashSet<RecipientModifiedListener> localListeners;
 
-          synchronized(this) {
-            if (listener == null) asynchronousUpdateComplete = true;
-            else                  listener.onModified(Recipient.this);
+          synchronized (Recipient.this) {
+            Recipient.this.name         = result.name;
+            Recipient.this.contactUri   = result.contactUri;
+            Recipient.this.contactPhoto = result.avatar;
+            localListeners              = (HashSet<RecipientModifiedListener>)listeners.clone();
+            listeners.clear();
           }
+
+          for (RecipientModifiedListener listener : localListeners)
+            listener.onModified(Recipient.this);
         }
       }
 
@@ -78,26 +80,25 @@ public class Recipient implements Parcelable {
   }
 
   public Recipient(String name, String number, Uri contactUri, Bitmap contactPhoto) {
-    this.number = number;
-    this.contactUri.set(contactUri);
-    this.name.set(name);
-    this.contactPhoto.set(contactPhoto);
+    this.number       = number;
+    this.contactUri   = contactUri;
+    this.name         = name;
+    this.contactPhoto = contactPhoto;
   }
 
   public Recipient(Parcel in) {
-    this.number = in.readString();
-
-    this.name.set(in.readString());
-    this.contactUri.set((Uri)in.readParcelable(null));
-    this.contactPhoto.set((Bitmap)in.readParcelable(null));
+    this.number       = in.readString();
+    this.name         = in.readString();
+    this.contactUri   = (Uri)in.readParcelable(null);
+    this.contactPhoto = (Bitmap)in.readParcelable(null);
   }
 
-  public Uri getContactUri() {
-    return this.contactUri.get();
+  public synchronized Uri getContactUri() {
+    return this.contactUri;
   }
 
-  public String getName() {
-    return name.get();
+  public synchronized String getName() {
+    return this.name;
   }
 
   public String getNumber() {
@@ -121,28 +122,27 @@ public class Recipient implements Parcelable {
 //    }
 //  }
 
-  public synchronized void setListener(RecipientModifiedListener listener) {
-    this.listener = listener;
-    if (asynchronousUpdateComplete) {
-      if (listener != null)
-        listener.onModified(this);
-      asynchronousUpdateComplete = false;
-    }
+  public synchronized void addListener(RecipientModifiedListener listener) {
+    listeners.add(listener);
   }
 
-  public void writeToParcel(Parcel dest, int flags) {
+  public synchronized void removeListener(RecipientModifiedListener listener) {
+    listeners.remove(listener);
+  }
+
+  public synchronized void writeToParcel(Parcel dest, int flags) {
     dest.writeString(number);
-    dest.writeString(name.get());
-    dest.writeParcelable(contactUri.get(), 0);
-    dest.writeParcelable(contactPhoto.get(), 0);
+    dest.writeString(name);
+    dest.writeParcelable(contactUri, 0);
+    dest.writeParcelable(contactPhoto, 0);
   }
 
-  public String toShortString() {
-    return (name.get() == null ? number : name.get());
+  public synchronized String toShortString() {
+    return (name == null ? number : name);
   }
 
-  public Bitmap getContactPhoto() {
-    return contactPhoto.get();
+  public synchronized Bitmap getContactPhoto() {
+    return contactPhoto;
   }
 
   public static interface RecipientModifiedListener {

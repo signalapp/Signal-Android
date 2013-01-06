@@ -21,7 +21,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Process;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
@@ -100,7 +99,7 @@ public class RecipientProvider {
     Callable<RecipientDetails> task = new Callable<RecipientDetails>() {
       @Override
       public RecipientDetails call() throws Exception {
-        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+//        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
         return getRecipientDetails(context, number);
       }
     };
