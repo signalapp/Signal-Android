@@ -84,6 +84,7 @@ public class ConversationItem extends LinearLayout {
   private  ImageView failedImage;
   private  ImageView keyImage;
   private  ImageView contactPhoto;
+  private  ImageView deliveredImage;
 
   private  ImageView mmsThumbnail;
   private  Button    mmsDownloadButton;
@@ -118,6 +119,7 @@ public class ConversationItem extends LinearLayout {
     this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
     this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
+    this.deliveredImage      = (ImageView)findViewById(R.id.delivered_indicator);
 
     setOnClickListener(clickListener);
     this.failedImage.setOnClickListener(failedIconClickListener);
@@ -182,6 +184,7 @@ public class ConversationItem extends LinearLayout {
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     keyImage.setVisibility(messageRecord.isKeyExchange() ? View.VISIBLE : View.GONE);
+    deliveredImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
 
     mmsThumbnail.setVisibility(View.GONE);
     mmsDownloadButton.setVisibility(View.GONE);

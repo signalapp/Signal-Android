@@ -208,6 +208,7 @@ public class ConversationAdapter extends CursorAdapter {
     long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
     long dateSent       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_SENT));
     long type           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
+    int status          = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
     String body         = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
     String address      = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
     Recipient recipient = getIndividualRecipientFor(address);
@@ -226,7 +227,7 @@ public class ConversationAdapter extends CursorAdapter {
 
     SmsMessageRecord messageRecord = new SmsMessageRecord(context, messageId, recipients,
                                                           recipient, dateSent, dateReceived,
-                                                          type, threadId, groupData);
+                                                          type, threadId, status, groupData);
 
     if (body == null) {
       body = "";

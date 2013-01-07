@@ -21,9 +21,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
@@ -111,15 +113,36 @@ public class SmsSender {
     return sentIntents;
   }
 
+  private ArrayList<PendingIntent> constructDeliveredIntents(long messageId, long type, ArrayList<String> messages) {
+    if (!PreferenceManager.getDefaultSharedPreferences(context)
+        .getBoolean(ApplicationPreferencesActivity.SMS_DELIVERY_REPORT_PREF, false))
+    {
+      return null;
+    }
+
+    ArrayList<PendingIntent> deliveredIntents = new ArrayList<PendingIntent>(messages.size());
+
+    for (int i=0;i<messages.size();i++) {
+      Intent pending = new Intent(SendReceiveService.DELIVERED_SMS_ACTION, Uri.parse("custom://" + messageId + System.currentTimeMillis()), context, SmsListener.class);
+      pending.putExtra("type", type);
+      pending.putExtra("message_id", messageId);
+      deliveredIntents.add(PendingIntent.getBroadcast(context, 0, pending, 0));
+    }
+
+    return deliveredIntents;
+  }
+
   private void deliverGSMTransportTextMessage(String recipient, String text, long messageId, long type) {
-    ArrayList<String> messages = SmsManager.getDefault().divideMessage(text);
-    ArrayList<PendingIntent> sentIntents = constructSentIntents(messageId, type, messages);
+    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(text);
+    ArrayList<PendingIntent> sentIntents      = constructSentIntents(messageId, type, messages);
+    ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(messageId, type, messages);
+
     // XXX moxie@thoughtcrime.org 1/7/11 -- There's apparently a bug where for some unknown recipients
     // and messages, this will throw an NPE.  I have no idea why, so I'm just catching it and marking
     // the message as a failure.  That way at least it doesn't repeatedly crash every time you start
     // the app.
     try {
-      SmsManager.getDefault().sendMultipartTextMessage(recipient, null, messages, sentIntents, null);
+      SmsManager.getDefault().sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException npe) {
       Log.w("SmsSender", npe);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
@@ -142,15 +165,18 @@ public class SmsSender {
       return;
     }
 
-    ArrayList<String> messages = multipartMessageHandler.divideMessage(recipient, text, prefix);
-    ArrayList<PendingIntent> sentIntents = constructSentIntents(messageId, type, messages);
+    ArrayList<String> messages                = multipartMessageHandler.divideMessage(recipient, text, prefix);
+    ArrayList<PendingIntent> sentIntents      = constructSentIntents(messageId, type, messages);
+    ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(messageId, type, messages);
+
     for (int i=0;i<messages.size();i++) {
       // XXX moxie@thoughtcrime.org 1/7/11 -- There's apparently a bug where for some unknown recipients
       // and messages, this will throw an NPE.  I have no idea why, so I'm just catching it and marking
       // the message as a failure.  That way at least it doesn't repeatedly crash every time you start
       // the app.
       try {
-        SmsManager.getDefault().sendTextMessage(recipient, null, messages.get(i), sentIntents.get(i), null);
+        SmsManager.getDefault().sendTextMessage(recipient, null, messages.get(i), sentIntents.get(i),
+                                                deliveredIntents == null ? null : deliveredIntents.get(i));
       } catch (NullPointerException npe) {
         Log.w("SmsSender", npe);
         DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);

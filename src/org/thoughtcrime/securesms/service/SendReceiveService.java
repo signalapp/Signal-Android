@@ -47,6 +47,7 @@ public class SendReceiveService extends Service {
 
   public static final String SEND_SMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SEND_SMS_ACTION";
   public static final String SENT_SMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SENT_SMS_ACTION";
+  public static final String DELIVERED_SMS_ACTION             = "org.thoughtcrime.securesms.SendReceiveService.DELIVERED_SMS_ACTION";
   public static final String RECEIVE_SMS_ACTION               = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_SMS_ACTION";
   public static final String SEND_MMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SEND_MMS_ACTION";
   public static final String SEND_MMS_CONNECTIVITY_ACTION     = "org.thoughtcrime.securesms.SendReceiveService.SEND_MMS_CONNECTIVITY_ACTION";
@@ -92,6 +93,8 @@ public class SendReceiveService extends Service {
     else if (intent.getAction().equals(RECEIVE_SMS_ACTION))
       scheduleIntent(RECEIVE_SMS, intent);
     else if (intent.getAction().equals(SENT_SMS_ACTION))
+      scheduleIntent(RECEIVE_SMS, intent);
+    else if (intent.getAction().equals(DELIVERED_SMS_ACTION))
       scheduleIntent(RECEIVE_SMS, intent);
     else if (intent.getAction().equals(SEND_MMS_ACTION) || intent.getAction().equals(SEND_MMS_CONNECTIVITY_ACTION))
       scheduleSecretRequiredIntent(SEND_MMS, intent);
@@ -191,8 +194,8 @@ public class SendReceiveService extends Service {
 
     public void run() {
       switch (what) {
-      case RECEIVE_SMS:	smsReceiver.process(masterSecret, intent);   return;
-      case SEND_SMS:		smsSender.process(masterSecret, intent);     return;
+      case RECEIVE_SMS:	  smsReceiver.process(masterSecret, intent);   return;
+      case SEND_SMS:		  smsSender.process(masterSecret, intent);     return;
       case RECEIVE_MMS:   mmsReceiver.process(masterSecret, intent);   return;
       case SEND_MMS:      mmsSender.process(masterSecret, intent);     return;
       case DOWNLOAD_MMS:  mmsDownloader.process(masterSecret, intent); return;

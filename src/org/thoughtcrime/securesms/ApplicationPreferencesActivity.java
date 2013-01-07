@@ -80,6 +80,9 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   public static final String MMSC_PROXY_HOST_PREF    = "pref_apn_mms_proxy";
   public static final String MMSC_PROXY_PORT_PREF    = "pref_apn_mms_proxy_port";
 
+  public static final String SMS_DELIVERY_REPORT_PREF = "pref_delivery_report_sms";
+  public static final String MMS_DELIVERY_REPORT_PREF = "pref_delivery_report_mms";
+
   @Override
   protected void onCreate(Bundle icicle) {
     super.onCreate(icicle);

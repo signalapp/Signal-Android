@@ -170,6 +170,16 @@ public class SmsDatabase extends Database {
       updateType(id, Types.SENT_TYPE);
   }
 
+  public void markStatus(long id, int status) {
+    Log.w("MessageDatabase", "Updating ID: " + id + " to status: " + status);
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(STATUS, status);
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {id+""});
+    notifyConversationListeners(getThreadIdForMessage(id));
+  }
+
   public void markAsSentFailed(long id) {
     updateType(id, Types.FAILED_TYPE);
   }
@@ -315,6 +325,13 @@ public class SmsDatabase extends Database {
                                                                       SERVICE_CENTER +
                                                                       ", THREAD_ID) " +
                                      " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  }
+
+  public static class Status {
+    public static final int STATUS_NONE     = -1;
+    public static final int STATUS_COMPLETE = 0;
+    public static final int STATUS_PENDING  = 32;
+    public static final int STATUS_FAILED   = 64;
   }
 
   public static class Types {

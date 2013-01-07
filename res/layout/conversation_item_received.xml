@@ -96,6 +96,13 @@
                           android:orientation="horizontal"
                           android:gravity="left">
 
+              <ImageView android:id="@+id/delivered_indicator"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:paddingRight="3dip"
+                         android:src="@drawable/ic_sms_mms_delivered"
+                         android:visibility="gone" />                
+                              
 		      <TextView android:id="@+id/group_message_status"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
@@ -105,8 +112,7 @@
 		                android:textColor="#ffcccccc"
 		                android:visibility="gone"
 		                android:layout_marginRight="8dip"
-		                android:paddingTop="1dip"/>
-                
+		                android:paddingTop="1dip"/>                
 
 		      <TextView android:id="@+id/conversation_item_date"
 		                android:autoLink="all"

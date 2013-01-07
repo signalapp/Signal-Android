@@ -176,10 +176,26 @@ public class SmsReceiver {
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
   }
 
+  private void handleDeliveredMessage(Intent intent) {
+    long messageId     = intent.getLongExtra("message_id", -1);
+    long type          = intent.getLongExtra("type", -1);
+    byte[] pdu         = intent.getByteArrayExtra("pdu");
+    String format      = intent.getStringExtra("format");
+    SmsMessage message = SmsMessage.createFromPdu(pdu);
+
+    if (message == null) {
+        return;
+    }
+
+    DatabaseFactory.getSmsDatabase(context).markStatus(messageId, message.getStatus());
+  }
+
   public void process(MasterSecret masterSecret, Intent intent) {
     if (intent.getAction().equals(SendReceiveService.RECEIVE_SMS_ACTION))
       handleReceiveMessage(masterSecret, intent);
     else if (intent.getAction().equals(SendReceiveService.SENT_SMS_ACTION))
       handleSentMessage(intent);
+    else if (intent.getAction().equals(SendReceiveService.DELIVERED_SMS_ACTION))
+      handleDeliveredMessage(intent);
   }
 }

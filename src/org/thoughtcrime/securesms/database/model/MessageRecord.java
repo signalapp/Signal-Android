@@ -29,18 +29,26 @@ import org.thoughtcrime.securesms.recipients.Recipients;
  */
 public abstract class MessageRecord extends DisplayRecord {
 
+  public static final int DELIVERY_STATUS_NONE     = 0;
+  public static final int DELIVERY_STATUS_RECEIVED = 1;
+  public static final int DELIVERY_STATUS_PENDING  = 2;
+  public static final int DELIVERY_STATUS_FAILED   = 3;
+
   private final Recipient individualRecipient;
   private final long id;
+  private final int deliveryStatus;
   private final GroupData groupData;
 
   public MessageRecord(long id, Recipients recipients,
                        Recipient individualRecipient,
                        long dateSent, long dateReceived,
-                       long threadId, GroupData groupData)
+                       long threadId, int deliveryStatus,
+                       GroupData groupData)
   {
     super(recipients, dateSent, dateReceived, threadId);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
+    this.deliveryStatus      = deliveryStatus;
     this.groupData           = groupData;
   }
 
@@ -56,6 +64,14 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public long getId() {
     return id;
+  }
+
+  public int getDeliveryStatus() {
+    return deliveryStatus;
+  }
+
+  public boolean isDelivered() {
+    return getDeliveryStatus() == DELIVERY_STATUS_RECEIVED;
   }
 
   public boolean isStaleKeyExchange() {

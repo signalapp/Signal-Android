@@ -93,7 +93,7 @@ public class MmsSmsDatabase extends Database {
     String[] projection    = {"_id", "body", "type", "address", "subject",
                               "normalized_date_sent AS date_sent",
                               "normalized_date_received AS date_received",
-                              "m_type", "msg_box", "transport_type"};
+                              "m_type", "msg_box", "status", "transport_type"};
     String order           = "normalized_date_received ASC";
     String selection       = "thread_id = " + threadId;
 
@@ -135,8 +135,8 @@ public class MmsSmsDatabase extends Database {
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String groupBy, String limit) {
-    String[] mmsProjection = {"date * 1000 AS normalized_date_sent", "date_received * 1000 AS normalized_date_received", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "transport_type"};
-    String[] smsProjection = {"date_sent * 1 AS normalized_date_sent", "date * 1 AS normalized_date_received", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "transport_type"};
+    String[] mmsProjection = {"date * 1000 AS normalized_date_sent", "date_received * 1000 AS normalized_date_received", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "status", "transport_type"};
+    String[] smsProjection = {"date_sent * 1 AS normalized_date_sent", "date * 1 AS normalized_date_received", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "status", "transport_type"};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -166,6 +166,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add("date");
     smsColumnsPresent.add("read");
     smsColumnsPresent.add("thread_id");
+    smsColumnsPresent.add("status");
 
     String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery("transport_type", mmsProjection, mmsColumnsPresent, 2, "mms", selection, null, null, null);
     String smsSubQuery = smsQueryBuilder.buildUnionSubQuery("transport_type", smsProjection, smsColumnsPresent, 2, "sms", selection, null, null, null);

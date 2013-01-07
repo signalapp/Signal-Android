@@ -41,7 +41,9 @@ public class NotificationMmsMessageRecord extends MessageRecord {
                                       byte[] contentLocation, long messageSize, long expiry,
                                       int status, byte[] transactionId)
   {
-    super(id, recipients, individualRecipient, dateSent, dateReceived, threadId, null);
+    super(id, recipients, individualRecipient, dateSent, dateReceived,
+          threadId, DELIVERY_STATUS_NONE, null);
+
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;
     this.expiry          = expiry;

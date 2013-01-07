@@ -36,19 +36,18 @@ public class SmsMessageRecord extends MessageRecord {
 
   private final Context context;
   private final long type;
-  private final long dateSent;
 
   public SmsMessageRecord(Context context, long id,
                           Recipients recipients,
                           Recipient individualRecipient,
                           long dateSent, long dateReceived,
                           long type, long threadId,
-                          GroupData groupData)
+                          int status, GroupData groupData)
   {
-    super(id, recipients, individualRecipient, dateSent, dateReceived, threadId, groupData);
+    super(id, recipients, individualRecipient, dateSent, dateReceived,
+          threadId, getGenericDeliveryStatus(status), groupData);
     this.context  = context.getApplicationContext();
     this.type     = type;
-    this.dateSent = dateSent;
   }
 
   public long getType() {
@@ -76,7 +75,8 @@ public class SmsMessageRecord extends MessageRecord {
 
   @Override
   public boolean isFailed() {
-    return SmsDatabase.Types.isFailedMessageType(getType());
+    return SmsDatabase.Types.isFailedMessageType(getType()) ||
+           getDeliveryStatus() == DELIVERY_STATUS_FAILED;
   }
 
   @Override
@@ -99,4 +99,15 @@ public class SmsMessageRecord extends MessageRecord {
     return false;
   }
 
+  private static int getGenericDeliveryStatus(int status) {
+    if (status == SmsDatabase.Status.STATUS_NONE) {
+      return MessageRecord.DELIVERY_STATUS_NONE;
+    } else if (status >= SmsDatabase.Status.STATUS_FAILED) {
+      return MessageRecord.DELIVERY_STATUS_FAILED;
+    } else if (status >= SmsDatabase.Status.STATUS_PENDING) {
+      return MessageRecord.DELIVERY_STATUS_PENDING;
+    } else {
+      return MessageRecord.DELIVERY_STATUS_RECEIVED;
+    }
+  }
 }
