@@ -79,7 +79,7 @@ public class MmsDatabase extends Database {
   private static final String DELIVERY_REPORT    = "d_rpt";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
-    THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + "INTEGER, " + MESSAGE_BOX + " INTEGER, " +
+    THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + " INTEGER, " + MESSAGE_BOX + " INTEGER, " +
     READ + " INTEGER DEFAULT 0, " + MESSAGE_ID + " TEXT, " + SUBJECT + " TEXT, "                +
     SUBJECT_CHARSET + " INTEGER, " + CONTENT_TYPE + " TEXT, " + CONTENT_LOCATION + " TEXT, "    +
     EXPIRY + " INTEGER, " + MESSAGE_CLASS + " TEXT, " + MESSAGE_TYPE + " INTEGER, "             +

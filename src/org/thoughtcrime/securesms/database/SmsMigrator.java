@@ -77,7 +77,7 @@ public class SmsMigrator {
   {
     addStringToStatement(statement, cursor, 1, SmsDatabase.ADDRESS);
     addIntToStatement(statement, cursor, 2, SmsDatabase.PERSON);
-    addIntToStatement(statement, cursor, 3, SmsDatabase.DATE_SENT);
+    addIntToStatement(statement, cursor, 3, SmsDatabase.DATE_RECEIVED);
     addIntToStatement(statement, cursor, 4, SmsDatabase.DATE_RECEIVED);
     addIntToStatement(statement, cursor, 5, SmsDatabase.PROTOCOL);
     addIntToStatement(statement, cursor, 6, SmsDatabase.READ);
