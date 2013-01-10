@@ -73,8 +73,8 @@ public class ConversationListFragment extends SherlockListFragment
 
   @Override
   public void onAttach(Activity activity) {
-      super.onAttach(activity);
-      this.listener = (ConversationSelectedListener)activity;
+    super.onAttach(activity);
+    this.listener = (ConversationSelectedListener)activity;
   }
 
   @Override
@@ -100,12 +100,14 @@ public class ConversationListFragment extends SherlockListFragment
   }
 
   public void setMasterSecret(MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-    initializeListAdapter();
+    if (this.masterSecret != masterSecret) {
+      this.masterSecret = masterSecret;
+      initializeListAdapter();
+    }
   }
 
   @SuppressLint({ "NewApi", "NewApi" })
-private void initializeSearch(android.widget.SearchView searchView) {
+  private void initializeSearch(android.widget.SearchView searchView) {
     searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
