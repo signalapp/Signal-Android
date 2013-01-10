@@ -17,6 +17,8 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -25,6 +27,7 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
@@ -38,6 +41,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.Trimmer;
 
 import java.util.List;
 
@@ -83,6 +87,10 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   public static final String SMS_DELIVERY_REPORT_PREF = "pref_delivery_report_sms";
   public static final String MMS_DELIVERY_REPORT_PREF = "pref_delivery_report_mms";
 
+  public static final String THREAD_TRIM_ENABLED = "pref_trim_threads";
+  public static final String THREAD_TRIM_LENGTH  = "pref_trim_length";
+  public static final String THREAD_TRIM_NOW     = "pref_trim_now";
+
   @Override
   protected void onCreate(Bundle icicle) {
     super.onCreate(icicle);
@@ -104,6 +112,10 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
       .setOnPreferenceClickListener(new ManageIdentitiesClickListener());
     this.findPreference(CHANGE_PASSPHRASE_PREF)
       .setOnPreferenceClickListener(new ChangePassphraseClickListener());
+    this.findPreference(THREAD_TRIM_NOW)
+      .setOnPreferenceClickListener(new TrimNowClickListener());
+    this.findPreference(THREAD_TRIM_LENGTH)
+      .setOnPreferenceChangeListener(new TrimLengthValidationListener());
   }
 
   @Override
@@ -159,20 +171,16 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
     preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
       @Override
       public boolean onPreferenceChange(Preference pref, Object newValue) {
-        preference.setSummary(newValue == null ? "Not set" : (String)newValue);
+        preference.setSummary(newValue == null ? "Not set" : ((String)newValue));
         return true;
       }
     });
   }
 
   private void initializeEditTextSummaries() {
-    final EditTextPreference mmscUrlPreference      = (EditTextPreference)this.findPreference(MMSC_HOST_PREF);
-    final EditTextPreference mmsProxyHostPreference = (EditTextPreference)this.findPreference(MMSC_PROXY_HOST_PREF);
-    final EditTextPreference mmsProxyPortPreference = (EditTextPreference)this.findPreference(MMSC_PROXY_PORT_PREF);
-
-    initializeEditTextSummary(mmscUrlPreference);
-    initializeEditTextSummary(mmsProxyHostPreference);
-    initializeEditTextSummary(mmsProxyPortPreference);
+    initializeEditTextSummary((EditTextPreference)this.findPreference(MMSC_HOST_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(MMSC_PROXY_HOST_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(MMSC_PROXY_PORT_PREF));
   }
 
   private void initializeIdentitySelection() {
@@ -328,6 +336,58 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
 
       return true;
     }
+  }
+
+  private class TrimNowClickListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      final int threadLengthLimit = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ApplicationPreferencesActivity.this)
+                                                                      .getString(THREAD_TRIM_LENGTH, "500"));
+
+      AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
+      builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
+      builder.setMessage(String.format(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages),
+      		                             threadLengthLimit));
+      builder.setPositiveButton(R.string.ApplicationPreferencesActivity_delete,
+                                new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+          Trimmer.trimAllThreads(ApplicationPreferencesActivity.this, threadLengthLimit);
+        }
+      });
+
+      builder.setNegativeButton(android.R.string.cancel, null);
+      builder.show();
+
+      return true;
+    }
+  }
+
+  private class TrimLengthValidationListener implements Preference.OnPreferenceChangeListener {
+
+    public TrimLengthValidationListener() {
+      EditTextPreference preference = (EditTextPreference)findPreference(THREAD_TRIM_LENGTH);
+      preference.setSummary(preference.getText() + " " + getString(R.string.ApplicationPreferencesActivity_messages_per_conversation));
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      if (newValue == null || ((String)newValue).trim().length() == 0) {
+        return false;
+      }
+
+      try {
+        Integer.parseInt((String)newValue);
+      } catch (NumberFormatException nfe) {
+        Log.w("ApplicationPreferencesActivity", nfe);
+        return false;
+      }
+
+      preference.setSummary((String)newValue + " " +
+                            getString(R.string.ApplicationPreferencesActivity_messages_per_conversation));
+      return true;
+    }
+
   }
 
 }

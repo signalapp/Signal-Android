@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Trimmer;
 
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
@@ -343,6 +344,7 @@ public class MmsDatabase extends Database {
       notifyConversationListeners(threadId);
       DatabaseFactory.getThreadDatabase(context).update(threadId);
       DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+      Trimmer.trimThread(context, threadId);
 
       return messageId;
     } catch (RecipientFormattingException rfe) {
@@ -364,6 +366,8 @@ public class MmsDatabase extends Database {
 
     long messageId = insertMediaMessage(sendRequest, contentValues);
     DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+    Trimmer.trimThread(context, threadId);
+
     return messageId;
   }
 
@@ -426,6 +430,35 @@ public class MmsDatabase extends Database {
         cursor.close();
     }
   }
+
+  /*package*/void deleteMessagesInThreadBeforeDate(long threadId, long date) {
+    date          = date / 1000;
+    Cursor cursor = null;
+
+    try {
+      SQLiteDatabase db = databaseHelper.getReadableDatabase();
+      String where      = THREAD_ID + " = ? AND (CASE " + MESSAGE_BOX;
+
+      for (int outgoingType : Types.OUTGOING_MAILBOX_TYPES) {
+        where += " WHEN " + outgoingType + " THEN " + DATE_SENT + " < " + date;
+      }
+
+      where += (" ELSE " + DATE_RECEIVED + " < " + date + " END)");
+
+      Log.w("MmsDatabase", "Executing trim query: " + where);
+      cursor = db.query(TABLE_NAME, new String[] {ID}, where, new String[] {threadId+""}, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        Log.w("MmsDatabase", "Trimming: " + cursor.getLong(0));
+        delete(cursor.getLong(0));
+      }
+
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
 
   public void deleteAllThreads() {
     DatabaseFactory.getPartDatabase(context).deleteAllParts();
@@ -553,12 +586,23 @@ public class MmsDatabase extends Database {
     public static final int DOWNLOAD_SOFT_FAILURE    = 4;
     public static final int DOWNLOAD_HARD_FAILURE    = 5;
 
+    public static final int[] OUTGOING_MAILBOX_TYPES = {Types.MESSAGE_BOX_OUTBOX,
+                                                        Types.MESSAGE_BOX_SENT,
+                                                        Types.MESSAGE_BOX_SECURE_OUTBOX,
+                                                        Types.MESSAGE_BOX_SENT_FAILED,
+                                                        Types.MESSAGE_BOX_SECURE_SENT};
+
     public static boolean isSecureMmsBox(long mailbox) {
       return mailbox == Types.MESSAGE_BOX_SECURE_OUTBOX || mailbox == Types.MESSAGE_BOX_SECURE_SENT || mailbox == Types.MESSAGE_BOX_SECURE_INBOX;
     }
 
     public static boolean isOutgoingMmsBox(long mailbox) {
-      return mailbox == Types.MESSAGE_BOX_OUTBOX || mailbox == Types.MESSAGE_BOX_SENT || mailbox == Types.MESSAGE_BOX_SECURE_OUTBOX || mailbox == Types.MESSAGE_BOX_SENT_FAILED || mailbox == Types.MESSAGE_BOX_SECURE_SENT;
+      for (int outgoingMailboxType : OUTGOING_MAILBOX_TYPES) {
+        if (mailbox == outgoingMailboxType)
+          return true;
+      }
+
+      return false;
     }
 
     public static boolean isPendingMmsBox(long mailbox) {

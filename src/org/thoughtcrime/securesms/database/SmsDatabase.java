@@ -27,6 +27,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Trimmer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,6 +113,8 @@ public class SmsDatabase extends Database {
     DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
+    Trimmer.trimThread(context, threadId);
+
     return messageId;
   }
 
@@ -235,6 +238,8 @@ public class SmsDatabase extends Database {
     DatabaseFactory.getThreadDatabase(context).setRead(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
+    Trimmer.trimThread(context, threadId);
+
     return messageId;
   }
 
@@ -276,6 +281,18 @@ public class SmsDatabase extends Database {
     db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
   }
 
+  /*package*/void deleteMessagesInThreadBeforeDate(long threadId, long date) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    String where      = THREAD_ID + " = ? AND (CASE " + TYPE;
+
+    for (int outgoingType : Types.OUTGOING_MESSAGE_TYPES) {
+      where += " WHEN " + outgoingType + " THEN " + DATE_SENT + " < " + date;
+    }
+
+    where += (" ELSE " + DATE_RECEIVED + " < " + date + " END)");
+
+    db.delete(TABLE_NAME, where, new String[] {threadId+""});
+  }
 
   /*package*/ void deleteThreads(Set<Long> threadIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
@@ -348,12 +365,21 @@ public class SmsDatabase extends Database {
     public static final int DECRYPT_IN_PROGRESS_TYPE = 47;  // Messages are in the process of being asymmetricaly decrypted.
     public static final int NO_SESSION_TYPE          = 48;  // Messages were received with async encryption but there is no session yet.
 
+    public static final int[] OUTGOING_MESSAGE_TYPES = {SENT_TYPE, SENT_PENDING, ENCRYPTING_TYPE,
+                                                        ENCRYPTED_OUTBOX_TYPE, SECURE_SENT_TYPE,
+                                                        FAILED_TYPE};
+
     public static boolean isFailedMessageType(long type) {
       return type == FAILED_TYPE;
     }
 
     public static boolean isOutgoingMessageType(long type) {
-      return type == SENT_TYPE || type == SENT_PENDING || type == ENCRYPTING_TYPE || type == ENCRYPTED_OUTBOX_TYPE || type == SECURE_SENT_TYPE || type == FAILED_TYPE;
+      for (int outgoingType : OUTGOING_MESSAGE_TYPES) {
+        if (type == outgoingType)
+          return true;
+      }
+
+      return false;
     }
 
     public static boolean isPendingMessageType(long type) {

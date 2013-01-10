@@ -21,6 +21,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -141,6 +142,56 @@ public class ThreadDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, null, null);
     notifyConversationListListeners();
+  }
+
+  public void trimAllThreads(int length, ProgressListener listener) {
+    Cursor cursor   = null;
+    int threadCount = 0;
+    int complete    = 0;
+
+    try {
+      cursor = this.getConversationList();
+
+      if (cursor != null)
+        threadCount = cursor.getCount();
+
+      while (cursor != null && cursor.moveToNext()) {
+        long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+        trimThread(threadId, length);
+
+        listener.onProgress(++complete, threadCount);
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
+  public void trimThread(long threadId, int length) {
+    Log.w("ThreadDatabase", "Trimming thread: " + threadId + " to: " + length);
+    Cursor cursor = null;
+
+    try {
+      cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId);
+
+      if (cursor != null && cursor.getCount() > length) {
+        Log.w("ThreadDatabase", "Cursor count is greater than length!");
+        cursor.moveToPosition(cursor.getCount() - length);
+
+        long lastTweetDate = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
+
+        Log.w("ThreadDatabase", "Cut off tweet date: " + lastTweetDate);
+
+        DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
+        DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
+
+        update(threadId);
+        notifyConversationListeners(threadId);
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
   }
 
   public void setRead(long threadId) {
@@ -289,5 +340,9 @@ public class ThreadDatabase extends Database {
     }
 
     notifyConversationListListeners();
+  }
+
+  public static interface ProgressListener {
+    public void onProgress(int complete, int total);
   }
 }

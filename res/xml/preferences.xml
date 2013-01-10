@@ -14,17 +14,36 @@
 
    </PreferenceCategory>
 
-  <PreferenceCategory android:title="Delivery Reports">
+  <PreferenceCategory android:title="@string/preferences__delivery_reports">
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_delivery_report_sms"
-                        android:summary="Request a delivery report for each SMS message you send"
-                        android:title="SMS delivery reports" />
+                        android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
+                        android:title="@string/preferences__sms_delivery_reports" />
 
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_delivery_report_mms"
-                        android:summary="Request a delivery report for each MMS message you send"
+                        android:summary="@string/preferences__request_a_delivery_report_for_each_mms_message_you_send"
                         android:enabled="false"
-                        android:title="MMS delivery reports" />
+                        android:title="@string/preferences__mms_delivery_reports" />
+   </PreferenceCategory>  
+
+  <PreferenceCategory android:title="@string/preferences__storage">
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_trim_threads"
+                        android:summary="@string/preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length"
+                        android:title="@string/preferences__delete_old_messages" />
+
+    <EditTextPreference android:defaultValue="500"
+                        android:key="pref_trim_length"
+                        android:title="@string/preferences__conversation_length_limit"
+                        android:inputType="number"
+                        android:dependency="pref_trim_threads" />
+    
+    <Preference android:key="pref_trim_now"
+                android:title="@string/preferences__trim_all_threads_now"
+                android:summary="@string/preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits"
+                android:dependency="pref_trim_threads" />
+                    
    </PreferenceCategory>  
   
   <PreferenceCategory android:title="@string/preferences__input_settings">
