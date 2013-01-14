@@ -35,6 +35,7 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">يجب عليك إدخال العبارة السرية قبل استيراد المفاتيح السرية</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">يجب عليك إدخال العبارة السرية قبل ضبط المفاتيح السرية</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
+  <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">حجم الرسالة: %d كيلوبايت</string>

@@ -36,6 +36,11 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">ཁྱོད་ཀྱིས་ལྡེ་མིག་ནང་འཇུག་མ་བྱས་སྔོན་ལ་གསང་གྲངས་འཇོག་དགོས།</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">ཁྱོད་ཀྱིས་ལྡེ་མིག་དོ་དམ་མ་བྱས་སྔོན་ལ་གསང་གྲངས་འཇོག་དགོས།</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ཁྱོད་ཀྱིས་གསང་ཡིག་བཟོས་མི་འདུག</string>
+  <string name="ApplicationPreferencesActivity_conversation_length_limit">གླེང་མོལ་གྱི་རིང་ཐུང་གི་ཚད། </string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">གླེང་མོལ་རེའི་འཕྲིན་ཐུང་། </string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ད་ལྟ་རང་འཕྲིན་ཐུང་རྙིང་པ་ཚང་མ་གསུབ་གི་ཡིན་ནམ། </string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ཁྱེད་ཀྱིས་མྱུར་དུ་ཉེ་འཆར་གྱི་འཕྲིན་ཐུང་དེའི་སླད་དུ་གླེང་མོལ་གྱི་སྐུད་པ་ཚང་མ་གཙང་བཟོ་བྱེད་ཀྱི་ཡིན་ནམ། </string>
+  <string name="ApplicationPreferencesActivity_delete">གསུབ། </string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">འདྲ་པར།</string>
   <string name="AttachmentTypeSelectorAdapter_video">བརྙན་པར།</string>
@@ -79,6 +84,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">འཕྲིན་ཐུང་གི་ཞིབ་ཆ།</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">གཏོང་མཁན།:%1$s  དབོར་བ།:%2$s བཏང་།/འབྱོར།:%3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">གཏོང་མཁན: %1$s⏎ སྐྱེལ་འདྲེན: %2$s⏎ བཏང་ཚར: %3$s⏎ འབྱོར་ཚར:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">འཕྲིན་ཐུང་གསུབ་པ་ངེས་བརྟན་བཟོས། </string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
   <!--ConversationListAdapter-->
@@ -319,6 +325,23 @@
   <string name="preferences__normal">འཆར་ཅན།</string>
   <string name="preferences__slow">དལ་བོ། </string>
   <string name="preferences__custom">ཡུལ་སྲོལ། </string>
+  <string name="preferences__advanced_mms_access_point_names">རྒྱ་བསྐྱེད་པ། MMS Access Point ཡི་མིང་ཐོ་ཁག </string>
+  <string name="preferences__enable_fallback_mmsc">དེ་བསྐྱར་དུ་བྱེད་ནུས་ཅན་བཟོས། </string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">APN ཡི་མ་ལག་གི་བརྡ་ལན་དེ་མི་རྙེད་དུས། MMSC ཡི་བརྡ་ལན་སྡེབ་སྒྲིག་བྱས་བ་དེ་བེད་སྤྱོད་ཐོངས། </string>
+  <string name="preferences__mmsc_url_required">MMSC URL(དགོས་ངེས་ཅན) </string>
+  <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (གདམ་ཀ་ཅན) </string>
+  <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (གདམ་ཀ་ཅན) </string>
+  <string name="preferences__delivery_reports">སྙན་ཐོ་སྐྱེལ། </string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ཁྱེད་ཀྱིས་གཏོང་བའི་SMSའཕྲིན་ཐུང་རེ་རེར་སྙན་ཐོ་སྐྱེལ་བའི་རེ་སྐུལ་བྱོས། </string>
+  <string name="preferences__request_a_delivery_report_for_each_mms_message_you_send">ཁྱེད་ཀྱིས་གཏོང་བའི་MMSའཕྲིན་ཐུང་རེ་རེར་སྙན་ཐོ་སྐྱེལ་བའི་རེ་སྐུལ་བྱོས། </string>
+  <string name="preferences__mms_delivery_reports">MMS ཡི་སྙན་ཐོ་སྐྱེལ། </string>
+  <string name="preferences__sms_delivery_reports">SMS ཡི་སྙན་ཐོ་སྐྱེལ། </string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">གླེང་མོལ་གྱི་སྐུད་པའི་དམིགས་བསལ་རིང་ཚད་རྫོགས་མཚམས། རང་བཞིན་ནས་འཕྲིན་ཐུང་རྙིང་པ་དག་བསུབ་འགྲོ་གི་རེད། </string>
+  <string name="preferences__delete_old_messages">འཕྲིན་ཐུང་རྙིང་པ་གསུབ། </string>
+  <string name="preferences__storage">ཉར་ས། </string>
+  <string name="preferences__conversation_length_limit">གླེང་མོལ་གྱི་རིང་ཐུང་གི་ཚད། </string>
+  <string name="preferences__trim_all_threads_now">སྐུད་པ་ཚང་མ་གཙང་བཟོ་བྱོས། </string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">གླེང་མོལ་གྱི་སྐུད་པ་ཚང་མ་གཙང་སེལ་དང་གླེང་མོལ་གྱི་རིང་ཚད་ནུས་ལྡན་དུ་ཐོངས། </string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

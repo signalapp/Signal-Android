@@ -308,7 +308,6 @@
   <string name="preferences__slow">Lento</string>
   <string name="preferences__custom">Personalizzato</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Richiesto)</string>
-  <string name="preferences__mms_proxy_optional">Proxy MMS (Facoltativo)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

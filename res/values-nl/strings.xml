@@ -79,6 +79,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Bericht details</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd/Ontvangen:%3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nMedium: %2$s\nVerzonden: %3$s\nOntvangen:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bevestig Bericht Verwijdering</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Weet u zeker dat u dit bericht permanent wilt verwijderen?</string>
   <!--ConversationListAdapter-->
@@ -320,10 +321,11 @@
   <string name="preferences__slow">Langzaam</string>
   <string name="preferences__custom">Aangepast</string>
   <string name="preferences__advanced_mms_access_point_names">Geavanceerd: MMS Toegangspuntnamen</string>
-  <string name="preferences__enable_local_apns">Lokale APNs gebruiken</string>
-  <string name="preferences__use_apn_information_configured_here_when_system_apn_information_is_unavailable">Gebruik de hier ingestelde APN informatie wanneer de de APN informatie van het systeem niet beschikbaar is.</string>
+  <string name="preferences__enable_fallback_mmsc">Fallback MMSC Activeren</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Gebruik de hier ingestelde MMSC informatie wanneer de APN informatie van het systeem niet beschikbaar is.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Vereist)</string>
-  <string name="preferences__mms_proxy_optional">MMS Proxy (Optioneel)</string>
+  <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optioneel)</string>
+  <string name="preferences__mms_proxy_port_optional">MMS Proxy Poort (Optioneel)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

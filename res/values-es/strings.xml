@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">TextSecure</string>
-  <string name="yes">Si</string>
+  <string name="yes">Sí</string>
   <string name="no">No</string>
   <string name="delete">Borrar</string>
   <!--ApplicationExportManager-->
@@ -20,22 +20,31 @@
   <string name="ApplicationExportManager_import">Importar</string>
   <string name="ApplicationExportManager_export">Exportar</string>
   <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">MIgrando la base de datos</string>
+  <string name="ApplicationMigrationManager_migrating_database">Migrando la base de datos</string>
   <string name="ApplicationMigrationManager_migrating_text_message_database">Migrando la base de datos de mensajes de texto...</string>
   <string name="ApplicationMigrationManager_copy_system_text_message_database_question">¿Desea copiar la base de datos de mensajes de texto del sistema?</string>
   <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure usa una base de datos cifrada, separa de la base de datos predeterminada por el sistema.  ¿Le gustaría copiar sus mensajes de texto existentes en la base cifrada de TextSecure? Su base de datos predeterminada en el sistema no será afectada. </string>
   <string name="ApplicationMigrationManager_copy">Copiar</string>
   <string name="ApplicationMigrationManager_dont_copy">No copiar</string>
   <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">¡No encontrado!</string>
   <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">No se ha encontrado una clave de identidad válida en el contacto especificado.</string>
   <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">¡Aún no tiene una clave de identidad!</string>
   <string name="ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself">No ha definido aún un contacto para usted mismo. Seleccione uno en el menú de Preferencias</string>
-  <string name="ApplicationPreferenceActivity_exported_to_contacts_database">Exportado a la base de datos de contactos</string>
+  <string name="ApplicationPreferenceActivity_exported_to_contacts_database">¡Exportado a la base de datos de contactos!</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Necesita ingresar una frase de contraseña antes de importar claves...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Necesita ingresar su frase de contraseña antes de gestionar sus claves...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡No ha elegido aún una frase de contraseña!</string>
+  <string name="ApplicationPreferencesActivity_conversation_length_limit">Límite de tamaño de la conversación</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">mensajes por conversación</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes viejos ahora?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">¿Estás seguro de que te gustaría recortar inmediatamente todos los hilos de conversación a los %s últimos mensajes?</string>
+  <string name="ApplicationPreferencesActivity_delete">Eliminar</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Fotografía</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Tamaño del mensaje: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
@@ -68,9 +77,14 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lo sentimos, el audio seleccionado excede las restricciones de tamaño del mensaje.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatario no es un SMS o correo electrónico válido</string>
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
+  <string name="ConversationActivity_forward_message_prefix">FWD</string>
+  <string name="ConversationActivity_group_conversation_recipients">Receptores de Conversación en Grupo</string>
+  <string name="ConversationActivity_group_conversation">Conversación en Grupo</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d receptores en grupo</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remitente: %1$s\nTransporte: %2$s\nEnviado/Recibido:%3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Emisor: %1$s⏎ Transporte: %2$s⏎ Enviado: %3$s⏎ Recibido:%4$s\n</string>
   <string name="ConversationFragment_confirm_message_delete">Confirmar borrado del mensaje</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">¿Está seguro que desea borrar permanentemente este mensaje?</string>
   <!--ConversationListAdapter-->
@@ -205,6 +219,12 @@
   <string name="conversation_activity__type_message">Escribir mensaje</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Eliminar</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Descarga</string>
+  <string name="conversation_item_sent__downloading">Descargando</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Descarga</string>
+  <string name="conversation_item_received__downloading">Descargando</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección múltiple</string>
   <!--create_passphrase_activity-->
@@ -305,6 +325,23 @@
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Despacio</string>
   <string name="preferences__custom">Personalizado</string>
+  <string name="preferences__advanced_mms_access_point_names">Avanzado: Nombres de Puntos de Acceso MMS</string>
+  <string name="preferences__enable_fallback_mmsc">Activar Fallback MMSC</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usar la información MMSC configurada aquí cuando el sistema de información APN no está disponible.</string>
+  <string name="preferences__mmsc_url_required">MMSC URL (Requerido)</string>
+  <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Opcional)</string>
+  <string name="preferences__mms_proxy_port_optional">Puerto de Proxy MMS (Opcional)</string>
+  <string name="preferences__delivery_reports">Noticias de entrega</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pide una noticia de entrega por cada mensaje SMS que envías</string>
+  <string name="preferences__request_a_delivery_report_for_each_mms_message_you_send">Pide una noticia de entrega por cada mensaje MMS que envías</string>
+  <string name="preferences__mms_delivery_reports">Noticias de entrega de MMS</string>
+  <string name="preferences__sms_delivery_reports">Noticias de entrega de SMS</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Elimina automáticamente los mensajes más viejos una vez el hilo de conversación excede el límite de longitud</string>
+  <string name="preferences__delete_old_messages">Eliminar mensajes viejos</string>
+  <string name="preferences__storage">Almacenamiento</string>
+  <string name="preferences__conversation_length_limit">Límite de longitud de la conversación</string>
+  <string name="preferences__trim_all_threads_now">Recorta todos los hilos ahora</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Búsqueda a través de todos los hilos de conversación y fuerza los límites de longitud de la misma</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -340,6 +377,7 @@
   <string name="conversation__menu_delete_thread">Borrar conversación</string>
   <string name="conversation__menu_compare">Comparar</string>
   <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Lista de receptores</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Comparar</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Escanear mi clave para comparar</string>
@@ -356,5 +394,6 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
   <!--Misc. piggybacking-->
+  <string name="PlayStoreListing">TextSecure es una aplicacion de mensajería de texto con énfasis en la seguridad que sirve de reemplazo a la aplicación de mensajería de texto por defecto. Los mensajes enviados a otros usuarios de TextSecure están cifrados al vuelo, y todos los mensajes de texto están cifrados en una base de datos en el dispositivo. Si tu teléfono se pierde o es robado, tus mensajes estarán seguros, y la comunicación con otros usuarios de TextSecure no será monitorizada en el aire.</string>
   <!--EOF-->
 </resources>

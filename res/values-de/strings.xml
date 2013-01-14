@@ -27,6 +27,7 @@
   <string name="ApplicationMigrationManager_copy">Kopieren</string>
   <string name="ApplicationMigrationManager_dont_copy">Nicht kopieren</string>
   <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Momentan: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">Nicht gefunden!</string>
   <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">Es wurde kein gültiger Schlüssel zur Identifizierung für den ausgewählten Kontakt gefunden.</string>
   <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">Sie haben keinen persönlichen Schlüssel!</string>
@@ -35,6 +36,7 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Bevor Sie Schlüssel importieren können, müssen Sie ihr Passwort eingeben...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Bevor Sie Schlüssel verwalten können, müssen Sie ihr Passwort eingeben...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sie haben noch kein Passwort festgelegt!</string>
+  <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -72,6 +74,9 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Der angegeben Empfänger ist keine gültige SMS oder E-Mail Adresse!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Die Nachricht ist leer!</string>
   <string name="ConversationActivity_forward_message_prefix">Weiterleiten</string>
+  <string name="ConversationActivity_group_conversation_recipients">Teilnehmer in Gruppengespräch</string>
+  <string name="ConversationActivity_group_conversation">Gruppengespräch</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d Teilnehmer in Gruppe</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s Transport: %2$s Gesendet/Empfangen:%3$s</string>
@@ -211,8 +216,10 @@
   <string name="conversation_activity__remove">Löschen</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Download</string>
+  <string name="conversation_item_sent__downloading">Herunterladen</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Download</string>
+  <string name="conversation_item_received__downloading">Herunterladen</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mehrfachauswahl</string>
   <!--create_passphrase_activity-->
@@ -348,6 +355,7 @@
   <string name="conversation__menu_delete_thread">Thread löschen</string>
   <string name="conversation__menu_compare">Vergleichen</string>
   <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Teilnehmerliste</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Vergleichen</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Zum Vergleich eingelesen werden</string>
