@@ -382,6 +382,10 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
         Log.w("ApplicationPreferencesActivity", nfe);
         return false;
       }
+      
+      if (Integer.parseInt((String)newValue) < 1) {
+        return false;
+      }
 
       preference.setSummary((String)newValue + " " +
                             getString(R.string.ApplicationPreferencesActivity_messages_per_conversation));
