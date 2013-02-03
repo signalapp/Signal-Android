@@ -53,6 +53,14 @@
                   <data android:scheme="smsto" />
             </intent-filter>
             
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="image/*" />
+                <data android:mimeType="text/*" />
+            </intent-filter>            
+            
         </activity>
 
     <activity android:name=".ConversationActivity"

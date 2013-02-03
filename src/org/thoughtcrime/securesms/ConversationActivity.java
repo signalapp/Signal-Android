@@ -44,11 +44,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-
 import org.thoughtcrime.securesms.components.RecipientsPanel;
 import org.thoughtcrime.securesms.crypto.AuthenticityCalculator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
@@ -74,6 +69,11 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import ws.com.google.android.mms.MmsException;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -89,10 +89,17 @@ public class ConversationActivity extends SherlockFragmentActivity
     implements ConversationFragment.ConversationFragmentListener
   {
 
-  private static final int PICK_CONTACT               = 1;
-  private static final int PICK_IMAGE                 = 2;
-  private static final int PICK_VIDEO                 = 3;
-  private static final int PICK_AUDIO                 = 4;
+  public static final String RECIPIENTS_EXTRA    = "recipients";
+  public static final String THREAD_ID_EXTRA     = "thread_id";
+  public static final String MASTER_SECRET_EXTRA = "master_secret";
+  public static final String DRAFT_TEXT_EXTRA    = "draft_text";
+  public static final String DRAFT_IMAGE_EXTRA   = "draft_image";
+  public static final String DRAFT_AUDIO_EXTRA   = "draft_audio";
+
+  private static final int PICK_CONTACT          = 1;
+  private static final int PICK_IMAGE            = 2;
+  private static final int PICK_VIDEO            = 3;
+  private static final int PICK_AUDIO            = 4;
 
   private MasterSecret masterSecret;
   private RecipientsPanel recipientsPanel;
@@ -121,6 +128,7 @@ public class ConversationActivity extends SherlockFragmentActivity
 
     initializeReceivers();
     initializeResources();
+    initializeDraft();
     initializeTitleBar();
   }
 
@@ -396,6 +404,16 @@ public class ConversationActivity extends SherlockFragmentActivity
     this.invalidateOptionsMenu();
   }
 
+  private void initializeDraft() {
+    String draftText  = getIntent().getStringExtra(DRAFT_TEXT_EXTRA);
+    Uri    draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
+    Uri    draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
+
+    if (draftText != null)  composeText.setText(draftText);
+    if (draftImage != null) addAttachmentImage(draftImage);
+    if (draftAudio != null) addAttachmentAudio(draftAudio);
+  }
+
   private void initializeSecurity() {
     if (isSingleConversation() &&
         KeyUtil.isSessionFor(this, getRecipients().getPrimaryRecipient()))
@@ -663,6 +681,7 @@ public class ConversationActivity extends SherlockFragmentActivity
   // Listeners
 
   private class AddRecipientButtonListener implements OnClickListener {
+    @Override
     public void onClick(View v) {
       Intent intent = new Intent(ConversationActivity.this, ContactSelectionActivity.class);
       startActivityForResult(intent, PICK_CONTACT);
@@ -670,12 +689,14 @@ public class ConversationActivity extends SherlockFragmentActivity
   };
 
   private class AttachmentTypeListener implements DialogInterface.OnClickListener {
+    @Override
     public void onClick(DialogInterface dialog, int which) {
       addAttachment(attachmentAdapter.buttonToCommand(which));
     }
   }
 
   private class RecipientsPanelChangeListener implements RecipientsPanel.RecipientsPanelChangedListener {
+    @Override
     public void onRecipientsPanelUpdate(Recipients recipients) {
       initializeSecurity();
       initializeTitleBar();
@@ -684,10 +705,12 @@ public class ConversationActivity extends SherlockFragmentActivity
   }
 
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
+    @Override
     public void onClick(View v) {
       sendMessage(false);
     }
 
+    @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
       if (actionId == EditorInfo.IME_ACTION_SEND) {
         sendButton.performClick();
@@ -699,15 +722,19 @@ public class ConversationActivity extends SherlockFragmentActivity
   };
 
   private class OnTextChangedListener implements TextWatcher {
+    @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
     }
+    @Override
     public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
+    @Override
     public void onTextChanged(CharSequence s, int start, int before,int count) {}
 
   }
 
   private class ComposeKeyPressedListener implements OnKeyListener {
+    @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {

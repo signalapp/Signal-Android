@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -16,11 +17,6 @@ import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.WindowManager;
-
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.ApplicationExportManager.ApplicationExportListener;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
@@ -34,6 +30,11 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 public class ConversationListActivity extends SherlockFragmentActivity
     implements ConversationListFragment.ConversationSelectedListener
@@ -63,7 +64,6 @@ public class ConversationListActivity extends SherlockFragmentActivity
   @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
-    Log.w("SecureSMS", "Got onNewIntent...");
     createConversationIfNecessary(intent);
   }
 
@@ -72,7 +72,6 @@ public class ConversationListActivity extends SherlockFragmentActivity
     super.onPause();
 
     if (newKeyReceiver != null) {
-      Log.w("ConversationListActivity", "Unregistering receiver...");
       unregisterReceiver(newKeyReceiver);
       newKeyReceiver = null;
     }
@@ -81,7 +80,6 @@ public class ConversationListActivity extends SherlockFragmentActivity
   @Override
   public void onResume() {
     super.onResume();
-    Log.w("ConversationListActivity", "onResume called...");
 
     clearNotifications();
     initializeKeyCachingServiceRegistration();
@@ -126,12 +124,12 @@ public class ConversationListActivity extends SherlockFragmentActivity
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case R.id.menu_new_message:      createConversation(-1, null); return true;
-    case R.id.menu_unlock:           promptForPassphrase();        return true;
-    case R.id.menu_settings:         handleDisplaySettings();      return true;
-    case R.id.menu_export:           handleExportDatabase();       return true;
-    case R.id.menu_import:           handleImportDatabase();       return true;
-    case R.id.menu_clear_passphrase: handleClearPassphrase();      return true;
+    case R.id.menu_new_message:      createConversation(-1, null, null, null, null); return true;
+    case R.id.menu_unlock:           promptForPassphrase();                          return true;
+    case R.id.menu_settings:         handleDisplaySettings();                        return true;
+    case R.id.menu_export:           handleExportDatabase();                         return true;
+    case R.id.menu_import:           handleImportDatabase();                         return true;
+    case R.id.menu_clear_passphrase: handleClearPassphrase();                        return true;
     }
 
     return false;
@@ -139,21 +137,25 @@ public class ConversationListActivity extends SherlockFragmentActivity
 
   @Override
   public void onCreateConversation(long threadId, Recipients recipients) {
-    createConversation(threadId, recipients);
+    createConversation(threadId, recipients, null, null, null);
   }
 
-  private void createConversation(long threadId, Recipients recipients) {
+  private void createConversation(long threadId, Recipients recipients,
+                                  String text, Uri imageUri, Uri audioUri)
+  {
     if (this.masterSecret == null) {
       promptForPassphrase();
       return;
     }
 
-    Log.w("ConversationListActivity", "Creating conversation: " + threadId);
-
     Intent intent = new Intent(this, ConversationActivity.class);
-    intent.putExtra("recipients", recipients);
-    intent.putExtra("thread_id", threadId);
-    intent.putExtra("master_secret", masterSecret);
+    intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients);
+    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
+    intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
+    intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, text);
+    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, imageUri);
+    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, audioUri);
+
     startActivity(intent);
   }
 
@@ -322,27 +324,39 @@ public class ConversationListActivity extends SherlockFragmentActivity
   }
 
   private void createConversationIfNecessary(Intent intent) {
-    Log.w("ConversationListActivity", "createConversationIfNecessary called");
     long thread           = intent.getLongExtra("thread_id", -1L);
+    String type           = intent.getType();
     Recipients recipients = null;
+    String draftText      = null;
+    Uri draftImage        = null;
+    Uri draftAudio        = null;
 
-    if (intent.getAction() != null && intent.getAction().equals("android.intent.action.SENDTO")) {
-      Log.w("ConversationListActivity", "Intent has sendto action...");
+    if (Intent.ACTION_SENDTO.equals(intent.getAction())) {
       try {
         recipients = RecipientFactory.getRecipientsFromString(this, intent.getData().getSchemeSpecificPart(), false);
         thread     = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
       } catch (RecipientFormattingException rfe) {
         recipients = null;
       }
+    } else if (Intent.ACTION_SEND.equals(intent.getAction())) {
+      if ("text/plain".equals(type)) {
+        draftText = intent.getStringExtra(Intent.EXTRA_TEXT);
+      } else if (type.startsWith("image/")) {
+        draftImage = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+      } else if (type.startsWith("audio/")) {
+        draftAudio = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+      }
     } else {
       recipients = intent.getParcelableExtra("recipients");
     }
 
-    if (recipients != null) {
-      Log.w("ConversationListActivity", "Creating conversation: " + thread + " , " + recipients);
-      createConversation(thread, recipients);
+    if (recipients != null || Intent.ACTION_SEND.equals(intent.getAction())) {
+      createConversation(thread, recipients, draftText, draftImage, draftAudio);
+
       intent.putExtra("thread_id", -1L);
       intent.putExtra("recipients", (Parcelable)null);
+      intent.putExtra(Intent.EXTRA_TEXT, (String)null);
+      intent.putExtra(Intent.EXTRA_STREAM, (Parcelable)null);
       intent.setAction(null);
     }
   }
@@ -360,6 +374,7 @@ public class ConversationListActivity extends SherlockFragmentActivity
   }
 
   private ServiceConnection serviceConnection = new ServiceConnection() {
+    @Override
     public void onServiceConnected(ComponentName className, IBinder service) {
       KeyCachingService keyCachingService  = ((KeyCachingService.KeyCachingBinder)service).getService();
       MasterSecret masterSecret            = keyCachingService.getMasterSecret();
@@ -379,16 +394,19 @@ public class ConversationListActivity extends SherlockFragmentActivity
       }
     }
 
+    @Override
     public void onServiceDisconnected(ComponentName name) {}
   };
 
   private class IdentityKeyInitializer implements Runnable {
+    @Override
     public void run() {
       IdentityKeyUtil.generateIdentityKeys(ConversationListActivity.this, masterSecret);
     }
   }
 
   private class AsymmetricMasteSecretInitializer implements Runnable {
+    @Override
     public void run() {
       MasterSecretUtil.generateAsymmetricMasterSecret(ConversationListActivity.this, masterSecret);
     }
