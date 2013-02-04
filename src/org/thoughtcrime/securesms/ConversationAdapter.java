@@ -21,7 +21,6 @@ import android.database.Cursor;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
@@ -43,7 +42,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.MessageNotifier;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 
 import ws.com.google.android.mms.MmsException;
@@ -65,7 +63,6 @@ public class ConversationAdapter extends CursorAdapter {
 
   private static final int MAX_CACHE_SIZE = 40;
 
-  private final TouchListener touchListener = new TouchListener();
   private final LinkedHashMap<String,MessageRecord> messageRecordCache;
   private final Handler failedIconClickHandler;
   private final long threadId;
@@ -74,8 +71,6 @@ public class ConversationAdapter extends CursorAdapter {
   private final MasterSecret masterSecret;
   private final MasterCipher masterCipher;
   private final LayoutInflater inflater;
-
-  private boolean dataChanged;
 
   public ConversationAdapter(Recipients recipients, long threadId, Context context,
                              MasterSecret masterSecret, Handler failedIconClickHandler)
@@ -86,14 +81,10 @@ public class ConversationAdapter extends CursorAdapter {
     this.threadId               = threadId;
     this.masterSecret           = masterSecret;
     this.masterCipher           = new MasterCipher(masterSecret);
-    this.dataChanged            = false;
     this.failedIconClickHandler = failedIconClickHandler;
     this.messageRecordCache     = initializeCache();
     this.inflater               = (LayoutInflater)context
                                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-    DatabaseFactory.getThreadDatabase(context).setRead(threadId);
-    MessageNotifier.updateNotification(context, false);
   }
 
   @Override
@@ -104,8 +95,6 @@ public class ConversationAdapter extends CursorAdapter {
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
     item.set(masterSecret, messageRecord, failedIconClickHandler);
-
-    view.setOnTouchListener(touchListener);
   }
 
   @Override
@@ -284,23 +273,10 @@ public class ConversationAdapter extends CursorAdapter {
   protected void onContentChanged() {
     super.onContentChanged();
     messageRecordCache.clear();
-    DatabaseFactory.getThreadDatabase(context).setRead(threadId);
-    this.dataChanged = true;
   }
 
   public void close() {
     this.getCursor().close();
-  }
-
-  private class TouchListener implements View.OnTouchListener {
-    public boolean onTouch(View v, MotionEvent event) {
-      if (ConversationAdapter.this.dataChanged) {
-        ConversationAdapter.this.dataChanged = false;
-        MessageNotifier.updateNotification(context, false);
-      }
-
-      return false;
-    }
   }
 
   private LinkedHashMap<String,MessageRecord> initializeCache() {

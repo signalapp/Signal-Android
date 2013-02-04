@@ -24,6 +24,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -133,11 +134,20 @@ public class ConversationActivity extends SherlockFragmentActivity
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    MessageNotifier.setVisibleThread(-1L);
+  }
+
+  @Override
   protected void onResume() {
     super.onResume();
     initializeSecurity();
     initializeTitleBar();
     calculateCharactersRemaining();
+
+    MessageNotifier.setVisibleThread(threadId);
+    markThreadAsRead();
   }
 
   @Override
@@ -607,6 +617,17 @@ public class ConversationActivity extends SherlockFragmentActivity
     return rawText;
   }
 
+  private void markThreadAsRead() {
+    new AsyncTask<Long, Void, Void>() {
+      @Override
+      protected Void doInBackground(Long... params) {
+        DatabaseFactory.getThreadDatabase(ConversationActivity.this).setRead(params[0]);
+        MessageNotifier.updateNotification(ConversationActivity.this);
+        return null;
+      }
+    }.execute(threadId);
+  }
+
   private void sendComplete(Recipients recipients, long threadId) {
     attachmentManager.clear();
     recipientsPanel.disable();
@@ -651,7 +672,6 @@ public class ConversationActivity extends SherlockFragmentActivity
       }
 
       sendComplete(recipients, allocatedThreadId);
-      MessageNotifier.updateNotification(ConversationActivity.this, false);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
                      R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,

@@ -86,11 +86,13 @@ public class SmsReceiver {
     }
   }
 
-  private void storeSecureMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
+  private long storeSecureMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
     long messageId = DatabaseFactory.getSmsDatabase(context).insertSecureMessageReceived(message, messageBody);
     Log.w("SmsReceiver", "Inserted secure message received: " + messageId);
     if (masterSecret != null)
       DecryptingQueue.scheduleDecryption(context, masterSecret, messageId, message.getDisplayOriginatingAddress(), messageBody);
+
+    return messageId;
   }
 
   private long storeStandardMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
@@ -99,7 +101,7 @@ public class SmsReceiver {
     else                                                         return DatabaseFactory.getSmsDatabase(context).insertMessageReceived(message, messageBody);
   }
 
-  private void storeKeyExchangeMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
+  private long storeKeyExchangeMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true)) {
       try {
         Recipient recipient                   = new Recipient(null, message.getDisplayOriginatingAddress(), null, null);
@@ -118,7 +120,7 @@ public class SmsReceiver {
           long threadId  = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
 
           processor.processKeyExchangeMessage(keyExchangeMessage, threadId);
-          return;
+          return messageId;
         }
       } catch (InvalidVersionException e) {
         Log.w("SmsReceiver", e);
@@ -127,19 +129,17 @@ public class SmsReceiver {
       }
     }
 
-    storeStandardMessage(masterSecret, message, messageBody);
+    return storeStandardMessage(masterSecret, message, messageBody);
   }
 
-  private boolean storeMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
+  private long storeMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
     if (messageBody.startsWith(Prefix.ASYMMETRIC_ENCRYPT)) {
-      storeSecureMessage(masterSecret, message, messageBody);
+      return storeSecureMessage(masterSecret, message, messageBody);
     } else if (messageBody.startsWith(Prefix.KEY_EXCHANGE)) {
-      storeKeyExchangeMessage(masterSecret, message, messageBody);
+      return storeKeyExchangeMessage(masterSecret, message, messageBody);
     } else {
-      storeStandardMessage(masterSecret, message, messageBody);
+      return storeStandardMessage(masterSecret, message, messageBody);
     }
-
-    return true;
   }
 
   private SmsMessage[] parseMessages(Bundle bundle) {
@@ -158,8 +158,10 @@ public class SmsReceiver {
     String message        = assembleMessageFragments(messages);
 
     if (message != null) {
-      storeMessage(masterSecret, messages[0], message);
-      MessageNotifier.updateNotification(context, true);
+      long messageId = storeMessage(masterSecret, messages[0], message);
+      long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
+
+      MessageNotifier.updateNotification(context, threadId);
     }
   }
 

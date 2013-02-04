@@ -37,12 +37,12 @@ public class MmsReceiver {
     this.context = context;
   }
 
-  private void scheduleDownload(NotificationInd pdu, long messageId) {
+  private void scheduleDownload(NotificationInd pdu, long messageId, long threadId) {
     Intent intent = new Intent(SendReceiveService.DOWNLOAD_MMS_ACTION, null, context, SendReceiveService.class);
     intent.putExtra("content_location", new String(pdu.getContentLocation()));
     intent.putExtra("message_id", messageId);
     intent.putExtra("transaction_id", pdu.getTransactionId());
-    intent.putExtra("thread_id", DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+    intent.putExtra("thread_id", threadId);
 
     context.startService(intent);
   }
@@ -61,8 +61,11 @@ public class MmsReceiver {
         database = DatabaseFactory.getMmsDatabase(context);
 
       long messageId = database.insertMessageReceived((NotificationInd)pdu);
-      MessageNotifier.updateNotification(context, true);
-      scheduleDownload((NotificationInd)pdu, messageId);
+      long threadId  = database.getThreadIdForMessage(messageId);
+
+      MessageNotifier.updateNotification(context, threadId);
+      scheduleDownload((NotificationInd)pdu, messageId, threadId);
+
       Log.w("MmsReceiverService", "Inserted received notification...");
     }
   }

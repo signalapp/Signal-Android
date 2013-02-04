@@ -19,8 +19,10 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -32,17 +34,17 @@ import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockListFragment;
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.MessageNotifier;
+
+import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.ActionMode;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 import java.util.Set;
 
@@ -157,14 +159,32 @@ public class ConversationListFragment extends SherlockListFragment
     alert.setCancelable(true);
 
     alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+      @Override
       public void onClick(DialogInterface dialog, int which) {
-        Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
+        final Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
             .getBatchSelections();
 
         if (!selectedConversations.isEmpty()) {
-          DatabaseFactory.getThreadDatabase(getActivity())
-            .deleteConversations(selectedConversations);
-          MessageNotifier.updateNotification(getActivity(), false);
+          new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog dialog;
+
+            @Override
+            protected void onPreExecute() {
+              dialog = ProgressDialog.show(getActivity(), "Deleting", "Deleting selected threads...", true, false);
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+              DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
+              MessageNotifier.updateNotification(getActivity());
+              return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+              dialog.dismiss();
+            }
+          }.execute();
         }
       }
     });

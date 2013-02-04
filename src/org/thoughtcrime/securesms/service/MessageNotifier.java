@@ -25,6 +25,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -43,6 +45,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 /**
@@ -55,6 +58,12 @@ import java.util.LinkedList;
 public class MessageNotifier {
 
   public static final int NOTIFICATION_ID = 1338;
+
+  private volatile static long visibleThread = -1;
+
+  public static void setVisibleThread(long threadId) {
+    visibleThread = threadId;
+  }
 
   private static Bitmap buildContactPhoto(Recipients recipients) {
     Recipient recipient = recipients.getPrimaryRecipient();
@@ -176,12 +185,41 @@ public class MessageNotifier {
     manager.notify(NOTIFICATION_ID, builder.build());
   }
 
-  private static void flashNotification(Context context, NotificationManager manager) {
-    sendNotification(context, manager, buildPendingIntent(context, null, null),
-                     null, "(1) New Messages", "(1) New Messages", null, true);
+  private static void sendInThreadNotification(Context context) {
+    try {
+      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+      String ringtone      = sp.getString(ApplicationPreferencesActivity.RINGTONE_PREF, null);
+
+      if (ringtone == null)
+        return;
+
+      Uri uri            = Uri.parse(ringtone);
+      MediaPlayer player = new MediaPlayer();
+      player.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+      player.setDataSource(context, uri);
+      player.setLooping(false);
+      player.setVolume(0.25f, 0.25f);
+      player.prepare();
+
+      final AudioManager audioManager = ((AudioManager)context.getSystemService(Context.AUDIO_SERVICE));
+
+      audioManager.requestAudioFocus(null, AudioManager.STREAM_NOTIFICATION,
+                                     AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+
+      player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+          audioManager.abandonAudioFocus(null);
+        }
+      });
+
+      player.start();
+    } catch (IOException ioe) {
+      Log.w("MessageNotifier", ioe);
+    }
   }
 
-  public static void updateNotification(Context context, boolean signal) {
+  private static void updateNotification(Context context, boolean signal) {
     NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
     manager.cancel(NOTIFICATION_ID);
 
@@ -190,8 +228,9 @@ public class MessageNotifier {
     try {
       c = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
 
-      if      ((c == null && signal) || (!c.moveToFirst() && signal)) {flashNotification(context, manager); return;}
-      else if (c == null || !c.moveToFirst())                         return;
+      if (c == null || !c.moveToFirst()) {
+        return;
+      }
 
       Recipients recipients      = getMostRecentRecipients(context, c);
       String ticker              = buildTickerMessage(context, c.getCount(), recipients);
@@ -205,6 +244,19 @@ public class MessageNotifier {
     } finally {
       if (c != null)
         c.close();
+    }
+  }
+
+  public static void updateNotification(final Context context) {
+    updateNotification(context, false);
+  }
+
+  public static void updateNotification(Context context, long threadId) {
+    if (visibleThread == threadId) {
+      DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+      sendInThreadNotification(context);
+    } else {
+      updateNotification(context, true);
     }
   }
 
