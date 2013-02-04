@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.widget.EditText;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -78,6 +80,14 @@ public class Util {
     });
 
     return executor;
+  }
+
+  public static boolean isEmpty(String value) {
+    return value == null || value.trim().length() == 0;
+  }
+
+  public static boolean isEmpty(EditText value) {
+    return value == null || value.getText() == null || isEmpty(value.getText().toString());
   }
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {

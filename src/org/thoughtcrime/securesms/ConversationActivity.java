@@ -50,11 +50,15 @@ import org.thoughtcrime.securesms.crypto.AuthenticityCalculator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -67,6 +71,7 @@ import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.MmsException;
 
@@ -171,6 +176,7 @@ public class ConversationActivity extends SherlockFragmentActivity
   protected void onDestroy() {
     unregisterReceiver(killActivityReceiver);
     unregisterReceiver(securityUpdateReceiver);
+    saveDraft();
     MemoryCleaner.clean(masterSecret);
     super.onDestroy();
   }
@@ -422,6 +428,35 @@ public class ConversationActivity extends SherlockFragmentActivity
     if (draftText != null)  composeText.setText(draftText);
     if (draftImage != null) addAttachmentImage(draftImage);
     if (draftAudio != null) addAttachmentAudio(draftAudio);
+
+    if (draftText == null && draftImage == null && draftAudio == null) {
+      initializeDraftFromDatabase();
+    }
+  }
+
+  private void initializeDraftFromDatabase() {
+    new AsyncTask<Void, Void, List<Draft>>() {
+      @Override
+      protected List<Draft> doInBackground(Void... params) {
+        MasterCipher masterCipher   = new MasterCipher(masterSecret);
+        DraftDatabase draftDatabase = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
+        List<Draft> results         = draftDatabase.getDrafts(masterCipher, threadId);
+
+        draftDatabase.clearDrafts(threadId);
+
+        return results;
+      }
+
+      @Override
+      protected void onPostExecute(List<Draft> drafts) {
+        for (Draft draft : drafts) {
+          if      (draft.getType().equals(Draft.TEXT))  composeText.setText(draft.getValue());
+          else if (draft.getType().equals(Draft.IMAGE)) addAttachmentImage(Uri.parse(draft.getValue()));
+          else if (draft.getType().equals(Draft.AUDIO)) addAttachmentAudio(Uri.parse(draft.getValue()));
+          else if (draft.getType().equals(Draft.VIDEO)) addAttachmentVideo(Uri.parse(draft.getValue()));
+        }
+      }
+    }.execute();
   }
 
   private void initializeSecurity() {
@@ -569,6 +604,50 @@ public class ConversationActivity extends SherlockFragmentActivity
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
+  }
+
+  private List<Draft> getDraftsForCurrentState() {
+    List<Draft> drafts = new LinkedList<Draft>();
+
+    if (!Util.isEmpty(composeText)) {
+      drafts.add(new Draft(Draft.TEXT, composeText.getText().toString()));
+    }
+
+    for (Slide slide : attachmentManager.getSlideDeck().getSlides()) {
+      if      (slide.hasImage()) drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
+      else if (slide.hasAudio()) drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
+      else if (slide.hasVideo()) drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
+    }
+
+    return drafts;
+  }
+
+  private void saveDraft() {
+    if (this.threadId <= 0 || this.recipients == null || this.recipients.isEmpty())
+      return;
+
+    final List<Draft> drafts = getDraftsForCurrentState();
+
+    if (drafts.size() <= 0)
+      return;
+
+    final long thisThreadId             = this.threadId;
+    final MasterSecret thisMasterSecret = this.masterSecret.parcelClone();
+
+    new AsyncTask<Void, Void, Void>() {
+      @Override
+      protected void onPreExecute() {
+        Toast.makeText(ConversationActivity.this, "Saving draft...", Toast.LENGTH_SHORT).show();
+      }
+
+      @Override
+      protected Void doInBackground(Void... params) {
+        MasterCipher masterCipher = new MasterCipher(thisMasterSecret);
+        DatabaseFactory.getDraftDatabase(ConversationActivity.this).insertDrafts(masterCipher, thisThreadId, drafts);
+        MemoryCleaner.clean(thisMasterSecret);
+        return null;
+      }
+    }.execute();
   }
 
   private void calculateCharactersRemaining() {

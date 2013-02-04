@@ -28,7 +28,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_IDENTITIES_VERSION = 2;
   private static final int INTRODUCED_INDEXES_VERSION    = 3;
   private static final int INTRODUCED_DATE_SENT_VERSION  = 4;
-  private static final int DATABASE_VERSION              = 4;
+  private static final int INTRODUCED_DRAFTS_VERSION     = 5;
+  private static final int DATABASE_VERSION              = 5;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -48,6 +49,7 @@ public class DatabaseFactory {
   private final MmsAddressDatabase mmsAddress;
   private final MmsSmsDatabase mmsSmsDatabase;
   private final IdentityDatabase identityDatabase;
+  private final DraftDatabase draftDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -116,6 +118,10 @@ public class DatabaseFactory {
     return getInstance(context).identityDatabase;
   }
 
+  public static DraftDatabase getDraftDatabase(Context context) {
+    return getInstance(context).draftDatabase;
+  }
+
   private DatabaseFactory(Context context) {
     this.databaseHelper   = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     this.sms              = new SmsDatabase(context, databaseHelper);
@@ -127,6 +133,7 @@ public class DatabaseFactory {
     this.mmsAddress       = new MmsAddressDatabase(context, databaseHelper);
     this.mmsSmsDatabase   = new MmsSmsDatabase(context, databaseHelper);
     this.identityDatabase = new IdentityDatabase(context, databaseHelper);
+    this.draftDatabase    = new DraftDatabase(context, databaseHelper);
   }
 
   public void close() {
@@ -149,12 +156,14 @@ public class DatabaseFactory {
       db.execSQL(ThreadDatabase.CREATE_TABLE);
       db.execSQL(MmsAddressDatabase.CREATE_TABLE);
       db.execSQL(IdentityDatabase.CREATE_TABLE);
+      db.execSQL(DraftDatabase.CREATE_TABLE);
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
       executeStatements(db, PartDatabase.CREATE_INDEXS);
       executeStatements(db, ThreadDatabase.CREATE_INDEXS);
       executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
+      executeStatements(db, DraftDatabase.CREATE_INDEXS);
 
       //  db.execSQL(CanonicalAddress.CREATE_TABLE);
     }
@@ -184,6 +193,14 @@ public class DatabaseFactory {
                    " ADD COLUMN " + MmsDatabase.DATE_RECEIVED + " INTEGER;");
         db.execSQL("UPDATE " + MmsDatabase.TABLE_NAME +
                    " SET " + MmsDatabase.DATE_RECEIVED + " = " + MmsDatabase.DATE_SENT + ";");
+        db.setTransactionSuccessful();
+        db.endTransaction();
+      }
+
+      if (oldVersion < INTRODUCED_DRAFTS_VERSION) {
+        db.beginTransaction();
+        db.execSQL(DraftDatabase.CREATE_TABLE);
+        executeStatements(db, DraftDatabase.CREATE_INDEXS);
         db.setTransactionSuccessful();
         db.endTransaction();
       }
