@@ -78,7 +78,7 @@ public class MmsSmsDatabase extends Database {
                                      "WHEN " + SmsDatabase.Types.FAILED_TYPE + " THEN 1 " +
                                      "ELSE 0 END)";
 
-    String[] projection = {"_id", "body", "type", "address", "subject", "normalized_date_sent AS date_sent", "normalized_date_received AS date_received", "m_type", "msg_box", "transport_type", "COUNT(_id) AS group_size", mmsGroupSentCount + " AS mms_group_sent_count", mmsGroupSentFailedCount + " AS mms_group_sent_failed_count", smsGroupSentCount + " AS sms_group_sent_count", smsGroupSentFailedCount + " AS sms_group_sent_failed_count", smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
+    String[] projection = {"_id", "body", "type", "address", "subject", "status", "normalized_date_sent AS date_sent", "normalized_date_received AS date_received", "m_type", "msg_box", "transport_type", "COUNT(_id) AS group_size", mmsGroupSentCount + " AS mms_group_sent_count", mmsGroupSentFailedCount + " AS mms_group_sent_failed_count", smsGroupSentCount + " AS sms_group_sent_count", smsGroupSentFailedCount + " AS sms_group_sent_failed_count", smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
     String order        = "normalized_date_received ASC";
     String selection    = "thread_id = " + threadId;
     String groupBy      = "normalized_date_sent / 1000, sms_collate, mms_collate";
