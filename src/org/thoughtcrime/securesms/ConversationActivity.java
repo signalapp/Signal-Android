@@ -637,7 +637,9 @@ public class ConversationActivity extends SherlockFragmentActivity
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected void onPreExecute() {
-        Toast.makeText(ConversationActivity.this, "Saving draft...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ConversationActivity.this,
+                       R.string.ConversationActivity_saving_draft,
+                       Toast.LENGTH_SHORT).show();
       }
 
       @Override

@@ -170,7 +170,10 @@ public class ConversationListFragment extends SherlockListFragment
 
             @Override
             protected void onPreExecute() {
-              dialog = ProgressDialog.show(getActivity(), "Deleting", "Deleting selected threads...", true, false);
+              dialog = ProgressDialog.show(getActivity(),
+                                           getSherlockActivity().getString(R.string.ConversationListFragment_deleting),
+                                           getSherlockActivity().getString(R.string.ConversationListFragment_deleting_selected_threads),
+                                           true, false);
             }
 
             @Override

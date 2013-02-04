@@ -88,6 +88,7 @@
     <string name="ConversationActivity_group_conversation_recipients">Group Conversation Recipients</string>
     <string name="ConversationActivity_group_conversation">Group Conversation</string>
     <string name="ConversationActivity_d_recipients_in_group">%d recipients in group</string>    
+    <string name="ConversationActivity_saving_draft">Saving draft...</string>
     
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -103,6 +104,8 @@
     <!-- ConversationListFragment -->
     <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
     <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Are you sure you wish to delete ALL selected conversation threads?</string>
+    <string name="ConversationListFragment_deleting">Deleting</string>
+    <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads...</string>
     
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
