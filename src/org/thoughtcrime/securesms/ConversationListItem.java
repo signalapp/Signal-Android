@@ -172,12 +172,13 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private CharSequence formatFrom(Recipients from, long count, boolean read) {
-    SpannableStringBuilder builder = new SpannableStringBuilder(from.toShortString());
+    String fromString              = from.toShortString();
+    SpannableStringBuilder builder = new SpannableStringBuilder(fromString);
 
     if (count > 0) {
       builder.append(" " + count);
       builder.setSpan(new ForegroundColorSpan(Color.parseColor("#66333333")),
-                      from.toShortString().length(), builder.length(),
+                      fromString.length(), builder.length(),
                       Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
@@ -198,6 +199,7 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private class CheckedChangedListener implements CompoundButton.OnCheckedChangeListener {
+    @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
       if (isChecked) selectedThreads.add(threadId);
       else           selectedThreads.remove(threadId);
