@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MessageDisplayHelper;
@@ -260,15 +261,20 @@ public class ConversationAdapter extends CursorAdapter {
     Recipient recipient;
 
     try {
-      if (address == null) recipient = recipients.getPrimaryRecipient();
-      else                 recipient = RecipientFactory.getRecipientsFromString(context, address, false).getPrimaryRecipient();
+      if (address == null)   recipient = recipients.getPrimaryRecipient();
+      else                   recipient = RecipientFactory.getRecipientsFromString(context, address, false).getPrimaryRecipient();
+
+      if (recipient == null) recipient = new Recipient("Unknown", "Unknown", null,
+                                                       ContactPhotoFactory.getDefaultContactPhoto(context));
     } catch (RecipientFormattingException e) {
       Log.w("ConversationAdapter", e);
-      recipient = new Recipient("Unknown", "Unknown", null, null);
+      recipient = new Recipient("Unknown", "Unknown", null,
+                                ContactPhotoFactory.getDefaultContactPhoto(context));
     }
 
     return recipient;
   }
+
   @Override
   protected void onContentChanged() {
     super.onContentChanged();
