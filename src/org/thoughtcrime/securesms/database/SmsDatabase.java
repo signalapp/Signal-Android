@@ -235,7 +235,6 @@ public class SmsDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long messageId    = db.insert(TABLE_NAME, ADDRESS, contentValues);
 
-    DatabaseFactory.getThreadDatabase(context).setRead(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
     Trimmer.trimThread(context, threadId);

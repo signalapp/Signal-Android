@@ -365,7 +365,6 @@ public class MmsDatabase extends Database {
     contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
 
     long messageId = insertMediaMessage(sendRequest, contentValues);
-    DatabaseFactory.getThreadDatabase(context).setRead(threadId);
     Trimmer.trimThread(context, threadId);
 
     return messageId;
