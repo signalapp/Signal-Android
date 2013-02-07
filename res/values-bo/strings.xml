@@ -116,7 +116,7 @@
   <string name="ReceiveKeyActivity_this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s">%s དང་ལྷན་དུ། འདི་ནི་ད་ཡོད་གསང་སྡོམ་སྡེ་ཚན་དེ་འགོ་འཛུགས་པར་ཁྱེད་ལ་འབྱོར་བའི་ལྡེ་མིག་དེ་རེད། </string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session">(%s.⏎ ⏎ )ནས་ཁྱེད་ལ་ཕན་ཚུན་བརྗེ་ལེན་གྱི་གསང་བའི་འཕྲིན་ཐུང་ཞིག་འབྱོར་འདུག \nཉེན་བརྡ།: འབྲེལ་བ་འདི་དང་མཉམ་དུ་ཁྱོད་ལ་གསང་རྒྱ་ཅན་གྱི་སྡེ་ཚན་ཞིག་འདུག གལ་སྲིད་ཁྱོད་ནས་ཕན་ཚུན་བརྗེ་ལེན་གྱི་གསང་བའི་འཕྲིན་ཐུང་འདི་ངོས་ལེན་བྱས་ཚེ། དེས་ཁྱེད་ཀྱི་ད་ཡོད་སྡེ་ཚན་དེ་གཏོར་བཤིག་གཏོང་བ་མ་ཟད་ཁྱེད་ནས་ཡང་བསྐྱར་ཁུངས་སྐྱེལ་བྱེད་དགོས། ཁྱེད་ནས་གསང་བའི་བརྗེ་ལེན་འདི་ལེགས་འགྲུབ་བྱེད་འདོད་དམ། </string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">%s ནས་ཁྱེད་ལ་ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འབྱོར་འདུག ཁྱེད་ཀྱི་འབྲེལ་མིང་འདིའི་ལྷན་དུ་གཏམ་གླེང་འགོ་འཛུགས་འདུག་པ་དང་ལྡེ་མིག་འདི་ངོས་ལེན་བརྒྱུད་ཁྱེད་ཀྱིས་ལྡེ་མིག་བརྗེ་ལེན་གྱི་རིམ་པ་འདི་ལེགས་འགྲུབ་བྱེད་ཀྱི་ཡོད། ཁྱེད་རང་ནས་ལྡེ་མིག་འདིའི་བརྗེ་བསྒྱུར་ལེགས་འགྲུབ་བྱེད་འདོད་འདུག་གམ།</string>
-  <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">%d དང་མཉམ་དུ། ཁྱོད་ཀྱིས་ལྡེ་མིག་བརྗེ་ལེན་བྱ་རྒྱུའི་བརྡ་ལན་འགོ་བཙུགས་འདུག ཡིན་ནའང་། དེ་ལ་་དེར་ཡ་ལན་འབྱོར་མི་འདུག </string>
+  <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">%s དང་མཉམ་དུ། ཁྱོད་ཀྱིས་ལྡེ་མིག་བརྗེ་ལེན་བྱ་རྒྱུའི་བརྡ་ལན་འགོ་བཙུགས་འདུག ཡིན་ནའང་། དེ་ལ་་དེར་ཡ་ལན་འབྱོར་མི་འདུག </string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">%s ནས། ཁྱེད་ལ་ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འབྱོར་འདུག ཁྱེད་ལ་འབྲེལ་བ་འདིའི་མཉམ་དུ་སོར་གནས་སྡེ་ཚན་མི་འདུག  ཁྱེད་རང་ནས་ལྡེ་མིག་འདིའི་བརྗེ་བསྒྱུར་ཆ་ཚང་བར་བྱེད་འདོད་དམ། </string>
   <!--ReviewIdentitiesActivity-->
   <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">ངན་ལྷད་ཅན་གྱི་ངོས་འཛིན་ལྡེ་མིག་དེར་བལྟ་ཐུབ་གི་མི་འདུག </string>
@@ -200,7 +200,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) འཕྲིན་ཐུང་གསར་པ་རྣམས།</string>
   <string name="MessageNotifier_d_new_messages_most_recent_from_s">(%1$d) འཕྲིན་ཐུང་གསར་པ་རྣམས་ལས་ཉེ་ཆར་གྱི་མང་ཆེ་བ  %2$s ནས་རེད། </string>
-  <string name="MessageNotifier_most_recent_from_s">%: ནས་ཉེ་ཆར་གྱི་དེ། </string>
+  <string name="MessageNotifier_most_recent_from_s">%s: ནས་ཉེ་ཆར་གྱི་དེ། </string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">འཕྲིན་ཐུང་བདེ་འཇགས་ཀྱི་བདེ་འཇགས་གཏམ་གླེང་ལ་རྒྱབ་སྐྱོར་བྱེད་མཁན་ཞིག་ནས་ཁྱེད་ལ་འཕྲིན་ཐུང་ཅིག་འབྱོར་འདུག ཁོང་གི་ལྷན་དུ་འབྲེལ་བ་བརྟན་པོ་ཡོང་ཆེད་ལྡེ་མིག་བརྗེ་ལེན་རྒྱུ་ཡིན་ནམ།</string>
   <string name="auto_initiate_activity__initiate_exchange">བརྗེ་ལེན་འགོ་ཚུགས། </string>
