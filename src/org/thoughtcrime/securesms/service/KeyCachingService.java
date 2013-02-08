@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 
 /**
  * Small service that stays running to keep a key cached in memory.
@@ -48,7 +49,8 @@ public class KeyCachingService extends Service {
 
   public  static final String KEY_PERMISSION           = "org.thoughtcrime.securesms.ACCESS_SECRETS";
   public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
-  public  static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
+  public  static final String CLEAR_KEY_EVENT          = "org.thoughtcrime.securesms.service.action.CLEAR_KEY_EVENT";
+  private static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
   public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
   public  static final String ACTIVITY_START_EVENT     = "org.thoughtcrime.securesms.service.action.ACTIVITY_START_EVENT";
   public  static final String ACTIVITY_STOP_EVENT      = "org.thoughtcrime.securesms.service.action.ACTIVITY_STOP_EVENT";
@@ -67,12 +69,19 @@ public class KeyCachingService extends Service {
     return masterSecret;
   }
 
-  public synchronized void setMasterSecret(MasterSecret masterSecret) {
+  public synchronized void setMasterSecret(final MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
 
     foregroundService();
     broadcastNewSecret();
     startTimeoutIfAppropriate();
+
+    new Thread() {
+      @Override
+      public void run() {
+        MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
+      }
+    }.start();
   }
 
   @Override
@@ -86,17 +95,20 @@ public class KeyCachingService extends Service {
     else if (intent.getAction() != null && intent.getAction().equals(ACTIVITY_STOP_EVENT))
       handleActivityStopped();
     else if (intent.getAction() != null && intent.getAction().equals(PASSPHRASE_EXPIRED_EVENT))
-      handlePassphraseExpired();
+      handleClearKey();
   }
 
   @Override
   public void onCreate() {
+    super.onCreate();
     pending = PendingIntent.getService(this, 0, new Intent(PASSPHRASE_EXPIRED_EVENT, null, this, KeyCachingService.class), 0);
   }
 
   @Override
   public void onDestroy() {
-    Log.e("kcs", "KCS Is Being Destroyed!");
+    super.onDestroy();
+    Log.w("KeyCachingService", "KCS Is Being Destroyed!");
+    handleClearKey();
   }
 
   private void handleActivityStarted() {
@@ -117,14 +129,18 @@ public class KeyCachingService extends Service {
   private void handleClearKey() {
     this.masterSecret = null;
     stopForeground(true);
-  }
 
-  private void handlePassphraseExpired() {
-    handleClearKey();
-    Intent intent = new Intent(PASSPHRASE_EXPIRED_EVENT);
+    Intent intent = new Intent(CLEAR_KEY_EVENT);
     intent.setPackage(getApplicationContext().getPackageName());
 
     sendBroadcast(intent, KEY_PERMISSION);
+
+    new Thread() {
+      @Override
+      public void run() {
+        MessageNotifier.updateNotification(KeyCachingService.this, null);
+      }
+    }.start();
   }
 
   private void startTimeoutIfAppropriate() {
@@ -180,6 +196,7 @@ public class KeyCachingService extends Service {
 
   private void broadcastNewSecret() {
     Log.w("service", "Broadcasting new secret...");
+
     Intent intent = new Intent(NEW_KEY_EVENT);
     intent.putExtra("master_secret", masterSecret);
     intent.setPackage(getApplicationContext().getPackageName());

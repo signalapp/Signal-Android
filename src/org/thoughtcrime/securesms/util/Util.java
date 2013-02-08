@@ -16,6 +16,10 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.widget.EditText;
 
 import java.util.concurrent.ExecutorService;
@@ -88,6 +92,24 @@ public class Util {
 
   public static boolean isEmpty(EditText value) {
     return value == null || value.getText() == null || isEmpty(value.getText().toString());
+  }
+
+  public static CharSequence getBoldedString(String value) {
+    SpannableString spanned = new SpannableString(value);
+    spanned.setSpan(new StyleSpan(Typeface.BOLD), 0,
+                    spanned.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    return spanned;
+  }
+
+  public static CharSequence getItalicizedString(String value) {
+    SpannableString spanned = new SpannableString(value);
+    spanned.setSpan(new StyleSpan(Typeface.ITALIC), 0,
+                    spanned.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    return spanned;
   }
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {

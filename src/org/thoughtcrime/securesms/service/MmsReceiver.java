@@ -23,6 +23,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 
 import ws.com.google.android.mms.pdu.GenericPdu;
 import ws.com.google.android.mms.pdu.NotificationInd;
@@ -63,7 +64,7 @@ public class MmsReceiver {
       long messageId = database.insertMessageReceived((NotificationInd)pdu);
       long threadId  = database.getThreadIdForMessage(messageId);
 
-      MessageNotifier.updateNotification(context, threadId);
+      MessageNotifier.updateNotification(context, masterSecret, threadId);
       scheduleDownload((NotificationInd)pdu, messageId, threadId);
 
       Log.w("MmsReceiverService", "Inserted received notification...");

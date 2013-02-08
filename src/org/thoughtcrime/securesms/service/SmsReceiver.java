@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -161,7 +162,7 @@ public class SmsReceiver {
       long messageId = storeMessage(masterSecret, messages[0], message);
       long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
 
-      MessageNotifier.updateNotification(context, threadId);
+      MessageNotifier.updateNotification(context, masterSecret, threadId);
     }
   }
 

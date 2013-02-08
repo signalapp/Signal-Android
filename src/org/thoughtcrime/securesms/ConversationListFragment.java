@@ -37,8 +37,8 @@ import android.widget.ListView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.MessageNotifier;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.view.ActionMode;
@@ -179,7 +179,7 @@ public class ConversationListFragment extends SherlockListFragment
             @Override
             protected Void doInBackground(Void... params) {
               DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-              MessageNotifier.updateNotification(getActivity());
+              MessageNotifier.updateNotification(getActivity(), masterSecret);
               return null;
             }
 

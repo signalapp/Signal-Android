@@ -208,7 +208,7 @@
     <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait...</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session...</string>
     <string name="MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question">Decryption error: local message corrupted, MAC doesn\'t match. Potential tampering?</string>
-    
+        
     <!-- MmsDatabase -->
     <string name="MmsDatabase_connecting_to_mms_server">Connecting to MMS server...</string>
     <string name="MmsDatabase_downloading_mms">Downloading MMS...</string>
@@ -230,9 +230,13 @@
     <string name="KeyCachingService_passphrase_cached">Passphrase Cached</string>
     
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages">(%d) New messages</string>
-    <string name="MessageNotifier_d_new_messages_most_recent_from_s">(%1$d) New messages, most recent from: %2$s</string>
-    <string name="MessageNotifier_most_recent_from_s">Most recent from: %s</string>
+    <string name="MessageNotifier_d_new_messages">%d new messages</string>
+    <string name="MessageNotifier_most_recent_from_s">Most recent from: %s</string>    
+    <string name="MessageNotifier_key_exchange">Key exchange...</string>
+    <string name="MessageNotifier_encrypted_message">Encrypted message...</string>
+    <string name="MessageNotifier_corrupted_ciphertext">Corrupted ciphertext</string>
+    <string name="MessageNotifier_no_subject">(No Subject)</string>
+    
     
     <!-- auto_initiate_activity -->
     <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">You have received a message from someone who supports TextSecure encrypted sessions.  Would you like to initiate a secure session?</string>

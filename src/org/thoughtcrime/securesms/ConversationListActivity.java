@@ -48,6 +48,7 @@ public class ConversationListActivity extends SherlockFragmentActivity
   private ApplicationMigrationManager migrationManager;
 
   private boolean havePromptedForPassphrase = false;
+  private boolean isVisible                 = false;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -75,6 +76,8 @@ public class ConversationListActivity extends SherlockFragmentActivity
       unregisterReceiver(newKeyReceiver);
       newKeyReceiver = null;
     }
+
+    isVisible = false;
   }
 
   @Override
@@ -83,6 +86,7 @@ public class ConversationListActivity extends SherlockFragmentActivity
 
     clearNotifications();
     initializeKeyCachingServiceRegistration();
+    isVisible = true;
   }
 
   @Override
@@ -199,15 +203,9 @@ public class ConversationListActivity extends SherlockFragmentActivity
   }
 
   private void handleClearPassphrase() {
-    Intent keyService = new Intent(this, KeyCachingService.class);
-
-    keyService.setAction(KeyCachingService.CLEAR_KEY_ACTION);
-    startService(keyService);
-
-    this.masterSecret = null;
-    fragment.setMasterSecret(null);
-
-    promptForPassphrase();
+    Intent intent = new Intent(this, KeyCachingService.class);
+    intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
+    startService(intent);
   }
 
   private void initializeWithMasterSecret(MasterSecret masterSecret) {
@@ -235,12 +233,17 @@ public class ConversationListActivity extends SherlockFragmentActivity
     this.killActivityReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        finish();
+        ConversationListActivity.this.masterSecret = null;
+        fragment.setMasterSecret(null);
+
+        if (isVisible) {
+          promptForPassphrase();
+        }
       }
     };
 
     registerReceiver(this.killActivityReceiver,
-                     new IntentFilter(KeyCachingService.PASSPHRASE_EXPIRED_EVENT),
+                     new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT),
                      KeyCachingService.KEY_PERMISSION, null);
   }
 

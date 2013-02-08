@@ -60,12 +60,12 @@ import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.service.MessageNotifier;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
@@ -540,7 +540,7 @@ public class ConversationActivity extends SherlockFragmentActivity
     };
 
     registerReceiver(killActivityReceiver,
-                     new IntentFilter(KeyCachingService.PASSPHRASE_EXPIRED_EVENT),
+                     new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT),
                      KeyCachingService.KEY_PERMISSION, null);
 
     registerReceiver(securityUpdateReceiver,
@@ -703,7 +703,7 @@ public class ConversationActivity extends SherlockFragmentActivity
       @Override
       protected Void doInBackground(Long... params) {
         DatabaseFactory.getThreadDatabase(ConversationActivity.this).setRead(params[0]);
-        MessageNotifier.updateNotification(ConversationActivity.this);
+        MessageNotifier.updateNotification(ConversationActivity.this, masterSecret);
         return null;
       }
     }.execute(threadId);

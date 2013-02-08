@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.EncryptingMmsDatabase;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.mms.TextTransport;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -145,6 +146,7 @@ public class DecryptingQueue {
       return null;
     }
 
+    @Override
     public void run() {
       EncryptingMmsDatabase database = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
 
@@ -178,7 +180,6 @@ public class DecryptingQueue {
         Log.w("DecryptingQueue", "Successfully decrypted MMS!");
         database.insertSecureDecryptedMessageReceived(plaintextPdu, threadId);
         database.delete(messageId);
-
       } catch (RecipientFormattingException rfe) {
         Log.w("DecryptingQueue", rfe);
         database.markAsDecryptFailed(messageId, threadId);
@@ -240,6 +241,7 @@ public class DecryptingQueue {
       }
 
       database.updateSecureMessageBody(masterSecret, messageId, plaintextBody);
+      MessageNotifier.updateNotification(context, masterSecret);
     }
 
     private void handleLocalAsymmetricEncrypt() {
@@ -261,8 +263,10 @@ public class DecryptingQueue {
       }
 
       database.updateMessageBody(masterSecret, messageId, plaintextBody);
+      MessageNotifier.updateNotification(context, masterSecret);
     }
 
+    @Override
     public void run() {
       if      (body.startsWith(Prefix.ASYMMETRIC_ENCRYPT))       handleRemoteAsymmetricEncrypt();
       else if (body.startsWith(Prefix.ASYMMETRIC_LOCAL_ENCRYPT)) handleLocalAsymmetricEncrypt();
