@@ -39,6 +39,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MessageDisplayHelper;
@@ -73,6 +74,33 @@ public class MessageNotifier {
   public static void setVisibleThread(long threadId) {
     visibleThread = threadId;
   }
+
+  public static void notifyMessageDeliveryFailed(Context context, Recipients recipients, long threadId) {
+    if (visibleThread == threadId) {
+      sendInThreadNotification(context);
+    } else {
+      Intent intent = new Intent(context, ConversationListActivity.class);
+      intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+      intent.putExtra("recipients", recipients);
+      intent.putExtra("thread_id", threadId);
+      intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+
+      NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+      builder.setSmallIcon(R.drawable.icon_notification);
+      builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                                                        R.drawable.ic_list_alert_sms_failed));
+      builder.setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed));
+      builder.setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message));
+      builder.setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));
+      builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
+      builder.setAutoCancel(true);
+      setNotificationAlarms(context, builder, true);
+
+      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+        .notify((int)threadId, builder.build());
+    }
+  }
+
 
   public static void updateNotification(Context context, MasterSecret masterSecret) {
     updateNotification(context, masterSecret, false);
@@ -286,7 +314,9 @@ public class MessageNotifier {
         return getMmsRecipient(context, cursor);
       }
     } catch (RecipientFormattingException e) {
-      return new Recipients(new Recipient("Unknown", null, null));
+      Log.w("MessageNotifier", e);
+      return new Recipients(new Recipient("Unknown", "Unknown", null,
+                            ContactPhotoFactory.getDefaultContactPhoto(context)));
     }
   }
 

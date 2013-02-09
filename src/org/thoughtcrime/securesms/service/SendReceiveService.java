@@ -131,10 +131,10 @@ public class SendReceiveService extends Service {
   }
 
   private void initializeProcessors() {
-    smsReceiver    = new SmsReceiver(this);
+    smsReceiver    = new SmsReceiver(this, toastHandler);
     smsSender      = new SmsSender(this);
     mmsReceiver    = new MmsReceiver(this);
-    mmsSender      = new MmsSender(this);
+    mmsSender      = new MmsSender(this, toastHandler);
     mmsDownloader  = new MmsDownloader(this, toastHandler);
   }
 

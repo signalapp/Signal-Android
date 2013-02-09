@@ -24,6 +24,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.Arrays;
@@ -311,6 +312,25 @@ public class ThreadDatabase extends Database {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public Recipients getRecipientsForThreadId(Context context, long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor     = null;
+
+    try {
+      cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[] {threadId+""}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        String recipientIds = cursor.getString(cursor.getColumnIndexOrThrow(RECIPIENT_IDS));
+        return RecipientFactory.getRecipientsForIds(context, recipientIds, false);
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    return null;
   }
 
   public void update(long threadId) {

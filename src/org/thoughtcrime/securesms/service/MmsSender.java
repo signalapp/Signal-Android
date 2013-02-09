@@ -18,17 +18,21 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.mms.TextTransport;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Hex;
 
 import ws.com.google.android.mms.ContentType;
@@ -49,9 +53,11 @@ import java.util.LinkedList;
 public class MmsSender extends MmscProcessor {
 
   private final LinkedList<SendReq[]> pendingMessages = new LinkedList<SendReq[]>();
+  private final Handler toastHandler;
 
-  public MmsSender(Context context) {
+  public MmsSender(Context context, Handler toastHandler) {
     super(context);
+    this.toastHandler = toastHandler;
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
@@ -69,8 +75,8 @@ public class MmsSender extends MmscProcessor {
           sendRequests[0] = database.getSendRequest(messageId);
         }
 
-        if (sendRequests.length > 0)
-          handleSendMms(sendRequests);
+        if (sendRequests != null && sendRequests.length > 0)
+          handleSendMms(sendRequests, messageId != -1);
 
       } catch (MmsException me) {
         Log.w("MmsSender", me);
@@ -90,10 +96,15 @@ public class MmsSender extends MmscProcessor {
     else                              finishConnectivity();
   }
 
-  private void handleSendMms(SendReq[] sendRequests) {
+  private void handleSendMms(SendReq[] sendRequests, boolean targeted) {
     if (!isConnectivityPossible()) {
-      for (int i=0;i<sendRequests.length;i++)
-        DatabaseFactory.getMmsDatabase(context).markAsSentFailed(sendRequests[i].getDatabaseMessageId());
+      if (targeted) {
+        toastHandler
+          .obtainMessage(0, context.getString(R.string.MmsSender_currently_unable_to_send_your_mms_message))
+          .sendToTarget();
+      }
+//      for (int i=0;i<sendRequests.length;i++)
+//        DatabaseFactory.getMmsDatabase(context).markAsSentFailed(sendRequests[i].getDatabaseMessageId());
     } else {
       pendingMessages.add(sendRequests);
       issueConnectivityRequest();
@@ -146,17 +157,23 @@ public class MmsSender extends MmscProcessor {
         Log.w("MmsSender", "Sent MMS part of content-type: " + new String(pdu.getBody().getPart(i).getContentType()));
       }
 
+      long threadId         = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
+      Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(context, threadId);
+
       if (conf == null) {
         db.markAsSentFailed(messageId);
+        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
         Log.w("MmsSender", "No M-Send.conf received in response to send.");
         return;
       } else if (conf.getResponseStatus() != PduHeaders.RESPONSE_STATUS_OK) {
         Log.w("MmsSender", "Got bad response: " + conf.getResponseStatus());
         db.updateResponseStatus(messageId, conf.getResponseStatus());
         db.markAsSentFailed(messageId);
+        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
         return;
       } else if (isInconsistentResponse(pdu, conf)) {
         db.markAsSentFailed(messageId);
+        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
         Log.w("MmsSender", "Got a response for the wrong transaction?");
         return;
       } else {
