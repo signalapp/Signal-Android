@@ -2,4 +2,7 @@
 <resources>
     <drawable name="white_background">#ffffffff</drawable>
     <drawable name="text_color_black">#ff000000</drawable>        
+    
+    <color name="unread_bgcolor">#ffffffff</color>
+    <color name="read_bgcolor">#ffeeeeee</color>    
 </resources>

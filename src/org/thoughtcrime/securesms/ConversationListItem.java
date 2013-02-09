@@ -113,7 +113,9 @@ public class ConversationListItem extends RelativeLayout
       this.subjectView.setText(thread.getBody(), TextView.BufferType.SPANNABLE);
 
     if (thread.getEmphasis())
-      ((Spannable)this.subjectView.getText()).setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, this.subjectView.getText().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+      ((Spannable)this.subjectView.getText()).setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0,
+                                                                    this.subjectView.getText().length(),
+                                                                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     if (thread.getDate() > 0)
       this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), thread.getDate(), false));
@@ -124,6 +126,7 @@ public class ConversationListItem extends RelativeLayout
     if (batchMode) checkbox.setVisibility(View.VISIBLE);
     else           checkbox.setVisibility(View.GONE);
 
+    setBackground(read, batchMode);
     setContactPhoto(this.recipients.getPrimaryRecipient());
   }
 
@@ -167,6 +170,16 @@ public class ConversationListItem extends RelativeLayout
     }
   }
 
+  private void setBackground(boolean read, boolean batch) {
+    if (batch && checkbox.isChecked()) {
+      setBackgroundResource(R.drawable.list_selected_holo_light);
+    } else if (read) {
+      setBackgroundResource(R.drawable.conversation_list_item_background_read);
+    } else {
+      setBackgroundResource(R.drawable.conversation_list_item_background_unread);
+    }
+  }
+
   private boolean isBadgeEnabled() {
     return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
   }
@@ -203,6 +216,8 @@ public class ConversationListItem extends RelativeLayout
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
       if (isChecked) selectedThreads.add(threadId);
       else           selectedThreads.remove(threadId);
+
+      setBackground(read, true);
     }
   }
 
