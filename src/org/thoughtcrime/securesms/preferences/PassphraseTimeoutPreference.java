@@ -18,6 +18,8 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.os.Build;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
@@ -54,6 +56,13 @@ public class PassphraseTimeoutPreference extends DialogPreference {
     this.scaleSpinner = (Spinner)dialog.findViewById(R.id.scale);
     this.seekBar      = (SeekBar)dialog.findViewById(R.id.seekbar);
     this.timeoutText  = (TextView)dialog.findViewById(R.id.timeout_text);
+
+    // Can't figure out how to style a DialogPreference.
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+      this.timeoutText.setTextColor(Color.parseColor("#cccccc"));
+    } else {
+      this.timeoutText.setTextColor(Color.parseColor("#000000"));
+    }
 
     initializeDefaults();
     initializeListeners();
