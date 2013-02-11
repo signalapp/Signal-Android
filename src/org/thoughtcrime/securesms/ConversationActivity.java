@@ -75,7 +75,6 @@ import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.MmsException;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -91,7 +90,7 @@ import java.util.List;
  * @author Moxie Marlinspike
  *
  */
-public class ConversationActivity extends SherlockFragmentActivity
+public class ConversationActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationFragment.ConversationFragmentListener
   {
 
@@ -116,7 +115,6 @@ public class ConversationActivity extends SherlockFragmentActivity
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager attachmentManager;
-  private BroadcastReceiver killActivityReceiver;
   private BroadcastReceiver securityUpdateReceiver;
 
   private Recipients recipients;
@@ -161,20 +159,10 @@ public class ConversationActivity extends SherlockFragmentActivity
 
     if (!isExistingConversation())
       initializeRecipientsInput();
-
-    registerPassphraseActivityStarted();
-  }
-
-  @Override
-  protected void onStop() {
-    super.onStop();
-
-    registerPassphraseActivityStopped();
   }
 
   @Override
   protected void onDestroy() {
-    unregisterReceiver(killActivityReceiver);
     unregisterReceiver(securityUpdateReceiver);
     saveDraft();
     MemoryCleaner.clean(masterSecret);
@@ -518,13 +506,6 @@ public class ConversationActivity extends SherlockFragmentActivity
 
 
   private void initializeReceivers() {
-    killActivityReceiver   = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        finish();
-      }
-    };
-
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
@@ -538,10 +519,6 @@ public class ConversationActivity extends SherlockFragmentActivity
         }
       }
     };
-
-    registerReceiver(killActivityReceiver,
-                     new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT),
-                     KeyCachingService.KEY_PERMISSION, null);
 
     registerReceiver(securityUpdateReceiver,
                      new IntentFilter(KeyExchangeProcessor.SECURITY_UPDATE_EVENT),
@@ -765,18 +742,6 @@ public class ConversationActivity extends SherlockFragmentActivity
     } catch (MmsException e) {
       Log.w("ComposeMessageActivity", e);
     }
-  }
-
-  private void registerPassphraseActivityStarted() {
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(KeyCachingService.ACTIVITY_START_EVENT);
-    startService(intent);
-  }
-
-  private void registerPassphraseActivityStopped() {
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(KeyCachingService.ACTIVITY_STOP_EVENT);
-    startService(intent);
   }
 
   // Listeners

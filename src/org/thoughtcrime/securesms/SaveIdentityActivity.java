@@ -25,8 +25,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
-
 import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -39,7 +37,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  *
  * @author Moxie Marlinspike
  */
-public class SaveIdentityActivity extends SherlockActivity {
+public class SaveIdentityActivity extends PassphraseRequiredSherlockActivity {
 
   private MasterSecret masterSecret;
   private IdentityKey identityKey;
@@ -83,6 +81,7 @@ public class SaveIdentityActivity extends SherlockActivity {
   }
 
   private class OkListener implements View.OnClickListener {
+    @Override
     public void onClick(View v) {
       if (identityName.getText() == null || identityName.getText().toString().trim().length() == 0) {
         Toast.makeText(SaveIdentityActivity.this,
@@ -99,6 +98,7 @@ public class SaveIdentityActivity extends SherlockActivity {
         builder.setMessage(R.string.SaveIdentityActivity_an_identity_key_with_the_specified_name_already_exists);
         builder.setPositiveButton(R.string.SaveIdentityActivity_manage_identities,
                                   new DialogInterface.OnClickListener() {
+          @Override
           public void onClick(DialogInterface dialog, int which) {
             Intent intent = new Intent(SaveIdentityActivity.this, ReviewIdentitiesActivity.class);
             intent.putExtra("master_secret", masterSecret);
@@ -115,9 +115,9 @@ public class SaveIdentityActivity extends SherlockActivity {
   }
 
   private class CancelListener implements View.OnClickListener {
+    @Override
     public void onClick(View v) {
       finish();
     }
   }
-
 }

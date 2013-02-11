@@ -19,23 +19,22 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import org.thoughtcrime.securesms.crypto.SerializableKey;
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Dialogs;
+
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.thoughtcrime.securesms.crypto.SerializableKey;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.Dialogs;
-
 /**
  * Activity for initiating/receiving key QR code scans.
  *
  * @author Moxie Marlinspike
  */
-public abstract class KeyScanningActivity extends SherlockActivity {
+public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActivity {
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {

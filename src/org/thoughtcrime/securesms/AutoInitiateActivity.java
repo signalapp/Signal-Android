@@ -24,8 +24,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.actionbarsherlock.app.SherlockActivity;
-
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.LocalKeyRecord;
@@ -42,7 +40,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  * @author Moxie Marlinspike
  *
  */
-public class AutoInitiateActivity extends SherlockActivity {
+public class AutoInitiateActivity extends PassphraseRequiredSherlockActivity {
 
   private long threadId;
   private Recipient recipient;
@@ -77,12 +75,14 @@ public class AutoInitiateActivity extends SherlockActivity {
   }
 
   private class OkListener implements View.OnClickListener {
+    @Override
     public void onClick(View v) {
       initiateKeyExchange();
     }
   }
 
   private class CancelListener implements View.OnClickListener {
+    @Override
     public void onClick(View v) {
       Log.w("AutoInitiateActivity", "Exempting threadID: " + threadId);
       exemptThread(AutoInitiateActivity.this, threadId);
@@ -114,5 +114,4 @@ public class AutoInitiateActivity extends SherlockActivity {
       (new RemoteKeyRecord(context,recipient).getCurrentRemoteKey() == null) &&
       (new LocalKeyRecord(context, masterSecret, recipient).getCurrentKeyPair() == null);
   }
-
 }

@@ -1,18 +1,12 @@
 package org.thoughtcrime.securesms;
 
-import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -31,20 +25,17 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-public class ConversationListActivity extends SherlockFragmentActivity
+public class ConversationListActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationListFragment.ConversationSelectedListener
   {
 
   private ConversationListFragment fragment;
   private MasterSecret masterSecret;
 
-  private BroadcastReceiver killActivityReceiver;
-  private BroadcastReceiver newKeyReceiver;
   private ApplicationMigrationManager migrationManager;
 
   private boolean havePromptedForPassphrase = false;
@@ -56,7 +47,6 @@ public class ConversationListActivity extends SherlockFragmentActivity
     setContentView(R.layout.conversation_list_activity);
     getSupportActionBar().setTitle("TextSecure");
 
-    initializeKillReceiver();
     initializeSenderReceiverService();
     initializeResources();
     initializeContactUpdatesReceiver();
@@ -65,50 +55,70 @@ public class ConversationListActivity extends SherlockFragmentActivity
   @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
-    createConversationIfNecessary(intent);
-  }
-
-  @Override
-  public void onPause() {
-    super.onPause();
-
-    if (newKeyReceiver != null) {
-      unregisterReceiver(newKeyReceiver);
-      newKeyReceiver = null;
-    }
-
-    isVisible = false;
+    this.setIntent(intent);
   }
 
   @Override
   public void onResume() {
     super.onResume();
 
-    clearNotifications();
-    initializeKeyCachingServiceRegistration();
     isVisible = true;
   }
 
   @Override
-  public void onStart() {
-    super.onStart();
-    registerPassphraseActivityStarted();
+  public void onPause() {
+    super.onPause();
+
+    isVisible = false;
   }
 
   @Override
   public void onStop() {
     super.onStop();
     havePromptedForPassphrase = false;
-    registerPassphraseActivityStopped();
   }
 
   @Override
   public void onDestroy() {
-    Log.w("SecureSMS", "onDestroy...");
-    unregisterReceiver(killActivityReceiver);
+    Log.w("ConversationListActivity", "onDestroy...");
     MemoryCleaner.clean(masterSecret);
     super.onDestroy();
   }
+
+  @Override
+  public void onMasterSecretCleared() {
+    this.masterSecret = null;
+    this.fragment.setMasterSecret(null);
+    this.invalidateOptionsMenu();
+
+    if (!havePromptedForPassphrase && isVisible) {
+      promptForPassphrase();
+    }
+  }
+
+  @Override
+  public void onNewMasterSecret(MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
+
+    if (masterSecret != null) {
+      if (!IdentityKeyUtil.hasIdentityKey(this)) {
+        new Thread(new IdentityKeyInitializer()).start();
+      }
+
+      if (!MasterSecretUtil.hasAsymmericMasterSecret(this)) {
+        new Thread(new AsymmetricMasteSecretInitializer()).start();
+      }
+
+      if (!isDatabaseMigrated()) initializeDatabaseMigration();
+      else                       DecryptingQueue.schedulePendingDecrypts(this, masterSecret);
+    }
+
+    this.fragment.setMasterSecret(masterSecret);
+    this.invalidateOptionsMenu();
+    this.havePromptedForPassphrase = false;
+    createConversationIfNecessary(this.getIntent());
+  }
+
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
@@ -190,11 +200,8 @@ public class ConversationListActivity extends SherlockFragmentActivity
     ApplicationExportListener listener = new ApplicationExportManager.ApplicationExportListener() {
       @Override
       public void onPrepareForImport() {
-        initializeWithMasterSecret(null);
-
-        Intent clearKeyIntent = new Intent(KeyCachingService.CLEAR_KEY_ACTION, null,
-                                           ConversationListActivity.this, KeyCachingService.class);
-        startService(clearKeyIntent);
+        onMasterSecretCleared();
+        handleClearPassphrase();
       }
     };
 
@@ -206,45 +213,6 @@ public class ConversationListActivity extends SherlockFragmentActivity
     Intent intent = new Intent(this, KeyCachingService.class);
     intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
     startService(intent);
-  }
-
-  private void initializeWithMasterSecret(MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-
-    if (masterSecret != null) {
-      if (!IdentityKeyUtil.hasIdentityKey(this)) {
-        new Thread(new IdentityKeyInitializer()).start();
-      }
-
-      if (!MasterSecretUtil.hasAsymmericMasterSecret(this)) {
-        new Thread(new AsymmetricMasteSecretInitializer()).start();
-      }
-
-      if (!isDatabaseMigrated()) initializeDatabaseMigration();
-      else                       DecryptingQueue.schedulePendingDecrypts(this, masterSecret);
-    }
-
-    this.fragment.setMasterSecret(masterSecret);
-    this.invalidateOptionsMenu();
-    createConversationIfNecessary(this.getIntent());
-  }
-
-  private void initializeKillReceiver() {
-    this.killActivityReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        ConversationListActivity.this.masterSecret = null;
-        fragment.setMasterSecret(null);
-
-        if (isVisible) {
-          promptForPassphrase();
-        }
-      }
-    };
-
-    registerReceiver(this.killActivityReceiver,
-                     new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT),
-                     KeyCachingService.KEY_PERMISSION, null);
   }
 
   private void initializeContactUpdatesReceiver() {
@@ -288,26 +256,10 @@ public class ConversationListActivity extends SherlockFragmentActivity
     }
   }
 
-  private void initializeKeyCachingServiceRegistration() {
-    Log.w("ConversationListActivity", "Checking caching service...");
-    this.newKeyReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        Log.w("ConversationListActivity", "Got a key broadcast...");
-        initializeWithMasterSecret((MasterSecret)intent.getParcelableExtra("master_secret"));
-      }
-    };
-
-    IntentFilter filter = new IntentFilter(KeyCachingService.NEW_KEY_EVENT);
-    registerReceiver(newKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null);
-
-    Intent bindIntent = new Intent(this, KeyCachingService.class);
-    bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
-  }
-
   private void initializeResources() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                           WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     this.fragment = (ConversationListFragment)this.getSupportFragmentManager()
@@ -317,13 +269,6 @@ public class ConversationListActivity extends SherlockFragmentActivity
   private boolean isDatabaseMigrated() {
     return this.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE)
             .getBoolean("migrated", false);
-  }
-
-  private void clearNotifications() {
-    NotificationManager manager =
-        (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-
-    manager.cancel(KeyCachingService.NOTIFICATION_ID);
   }
 
   private void createConversationIfNecessary(Intent intent) {
@@ -364,43 +309,6 @@ public class ConversationListActivity extends SherlockFragmentActivity
     }
   }
 
-  private void registerPassphraseActivityStarted() {
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(KeyCachingService.ACTIVITY_START_EVENT);
-    startService(intent);
-  }
-
-  private void registerPassphraseActivityStopped() {
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(KeyCachingService.ACTIVITY_STOP_EVENT);
-    startService(intent);
-  }
-
-  private ServiceConnection serviceConnection = new ServiceConnection() {
-    @Override
-    public void onServiceConnected(ComponentName className, IBinder service) {
-      KeyCachingService keyCachingService  = ((KeyCachingService.KeyCachingBinder)service).getService();
-      MasterSecret masterSecret            = keyCachingService.getMasterSecret();
-
-      initializeWithMasterSecret(masterSecret);
-
-      if (masterSecret == null && !havePromptedForPassphrase)
-        promptForPassphrase();
-
-      Intent cachingIntent = new Intent(ConversationListActivity.this, KeyCachingService.class);
-      startService(cachingIntent);
-
-      try {
-        ConversationListActivity.this.unbindService(this);
-      } catch (IllegalArgumentException iae) {
-        Log.w("SecureSMS", iae);
-      }
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {}
-  };
-
   private class IdentityKeyInitializer implements Runnable {
     @Override
     public void run() {
@@ -414,5 +322,4 @@ public class ConversationListActivity extends SherlockFragmentActivity
       MasterSecretUtil.generateAsymmetricMasterSecret(ConversationListActivity.this, masterSecret);
     }
   }
-
 }

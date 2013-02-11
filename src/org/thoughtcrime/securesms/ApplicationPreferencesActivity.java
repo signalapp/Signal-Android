@@ -30,9 +30,6 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.MenuItem;
-
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.IdentityKey;
@@ -43,6 +40,8 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Trimmer;
 
+import com.actionbarsherlock.view.MenuItem;
+
 import java.util.List;
 
 /**
@@ -52,7 +51,7 @@ import java.util.List;
  *
  */
 
-public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
+public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
 
   private static final int   PICK_IDENTITY_CONTACT        = 1;
   private static final int   IMPORT_IDENTITY_ID           = 2;
@@ -119,19 +118,9 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   }
 
   @Override
-  public void onStart() {
-    super.onStart();
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(KeyCachingService.ACTIVITY_START_EVENT);
-    startService(intent);
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(KeyCachingService.ACTIVITY_STOP_EVENT);
-    startService(intent);
+  public void onDestroy() {
+    MemoryCleaner.clean((MasterSecret)getIntent().getParcelableExtra("master_secret"));
+    super.onDestroy();
   }
 
   @Override
@@ -144,12 +133,6 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
       case IMPORT_IDENTITY_ID:       importIdentityKey(data.getData()); break;
       }
     }
-  }
-
-  @Override
-  public void onDestroy() {
-    MemoryCleaner.clean((MasterSecret)getIntent().getParcelableExtra("master_secret"));
-    super.onDestroy();
   }
 
   @Override
@@ -237,6 +220,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   }
 
   private class IdentityPreferenceClickListener implements Preference.OnPreferenceClickListener {
+    @Override
     public boolean onPreferenceClick(Preference preference) {
       Intent intent = new Intent(Intent.ACTION_PICK);
       intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
@@ -246,6 +230,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   }
 
   private class ViewMyIdentityClickListener implements Preference.OnPreferenceClickListener {
+    @Override
     public boolean onPreferenceClick(Preference preference) {
       Intent viewIdentityIntent = new Intent(ApplicationPreferencesActivity.this, ViewIdentityActivity.class);
       viewIdentityIntent.putExtra("identity_key", IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
@@ -256,6 +241,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   }
 
   private class ExportMyIdentityClickListener implements Preference.OnPreferenceClickListener {
+    @Override
     public boolean onPreferenceClick(Preference preference) {
       if (!IdentityKeyUtil.hasIdentityKey(ApplicationPreferencesActivity.this)) {
         Toast.makeText(ApplicationPreferencesActivity.this,
@@ -287,6 +273,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   }
 
   private class ImportContactIdentityClickListener implements Preference.OnPreferenceClickListener {
+    @Override
     public boolean onPreferenceClick(Preference preference) {
       MasterSecret masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
 
@@ -305,6 +292,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   }
 
   private class ManageIdentitiesClickListener implements Preference.OnPreferenceClickListener {
+    @Override
     public boolean onPreferenceClick(Preference preference) {
       MasterSecret masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
 
@@ -323,6 +311,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
   }
 
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
+    @Override
     public boolean onPreferenceClick(Preference preference) {
       SharedPreferences settings = getSharedPreferences(KeyCachingService.PREFERENCES_NAME, 0);
 
@@ -382,7 +371,7 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
         Log.w("ApplicationPreferencesActivity", nfe);
         return false;
       }
-      
+
       if (Integer.parseInt((String)newValue) < 1) {
         return false;
       }
@@ -393,5 +382,4 @@ public class ApplicationPreferencesActivity extends SherlockPreferenceActivity {
     }
 
   }
-
 }

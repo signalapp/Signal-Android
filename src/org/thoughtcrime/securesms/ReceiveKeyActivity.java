@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,7 +39,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  * @author Moxie Marlinspike
  */
 
-public class ReceiveKeyActivity extends Activity {
+public class ReceiveKeyActivity extends PassphraseRequiredSherlockActivity {
 
   private TextView descriptionText;
   private TextView signatureText;
@@ -171,6 +170,7 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private class VerifyIdentityListener implements View.OnClickListener {
+    @Override
     public void onClick(View v) {
       Intent intent = new Intent(ReceiveKeyActivity.this, VerifyIdentityActivity.class);
       intent.putExtra("recipient", recipient);
@@ -181,6 +181,7 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private class VerifySessionListener implements View.OnClickListener {
+    @Override
     public void onClick(View v) {
       Intent intent = new Intent(ReceiveKeyActivity.this, VerifyKeysActivity.class);
       intent.putExtra("recipient", recipient);
@@ -191,6 +192,7 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private class OkListener implements View.OnClickListener {
+    @Override
     public void onClick(View v) {
       keyExchangeProcessor.processKeyExchangeMessage(keyExchangeMessage, threadId);
       finish();
@@ -198,6 +200,7 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private class CancelListener implements View.OnClickListener {
+    @Override
     public void onClick(View v) {
       ReceiveKeyActivity.this.finish();
     }

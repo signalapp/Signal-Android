@@ -20,6 +20,7 @@ import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Binder;
@@ -44,8 +45,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 
 public class KeyCachingService extends Service {
 
-  public static final int    NOTIFICATION_ID    = 1337;
-  public static final int    SERVICE_RUNNING_ID = 4141;
+  public static final int SERVICE_RUNNING_ID = 4141;
 
   public  static final String KEY_PERMISSION           = "org.thoughtcrime.securesms.ACCESS_SECRETS";
   public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
@@ -214,5 +214,17 @@ public class KeyCachingService extends Service {
     public KeyCachingService getService() {
       return KeyCachingService.this;
     }
+  }
+
+  public static void registerPassphraseActivityStarted(Context activity) {
+    Intent intent = new Intent(activity, KeyCachingService.class);
+    intent.setAction(KeyCachingService.ACTIVITY_START_EVENT);
+    activity.startService(intent);
+  }
+
+  public static void registerPassphraseActivityStopped(Context activity) {
+    Intent intent = new Intent(activity, KeyCachingService.class);
+    intent.setAction(KeyCachingService.ACTIVITY_STOP_EVENT);
+    activity.startService(intent);
   }
 }

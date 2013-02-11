@@ -22,16 +22,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import org.thoughtcrime.securesms.recipients.Recipients;
+
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.ActionBar.TabListener;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 
 /**
  * Activity container for selecting a list of contacts.  Provides a tab frame for
@@ -41,7 +39,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
  * @author Moxie Marlinspike
  *
  */
-public class ContactSelectionActivity extends SherlockFragmentActivity {
+public class ContactSelectionActivity extends PassphraseRequiredSherlockFragmentActivity {
 
   private ContactSelectionListFragment contactsFragment;
   private ContactSelectionGroupsFragment groupsFragment;
@@ -62,18 +60,6 @@ public class ContactSelectionActivity extends SherlockFragmentActivity {
     setupContactsTab();
     setupGroupsTab();
     setupRecentTab();
-  }
-
-  @Override
-  protected void onStart() {
-    super.onStart();
-    registerPassphraseActivityStarted();
-  }
-
-  @Override
-  protected void onStop() {
-    super.onStop();
-    registerPassphraseActivityStopped();
   }
 
   @Override
@@ -160,19 +146,4 @@ public class ContactSelectionActivity extends SherlockFragmentActivity {
     recentTab.setIcon(R.drawable.ic_tab_recent);
     this.getSupportActionBar().addTab(recentTab);
   }
-
-  private void registerPassphraseActivityStarted() {
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(KeyCachingService.ACTIVITY_START_EVENT);
-    startService(intent);
-  }
-
-  private void registerPassphraseActivityStopped() {
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(KeyCachingService.ACTIVITY_STOP_EVENT);
-    startService(intent);
-  }
-
-
-
 }
