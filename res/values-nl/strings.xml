@@ -194,6 +194,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS ontsleutelen, een moment...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld MMS-bericht...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-bericht versleuteld voor niet bestaande sessie...</string>
+  <!--MmsSender-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_migrating">Migreren</string>
   <string name="ApplicationMigrationService_migrating_system_text_messages">Migreren Systeem Tekstberichten</string>
@@ -202,8 +203,8 @@
   <string name="KeyCachingService_passphrase_cached">Wachtwoord In Cache</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nieuwe berichten</string>
-  <string name="MessageNotifier_d_new_messages_most_recent_from_s">(%1$d) Nieuwe berichten, meest recente van: %2$s</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %s</string>
+  <!--SmsReceiver-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">U heeft een bericht ontvangen van iemand die versleutelde TextSecure sessies ondersteunt. Wilt u een beveiligde sessie initiëren?</string>
   <string name="auto_initiate_activity__initiate_exchange">Initieer Uitwisseling</string>

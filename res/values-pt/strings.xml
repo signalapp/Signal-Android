@@ -191,6 +191,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">A decifrar MMS, por favor aguarde...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem MMS cifrada corrompida...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensagem MMS cifrada para sessão inexistente...</string>
+  <!--MmsSender-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_migrating">A migrar</string>
   <string name="ApplicationMigrationService_migrating_system_text_messages">A migrar mensagens de texto do sistema</string>
@@ -199,8 +200,8 @@
   <string name="KeyCachingService_passphrase_cached">Frase-chave guardada em cache</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) novas mensagens</string>
-  <string name="MessageNotifier_d_new_messages_most_recent_from_s">(%1$d) novas mensagens, a mais recente de: %2$s</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %s</string>
+  <!--SmsReceiver-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Recebeu uma mensagem de alguém que suporta sessões cifradas TextSecure. Deseja iniciar uma sessão segura?</string>
   <string name="auto_initiate_activity__initiate_exchange">Iniciar intercâmbio</string>

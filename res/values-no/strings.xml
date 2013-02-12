@@ -81,6 +81,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Mottakere i gruppen</string>
   <string name="ConversationActivity_group_conversation">Gruppesamtale</string>
   <string name="ConversationActivity_d_recipients_in_group">%d mottakere i gruppen</string>
+  <string name="ConversationActivity_saving_draft">Lagrer utkast...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt:%3$s</string>
@@ -93,6 +94,8 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Slette trådene?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Er du sikker på at du vil slette ALLE valgte samtaletråder?</string>
+  <string name="ConversationListFragment_deleting">Sletter</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Sletter utvalgte tråder...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
   <!--KeyScanningActivity-->
@@ -191,6 +194,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS, vennligst vent...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS kryptert for en ikke-eksisterende sesjon...</string>
+  <!--MmsSender-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_migrating">Migrerer</string>
   <string name="ApplicationMigrationService_migrating_system_text_messages">Migrerer systemets SMS meldinger</string>
@@ -199,8 +203,12 @@
   <string name="KeyCachingService_passphrase_cached">Passord bufret</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nye meldinger</string>
-  <string name="MessageNotifier_d_new_messages_most_recent_from_s">(%1$d) Nye meldinger, sist mottatt fra: %2$s</string>
   <string name="MessageNotifier_most_recent_from_s">Sist mottatt fra: %s</string>
+  <string name="MessageNotifier_key_exchange">Nøkkelutveksling...</string>
+  <string name="MessageNotifier_encrypted_message">Kryptert melding...</string>
+  <string name="MessageNotifier_corrupted_ciphertext">Korrumpert chiffertext</string>
+  <string name="MessageNotifier_no_subject">(Mangler emne)</string>
+  <!--SmsReceiver-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har mottatt en melding fra noen som støtter TextSecure krypterte sesjoner. Ønsker du å initiere en sikker sesjon?</string>
   <string name="auto_initiate_activity__initiate_exchange">Start nøkkelutveksling</string>
