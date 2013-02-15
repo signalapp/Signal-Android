@@ -16,17 +16,14 @@
  */
 package org.thoughtcrime.securesms.service;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.InvalidVersionException;
@@ -39,8 +36,6 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.sms.MultipartMessageHandler;
 
 public class SmsReceiver {
@@ -48,11 +43,9 @@ public class SmsReceiver {
   private MultipartMessageHandler multipartMessageHandler = new MultipartMessageHandler();
 
   private final Context context;
-  private final ToastHandler toastHandler;
 
-  public SmsReceiver(Context context, ToastHandler toastHandler) {
+  public SmsReceiver(Context context) {
     this.context      = context;
-    this.toastHandler = toastHandler;
   }
 
   private String assembleSecureMessageFragments(String sender, String messageBody) {
@@ -172,49 +165,9 @@ public class SmsReceiver {
     }
   }
 
-  private void handleSentMessage(Intent intent) {
-    long messageId = intent.getLongExtra("message_id", -1);
-    long type      = intent.getLongExtra("type", -1);
-    int result     = intent.getIntExtra("ResultCode", -31337);
-
-    Log.w("SMSReceiverService", "Intent resultcode: " + result);
-    Log.w("SMSReceiverService", "Running sent callback: " + messageId + "," + type);
-
-    if (result == Activity.RESULT_OK) {
-      DatabaseFactory.getSmsDatabase(context).markAsSent(messageId, type);
-    } else if (result == SmsManager.RESULT_ERROR_NO_SERVICE || result == SmsManager.RESULT_ERROR_RADIO_OFF) {
-      toastHandler
-        .obtainMessage(0, context.getString(R.string.SmsReceiver_currently_unable_to_send_your_sms_message))
-        .sendToTarget();
-    } else {
-      long threadId         = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
-      Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(context, threadId);
-
-      DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
-      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
-    }
-  }
-
-  private void handleDeliveredMessage(Intent intent) {
-    long messageId     = intent.getLongExtra("message_id", -1);
-    long type          = intent.getLongExtra("type", -1);
-    byte[] pdu         = intent.getByteArrayExtra("pdu");
-    String format      = intent.getStringExtra("format");
-    SmsMessage message = SmsMessage.createFromPdu(pdu);
-
-    if (message == null) {
-        return;
-    }
-
-    DatabaseFactory.getSmsDatabase(context).markStatus(messageId, message.getStatus());
-  }
-
   public void process(MasterSecret masterSecret, Intent intent) {
-    if (intent.getAction().equals(SendReceiveService.RECEIVE_SMS_ACTION))
+    if (intent.getAction().equals(SendReceiveService.RECEIVE_SMS_ACTION)) {
       handleReceiveMessage(masterSecret, intent);
-    else if (intent.getAction().equals(SendReceiveService.SENT_SMS_ACTION))
-      handleSentMessage(intent);
-    else if (intent.getAction().equals(SendReceiveService.DELIVERED_SMS_ACTION))
-      handleDeliveredMessage(intent);
+    }
   }
 }

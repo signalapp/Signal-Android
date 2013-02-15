@@ -96,9 +96,9 @@ public class SendReceiveService extends Service {
     else if (intent.getAction().equals(RECEIVE_SMS_ACTION))
       scheduleIntent(RECEIVE_SMS, intent);
     else if (intent.getAction().equals(SENT_SMS_ACTION))
-      scheduleIntent(RECEIVE_SMS, intent);
+      scheduleIntent(SEND_SMS, intent);
     else if (intent.getAction().equals(DELIVERED_SMS_ACTION))
-      scheduleIntent(RECEIVE_SMS, intent);
+      scheduleIntent(SEND_SMS, intent);
     else if (intent.getAction().equals(SEND_MMS_ACTION) || intent.getAction().equals(SEND_MMS_CONNECTIVITY_ACTION))
       scheduleSecretRequiredIntent(SEND_MMS, intent);
     else if (intent.getAction().equals(RECEIVE_MMS_ACTION))
@@ -131,8 +131,8 @@ public class SendReceiveService extends Service {
   }
 
   private void initializeProcessors() {
-    smsReceiver    = new SmsReceiver(this, toastHandler);
-    smsSender      = new SmsSender(this);
+    smsReceiver    = new SmsReceiver(this);
+    smsSender      = new SmsSender(this, toastHandler);
     mmsReceiver    = new MmsReceiver(this);
     mmsSender      = new MmsSender(this, toastHandler);
     mmsDownloader  = new MmsDownloader(this, toastHandler);

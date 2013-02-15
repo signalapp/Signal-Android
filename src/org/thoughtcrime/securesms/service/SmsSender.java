@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.service;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -23,36 +24,56 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.KeyExchangeWirePrefix;
 import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.protocol.SecureMessageWirePrefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.sms.MultipartMessageHandler;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SmsSender {
 
   private final MultipartMessageHandler multipartMessageHandler = new MultipartMessageHandler();
+  private final Set<Long>               pendingMessages         = new HashSet<Long>();
 
   private final Context context;
+  private final ToastHandler toastHandler;
 
-  public SmsSender(Context context) {
-    this.context = context;
+  public SmsSender(Context context, ToastHandler toastHandler) {
+    this.context      = context;
+    this.toastHandler = toastHandler;
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
+    if (intent.getAction().equals(SendReceiveService.SEND_SMS_ACTION)) {
+      handleSendMessage(masterSecret, intent);
+    } else if (intent.getAction().equals(SendReceiveService.SENT_SMS_ACTION)) {
+      handleSentMessage(intent);
+    } else if (intent.getAction().equals(SendReceiveService.DELIVERED_SMS_ACTION)) {
+      handleDeliveredMessage(intent);
+    }
+  }
+
+  private void handleSendMessage(MasterSecret masterSecret, Intent intent) {
     MasterCipher masterCipher = new MasterCipher(masterSecret);
     long messageId            = intent.getLongExtra("message_id", -1);
     Cursor c                  = null;
@@ -65,27 +86,68 @@ public class SmsSender {
 
       if (c != null && c.moveToFirst()) {
         do {
-      	  messageId          = c.getLong(c.getColumnIndexOrThrow(SmsDatabase.ID));
-      	  String body        = c.getString(c.getColumnIndexOrThrow(SmsDatabase.BODY));
-      	  String address     = c.getString(c.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
-      	  String messageText = getClearTextBody(masterCipher, body);
-      	  long type          = c.getLong(c.getColumnIndexOrThrow(SmsDatabase.TYPE));
+          messageId          = c.getLong(c.getColumnIndexOrThrow(SmsDatabase.ID));
+          String body        = c.getString(c.getColumnIndexOrThrow(SmsDatabase.BODY));
+          String address     = c.getString(c.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
+          String messageText = getClearTextBody(masterCipher, body);
+          long type          = c.getLong(c.getColumnIndexOrThrow(SmsDatabase.TYPE));
 
-      	  if (!SmsDatabase.Types.isPendingMessageType(type))
-      	    continue;
+          if (!SmsDatabase.Types.isPendingMessageType(type))
+            continue;
 
-      	  if (isSecureMessage(type))
-      	    messageText    = getAsymmetricEncrypt(masterSecret, messageText, address);
+          if (isSecureMessage(type))
+            messageText    = getAsymmetricEncrypt(masterSecret, messageText, address);
 
-      	  Log.w("SMSSenderService", "Actually delivering: " + messageId);
-
-      	  deliverTextMessage(address, messageText, messageId, type);
+          if (!pendingMessages.contains(messageId)) {
+            Log.w("SMSSenderService", "Actually delivering: " + messageId);
+            pendingMessages.add(messageId);
+            deliverTextMessage(address, messageText, messageId, type);
+          }
         } while (c.moveToNext());
       }
     } finally {
       if (c != null)
         c.close();
     }
+  }
+
+  private void handleSentMessage(Intent intent) {
+    long messageId = intent.getLongExtra("message_id", -1);
+    long type      = intent.getLongExtra("type", -1);
+    int result     = intent.getIntExtra("ResultCode", -31337);
+
+    Log.w("SMSReceiverService", "Intent resultcode: " + result);
+    Log.w("SMSReceiverService", "Running sent callback: " + messageId + "," + type);
+
+    if (result == Activity.RESULT_OK) {
+      DatabaseFactory.getSmsDatabase(context).markAsSent(messageId, type);
+    } else if (result == SmsManager.RESULT_ERROR_NO_SERVICE || result == SmsManager.RESULT_ERROR_RADIO_OFF) {
+      toastHandler
+        .obtainMessage(0, context.getString(R.string.SmsReceiver_currently_unable_to_send_your_sms_message))
+        .sendToTarget();
+    } else {
+      long threadId         = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
+      Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(context, threadId);
+
+      DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
+      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    }
+
+    pendingMessages.remove(messageId);
+  }
+
+  private void handleDeliveredMessage(Intent intent) {
+    long messageId     = intent.getLongExtra("message_id", -1);
+    long type          = intent.getLongExtra("type", -1);
+    byte[] pdu         = intent.getByteArrayExtra("pdu");
+    String format      = intent.getStringExtra("format");
+    SmsMessage message = SmsMessage.createFromPdu(pdu);
+
+    if (message == null) {
+        return;
+    }
+
+    DatabaseFactory.getSmsDatabase(context).markStatus(messageId, message.getStatus());
   }
 
   private String getClearTextBody(MasterCipher masterCipher, String body) {
