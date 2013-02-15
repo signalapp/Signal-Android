@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -121,16 +122,19 @@ public class SmsSender {
 
     if (result == Activity.RESULT_OK) {
       DatabaseFactory.getSmsDatabase(context).markAsSent(messageId, type);
+      unregisterForRadioChanges();
     } else if (result == SmsManager.RESULT_ERROR_NO_SERVICE || result == SmsManager.RESULT_ERROR_RADIO_OFF) {
       toastHandler
         .obtainMessage(0, context.getString(R.string.SmsReceiver_currently_unable_to_send_your_sms_message))
         .sendToTarget();
+      registerForRadioChanges();
     } else {
       long threadId         = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
       Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(context, threadId);
 
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
       MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+      unregisterForRadioChanges();
     }
 
     pendingMessages.remove(messageId);
@@ -148,6 +152,22 @@ public class SmsSender {
     }
 
     DatabaseFactory.getSmsDatabase(context).markStatus(messageId, message.getStatus());
+  }
+
+  private void registerForRadioChanges() {
+    unregisterForRadioChanges();
+
+    IntentFilter intentFilter = new IntentFilter();
+    intentFilter.addAction(SystemStateListener.ACTION_SERVICE_STATE);
+    context.registerReceiver(SystemStateListener.getInstance(), intentFilter);
+  }
+
+  private void unregisterForRadioChanges() {
+    try {
+      context.unregisterReceiver(SystemStateListener.getInstance());
+    } catch (IllegalArgumentException iae) {
+
+    }
   }
 
   private String getClearTextBody(MasterCipher masterCipher, String body) {

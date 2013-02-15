@@ -168,7 +168,6 @@
               android:enabled="true"
               android:exported="true">
               <intent-filter>
-                  <action android:name="android.intent.action.SERVICE_STATE"></action>
                   <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>                  
               </intent-filter>              
     </receiver>

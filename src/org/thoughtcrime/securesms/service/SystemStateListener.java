@@ -9,8 +9,14 @@ import android.telephony.ServiceState;
 
 public class SystemStateListener extends BroadcastReceiver {
 
-  private static final String ACTION_SERVICE_STATE       = "android.intent.action.SERVICE_STATE";
+  public  static final String ACTION_SERVICE_STATE       = "android.intent.action.SERVICE_STATE";
   private static final String ACTION_CONNECTIVITY_CHANGE = "android.net.conn.CONNECTIVITY_CHANGE";
+
+  private static final SystemStateListener instance = new SystemStateListener();
+
+  public static SystemStateListener getInstance() {
+    return instance;
+  }
 
   private void sendSmsOutbox(Context context) {
     Intent smsSenderIntent = new Intent(SendReceiveService.SEND_SMS_ACTION, null, context,
