@@ -82,6 +82,9 @@ public class SmsListener extends BroadcastReceiver {
     if (isExemption(message, messageBody))
       return false;
 
+    if (!ApplicationMigrationService.isDatabaseImported(context))
+      return false;
+
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
       return true;
 
