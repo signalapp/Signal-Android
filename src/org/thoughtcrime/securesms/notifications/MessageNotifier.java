@@ -37,8 +37,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -79,7 +79,7 @@ public class MessageNotifier {
     if (visibleThread == threadId) {
       sendInThreadNotification(context);
     } else {
-      Intent intent = new Intent(context, ConversationListActivity.class);
+      Intent intent = new Intent(context, RoutingActivity.class);
       intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
       intent.putExtra("recipients", recipients);
       intent.putExtra("thread_id", threadId);
@@ -187,7 +187,7 @@ public class MessageNotifier {
                                           notificationState.getMessageCount()));
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
                                          notifications.get(0).getRecipientName()));
-    builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
+    builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
 
     InboxStyle style = new InboxStyle();
 

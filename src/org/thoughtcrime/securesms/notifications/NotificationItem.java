@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.SpannableStringBuilder;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -62,7 +62,7 @@ public class NotificationItem {
   }
 
   public PendingIntent getPendingIntent(Context context) {
-    Intent intent = new Intent(context, ConversationListActivity.class);
+    Intent intent = new Intent(context, RoutingActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
     if (recipients.getPrimaryRecipient() != null) {

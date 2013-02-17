@@ -236,7 +236,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_verify_recipient:     handleVerifyRecipient();                           return true;
     case R.id.menu_verify_session:       handleVerifySession();                             return true;
     case R.id.menu_group_recipients:     handleDisplayGroupRecipients();                    return true;
-    case android.R.id.home:              finish();                                          return true;
+    case android.R.id.home:              handleReturnToConversationList();                  return true;
     }
 
     return false;
@@ -260,6 +260,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   //////// Event Handlers
+
+  private void handleReturnToConversationList() {
+    Intent intent = new Intent(this, ConversationListActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    intent.putExtra("master_secret", masterSecret);
+    startActivity(intent);
+    finish();
+  }
 
   private void handleVerifyRecipient() {
     Intent verifyIdentityIntent = new Intent(this, VerifyIdentityActivity.class);

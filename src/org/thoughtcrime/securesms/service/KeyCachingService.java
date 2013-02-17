@@ -32,8 +32,9 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.RoutingActivity;
+import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 
@@ -54,8 +55,6 @@ public class KeyCachingService extends Service {
   public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
   public  static final String ACTIVITY_START_EVENT     = "org.thoughtcrime.securesms.service.action.ACTIVITY_START_EVENT";
   public  static final String ACTIVITY_STOP_EVENT      = "org.thoughtcrime.securesms.service.action.ACTIVITY_STOP_EVENT";
-  public  static final String PREFERENCES_NAME         = "SecureSMS-Preferences";
-
 
   private PendingIntent pending;
   private int activitiesRunning = 0;
@@ -75,6 +74,7 @@ public class KeyCachingService extends Service {
     foregroundService();
     broadcastNewSecret();
     startTimeoutIfAppropriate();
+    DecryptingQueue.schedulePendingDecrypts(this, masterSecret);
 
     new Thread() {
       @Override
@@ -178,7 +178,9 @@ public class KeyCachingService extends Service {
     Notification notification  = new Notification(R.drawable.icon_cached,
                                                   getString(R.string.KeyCachingService_textsecure_passphrase_cached),
                                                   System.currentTimeMillis());
-    Intent intent              = new Intent(this, ConversationListActivity.class);
+    Intent intent              = new Intent(this, RoutingActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
     PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
     notification.setLatestEventInfo(getApplicationContext(),
                                     getString(R.string.KeyCachingService_passphrase_cached),

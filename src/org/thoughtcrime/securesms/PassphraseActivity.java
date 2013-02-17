@@ -22,11 +22,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.actionbarsherlock.app.SherlockActivity;
-
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+
+import com.actionbarsherlock.app.SherlockActivity;
 
 /**
  * Base Activity for changing/prompting local encryption passphrase.
@@ -44,9 +44,14 @@ public abstract class PassphraseActivity extends SherlockActivity {
     bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
   }
 
+  protected MasterSecret getMasterSecret() {
+    return masterSecret;
+  }
+
   protected abstract void cleanup();
 
   private ServiceConnection serviceConnection = new ServiceConnection() {
+      @Override
       public void onServiceConnected(ComponentName className, IBinder service) {
         keyCachingService = ((KeyCachingService.KeyCachingBinder)service).getService();
         keyCachingService.setMasterSecret(masterSecret);
@@ -55,9 +60,12 @@ public abstract class PassphraseActivity extends SherlockActivity {
 
         MemoryCleaner.clean(masterSecret);
         cleanup();
+
+        PassphraseActivity.this.setResult(RESULT_OK);
         PassphraseActivity.this.finish();
       }
 
+      @Override
       public void onServiceDisconnected(ComponentName name) {
         keyCachingService = null;
       }

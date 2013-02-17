@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Trimmer;
@@ -138,7 +138,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-    case android.R.id.home: finish(); return true;
+    case android.R.id.home:
+      Intent intent = new Intent(this, ConversationListActivity.class);
+      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+      startActivity(intent);
+      finish();
+      return true;
     }
 
     return false;
@@ -313,9 +318,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      SharedPreferences settings = getSharedPreferences(KeyCachingService.PREFERENCES_NAME, 0);
-
-      if (settings.getBoolean("passphrase_initialized", false)) {
+       if (MasterSecretUtil.isPassphraseInitialized(ApplicationPreferencesActivity.this)) {
         startActivity(new Intent(ApplicationPreferencesActivity.this, PassphraseChangeActivity.class));
       } else {
         Toast.makeText(ApplicationPreferencesActivity.this,

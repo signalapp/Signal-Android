@@ -16,18 +16,19 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.Util;
 
 /**
  * Activity for creating a user's local encryption passphrase.
@@ -37,10 +38,12 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 public class PassphraseCreateActivity extends PassphraseActivity {
 
+  private LinearLayout createLayout;
+  private LinearLayout progressLayout;
+
   private EditText passphraseEdit;
   private EditText passphraseRepeatEdit;
   private Button   okButton;
-  private Button   cancelButton;
 
   public PassphraseCreateActivity() { }
 
@@ -54,10 +57,11 @@ public class PassphraseCreateActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    this.passphraseEdit       = (EditText) findViewById(R.id.passphrase_edit);
-    this.passphraseRepeatEdit = (EditText) findViewById(R.id.passphrase_edit_repeat);
-    this.okButton             = (Button)   findViewById(R.id.ok_button);
-    this.cancelButton         = (Button)   findViewById(R.id.cancel_button);
+    this.createLayout         = (LinearLayout)findViewById(R.id.create_layout);
+    this.progressLayout       = (LinearLayout)findViewById(R.id.progress_layout);
+    this.passphraseEdit       = (EditText)    findViewById(R.id.passphrase_edit);
+    this.passphraseRepeatEdit = (EditText)    findViewById(R.id.passphrase_edit_repeat);
+    this.okButton             = (Button)      findViewById(R.id.ok_button);
 
     this.okButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -65,45 +69,36 @@ public class PassphraseCreateActivity extends PassphraseActivity {
         verifyAndSavePassphrases();
       }
     });
-
-    this.cancelButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        finish();
-      }
-    });
   }
 
   private void verifyAndSavePassphrases() {
+    if (Util.isEmpty(this.passphraseEdit) || Util.isEmpty(this.passphraseRepeatEdit)) {
+      Toast.makeText(this, R.string.PassphraseCreateActivity_you_must_specify_a_password, Toast.LENGTH_SHORT).show();
+      return;
+    }
+
     String passphrase       = this.passphraseEdit.getText().toString();
     String passphraseRepeat = this.passphraseRepeatEdit.getText().toString();
 
     if (!passphrase.equals(passphraseRepeat)) {
-      Toast.makeText(getApplicationContext(),
-                     R.string.PassphraseCreateActivity_passphrases_dont_match_exclamation,
-                     Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, R.string.PassphraseCreateActivity_passphrases_dont_match, Toast.LENGTH_SHORT).show();
       this.passphraseEdit.setText("");
       this.passphraseRepeatEdit.setText("");
-    } else {
-      // We do this, but the edit boxes are basically impossible to clean up.
-      MemoryCleaner.clean(passphraseRepeat);
-      new SecretGenerator().execute(passphrase);
+      return;
     }
+
+    // We do this, but the edit boxes are basically impossible to clean up.
+    MemoryCleaner.clean(passphraseRepeat);
+    new SecretGenerator().execute(passphrase);
   }
 
   private class SecretGenerator extends AsyncTask<String, Void, Void> {
-    private ProgressDialog progressDialog;
     private MasterSecret   masterSecret;
 
     @Override
     protected void onPreExecute() {
-      progressDialog = new ProgressDialog(PassphraseCreateActivity.this);
-      progressDialog.setTitle(R.string.PassphraseCreateActivity_generating_keypair);
-      progressDialog.setMessage(getString(R.string.PassphraseCreateActivity_generating_a_local_encryption_keypair));
-      progressDialog.setCancelable(false);
-      progressDialog.setIndeterminate(true);
-      progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-      progressDialog.show();
+      createLayout.setVisibility(View.GONE);
+      progressLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -123,7 +118,6 @@ public class PassphraseCreateActivity extends PassphraseActivity {
 
     @Override
     protected void onPostExecute(Void param) {
-      progressDialog.dismiss();
       setMasterSecret(masterSecret);
     }
   }

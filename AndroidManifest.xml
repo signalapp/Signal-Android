@@ -35,10 +35,9 @@
                  android:label="@string/app_name"
                  android:theme="@style/Theme.Sherlock.Light.DarkActionBar">
 
-        <activity android:name=".ConversationListActivity"
-                  android:label="@string/app_name"
+        <activity android:name=".RoutingActivity"
+                  android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"            
                   android:launchMode="singleTask"
-                  android:uiOptions="splitActionBarWhenNarrow"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
 
             <intent-filter>
@@ -62,22 +61,34 @@
             </intent-filter>            
             
         </activity>
+        
+    <activity android:name=".ConversationListActivity"
+              android:label="@string/app_name"
+              android:launchMode="singleTask"
+              android:uiOptions="splitActionBarWhenNarrow"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".DatabaseMigrationActivity"
+              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>              
+    
     <activity android:name=".PassphraseCreateActivity"
-              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="@string/AndroidManifest__create_passphrase"
-              android:launchMode="singleInstance"
+              android:windowSoftInputMode="stateUnchanged"
+              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
+              android:launchMode="singleTop"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphrasePromptActivity"
-              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="@string/AndroidManifest__enter_passphrase"
-              android:launchMode="singleInstance"
-              android:windowSoftInputMode="stateVisible"
+              android:launchMode="singleTop"
+              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"              
+              android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ContactSelectionActivity"
@@ -95,7 +106,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphraseChangeActivity"
-              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="@string/AndroidManifest__change_passphrase"
               android:launchMode="singleInstance"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>

@@ -1,74 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView android:id="@+id/ScrollView"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+            android:fillViewport="true"
+            android:background="@drawable/background_pattern_repeat">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:paddingLeft="16dip"
-                  android:paddingRight="16dip"
-                  android:orientation="vertical">
-
-        <TextView android:text="@string/create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase"
-                  android:textAppearance="?android:attr/textAppearanceMedium"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="10dip"
-                  android:layout_marginBottom="10dip"/>
-
-        <TextView android:text="@string/create_passphrase_activity__passphrase"
-                  android:textAppearance="?android:attr/textAppearanceMedium"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="5dip"/>
-
-        <EditText android:id="@+id/passphrase_edit"
-                  android:layout_height="wrap_content"
-                  android:layout_width="fill_parent"
-                  android:inputType="textPassword"/>
-
-        <TextView
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/repeat_label"
-                  android:textAppearance="?android:attr/textAppearanceMedium"
-                  android:layout_marginBottom="5dip"
-                  android:layout_marginTop="10dip"
-                  android:text="@string/create_passphrase_activity__repeat"/>
-
-        <EditText
-                  android:layout_height="wrap_content"
-                  android:layout_width="fill_parent"
-                  android:inputType="textPassword"
-                  android:id="@+id/passphrase_edit_repeat"/>
-
-        <LinearLayout android:layout_width="fill_parent"
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+        
+        <LinearLayout android:id="@+id/create_layout"
+                      android:paddingRight="16dip"
+                      android:paddingLeft="16dip"
+                      android:paddingTop="10dip"
+                      android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
-                      android:orientation="horizontal"
+                      android:layout_gravity="center"
+                      android:visibility="visible"
+                      android:orientation="vertical">
+    
+            <TextView style="@style/Registration.Description"
+                      android:layout_width="fill_parent"
                       android:layout_marginBottom="16dip"
-                      android:gravity="right">
+                      android:layout_marginTop="16dip"
+                      android:text="@string/create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase"/>
+            
+            <TextView style="@style/Registration.Label"
+                      android:layout_width="fill_parent"
+                      android:textAllCaps="true"
+                      android:text="@string/create_passphrase_activity__passphrase" />
+            
+            <EditText android:id="@+id/passphrase_edit"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="textPassword"
+                      android:layout_marginBottom="10dip"
+                      android:singleLine="true"/>
 
-            <TableLayout android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:stretchColumns="*">
-                <TableRow>
-                    <Button android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="@android:string/cancel"
-                            android:id="@+id/cancel_button"
-                            android:layout_marginRight="15dip"
-                            android:layout_marginLeft="16dip"/>
-
-                    <Button android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@android:string/ok"
-                            android:id="@+id/ok_button"
-                            android:layout_marginRight="16dip"/>
-                </TableRow>
-            </TableLayout>
+            <TextView style="@style/Registration.Label"
+                      android:layout_width="fill_parent"
+                      android:textAllCaps="true"
+                      android:text="@string/create_passphrase_activity__repeat" />
+            
+            <EditText android:id="@+id/passphrase_edit_repeat"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="textPassword"
+                      android:singleLine="true"/>
+                        
+            <Button style="@android:style/Widget.Button"
+                    android:id="@+id/ok_button"
+                    android:text="@string/create_passphrase_activity__continue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginTop="20dip"
+                    android:layout_marginBottom="20dip"/>
         </LinearLayout>
-    </LinearLayout>
+        
+        <LinearLayout android:id="@+id/progress_layout"
+                      android:paddingRight="16dip"
+                      android:paddingLeft="16dip"
+                      android:paddingTop="10dip"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:visibility="gone"
+                      android:orientation="vertical">
+    
+            <TextView style="@style/Registration.BigLabel"
+                      android:layout_width="fill_parent"
+                      android:layout_marginBottom="16dip"
+                      android:layout_marginTop="16dip"
+                      android:gravity="center"
+                      android:text="@string/create_passphrase_activity__generating_secrets"/>
+
+            <ProgressBar android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:indeterminate="true"
+                         android:layout_gravity="center"/>            
+        </LinearLayout>        
+    </FrameLayout>
 </ScrollView>

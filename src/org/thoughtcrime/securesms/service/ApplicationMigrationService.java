@@ -4,41 +4,64 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.widget.RemoteViews;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator;
+import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class ApplicationMigrationService extends Service
     implements SmsMigrator.SmsMigrationProgressListener
   {
 
-  public static final int PROGRESS_UPDATE   = 1;
-  public static final int PROGRESS_COMPLETE = 2;
+  public  static final String MIGRATE_DATABASE  = "org.thoughtcrime.securesms.ApplicationMigration.MIGRATE_DATABSE";
+  public  static final String COMPLETED_ACTION  = "org.thoughtcrime.securesms.ApplicationMigrationService.COMPLETED";
+  private static final String PREFERENCES_NAME  = "SecureSMS";
+  private static final String DATABASE_MIGRATED = "migrated";
 
-  public static final String MIGRATE_DATABASE  = "org.thoughtcrime.securesms.ApplicationMigration.MIGRATE_DATABSE";
+  private final BroadcastReceiver completedReceiver = new CompletedReceiver();
+  private final Binder binder                       = new ApplicationMigrationBinder();
+  private final Executor executor                   = Executors.newSingleThreadExecutor();
 
-  private final Binder binder       = new ApplicationMigrationBinder();
-  private boolean isMigrating       = false;
-  private Handler handler           = null;
-  private Notification notification = null;
+  private Handler handler                         = null;
+  private NotificationCompat.Builder notification = null;
+  private ImportState state                       = new ImportState(ImportState.STATE_IDLE, null);
 
   @Override
-  public void onStart(Intent intent, int startId) {
-    if (intent == null) return;
+  public void onCreate() {
+    registerCompletedReceiver();
+  }
+
+  @Override
+  public int onStartCommand(Intent intent, int flags, int startId) {
+    if (intent == null) return START_NOT_STICKY;
 
     if (intent.getAction() != null && intent.getAction().equals(MIGRATE_DATABASE)) {
-      handleDatabaseMigration((MasterSecret)intent.getParcelableExtra("master_secret"));
+      executor.execute(new ImportRunnable(intent));
     }
+
+    return START_NOT_STICKY;
+  }
+
+  @Override
+  public void onDestroy() {
+    unregisterCompletedReceiver();
   }
 
   @Override
@@ -46,70 +69,106 @@ public class ApplicationMigrationService extends Service
     return binder;
   }
 
-  private void handleDatabaseMigration(final MasterSecret masterSecret) {
-    this.notification = initializeBackgroundNotification();
-
-    final PowerManager power = (PowerManager)getSystemService(Context.POWER_SERVICE);
-    final WakeLock wakeLock  = power.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Migration");
-
-    new Thread() {
-      @Override
-      public void run() {
-        try {
-          wakeLock.acquire();
-
-          setMigrating(true);
-          SmsMigrator.migrateDatabase(ApplicationMigrationService.this,
-                                      masterSecret,
-                                      ApplicationMigrationService.this);
-          setMigrating(false);
-
-          if (handler != null) {
-            handler.obtainMessage(PROGRESS_COMPLETE).sendToTarget();
-          }
-
-          stopForeground(true);
-        } finally {
-          wakeLock.release();
-          stopService(new Intent(ApplicationMigrationService.this,
-                                 ApplicationMigrationService.class));
-        }
-      }
-    }.start();
+  public void setImportStateHandler(Handler handler) {
+    this.handler = handler;
   }
 
-  private Notification initializeBackgroundNotification() {
-    Intent intent               = new Intent(this, ConversationListActivity.class);
-    Notification notification   = new Notification(R.drawable.icon,
-                                                   getString(R.string.ApplicationMigrationService_migrating),
-                                                   System.currentTimeMillis());
+  private void registerCompletedReceiver() {
+    IntentFilter filter = new IntentFilter();
+    filter.addAction(COMPLETED_ACTION);
 
-    notification.flags       = notification.flags | Notification.FLAG_ONGOING_EVENT;
-    notification.contentView = new RemoteViews(getApplicationContext().getPackageName(),
-                                               R.layout.migration_notification_progress);
+    registerReceiver(completedReceiver, filter);
+  }
 
-    notification.contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-    notification.contentView.setImageViewResource(R.id.status_icon, R.drawable.icon);
-    notification.contentView.setTextViewText(R.id.status_text,
-                                             getString(R.string.ApplicationMigrationService_migrating_system_text_messages));
-    notification.contentView.setProgressBar(R.id.status_progress, 10000, 0, false);
+  private void unregisterCompletedReceiver() {
+    unregisterReceiver(completedReceiver);
+  }
+
+  private void notifyImportComplete() {
+    Intent intent = new Intent();
+    intent.setAction(COMPLETED_ACTION);
+
+    sendOrderedBroadcast(intent, null);
+  }
+
+  @Override
+  public void progressUpdate(ProgressDescription progress) {
+    setState(new ImportState(ImportState.STATE_MIGRATING_IN_PROGRESS, progress));
+  }
+
+  public ImportState getState() {
+    return state;
+  }
+
+  private void setState(ImportState state) {
+    this.state = state;
+
+    if (handler != null) {
+      handler.obtainMessage(state.state, state.progress).sendToTarget();
+    }
+
+    if (state.progress != null && state.progress.secondaryComplete == 0) {
+      updateBackgroundNotification(state.progress.primaryTotal, state.progress.primaryComplete);
+    }
+  }
+
+  private void updateBackgroundNotification(int total, int complete) {
+    notification.setProgress(total, complete, false);
+
+    ((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE))
+      .notify(4242, notification.build());
+  }
+
+  private NotificationCompat.Builder initializeBackgroundNotification() {
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+
+    builder.setSmallIcon(R.drawable.icon_notification);
+    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_notification));
+    builder.setContentTitle(getString(R.string.ApplicationMigrationService_importing_text_messages));
+    builder.setContentText(getString(R.string.ApplicationMigrationService_import_in_progress));
+    builder.setOngoing(true);
+    builder.setProgress(100, 0, false);
+    builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, RoutingActivity.class), 0));
 
     stopForeground(true);
-    startForeground(4242, notification);
+    startForeground(4242, builder.build());
 
-    return notification;
+    return builder;
   }
 
-  private synchronized void setMigrating(boolean isMigrating) {
-    this.isMigrating = isMigrating;
-  }
+  private class ImportRunnable implements Runnable {
+    private final MasterSecret masterSecret;
 
-  public synchronized boolean isMigrating() {
-    return isMigrating;
-  }
+    public ImportRunnable(Intent intent) {
+      this.masterSecret = intent.getParcelableExtra("master_secret");
+      Log.w("ApplicationMigrationService", "Service got mastersecret: " + masterSecret);
+    }
 
-  public void setHandler(Handler handler) {
-    this.handler = handler;
+    @Override
+    public void run() {
+      notification              = initializeBackgroundNotification();
+      PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
+      WakeLock     wakeLock     = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Migration");
+
+      try {
+        wakeLock.acquire();
+
+        setState(new ImportState(ImportState.STATE_MIGRATING_BEGIN, null));
+
+        SmsMigrator.migrateDatabase(ApplicationMigrationService.this,
+                                    masterSecret,
+                                    ApplicationMigrationService.this);
+
+        setState(new ImportState(ImportState.STATE_MIGRATING_COMPLETE, null));
+
+        setDatabaseImported(ApplicationMigrationService.this);
+        stopForeground(true);
+        notifyImportComplete();
+        stopSelf();
+      } finally {
+        wakeLock.release();
+      }
+    }
   }
 
   public class ApplicationMigrationBinder extends Binder {
@@ -118,20 +177,44 @@ public class ApplicationMigrationService extends Service
     }
   }
 
-  @Override
-  public void progressUpdate(int primaryProgress, int secondaryProgress) {
-    if (handler != null) {
-      handler.obtainMessage(PROGRESS_UPDATE, primaryProgress, secondaryProgress).sendToTarget();
+  private class CompletedReceiver extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+      builder.setSmallIcon(R.drawable.icon_notification);
+      builder.setContentTitle("Import Complete");
+      builder.setContentText("TextSecure system database import is complete.");
+      builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
+      builder.setWhen(System.currentTimeMillis());
+      builder.setDefaults(Notification.DEFAULT_VIBRATE);
+      builder.setAutoCancel(true);
+
+      Notification notification = builder.build();
+      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).notify(31337, notification);
     }
+  }
 
-    if (notification != null && secondaryProgress == 0) {
-      notification.contentView.setProgressBar(R.id.status_progress, 10000, primaryProgress, false);
+  public static class ImportState {
+    public static final int STATE_IDLE                  = 0;
+    public static final int STATE_MIGRATING_BEGIN       = 1;
+    public static final int STATE_MIGRATING_IN_PROGRESS = 2;
+    public static final int STATE_MIGRATING_COMPLETE    = 3;
 
-      NotificationManager notificationManager =
-          (NotificationManager)getApplicationContext()
-            .getSystemService(Context.NOTIFICATION_SERVICE);
+    public int                 state;
+    public ProgressDescription progress;
 
-      notificationManager.notify(4242, notification);
+    public ImportState(int state, ProgressDescription progress) {
+      this.state    = state;
+      this.progress = progress;
     }
+  }
+
+  public static boolean isDatabaseImported(Context context) {
+    return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+              .getBoolean(DATABASE_MIGRATED, false);
+  }
+
+  public static void setDatabaseImported(Context context) {
+    context.getSharedPreferences(PREFERENCES_NAME, 0).edit().putBoolean(DATABASE_MIGRATED, true).commit();
   }
 }

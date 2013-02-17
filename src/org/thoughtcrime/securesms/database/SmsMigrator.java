@@ -150,7 +150,7 @@ public class SmsMigrator {
 
   private static void migrateConversation(Context context, MasterSecret masterSecret,
                                           SmsMigrationProgressListener listener,
-                                          int primaryProgress,
+                                          ProgressDescription progress,
                                           long theirThreadId, long ourThreadId)
   {
     SmsDatabase ourSmsDatabase = DatabaseFactory.getSmsDatabase(context);
@@ -166,11 +166,7 @@ public class SmsMigrator {
         getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
         statement.execute();
 
-        double position = cursor.getPosition();
-        double count    = cursor.getCount();
-        double progress = position / count;
-
-        listener.progressUpdate(primaryProgress, (int)(progress * 10000));
+        listener.progressUpdate(new ProgressDescription(progress, cursor.getCount(), cursor.getPosition()));
       }
 
       ourSmsDatabase.endTransaction(transaction);
@@ -192,31 +188,26 @@ public class SmsMigrator {
 
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Cursor cursor                 = null;
-    int primaryProgress           = 0;
 
     try {
       Uri threadListUri = Uri.parse("content://mms-sms/conversations?simple=true");
       cursor            = context.getContentResolver().query(threadListUri, null, null, null, "date ASC");
 
       while (cursor != null && cursor.moveToNext()) {
-        long   theirThreadId     = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-        String theirRecipients   = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
-        Recipients ourRecipients = getOurRecipients(context, theirRecipients);
+        long   theirThreadId         = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+        String theirRecipients       = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
+        Recipients ourRecipients     = getOurRecipients(context, theirRecipients);
+        ProgressDescription progress = new ProgressDescription(cursor.getCount(), cursor.getPosition(), 100, 0);
 
         if (ourRecipients != null) {
           long ourThreadId = threadDatabase.getThreadIdFor(ourRecipients);
           migrateConversation(context, masterSecret,
-                              listener, primaryProgress,
+                              listener, progress,
                               theirThreadId, ourThreadId);
         }
 
-        double position = cursor.getPosition() + 1;
-        double count    = cursor.getCount();
-        double progress = position / count;
-
-        primaryProgress = (int)(progress * 10000);
-
-        listener.progressUpdate(primaryProgress, 0);
+        progress.incrementPrimaryComplete();
+        listener.progressUpdate(progress);
       }
     } finally {
       if (cursor != null)
@@ -228,6 +219,34 @@ public class SmsMigrator {
   }
 
   public interface SmsMigrationProgressListener {
-    public void progressUpdate(int primaryProgress, int secondaryProgress);
+    public void progressUpdate(ProgressDescription description);
   }
+
+  public static class ProgressDescription {
+    public final int primaryTotal;
+    public       int primaryComplete;
+    public final int secondaryTotal;
+    public final int secondaryComplete;
+
+    public ProgressDescription(int primaryTotal, int primaryComplete,
+                               int secondaryTotal, int secondaryComplete)
+    {
+      this.primaryTotal      = primaryTotal;
+      this.primaryComplete   = primaryComplete;
+      this.secondaryTotal    = secondaryTotal;
+      this.secondaryComplete = secondaryComplete;
+    }
+
+    public ProgressDescription(ProgressDescription that, int secondaryTotal, int secondaryComplete) {
+      this.primaryComplete   = that.primaryComplete;
+      this.primaryTotal      = that.primaryTotal;
+      this.secondaryComplete = secondaryComplete;
+      this.secondaryTotal    = secondaryTotal;
+    }
+
+    public void incrementPrimaryComplete() {
+      primaryComplete += 1;
+    }
+  }
+
 }

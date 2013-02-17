@@ -38,7 +38,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   private EditText passphraseText;
   private Button okButton;
-  private Button cancelButton;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -51,13 +50,12 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private void initializeResources() {
     passphraseText = (EditText)findViewById(R.id.passphrase_edit);
     okButton       = (Button)findViewById(R.id.ok_button);
-    cancelButton   = (Button)findViewById(R.id.cancel_button);
 
     okButton.setOnClickListener(new OkButtonClickListener());
-    cancelButton.setOnClickListener(new CancelButtonClickListener());
   }
 
   private class OkButtonClickListener implements OnClickListener {
+    @Override
     public void onClick(View v) {
       try {
         Editable text             = passphraseText.getText();
@@ -74,16 +72,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     }
   }
 
-  private class CancelButtonClickListener implements OnClickListener {
-    public void onClick(View v) {
-      finish();
-    }
-  }
-
   @Override
   protected void cleanup() {
     this.passphraseText = null;
     System.gc();
   }
-
 }
