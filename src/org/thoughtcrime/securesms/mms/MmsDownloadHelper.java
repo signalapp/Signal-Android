@@ -17,34 +17,58 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class MmsDownloadHelper extends MmsCommunication {
 
-  private static byte[] makeRequest(MmsConnectionParameters connectionParameters, String url)
+  private static byte[] makeRequest(Context context, MmsConnectionParameters connectionParameters, String url)
       throws ClientProtocolException, IOException
   {
-    HttpClient client = constructHttpClient(connectionParameters);
-    HttpGet request   = new HttpGet(url);
+    AndroidHttpClient client = null;
 
-    request.setParams(client.getParams());
-    request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+    try {
+      client            = constructHttpClient(context, connectionParameters);
+      URI targetUrl     = new URI(url.trim());
+      HttpHost target   = new HttpHost(targetUrl.getHost(), targetUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
+      HttpGet request   = new HttpGet(url.trim());
 
-    HttpResponse response = client.execute(request);
-    StatusLine status     = response.getStatusLine();
+      request.setParams(client.getParams());
+      request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
 
-    if (status.getStatusCode() != 200)
-      throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
+//      java.util.logging.Logger.getLogger("org.apache.http.wire").setLevel(java.util.logging.Level.FINEST);
+//      java.util.logging.Logger.getLogger("org.apache.http.headers").setLevel(java.util.logging.Level.FINEST);
+//
+//      System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.SimpleLog");
+//      System.setProperty("org.apache.commons.logging.simplelog.showdatetime", "true");
+//      System.setProperty("org.apache.commons.logging.simplelog.log.httpclient.wire", "debug");
+//      System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http", "debug");
+//      System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http.headers", "debug");
 
-    return parseResponse(response.getEntity());
+      HttpResponse response = client.execute(target, request);
+      StatusLine status     = response.getStatusLine();
+
+      if (status.getStatusCode() != 200)
+        throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
+
+      return parseResponse(response.getEntity());
+    } catch (URISyntaxException use) {
+      Log.w("MmsDownloadHelper", use);
+      throw new IOException("Couldn't parse URI");
+    } finally {
+      if (client != null)
+        client.close();
+    }
   }
 
   public static byte[] retrieveMms(Context context, String url, String apn) throws IOException {
@@ -58,6 +82,6 @@ public class MmsDownloadHelper extends MmsCommunication {
     }
 
     checkRouteToHost(context, connectionParameters, url);
-    return makeRequest(connectionParameters, url);
+    return makeRequest(context, connectionParameters, url);
   }
 }

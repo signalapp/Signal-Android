@@ -17,38 +17,53 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class MmsSendHelper extends MmsCommunication {
 
-  private static byte[] makePost(MmsConnectionParameters parameters, byte[] mms) throws ClientProtocolException, IOException {
-    Log.w("MmsSender", "Sending MMS1 of length: " + mms.length);
-    HttpClient client      = constructHttpClient(parameters);
-    HttpPost request       = new HttpPost(parameters.getMmsc());
-    ByteArrayEntity entity = new ByteArrayEntity(mms);
+  private static byte[] makePost(Context context, MmsConnectionParameters parameters, byte[] mms) throws ClientProtocolException, IOException {
+    AndroidHttpClient client = null;
 
-    entity.setContentType("application/vnd.wap.mms-message");
+    try {
+      Log.w("MmsSender", "Sending MMS1 of length: " + mms.length);
+      client                 = constructHttpClient(context, parameters);
+      URI targetUrl          = new URI(parameters.getMmsc());
+      HttpHost target        = new HttpHost(targetUrl.getHost(), targetUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
+      HttpPost request       = new HttpPost(parameters.getMmsc());
+      ByteArrayEntity entity = new ByteArrayEntity(mms);
 
-    request.setEntity(entity);
-    request.setParams(client.getParams());
-    request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+      entity.setContentType("application/vnd.wap.mms-message");
 
-    HttpResponse response = client.execute(request);
-    StatusLine status     = response.getStatusLine();
+      request.setEntity(entity);
+      request.setParams(client.getParams());
+      request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
 
-    if (status.getStatusCode() != 200)
-      throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
+      HttpResponse response = client.execute(target, request);
+      StatusLine status     = response.getStatusLine();
 
-    return parseResponse(response.getEntity());
+      if (status.getStatusCode() != 200)
+        throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
+
+      return parseResponse(response.getEntity());
+    } catch (URISyntaxException use) {
+      Log.w("MmsSendHelper", use);
+      throw new IOException("Couldn't parse URI.");
+    } finally {
+      if (client != null)
+        client.close();
+    }
   }
 
   public static byte[] sendMms(Context context, byte[] mms, String apn) throws IOException {
@@ -56,7 +71,7 @@ public class MmsSendHelper extends MmsCommunication {
     try {
       MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn);
       checkRouteToHost(context, parameters, parameters.getMmsc());
-      return makePost(parameters, mms);
+      return makePost(context, parameters, mms);
     } catch (ApnUnavailableException aue) {
       Log.w("MmsSender", aue);
       throw new IOException("Failed to get MMSC information...");

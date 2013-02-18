@@ -22,22 +22,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.net.http.AndroidHttpClient;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.params.HttpClientParams;
-import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.params.ConnRouteParams;
-import org.apache.http.conn.scheme.PlainSocketFactory;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
@@ -126,26 +117,17 @@ public class MmsCommunication {
 
   }
 
-  protected static HttpClient constructHttpClient(MmsConnectionParameters mmsConfig) {
-    HttpParams params = new BasicHttpParams();
-    HttpConnectionParams.setStaleCheckingEnabled(params, false);
-    HttpConnectionParams.setConnectionTimeout(params, 20 * 1000);
-    HttpConnectionParams.setSoTimeout(params, 20 * 1000);
-    HttpConnectionParams.setSocketBufferSize(params, 8192);
-    HttpClientParams.setRedirecting(params, false);
-    HttpProtocolParams.setUserAgent(params, "TextSecure/0.1");
+  protected static AndroidHttpClient constructHttpClient(Context context, MmsConnectionParameters mmsConfig) {
+    AndroidHttpClient client = AndroidHttpClient.newInstance("TextSecure/0.1", context);
+    HttpParams params        = client.getParams();
     HttpProtocolParams.setContentCharset(params, "UTF-8");
+    HttpConnectionParams.setSoTimeout(params, 20 * 1000);
 
     if (mmsConfig.hasProxy()) {
       ConnRouteParams.setDefaultProxy(params, new HttpHost(mmsConfig.getProxy(), mmsConfig.getPort()));
     }
 
-    SchemeRegistry schemeRegistry = new SchemeRegistry();
-    schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-    schemeRegistry.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
-
-    ClientConnectionManager manager = new ThreadSafeClientConnManager(params, schemeRegistry);
-    return new DefaultHttpClient(manager, params);
+    return client;
   }
 
   protected static byte[] parseResponse(HttpEntity entity) throws IOException {
