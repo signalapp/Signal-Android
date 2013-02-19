@@ -20,15 +20,7 @@
     <string name="ApplicationExportManager_export_successful_exclamation">Export Successful!</string>
     <string name="ApplicationExportManager_import">Import</string>
     <string name="ApplicationExportManager_export">Export</string>
-    
-    <!-- ApplicationMigrationManager -->
-    <string name="ApplicationMigrationManager_migrating_database">Migrating Database</string>
-    <string name="ApplicationMigrationManager_migrating_text_message_database">Migrating text message database...</string>
-    <string name="ApplicationMigrationManager_copy_system_text_message_database_question">Copy System Text Message Database?</string>
-    <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure uses an encrypted database that is separate from the default system database.  Would you like to copy your existing text messages into TextSecure\'s encrypted database?  Your default system database will be unaffected.</string>
-    <string name="ApplicationMigrationManager_copy">Copy</string>
-    <string name="ApplicationMigrationManager_dont_copy">Don\'t copy</string>
-    
+        
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>    
     <string name="ApplicationPreferenceActivity_not_found_exclamation">Not found!</string>
@@ -39,7 +31,6 @@
     <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">You need to have entered your passphrase before importing keys...</string>
     <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">You need to have entered your passphrase before managing keys...</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <string name="ApplicationPreferencesActivity_conversation_length_limit">Conversation length limit</string>
     <string name="ApplicationPreferencesActivity_messages_per_conversation">messages per conversation</string>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
     <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Are you sure you would like to immediately trim all conversation threads to the %s most recent messages?</string>
@@ -226,7 +217,6 @@
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Import in progress</string>
     <string name="ApplicationMigrationService_importing_text_messages">Importing Text Messages</string>
-    <string name="ApplicationMigrationService_import_complete">Import complete!</string>
     
     <!-- KeyCachingService -->
     <string name="KeyCachingService_textsecure_passphrase_cached">TextSecure Passphrase Cached</string>
@@ -289,7 +279,7 @@
     <string name="create_passphrase_activity__generating_secrets">GENERATING SECRETS</string>
     
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\\\'s encrypted database?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">The default system database will not be modified or altered in any way.</string>
     <string name="database_migration_activity__skip">Skip</string>
     <string name="database_migration_activity__import">Import</string>
@@ -467,7 +457,6 @@
     <!-- conversation -->
     <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_delete_thread">Delete thread</string>
-    <string name="conversation__menu_compare">Compare</string>
     
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Recipients list</string>
