@@ -292,7 +292,7 @@ public class MessageNotifier {
   private static Recipients getSmsRecipient(Context context, Cursor cursor)
       throws RecipientFormattingException
   {
-    String address        = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
+    String address = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
     return RecipientFactory.getRecipientsFromString(context, address, false);
   }
 
@@ -305,19 +305,27 @@ public class MessageNotifier {
   }
 
   private static Recipients getRecipients(Context context, Cursor cursor) {
-    String type = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+    String type           = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+    Recipients recipients = null;
 
     try {
       if (type.equals("sms")) {
-        return getSmsRecipient(context, cursor);
+        recipients = getSmsRecipient(context, cursor);
       } else {
-        return getMmsRecipient(context, cursor);
+        recipients = getMmsRecipient(context, cursor);
       }
     } catch (RecipientFormattingException e) {
       Log.w("MessageNotifier", e);
       return new Recipients(new Recipient("Unknown", "Unknown", null,
                             ContactPhotoFactory.getDefaultContactPhoto(context)));
     }
+
+    if (recipients == null || recipients.isEmpty()) {
+      recipients = new Recipients(new Recipient("Unknown", "Unknown", null,
+                                                ContactPhotoFactory.getDefaultContactPhoto(context)));
+    }
+
+    return recipients;
   }
 
   private static void setNotificationAlarms(Context context,
