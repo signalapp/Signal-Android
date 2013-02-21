@@ -63,7 +63,8 @@ public class MmsCommunication {
     throw new ApnUnavailableException("No locally configured parameters available");
   }
 
-  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn)
+  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn,
+                                                                      boolean proxyIfPossible)
       throws ApnUnavailableException
   {
     Cursor cursor = null;
@@ -76,8 +77,13 @@ public class MmsCommunication {
 
       do {
         String mmsc  = cursor.getString(cursor.getColumnIndexOrThrow("mmsc"));
-        String proxy = cursor.getString(cursor.getColumnIndexOrThrow("mmsproxy"));
-        String port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
+        String proxy = null;
+        String port  = null;
+
+        if (proxyIfPossible) {
+          proxy = cursor.getString(cursor.getColumnIndexOrThrow("mmsproxy"));
+          port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
+        }
 
         if (mmsc != null && !mmsc.equals(""))
           return new MmsConnectionParameters(mmsc, proxy, port);
@@ -97,15 +103,29 @@ public class MmsCommunication {
     }
   }
 
-  protected static void checkRouteToHost(Context context, MmsConnectionParameters parameters, String url) throws IOException {
+  protected static void checkRouteToHost(Context context, MmsConnectionParameters parameters,
+                                         String url, boolean usingMmsRadio)
+    throws IOException
+  {
     if (parameters == null || !parameters.hasProxy())
-      checkRouteToHost(context, Uri.parse(url).getHost());
+      checkRouteToHost(context, Uri.parse(url).getHost(), usingMmsRadio);
     else
-      checkRouteToHost(context, parameters.getProxy());
+      checkRouteToHost(context, parameters.getProxy(), usingMmsRadio);
   }
 
-  private static void checkRouteToHost(Context context, String host) throws IOException {
-    InetAddress inetAddress     = InetAddress.getByName(host);
+  private static void checkRouteToHost(Context context, String host, boolean usingMmsRadio)
+      throws IOException
+  {
+    InetAddress inetAddress = InetAddress.getByName(host);
+
+    if (!usingMmsRadio) {
+      if (inetAddress.isSiteLocalAddress()) {
+        throw new IOException("RFC1918 address in non-MMS radio situation!");
+      }
+
+      return;
+    }
+
     byte[] ipAddressBytes       = inetAddress.getAddress();
     int ipAddress               = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
     ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);

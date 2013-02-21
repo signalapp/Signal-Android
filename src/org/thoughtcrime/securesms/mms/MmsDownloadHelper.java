@@ -26,6 +26,9 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 
+import ws.com.google.android.mms.pdu.PduParser;
+import ws.com.google.android.mms.pdu.RetrieveConf;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -46,15 +49,6 @@ public class MmsDownloadHelper extends MmsCommunication {
       request.setParams(client.getParams());
       request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
 
-//      java.util.logging.Logger.getLogger("org.apache.http.wire").setLevel(java.util.logging.Level.FINEST);
-//      java.util.logging.Logger.getLogger("org.apache.http.headers").setLevel(java.util.logging.Level.FINEST);
-//
-//      System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.SimpleLog");
-//      System.setProperty("org.apache.commons.logging.simplelog.showdatetime", "true");
-//      System.setProperty("org.apache.commons.logging.simplelog.log.httpclient.wire", "debug");
-//      System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http", "debug");
-//      System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http.headers", "debug");
-
       HttpResponse response = client.execute(target, request);
       StatusLine status     = response.getStatusLine();
 
@@ -71,17 +65,29 @@ public class MmsDownloadHelper extends MmsCommunication {
     }
   }
 
-  public static byte[] retrieveMms(Context context, String url, String apn) throws IOException {
+  public static RetrieveConf retrieveMms(Context context, String url, String apn,
+                                         boolean usingMmsRadio, boolean proxyIfPossible)
+      throws IOException
+  {
     MmsConnectionParameters connectionParameters;
 
     try {
-      connectionParameters = getMmsConnectionParameters(context, apn);
+      connectionParameters = getMmsConnectionParameters(context, apn, proxyIfPossible);
     } catch (ApnUnavailableException aue) {
       Log.w("MmsDownloadHelper", aue);
       connectionParameters = new MmsConnectionParameters(null, null, null);
     }
 
-    checkRouteToHost(context, connectionParameters, url);
-    return makeRequest(context, connectionParameters, url);
+    checkRouteToHost(context, connectionParameters, url, usingMmsRadio);
+
+    byte[] pdu = makeRequest(context, connectionParameters, url);
+
+    RetrieveConf retrieved = (RetrieveConf)new PduParser(pdu).parse();
+
+    if (retrieved == null) {
+      throw new IOException("Bad retrieved PDU");
+    }
+
+    return retrieved;
   }
 }

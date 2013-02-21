@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -33,6 +32,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.util.Hex;
 
 import ws.com.google.android.mms.ContentType;
@@ -41,21 +41,22 @@ import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduComposer;
 import ws.com.google.android.mms.pdu.PduHeaders;
-import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendConf;
 import ws.com.google.android.mms.pdu.SendReq;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MmsSender extends MmscProcessor {
 
-  private final LinkedList<SendReq[]> pendingMessages = new LinkedList<SendReq[]>();
-  private final Handler toastHandler;
+  private final LinkedList<SendItem> pendingMessages = new LinkedList<SendItem>();
+  private final ToastHandler toastHandler;
 
-  public MmsSender(Context context, Handler toastHandler) {
+  public MmsSender(Context context, ToastHandler toastHandler) {
     super(context);
     this.toastHandler = toastHandler;
   }
@@ -66,17 +67,11 @@ public class MmsSender extends MmscProcessor {
       MmsDatabase database = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
 
       try {
-        SendReq[] sendRequests;
+        List<SendReq> sendRequests = getOutgoingMessages(masterSecret, messageId);
 
-        if (messageId == -1) {
-          sendRequests = database.getOutgoingMessages();
-        } else {
-          sendRequests    = new SendReq[1];
-          sendRequests[0] = database.getSendRequest(messageId);
+        for (SendReq sendRequest : sendRequests) {
+          handleSendMmsAction(new SendItem(masterSecret, sendRequest, messageId != -1, false, false));
         }
-
-        if (sendRequests != null && sendRequests.length > 0)
-          handleSendMms(sendRequests, messageId != -1);
 
       } catch (MmsException me) {
         Log.w("MmsSender", me);
@@ -84,31 +79,125 @@ public class MmsSender extends MmscProcessor {
           database.markAsSentFailed(messageId);
         }
     } else if (intent.getAction().equals(SendReceiveService.SEND_MMS_CONNECTIVITY_ACTION)) {
-      handleConnectivityChange(masterSecret);
+      handleConnectivityChange();
     }
   }
 
-  protected void handleConnectivityChange(MasterSecret masterSecret) {
-    if (!isConnected())
-      return;
-
-    if   (!pendingMessages.isEmpty()) handleSendMmsContinued(masterSecret, pendingMessages.remove());
-    else                              finishConnectivity();
-  }
-
-  private void handleSendMms(SendReq[] sendRequests, boolean targeted) {
+  private void handleSendMmsAction(SendItem item) {
     if (!isConnectivityPossible()) {
-      if (targeted) {
+      if (item.targeted) {
         toastHandler
           .obtainMessage(0, context.getString(R.string.MmsSender_currently_unable_to_send_your_mms_message))
           .sendToTarget();
       }
-//      for (int i=0;i<sendRequests.length;i++)
-//        DatabaseFactory.getMmsDatabase(context).markAsSentFailed(sendRequests[i].getDatabaseMessageId());
-    } else {
-      pendingMessages.add(sendRequests);
-      issueConnectivityRequest();
+
+      return;
     }
+
+    if (item.useMmsRadio) sendMmsMessageWithRadioChange(item);
+    else                  sendMmsMessage(item);
+  }
+
+  private void sendMmsMessageWithRadioChange(SendItem item) {
+    Log.w("MmsSender", "Sending MMS with radio change..");
+    pendingMessages.add(item);
+    issueConnectivityRequest();
+  }
+
+  private void sendMmsMessage(SendItem item) {
+    Log.w("MmsSender", "Sending MMS SendItem...");
+    MmsDatabase db  = DatabaseFactory.getEncryptingMmsDatabase(context, item.masterSecret);
+    String number   = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+    long messageId  = item.request.getDatabaseMessageId();
+    long messageBox = item.request.getDatabaseMessageBox();
+    SendReq request = item.request;
+
+
+    if (MmsDatabase.Types.isSecureMmsBox(messageBox)) {
+      request = getEncryptedMms(item.masterSecret, request, messageId);
+    }
+
+    if (number != null && number.trim().length() != 0) {
+      request.setFrom(new EncodedStringValue(number));
+    }
+
+    try {
+      SendConf conf = MmsSendHelper.sendMms(context, new PduComposer(context, request).make(),
+                                            getApnInformation(), item.useMmsRadio, item.useProxyIfAvailable);
+
+      for (int i=0;i<request.getBody().getPartsNum();i++) {
+        Log.w("MmsSender", "Sent MMS part of content-type: " + new String(request.getBody().getPart(i).getContentType()));
+      }
+
+      long threadId         = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
+      Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(context, threadId);
+
+      if (conf == null) {
+        db.markAsSentFailed(messageId);
+        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+        Log.w("MmsSender", "No M-Send.conf received in response to send.");
+        return;
+      } else if (conf.getResponseStatus() != PduHeaders.RESPONSE_STATUS_OK) {
+        Log.w("MmsSender", "Got bad response: " + conf.getResponseStatus());
+        db.updateResponseStatus(messageId, conf.getResponseStatus());
+        db.markAsSentFailed(messageId);
+        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+        return;
+      } else if (isInconsistentResponse(request, conf)) {
+        db.markAsSentFailed(messageId);
+        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+        Log.w("MmsSender", "Got a response for the wrong transaction?");
+        return;
+      } else {
+        Log.w("MmsSender", "Successful send! " + messageId);
+        if (!MmsDatabase.Types.isSecureMmsBox(messageBox)) {
+          db.markAsSent(messageId, conf.getMessageId(), conf.getResponseStatus());
+        } else {
+          db.markAsSecureSent(messageId, conf.getMessageId(), conf.getResponseStatus());
+        }
+      }
+    } catch (IOException ioe) {
+      Log.w("MmsSender", ioe);
+      if      (!item.useMmsRadio)         scheduleSendWithMmsRadio(item);
+      else if (!item.useProxyIfAvailable) scheduleSendWithMmsRadioAndProxy(item);
+      else                                db.markAsSentFailed(messageId);
+    }
+  }
+
+  private List<SendReq> getOutgoingMessages(MasterSecret masterSecret, long messageId)
+      throws MmsException
+  {
+    MmsDatabase database = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
+    List<SendReq> sendRequests;
+
+    if (messageId == -1) {
+      sendRequests = Arrays.asList(database.getOutgoingMessages());
+    } else {
+      sendRequests    = new ArrayList<SendReq>(1);
+      sendRequests.add(database.getSendRequest(messageId));
+    }
+
+    return sendRequests;
+  }
+
+  protected void handleConnectivityChange() {
+    if (!isConnected()) {
+      if (!isConnectivityPossible() && !pendingMessages.isEmpty()) {
+        DatabaseFactory.getMmsDatabase(context).markAsSentFailed(pendingMessages.remove().request.getDatabaseMessageId());
+        toastHandler.makeToast(context.getString(R.string.MmsSender_currently_unable_to_send_your_mms_message));
+        Log.w("MmsSender", "Unable to send MMS.");
+        finishConnectivity();
+      }
+
+      return;
+    }
+
+    for (SendItem item : pendingMessages) {
+      sendMmsMessage(item);
+    }
+
+    pendingMessages.clear();
+    finishConnectivity();
   }
 
   private boolean isInconsistentResponse(SendReq send, SendConf response) {
@@ -145,74 +234,40 @@ public class MmsSender extends MmscProcessor {
     return pdu;
   }
 
-  private void sendMms(MmsDatabase db, SendReq pdu, String number, long messageId, boolean secure) {
-    try {
-      if (number != null && number.trim().length() != 0)
-        pdu.setFrom(new EncodedStringValue(number));
-
-      byte[] response = MmsSendHelper.sendMms(context, new PduComposer(context, pdu).make(), getApnInformation());
-      SendConf conf   = (SendConf) new PduParser(response).parse();
-
-      for (int i=0;i<pdu.getBody().getPartsNum();i++) {
-        Log.w("MmsSender", "Sent MMS part of content-type: " + new String(pdu.getBody().getPart(i).getContentType()));
-      }
-
-      long threadId         = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
-      Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(context, threadId);
-
-      if (conf == null) {
-        db.markAsSentFailed(messageId);
-        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
-        Log.w("MmsSender", "No M-Send.conf received in response to send.");
-        return;
-      } else if (conf.getResponseStatus() != PduHeaders.RESPONSE_STATUS_OK) {
-        Log.w("MmsSender", "Got bad response: " + conf.getResponseStatus());
-        db.updateResponseStatus(messageId, conf.getResponseStatus());
-        db.markAsSentFailed(messageId);
-        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
-        return;
-      } else if (isInconsistentResponse(pdu, conf)) {
-        db.markAsSentFailed(messageId);
-        MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
-        Log.w("MmsSender", "Got a response for the wrong transaction?");
-        return;
-      } else {
-        Log.w("MmsSender", "Successful send! " + messageId);
-        if (!secure)
-          db.markAsSent(messageId, conf.getMessageId(), conf.getResponseStatus());
-        else
-          db.markAsSecureSent(messageId, conf.getMessageId(), conf.getResponseStatus());
-        }
-    } catch (IOException ioe) {
-      Log.w("MmsSender", ioe);
-      db.markAsSentFailed(messageId);
-    }
+  private void scheduleSendWithMmsRadioAndProxy(SendItem item) {
+    item.useMmsRadio = true;
+    handleSendMmsAction(item);
   }
 
-  private void handleSendMmsContinued(MasterSecret masterSecret, SendReq[] requests) {
-    Log.w("MmsSenderService", "Handling MMS send continuation...");
-
-    MmsDatabase db = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
-    String number  = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
-
-    for (int i=0;i<requests.length;i++) {
-      SendReq request = requests[i];
-      long messageId  = request.getDatabaseMessageId();
-      long messageBox = request.getDatabaseMessageBox();
-
-      if (MmsDatabase.Types.isSecureMmsBox(messageBox))
-        request = getEncryptedMms(masterSecret, request, messageId);
-
-      sendMms(db, request, number, messageId, MmsDatabase.Types.isSecureMmsBox(messageBox));
-    }
-
-    if (this.pendingMessages.isEmpty())
-      finishConnectivity();
+  private void scheduleSendWithMmsRadio(SendItem item) {
+    item.useMmsRadio         = true;
+    item.useProxyIfAvailable = true;
+    handleSendMmsAction(item);
   }
 
   @Override
   protected String getConnectivityAction() {
     return SendReceiveService.SEND_MMS_CONNECTIVITY_ACTION;
+  }
+
+  private static class SendItem {
+    private final MasterSecret masterSecret;
+
+    private boolean useMmsRadio;
+    private boolean useProxyIfAvailable;
+    private SendReq request;
+    private boolean targeted;
+
+    public SendItem(MasterSecret masterSecret, SendReq request,
+                    boolean targeted, boolean useMmsRadio,
+                    boolean useProxyIfAvailable)
+    {
+      this.masterSecret        = masterSecret;
+      this.request             = request;
+      this.targeted            = targeted;
+      this.useMmsRadio         = useMmsRadio;
+      this.useProxyIfAvailable = useProxyIfAvailable;
+    }
   }
 
 }

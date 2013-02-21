@@ -103,6 +103,11 @@
     
     <!-- KeyScanningActivity -->
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
+
+    <!-- MmsDownloader -->
+    <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No connectivity available for MMS download, try again later...</string>
+    <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
+    <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>  
     
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases Don\'t Match!</string>

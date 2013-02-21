@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 
 import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.RetrieveConf;
 
 import java.io.IOException;
@@ -44,73 +44,105 @@ public class MmsDownloader extends MmscProcessor {
     this.toastHandler = toastHandler;
   }
 
-  private void handleDownloadMms(DownloadItem item) {
-    if (!isConnectivityPossible()) {
-      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
-      toastHandler.makeToast("No connectivity available for MMS download, try again later...");
-      Log.w("MmsDownloadService", "Unable to download MMS, please try again later.");
-    } else {
-      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_CONNECTING);
-      pendingMessages.add(item);
-      issueConnectivityRequest();
+  public void process(MasterSecret masterSecret, Intent intent) {
+    if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_ACTION)) {
+      DownloadItem item = new DownloadItem(masterSecret, false, false,
+                                           intent.getLongExtra("message_id", -1),
+                                           intent.getLongExtra("thread_id", -1),
+                                           intent.getStringExtra("content_location"),
+                                           intent.getByteArrayExtra("transaction_id"));
+
+      handleDownloadMmsAction(item);
+    } else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_CONNECTIVITY_ACTION)) {
+      handleConnectivityChange();
     }
   }
 
-  private void handleDownloadMmsContinued(DownloadItem item) {
-    Log.w("MmsDownloadService", "Handling MMS download continuation...");
+  private void handleDownloadMmsAction(DownloadItem item) {
+    if (!isConnectivityPossible()) {
+      Log.w("MmsDownloader", "No MMS connectivity available!");
+      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
+      toastHandler.makeToast(context.getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
+      return;
+    }
+
+    DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_CONNECTING);
+
+    if (item.useMmsRadioMode()) downloadMmsWithRadioChange(item);
+    else                        downloadMms(item);
+  }
+
+  private void downloadMmsWithRadioChange(DownloadItem item) {
+    Log.w("MmsDownloader", "Handling MMS download with radio change...");
+    pendingMessages.add(item);
+    issueConnectivityRequest();
+  }
+
+  private void downloadMms(DownloadItem item) {
+    Log.w("MmsDownloadService", "Handling actual MMS download...");
     MmsDatabase mmsDatabase;
 
-    if (item.getMasterSecret() == null)
+    if (item.getMasterSecret() == null) {
       mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-    else
+    } else {
       mmsDatabase = DatabaseFactory.getEncryptingMmsDatabase(context, item.getMasterSecret());
-
+    }
 
     try {
-      byte[] pdu             = MmsDownloadHelper.retrieveMms(context, item.getContentLocation(),
-                                                             getApnInformation());
-      RetrieveConf retrieved = (RetrieveConf)new PduParser(pdu).parse();
-
-      if (retrieved == null)
-        throw new IOException("Bad retrieved PDU");
+      RetrieveConf retrieved = MmsDownloadHelper.retrieveMms(context, item.getContentLocation(),
+                                                             getApnInformation(),
+                                                             item.useMmsRadioMode(),
+                                                             item.proxyRequestIfPossible());
 
       for (int i=0;i<retrieved.getBody().getPartsNum();i++) {
-        Log.w("MmsDownloader", "Sent MMS part of content-type: " +
+        Log.w("MmsDownloader", "Got MMS part of content-type: " +
               new String(retrieved.getBody().getPart(i).getContentType()));
       }
 
-      if (retrieved.getSubject() != null && WirePrefix.isEncryptedMmsSubject(retrieved.getSubject().getString())) {
-        long messageId = mmsDatabase.insertSecureMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
-        if (item.getMasterSecret() != null)
-          DecryptingQueue.scheduleDecryption(context, item.getMasterSecret(), messageId, item.getThreadId(), retrieved);
-        } else {
-          mmsDatabase.insertMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
-      }
-
-      mmsDatabase.delete(item.getMessageId());
+      storeRetrievedMms(mmsDatabase, item, retrieved);
 
       //			NotifyRespInd notifyResponse = new NotifyRespInd(PduHeaders.CURRENT_MMS_VERSION, item.getTransactionId(), PduHeaders.STATUS_RETRIEVED);
       //			MmsSendHelper.sendMms(context, new PduComposer(context, notifyResponse).make());
 
-      if (this.pendingMessages.isEmpty())
-        finishConnectivity();
-
     } catch (IOException e) {
-      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_SOFT_FAILURE);
-      toastHandler.makeToast("Error connecting to MMS provider...");
       Log.w("MmsDownloader", e);
+      if (!item.useMmsRadioMode() && !item.proxyRequestIfPossible()) {
+        scheduleDownloadWithRadioMode(item);
+      } else if (!item.proxyRequestIfPossible()) {
+        scheduleDownloadWithRadioModeAndProxy(item);
+      } else {
+        DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_SOFT_FAILURE);
+        toastHandler.makeToast(context.getString(R.string.MmsDownloader_error_connecting_to_mms_provider));
+      }
     } catch (MmsException e) {
-      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_HARD_FAILURE);
-      toastHandler.makeToast("Error downloading MMS!");
       Log.w("MmsDownloader", e);
+      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_HARD_FAILURE);
+      toastHandler.makeToast(context.getString(R.string.MmsDownloader_error_storing_mms));
     }
+  }
+
+  private void storeRetrievedMms(MmsDatabase mmsDatabase, DownloadItem item, RetrieveConf retrieved)
+      throws MmsException
+  {
+    if (retrieved.getSubject() != null && WirePrefix.isEncryptedMmsSubject(retrieved.getSubject().getString())) {
+      long messageId = mmsDatabase.insertSecureMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
+
+      if (item.getMasterSecret() != null)
+        DecryptingQueue.scheduleDecryption(context, item.getMasterSecret(), messageId, item.getThreadId(), retrieved);
+
+    } else {
+      mmsDatabase.insertMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
+    }
+
+    mmsDatabase.delete(item.getMessageId());
   }
 
   protected void handleConnectivityChange() {
     if (!isConnected()) {
       if (!isConnectivityPossible() && !pendingMessages.isEmpty()) {
         DatabaseFactory.getMmsDatabase(context).markDownloadState(pendingMessages.remove().getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
-        toastHandler.makeToast("No connectivity available for MMS download, try again later...");
+        toastHandler.makeToast(context
+            .getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
         Log.w("MmsDownloadService", "Unable to download MMS, please try again later.");
         finishConnectivity();
       }
@@ -118,37 +150,45 @@ public class MmsDownloader extends MmscProcessor {
       return;
     }
 
-    if   (!pendingMessages.isEmpty()) handleDownloadMmsContinued(pendingMessages.remove());
-    else                              finishConnectivity();
-  }
-
-  public void process(MasterSecret masterSecret, Intent intent) {
-    if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_ACTION)) {
-      DownloadItem item = new DownloadItem(intent.getLongExtra("message_id", -1),
-                                           intent.getLongExtra("thread_id", -1),
-                                           intent.getStringExtra("content_location"),
-                                           intent.getByteArrayExtra("transaction_id"),
-                                           masterSecret);
-
-      handleDownloadMms(item);
-    } else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_CONNECTIVITY_ACTION)) {
-      handleConnectivityChange();
+    for (DownloadItem item : pendingMessages) {
+      downloadMms(item);
     }
+
+    pendingMessages.clear();
+    finishConnectivity();
   }
 
 
-  private class DownloadItem {
+  private void scheduleDownloadWithRadioMode(DownloadItem item) {
+    item.mmsRadioMode = true;
+    handleDownloadMmsAction(item);
+  }
+
+  private void scheduleDownloadWithRadioModeAndProxy(DownloadItem item) {
+    item.mmsRadioMode    = true;
+    item.proxyIfPossible = true;
+    handleDownloadMmsAction(item);
+  }
+
+  private static class DownloadItem {
+    private final MasterSecret masterSecret;
+    private boolean            mmsRadioMode;
+    private boolean            proxyIfPossible;
+
     private long threadId;
     private long messageId;
     private byte[] transactionId;
     private String contentLocation;
-    private MasterSecret masterSecret;
 
-    public DownloadItem(long messageId, long threadId, String contentLocation, byte[] transactionId, MasterSecret masterSecret) {
+    public DownloadItem(MasterSecret masterSecret, boolean mmsRadioMode, boolean proxyIfPossible,
+                        long messageId, long threadId, String contentLocation, byte[] transactionId)
+    {
+      this.masterSecret    = masterSecret;
+      this.mmsRadioMode    = mmsRadioMode;
+      this.proxyIfPossible = proxyIfPossible;
       this.threadId        = threadId;
       this.messageId       = messageId;
       this.contentLocation = contentLocation;
-      this.masterSecret    = masterSecret;
       this.transactionId   = transactionId;
     }
 
@@ -170,6 +210,14 @@ public class MmsDownloader extends MmscProcessor {
 
     public MasterSecret getMasterSecret() {
       return masterSecret;
+    }
+
+    public boolean proxyRequestIfPossible() {
+      return proxyIfPossible;
+    }
+
+    public boolean useMmsRadioMode() {
+      return mmsRadioMode;
     }
   }
 

@@ -27,6 +27,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 
+import ws.com.google.android.mms.pdu.PduParser;
+import ws.com.google.android.mms.pdu.SendConf;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -66,12 +69,16 @@ public class MmsSendHelper extends MmsCommunication {
     }
   }
 
-  public static byte[] sendMms(Context context, byte[] mms, String apn) throws IOException {
+  public static SendConf sendMms(Context context, byte[] mms, String apn,
+                                 boolean usingMmsRadio, boolean useProxyIfAvailable)
+    throws IOException
+  {
     Log.w("MmsSender", "Sending MMS of length: " + mms.length);
     try {
-      MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn);
-      checkRouteToHost(context, parameters, parameters.getMmsc());
-      return makePost(context, parameters, mms);
+      MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn, useProxyIfAvailable);
+      checkRouteToHost(context, parameters, parameters.getMmsc(), usingMmsRadio);
+      byte[] response = makePost(context, parameters, mms);
+      return (SendConf) new PduParser(response).parse();
     } catch (ApnUnavailableException aue) {
       Log.w("MmsSender", aue);
       throw new IOException("Failed to get MMSC information...");
