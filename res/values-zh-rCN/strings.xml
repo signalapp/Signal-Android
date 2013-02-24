@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">导出成功！</string>
   <string name="ApplicationExportManager_import">导入</string>
   <string name="ApplicationExportManager_export">导出</string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">正在迁移数据库</string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">正在迁移文本消息数据库...</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">复制系统文本消息数据库？</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure 使用与默认系统数据库分离的加密数据库。  是否要复制现有文本消息到 TextSecure 的加密数据库？  您的默认系统数据库将不受影响。</string>
-  <string name="ApplicationMigrationManager_copy">复制</string>
-  <string name="ApplicationMigrationManager_dont_copy">不复制</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前： %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">未找到！</string>
@@ -91,13 +84,11 @@
   <string name="ConversationListItem_key_exchange_message">密钥交换消息...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">未找到已扫描密钥！</string>
+  <!--MmsDownloader-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">密码不匹配！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">密码不匹配！</string>
-  <string name="PassphraseCreateActivity_generating_keypair">正在生成密钥对</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">正在生成本地加密密钥对...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">无效密码！</string>
   <!--ReceiveKeyActivity-->
@@ -187,8 +178,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">已为不存在的会话加密彩信消息...</string>
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">正在迁移</string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">正在迁移系统文本消息</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">TextSecure 密码已缓存</string>
   <string name="KeyCachingService_passphrase_cached">密码已缓存</string>
@@ -226,6 +215,9 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">请选择用于本地加密数据的密码。  这应是强密码。</string>
   <string name="create_passphrase_activity__passphrase">密码：</string>
   <string name="create_passphrase_activity__repeat">重复：</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__import">导入</string>
+  <!--prompt_passphrase_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">会话</string>
   <string name="receive_key_activity__identities">身份</string>
@@ -353,7 +345,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添加附件</string>
   <string name="conversation__menu_delete_thread">删除线程</string>
-  <string name="conversation__menu_compare">比较</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">接收人列表</string>
   <!--key_scanning-->

@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">¡Exportación exitosa!</string>
   <string name="ApplicationExportManager_import">Importar</string>
   <string name="ApplicationExportManager_export">Exportar</string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">Migrando la base de datos</string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">Migrando la base de datos de mensajes de texto...</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">¿Desea copiar la base de datos de mensajes de texto del sistema?</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure usa una base de datos cifrada, separa de la base de datos predeterminada por el sistema.  ¿Le gustaría copiar sus mensajes de texto existentes en la base cifrada de TextSecure? Su base de datos predeterminada en el sistema no será afectada. </string>
-  <string name="ApplicationMigrationManager_copy">Copiar</string>
-  <string name="ApplicationMigrationManager_dont_copy">No copiar</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">¡No encontrado!</string>
@@ -36,7 +29,6 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Necesita ingresar una frase de contraseña antes de importar claves...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Necesita ingresar su frase de contraseña antes de gestionar sus claves...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡No ha elegido aún una frase de contraseña!</string>
-  <string name="ApplicationPreferencesActivity_conversation_length_limit">Límite de tamaño de la conversación</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">mensajes por conversación</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes viejos ahora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">¿Estás seguro de que te gustaría recortar inmediatamente todos los hilos de conversación a los %s últimos mensajes?</string>
@@ -81,6 +73,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Receptores de Conversación en Grupo</string>
   <string name="ConversationActivity_group_conversation">Conversación en Grupo</string>
   <string name="ConversationActivity_d_recipients_in_group">%d receptores en grupo</string>
+  <string name="ConversationActivity_saving_draft">Guardando borrador...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remitente: %1$s\nTransporte: %2$s\nEnviado/Recibido:%3$s</string>
@@ -93,17 +86,17 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">¿Borrar las conversaciones?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">¿Está seguro de que quiere borrar TODAS las conversaciones seleccionadas?</string>
+  <string name="ConversationListFragment_deleting">Eliminando</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Eliminando hilos seleccionados...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
+  <!--MmsDownloader-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las frases de contraseña no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Frase de contraseña anterior incorrecta!</string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">¡Las frases de contraseña no coinciden!</string>
-  <string name="PassphraseCreateActivity_generating_keypair">Generando Par de Claves</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">Generando un par de claves de cifrado local...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de contraseña inválida</string>
   <!--ReceiveKeyActivity-->
@@ -192,16 +185,23 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS mal cifrado</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaje MMS cifrado para sesión no existente...</string>
   <!--MmsSender-->
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Actualmente no se puede enviar tu mensaje MMS. Será enviado en cuanto el servicio esté disponible.</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">Migrando</string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">Migrando los mensajes de texto del sistema</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Frase de contraseña de TextSecure en memoria caché</string>
   <string name="KeyCachingService_passphrase_cached">Frase de contraseña en memoria caché</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) Nuevos mensajes</string>
+  <string name="MessageNotifier_d_new_messages">(%d) nuevos mensajes</string>
   <string name="MessageNotifier_most_recent_from_s">Mensaje más reciente de: %s</string>
+  <string name="MessageNotifier_key_exchange">Intercambio de claves...</string>
+  <string name="MessageNotifier_encrypted_message">Mensaje cifrado...</string>
+  <string name="MessageNotifier_corrupted_ciphertext">Cibertexto corrupto</string>
+  <string name="MessageNotifier_no_subject">(Sin Asunto)</string>
+  <string name="MessageNotifier_message_delivery_failed">Entrega de mensaje fallida.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Fallo al entregar mensaje.</string>
+  <string name="MessageNotifier_error_delivering_message">Error entregando mensaje.</string>
   <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Actualmente no se puede enviar tu mensaje SMS. Será enviado en cuanto el servicio esté disponible.</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Ha recibido un mensaje de alguien que tiene soporte para sesiones cifradas de TextSecure. ¿Desea iniciar una sesión segura?</string>
   <string name="auto_initiate_activity__initiate_exchange">Iniciar intercambio</string>
@@ -232,6 +232,8 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Por favor escoja una frase de contraseña que se usará de forma local para cifrar sus datos. Debe elegir una clave de contraseña fuerte. </string>
   <string name="create_passphrase_activity__passphrase">Frase de contraseña:</string>
   <string name="create_passphrase_activity__repeat">Repetir:</string>
+  <!--database_migration_activity-->
+  <!--prompt_passphrase_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sesión</string>
   <string name="receive_key_activity__identities">Identidades</string>
@@ -376,7 +378,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Añadir archivo adjunto</string>
   <string name="conversation__menu_delete_thread">Borrar conversación</string>
-  <string name="conversation__menu_compare">Comparar</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista de receptores</string>
   <!--key_scanning-->

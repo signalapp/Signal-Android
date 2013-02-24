@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">Export úspešný!</string>
   <string name="ApplicationExportManager_import">Import</string>
   <string name="ApplicationExportManager_export">Export</string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">Presúvam databázu</string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">Presúvam databázu textových správ...</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">Kopírovať systémovú databázu textových správ?</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure používa kryptovanú databázu, nezávislú od štandardnej systémovej databázy.  Želáte si prekopírovať správy zo štandardnej systémovej databázy do kryptovanej TextSecure databázy? Štandardná systémová databáza správ zostane nezmenená.</string>
-  <string name="ApplicationMigrationManager_copy">Kopírovať</string>
-  <string name="ApplicationMigrationManager_dont_copy">Nekopírovať</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálne: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">Nenájdené!</string>
@@ -36,7 +29,6 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Pred importovaním kľúčov musíte vložiť heslo...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Pred spravovaním kľúčov musíte vložiť heslo...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
-  <string name="ApplicationPreferencesActivity_conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">správ na konverzáciu</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Zmazať všetky staré správy?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ste si istí, že chcete skrátiť všetky vlákna konverzácií na %s najnovších správ?</string>
@@ -97,13 +89,11 @@
   <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nenašiel som scannovaný kľúč!</string>
+  <!--MmsDownloader-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
-  <string name="PassphraseCreateActivity_generating_keypair">Generujem pár kľúčov</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">Generujem pár kľúčov na lokálne kryptovanie...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
   <!--ReceiveKeyActivity-->
@@ -193,8 +183,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS správa zakryptovaná pre neexistujúcu session...</string>
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">Presúvam</string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">Presúvam systémové textové správy</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Heslo pre TextSecure kešované</string>
   <string name="KeyCachingService_passphrase_cached">Heslo kešované</string>
@@ -232,6 +220,10 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Vyberte si prosím heslo ktoré bude použité na lokálne kryptovanie údajov. Malo by to byť silné heslo.</string>
   <string name="create_passphrase_activity__passphrase">Heslo:</string>
   <string name="create_passphrase_activity__repeat">Zopakujte:</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__import">Import</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Session</string>
   <string name="receive_key_activity__identities">Identifikácie</string>
@@ -376,7 +368,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pridaj prílohu</string>
   <string name="conversation__menu_delete_thread">Zmaž vlákno</string>
-  <string name="conversation__menu_compare">Porovnaj</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Zoznam príjemcov</string>
   <!--key_scanning-->

@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">Exportação com sucesso!</string>
   <string name="ApplicationExportManager_import">Importar</string>
   <string name="ApplicationExportManager_export">Exportar</string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">A migrar a base de dados</string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">A migrar a base de dados de mensagens...</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">Copiar a base de dados de mensagens do sistema?</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">Text secure usa uma base de dados cifrada que é independente da base de dados por omissão do sistema.\nGostaria de copiar as mensagens existentes para a base de dados cifrada do TextSecure?\nA base de dados por omissão não será afectada por esta operação.</string>
-  <string name="ApplicationMigrationManager_copy">Copiar</string>
-  <string name="ApplicationMigrationManager_dont_copy">Não copiar</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Correntemente: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">Não encontrado!</string>
@@ -36,7 +29,6 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Necessita de inserir a frase-chave antes de importar chaves...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Necessita de inserir a frase-chave antes de gerir chaves...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
-  <string name="ApplicationPreferencesActivity_conversation_length_limit">Tamanho máximo de conversa</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">Mensagens por conversa</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Deletar todas mensagens antigas agora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
@@ -100,13 +92,16 @@
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Não foi encontrada nenhuma chave lida!</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Sem conectividade para fazer download de MMS, tente mais tarde...</string>
+  <string name="MmsDownloader_error_storing_mms">Erro ao armazenar MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Erro na conexão com provedor de MMS...</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-chave não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">As frases-chave não coincidem!</string>
-  <string name="PassphraseCreateActivity_generating_keypair">A gerar par-chave</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">A gerar um par-chave de cifra local...</string>
+  <string name="PassphraseCreateActivity_passphrases_dont_match">Palavras-chave não coincidem</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Você deve especificar uma senha</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
   <!--ReceiveKeyActivity-->
@@ -197,8 +192,8 @@
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Mensagem MMS não pôde ser enviada agora. Será enviada quando o serviço estiver disponível.</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">A migrar</string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">A migrar mensagens de texto do sistema</string>
+  <string name="ApplicationMigrationService_import_in_progress">Importação em andamento</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Importando mensagens de texto</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Frase-chave TextSecure guardada em memória cache</string>
   <string name="KeyCachingService_passphrase_cached">Frase-chave guardada em cache</string>
@@ -244,6 +239,18 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Por favor escolha uma frase-chave que será usada para cifrar os seus dados localmente. Esta deve ser uma frase-chave forte.</string>
   <string name="create_passphrase_activity__passphrase">Frase-chave:</string>
   <string name="create_passphrase_activity__repeat">Repetir:</string>
+  <string name="create_passphrase_activity__continue">Continuar</string>
+  <string name="create_passphrase_activity__generating_secrets">Gerando segredos</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar suas mensagens de texto existentes para a base de dados criptografada do TextSecure?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados padrão do sistema não será alterada.</string>
+  <string name="database_migration_activity__skip">Pular</string>
+  <string name="database_migration_activity__import">Importar</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Isso pode demorar um pouco. Seja paciente, iremos notificá-lo quando a importação terminar.</string>
+  <string name="database_migration_activity__importing">Importando</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">Palavra-chave do TextSecure</string>
+  <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessão</string>
   <string name="receive_key_activity__identities">Identidades</string>
@@ -388,7 +395,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adicionar anexo</string>
   <string name="conversation__menu_delete_thread">Apagar conversa</string>
-  <string name="conversation__menu_compare">Comparar</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
   <!--key_scanning-->

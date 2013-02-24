@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">تم التصدير بنجاح</string>
   <string name="ApplicationExportManager_import">استيراد</string>
   <string name="ApplicationExportManager_export">تصدير</string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">نقل قواعد البيانات</string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">يتم الان نقل قواعد بيانات رسائلك القصيرة...</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">هل أنقل الرسائل القصيرة المخزنة بالنظام لديك؟</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">النسخة الحالية من تكست سيكيور تستخدم قاعدة بيانات مشفرة للرسائل القصيرة تختلف عن قاعدة البيانات العادية بالنظام للرسائل القصيرة. هل تريد نسخ الرسائل القصيرة من النظام إلى قاعدة بيانات تكست سيكيور المشفرة؟ لن تتأثر قاعدة البيانات الأصلية بنظامك.</string>
-  <string name="ApplicationMigrationManager_copy">انسخ</string>
-  <string name="ApplicationMigrationManager_dont_copy">لا تنسخ</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">غير موجود!</string>
@@ -36,7 +29,6 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">يجب عليك إدخال العبارة السرية قبل استيراد المفاتيح السرية</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">يجب عليك إدخال العبارة السرية قبل ضبط المفاتيح السرية</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
-  <string name="ApplicationPreferencesActivity_conversation_length_limit">حد طول المحادثة</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">عدد الرسائل بالمحادثة</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">امسح كل الرسائل القديمة الآن؟</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من مسح كل الرسائل بالمحادثات وابقاء أحدث %s رسالة فقط؟</string>
@@ -97,13 +89,11 @@
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">لم يتم العثور على مفتاح!</string>
+  <!--MmsDownloader-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارة السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">العبارة السرية غير متطابقة!</string>
-  <string name="PassphraseCreateActivity_generating_keypair">إنشاء زوج مفاتيح سرية</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">إنشاء زوج مفاتيح تشفير محلي</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
   <!--ReceiveKeyActivity-->
@@ -193,8 +183,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">يتم النقل...</string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">يتم الان نقل قواعد بيانات رسائلك القصيرة...</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">تم حفظ العبارة السرية مؤقتاً</string>
   <string name="KeyCachingService_passphrase_cached">تم حفظ العبارة السرية مؤقتاً</string>
@@ -232,6 +220,8 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">الرجاء اختيار عبارة سرية ليتم استخدامها بتشفير البيانات المحلية. يجب أن تكون عبارة سرية قوية و صعبة التخمين.</string>
   <string name="create_passphrase_activity__passphrase">العبارة السرية:</string>
   <string name="create_passphrase_activity__repeat">تكرار:</string>
+  <!--database_migration_activity-->
+  <!--prompt_passphrase_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">قناة اتصال</string>
   <string name="receive_key_activity__identities">الهويات</string>
@@ -376,7 +366,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
   <string name="conversation__menu_delete_thread">مسح المحاذفة</string>
-  <string name="conversation__menu_compare">قارن</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">قائمة المشاركين</string>
   <!--key_scanning-->

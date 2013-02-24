@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">ཕྱིར་འདྲེན་ལེགས་འགྲུབ་བྱུང་། </string>
   <string name="ApplicationExportManager_import">ནང་འདྲེན་བྱོས། </string>
   <string name="ApplicationExportManager_export">ཕྱི་འདྲེན་བྱོས། </string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">རེའུ་མིག་གནས་སྤོར་བྱེད་བཞིན་ཡོད། </string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">འཕྲིན་ཐུང་གི་རེའུ་མིག་གནས་སྤོར་བྱེད་བཞིན་ཡོད། </string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">འཕྲིན་ཐུང་རེའུ་མིག་གི་མ་ལག་དེ་འདྲ་བཤུས་བྱེད་རྒྱུ་ཡིན་ནམ། </string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">ཡི་གེའི་ཉེན་སྲུང་གི་པར་གཞི་དེས། གཏན་འཇགས་མ་ལག་གཞི་གྲངས་མཛོད་ལས་ལོགས་སུ་ཡིན་པའི་གསང་སྡོམ་གྱི་གཞི་གྲངས་མཛོད་ཞིག་བེད་སྤྱོད་གཏོང་གི་ཡོད། ཁྱེད་རང་གིས་ད་ཡོད་འཕྲིན་ཐུང་རྣམས་བདེ་འཇགས་འཕྲིན་ཐུང་གི་གསང་སྡོམ་གྱི་གཞི་གྲངས་མཛོད་དེའི་ཁོངས་སུ་བཤུ་ན་འདོད་དམ། ཁྱེད་རང་གི་གཏན་འཇགས་མ་ལག་གི་གཞི་གྲངས་མཛོད་དེ་ནུས་མེད་ཆགས་གི་མ་རེད།</string>
-  <string name="ApplicationMigrationManager_copy">འདྲ་བཤུས་བྱོས། </string>
-  <string name="ApplicationMigrationManager_dont_copy">འདྲ་བཤུས་མ་བྱེད། </string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ད་ལྟ།:%s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">རྙེད་མ་སོང་། </string>
@@ -36,7 +29,6 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">ཁྱོད་ཀྱིས་ལྡེ་མིག་ནང་འཇུག་མ་བྱས་སྔོན་ལ་གསང་གྲངས་འཇོག་དགོས།</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">ཁྱོད་ཀྱིས་ལྡེ་མིག་དོ་དམ་མ་བྱས་སྔོན་ལ་གསང་གྲངས་འཇོག་དགོས།</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ཁྱོད་ཀྱིས་གསང་ཡིག་བཟོས་མི་འདུག</string>
-  <string name="ApplicationPreferencesActivity_conversation_length_limit">གླེང་མོལ་གྱི་རིང་ཐུང་གི་ཚད། </string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">གླེང་མོལ་རེའི་འཕྲིན་ཐུང་། </string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ད་ལྟ་རང་འཕྲིན་ཐུང་རྙིང་པ་ཚང་མ་གསུབ་གི་ཡིན་ནམ། </string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ཁྱེད་ཀྱིས་མྱུར་དུ་ཉེ་འཆར་གྱི་འཕྲིན་ཐུང་དེའི་སླད་དུ་གླེང་མོལ་གྱི་སྐུད་པ་ཚང་མ་གཙང་བཟོ་བྱེད་ཀྱི་ཡིན་ནམ། </string>
@@ -81,6 +73,7 @@
   <string name="ConversationActivity_group_conversation_recipients">མཉམ་འདུས་གླེང་མོལ་གྱི་ཁོངས་མི་དག </string>
   <string name="ConversationActivity_group_conversation">མཉམ་འདུས་གླེང་མོལ། </string>
   <string name="ConversationActivity_d_recipients_in_group">མཉམ་འདུས་ཀྱི་ཁོངས་སུ་ལེན་མཁན་གྱི་བརྒྱ་ཆ %d ཙམ། </string>
+  <string name="ConversationActivity_saving_draft">ཟིན་བྲིས་ཉར་ཚགས་བྱེད་བཞིན་ཡོད།</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">འཕྲིན་ཐུང་གི་ཞིབ་ཆ།</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">གཏོང་མཁན།:%1$s  དབོར་བ།:%2$s བཏང་།/འབྱོར།:%3$s</string>
@@ -93,17 +86,17 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་སྐུད་རིམ་འདེམས་པ་ཆ་ཚང་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
+  <string name="ConversationListFragment_deleting">གསུབ་་བཞིན་ཡོད།</string>
+  <string name="ConversationListFragment_deleting_selected_threads">འཕྲིན་ཐུང་སྐུད་རིམ་རྣམས་གསུབ་བཞིན་ཡོད།</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན།</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ཞིབ་བརྟག་བྱས་པའི་ལྡེ་མིག་རྙེད་མི་ཐུབ།</string>
+  <!--MmsDownloader-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">གསང་ཚིག་མཚུངས་ཀྱི་མི་འདུག</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">གསང་ཚིག་རྙིང་པ་དེ་ནོར་འདུག </string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">གསང་ཚིག་མཚུངས་ཀྱི་མི་འདུག</string>
-  <string name="PassphraseCreateActivity_generating_keypair">ལྡེ་མིག་གི་ཆ་ཞིག་བསྐྲུན་གྱི་ཡོད།</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">རང་སའི་གསང་སྡོམ་གྱི་ལྡེ་མིག་ཆ་ཞིག་བསྐྲུན་བཞིན་ཡོད། </string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">གསང་ཡིག་ཁུངས་ལྡན་རེད་མི་འདུག </string>
   <!--ReceiveKeyActivity-->
@@ -193,8 +186,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">སྡེ་ཚན་མི་མངོན་པ་དེའི་ཆེད་དུ་།  MMS འཕྲིན་ཐུང་གསང་སྡོམ་བྱས་འདུག </string>
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">གནས་སྤོར་བཞིན་ཡོད། </string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">འཕྲིན་ཐུང་མ་ལག་སྤོར་བཞིན་པ། </string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">ཡི་གེའི་ཉེན་སྲུང་གི་གསང་ཚིག་དེ་སྦས།</string>
   <string name="KeyCachingService_passphrase_cached">གསང་ཚིག་དེ་སྦས།</string>
@@ -232,12 +223,14 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">རྒྱུན་ལྡན་ནས་ཁྱེད་ཀྱིས་གསང་སྡོམ་རེའུ་མིག་ལ་བེད་སྤྱོད་པའི་གསང་ཚིག་དེ་འདེམས་དང་། དེ་གསང་ཚིག་བརྟན་པོ་ཆགས་གི་རེད། </string>
   <string name="create_passphrase_activity__passphrase">གསང་ཚིག :</string>
   <string name="create_passphrase_activity__repeat">བསྐྱར་དུ་སྤེལ། :</string>
+  <!--database_migration_activity-->
+  <!--prompt_passphrase_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">གཏམ་གླེང་།</string>
   <string name="receive_key_activity__identities">ངོ་རྟགས། </string>
   <string name="receive_key_activity__complete_exchange">བརྗེ་ལེན་ལེགས་འགྲུབ་བྱོས། </string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">ལ། </string>
+  <string name="recipients_panel__to">གཏོང་ཡུལ།</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">གནས་སྐབས་རིང་། ཁྱེད་ཀྱི་གཞི་གྲངས་མཛོད་ཀྱི་ཁོངས་སུ་ཁྱེད་ལ་ངོ་རྟགས་ལྡེ་མིག་མི་འདུག  </string>
   <!--save_identity_activity-->
@@ -376,7 +369,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ཟུར་སྣོན་ཞོག </string>
   <string name="conversation__menu_delete_thread">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ།</string>
-  <string name="conversation__menu_compare">ཞིབ་བསྡུར་བྱོས། </string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">འཕྲིན་ཐུང་ལེན་མཁན་གྱི་ཐོ། </string>
   <!--key_scanning-->

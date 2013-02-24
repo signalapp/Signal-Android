@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">Exporteren Succesvol!</string>
   <string name="ApplicationExportManager_import">Importeer</string>
   <string name="ApplicationExportManager_export">Exporteer</string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">Migreren Database</string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">Berichten database aan het migreren...</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">Kopieer Systeem Tekstberichten Database?</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure gebruikt een versleutelde database die afgescheiden is van de standaard systeemdatabase. Wilt u uw bestaande tekstberichten kopiëren naar TextSecure\'s versleutelde database? Uw standaard systeemdatabase blijft onaangetast.</string>
-  <string name="ApplicationMigrationManager_copy">Kopiëren</string>
-  <string name="ApplicationMigrationManager_dont_copy">Niet kopiëren</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">Niet gevonden!</string>
@@ -36,7 +29,6 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">U moet uw wachtwoord opgegeven voor het importeren van sleutels...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">U moet uw wachtwoord opgegeven voor het beheren van sleutels...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">U heeft nog geen wachtwoord ingesteld!</string>
-  <string name="ApplicationPreferencesActivity_conversation_length_limit">Conversatielengte limiet</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">berichten per conversatie</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Weet u zeker dat u bij alle conversaties alleen de laatste %s berichten behouden wilt?</string>
@@ -100,13 +92,16 @@
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Geen gescande sleutel gevonden!</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Geen connectie beschikbaar voor MMS download, probeer later opnieuw...</string>
+  <string name="MmsDownloader_error_storing_mms">MMS opslaan mislukt!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Fout bij verbinden met MMS provider...</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen!</string>
-  <string name="PassphraseCreateActivity_generating_keypair">Sleutelpaar Genereren</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">Lokaal encryptie sleutelpaar aan het genereren...</string>
+  <string name="PassphraseCreateActivity_passphrases_dont_match">Wachtwoorden komen niet overeen</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">U moet een wachtwoord specificeren</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig Wachtwoord!</string>
   <!--ReceiveKeyActivity-->
@@ -195,16 +190,25 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld MMS-bericht...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-bericht versleuteld voor niet bestaande sessie...</string>
   <!--MmsSender-->
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Momenteel niet in staat om uw MMS bericht te versturen. Zodra de service beschikbaar is zal het verzonden worden .</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">Migreren</string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">Migreren Systeem Tekstberichten</string>
+  <string name="ApplicationMigrationService_import_in_progress">Bezig met importeren</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Tekstberichten aan het importeren</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">TextSecure Wachtwoord In Cache</string>
   <string name="KeyCachingService_passphrase_cached">Wachtwoord In Cache</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nieuwe berichten</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %s</string>
+  <string name="MessageNotifier_key_exchange">Sleuteluitwisseling...</string>
+  <string name="MessageNotifier_encrypted_message">Versleuteld bericht...</string>
+  <string name="MessageNotifier_corrupted_ciphertext">Corrupte versleutelde tekst</string>
+  <string name="MessageNotifier_no_subject">(Geen Onderwerp)</string>
+  <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
+  <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
   <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Momenteel niet in staat om uw SMS bericht te versturen. Zodra de service beschikbaar is zal het verzonden worden .</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">U heeft een bericht ontvangen van iemand die versleutelde TextSecure sessies ondersteunt. Wilt u een beveiligde sessie initiëren?</string>
   <string name="auto_initiate_activity__initiate_exchange">Initieer Uitwisseling</string>
@@ -235,6 +239,18 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Kiest u alstublieft een wachtwoord welke gebruikt zal worden om lokaal uw data te versleutelen. Een sterk wachtwoord wordt aangeraden.</string>
   <string name="create_passphrase_activity__passphrase">Wachtwoord:</string>
   <string name="create_passphrase_activity__repeat">Herhaal:</string>
+  <string name="create_passphrase_activity__continue">Doorgaan</string>
+  <string name="create_passphrase_activity__generating_secrets">GEHEIMEN AAN HET GENEREREN</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wilt u uw huidige tekstberichtendatabase importeren naar de versleutelde database van TextSecure?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabase zal niet gewijzigd of aangepast worden op enigerlei wijze.</string>
+  <string name="database_migration_activity__skip">Overslaan</string>
+  <string name="database_migration_activity__import">Importeer</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan een moment duren. Heb geduld, we zullen u op de hoogte stellen wanneer het importeren voltooid is.</string>
+  <string name="database_migration_activity__importing">AAN HET IMPORTEREN</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE WACHTWOORD</string>
+  <string name="prompt_passphrase_activity__unlock">Ontgrendel</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessie</string>
   <string name="receive_key_activity__identities">Identiteiten</string>
@@ -379,7 +395,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Voeg bijlage toe</string>
   <string name="conversation__menu_delete_thread">Verwijder gehele gesprek</string>
-  <string name="conversation__menu_compare">Vergelijk</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lijst met ontvangers</string>
   <!--key_scanning-->

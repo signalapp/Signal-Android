@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">Eksport vellykket!</string>
   <string name="ApplicationExportManager_import">Importer</string>
   <string name="ApplicationExportManager_export">Eksporter</string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">Migrerer databasen</string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">Migrerer SMS databasen...</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">Kopiere systemets SMS database?</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure bruker en kryptert meldingsdatabase som er adskilt fra systemets SMS database. Vil du kopiere dine eksisterende tekstmeldinger til TextSecures krypterte database? Systemets SMS database vil ikke påvirkes.</string>
-  <string name="ApplicationMigrationManager_copy">Kopier</string>
-  <string name="ApplicationMigrationManager_dont_copy">Ikke kopier</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nå: %s</string>
   <string name="ApplicationPreferenceActivity_not_found_exclamation">Ikke funnet!</string>
@@ -36,7 +29,6 @@
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Du må taste inn passordet før du importerer nøkler...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Du må taste inn passordet før du administrerer nøkler...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke definert et passord ennå!</string>
-  <string name="ApplicationPreferencesActivity_conversation_length_limit">Begrense samtalelengde</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">meldinger per samtale</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slette alle gamle meldinger nå?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Er du sikker på at du ønsker å umiddelbart trimme alle samtaletrådene til de siste %s meldinger?</string>
@@ -100,13 +92,16 @@
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannet nøkkel funnet!</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Ingen forbindelse tilgjengelig for MMS nedlasting, prøv igjen senere...</string>
+  <string name="MmsDownloader_error_storing_mms">Feil ved lagring av MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Feil ved tilkobling til MMS tjeneste...</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
-  <string name="PassphraseCreateActivity_generating_keypair">Genererer nøkkelpar</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">Genererer et lokalt nøkkelpar for kryptering...</string>
+  <string name="PassphraseCreateActivity_passphrases_dont_match">Passordene samsvarer ikke</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Du må oppgi et passord</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Feil passord!</string>
   <!--ReceiveKeyActivity-->
@@ -195,9 +190,10 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS kryptert for en ikke-eksisterende sesjon...</string>
   <!--MmsSender-->
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Det er ikke mulig å sende MMS meldingen akkurat nå. Den vil sendes når tjenesten blir tilgjengelig igjen.</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">Migrerer</string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">Migrerer systemets SMS meldinger</string>
+  <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Importerer SMS meldinger</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">TextSecure passordet er bufret</string>
   <string name="KeyCachingService_passphrase_cached">Passord bufret</string>
@@ -208,7 +204,11 @@
   <string name="MessageNotifier_encrypted_message">Kryptert melding...</string>
   <string name="MessageNotifier_corrupted_ciphertext">Korrumpert chiffertext</string>
   <string name="MessageNotifier_no_subject">(Mangler emne)</string>
+  <string name="MessageNotifier_message_delivery_failed">Levering av meldingen mislyktes.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Klarte ikke å levere meldingen.</string>
+  <string name="MessageNotifier_error_delivering_message">Feil ved levering av meldingen.</string>
   <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Det er ikke mulig å sende SMS meldingen akkurat nå. Den vil sendes når tjenesten blir tilgjengelig igjen.</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har mottatt en melding fra noen som støtter TextSecure krypterte sesjoner. Ønsker du å initiere en sikker sesjon?</string>
   <string name="auto_initiate_activity__initiate_exchange">Start nøkkelutveksling</string>
@@ -239,6 +239,18 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Velg et passord som skal brukes til kryptering av dine lokale data. Dette bør være et sterkt passord.</string>
   <string name="create_passphrase_activity__passphrase">Passord:</string>
   <string name="create_passphrase_activity__repeat">Repeter:</string>
+  <string name="create_passphrase_activity__continue">Gå videre</string>
+  <string name="create_passphrase_activity__generating_secrets">GENERER NØKLER</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du å importere dine eksisterende meldinger til TextSecures krypterte database?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabasen vil ikke på noen måte bli endret.</string>
+  <string name="database_migration_activity__skip">Hopp over</string>
+  <string name="database_migration_activity__import">Importer</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dette kan ta litt tid. Vær tålmodig, vi sier fra når importen er ferdig.</string>
+  <string name="database_migration_activity__importing">IMPORTERER</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSORD</string>
+  <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sesjon</string>
   <string name="receive_key_activity__identities">Identiteter</string>
@@ -383,7 +395,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
   <string name="conversation__menu_delete_thread">Slett tråd</string>
-  <string name="conversation__menu_compare">Sammenlign</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Mottakerliste</string>
   <!--key_scanning-->

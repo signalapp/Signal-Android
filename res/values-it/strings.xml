@@ -19,13 +19,6 @@
   <string name="ApplicationExportManager_export_successful_exclamation">Esportazione completata!</string>
   <string name="ApplicationExportManager_import">Importa</string>
   <string name="ApplicationExportManager_export">Esporta</string>
-  <!--ApplicationMigrationManager-->
-  <string name="ApplicationMigrationManager_migrating_database">Cambio del Database!</string>
-  <string name="ApplicationMigrationManager_migrating_text_message_database">Cambio del Database di messaggi!</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_question">Vuoi copiare il Database dei messaggi di testo di sistema?</string>
-  <string name="ApplicationMigrationManager_copy_system_text_message_database_explanation">TextSecure utilizza un database cifrato che è separato dal database di default. Vorresti copiare i tuoi messaggi esistenti nel database cifrato di TextSecure? Il tuoi database di default non subità modifiche.</string>
-  <string name="ApplicationMigrationManager_copy">Copia</string>
-  <string name="ApplicationMigrationManager_dont_copy">Non copiare</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferenceActivity_not_found_exclamation">Non trovato!</string>
   <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">Nessuna chiave di identità valida trovata nel contatto selezionato.</string>
@@ -83,13 +76,11 @@
   <string name="ConversationListItem_key_exchange_message">Messaggio di scambio della chiave...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nessuna chiave scansionata trovata!</string>
+  <!--MmsDownloader-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le passwords non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
   <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match_exclamation">Le passwords non corrispondono!</string>
-  <string name="PassphraseCreateActivity_generating_keypair">Generazione del paio di chiavi</string>
-  <string name="PassphraseCreateActivity_generating_a_local_encryption_keypair">Generazione di un paio di chiavi per la cifratura locale...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password errata!</string>
   <!--ReceiveKeyActivity-->
@@ -179,8 +170,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS cifrato per una sessione non esistente</string>
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_migrating">Spostamento</string>
-  <string name="ApplicationMigrationService_migrating_system_text_messages">Cambio sistema di messaggio di testo</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Password di TextSecure salvata in cache</string>
   <string name="KeyCachingService_passphrase_cached">Password salvata in cache</string>
@@ -214,6 +203,8 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Scegli una password che verrà usata per cifrata i tuoi dati localmente. Attenzione a scegliere una password robusta.</string>
   <string name="create_passphrase_activity__passphrase">Password:</string>
   <string name="create_passphrase_activity__repeat">Ripeti:</string>
+  <!--database_migration_activity-->
+  <!--prompt_passphrase_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessione</string>
   <string name="receive_key_activity__identities">Identità</string>
@@ -342,7 +333,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Aggiungi allegato</string>
   <string name="conversation__menu_delete_thread">Cancella conversazione</string>
-  <string name="conversation__menu_compare">Controlla</string>
   <!--conversation_group_options-->
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Controlla</string>
