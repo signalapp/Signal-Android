@@ -16,14 +16,12 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -45,6 +43,7 @@ import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 
 import java.util.Set;
 
@@ -83,9 +82,9 @@ public class ConversationListFragment extends SherlockListFragment
   public void onPrepareOptionsMenu(Menu menu) {
     MenuInflater inflater = this.getSherlockActivity().getSupportMenuInflater();
 
-    if (this.masterSecret != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+    if (this.masterSecret != null) {
       inflater.inflate(R.menu.conversation_list, menu);
-      initializeSearch((android.widget.SearchView)menu.findItem(R.id.menu_search).getActionView());
+      initializeSearch((SearchView)menu.findItem(R.id.menu_search).getActionView());
     } else {
       inflater.inflate(R.menu.conversation_list_empty, menu);
     }
@@ -108,9 +107,8 @@ public class ConversationListFragment extends SherlockListFragment
     }
   }
 
-  @SuppressLint({ "NewApi", "NewApi" })
-  private void initializeSearch(android.widget.SearchView searchView) {
-    searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+  private void initializeSearch(SearchView searchView) {
+    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
         ConversationListFragment.this.queryFilter = query;
