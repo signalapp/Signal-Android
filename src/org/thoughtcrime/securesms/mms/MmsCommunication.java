@@ -97,6 +97,9 @@ public class MmsCommunication {
     } catch (SecurityException se) {
       Log.w("MmsCommunication", se);
       return getLocallyConfiguredMmsConnectionParameters(context);
+    } catch (IllegalArgumentException iae) {
+      Log.w("MmsCommunication", iae);
+      return getLocallyConfiguredMmsConnectionParameters(context);
     } finally {
       if (cursor != null)
         cursor.close();

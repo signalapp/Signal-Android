@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Trimmer;
+import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
@@ -469,8 +470,8 @@ public class MmsDatabase extends Database {
 
   public Cursor getCarrierMmsInformation(String apn) {
     Uri uri                = Uri.withAppendedPath(Uri.parse("content://telephony/carriers"), "current");
-    String selection       = (apn == null || apn.trim().length() == 0) ? null : "apn = ?";
-    String[] selectionArgs = (apn == null || apn.trim().length() == 0) ? null : new String[] {apn.trim()};
+    String selection       = Util.isEmpty(apn) ? null : "apn = ?";
+    String[] selectionArgs = Util.isEmpty(apn) ? null : new String[] {apn.trim()};
 
     return context.getContentResolver().query(uri, null, selection, selectionArgs, null);
   }
