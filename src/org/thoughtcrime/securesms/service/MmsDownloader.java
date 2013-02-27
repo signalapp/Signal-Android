@@ -138,24 +138,28 @@ public class MmsDownloader extends MmscProcessor {
   }
 
   protected void handleConnectivityChange() {
-    if (!isConnected()) {
-      if (!isConnectivityPossible() && !pendingMessages.isEmpty()) {
-        DatabaseFactory.getMmsDatabase(context).markDownloadState(pendingMessages.remove().getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
-        toastHandler.makeToast(context
-            .getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
-        Log.w("MmsDownloadService", "Unable to download MMS, please try again later.");
-        finishConnectivity();
+    LinkedList<DownloadItem> downloadItems = (LinkedList<DownloadItem>)pendingMessages.clone();
+
+    if (isConnected()) {
+      pendingMessages.clear();
+
+      for (DownloadItem item : downloadItems) {
+        downloadMms(item);
       }
 
-      return;
-    }
+      finishConnectivity();
+    } else if (!isConnected() && !isConnectivityPossible()) {
+      pendingMessages.clear();
 
-    for (DownloadItem item : pendingMessages) {
-      downloadMms(item);
-    }
+      for (DownloadItem item : downloadItems) {
+        DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
+      }
 
-    pendingMessages.clear();
-    finishConnectivity();
+      toastHandler.makeToast(context
+          .getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
+
+      finishConnectivity();
+    }
   }
 
 
