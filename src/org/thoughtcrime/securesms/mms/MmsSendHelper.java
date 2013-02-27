@@ -40,7 +40,7 @@ public class MmsSendHelper extends MmsCommunication {
     AndroidHttpClient client = null;
 
     try {
-      Log.w("MmsSender", "Sending MMS1 of length: " + mms.length);
+      Log.w("MmsSender", "Sending MMS1 of length: " + (mms != null ? mms.length : "null"));
       client                 = constructHttpClient(context, parameters);
       URI targetUrl          = new URI(parameters.getMmsc());
       HttpHost target        = new HttpHost(targetUrl.getHost(), targetUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
