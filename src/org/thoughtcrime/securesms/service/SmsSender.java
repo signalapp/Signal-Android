@@ -262,6 +262,9 @@ public class SmsSender {
       } catch (NullPointerException npe) {
         Log.w("SmsSender", npe);
         DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
+      } catch (IllegalArgumentException iae) {
+        Log.w("SmsSender", iae);
+        DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
       }
     }
   }
