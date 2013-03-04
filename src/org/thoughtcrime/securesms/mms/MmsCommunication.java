@@ -157,6 +157,9 @@ public class MmsCommunication {
     if (entity == null || entity.getContentLength() == 0)
       throw new IOException("Null response");
 
+    if (entity.getContentLength() < 0)
+      throw new IOException("Unknown content length!");
+
     byte[] responseBytes            = new byte[(int)entity.getContentLength()];
     DataInputStream dataInputStream = new DataInputStream(entity.getContent());
     dataInputStream.readFully(responseBytes);
