@@ -93,10 +93,15 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ཞིབ་བརྟག་བྱས་པའི་ལྡེ་མིག་རྙེད་མི་ཐུབ།</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later"> MMS ཕབ་ལེན་བྱེད་ཐུབ་པའི་དྲ་འབྲེལ་མི་འདུག རྗེས་སུ་བསྐྱར་དུ་ཚོད་ལྟ་བྱོས། </string>
+  <string name="MmsDownloader_error_storing_mms">MMS གསོག་ཉར་ལ་སྐྱོན་འདུག </string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">MMS མཁོ་སྤྲོད་བྱེད་མཁན་ལ་འབྲེལ་ཐག་གི་སྐྱོན། </string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">གསང་ཚིག་མཚུངས་ཀྱི་མི་འདུག</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">གསང་ཚིག་རྙིང་པ་དེ་ནོར་འདུག </string>
   <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match">གསང་ཚིག་དེ་ཆ་འགྲིག་མི་འདུག </string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">ཁྱེད་ཀྱིས་ངེས་པར་དུ་གསང་ཚིག་ཞིག་གཏན་འཁེལ་བྱོས། </string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">གསང་ཡིག་ཁུངས་ལྡན་རེད་མི་འདུག </string>
   <!--ReceiveKeyActivity-->
@@ -185,14 +190,25 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">མཁོ་མེད་གསང་སྡོམ་ཅན་གྱི་MMSའཕྲིན་ཐུང་། </string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">སྡེ་ཚན་མི་མངོན་པ་དེའི་ཆེད་དུ་།  MMS འཕྲིན་ཐུང་གསང་སྡོམ་བྱས་འདུག </string>
   <!--MmsSender-->
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">གནས་སྐབས་རིང་ཁྱེད་ཀྱི  MMS འཕྲིན་ཐུང་དེ་གཏོང་ཐུབ་པ་མི་འདུག དྲ་འབྲེལ་སླར་གསོ་བྱུང་མཚམས་གཏོང་གི་རེད། </string>
   <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">ནང་འདྲེན་བྱེད་བཞིན་ཡོད། </string>
+  <string name="ApplicationMigrationService_importing_text_messages">འཕྲིན་ཐུང་ཡི་གེ་ནང་འདྲེན་བྱེད་བཞིན་ཡོད། </string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">ཡི་གེའི་ཉེན་སྲུང་གི་གསང་ཚིག་དེ་སྦས།</string>
   <string name="KeyCachingService_passphrase_cached">གསང་ཚིག་དེ་སྦས།</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) འཕྲིན་ཐུང་གསར་པ་རྣམས།</string>
   <string name="MessageNotifier_most_recent_from_s">%s: ནས་ཉེ་ཆར་གྱི་དེ། </string>
+  <string name="MessageNotifier_key_exchange">བརྗེ་སྒྱུར་གཙོ་བོ། </string>
+  <string name="MessageNotifier_encrypted_message">གསང་སྡོམ་འཕྲིན་ཐུང་། </string>
+  <string name="MessageNotifier_corrupted_ciphertext">སྐྱོན་ཤོར་བའི་གསང་ཡིག </string>
+  <string name="MessageNotifier_no_subject">བརྗོད་བྱ་མེད། </string>
+  <string name="MessageNotifier_message_delivery_failed">འཕྲིན་ཐུང་བཏང་བ་དེ་འགྲོ་མི་འདུག </string>
+  <string name="MessageNotifier_failed_to_deliver_message">འཕྲིན་ཐུང་གཏོང་ཐུབ་མ་སོང་། </string>
+  <string name="MessageNotifier_error_delivering_message">འཕྲིན་ཐུང་གཏོང་བར་སྐྱོན་ཤོར་འདུག </string>
   <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">གནས་སྐབས་རིང་ཁྱེད་ཀྱི  MMS འཕྲིན་ཐུང་དེ་གཏོང་ཐུབ་པ་མི་འདུག དྲ་འབྲེལ་སླར་གསོ་བྱུང་མཚམས་གཏོང་གི་རེད། </string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">འཕྲིན་ཐུང་བདེ་འཇགས་ཀྱི་བདེ་འཇགས་གཏམ་གླེང་ལ་རྒྱབ་སྐྱོར་བྱེད་མཁན་ཞིག་ནས་ཁྱེད་ལ་འཕྲིན་ཐུང་ཅིག་འབྱོར་འདུག ཁོང་གི་ལྷན་དུ་འབྲེལ་བ་བརྟན་པོ་ཡོང་ཆེད་ལྡེ་མིག་བརྗེ་ལེན་རྒྱུ་ཡིན་ནམ།</string>
   <string name="auto_initiate_activity__initiate_exchange">བརྗེ་ལེན་འགོ་ཚུགས། </string>
@@ -223,8 +239,18 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">རྒྱུན་ལྡན་ནས་ཁྱེད་ཀྱིས་གསང་སྡོམ་རེའུ་མིག་ལ་བེད་སྤྱོད་པའི་གསང་ཚིག་དེ་འདེམས་དང་། དེ་གསང་ཚིག་བརྟན་པོ་ཆགས་གི་རེད། </string>
   <string name="create_passphrase_activity__passphrase">གསང་ཚིག :</string>
   <string name="create_passphrase_activity__repeat">བསྐྱར་དུ་སྤེལ། :</string>
+  <string name="create_passphrase_activity__continue">མུ་མཐུད། </string>
+  <string name="create_passphrase_activity__generating_secrets">གསང་བ་སྐྱེད་སྒྲུབ་བྱོས། </string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ཁྱེད་ཀྱིས་ད་ཡོད་འཕྲིན་ཐུང་ཡི་གེ་དེ་ཉེན་སྲུང་ཡི་གེའི་གསང་སྡོམ་རེའུ་མིག་གི་ཁོངས་སུ་བཅུག་འདོད་འདུག་གམ། </string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">གཏན་འཇགས་ལས་གཞིའི་རེའུ་མིག་གི་མ་ལག་དེར་ཕྱོགས་གང་ཅིའི་ཐད་ནས་འགྱུར་བ་གཏོང་ཐུབ་གི་མ་རེད། </string>
+  <string name="database_migration_activity__skip">བསྐྱུར་ཞོག </string>
+  <string name="database_migration_activity__import">ནང་འདྲེན། </string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">འདི་ལ་དུས་ཚོད་ཅུང་ཙམ་འགོར་སྲིད། བཟོད་སྒོམ་གནང་རོགས། ནང་འདྲེན་ལེགས་འགྲུབ་བྱུང་མཚམས་ང་ཚོས་ཁྱོད་ལ་བརྡ་གཏོང་གི་ཡིན། </string>
+  <string name="database_migration_activity__importing">ནང་འདྲེན་བྱེད་བཞིན་པ། </string>
   <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">ཉེན་སྲུང་ཅན་གྱི་ཡི་གེའི་གསང་ཚིག </string>
+  <string name="prompt_passphrase_activity__unlock">སྒོ་ཕྱེས། </string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">གཏམ་གླེང་།</string>
   <string name="receive_key_activity__identities">ངོ་རྟགས། </string>

@@ -73,6 +73,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Agrupar destinatários de conversa</string>
   <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
   <string name="ConversationActivity_d_recipients_in_group">%d destinatários no grupo</string>
+  <string name="ConversationActivity_saving_draft">A guardar rascunho...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remetente: %1$s⏎ Transporte: %2$s⏎ Enviadas/Recebidas:%3$s</string>
@@ -85,15 +86,22 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Apagar conversas?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Tem a certeza que pretende apagar TODAS as conversas seleccionadas?</string>
+  <string name="ConversationListFragment_deleting">A apagar</string>
+  <string name="ConversationListFragment_deleting_selected_threads">A apagar conversas seleccionadas...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Não foi encontrada nenhuma chave lida!</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Não existe conectividade disponível para transferir MMS, tente mais tarde...</string>
+  <string name="MmsDownloader_error_storing_mms">Erro a armazenar MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Erro na ligação com o servidor MMS...</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-chave não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
   <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match">As frases-chave não coincidem.</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Tem de especificar uma palavra-chave</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
   <!--ReceiveKeyActivity-->
@@ -182,14 +190,25 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem MMS cifrada corrompida...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensagem MMS cifrada para sessão inexistente...</string>
   <!--MmsSender-->
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Presentemente não é possível remeter a mensagem MMS. Será reenviada assim que o serviço esteja disponível.</string>
   <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
+  <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Frase-chave TextSecure guardada em memória cache</string>
   <string name="KeyCachingService_passphrase_cached">Frase-chave guardada em cache</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) novas mensagens</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %s</string>
+  <string name="MessageNotifier_key_exchange">Troca de chaves...</string>
+  <string name="MessageNotifier_encrypted_message">Mensagem cifrada...</string>
+  <string name="MessageNotifier_corrupted_ciphertext">Texto de cifra corrupto</string>
+  <string name="MessageNotifier_no_subject">(Sem Assunto)</string>
+  <string name="MessageNotifier_message_delivery_failed">A remessa de mensagem falhou.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Falhou a remessa de mensagem.</string>
+  <string name="MessageNotifier_error_delivering_message">Erro a remeter a mensagem.</string>
   <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Presentemente não é possível remeter a mensagem SMS. Será reenviada assim que o serviço esteja disponível.</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Recebeu uma mensagem de alguém que suporta sessões cifradas TextSecure. Deseja iniciar uma sessão segura?</string>
   <string name="auto_initiate_activity__initiate_exchange">Iniciar intercâmbio</string>
@@ -220,8 +239,18 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Por favor escolha uma frase-chave que será usada para cifrar os seus dados localmente. Esta deve ser uma frase-chave forte.</string>
   <string name="create_passphrase_activity__passphrase">Frase-chave:</string>
   <string name="create_passphrase_activity__repeat">Repetir:</string>
+  <string name="create_passphrase_activity__continue">Continuar</string>
+  <string name="create_passphrase_activity__generating_secrets">A GERAR SEGREDOS</string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Deseja importar as suas mensages de texto para a base de dados TextSecure cifrada?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados de sistema não será modificada ou alterada de nenhuma forma.</string>
+  <string name="database_migration_activity__skip">Saltar</string>
+  <string name="database_migration_activity__import">Importar</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Isto pode demorar um pouco. Por favor seja paciente, será notificado quanto a importação estiver completa.</string>
+  <string name="database_migration_activity__importing">A IMPORTAR</string>
   <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE-CHAVE TEXTSECURE</string>
+  <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessão</string>
   <string name="receive_key_activity__identities">Identidades</string>
