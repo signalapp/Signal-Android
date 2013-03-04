@@ -64,13 +64,14 @@ public class MmsSender extends MmscProcessor {
   public void process(MasterSecret masterSecret, Intent intent) {
     if (intent.getAction().equals(SendReceiveService.SEND_MMS_ACTION)) {
       long messageId       = intent.getLongExtra("message_id", -1);
+      boolean isCdma       = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
       MmsDatabase database = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
 
       try {
         List<SendReq> sendRequests = getOutgoingMessages(masterSecret, messageId);
 
         for (SendReq sendRequest : sendRequests) {
-          handleSendMmsAction(new SendItem(masterSecret, sendRequest, messageId != -1, false, false));
+          handleSendMmsAction(new SendItem(masterSecret, sendRequest, messageId != -1, !isCdma, false));
         }
 
       } catch (MmsException me) {
@@ -192,12 +193,15 @@ public class MmsSender extends MmscProcessor {
       return;
     }
 
-    for (SendItem item : pendingMessages) {
+    List<SendItem> outgoing = (List<SendItem>)pendingMessages.clone();
+    pendingMessages.clear();
+
+    for (SendItem item : outgoing) {
       sendMmsMessage(item);
     }
 
-    pendingMessages.clear();
-    finishConnectivity();
+    if (pendingMessages.isEmpty())
+      finishConnectivity();
   }
 
   private boolean isInconsistentResponse(SendReq send, SendConf response) {

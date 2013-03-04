@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
@@ -46,7 +47,8 @@ public class MmsDownloader extends MmscProcessor {
 
   public void process(MasterSecret masterSecret, Intent intent) {
     if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_ACTION)) {
-      DownloadItem item = new DownloadItem(masterSecret, false, false,
+      boolean isCdma    = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
+      DownloadItem item = new DownloadItem(masterSecret, !isCdma, false,
                                            intent.getLongExtra("message_id", -1),
                                            intent.getLongExtra("thread_id", -1),
                                            intent.getStringExtra("content_location"),
@@ -147,7 +149,9 @@ public class MmsDownloader extends MmscProcessor {
         downloadMms(item);
       }
 
-      finishConnectivity();
+      if (pendingMessages.isEmpty())
+        finishConnectivity();
+
     } else if (!isConnected() && !isConnectivityPossible()) {
       pendingMessages.clear();
 
