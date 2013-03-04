@@ -34,17 +34,19 @@ public class MessageDisplayHelper {
   };
 
   private static String checkCacheForBody(String body) {
-    if (decryptedBodyCache.containsKey(body)) {
-      String decryptedBody = decryptedBodyCache.get(body).get();
-      if (decryptedBody != null) {
-        return decryptedBody;
-      } else {
-        decryptedBodyCache.remove(body);
-        return null;
+    synchronized (decryptedBodyCache) {
+      if (decryptedBodyCache.containsKey(body)) {
+        String decryptedBody = decryptedBodyCache.get(body).get();
+        if (decryptedBody != null) {
+          return decryptedBody;
+        } else {
+          decryptedBodyCache.remove(body);
+          return null;
+        }
       }
-    }
 
-    return null;
+      return null;
+    }
   }
 
   public static String getDecryptedMessageBody(MasterCipher bodyCipher, String body) throws InvalidMessageException {
@@ -55,7 +57,10 @@ public class MessageDisplayHelper {
         return cacheResult;
 
       String decryptedBody = bodyCipher.decryptBody(body.substring(Prefix.SYMMETRIC_ENCRYPT.length()));
-      decryptedBodyCache.put(body, new SoftReference<String>(decryptedBody));
+
+      synchronized (decryptedBodyCache) {
+        decryptedBodyCache.put(body, new SoftReference<String>(decryptedBody));
+      }
 
       return decryptedBody;
     }
