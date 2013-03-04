@@ -104,6 +104,9 @@ public class MediaMmsMessageRecord extends MessageRecord {
   }
 
   private void setBodyFromSlidesIfTextAvailable() {
+    if (slideDeck == null)
+      return;
+
     List<Slide> slides = slideDeck.getSlides();
     Iterator<Slide> i = slides.iterator();
 
