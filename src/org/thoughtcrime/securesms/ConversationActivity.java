@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
+import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -120,6 +121,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private Recipients recipients;
   private long threadId;
   private boolean isEncryptedConversation;
+  private boolean isMmsEnabled = true;
 
   private CharacterCalculator characterCalculator = new CharacterCalculator();
 
@@ -137,9 +139,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   @Override
-  protected void onPause() {
-    super.onPause();
-    MessageNotifier.setVisibleThread(-1L);
+  protected void onStart() {
+    super.onStart();
+
+    if (!isExistingConversation())
+      initializeRecipientsInput();
   }
 
   @Override
@@ -147,6 +151,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     super.onResume();
     initializeSecurity();
     initializeTitleBar();
+    initializeMmsEnabledCheck();
     calculateCharactersRemaining();
 
     MessageNotifier.setVisibleThread(threadId);
@@ -154,11 +159,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   @Override
-  protected void onStart() {
-    super.onStart();
-
-    if (!isExistingConversation())
-      initializeRecipientsInput();
+  protected void onPause() {
+    super.onPause();
+    MessageNotifier.setVisibleThread(-1L);
   }
 
   @Override
@@ -369,11 +372,15 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void handleAddAttachment() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setIcon(R.drawable.ic_dialog_attach);
-    builder.setTitle(R.string.ConversationActivity_add_attachment);
-    builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
-    builder.show();
+    if (this.isMmsEnabled) {
+      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      builder.setIcon(R.drawable.ic_dialog_attach);
+      builder.setTitle(R.string.ConversationActivity_add_attachment);
+      builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
+      builder.show();
+    } else {
+      startActivity(new Intent(this, PromptApnActivity.class));
+    }
   }
 
   ///// Initializers
@@ -470,6 +477,20 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
 
     calculateCharactersRemaining();
+  }
+
+  private void initializeMmsEnabledCheck() {
+    new AsyncTask<Void, Void, Boolean>() {
+      @Override
+      protected Boolean doInBackground(Void... params) {
+        return MmsSendHelper.hasNecessaryApnDetails(ConversationActivity.this);
+      }
+
+      @Override
+      protected void onPostExecute(Boolean isMmsEnabled) {
+        ConversationActivity.this.isMmsEnabled = isMmsEnabled;
+      }
+    }.execute();
   }
 
   private void initializeResources() {

@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.service.MmsDownloader;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -85,7 +86,7 @@ public class MmsCommunication {
           port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
         }
 
-        if (mmsc != null && !mmsc.equals(""))
+        if (!Util.isEmpty(mmsc))
           return new MmsConnectionParameters(mmsc, proxy, port);
 
       } while (cursor.moveToNext());

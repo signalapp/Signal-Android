@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
@@ -26,6 +27,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
+import org.thoughtcrime.securesms.service.MmscProcessor;
 
 import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.SendConf;
@@ -82,6 +84,19 @@ public class MmsSendHelper extends MmsCommunication {
     } catch (ApnUnavailableException aue) {
       Log.w("MmsSender", aue);
       throw new IOException("Failed to get MMSC information...");
+    }
+  }
+
+  public static boolean hasNecessaryApnDetails(Context context) {
+    try {
+      ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+      String apn = connectivityManager.getNetworkInfo(MmscProcessor.TYPE_MOBILE_MMS).getExtraInfo();
+
+      MmsCommunication.getMmsConnectionParameters(context, apn, true);
+      return true;
+    } catch (ApnUnavailableException e) {
+      Log.w("MmsSendHelper", e);
+      return false;
     }
   }
 }
