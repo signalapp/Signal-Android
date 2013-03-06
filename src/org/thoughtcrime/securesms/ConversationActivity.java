@@ -389,7 +389,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   ///// Initializers
 
-  @SuppressLint("NewApi") private void initializeTitleBar() {
+  private void initializeTitleBar() {
     String title    = null;
     String subtitle = null;
 
@@ -824,9 +824,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
-	  	Log.i("ComposeEditEvent", "onTextChanged event called. s is '"+s+"'");
 	  	if (s.length() == 0) {
-	  		Log.i("ComposeEditEvent", "s was empty");
 	  		sendButton.setClickable(false);
 	  		sendButton.setEnabled(false);
 	  		sendButton.setColorFilter(0x66FFFFFF); // Fade out and disable the send button when message is blank
