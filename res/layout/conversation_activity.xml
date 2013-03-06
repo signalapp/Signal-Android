@@ -74,42 +74,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
 
-
                 <LinearLayout
                     android:id="@+id/bottom_panel"
-                    android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dip"
+                    android:orientation="horizontal"
                     android:paddingLeft="5dip"
-                    android:paddingRight="5dip"
-                    >
+                    android:paddingRight="0dp"
+                    android:paddingTop="0dp" >
 
                     <EditText
-                            android:id="@+id/embedded_text_editor"
-                            android:textColor="@android:color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
-                            android:autoText="true"
-                            android:capitalize="sentences"
-                            android:nextFocusRight="@+id/send_button"
-                            android:hint="@string/conversation_activity__type_message"
-                            android:maxLines="4"
-                            android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
-                            android:imeOptions="actionSend|flagNoEnterAction"
-                            android:maxLength="1000"
-                        />
+                        android:id="@+id/embedded_text_editor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:layout_weight="1.0"
+                        android:autoText="true"
+                        android:capitalize="sentences"
+                        android:hint="@string/conversation_activity__type_message"
+                        android:imeOptions="actionSend|flagNoEnterAction"
+                        android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
+                        android:maxLength="1000"
+                        android:maxLines="4"
+                        android:nextFocusRight="@+id/send_button"
+                        android:textColor="@android:color/black" />
 
-                    <Button android:id="@+id/send_button"
-                        android:layout_marginLeft="5dip"
+                    <ImageButton
+                        android:id="@+id/send_button"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:layout_gravity="center_vertical"
+                        android:background="@drawable/send_button_background"
+                        android:contentDescription="@string/conversation_activity__send"
                         android:nextFocusLeft="@+id/embedded_text_editor"
-                        android:text="@string/conversation_activity__send"
-                        android:padding="8dip"
-                    />
+                        android:padding="12dp"
+                        android:src="@drawable/ic_send_holo_light"
+                        android:clickable="false"
+                        android:enabled="false"
+                        android:tint="#66ffffff" />
+
+"
                 </LinearLayout>
                        <TextView android:id="@+id/space_left"
                                     android:paddingLeft="5dip"

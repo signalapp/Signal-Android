@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -23,6 +24,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -111,7 +115,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private RecipientsPanel recipientsPanel;
   private EditText composeText;
   private ImageButton addContactButton;
-  private Button sendButton;
+  private ImageButton sendButton;
   private TextView charactersLeft;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
@@ -385,7 +389,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   ///// Initializers
 
-  private void initializeTitleBar() {
+  @SuppressLint("NewApi") private void initializeTitleBar() {
     String title    = null;
     String subtitle = null;
 
@@ -466,12 +470,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     if (isSingleConversation() &&
         KeyUtil.isSessionFor(this, getRecipients().getPrimaryRecipient()))
     {
-      sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_menu_lock_holo_light, 0);
-      sendButton.setCompoundDrawablePadding(15);
+      sendButton.setImageResource(R.drawable.ic_send_encrypted_holo_light);
       this.isEncryptedConversation = true;
       this.characterCalculator     = new EncryptedCharacterCalculator();
     } else {
-      sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+      sendButton.setImageResource(R.drawable.ic_send_holo_light);
       this.isEncryptedConversation = false;
       this.characterCalculator     = new CharacterCalculator();
     }
@@ -498,7 +501,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     recipients          = getIntent().getParcelableExtra("recipients");
     threadId            = getIntent().getLongExtra("thread_id", -1);
     addContactButton    = (ImageButton)findViewById(R.id.contacts_button);
-    sendButton          = (Button)findViewById(R.id.send_button);
+    sendButton          = (ImageButton)findViewById(R.id.send_button);
     composeText         = (EditText)findViewById(R.id.embedded_text_editor);
     masterSecret        = (MasterSecret)getIntent().getParcelableExtra("master_secret");
     charactersLeft      = (TextView)findViewById(R.id.space_left);
@@ -510,6 +513,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     recipientsPanel.setPanelChangeListener(new RecipientsPanelChangeListener());
     sendButton.setOnClickListener(sendButtonListener);
+    sendButton.setEnabled(false); // For whatever reason, it doesn't respect the android:enabled attribute in the layout
     addContactButton.setOnClickListener(new AddRecipientButtonListener());
     composeText.setOnKeyListener(new ComposeKeyPressedListener());
     composeText.addTextChangedListener(new OnTextChangedListener());
@@ -820,6 +824,18 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
+	  	Log.i("ComposeEditEvent", "onTextChanged event called. s is '"+s+"'");
+	  	if (s.length() == 0) {
+	  		Log.i("ComposeEditEvent", "s was empty");
+	  		sendButton.setClickable(false);
+	  		sendButton.setEnabled(false);
+	  		sendButton.setColorFilter(0x66FFFFFF); // Fade out and disable the send button when message is blank
+	  	}
+	  	else {
+	  		sendButton.setClickable(true);
+	  		sendButton.setEnabled(true);
+	  		sendButton.setColorFilter(null); // Clear out the faded tint
+	  	}
     }
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
