@@ -16,34 +16,9 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.telephony.PhoneNumberUtils;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.thoughtcrime.securesms.components.RecipientsPanel;
 import org.thoughtcrime.securesms.crypto.AuthenticityCalculator;
@@ -75,14 +50,37 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.MmsException;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.telephony.PhoneNumberUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -111,7 +109,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private RecipientsPanel recipientsPanel;
   private EditText composeText;
   private ImageButton addContactButton;
-  private Button sendButton;
+  private ImageButton sendButton;
   private TextView charactersLeft;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
@@ -466,12 +464,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     if (isSingleConversation() &&
         KeyUtil.isSessionFor(this, getRecipients().getPrimaryRecipient()))
     {
-      sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_menu_lock_holo_light, 0);
-      sendButton.setCompoundDrawablePadding(15);
+      sendButton.setImageResource(R.drawable.ic_send_encrypted_holo_light);
       this.isEncryptedConversation = true;
       this.characterCalculator     = new EncryptedCharacterCalculator();
     } else {
-      sendButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+      sendButton.setImageResource(R.drawable.ic_send_holo_light);
       this.isEncryptedConversation = false;
       this.characterCalculator     = new CharacterCalculator();
     }
@@ -498,7 +495,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     recipients          = getIntent().getParcelableExtra("recipients");
     threadId            = getIntent().getLongExtra("thread_id", -1);
     addContactButton    = (ImageButton)findViewById(R.id.contacts_button);
-    sendButton          = (Button)findViewById(R.id.send_button);
+    sendButton          = (ImageButton)findViewById(R.id.send_button);
     composeText         = (EditText)findViewById(R.id.embedded_text_editor);
     masterSecret        = (MasterSecret)getIntent().getParcelableExtra("master_secret");
     charactersLeft      = (TextView)findViewById(R.id.space_left);
@@ -510,6 +507,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     recipientsPanel.setPanelChangeListener(new RecipientsPanelChangeListener());
     sendButton.setOnClickListener(sendButtonListener);
+    sendButton.setEnabled(false);
     addContactButton.setOnClickListener(new AddRecipientButtonListener());
     composeText.setOnKeyListener(new ComposeKeyPressedListener());
     composeText.addTextChangedListener(new OnTextChangedListener());
@@ -820,6 +818,15 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
+      if (s == null || s.length() == 0) {
+        sendButton.setClickable(false);
+        sendButton.setEnabled(false);
+        sendButton.setColorFilter(0x66FFFFFF);
+      } else {
+        sendButton.setClickable(true);
+        sendButton.setEnabled(true);
+        sendButton.setColorFilter(null);
+      }
     }
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
