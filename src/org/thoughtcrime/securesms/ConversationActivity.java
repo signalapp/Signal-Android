@@ -16,38 +16,9 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.telephony.PhoneNumberUtils;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.thoughtcrime.securesms.components.RecipientsPanel;
 import org.thoughtcrime.securesms.crypto.AuthenticityCalculator;
@@ -79,14 +50,37 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.MmsException;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.telephony.PhoneNumberUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -513,7 +507,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     recipientsPanel.setPanelChangeListener(new RecipientsPanelChangeListener());
     sendButton.setOnClickListener(sendButtonListener);
-    sendButton.setEnabled(false); // For whatever reason, it doesn't respect the android:enabled attribute in the layout
+    sendButton.setEnabled(false);
     addContactButton.setOnClickListener(new AddRecipientButtonListener());
     composeText.setOnKeyListener(new ComposeKeyPressedListener());
     composeText.addTextChangedListener(new OnTextChangedListener());
@@ -824,16 +818,15 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
-	  	if (s.length() == 0) {
-	  		sendButton.setClickable(false);
-	  		sendButton.setEnabled(false);
-	  		sendButton.setColorFilter(0x66FFFFFF); // Fade out and disable the send button when message is blank
-	  	}
-	  	else {
-	  		sendButton.setClickable(true);
-	  		sendButton.setEnabled(true);
-	  		sendButton.setColorFilter(null); // Clear out the faded tint
-	  	}
+      if (s.length() == 0) {
+        sendButton.setClickable(false);
+        sendButton.setEnabled(false);
+        sendButton.setColorFilter(0x66FFFFFF);
+      } else {
+        sendButton.setClickable(true);
+        sendButton.setEnabled(true);
+        sendButton.setColorFilter(null);
+      }
     }
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
