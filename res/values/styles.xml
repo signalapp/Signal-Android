@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="NoAnimation.Theme.Sherlock.Light.DarkActionBar" parent="@style/Theme.Sherlock.Light.DarkActionBar">
         <item name="android:windowAnimationStyle">@null</item>        
     </style>
@@ -53,6 +53,32 @@
         <item name="android:shadowDy">1.0</item>
         <item name="android:shadowRadius">0.0</item>
         <item name="android:lineSpacingMultiplier">1.25</item>
+    </style>
+    
+    <style name="PasswordPrompt.ShowPassword" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:textSize">9.0sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#ff808080</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:shadowColor">#ffffff</item>
+        <item name="android:shadowDx">1.0</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">0.0</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    
+    <style name="PasswordPrompt.UnlockButton" parent="@android:style/Widget.Holo.Light.Button.Inset">
+        <item name="android:textSize">12.0sp</item>
+        <item name="android:textColor">#ff444444</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:minHeight">40dp</item>
     </style>
     
     <style name="Registration.BigLabel" parent="@style/Registration.Label">

@@ -299,6 +299,7 @@
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSPHRASE</string>
     <string name="prompt_passphrase_activity__unlock">Unlock</string>
+    <string name="prompt_passphrase_activity__show_password">Show Password</string>
     
     <!-- prompt_apn_activity -->
     <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure requires APN settings to deliver media messages via your wireless carrier.  Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
