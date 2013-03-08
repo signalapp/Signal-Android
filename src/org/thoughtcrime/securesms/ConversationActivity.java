@@ -339,7 +339,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     List<String> recipientStrings = new LinkedList<String>();
 
     for (Recipient recipient : getRecipients().getRecipientsList()) {
-      recipientStrings.add(recipient.getName());
+      recipientStrings.add(recipient.toShortString());
     }
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
