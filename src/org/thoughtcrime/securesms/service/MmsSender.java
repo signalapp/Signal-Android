@@ -239,13 +239,15 @@ public class MmsSender extends MmscProcessor {
   }
 
   private void scheduleSendWithMmsRadioAndProxy(SendItem item) {
-    item.useMmsRadio = true;
+    Log.w("MmsSender", "Falling back to sending MMS with radio and proxy...");
+    item.useMmsRadio         = true;
+    item.useProxyIfAvailable = true;
     handleSendMmsAction(item);
   }
 
   private void scheduleSendWithMmsRadio(SendItem item) {
-    item.useMmsRadio         = true;
-    item.useProxyIfAvailable = true;
+    Log.w("MmsSender", "Falling back to sending MMS with radio only...");
+    item.useMmsRadio = true;
     handleSendMmsAction(item);
   }
 

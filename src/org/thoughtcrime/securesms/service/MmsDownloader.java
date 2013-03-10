@@ -109,8 +109,10 @@ public class MmsDownloader extends MmscProcessor {
     } catch (IOException e) {
       Log.w("MmsDownloader", e);
       if (!item.useMmsRadioMode() && !item.proxyRequestIfPossible()) {
+        Log.w("MmsDownloader", "Falling back to just radio mode...");
         scheduleDownloadWithRadioMode(item);
       } else if (!item.proxyRequestIfPossible()) {
+        Log.w("MmsDownloadeR", "Falling back to radio mode and proxy...");
         scheduleDownloadWithRadioModeAndProxy(item);
       } else {
         DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_SOFT_FAILURE);

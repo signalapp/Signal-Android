@@ -53,7 +53,7 @@ import android.util.Log;
 
 public class SessionCipher {
 	
-  public static Object CIPHER_LOCK = new Object();
+  public static final Object CIPHER_LOCK = new Object();
 	
   public static final int CIPHER_KEY_LENGTH = 16;
   public static final int MAC_KEY_LENGTH    = 20;
