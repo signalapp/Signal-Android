@@ -66,13 +66,13 @@ public class SmsListener extends BroadcastReceiver {
     if (pdus == null)
       return null;
 
-    for (int i=0;i<pdus.length;i++)
-      bodyBuilder.append(SmsMessage.createFromPdu((byte[])pdus[i]).getDisplayMessageBody());
+    for (Object pdu : pdus)
+      bodyBuilder.append(SmsMessage.createFromPdu((byte[])pdu).getDisplayMessageBody());
 
     return bodyBuilder.toString();
   }
 
-  private boolean isRelevent(Context context, Intent intent) {
+  private boolean isRelevant(Context context, Intent intent) {
     SmsMessage message = getSmsMessageFromIntent(intent);
     String messageBody = getSmsMessageBodyFromIntent(intent);
 
@@ -95,7 +95,7 @@ public class SmsListener extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     Log.w("SMSListener", "Got SMS broadcast...");
 
-    if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevent(context, intent)) {
+    if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent)) {
       intent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
       intent.putExtra("ResultCode", this.getResultCode());
       intent.setClass(context, SendReceiveService.class);
