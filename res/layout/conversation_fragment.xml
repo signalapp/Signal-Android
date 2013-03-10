@@ -11,7 +11,7 @@
               android:layout_height="0dp"
               android:layout_weight="1.0"
               android:drawSelectorOnTop="true"
-              android:transcriptMode="alwaysScroll"
+              android:transcriptMode="normal"
               android:scrollbarAlwaysDrawVerticalTrack="false"
               android:scrollbarStyle="insideOverlay"
               android:stackFromBottom="true"
