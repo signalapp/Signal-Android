@@ -61,6 +61,16 @@ public class MmsCommunication {
       return new MmsConnectionParameters(mmsc, proxy, port);
     }
 
+    //Try to get the APN info from the in-app source.
+    InAppApnDB inAppApnDB = new InAppApnDB(context);
+    String mmsc = inAppApnDB.getMmsc();
+    if(mmsc != null) {
+      String proxy = inAppApnDB.getProxy();
+      String port = inAppApnDB.getProxyPort();
+
+      return new MmsConnectionParameters(mmsc, proxy, port);
+    }
+
     throw new ApnUnavailableException("No locally configured parameters available");
   }
 
