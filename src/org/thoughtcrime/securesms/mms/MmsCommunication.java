@@ -61,17 +61,28 @@ public class MmsCommunication {
       return new MmsConnectionParameters(mmsc, proxy, port);
     }
 
-    //Try to get the APN info from the in-app source.
-    InAppApnDB inAppApnDB = new InAppApnDB(context);
-    String mmsc = inAppApnDB.getMmsc();
-    if(mmsc != null) {
-      String proxy = inAppApnDB.getProxy();
-      String port = inAppApnDB.getProxyPort();
-
-      return new MmsConnectionParameters(mmsc, proxy, port);
-    }
-
     throw new ApnUnavailableException("No locally configured parameters available");
+  }
+
+  /**
+   * Checks both local sources of MmsConnectionParameters in order of preference.
+   * @param context
+   * @return
+   * @throws ApnUnavailableException Thrown if no MmsConnectionParameters are available from a
+   * local source.
+   */
+  protected static MmsConnectionParameters getLocalMmsConnectionParameters(Context context)
+          throws ApnUnavailableException {
+
+    try {
+      return getLocallyConfiguredMmsConnectionParameters(context);
+    } catch (ApnUnavailableException e) {
+      MmsConnectionParameters params = InAppApnDB.getMmsConnectionParameters(context);
+      if(params == null) {
+        throw new ApnUnavailableException("No parameters available from InAppApnDb.", e);
+      }
+      return params;
+    }
   }
 
   protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn,
@@ -84,7 +95,7 @@ public class MmsCommunication {
       cursor = DatabaseFactory.getMmsDatabase(context).getCarrierMmsInformation(apn);
 
       if (cursor == null || !cursor.moveToFirst())
-        return getLocallyConfiguredMmsConnectionParameters(context);
+        return getLocalMmsConnectionParameters(context);
 
       do {
         String mmsc  = cursor.getString(cursor.getColumnIndexOrThrow("mmsc"));
@@ -101,16 +112,16 @@ public class MmsCommunication {
 
       } while (cursor.moveToNext());
 
-      return getLocallyConfiguredMmsConnectionParameters(context);
+      return getLocalMmsConnectionParameters(context);
     } catch (SQLiteException sqe) {
       Log.w("MmsCommunication", sqe);
-      return getLocallyConfiguredMmsConnectionParameters(context);
+      return getLocalMmsConnectionParameters(context);
     } catch (SecurityException se) {
       Log.w("MmsCommunication", se);
-      return getLocallyConfiguredMmsConnectionParameters(context);
+      return getLocalMmsConnectionParameters(context);
     } catch (IllegalArgumentException iae) {
       Log.w("MmsCommunication", iae);
-      return getLocallyConfiguredMmsConnectionParameters(context);
+      return getLocalMmsConnectionParameters(context);
     } finally {
       if (cursor != null)
         cursor.close();

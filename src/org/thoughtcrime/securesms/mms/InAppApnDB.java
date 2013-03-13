@@ -6,49 +6,39 @@ import android.telephony.TelephonyManager;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.thoughtcrime.securesms.mms.MmsCommunication.MmsConnectionParameters;
+
 /**
- * Created with IntelliJ IDEA.
- * User: cmorris
- * Date: 3/10/13
- * Time: 2:23 PM
+ * This class provides an in-app source for APN MMSC info for use as a fallback in
+ * the event that the system APN DB is unavailable and the user has not provided
+ * local MMSC configuration details of their own.
  */
 public class InAppApnDB {
 
-    private static final Map<String, String> mmscMap = new HashMap<String, String>();
-    private static final Map<String, String> proxyMap = new HashMap<String, String>();
-    private static final Map<String, String> proxyPortMap = new HashMap<String, String>();
+  private static final Map<String, MmsConnectionParameters> paramMap =
+          new HashMap<String, MmsConnectionParameters>(){{
 
-    private String mccmnc;
+            //T-Mobile USA - Tested: Works
+            put("310260", new MmsConnectionParameters("http://mms.msg.eng.t-mobile.com/mms/wapenc", null, null));
 
-    static {
-        //T-Mobile USA - Tested: Works
-        mmscMap.put("310260", "http://mms.msg.eng.t-mobile.com/mms/wapenc");
+            //AT&T - Untested
+            put("310410", new MmsConnectionParameters("http://mmsc.cingular.com/", "wireless.cingular.com", "80"));
 
-        //AT&T - Untested
-        mmscMap.put("310410", "http://mmsc.cingular.com/");
-        proxyMap.put("310410", "wireless.cingular.com");
-        proxyPortMap.put("310410", "80");
+            //Verizon - Untested
+            put("310004", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
+            put("310005", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
+            put("310012", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
 
-        //Verizon - Untested
-        mmscMap.put("310004", "http://mms.vtext.com/servlets/mms");
-        mmscMap.put("310005", "http://mms.vtext.com/servlets/mms");
-        mmscMap.put("310012", "http://mms.vtext.com/servlets/mms");
-    }
+          }};
 
-    public InAppApnDB(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        this.mccmnc = tm.getSimOperator();
-    }
-
-    public String getMmsc() {
-        return mmscMap.get(mccmnc);
-    }
-
-    public String getProxy() {
-        return proxyMap.get(mccmnc);
-    }
-
-    public String getProxyPort() {
-        return proxyPortMap.get(mccmnc);
-    }
+  /**
+   * Retreives MmsConnectionParameters from the in-app source if any are available.
+   * Returns null otherwise.
+   * @param context
+   * @return
+   */
+  public static MmsConnectionParameters getMmsConnectionParameters(Context context) {
+    TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+    return paramMap.get(tm.getSimOperator());
+  }
 }
