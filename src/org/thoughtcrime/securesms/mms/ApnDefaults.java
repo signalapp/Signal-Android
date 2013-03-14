@@ -13,7 +13,7 @@ import static org.thoughtcrime.securesms.mms.MmsCommunication.MmsConnectionParam
  * the event that the system APN DB is unavailable and the user has not provided
  * local MMSC configuration details of their own.
  */
-public class InAppApnDB {
+public class ApnDefaults {
 
   private static final Map<String, MmsConnectionParameters> paramMap =
           new HashMap<String, MmsConnectionParameters>(){{

@@ -74,14 +74,19 @@ public class MmsCommunication {
   protected static MmsConnectionParameters getLocalMmsConnectionParameters(Context context)
           throws ApnUnavailableException {
 
-    try {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    //Need to check the preference here because the user's configuration should take precedence
+    //over the in-app source if they have enabled it.
+    if (preferences.getBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, false)) {
       return getLocallyConfiguredMmsConnectionParameters(context);
-    } catch (ApnUnavailableException e) {
-      MmsConnectionParameters params = InAppApnDB.getMmsConnectionParameters(context);
+    } else {
+      MmsConnectionParameters params = ApnDefaults.getMmsConnectionParameters(context);
       if(params == null) {
-        throw new ApnUnavailableException("No parameters available from InAppApnDb.", e);
+        throw new ApnUnavailableException("No parameters available from InAppApnDb.");
+      } else {
+        return params;
       }
-      return params;
     }
   }
 
