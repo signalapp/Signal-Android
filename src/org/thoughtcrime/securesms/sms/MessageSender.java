@@ -110,7 +110,7 @@ public class MessageSender {
                               SendReq sendRequest, long threadId, boolean secure)
     throws MmsException
   {
-    String[] recipientsArray            = recipients.toNumberStringArray();
+    String[] recipientsArray            = recipients.toNumberStringArray(true);
     EncodedStringValue[] encodedNumbers = EncodedStringValue.encodeStrings(recipientsArray);
 
     sendRequest.setTo(encodedNumbers);

@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.recipients;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Patterns;
 
 import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -133,13 +134,20 @@ public class Recipients implements Parcelable {
     return this.recipients;
   }
 
-  public String[] toNumberStringArray() {
+  public String[] toNumberStringArray(boolean scrub) {
     String[] recipientsArray     = new String[recipients.size()];
     Iterator<Recipient> iterator = recipients.iterator();
     int i                        = 0;
 
-    while (iterator.hasNext())
-      recipientsArray[i++] = iterator.next().getNumber();
+    while (iterator.hasNext()) {
+      String number = iterator.next().getNumber();
+
+      if (scrub && number != null && !Patterns.EMAIL_ADDRESS.matcher(number).matches()) {
+        number = number.replaceAll("[^0-9+]", "");
+      }
+
+      recipientsArray[i++] = number;
+    }
 
     return recipientsArray;
   }
