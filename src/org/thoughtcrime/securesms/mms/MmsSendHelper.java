@@ -54,7 +54,8 @@ public class MmsSendHelper extends MmsCommunication {
       request.setEntity(entity);
       request.setParams(client.getParams());
       request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
-
+//      request.addHeader("x-wap-profile", "http://www.htcmms.com.tw/Android/Common/nexusone/ua-profile.xml");
+      request.addHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml");
       HttpResponse response = client.execute(target, request);
       StatusLine status     = response.getStatusLine();
 

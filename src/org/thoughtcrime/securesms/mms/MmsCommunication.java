@@ -142,7 +142,7 @@ public class MmsCommunication {
   }
 
   protected static AndroidHttpClient constructHttpClient(Context context, MmsConnectionParameters mmsConfig) {
-    AndroidHttpClient client = AndroidHttpClient.newInstance("TextSecure/0.1", context);
+    AndroidHttpClient client = AndroidHttpClient.newInstance("Android-Mms/2.0", context);
     HttpParams params        = client.getParams();
     HttpProtocolParams.setContentCharset(params, "UTF-8");
     HttpConnectionParams.setSoTimeout(params, 20 * 1000);
