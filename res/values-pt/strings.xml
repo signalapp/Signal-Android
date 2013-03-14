@@ -104,6 +104,7 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Tem de especificar uma palavra-chave</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
+  <!--PromptApnActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERRO:⏎ ⏎ Recebeu uma chave pública corrompida. Esta chave não pode ser processada, por favor reinicie uma sessão segura.</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERRO:⏎ ⏎ Recebeu uma chave pública de uma versão do protocolo não suportada. Esta chave não pode ser processada, por favor reinicie uma sessão segura.</string>
@@ -251,6 +252,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE-CHAVE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
+  <!--prompt_apn_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessão</string>
   <string name="receive_key_activity__identities">Identidades</string>

@@ -96,6 +96,7 @@
   <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
+  <!--PromptApnActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">CHYBA:\n\nDostali ste poškodený verejný kľúč.  Tento kľúč sa nedá použiť. Spustite prosím znova vytvorenie bezpečnej session.</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">CHYBA:\n\nDostali ste verejný kľúč nepodporovanej verzie protokolu.  Tento kľúč sa nedá použiť. Spustite prosím znova vytvorenie bezpečnej session.</string>
@@ -224,6 +225,7 @@
   <string name="database_migration_activity__import">Import</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
+  <!--prompt_apn_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Session</string>
   <string name="receive_key_activity__identities">Identifikácie</string>

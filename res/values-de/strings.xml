@@ -92,6 +92,7 @@
   <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ungültiges Passwort!</string>
+  <!--PromptApnActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">FEHLER:\n\nSie haben einen beschädigten öffentlichen Schlüssel erhalten. Dieser Schlüssel kann nicht weiter verarbeitet werden, bitte initieren Sie eine neue sichere Sitzung.</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">FEHLER:\n\nSie haben einen öffentlichen Schlüssl erhalten der eine nicht unterstütze Version des Protokolls verwendet. Dieser Schlüssel kann nicht weiter verarbeitet werden, bitte initieren Sie eine neue sichere Sitzung.</string>
@@ -218,6 +219,7 @@
   <string name="create_passphrase_activity__repeat">Wiederholen:</string>
   <!--database_migration_activity-->
   <!--prompt_passphrase_activity-->
+  <!--prompt_apn_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sitzung</string>
   <string name="receive_key_activity__identities">Identitäten</string>

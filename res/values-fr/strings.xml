@@ -93,12 +93,21 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Aucune clé scannée n’a été trouvée !</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Pas de connexion disponible pour le téléchargement MMS, essayez de nouveau plus tard…</string>
+  <string name="MmsDownloader_error_storing_mms">Erreur d’enregistrement du MMS !</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Erreur de connexion au fournisseur MMS…</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
   <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match">Les phrases de passe ne correspondent pas</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Vous devez renseigner un mot de passe</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Phrase de passe incorrecte !</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Vous devez indiquer une URL MMSC de votre opérateur.</string>
+  <string name="PromptApnActivity_mms_settings_updated">Paramètres MMS mis à jour</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vous pouvez modifier ces valeurs depuis le menu des paramètres de TextSecure à tout moment.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERREUR:\n\nVous avez reçu une clef publique corrompue. Cette clef est inutilisable, veuillez renouveler la session sécurisée.</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERREUR:\n\nVous avez reçu une clef publique issue d\'une version de protocole non supportée. Cette clef est inutilisable, veuillez renouveler la session sécurisée.</string>
@@ -187,6 +196,8 @@
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Impossible d’envoyer votre message MMS pour le moment. Il sera envoyé  lorsque le service deviendra disponible.</string>
   <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Importation en cours</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Importation des Messages Texte</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Phrase de passe TextSecure en cache</string>
   <string name="KeyCachingService_passphrase_cached">Phrase de passe en cache</string>
@@ -232,8 +243,24 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Veuillez choisir une phrase de passe pour chiffrer localement vos données. Cette phrase de passe doit être complexe.</string>
   <string name="create_passphrase_activity__passphrase">Phrase de passe :</string>
   <string name="create_passphrase_activity__repeat">Répétez :</string>
+  <string name="create_passphrase_activity__continue">Continuer</string>
+  <string name="create_passphrase_activity__generating_secrets">GÉNÉRATION DE CLÉS SECRÈTES</string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voulez-vous importer vos messages texte existant dans la base de données chiffrée de TextSecure ?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de donnée par défaut du système ne sera en aucune façon modifiée ou altérée.</string>
+  <string name="database_migration_activity__skip">Passer</string>
+  <string name="database_migration_activity__import">Importer</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Cela peut prendre un moment. Merci d’être patient, nous vous préviendrons quand l’importation sera achevée.</string>
+  <string name="database_migration_activity__importing">IMPORTATION</string>
   <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">PHRASE DE PASSE TEXTSECURE</string>
+  <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
+  <!--prompt_apn_activity-->
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure nécessite que les paramètres APN distribuent les messages multimédia via votre opérateur mobile. Votre appareil ne rend pas ces informations disponibles, ce qui est parfois le cas des appareils verrouillés et d’autres configurations restrictives.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Pour envoyer des messages multimédia, merci de compléter les informations sur l’APN ci-dessous. Les valeurs de votre opérateur peuvent généralement être trouvées en cherchant \'APN &amp;lt;votre opérateur&amp;gt;\'. Vous aurez besoin de faire cela une seule fois.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (OBLIGATOIRE) :</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">HÔTE PROXY MMS (OPTIONNEL) :</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">PORT PROXY MMS (OPTIONNEL) :</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Session</string>
   <string name="receive_key_activity__identities">Identités</string>

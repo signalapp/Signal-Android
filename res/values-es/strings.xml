@@ -99,6 +99,7 @@
   <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de contraseña inválida</string>
+  <!--PromptApnActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERROR:\n\nHa recibido una clave pública dañada.  Esta clave no puede ser procesada, por favor reinicie su sesión segura. </string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERROR:\n\nHa recibido una clave pública de una versión no soportada del protocolo. Esta clave no puede ser procesada, por favor reinicie la sesión segura.</string>
@@ -234,6 +235,7 @@
   <string name="create_passphrase_activity__repeat">Repetir:</string>
   <!--database_migration_activity-->
   <!--prompt_passphrase_activity-->
+  <!--prompt_apn_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sesión</string>
   <string name="receive_key_activity__identities">Identidades</string>

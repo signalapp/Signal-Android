@@ -96,6 +96,7 @@
   <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
+  <!--PromptApnActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">خطأ:\n\nلقد استقبلت مفتاح عام خطأ.  لا يمكن الاستمرار بهذا المفتاح، من فضلك أعد بدء قناة التشفير</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">خطأ:\n\nلقد استقبلت مفتاح عام من نوعية غير مدعومة، لا يمكن الاستمرار. من فضلك أعد بدء قناة التشفير.</string>
@@ -222,6 +223,7 @@
   <string name="create_passphrase_activity__repeat">تكرار:</string>
   <!--database_migration_activity-->
   <!--prompt_passphrase_activity-->
+  <!--prompt_apn_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">قناة اتصال</string>
   <string name="receive_key_activity__identities">الهويات</string>

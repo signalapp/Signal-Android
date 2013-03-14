@@ -104,6 +104,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">U moet een wachtwoord specificeren</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig Wachtwoord!</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">U moet een MMSC URL specificeren voor uw provider.</string>
+  <string name="PromptApnActivity_mms_settings_updated">MMS Instellingen Geupdate</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">U kunt deze instellingen op elk gewenst moment wijzigen via het TextSecure instellingen menu.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">FOUT: U heeft een corrupte publieke sleutel ontvangen. Deze sleutel kan niet verwerkt worden, herinitiëer alstublieft een beveiligde sessie.</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">FOUT: U heeft een publieke sleutel ontvangen van een niet ondersteunde versie van het protocol. Deze sleutel kan niet verwerkt worden, herinitiëer alstublieft een beveiligde sessie.</string>
@@ -251,6 +255,12 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE WACHTWOORD</string>
   <string name="prompt_passphrase_activity__unlock">Ontgrendel</string>
+  <!--prompt_apn_activity-->
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure heeft APN instellingen nodig om mediaberichten te kunnen versturen via uw telefoonprovider. Uw toestel heeft deze informatie niet beschikbaar, iets wat vaker voorkomt bij gelockte toestellen en andere beperkende configuraties.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Om mediaberichten te versturen, moet u de benodigde APN informatie hieronder opgeven. De waarden voor uw provider kunnen meestal gevonden worden door te zoeken naar \'&amp;lt;uw provider&amp;gt; APN\'. U hoeft dit maar eenmaal te doen.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (VEREIST):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONEEL):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY POORT (OPTIONEEL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessie</string>
   <string name="receive_key_activity__identities">Identiteiten</string>

@@ -104,6 +104,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Du må oppgi et passord</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Feil passord!</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du må spesifisere en MMSC URL for din operatør.</string>
+  <string name="PromptApnActivity_mms_settings_updated">MMS konfigurasjon oppdatert</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan forandre disse verdiene når som helst i konfigurasjonsmenyen for TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">EN FEIL HAR OPPSTÅTT:\n\nDu har mottatt en korrupt offentlig nøkkel. Denne nøkkelen kan ikke prosesseres; vær vennlig å gjenoppta en sikker sesjon.</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">EN FEIL HAR OPPSTÅTT: \n\nDu har mottatt en offentlig nøkkel fra en usupportert versjon av protokollen. Denne nøkkelen kan ikke prosesseres; vær vennlig å gjenoppta en sikker sesjon.</string>
@@ -251,6 +255,12 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSORD</string>
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
+  <!--prompt_apn_activity-->
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">En gyldig APN konfigurasjon er nødvendig for at TextSecure kan sende og motta multimedia meldinger via operatøren din. Enheten din tilgjengeliggjør ikke denne konfigurasjonen. Dette er ofte tilfelle for operatørlåste enheter og annen restriktiv konfigurasjon.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">For å sende multimedia meldinger, vær vennlig å fullfør den nødvendige APN informasjonen under. Verdiene for din operatør kan ofte finnes ved å lete etter \'&amp;lt;din operatør&amp;gt; APN\'. Du trenger kun å gjøre dette en gang.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (PÅKREVD):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY VERT (IKKE PÅKREVD):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (IKKE PÅKREVD):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sesjon</string>
   <string name="receive_key_activity__identities">Identiteter</string>

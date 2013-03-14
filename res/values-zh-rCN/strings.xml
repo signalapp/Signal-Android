@@ -91,6 +91,7 @@
   <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">无效密码！</string>
+  <!--PromptApnActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">错误：\n\n您收到的公钥已损坏。  该密钥无法处理，请重新启动安全会话。</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">错误：\n\n您收到来自不支持协议版本的公钥。  该密钥无法处理，请重新启动安全会话。</string>
@@ -218,6 +219,7 @@
   <!--database_migration_activity-->
   <string name="database_migration_activity__import">导入</string>
   <!--prompt_passphrase_activity-->
+  <!--prompt_apn_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">会话</string>
   <string name="receive_key_activity__identities">身份</string>

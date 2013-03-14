@@ -83,6 +83,7 @@
   <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password errata!</string>
+  <!--PromptApnActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERRORE:\n\nHai ricevuto una chiave pubblica corrotta. Questa chiave non può essere utilizzata, inizia una nuova sessione sicura.</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERRORE:\n\nHai ricevuto una chiave pubblica da una versione non supportata del protocollo. Questa chiave non può essere utilizzata, inizia una nuova sessione sicura.</string>
@@ -205,6 +206,7 @@
   <string name="create_passphrase_activity__repeat">Ripeti:</string>
   <!--database_migration_activity-->
   <!--prompt_passphrase_activity-->
+  <!--prompt_apn_activity-->
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessione</string>
   <string name="receive_key_activity__identities">Identità</string>
