@@ -507,7 +507,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     recipientsPanel.setPanelChangeListener(new RecipientsPanelChangeListener());
     sendButton.setOnClickListener(sendButtonListener);
-    sendButton.setEnabled(false);
+    sendButton.setEnabled(true);
     addContactButton.setOnClickListener(new AddRecipientButtonListener());
     composeText.setOnKeyListener(new ComposeKeyPressedListener());
     composeText.addTextChangedListener(new OnTextChangedListener());
@@ -818,15 +818,15 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
-      if (s == null || s.length() == 0) {
-        sendButton.setClickable(false);
-        sendButton.setEnabled(false);
-        sendButton.setColorFilter(0x66FFFFFF);
-      } else {
-        sendButton.setClickable(true);
-        sendButton.setEnabled(true);
-        sendButton.setColorFilter(null);
-      }
+//      if (s == null || s.length() == 0) {
+//        sendButton.setClickable(false);
+//        sendButton.setEnabled(false);
+//        sendButton.setColorFilter(0x66FFFFFF);
+//      } else {
+//        sendButton.setClickable(true);
+//        sendButton.setEnabled(true);
+//        sendButton.setColorFilter(null);
+//      }
     }
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
