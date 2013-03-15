@@ -110,8 +110,8 @@
                         android:padding="12dp"
                         android:src="@drawable/ic_send_holo_light"
                         android:clickable="false"
-                        android:enabled="false"
-                        android:tint="#66ffffff" />
+                        android:enabled="false" />
+<!--                        android:tint="#66ffffff" />-->
 
 "
                 </LinearLayout>
