@@ -473,7 +473,14 @@ public class MmsDatabase extends Database {
     String selection       = Util.isEmpty(apn) ? null : "apn = ?";
     String[] selectionArgs = Util.isEmpty(apn) ? null : new String[] {apn.trim()};
 
-    return context.getContentResolver().query(uri, null, selection, selectionArgs, null);
+    try {
+      return context.getContentResolver().query(uri, null, selection, selectionArgs, null);
+    } catch (NullPointerException npe) {
+      // NOTE - This is dumb, but on some devices there's an NPE in the Android framework
+      // for the provider of this call, which gets rethrown back to here through a binder
+      // call.
+      throw new IllegalArgumentException(npe);
+    }
   }
 
   private PduHeaders getHeadersForId(long messageId) throws MmsException {
