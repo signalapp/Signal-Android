@@ -29,6 +29,9 @@ public class ApnDefaults {
             put("310005", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
             put("310012", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
 
+            //Telenor Norway - Tested
+            put("24201", new MmsConnectionParameters("http://mmsc", "10.10.10.11", "8080"));
+
           }};
 
   public static MmsConnectionParameters getMmsConnectionParameters(Context context) {
