@@ -93,13 +93,21 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No hay conexiones disponibles para descargar MMS, inténtalo de nuevo más tarde...</string>
+  <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Error conectando al proveedor MMS...</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las frases de contraseña no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Frase de contraseña anterior incorrecta!</string>
   <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match">Las frases de contraseña no coinciden</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Debes especificar una contraseña</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de contraseña inválida</string>
   <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Debes especificar una URL MMSC para tu operador.</string>
+  <string name="PromptApnActivity_mms_settings_updated">Configuración MMS Actualizada</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Puedes modificar estos valores en el menú de configuración de TextSecure en cualquier momento.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERROR:\n\nHa recibido una clave pública dañada.  Esta clave no puede ser procesada, por favor reinicie su sesión segura. </string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERROR:\n\nHa recibido una clave pública de una versión no soportada del protocolo. Esta clave no puede ser procesada, por favor reinicie la sesión segura.</string>
@@ -188,6 +196,8 @@
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Actualmente no se puede enviar tu mensaje MMS. Será enviado en cuanto el servicio esté disponible.</string>
   <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Importación en progreso</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Importando Mensajes de Texto</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Frase de contraseña de TextSecure en memoria caché</string>
   <string name="KeyCachingService_passphrase_cached">Frase de contraseña en memoria caché</string>
@@ -230,12 +240,27 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección múltiple</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Por favor escoja una frase de contraseña que se usará de forma local para cifrar sus datos. Debe elegir una clave de contraseña fuerte. </string>
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Por favor escoja una frase de contraseña que se usará de forma local para cifrar sus datos. ⏎ ⏎Debe elegir una frase de contraseña fuerte. </string>
   <string name="create_passphrase_activity__passphrase">Frase de contraseña:</string>
   <string name="create_passphrase_activity__repeat">Repetir:</string>
+  <string name="create_passphrase_activity__continue">Continuar</string>
+  <string name="create_passphrase_activity__generating_secrets">GENERANDO SECRETOS</string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">¿Te gustaría importar los mensajes de texto existentes en la base de datos cifrada de TextSecure?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de datos de sistema por defecto no será modificada o alterada de ningún modo.</string>
+  <string name="database_migration_activity__skip">Saltar</string>
+  <string name="database_migration_activity__import">Importar</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Esto podría tardar un rato. Por favor, se paciente, te informaremos cuando la importación sea completada.</string>
+  <string name="database_migration_activity__importing">IMPORTANDO</string>
   <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE DE CONTRASEÑA DE TEXTSECURE</string>
+  <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_apn_activity-->
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure necesita las opciones de APN para enviar mensajes multimedia por tu operador móvil. Tu dispositivo no proporciona esta información, lo que sería porque tu dispositivo está bloqueado o presenta otra configuración restrictiva.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Para enviar mensajes multimedia, por favor completa la información APN necesaria abajo. Los valores para tu proveedor pueden por lo general ser encontrados buscando \'&amp;lt;tu operador&amp;gt; APN\'. Solo necesitarás hacer esto una única vez.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (REQUERIDA):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (OPCIONAL):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (OPCIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sesión</string>
   <string name="receive_key_activity__identities">Identidades</string>
