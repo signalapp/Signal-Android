@@ -18,10 +18,16 @@ package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.method.PasswordTransformationMethod;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
@@ -38,6 +44,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   private EditText passphraseText;
   private Button okButton;
+  private CheckBox showPasswordCheckbox;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -48,10 +55,40 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    passphraseText = (EditText)findViewById(R.id.passphrase_edit);
-    okButton       = (Button)findViewById(R.id.ok_button);
+    passphraseText       = (EditText)findViewById(R.id.passphrase_edit);
+    okButton             = (Button)findViewById(R.id.ok_button);
+    showPasswordCheckbox = (CheckBox)findViewById(R.id.show_password_checkbox);
 
     okButton.setOnClickListener(new OkButtonClickListener());
+    passphraseText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+
+      @Override
+      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_DONE ||
+                    event.getAction() == KeyEvent.ACTION_DOWN &&
+                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+          okButton.performClick();
+          return true;
+        }
+        return false;
+      }
+    });
+
+    showPasswordCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        int start = passphraseText.getSelectionStart();
+        int stop = passphraseText.getSelectionEnd();
+        if (isChecked) {
+          passphraseText.setTransformationMethod(null);
+        } else {
+          passphraseText.setTransformationMethod(new PasswordTransformationMethod());
+        }
+        passphraseText.setSelection(start, stop);
+      }
+    });
+
   }
 
   private class OkButtonClickListener implements OnClickListener {
