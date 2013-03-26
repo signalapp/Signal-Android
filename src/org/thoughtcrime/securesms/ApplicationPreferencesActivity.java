@@ -90,6 +90,11 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String THREAD_TRIM_LENGTH  = "pref_trim_length";
   public static final String THREAD_TRIM_NOW     = "pref_trim_now";
 
+  public static final String LOCAL_NUMBER_PREF    = "pref_local_number";
+  public static final String VERIFYING_STATE_PREF = "pref_verifying";
+  public static final String REGISTERED_GCM_PREF  = "pref_gcm_registered";
+  public static final String GCM_PASSWORD_PREF    = "pref_gcm_password";
+
   @Override
   protected void onCreate(Bundle icicle) {
     super.onCreate(icicle);

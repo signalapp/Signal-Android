@@ -19,11 +19,13 @@ package org.thoughtcrime.securesms.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 
 public class SmsListener extends BroadcastReceiver {
@@ -91,11 +93,44 @@ public class SmsListener extends BroadcastReceiver {
     return WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody);
   }
 
+  private boolean isChallenge(Context context, Intent intent) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    String messageBody            = getSmsMessageBodyFromIntent(intent);
+
+    Log.w("SmsListener", "Checking challenge: " + messageBody);
+
+    if (messageBody == null)
+      return false;
+
+    if (messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
+        preferences.getBoolean(ApplicationPreferencesActivity.VERIFYING_STATE_PREF, false))
+    {
+      return true;
+    }
+
+    return false;
+  }
+
+  private String parseChallenge(Context context, Intent intent) {
+    String messageBody    = getSmsMessageBodyFromIntent(intent);
+    String[] messageParts = messageBody.split(":");
+    String[] codeParts    = messageParts[1].trim().split("-");
+
+    return codeParts[0] + codeParts[1];
+  }
+
   @Override
   public void onReceive(Context context, Intent intent) {
     Log.w("SMSListener", "Got SMS broadcast...");
 
-    if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent)) {
+    if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isChallenge(context, intent)) {
+      Log.w("SmsListener", "Got challenge!");
+      Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
+      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(context, intent));
+      context.sendBroadcast(challengeIntent);
+
+      abortBroadcast();
+    } else if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent)) {
       intent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
       intent.putExtra("ResultCode", this.getResultCode());
       intent.setClass(context, SendReceiveService.class);

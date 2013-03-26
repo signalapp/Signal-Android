@@ -16,12 +16,19 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import android.widget.EditText;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -94,6 +101,10 @@ public class Util {
     return value == null || value.getText() == null || isEmpty(value.getText().toString());
   }
 
+  public static boolean isEmpty(CharSequence value) {
+    return value == null || value.length() == 0;
+  }
+
   public static CharSequence getBoldedString(String value) {
     SpannableString spanned = new SpannableString(value);
     spanned.setSpan(new StyleSpan(Typeface.BOLD), 0,
@@ -110,6 +121,39 @@ public class Util {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     return spanned;
+  }
+
+  public static void showAlertDialog(Context context, String title, String message) {
+    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setIcon(android.R.drawable.ic_dialog_alert);
+    dialog.setPositiveButton(android.R.string.ok, null);
+    dialog.show();
+  }
+
+  public static String getSecret(int size) {
+    try {
+      byte[] secret = new byte[size];
+      SecureRandom.getInstance("SHA1PRNG").nextBytes(secret);
+      return Base64.encodeBytes(secret);
+    } catch (NoSuchAlgorithmException nsae) {
+      throw new AssertionError(nsae);
+    }
+  }
+
+  public static String readFully(InputStream in) throws IOException {
+    ByteArrayOutputStream bout = new ByteArrayOutputStream();
+    byte[] buffer              = new byte[4096];
+    int read;
+
+    while ((read = in.read(buffer)) != -1) {
+      bout.write(buffer, 0, read);
+    }
+
+    in.close();
+
+    return new String(bout.toByteArray());
   }
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {
