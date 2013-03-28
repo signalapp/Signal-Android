@@ -19,12 +19,6 @@
                         android:key="pref_delivery_report_sms"
                         android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
                         android:title="@string/preferences__sms_delivery_reports" />
-
-    <CheckBoxPreference android:defaultValue="false"
-                        android:key="pref_delivery_report_mms"
-                        android:summary="@string/preferences__request_a_delivery_report_for_each_mms_message_you_send"
-                        android:enabled="false"
-                        android:title="@string/preferences__mms_delivery_reports" />
    </PreferenceCategory>  
 
   <PreferenceCategory android:title="@string/preferences__storage">
