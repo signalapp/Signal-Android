@@ -25,6 +25,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
+import android.preference.PreferenceScreen;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -382,5 +383,18 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       return true;
     }
 
+  }
+
+  /* http://code.google.com/p/android/issues/detail?id=4611#c35 */
+  @SuppressWarnings("deprecation")
+  @Override
+  public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
+  {
+    super.onPreferenceTreeClick(preferenceScreen, preference);
+    if (preference!=null)
+      if (preference instanceof PreferenceScreen)
+          if (((PreferenceScreen)preference).getDialog()!=null)
+            ((PreferenceScreen)preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(this.getWindow().getDecorView().getBackground().getConstantState().newDrawable());
+    return false;
   }
 }

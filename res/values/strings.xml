@@ -381,7 +381,7 @@
     <string name="preferences__pref_timeout_interval_dialogtitle">Select Passphrase Timeout</string>
     <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
     <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">The amount of time to wait before forgetting passphrase from memory</string>
-    <string name="preferences__identity_key_settings">Identity Key Settings</string>
+    <string name="preferences__identity_key_settings">Identity Keys</string>
     <string name="preferences__view_my_identity_key">View my identity key</string>
     <string name="preferences__export_my_identity_key">Export my identity key</string>
     <string name="preferences__import_contacts_key">Import Contact\'s Key</string>
@@ -412,7 +412,9 @@
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Slow</string>
     <string name="preferences__custom">Custom</string>
-    <string name="preferences__advanced_mms_access_point_names">Advanced: MMS Access Point Names</string>
+    <string name="preferences__advanced">Advanced</string>
+    <string name="preferences__passphrase">Passphrase</string>
+    <string name="preferences__advanced_mms_access_point_names">Fallback MMSC</string>
     <string name="preferences__enable_fallback_mmsc">Enable Fallback MMSC</string>
     <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Use MMSC information configured here when system APN information is unavailable.</string>
     <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
