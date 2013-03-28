@@ -67,11 +67,6 @@
                            android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
 
     <CheckBoxPreference android:defaultValue="true"
-                        android:key="pref_key_tag_whitespace"
-                        android:summary="@string/preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message"
-                        android:title="@string/preferences__include_whitespace_tag" />
-
-    <CheckBoxPreference android:defaultValue="true"
                         android:key="pref_send_identity_key"
                         android:summary="@string/preferences__sign_key_exchange_messages_with_identity_key"
                         android:title="@string/preferences__sign_key_exchange" />

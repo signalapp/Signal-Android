@@ -56,7 +56,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final int   PICK_IDENTITY_CONTACT        = 1;
   private static final int   IMPORT_IDENTITY_ID           = 2;
 
-  public static final String WHITESPACE_PREF                  = "pref_key_tag_whitespace";
   public static final String RINGTONE_PREF                    = "pref_key_ringtone";
   public static final String VIBRATE_PREF                     = "pref_key_vibrate";
   public static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
