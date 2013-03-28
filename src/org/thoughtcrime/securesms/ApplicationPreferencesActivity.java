@@ -63,7 +63,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String LED_BLINK_PREF                   = "pref_led_blink";
   public static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
   public static final String IDENTITY_PREF                    = "pref_choose_identity";
-  public static final String SEND_IDENTITY_PREF               = "pref_send_identity_key";
   public static final String ALL_MMS_PERF                     = "pref_all_mms";
   public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";

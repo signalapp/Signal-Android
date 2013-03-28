@@ -115,9 +115,7 @@ public class KeyExchangeMessage {
   }
 	
   private static boolean includeIdentitySignature(int messageVersion, Context context) {
-    return IdentityKeyUtil.hasIdentityKey(context) && 
-      (messageVersion >= 1)                   &&
-      PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.SEND_IDENTITY_PREF, true);
+    return IdentityKeyUtil.hasIdentityKey(context) && (messageVersion >= 1);
   }
 
 	

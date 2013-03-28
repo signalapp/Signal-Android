@@ -66,11 +66,6 @@
                            android:title="@string/preferences__complete_key_exchanges"
                            android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
 
-    <CheckBoxPreference android:defaultValue="true"
-                        android:key="pref_send_identity_key"
-                        android:summary="@string/preferences__sign_key_exchange_messages_with_identity_key"
-                        android:title="@string/preferences__sign_key_exchange" />
-
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_timeout_passphrase"
                         android:summary="@string/preferences__forget_passphrase_from_memory_after_some_interval"
