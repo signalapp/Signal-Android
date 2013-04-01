@@ -26,7 +26,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.SessionRecord;
+import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 

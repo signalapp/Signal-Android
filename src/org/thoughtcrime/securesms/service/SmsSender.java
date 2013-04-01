@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.gcm.OptimizingTransport;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.KeyExchangeWirePrefix;
 import org.thoughtcrime.securesms.protocol.Prefix;
@@ -224,7 +225,9 @@ public class SmsSender {
     // the message as a failure.  That way at least it doesn't repeatedly crash every time you start
     // the app.
     try {
-      SmsManager.getDefault().sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
+      OptimizingTransport.sendMultipartTextMessage(context, recipient, messages, sentIntents, deliveredIntents);
+//
+//      SmsManager.getDefault().sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException npe) {
       Log.w("SmsSender", npe);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
@@ -257,8 +260,10 @@ public class SmsSender {
       // the message as a failure.  That way at least it doesn't repeatedly crash every time you start
       // the app.
       try {
-        SmsManager.getDefault().sendTextMessage(recipient, null, messages.get(i), sentIntents.get(i),
-                                                deliveredIntents == null ? null : deliveredIntents.get(i));
+        OptimizingTransport.sendTextMessage(context, recipient, messages.get(i), sentIntents.get(i),
+                                            deliveredIntents == null ? null : deliveredIntents.get(i));
+//        SmsManager.getDefault().sendTextMessage(recipient, null, messages.get(i), sentIntents.get(i),
+//                                                deliveredIntents == null ? null : deliveredIntents.get(i));
       } catch (NullPointerException npe) {
         Log.w("SmsSender", npe);
         DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);

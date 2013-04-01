@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SerializableKey;
-import org.thoughtcrime.securesms.database.SessionRecord;
+import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MemoryCleaner;

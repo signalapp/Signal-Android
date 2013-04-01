@@ -63,11 +63,11 @@ public class SendReceiveService extends Service {
 
   private ToastHandler toastHandler;
 
-  private  SmsReceiver   smsReceiver;
-  private  SmsSender     smsSender;
-  private  MmsReceiver   mmsReceiver;
-  private  MmsSender     mmsSender;
-  private  MmsDownloader mmsDownloader;
+  private SmsReceiver   smsReceiver;
+  private SmsSender     smsSender;
+  private MmsReceiver   mmsReceiver;
+  private MmsSender     mmsSender;
+  private MmsDownloader mmsDownloader;
 
   private MasterSecret masterSecret;
   private boolean      hasSecret;

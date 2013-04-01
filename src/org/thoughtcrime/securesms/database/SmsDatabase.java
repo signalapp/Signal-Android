@@ -22,11 +22,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-import android.telephony.SmsMessage;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.TextMessage;
 import org.thoughtcrime.securesms.util.Trimmer;
 
 import java.util.ArrayList;
@@ -84,18 +84,18 @@ public class SmsDatabase extends Database {
     notifyConversationListeners(getThreadIdForMessage(id));
   }
 
-  private long insertMessageReceived(SmsMessage message, String body, long type, long timeSent) {
+  private long insertMessageReceived(TextMessage message, String body, long type, long timeSent) {
     List<Recipient> recipientList = new ArrayList<Recipient>(1);
-    recipientList.add(new Recipient(null, message.getDisplayOriginatingAddress(), null, null));
+    recipientList.add(new Recipient(null, message.getSender(), null, null));
     Recipients recipients         = new Recipients(recipientList);
 
     long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
 
     ContentValues values = new ContentValues(6);
-    values.put(ADDRESS, message.getDisplayOriginatingAddress());
+    values.put(ADDRESS, message.getSender());
     values.put(DATE_RECEIVED, Long.valueOf(System.currentTimeMillis()));
     values.put(DATE_SENT, timeSent);
-    values.put(PROTOCOL, message.getProtocolIdentifier());
+    values.put(PROTOCOL, message.getProtocol());
     values.put(READ, Integer.valueOf(0));
 
     if (message.getPseudoSubject().length() > 0)
@@ -212,13 +212,13 @@ public class SmsDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public long insertSecureMessageReceived(SmsMessage message, String body) {
+  public long insertSecureMessageReceived(TextMessage message, String body) {
     return insertMessageReceived(message, body, Types.DECRYPT_IN_PROGRESS_TYPE,
-                                 message.getTimestampMillis());
+                                 message.getSentTimestampMillis());
   }
 
-  public long insertMessageReceived(SmsMessage message, String body) {
-    return insertMessageReceived(message, body, Types.INBOX_TYPE, message.getTimestampMillis());
+  public long insertMessageReceived(TextMessage message, String body) {
+    return insertMessageReceived(message, body, Types.INBOX_TYPE, message.getSentTimestampMillis());
   }
 
   public long insertMessageSent(String address, long threadId, String body, long date, long type) {

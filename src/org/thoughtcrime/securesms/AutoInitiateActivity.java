@@ -26,8 +26,8 @@ import android.widget.Button;
 
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.LocalKeyRecord;
-import org.thoughtcrime.securesms.database.RemoteKeyRecord;
+import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
+import org.thoughtcrime.securesms.database.keys.RemoteKeyRecord;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;

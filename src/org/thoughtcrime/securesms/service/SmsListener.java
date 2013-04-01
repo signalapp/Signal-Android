@@ -27,6 +27,9 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+import org.thoughtcrime.securesms.sms.TextMessage;
+
+import java.util.ArrayList;
 
 public class SmsListener extends BroadcastReceiver {
 
@@ -72,6 +75,16 @@ public class SmsListener extends BroadcastReceiver {
       bodyBuilder.append(SmsMessage.createFromPdu((byte[])pdu).getDisplayMessageBody());
 
     return bodyBuilder.toString();
+  }
+
+  private ArrayList<TextMessage> getAsTextMessages(Intent intent) {
+    Object[] pdus                   = (Object[])intent.getExtras().get("pdus");
+    ArrayList<TextMessage> messages = new ArrayList<TextMessage>(pdus.length);
+
+    for (int i=0;i<pdus.length;i++)
+      messages.add(new TextMessage(SmsMessage.createFromPdu((byte[])pdus[i])));
+
+    return messages;
   }
 
   private boolean isRelevant(Context context, Intent intent) {
@@ -131,10 +144,11 @@ public class SmsListener extends BroadcastReceiver {
 
       abortBroadcast();
     } else if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent)) {
-      intent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
-      intent.putExtra("ResultCode", this.getResultCode());
-      intent.setClass(context, SendReceiveService.class);
-      context.startService(intent);
+      Intent receivedIntent = new Intent(context, SendReceiveService.class);
+      receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
+      receivedIntent.putExtra("ResultCode", this.getResultCode());
+      receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
+      context.startService(receivedIntent);
 
       abortBroadcast();
     } else if (intent.getAction().equals(SendReceiveService.SENT_SMS_ACTION)) {

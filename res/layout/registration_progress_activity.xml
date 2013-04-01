@@ -456,6 +456,48 @@
                             android:textSize="16.0sp" />
                 </TableRow>
 
+                <TableRow>
+
+                    <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center" >
+
+                        <ImageView
+                                android:id="@+id/retrieve_directory_complete"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:paddingLeft="4dip"
+                                android:paddingRight="4dip"
+                                android:src="@drawable/check"
+                                android:visibility="invisible" />
+
+                        <ProgressBar
+                                android:id="@+id/retrieve_directory_progress"
+                                style="?android:attr/android:progressBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:indeterminate="true"
+                                android:paddingLeft="4dip"
+                                android:paddingRight="4dip"
+                                android:visibility="invisible" />
+                    </FrameLayout>
+
+                    <TextView
+                            android:id="@+id/retrieve_directory_text"
+                            style="@style/Registration.Constant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="4.0dip"
+                            android:paddingRight="8.0dip"
+                            android:text="Retrieving directory..."
+                            android:textSize="16.0sp" />
+                </TableRow>
             </TableLayout>
 
             <TextView

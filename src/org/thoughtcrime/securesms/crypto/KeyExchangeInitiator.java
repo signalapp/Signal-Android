@@ -22,7 +22,7 @@ import android.content.DialogInterface;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.LocalKeyRecord;
+import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;

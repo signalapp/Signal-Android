@@ -17,7 +17,7 @@ import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
-import org.thoughtcrime.securesms.gcm.RegistrationSocket;
+import org.thoughtcrime.securesms.gcm.GcmSocket;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -127,14 +127,14 @@ public class RegistrationService extends Service {
     registerReceiver(gcmRegistrationReceiver, filter);
   }
 
-  private void shutdownChallengeListener() {
+  private synchronized void shutdownChallengeListener() {
     if (challengeReceiver != null) {
       unregisterReceiver(challengeReceiver);
       challengeReceiver = null;
     }
   }
 
-  private void shutdownGcmRegistrationListener() {
+  private synchronized void shutdownGcmRegistrationListener() {
     if (gcmRegistrationReceiver != null) {
       unregisterReceiver(gcmRegistrationReceiver);
       gcmRegistrationReceiver = null;
@@ -144,7 +144,7 @@ public class RegistrationService extends Service {
   private void handleRegistrationIntent(Intent intent) {
     markAsVerifying(true);
 
-    RegistrationSocket socket;
+    GcmSocket socket;
     String number = intent.getStringExtra("e164number");
 
     try {
@@ -153,7 +153,7 @@ public class RegistrationService extends Service {
       initializeGcmRegistrationListener();
 
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
-      socket = new RegistrationSocket(this, number, password);
+      socket = new GcmSocket(this, number, password);
       socket.createAccount();
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
@@ -164,6 +164,9 @@ public class RegistrationService extends Service {
       GCMRegistrar.register(this, GcmIntentService.GCM_SENDER_ID);
       String gcmRegistrationId = waitForGcmRegistrationId();
       socket.registerGcmId(gcmRegistrationId);
+
+      setState(new RegistrationState(RegistrationState.STATE_RETRIEVING_DIRECTORY, number));
+      socket.retrieveDirectory(this);
 
       markAsVerified(number, password);
 
@@ -314,6 +317,8 @@ public class RegistrationService extends Service {
     public static final int STATE_GCM_UNSUPPORTED   = 8;
     public static final int STATE_GCM_REGISTERING   = 9;
     public static final int STATE_GCM_TIMEOUT       = 10;
+
+    public static final int STATE_RETRIEVING_DIRECTORY = 11;
 
     public final int    state;
     public final String number;

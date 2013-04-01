@@ -94,22 +94,22 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private void handleDisplayConversationOrList() {
-    Intent intent = new Intent(this, RegistrationActivity.class);
-    startActivity(intent);
-    finish();
-
-//    ConversationParameters parameters = getConversationParameters();
-//
-//    Intent intent;
-//
-//    if (isShareAction() || parameters.recipients != null) {
-//      intent = getConversationIntent(parameters);
-//    } else {
-//      intent = getConversationListIntent();
-//    }
-//
+//    Intent intent = new Intent(this, RegistrationActivity.class);
 //    startActivity(intent);
 //    finish();
+
+    ConversationParameters parameters = getConversationParameters();
+
+    Intent intent;
+
+    if (isShareAction() || parameters.recipients != null) {
+      intent = getConversationIntent(parameters);
+    } else {
+      intent = getConversationListIntent();
+    }
+
+    startActivity(intent);
+    finish();
   }
 
   private Intent getConversationIntent(ConversationParameters parameters) {

@@ -21,9 +21,9 @@ import android.content.Intent;
 import android.util.Log;
 
 import org.bouncycastle.util.Arrays;
-import org.thoughtcrime.securesms.database.LocalKeyRecord;
-import org.thoughtcrime.securesms.database.RemoteKeyRecord;
-import org.thoughtcrime.securesms.database.SessionRecord;
+import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
+import org.thoughtcrime.securesms.database.keys.RemoteKeyRecord;
+import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.protocol.Message;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;

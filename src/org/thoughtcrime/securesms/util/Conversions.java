@@ -158,6 +158,14 @@ public class Conversions {
     return byteArrayToLong(bytes, 0);
   }
 
+  public static long byteArray4ToLong(byte[] bytes, int offset) {
+    return
+        ((bytes[offset + 0] & 0xffL) << 24) |
+        ((bytes[offset + 1] & 0xffL) << 16) |
+        ((bytes[offset + 2] & 0xffL) << 8)  |
+        ((bytes[offset + 3] & 0xffL));
+  }
+
   public static long byteArrayToLong(byte[] bytes, int offset) {
     return
       ((bytes[offset]     & 0xffL) << 56) |

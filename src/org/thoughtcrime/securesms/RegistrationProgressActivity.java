@@ -46,15 +46,18 @@ public class RegistrationProgressActivity extends SherlockActivity {
   private ProgressBar connectingProgress;
   private ProgressBar verificationProgress;
   private ProgressBar gcmRegistrationProgress;
+  private ProgressBar retrieveDirectoryProgress;
 
   private ImageView   connectingCheck;
   private ImageView   verificationCheck;
   private ImageView   gcmRegistrationCheck;
+  private ImageView   retrieveDirectoryCheck;
 
   private TextView    connectingText;
   private TextView    verificationText;
   private TextView    registrationTimerText;
   private TextView    gcmRegistrationText;
+  private TextView    retrieveDirectoryText;
 
   private Button      editButton;
   private Button      verificationFailureButton;
@@ -108,17 +111,21 @@ public class RegistrationProgressActivity extends SherlockActivity {
     this.connectingProgress        = (ProgressBar) findViewById(R.id.connecting_progress);
     this.verificationProgress      = (ProgressBar) findViewById(R.id.verification_progress);
     this.gcmRegistrationProgress   = (ProgressBar) findViewById(R.id.gcm_registering_progress);
+    this.retrieveDirectoryProgress = (ProgressBar) findViewById(R.id.retrieve_directory_progress);
     this.connectingCheck           = (ImageView)   findViewById(R.id.connecting_complete);
     this.verificationCheck         = (ImageView)   findViewById(R.id.verification_complete);
     this.gcmRegistrationCheck      = (ImageView)   findViewById(R.id.gcm_registering_complete);
+    this.retrieveDirectoryCheck    = (ImageView)   findViewById(R.id.retrieve_directory_complete);
     this.connectingText            = (TextView)    findViewById(R.id.connecting_text);
     this.verificationText          = (TextView)    findViewById(R.id.verification_text);
     this.registrationTimerText     = (TextView)    findViewById(R.id.registration_timer);
     this.gcmRegistrationText       = (TextView)    findViewById(R.id.gcm_registering_text);
+    this.retrieveDirectoryText     = (TextView)    findViewById(R.id.retrieve_directory_text);
     this.editButton                = (Button)      findViewById(R.id.edit_button);
     this.verificationFailureButton = (Button)      findViewById(R.id.verification_failure_edit_button);
     this.connectivityFailureButton = (Button)      findViewById(R.id.connectivity_failure_edit_button);
     this.timeoutProgressLayout     = (RelativeLayout) findViewById(R.id.timer_progress_layout);
+
 
     this.editButton.setOnClickListener(new EditButtonListener());
     this.verificationFailureButton.setOnClickListener(new EditButtonListener());
@@ -159,9 +166,12 @@ public class RegistrationProgressActivity extends SherlockActivity {
     this.verificationCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
+    this.retrieveDirectoryCheck.setVisibility(View.INVISIBLE);
+    this.retrieveDirectoryProgress.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(FOCUSED_COLOR);
     this.verificationText.setTextColor(UNFOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
+    this.retrieveDirectoryText.setTextColor(UNFOCUSED_COLOR);
     this.timeoutProgressLayout.setVisibility(View.VISIBLE);
   }
 
@@ -175,9 +185,12 @@ public class RegistrationProgressActivity extends SherlockActivity {
     this.verificationCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
+    this.retrieveDirectoryCheck.setVisibility(View.INVISIBLE);
+    this.retrieveDirectoryProgress.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(UNFOCUSED_COLOR);
     this.verificationText.setTextColor(FOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
+    this.retrieveDirectoryText.setTextColor(UNFOCUSED_COLOR);
     this.registrationProgress.setVisibility(View.VISIBLE);
     this.timeoutProgressLayout.setVisibility(View.VISIBLE);
   }
@@ -192,12 +205,36 @@ public class RegistrationProgressActivity extends SherlockActivity {
     this.verificationCheck.setVisibility(View.VISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.VISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
+    this.retrieveDirectoryCheck.setVisibility(View.INVISIBLE);
+    this.retrieveDirectoryProgress.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(UNFOCUSED_COLOR);
     this.verificationText.setTextColor(UNFOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(FOCUSED_COLOR);
+    this.retrieveDirectoryText.setTextColor(UNFOCUSED_COLOR);
     this.registrationProgress.setVisibility(View.INVISIBLE);
     this.timeoutProgressLayout.setVisibility(View.INVISIBLE);
   }
+
+  private void handleStateRetrievingDirectory() {
+    this.registrationLayout.setVisibility(View.VISIBLE);
+    this.verificationFailureLayout.setVisibility(View.GONE);
+    this.connectivityFailureLayout.setVisibility(View.GONE);
+    this.connectingProgress.setVisibility(View.INVISIBLE);
+    this.connectingCheck.setVisibility(View.VISIBLE);
+    this.verificationProgress.setVisibility(View.INVISIBLE);
+    this.verificationCheck.setVisibility(View.VISIBLE);
+    this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationCheck.setVisibility(View.VISIBLE);
+    this.retrieveDirectoryCheck.setVisibility(View.INVISIBLE);
+    this.retrieveDirectoryProgress.setVisibility(View.VISIBLE);
+    this.connectingText.setTextColor(UNFOCUSED_COLOR);
+    this.verificationText.setTextColor(UNFOCUSED_COLOR);
+    this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
+    this.retrieveDirectoryText.setTextColor(FOCUSED_COLOR);
+    this.registrationProgress.setVisibility(View.INVISIBLE);
+    this.timeoutProgressLayout.setVisibility(View.INVISIBLE);
+  }
+
 
   private void handleGcmTimeout(String number) {
     handleConnectivityError(number);
@@ -294,15 +331,16 @@ public class RegistrationProgressActivity extends SherlockActivity {
     @Override
     public void handleMessage(Message message) {
       switch (message.what) {
-        case RegistrationState.STATE_IDLE:              handleStateIdle();                              break;
-        case RegistrationState.STATE_CONNECTING:        handleStateConnecting();                        break;
-        case RegistrationState.STATE_VERIFYING:         handleStateVerifying();                         break;
-        case RegistrationState.STATE_TIMER:             handleTimerUpdate();                            break;
-        case RegistrationState.STATE_GCM_REGISTERING:   handleStateGcmRegistering();                    break;
-        case RegistrationState.STATE_TIMEOUT:           handleVerificationTimeout((String)message.obj); break;
-        case RegistrationState.STATE_COMPLETE:          handleVerificationComplete();                   break;
-        case RegistrationState.STATE_GCM_TIMEOUT:       handleGcmTimeout((String)message.obj);          break;
-        case RegistrationState.STATE_NETWORK_ERROR:     handleConnectivityError((String)message.obj);   break;
+        case RegistrationState.STATE_IDLE:                 handleStateIdle();                              break;
+        case RegistrationState.STATE_CONNECTING:           handleStateConnecting();                        break;
+        case RegistrationState.STATE_VERIFYING:            handleStateVerifying();                         break;
+        case RegistrationState.STATE_TIMER:                handleTimerUpdate();                            break;
+        case RegistrationState.STATE_GCM_REGISTERING:      handleStateGcmRegistering();                    break;
+        case RegistrationState.STATE_RETRIEVING_DIRECTORY: handleStateRetrievingDirectory();               break;
+        case RegistrationState.STATE_TIMEOUT:              handleVerificationTimeout((String)message.obj); break;
+        case RegistrationState.STATE_COMPLETE:             handleVerificationComplete();                   break;
+        case RegistrationState.STATE_GCM_TIMEOUT:          handleGcmTimeout((String)message.obj);          break;
+        case RegistrationState.STATE_NETWORK_ERROR:        handleConnectivityError((String)message.obj);   break;
       }
     }
   }

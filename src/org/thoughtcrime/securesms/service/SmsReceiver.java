@@ -18,9 +18,7 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.telephony.SmsMessage;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -37,6 +35,9 @@ import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MultipartMessageHandler;
+import org.thoughtcrime.securesms.sms.TextMessage;
+
+import java.util.ArrayList;
 
 public class SmsReceiver {
 
@@ -70,41 +71,42 @@ public class SmsReceiver {
 
   }
 
-  private String assembleMessageFragments(SmsMessage[] messages) {
+  private String assembleMessageFragments(TextMessage[] messages) {
     StringBuilder body = new StringBuilder();
 
-    for (SmsMessage message : messages) {
-      body.append(message.getDisplayMessageBody());
+    for (TextMessage message : messages) {
+      body.append(message.getMessage());
     }
 
     String messageBody = body.toString();
 
     if (WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody)) {
-      return assembleSecureMessageFragments(messages[0].getDisplayOriginatingAddress(), messageBody);
+      return assembleSecureMessageFragments(messages[0].getSender(), messageBody);
     } else {
       return messageBody;
     }
   }
 
-  private long storeSecureMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
+  private long storeSecureMessage(MasterSecret masterSecret, TextMessage message, String messageBody) {
     long messageId = DatabaseFactory.getSmsDatabase(context).insertSecureMessageReceived(message, messageBody);
     Log.w("SmsReceiver", "Inserted secure message received: " + messageId);
+
     if (masterSecret != null)
-      DecryptingQueue.scheduleDecryption(context, masterSecret, messageId, message.getDisplayOriginatingAddress(), messageBody);
+      DecryptingQueue.scheduleDecryption(context, masterSecret, messageId, message.getSender(), messageBody);
 
     return messageId;
   }
 
-  private long storeStandardMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
+  private long storeStandardMessage(MasterSecret masterSecret, TextMessage message, String messageBody) {
     if      (masterSecret != null)                               return DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageReceived(masterSecret, message, messageBody);
     else if (MasterSecretUtil.hasAsymmericMasterSecret(context)) return DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageReceived(MasterSecretUtil.getAsymmetricMasterSecret(context, null), message, messageBody);
     else                                                         return DatabaseFactory.getSmsDatabase(context).insertMessageReceived(message, messageBody);
   }
 
-  private long storeKeyExchangeMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
+  private long storeKeyExchangeMessage(MasterSecret masterSecret, TextMessage message, String messageBody) {
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true)) {
       try {
-        Recipient recipient                   = new Recipient(null, message.getDisplayOriginatingAddress(), null, null);
+        Recipient recipient                   = new Recipient(null, message.getSender(), null, null);
         KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(messageBody);
         KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
 
@@ -132,7 +134,7 @@ public class SmsReceiver {
     return storeStandardMessage(masterSecret, message, messageBody);
   }
 
-  private long storeMessage(MasterSecret masterSecret, SmsMessage message, String messageBody) {
+  private long storeMessage(MasterSecret masterSecret, TextMessage message, String messageBody) {
     if (messageBody.startsWith(Prefix.ASYMMETRIC_ENCRYPT)) {
       return storeSecureMessage(masterSecret, message, messageBody);
     } else if (messageBody.startsWith(Prefix.KEY_EXCHANGE)) {
@@ -142,19 +144,21 @@ public class SmsReceiver {
     }
   }
 
-  private SmsMessage[] parseMessages(Bundle bundle) {
-    Object[] pdus         = (Object[])bundle.get("pdus");
-    SmsMessage[] messages = new SmsMessage[pdus.length];
-
-    for (int i=0;i<pdus.length;i++)
-      messages[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-
-    return messages;
-  }
+//  private SmsMessage[] parseMessages(Bundle bundle) {
+//    Object[] pdus         = (Object[])bundle.get("pdus");
+//    SmsMessage[] messages = new SmsMessage[pdus.length];
+//
+//    for (int i=0;i<pdus.length;i++)
+//      messages[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
+//
+//    return messages;
+//  }
 
   private void handleReceiveMessage(MasterSecret masterSecret, Intent intent) {
-    Bundle bundle         = intent.getExtras();
-    SmsMessage[] messages = parseMessages(bundle);
+    ArrayList<TextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
+    TextMessage[] messages              = messagesList.toArray(new TextMessage[0]);
+//    Bundle bundle         = intent.getExtras();
+//    SmsMessage[] messages = parseMessages(bundle);
     String message        = assembleMessageFragments(messages);
 
     if (message != null) {

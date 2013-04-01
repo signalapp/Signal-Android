@@ -18,13 +18,13 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.telephony.SmsMessage;
 
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.protocol.Prefix;
+import org.thoughtcrime.securesms.sms.TextMessage;
 
 public class EncryptingSmsDatabase extends SmsDatabase {
 
@@ -65,12 +65,12 @@ public class EncryptingSmsDatabase extends SmsDatabase {
     return insertMessageSent(masterSecret, address, threadId, body, date, Types.ENCRYPTING_TYPE);
   }
 
-  public long insertMessageReceived(MasterSecret masterSecret, SmsMessage message, String body) {
+  public long insertMessageReceived(MasterSecret masterSecret, TextMessage message, String body) {
     String encryptedBody = getEncryptedBody(masterSecret, body);
     return insertMessageReceived(message, encryptedBody);
   }
 
-  public long insertMessageReceived(AsymmetricMasterSecret masterSecret, SmsMessage message, String body) {
+  public long insertMessageReceived(AsymmetricMasterSecret masterSecret, TextMessage message, String body) {
     String encryptedBody = getAsymmetricEncryptedBody(masterSecret, body);
     return insertSecureMessageReceived(message, encryptedBody);
   }

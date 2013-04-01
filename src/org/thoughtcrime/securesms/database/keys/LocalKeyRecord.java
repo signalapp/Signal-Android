@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.thoughtcrime.securesms.database.keys;
 
 import android.content.Context;
 import android.util.Log;
@@ -24,6 +24,9 @@ import org.thoughtcrime.securesms.crypto.KeyPair;
 import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
+import org.thoughtcrime.securesms.database.keys.InvalidKeyIdException;
+import org.thoughtcrime.securesms.database.keys.Record;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.io.FileInputStream;

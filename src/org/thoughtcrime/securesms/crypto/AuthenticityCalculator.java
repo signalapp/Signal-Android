@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.SessionRecord;
+import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class AuthenticityCalculator {
