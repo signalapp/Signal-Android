@@ -25,7 +25,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -43,7 +42,7 @@ public class SmsMigrator {
     if (cursor.isNull(columnIndex)) {
       statement.bindNull(index);
     } else {
-      statement.bindString(index, encryptIfNecessary(context, masterSecret, cursor.getString(columnIndex)));
+      statement.bindString(index, encrypt(masterSecret, cursor.getString(columnIndex)));
     }
   }
 
@@ -71,6 +70,19 @@ public class SmsMigrator {
     }
   }
 
+  private static void addTranslatedTypeToStatement(SQLiteStatement statement, Cursor cursor,
+                                                   int index, String key)
+  {
+    int columnIndex = cursor.getColumnIndexOrThrow(key);
+
+    if (cursor.isNull(columnIndex)) {
+      statement.bindLong(index, SmsDatabase.Types.BASE_INBOX_TYPE | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+    } else {
+      long theirType = cursor.getLong(columnIndex);
+      statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(theirType) | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+    }
+  }
+
   private static void getContentValuesForRow(Context context, MasterSecret masterSecret,
                                              Cursor cursor, long threadId,
                                              SQLiteStatement statement)
@@ -82,7 +94,7 @@ public class SmsMigrator {
     addIntToStatement(statement, cursor, 5, SmsDatabase.PROTOCOL);
     addIntToStatement(statement, cursor, 6, SmsDatabase.READ);
     addIntToStatement(statement, cursor, 7, SmsDatabase.STATUS);
-    addIntToStatement(statement, cursor, 8, SmsDatabase.TYPE);
+    addTranslatedTypeToStatement(statement, cursor, 8, SmsDatabase.TYPE);
     addIntToStatement(statement, cursor, 9, SmsDatabase.REPLY_PATH_PRESENT);
     addStringToStatement(statement, cursor, 10, SmsDatabase.SUBJECT);
     addEncryptedStringToStatement(context, statement, cursor, masterSecret, 11, SmsDatabase.BODY);
@@ -138,16 +150,10 @@ public class SmsMigrator {
     }
   }
 
-  private static String encryptIfNecessary(Context context,
-                                           MasterSecret masterSecret,
-                                           String body)
+  private static String encrypt(MasterSecret masterSecret, String body)
   {
-    if (!body.startsWith(Prefix.SYMMETRIC_ENCRYPT) && !body.startsWith(Prefix.ASYMMETRIC_ENCRYPT)) {
-      MasterCipher masterCipher = new MasterCipher(masterSecret);
-      return Prefix.SYMMETRIC_ENCRYPT + masterCipher.encryptBody(body);
-    }
-
-    return body;
+    MasterCipher masterCipher = new MasterCipher(masterSecret);
+    return masterCipher.encryptBody(body);
   }
 
   private static void migrateConversation(Context context, MasterSecret masterSecret,

@@ -6,17 +6,19 @@ import android.telephony.SmsMessage;
 
 import org.thoughtcrime.securesms.gcm.IncomingGcmMessage;
 
-public class TextMessage implements Parcelable {
+import java.util.List;
 
-  public static final Parcelable.Creator<TextMessage> CREATOR = new Parcelable.Creator<TextMessage>() {
+public class IncomingTextMessage implements Parcelable {
+
+  public static final Parcelable.Creator<IncomingTextMessage> CREATOR = new Parcelable.Creator<IncomingTextMessage>() {
     @Override
-    public TextMessage createFromParcel(Parcel in) {
-      return new TextMessage(in);
+    public IncomingTextMessage createFromParcel(Parcel in) {
+      return new IncomingTextMessage(in);
     }
 
     @Override
-    public TextMessage[] newArray(int size) {
-      return new TextMessage[size];
+    public IncomingTextMessage[] newArray(int size) {
+      return new IncomingTextMessage[size];
     }
   };
 
@@ -28,7 +30,7 @@ public class TextMessage implements Parcelable {
   private final String  pseudoSubject;
   private final long    sentTimestampMillis;
 
-  public TextMessage(SmsMessage message) {
+  public IncomingTextMessage(SmsMessage message) {
     this.message              = message.getDisplayMessageBody();
     this.sender               = message.getDisplayOriginatingAddress();
     this.protocol             = message.getProtocolIdentifier();
@@ -38,7 +40,7 @@ public class TextMessage implements Parcelable {
     this.sentTimestampMillis  = message.getTimestampMillis();
   }
 
-  public TextMessage(IncomingGcmMessage message) {
+  public IncomingTextMessage(IncomingGcmMessage message) {
     this.message              = message.getMessageText();
     this.sender               = message.getSource();
     this.protocol             = 31337;
@@ -48,7 +50,7 @@ public class TextMessage implements Parcelable {
     this.sentTimestampMillis  = message.getTimestampMillis();
   }
 
-  public TextMessage(Parcel in) {
+  public IncomingTextMessage(Parcel in) {
     this.message              = in.readString();
     this.sender               = in.readString();
     this.protocol             = in.readInt();
@@ -56,6 +58,32 @@ public class TextMessage implements Parcelable {
     this.replyPathPresent     = (in.readInt() == 1);
     this.pseudoSubject        = in.readString();
     this.sentTimestampMillis  = in.readLong();
+  }
+
+  public IncomingTextMessage(IncomingTextMessage base, String newBody) {
+    this.message              = newBody;
+    this.sender               = base.getSender();
+    this.protocol             = base.getProtocol();
+    this.serviceCenterAddress = base.getServiceCenterAddress();
+    this.replyPathPresent     = base.isReplyPathPresent();
+    this.pseudoSubject        = base.getPseudoSubject();
+    this.sentTimestampMillis  = base.getSentTimestampMillis();
+  }
+
+  public IncomingTextMessage(List<IncomingTextMessage> fragments) {
+    StringBuilder body = new StringBuilder();
+
+    for (IncomingTextMessage message : fragments) {
+      body.append(message.getMessageBody());
+    }
+
+    this.message              = body.toString();
+    this.sender               = fragments.get(0).getSender();
+    this.protocol             = fragments.get(0).getProtocol();
+    this.serviceCenterAddress = fragments.get(0).getServiceCenterAddress();
+    this.replyPathPresent     = fragments.get(0).isReplyPathPresent();
+    this.pseudoSubject        = fragments.get(0).getPseudoSubject();
+    this.sentTimestampMillis  = fragments.get(0).getSentTimestampMillis();
   }
 
   public long getSentTimestampMillis() {
@@ -66,8 +94,12 @@ public class TextMessage implements Parcelable {
     return pseudoSubject;
   }
 
-  public String getMessage() {
+  public String getMessageBody() {
     return message;
+  }
+
+  public IncomingTextMessage withMessageBody(String message) {
+    return new IncomingTextMessage(this, message);
   }
 
   public String getSender() {
@@ -84,6 +116,14 @@ public class TextMessage implements Parcelable {
 
   public boolean isReplyPathPresent() {
     return replyPathPresent;
+  }
+
+  public boolean isKeyExchange() {
+    return false;
+  }
+
+  public boolean isSecureMessage() {
+    return false;
   }
 
   @Override

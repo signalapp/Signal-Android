@@ -16,15 +16,14 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import android.content.Context;
+
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-
-import android.content.Context;
-import android.util.Log;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.CharacterSets;
@@ -33,25 +32,25 @@ import ws.com.google.android.mms.pdu.PduBody;
 public class SlideDeck {
 
   private final List<Slide> slides = new LinkedList<Slide>();
-	
+
   public SlideDeck(Context context, MasterSecret masterSecret, PduBody body) {
     try {
       for (int i=0;i<body.getPartsNum();i++) {
-	String contentType = new String(body.getPart(i).getContentType(), CharacterSets.MIMENAME_ISO_8859_1);
-	if (ContentType.isImageType(contentType))
-	  slides.add(new ImageSlide(context, masterSecret, body.getPart(i)));
-	else if (ContentType.isVideoType(contentType))
-	  slides.add(new VideoSlide(context, body.getPart(i)));
-	else if (ContentType.isAudioType(contentType))
-	  slides.add(new AudioSlide(context, body.getPart(i)));
-	else if (ContentType.isTextType(contentType))
-	  slides.add(new TextSlide(context, masterSecret, body.getPart(i)));
+        String contentType = new String(body.getPart(i).getContentType(), CharacterSets.MIMENAME_ISO_8859_1);
+        if (ContentType.isImageType(contentType))
+          slides.add(new ImageSlide(context, masterSecret, body.getPart(i)));
+        else if (ContentType.isVideoType(contentType))
+          slides.add(new VideoSlide(context, body.getPart(i)));
+        else if (ContentType.isAudioType(contentType))
+          slides.add(new AudioSlide(context, body.getPart(i)));
+        else if (ContentType.isTextType(contentType))
+          slides.add(new TextSlide(context, masterSecret, body.getPart(i)));
       }	
     } catch (UnsupportedEncodingException uee) {
       throw new AssertionError(uee);
     }
   }
-	
+
   public SlideDeck() {
   }
 	
@@ -61,10 +60,10 @@ public class SlideDeck {
 	
   public PduBody toPduBody() {
     PduBody body = new PduBody();
-    Iterator<Slide> iterator = slides.iterator();
-		
-    while (iterator.hasNext())
-      body.addPart(iterator.next().getPart());
+
+    for (Slide slide : slides) {
+      body.addPart(slide.getPart());
+    }
 		
     return body;
   }

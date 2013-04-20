@@ -21,12 +21,12 @@ import android.database.Cursor;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingMmsDatabase;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -35,14 +35,14 @@ import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.WorkerThread;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.MultimediaMessagePdu;
 import ws.com.google.android.mms.pdu.PduParser;
-
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * A work queue for processing a number of encryption operations.
@@ -52,15 +52,16 @@ import java.util.List;
 
 public class DecryptingQueue {
 
-  private static List<Runnable> workQueue = new LinkedList<Runnable>();
-  private static Thread workerThread;
+  private static final List<Runnable> workQueue = new LinkedList<Runnable>();
 
   static {
-    workerThread = new WorkerThread(workQueue, "Async Decryption Thread");
+    Thread workerThread = new WorkerThread(workQueue, "Async Decryption Thread");
     workerThread.start();
   }
 
-  public static void scheduleDecryption(Context context, MasterSecret masterSecret, long messageId, long threadId, MultimediaMessagePdu mms) {
+  public static void scheduleDecryption(Context context, MasterSecret masterSecret,
+                                        long messageId, long threadId, MultimediaMessagePdu mms)
+  {
     MmsDecryptionItem runnable = new MmsDecryptionItem(context, masterSecret, messageId, threadId, mms);
     synchronized (workQueue) {
       workQueue.add(runnable);
@@ -68,8 +69,12 @@ public class DecryptingQueue {
     }
   }
 
-  public static void scheduleDecryption(Context context, MasterSecret masterSecret, long messageId, String originator, String body) {
-    DecryptionWorkItem runnable = new DecryptionWorkItem(context, masterSecret, messageId, body, originator);
+  public static void scheduleDecryption(Context context, MasterSecret masterSecret,
+                                        long messageId, String originator, String body,
+                                        boolean isSecureMessage)
+  {
+    DecryptionWorkItem runnable = new DecryptionWorkItem(context, masterSecret, messageId,
+                                                         originator, body, isSecureMessage);
     synchronized (workQueue) {
       workQueue.add(runnable);
       workQueue.notifyAll();
@@ -77,47 +82,50 @@ public class DecryptingQueue {
   }
 
   public static void schedulePendingDecrypts(Context context, MasterSecret masterSecret) {
-    Cursor cursor = null;
     Log.w("DecryptingQueue", "Processing pending decrypts...");
 
-    try {
-      cursor = DatabaseFactory.getSmsDatabase(context).getDecryptInProgressMessages();
-      if (cursor == null || cursor.getCount() == 0 || !cursor.moveToFirst())
-        return;
+    EncryptingSmsDatabase.Reader reader = null;
+    SmsMessageRecord record;
 
-      do {
-        scheduleDecryptFromCursor(context, masterSecret, cursor);
-      } while (cursor.moveToNext());
+    try {
+      reader = DatabaseFactory.getEncryptingSmsDatabase(context).getDecryptInProgressMessages(masterSecret);
+
+      while ((record = reader.getNext()) != null) {
+        scheduleDecryptFromCursor(context, masterSecret, record);
+      }
     } finally {
-      if (cursor != null)
-        cursor.close();
+      if (reader != null)
+        reader.close();
     }
   }
 
   public static void scheduleRogueMessages(Context context, MasterSecret masterSecret, Recipient recipient) {
-    Cursor cursor = null;
+    SmsDatabase.Reader reader = null;
+    SmsMessageRecord record;
 
     try {
-      cursor = DatabaseFactory.getSmsDatabase(context).getEncryptedRogueMessages(recipient);
-      if (cursor == null || cursor.getCount() == 0 || !cursor.moveToFirst())
-        return;
+      Cursor cursor = DatabaseFactory.getSmsDatabase(context).getEncryptedRogueMessages(recipient);
+      reader        = DatabaseFactory.getEncryptingSmsDatabase(context).readerFor(masterSecret, cursor);
 
-      do {
-        DatabaseFactory.getSmsDatabase(context).markAsDecrypting(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-        scheduleDecryptFromCursor(context, masterSecret, cursor);
-      } while (cursor.moveToNext());
+      while ((record = reader.getNext()) != null) {
+        DatabaseFactory.getSmsDatabase(context).markAsDecrypting(record.getId());
+        scheduleDecryptFromCursor(context, masterSecret, record);
+      }
     } finally {
-      if (cursor != null)
-        cursor.close();
+      if (reader != null)
+        reader.close();
     }
   }
 
-  private static void scheduleDecryptFromCursor(Context context, MasterSecret masterSecret, Cursor cursor) {
-    long id             = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-    String originator   = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
-    String body         = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
+  private static void scheduleDecryptFromCursor(Context context, MasterSecret masterSecret,
+                                                SmsMessageRecord record)
+  {
+    long messageId          = record.getId();
+    String body             = record.getBody();
+    String originator       = record.getIndividualRecipient().getNumber();
+    boolean isSecureMessage = record.isSecure();
 
-    scheduleDecryption(context, masterSecret, id, originator, body);
+    scheduleDecryption(context, masterSecret, messageId,  originator, body, isSecureMessage);
   }
 
   private static class MmsDecryptionItem implements Runnable {
@@ -127,7 +135,9 @@ public class DecryptingQueue {
     private MasterSecret masterSecret;
     private MultimediaMessagePdu pdu;
 
-    public MmsDecryptionItem(Context context, MasterSecret masterSecret, long messageId, long threadId, MultimediaMessagePdu pdu) {
+    public MmsDecryptionItem(Context context, MasterSecret masterSecret,
+                             long messageId, long threadId, MultimediaMessagePdu pdu)
+    {
       this.context      = context;
       this.masterSecret = masterSecret;
       this.messageId    = messageId;
@@ -148,7 +158,7 @@ public class DecryptingQueue {
 
     @Override
     public void run() {
-      EncryptingMmsDatabase database = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
+      MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
 
       try {
         String messageFrom        = pdu.getFrom().getString();
@@ -178,7 +188,7 @@ public class DecryptingQueue {
 
         MultimediaMessagePdu plaintextPdu = (MultimediaMessagePdu)new PduParser(plaintextPduBytes).parse();
         Log.w("DecryptingQueue", "Successfully decrypted MMS!");
-        database.insertSecureDecryptedMessageReceived(plaintextPdu, threadId);
+        database.insertSecureDecryptedMessageInbox(masterSecret, plaintextPdu, threadId);
         database.delete(messageId);
       } catch (RecipientFormattingException rfe) {
         Log.w("DecryptingQueue", rfe);
@@ -196,18 +206,22 @@ public class DecryptingQueue {
 
   private static class DecryptionWorkItem implements Runnable {
 
-    private long messageId;
-    private Context context;
-    private MasterSecret masterSecret;
-    private String body;
-    private String originator;
+    private final long messageId;
+    private final Context context;
+    private final MasterSecret masterSecret;
+    private final String body;
+    private final String originator;
+    private final boolean isSecureMessage;
 
-    public DecryptionWorkItem(Context context, MasterSecret masterSecret, long messageId, String body, String originator) {
+    public DecryptionWorkItem(Context context, MasterSecret masterSecret, long messageId,
+                              String originator, String body, boolean isSecureMessage)
+    {
       this.context      = context;
       this.messageId    = messageId;
       this.masterSecret = masterSecret;
       this.body         = body;
       this.originator   = originator;
+      this.isSecureMessage = isSecureMessage;
     }
 
     private void handleRemoteAsymmetricEncrypt() {
@@ -240,7 +254,7 @@ public class DecryptingQueue {
         }
       }
 
-      database.updateSecureMessageBody(masterSecret, messageId, plaintextBody);
+      database.updateMessageBody(masterSecret, messageId, plaintextBody);
       MessageNotifier.updateNotification(context, masterSecret);
     }
 
@@ -250,8 +264,7 @@ public class DecryptingQueue {
 
       try {
         AsymmetricMasterCipher asymmetricMasterCipher = new AsymmetricMasterCipher(MasterSecretUtil.getAsymmetricMasterSecret(context, masterSecret));
-        String encryptedBody                          = body.substring(Prefix.ASYMMETRIC_LOCAL_ENCRYPT.length());
-        plaintextBody                                 = asymmetricMasterCipher.decryptBody(encryptedBody);
+        plaintextBody                                 = asymmetricMasterCipher.decryptBody(body);
       } catch (InvalidMessageException ime) {
         Log.w("DecryptionQueue", ime);
         database.markAsDecryptFailed(messageId);
@@ -268,10 +281,11 @@ public class DecryptingQueue {
 
     @Override
     public void run() {
-      if      (body.startsWith(Prefix.ASYMMETRIC_ENCRYPT))       handleRemoteAsymmetricEncrypt();
-      else if (body.startsWith(Prefix.ASYMMETRIC_LOCAL_ENCRYPT)) handleLocalAsymmetricEncrypt();
+      if (isSecureMessage) {
+        handleRemoteAsymmetricEncrypt();
+      } else {
+        handleLocalAsymmetricEncrypt();
+      }
     }
   }
-
-
 }

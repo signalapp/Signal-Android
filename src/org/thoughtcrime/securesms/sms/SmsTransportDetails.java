@@ -16,15 +16,14 @@
  */
 package org.thoughtcrime.securesms.sms;
 
-import java.io.IOException;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.crypto.TransportDetails;
-import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.util.Base64;
 
-import android.util.Log;
+import java.io.IOException;
 
 public class SmsTransportDetails implements TransportDetails {
 	
@@ -51,14 +50,12 @@ public class SmsTransportDetails implements TransportDetails {
 	
   public byte[] encodeMessage(byte[] messageWithMac) {
     String encodedMessage = Base64.encodeBytesWithoutPadding(messageWithMac);
-		
     Log.w("SmsTransportDetails", "Encoded Message Length: " + encodedMessage.length());
-    return (Prefix.ASYMMETRIC_ENCRYPT + encodedMessage).getBytes();
+    return encodedMessage.getBytes();
   }
 	
   public byte[] decodeMessage(byte[] encodedMessageBytes) throws IOException {
     String encodedMessage = new String(encodedMessageBytes);
-    encodedMessage        = encodedMessage.substring(Prefix.ASYMMETRIC_ENCRYPT.length());
     return Base64.decodeWithoutPadding(encodedMessage);
   }
 	
@@ -67,8 +64,8 @@ public class SmsTransportDetails implements TransportDetails {
 		
     for (int i=1;i<messageWithPadding.length;i++) {
       if (messageWithPadding[i] == (byte)0x00) {
-	paddingBeginsIndex = i;
-	break;
+        paddingBeginsIndex = i;
+        break;
       }				
     }
 		
@@ -102,7 +99,7 @@ public class SmsTransportDetails implements TransportDetails {
     return paddedBody;
   }		
 	
-  public static final int getMessageCountForBytes(int bytes) {
+  public static int getMessageCountForBytes(int bytes) {
     if (bytes <= SINGLE_MESSAGE_MAX_BYTES)
       return 1;
 		

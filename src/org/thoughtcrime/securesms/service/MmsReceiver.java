@@ -54,15 +54,9 @@ public class MmsReceiver {
     GenericPdu pdu   = parser.parse();
 
     if (pdu.getMessageType() == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
-      MmsDatabase database;
-
-      if (masterSecret != null)
-        database = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
-      else
-        database = DatabaseFactory.getMmsDatabase(context);
-
-      long messageId = database.insertMessageReceived((NotificationInd)pdu);
-      long threadId  = database.getThreadIdForMessage(messageId);
+      MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+      long messageId       = database.insertMessageInbox((NotificationInd)pdu);
+      long threadId        = database.getThreadIdForMessage(messageId);
 
       MessageNotifier.updateNotification(context, masterSecret, threadId);
       scheduleDownload((NotificationInd)pdu, messageId, threadId);

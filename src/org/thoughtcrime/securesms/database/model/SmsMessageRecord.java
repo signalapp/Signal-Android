@@ -18,10 +18,11 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.protocol.Prefix;
+import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -34,20 +35,15 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 
 public class SmsMessageRecord extends MessageRecord {
 
-  private final Context context;
-  private final long type;
-
   public SmsMessageRecord(Context context, long id,
-                          Recipients recipients,
+                          String body, Recipients recipients,
                           Recipient individualRecipient,
                           long dateSent, long dateReceived,
                           long type, long threadId,
                           int status, GroupData groupData)
   {
-    super(id, recipients, individualRecipient, dateSent, dateReceived,
-          threadId, getGenericDeliveryStatus(status), groupData);
-    this.context  = context.getApplicationContext();
-    this.type     = type;
+    super(context, id, body, recipients, individualRecipient, dateSent, dateReceived,
+          threadId, getGenericDeliveryStatus(status), type, groupData);
   }
 
   public long getType() {
@@ -55,43 +51,26 @@ public class SmsMessageRecord extends MessageRecord {
   }
 
   @Override
-  public void setBody(String body) {
-    if (this.type == SmsDatabase.Types.FAILED_DECRYPT_TYPE) {
-      super.setBody(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
-      setEmphasis(true);
-    } else if (this.type == SmsDatabase.Types.DECRYPT_IN_PROGRESS_TYPE   ||
-               (type == 0 && body.startsWith(Prefix.ASYMMETRIC_ENCRYPT)) ||
-               (type == 0 && body.startsWith(Prefix.ASYMMETRIC_LOCAL_ENCRYPT)))
-    {
-      super.setBody(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
-      setEmphasis(true);
-    } else if (type == SmsDatabase.Types.NO_SESSION_TYPE) {
-      super.setBody(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
-      setEmphasis(true);
+  public SpannableString getDisplayBody() {
+    if (isProcessedKeyExchange()) {
+      return emphasisAdded(context.getString(R.string.ConversationItem_received_and_processed_key_exchange_message));
+    } else if (isStaleKeyExchange()) {
+      return emphasisAdded(context.getString(R.string.ConversationItem_error_received_stale_key_exchange_message));
+    } else if (isKeyExchange() && isOutgoing()) {
+      return emphasisAdded(context.getString(R.string.ConversationListAdapter_key_exchange_message));
+    } else if (isKeyExchange() && !isOutgoing()) {
+      return emphasisAdded(context.getString(R.string.ConversationItem_received_key_exchange_message_click_to_process));
+    } else if (isOutgoing() && Tag.isTagged(getBody())) {
+      return new SpannableString(Tag.stripTag(getBody()));
+    } else if (SmsDatabase.Types.isFailedDecryptType(type)) {
+      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
+    } else if (SmsDatabase.Types.isDecryptInProgressType(type)) {
+      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
+    } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
+      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
     } else {
-      super.setBody(body);
+      return super.getDisplayBody();
     }
-  }
-
-  @Override
-  public boolean isFailed() {
-    return SmsDatabase.Types.isFailedMessageType(getType()) ||
-           getDeliveryStatus() == DELIVERY_STATUS_FAILED;
-  }
-
-  @Override
-  public boolean isOutgoing() {
-    return SmsDatabase.Types.isOutgoingMessageType(getType());
-  }
-
-  @Override
-  public boolean isPending() {
-    return SmsDatabase.Types.isPendingMessageType(getType()) || isGroupDeliveryPending();
-  }
-
-  @Override
-  public boolean isSecure() {
-    return SmsDatabase.Types.isSecureType(getType());
   }
 
   @Override

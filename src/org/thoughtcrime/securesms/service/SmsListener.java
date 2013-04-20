@@ -27,7 +27,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.sms.TextMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 
 import java.util.ArrayList;
 
@@ -77,12 +77,12 @@ public class SmsListener extends BroadcastReceiver {
     return bodyBuilder.toString();
   }
 
-  private ArrayList<TextMessage> getAsTextMessages(Intent intent) {
+  private ArrayList<IncomingTextMessage> getAsTextMessages(Intent intent) {
     Object[] pdus                   = (Object[])intent.getExtras().get("pdus");
-    ArrayList<TextMessage> messages = new ArrayList<TextMessage>(pdus.length);
+    ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>(pdus.length);
 
     for (int i=0;i<pdus.length;i++)
-      messages.add(new TextMessage(SmsMessage.createFromPdu((byte[])pdus[i])));
+      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdus[i])));
 
     return messages;
   }

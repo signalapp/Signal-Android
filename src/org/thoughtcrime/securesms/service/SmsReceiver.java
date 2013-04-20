@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
@@ -30,14 +31,16 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartMessageHandler;
-import org.thoughtcrime.securesms.sms.TextMessage;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SmsReceiver {
 
@@ -49,80 +52,63 @@ public class SmsReceiver {
     this.context      = context;
   }
 
-  private String assembleSecureMessageFragments(String sender, String messageBody) {
-    String localPrefix;
 
-    if (WirePrefix.isEncryptedMessage(messageBody)) {
-      localPrefix = Prefix.ASYMMETRIC_ENCRYPT;
+  private IncomingTextMessage assembleMessageFragments(List<IncomingTextMessage> messages) {
+    IncomingTextMessage message = new IncomingTextMessage(messages);
+
+    if (WirePrefix.isEncryptedMessage(message.getMessageBody()) || WirePrefix.isKeyExchange(message.getMessageBody())) {
+      return multipartMessageHandler.processPotentialMultipartMessage(message);
     } else {
-      localPrefix = Prefix.KEY_EXCHANGE;
+      return message;
     }
-
-    Log.w("SMSReceiverService", "Calculated local prefix for message: " + messageBody + " - Local Prefix: " + localPrefix);
-
-    messageBody = messageBody.substring(WirePrefix.PREFIX_SIZE);
-
-    Log.w("SMSReceiverService", "Parsed off wire prefix: " + messageBody);
-
-    if (!multipartMessageHandler.isManualTransport(messageBody))
-      return localPrefix + messageBody;
-    else
-      return multipartMessageHandler.processPotentialMultipartMessage(localPrefix, sender, messageBody);
-
   }
 
-  private String assembleMessageFragments(TextMessage[] messages) {
-    StringBuilder body = new StringBuilder();
+  private Pair<Long, Long> storeSecureMessage(MasterSecret masterSecret, IncomingTextMessage message) {
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getEncryptingSmsDatabase(context)
+                                                         .insertMessageInbox(masterSecret, message);
 
-    for (TextMessage message : messages) {
-      body.append(message.getMessage());
+    if (masterSecret != null) {
+      DecryptingQueue.scheduleDecryption(context, masterSecret, messageAndThreadId.first,
+                                         message.getSender(), message.getMessageBody(),
+                                         message.isSecureMessage());
     }
 
-    String messageBody = body.toString();
+    return messageAndThreadId;
+  }
 
-    if (WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody)) {
-      return assembleSecureMessageFragments(messages[0].getSender(), messageBody);
+  private Pair<Long, Long> storeStandardMessage(MasterSecret masterSecret, IncomingTextMessage message) {
+    EncryptingSmsDatabase encryptingDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
+    SmsDatabase           plaintextDatabase  = DatabaseFactory.getSmsDatabase(context);
+
+    if (masterSecret != null) {
+      return encryptingDatabase.insertMessageInbox(masterSecret, message);
+    } else if (MasterSecretUtil.hasAsymmericMasterSecret(context)) {
+      return encryptingDatabase.insertMessageInbox(MasterSecretUtil.getAsymmetricMasterSecret(context, null), message);
     } else {
-      return messageBody;
+      return plaintextDatabase.insertMessageInbox(message);
     }
   }
 
-  private long storeSecureMessage(MasterSecret masterSecret, TextMessage message, String messageBody) {
-    long messageId = DatabaseFactory.getSmsDatabase(context).insertSecureMessageReceived(message, messageBody);
-    Log.w("SmsReceiver", "Inserted secure message received: " + messageId);
-
-    if (masterSecret != null)
-      DecryptingQueue.scheduleDecryption(context, masterSecret, messageId, message.getSender(), messageBody);
-
-    return messageId;
-  }
-
-  private long storeStandardMessage(MasterSecret masterSecret, TextMessage message, String messageBody) {
-    if      (masterSecret != null)                               return DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageReceived(masterSecret, message, messageBody);
-    else if (MasterSecretUtil.hasAsymmericMasterSecret(context)) return DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageReceived(MasterSecretUtil.getAsymmetricMasterSecret(context, null), message, messageBody);
-    else                                                         return DatabaseFactory.getSmsDatabase(context).insertMessageReceived(message, messageBody);
-  }
-
-  private long storeKeyExchangeMessage(MasterSecret masterSecret, TextMessage message, String messageBody) {
+  private Pair<Long, Long> storeKeyExchangeMessage(MasterSecret masterSecret,
+                                                   IncomingKeyExchangeMessage message)
+  {
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true)) {
       try {
         Recipient recipient                   = new Recipient(null, message.getSender(), null, null);
-        KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(messageBody);
+        KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(message.getMessageBody());
         KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
 
         Log.w("SmsReceiver", "Received key with fingerprint: " + keyExchangeMessage.getPublicKey().getFingerprint());
 
         if (processor.isStale(keyExchangeMessage)) {
-          messageBody    = messageBody.substring(Prefix.KEY_EXCHANGE.length());
-          messageBody    = Prefix.STALE_KEY_EXCHANGE + messageBody;
+          message.setStale(true);
         } else if (!processor.hasCompletedSession() || processor.hasSameSessionIdentity(keyExchangeMessage)) {
-          messageBody    = messageBody.substring(Prefix.KEY_EXCHANGE.length());
-          messageBody    = Prefix.PROCESSED_KEY_EXCHANGE + messageBody;
-          long messageId = storeStandardMessage(masterSecret, message, messageBody);
-          long threadId  = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
+          message.setProcessed(true);
 
-          processor.processKeyExchangeMessage(keyExchangeMessage, threadId);
-          return messageId;
+          Pair<Long, Long> messageAndThreadId = storeStandardMessage(masterSecret, message);
+          processor.processKeyExchangeMessage(keyExchangeMessage, messageAndThreadId.second);
+
+          return messageAndThreadId;
         }
       } catch (InvalidVersionException e) {
         Log.w("SmsReceiver", e);
@@ -131,41 +117,22 @@ public class SmsReceiver {
       }
     }
 
-    return storeStandardMessage(masterSecret, message, messageBody);
+    return storeStandardMessage(masterSecret, message);
   }
 
-  private long storeMessage(MasterSecret masterSecret, TextMessage message, String messageBody) {
-    if (messageBody.startsWith(Prefix.ASYMMETRIC_ENCRYPT)) {
-      return storeSecureMessage(masterSecret, message, messageBody);
-    } else if (messageBody.startsWith(Prefix.KEY_EXCHANGE)) {
-      return storeKeyExchangeMessage(masterSecret, message, messageBody);
-    } else {
-      return storeStandardMessage(masterSecret, message, messageBody);
-    }
+  private Pair<Long, Long> storeMessage(MasterSecret masterSecret, IncomingTextMessage message) {
+    if      (message.isSecureMessage()) return storeSecureMessage(masterSecret, message);
+    else if (message.isKeyExchange())   return storeKeyExchangeMessage(masterSecret, (IncomingKeyExchangeMessage)message);
+    else                                return storeStandardMessage(masterSecret, message);
   }
-
-//  private SmsMessage[] parseMessages(Bundle bundle) {
-//    Object[] pdus         = (Object[])bundle.get("pdus");
-//    SmsMessage[] messages = new SmsMessage[pdus.length];
-//
-//    for (int i=0;i<pdus.length;i++)
-//      messages[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-//
-//    return messages;
-//  }
 
   private void handleReceiveMessage(MasterSecret masterSecret, Intent intent) {
-    ArrayList<TextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
-    TextMessage[] messages              = messagesList.toArray(new TextMessage[0]);
-//    Bundle bundle         = intent.getExtras();
-//    SmsMessage[] messages = parseMessages(bundle);
-    String message        = assembleMessageFragments(messages);
+    List<IncomingTextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
+    IncomingTextMessage message            = assembleMessageFragments(messagesList);
 
     if (message != null) {
-      long messageId = storeMessage(masterSecret, messages[0], message);
-      long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
-
-      MessageNotifier.updateNotification(context, masterSecret, threadId);
+      Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
+      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     }
   }
 

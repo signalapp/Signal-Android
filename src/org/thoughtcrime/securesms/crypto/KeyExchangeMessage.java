@@ -16,18 +16,17 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import java.io.IOException;
+import android.content.Context;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
 import org.thoughtcrime.securesms.protocol.Message;
-import org.thoughtcrime.securesms.protocol.Prefix;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Conversions;
 
-import android.content.Context;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import java.io.IOException;
 
 /**
  * A class for constructing and parsing key exchange messages.
@@ -78,15 +77,14 @@ public class KeyExchangeMessage {
       keyExchangeBytes = IdentityKeyUtil.getSignedKeyExchange(context, masterSecret, keyExchangeBytes);
 
     if (messageVersion < 1)
-      this.serialized = Prefix.KEY_EXCHANGE + Base64.encodeBytes(keyExchangeBytes);
+      this.serialized = Base64.encodeBytes(keyExchangeBytes);
     else
-      this.serialized = Prefix.KEY_EXCHANGE + Base64.encodeBytesWithoutPadding(keyExchangeBytes);
+      this.serialized = Base64.encodeBytesWithoutPadding(keyExchangeBytes);
   }
 	
   public KeyExchangeMessage(String messageBody) throws InvalidVersionException, InvalidKeyException {
     try {
-      String keyString      = messageBody.substring(Prefix.KEY_EXCHANGE.length()); 
-      byte[] keyBytes       = Base64.decode(keyString);
+      byte[] keyBytes       = Base64.decode(messageBody);
       this.messageVersion   = Conversions.highBitsToInt(keyBytes[0]);
       this.supportedVersion = Conversions.lowBitsToInt(keyBytes[0]);
       this.serialized       = messageBody;
@@ -95,7 +93,7 @@ public class KeyExchangeMessage {
         throw new InvalidVersionException("Key exchange with version: " + messageVersion + " but we only support: " + Message.SUPPORTED_VERSION);
 				
       if (messageVersion >= 1)
-        keyBytes = Base64.decodeWithoutPadding(keyString);
+        keyBytes = Base64.decodeWithoutPadding(messageBody);
 			
       this.publicKey  = new PublicKey(keyBytes, 1);
 			

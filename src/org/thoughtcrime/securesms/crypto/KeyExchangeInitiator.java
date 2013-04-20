@@ -24,10 +24,8 @@ import android.util.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-
-import java.util.LinkedList;
+import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 
 public class KeyExchangeInitiator {
 
@@ -51,14 +49,13 @@ public class KeyExchangeInitiator {
   }
 
   private static void initiateKeyExchange(Context context, MasterSecret masterSecret, Recipient recipient) {
-    LocalKeyRecord record      = KeyUtil.initializeRecordFor(recipient, context, masterSecret);
-    KeyExchangeMessage message = new KeyExchangeMessage(context, masterSecret, 1, record, 0);
+    LocalKeyRecord record                  = KeyUtil.initializeRecordFor(recipient, context, masterSecret);
+    KeyExchangeMessage message             = new KeyExchangeMessage(context, masterSecret, 1, record, 0);
+    OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, message.serialize());
 
     Log.w("SendKeyActivity", "Sending public key: " + record.getCurrentKeyPair().getPublicKey().getFingerprint());
-    LinkedList<Recipient> list = new LinkedList<Recipient>();
-    list.add(recipient);
 
-    MessageSender.send(context, masterSecret, new Recipients(list), -1, message.serialize(), true);
+    MessageSender.send(context, masterSecret, textMessage, -1);
   }
 
   private static boolean hasInitiatedSession(Context context, MasterSecret masterSecret, Recipient recipient) {

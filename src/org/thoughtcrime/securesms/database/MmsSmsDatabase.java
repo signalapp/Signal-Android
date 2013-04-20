@@ -23,6 +23,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,53 +38,54 @@ public class MmsSmsDatabase extends Database {
   public static final String MMS_GROUP_SENT_COUNT        = "mms_group_sent_count";
   public static final String MMS_GROUP_SEND_FAILED_COUNT = "mms_group_sent_failed_count";
 
-  public static final String DATE_SENT     = "date_sent";
-  public static final String DATE_RECEIVED = "date_received";
+  public static final String MMS_TRANSPORT = "mms";
+  public static final String SMS_TRANSPORT = "sms";
 
   public MmsSmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
   public Cursor getCollatedGroupConversation(long threadId) {
-    String smsCaseSecurity = "CASE " + SmsDatabase.TYPE + " " +
-                             "WHEN " + SmsDatabase.Types.SENT_TYPE             + " THEN 1 " +
-                             "WHEN " + SmsDatabase.Types.SENT_PENDING          + " THEN 1 " +
-                             "WHEN " + SmsDatabase.Types.ENCRYPTED_OUTBOX_TYPE + " THEN 1 " +
-                             "WHEN " + SmsDatabase.Types.FAILED_TYPE           + " THEN 1 " +
-                             "WHEN " + SmsDatabase.Types.ENCRYPTING_TYPE       + " THEN 2 " +
-                             "WHEN " + SmsDatabase.Types.SECURE_SENT_TYPE      + " THEN 2 " +
+    String smsCaseSecurity = "CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.SECURE_MESSAGE_BIT + " " +
+                             "WHEN " + SmsDatabase.Types.SECURE_MESSAGE_BIT    + " THEN 1 " +
                              "ELSE 0 END";
 
-    String mmsCaseSecurity = "CASE " + MmsDatabase.MESSAGE_BOX + " " +
-                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_OUTBOX        + " THEN 'insecure' " +
-                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SENT          + " THEN 'insecure' " +
-                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SENT_FAILED   + " THEN 'insecure' " +
-                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SECURE_OUTBOX + " THEN 'secure' " +
-                             "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SECURE_SENT   + " THEN 'secure' " +
-                             "ELSE 0 END";
+    String mmsCaseSecurity = "CASE " + MmsDatabase.MESSAGE_BOX + " & " + SmsDatabase.Types.SECURE_MESSAGE_BIT + " " +
+                             "WHEN " + MmsDatabase.Types.SECURE_MESSAGE_BIT + " THEN 'secure' " +
+                             "ELSE 'insecure' END";
 
-    String mmsGroupSentCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " " +
-                               "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SENT        + " THEN 1 " +
-                               "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SECURE_SENT + " THEN 1 " +
+    String mmsGroupSentCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " & " + MmsDatabase.Types.BASE_TYPE_MASK + " " +
+                               "WHEN " + MmsDatabase.Types.BASE_SENT_TYPE + " THEN 1 " +
                                "ELSE 0 END)";
 
-    String smsGroupSentCount = "SUM(CASE " + SmsDatabase.TYPE + " " +
-                               "WHEN " + SmsDatabase.Types.SENT_TYPE        + " THEN 1 " +
-                               "WHEN " + SmsDatabase.Types.SECURE_SENT_TYPE + " THEN 1 " +
+
+    String smsGroupSentCount = "SUM(CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.BASE_TYPE_MASK + " " +
+                               "WHEN " + SmsDatabase.Types.BASE_SENT_TYPE + " THEN 1 " +
                                "ELSE 0 END)";
 
-    String mmsGroupSentFailedCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " " +
-                                     "WHEN " + MmsDatabase.Types.MESSAGE_BOX_SENT_FAILED + " THEN 1 " +
+    String mmsGroupSentFailedCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " & " + MmsDatabase.Types.BASE_TYPE_MASK + " " +
+                                     "WHEN " + MmsDatabase.Types.BASE_SENT_FAILED_TYPE + " THEN 1 " +
                                      "ELSE 0 END)";
 
-    String smsGroupSentFailedCount = "SUM(CASE " + SmsDatabase.TYPE + " " +
-                                     "WHEN " + SmsDatabase.Types.FAILED_TYPE + " THEN 1 " +
+    String smsGroupSentFailedCount = "SUM(CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.BASE_TYPE_MASK +  " " +
+                                     "WHEN " + SmsDatabase.Types.BASE_SENT_FAILED_TYPE + " THEN 1 " +
                                      "ELSE 0 END)";
 
-    String[] projection = {"_id", "body", "type", "address", "subject", "status", "normalized_date_sent AS date_sent", "normalized_date_received AS date_received", "m_type", "msg_box", "transport_type", "COUNT(_id) AS group_size", mmsGroupSentCount + " AS mms_group_sent_count", mmsGroupSentFailedCount + " AS mms_group_sent_failed_count", smsGroupSentCount + " AS sms_group_sent_count", smsGroupSentFailedCount + " AS sms_group_sent_failed_count", smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
-    String order        = "normalized_date_received ASC";
-    String selection    = "thread_id = " + threadId;
-    String groupBy      = "normalized_date_sent / 1000, sms_collate, mms_collate";
+    String[] projection = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
+                           MmsSmsColumns.THREAD_ID,
+                           SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, SmsDatabase.STATUS,
+                           MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+                           MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX, TRANSPORT,
+                           "COUNT(" + MmsSmsColumns.ID + ") AS " + GROUP_SIZE,
+                           mmsGroupSentCount + " AS " + MMS_GROUP_SENT_COUNT,
+                           mmsGroupSentFailedCount + " AS " + MMS_GROUP_SEND_FAILED_COUNT,
+                           smsGroupSentCount + " AS " + SMS_GROUP_SENT_COUNT,
+                           smsGroupSentFailedCount + " AS " + SMS_GROUP_SEND_FAILED_COUNT,
+                           smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
+
+    String order        = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
+    String selection    = MmsSmsColumns.THREAD_ID + " = " + threadId;
+    String groupBy      = MmsSmsColumns.NORMALIZED_DATE_SENT + " / 1000, sms_collate, mms_collate";
 
     Cursor cursor = queryTables(projection, selection, order, groupBy, null);
     setNotifyConverationListeners(cursor, threadId);
@@ -90,12 +94,17 @@ public class MmsSmsDatabase extends Database {
   }
 
   public Cursor getConversation(long threadId) {
-    String[] projection    = {"_id", "body", "type", "address", "subject",
-                              "normalized_date_sent AS date_sent",
-                              "normalized_date_received AS date_received",
-                              "m_type", "msg_box", "status", "transport_type"};
-    String order           = "normalized_date_received ASC";
-    String selection       = "thread_id = " + threadId;
+    String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
+                              MmsSmsColumns.THREAD_ID,
+                              SmsDatabase.ADDRESS, SmsDatabase.SUBJECT,
+                              MmsSmsColumns.NORMALIZED_DATE_SENT,
+                              MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+                              MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
+                              SmsDatabase.STATUS, TRANSPORT};
+
+    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
+
+    String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
     Cursor cursor = queryTables(projection, selection, order, null, null);
     setNotifyConverationListeners(cursor, threadId);
@@ -104,27 +113,30 @@ public class MmsSmsDatabase extends Database {
   }
 
   public Cursor getConversationSnippet(long threadId) {
-    String[] projection    = {"_id", "body", "type", "address", "subject",
-                              "normalized_date_sent AS date_sent",
-                              "normalized_date_received AS date_received",
-                              "m_type", "msg_box", "transport_type"};
-    String order           = "normalized_date_received DESC";
-    String selection       = "thread_id = " + threadId;
+    String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
+                              SmsDatabase.ADDRESS, SmsDatabase.SUBJECT,
+                              MmsSmsColumns.NORMALIZED_DATE_SENT,
+                              MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+                              MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
+                              TRANSPORT};
+    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
+    String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
-    Cursor cursor = queryTables(projection, selection, order, null, "1");
-    return cursor;
+    return  queryTables(projection, selection, order, null, "1");
   }
 
   public Cursor getUnread() {
-    String[] projection    = {"_id", "body", "read", "type", "address", "subject", "thread_id",
-                              "normalized_date_sent AS date_sent",
-                              "normalized_date_received AS date_received",
-                              "m_type", "msg_box", "transport_type"};
-    String order           = "normalized_date_received ASC";
-    String selection       = "read = 0";
+    String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.READ, SmsDatabase.TYPE,
+                              SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, MmsSmsColumns.THREAD_ID,
+                              SmsDatabase.STATUS,
+                              MmsSmsColumns.NORMALIZED_DATE_SENT,
+                              MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+                              MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
+                              TRANSPORT};
+    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
+    String selection       = MmsSmsColumns.READ + " = 0";
 
-    Cursor cursor = queryTables(projection, selection, order, null, null);
-    return cursor;
+    return queryTables(projection, selection, order, null, null);
   }
 
   public int getConversationCount(long threadId) {
@@ -135,8 +147,18 @@ public class MmsSmsDatabase extends Database {
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String groupBy, String limit) {
-    String[] mmsProjection = {"date * 1000 AS normalized_date_sent", "date_received * 1000 AS normalized_date_received", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "status", "transport_type"};
-    String[] smsProjection = {"date_sent * 1 AS normalized_date_sent", "date * 1 AS normalized_date_received", "_id", "body", "read", "thread_id", "type", "address", "subject", "date", "m_type", "msg_box", "status", "transport_type"};
+    String[] mmsProjection = {MmsDatabase.DATE_SENT + " * 1000 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
+                              MmsDatabase.DATE_RECEIVED + " * 1000 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+                              MmsSmsColumns.ID, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
+                              SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
+                              MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, TRANSPORT};
+
+    String[] smsProjection = {SmsDatabase.DATE_SENT + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
+                              SmsDatabase.DATE_RECEIVED + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+                              MmsSmsColumns.ID, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
+                              SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
+                              MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, TRANSPORT};
+
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -148,28 +170,28 @@ public class MmsSmsDatabase extends Database {
     smsQueryBuilder.setTables(SmsDatabase.TABLE_NAME);
 
     Set<String> mmsColumnsPresent = new HashSet<String>();
-    mmsColumnsPresent.add("_id");
-    mmsColumnsPresent.add("m_type");
-    mmsColumnsPresent.add("msg_box");
-    mmsColumnsPresent.add("date");
-    mmsColumnsPresent.add("date_received");
-    mmsColumnsPresent.add("read");
-    mmsColumnsPresent.add("thread_id");
+    mmsColumnsPresent.add(MmsSmsColumns.ID);
+    mmsColumnsPresent.add(MmsDatabase.MESSAGE_TYPE);
+    mmsColumnsPresent.add(MmsDatabase.MESSAGE_BOX);
+    mmsColumnsPresent.add(MmsDatabase.DATE_SENT);
+    mmsColumnsPresent.add(MmsDatabase.DATE_RECEIVED);
+    mmsColumnsPresent.add(MmsSmsColumns.READ);
+    mmsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
 
     Set<String> smsColumnsPresent = new HashSet<String>();
-    smsColumnsPresent.add("_id");
-    smsColumnsPresent.add("body");
-    smsColumnsPresent.add("type");
-    smsColumnsPresent.add("address");
-    smsColumnsPresent.add("subject");
-    smsColumnsPresent.add("date_sent");
-    smsColumnsPresent.add("date");
-    smsColumnsPresent.add("read");
-    smsColumnsPresent.add("thread_id");
-    smsColumnsPresent.add("status");
+    smsColumnsPresent.add(MmsSmsColumns.ID);
+    smsColumnsPresent.add(SmsDatabase.BODY);
+    smsColumnsPresent.add(SmsDatabase.TYPE);
+    smsColumnsPresent.add(SmsDatabase.ADDRESS);
+    smsColumnsPresent.add(SmsDatabase.SUBJECT);
+    smsColumnsPresent.add(SmsDatabase.DATE_SENT);
+    smsColumnsPresent.add(SmsDatabase.DATE_RECEIVED);
+    smsColumnsPresent.add(MmsSmsColumns.READ);
+    smsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
+    smsColumnsPresent.add(SmsDatabase.STATUS);
 
-    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery("transport_type", mmsProjection, mmsColumnsPresent, 2, "mms", selection, null, null, null);
-    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery("transport_type", smsProjection, smsColumnsPresent, 2, "sms", selection, null, null, null);
+    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 2, MMS_TRANSPORT, selection, null, null, null);
+    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery(TRANSPORT, smsProjection, smsColumnsPresent, 2, SMS_TRANSPORT, selection, null, null, null);
 
     SQLiteQueryBuilder unionQueryBuilder = new SQLiteQueryBuilder();
     String unionQuery = unionQueryBuilder.buildUnionQuery(new String[] {smsSubQuery, mmsSubQuery}, order, null);
@@ -181,9 +203,50 @@ public class MmsSmsDatabase extends Database {
 
     Log.w("MmsSmsDatabase", "Executing query: " + query);
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     = db.rawQuery(query, null);
-    return cursor;
-
+    return db.rawQuery(query, null);
   }
 
+  public Reader readerFor(Cursor cursor, MasterSecret masterSecret) {
+    return new Reader(cursor, masterSecret);
+  }
+
+  public Reader readerFor(Cursor cursor) {
+    return new Reader(cursor);
+  }
+
+  public class Reader {
+
+    private final Cursor cursor;
+    private final EncryptingSmsDatabase.Reader smsReader;
+    private final MmsDatabase.Reader mmsReader;
+
+    public Reader(Cursor cursor, MasterSecret masterSecret) {
+      this.cursor       = cursor;
+      this.smsReader    = DatabaseFactory.getEncryptingSmsDatabase(context).readerFor(masterSecret, cursor);
+      this.mmsReader    = DatabaseFactory.getMmsDatabase(context).readerFor(masterSecret, cursor);
+    }
+
+    public Reader(Cursor cursor) {
+      this.cursor = cursor;
+      this.smsReader = DatabaseFactory.getSmsDatabase(context).readerFor(cursor);
+      this.mmsReader = DatabaseFactory.getMmsDatabase(context).readerFor(null, cursor);
+    }
+
+    public MessageRecord getNext() {
+      if (cursor == null || !cursor.moveToNext())
+        return null;
+
+      return getCurrent();
+    }
+
+    public MessageRecord getCurrent() {
+      String type = cursor.getString(cursor.getColumnIndexOrThrow(TRANSPORT));
+
+      if (type.equals(MmsSmsDatabase.MMS_TRANSPORT)) {
+        return mmsReader.getCurrent();
+      } else {
+        return smsReader.getCurrent();
+      }
+    }
+  }
 }

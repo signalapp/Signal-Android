@@ -22,14 +22,24 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
+import android.util.Pair;
 
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.TextMessage;
+import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Trimmer;
+import org.thoughtcrime.securesms.util.Util;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -39,17 +49,14 @@ import java.util.Set;
  * @author Moxie Marlinspike
  */
 
-public class SmsDatabase extends Database {
+public class SmsDatabase extends Database implements MmsSmsColumns {
 
   public  static final String TABLE_NAME         = "sms";
-  public  static final String ID                 = "_id";
-  public  static final String THREAD_ID          = "thread_id";
   public  static final String ADDRESS            = "address";
   public  static final String PERSON             = "person";
-  public  static final String DATE_RECEIVED      = "date";
-  public  static final String DATE_SENT          = "date_sent";
+          static final String DATE_RECEIVED      = "date";
+          static final String DATE_SENT          = "date_sent";
   public  static final String PROTOCOL           = "protocol";
-  public  static final String READ               = "read";
   public  static final String STATUS             = "status";
   public  static final String TYPE               = "type";
   public  static final String REPLY_PATH_PRESENT = "reply_path_present";
@@ -70,52 +77,31 @@ public class SmsDatabase extends Database {
     "CREATE INDEX IF NOT EXISTS sms_type_index ON " + TABLE_NAME + " (" + TYPE + ");"
   };
 
+  private static final String[] MESSAGE_PROJECTION = new String[] {
+      ID, THREAD_ID, ADDRESS, PERSON,
+      DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
+      DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
+      PROTOCOL, READ, STATUS, TYPE,
+      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER
+  };
+
   public SmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
-  private void updateType(long id, long type) {
-    Log.w("MessageDatabase", "Updating ID: " + id + " to type: " + type);
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(TYPE, type);
+  private void updateTypeBitmask(long id, long maskOff, long maskOn) {
+    Log.w("MessageDatabase", "Updating ID: " + id + " to base type: " + maskOn);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {id+""});
-    notifyConversationListeners(getThreadIdForMessage(id));
-  }
+    db.execSQL("UPDATE " + TABLE_NAME +
+               " SET " + TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
+               " WHERE " + ID + " = ?", new String[] {id+""});
 
-  private long insertMessageReceived(TextMessage message, String body, long type, long timeSent) {
-    List<Recipient> recipientList = new ArrayList<Recipient>(1);
-    recipientList.add(new Recipient(null, message.getSender(), null, null));
-    Recipients recipients         = new Recipients(recipientList);
+    long threadId = getThreadIdForMessage(id);
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-
-    ContentValues values = new ContentValues(6);
-    values.put(ADDRESS, message.getSender());
-    values.put(DATE_RECEIVED, Long.valueOf(System.currentTimeMillis()));
-    values.put(DATE_SENT, timeSent);
-    values.put(PROTOCOL, message.getProtocol());
-    values.put(READ, Integer.valueOf(0));
-
-    if (message.getPseudoSubject().length() > 0)
-      values.put(SUBJECT, message.getPseudoSubject());
-
-    values.put(REPLY_PATH_PRESENT, message.isReplyPathPresent() ? 1 : 0);
-    values.put(SERVICE_CENTER, message.getServiceCenterAddress());
-    values.put(BODY, body);
-    values.put(TYPE, type);
-    values.put(THREAD_ID, threadId);
-
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    long messageId    = db.insert(TABLE_NAME, null, values);
-
-    DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
-    Trimmer.trimThread(context, threadId);
-
-    return messageId;
+    notifyConversationListListeners();
   }
 
   public long getThreadIdForMessage(long id) {
@@ -142,7 +128,8 @@ public class SmsDatabase extends Database {
     Cursor cursor     = null;
 
     try {
-      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, THREAD_ID + " = ?", new String[] {threadId+""}, null, null, null);
+      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, THREAD_ID + " = ?",
+                        new String[] {threadId+""}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst())
         return cursor.getInt(0);
@@ -155,22 +142,19 @@ public class SmsDatabase extends Database {
   }
 
   public void markAsDecryptFailed(long id) {
-    updateType(id, Types.FAILED_DECRYPT_TYPE);
+    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
   }
 
   public void markAsNoSession(long id) {
-    updateType(id, Types.NO_SESSION_TYPE);
+    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
   }
 
   public void markAsDecrypting(long id) {
-    updateType(id, Types.DECRYPT_IN_PROGRESS_TYPE);
+    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_BIT);
   }
 
-  public void markAsSent(long id, long type) {
-    if (type == Types.ENCRYPTING_TYPE)
-      updateType(id, Types.SECURE_SENT_TYPE);
-    else
-      updateType(id, Types.SENT_TYPE);
+  public void markAsSent(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE);
   }
 
   public void markStatus(long id, int status) {
@@ -184,7 +168,7 @@ public class SmsDatabase extends Database {
   }
 
   public void markAsSentFailed(long id) {
-    updateType(id, Types.FAILED_TYPE);
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENT_FAILED_TYPE);
   }
 
   public void setMessagesRead(long threadId) {
@@ -199,71 +183,117 @@ public class SmsDatabase extends Database {
     Log.w("SmsDatabase", "setMessagesRead time: " + (end-start));
   }
 
-  public void updateMessageBodyAndType(long messageId, String body, long type) {
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(BODY, body);
-    contentValues.put(TYPE, type);
-
+  protected void updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId+""});
+    db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +
+               TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
+               "WHERE " + ID + " = ?",
+               new String[] {body, messageId+""});
 
-    DatabaseFactory.getThreadDatabase(context).update(getThreadIdForMessage(messageId));
-    notifyConversationListeners(getThreadIdForMessage(messageId));
+    long threadId = getThreadIdForMessage(messageId);
+
+    DatabaseFactory.getThreadDatabase(context).update(threadId);
+    notifyConversationListeners(threadId);
     notifyConversationListListeners();
   }
 
-  public long insertSecureMessageReceived(TextMessage message, String body) {
-    return insertMessageReceived(message, body, Types.DECRYPT_IN_PROGRESS_TYPE,
-                                 message.getSentTimestampMillis());
-  }
+  protected Pair<Long, Long> insertMessageInbox(IncomingTextMessage message, long type) {
+    if (message.isKeyExchange()) {
+      type |= Types.KEY_EXCHANGE_BIT;
+      if      (((IncomingKeyExchangeMessage)message).isStale())     type |= Types.KEY_EXCHANGE_STALE_BIT;
+      else if (((IncomingKeyExchangeMessage)message).isProcessed()) {Log.w("SmsDatabase", "Setting processed bit..."); type |= Types.KEY_EXCHANGE_PROCESSED_BIT;}
+    } else if (message.isSecureMessage()) {
+      type |= Types.SECURE_MESSAGE_BIT;
+      type |= Types.ENCRYPTION_REMOTE_BIT;
+    }
 
-  public long insertMessageReceived(TextMessage message, String body) {
-    return insertMessageReceived(message, body, Types.INBOX_TYPE, message.getSentTimestampMillis());
-  }
+    Recipient recipient   = new Recipient(null, message.getSender(), null, null);
+    Recipients recipients = new Recipients(recipient);
+    long threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
 
-  public long insertMessageSent(String address, long threadId, String body, long date, long type) {
-    ContentValues contentValues = new ContentValues(6);
-    //  contentValues.put(ADDRESS, NumberUtil.filterNumber(address));
-    contentValues.put(ADDRESS, address);
-    contentValues.put(THREAD_ID, threadId);
-    contentValues.put(BODY, body);
-    contentValues.put(DATE_RECEIVED, date);
-    contentValues.put(DATE_SENT, date);
-    contentValues.put(READ, 1);
-    contentValues.put(TYPE, type);
+    ContentValues values = new ContentValues(6);
+    values.put(ADDRESS, message.getSender());
+    values.put(DATE_RECEIVED, Long.valueOf(System.currentTimeMillis()));
+    values.put(DATE_SENT, message.getSentTimestampMillis());
+    values.put(PROTOCOL, message.getProtocol());
+    values.put(READ, Integer.valueOf(0));
+
+    if (!Util.isEmpty(message.getPseudoSubject()))
+      values.put(SUBJECT, message.getPseudoSubject());
+
+    values.put(REPLY_PATH_PRESENT, message.isReplyPathPresent());
+    values.put(SERVICE_CENTER, message.getServiceCenterAddress());
+    values.put(BODY, message.getMessageBody());
+    values.put(TYPE, type);
+    values.put(THREAD_ID, threadId);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    long messageId    = db.insert(TABLE_NAME, ADDRESS, contentValues);
+    long messageId    = db.insert(TABLE_NAME, null, values);
 
+    DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
     Trimmer.trimThread(context, threadId);
 
-    return messageId;
+    return new Pair<Long, Long>(messageId, threadId);
   }
 
-  public Cursor getOutgoingMessages() {
-    String outgoingSelection = "(" + TYPE + " = " + Types.ENCRYPTING_TYPE + " OR " + TYPE + " = " + Types.ENCRYPTED_OUTBOX_TYPE + ")";
+  public Pair<Long, Long> insertMessageInbox(IncomingTextMessage message) {
+    return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
+  }
+
+  protected List<Long> insertMessageOutbox(long threadId, OutgoingTextMessage message, long type) {
+    if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
+    else if (message.isSecureMessage()) type |= Types.SECURE_MESSAGE_BIT;
+
+    long date             = System.currentTimeMillis();
+    List<Long> messageIds = new LinkedList<Long>();
+
+    for (Recipient recipient : message.getRecipients().getRecipientsList()) {
+      ContentValues contentValues = new ContentValues(6);
+      contentValues.put(ADDRESS, PhoneNumberUtils.formatNumber(recipient.getNumber()));
+      contentValues.put(THREAD_ID, threadId);
+      contentValues.put(BODY, message.getMessageBody());
+      contentValues.put(DATE_RECEIVED, date);
+      contentValues.put(DATE_SENT, date);
+      contentValues.put(READ, 1);
+      contentValues.put(TYPE, type);
+
+      SQLiteDatabase db = databaseHelper.getWritableDatabase();
+      messageIds.add(db.insert(TABLE_NAME, ADDRESS, contentValues));
+
+      DatabaseFactory.getThreadDatabase(context).update(threadId);
+      notifyConversationListeners(threadId);
+      Trimmer.trimThread(context, threadId);
+    }
+
+    return messageIds;
+  }
+
+  Cursor getOutgoingMessages() {
+    String outgoingSelection = TYPE + " & "  + Types.BASE_TYPE_MASK + " = " + Types.BASE_OUTBOX_TYPE;
     SQLiteDatabase db        = databaseHelper.getReadableDatabase();
-    return db.query(TABLE_NAME, null, outgoingSelection, null, null, null, null);
+    return db.query(TABLE_NAME, MESSAGE_PROJECTION, outgoingSelection, null, null, null, null);
   }
 
   public Cursor getDecryptInProgressMessages() {
-    String where      = TYPE + " = " + Types.DECRYPT_IN_PROGRESS_TYPE;
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    return db.query(TABLE_NAME, null, where, null, null, null, null);
+    String where       = TYPE + " & " + (Types.ENCRYPTION_REMOTE_BIT | Types.ENCRYPTION_ASYMMETRIC_BIT) + " != 0";
+    SQLiteDatabase db  = databaseHelper.getReadableDatabase();
+    return db.query(TABLE_NAME, MESSAGE_PROJECTION, where, null, null, null, null);
   }
 
   public Cursor getEncryptedRogueMessages(Recipient recipient) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    String selection  = TYPE + " = " + Types.NO_SESSION_TYPE + " AND PHONE_NUMBERS_EQUAL(" + ADDRESS + ", ?)";
+    String selection  = TYPE + " & " + Types.ENCRYPTION_REMOTE_NO_SESSION_BIT + " != 0" +
+                        " AND PHONE_NUMBERS_EQUAL(" + ADDRESS + ", ?)";
     String[] args     = {recipient.getNumber()};
-    return db.query(TABLE_NAME, null, selection, args, null, null, null);
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    return db.query(TABLE_NAME, MESSAGE_PROJECTION, selection, args, null, null, null);
   }
 
   public Cursor getMessage(long messageId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    return db.query(TABLE_NAME, null, ID_WHERE, new String[] {messageId+""}, null, null, null);
+    return db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[] {messageId+""},
+                    null, null, null);
   }
 
   public void deleteMessage(long messageId) {
@@ -284,7 +314,7 @@ public class SmsDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     String where      = THREAD_ID + " = ? AND (CASE " + TYPE;
 
-    for (int outgoingType : Types.OUTGOING_MESSAGE_TYPES) {
+    for (long outgoingType : Types.OUTGOING_MESSAGE_TYPES) {
       where += " WHEN " + outgoingType + " THEN " + DATE_SENT + " < " + date;
     }
 
@@ -322,10 +352,6 @@ public class SmsDatabase extends Database {
     database.endTransaction();
   }
 
-  /*package*/ void insertRaw(SQLiteDatabase database, ContentValues contentValues) {
-    database.insert(TABLE_NAME, null, contentValues);
-  }
-
   /*package*/ SQLiteStatement createInsertStatement(SQLiteDatabase database) {
     return database.compileStatement("INSERT INTO " + TABLE_NAME + " (" + ADDRESS + ", " +
                                                                       PERSON + ", " +
@@ -339,7 +365,7 @@ public class SmsDatabase extends Database {
                                                                       SUBJECT + ", " +
                                                                       BODY + ", " +
                                                                       SERVICE_CENTER +
-                                                                      ", THREAD_ID) " +
+                                                                      ", " + THREAD_ID + ") " +
                                      " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   }
 
@@ -350,45 +376,69 @@ public class SmsDatabase extends Database {
     public static final int STATUS_FAILED   = 64;
   }
 
-  public static class Types {
-    public static final int INBOX_TYPE          = 1;
-    public static final int SENT_TYPE           = 2;
-    public static final int SENT_PENDING        = 4;
-    public static final int FAILED_TYPE         = 5;
-
-    public static final int ENCRYPTING_TYPE          = 42;  // Messages are stored local encrypted and need async encryption and delivery.
-    public static final int ENCRYPTED_OUTBOX_TYPE    = 43;  // Messages are stored local encrypted and need delivery.
-    public static final int SECURE_SENT_TYPE         = 44;  // Messages were sent with async encryption.
-    public static final int SECURE_RECEIVED_TYPE     = 45;  // Messages were received with async decryption.
-    public static final int FAILED_DECRYPT_TYPE      = 46;  // Messages were received with async encryption and failed to decrypt.
-    public static final int DECRYPT_IN_PROGRESS_TYPE = 47;  // Messages are in the process of being asymmetricaly decrypted.
-    public static final int NO_SESSION_TYPE          = 48;  // Messages were received with async encryption but there is no session yet.
-
-    public static final int[] OUTGOING_MESSAGE_TYPES = {SENT_TYPE, SENT_PENDING, ENCRYPTING_TYPE,
-                                                        ENCRYPTED_OUTBOX_TYPE, SECURE_SENT_TYPE,
-                                                        FAILED_TYPE};
-
-    public static boolean isFailedMessageType(long type) {
-      return type == FAILED_TYPE;
-    }
-
-    public static boolean isOutgoingMessageType(long type) {
-      for (int outgoingType : OUTGOING_MESSAGE_TYPES) {
-        if (type == outgoingType)
-          return true;
-      }
-
-      return false;
-    }
-
-    public static boolean isPendingMessageType(long type) {
-      return type == SENT_PENDING || type == ENCRYPTING_TYPE || type == ENCRYPTED_OUTBOX_TYPE;
-    }
-
-    public static boolean isSecureType(long type) {
-      return type == SECURE_SENT_TYPE || type == ENCRYPTING_TYPE || type == SECURE_RECEIVED_TYPE;
-    }
-
+  public Reader readerFor(Cursor cursor) {
+    return new Reader(cursor);
   }
 
+  public class Reader {
+
+    private final Cursor cursor;
+
+    public Reader(Cursor cursor) {
+      this.cursor = cursor;
+    }
+
+    public SmsMessageRecord getNext() {
+      if (cursor == null || !cursor.moveToNext())
+        return null;
+
+      return getCurrent();
+    }
+
+    public SmsMessageRecord getCurrent() {
+      long messageId        = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
+      String address        = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
+      long type             = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
+      long dateReceived     = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_RECEIVED));
+      long dateSent         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_SENT));
+      long threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
+      int status            = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
+      Recipients recipients = getRecipientsFor(address);
+      String body           = getBody(cursor);
+      MessageRecord.GroupData groupData = null;
+
+      if (cursor.getColumnIndex(MmsSmsDatabase.GROUP_SIZE) != -1) {
+        int groupSize       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.GROUP_SIZE));
+        int groupSent       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SENT_COUNT));
+        int groupSendFailed = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SEND_FAILED_COUNT));
+
+        Log.w("ConversationAdapter", "GroupSize: " + groupSize + " , GroupSent: " + groupSent + " , GroupSendFailed: " + groupSendFailed);
+
+        groupData = new MessageRecord.GroupData(groupSize, groupSent, groupSendFailed);
+      }
+
+      return  new SmsMessageRecord(context, messageId, body, recipients,
+                                   recipients.getPrimaryRecipient(),
+                                   dateSent, dateReceived, type,
+                                   threadId, status, groupData);
+    }
+
+    private Recipients getRecipientsFor(String address) {
+      try {
+        return RecipientFactory.getRecipientsFromString(context, address, false);
+      } catch (RecipientFormattingException e) {
+        Log.w("EncryptingSmsDatabase", e);
+        return new Recipients(new Recipient("Unknown", "Unknown", null,
+                                            ContactPhotoFactory.getDefaultContactPhoto(context)));
+      }
+    }
+
+    protected String getBody(Cursor cursor) {
+      return cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
+    }
+
+    public void close() {
+      cursor.close();
+    }
+  }
 }

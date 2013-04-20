@@ -26,13 +26,10 @@ import org.thoughtcrime.securesms.database.keys.RemoteKeyRecord;
 import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.protocol.Message;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.Conversions;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * This class processes key exchange interactions.
@@ -103,14 +100,12 @@ public class KeyExchangeProcessor {
     message.getPublicKey().setId(initiateKeyId);
 
     if (needsResponseFromUs()) {
-      List<Recipient> recipients = new LinkedList<Recipient>();
-      recipients.add(recipient);
-
       localKeyRecord                = KeyUtil.initializeRecordFor(recipient, context, masterSecret);
       KeyExchangeMessage ourMessage = new KeyExchangeMessage(context, masterSecret, Math.min(Message.SUPPORTED_VERSION, message.getMaxVersion()), localKeyRecord, initiateKeyId);
+      OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, ourMessage.serialize());
       Log.w("KeyExchangeProcessor", "Responding with key exchange message fingerprint: " + ourMessage.getPublicKey().getFingerprint());
       Log.w("KeyExchangeProcessor", "Which has a local key record fingerprint: " + localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprint());
-      MessageSender.send(context, masterSecret, new Recipients(recipients), threadId, ourMessage.serialize(), true);
+      MessageSender.send(context, masterSecret, textMessage, threadId);
     }
 
     remoteKeyRecord.setCurrentRemoteKey(message.getPublicKey());
@@ -118,7 +113,7 @@ public class KeyExchangeProcessor {
     remoteKeyRecord.save();
 
     sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
-			       remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
+                               remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(message.getIdentityKey());
     sessionRecord.setSessionVersion(Math.min(Message.SUPPORTED_VERSION, message.getMaxVersion()));
 

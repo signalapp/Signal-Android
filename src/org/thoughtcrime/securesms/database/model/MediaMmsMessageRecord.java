@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -24,9 +25,6 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
-
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Represents the message record model for MMS messages that contain
@@ -38,40 +36,21 @@ import java.util.List;
 
 public class MediaMmsMessageRecord extends MessageRecord {
 
+  private final Context context;
   private final SlideDeck slideDeck;
-  private final long mailbox;
 
   public MediaMmsMessageRecord(Context context, long id, Recipients recipients,
                                Recipient individualRecipient, long dateSent, long dateReceived,
                                long threadId, SlideDeck slideDeck, long mailbox,
                                GroupData groupData)
   {
-    super(id, recipients, individualRecipient, dateSent, dateReceived,
-          threadId, DELIVERY_STATUS_NONE, groupData);
+    super(context, id, getBodyFromSlidesIfAvailable(slideDeck), recipients,
+          individualRecipient, dateSent, dateReceived,
+          threadId, DELIVERY_STATUS_NONE, mailbox,
+          groupData);
+
+    this.context   = context.getApplicationContext();
     this.slideDeck = slideDeck;
-    this.mailbox   = mailbox;
-
-    setBodyIfTextAvailable(context);
-  }
-
-  @Override
-  public boolean isOutgoing() {
-    return MmsDatabase.Types.isOutgoingMmsBox(mailbox);
-  }
-
-  @Override
-  public boolean isPending() {
-    return MmsDatabase.Types.isPendingMmsBox(mailbox);
-  }
-
-  @Override
-  public boolean isFailed() {
-    return MmsDatabase.Types.isFailedMmsBox(mailbox);
-  }
-
-  @Override
-  public boolean isSecure() {
-    return MmsDatabase.Types.isSecureMmsBox(mailbox);
   }
 
   public SlideDeck getSlideDeck() {
@@ -83,39 +62,29 @@ public class MediaMmsMessageRecord extends MessageRecord {
     return true;
   }
 
-  private void setBodyIfTextAvailable(Context context) {
-    switch ((int)mailbox) {
-    case MmsDatabase.Types.MESSAGE_BOX_DECRYPTING_INBOX:
-      setBody(context.getString(R.string.MmsMessageRecord_decrypting_mms_please_wait));
-      setEmphasis(true);
-      return;
-    case MmsDatabase.Types.MESSAGE_BOX_DECRYPT_FAILED_INBOX:
-      setBody(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
-      setEmphasis(true);
-      return;
-    case MmsDatabase.Types.MESSAGE_BOX_NO_SESSION_INBOX:
-      setBody(context
-        .getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
-      setEmphasis(true);
-      return;
+  @Override
+  public SpannableString getDisplayBody() {
+    if (MmsDatabase.Types.isDecryptInProgressType(type)) {
+      return emphasisAdded(context.getString(R.string.MmsMessageRecord_decrypting_mms_please_wait));
+    } else if (MmsDatabase.Types.isFailedDecryptType(type)) {
+      return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
+    } else if (MmsDatabase.Types.isNoRemoteSessionType(type)) {
+      return emphasisAdded(context.getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
     }
 
-    setBodyFromSlidesIfTextAvailable();
+    return super.getDisplayBody();
   }
 
-  private void setBodyFromSlidesIfTextAvailable() {
+  private static String getBodyFromSlidesIfAvailable(SlideDeck slideDeck) {
     if (slideDeck == null)
-      return;
+      return "";
 
-    List<Slide> slides = slideDeck.getSlides();
-    Iterator<Slide> i = slides.iterator();
-
-    while (i.hasNext()) {
-      Slide slide = i.next();
-
+    for (Slide slide : slideDeck.getSlides()) {
       if (slide.hasText())
-        setBody(slide.getText());
+        return slide.getText();
     }
+
+    return "";
   }
 
 }

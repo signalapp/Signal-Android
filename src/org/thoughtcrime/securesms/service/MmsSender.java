@@ -65,7 +65,7 @@ public class MmsSender extends MmscProcessor {
     if (intent.getAction().equals(SendReceiveService.SEND_MMS_ACTION)) {
       long messageId       = intent.getLongExtra("message_id", -1);
       boolean isCdma       = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
-      MmsDatabase database = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
+      MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
 
       try {
         List<SendReq> sendRequests = getOutgoingMessages(masterSecret, messageId);
@@ -107,14 +107,14 @@ public class MmsSender extends MmscProcessor {
 
   private void sendMmsMessage(SendItem item) {
     Log.w("MmsSender", "Sending MMS SendItem...");
-    MmsDatabase db  = DatabaseFactory.getEncryptingMmsDatabase(context, item.masterSecret);
+    MmsDatabase db  = DatabaseFactory.getMmsDatabase(context);
     String number   = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
     long messageId  = item.request.getDatabaseMessageId();
     long messageBox = item.request.getDatabaseMessageBox();
     SendReq request = item.request;
 
 
-    if (MmsDatabase.Types.isSecureMmsBox(messageBox)) {
+    if (MmsDatabase.Types.isSecureType(messageBox)) {
       request = getEncryptedMms(item.masterSecret, request, messageId);
     }
 
@@ -151,11 +151,7 @@ public class MmsSender extends MmscProcessor {
         return;
       } else {
         Log.w("MmsSender", "Successful send! " + messageId);
-        if (!MmsDatabase.Types.isSecureMmsBox(messageBox)) {
-          db.markAsSent(messageId, conf.getMessageId(), conf.getResponseStatus());
-        } else {
-          db.markAsSecureSent(messageId, conf.getMessageId(), conf.getResponseStatus());
-        }
+        db.markAsSent(messageId, conf.getMessageId(), conf.getResponseStatus());
       }
     } catch (IOException ioe) {
       Log.w("MmsSender", ioe);
@@ -168,14 +164,14 @@ public class MmsSender extends MmscProcessor {
   private List<SendReq> getOutgoingMessages(MasterSecret masterSecret, long messageId)
       throws MmsException
   {
-    MmsDatabase database = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret);
+    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     List<SendReq> sendRequests;
 
     if (messageId == -1) {
-      sendRequests = Arrays.asList(database.getOutgoingMessages());
+      sendRequests = Arrays.asList(database.getOutgoingMessages(masterSecret));
     } else {
       sendRequests    = new ArrayList<SendReq>(1);
-      sendRequests.add(database.getSendRequest(messageId));
+      sendRequests.add(database.getSendRequest(masterSecret, messageId));
     }
 
     return sendRequests;

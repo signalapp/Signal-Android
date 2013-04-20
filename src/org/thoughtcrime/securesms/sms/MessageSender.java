@@ -18,10 +18,8 @@ package org.thoughtcrime.securesms.sms;
 
 import android.content.Context;
 import android.content.Intent;
-import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -29,6 +27,8 @@ import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+
+import java.util.List;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
@@ -70,31 +70,17 @@ public class MessageSender {
     return threadId;
   }
 
-  public static long send(Context context, MasterSecret masterSecret, Recipients recipients,
-                          long threadId, String message, boolean forcePlaintext)
+  public static long send(Context context, MasterSecret masterSecret,
+                          OutgoingTextMessage message, long threadId)
   {
     if (threadId == -1)
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(message.getRecipients());
 
-    long date = System.currentTimeMillis();
+    List<Long> messageIds = DatabaseFactory.getEncryptingSmsDatabase(context)
+        .insertMessageOutbox(masterSecret, threadId, message);
 
-    for (Recipient recipient : recipients.getRecipientsList()) {
-      boolean isSecure = KeyUtil.isSessionFor(context, recipient) && !forcePlaintext;
 
-      long messageId;
-
-      if (!isSecure) {
-        messageId = DatabaseFactory.getEncryptingSmsDatabase(context)
-                      .insertMessageSent(masterSecret,
-                                         PhoneNumberUtils.formatNumber(recipient.getNumber()),
-                                         threadId, message, date);
-      } else {
-        messageId = DatabaseFactory.getEncryptingSmsDatabase(context)
-                      .insertSecureMessageSent(masterSecret,
-                                               PhoneNumberUtils.formatNumber(recipient.getNumber()),
-                                               threadId, message, date);
-      }
-
+    for (long messageId : messageIds) {
       Log.w("SMSSender", "Got message id for new message: " + messageId);
 
       Intent intent = new Intent(SendReceiveService.SEND_SMS_ACTION, null,
@@ -115,8 +101,8 @@ public class MessageSender {
 
     sendRequest.setTo(encodedNumbers);
 
-    long messageId = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret)
-                       .insertMessageSent(sendRequest, threadId, secure);
+    long messageId = DatabaseFactory.getMmsDatabase(context)
+                       .insertMessageOutbox(masterSecret, sendRequest, threadId, secure);
 
     Intent intent  = new Intent(SendReceiveService.SEND_MMS_ACTION, null,
                                 context, SendReceiveService.class);

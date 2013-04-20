@@ -90,7 +90,7 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void handleCopyMessage(MessageRecord message) {
-    String body = message.getBody();
+    String body = message.getDisplayBody().toString();
     if (body == null) return;
 
     ClipboardManager clipboard = (ClipboardManager)getActivity()
@@ -153,7 +153,7 @@ public class ConversationFragment extends SherlockListFragment
 
   private void handleForwardMessage(MessageRecord message) {
     Intent composeIntent = new Intent(getActivity(), ConversationActivity.class);
-    composeIntent.putExtra("forwarded_message", message.getBody());
+    composeIntent.putExtra("forwarded_message", message.getDisplayBody().toString());
     composeIntent.putExtra("master_secret", masterSecret);
     startActivity(composeIntent);
   }

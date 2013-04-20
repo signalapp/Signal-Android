@@ -16,6 +16,14 @@
  */
 package org.thoughtcrime.securesms.database.model;
 
+import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -39,28 +47,43 @@ public abstract class MessageRecord extends DisplayRecord {
   private final int deliveryStatus;
   private final GroupData groupData;
 
-  public MessageRecord(long id, Recipients recipients,
+  public MessageRecord(Context context, long id, String body, Recipients recipients,
                        Recipient individualRecipient,
                        long dateSent, long dateReceived,
                        long threadId, int deliveryStatus,
-                       GroupData groupData)
+                       long type, GroupData groupData)
   {
-    super(recipients, dateSent, dateReceived, threadId);
+    super(context, body, recipients, dateSent, dateReceived, threadId, type);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.deliveryStatus      = deliveryStatus;
     this.groupData           = groupData;
   }
 
-  public abstract boolean isOutgoing();
-
-  public abstract boolean isFailed();
-
-  public abstract boolean isSecure();
-
-  public abstract boolean isPending();
-
   public abstract boolean isMms();
+
+  public boolean isFailed() {
+    return
+        MmsSmsColumns.Types.isFailedMessageType(type) ||
+        getDeliveryStatus() == DELIVERY_STATUS_FAILED;
+  }
+
+  public boolean isOutgoing() {
+    return MmsSmsColumns.Types.isOutgoingMessageType(type);
+  }
+
+  public boolean isPending() {
+    return MmsSmsColumns.Types.isPendingMessageType(type) || isGroupDeliveryPending();
+  }
+
+  public boolean isSecure() {
+    return MmsSmsColumns.Types.isSecureType(type);
+  }
+
+  @Override
+  public SpannableString getDisplayBody() {
+    return new SpannableString(getBody());
+  }
 
   public long getId() {
     return id;
@@ -75,11 +98,11 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isStaleKeyExchange() {
-    return this.staleKeyExchange;
+    return SmsDatabase.Types.isStaleKeyExchange(type);
   }
 
   public boolean isProcessedKeyExchange() {
-    return this.processedKeyExchange;
+    return SmsDatabase.Types.isProcessedKeyExchange(type);
   }
 
   public Recipient getIndividualRecipient() {
@@ -98,6 +121,14 @@ public abstract class MessageRecord extends DisplayRecord {
     return false;
   }
 
+  protected SpannableString emphasisAdded(String sequence) {
+    SpannableString spannable = new SpannableString(sequence);
+    spannable.setSpan(new ForegroundColorSpan(context.getResources().getColor(android.R.color.darker_gray)), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    return spannable;
+  }
+
   public static class GroupData {
     public final int groupSize;
     public final int groupSentCount;
@@ -109,6 +140,4 @@ public abstract class MessageRecord extends DisplayRecord {
       this.groupSendFailedCount = groupSendFailedCount;
     }
   }
-
-
 }

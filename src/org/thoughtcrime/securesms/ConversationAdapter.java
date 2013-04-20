@@ -19,36 +19,18 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MessageDisplayHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord.GroupData;
-import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.InvalidMessageException;
-
-import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.MultimediaMessagePdu;
-import ws.com.google.android.mms.pdu.NotificationInd;
-import ws.com.google.android.mms.pdu.PduHeaders;
 
 import java.util.LinkedHashMap;
 
@@ -66,11 +48,8 @@ public class ConversationAdapter extends CursorAdapter {
 
   private final LinkedHashMap<String,MessageRecord> messageRecordCache;
   private final Handler failedIconClickHandler;
-  private final long threadId;
   private final Context context;
-  private final Recipients recipients;
   private final MasterSecret masterSecret;
-  private final MasterCipher masterCipher;
   private final LayoutInflater inflater;
 
   public ConversationAdapter(Recipients recipients, long threadId, Context context,
@@ -78,10 +57,7 @@ public class ConversationAdapter extends CursorAdapter {
   {
     super(context, null);
     this.context                = context;
-    this.recipients             = recipients;
-    this.threadId               = threadId;
     this.masterSecret           = masterSecret;
-    this.masterCipher           = new MasterCipher(masterSecret);
     this.failedIconClickHandler = failedIconClickHandler;
     this.messageRecordCache     = initializeCache();
     this.inflater               = (LayoutInflater)context
@@ -123,7 +99,7 @@ public class ConversationAdapter extends CursorAdapter {
   }
 
   private int getItemViewType(Cursor cursor) {
-    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
+    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
@@ -131,148 +107,16 @@ public class ConversationAdapter extends CursorAdapter {
     else                            return 1;
   }
 
-  private MediaMmsMessageRecord getMediaMmsMessageRecord(long messageId, Cursor cursor) {
-    long id             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
-    long dateSent       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_SENT));
-    long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
-    long box            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
-    Recipient recipient = getIndividualRecipientFor(null);
-    GroupData groupData = null;
-
-    SlideDeck slideDeck;
-
-    try {
-      MultimediaMessagePdu pdu = DatabaseFactory.getEncryptingMmsDatabase(context, masterSecret).getMediaMessage(messageId);
-      slideDeck                = new SlideDeck(context, masterSecret, pdu.getBody());
-
-      if (recipients != null && !recipients.isSingleRecipient()) {
-        int groupSize       = pdu.getTo().length;
-        int groupSent       = MmsDatabase.Types.isFailedMmsBox(box) ? 0 : groupSize;
-        int groupSendFailed = groupSize - groupSent;
-
-        if (groupSize <= 1) {
-          groupSize       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.GROUP_SIZE));
-          groupSent       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.MMS_GROUP_SENT_COUNT));
-          groupSendFailed = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.MMS_GROUP_SEND_FAILED_COUNT));
-        }
-
-        Log.w("ConversationAdapter", "MMS GroupSize: " + groupSize + " , GroupSent: " + groupSent + " , GroupSendFailed: " + groupSendFailed);
-
-        groupData = new MessageRecord.GroupData(groupSize, groupSent, groupSendFailed);
-      }
-    } catch (MmsException me) {
-      Log.w("ConversationAdapter", me);
-      slideDeck = null;
-    }
-
-    return new MediaMmsMessageRecord(context, id, recipients, recipient,
-                                     dateSent, dateReceived, threadId,
-                                     slideDeck, box, groupData);
-  }
-
-  private NotificationMmsMessageRecord getNotificationMmsMessageRecord(long messageId, Cursor cursor) {
-    Recipient recipient = getIndividualRecipientFor(null);
-    long id             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
-    long dateSent       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_SENT));
-    long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
-
-    NotificationInd notification;
-
-    try {
-      notification = DatabaseFactory.getMmsDatabase(context).getNotificationMessage(messageId);
-    } catch (MmsException me) {
-      Log.w("ConversationAdapter", me);
-      notification = new NotificationInd(new PduHeaders());
-    }
-
-    return new NotificationMmsMessageRecord(id, recipients, recipient,
-                                            dateSent, dateReceived, threadId,
-                                            notification.getContentLocation(),
-                                            notification.getMessageSize(),
-                                            notification.getExpiry(),
-                                            notification.getStatus(),
-                                            notification.getTransactionId());
-  }
-
-  private SmsMessageRecord getSmsMessageRecord(long messageId, Cursor cursor) {
-    long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
-    long dateSent       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_SENT));
-    long type           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
-    int status          = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
-    String body         = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
-    String address      = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
-    Recipient recipient = getIndividualRecipientFor(address);
-
-    MessageRecord.GroupData groupData = null;
-
-    if (recipients != null && !recipients.isSingleRecipient()) {
-      int groupSize       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.GROUP_SIZE));
-      int groupSent       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SENT_COUNT));
-      int groupSendFailed = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SEND_FAILED_COUNT));
-
-      Log.w("ConversationAdapter", "GroupSize: " + groupSize + " , GroupSent: " + groupSent + " , GroupSendFailed: " + groupSendFailed);
-
-      groupData = new MessageRecord.GroupData(groupSize, groupSent, groupSendFailed);
-    }
-
-    SmsMessageRecord messageRecord = new SmsMessageRecord(context, messageId, recipients,
-                                                          recipient, dateSent, dateReceived,
-                                                          type, threadId, status, groupData);
-
-    if (body == null) {
-      body = "";
-    }
-
-    try {
-      String decryptedBody = MessageDisplayHelper.getDecryptedMessageBody(masterCipher, body);
-      messageRecord.setBody(decryptedBody);
-    } catch (InvalidMessageException ime) {
-      Log.w("ConversationAdapter", ime);
-      messageRecord.setBody(context.getString(R.string.MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question));
-      messageRecord.setEmphasis(true);
-    }
-
-    return messageRecord;
-  }
-
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
     if (messageRecordCache.containsKey(type + messageId))
       return messageRecordCache.get(type + messageId);
 
-    MessageRecord messageRecord;
+    MmsSmsDatabase.Reader reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor, masterSecret);
 
-    if (type.equals("mms")) {
-      long mmsType = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_TYPE));
-
-      if (mmsType == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
-        messageRecord = getNotificationMmsMessageRecord(messageId, cursor);
-      } else {
-        messageRecord = getMediaMmsMessageRecord(messageId, cursor);
-      }
-    } else {
-      messageRecord = getSmsMessageRecord(messageId, cursor);
-    }
+    MessageRecord messageRecord = reader.getCurrent();
 
     messageRecordCache.put(type + messageId, messageRecord);
     return messageRecord;
-  }
-
-  private Recipient getIndividualRecipientFor(String address) {
-    Recipient recipient;
-
-    try {
-      if (address == null)   recipient = recipients.getPrimaryRecipient();
-      else                   recipient = RecipientFactory.getRecipientsFromString(context, address, false).getPrimaryRecipient();
-
-      if (recipient == null) recipient = new Recipient("Unknown", "Unknown", null,
-                                                       ContactPhotoFactory.getDefaultContactPhoto(context));
-    } catch (RecipientFormattingException e) {
-      Log.w("ConversationAdapter", e);
-      recipient = new Recipient("Unknown", "Unknown", null,
-                                ContactPhotoFactory.getDefaultContactPhoto(context));
-    }
-
-    return recipient;
   }
 
   @Override
@@ -293,6 +137,4 @@ public class ConversationAdapter extends CursorAdapter {
       }
     };
   }
-
-
 }

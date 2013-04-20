@@ -74,11 +74,11 @@ public class KeyCachingService extends Service {
     foregroundService();
     broadcastNewSecret();
     startTimeoutIfAppropriate();
-    DecryptingQueue.schedulePendingDecrypts(this, masterSecret);
 
     new Thread() {
       @Override
       public void run() {
+        DecryptingQueue.schedulePendingDecrypts(KeyCachingService.this, masterSecret);
         MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
       }
     }.start();

@@ -16,7 +16,10 @@
  */
 package org.thoughtcrime.securesms.database.model;
 
-import org.thoughtcrime.securesms.protocol.Prefix;
+import android.content.Context;
+import android.text.SpannableString;
+
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 /**
@@ -29,55 +32,32 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 
 public abstract class DisplayRecord {
 
+  protected final Context context;
   private final Recipients recipients;
   private final long dateSent;
   private final long dateReceived;
   private final long threadId;
+  protected final long type;
 
-  private String body;
-  protected boolean emphasis;
-  protected boolean keyExchange;
-  protected boolean processedKeyExchange;
-  protected boolean staleKeyExchange;
+  private final String body;
 
-  public DisplayRecord(Recipients recipients, long dateSent, long dateReceived, long threadId) {
+  public DisplayRecord(Context context, String body, Recipients recipients, long dateSent,
+                       long dateReceived, long threadId, long type)
+  {
+    this.context      = context.getApplicationContext();
     this.threadId     = threadId;
     this.recipients   = recipients;
     this.dateSent     = dateSent;
     this.dateReceived = dateReceived;
-    this.emphasis     = false;
-  }
-
-  public void setEmphasis(boolean emphasis) {
-    this.emphasis = emphasis;
-  }
-
-  public boolean getEmphasis() {
-    return emphasis;
-  }
-
-  public void setBody(String body) {
-    if (body.startsWith(Prefix.KEY_EXCHANGE)) {
-      this.keyExchange = true;
-      this.emphasis    = true;
-      this.body        = body;
-    } else if (body.startsWith(Prefix.PROCESSED_KEY_EXCHANGE)) {
-      this.processedKeyExchange = true;
-      this.emphasis             = true;
-      this.body                 = body;
-    } else if (body.startsWith(Prefix.STALE_KEY_EXCHANGE)) {
-      this.staleKeyExchange = true;
-      this.emphasis         = true;
-      this.body             = body;
-    } else {
-      this.body     = body;
-      this.emphasis = false;
-    }
+    this.type         = type;
+    this.body         = body;
   }
 
   public String getBody() {
     return body;
   }
+
+  public abstract SpannableString getDisplayBody();
 
   public Recipients getRecipients() {
     return recipients;
@@ -96,7 +76,6 @@ public abstract class DisplayRecord {
   }
 
   public boolean isKeyExchange() {
-    return keyExchange || processedKeyExchange || staleKeyExchange;
+    return SmsDatabase.Types.isKeyExchangeType(type);
   }
-
 }

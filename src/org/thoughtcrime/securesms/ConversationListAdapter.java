@@ -24,11 +24,10 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.CursorAdapter;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -41,16 +40,18 @@ import java.util.Set;
  */
 public class ConversationListAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
 
+  private final MasterSecret masterSecret;
   private final Context context;
   private final LayoutInflater inflater;
 
   private final Set<Long> batchSet = Collections.synchronizedSet(new HashSet<Long>());
   private boolean batchMode        = false;
 
-  public ConversationListAdapter(Context context, Cursor cursor) {
+  public ConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
     super(context, cursor);
-    this.context = context;
-    this.inflater = LayoutInflater.from(context);
+    this.masterSecret = masterSecret;
+    this.context      = context;
+    this.inflater     = LayoutInflater.from(context);
   }
 
   @Override
@@ -60,27 +61,12 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
-    long threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
-    String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
-    Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientId, true);
+    if (masterSecret != null) {
+      ThreadDatabase.Reader reader = DatabaseFactory.getThreadDatabase(context).readerFor(cursor, masterSecret);
+      ThreadRecord record          = reader.getCurrent();
 
-    long date             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
-    long count            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
-    long read             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
-
-    ThreadRecord thread = new ThreadRecord(context, recipients, date, count, read == 1, threadId);
-    setBody(cursor, thread);
-
-    ((ConversationListItem)view).set(thread, batchSet, batchMode);
-  }
-
-  protected void filterBody(ThreadRecord thread, String body) {
-    if (body == null) body = "(No subject)";
-    thread.setBody(body);
-  }
-
-  protected void setBody(Cursor cursor, ThreadRecord thread) {
-    filterBody(thread, cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET)));
+      ((ConversationListItem)view).set(record, batchSet, batchMode);
+    }
   }
 
   public void addToBatchSet(long threadId) {

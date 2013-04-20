@@ -28,10 +28,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
-import android.text.Spannable;
 import android.text.format.DateUtils;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -51,7 +48,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord.GroupData;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 
@@ -156,20 +152,7 @@ public class ConversationItem extends LinearLayout {
   /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
-    String body = messageRecord.getBody();
-
-    if      (messageRecord.isKeyExchange() && messageRecord.isOutgoing())           body = "\n" + getContext().getString(R.string.ConversationItem_key_exchange_message);
-    else if (messageRecord.isProcessedKeyExchange() && !messageRecord.isOutgoing()) body = "\n" + getContext().getString(R.string.ConversationItem_received_and_processed_key_exchange_message);
-    else if (messageRecord.isStaleKeyExchange())                                    body = "\n" + getContext().getString(R.string.ConversationItem_error_received_stale_key_exchange_message);
-    else if (messageRecord.isKeyExchange() && !messageRecord.isOutgoing())          body = "\n" + getContext().getString(R.string.ConversationItem_received_key_exchange_message_click_to_process);
-    else if (messageRecord.isOutgoing() && Tag.isTagged(body))                      body = Tag.stripTag(body);
-
-    bodyText.setText(body, TextView.BufferType.SPANNABLE);
-
-    if (messageRecord.isKeyExchange() || messageRecord.getEmphasis()) {
-      ((Spannable)bodyText.getText()).setSpan(new ForegroundColorSpan(context.getResources().getColor(android.R.color.darker_gray)), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-      ((Spannable)bodyText.getText()).setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    }
+    bodyText.setText(messageRecord.getDisplayBody(), TextView.BufferType.SPANNABLE);
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
@@ -237,11 +220,11 @@ public class ConversationItem extends LinearLayout {
 
     dateText.setText(messageSize + "\n" + expires);
 
-    if (MmsDatabase.Types.isDisplayDownloadButton(messageRecord.getStatus())) {
+    if (MmsDatabase.Status.isDisplayDownloadButton(messageRecord.getStatus())) {
       mmsDownloadButton.setVisibility(View.VISIBLE);
       mmsDownloadingLabel.setVisibility(View.GONE);
     } else {
-      mmsDownloadingLabel.setText(MmsDatabase.Types.getLabelForStatus(context, messageRecord.getStatus()));
+      mmsDownloadingLabel.setText(MmsDatabase.Status.getLabelForStatus(context, messageRecord.getStatus()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
     }

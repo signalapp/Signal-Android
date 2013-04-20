@@ -16,6 +16,10 @@
  */
 package org.thoughtcrime.securesms.database.model;
 
+import android.content.Context;
+import android.text.SpannableString;
+
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -36,22 +40,20 @@ public class NotificationMmsMessageRecord extends MessageRecord {
   private final int status;
   private final byte[] transactionId;
 
-  public NotificationMmsMessageRecord(long id, Recipients recipients, Recipient individualRecipient,
+  public NotificationMmsMessageRecord(Context context, long id, Recipients recipients,
+                                      Recipient individualRecipient,
                                       long dateSent, long dateReceived, long threadId,
                                       byte[] contentLocation, long messageSize, long expiry,
-                                      int status, byte[] transactionId)
+                                      int status, byte[] transactionId, long mailbox)
   {
-    super(id, recipients, individualRecipient, dateSent, dateReceived,
-          threadId, DELIVERY_STATUS_NONE, null);
+    super(context, id, "", recipients, individualRecipient, dateSent, dateReceived,
+          threadId, DELIVERY_STATUS_NONE, mailbox, null);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;
     this.expiry          = expiry;
     this.status          = status;
     this.transactionId   = transactionId;
-
-    setBody("Multimedia Message");
-    setEmphasis(true);
   }
 
   public byte[] getTransactionId() {
@@ -81,7 +83,7 @@ public class NotificationMmsMessageRecord extends MessageRecord {
 
   @Override
   public boolean isFailed() {
-    return MmsDatabase.Types.isHardError(status);
+    return MmsDatabase.Status.isHardError(status);
   }
 
   @Override
@@ -99,4 +101,8 @@ public class NotificationMmsMessageRecord extends MessageRecord {
     return true;
   }
 
+  @Override
+  public SpannableString getDisplayBody() {
+    return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_multimedia_message));
+  }
 }

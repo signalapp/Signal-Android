@@ -23,9 +23,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.InvalidMessageException;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -34,7 +38,7 @@ import java.util.Set;
 
 public class ThreadDatabase extends Database {
 
-  private static final String TABLE_NAME          = "thread";
+  static final String TABLE_NAME                   = "thread";
   public  static final String ID                  = "_id";
   public  static final String DATE                = "date";
   public  static final String MESSAGE_COUNT       = "message_count";
@@ -45,11 +49,13 @@ public class ThreadDatabase extends Database {
   private static final String TYPE                = "type";
   private static final String ERROR               = "error";
   private static final String HAS_ATTACHMENT      = "has_attachment";
+  public  static final String SNIPPET_TYPE        = "snippet_type";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                             +
     DATE + " INTEGER DEFAULT 0, " + MESSAGE_COUNT + " INTEGER DEFAULT 0, "                         +
     RECIPIENT_IDS + " TEXT, " + SNIPPET + " TEXT, " + SNIPPET_CHARSET + " INTEGER DEFAULT 0, "     +
     READ + " INTEGER DEFAULT 1, " + TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, " +
+    SNIPPET_TYPE + " INTEGER DEFAULT 0, " +
     HAS_ATTACHMENT + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
@@ -108,11 +114,12 @@ public class ThreadDatabase extends Database {
     return db.insert(TABLE_NAME, null, contentValues);
   }
 
-  private void updateThread(long threadId, long count, String body, long date) {
+  private void updateThread(long threadId, long count, String body, long date, long type) {
     ContentValues contentValues = new ContentValues(3);
     contentValues.put(DATE, date - date % 1000);
     contentValues.put(MESSAGE_COUNT, count);
     contentValues.put(SNIPPET, body);
+    contentValues.put(SNIPPET_TYPE, type);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId+""});
@@ -179,7 +186,7 @@ public class ThreadDatabase extends Database {
         Log.w("ThreadDatabase", "Cursor count is greater than length!");
         cursor.moveToPosition(cursor.getCount() - length);
 
-        long lastTweetDate = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED));
+        long lastTweetDate = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
 
         Log.w("ThreadDatabase", "Cut off tweet date: " + lastTweetDate);
 
@@ -350,7 +357,8 @@ public class ThreadDatabase extends Database {
       if (cursor != null && cursor.moveToFirst()) {
         updateThread(threadId, count,
                      cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY)),
-                     cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsDatabase.DATE_RECEIVED)));
+                     cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED)),
+                     cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE)));
       } else {
         deleteThread(threadId);
       }
@@ -364,5 +372,69 @@ public class ThreadDatabase extends Database {
 
   public static interface ProgressListener {
     public void onProgress(int complete, int total);
+  }
+
+  public Reader readerFor(Cursor cursor, MasterSecret masterSecret) {
+    return new Reader(cursor, masterSecret);
+  }
+
+  public class Reader {
+
+    private final Cursor cursor;
+    private final MasterSecret masterSecret;
+
+    public Reader(Cursor cursor, MasterSecret masterSecret) {
+      this.cursor       = cursor;
+      this.masterSecret = masterSecret;
+    }
+
+    public ThreadRecord getNext() {
+      if (cursor == null || !cursor.moveToNext())
+        return null;
+
+      return getCurrent();
+    }
+
+    public ThreadRecord getCurrent() {
+      long threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+      String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
+      Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientId, true);
+
+      String body           = getPlaintextBody(cursor);
+      long date             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
+      long count            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
+      long read             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
+      long type             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
+
+      return new ThreadRecord(context, body, recipients, date, count, read == 1, threadId, type);
+    }
+
+    private String getPlaintextBody(Cursor cursor) {
+      long type             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
+      String ciphertextBody = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET));
+
+      if (masterSecret == null)
+        return ciphertextBody;
+
+      try {
+        if (MmsSmsColumns.Types.isSymmetricEncryption(type)) {
+          MasterCipher masterCipher = new MasterCipher(masterSecret);
+          return masterCipher.decryptBody(ciphertextBody);
+        } else {
+          return ciphertextBody;
+        }
+      } catch (InvalidMessageException e) {
+        Log.w("ThreadDatabase", e);
+        return "Error decrypting message.";
+      }
+    }
+
+    protected String getBody(Cursor cursor) {
+      return cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
+    }
+
+    public void close() {
+      cursor.close();
+    }
   }
 }

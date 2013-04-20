@@ -63,12 +63,12 @@ public class MmsDownloader extends MmscProcessor {
   private void handleDownloadMmsAction(DownloadItem item) {
     if (!isConnectivityPossible()) {
       Log.w("MmsDownloader", "No MMS connectivity available!");
-      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
+      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY);
       toastHandler.makeToast(context.getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
       return;
     }
 
-    DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_CONNECTING);
+    DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_CONNECTING);
 
     if (item.useMmsRadioMode()) downloadMmsWithRadioChange(item);
     else                        downloadMms(item);
@@ -82,13 +82,7 @@ public class MmsDownloader extends MmscProcessor {
 
   private void downloadMms(DownloadItem item) {
     Log.w("MmsDownloadService", "Handling actual MMS download...");
-    MmsDatabase mmsDatabase;
-
-    if (item.getMasterSecret() == null) {
-      mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-    } else {
-      mmsDatabase = DatabaseFactory.getEncryptingMmsDatabase(context, item.getMasterSecret());
-    }
+    MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
 
     try {
       RetrieveConf retrieved = MmsDownloadHelper.retrieveMms(context, item.getContentLocation(),
@@ -115,12 +109,12 @@ public class MmsDownloader extends MmscProcessor {
         Log.w("MmsDownloadeR", "Falling back to radio mode and proxy...");
         scheduleDownloadWithRadioModeAndProxy(item);
       } else {
-        DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_SOFT_FAILURE);
+        DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE);
         toastHandler.makeToast(context.getString(R.string.MmsDownloader_error_connecting_to_mms_provider));
       }
     } catch (MmsException e) {
       Log.w("MmsDownloader", e);
-      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_HARD_FAILURE);
+      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_HARD_FAILURE);
       toastHandler.makeToast(context.getString(R.string.MmsDownloader_error_storing_mms));
     }
   }
@@ -129,13 +123,16 @@ public class MmsDownloader extends MmscProcessor {
       throws MmsException
   {
     if (retrieved.getSubject() != null && WirePrefix.isEncryptedMmsSubject(retrieved.getSubject().getString())) {
-      long messageId = mmsDatabase.insertSecureMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
+      long messageId = mmsDatabase.insertSecureMessageInbox(item.getMasterSecret(), retrieved,
+                                                            item.getContentLocation(),
+                                                            item.getThreadId());
 
       if (item.getMasterSecret() != null)
         DecryptingQueue.scheduleDecryption(context, item.getMasterSecret(), messageId, item.getThreadId(), retrieved);
 
     } else {
-      mmsDatabase.insertMessageReceived(retrieved, item.getContentLocation(), item.getThreadId());
+      mmsDatabase.insertMessageInbox(item.getMasterSecret(), retrieved, item.getContentLocation(),
+                                     item.getThreadId());
     }
 
     mmsDatabase.delete(item.getMessageId());
@@ -158,7 +155,7 @@ public class MmsDownloader extends MmscProcessor {
       pendingMessages.clear();
 
       for (DownloadItem item : downloadItems) {
-        DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Types.DOWNLOAD_NO_CONNECTIVITY);
+        DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY);
       }
 
       toastHandler.makeToast(context

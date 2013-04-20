@@ -11,7 +11,7 @@ import com.google.thoughtcrimegson.Gson;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
-import org.thoughtcrime.securesms.sms.TextMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -56,9 +56,9 @@ public class GcmIntentService extends GCMBaseIntentService {
     if (Util.isEmpty(data))
       return;
 
-    IncomingGcmMessage message      = new Gson().fromJson(data, IncomingGcmMessage.class);
-    ArrayList<TextMessage> messages = new ArrayList<TextMessage>();
-    messages.add(new TextMessage(message));
+    IncomingGcmMessage message              = new Gson().fromJson(data, IncomingGcmMessage.class);
+    ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>();
+    messages.add(new IncomingTextMessage(message));
 
     Intent receivedIntent = new Intent(context, SendReceiveService.class);
     receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);

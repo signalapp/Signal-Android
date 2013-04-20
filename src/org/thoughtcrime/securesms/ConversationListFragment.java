@@ -139,12 +139,7 @@ public class ConversationListFragment extends SherlockListFragment
   }
 
   private void initializeListAdapter() {
-    if (this.masterSecret == null) {
-      this.setListAdapter(new ConversationListAdapter(getActivity(), null));
-    } else {
-      this.setListAdapter(new DecryptingConversationListAdapter(getActivity(), null, masterSecret));
-    }
-
+    this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
     getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
   }

@@ -32,28 +32,21 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MessageDisplayHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.protocol.Prefix;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.InvalidMessageException;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.util.List;
@@ -246,86 +239,28 @@ public class MessageNotifier {
                                                               Cursor cursor)
   {
     NotificationState notificationState = new NotificationState();
+    MessageRecord record;
+    MmsSmsDatabase.Reader reader;
 
-    while (cursor.moveToNext()) {
-      Recipients   recipients = getRecipients(context, cursor);
-      long         threadId   = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
-      CharSequence body       = getBody(context, masterSecret, cursor);
-      Uri          image      = null;
+    if (masterSecret == null) reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor);
+    else                      reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor, masterSecret);
+
+    while ((record = reader.getNext()) != null) {
+      Recipients recipients = record.getRecipients();
+      long         threadId = record.getThreadId();
+      SpannableString body  = record.getDisplayBody();
+      Uri          image    = null;
+
+      // XXXX This is so fucked up.  FIX ME!
+      if (body.toString().equals(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait))) {
+        body = new SpannableString(context.getString(R.string.MessageNotifier_encrypted_message));
+        body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+      }
 
       notificationState.addNotification(new NotificationItem(recipients, threadId, body, image));
     }
 
     return notificationState;
-  }
-
-  private static CharSequence getBody(Context context, MasterSecret masterSecret, Cursor cursor) {
-    String body = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
-
-    if (body == null) {
-      return context.getString(R.string.MessageNotifier_no_subject);
-    }
-
-    if (masterSecret != null) {
-      try {
-        body = MessageDisplayHelper.getDecryptedMessageBody(new MasterCipher(masterSecret), body);
-      } catch (InvalidMessageException e) {
-        Log.w("MessageNotifier", e);
-        return Util.getItalicizedString(context.getString(R.string.MessageNotifier_corrupted_ciphertext));
-      }
-    }
-
-    if (body.startsWith(Prefix.SYMMETRIC_ENCRYPT) ||
-        body.startsWith(Prefix.ASYMMETRIC_ENCRYPT) ||
-        body.startsWith(Prefix.ASYMMETRIC_LOCAL_ENCRYPT))
-    {
-      return Util.getItalicizedString(context.getString(R.string.MessageNotifier_encrypted_message));
-    } else if (body.startsWith(Prefix.KEY_EXCHANGE) ||
-               body.startsWith(Prefix.PROCESSED_KEY_EXCHANGE))
-    {
-      return Util.getItalicizedString(context.getString(R.string.MessageNotifier_key_exchange));
-    }
-
-    return body;
-  }
-
-  private static Recipients getSmsRecipient(Context context, Cursor cursor)
-      throws RecipientFormattingException
-  {
-    String address = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
-    return RecipientFactory.getRecipientsFromString(context, address, false);
-  }
-
-  private static Recipients getMmsRecipient(Context context, Cursor cursor)
-      throws RecipientFormattingException
-  {
-    long messageId        = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
-    String address        = DatabaseFactory.getMmsDatabase(context).getMessageRecipient(messageId);
-    return RecipientFactory.getRecipientsFromString(context, address, false);
-  }
-
-  private static Recipients getRecipients(Context context, Cursor cursor) {
-    String type           = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    Recipients recipients = null;
-
-    try {
-      if (type.equals("sms")) {
-        recipients = getSmsRecipient(context, cursor);
-      } else {
-        recipients = getMmsRecipient(context, cursor);
-      }
-    } catch (RecipientFormattingException e) {
-      Log.w("MessageNotifier", e);
-      return new Recipients(new Recipient("Unknown", "Unknown", null,
-                            ContactPhotoFactory.getDefaultContactPhoto(context)));
-    }
-
-    if (recipients == null || recipients.isEmpty()) {
-      recipients = new Recipients(new Recipient("Unknown", "Unknown", null,
-                                                ContactPhotoFactory.getDefaultContactPhoto(context)));
-    }
-
-    return recipients;
   }
 
   private static void setNotificationAlarms(Context context,

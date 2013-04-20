@@ -16,40 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.thoughtcrime.securesms.components.RecipientsPanel;
-import org.thoughtcrime.securesms.crypto.AuthenticityCalculator;
-import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.KeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.DraftDatabase;
-import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
-import org.thoughtcrime.securesms.mms.AttachmentManager;
-import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
-import org.thoughtcrime.securesms.mms.MediaTooLargeException;
-import org.thoughtcrime.securesms.mms.MmsSendHelper;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.protocol.Tag;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.CharacterCalculator;
-import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
-import org.thoughtcrime.securesms.util.InvalidMessageException;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
-import org.thoughtcrime.securesms.util.Util;
-
-import ws.com.google.android.mms.MmsException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -81,6 +47,42 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import org.thoughtcrime.securesms.components.RecipientsPanel;
+import org.thoughtcrime.securesms.crypto.AuthenticityCalculator;
+import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
+import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.KeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
+import org.thoughtcrime.securesms.mms.AttachmentManager;
+import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
+import org.thoughtcrime.securesms.mms.MediaTooLargeException;
+import org.thoughtcrime.securesms.mms.MmsSendHelper;
+import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.protocol.Tag;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.CharacterCalculator;
+import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
+import org.thoughtcrime.securesms.util.InvalidMessageException;
+import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import ws.com.google.android.mms.MmsException;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -741,19 +743,28 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       if (recipients == null)
         throw new RecipientFormattingException("Badly formatted");
 
-      String message          = getMessage();
+      String body             = getMessage();
       long allocatedThreadId;
 
       if (attachmentManager.isAttachmentPresent()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
-                                                  threadId, attachmentManager.getSlideDeck(), message,
+                                                  threadId, attachmentManager.getSlideDeck(), body,
                                                   forcePlaintext);
       } else if (recipients.isEmailRecipient()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
-                                                  threadId, new SlideDeck(), message, forcePlaintext);
+                                                  threadId, new SlideDeck(), body, forcePlaintext);
       } else {
-        allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret, recipients,
-                                               threadId, message, forcePlaintext);
+        OutgoingTextMessage message;
+
+        if (isEncryptedConversation && !forcePlaintext) {
+          message = new OutgoingEncryptedMessage(recipients, body);
+        } else {
+          message = new OutgoingTextMessage(recipients, body);
+        }
+
+        Log.w("ConversationActivity", "Sending message...");
+        allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
+                                               message, threadId);
       }
 
       sendComplete(recipients, allocatedThreadId);
@@ -761,11 +772,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       Toast.makeText(ConversationActivity.this,
                      R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
                      Toast.LENGTH_LONG).show();
-      Log.w("compose", ex);
+      Log.w("ConversationActivity", ex);
     } catch (InvalidMessageException ex) {
       Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
                      Toast.LENGTH_SHORT).show();
-      Log.w("compose", ex);
+      Log.w("ConversationActivity", ex);
     } catch (MmsException e) {
       Log.w("ComposeMessageActivity", e);
     }

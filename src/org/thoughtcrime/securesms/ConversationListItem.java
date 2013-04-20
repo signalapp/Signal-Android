@@ -105,17 +105,7 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
-
-    if (thread.isKeyExchange())
-      this.subjectView.setText(R.string.ConversationListItem_key_exchange_message,
-                               TextView.BufferType.SPANNABLE);
-    else
-      this.subjectView.setText(thread.getBody(), TextView.BufferType.SPANNABLE);
-
-    if (thread.getEmphasis())
-      ((Spannable)this.subjectView.getText()).setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0,
-                                                                    this.subjectView.getText().length(),
-                                                                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    this.subjectView.setText(thread.getDisplayBody(), TextView.BufferType.SPANNABLE);
 
     if (thread.getDate() > 0)
       this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), thread.getDate(), false));

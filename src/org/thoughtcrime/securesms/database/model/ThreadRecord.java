@@ -17,10 +17,14 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.protocol.Prefix;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Util;
 
 /**
  * The message record model which represents thread heading messages.
@@ -34,30 +38,40 @@ public class ThreadRecord extends DisplayRecord {
   private final long count;
   private final boolean read;
 
-  public ThreadRecord(Context context, Recipients recipients,
-                      long date, long count,
-                      boolean read, long threadId)
+  public ThreadRecord(Context context, String body, Recipients recipients, long date,
+                      long count, boolean read, long threadId, long type)
   {
-    super(recipients, date, date, threadId);
+    super(context, body, recipients, date, date, threadId, type);
     this.context = context.getApplicationContext();
     this.count   = count;
     this.read    = read;
   }
 
   @Override
-  public void setBody(String body) {
-    if (body.startsWith(Prefix.SYMMETRIC_ENCRYPT) ||
-        body.startsWith(Prefix.ASYMMETRIC_ENCRYPT) ||
-        body.startsWith(Prefix.ASYMMETRIC_LOCAL_ENCRYPT))
-    {
-      super.setBody(context.getString(R.string.ConversationListAdapter_encrypted_message_enter_passphrase));
-      setEmphasis(true);
-    } else if (body.startsWith(Prefix.KEY_EXCHANGE)) {
-      super.setBody(context.getString(R.string.ConversationListAdapter_key_exchange_message));
-      setEmphasis(true);
+  public SpannableString getDisplayBody() {
+    if (SmsDatabase.Types.isDecryptInProgressType(type)) {
+      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
+    } else if (isKeyExchange()) {
+      return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
+    } else if (SmsDatabase.Types.isFailedDecryptType(type)) {
+      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
+    } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
+      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
     } else {
-      super.setBody(body);
+      if (Util.isEmpty(getBody())) {
+        return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));
+      } else {
+        return new SpannableString(getBody());
+      }
     }
+  }
+
+  private SpannableString emphasisAdded(String sequence) {
+    SpannableString spannable = new SpannableString(sequence);
+    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0,
+                      sequence.length(),
+                      Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    return spannable;
   }
 
   public long getCount() {
