@@ -94,7 +94,7 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
-                              SmsDatabase.STATUS, TRANSPORT};
+                              SmsDatabase.STATUS, MmsDatabase.PART_COUNT, TRANSPORT};
 
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
 
@@ -108,11 +108,12 @@ public class MmsSmsDatabase extends Database {
 
   public Cursor getConversationSnippet(long threadId) {
     String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
+                              MmsSmsColumns.THREAD_ID,
                               SmsDatabase.ADDRESS, SmsDatabase.SUBJECT,
                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
-                              TRANSPORT};
+                              SmsDatabase.STATUS, MmsDatabase.PART_COUNT, TRANSPORT};
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
@@ -126,7 +127,7 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
-                              TRANSPORT};
+                              MmsDatabase.PART_COUNT, TRANSPORT};
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
     String selection       = MmsSmsColumns.READ + " = 0";
 
@@ -145,13 +146,13 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.DATE_RECEIVED + " * 1000 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsSmsColumns.ID, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
-                              MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, TRANSPORT};
+                              MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT, TRANSPORT};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsSmsColumns.ID, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
-                              MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, TRANSPORT};
+                              MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT, TRANSPORT};
 
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
@@ -171,10 +172,12 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.DATE_RECEIVED);
     mmsColumnsPresent.add(MmsSmsColumns.READ);
     mmsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
+    mmsColumnsPresent.add(MmsSmsColumns.BODY);
+    mmsColumnsPresent.add(MmsDatabase.PART_COUNT);
 
     Set<String> smsColumnsPresent = new HashSet<String>();
     smsColumnsPresent.add(MmsSmsColumns.ID);
-    smsColumnsPresent.add(SmsDatabase.BODY);
+    smsColumnsPresent.add(MmsSmsColumns.BODY);
     smsColumnsPresent.add(SmsDatabase.TYPE);
     smsColumnsPresent.add(SmsDatabase.ADDRESS);
     smsColumnsPresent.add(SmsDatabase.SUBJECT);
@@ -241,6 +244,10 @@ public class MmsSmsDatabase extends Database {
       } else {
         return smsReader.getCurrent();
       }
+    }
+
+    public void close() {
+      cursor.close();
     }
   }
 }

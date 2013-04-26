@@ -24,10 +24,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
+import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
@@ -36,7 +43,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_DATE_SENT_VERSION   = 4;
   private static final int INTRODUCED_DRAFTS_VERSION      = 5;
   private static final int INTRODUCED_NEW_TYPES_VERSION   = 6;
-  private static final int DATABASE_VERSION               = 6;
+  private static final int INTRODUCED_MMS_BODY_VERSION    = 7;
+  private static final int DATABASE_VERSION               = 7;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -148,23 +156,31 @@ public class DatabaseFactory {
       MasterCipher masterCipher = new MasterCipher(masterSecret);
       int count                 = 0;
       SQLiteDatabase db         = databaseHelper.getWritableDatabase();
-      Cursor cursor             = db.query("sms",
+      Cursor smsCursor          = db.query("sms",
                                            new String[] {"_id", "type", "body"},
                                            "type & " + 0x80000000 + " != 0",
                                            null, null, null, null);
 
-      if (cursor != null)
-        count = cursor.getCount();
+      Cursor threadCursor       = db.query("thread",
+                                           new String[] {"_id", "snippet_type", "snippet"},
+                                           "snippet_type & " + 0x80000000 + " != 0",
+                                           null, null, null, null);
+
+      if (smsCursor != null)
+        count = smsCursor.getCount();
+
+      if (threadCursor != null)
+        count += threadCursor.getCount();
 
       db.beginTransaction();
 
-      while (cursor != null && cursor.moveToNext()) {
-        listener.setProgress(cursor.getPosition(), count);
+      while (smsCursor != null && smsCursor.moveToNext()) {
+        listener.setProgress(smsCursor.getPosition(), count);
 
         try {
-          String body = masterCipher.decryptBody(cursor.getString(cursor.getColumnIndexOrThrow("body")));
-          long type   = cursor.getLong(cursor.getColumnIndexOrThrow("type"));
-          long id     = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+          String body = masterCipher.decryptBody(smsCursor.getString(smsCursor.getColumnIndexOrThrow("body")));
+          long type   = smsCursor.getLong(smsCursor.getColumnIndexOrThrow("type"));
+          long id     = smsCursor.getLong(smsCursor.getColumnIndexOrThrow("_id"));
 
           if (body.startsWith(KEY_EXCHANGE)) {
             body  = body.substring(KEY_EXCHANGE.length());
@@ -191,6 +207,114 @@ public class DatabaseFactory {
         } catch (InvalidMessageException e) {
           Log.w("DatabaseFactory", e);
         }
+      }
+
+      while (threadCursor != null && threadCursor.moveToNext()) {
+        listener.setProgress(smsCursor.getCount() + threadCursor.getPosition(), count);
+
+        try {
+          String snippet   = masterCipher.decryptBody(threadCursor.getString(threadCursor.getColumnIndexOrThrow("snippet")));
+          long snippetType = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("snippet_type"));
+          long id          = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("_id"));
+
+          if (snippet.startsWith(KEY_EXCHANGE)) {
+            snippet      = snippet.substring(KEY_EXCHANGE.length());
+            snippet      = masterCipher.encryptBody(snippet);
+            snippetType |= 0x8000;
+
+            db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
+                       new String[] {snippet, snippetType+"", id+""});
+          } else if (snippet.startsWith(PROCESSED_KEY_EXCHANGE)) {
+            snippet      = snippet.substring(PROCESSED_KEY_EXCHANGE.length());
+            snippet      = masterCipher.encryptBody(snippet);
+            snippetType |= 0x2000;
+
+            db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
+                       new String[] {snippet, snippetType+"", id+""});
+          } else if (snippet.startsWith(STALE_KEY_EXCHANGE)) {
+            snippet      = snippet.substring(STALE_KEY_EXCHANGE.length());
+            snippet      = masterCipher.encryptBody(snippet);
+            snippetType |= 0x4000;
+
+            db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
+                       new String[] {snippet, snippetType+"", id+""});
+          }
+        } catch (InvalidMessageException e) {
+          Log.w("DatabaseFactory", e);
+        }
+      }
+
+      db.setTransactionSuccessful();
+      db.endTransaction();
+
+      smsCursor.close();
+      threadCursor.close();
+    }
+
+    if (fromVersion < DatabaseUpgradeActivity.MMS_BODY_VERSION) {
+      Log.w("DatabaseFactory", "Update MMS bodies...");
+      MasterCipher masterCipher = new MasterCipher(masterSecret);
+      SQLiteDatabase db         = databaseHelper.getWritableDatabase();
+
+      db.beginTransaction();
+
+      Cursor mmsCursor = db.query("mms", new String[] {"_id"},
+                                  "msg_box & " + 0x80000000L + " != 0",
+                                  null, null, null, null);
+
+      Log.w("DatabaseFactory", "Got MMS rows: " + (mmsCursor == null ? "null" : mmsCursor.getCount()));
+
+      while (mmsCursor != null && mmsCursor.moveToNext()) {
+        listener.setProgress(mmsCursor.getPosition(), mmsCursor.getCount());
+
+        long mmsId        = mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow("_id"));
+        String body       = null;
+        int partCount     = 0;
+        Cursor partCursor = db.query("part", new String[] {"_id", "ct", "_data", "encrypted"},
+                                     "mid = ?", new String[] {mmsId+""}, null, null, null);
+
+        while (partCursor != null && partCursor.moveToNext()) {
+          String contentType = partCursor.getString(partCursor.getColumnIndexOrThrow("ct"));
+
+          if (ContentType.isTextType(contentType)) {
+            try {
+              long partId         = partCursor.getLong(partCursor.getColumnIndexOrThrow("_id"));
+              String dataLocation = partCursor.getString(partCursor.getColumnIndexOrThrow("_data"));
+              boolean encrypted   = partCursor.getInt(partCursor.getColumnIndexOrThrow("encrypted")) == 1;
+              File dataFile       = new File(dataLocation);
+
+              FileInputStream fin;
+
+              if (encrypted) fin = new DecryptingPartInputStream(dataFile, masterSecret);
+              else           fin = new FileInputStream(dataFile);
+
+              body = (body == null) ? Util.readFully(fin) : body + " " + Util.readFully(fin);
+
+              Log.w("DatabaseFactory", "Read body: " + body);
+
+              dataFile.delete();
+              db.delete("part", "_id = ?", new String[] {partId+""});
+            } catch (IOException e) {
+              Log.w("DatabaseFactory", e);
+            }
+          } else if (ContentType.isAudioType(contentType) ||
+                     ContentType.isImageType(contentType) ||
+                     ContentType.isVideoType(contentType))
+          {
+            partCount++;
+          }
+        }
+
+        if (!Util.isEmpty(body)) {
+          body = masterCipher.encryptBody(body);
+          db.execSQL("UPDATE mms SET body = ?, part_count = ? WHERE _id = ?",
+                     new String[] {body, partCount+"", mmsId+""});
+        } else {
+          db.execSQL("UPDATE mms SET part_count = ? WHERE _id = ?",
+                     new String[] {partCount+"", mmsId+""});
+        }
+
+        Log.w("DatabaseFactory", "Updated body: " + body + " and part_count: " + partCount);
       }
 
       db.setTransactionSuccessful();
@@ -328,17 +452,17 @@ public class DatabaseFactory {
 
         // MMS Updates
 
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {20L+"", 1+""});
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {23L+"", 2+""});
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {21L+"", 4+""});
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {24L+"", 12+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x80000000L)+"", 1+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(23L | 0x80000000L)+"", 2+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(21L | 0x80000000L)+"", 4+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(24L | 0x80000000L)+"", 12+""});
 
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(21L | 0x800000L) +"", 5+""});
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(23L | 0x800000L) +"", 6+""});
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x800000L | 0x20000000L) +"", 7+""});
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x800000L) +"", 8+""});
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x800000L | 0x08000000L) +"", 9+""});
-        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x800000L | 0x10000000L) +"", 10+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(21L | 0x80000000L | 0x800000L) +"", 5+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(23L | 0x80000000L | 0x800000L) +"", 6+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x20000000L | 0x800000L) +"", 7+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x80000000L | 0x800000L) +"", 8+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x08000000L | 0x800000L) +"", 9+""});
+        db.execSQL("UPDATE mms SET msg_box = ? WHERE msg_box = ?", new String[] {(20L | 0x10000000L | 0x800000L) +"", 10+""});
 
         // Thread Updates
 
@@ -366,6 +490,11 @@ public class DatabaseFactory {
 
         db.setTransactionSuccessful();
         db.endTransaction();
+      }
+
+      if (oldVersion < INTRODUCED_MMS_BODY_VERSION) {
+        db.execSQL("ALTER TABLE mms ADD COLUMN body TEXT");
+        db.execSQL("ALTER TABLE mms ADD COLUMN part_count INTEGER");
       }
     }
 

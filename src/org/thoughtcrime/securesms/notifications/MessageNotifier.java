@@ -262,6 +262,7 @@ public class MessageNotifier {
       notificationState.addNotification(new NotificationItem(recipient, recipients, threadId, body, image));
     }
 
+    reader.close();
     return notificationState;
   }
 

@@ -25,12 +25,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.providers.PartProvider;
-
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduPart;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -39,7 +34,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+
+import ws.com.google.android.mms.ContentType;
+import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.PduBody;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class PartDatabase extends Database {
 
@@ -83,32 +82,32 @@ public class PartDatabase extends Database {
     int contentTypeColumn = cursor.getColumnIndexOrThrow(CONTENT_TYPE);
 
     if (!cursor.isNull(contentTypeColumn))
-      part.setContentType(getBytes(cursor.getString(contentTypeColumn)));
+      part.setContentType(Util.toIsoBytes(cursor.getString(contentTypeColumn)));
 
     int nameColumn = cursor.getColumnIndexOrThrow(NAME);
 
     if (!cursor.isNull(nameColumn))
-      part.setName(getBytes(cursor.getString(nameColumn)));
+      part.setName(Util.toIsoBytes(cursor.getString(nameColumn)));
 
     int fileNameColumn = cursor.getColumnIndexOrThrow(FILENAME);
 
     if (!cursor.isNull(fileNameColumn))
-      part.setFilename(getBytes(cursor.getString(fileNameColumn)));
+      part.setFilename(Util.toIsoBytes(cursor.getString(fileNameColumn)));
 
     int contentDispositionColumn = cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION);
 
     if (!cursor.isNull(contentDispositionColumn))
-      part.setContentDisposition(getBytes(cursor.getString(contentDispositionColumn)));
+      part.setContentDisposition(Util.toIsoBytes(cursor.getString(contentDispositionColumn)));
 
     int contentIdColumn = cursor.getColumnIndexOrThrow(CONTENT_ID);
 
     if (!cursor.isNull(contentIdColumn))
-      part.setContentId(getBytes(cursor.getString(contentIdColumn)));
+      part.setContentId(Util.toIsoBytes(cursor.getString(contentIdColumn)));
 
     int contentLocationColumn = cursor.getColumnIndexOrThrow(CONTENT_LOCATION);
 
     if (!cursor.isNull(contentLocationColumn))
-      part.setContentLocation(getBytes(cursor.getString(contentLocationColumn)));
+      part.setContentLocation(Util.toIsoBytes(cursor.getString(contentLocationColumn)));
 
     int encryptedColumn = cursor.getColumnIndexOrThrow(ENCRYPTED);
 
@@ -125,9 +124,9 @@ public class PartDatabase extends Database {
     }
 
     if (part.getContentType() != null) {
-      contentValues.put(CONTENT_TYPE, toIsoString(part.getContentType()));
+      contentValues.put(CONTENT_TYPE, Util.toIsoString(part.getContentType()));
 
-      if (toIsoString(part.getContentType()).equals(ContentType.APP_SMIL))
+      if (Util.toIsoString(part.getContentType()).equals(ContentType.APP_SMIL))
         contentValues.put(SEQUENCE, -1);
     } else {
       throw new MmsException("There is no content type for this part.");
@@ -142,15 +141,15 @@ public class PartDatabase extends Database {
     }
 
     if (part.getContentDisposition() != null) {
-      contentValues.put(CONTENT_DISPOSITION, toIsoString(part.getContentDisposition()));
+      contentValues.put(CONTENT_DISPOSITION, Util.toIsoString(part.getContentDisposition()));
     }
 
     if (part.getContentId() != null) {
-      contentValues.put(CONTENT_ID, toIsoString(part.getContentId()));
+      contentValues.put(CONTENT_ID, Util.toIsoString(part.getContentId()));
     }
 
     if (part.getContentLocation() != null) {
-      contentValues.put(CONTENT_LOCATION, toIsoString(part.getContentLocation()));
+      contentValues.put(CONTENT_LOCATION, Util.toIsoString(part.getContentLocation()));
     }
 
     contentValues.put(ENCRYPTED, part.getEncrypted() ? 1 : 0);
@@ -267,7 +266,7 @@ public class PartDatabase extends Database {
     }
   }
 
-  public void insertParts(long mmsId, PduBody body) throws MmsException {
+  void insertParts(long mmsId, PduBody body) throws MmsException {
     for (int i=0;i<body.getPartsNum();i++) {
       long partId = insertPart(body.getPart(i), mmsId);
       Log.w("PartDatabase", "Inserted part at ID: " + partId);
@@ -338,25 +337,6 @@ public class PartDatabase extends Database {
 
     for (int i=0;i<parts.length;i++) {
       parts[i].delete();
-    }
-  }
-
-  private byte[] getBytes(String data) {
-    try {
-      return data.getBytes(CharacterSets.MIMENAME_ISO_8859_1);
-    } catch (UnsupportedEncodingException e) {
-      Log.e("PduHeadersBuilder", "ISO_8859_1 must be supported!", e);
-      return new byte[0];
-    }
-  }
-
-  private String toIsoString(byte[] bytes) {
-    try {
-      return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
-    } catch (UnsupportedEncodingException e) {
-      // Impossible to reach here!
-      Log.e("MmsDatabase", "ISO_8859_1 must be supported!", e);
-      return "";
     }
   }
 }

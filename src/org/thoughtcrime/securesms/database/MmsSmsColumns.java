@@ -7,6 +7,7 @@ public interface MmsSmsColumns {
   public static final String NORMALIZED_DATE_RECEIVED = "date_received";
   public static final String THREAD_ID                = "thread_id";
   public static final String READ                     = "read";
+  public static final String BODY                     = "body";
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;

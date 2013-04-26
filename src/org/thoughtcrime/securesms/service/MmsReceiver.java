@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.service;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -44,6 +45,7 @@ public class MmsReceiver {
     intent.putExtra("message_id", messageId);
     intent.putExtra("transaction_id", pdu.getTransactionId());
     intent.putExtra("thread_id", threadId);
+    intent.putExtra("automatic", true);
 
     context.startService(intent);
   }
@@ -54,12 +56,12 @@ public class MmsReceiver {
     GenericPdu pdu   = parser.parse();
 
     if (pdu.getMessageType() == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
-      MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-      long messageId       = database.insertMessageInbox((NotificationInd)pdu);
-      long threadId        = database.getThreadIdForMessage(messageId);
+      MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
+      Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu);
+//      long threadId        = database.getThreadIdForMessage(messageId);
 
-      MessageNotifier.updateNotification(context, masterSecret, threadId);
-      scheduleDownload((NotificationInd)pdu, messageId, threadId);
+//      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      scheduleDownload((NotificationInd)pdu, messageAndThreadId.first, messageAndThreadId.second);
 
       Log.w("MmsReceiverService", "Inserted received notification...");
     }

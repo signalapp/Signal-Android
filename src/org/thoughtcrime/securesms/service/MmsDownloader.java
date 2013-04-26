@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 
 import ws.com.google.android.mms.MmsException;
@@ -34,6 +36,7 @@ import ws.com.google.android.mms.pdu.RetrieveConf;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MmsDownloader extends MmscProcessor {
 
@@ -51,6 +54,7 @@ public class MmsDownloader extends MmscProcessor {
       DownloadItem item = new DownloadItem(masterSecret, !isCdma, false,
                                            intent.getLongExtra("message_id", -1),
                                            intent.getLongExtra("thread_id", -1),
+                                           intent.getBooleanExtra("automatic", false),
                                            intent.getStringExtra("content_location"),
                                            intent.getByteArrayExtra("transaction_id"));
 
@@ -63,8 +67,8 @@ public class MmsDownloader extends MmscProcessor {
   private void handleDownloadMmsAction(DownloadItem item) {
     if (!isConnectivityPossible()) {
       Log.w("MmsDownloader", "No MMS connectivity available!");
-      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY);
-      toastHandler.makeToast(context.getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
+      handleDownloadError(item, MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY,
+                          context.getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
       return;
     }
 
@@ -109,33 +113,38 @@ public class MmsDownloader extends MmscProcessor {
         Log.w("MmsDownloadeR", "Falling back to radio mode and proxy...");
         scheduleDownloadWithRadioModeAndProxy(item);
       } else {
-        DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE);
-        toastHandler.makeToast(context.getString(R.string.MmsDownloader_error_connecting_to_mms_provider));
+        handleDownloadError(item, MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
+                            context.getString(R.string.MmsDownloader_error_connecting_to_mms_provider));
       }
     } catch (MmsException e) {
       Log.w("MmsDownloader", e);
-      DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_HARD_FAILURE);
-      toastHandler.makeToast(context.getString(R.string.MmsDownloader_error_storing_mms));
+      handleDownloadError(item, MmsDatabase.Status.DOWNLOAD_HARD_FAILURE,
+                          context.getString(R.string.MmsDownloader_error_storing_mms));
     }
   }
 
   private void storeRetrievedMms(MmsDatabase mmsDatabase, DownloadItem item, RetrieveConf retrieved)
       throws MmsException
   {
+    Pair<Long, Long> messageAndThreadId;
+
     if (retrieved.getSubject() != null && WirePrefix.isEncryptedMmsSubject(retrieved.getSubject().getString())) {
-      long messageId = mmsDatabase.insertSecureMessageInbox(item.getMasterSecret(), retrieved,
-                                                            item.getContentLocation(),
-                                                            item.getThreadId());
+      messageAndThreadId = mmsDatabase.insertSecureMessageInbox(item.getMasterSecret(), retrieved,
+                                                                item.getContentLocation(),
+                                                                item.getThreadId());
 
       if (item.getMasterSecret() != null)
-        DecryptingQueue.scheduleDecryption(context, item.getMasterSecret(), messageId, item.getThreadId(), retrieved);
+        DecryptingQueue.scheduleDecryption(context, item.getMasterSecret(), messageAndThreadId.first,
+                                           messageAndThreadId.second, retrieved);
 
     } else {
-      mmsDatabase.insertMessageInbox(item.getMasterSecret(), retrieved, item.getContentLocation(),
-                                     item.getThreadId());
+      messageAndThreadId = mmsDatabase.insertMessageInbox(item.getMasterSecret(), retrieved,
+                                                          item.getContentLocation(),
+                                                          item.getThreadId());
     }
 
     mmsDatabase.delete(item.getMessageId());
+    MessageNotifier.updateNotification(context, item.getMasterSecret(), messageAndThreadId.second);
   }
 
   protected void handleConnectivityChange() {
@@ -153,18 +162,38 @@ public class MmsDownloader extends MmscProcessor {
 
     } else if (!isConnected() && !isConnectivityPossible()) {
       pendingMessages.clear();
-
-      for (DownloadItem item : downloadItems) {
-        DatabaseFactory.getMmsDatabase(context).markDownloadState(item.getMessageId(), MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY);
-      }
-
-      toastHandler.makeToast(context
-          .getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
-
+      handleDownloadError(downloadItems, MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY,
+                          context.getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));
       finishConnectivity();
     }
   }
 
+  private void handleDownloadError(List<DownloadItem> items, int downloadStatus, String error) {
+    MmsDatabase db = DatabaseFactory.getMmsDatabase(context);
+
+    for (DownloadItem item : items) {
+      db.markDownloadState(item.getMessageId(), downloadStatus);
+
+      if (item.isAutomatic()) {
+        db.markIncomingNotificationReceived(item.getThreadId());
+        MessageNotifier.updateNotification(context, item.getMasterSecret(), item.getThreadId());
+      }
+    }
+
+    toastHandler.makeToast(error);
+  }
+
+  private void handleDownloadError(DownloadItem item, int downloadStatus, String error) {
+    MmsDatabase db = DatabaseFactory.getMmsDatabase(context);
+    db.markDownloadState(item.getMessageId(), downloadStatus);
+
+    if (item.isAutomatic()) {
+      db.markIncomingNotificationReceived(item.getThreadId());
+      MessageNotifier.updateNotification(context, item.getMasterSecret(), item.getThreadId());
+    }
+
+    toastHandler.makeToast(error);
+  }
 
   private void scheduleDownloadWithRadioMode(DownloadItem item) {
     item.mmsRadioMode = true;
@@ -186,9 +215,11 @@ public class MmsDownloader extends MmscProcessor {
     private long messageId;
     private byte[] transactionId;
     private String contentLocation;
+    private boolean automatic;
 
     public DownloadItem(MasterSecret masterSecret, boolean mmsRadioMode, boolean proxyIfPossible,
-                        long messageId, long threadId, String contentLocation, byte[] transactionId)
+                        long messageId, long threadId, boolean automatic, String contentLocation,
+                        byte[] transactionId)
     {
       this.masterSecret    = masterSecret;
       this.mmsRadioMode    = mmsRadioMode;
@@ -197,6 +228,7 @@ public class MmsDownloader extends MmscProcessor {
       this.messageId       = messageId;
       this.contentLocation = contentLocation;
       this.transactionId   = transactionId;
+      this.automatic       = automatic;
     }
 
     public long getThreadId() {
@@ -225,6 +257,10 @@ public class MmsDownloader extends MmscProcessor {
 
     public boolean useMmsRadioMode() {
       return mmsRadioMode;
+    }
+
+    public boolean isAutomatic() {
+      return automatic;
     }
   }
 

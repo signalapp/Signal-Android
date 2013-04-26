@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 /**
  * Represents the message record model for MMS messages that contain
@@ -37,22 +38,28 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public class MediaMmsMessageRecord extends MessageRecord {
 
   private final Context context;
-  private final SlideDeck slideDeck;
+  private final int partCount;
+  private final ListenableFutureTask<SlideDeck> slideDeck;
 
   public MediaMmsMessageRecord(Context context, long id, Recipients recipients,
                                Recipient individualRecipient, long dateSent, long dateReceived,
-                               long threadId, SlideDeck slideDeck, long mailbox)
+                               long threadId, String body, ListenableFutureTask<SlideDeck> slideDeck,
+                               int partCount, long mailbox)
   {
-    super(context, id, getBodyFromSlidesIfAvailable(slideDeck), recipients,
-          individualRecipient, dateSent, dateReceived,
+    super(context, id, body, recipients, individualRecipient, dateSent, dateReceived,
           threadId, DELIVERY_STATUS_NONE, mailbox);
 
     this.context   = context.getApplicationContext();
+    this.partCount = partCount;
     this.slideDeck = slideDeck;
   }
 
-  public SlideDeck getSlideDeck() {
+  public ListenableFutureTask<SlideDeck> getSlideDeck() {
     return slideDeck;
+  }
+
+  public int getPartCount() {
+    return partCount;
   }
 
   @Override
@@ -73,16 +80,16 @@ public class MediaMmsMessageRecord extends MessageRecord {
     return super.getDisplayBody();
   }
 
-  private static String getBodyFromSlidesIfAvailable(SlideDeck slideDeck) {
-    if (slideDeck == null)
-      return "";
-
-    for (Slide slide : slideDeck.getSlides()) {
-      if (slide.hasText())
-        return slide.getText();
-    }
-
-    return "";
-  }
+//  private static String getBodyFromSlidesIfAvailable(SlideDeck slideDeck) {
+//    if (slideDeck == null)
+//      return "";
+//
+//    for (Slide slide : slideDeck.getSlides()) {
+//      if (slide.hasText())
+//        return slide.getText();
+//    }
+//
+//    return "";
+//  }
 
 }

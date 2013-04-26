@@ -69,15 +69,14 @@
                 android:paddingBottom="7dip">
 
                 <ImageView
-                    android:id="@+id/image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:maxWidth="178dip"
-                    android:maxHeight="178dip"
-                    android:adjustViewBounds="true"
-                    android:background="@android:drawable/picture_frame"
-                    android:visibility="gone" />
+                        android:id="@+id/image_view"
+                        android:layout_width="230dip"
+                        android:layout_height="174dip"
+                        android:layout_gravity="center"
+                        android:scaleType="centerInside"
+                        android:adjustViewBounds="true"
+                        android:background="@android:drawable/picture_frame"
+                        android:visibility="gone" />
 
                 <ImageButton
                     android:id="@+id/play_slideshow_button"

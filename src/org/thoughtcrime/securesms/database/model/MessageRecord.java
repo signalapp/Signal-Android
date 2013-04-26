@@ -107,6 +107,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return individualRecipient;
   }
 
+  public long getType() {
+    return type;
+  }
+
   protected SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new ForegroundColorSpan(context.getResources().getColor(android.R.color.darker_gray)), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

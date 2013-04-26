@@ -23,24 +23,31 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
+import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.InvalidMessageException;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
@@ -88,11 +95,13 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   private static final String RESPONSE_TEXT      = "resp_txt";
   private static final String DELIVERY_TIME      = "d_tm";
   private static final String DELIVERY_REPORT    = "d_rpt";
+          static final String PART_COUNT         = "part_count";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
     THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + " INTEGER, " + MESSAGE_BOX + " INTEGER, " +
     READ + " INTEGER DEFAULT 0, " + MESSAGE_ID + " TEXT, " + SUBJECT + " TEXT, "                +
-    SUBJECT_CHARSET + " INTEGER, " + CONTENT_TYPE + " TEXT, " + CONTENT_LOCATION + " TEXT, "    +
+    SUBJECT_CHARSET + " INTEGER, " + BODY + " TEXT, " + PART_COUNT + " INTEGER, "               +
+    CONTENT_TYPE + " TEXT, " + CONTENT_LOCATION + " TEXT, "                                     +
     EXPIRY + " INTEGER, " + MESSAGE_CLASS + " TEXT, " + MESSAGE_TYPE + " INTEGER, "             +
     MMS_VERSION + " INTEGER, " + MESSAGE_SIZE + " INTEGER, " + PRIORITY + " INTEGER, "          +
     READ_REPORT + " INTEGER, " + REPORT_ALLOWED + " INTEGER, " + RESPONSE_STATUS + " INTEGER, " +
@@ -115,8 +124,10 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       CONTENT_LOCATION, EXPIRY, MESSAGE_CLASS, MESSAGE_TYPE, MMS_VERSION,
       MESSAGE_SIZE, PRIORITY, REPORT_ALLOWED, STATUS, TRANSACTION_ID, RETRIEVE_STATUS,
       RETRIEVE_TEXT, RETRIEVE_TEXT_CS, READ_STATUS, CONTENT_CLASS, RESPONSE_TEXT,
-      DELIVERY_TIME, DELIVERY_REPORT
+      DELIVERY_TIME, DELIVERY_REPORT, BODY, PART_COUNT
   };
+
+  public static final ExecutorService slideResolver = Util.newSingleThreadedLifoExecutor();
 
   public MmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -288,7 +299,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     return new NotificationInd(headers);
   }
 
-  public MultimediaMessagePdu getMediaMessage(long messageId)
+  private MultimediaMessagePdu getMediaMessage(long messageId)
       throws MmsException
   {
     PduHeaders headers        = getHeadersForId(messageId);
@@ -340,8 +351,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
   }
 
-  private long insertMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
-                                  String contentLocation, long threadId, long mailbox)
+  private Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
+                                              String contentLocation, long threadId, long mailbox)
       throws MmsException
   {
     PduHeaders headers          = retrieved.getPduHeaders();
@@ -364,34 +375,42 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     if (!contentValues.containsKey(DATE_SENT))
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
 
-    return insertMediaMessage(masterSecret, retrieved, contentValues);
+    long messageId = insertMediaMessage(masterSecret, retrieved, contentValues);
+
+    notifyConversationListeners(threadId);
+    DatabaseFactory.getThreadDatabase(context).update(threadId);
+    DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+    Trimmer.trimThread(context, threadId);
+
+    return new Pair<Long, Long>(threadId, messageId);
   }
 
-  public long insertMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
-                                 String contentLocation, long threadId)
+  public Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
+                                             String contentLocation, long threadId)
       throws MmsException
   {
     return insertMessageInbox(masterSecret, retrieved, contentLocation, threadId,
                               Types.BASE_INBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT);
   }
 
-  public long insertSecureMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
-                                       String contentLocation, long threadId)
+  public Pair<Long, Long> insertSecureMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
+                                                   String contentLocation, long threadId)
       throws MmsException
   {
     return insertMessageInbox(masterSecret, retrieved, contentLocation, threadId,
                               Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.ENCRYPTION_REMOTE_BIT);
   }
 
-  public long insertSecureDecryptedMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
-                                                long threadId)
+  public Pair<Long, Long> insertSecureDecryptedMessageInbox(MasterSecret masterSecret,
+                                                            RetrieveConf retrieved,
+                                                            long threadId)
       throws MmsException
   {
     return insertMessageInbox(masterSecret, retrieved, "", threadId,
                               Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.ENCRYPTION_SYMMETRIC_BIT);
   }
 
-  public long insertMessageInbox(NotificationInd notification) {
+  public Pair<Long, Long> insertMessageInbox(NotificationInd notification) {
     try {
       SQLiteDatabase db                  = databaseHelper.getWritableDatabase();
       PduHeaders headers                 = notification.getPduHeaders();
@@ -412,23 +431,30 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long messageId = db.insert(TABLE_NAME, null, contentValues);
       addressDatabase.insertAddressesForId(messageId, headers);
 
-      notifyConversationListeners(threadId);
-      DatabaseFactory.getThreadDatabase(context).update(threadId);
-      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
-      Trimmer.trimThread(context, threadId);
+//      notifyConversationListeners(threadId);
+//      DatabaseFactory.getThreadDatabase(context).update(threadId);
+//      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+//      Trimmer.trimThread(context, threadId);
 
-      return messageId;
+      return new Pair<Long, Long>(messageId, threadId);
     } catch (RecipientFormattingException rfe) {
       Log.w("MmsDatabase", rfe);
-      return -1;
+      return new Pair<Long, Long>(-1L, -1L);
     }
+  }
+
+  public void markIncomingNotificationReceived(long threadId) {
+    notifyConversationListeners(threadId);
+    DatabaseFactory.getThreadDatabase(context).update(threadId);
+    DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+    Trimmer.trimThread(context, threadId);
   }
 
   public long insertMessageOutbox(MasterSecret masterSecret, SendReq sendRequest,
                                   long threadId, boolean isSecure)
       throws MmsException
   {
-    long type                   = Types.BASE_OUTBOX_TYPE;
+    long type                   = Types.BASE_OUTBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT;
     PduHeaders headers          = sendRequest.getPduHeaders();
     ContentValues contentValues = getContentValuesFromHeader(headers);
 
@@ -453,10 +479,22 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       throws MmsException
   {
     SQLiteDatabase db                  = databaseHelper.getWritableDatabase();
-    long messageId                     = db.insert(TABLE_NAME, null, contentValues);
-    PduBody body                       = message.getBody();
     PartDatabase partsDatabase         = getPartDatabase(masterSecret);
     MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
+    PduBody body                       = message.getBody();
+
+    if (Types.isSymmetricEncryption(contentValues.getAsLong(MESSAGE_BOX))) {
+      String messageText = PartParser.getMessageText(body);
+      body               = PartParser.getNonTextParts(body);
+
+      if (!Util.isEmpty(messageText)) {
+        contentValues.put(BODY, new MasterCipher(masterSecret).encryptBody(messageText));
+      }
+    }
+
+    contentValues.put(PART_COUNT, body.getPartsNum());
+
+    long messageId = db.insert(TABLE_NAME, null, contentValues);
 
     addressDatabase.insertAddressesForId(messageId, message.getPduHeaders());
     partsDatabase.insertParts(messageId, body);
@@ -479,7 +517,6 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
   }
-
 
   public void deleteThread(long threadId) {
     Set<Long> singleThreadSet = new HashSet<Long>();
@@ -692,12 +729,16 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
   public class Reader {
 
-    private final Cursor cursor;
+    private final Cursor       cursor;
     private final MasterSecret masterSecret;
+    private final MasterCipher masterCipher;
 
     public Reader(MasterSecret masterSecret, Cursor cursor) {
       this.cursor       = cursor;
       this.masterSecret = masterSecret;
+
+      if (masterSecret != null) masterCipher = new MasterCipher(masterSecret);
+      else                      masterCipher = null;
     }
 
     public MessageRecord getNext() {
@@ -723,28 +764,57 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED));
       long box            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
       long threadId       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
+      String body         = getBody(cursor);
+      int partCount       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       Recipient recipient = getMessageRecipient(id);
 
-      SlideDeck slideDeck;
-
-      try {
-        MultimediaMessagePdu pdu = getMediaMessage(id);
-        slideDeck                = getSlideDeck(masterSecret, pdu);
-      } catch (MmsException me) {
-        Log.w("ConversationAdapter", me);
-        slideDeck = null;
-      }
+      ListenableFutureTask<SlideDeck> slideDeck = getSlideDeck(masterSecret, id);
 
       return new MediaMmsMessageRecord(context, id, new Recipients(recipient), recipient,
-                                       dateSent, dateReceived, threadId,
-                                       slideDeck, box);
+                                       dateSent, dateReceived, threadId, body,
+                                       slideDeck, partCount, box);
     }
 
-    protected SlideDeck getSlideDeck(MasterSecret masterSecret, MultimediaMessagePdu pdu) {
-      if (masterSecret == null)
-        return null;
+    private String getBody(Cursor cursor) {
+      try {
+        String body = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
+        long box    = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
 
-      return new SlideDeck(context, masterSecret, pdu.getBody());
+        if (body != null && masterCipher != null && Types.isSymmetricEncryption(box)) {
+          return masterCipher.decryptBody(body);
+        }
+
+        return body;
+      } catch (InvalidMessageException e) {
+        Log.w("MmsDatabase", e);
+        return "Error decrypting message.";
+      }
+    }
+
+    private ListenableFutureTask<SlideDeck> getSlideDeck(final MasterSecret masterSecret,
+                                                         final long id)
+    {
+      Callable<SlideDeck> task = new Callable<SlideDeck>() {
+        @Override
+        public SlideDeck call() throws Exception {
+          try {
+            if (masterSecret == null)
+              return null;
+
+            MultimediaMessagePdu pdu = getMediaMessage(id);
+
+            return new SlideDeck(context, masterSecret, pdu.getBody());
+          } catch (MmsException me) {
+            Log.w("MmsDatabase", me);
+            return null;
+          }
+        }
+      };
+
+      ListenableFutureTask<SlideDeck> future = new ListenableFutureTask<SlideDeck>(task, null);
+      slideResolver.execute(future);
+
+      return future;
     }
 
     private NotificationMmsMessageRecord getNotificationMmsMessageRecord(Cursor cursor) {

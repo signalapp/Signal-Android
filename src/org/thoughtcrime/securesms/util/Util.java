@@ -22,17 +22,20 @@ import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.widget.EditText;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 
 public class Util {
@@ -127,6 +130,25 @@ public class Util {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     return spanned;
+  }
+
+  public static String toIsoString(byte[] bytes) {
+    try {
+      return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
+    } catch (UnsupportedEncodingException e) {
+      // Impossible to reach here!
+      Log.e("MmsDatabase", "ISO_8859_1 must be supported!", e);
+      return "";
+    }
+  }
+
+  public static byte[] toIsoBytes(String isoString) {
+    try {
+      return isoString.getBytes(CharacterSets.MIMENAME_ISO_8859_1);
+    } catch (UnsupportedEncodingException e) {
+      Log.w("Util", "ISO_8859_1 must be supported!", e);
+      return new byte[0];
+    }
   }
 
   public static void showAlertDialog(Context context, String title, String message) {

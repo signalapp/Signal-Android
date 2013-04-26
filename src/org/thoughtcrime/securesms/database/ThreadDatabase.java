@@ -25,11 +25,13 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -122,7 +124,7 @@ public class ThreadDatabase extends Database {
     contentValues.put(SNIPPET_TYPE, type);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId+""});
+    db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
     notifyConversationListListeners();
   }
 
@@ -363,21 +365,20 @@ public class ThreadDatabase extends Database {
       return;
     }
 
-    Cursor cursor = null;
+    MmsSmsDatabase.Reader reader = null;
 
     try {
-      cursor = mmsSmsDatabase.getConversationSnippet(threadId);
-      if (cursor != null && cursor.moveToFirst()) {
-        updateThread(threadId, count,
-                     cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY)),
-                     cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED)),
-                     cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE)));
+      reader               = mmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId));
+      MessageRecord record = null;
+
+      if (reader != null && (record = reader.getNext()) != null) {
+        updateThread(threadId, count, record.getBody(), record.getDateReceived(), record.getType());
       } else {
         deleteThread(threadId);
       }
     } finally {
-      if (cursor != null)
-        cursor.close();
+      if (reader != null)
+        reader.close();
     }
 
     notifyConversationListListeners();
@@ -401,10 +402,12 @@ public class ThreadDatabase extends Database {
 
     private final Cursor cursor;
     private final MasterSecret masterSecret;
+    private final MasterCipher masterCipher;
 
     public Reader(Cursor cursor, MasterSecret masterSecret) {
       this.cursor       = cursor;
       this.masterSecret = masterSecret;
+      this.masterCipher = new MasterCipher(masterSecret);
     }
 
     public ThreadRecord getNext() {
@@ -438,8 +441,7 @@ public class ThreadDatabase extends Database {
         return ciphertextBody;
 
       try {
-        if (MmsSmsColumns.Types.isSymmetricEncryption(type)) {
-          MasterCipher masterCipher = new MasterCipher(masterSecret);
+        if (!Util.isEmpty(ciphertextBody) && MmsSmsColumns.Types.isSymmetricEncryption(type)) {
           return masterCipher.decryptBody(ciphertextBody);
         } else {
           return ciphertextBody;

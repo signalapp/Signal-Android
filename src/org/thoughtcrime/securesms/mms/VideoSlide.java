@@ -29,6 +29,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.ImageView;
 
 public class VideoSlide extends Slide {
 
@@ -41,10 +42,10 @@ public class VideoSlide extends Slide {
   }
 	
   @Override
-  public Bitmap getThumbnail() {
+  public Bitmap getThumbnail(int width, int height) {
     return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_video_player);
   }
-	
+
   @Override
   public boolean hasImage() {
     return true;

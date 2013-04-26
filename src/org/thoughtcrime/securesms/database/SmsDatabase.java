@@ -60,7 +60,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
   public  static final String TYPE               = "type";
   public  static final String REPLY_PATH_PRESENT = "reply_path_present";
   public  static final String SUBJECT            = "subject";
-  public  static final String BODY               = "body";
+//public  static final String BODY               = "body";
   public  static final String SERVICE_CENTER     = "service_center";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " integer PRIMARY KEY, "                +

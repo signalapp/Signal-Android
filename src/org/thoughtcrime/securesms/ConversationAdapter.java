@@ -22,6 +22,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.CursorAdapter;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -42,7 +43,7 @@ import java.util.LinkedHashMap;
  * @author Moxie Marlinspike
  *
  */
-public class ConversationAdapter extends CursorAdapter {
+public class ConversationAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
 
   private static final int MAX_CACHE_SIZE = 40;
 
@@ -127,6 +128,11 @@ public class ConversationAdapter extends CursorAdapter {
 
   public void close() {
     this.getCursor().close();
+  }
+
+  @Override
+  public void onMovedToScrapHeap(View view) {
+    ((ConversationItem)view).unbind();
   }
 
   private LinkedHashMap<String,MessageRecord> initializeCache() {

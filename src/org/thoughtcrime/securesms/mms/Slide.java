@@ -29,6 +29,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.ImageView;
+
 import ws.com.google.android.mms.pdu.PduPart;
 
 public abstract class Slide {
@@ -88,10 +90,14 @@ public abstract class Slide {
     return part.getDataUri();
   }
 	
-  public Bitmap getThumbnail() {
+  public Bitmap getThumbnail(int maxWidth, int maxHeight) {
     throw new AssertionError("getThumbnail() called on non-thumbnail producing slide!");
   }
-	
+
+  public void setThumbnailOn(ImageView imageView) {
+    imageView.setImageBitmap(getThumbnail(imageView.getWidth(), imageView.getHeight()));
+  }
+
   public boolean hasImage() {
     return false;
   }

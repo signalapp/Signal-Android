@@ -21,6 +21,7 @@ import java.util.TreeSet;
 public class DatabaseUpgradeActivity extends Activity {
 
   public static final int NO_MORE_KEY_EXCHANGE_PREFIX_VERSION = 46;
+  public static final int MMS_BODY_VERSION                    = 46;
 
   private static final String LAST_VERSION_CODE = "last_version_code";
 

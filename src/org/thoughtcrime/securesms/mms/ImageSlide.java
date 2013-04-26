@@ -16,25 +16,33 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import java.io.ByteArrayOutputStream;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.net.Uri;
+import android.os.Handler;
+import android.util.Log;
+import android.widget.ImageView;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.util.BitmapUtil;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
-
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap.CompressFormat;
-import android.net.Uri;
-import android.util.Log;
 
 public class ImageSlide extends Slide {
 
@@ -56,93 +64,103 @@ public class ImageSlide extends Slide {
   }
 		
   @Override
-    public Bitmap getThumbnail() {
-    if (thumbnailCache.containsKey(part.getDataUri())) {
-      Log.w("ImageSlide", "Cached thumbnail...");
-      Bitmap bitmap = thumbnailCache.get(part.getDataUri()).get();
-      if (bitmap != null) return bitmap;
-      else                thumbnailCache.remove(part.getDataUri());				
-    }
+  public Bitmap getThumbnail(int maxWidth, int maxHeight) {
+    Bitmap thumbnail = getCachedThumbnail();
+
+    if (thumbnail != null)
+      return thumbnail;
 
     try {
-      BitmapFactory.Options options = getImageDimensions(getPartDataInputStream());
-      int imageWidth                = options.outWidth;
-      int imageHeight               = options.outHeight;
-			
-      int scaler = 1;
-      while ((imageWidth / scaler > 480) || (imageHeight / scaler > 480)) 
-	scaler *= 2;
-			
-      options.inSampleSize       = scaler;
-      options.inJustDecodeBounds = false;
-						
-      Bitmap thumbnail = BitmapFactory.decodeStream(getPartDataInputStream(), null, options);
+      InputStream measureStream = getPartDataInputStream();
+      InputStream dataStream    = getPartDataInputStream();
+
+      thumbnail = BitmapUtil.createScaledBitmap(measureStream, dataStream, maxWidth, maxHeight);
       thumbnailCache.put(part.getDataUri(), new SoftReference<Bitmap>(thumbnail));
 
       return thumbnail;
-    } catch (FileNotFoundException fnfe) {
-      Log.w("ImageSlide", fnfe);
+    } catch (FileNotFoundException e) {
+      Log.w("ImageSlide", e);
       return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_missing_thumbnail_picture);
     }
   }
-	
-  private static BitmapFactory.Options getImageDimensions(InputStream inputStream) throws FileNotFoundException {
-    BitmapFactory.Options options = new BitmapFactory.Options();
-    options.inJustDecodeBounds    = true;
-    BitmapFactory.decodeStream(inputStream, null, options);
 
-    return options;
-  }
-	
-  private static BitmapFactory.Options getImageDimensions(Context context, Uri uri) throws FileNotFoundException {
-    InputStream in = context.getContentResolver().openInputStream(uri);
-    return getImageDimensions(in);
-  }
-		
   @Override
-    public boolean hasImage() {
+  public void setThumbnailOn(ImageView imageView) {
+    Bitmap thumbnail = getCachedThumbnail();
+
+    if (thumbnail != null) {
+      Log.w("ImageSlide", "Setting cached thumbnail...");
+      setThumbnailOn(imageView, thumbnail, true);
+      return;
+    }
+
+    final ColorDrawable temporaryDrawable        = new ColorDrawable(Color.TRANSPARENT);
+    final WeakReference<ImageView> weakImageView = new WeakReference<ImageView>(imageView);
+    final Handler handler                        = new Handler();
+    final int maxWidth                           = imageView.getWidth();
+    final int maxHeight                          = imageView.getHeight();
+
+    imageView.setImageDrawable(temporaryDrawable);
+
+    MmsDatabase.slideResolver.execute(new Runnable() {
+      @Override
+      public void run() {
+        final Bitmap bitmap         = getThumbnail(maxWidth, maxHeight);
+        final ImageView destination = weakImageView.get();
+        if (destination != null && destination.getDrawable() == temporaryDrawable) {
+          handler.post(new Runnable() {
+            @Override
+            public void run() {
+              setThumbnailOn(destination, bitmap, false);
+            }
+          });
+        }
+      }
+    });
+  }
+
+  private void setThumbnailOn(ImageView imageView, Bitmap thumbnail, boolean fromMemory) {
+    if (fromMemory) {
+      imageView.setImageBitmap(thumbnail);
+    } else {
+      BitmapDrawable result           = new BitmapDrawable(context.getResources(), thumbnail);
+      TransitionDrawable fadingResult = new TransitionDrawable(new Drawable[]{new ColorDrawable(Color.TRANSPARENT), result});
+      imageView.setImageDrawable(fadingResult);
+      fadingResult.startTransition(300);
+    }
+  }
+
+  private Bitmap getCachedThumbnail() {
+    synchronized (thumbnailCache) {
+      SoftReference<Bitmap> bitmapReference = thumbnailCache.get(part.getDataUri());
+      Log.w("ImageSlide", "Got soft reference: " + bitmapReference);
+
+      if (bitmapReference != null) {
+        Bitmap bitmap = bitmapReference.get();
+        Log.w("ImageSlide", "Got cached bitmap: " + bitmap);
+        if (bitmap != null) return bitmap;
+        else                thumbnailCache.remove(part.getDataUri());
+      }
+    }
+
+    return null;
+  }
+
+  @Override
+  public boolean hasImage() {
     return true;
   }
 	
   private static PduPart constructPartFromUri(Context context, Uri uri) throws IOException {
     PduPart part = new PduPart();
-	
-    BitmapFactory.Options options = getImageDimensions(context, uri);
-    long size                     = getMediaSize(context, uri);
-		
-    if (options.outWidth > 640 || options.outHeight > 480 || size > (1024*1024)) {
-      byte[] data = scaleImage(context, uri, options, size, 640, 480, 1024*1024);
-      part.setData(data);
-      Log.w("ImageSlide", "Setting actual part data...");
-    }
-		
-    Log.w("ImageSlide", "Setting part data URI..");
+    byte[] data  = BitmapUtil.createScaledBytes(context, uri, 640, 480, (300 * 1024) - 5000);
+
+    part.setData(data);
     part.setDataUri(uri);
     part.setContentType(ContentType.IMAGE_JPEG.getBytes());
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Image" + System.currentTimeMillis()).getBytes());
 
     return part;
-  }
-	
-  private static byte[] scaleImage(Context context, Uri uri, BitmapFactory.Options options, long size, int maxWidth, int maxHeight, int maxSize) throws FileNotFoundException {
-    int scaler = 1;
-    while ((options.outWidth / scaler > maxWidth) || (options.outHeight / scaler > maxHeight)) 
-      scaler *= 2;
-		
-    options.inSampleSize       = scaler;
-    options.inJustDecodeBounds = false;
-					
-    Bitmap bitmap              = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, options);
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    int quality                = 80;
-		
-    do {
-      bitmap.compress(CompressFormat.JPEG, quality, baos);
-      if (baos.size() > maxSize)
-	quality = quality * maxSize / baos.size();
-    } while (baos.size() > maxSize);
-
-    return baos.toByteArray();
   }
 }

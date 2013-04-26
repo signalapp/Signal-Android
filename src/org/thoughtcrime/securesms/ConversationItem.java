@@ -21,6 +21,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -44,20 +46,19 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord.GroupData;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -85,10 +86,12 @@ public class ConversationItem extends LinearLayout {
   private  ImageView mmsThumbnail;
   private  Button    mmsDownloadButton;
   private  TextView  mmsDownloadingLabel;
+  private  ListenableFutureTask<SlideDeck> slideDeck;
 
   private final FailedIconClickListener failedIconClickListener   = new FailedIconClickListener();
   private final MmsDownloadClickListener mmsDownloadClickListener = new MmsDownloadClickListener();
   private final ClickListener clickListener                       = new ClickListener();
+  private final Handler handler                                   = new Handler();
   private final Context context;
 
   public ConversationItem(Context context) {
@@ -139,6 +142,11 @@ public class ConversationItem extends LinearLayout {
     } else if (messageRecord instanceof MediaMmsMessageRecord) {
       setMediaMmsAttributes((MediaMmsMessageRecord)messageRecord);
     }
+  }
+
+  public void unbind() {
+    if (slideDeck != null)
+      slideDeck.setListener(null);
   }
 
   public MessageRecord getMessageRecord() {
@@ -231,26 +239,40 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setMediaMmsAttributes(MediaMmsMessageRecord messageRecord) {
-    SlideDeck slideDeck = messageRecord.getSlideDeck();
-
-    if (slideDeck != null) {
-      List<Slide> slides  = slideDeck.getSlides();
-
-      Iterator<Slide> iterator = slides.iterator();
-
-      while (iterator.hasNext()) {
-        Slide slide = iterator.next();
-        if (slide.hasImage()) {
-          mmsThumbnail.setImageBitmap(slide.getThumbnail());
-          mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
-          mmsThumbnail.setOnLongClickListener(new ThumbnailSaveListener(slide));
-          mmsThumbnail.setVisibility(View.VISIBLE);
-          return;
-        }
-      }
+    if (messageRecord.getPartCount() > 0) {
+      mmsThumbnail.setVisibility(View.VISIBLE);
+      mmsThumbnail.setImageDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
-    mmsThumbnail.setVisibility(View.GONE);
+    slideDeck = messageRecord.getSlideDeck();
+    slideDeck.setListener(new FutureTaskListener<SlideDeck>() {
+      @Override
+      public void onSuccess(final SlideDeck result) {
+        if (result == null)
+          return;
+
+        handler.post(new Runnable() {
+          @Override
+          public void run() {
+            for (Slide slide : result.getSlides()) {
+              if (slide.hasImage()) {
+                slide.setThumbnailOn(mmsThumbnail);
+//                mmsThumbnail.setImageBitmap(slide.getThumbnail());
+                mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
+                mmsThumbnail.setOnLongClickListener(new ThumbnailSaveListener(slide));
+                mmsThumbnail.setVisibility(View.VISIBLE);
+                return;
+              }
+            }
+
+            mmsThumbnail.setVisibility(View.GONE);
+          }
+        });
+      }
+
+      @Override
+      public void onFailure(Throwable error) {}
+    });
   }
 
   /// Helper Methods
