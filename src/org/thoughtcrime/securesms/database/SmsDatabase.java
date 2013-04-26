@@ -27,7 +27,6 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -405,22 +404,11 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       int status            = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
       Recipients recipients = getRecipientsFor(address);
       String body           = getBody(cursor);
-      MessageRecord.GroupData groupData = null;
-
-      if (cursor.getColumnIndex(MmsSmsDatabase.GROUP_SIZE) != -1) {
-        int groupSize       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.GROUP_SIZE));
-        int groupSent       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SENT_COUNT));
-        int groupSendFailed = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.SMS_GROUP_SEND_FAILED_COUNT));
-
-        Log.w("ConversationAdapter", "GroupSize: " + groupSize + " , GroupSent: " + groupSent + " , GroupSendFailed: " + groupSendFailed);
-
-        groupData = new MessageRecord.GroupData(groupSize, groupSent, groupSendFailed);
-      }
 
       return  new SmsMessageRecord(context, messageId, body, recipients,
                                    recipients.getPrimaryRecipient(),
                                    dateSent, dateReceived, type,
-                                   threadId, status, groupData);
+                                   threadId, status);
     }
 
     private Recipients getRecipientsFor(String address) {

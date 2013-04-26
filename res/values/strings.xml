@@ -505,6 +505,9 @@
 
     <!-- Misc. piggybacking -->
     <string name="PlayStoreListing">TextSecure is a security enhanced text messaging application that serves as a full replacement for the default text messaging application.  Messages to other TextSecure users are encrypted over the air, and all text messages are stored in an encrypted database on the device. If your phone is lost or stolen, your messages will be safe, and communication with other TextSecure users can\'t be monitored over the air.</string>
+    <string name="conversation_group_options__delivery">Delivery</string>
+    <string name="conversation_group_options__conversation">Conversation</string>
+    <string name="conversation_group_options__broadcast">Broadcast</string>
 
     <!-- EOF -->
     

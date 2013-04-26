@@ -22,9 +22,9 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.TextSlide;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 
@@ -39,11 +39,12 @@ import ws.com.google.android.mms.pdu.SendReq;
 public class MessageSender {
 
   public static long sendMms(Context context, MasterSecret masterSecret, Recipients recipients,
-                             long threadId, SlideDeck slideDeck, String message, boolean forcePlaintext)
+                             long threadId, SlideDeck slideDeck, String message, int distributionType,
+                             boolean forcePlaintext)
     throws MmsException
   {
     if (threadId == -1)
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients, distributionType);
 
     if (message.trim().length() > 0)
       slideDeck.addSlide(new TextSlide(context, message));
@@ -55,17 +56,19 @@ public class MessageSender {
     sendRequest.setBody(body);
     sendRequest.setContentType(ContentType.MULTIPART_MIXED.getBytes());
 
-    Recipients secureRecipients   = recipients.getSecureSessionRecipients(context);
-    Recipients insecureRecipients = recipients.getInsecureSessionRecipients(context);
+//    Recipients secureRecipients   = recipients.getSecureSessionRecipients(context);
+//    Recipients insecureRecipients = recipients.getInsecureSessionRecipients(context);
 
-    for (Recipient secureRecipient : secureRecipients.getRecipientsList()) {
-      sendMms(context, new Recipients(secureRecipient), masterSecret,
-              sendRequest, threadId, !forcePlaintext);
-    }
+//    for (Recipient secureRecipient : secureRecipients.getRecipientsList()) {
+//      sendMms(context, new Recipients(secureRecipient), masterSecret,
+//              sendRequest, threadId, !forcePlaintext);
+//    }
+//
+//    if (!insecureRecipients.isEmpty()) {
+//      sendMms(context, insecureRecipients, masterSecret, sendRequest, threadId, false);
+//    }
 
-    if (!insecureRecipients.isEmpty()) {
-      sendMms(context, insecureRecipients, masterSecret, sendRequest, threadId, false);
-    }
+    sendMms(context, recipients, masterSecret, sendRequest, threadId, distributionType, false);
 
     return threadId;
   }
@@ -93,13 +96,19 @@ public class MessageSender {
   }
 
   private static void sendMms(Context context, Recipients recipients, MasterSecret masterSecret,
-                              SendReq sendRequest, long threadId, boolean secure)
+                              SendReq sendRequest, long threadId, int distributionType, boolean secure)
     throws MmsException
   {
     String[] recipientsArray            = recipients.toNumberStringArray(true);
     EncodedStringValue[] encodedNumbers = EncodedStringValue.encodeStrings(recipientsArray);
 
-    sendRequest.setTo(encodedNumbers);
+    if (recipients.isSingleRecipient()) {
+      sendRequest.setTo(encodedNumbers);
+    } else if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
+      sendRequest.setBcc(encodedNumbers);
+    } else if (distributionType == ThreadDatabase.DistributionTypes.CONVERSATION) {
+      sendRequest.setCc(encodedNumbers);
+    }
 
     long messageId = DatabaseFactory.getMmsDatabase(context)
                        .insertMessageOutbox(masterSecret, sendRequest, threadId, secure);

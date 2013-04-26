@@ -31,13 +31,7 @@ import java.util.Set;
 
 public class MmsSmsDatabase extends Database {
 
-  public static final String TRANSPORT                   = "transport_type";
-  public static final String GROUP_SIZE                  = "group_size";
-  public static final String SMS_GROUP_SENT_COUNT        = "sms_group_sent_count";
-  public static final String SMS_GROUP_SEND_FAILED_COUNT = "sms_group_sent_failed_count";
-  public static final String MMS_GROUP_SENT_COUNT        = "mms_group_sent_count";
-  public static final String MMS_GROUP_SEND_FAILED_COUNT = "mms_group_sent_failed_count";
-
+  public static final String TRANSPORT     = "transport_type";
   public static final String MMS_TRANSPORT = "mms";
   public static final String SMS_TRANSPORT = "sms";
 
@@ -45,53 +39,53 @@ public class MmsSmsDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public Cursor getCollatedGroupConversation(long threadId) {
-    String smsCaseSecurity = "CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.SECURE_MESSAGE_BIT + " " +
-                             "WHEN " + SmsDatabase.Types.SECURE_MESSAGE_BIT    + " THEN 1 " +
-                             "ELSE 0 END";
-
-    String mmsCaseSecurity = "CASE " + MmsDatabase.MESSAGE_BOX + " & " + SmsDatabase.Types.SECURE_MESSAGE_BIT + " " +
-                             "WHEN " + MmsDatabase.Types.SECURE_MESSAGE_BIT + " THEN 'secure' " +
-                             "ELSE 'insecure' END";
-
-    String mmsGroupSentCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " & " + MmsDatabase.Types.BASE_TYPE_MASK + " " +
-                               "WHEN " + MmsDatabase.Types.BASE_SENT_TYPE + " THEN 1 " +
-                               "ELSE 0 END)";
-
-
-    String smsGroupSentCount = "SUM(CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.BASE_TYPE_MASK + " " +
-                               "WHEN " + SmsDatabase.Types.BASE_SENT_TYPE + " THEN 1 " +
-                               "ELSE 0 END)";
-
-    String mmsGroupSentFailedCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " & " + MmsDatabase.Types.BASE_TYPE_MASK + " " +
-                                     "WHEN " + MmsDatabase.Types.BASE_SENT_FAILED_TYPE + " THEN 1 " +
-                                     "ELSE 0 END)";
-
-    String smsGroupSentFailedCount = "SUM(CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.BASE_TYPE_MASK +  " " +
-                                     "WHEN " + SmsDatabase.Types.BASE_SENT_FAILED_TYPE + " THEN 1 " +
-                                     "ELSE 0 END)";
-
-    String[] projection = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
-                           MmsSmsColumns.THREAD_ID,
-                           SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, SmsDatabase.STATUS,
-                           MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
-                           MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX, TRANSPORT,
-                           "COUNT(" + MmsSmsColumns.ID + ") AS " + GROUP_SIZE,
-                           mmsGroupSentCount + " AS " + MMS_GROUP_SENT_COUNT,
-                           mmsGroupSentFailedCount + " AS " + MMS_GROUP_SEND_FAILED_COUNT,
-                           smsGroupSentCount + " AS " + SMS_GROUP_SENT_COUNT,
-                           smsGroupSentFailedCount + " AS " + SMS_GROUP_SEND_FAILED_COUNT,
-                           smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
-
-    String order        = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection    = MmsSmsColumns.THREAD_ID + " = " + threadId;
-    String groupBy      = MmsSmsColumns.NORMALIZED_DATE_SENT + " / 1000, sms_collate, mms_collate";
-
-    Cursor cursor = queryTables(projection, selection, order, groupBy, null);
-    setNotifyConverationListeners(cursor, threadId);
-
-    return cursor;
-  }
+//  public Cursor getCollatedGroupConversation(long threadId) {
+//    String smsCaseSecurity = "CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.SECURE_MESSAGE_BIT + " " +
+//                             "WHEN " + SmsDatabase.Types.SECURE_MESSAGE_BIT    + " THEN 1 " +
+//                             "ELSE 0 END";
+//
+//    String mmsCaseSecurity = "CASE " + MmsDatabase.MESSAGE_BOX + " & " + SmsDatabase.Types.SECURE_MESSAGE_BIT + " " +
+//                             "WHEN " + MmsDatabase.Types.SECURE_MESSAGE_BIT + " THEN 'secure' " +
+//                             "ELSE 'insecure' END";
+//
+//    String mmsGroupSentCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " & " + MmsDatabase.Types.BASE_TYPE_MASK + " " +
+//                               "WHEN " + MmsDatabase.Types.BASE_SENT_TYPE + " THEN 1 " +
+//                               "ELSE 0 END)";
+//
+//
+//    String smsGroupSentCount = "SUM(CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.BASE_TYPE_MASK + " " +
+//                               "WHEN " + SmsDatabase.Types.BASE_SENT_TYPE + " THEN 1 " +
+//                               "ELSE 0 END)";
+//
+//    String mmsGroupSentFailedCount = "SUM(CASE " + MmsDatabase.MESSAGE_BOX + " & " + MmsDatabase.Types.BASE_TYPE_MASK + " " +
+//                                     "WHEN " + MmsDatabase.Types.BASE_SENT_FAILED_TYPE + " THEN 1 " +
+//                                     "ELSE 0 END)";
+//
+//    String smsGroupSentFailedCount = "SUM(CASE " + SmsDatabase.TYPE + " & " + SmsDatabase.Types.BASE_TYPE_MASK +  " " +
+//                                     "WHEN " + SmsDatabase.Types.BASE_SENT_FAILED_TYPE + " THEN 1 " +
+//                                     "ELSE 0 END)";
+//
+//    String[] projection = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
+//                           MmsSmsColumns.THREAD_ID,
+//                           SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, SmsDatabase.STATUS,
+//                           MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+//                           MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX, TRANSPORT,
+//                           "COUNT(" + MmsSmsColumns.ID + ") AS " + GROUP_SIZE,
+//                           mmsGroupSentCount + " AS " + MMS_GROUP_SENT_COUNT,
+//                           mmsGroupSentFailedCount + " AS " + MMS_GROUP_SEND_FAILED_COUNT,
+//                           smsGroupSentCount + " AS " + SMS_GROUP_SENT_COUNT,
+//                           smsGroupSentFailedCount + " AS " + SMS_GROUP_SEND_FAILED_COUNT,
+//                           smsCaseSecurity + " AS sms_collate", mmsCaseSecurity + " AS mms_collate"};
+//
+//    String order        = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
+//    String selection    = MmsSmsColumns.THREAD_ID + " = " + threadId;
+//    String groupBy      = MmsSmsColumns.NORMALIZED_DATE_SENT + " / 1000, sms_collate, mms_collate";
+//
+//    Cursor cursor = queryTables(projection, selection, order, groupBy, null);
+//    setNotifyConverationListeners(cursor, threadId);
+//
+//    return cursor;
+//  }
 
   public Cursor getConversation(long threadId) {
     String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,

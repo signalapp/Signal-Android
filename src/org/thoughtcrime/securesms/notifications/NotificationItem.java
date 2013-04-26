@@ -7,29 +7,34 @@ import android.net.Uri;
 import android.text.SpannableStringBuilder;
 
 import org.thoughtcrime.securesms.RoutingActivity;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 
 public class NotificationItem {
 
   private final Recipients   recipients;
+  private final Recipient    individualRecipient;
   private final long         threadId;
   private final CharSequence text;
   private final Uri          image;
 
-  public NotificationItem(Recipients recipients, long threadId, CharSequence text, Uri image) {
-    this.recipients = recipients;
-    this.text       = text;
-    this.image      = image;
-    this.threadId   = threadId;
+  public NotificationItem(Recipient individualRecipient, Recipients recipients, long threadId,
+                          CharSequence text, Uri image)
+  {
+    this.individualRecipient = individualRecipient;
+    this.recipients          = recipients;
+    this.text                = text;
+    this.image               = image;
+    this.threadId            = threadId;
   }
 
-  public Recipients getRecipients() {
-    return recipients;
+  public Recipient getIndividualRecipient() {
+    return individualRecipient;
   }
 
-  public String getRecipientName() {
-    return recipients.getPrimaryRecipient().toShortString();
+  public String getIndividualRecipientName() {
+    return individualRecipient.toShortString();
   }
 
   public CharSequence getText() {
@@ -54,7 +59,7 @@ public class NotificationItem {
 
   public CharSequence getTickerText() {
     SpannableStringBuilder builder = new SpannableStringBuilder();
-    builder.append(Util.getBoldedString(getRecipientName()));
+    builder.append(Util.getBoldedString(getIndividualRecipientName()));
     builder.append(": ");
     builder.append(getText());
 
@@ -65,7 +70,7 @@ public class NotificationItem {
     Intent intent = new Intent(context, RoutingActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-    if (recipients.getPrimaryRecipient() != null) {
+    if (recipients != null) {
       intent.putExtra("recipients", recipients);
       intent.putExtra("thread_id", threadId);
     }

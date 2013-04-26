@@ -193,19 +193,19 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setGroupMessageStatus(MessageRecord messageRecord) {
-    GroupData groupData = messageRecord.getGroupData();
-
-    if (groupData != null) {
-      String status = String.format("Sent (%d/%d)", groupData.groupSentCount, groupData.groupSize);
-
-      if (groupData.groupSendFailedCount != 0)
-        status = status + String.format(", Failed (%d/%d)", groupData.groupSendFailedCount, groupData.groupSize);
-
-      this.groupStatusText.setText(status);
-      this.groupStatusText.setVisibility(View.VISIBLE);
-    } else {
+//    GroupData groupData = messageRecord.getGroupData();
+//
+//    if (groupData != null) {
+//      String status = String.format("Sent (%d/%d)", groupData.groupSentCount, groupData.groupSize);
+//
+//      if (groupData.groupSendFailedCount != 0)
+//        status = status + String.format(", Failed (%d/%d)", groupData.groupSendFailedCount, groupData.groupSize);
+//
+//      this.groupStatusText.setText(status);
+//      this.groupStatusText.setVisibility(View.VISIBLE);
+//    } else {
       this.groupStatusText.setVisibility(View.GONE);
-    }
+//    }
   }
 
   private void setNotificationMmsAttributes(NotificationMmsMessageRecord messageRecord) {
@@ -298,7 +298,7 @@ public class ConversationItem extends LinearLayout {
 
   private void handleKeyExchangeClicked() {
     Intent intent = new Intent(context, ReceiveKeyActivity.class);
-    intent.putExtra("recipient", messageRecord.getRecipients().getPrimaryRecipient());
+    intent.putExtra("recipient", messageRecord.getIndividualRecipient());
     intent.putExtra("body", messageRecord.getBody());
     intent.putExtra("thread_id", messageRecord.getThreadId());
     intent.putExtra("master_secret", masterSecret);

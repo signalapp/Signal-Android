@@ -158,9 +158,36 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
   }
 
-  private long getThreadIdForHeaders(PduHeaders headers) throws RecipientFormattingException {
+  private long getThreadIdFor(RetrieveConf retrieved) throws RecipientFormattingException {
     try {
-      EncodedStringValue encodedString = headers.getEncodedStringValue(PduHeaders.FROM);
+      Set<String> group = new HashSet<String>();
+
+      EncodedStringValue encodedFrom = retrieved.getFrom();
+      group.add(new String(encodedFrom.getTextString(), CharacterSets.MIMENAME_ISO_8859_1));
+
+      EncodedStringValue[] encodedCcList = retrieved.getCc();
+      if (encodedCcList != null) {
+        for (EncodedStringValue encodedCc : encodedCcList) {
+          group.add(new String(encodedCc.getTextString(), CharacterSets.MIMENAME_ISO_8859_1));
+        }
+      }
+
+      StringBuilder sb = new StringBuilder();
+      for (String recipient : group) {
+        sb.append(recipient);
+        sb.append(",");
+      }
+
+      Recipients recipients = RecipientFactory.getRecipientsFromString(context, sb.toString(), false);
+      return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    } catch (UnsupportedEncodingException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  private long getThreadIdFor(NotificationInd notification) throws RecipientFormattingException {
+    try {
+      EncodedStringValue encodedString = notification.getFrom();
       String fromString                = new String(encodedString.getTextString(), CharacterSets.MIMENAME_ISO_8859_1);
       Recipients recipients            = RecipientFactory.getRecipientsFromString(context, fromString, false);
       return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
@@ -313,12 +340,20 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
   }
 
-  private long insertMessageInbox(MasterSecret masterSecret, MultimediaMessagePdu retrieved,
-                                     String contentLocation, long threadId, long mailbox)
+  private long insertMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
+                                  String contentLocation, long threadId, long mailbox)
       throws MmsException
   {
     PduHeaders headers          = retrieved.getPduHeaders();
     ContentValues contentValues = getContentValuesFromHeader(headers);
+
+    if (!Util.isEmpty(retrieved.getCc())) {
+      try {
+        threadId = getThreadIdFor(retrieved);
+      } catch (RecipientFormattingException e) {
+        Log.w("MmsDatabase", e);
+      }
+    }
 
     contentValues.put(MESSAGE_BOX, mailbox);
     contentValues.put(THREAD_ID, threadId);
@@ -348,7 +383,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
                               Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.ENCRYPTION_REMOTE_BIT);
   }
 
-  public long insertSecureDecryptedMessageInbox(MasterSecret masterSecret, MultimediaMessagePdu retrieved, long threadId)
+  public long insertSecureDecryptedMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
+                                                long threadId)
       throws MmsException
   {
     return insertMessageInbox(masterSecret, retrieved, "", threadId,
@@ -360,7 +396,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       SQLiteDatabase db                  = databaseHelper.getWritableDatabase();
       PduHeaders headers                 = notification.getPduHeaders();
       ContentValues contentValues        = getContentValuesFromHeader(headers);
-      long threadId                      = getThreadIdForHeaders(headers);
+      long threadId                      = getThreadIdFor(notification);
       MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
 
       Log.w("MmsDatabse", "Message received type: " + headers.getOctet(PduHeaders.MESSAGE_TYPE));
@@ -688,29 +724,12 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long box            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
       long threadId       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
       Recipient recipient = getMessageRecipient(id);
-      MessageRecord.GroupData groupData = null;
 
       SlideDeck slideDeck;
 
       try {
         MultimediaMessagePdu pdu = getMediaMessage(id);
         slideDeck                = getSlideDeck(masterSecret, pdu);
-
-        if (cursor.getColumnIndex(MmsSmsDatabase.GROUP_SIZE) != -1) {
-          int groupSize       = pdu.getTo().length;
-          int groupSent       = MmsDatabase.Types.isFailedMessageType(box) ? 0 : groupSize;
-          int groupSendFailed = groupSize - groupSent;
-
-          if (groupSize <= 1) {
-            groupSize       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.GROUP_SIZE));
-            groupSent       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.MMS_GROUP_SENT_COUNT));
-            groupSendFailed = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsDatabase.MMS_GROUP_SEND_FAILED_COUNT));
-          }
-
-          Log.w("ConversationAdapter", "MMS GroupSize: " + groupSize + " , GroupSent: " + groupSent + " , GroupSendFailed: " + groupSendFailed);
-
-          groupData = new MessageRecord.GroupData(groupSize, groupSent, groupSendFailed);
-        }
       } catch (MmsException me) {
         Log.w("ConversationAdapter", me);
         slideDeck = null;
@@ -718,7 +737,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
       return new MediaMmsMessageRecord(context, id, new Recipients(recipient), recipient,
                                        dateSent, dateReceived, threadId,
-                                       slideDeck, box, groupData);
+                                       slideDeck, box);
     }
 
     protected SlideDeck getSlideDeck(MasterSecret masterSecret, MultimediaMessagePdu pdu) {

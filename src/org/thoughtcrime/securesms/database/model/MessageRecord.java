@@ -45,19 +45,17 @@ public abstract class MessageRecord extends DisplayRecord {
   private final Recipient individualRecipient;
   private final long id;
   private final int deliveryStatus;
-  private final GroupData groupData;
 
   public MessageRecord(Context context, long id, String body, Recipients recipients,
                        Recipient individualRecipient,
                        long dateSent, long dateReceived,
                        long threadId, int deliveryStatus,
-                       long type, GroupData groupData)
+                       long type)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, type);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.deliveryStatus      = deliveryStatus;
-    this.groupData           = groupData;
   }
 
   public abstract boolean isMms();
@@ -73,7 +71,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isPending() {
-    return MmsSmsColumns.Types.isPendingMessageType(type) || isGroupDeliveryPending();
+    return MmsSmsColumns.Types.isPendingMessageType(type);
   }
 
   public boolean isSecure() {
@@ -107,18 +105,6 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public Recipient getIndividualRecipient() {
     return individualRecipient;
-  }
-
-  public GroupData getGroupData() {
-    return this.groupData;
-  }
-
-  protected boolean isGroupDeliveryPending() {
-    if (this.groupData != null) {
-      return groupData.groupSentCount + groupData.groupSendFailedCount < groupData.groupSize;
-    }
-
-    return false;
   }
 
   protected SpannableString emphasisAdded(String sequence) {

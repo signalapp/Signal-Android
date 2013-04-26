@@ -91,29 +91,29 @@ public class Recipients implements Parcelable {
     return false;
   }
 
-  public Recipients getSecureSessionRecipients(Context context) {
-    List<Recipient> secureRecipients = new LinkedList<Recipient>();
-
-    for (Recipient recipient : recipients) {
-      if (KeyUtil.isSessionFor(context, recipient)) {
-        secureRecipients.add(recipient);
-      }
-    }
-
-    return new Recipients(secureRecipients);
-  }
-
-  public Recipients getInsecureSessionRecipients(Context context) {
-    List<Recipient> insecureRecipients = new LinkedList<Recipient>();
-
-    for (Recipient recipient : recipients) {
-      if (!KeyUtil.isSessionFor(context, recipient)) {
-        insecureRecipients.add(recipient);
-      }
-    }
-
-    return new Recipients(insecureRecipients);
-  }
+//  public Recipients getSecureSessionRecipients(Context context) {
+//    List<Recipient> secureRecipients = new LinkedList<Recipient>();
+//
+//    for (Recipient recipient : recipients) {
+//      if (KeyUtil.isSessionFor(context, recipient)) {
+//        secureRecipients.add(recipient);
+//      }
+//    }
+//
+//    return new Recipients(secureRecipients);
+//  }
+//
+//  public Recipients getInsecureSessionRecipients(Context context) {
+//    List<Recipient> insecureRecipients = new LinkedList<Recipient>();
+//
+//    for (Recipient recipient : recipients) {
+//      if (!KeyUtil.isSessionFor(context, recipient)) {
+//        insecureRecipients.add(recipient);
+//      }
+//    }
+//
+//    return new Recipients(insecureRecipients);
+//  }
 
   public boolean isEmpty() {
     return this.recipients.isEmpty();

@@ -33,6 +33,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import ws.com.google.android.mms.pdu.EncodedStringValue;
+
 public class Util {
 
   public static byte[] combine(byte[] one, byte[] two) {
@@ -105,6 +107,10 @@ public class Util {
     return value == null || value.length() == 0;
   }
 
+  public static boolean isEmpty(EncodedStringValue[] value) {
+    return value == null || value.length == 0;
+  }
+
   public static CharSequence getBoldedString(String value) {
     SpannableString spanned = new SpannableString(value);
     spanned.setSpan(new StyleSpan(Typeface.BOLD), 0,
@@ -155,6 +161,7 @@ public class Util {
 
     return new String(bout.toByteArray());
   }
+
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {
   //    return BitmapFactory.decodeStream(src);

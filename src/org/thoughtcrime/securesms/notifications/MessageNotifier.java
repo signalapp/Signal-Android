@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.io.IOException;
@@ -137,13 +138,13 @@ public class MessageNotifier {
                                                    NotificationState notificationState,
                                                    boolean signal)
   {
-    List<NotificationItem> notifications = notificationState.getNotifications();
-    NotificationCompat.Builder builder   = new NotificationCompat.Builder(context);
-    Recipients recipients                = notifications.get(0).getRecipients();
+    List<NotificationItem>notifications = notificationState.getNotifications();
+    NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
+    Recipient recipient                 = notifications.get(0).getIndividualRecipient();
 
     builder.setSmallIcon(R.drawable.icon_notification);
-    builder.setLargeIcon(recipients.getPrimaryRecipient().getContactPhoto());
-    builder.setContentTitle(recipients.getPrimaryRecipient().toShortString());
+    builder.setLargeIcon(recipient.getContactPhoto());
+    builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
 
@@ -179,7 +180,7 @@ public class MessageNotifier {
     builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
                                           notificationState.getMessageCount()));
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
-                                         notifications.get(0).getRecipientName()));
+                                         notifications.get(0).getIndividualRecipientName()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
 
     InboxStyle style = new InboxStyle();
@@ -246,6 +247,7 @@ public class MessageNotifier {
     else                      reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor, masterSecret);
 
     while ((record = reader.getNext()) != null) {
+      Recipient recipient   = record.getIndividualRecipient();
       Recipients recipients = record.getRecipients();
       long         threadId = record.getThreadId();
       SpannableString body  = record.getDisplayBody();
@@ -257,7 +259,7 @@ public class MessageNotifier {
         body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
 
-      notificationState.addNotification(new NotificationItem(recipients, threadId, body, image));
+      notificationState.addNotification(new NotificationItem(recipient, recipients, threadId, body, image));
     }
 
     return notificationState;

@@ -38,18 +38,18 @@ import java.util.Set;
 
 public class ThreadDatabase extends Database {
 
-  static final String TABLE_NAME                   = "thread";
-  public  static final String ID                  = "_id";
-  public  static final String DATE                = "date";
-  public  static final String MESSAGE_COUNT       = "message_count";
-  public  static final String RECIPIENT_IDS       = "recipient_ids";
-  public  static final String SNIPPET             = "snippet";
-  private static final String SNIPPET_CHARSET     = "snippet_cs";
-  public  static final String READ                = "read";
-  private static final String TYPE                = "type";
-  private static final String ERROR               = "error";
-  private static final String HAS_ATTACHMENT      = "has_attachment";
-  public  static final String SNIPPET_TYPE        = "snippet_type";
+          static final String TABLE_NAME      = "thread";
+  public  static final String ID              = "_id";
+  public  static final String DATE            = "date";
+  public  static final String MESSAGE_COUNT   = "message_count";
+  public  static final String RECIPIENT_IDS   = "recipient_ids";
+  public  static final String SNIPPET         = "snippet";
+  private static final String SNIPPET_CHARSET = "snippet_cs";
+  public  static final String READ            = "read";
+  private static final String TYPE            = "type";
+  private static final String ERROR           = "error";
+  private static final String HAS_ATTACHMENT  = "has_attachment";
+  public  static final String SNIPPET_TYPE    = "snippet_type";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                             +
     DATE + " INTEGER DEFAULT 0, " + MESSAGE_COUNT + " INTEGER DEFAULT 0, "                         +
@@ -98,7 +98,7 @@ public class ThreadDatabase extends Database {
     return sb.toString();
   }
 
-  private long createThreadForRecipients(String recipients, int recipientCount) {
+  private long createThreadForRecipients(String recipients, int recipientCount, int distributionType) {
     ContentValues contentValues = new ContentValues(4);
     long date                   = System.currentTimeMillis();
 
@@ -106,7 +106,7 @@ public class ThreadDatabase extends Database {
     contentValues.put(RECIPIENT_IDS, recipients);
 
     if (recipientCount > 1)
-      contentValues.put(TYPE, 1);
+      contentValues.put(TYPE, distributionType);
 
     contentValues.put(MESSAGE_COUNT, 0);
 
@@ -216,7 +216,16 @@ public class ThreadDatabase extends Database {
 
   public void setUnread(long threadId) {
     ContentValues contentValues = new ContentValues(1);
-    contentValues.put("read", 0);
+    contentValues.put(READ, 0);
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
+    notifyConversationListListeners();
+  }
+
+  public void setDistributionType(long threadId, int distributionType) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(TYPE, distributionType);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
@@ -301,6 +310,10 @@ public class ThreadDatabase extends Database {
   }
 
   public long getThreadIdFor(Recipients recipients) {
+    return getThreadIdFor(recipients, 0);
+  }
+
+  public long getThreadIdFor(Recipients recipients, int distributionType) {
     long[] recipientIds    = getRecipientIds(recipients);
     String recipientsList  = getRecipientsAsString(recipientIds);
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
@@ -314,7 +327,7 @@ public class ThreadDatabase extends Database {
       if (cursor != null && cursor.moveToFirst())
         return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
       else
-        return createThreadForRecipients(recipientsList, recipientIds.length);
+        return createThreadForRecipients(recipientsList, recipientIds.length, distributionType);
     } finally {
       if (cursor != null)
         cursor.close();
@@ -378,6 +391,12 @@ public class ThreadDatabase extends Database {
     return new Reader(cursor, masterSecret);
   }
 
+  public static class DistributionTypes {
+    public static final int DEFAULT      = 2;
+    public static final int BROADCAST    = 1;
+    public static final int CONVERSATION = 2;
+  }
+
   public class Reader {
 
     private final Cursor cursor;
@@ -405,8 +424,10 @@ public class ThreadDatabase extends Database {
       long count            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
       long read             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
       long type             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
+      int distributionType  = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
 
-      return new ThreadRecord(context, body, recipients, date, count, read == 1, threadId, type);
+      return new ThreadRecord(context, body, recipients, date, count,
+                              read == 1, threadId, type, distributionType);
     }
 
     private String getPlaintextBody(Cursor cursor) {

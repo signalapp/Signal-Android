@@ -40,10 +40,10 @@ public class SmsMessageRecord extends MessageRecord {
                           Recipient individualRecipient,
                           long dateSent, long dateReceived,
                           long type, long threadId,
-                          int status, GroupData groupData)
+                          int status)
   {
     super(context, id, body, recipients, individualRecipient, dateSent, dateReceived,
-          threadId, getGenericDeliveryStatus(status), type, groupData);
+          threadId, getGenericDeliveryStatus(status), type);
   }
 
   public long getType() {

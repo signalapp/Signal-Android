@@ -33,7 +33,7 @@ public class NotificationState {
   }
 
   public Bitmap getContactPhoto() {
-    return notifications.get(0).getRecipients().getPrimaryRecipient().getContactPhoto();
+    return notifications.get(0).getIndividualRecipient().getContactPhoto();
   }
 
 }

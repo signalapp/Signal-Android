@@ -123,7 +123,7 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void handleDisplayDetails(MessageRecord message) {
-    String sender     = message.getRecipients().getPrimaryRecipient().getNumber();
+    String sender     = message.getIndividualRecipient().getNumber();
     String transport  = message.isMms() ? "mms" : "sms";
     long dateReceived = message.getDateReceived();
     long dateSent     = message.getDateSent();
@@ -175,8 +175,7 @@ public class ConversationFragment extends SherlockListFragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationLoader(getActivity(), threadId,
-                                  (recipients != null && !recipients.isSingleRecipient()));
+    return new ConversationLoader(getActivity(), threadId);
   }
 
   @Override

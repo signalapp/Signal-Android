@@ -37,14 +37,17 @@ public class ThreadRecord extends DisplayRecord {
   private final Context context;
   private final long count;
   private final boolean read;
+  private final int distributionType;
 
   public ThreadRecord(Context context, String body, Recipients recipients, long date,
-                      long count, boolean read, long threadId, long type)
+                      long count, boolean read, long threadId, long snippetType,
+                      int distributionType)
   {
-    super(context, body, recipients, date, date, threadId, type);
-    this.context = context.getApplicationContext();
-    this.count   = count;
-    this.read    = read;
+    super(context, body, recipients, date, date, threadId, snippetType);
+    this.context          = context.getApplicationContext();
+    this.count            = count;
+    this.read             = read;
+    this.distributionType = distributionType;
   }
 
   @Override
@@ -86,4 +89,7 @@ public class ThreadRecord extends DisplayRecord {
     return getDateReceived();
   }
 
+  public int getDistributionType() {
+    return distributionType;
+  }
 }

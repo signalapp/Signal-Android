@@ -10,6 +10,7 @@ import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.ApplicationExportManager.ApplicationExportListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -67,27 +68,30 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
 
+    int defaultType = ThreadDatabase.DistributionTypes.DEFAULT;
+
     switch (item.getItemId()) {
-    case R.id.menu_new_message:      createConversation(-1, null); return true;
-    case R.id.menu_settings:         handleDisplaySettings();      return true;
-    case R.id.menu_export:           handleExportDatabase();       return true;
-    case R.id.menu_import:           handleImportDatabase();       return true;
-    case R.id.menu_clear_passphrase: handleClearPassphrase();      return true;
+    case R.id.menu_new_message:      createConversation(-1, null, defaultType); return true;
+    case R.id.menu_settings:         handleDisplaySettings();                   return true;
+    case R.id.menu_export:           handleExportDatabase();                    return true;
+    case R.id.menu_import:           handleImportDatabase();                    return true;
+    case R.id.menu_clear_passphrase: handleClearPassphrase();                   return true;
     }
 
     return false;
   }
 
   @Override
-  public void onCreateConversation(long threadId, Recipients recipients) {
-    createConversation(threadId, recipients);
+  public void onCreateConversation(long threadId, Recipients recipients, int distributionType) {
+    createConversation(threadId, recipients, distributionType);
   }
 
-  private void createConversation(long threadId, Recipients recipients) {
+  private void createConversation(long threadId, Recipients recipients, int distributionType) {
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
+    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 
     startActivity(intent);
   }

@@ -24,7 +24,7 @@ public class UniversalTransport {
   }
 
   public void deliver(SmsMessageRecord message) throws UndeliverableMessageException {
-    Recipient recipient = message.getRecipients().getPrimaryRecipient();
+    Recipient recipient = message.getIndividualRecipient();
     String number       = PhoneNumberFormatter.formatNumber(context, recipient.getNumber());
 
     if (NumberFilter.getInstance(context).containsNumber(number)) {

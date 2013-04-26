@@ -43,6 +43,7 @@ import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.MultimediaMessagePdu;
 import ws.com.google.android.mms.pdu.PduParser;
+import ws.com.google.android.mms.pdu.RetrieveConf;
 
 /**
  * A work queue for processing a number of encryption operations.
@@ -186,7 +187,7 @@ public class DecryptingQueue {
           plaintextPduBytes    = cipher.decryptMessage(ciphertextPduBytes);
         }
 
-        MultimediaMessagePdu plaintextPdu = (MultimediaMessagePdu)new PduParser(plaintextPduBytes).parse();
+        RetrieveConf plaintextPdu = (RetrieveConf)new PduParser(plaintextPduBytes).parse();
         Log.w("DecryptingQueue", "Successfully decrypted MMS!");
         database.insertSecureDecryptedMessageInbox(masterSecret, plaintextPdu, threadId);
         database.delete(messageId);

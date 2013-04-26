@@ -71,6 +71,7 @@ public class ConversationListItem extends RelativeLayout
   private QuickContactBadge contactPhotoBadge;
 
   private final Handler handler = new Handler();
+  private int distributionType;
 
   public ConversationListItem(Context context) {
     super(context);
@@ -97,11 +98,12 @@ public class ConversationListItem extends RelativeLayout
   }
 
   public void set(ThreadRecord thread, Set<Long> selectedThreads, boolean batchMode) {
-    this.selectedThreads = selectedThreads;
-    this.recipients      = thread.getRecipients();
-    this.threadId        = thread.getThreadId();
-    this.count           = thread.getCount();
-    this.read            = thread.isRead();
+    this.selectedThreads  = selectedThreads;
+    this.recipients       = thread.getRecipients();
+    this.threadId         = thread.getThreadId();
+    this.count            = thread.getCount();
+    this.read             = thread.isRead();
+    this.distributionType = thread.getDistributionType();
 
     this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
@@ -199,6 +201,10 @@ public class ConversationListItem extends RelativeLayout
 
   public long getThreadId() {
     return threadId;
+  }
+
+  public int getDistributionType() {
+    return distributionType;
   }
 
   private class CheckedChangedListener implements CompoundButton.OnCheckedChangeListener {

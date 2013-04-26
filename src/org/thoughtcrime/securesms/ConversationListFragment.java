@@ -96,7 +96,8 @@ public class ConversationListFragment extends SherlockListFragment
   public void onListItemClick(ListView l, View v, int position, long id) {
     if (v instanceof ConversationListItem) {
       ConversationListItem headerView = (ConversationListItem) v;
-      handleCreateConversation(headerView.getThreadId(), headerView.getRecipients());
+      handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
+                               headerView.getDistributionType());
     }
   }
 
@@ -197,8 +198,8 @@ public class ConversationListFragment extends SherlockListFragment
     ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
   }
 
-  private void handleCreateConversation(long threadId, Recipients recipients) {
-    listener.onCreateConversation(threadId, recipients);
+  private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
+    listener.onCreateConversation(threadId, recipients, distributionType);
   }
 
   @Override
@@ -217,7 +218,7 @@ public class ConversationListFragment extends SherlockListFragment
   }
 
   public interface ConversationSelectedListener {
-    public void onCreateConversation(long threadId, Recipients recipients);
+    public void onCreateConversation(long threadId, Recipients recipients, int distributionType);
 }
 
   @Override

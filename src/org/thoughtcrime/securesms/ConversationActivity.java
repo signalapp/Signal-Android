@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
@@ -93,14 +94,15 @@ import ws.com.google.android.mms.MmsException;
  */
 public class ConversationActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationFragment.ConversationFragmentListener
-  {
+{
 
-  public static final String RECIPIENTS_EXTRA    = "recipients";
-  public static final String THREAD_ID_EXTRA     = "thread_id";
-  public static final String MASTER_SECRET_EXTRA = "master_secret";
-  public static final String DRAFT_TEXT_EXTRA    = "draft_text";
-  public static final String DRAFT_IMAGE_EXTRA   = "draft_image";
-  public static final String DRAFT_AUDIO_EXTRA   = "draft_audio";
+  public static final String RECIPIENTS_EXTRA        = "recipients";
+  public static final String THREAD_ID_EXTRA         = "thread_id";
+  public static final String MASTER_SECRET_EXTRA     = "master_secret";
+  public static final String DRAFT_TEXT_EXTRA        = "draft_text";
+  public static final String DRAFT_IMAGE_EXTRA       = "draft_image";
+  public static final String DRAFT_AUDIO_EXTRA       = "draft_audio";
+  public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
 
   private static final int PICK_CONTACT          = 1;
   private static final int PICK_IMAGE            = 2;
@@ -120,6 +122,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private Recipients recipients;
   private long threadId;
+  private int distributionType;
   private boolean isEncryptedConversation;
   private boolean isMmsEnabled = true;
 
@@ -182,7 +185,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     switch (reqCode) {
     case PICK_CONTACT:
-      Recipients recipients = (Recipients)data.getParcelableExtra("recipients");
+      Recipients recipients = data.getParcelableExtra("recipients");
 
       if (recipients != null)
         recipientsPanel.addRecipients(recipients);
@@ -220,6 +223,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       inflater.inflate(R.menu.conversation_callable, menu);
     } else if (isGroupConversation()) {
       inflater.inflate(R.menu.conversation_group_options, menu);
+
+      if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST)
+      {
+        menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
+      } else {
+        menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
+      }
     }
 
     inflater.inflate(R.menu.conversation, menu);
@@ -231,15 +241,17 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
-    case R.id.menu_call:                 handleDial(getRecipients().getPrimaryRecipient()); return true;
-    case R.id.menu_delete_thread:        handleDeleteThread();                              return true;
-    case R.id.menu_add_attachment:       handleAddAttachment();                             return true;
-    case R.id.menu_start_secure_session: handleStartSecureSession();                        return true;
-    case R.id.menu_abort_session:        handleAbortSecureSession();                        return true;
-    case R.id.menu_verify_recipient:     handleVerifyRecipient();                           return true;
-    case R.id.menu_verify_session:       handleVerifySession();                             return true;
-    case R.id.menu_group_recipients:     handleDisplayGroupRecipients();                    return true;
-    case android.R.id.home:              handleReturnToConversationList();                  return true;
+    case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
+    case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
+    case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
+    case R.id.menu_start_secure_session:      handleStartSecureSession();                        return true;
+    case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
+    case R.id.menu_verify_recipient:          handleVerifyRecipient();                           return true;
+    case R.id.menu_verify_session:            handleVerifySession();                             return true;
+    case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
+    case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
+    case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
+    case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
 
     return false;
@@ -325,6 +337,38 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     });
     builder.setNegativeButton(R.string.no, null);
     builder.show();
+  }
+
+  private void handleDistributionBroadcastEnabled(MenuItem item) {
+    distributionType = ThreadDatabase.DistributionTypes.BROADCAST;
+    item.setChecked(true);
+
+    if (threadId != -1) {
+      new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... params) {
+          DatabaseFactory.getThreadDatabase(ConversationActivity.this)
+                         .setDistributionType(threadId, ThreadDatabase.DistributionTypes.BROADCAST);
+          return null;
+        }
+      }.execute();
+    }
+  }
+
+  private void handleDistributionConversationEnabled(MenuItem item) {
+    distributionType = ThreadDatabase.DistributionTypes.CONVERSATION;
+    item.setChecked(true);
+
+    if (threadId != -1) {
+      new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... params) {
+          DatabaseFactory.getThreadDatabase(ConversationActivity.this)
+                         .setDistributionType(threadId, ThreadDatabase.DistributionTypes.CONVERSATION);
+          return null;
+        }
+      }.execute();
+    }
   }
 
   private void handleDial(Recipient recipient) {
@@ -494,12 +538,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private void initializeResources() {
     recipientsPanel     = (RecipientsPanel)findViewById(R.id.recipients);
-    recipients          = getIntent().getParcelableExtra("recipients");
-    threadId            = getIntent().getLongExtra("thread_id", -1);
+    recipients          = getIntent().getParcelableExtra(RECIPIENTS_EXTRA);
+    threadId            = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
+    distributionType    = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA,
+                                                  ThreadDatabase.DistributionTypes.DEFAULT);
     addContactButton    = (ImageButton)findViewById(R.id.contacts_button);
     sendButton          = (ImageButton)findViewById(R.id.send_button);
     composeText         = (EditText)findViewById(R.id.embedded_text_editor);
-    masterSecret        = (MasterSecret)getIntent().getParcelableExtra("master_secret");
+    masterSecret        = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     charactersLeft      = (TextView)findViewById(R.id.space_left);
 
     attachmentAdapter   = new AttachmentTypeSelectorAdapter(this);
@@ -749,10 +795,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       if (attachmentManager.isAttachmentPresent()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, attachmentManager.getSlideDeck(), body,
-                                                  forcePlaintext);
-      } else if (recipients.isEmailRecipient()) {
+                                                  distributionType, forcePlaintext);
+      } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
-                                                  threadId, new SlideDeck(), body, forcePlaintext);
+                                                  threadId, new SlideDeck(), body, distributionType,
+                                                  forcePlaintext);
       } else {
         OutgoingTextMessage message;
 
@@ -790,7 +837,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       Intent intent = new Intent(ConversationActivity.this, ContactSelectionActivity.class);
       startActivityForResult(intent, PICK_CONTACT);
     }
-  };
+  }
 
   private class AttachmentTypeListener implements DialogInterface.OnClickListener {
     @Override
@@ -823,7 +870,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       }
       return false;
     }
-  };
+  }
 
   private class OnTextChangedListener implements TextWatcher {
     @Override
