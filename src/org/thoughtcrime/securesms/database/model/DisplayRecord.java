@@ -33,15 +33,16 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public abstract class DisplayRecord {
 
   protected final Context context;
+  protected final long type;
+
   private final Recipients recipients;
   private final long dateSent;
   private final long dateReceived;
   private final long threadId;
-  protected final long type;
+  private final Body body;
+//  private final String body;
 
-  private final String body;
-
-  public DisplayRecord(Context context, String body, Recipients recipients, long dateSent,
+  public DisplayRecord(Context context, Body body, Recipients recipients, long dateSent,
                        long dateReceived, long threadId, long type)
   {
     this.context      = context.getApplicationContext();
@@ -53,8 +54,9 @@ public abstract class DisplayRecord {
     this.body         = body;
   }
 
-  public String getBody() {
-    return body == null ? "" : body;
+  public Body getBody() {
+    return body;
+//    return body == null ? "" : body;
   }
 
   public abstract SpannableString getDisplayBody();
@@ -77,5 +79,23 @@ public abstract class DisplayRecord {
 
   public boolean isKeyExchange() {
     return SmsDatabase.Types.isKeyExchangeType(type);
+  }
+
+  public static class Body {
+    private final String body;
+    private final boolean plaintext;
+
+    public Body(String body, boolean plaintext) {
+      this.body      = body;
+      this.plaintext = plaintext;
+    }
+
+    public boolean isPlaintext() {
+      return plaintext;
+    }
+
+    public String getBody() {
+      return body == null ? "" : body;
+    }
   }
 }

@@ -41,11 +41,11 @@ public class OutgoingTextMessage {
 
   public static OutgoingTextMessage from(SmsMessageRecord record) {
     if (record.isSecure()) {
-      return new OutgoingEncryptedMessage(record.getIndividualRecipient(), record.getBody());
+      return new OutgoingEncryptedMessage(record.getIndividualRecipient(), record.getBody().getBody());
     } else if (record.isKeyExchange()) {
-      return new OutgoingKeyExchangeMessage(record.getIndividualRecipient(), record.getBody());
+      return new OutgoingKeyExchangeMessage(record.getIndividualRecipient(), record.getBody().getBody());
     } else {
-      return new OutgoingTextMessage(record.getIndividualRecipient(), record.getBody());
+      return new OutgoingTextMessage(record.getIndividualRecipient(), record.getBody().getBody());
     }
   }
 

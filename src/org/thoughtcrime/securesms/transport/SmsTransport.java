@@ -44,7 +44,7 @@ public class SmsTransport {
     OutgoingTextMessage transportMessage            = OutgoingTextMessage.from(message);
 
     if (message.isSecure()) {
-      String encryptedMessage = getAsymmetricEncrypt(masterSecret, message.getBody(),
+      String encryptedMessage = getAsymmetricEncrypt(masterSecret, message.getBody().getBody(),
                                                      message.getIndividualRecipient());
       transportMessage        = transportMessage.withBody(encryptedMessage);
     }
@@ -78,7 +78,7 @@ public class SmsTransport {
   private void deliverPlaintextMessage(SmsMessageRecord message)
       throws UndeliverableMessageException
   {
-    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody());
+    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody().getBody());
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
     String recipient                          = message.getIndividualRecipient().getNumber();

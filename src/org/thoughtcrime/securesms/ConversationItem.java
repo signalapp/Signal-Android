@@ -195,7 +195,7 @@ public class ConversationItem extends LinearLayout {
 
     if (!messageRecord.isOutgoing() && messageRecord.getRecipients().isSingleRecipient()) {
       checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-                           messageRecord.getBody(),
+                           messageRecord.getBody().getBody(),
                            messageRecord.getThreadId());
     }
   }
@@ -321,7 +321,7 @@ public class ConversationItem extends LinearLayout {
   private void handleKeyExchangeClicked() {
     Intent intent = new Intent(context, ReceiveKeyActivity.class);
     intent.putExtra("recipient", messageRecord.getIndividualRecipient());
-    intent.putExtra("body", messageRecord.getBody());
+    intent.putExtra("body", messageRecord.getBody().getBody());
     intent.putExtra("thread_id", messageRecord.getThreadId());
     intent.putExtra("master_secret", masterSecret);
     intent.putExtra("sent", messageRecord.isOutgoing());

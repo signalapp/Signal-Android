@@ -25,6 +25,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -372,7 +373,7 @@ public class ThreadDatabase extends Database {
       MessageRecord record = null;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, record.getBody(), record.getDateReceived(), record.getType());
+        updateThread(threadId, count, record.getBody().getBody(), record.getDateReceived(), record.getType());
       } else {
         deleteThread(threadId);
       }
@@ -401,13 +402,13 @@ public class ThreadDatabase extends Database {
   public class Reader {
 
     private final Cursor cursor;
-    private final MasterSecret masterSecret;
     private final MasterCipher masterCipher;
 
     public Reader(Cursor cursor, MasterSecret masterSecret) {
-      this.cursor       = cursor;
-      this.masterSecret = masterSecret;
-      this.masterCipher = new MasterCipher(masterSecret);
+      this.cursor = cursor;
+
+      if (masterSecret != null) this.masterCipher = new MasterCipher(masterSecret);
+      else                      this.masterCipher = null;
     }
 
     public ThreadRecord getNext() {
@@ -422,38 +423,33 @@ public class ThreadDatabase extends Database {
       String recipientId    = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_IDS));
       Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientId, true);
 
-      String body           = getPlaintextBody(cursor);
-      long date             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
-      long count            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
-      long read             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
-      long type             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
-      int distributionType  = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
+      DisplayRecord.Body body = getPlaintextBody(cursor);
+      long date               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
+      long count              = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
+      long read               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
+      long type               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
+      int distributionType    = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
 
       return new ThreadRecord(context, body, recipients, date, count,
                               read == 1, threadId, type, distributionType);
     }
 
-    private String getPlaintextBody(Cursor cursor) {
-      long type             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
-      String ciphertextBody = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET));
-
-      if (masterSecret == null)
-        return ciphertextBody;
-
+    private DisplayRecord.Body getPlaintextBody(Cursor cursor) {
       try {
-        if (!Util.isEmpty(ciphertextBody) && MmsSmsColumns.Types.isSymmetricEncryption(type)) {
-          return masterCipher.decryptBody(ciphertextBody);
+        long type   = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
+        String body = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET));
+
+        if (!Util.isEmpty(body) && masterCipher != null && MmsSmsColumns.Types.isSymmetricEncryption(type)) {
+          return new DisplayRecord.Body(masterCipher.decryptBody(body), true);
+        } else if (!Util.isEmpty(body) && masterCipher == null && MmsSmsColumns.Types.isSymmetricEncryption(type)) {
+          return new DisplayRecord.Body(body, false);
         } else {
-          return ciphertextBody;
+          return new DisplayRecord.Body(body, true);
         }
       } catch (InvalidMessageException e) {
         Log.w("ThreadDatabase", e);
-        return "Error decrypting message.";
+        return new DisplayRecord.Body("Error decrypting message.", true);
       }
-    }
-
-    protected String getBody(Cursor cursor) {
-      return cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
     }
 
     public void close() {

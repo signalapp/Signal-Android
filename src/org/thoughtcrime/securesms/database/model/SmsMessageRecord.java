@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public class SmsMessageRecord extends MessageRecord {
 
   public SmsMessageRecord(Context context, long id,
-                          String body, Recipients recipients,
+                          Body body, Recipients recipients,
                           Recipient individualRecipient,
                           long dateSent, long dateReceived,
                           long type, long threadId,
@@ -60,14 +60,16 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.ConversationListAdapter_key_exchange_message));
     } else if (isKeyExchange() && !isOutgoing()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_received_key_exchange_message_click_to_process));
-    } else if (isOutgoing() && Tag.isTagged(getBody())) {
-      return new SpannableString(Tag.stripTag(getBody()));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
     } else if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
+    } else if (!getBody().isPlaintext()) {
+      return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
+    } else if (isOutgoing() && Tag.isTagged(getBody().getBody())) {
+      return new SpannableString(Tag.stripTag(getBody().getBody()));
     } else {
       return super.getDisplayBody();
     }

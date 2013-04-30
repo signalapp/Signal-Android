@@ -39,7 +39,7 @@ public class ThreadRecord extends DisplayRecord {
   private final boolean read;
   private final int distributionType;
 
-  public ThreadRecord(Context context, String body, Recipients recipients, long date,
+  public ThreadRecord(Context context, Body body, Recipients recipients, long date,
                       long count, boolean read, long threadId, long snippetType,
                       int distributionType)
   {
@@ -60,11 +60,13 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
+    } else if (!getBody().isPlaintext()) {
+      return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
     } else {
-      if (Util.isEmpty(getBody())) {
+      if (Util.isEmpty(getBody().getBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));
       } else {
-        return new SpannableString(getBody());
+        return new SpannableString(getBody().getBody());
       }
     }
   }

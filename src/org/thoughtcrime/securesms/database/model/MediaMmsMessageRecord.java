@@ -43,7 +43,7 @@ public class MediaMmsMessageRecord extends MessageRecord {
 
   public MediaMmsMessageRecord(Context context, long id, Recipients recipients,
                                Recipient individualRecipient, long dateSent, long dateReceived,
-                               long threadId, String body, ListenableFutureTask<SlideDeck> slideDeck,
+                               long threadId, Body body, ListenableFutureTask<SlideDeck> slideDeck,
                                int partCount, long mailbox)
   {
     super(context, id, body, recipients, individualRecipient, dateSent, dateReceived,
@@ -75,21 +75,10 @@ public class MediaMmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
     } else if (MmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
+    } else if (getBody().isPlaintext()) {
+      return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
     }
 
     return super.getDisplayBody();
   }
-
-//  private static String getBodyFromSlidesIfAvailable(SlideDeck slideDeck) {
-//    if (slideDeck == null)
-//      return "";
-//
-//    for (Slide slide : slideDeck.getSlides()) {
-//      if (slide.hasText())
-//        return slide.getText();
-//    }
-//
-//    return "";
-//  }
-
 }

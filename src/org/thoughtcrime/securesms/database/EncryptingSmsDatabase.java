@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
@@ -128,27 +129,27 @@ public class EncryptingSmsDatabase extends SmsDatabase {
     }
 
     @Override
-    protected String getBody(Cursor cursor) {
+    protected DisplayRecord.Body getBody(Cursor cursor) {
       long type         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
-      String ciphertext = super.getBody(cursor);
+      String ciphertext = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
 
       try {
         if (SmsDatabase.Types.isSymmetricEncryption(type)) {
           String plaintext = plaintextCache.get(ciphertext);
 
           if (plaintext != null)
-            return plaintext;
+            return new DisplayRecord.Body(plaintext, true);
 
           plaintext = masterCipher.decryptBody(ciphertext);
 
           plaintextCache.put(ciphertext, plaintext);
-          return plaintext;
+          return new DisplayRecord.Body(plaintext, true);
         } else {
-          return ciphertext;
+          return new DisplayRecord.Body(ciphertext, true);
         }
       } catch (InvalidMessageException e) {
         Log.w("EncryptingSmsDatabase", e);
-        return "Error decrypting message.";
+        return new DisplayRecord.Body("Error decrypting message.", true);
       }
     }
   }

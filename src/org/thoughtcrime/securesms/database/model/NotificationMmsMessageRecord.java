@@ -46,7 +46,7 @@ public class NotificationMmsMessageRecord extends MessageRecord {
                                       byte[] contentLocation, long messageSize, long expiry,
                                       int status, byte[] transactionId, long mailbox)
   {
-    super(context, id, "", recipients, individualRecipient, dateSent, dateReceived,
+    super(context, id, new Body("", true), recipients, individualRecipient, dateSent, dateReceived,
           threadId, DELIVERY_STATUS_NONE, mailbox);
 
     this.contentLocation = contentLocation;

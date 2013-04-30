@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
@@ -241,14 +242,14 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     ContentValues contentValues = new ContentValues();
     contentValues.put(RESPONSE_STATUS, status);
 
-    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId+""});
+    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
   }
 
   private void updateMailboxBitmask(long id, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME +
                " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
-               " WHERE " + ID + " = ?", new String[] {id+""});
+               " WHERE " + ID + " = ?", new String[] {id + ""});
   }
 
   public void markAsSentFailed(long messageId) {
@@ -272,7 +273,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     ContentValues contentValues = new ContentValues();
     contentValues.put(STATUS, state);
 
-    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId+""});
+    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
@@ -759,14 +760,14 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
-      long id             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
-      long dateSent       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_SENT));
-      long dateReceived   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED));
-      long box            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
-      long threadId       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
-      String body         = getBody(cursor);
-      int partCount       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
-      Recipient recipient = getMessageRecipient(id);
+      long id                 = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
+      long dateSent           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_SENT));
+      long dateReceived       = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED));
+      long box                = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
+      long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
+      DisplayRecord.Body body = getBody(cursor);
+      int partCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
+      Recipient recipient     = getMessageRecipient(id);
 
       ListenableFutureTask<SlideDeck> slideDeck = getSlideDeck(masterSecret, id);
 
@@ -775,19 +776,21 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
                                        slideDeck, partCount, box);
     }
 
-    private String getBody(Cursor cursor) {
+    private DisplayRecord.Body getBody(Cursor cursor) {
       try {
         String body = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
         long box    = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
 
-        if (body != null && masterCipher != null && Types.isSymmetricEncryption(box)) {
-          return masterCipher.decryptBody(body);
+        if (!Util.isEmpty(body) && masterCipher != null && Types.isSymmetricEncryption(box)) {
+          return new DisplayRecord.Body(masterCipher.decryptBody(body), true);
+        } else if (!Util.isEmpty(body) && masterCipher == null && Types.isSymmetricEncryption(box)) {
+          return new DisplayRecord.Body(body, false);
+        } else {
+          return new DisplayRecord.Body(body == null ? "" : body, true);
         }
-
-        return body;
       } catch (InvalidMessageException e) {
         Log.w("MmsDatabase", e);
-        return "Error decrypting message.";
+        return new DisplayRecord.Body("Error decrypting message.", true);
       }
     }
 

@@ -46,7 +46,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long id;
   private final int deliveryStatus;
 
-  public MessageRecord(Context context, long id, String body, Recipients recipients,
+  public MessageRecord(Context context, long id, Body body, Recipients recipients,
                        Recipient individualRecipient,
                        long dateSent, long dateReceived,
                        long threadId, int deliveryStatus,
@@ -80,7 +80,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody() {
-    return new SpannableString(getBody());
+    return new SpannableString(getBody().getBody());
   }
 
   public long getId() {
@@ -119,15 +119,15 @@ public abstract class MessageRecord extends DisplayRecord {
     return spannable;
   }
 
-  public static class GroupData {
-    public final int groupSize;
-    public final int groupSentCount;
-    public final int groupSendFailedCount;
-
-    public GroupData(int groupSize, int groupSentCount, int groupSendFailedCount) {
-      this.groupSize            = groupSize;
-      this.groupSentCount       = groupSentCount;
-      this.groupSendFailedCount = groupSendFailedCount;
-    }
-  }
+//  public static class GroupData {
+//    public final int groupSize;
+//    public final int groupSentCount;
+//    public final int groupSendFailedCount;
+//
+//    public GroupData(int groupSize, int groupSentCount, int groupSendFailedCount) {
+//      this.groupSize            = groupSize;
+//      this.groupSentCount       = groupSentCount;
+//      this.groupSendFailedCount = groupSendFailedCount;
+//    }
+//  }
 }

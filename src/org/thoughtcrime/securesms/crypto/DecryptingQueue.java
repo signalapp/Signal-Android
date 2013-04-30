@@ -122,7 +122,7 @@ public class DecryptingQueue {
                                                 SmsMessageRecord record)
   {
     long messageId          = record.getId();
-    String body             = record.getBody();
+    String body             = record.getBody().getBody();
     String originator       = record.getIndividualRecipient().getNumber();
     boolean isSecureMessage = record.isSecure();
 

@@ -27,6 +27,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -179,7 +180,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     database.update(TABLE_NAME, contentValues, THREAD_ID + " = ? AND " + READ + " = 0", new String[] {threadId+""});
     long end = System.currentTimeMillis();
 
-    Log.w("SmsDatabase", "setMessagesRead time: " + (end-start));
+    Log.w("SmsDatabase", "setMessagesRead time: " + (end - start));
   }
 
   protected void updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
@@ -395,15 +396,15 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     }
 
     public SmsMessageRecord getCurrent() {
-      long messageId        = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-      String address        = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
-      long type             = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
-      long dateReceived     = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_RECEIVED));
-      long dateSent         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_SENT));
-      long threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
-      int status            = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
-      Recipients recipients = getRecipientsFor(address);
-      String body           = getBody(cursor);
+      long messageId          = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
+      String address          = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
+      long type               = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
+      long dateReceived       = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_RECEIVED));
+      long dateSent           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_SENT));
+      long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
+      int status              = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
+      Recipients recipients   = getRecipientsFor(address);
+      DisplayRecord.Body body = getBody(cursor);
 
       return  new SmsMessageRecord(context, messageId, body, recipients,
                                    recipients.getPrimaryRecipient(),
@@ -421,8 +422,15 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       }
     }
 
-    protected String getBody(Cursor cursor) {
-      return cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
+    protected DisplayRecord.Body getBody(Cursor cursor) {
+      long type   = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
+      String body = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
+
+      if (Types.isSymmetricEncryption(type)) {
+        return new DisplayRecord.Body(body, false);
+      } else {
+        return new DisplayRecord.Body(body, true);
+      }
     }
 
     public void close() {
