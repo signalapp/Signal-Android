@@ -20,8 +20,9 @@ import java.io.IOException;
 
 
 public interface TransportDetails {	
-  public byte[] stripPaddedMessage(byte[] messageWithPadding);	
+  public byte[] stripPaddedMessage(byte[] messageWithPadding);
   public byte[] getPaddedMessageBody(byte[] messageBody);
+
   public byte[] encodeMessage(byte[] messageWithMac);
   public byte[] decodeMessage(byte[] encodedMessageBytes) throws IOException;
 }

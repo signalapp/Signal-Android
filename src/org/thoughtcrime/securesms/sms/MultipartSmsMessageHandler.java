@@ -24,25 +24,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MultipartMessageHandler {
+public class MultipartSmsMessageHandler {
 
-  private final HashMap<String, MultipartTransportMessageFragments> partialMessages =
-      new HashMap<String, MultipartTransportMessageFragments>();
+  private final HashMap<String, MultipartSmsTransportMessageFragments> partialMessages =
+      new HashMap<String, MultipartSmsTransportMessageFragments>();
 
   private final HashMap<String, Integer>  idMap = new HashMap<String, Integer>();
 
-  private IncomingTextMessage processMultipartMessage(MultipartTransportMessage message) {
-    Log.w("MultipartMessageHandler", "Processing multipart message...");
-    MultipartTransportMessageFragments container = partialMessages.get(message.getKey());
+  private IncomingTextMessage processMultipartMessage(MultipartSmsTransportMessage message) {
+    Log.w("MultipartSmsMessageHandler", "Processing multipart message...");
+    MultipartSmsTransportMessageFragments container = partialMessages.get(message.getKey());
 
     if (container == null) {
-      container = new MultipartTransportMessageFragments(message.getMultipartCount());
+      container = new MultipartSmsTransportMessageFragments(message.getMultipartCount());
       partialMessages.put(message.getKey(), container);
     }
 
     container.add(message);
 
-    Log.w("MultipartMessageHandler", "Filled buffer at index: " + message.getMultipartIndex());
+    Log.w("MultipartSmsMessageHandler", "Filled buffer at index: " + message.getMultipartIndex());
 
     if (!container.isComplete())
       return null;
@@ -50,18 +50,18 @@ public class MultipartMessageHandler {
     partialMessages.remove(message.getKey());
     String strippedMessage = Base64.encodeBytesWithoutPadding(container.getJoined());
 
-    if (message.getWireType() == MultipartTransportMessage.WIRETYPE_KEY) {
+    if (message.getWireType() == MultipartSmsTransportMessage.WIRETYPE_KEY) {
       return new IncomingKeyExchangeMessage(message.getBaseMessage(), strippedMessage);
     } else {
       return new IncomingEncryptedMessage(message.getBaseMessage(), strippedMessage);
     }
   }
 
-  private IncomingTextMessage processSinglePartMessage(MultipartTransportMessage message) {
-    Log.w("MultipartMessageHandler", "Processing single part message...");
+  private IncomingTextMessage processSinglePartMessage(MultipartSmsTransportMessage message) {
+    Log.w("MultipartSmsMessageHandler", "Processing single part message...");
     String strippedMessage = Base64.encodeBytesWithoutPadding(message.getStrippedMessage());
 
-    if (message.getWireType() == MultipartTransportMessage.WIRETYPE_KEY) {
+    if (message.getWireType() == MultipartSmsTransportMessage.WIRETYPE_KEY) {
       return new IncomingKeyExchangeMessage(message.getBaseMessage(), strippedMessage);
     } else {
       return new IncomingEncryptedMessage(message.getBaseMessage(), strippedMessage);
@@ -70,13 +70,13 @@ public class MultipartMessageHandler {
 
   public IncomingTextMessage processPotentialMultipartMessage(IncomingTextMessage message) {
     try {
-      MultipartTransportMessage transportMessage = new MultipartTransportMessage(message);
+      MultipartSmsTransportMessage transportMessage = new MultipartSmsTransportMessage(message);
 
       if      (transportMessage.isInvalid())    return message;
       else if (transportMessage.isSinglePart()) return processSinglePartMessage(transportMessage);
       else                                      return processMultipartMessage(transportMessage);
     } catch (IOException e) {
-      Log.w("MultipartMessageHandler", e);
+      Log.w("MultipartSmsMessageHandler", e);
       return message;
     }
   }
@@ -88,19 +88,17 @@ public class MultipartMessageHandler {
       currentId = idMap.get(recipient);
       idMap.remove(recipient);
     } else {
-      currentId = Integer.valueOf(0);
+      currentId = 0;
     }
 
     byte id  = currentId.byteValue();
-    idMap.put(recipient, Integer.valueOf((currentId.intValue() + 1) % 255));
+    idMap.put(recipient, (currentId + 1) % 255);
 
     return id;
   }
 
   public ArrayList<String> divideMessage(OutgoingTextMessage message) {
-
-
     byte identifier = getIdForRecipient(message.getRecipients().getPrimaryRecipient().getNumber());
-    return MultipartTransportMessage.getEncoded(message, identifier);
+    return MultipartSmsTransportMessage.getEncoded(message, identifier);
   }
 }

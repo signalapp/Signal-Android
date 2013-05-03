@@ -118,16 +118,4 @@ public abstract class MessageRecord extends DisplayRecord {
 
     return spannable;
   }
-
-//  public static class GroupData {
-//    public final int groupSize;
-//    public final int groupSentCount;
-//    public final int groupSendFailedCount;
-//
-//    public GroupData(int groupSize, int groupSentCount, int groupSendFailedCount) {
-//      this.groupSize            = groupSize;
-//      this.groupSentCount       = groupSentCount;
-//      this.groupSendFailedCount = groupSendFailedCount;
-//    }
-//  }
 }

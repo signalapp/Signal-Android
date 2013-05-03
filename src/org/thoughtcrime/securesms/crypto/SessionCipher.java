@@ -79,11 +79,13 @@ public class SessionCipher {
   public byte[] encryptMessage(byte[] messageText) {
     Log.w("SessionCipher", "Encrypting message...");
     try {
-      SessionKey sessionKey   = getSessionKey(Cipher.ENCRYPT_MODE, localRecord.getCurrentKeyPair().getId(), remoteRecord.getCurrentRemoteKey().getId());
-      byte[] paddedMessage    = transportDetails.getPaddedMessageBody(messageText);
-      byte[] cipherText       = getCiphertext(paddedMessage, sessionKey.getCipherKey());
-      byte[] message          = buildMessageFromCiphertext(cipherText);
-      byte[] messageWithMac   = MessageMac.buildMessageWithMac(message, sessionKey.getMacKey());
+      int localId           = localRecord.getCurrentKeyPair().getId();
+      int remoteId          = remoteRecord.getCurrentRemoteKey().getId();
+      SessionKey sessionKey = getSessionKey(Cipher.ENCRYPT_MODE, localId, remoteId);
+      byte[]paddedMessage   = transportDetails.getPaddedMessageBody(messageText);
+      byte[]cipherText      = getCiphertext(paddedMessage, sessionKey.getCipherKey());
+      byte[]message         = buildMessageFromCiphertext(cipherText);
+      byte[]messageWithMac  = MessageMac.buildMessageWithMac(message, sessionKey.getMacKey());
 
       sessionRecord.setSessionKey(sessionKey);
       sessionRecord.incrementCounter();

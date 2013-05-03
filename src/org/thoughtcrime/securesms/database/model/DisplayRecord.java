@@ -56,7 +56,6 @@ public abstract class DisplayRecord {
 
   public Body getBody() {
     return body;
-//    return body == null ? "" : body;
   }
 
   public abstract SpannableString getDisplayBody();

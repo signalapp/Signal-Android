@@ -7,15 +7,18 @@ import org.thoughtcrime.securesms.protocol.SecureMessageWirePrefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Conversions;
-import org.thoughtcrime.securesms.util.Hex;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MultipartTransportMessage {
-  private static final String TAG = MultipartTransportMessage.class.getName();
+public class MultipartSmsTransportMessage {
+  private static final String TAG = MultipartSmsTransportMessage.class.getName();
 
   private static final int MULTIPART_SUPPORTED_AFTER_VERSION = 1;
+
+  public static final int SINGLE_MESSAGE_MULTIPART_OVERHEAD      = 1;
+  public static final int MULTI_MESSAGE_MULTIPART_OVERHEAD       = 3;
+  public static final int FIRST_MULTI_MESSAGE_MULTIPART_OVERHEAD = 2;
 
   public static final int WIRETYPE_SECURE = 1;
   public static final int WIRETYPE_KEY    = 2;
@@ -24,17 +27,16 @@ public class MultipartTransportMessage {
   private static final int MULTIPART_OFFSET  = 1;
   private static final int IDENTIFIER_OFFSET = 2;
 
-  private final int wireType;
-  private final byte[] decodedMessage;
+  private final int                 wireType;
+  private final byte[]              decodedMessage;
   private final IncomingTextMessage message;
 
-  public MultipartTransportMessage(IncomingTextMessage message) throws IOException {
+  public MultipartSmsTransportMessage(IncomingTextMessage message) throws IOException {
     this.message         = message;
     this.wireType        = WirePrefix.isEncryptedMessage(message.getMessageBody()) ? WIRETYPE_SECURE : WIRETYPE_KEY;
     this.decodedMessage  = Base64.decodeWithoutPadding(message.getMessageBody().substring(WirePrefix.PREFIX_SIZE));
 
     Log.w(TAG, "Decoded message with version: " + getCurrentVersion());
-    Log.w(TAG, "Decoded message: " + Hex.toString(decodedMessage));
   }
 
   public int getWireType() {
@@ -141,10 +143,11 @@ public class MultipartTransportMessage {
     return message;
   }
 
-  public static ArrayList<String> getEncoded(OutgoingTextMessage message, byte identifier) {
+  public static ArrayList<String> getEncoded(OutgoingTextMessage message, byte identifier)
+  {
     try {
       byte[] decoded = Base64.decodeWithoutPadding(message.getMessageBody());
-      int count      = SmsTransportDetails.getMessageCountForBytes(decoded.length);
+      int count      = new SmsTransportDetails().getMessageCountForBytes(decoded.length);
 
       WirePrefix prefix;
 
@@ -177,7 +180,7 @@ public class MultipartTransportMessage {
   }
 
   private static ArrayList<String> getMultiEncoded(byte[] decoded, WirePrefix prefix,
-                                              int segmentCount, byte id)
+                                                   int segmentCount, byte id)
   {
     ArrayList<String> list            = new ArrayList<String>(segmentCount);
     byte versionByte                  = decoded[VERSION_OFFSET];

@@ -38,13 +38,13 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.MultipartMessageHandler;
+import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 
 import java.util.List;
 
 public class SmsReceiver {
 
-  private MultipartMessageHandler multipartMessageHandler = new MultipartMessageHandler();
+  private MultipartSmsMessageHandler multipartMessageHandler = new MultipartSmsMessageHandler();
 
   private final Context context;
 

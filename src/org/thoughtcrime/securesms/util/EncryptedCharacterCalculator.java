@@ -31,24 +31,14 @@ public class EncryptedCharacterCalculator extends CharacterCalculator {
   private CharacterState calculateMultiRecordCharacters(int charactersSpent) {
     int charactersInFirstRecord = SmsTransportDetails.ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE;
     int spillover               = charactersSpent - charactersInFirstRecord;
-    Log.w("EncryptedCharacterCalculator", "Spillover: " + spillover);
-    //  int maxMultiMessageSize     = SessionCipher.getMaxBodySizePerMultiMessage(charactersSpent);
-    //  Log.w("EncryptedCharacterCalculator", "Maxmultimessagesize: " + maxMultiMessageSize);
-    //  int spilloverMessagesSpent  = spillover / maxMultiMessageSize;
     int spilloverMessagesSpent  = spillover / SmsTransportDetails.MULTI_MESSAGE_MAX_BYTES;
-    Log.w("EncryptedCharacterCalculator", "Spillover messaegs spent: " + spilloverMessagesSpent);
 
-    //  if ((spillover % maxMultiMessageSize) > 0)
     if ((spillover % SmsTransportDetails.MULTI_MESSAGE_MAX_BYTES) > 0)
       spilloverMessagesSpent++;
 
-    Log.w("EncryptedCharacterCalculator", "Spillover messaegs spent: " + spilloverMessagesSpent);
-
-    //  int charactersRemaining = (maxMultiMessageSize * spilloverMessagesSpent) - spillover;
     int charactersRemaining = (SmsTransportDetails.MULTI_MESSAGE_MAX_BYTES * spilloverMessagesSpent) - spillover;
     Log.w("EncryptedCharacterCalculator", "charactersRemaining: " + charactersRemaining);
 
-    //  return new CharacterState(spilloverMessagesSpent+1, charactersRemaining, maxMultiMessageSize);
     return new CharacterState(spilloverMessagesSpent+1, charactersRemaining, SmsTransportDetails.MULTI_MESSAGE_MAX_BYTES);
   }
 

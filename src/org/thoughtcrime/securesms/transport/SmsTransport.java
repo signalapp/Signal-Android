@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.service.SmsListener;
-import org.thoughtcrime.securesms.sms.MultipartMessageHandler;
+import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 
@@ -40,14 +40,11 @@ public class SmsTransport {
   }
 
   private void deliverSecureMessage(SmsMessageRecord message) throws UndeliverableMessageException {
-    MultipartMessageHandler multipartMessageHandler = new MultipartMessageHandler();
-    OutgoingTextMessage transportMessage            = OutgoingTextMessage.from(message);
+    String encryptedMessage = getAsymmetricEncrypt(masterSecret, message.getBody().getBody(),
+                                                   message.getIndividualRecipient());
 
-    if (message.isSecure()) {
-      String encryptedMessage = getAsymmetricEncrypt(masterSecret, message.getBody().getBody(),
-                                                     message.getIndividualRecipient());
-      transportMessage        = transportMessage.withBody(encryptedMessage);
-    }
+    OutgoingTextMessage transportMessage = OutgoingTextMessage.from(message).withBody(encryptedMessage);
+    MultipartSmsMessageHandler multipartMessageHandler = new MultipartSmsMessageHandler();
 
     ArrayList<String> messages                = multipartMessageHandler.divideMessage(transportMessage);
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages);

@@ -1,14 +1,14 @@
 package org.thoughtcrime.securesms.sms;
 
-public class MultipartTransportMessageFragments {
+public class MultipartSmsTransportMessageFragments {
 
   private final byte[][] fragments;
 
-  public MultipartTransportMessageFragments(int count) {
+  public MultipartSmsTransportMessageFragments(int count) {
     this.fragments = new byte[count][];
   }
 
-  public void add(MultipartTransportMessage fragment) {
+  public void add(MultipartSmsTransportMessage fragment) {
     this.fragments[fragment.getMultipartIndex()] = fragment.getStrippedMessage();
   }
 
