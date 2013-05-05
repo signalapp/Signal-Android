@@ -73,6 +73,7 @@ public class ConversationItem extends LinearLayout {
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
   private MasterSecret  masterSecret;
+  private boolean       groupThread;
 
   private  TextView bodyText;
   private  TextView dateText;
@@ -125,11 +126,13 @@ public class ConversationItem extends LinearLayout {
     this.mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
   }
 
-  public void set(MasterSecret masterSecret, MessageRecord messageRecord, Handler failedIconHandler)
+  public void set(MasterSecret masterSecret, MessageRecord messageRecord,
+                  Handler failedIconHandler, boolean groupThread)
   {
     this.messageRecord     = messageRecord;
     this.masterSecret      = masterSecret;
     this.failedIconHandler = failedIconHandler;
+    this.groupThread       = groupThread;
 
     setBodyText(messageRecord);
     setStatusIcons(messageRecord);
@@ -201,19 +204,12 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setGroupMessageStatus(MessageRecord messageRecord) {
-//    GroupData groupData = messageRecord.getGroupData();
-//
-//    if (groupData != null) {
-//      String status = String.format("Sent (%d/%d)", groupData.groupSentCount, groupData.groupSize);
-//
-//      if (groupData.groupSendFailedCount != 0)
-//        status = status + String.format(", Failed (%d/%d)", groupData.groupSendFailedCount, groupData.groupSize);
-//
-//      this.groupStatusText.setText(status);
-//      this.groupStatusText.setVisibility(View.VISIBLE);
-//    } else {
+    if (groupThread && !messageRecord.isOutgoing()) {
+      this.groupStatusText.setText(messageRecord.getIndividualRecipient().toShortString());
+      this.groupStatusText.setVisibility(View.VISIBLE);
+    } else {
       this.groupStatusText.setVisibility(View.GONE);
-//    }
+    }
   }
 
   private void setNotificationMmsAttributes(NotificationMmsMessageRecord messageRecord) {
@@ -242,6 +238,8 @@ public class ConversationItem extends LinearLayout {
     if (messageRecord.getPartCount() > 0) {
       mmsThumbnail.setVisibility(View.VISIBLE);
       mmsThumbnail.setImageDrawable(new ColorDrawable(Color.TRANSPARENT));
+    } else {
+      mmsThumbnail.setVisibility(View.GONE);
     }
 
     slideDeck = messageRecord.getSlideDeck();

@@ -44,4 +44,21 @@ public class PartParser {
 
     return stripped;
   }
+
+  public static int getDisplayablePartCount(PduBody body) {
+    int partCount = 0;
+
+    for (int i=0;i<body.getPartsNum();i++) {
+      String contentType = Util.toIsoString(body.getPart(i).getContentType());
+
+      if (ContentType.isImageType(contentType) ||
+          ContentType.isAudioType(contentType) ||
+          ContentType.isVideoType(contentType))
+      {
+        partCount++;
+      }
+    }
+
+    return partCount;
+  }
 }

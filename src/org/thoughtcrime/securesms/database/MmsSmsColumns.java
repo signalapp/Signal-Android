@@ -8,6 +8,8 @@ public interface MmsSmsColumns {
   public static final String THREAD_ID                = "thread_id";
   public static final String READ                     = "read";
   public static final String BODY                     = "body";
+  public  static final String ADDRESS                 = "address";
+
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;

@@ -165,16 +165,7 @@ public class MmsSender extends MmscProcessor {
       throws MmsException
   {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-    List<SendReq> sendRequests;
-
-    if (messageId == -1) {
-      sendRequests = Arrays.asList(database.getOutgoingMessages(masterSecret));
-    } else {
-      sendRequests    = new ArrayList<SendReq>(1);
-      sendRequests.add(database.getSendRequest(masterSecret, messageId));
-    }
-
-    return sendRequests;
+    return Arrays.asList(database.getOutgoingMessages(masterSecret, messageId));
   }
 
   protected void handleConnectivityChange() {

@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.Util;
+
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 
@@ -34,14 +36,14 @@ public class ContentValuesBuilder {
 
   public void add(String key, String charsetKey, EncodedStringValue value) {
     if (value != null) {
-      contentValues.put(key, toIsoString(value.getTextString()));
+      contentValues.put(key, Util.toIsoString(value.getTextString()));
       contentValues.put(charsetKey, value.getCharacterSet());
     }
   }
 
   public void add(String contentKey, byte[] value) {
     if (value != null) {
-      contentValues.put(contentKey, toIsoString(value));
+      contentValues.put(contentKey, Util.toIsoString(value));
     }
   }
 
@@ -58,14 +60,4 @@ public class ContentValuesBuilder {
   public ContentValues getContentValues() {
     return contentValues;
   }
-
-  private String toIsoString(byte[] bytes) {
-    try {
-      return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
-    } catch (UnsupportedEncodingException e) {
-      Log.e("MmsDatabase", "ISO_8859_1 must be supported!", e);
-      return "";
-    }
-  }
-
 }

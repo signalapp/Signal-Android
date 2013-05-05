@@ -44,7 +44,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_DRAFTS_VERSION      = 5;
   private static final int INTRODUCED_NEW_TYPES_VERSION   = 6;
   private static final int INTRODUCED_MMS_BODY_VERSION    = 7;
-  private static final int DATABASE_VERSION               = 7;
+  private static final int INTRODUCED_MMS_FROM_VERSION    = 8;
+  private static final int DATABASE_VERSION               = 8;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -213,9 +214,13 @@ public class DatabaseFactory {
         listener.setProgress(smsCursor.getCount() + threadCursor.getPosition(), count);
 
         try {
-          String snippet   = masterCipher.decryptBody(threadCursor.getString(threadCursor.getColumnIndexOrThrow("snippet")));
+          String snippet   = threadCursor.getString(threadCursor.getColumnIndexOrThrow("snippet"));
           long snippetType = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("snippet_type"));
           long id          = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("_id"));
+
+          if (!Util.isEmpty(snippet)) {
+            snippet = masterCipher.decryptBody(snippet);
+          }
 
           if (snippet.startsWith(KEY_EXCHANGE)) {
             snippet      = snippet.substring(KEY_EXCHANGE.length());
@@ -348,6 +353,8 @@ public class DatabaseFactory {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+      db.beginTransaction();
+
       if (oldVersion < INTRODUCED_IDENTITIES_VERSION) {
         db.execSQL("CREATE TABLE identities (_id INTEGER PRIMARY KEY, key TEXT UNIQUE, name TEXT UNIQUE, mac TEXT);");
       }
@@ -377,24 +384,18 @@ public class DatabaseFactory {
       }
 
       if (oldVersion < INTRODUCED_DATE_SENT_VERSION) {
-        db.beginTransaction();
         db.execSQL("ALTER TABLE sms ADD COLUMN date_sent INTEGER;");
         db.execSQL("UPDATE sms SET date_sent = date;");
 
         db.execSQL("ALTER TABLE mms ADD COLUMN date_received INTEGER;");
         db.execSQL("UPDATE mms SET date_received = date;");
-        db.setTransactionSuccessful();
-        db.endTransaction();
       }
 
       if (oldVersion < INTRODUCED_DRAFTS_VERSION) {
-        db.beginTransaction();
         db.execSQL("CREATE TABLE drafts (_id INTEGER PRIMARY KEY, thread_id INTEGER, type TEXT, value TEXT);");
         executeStatements(db, new String[] {
             "CREATE INDEX IF NOT EXISTS draft_thread_index ON drafts (thread_id);",
         });
-        db.setTransactionSuccessful();
-        db.endTransaction();
       }
 
       if (oldVersion < INTRODUCED_NEW_TYPES_VERSION) {
@@ -405,7 +406,6 @@ public class DatabaseFactory {
         String PROCESSED_KEY_EXCHANGE   = "?TextSecureKeyExchangd";
         String STALE_KEY_EXCHANGE       = "?TextSecureKeyExchangs";
 
-        db.beginTransaction();
         // SMS Updates
         db.execSQL("UPDATE sms SET type = ? WHERE type = ?", new String[] {20L+"", 1L+""});
         db.execSQL("UPDATE sms SET type = ? WHERE type = ?", new String[] {21L+"", 43L+""});
@@ -425,25 +425,40 @@ public class DatabaseFactory {
 
         updateSmsBodyAndType(db, cursor, SYMMETRIC_ENCRYPT, 0x80000000L);
 
+        if (cursor != null)
+          cursor.close();
+
         cursor = db.query("sms", null,"body LIKE ?", new String[] {ASYMMETRIC_LOCAL_ENCRYPT + "%"},
                                  null, null, null);
 
         updateSmsBodyAndType(db, cursor, ASYMMETRIC_LOCAL_ENCRYPT, 0x40000000L);
+
+        if (cursor != null)
+          cursor.close();
 
         cursor = db.query("sms", null,"body LIKE ?", new String[] {ASYMMETRIC_ENCRYPT + "%"},
                           null, null, null);
 
         updateSmsBodyAndType(db, cursor, ASYMMETRIC_ENCRYPT, 0L);
 
+        if (cursor != null)
+          cursor.close();
+
         cursor = db.query("sms", null,"body LIKE ?", new String[] {KEY_EXCHANGE + "%"},
                           null, null, null);
 
         updateSmsBodyAndType(db, cursor, KEY_EXCHANGE, 0x8000L);
 
+        if (cursor != null)
+          cursor.close();
+
         cursor = db.query("sms", null,"body LIKE ?", new String[] {PROCESSED_KEY_EXCHANGE + "%"},
                           null, null, null);
 
         updateSmsBodyAndType(db, cursor, PROCESSED_KEY_EXCHANGE, 0x8000L | 0x2000L);
+
+        if (cursor != null)
+          cursor.close();
 
         cursor = db.query("sms", null,"body LIKE ?", new String[] {STALE_KEY_EXCHANGE + "%"},
                           null, null, null);
@@ -468,34 +483,68 @@ public class DatabaseFactory {
 
         db.execSQL("ALTER TABLE thread ADD COLUMN snippet_type INTEGER;");
 
+        if (cursor != null)
+          cursor.close();
+
         cursor = db.query("thread", null,"snippet LIKE ?",
                           new String[] {SYMMETRIC_ENCRYPT + "%"}, null, null, null);
 
         updateThreadSnippetAndType(db, cursor, SYMMETRIC_ENCRYPT, 0x80000000L);
+
+        if (cursor != null)
+          cursor.close();
 
         cursor = db.query("thread", null,"snippet LIKE ?",
                           new String[] {KEY_EXCHANGE + "%"}, null, null, null);
 
         updateThreadSnippetAndType(db, cursor, KEY_EXCHANGE, 0x8000L);
 
+        if (cursor != null)
+          cursor.close();
+
         cursor = db.query("thread", null,"snippet LIKE ?",
                           new String[] {STALE_KEY_EXCHANGE + "%"}, null, null, null);
 
         updateThreadSnippetAndType(db, cursor, STALE_KEY_EXCHANGE, 0x8000L | 0x4000L);
+
+        if (cursor != null)
+          cursor.close();
 
         cursor = db.query("thread", null,"snippet LIKE ?",
                           new String[] {PROCESSED_KEY_EXCHANGE + "%"}, null, null, null);
 
         updateThreadSnippetAndType(db, cursor, KEY_EXCHANGE, 0x8000L | 0x2000L);
 
-        db.setTransactionSuccessful();
-        db.endTransaction();
+        if (cursor != null)
+          cursor.close();
       }
 
       if (oldVersion < INTRODUCED_MMS_BODY_VERSION) {
         db.execSQL("ALTER TABLE mms ADD COLUMN body TEXT");
         db.execSQL("ALTER TABLE mms ADD COLUMN part_count INTEGER");
       }
+
+      if (oldVersion < INTRODUCED_MMS_FROM_VERSION) {
+        db.execSQL("ALTER TABLE mms ADD COLUMN address TEXT");
+
+        Cursor cursor = db.query("mms_addresses", null, "type = ?", new String[] {0x89+""},
+                                 null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long mmsId     = cursor.getLong(cursor.getColumnIndexOrThrow("mms_id"));
+          String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+
+          if (!Util.isEmpty(address)) {
+            db.execSQL("UPDATE mms SET address = ? WHERE _id = ?", new String[]{address, mmsId+""});
+          }
+        }
+
+        if (cursor != null)
+          cursor.close();
+      }
+
+      db.setTransactionSuccessful();
+      db.endTransaction();
     }
 
     private void updateSmsBodyAndType(SQLiteDatabase db, Cursor cursor, String prefix, long typeMask)
