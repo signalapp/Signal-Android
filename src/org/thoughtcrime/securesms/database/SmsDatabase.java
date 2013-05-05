@@ -211,10 +211,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender());
-    values.put(DATE_RECEIVED, Long.valueOf(System.currentTimeMillis()));
+    values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(PROTOCOL, message.getProtocol());
-    values.put(READ, Integer.valueOf(0));
+    values.put(READ, 0);
 
     if (!Util.isEmpty(message.getPseudoSubject()))
       values.put(SUBJECT, message.getPseudoSubject());

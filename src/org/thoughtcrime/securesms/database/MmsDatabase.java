@@ -352,12 +352,12 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
     long messageId = insertMediaMessage(masterSecret, retrieved, contentValues);
 
-    notifyConversationListeners(threadId);
-    DatabaseFactory.getThreadDatabase(context).update(threadId);
     DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+    DatabaseFactory.getThreadDatabase(context).update(threadId);
+    notifyConversationListeners(threadId);
     Trimmer.trimThread(context, threadId);
 
-    return new Pair<Long, Long>(threadId, messageId);
+    return new Pair<Long, Long>(messageId, threadId);
   }
 
   public Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
