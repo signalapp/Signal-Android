@@ -504,7 +504,8 @@
     <string name="text_secure_normal__menu_import">Import</string>
     <string name="text_secure_normal__menu_export">Export</string>
     <string name="text_secure_normal__menu_clear_passphrase">Clear Passphrase</string>
-    
+    <string name="text_secure_normal__mark_all_as_read">Mark All Read</string>
+
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
 

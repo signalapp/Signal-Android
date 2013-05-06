@@ -2,24 +2,26 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.WindowManager;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.ApplicationExportManager.ApplicationExportListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
-
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 public class ConversationListActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationListFragment.ConversationSelectedListener
@@ -76,6 +78,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     case R.id.menu_export:           handleExportDatabase();                    return true;
     case R.id.menu_import:           handleImportDatabase();                    return true;
     case R.id.menu_clear_passphrase: handleClearPassphrase();                   return true;
+    case R.id.menu_mark_all_read:    handleMarkAllRead();                       return true;
     }
 
     return false;
@@ -125,6 +128,17 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     Intent intent = new Intent(this, KeyCachingService.class);
     intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
     startService(intent);
+  }
+
+  private void handleMarkAllRead() {
+    new AsyncTask<Void, Void, Void>() {
+      @Override
+      protected Void doInBackground(Void... params) {
+        DatabaseFactory.getThreadDatabase(ConversationListActivity.this).setAllThreadsRead();
+        MessageNotifier.updateNotification(ConversationListActivity.this, masterSecret);
+        return null;
+      }
+    }.execute();
   }
 
   private void initializeContactUpdatesReceiver() {

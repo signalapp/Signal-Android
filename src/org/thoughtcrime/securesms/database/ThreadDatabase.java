@@ -205,6 +205,18 @@ public class ThreadDatabase extends Database {
     }
   }
 
+  public void setAllThreadsRead() {
+    SQLiteDatabase db           = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(READ, 1);
+
+    db.update(TABLE_NAME, contentValues, null, null);
+
+    DatabaseFactory.getSmsDatabase(context).setAllMessagesRead();
+    DatabaseFactory.getMmsDatabase(context).setAllMessagesRead();
+    notifyConversationListListeners();
+  }
+
   public void setRead(long threadId) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);

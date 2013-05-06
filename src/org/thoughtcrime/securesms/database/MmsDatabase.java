@@ -273,6 +273,14 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     database.update(TABLE_NAME, contentValues, THREAD_ID + " = ?", new String[] {threadId+""});
   }
 
+  public void setAllMessagesRead() {
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(READ, 1);
+
+    database.update(TABLE_NAME, contentValues, null, null);
+  }
+
   public SendReq[] getOutgoingMessages(MasterSecret masterSecret, long messageId)
       throws MmsException
   {

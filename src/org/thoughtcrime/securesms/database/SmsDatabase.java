@@ -182,11 +182,17 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     ContentValues contentValues = new ContentValues();
     contentValues.put(READ, 1);
 
-    long start = System.currentTimeMillis();
-    database.update(TABLE_NAME, contentValues, THREAD_ID + " = ? AND " + READ + " = 0", new String[] {threadId+""});
-    long end = System.currentTimeMillis();
+    database.update(TABLE_NAME, contentValues,
+                    THREAD_ID + " = ? AND " + READ + " = 0",
+                    new String[] {threadId+""});
+  }
 
-    Log.w("SmsDatabase", "setMessagesRead time: " + (end - start));
+  public void setAllMessagesRead() {
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(READ, 1);
+
+    database.update(TABLE_NAME, contentValues, null, null);
   }
 
   protected void updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
