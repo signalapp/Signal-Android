@@ -25,6 +25,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
+import android.preference.PreferenceScreen;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -56,7 +57,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final int   PICK_IDENTITY_CONTACT        = 1;
   private static final int   IMPORT_IDENTITY_ID           = 2;
 
-  public static final String WHITESPACE_PREF                  = "pref_key_tag_whitespace";
   public static final String RINGTONE_PREF                    = "pref_key_ringtone";
   public static final String VIBRATE_PREF                     = "pref_key_vibrate";
   public static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
@@ -64,7 +64,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String LED_BLINK_PREF                   = "pref_led_blink";
   public static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
   public static final String IDENTITY_PREF                    = "pref_choose_identity";
-  public static final String SEND_IDENTITY_PREF               = "pref_send_identity_key";
   public static final String ALL_MMS_PERF                     = "pref_all_mms";
   public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
@@ -389,5 +388,18 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       return true;
     }
 
+  }
+
+  /* http://code.google.com/p/android/issues/detail?id=4611#c35 */
+  @SuppressWarnings("deprecation")
+  @Override
+  public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
+  {
+    super.onPreferenceTreeClick(preferenceScreen, preference);
+    if (preference!=null)
+      if (preference instanceof PreferenceScreen)
+          if (((PreferenceScreen)preference).getDialog()!=null)
+            ((PreferenceScreen)preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(this.getWindow().getDecorView().getBackground().getConstantState().newDrawable());
+    return false;
   }
 }
