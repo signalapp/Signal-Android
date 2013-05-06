@@ -30,10 +30,12 @@ import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
+import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.lang.ref.SoftReference;
-import java.util.LinkedHashMap;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class EncryptingSmsDatabase extends SmsDatabase {
 
@@ -156,37 +158,25 @@ public class EncryptingSmsDatabase extends SmsDatabase {
 
   private static class PlaintextCache {
     private static final int MAX_CACHE_SIZE = 2000;
-
-    private static final LinkedHashMap<String,SoftReference<String>> decryptedBodyCache
-        = new LinkedHashMap<String,SoftReference<String>>()
-    {
-      @Override
-      protected boolean removeEldestEntry(Entry<String,SoftReference<String>> eldest) {
-        return this.size() > MAX_CACHE_SIZE;
-      }
-    };
+    private static final Map<String, SoftReference<String>> decryptedBodyCache =
+        Collections.synchronizedMap(new LRUCache<String, SoftReference<String>>(MAX_CACHE_SIZE));
 
     public void put(String ciphertext, String plaintext) {
       decryptedBodyCache.put(ciphertext, new SoftReference<String>(plaintext));
     }
 
     public String get(String ciphertext) {
-      synchronized (decryptedBodyCache) {
-        SoftReference<String> plaintextReference = decryptedBodyCache.get(ciphertext);
+      SoftReference<String> plaintextReference = decryptedBodyCache.get(ciphertext);
 
-        if (plaintextReference != null) {
-          String plaintext = plaintextReference.get();
+      if (plaintextReference != null) {
+        String plaintext = plaintextReference.get();
 
-          if (plaintext != null) {
-            return plaintext;
-          } else {
-            decryptedBodyCache.remove(ciphertext);
-            return null;
-          }
+        if (plaintext != null) {
+          return plaintext;
         }
-
-        return null;
       }
+
+      return null;
     }
   }
 }

@@ -33,13 +33,15 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
-import java.util.LinkedHashMap;
+import java.util.Collections;
+import java.util.Map;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
@@ -47,13 +49,8 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class ImageSlide extends Slide {
 
   private static final int MAX_CACHE_SIZE = 10;
-	
-  private static final LinkedHashMap<Uri,SoftReference<Bitmap>> thumbnailCache = new LinkedHashMap<Uri,SoftReference<Bitmap>>() {
-    @Override
-    protected boolean removeEldestEntry(Entry<Uri,SoftReference<Bitmap>> eldest) {
-      return this.size() > MAX_CACHE_SIZE;
-    }
-  };
+  private static final Map<Uri, SoftReference<Bitmap>> thumbnailCache =
+      Collections.synchronizedMap(new LRUCache<Uri, SoftReference<Bitmap>>(MAX_CACHE_SIZE));
 
   public ImageSlide(Context context, MasterSecret masterSecret, PduPart part) {
     super(context, masterSecret, part);

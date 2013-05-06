@@ -31,9 +31,11 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.LRUCache;
 
-import java.util.LinkedHashMap;
+import java.lang.ref.SoftReference;
+import java.util.Collections;
+import java.util.Map;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
@@ -46,8 +48,9 @@ import java.util.LinkedHashMap;
 public class ConversationAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
 
   private static final int MAX_CACHE_SIZE = 40;
+  private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
+      Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
 
-  private final LinkedHashMap<String,MessageRecord> messageRecordCache;
   private final Handler failedIconClickHandler;
   private final Context context;
   private final MasterSecret masterSecret;
@@ -62,7 +65,6 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     this.masterSecret           = masterSecret;
     this.failedIconClickHandler = failedIconClickHandler;
     this.groupThread            = groupThread;
-    this.messageRecordCache     = initializeCache();
     this.inflater               = (LayoutInflater)context
                                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
@@ -111,14 +113,22 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
-    if (messageRecordCache.containsKey(type + messageId))
-      return messageRecordCache.get(type + messageId);
+    SoftReference<MessageRecord> reference = messageRecordCache.get(type + messageId);
 
-    MmsSmsDatabase.Reader reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor, masterSecret);
+    if (reference != null) {
+      MessageRecord record = reference.get();
+
+      if (record != null)
+        return record;
+    }
+
+    MmsSmsDatabase.Reader reader = DatabaseFactory.getMmsSmsDatabase(context)
+                                                  .readerFor(cursor, masterSecret);
 
     MessageRecord messageRecord = reader.getCurrent();
 
-    messageRecordCache.put(type + messageId, messageRecord);
+    messageRecordCache.put(type + messageId, new SoftReference<MessageRecord>(messageRecord));
+
     return messageRecord;
   }
 
@@ -135,14 +145,5 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   @Override
   public void onMovedToScrapHeap(View view) {
     ((ConversationItem)view).unbind();
-  }
-
-  private LinkedHashMap<String,MessageRecord> initializeCache() {
-    return new LinkedHashMap<String,MessageRecord>() {
-      @Override
-      protected boolean removeEldestEntry(Entry<String,MessageRecord> eldest) {
-        return this.size() > MAX_CACHE_SIZE;
-      }
-    };
   }
 }

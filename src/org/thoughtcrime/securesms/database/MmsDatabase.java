@@ -41,12 +41,16 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
+import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.SoftReference;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -130,6 +134,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   };
 
   public static final ExecutorService slideResolver = Util.newSingleThreadedLifoExecutor();
+  private static final Map<Long, SoftReference<SlideDeck>> slideCache =
+      Collections.synchronizedMap(new LRUCache<Long, SoftReference<SlideDeck>>(20));
 
   public MmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -801,6 +807,12 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     private ListenableFutureTask<SlideDeck> getSlideDeck(final MasterSecret masterSecret,
                                                          final long id)
     {
+      ListenableFutureTask<SlideDeck> future = getCachedSlideDeck(id);
+
+      if (future != null) {
+        return future;
+      }
+
       Callable<SlideDeck> task = new Callable<SlideDeck>() {
         @Override
         public SlideDeck call() throws Exception {
@@ -808,14 +820,41 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
             return null;
 
           PduBody body = getPartDatabase(masterSecret).getParts(id, false);
-          return new SlideDeck(context, masterSecret, body);
+          SlideDeck slideDeck = new SlideDeck(context, masterSecret, body);
+          slideCache.put(id, new SoftReference<SlideDeck>(slideDeck));
+
+          return slideDeck;
         }
       };
 
-      ListenableFutureTask<SlideDeck> future = new ListenableFutureTask<SlideDeck>(task, null);
+      future = new ListenableFutureTask<SlideDeck>(task, null);
       slideResolver.execute(future);
 
       return future;
+    }
+
+    private ListenableFutureTask<SlideDeck> getCachedSlideDeck(final long id) {
+      SoftReference<SlideDeck> reference = slideCache.get(id);
+
+      if (reference != null) {
+        final SlideDeck slideDeck = reference.get();
+
+        if (slideDeck != null) {
+          Callable<SlideDeck> task = new Callable<SlideDeck>() {
+            @Override
+            public SlideDeck call() throws Exception {
+              return slideDeck;
+            }
+          };
+
+          ListenableFutureTask<SlideDeck> future = new ListenableFutureTask<SlideDeck>(task, null);
+          future.run();
+
+          return future;
+        }
+      }
+
+      return null;
     }
 
     public void close() {

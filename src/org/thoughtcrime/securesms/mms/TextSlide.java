@@ -16,30 +16,28 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import java.io.UnsupportedEncodingException;
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
-
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.PduPart;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.LRUCache;
+
+import java.io.UnsupportedEncodingException;
+import java.lang.ref.SoftReference;
+import java.util.Collections;
+import java.util.Map;
+
+import ws.com.google.android.mms.ContentType;
+import ws.com.google.android.mms.pdu.CharacterSets;
+import ws.com.google.android.mms.pdu.PduPart;
+
 public class TextSlide extends Slide {
 	
   private static final int MAX_CACHE_SIZE = 10;
-	
-  private static final LinkedHashMap<Uri,String> textCache = new LinkedHashMap<Uri,String>() {
-    @Override
-    protected boolean removeEldestEntry(Entry<Uri,String> eldest) {
-      return this.size() > MAX_CACHE_SIZE;
-    }
-  };
-	
+  private static final Map<Uri, SoftReference<String>> textCache =
+      Collections.synchronizedMap(new LRUCache<Uri, SoftReference<String>>(MAX_CACHE_SIZE));
+
   public TextSlide(Context context, MasterSecret masterSecret, PduPart part) {
     super(context, masterSecret, part);
   }
@@ -54,16 +52,25 @@ public class TextSlide extends Slide {
   }
 	
   @Override
-    public String getText() {
+  public String getText() {
     try {
-      if (textCache.containsKey(part.getDataUri()))
-	return textCache.get(part.getDataUri());
-			
+      SoftReference<String> reference = textCache.get(part.getDataUri());
+
+      if (reference != null) {
+        String cachedText = reference.get();
+
+        if (cachedText != null) {
+          return cachedText;
+        }
+      }
+
+
       String text = new String(getPartData(), CharacterSets.getMimeName(part.getCharset()));			
-      textCache.put(part.getDataUri(), text);
+      textCache.put(part.getDataUri(), new SoftReference<String>(text));
 			
       return text;
     } catch (UnsupportedEncodingException uee) {
+      Log.w("TextSlide", uee);
       return new String(getPartData());
     }
   }
@@ -75,7 +82,7 @@ public class TextSlide extends Slide {
       part.setData(message.getBytes(CharacterSets.MIMENAME_ISO_8859_1));
             
       if (part.getData().length == 0)
-	throw new AssertionError("Part data should not be zero!");
+        throw new AssertionError("Part data should not be zero!");
             
     } catch (UnsupportedEncodingException e) {
       Log.w("TextSlide", "ISO_8859_1 must be supported!", e);
@@ -89,5 +96,4 @@ public class TextSlide extends Slide {
         
     return part;
   }
-	
 }
