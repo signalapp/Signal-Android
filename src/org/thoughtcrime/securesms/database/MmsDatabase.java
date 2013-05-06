@@ -766,7 +766,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
     private Recipients getRecipientsFor(String address) {
       try {
-        if (Util.isEmpty(address)) {
+        if (Util.isEmpty(address) || address.equals("insert-address-token")) {
           return new Recipients(new Recipient("Unknown", "Unknown", null,
                                               ContactPhotoFactory.getDefaultContactPhoto(context)));
         }
