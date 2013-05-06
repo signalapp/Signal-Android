@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference android:defaultValue="true"
-                      android:key="pref_all_sms"
-                      android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages"
-                      android:title="@string/preferences__pref_all_sms_title" />
+    <PreferenceCategory android:title="@string/preferences__general">
+        <CheckBoxPreference android:defaultValue="true"
+                          android:key="pref_all_sms"
+                          android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages"
+                          android:title="@string/preferences__pref_all_sms_title" />
 
-    <CheckBoxPreference android:defaultValue="true"
-                      android:key="pref_all_mms"
-                      android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
-                      android:title="@string/preferences__pref_all_mms_title" />
+        <CheckBoxPreference android:defaultValue="true"
+                          android:key="pref_all_mms"
+                          android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
+                          android:title="@string/preferences__pref_all_mms_title" />
 
-    <CheckBoxPreference android:defaultValue="false"
-                        android:key="pref_delivery_report_sms"
-                        android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
-                        android:title="@string/preferences__sms_delivery_reports" />
+        <CheckBoxPreference android:defaultValue="false"
+                            android:key="pref_delivery_report_sms"
+                            android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
+                            android:title="@string/preferences__sms_delivery_reports" />
 
-    <CheckBoxPreference android:defaultValue="false"
-                      android:key="pref_enter_sends"
-                      android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
-                      android:title="@string/preferences__pref_enter_sends_title" />
+        <CheckBoxPreference android:defaultValue="false"
+                          android:key="pref_enter_sends"
+                          android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
+                          android:title="@string/preferences__pref_enter_sends_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preferences__notifications">
+        <CheckBoxPreference android:key="pref_key_enable_notifications"
+                            android:title="@string/preferences__notifications"
+                            android:summary="@string/preferences__display_message_notifications_in_status_bar"
+                            android:defaultValue="true" />
+        <ListPreference
+                          android:key="pref_led_color"
+                          android:defaultValue="green"
+                          android:title="@string/preferences__led_color"
+                          android:dependency="pref_key_enable_notifications"
+                          android:summary="@string/preferences__change_notification_led_color"
+                          android:entries="@array/pref_led_color_entries"
+                          android:entryValues="@array/pref_led_color_values"
+                          android:dialogTitle="@string/preferences__select_led_color" />
 
-  <PreferenceScreen android:title="@string/preferences__notifications">
-    <CheckBoxPreference android:key="pref_key_enable_notifications"
-                        android:title="@string/preferences__notifications"
-                        android:summary="@string/preferences__display_message_notifications_in_status_bar"
-                        android:defaultValue="true" />
-    <ListPreference
-                      android:key="pref_led_color"
-                      android:defaultValue="green"
-                      android:title="@string/preferences__led_color"
-                      android:dependency="pref_key_enable_notifications"
-                      android:summary="@string/preferences__change_notification_led_color"
-                      android:entries="@array/pref_led_color_entries"
-                      android:entryValues="@array/pref_led_color_values"
-                      android:dialogTitle="@string/preferences__select_led_color" />
-
-    <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
-                      android:key="pref_led_blink"
-                      android:defaultValue="500,2000"
-                      android:title="@string/preferences__pref_led_blink_title"
-                      android:dependency="pref_key_enable_notifications"
-                      android:summary="@string/preferences__change_notification_blink_pattern"
-                      android:entries="@array/pref_led_blink_pattern_entries"
-                      android:entryValues="@array/pref_led_blink_pattern_values"
-                      android:dialogTitle="@string/preferences__pref_led_blink_dialogtitle" />
+        <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
+                          android:key="pref_led_blink"
+                          android:defaultValue="500,2000"
+                          android:title="@string/preferences__pref_led_blink_title"
+                          android:dependency="pref_key_enable_notifications"
+                          android:summary="@string/preferences__change_notification_blink_pattern"
+                          android:entries="@array/pref_led_blink_pattern_entries"
+                          android:entryValues="@array/pref_led_blink_pattern_values"
+                          android:dialogTitle="@string/preferences__pref_led_blink_dialogtitle" />
 
 
-    <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
-                        android:dependency="pref_key_enable_notifications"
-                        android:key="pref_key_ringtone"
-                        android:title="@string/preferences__select_ringtone"
-                        android:ringtoneType="notification"
-                        android:defaultValue="content://settings/system/notification_sound" />
-    <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
-                        android:dependency="pref_key_enable_notifications"
-                        android:key="pref_key_vibrate"
-                        android:defaultValue="true"
-                        android:title="@string/preferences__vibrate"
-                        android:summary="@string/preferences__also_vibrate_when_notified" />
-  </PreferenceScreen>
+        <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
+                            android:dependency="pref_key_enable_notifications"
+                            android:key="pref_key_ringtone"
+                            android:title="@string/preferences__select_ringtone"
+                            android:ringtoneType="notification"
+                            android:defaultValue="content://settings/system/notification_sound" />
+        <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
+                            android:dependency="pref_key_enable_notifications"
+                            android:key="pref_key_vibrate"
+                            android:defaultValue="true"
+                            android:title="@string/preferences__vibrate"
+                            android:summary="@string/preferences__also_vibrate_when_notified" />
+  </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__storage">
     <CheckBoxPreference android:defaultValue="false"
@@ -117,42 +118,42 @@
                            android:title="@string/preferences__complete_key_exchanges"
                            android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
 
-    <PreferenceScreen android:title="@string/preferences__identity_key_settings">
-      <Preference android:key="pref_view_identity"
-                    android:title="@string/preferences__view_my_identity_key"
-                    android:summary="@string/preferences__view_my_identity_key"/>
+        <PreferenceScreen android:title="@string/preferences__identity_key_settings">
+          <Preference android:key="pref_view_identity"
+                        android:title="@string/preferences__view_my_identity_key"
+                        android:summary="@string/preferences__view_my_identity_key"/>
 
-      <Preference android:key="pref_export_identity"
-                    android:title="@string/preferences__export_my_identity_key"
-                    android:summary="@string/preferences__export_my_identity_key"/>
+          <Preference android:key="pref_export_identity"
+                        android:title="@string/preferences__export_my_identity_key"
+                        android:summary="@string/preferences__export_my_identity_key"/>
 
-      <Preference android:key="pref_import_identity"
-                    android:title="@string/preferences__import_contacts_key"
-                    android:summary="@string/preferences__import_an_identity_key_from_a_contact"/>
+          <Preference android:key="pref_import_identity"
+                        android:title="@string/preferences__import_contacts_key"
+                        android:summary="@string/preferences__import_an_identity_key_from_a_contact"/>
 
-      <Preference android:key="pref_manage_identity"
-                    android:title="@string/preferences__manage_identity_keys"
-                    android:summary="@string/preferences__manage_configured_identity_keys"/>
-    </PreferenceScreen>
+          <Preference android:key="pref_manage_identity"
+                        android:title="@string/preferences__manage_identity_keys"
+                        android:summary="@string/preferences__manage_configured_identity_keys"/>
+        </PreferenceScreen>
 
-    <PreferenceScreen android:title="@string/preferences__advanced_mms_access_point_names">
-        <CheckBoxPreference android:key="pref_use_local_apns"
-                            android:defaultValue="false"
-                            android:title="@string/preferences__enable_fallback_mmsc"
-                            android:summary="@string/preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable"/>
+        <PreferenceScreen android:title="@string/preferences__advanced_mms_access_point_names">
+            <CheckBoxPreference android:key="pref_use_local_apns"
+                                android:defaultValue="false"
+                                android:title="@string/preferences__enable_fallback_mmsc"
+                                android:summary="@string/preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable"/>
 
-        <EditTextPreference android:key="pref_apn_mmsc_host"
-                            android:title="@string/preferences__mmsc_url_required"
-                            android:dependency="pref_use_local_apns" />
+            <EditTextPreference android:key="pref_apn_mmsc_host"
+                                android:title="@string/preferences__mmsc_url_required"
+                                android:dependency="pref_use_local_apns" />
 
-        <EditTextPreference android:key="pref_apn_mms_proxy"
-                            android:title="@string/preferences__mms_proxy_host_optional"
-                            android:dependency="pref_use_local_apns" />
+            <EditTextPreference android:key="pref_apn_mms_proxy"
+                                android:title="@string/preferences__mms_proxy_host_optional"
+                                android:dependency="pref_use_local_apns" />
 
-        <EditTextPreference android:key="pref_apn_mms_proxy_port"
-                            android:title="@string/preferences__mms_proxy_port_optional"
-                            android:dependency="pref_use_local_apns"
-                            android:inputType="number" />
-    </PreferenceScreen>
-  </PreferenceCategory>
+            <EditTextPreference android:key="pref_apn_mms_proxy_port"
+                                android:title="@string/preferences__mms_proxy_port_optional"
+                                android:dependency="pref_use_local_apns"
+                                android:inputType="number" />
+        </PreferenceScreen>
+    </PreferenceCategory>
 </PreferenceScreen>

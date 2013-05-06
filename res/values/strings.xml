@@ -355,7 +355,7 @@
     <string name="AndroidManifest__verify_imported_identity">Verify Imported Identity</string>
         
     <!-- preferences.xml -->
-    
+    <string name="preferences__general">General</string>
     <string name="preferences__use_settings">Use Settings</string>
     <string name="preferences__pref_all_sms_title">Use for all SMS</string>
     <string name="preferences__pref_all_mms_title">Use for all MMS</string> 
@@ -500,8 +500,6 @@
     <string name="verify_keys__menu_verified">Verified</string>
 
     <!-- Misc. piggybacking -->
-    <string name="PlayStoreListing">TextSecure is a security enhanced text messaging application that serves as a full replacement for the default text messaging application.  Messages to other TextSecure users are encrypted over the air, and all text messages are stored in an encrypted database on the device. If your phone is lost or stolen, your messages will be safe, and communication with other TextSecure users can\'t be monitored over the air.</string>
-    
     <!-- EOF -->
     
 </resources>
