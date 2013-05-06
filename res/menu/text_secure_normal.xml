@@ -5,9 +5,9 @@
           android:icon="@drawable/ic_menu_msg_compose_holo_dark"
           android:showAsAction="ifRoom" />
 
-    <item android:title="@string/text_secure_normal__menu_settings"
-          android:id="@+id/menu_settings"
-          android:icon="@android:drawable/ic_menu_preferences" />
+    <item android:title="@string/text_secure_normal__menu_clear_passphrase"
+          android:id="@+id/menu_clear_passphrase"
+          android:icon="@android:drawable/ic_menu_close_clear_cancel" />
 
     <item android:title="@string/text_secure_normal__menu_import_export"
           android:icon="@android:drawable/ic_menu_save">
@@ -22,8 +22,8 @@
         </menu>
     </item>
 
-    <item android:title="@string/text_secure_normal__menu_clear_passphrase"
-          android:id="@+id/menu_clear_passphrase"
-          android:icon="@android:drawable/ic_menu_close_clear_cancel" />
+    <item android:title="@string/text_secure_normal__menu_settings"
+          android:id="@+id/menu_settings"
+          android:icon="@android:drawable/ic_menu_preferences" />
 
 </menu>

@@ -361,7 +361,7 @@
     <string name="AndroidManifest__verify_imported_identity">Verify Imported Identity</string>
         
     <!-- preferences.xml -->
-    
+    <string name="preferences__general">General</string>
     <string name="preferences__use_settings">Use Settings</string>
     <string name="preferences__pref_all_sms_title">Use for all SMS</string>
     <string name="preferences__pref_all_mms_title">Use for all MMS</string> 
@@ -374,9 +374,9 @@
     <string name="preferences__choose_identity">Choose Identity</string>
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__encryption_settings">Encryption Settings</string>
-    <string name="preferences__change_passphrase">Change Passphrase</string>
+    <string name="preferences__change_passphrase">Change passphrase</string>
     <string name="preferences__change_my_passphrase">Change my passphrase</string>
-    <string name="preferences__complete_key_exchanges">Complete Key Exchanges</string>
+    <string name="preferences__complete_key_exchanges">Complete key exchanges</string>
     <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatically complete key exchanges for new sessions or for existing sessions with the same identity key</string>
     <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Include a whitespace tag at the end of every non-encrypted message</string>
     <string name="preferences__include_whitespace_tag">Include whitespace tag</string>
@@ -387,12 +387,12 @@
     <string name="preferences__pref_timeout_interval_dialogtitle">Select Passphrase Timeout</string>
     <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
     <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">The amount of time to wait before forgetting passphrase from memory</string>
-    <string name="preferences__identity_key_settings">Identity Key Settings</string>
+    <string name="preferences__identity_key_settings">Identity keys</string>
     <string name="preferences__view_my_identity_key">View my identity key</string>
     <string name="preferences__export_my_identity_key">Export my identity key</string>
-    <string name="preferences__import_contacts_key">Import Contact\'s Key</string>
+    <string name="preferences__import_contacts_key">Import contact\'s key</string>
     <string name="preferences__import_an_identity_key_from_a_contact">Import an identity key from a contact</string>
-    <string name="preferences__manage_identity_keys">Manage Identity Keys</string>
+    <string name="preferences__manage_identity_keys">Manage identity keys</string>
     <string name="preferences__manage_configured_identity_keys">Manage configured identity keys</string>
     <string name="preferences__notification_settings">Notification Settings</string>
     <string name="preferences__notifications">Notifications</string>
@@ -409,7 +409,7 @@
     <string name="preferences__minutes">minutes</string>
     <string name="preferences__hours">hours</string>
     <string name="preferences__green">Green</string>
-    <string name="preferences__red">Red</string>        
+    <string name="preferences__red">Red</string>
     <string name="preferences__blue">Blue</string>
     <string name="preferences__orange">Orange</string>
     <string name="preferences__cyan">Cyan</string>
@@ -418,7 +418,9 @@
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Slow</string>
     <string name="preferences__custom">Custom</string>
-    <string name="preferences__advanced_mms_access_point_names">Advanced: MMS Access Point Names</string>
+    <string name="preferences__advanced">Advanced</string>
+    <string name="preferences__passphrase">Passphrase</string>
+    <string name="preferences__advanced_mms_access_point_names">Fallback MMSC</string>
     <string name="preferences__enable_fallback_mmsc">Enable Fallback MMSC</string>
     <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Use MMSC information configured here when system APN information is unavailable.</string>
     <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
@@ -504,11 +506,10 @@
     <string name="verify_keys__menu_verified">Verified</string>
 
     <!-- Misc. piggybacking -->
-    <string name="PlayStoreListing">TextSecure is a security enhanced text messaging application that serves as a full replacement for the default text messaging application.  Messages to other TextSecure users are encrypted over the air, and all text messages are stored in an encrypted database on the device. If your phone is lost or stolen, your messages will be safe, and communication with other TextSecure users can\'t be monitored over the air.</string>
+
+    <!-- EOF -->
     <string name="conversation_group_options__delivery">Delivery</string>
     <string name="conversation_group_options__conversation">Conversation</string>
     <string name="conversation_group_options__broadcast">Broadcast</string>
 
-    <!-- EOF -->
-    
 </resources>

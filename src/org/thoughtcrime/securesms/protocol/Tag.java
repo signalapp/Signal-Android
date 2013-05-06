@@ -13,8 +13,7 @@ public class Tag {
   public static boolean isTaggable(Context context, String message) {
     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-    return sp.getBoolean(ApplicationPreferencesActivity.WHITESPACE_PREF, true) &&
-           message.matches(".*[^\\s].*")                                       &&
+    return message.matches(".*[^\\s].*")                                       &&
            message.replaceAll("\\s+$", "").length() + WHITESPACE_TAG.length() <= 158;
   }
 
