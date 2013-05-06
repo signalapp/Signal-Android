@@ -32,6 +32,8 @@ public class ApnDefaults {
             //Telenor Norway - Tested
             put("24201", new MmsConnectionParameters("http://mmsc", "10.10.10.11", "8080"));
 
+            // Rogers - Untested
+            put("302720", new MmsConnectionParameters("http://mms.gprs.rogers.com", "10.128.1.69", "80"));
           }};
 
   public static MmsConnectionParameters getMmsConnectionParameters(Context context) {
