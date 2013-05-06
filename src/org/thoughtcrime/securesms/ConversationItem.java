@@ -276,7 +276,8 @@ public class ConversationItem extends LinearLayout {
   /// Helper Methods
 
   private void checkForAutoInitiate(Recipient recipient, String body, long threadId) {
-    if (AutoInitiateActivity.isValidAutoInitiateSituation(context, masterSecret, recipient,
+    if (!groupThread &&
+        AutoInitiateActivity.isValidAutoInitiateSituation(context, masterSecret, recipient,
                                                           body, threadId))
     {
       AutoInitiateActivity.exemptThread(context, threadId);
