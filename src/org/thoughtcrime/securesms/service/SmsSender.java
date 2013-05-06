@@ -35,12 +35,7 @@ import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class SmsSender {
-
-  private final Set<Long> pendingMessages = new HashSet<Long>();
 
   private final Context context;
   private final ToastHandler toastHandler;
@@ -75,10 +70,8 @@ public class SmsSender {
       else                 reader = database.getOutgoingMessages(masterSecret);
 
       while (reader != null && (record = reader.getNext()) != null) {
-        if (!pendingMessages.contains(record.getId())) {
-          pendingMessages.add(record.getId());
-          transport.deliver(record);
-        }
+        database.markAsSending(record.getId());
+        transport.deliver(record);
       }
     } catch (UndeliverableMessageException ude) {
       Log.w("SmsSender", ude);
@@ -100,6 +93,7 @@ public class SmsSender {
       DatabaseFactory.getSmsDatabase(context).markAsSent(messageId);
       unregisterForRadioChanges();
     } else if (result == SmsManager.RESULT_ERROR_NO_SERVICE || result == SmsManager.RESULT_ERROR_RADIO_OFF) {
+      DatabaseFactory.getSmsDatabase(context).markAsOutbox(messageId);
       toastHandler
         .obtainMessage(0, context.getString(R.string.SmsReceiver_currently_unable_to_send_your_sms_message))
         .sendToTarget();
@@ -112,8 +106,6 @@ public class SmsSender {
       MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
       unregisterForRadioChanges();
     }
-
-    pendingMessages.remove(messageId);
   }
 
   private void handleDeliveredMessage(Intent intent) {
