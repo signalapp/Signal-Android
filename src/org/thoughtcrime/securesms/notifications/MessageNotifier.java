@@ -97,10 +97,22 @@ public class MessageNotifier {
 
 
   public static void updateNotification(Context context, MasterSecret masterSecret) {
+    if (!PreferenceManager.getDefaultSharedPreferences(context)
+                          .getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true))
+    {
+      return;
+    }
+
     updateNotification(context, masterSecret, false);
   }
 
   public static void updateNotification(Context context, MasterSecret masterSecret, long threadId) {
+    if (!PreferenceManager.getDefaultSharedPreferences(context)
+                          .getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true))
+    {
+      return;
+    }
+
     if (visibleThread == threadId) {
       DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       sendInThreadNotification(context);
