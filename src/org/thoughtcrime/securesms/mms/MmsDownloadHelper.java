@@ -36,7 +36,7 @@ import java.net.URISyntaxException;
 public class MmsDownloadHelper extends MmsCommunication {
 
   private static byte[] makeRequest(Context context, MmsConnectionParameters connectionParameters, String url)
-      throws ClientProtocolException, IOException
+      throws IOException
   {
     AndroidHttpClient client = null;
 
@@ -81,6 +81,10 @@ public class MmsDownloadHelper extends MmsCommunication {
     checkRouteToHost(context, connectionParameters, url, usingMmsRadio);
 
     byte[] pdu = makeRequest(context, connectionParameters, url);
+
+    if (pdu == null) {
+      throw new IOException("Retrieved null PDU!");
+    }
 
     RetrieveConf retrieved = (RetrieveConf)new PduParser(pdu).parse();
 

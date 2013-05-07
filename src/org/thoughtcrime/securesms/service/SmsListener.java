@@ -110,8 +110,6 @@ public class SmsListener extends BroadcastReceiver {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
     String messageBody            = getSmsMessageBodyFromIntent(intent);
 
-    Log.w("SmsListener", "Checking challenge: " + messageBody);
-
     if (messageBody == null)
       return false;
 

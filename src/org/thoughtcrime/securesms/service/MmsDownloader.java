@@ -28,10 +28,15 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
+import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 
+import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.NotifyRespInd;
+import ws.com.google.android.mms.pdu.PduComposer;
+import ws.com.google.android.mms.pdu.PduHeaders;
 import ws.com.google.android.mms.pdu.RetrieveConf;
 
 import java.io.IOException;
@@ -100,9 +105,7 @@ public class MmsDownloader extends MmscProcessor {
       }
 
       storeRetrievedMms(mmsDatabase, item, retrieved);
-
-      //			NotifyRespInd notifyResponse = new NotifyRespInd(PduHeaders.CURRENT_MMS_VERSION, item.getTransactionId(), PduHeaders.STATUS_RETRIEVED);
-      //			MmsSendHelper.sendMms(context, new PduComposer(context, notifyResponse).make());
+      sendRetrievedAcknowledgement(item);
 
     } catch (IOException e) {
       Log.w("MmsDownloader", e);
@@ -145,6 +148,22 @@ public class MmsDownloader extends MmscProcessor {
 
     mmsDatabase.delete(item.getMessageId());
     MessageNotifier.updateNotification(context, item.getMasterSecret(), messageAndThreadId.second);
+  }
+
+  private void sendRetrievedAcknowledgement(DownloadItem item) {
+    try {
+      NotifyRespInd notifyResponse = new NotifyRespInd(PduHeaders.CURRENT_MMS_VERSION,
+                                                       item.getTransactionId(),
+                                                       PduHeaders.STATUS_RETRIEVED);
+
+      MmsSendHelper.sendNotificationReceived(context, new PduComposer(context, notifyResponse).make(),
+                                             getApnInformation(), item.useMmsRadioMode(),
+                                             item.proxyRequestIfPossible());
+    } catch (InvalidHeaderValueException e) {
+      Log.w("MmsDownloader", e);
+    } catch (IOException e) {
+      Log.w("MmsDownloader", e);
+    }
   }
 
   protected void handleConnectivityChange() {

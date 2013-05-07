@@ -54,7 +54,6 @@ public class MmsSendHelper extends MmsCommunication {
       request.setEntity(entity);
       request.setParams(client.getParams());
       request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
-//      request.addHeader("x-wap-profile", "http://www.htcmms.com.tw/Android/Common/nexusone/ua-profile.xml");
       request.addHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml");
       HttpResponse response = client.execute(target, request);
       StatusLine status     = response.getStatusLine();
@@ -72,16 +71,35 @@ public class MmsSendHelper extends MmsCommunication {
     }
   }
 
+  public static void sendNotificationReceived(Context context, byte[] mms, String apn,
+                                              boolean usingMmsRadio, boolean useProxyIfAvailable)
+    throws IOException
+  {
+    sendBytes(context, mms, apn, usingMmsRadio, useProxyIfAvailable);
+  }
+
   public static SendConf sendMms(Context context, byte[] mms, String apn,
                                  boolean usingMmsRadio, boolean useProxyIfAvailable)
+      throws IOException
+  {
+    byte[] response = sendBytes(context, mms, apn, usingMmsRadio, useProxyIfAvailable);
+
+    if (response == null) {
+      throw new IOException("Got null response!");
+    }
+
+    return (SendConf) new PduParser(response).parse();
+  }
+
+  private static byte[] sendBytes(Context context, byte[] mms, String apn,
+                                  boolean usingMmsRadio, boolean useProxyIfAvailable)
     throws IOException
   {
     Log.w("MmsSender", "Sending MMS of length: " + mms.length);
     try {
       MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn, useProxyIfAvailable);
       checkRouteToHost(context, parameters, parameters.getMmsc(), usingMmsRadio);
-      byte[] response = makePost(context, parameters, mms);
-      return (SendConf) new PduParser(response).parse();
+      return makePost(context, parameters, mms);
     } catch (ApnUnavailableException aue) {
       Log.w("MmsSender", aue);
       throw new IOException("Failed to get MMSC information...");

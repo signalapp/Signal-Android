@@ -174,7 +174,7 @@ public class MmsCommunication {
 
   protected static byte[] parseResponse(HttpEntity entity) throws IOException {
     if (entity == null || entity.getContentLength() == 0)
-      throw new IOException("Null response");
+      return null;
 
     if (entity.getContentLength() < 0)
       throw new IOException("Unknown content length!");
