@@ -112,9 +112,12 @@ public class ConversationListFragment extends SherlockListFragment
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        ConversationListFragment.this.queryFilter = query;
-        ConversationListFragment.this.getLoaderManager().restartLoader(0, null, ConversationListFragment.this);
-        return true;
+        if (isAdded()) {
+          ConversationListFragment.this.queryFilter = query;
+          ConversationListFragment.this.getLoaderManager().restartLoader(0, null, ConversationListFragment.this);
+          return true;
+        }
+        return false;
       }
       @Override
       public boolean onQueryTextChange(String newText) {
