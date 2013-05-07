@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 public class PassphrasePromptActivity extends PassphraseActivity {
 
   private EditText passphraseText;
-  private Button okButton;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +47,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    passphraseText = (EditText)findViewById(R.id.passphrase_edit);
-    okButton       = (Button)findViewById(R.id.ok_button);
+    Button okButton = (Button)  findViewById(R.id.ok_button);
+    passphraseText  = (EditText)findViewById(R.id.passphrase_edit);
 
     okButton.setOnClickListener(new OkButtonClickListener());
   }
@@ -75,7 +74,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   @Override
   protected void cleanup() {
-    this.passphraseText = null;
+    this.passphraseText.setText("");
     System.gc();
   }
 }
