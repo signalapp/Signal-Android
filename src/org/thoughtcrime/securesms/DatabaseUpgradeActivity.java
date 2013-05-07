@@ -3,17 +3,16 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -23,7 +22,6 @@ public class DatabaseUpgradeActivity extends Activity {
   public static final int NO_MORE_KEY_EXCHANGE_PREFIX_VERSION = 46;
   public static final int MMS_BODY_VERSION                    = 46;
 
-  private static final String LAST_VERSION_CODE = "last_version_code";
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -43,9 +41,10 @@ public class DatabaseUpgradeActivity extends Activity {
       ProgressBar indeterminateProgress = (ProgressBar)findViewById(R.id.indeterminate_progress);
       ProgressBar determinateProgress   = (ProgressBar)findViewById(R.id.determinate_progress);
 
-      new DatabaseUpgradeTask(indeterminateProgress, determinateProgress).execute(getLastSeenVersion());
+      new DatabaseUpgradeTask(indeterminateProgress, determinateProgress)
+          .execute(VersionTracker.getLastSeenVersion(this));
     } else {
-      updateLastSeenVersion();
+      VersionTracker.updateLastSeenVersion(this);
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();
     }
@@ -54,7 +53,7 @@ public class DatabaseUpgradeActivity extends Activity {
   private boolean needsDatabaseUpgrade() {
     try {
       int currentVersionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-      int lastSeenVersion    = getLastSeenVersion();
+      int lastSeenVersion    = VersionTracker.getLastSeenVersion(this);
 
       Log.w("DatabaseUpgradeActivity", "LastSeenVersion: " + lastSeenVersion);
 
@@ -73,26 +72,10 @@ public class DatabaseUpgradeActivity extends Activity {
     }
   }
 
-  private int getLastSeenVersion() {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-    return preferences.getInt(LAST_VERSION_CODE, 0);
-  }
-
-  private void updateLastSeenVersion() {
-    try {
-      SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-      int currentVersionCode        = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-      preferences.edit().putInt(LAST_VERSION_CODE, currentVersionCode).commit();
-    } catch (PackageManager.NameNotFoundException e) {
-      throw new AssertionError(e);
-    }
-  }
-
   public static boolean isUpdate(Context context) {
     try {
-      SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-      int currentVersionCode        = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-      int previousVersionCode       = preferences.getInt(LAST_VERSION_CODE, 0);
+      int currentVersionCode  = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+      int previousVersionCode = VersionTracker.getLastSeenVersion(context);
 
       return previousVersionCode < currentVersionCode;
     } catch (PackageManager.NameNotFoundException e) {
@@ -135,7 +118,7 @@ public class DatabaseUpgradeActivity extends Activity {
 
     @Override
     protected void onPostExecute(Void result) {
-      updateLastSeenVersion();
+      VersionTracker.updateLastSeenVersion(DatabaseUpgradeActivity.this);
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();
     }

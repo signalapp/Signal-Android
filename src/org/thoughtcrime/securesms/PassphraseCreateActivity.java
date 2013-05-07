@@ -16,8 +16,10 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +31,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VersionTracker;
 
 /**
  * Activity for creating a user's local encryption passphrase.
@@ -112,6 +115,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
 
       MasterSecretUtil.generateAsymmetricMasterSecret(PassphraseCreateActivity.this, masterSecret);
       IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this, masterSecret);
+      VersionTracker.updateLastSeenVersion(PassphraseCreateActivity.this);
 
       return null;
     }
