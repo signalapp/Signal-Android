@@ -40,11 +40,14 @@ public class SmsTransport {
   }
 
   private void deliverSecureMessage(SmsMessageRecord message) throws UndeliverableMessageException {
-    String encryptedMessage = getAsymmetricEncrypt(masterSecret, message.getBody().getBody(),
-                                                   message.getIndividualRecipient());
-
-    OutgoingTextMessage transportMessage = OutgoingTextMessage.from(message).withBody(encryptedMessage);
     MultipartSmsMessageHandler multipartMessageHandler = new MultipartSmsMessageHandler();
+    OutgoingTextMessage transportMessage               = OutgoingTextMessage.from(message);
+
+    if (message.isSecure()) {
+      String encryptedMessage = getAsymmetricEncrypt(masterSecret, message.getBody().getBody(),
+                                                     message.getIndividualRecipient());
+      transportMessage = transportMessage.withBody(encryptedMessage);
+    }
 
     ArrayList<String> messages                = multipartMessageHandler.divideMessage(transportMessage);
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages);
