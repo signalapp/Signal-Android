@@ -28,6 +28,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.thoughtcrime.securesms.service.MmscProcessor;
+import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.SendConf;
@@ -45,6 +46,10 @@ public class MmsSendHelper extends MmsCommunication {
       Log.w("MmsSender", "Sending MMS1 of length: " + (mms != null ? mms.length : "null"));
       client                 = constructHttpClient(context, parameters);
       URI targetUrl          = new URI(parameters.getMmsc());
+
+      if (Util.isEmpty(targetUrl.getHost()))
+        throw new IOException("Invalid target host: " + targetUrl.getHost() + " , " + targetUrl);
+
       HttpHost target        = new HttpHost(targetUrl.getHost(), targetUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
       HttpPost request       = new HttpPost(parameters.getMmsc());
       ByteArrayEntity entity = new ByteArrayEntity(mms);
