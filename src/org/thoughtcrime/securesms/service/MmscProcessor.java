@@ -66,6 +66,8 @@ public abstract class MmscProcessor {
   protected void issueConnectivityRequest() {
     int status = connectivityManager.startUsingNetworkFeature(ConnectivityManager.TYPE_MOBILE, FEATURE_ENABLE_MMS);
 
+    Log.w("MmscProcessor", "startUsingNetworkFeature status: " + status);
+
     if (status == APN_ALREADY_ACTIVE) {
       issueConnectivityChange();
     } else if (connectivityListener == null) {
@@ -77,9 +79,17 @@ public abstract class MmscProcessor {
     }
   }
 
+  protected boolean isConnectivityFailure() {
+    NetworkInfo networkInfo = connectivityManager.getNetworkInfo(TYPE_MOBILE_MMS);
+
+    return networkInfo == null || networkInfo.getDetailedState() == NetworkInfo.DetailedState.FAILED;
+  }
+
+
   protected boolean isConnectivityPossible() {
     NetworkInfo networkInfo = connectivityManager.getNetworkInfo(TYPE_MOBILE_MMS);
     Log.w("MmsService", "Got network info: " + networkInfo);
+
     return networkInfo != null  && networkInfo.isAvailable();
   }
 

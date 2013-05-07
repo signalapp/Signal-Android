@@ -225,7 +225,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session...</string>
 
     <!-- MmsSender -->    
-    <string name="MmsSender_currently_unable_to_send_your_mms_message">Currently unable to send your MMS message. It will be sent once service becomes available.</string>
+    <string name="MmsSender_currently_unable_to_send_your_mms_message">Currently unable to send your MMS message.</string>
     
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Import in progress</string>

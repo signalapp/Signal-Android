@@ -179,7 +179,7 @@ public class MmsDownloader extends MmscProcessor {
       if (pendingMessages.isEmpty())
         finishConnectivity();
 
-    } else if (!isConnected() && !isConnectivityPossible()) {
+    } else if (!isConnected() && (!isConnectivityPossible() || isConnectivityFailure())) {
       pendingMessages.clear();
       handleDownloadError(downloadItems, MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY,
                           context.getString(R.string.MmsDownloader_no_connectivity_available_for_mms_download_try_again_later));

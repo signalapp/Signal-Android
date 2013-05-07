@@ -170,7 +170,7 @@ public class MmsSender extends MmscProcessor {
 
   protected void handleConnectivityChange() {
     if (!isConnected()) {
-      if (!isConnectivityPossible() && !pendingMessages.isEmpty()) {
+      if ((!isConnectivityPossible() || isConnectivityFailure()) && !pendingMessages.isEmpty()) {
         DatabaseFactory.getMmsDatabase(context).markAsSentFailed(pendingMessages.remove().request.getDatabaseMessageId());
         toastHandler.makeToast(context.getString(R.string.MmsSender_currently_unable_to_send_your_mms_message));
         Log.w("MmsSender", "Unable to send MMS.");
