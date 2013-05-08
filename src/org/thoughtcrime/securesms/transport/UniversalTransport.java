@@ -24,20 +24,21 @@ public class UniversalTransport {
   }
 
   public void deliver(SmsMessageRecord message) throws UndeliverableMessageException {
-    Recipient recipient = message.getIndividualRecipient();
-    String number       = PhoneNumberFormatter.formatNumber(context, recipient.getNumber());
-
-    if (NumberFilter.getInstance(context).containsNumber(number)) {
-      try {
-        Log.w("UniversalTransport", "Delivering with GCM...");
-        gcmTransport.deliver(message);
-      } catch (IOException ioe) {
-        Log.w("UniversalTransport", ioe);
-        smsTransport.deliver(message);
-      }
-    } else {
-      Log.w("UniversalTransport", "Delivering with SMS...");
-      smsTransport.deliver(message);
-    }
+    smsTransport.deliver(message);
+//    Recipient recipient = message.getIndividualRecipient();
+//    String number       = PhoneNumberFormatter.formatNumber(context, recipient.getNumber());
+//
+//    if (NumberFilter.getInstance(context).containsNumber(number)) {
+//      try {
+//        Log.w("UniversalTransport", "Delivering with GCM...");
+//        gcmTransport.deliver(message);
+//      } catch (IOException ioe) {
+//        Log.w("UniversalTransport", ioe);
+//        smsTransport.deliver(message);
+//      }
+//    } else {
+//      Log.w("UniversalTransport", "Delivering with SMS...");
+//      smsTransport.deliver(message);
+//    }
   }
 }
