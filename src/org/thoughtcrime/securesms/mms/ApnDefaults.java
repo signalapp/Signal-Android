@@ -34,6 +34,9 @@ public class ApnDefaults {
 
             // Rogers - Untested
             put("302720", new MmsConnectionParameters("http://mms.gprs.rogers.com", "10.128.1.69", "80"));
+
+            // Virgin Mobile US - Untested
+            put("310053", new MmsConnectionParameters("http://mmsc.vmobl.com:8080/mms", "205.239.233.136", "81"));
           }};
 
   public static MmsConnectionParameters getMmsConnectionParameters(Context context) {
