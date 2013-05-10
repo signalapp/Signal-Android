@@ -295,8 +295,6 @@ public class DatabaseFactory {
 
               body = (body == null) ? Util.readFully(fin) : body + " " + Util.readFully(fin);
 
-              Log.w("DatabaseFactory", "Read body: " + body);
-
               dataFile.delete();
               db.delete("part", "_id = ?", new String[] {partId+""});
             } catch (IOException e) {
