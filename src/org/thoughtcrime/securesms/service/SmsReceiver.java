@@ -56,7 +56,9 @@ public class SmsReceiver {
   private IncomingTextMessage assembleMessageFragments(List<IncomingTextMessage> messages) {
     IncomingTextMessage message = new IncomingTextMessage(messages);
 
-    if (WirePrefix.isEncryptedMessage(message.getMessageBody()) || WirePrefix.isKeyExchange(message.getMessageBody())) {
+    if (WirePrefix.isEncryptedMessage(message.getMessageBody()) ||
+        WirePrefix.isKeyExchange(message.getMessageBody()))
+    {
       return multipartMessageHandler.processPotentialMultipartMessage(message);
     } else {
       return message;
@@ -69,8 +71,9 @@ public class SmsReceiver {
 
     if (masterSecret != null) {
       DecryptingQueue.scheduleDecryption(context, masterSecret, messageAndThreadId.first,
+                                         messageAndThreadId.second,
                                          message.getSender(), message.getMessageBody(),
-                                         message.isSecureMessage());
+                                         message.isSecureMessage(), message.isKeyExchange());
     }
 
     return messageAndThreadId;
@@ -92,7 +95,10 @@ public class SmsReceiver {
   private Pair<Long, Long> storeKeyExchangeMessage(MasterSecret masterSecret,
                                                    IncomingKeyExchangeMessage message)
   {
-    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true)) {
+    if (masterSecret != null &&
+        PreferenceManager.getDefaultSharedPreferences(context)
+                         .getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true))
+    {
       try {
         Recipient recipient                   = new Recipient(null, message.getSender(), null, null);
         KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(message.getMessageBody());

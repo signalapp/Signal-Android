@@ -18,8 +18,10 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -71,11 +73,11 @@ public class DecryptingQueue {
   }
 
   public static void scheduleDecryption(Context context, MasterSecret masterSecret,
-                                        long messageId, String originator, String body,
-                                        boolean isSecureMessage)
+                                        long messageId, long threadId, String originator,
+                                        String body, boolean isSecureMessage, boolean isKeyExchange)
   {
-    DecryptionWorkItem runnable = new DecryptionWorkItem(context, masterSecret, messageId,
-                                                         originator, body, isSecureMessage);
+    DecryptionWorkItem runnable = new DecryptionWorkItem(context, masterSecret, messageId, threadId,
+                                                         originator, body, isSecureMessage, isKeyExchange);
     synchronized (workQueue) {
       workQueue.add(runnable);
       workQueue.notifyAll();
@@ -122,11 +124,14 @@ public class DecryptingQueue {
                                                 SmsMessageRecord record)
   {
     long messageId          = record.getId();
+    long threadId           = record.getThreadId();
     String body             = record.getBody().getBody();
     String originator       = record.getIndividualRecipient().getNumber();
     boolean isSecureMessage = record.isSecure();
+    boolean isKeyExchange   = record.isKeyExchange();
 
-    scheduleDecryption(context, masterSecret, messageId,  originator, body, isSecureMessage);
+    scheduleDecryption(context, masterSecret, messageId,  threadId,
+                       originator, body, isSecureMessage, isKeyExchange);
   }
 
   private static class MmsDecryptionItem implements Runnable {
@@ -207,22 +212,26 @@ public class DecryptingQueue {
 
   private static class DecryptionWorkItem implements Runnable {
 
-    private final long messageId;
-    private final Context context;
+    private final long         messageId;
+    private final long         threadId;
+    private final Context      context;
     private final MasterSecret masterSecret;
-    private final String body;
-    private final String originator;
-    private final boolean isSecureMessage;
+    private final String       body;
+    private final String       originator;
+    private final boolean      isSecureMessage;
+    private final boolean      isKeyExchange;
 
-    public DecryptionWorkItem(Context context, MasterSecret masterSecret, long messageId,
-                              String originator, String body, boolean isSecureMessage)
+    public DecryptionWorkItem(Context context, MasterSecret masterSecret, long messageId, long threadId,
+                              String originator, String body, boolean isSecureMessage, boolean isKeyExchange)
     {
-      this.context      = context;
-      this.messageId    = messageId;
-      this.masterSecret = masterSecret;
-      this.body         = body;
-      this.originator   = originator;
+      this.context         = context;
+      this.messageId       = messageId;
+      this.threadId        = threadId;
+      this.masterSecret    = masterSecret;
+      this.body            = body;
+      this.originator      = originator;
       this.isSecureMessage = isSecureMessage;
+      this.isKeyExchange   = isKeyExchange;
     }
 
     private void handleRemoteAsymmetricEncrypt() {
@@ -266,18 +275,47 @@ public class DecryptingQueue {
       try {
         AsymmetricMasterCipher asymmetricMasterCipher = new AsymmetricMasterCipher(MasterSecretUtil.getAsymmetricMasterSecret(context, masterSecret));
         plaintextBody                                 = asymmetricMasterCipher.decryptBody(body);
+
+        if (isKeyExchange) {
+          handleKeyExchangeProcessing(plaintextBody);
+        }
+
+        database.updateMessageBody(masterSecret, messageId, plaintextBody);
+        MessageNotifier.updateNotification(context, masterSecret);
       } catch (InvalidMessageException ime) {
         Log.w("DecryptionQueue", ime);
         database.markAsDecryptFailed(messageId);
-        return;
       } catch (IOException e) {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptFailed(messageId);
-        return;
       }
+    }
 
-      database.updateMessageBody(masterSecret, messageId, plaintextBody);
-      MessageNotifier.updateNotification(context, masterSecret);
+    private void handleKeyExchangeProcessing(String plaintxtBody) {
+      if (PreferenceManager.getDefaultSharedPreferences(context)
+                           .getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true))
+      {
+        try {
+          Recipient recipient                   = new Recipient(null, originator, null, null);
+          KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(plaintxtBody);
+          KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
+
+          Log.w("DecryptingQuue", "KeyExchange with fingerprint: " + keyExchangeMessage.getPublicKey().getFingerprint());
+
+          if (processor.isStale(keyExchangeMessage)) {
+            DatabaseFactory.getEncryptingSmsDatabase(context).markAsStaleKeyExchange(messageId);
+          } else if (!processor.hasCompletedSession() ||
+                     processor.hasSameSessionIdentity(keyExchangeMessage))
+          {
+            DatabaseFactory.getEncryptingSmsDatabase(context).markAsProcessedKeyExchange(messageId);
+            processor.processKeyExchangeMessage(keyExchangeMessage, threadId);
+          }
+        } catch (InvalidVersionException e) {
+          Log.w("DecryptingQueue", e);
+        } catch (InvalidKeyException e) {
+          Log.w("DecryptingQueue", e);
+        }
+      }
     }
 
     @Override

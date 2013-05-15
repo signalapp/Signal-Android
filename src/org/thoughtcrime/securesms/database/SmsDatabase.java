@@ -139,6 +139,14 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     return 0;
   }
 
+  public void markAsStaleKeyExchange(long id) {
+    updateTypeBitmask(id, 0, Types.KEY_EXCHANGE_STALE_BIT);
+  }
+
+  public void markAsProcessedKeyExchange(long id) {
+    updateTypeBitmask(id, 0, Types.KEY_EXCHANGE_PROCESSED_BIT);
+  }
+
   public void markAsDecryptFailed(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
   }
@@ -213,7 +221,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     if (message.isKeyExchange()) {
       type |= Types.KEY_EXCHANGE_BIT;
       if      (((IncomingKeyExchangeMessage)message).isStale())     type |= Types.KEY_EXCHANGE_STALE_BIT;
-      else if (((IncomingKeyExchangeMessage)message).isProcessed()) {Log.w("SmsDatabase", "Setting processed bit..."); type |= Types.KEY_EXCHANGE_PROCESSED_BIT;}
+      else if (((IncomingKeyExchangeMessage)message).isProcessed()) type |= Types.KEY_EXCHANGE_PROCESSED_BIT;
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.ENCRYPTION_REMOTE_BIT;
