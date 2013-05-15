@@ -96,6 +96,8 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Ingen forbindelse tilgjengelig for MMS nedlasting, prøv igjen senere...</string>
   <string name="MmsDownloader_error_storing_mms">Feil ved lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Feil ved tilkobling til MMS tjeneste...</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimediamelding</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -194,7 +196,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS kryptert for en ikke-eksisterende sesjon...</string>
   <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Det er ikke mulig å sende MMS meldingen akkurat nå. Den vil sendes når tjenesten blir tilgjengelig igjen.</string>
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Det er ikke mulig å sende MMS meldingen din akkurat nå.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer SMS meldinger</string>
@@ -252,6 +254,8 @@
   <string name="database_migration_activity__import">Importer</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dette kan ta litt tid. Vær tålmodig, vi sier fra når importen er ferdig.</string>
   <string name="database_migration_activity__importing">IMPORTERER</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Oppdaterer database...</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSORD</string>
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
@@ -299,6 +303,7 @@
   <string name="AndroidManifest__complete_key_exchange">Fullfør nøkkelutveksling</string>
   <string name="AndroidManifest__verify_imported_identity">Bekreft importert identitet</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Generelt</string>
   <string name="preferences__use_settings">Innstillinger for bruk</string>
   <string name="preferences__pref_all_sms_title">Benytt for all SMS</string>
   <string name="preferences__pref_all_mms_title">Benytt for all MMS</string>
@@ -311,7 +316,7 @@
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg din kontakt fra kontaktlisten.</string>
   <string name="preferences__encryption_settings">Innstillinger for kryptering</string>
-  <string name="preferences__change_passphrase">Bytt passord</string>
+  <string name="preferences__change_passphrase">Endre passord</string>
   <string name="preferences__change_my_passphrase">Endre mitt passord</string>
   <string name="preferences__complete_key_exchanges">Fullfør nøkkelutvekslinger</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisk fullføre nøkkelutvekslinger for nye sesjoner eller sesjoner med samme ID-nøkkel</string>
@@ -324,7 +329,7 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">Velg passord timeout</string>
   <string name="preferences__pref_timeout_interval_title">Timeoutintervall</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hvor lang tid det skal gå før passordet slettes fra minnet</string>
-  <string name="preferences__identity_key_settings">Innstillinger for ID-nøkkel</string>
+  <string name="preferences__identity_key_settings">ID-nøkler</string>
   <string name="preferences__view_my_identity_key">Vis min ID-nøkkel</string>
   <string name="preferences__export_my_identity_key">Eksporter min ID-nøkkel</string>
   <string name="preferences__import_contacts_key">Importer kontaktens ID-nøkkel</string>
@@ -355,7 +360,9 @@
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Sakte</string>
   <string name="preferences__custom">Tilpasset</string>
-  <string name="preferences__advanced_mms_access_point_names">Avansert: MMS Aksesspunkt navn (APN)</string>
+  <string name="preferences__advanced">Avansert</string>
+  <string name="preferences__passphrase">Passord</string>
+  <string name="preferences__advanced_mms_access_point_names">Alternativ MMSC</string>
   <string name="preferences__enable_fallback_mmsc">Aktiver alternativ MMSC</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Benytt MMSC informasjonen konfigurert her når systemets APN informasjon er utilgjengelig.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (påkrevd)</string>
@@ -407,6 +414,9 @@
   <string name="conversation__menu_delete_thread">Slett tråd</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Mottakerliste</string>
+  <string name="conversation_group_options__delivery">Levering</string>
+  <string name="conversation_group_options__conversation">Samtale</string>
+  <string name="conversation_group_options__broadcast">Kringkast</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Sammenlign</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Få den skannet for å sammenlikne</string>
@@ -420,9 +430,9 @@
   <string name="text_secure_normal__menu_import">Importer</string>
   <string name="text_secure_normal__menu_export">Eksporter</string>
   <string name="text_secure_normal__menu_clear_passphrase">Fjern passord</string>
+  <string name="text_secure_normal__mark_all_as_read">Marker alle lest</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekreftet</string>
   <!--Misc. piggybacking-->
-  <string name="PlayStoreListing">TextSecure er en tekstmeldingsapplikasjon hvor sikkerheten er forbedret. TextSecure fungerer som en full erstatning for mobilterminalens standard SMS/MMS applikasjon. Meldinger til andre TextSecure brukere sendes kryptert, og alle meldinger lagres i en kryptert database på mobilterminalen. Dersom telefonen blir stjålet eller mistet, vil meldingene være trygge, og kommunikasjon med andre TextSecure brukere kan ikke overvåkes.</string>
   <!--EOF-->
 </resources>

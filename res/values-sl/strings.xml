@@ -96,6 +96,8 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Ni povezave za prenos MMS sporočila, poskusite kasneje...</string>
   <string name="MmsDownloader_error_storing_mms">Napaka pri shranjevanju MMS sporočila!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Napaka pri povezavi s ponudnikom MMS...</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Večpredstavno sporočilo</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
@@ -194,7 +196,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Okvarjeno šifrirano sporočilo MMS...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Sporočilo MMS šifrirano za neobstoječo sejo...</string>
   <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Sporočila MMS trenutno ni mogoče poslati. Poslano bo, takoj ko bo mogoče.</string>
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Trenutno sporočila MMS ni mogoče poslati.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Uvoz v teku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Uvažanje kratkih sporočil</string>
@@ -252,6 +254,8 @@
   <string name="database_migration_activity__import">Uvoz</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">To utegne trajati trenutek ali dva. Bodite potrpežljivi; ko bo uvoz končan, boste o tem obveščeni.</string>
   <string name="database_migration_activity__importing">UVAŽANJE</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Posodabljam podatkovne zbirke...</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">GESLO TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Odkleni</string>
@@ -299,6 +303,7 @@
   <string name="AndroidManifest__complete_key_exchange">Dokončaj izmenjavo ključev</string>
   <string name="AndroidManifest__verify_imported_identity">Preveri uvoženo identiteto</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Splošno</string>
   <string name="preferences__use_settings">Nastavitve uporabe</string>
   <string name="preferences__pref_all_sms_title">Uporabljaj za vsa SMS sporočila</string>
   <string name="preferences__pref_all_mms_title">Uporabljaj za vsa MMS sporočila</string>
@@ -313,7 +318,7 @@
   <string name="preferences__encryption_settings">Nastavitve šifriranja</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>
   <string name="preferences__change_my_passphrase">Zamenjaj geslo</string>
-  <string name="preferences__complete_key_exchanges">Dokončane izmenjave ključev</string>
+  <string name="preferences__complete_key_exchanges">Zaključi izmenjavo ključev</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Avtomatično dokončaj izmenjavo ključev za vse nove seje ali seje z istim identifikacijskim ključem </string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Dodaj prazno oznako na koncu vsakega nešifriranega sporočila</string>
   <string name="preferences__include_whitespace_tag">Dodaj prazno oznako</string>
@@ -324,12 +329,12 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">Izberi čas pomnenja gesla</string>
   <string name="preferences__pref_timeout_interval_title">Čas pomnjenja</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Koliko časa naj bo geslo v pomnilniku, preden bo pozabljeno</string>
-  <string name="preferences__identity_key_settings">Nastavitve identifikacijskega ključa</string>
+  <string name="preferences__identity_key_settings">Identifikacijski ključi</string>
   <string name="preferences__view_my_identity_key">Ogled mojega identifikacijskega ključa</string>
   <string name="preferences__export_my_identity_key">Izvoz mojega identifikacijskega ključa</string>
-  <string name="preferences__import_contacts_key">Uvoz ključa iz stika</string>
+  <string name="preferences__import_contacts_key">Uvoz ključa stika</string>
   <string name="preferences__import_an_identity_key_from_a_contact">Uvoz identifikacijskega ključa iz stika</string>
-  <string name="preferences__manage_identity_keys">Upravljanje identifikacijskih ključev</string>
+  <string name="preferences__manage_identity_keys">Upravljanje ključev identitete</string>
   <string name="preferences__manage_configured_identity_keys">Upravljanje nastavljenih identifikacijskih ključev</string>
   <string name="preferences__notification_settings">Nastavitve obveščanja</string>
   <string name="preferences__notifications">Obvestila</string>
@@ -355,7 +360,9 @@
   <string name="preferences__normal">Normalno</string>
   <string name="preferences__slow">Počasi</string>
   <string name="preferences__custom">Po meri</string>
-  <string name="preferences__advanced_mms_access_point_names">Napredno: MMS dostopne točke</string>
+  <string name="preferences__advanced">Napredno</string>
+  <string name="preferences__passphrase">Geslo</string>
+  <string name="preferences__advanced_mms_access_point_names">Nadomestni MMSC</string>
   <string name="preferences__enable_fallback_mmsc">Omogoči nadomestni MMSC</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Uporabi tu izbrane MMSC nastavitve kadar sistemske APN nastavitve niso na voljo.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (zahtevano)</string>
@@ -407,6 +414,9 @@
   <string name="conversation__menu_delete_thread">Izbriši pogovor</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Seznam prejemnikov</string>
+  <string name="conversation_group_options__delivery">Dostava</string>
+  <string name="conversation_group_options__conversation">Pogovor</string>
+  <string name="conversation_group_options__broadcast">Oddaja</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Primerjaj</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Skeniraj za primerjavo</string>
@@ -420,9 +430,9 @@
   <string name="text_secure_normal__menu_import">Uvoz</string>
   <string name="text_secure_normal__menu_export">Izvoz</string>
   <string name="text_secure_normal__menu_clear_passphrase">Počisti geslo</string>
+  <string name="text_secure_normal__mark_all_as_read">Označi vse kot prebrane</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Overjeno</string>
   <!--Misc. piggybacking-->
-  <string name="PlayStoreListing">TextSecure je varnostno napredna aplikacija za sporočila SMS in lahko popolnoma nadomesti sistemsko privzeto SMS aplikacijo.     Sporočila drugim uporabnikom TextSecure so med prenosom šifrirana, vsa prejeta in poslana sporočila so shranjena v šifrirani zbirki podatkov na napravi. Če telefon izgubite ali vam ga ukradejo, bodo vaša sporočila vseeno ostala varna. Oddaljen nadzor šifrirane komunikacije z drugimi uporabniki TextSecure ni mogoč.</string>
   <!--EOF-->
 </resources>

@@ -96,6 +96,8 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Não existe conectividade disponível para transferir MMS, tente mais tarde...</string>
   <string name="MmsDownloader_error_storing_mms">Erro a armazenar MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erro na ligação com o servidor MMS...</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem Multimedia</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-chave não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
@@ -105,6 +107,9 @@
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
   <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Tem de especificar uma URL MMSC para a sua operadora.</string>
+  <string name="PromptApnActivity_mms_settings_updated">Configuração MMS Actualizada</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Pode modificar estes valores a partir do menu de configuração TextSecure em qualquer altura.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERRO:⏎ ⏎ Recebeu uma chave pública corrompida. Esta chave não pode ser processada, por favor reinicie uma sessão segura.</string>
   <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERRO:⏎ ⏎ Recebeu uma chave pública de uma versão do protocolo não suportada. Esta chave não pode ser processada, por favor reinicie uma sessão segura.</string>
@@ -191,7 +196,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem MMS cifrada corrompida...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensagem MMS cifrada para sessão inexistente...</string>
   <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Presentemente não é possível remeter a mensagem MMS. Será reenviada assim que o serviço esteja disponível.</string>
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Presentemente não é possível enviar a sua mensagem MMS</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
   <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
@@ -249,10 +254,17 @@
   <string name="database_migration_activity__import">Importar</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Isto pode demorar um pouco. Por favor seja paciente, será notificado quanto a importação estiver completa.</string>
   <string name="database_migration_activity__importing">A IMPORTAR</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">A actualizar a base de dados...</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE-CHAVE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_apn_activity-->
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure requer configurações APN para entregar mensagens multimédia através da sua operadora sem fios. O seu dispositivo não disponibiliza esta informação, o que é ocasionalmente o caso para dispositivos bloqueados e outras configurações restritivas.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Para enviar mensagens multimédia, por favor complete a informação APN requerida abaixo. Os valores para a sua operadora podem habitualmente ser encontrados procurando por \'APN &amp;lt;Operadora&amp;gt;\'. Apenas necessita de efectuar esta operação uma vez.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (OBRIGATÓRIO):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">ANFITRIÃO PROXY MMS (OPCIONAL):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">PORTA PROXY MMS (OPCIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessão</string>
   <string name="receive_key_activity__identities">Identidades</string>
@@ -291,6 +303,7 @@
   <string name="AndroidManifest__complete_key_exchange">Completar intercâmbio de chaves</string>
   <string name="AndroidManifest__verify_imported_identity">Verificar identidade importada</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Geral</string>
   <string name="preferences__use_settings">Utilizar configurações</string>
   <string name="preferences__pref_all_sms_title">Utilizar para todas as SMS</string>
   <string name="preferences__pref_all_mms_title">Utilizar para todas as MMS</string>
@@ -303,9 +316,9 @@
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contacto da lista de contactos.</string>
   <string name="preferences__encryption_settings">Configurações de cifra</string>
-  <string name="preferences__change_passphrase">Mudar frase-chave</string>
+  <string name="preferences__change_passphrase">Alterar frase-chave</string>
   <string name="preferences__change_my_passphrase">Mudar a minha frase-chave</string>
-  <string name="preferences__complete_key_exchanges">Completar intercâmbios de chaves</string>
+  <string name="preferences__complete_key_exchanges">Completar troca de chaves</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automaticamente intercâmbios de chaves para novas sessões ou para sessões existentes com a mesma chave de identidade</string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Incluir uma etiqueta de caracteres invisíveis no fim de todas as mensagens não cifradas</string>
   <string name="preferences__include_whitespace_tag">Incluir etiqueta de caracteres invisíveis</string>
@@ -316,10 +329,10 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar tempo de expiração da frase-chave</string>
   <string name="preferences__pref_timeout_interval_title">Intervalo de expiração</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Tempo a esperar antes de remover a frase-chave da memória</string>
-  <string name="preferences__identity_key_settings">Configurações de chave de identidade</string>
+  <string name="preferences__identity_key_settings">Chaves de identidade</string>
   <string name="preferences__view_my_identity_key">Visualizar a minha chave de identidade</string>
   <string name="preferences__export_my_identity_key">Exportar a minha chave de identidade</string>
-  <string name="preferences__import_contacts_key">Importar a chave do contacto</string>
+  <string name="preferences__import_contacts_key">Importar chave do contacto</string>
   <string name="preferences__import_an_identity_key_from_a_contact">Importar uma chave de identidade a partir de um contacto</string>
   <string name="preferences__manage_identity_keys">Gerir chaves de identidade</string>
   <string name="preferences__manage_configured_identity_keys">Gerir chaves de identidade configuradas</string>
@@ -347,7 +360,9 @@
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lento</string>
   <string name="preferences__custom">Personalizado</string>
-  <string name="preferences__advanced_mms_access_point_names">Avançado: APN de MMS</string>
+  <string name="preferences__advanced">Avançado</string>
+  <string name="preferences__passphrase">Frase-chave</string>
+  <string name="preferences__advanced_mms_access_point_names">MMSC de recurso</string>
   <string name="preferences__enable_fallback_mmsc">Habilitar MMSC de reseva</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usar esta informação de MMSC quando APN do sistema estiver indisponível.</string>
   <string name="preferences__mmsc_url_required">URL do MMSC (Necessário)</string>
@@ -399,6 +414,9 @@
   <string name="conversation__menu_delete_thread">Apagar conversa</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
+  <string name="conversation_group_options__delivery">Entrega</string>
+  <string name="conversation_group_options__conversation">Conversa</string>
+  <string name="conversation_group_options__broadcast">Emissão</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Comparar</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Apresente o código QR para comparar</string>
@@ -412,9 +430,9 @@
   <string name="text_secure_normal__menu_import">Importar</string>
   <string name="text_secure_normal__menu_export">Exportar</string>
   <string name="text_secure_normal__menu_clear_passphrase">Limpar frase-chave</string>
+  <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
   <!--Misc. piggybacking-->
-  <string name="PlayStoreListing">TextSecure é umaaplicação de mensagens seguras que funciona como uma alternativa integral à aplicação de mensagens por omissão. Mensagens para outros utilizadores TextSecure são cifradas em trânsito e todas as mensagens são armazenadas numa base de dados cifrada no dispositivo. Se o seu telemóvel for perdido ou roubado, as suas mensages estarão seguras e comunicações com outros utilizadores TextSecure não podem ser monitorizadas em trânsito.</string>
   <!--EOF-->
 </resources>

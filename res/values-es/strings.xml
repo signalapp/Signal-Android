@@ -96,6 +96,7 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No hay conexiones disponibles para descargar MMS, inténtalo de nuevo más tarde...</string>
   <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Error conectando al proveedor MMS...</string>
+  <!--NotificationMmsMessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las frases de contraseña no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Frase de contraseña anterior incorrecta!</string>
@@ -194,7 +195,6 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS mal cifrado</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaje MMS cifrado para sesión no existente...</string>
   <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Actualmente no se puede enviar tu mensaje MMS. Será enviado en cuanto el servicio esté disponible.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importación en progreso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando Mensajes de Texto</string>
@@ -252,6 +252,7 @@
   <string name="database_migration_activity__import">Importar</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Esto podría tardar un rato. Por favor, se paciente, te informaremos cuando la importación sea completada.</string>
   <string name="database_migration_activity__importing">IMPORTANDO</string>
+  <!--database_upgrade_activity-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE DE CONTRASEÑA DE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
@@ -260,7 +261,7 @@
   <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Para enviar mensajes multimedia, por favor completa la información APN necesaria abajo. Los valores para tu proveedor pueden por lo general ser encontrados buscando \'&amp;lt;tu operador&amp;gt; APN\'. Solo necesitarás hacer esto una única vez.</string>
   <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (REQUERIDA):</string>
   <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (OPCIONAL):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (OPCIONAL):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">PUERTO PROXY MMS (OPCIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sesión</string>
   <string name="receive_key_activity__identities">Identidades</string>
@@ -311,9 +312,7 @@
   <string name="preferences__choose_identity">Elegir identidad</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elija su registro de contacto de la lista de contactos.</string>
   <string name="preferences__encryption_settings">Preferencias de cifrado</string>
-  <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
   <string name="preferences__change_my_passphrase">Cambiar mi frase de contraseña</string>
-  <string name="preferences__complete_key_exchanges">Completar intercambios de clave</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automáticamente los intercambios de clave para nuevas sesiones o para sesiones existentes con la misma clave de identidad</string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Incluir una etiqueta de espacio en blanco al final de cada mensaje no cifrado</string>
   <string name="preferences__include_whitespace_tag">Incluir etiqueta de espacio en blanco</string>
@@ -324,12 +323,9 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar la expiración de la frase de contraseña</string>
   <string name="preferences__pref_timeout_interval_title">Intervalo de expiración</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">El intervalo de tiempo a esperar antes de olvidar la frase de contraseña de la memoria</string>
-  <string name="preferences__identity_key_settings">Preferencias de clave de identidad</string>
   <string name="preferences__view_my_identity_key">Ver mi clave de identidad</string>
   <string name="preferences__export_my_identity_key">Exportar mi clave de identidad</string>
-  <string name="preferences__import_contacts_key">Importar la clave del contacto</string>
   <string name="preferences__import_an_identity_key_from_a_contact">Importar una clave de identidad de un contacto</string>
-  <string name="preferences__manage_identity_keys">Gestionar las claves de identidad</string>
   <string name="preferences__manage_configured_identity_keys">Gestionar las claves de identidad configuradas</string>
   <string name="preferences__notification_settings">Preferencias de notificación</string>
   <string name="preferences__notifications">Notificaciones</string>
@@ -355,7 +351,6 @@
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Despacio</string>
   <string name="preferences__custom">Personalizado</string>
-  <string name="preferences__advanced_mms_access_point_names">Avanzado: Nombres de Puntos de Acceso MMS</string>
   <string name="preferences__enable_fallback_mmsc">Activar Fallback MMSC</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usar la información MMSC configurada aquí cuando el sistema de información APN no está disponible.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Requerido)</string>
@@ -423,6 +418,5 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
   <!--Misc. piggybacking-->
-  <string name="PlayStoreListing">TextSecure es una aplicacion de mensajería de texto con énfasis en la seguridad que sirve de reemplazo a la aplicación de mensajería de texto por defecto. Los mensajes enviados a otros usuarios de TextSecure están cifrados al vuelo, y todos los mensajes de texto están cifrados en una base de datos en el dispositivo. Si tu teléfono se pierde o es robado, tus mensajes estarán seguros, y la comunicación con otros usuarios de TextSecure no será monitorizada en el aire.</string>
   <!--EOF-->
 </resources>

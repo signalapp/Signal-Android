@@ -96,6 +96,8 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Geen connectie beschikbaar voor MMS download, probeer later opnieuw...</string>
   <string name="MmsDownloader_error_storing_mms">MMS opslaan mislukt!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fout bij verbinden met MMS provider...</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
@@ -194,7 +196,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld MMS-bericht...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-bericht versleuteld voor niet bestaande sessie...</string>
   <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Momenteel niet in staat om uw MMS bericht te versturen. Zodra de service beschikbaar is zal het verzonden worden .</string>
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Momenteel niet in staat  om uw MMS bericht te versturen.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Bezig met importeren</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tekstberichten aan het importeren</string>
@@ -252,6 +254,8 @@
   <string name="database_migration_activity__import">Importeer</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan een moment duren. Heb geduld, we zullen u op de hoogte stellen wanneer het importeren voltooid is.</string>
   <string name="database_migration_activity__importing">AAN HET IMPORTEREN</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Database aan het updaten...</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE WACHTWOORD</string>
   <string name="prompt_passphrase_activity__unlock">Ontgrendel</string>
@@ -299,6 +303,7 @@
   <string name="AndroidManifest__complete_key_exchange">Sleuteluitwisseling Voltooien</string>
   <string name="AndroidManifest__verify_imported_identity">Geïmporteerde Identiteit Verifiëren</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Algemeen</string>
   <string name="preferences__use_settings">Gebruiksinstellingen</string>
   <string name="preferences__pref_all_sms_title">Gebruik voor alle SMS</string>
   <string name="preferences__pref_all_mms_title">Gebruik voor alle MMS</string>
@@ -311,9 +316,9 @@
   <string name="preferences__choose_identity">Kies Identiteit</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies uw contactinformatie uit de contactpersonenlijst.</string>
   <string name="preferences__encryption_settings">Encryptie Instellingen</string>
-  <string name="preferences__change_passphrase">Wachtwoord Veranderen</string>
+  <string name="preferences__change_passphrase">Verander wachtwoord</string>
   <string name="preferences__change_my_passphrase">Verander mijn wachtwoord</string>
-  <string name="preferences__complete_key_exchanges">Sleuteluitwisseling Voltooien</string>
+  <string name="preferences__complete_key_exchanges">Voltooi sleuteluitwisselingen</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisch sleuteluitwisselingen voltooien voor nieuwe sessies of voor bestaande sessies met dezelfde identiteitssleutel</string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Op het einde van ieder onversleuteld bericht een spatie toevoegen</string>
   <string name="preferences__include_whitespace_tag">Spatie toevoegen</string>
@@ -324,12 +329,12 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">Selecteer Wachtwoord Time-out</string>
   <string name="preferences__pref_timeout_interval_title">Time-out interval</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hoe lang te wachten voor het vergeten van het wachtwoord uit het geheugen</string>
-  <string name="preferences__identity_key_settings">Identiteitssleutel Instellingen</string>
+  <string name="preferences__identity_key_settings">Identiteitssleutels</string>
   <string name="preferences__view_my_identity_key">Bekijk mijn identiteitssleutel</string>
   <string name="preferences__export_my_identity_key">Exporteer mijn identiteitssleutel</string>
-  <string name="preferences__import_contacts_key">Sleutel van contact importeren</string>
+  <string name="preferences__import_contacts_key">Importeer sleutel contactpersoon</string>
   <string name="preferences__import_an_identity_key_from_a_contact">Importeer een identiteitssleutel van een contact</string>
-  <string name="preferences__manage_identity_keys">Beheer Identiteitssleutels</string>
+  <string name="preferences__manage_identity_keys">Beheer identiteitssleutels</string>
   <string name="preferences__manage_configured_identity_keys">Beheer ingestelde identiteitssleutels</string>
   <string name="preferences__notification_settings">Notificatie instellingen</string>
   <string name="preferences__notifications">Notificaties</string>
@@ -355,7 +360,9 @@
   <string name="preferences__normal">Normaal</string>
   <string name="preferences__slow">Langzaam</string>
   <string name="preferences__custom">Aangepast</string>
-  <string name="preferences__advanced_mms_access_point_names">Geavanceerd: MMS Toegangspuntnamen</string>
+  <string name="preferences__advanced">Geavanceerd</string>
+  <string name="preferences__passphrase">Wachtwoord</string>
+  <string name="preferences__advanced_mms_access_point_names">Reserve MMSC</string>
   <string name="preferences__enable_fallback_mmsc">Fallback MMSC Activeren</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Gebruik de hier ingestelde MMSC informatie wanneer de APN informatie van het systeem niet beschikbaar is.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Vereist)</string>
@@ -407,6 +414,9 @@
   <string name="conversation__menu_delete_thread">Verwijder gehele gesprek</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lijst met ontvangers</string>
+  <string name="conversation_group_options__delivery">Verzending</string>
+  <string name="conversation_group_options__conversation">Conversatie</string>
+  <string name="conversation_group_options__broadcast">Uitzenden</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Vergelijken</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Wordt gescand om te vergelijken</string>
@@ -420,9 +430,9 @@
   <string name="text_secure_normal__menu_import">Importeer</string>
   <string name="text_secure_normal__menu_export">Exporteer</string>
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendelen</string>
+  <string name="text_secure_normal__mark_all_as_read">Markeer Alles Als Gelezen</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Geverifieerd</string>
   <!--Misc. piggybacking-->
-  <string name="PlayStoreListing">TextSecure is een tekstberichtapplicatie met verbeterde beveiliging die dient als een volledige vervanger voor de standaard tekstberichtapplicatie. Berichten naar andere TextSecure gebruikers worden versleuteld en alle tekstberichten worden opgeslagen in een versleutelde database op uw telefoon. Wanneer uw telefoon kwijt of gestolen is, zijn uw berichten veilig en communicatie met andere TextSecure gebruikers kan niet afgeluisterd worden.</string>
   <!--EOF-->
 </resources>

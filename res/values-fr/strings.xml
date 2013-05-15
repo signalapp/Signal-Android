@@ -96,6 +96,8 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Pas de connexion disponible pour le téléchargement MMS, essayez de nouveau plus tard…</string>
   <string name="MmsDownloader_error_storing_mms">Erreur d’enregistrement du MMS !</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erreur de connexion au fournisseur MMS…</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Message Multimédia</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
@@ -194,7 +196,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Message MMS mal chiffré…</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Message MMS chiffré pour une session non-existante…</string>
   <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Impossible d’envoyer votre message MMS pour le moment. Il sera envoyé  lorsque le service deviendra disponible.</string>
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Impossible d’envoyer votre message MMS actuellement.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importation en cours</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importation des Messages Texte</string>
@@ -252,6 +254,8 @@
   <string name="database_migration_activity__import">Importer</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Cela peut prendre un moment. Merci d’être patient, nous vous préviendrons quand l’importation sera achevée.</string>
   <string name="database_migration_activity__importing">IMPORTATION</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Mise à jour de la base de données…</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">PHRASE DE PASSE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
@@ -299,6 +303,7 @@
   <string name="AndroidManifest__complete_key_exchange">Finaliser l\'échange de clefs</string>
   <string name="AndroidManifest__verify_imported_identity">Vérifier l’identité importée</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Général</string>
   <string name="preferences__use_settings">Paramètres d’utilisation</string>
   <string name="preferences__pref_all_sms_title">Utiliser pour tous les SMS</string>
   <string name="preferences__pref_all_mms_title">Utiliser pour tous les MMS</string>
@@ -311,9 +316,9 @@
   <string name="preferences__choose_identity">Choisir une identité</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans le répertoire</string>
   <string name="preferences__encryption_settings">Paramètres de chiffrement</string>
-  <string name="preferences__change_passphrase">Modifier le Mot de Passe</string>
+  <string name="preferences__change_passphrase">Modifier la phrase de passe</string>
   <string name="preferences__change_my_passphrase">Modifier mon mot de passe</string>
-  <string name="preferences__complete_key_exchanges">Finaliser l\'échange de clefs</string>
+  <string name="preferences__complete_key_exchanges">Finaliser l’échange de clés</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Finaliser automatiquement les échanges de clés pour les sessions, nouvelles ou existantes, avec la même clef d\'identité.</string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Ajouter un caractère espace vide à la fin de tous les messages en clair</string>
   <string name="preferences__include_whitespace_tag">Ajouter un caractère espace vide</string>
@@ -324,12 +329,12 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">Choisir la durée de validité du mot de passe</string>
   <string name="preferences__pref_timeout_interval_title">Durée d\'expiration</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Durée avant d’oublier le mot de passe en mémoire</string>
-  <string name="preferences__identity_key_settings">Paramètres des clés d\'identité</string>
+  <string name="preferences__identity_key_settings">Clés d’identité</string>
   <string name="preferences__view_my_identity_key">Afficher ma clé d\'identité</string>
   <string name="preferences__export_my_identity_key">Exporter ma clé d\'identité</string>
   <string name="preferences__import_contacts_key">Importer la clé du contact</string>
   <string name="preferences__import_an_identity_key_from_a_contact">Importer une clé d\'identité depuis un contact</string>
-  <string name="preferences__manage_identity_keys">Gérer les clés d\'identité</string>
+  <string name="preferences__manage_identity_keys">Gérer les clés d’identité</string>
   <string name="preferences__manage_configured_identity_keys">Gérer les clés d\'identité configurées</string>
   <string name="preferences__notification_settings">Paramètres de notification</string>
   <string name="preferences__notifications">Notifications</string>
@@ -355,7 +360,9 @@
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lent</string>
   <string name="preferences__custom">Personnalisé</string>
-  <string name="preferences__advanced_mms_access_point_names">Avancé : Noms des Points d’Accès MMS</string>
+  <string name="preferences__advanced">Avancé</string>
+  <string name="preferences__passphrase">Phrase de passe</string>
+  <string name="preferences__advanced_mms_access_point_names">MMSC par défaut</string>
   <string name="preferences__enable_fallback_mmsc">Activer le MMSC par défaut</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Utiliser les informations MMSC configurée ici lorsque les informations APN ne sont pas disponibles</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Obligatoire)</string>
@@ -407,6 +414,9 @@
   <string name="conversation__menu_delete_thread">Supprimer le fil de discussion</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Liste des destinataires</string>
+  <string name="conversation_group_options__delivery">Distribution</string>
+  <string name="conversation_group_options__conversation">Conversation</string>
+  <string name="conversation_group_options__broadcast">Diffuser</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Comparer</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Être analysé pour comparer</string>
@@ -420,9 +430,9 @@
   <string name="text_secure_normal__menu_import">Importer</string>
   <string name="text_secure_normal__menu_export">Exporter</string>
   <string name="text_secure_normal__menu_clear_passphrase">Oublier le mot de passe</string>
+  <string name="text_secure_normal__mark_all_as_read">Tout marquer comme Lu</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Vérifié</string>
   <!--Misc. piggybacking-->
-  <string name="PlayStoreListing">TextSecure est une application de messagerie texte avec une sécurité améliorée, qui constitue une alternative complète à l’application de messagerie texte par défaut. Les messages à d’autres utilisateurs de TextSecure sont chiffrés à la volée, et tous les messages sont stockés dans une base de données chiffrée sur l’appareil. Si votre téléphone est perdu ou volé, vos messages seront en sécurité, et les communications avec d’autres utilisateurs de TextSecure ne peuvent pas être espionnées à la volée.</string>
   <!--EOF-->
 </resources>

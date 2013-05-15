@@ -90,6 +90,7 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">لم يتم العثور على مفتاح!</string>
   <!--MmsDownloader-->
+  <!--NotificationMmsMessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارة السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
@@ -222,6 +223,7 @@
   <string name="create_passphrase_activity__passphrase">العبارة السرية:</string>
   <string name="create_passphrase_activity__repeat">تكرار:</string>
   <!--database_migration_activity-->
+  <!--database_upgrade_activity-->
   <!--prompt_passphrase_activity-->
   <!--prompt_apn_activity-->
   <!--receive_key_activity-->
@@ -274,9 +276,7 @@
   <string name="preferences__choose_identity">اختر هوية</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">اختر جهة الاتصال من القائمة</string>
   <string name="preferences__encryption_settings">اعدادات التشفير</string>
-  <string name="preferences__change_passphrase">غير العبارة السرية</string>
   <string name="preferences__change_my_passphrase">غير عبارتي السرية</string>
-  <string name="preferences__complete_key_exchanges">اكمال تبادل المفاتيح</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">أكمل تبادل المفاتيح اوتوماتيكياً لمحادثات جديدة او قديمة بنفس مفتاح الهوية</string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">أضف وسم مسافة فارغة بنهاية كل رسالة غير مشفرة</string>
   <string name="preferences__include_whitespace_tag">أضف وسم مسافة فارغة</string>
@@ -287,12 +287,9 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">اختيار مدة حفظ العبارة السرية مؤقتاً</string>
   <string name="preferences__pref_timeout_interval_title">مدة الصلاحية</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">الوقت اللازم ليتم مسح العبارة السرية من الذاكرة</string>
-  <string name="preferences__identity_key_settings">اعدادات مفتاح الهوية</string>
   <string name="preferences__view_my_identity_key">اعرض مفتاح هويتي</string>
   <string name="preferences__export_my_identity_key">تصدير مفتاح الهوية الخاص بي</string>
-  <string name="preferences__import_contacts_key">استيراد مفتاح خاص بجهة اتصال</string>
   <string name="preferences__import_an_identity_key_from_a_contact">استيراد مفتاح هوية من جهة اتصال</string>
-  <string name="preferences__manage_identity_keys">إدارة مفاتيح الهوية</string>
   <string name="preferences__manage_configured_identity_keys">إدارة مفاتيح الهوية التي تم ضبطها</string>
   <string name="preferences__notification_settings">خيارات التنبيه</string>
   <string name="preferences__notifications">التنبيهات</string>
@@ -318,7 +315,6 @@
   <string name="preferences__normal">طبيعي</string>
   <string name="preferences__slow">بطىء</string>
   <string name="preferences__custom">مخصص</string>
-  <string name="preferences__advanced_mms_access_point_names">متقدم: نقطة اتصال رسائل الوسائط المتعددة</string>
   <string name="preferences__enable_fallback_mmsc">شغل مركز رسائل الوسائط المتعددة الاحتياطي</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">استخدم مركز رسائل الوسائط المتعددة هنا اذا لم تتوفر بيناتات اتصال النظام APN</string>
   <string name="preferences__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
@@ -386,6 +382,5 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">تم التحقق!</string>
   <!--Misc. piggybacking-->
-  <string name="PlayStoreListing">تكست سيكيور برنامج يقدم الحماية والامن للرسائل القصيرة. الرسائل القصيرة المرسلة لمستخدمي تكست سيكيور الآخرين ترسل مشفرة بالكامل على الشبكة، وكل الرسائل القصيرة تحفظ مشفرة بقاعدة بيانات محلية بجهازك. اذا ضاع جهازك أو تمت سرقته فإن رسائلك بأمان ولن يمكن لأحد التنصت على الرسائل القصيرة المتبادلة بينك وبين مستخدمي تكست سيكيور الآخرين.</string>
   <!--EOF-->
 </resources>

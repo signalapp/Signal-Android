@@ -73,6 +73,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Príjemcovia skupinovej správy</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzácia</string>
   <string name="ConversationActivity_d_recipients_in_group">%d príjemcov v skupine</string>
+  <string name="ConversationActivity_saving_draft">Ukladám koncept...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Odosielateľ: %1$s\nTransport: %2$s\nOdoslané/Prijaté:%3$s</string>
@@ -85,11 +86,14 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Zmazať vlákna?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ste si istí, že chcete zmazať VŠETKY označené vlákna konverzácií?</string>
+  <string name="ConversationListFragment_deleting">Mažem</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Mažem vybrané konverzácie...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nenašiel som scannovaný kľúč!</string>
   <!--MmsDownloader-->
+  <!--NotificationMmsMessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
@@ -190,6 +194,10 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) nových správ</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovšia od: %s</string>
+  <string name="MessageNotifier_key_exchange">Vzájomná výmena kľúčov...</string>
+  <string name="MessageNotifier_encrypted_message">Kryptovaná správa...</string>
+  <string name="MessageNotifier_corrupted_ciphertext">Poškodený kryptovaný text</string>
+  <string name="MessageNotifier_no_subject">(bez predmetu)</string>
   <!--SmsReceiver-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostali ste správu od klienta podporujúceho TextSecure bezpečnú session.  Želáte si vytvoriť bezpečnú session?</string>
@@ -222,7 +230,10 @@
   <string name="create_passphrase_activity__passphrase">Heslo:</string>
   <string name="create_passphrase_activity__repeat">Zopakujte:</string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__skip">Preskoč</string>
   <string name="database_migration_activity__import">Import</string>
+  <string name="database_migration_activity__importing">IMPORTUJEM</string>
+  <!--database_upgrade_activity-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_apn_activity-->
@@ -276,9 +287,7 @@
   <string name="preferences__choose_identity">Vyberte totožnosť</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__encryption_settings">Nastavenia kryptovania</string>
-  <string name="preferences__change_passphrase">Zmeniť heslo</string>
   <string name="preferences__change_my_passphrase">Zmeniť moje heslo</string>
-  <string name="preferences__complete_key_exchanges">Kompletné vzájomné výmeny kľúčov</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automaticky dokonči vzájomné výmeny kľúčov pre nové session alebo pre existujúce session s rovnakým kľúčom totožnosti.</string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Na koniec každej nezakryptovanej správy vlož prázdny znak</string>
   <string name="preferences__include_whitespace_tag">Vlož prázdny znak</string>
@@ -289,12 +298,9 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">Vyber dobu zapamätania hesla</string>
   <string name="preferences__pref_timeout_interval_title">Interval vypršania</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Časový interval po ktorom sa vymaže heslo z pamäte</string>
-  <string name="preferences__identity_key_settings">Nastavenia kľúča totožnosti</string>
   <string name="preferences__view_my_identity_key">Zobraz môj kľúč totožnosti</string>
   <string name="preferences__export_my_identity_key">Exportuj môj kľúč totožnosti</string>
-  <string name="preferences__import_contacts_key">Importuj kľúč kontaktu</string>
   <string name="preferences__import_an_identity_key_from_a_contact">Importuj kľúč totožnosti z kontaktu</string>
-  <string name="preferences__manage_identity_keys">Spravuj kľúče totožnosti</string>
   <string name="preferences__manage_configured_identity_keys">Spravuj konfigurované kľúče totožnosti</string>
   <string name="preferences__notification_settings">Nastavenia hlásení</string>
   <string name="preferences__notifications">Hlásenia</string>
@@ -320,7 +326,6 @@
   <string name="preferences__normal">Normálne</string>
   <string name="preferences__slow">Pomaly</string>
   <string name="preferences__custom">Vlastné</string>
-  <string name="preferences__advanced_mms_access_point_names">Pokročilé: mená prístupových bodov MMS</string>
   <string name="preferences__enable_fallback_mmsc">Povoľ fallback MMSC</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Použi nastavenia MMSC ak nie sú dostupné APN informácie.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nutné)</string>
@@ -388,6 +393,5 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Overené</string>
   <!--Misc. piggybacking-->
-  <string name="PlayStoreListing">TextSecure je aplikácia na bezpečné posielanie textových správ, plne nahradzujúca štandardnú aplikáciu pre prácu so správami.  Správy ostatným užívateľom TextSecure sú posielané kryptované. Všetky textové správy sú uložené v kryptovanej databáze Vášho zariadenia. V prípade straty alebo krádeže Vášho zariadenia zostávajú Vaše správy zabezpečené a komunikácia s ostatnými užívateľmi TextSecure nemôže byť počas prenosu monitorovaná.</string>
   <!--EOF-->
 </resources>
