@@ -795,11 +795,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       if (attachmentManager.isAttachmentPresent()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, attachmentManager.getSlideDeck(), body,
-                                                  distributionType, forcePlaintext);
+                                                  distributionType, isEncryptedConversation && !forcePlaintext);
       } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, new SlideDeck(), body, distributionType,
-                                                  forcePlaintext);
+                                                  isEncryptedConversation && !forcePlaintext);
       } else {
         OutgoingTextMessage message;
 

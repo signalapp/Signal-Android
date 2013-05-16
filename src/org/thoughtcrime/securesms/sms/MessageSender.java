@@ -40,7 +40,7 @@ public class MessageSender {
 
   public static long sendMms(Context context, MasterSecret masterSecret, Recipients recipients,
                              long threadId, SlideDeck slideDeck, String message, int distributionType,
-                             boolean forcePlaintext)
+                             boolean secure)
     throws MmsException
   {
     if (threadId == -1)
@@ -68,7 +68,7 @@ public class MessageSender {
 //      sendMms(context, insecureRecipients, masterSecret, sendRequest, threadId, false);
 //    }
 
-    sendMms(context, recipients, masterSecret, sendRequest, threadId, distributionType, false);
+    sendMms(context, recipients, masterSecret, sendRequest, threadId, distributionType, secure);
 
     return threadId;
   }

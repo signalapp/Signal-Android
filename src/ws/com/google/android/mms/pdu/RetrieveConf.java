@@ -51,7 +51,7 @@ public class RetrieveConf extends MultimediaMessagePdu {
      * @param headers Headers for this PDU.
      * @param body Body of this PDu.
      */
-    RetrieveConf(PduHeaders headers, PduBody body) {
+    public RetrieveConf(PduHeaders headers, PduBody body) {
         super(headers, body);
     }
 
