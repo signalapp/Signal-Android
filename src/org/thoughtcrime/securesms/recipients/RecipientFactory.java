@@ -54,6 +54,10 @@ public class RecipientFactory {
   public static Recipients getRecipientsFromString(Context context, String rawText, boolean asynchronous)
       throws RecipientFormattingException
   {
+    if (rawText == null) {
+      throw new RecipientFormattingException("Null recipient string specified");
+    }
+
     List<Recipient> results   = new LinkedList<Recipient>();
     StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
 
