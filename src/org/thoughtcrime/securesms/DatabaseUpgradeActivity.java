@@ -103,7 +103,8 @@ public class DatabaseUpgradeActivity extends Activity {
     protected Void doInBackground(Integer... params) {
       Log.w("DatabaseUpgradeActivity", "Running background upgrade..");
       DatabaseFactory.getInstance(DatabaseUpgradeActivity.this)
-                     .onApplicationLevelUpgrade(masterSecret, params[0], this);
+                     .onApplicationLevelUpgrade(DatabaseUpgradeActivity.this.getApplicationContext(),
+                                                masterSecret, params[0], this);
       return null;
     }
 

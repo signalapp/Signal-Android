@@ -25,8 +25,10 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
+import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -146,126 +148,160 @@ public class DatabaseFactory {
     instance = null;
   }
 
-  public void onApplicationLevelUpgrade(MasterSecret masterSecret, int fromVersion,
+  public void onApplicationLevelUpgrade(Context context, MasterSecret masterSecret, int fromVersion,
                                         DatabaseUpgradeActivity.DatabaseUpgradeListener listener)
   {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.beginTransaction();
+
     if (fromVersion < DatabaseUpgradeActivity.NO_MORE_KEY_EXCHANGE_PREFIX_VERSION) {
       String KEY_EXCHANGE             = "?TextSecureKeyExchange";
       String PROCESSED_KEY_EXCHANGE   = "?TextSecureKeyExchangd";
       String STALE_KEY_EXCHANGE       = "?TextSecureKeyExchangs";
+      int ROW_LIMIT                   = 500;
 
       MasterCipher masterCipher = new MasterCipher(masterSecret);
-      int count                 = 0;
-      SQLiteDatabase db         = databaseHelper.getWritableDatabase();
-      Cursor smsCursor          = db.query("sms",
-                                           new String[] {"_id", "type", "body"},
-                                           "type & " + 0x80000000 + " != 0",
-                                           null, null, null, null);
+      int smsCount              = 0;
+      int threadCount           = 0;
+      int skip                  = 0;
 
-      Cursor threadCursor       = db.query("thread",
-                                           new String[] {"_id", "snippet_type", "snippet"},
-                                           "snippet_type & " + 0x80000000 + " != 0",
-                                           null, null, null, null);
+      Cursor cursor = db.query("sms", new String[] {"COUNT(*)"}, "type & " + 0x80000000 + " != 0",
+                               null, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        smsCount = cursor.getInt(0);
+        cursor.close();
+      }
+
+      cursor = db.query("thread", new String[] {"COUNT(*)"}, "snippet_type & " + 0x80000000 + " != 0",
+                        null, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        threadCount = cursor.getInt(0);
+        cursor.close();
+      }
+
+      Cursor smsCursor = null;
+
+      Log.w("DatabaseFactory", "Upgrade count: " + (smsCount + threadCount));
+
+      do {
+        Log.w("DatabaseFactory", "Looping SMS cursor...");
+        if (smsCursor != null)
+          smsCursor.close();
+
+        smsCursor = db.query("sms", new String[] {"_id", "type", "body"},
+                             "type & " + 0x80000000 + " != 0",
+                             null, null, null, "_id", skip + "," + ROW_LIMIT);
+
+        while (smsCursor != null && smsCursor.moveToNext()) {
+          listener.setProgress(smsCursor.getPosition() + skip, smsCount + threadCount);
+
+          try {
+            String body = masterCipher.decryptBody(smsCursor.getString(smsCursor.getColumnIndexOrThrow("body")));
+            long type   = smsCursor.getLong(smsCursor.getColumnIndexOrThrow("type"));
+            long id     = smsCursor.getLong(smsCursor.getColumnIndexOrThrow("_id"));
+
+            if (body.startsWith(KEY_EXCHANGE)) {
+              body  = body.substring(KEY_EXCHANGE.length());
+              body  = masterCipher.encryptBody(body);
+              type |= 0x8000;
+
+              db.execSQL("UPDATE sms SET body = ?, type = ? WHERE _id = ?",
+                         new String[] {body, type+"", id+""});
+            } else if (body.startsWith(PROCESSED_KEY_EXCHANGE)) {
+              body  = body.substring(PROCESSED_KEY_EXCHANGE.length());
+              body  = masterCipher.encryptBody(body);
+              type |= (0x8000 | 0x2000);
+
+              db.execSQL("UPDATE sms SET body = ?, type = ? WHERE _id = ?",
+                         new String[] {body, type+"", id+""});
+            } else if (body.startsWith(STALE_KEY_EXCHANGE)) {
+              body  = body.substring(STALE_KEY_EXCHANGE.length());
+              body  = masterCipher.encryptBody(body);
+              type |= (0x8000 | 0x4000);
+
+              db.execSQL("UPDATE sms SET body = ?, type = ? WHERE _id = ?",
+                         new String[] {body, type+"", id+""});
+            }
+          } catch (InvalidMessageException e) {
+            Log.w("DatabaseFactory", e);
+          }
+        }
+
+        skip += ROW_LIMIT;
+      } while (smsCursor != null && smsCursor.getCount() > 0);
+
+
+
+      Cursor threadCursor = null;
+      skip                = 0;
+
+      do {
+        Log.w("DatabaseFactory", "Looping thread cursor...");
+
+        if (threadCursor != null)
+          threadCursor.close();
+
+        threadCursor = db.query("thread", new String[] {"_id", "snippet_type", "snippet"},
+                                "snippet_type & " + 0x80000000 + " != 0",
+                                null, null, null, "_id", skip + "," + ROW_LIMIT);
+
+        while (threadCursor != null && threadCursor.moveToNext()) {
+          listener.setProgress(smsCount + threadCursor.getPosition(), smsCount + threadCount);
+
+          try {
+            String snippet   = threadCursor.getString(threadCursor.getColumnIndexOrThrow("snippet"));
+            long snippetType = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("snippet_type"));
+            long id          = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("_id"));
+
+            if (!Util.isEmpty(snippet)) {
+              snippet = masterCipher.decryptBody(snippet);
+            }
+
+            if (snippet.startsWith(KEY_EXCHANGE)) {
+              snippet      = snippet.substring(KEY_EXCHANGE.length());
+              snippet      = masterCipher.encryptBody(snippet);
+              snippetType |= 0x8000;
+
+              db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
+                         new String[] {snippet, snippetType+"", id+""});
+            } else if (snippet.startsWith(PROCESSED_KEY_EXCHANGE)) {
+              snippet      = snippet.substring(PROCESSED_KEY_EXCHANGE.length());
+              snippet      = masterCipher.encryptBody(snippet);
+              snippetType |= (0x8000 | 0x2000);
+
+              db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
+                         new String[] {snippet, snippetType+"", id+""});
+            } else if (snippet.startsWith(STALE_KEY_EXCHANGE)) {
+              snippet      = snippet.substring(STALE_KEY_EXCHANGE.length());
+              snippet      = masterCipher.encryptBody(snippet);
+              snippetType |= (0x8000 | 0x4000);
+
+              db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
+                         new String[] {snippet, snippetType+"", id+""});
+            }
+          } catch (InvalidMessageException e) {
+            Log.w("DatabaseFactory", e);
+          }
+        }
+
+        skip += ROW_LIMIT;
+      } while (threadCursor != null && threadCursor.getCount() > 0);
 
       if (smsCursor != null)
-        count = smsCursor.getCount();
+        smsCursor.close();
 
       if (threadCursor != null)
-        count += threadCursor.getCount();
-
-      db.beginTransaction();
-
-      while (smsCursor != null && smsCursor.moveToNext()) {
-        listener.setProgress(smsCursor.getPosition(), count);
-
-        try {
-          String body = masterCipher.decryptBody(smsCursor.getString(smsCursor.getColumnIndexOrThrow("body")));
-          long type   = smsCursor.getLong(smsCursor.getColumnIndexOrThrow("type"));
-          long id     = smsCursor.getLong(smsCursor.getColumnIndexOrThrow("_id"));
-
-          if (body.startsWith(KEY_EXCHANGE)) {
-            body  = body.substring(KEY_EXCHANGE.length());
-            body  = masterCipher.encryptBody(body);
-            type |= 0x8000;
-
-            db.execSQL("UPDATE sms SET body = ?, type = ? WHERE _id = ?",
-                       new String[] {body, type+"", id+""});
-          } else if (body.startsWith(PROCESSED_KEY_EXCHANGE)) {
-            body  = body.substring(PROCESSED_KEY_EXCHANGE.length());
-            body  = masterCipher.encryptBody(body);
-            type |= 0x2000;
-
-            db.execSQL("UPDATE sms SET body = ?, type = ? WHERE _id = ?",
-                       new String[] {body, type+"", id+""});
-          } else if (body.startsWith(STALE_KEY_EXCHANGE)) {
-            body  = body.substring(STALE_KEY_EXCHANGE.length());
-            body  = masterCipher.encryptBody(body);
-            type |= 0x4000;
-
-            db.execSQL("UPDATE sms SET body = ?, type = ? WHERE _id = ?",
-                       new String[] {body, type+"", id+""});
-          }
-        } catch (InvalidMessageException e) {
-          Log.w("DatabaseFactory", e);
-        }
-      }
-
-      while (threadCursor != null && threadCursor.moveToNext()) {
-        listener.setProgress(smsCursor.getCount() + threadCursor.getPosition(), count);
-
-        try {
-          String snippet   = threadCursor.getString(threadCursor.getColumnIndexOrThrow("snippet"));
-          long snippetType = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("snippet_type"));
-          long id          = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("_id"));
-
-          if (!Util.isEmpty(snippet)) {
-            snippet = masterCipher.decryptBody(snippet);
-          }
-
-          if (snippet.startsWith(KEY_EXCHANGE)) {
-            snippet      = snippet.substring(KEY_EXCHANGE.length());
-            snippet      = masterCipher.encryptBody(snippet);
-            snippetType |= 0x8000;
-
-            db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
-                       new String[] {snippet, snippetType+"", id+""});
-          } else if (snippet.startsWith(PROCESSED_KEY_EXCHANGE)) {
-            snippet      = snippet.substring(PROCESSED_KEY_EXCHANGE.length());
-            snippet      = masterCipher.encryptBody(snippet);
-            snippetType |= 0x2000;
-
-            db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
-                       new String[] {snippet, snippetType+"", id+""});
-          } else if (snippet.startsWith(STALE_KEY_EXCHANGE)) {
-            snippet      = snippet.substring(STALE_KEY_EXCHANGE.length());
-            snippet      = masterCipher.encryptBody(snippet);
-            snippetType |= 0x4000;
-
-            db.execSQL("UPDATE thread SET snippet = ?, snippet_type = ? WHERE _id = ?",
-                       new String[] {snippet, snippetType+"", id+""});
-          }
-        } catch (InvalidMessageException e) {
-          Log.w("DatabaseFactory", e);
-        }
-      }
-
-      db.setTransactionSuccessful();
-      db.endTransaction();
-
-      smsCursor.close();
-      threadCursor.close();
+        threadCursor.close();
     }
 
     if (fromVersion < DatabaseUpgradeActivity.MMS_BODY_VERSION) {
       Log.w("DatabaseFactory", "Update MMS bodies...");
       MasterCipher masterCipher = new MasterCipher(masterSecret);
-      SQLiteDatabase db         = databaseHelper.getWritableDatabase();
-
-      db.beginTransaction();
-
-      Cursor mmsCursor = db.query("mms", new String[] {"_id"},
-                                  "msg_box & " + 0x80000000L + " != 0",
-                                  null, null, null, null);
+      Cursor mmsCursor          = db.query("mms", new String[] {"_id"},
+                                           "msg_box & " + 0x80000000L + " != 0",
+                                           null, null, null, null);
 
       Log.w("DatabaseFactory", "Got MMS rows: " + (mmsCursor == null ? "null" : mmsCursor.getCount()));
 
@@ -319,10 +355,13 @@ public class DatabaseFactory {
 
         Log.w("DatabaseFactory", "Updated body: " + body + " and part_count: " + partCount);
       }
-
-      db.setTransactionSuccessful();
-      db.endTransaction();
     }
+
+    db.setTransactionSuccessful();
+    db.endTransaction();
+
+    DecryptingQueue.schedulePendingDecrypts(context, masterSecret);
+    MessageNotifier.updateNotification(context, masterSecret);
   }
 
   private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -415,53 +454,38 @@ public class DatabaseFactory {
         db.execSQL("UPDATE sms SET type = ? WHERE type = ?", new String[] {(23L | 0x800000L)+"", 44L+""});
         db.execSQL("UPDATE sms SET type = ? WHERE type = ?", new String[] {(20L | 0x800000L)+"", 45L+""});
         db.execSQL("UPDATE sms SET type = ? WHERE type = ?", new String[] {(20L | 0x800000L | 0x10000000L)+"", 46L+""});
-        db.execSQL("UPDATE sms SET type = ? WHERE type = ?", new String[] {(20L | 0x800000L | 0x20000000L)+"", 47L+""});
+        db.execSQL("UPDATE sms SET type = ? WHERE type = ?", new String[] {(20L)+"", 47L+""});
         db.execSQL("UPDATE sms SET type = ? WHERE type = ?", new String[] {(20L | 0x800000L | 0x08000000L)+"", 48L+""});
 
-        Cursor cursor = db.query("sms", null,"body LIKE ?", new String[] {SYMMETRIC_ENCRYPT + "%"},
-                                 null, null, null);
+        db.execSQL("UPDATE sms SET body = substr(body, ?), type = type | ? WHERE body LIKE ?",
+                   new String[] {(SYMMETRIC_ENCRYPT.length()+1)+"",
+                                  0x80000000L+"",
+                                  SYMMETRIC_ENCRYPT + "%"});
 
-        updateSmsBodyAndType(db, cursor, SYMMETRIC_ENCRYPT, 0x80000000L);
+        db.execSQL("UPDATE sms SET body = substr(body, ?), type = type | ? WHERE body LIKE ?",
+                   new String[] {(ASYMMETRIC_LOCAL_ENCRYPT.length()+1)+"",
+                                  0x40000000L+"",
+                                  ASYMMETRIC_LOCAL_ENCRYPT + "%"});
 
-        if (cursor != null)
-          cursor.close();
+        db.execSQL("UPDATE sms SET body = substr(body, ?), type = type | ? WHERE body LIKE ?",
+                   new String[] {(ASYMMETRIC_ENCRYPT.length()+1)+"",
+                                 (0x800000L | 0x20000000L)+"",
+                                 ASYMMETRIC_ENCRYPT + "%"});
 
-        cursor = db.query("sms", null,"body LIKE ?", new String[] {ASYMMETRIC_LOCAL_ENCRYPT + "%"},
-                                 null, null, null);
+        db.execSQL("UPDATE sms SET body = substr(body, ?), type = type | ? WHERE body LIKE ?",
+                   new String[] {(KEY_EXCHANGE.length()+1)+"",
+                                  0x8000L+"",
+                                  KEY_EXCHANGE + "%"});
 
-        updateSmsBodyAndType(db, cursor, ASYMMETRIC_LOCAL_ENCRYPT, 0x40000000L);
+        db.execSQL("UPDATE sms SET body = substr(body, ?), type = type | ? WHERE body LIKE ?",
+                   new String[] {(PROCESSED_KEY_EXCHANGE.length()+1)+"",
+                                  (0x8000L | 0x2000L)+"",
+                                  PROCESSED_KEY_EXCHANGE + "%"});
 
-        if (cursor != null)
-          cursor.close();
-
-        cursor = db.query("sms", null,"body LIKE ?", new String[] {ASYMMETRIC_ENCRYPT + "%"},
-                          null, null, null);
-
-        updateSmsBodyAndType(db, cursor, ASYMMETRIC_ENCRYPT, 0L);
-
-        if (cursor != null)
-          cursor.close();
-
-        cursor = db.query("sms", null,"body LIKE ?", new String[] {KEY_EXCHANGE + "%"},
-                          null, null, null);
-
-        updateSmsBodyAndType(db, cursor, KEY_EXCHANGE, 0x8000L);
-
-        if (cursor != null)
-          cursor.close();
-
-        cursor = db.query("sms", null,"body LIKE ?", new String[] {PROCESSED_KEY_EXCHANGE + "%"},
-                          null, null, null);
-
-        updateSmsBodyAndType(db, cursor, PROCESSED_KEY_EXCHANGE, 0x8000L | 0x2000L);
-
-        if (cursor != null)
-          cursor.close();
-
-        cursor = db.query("sms", null,"body LIKE ?", new String[] {STALE_KEY_EXCHANGE + "%"},
-                          null, null, null);
-
-        updateSmsBodyAndType(db, cursor, STALE_KEY_EXCHANGE, 0x8000L | 0x4000L);
+        db.execSQL("UPDATE sms SET body = substr(body, ?), type = type | ? WHERE body LIKE ?",
+                   new String[] {(STALE_KEY_EXCHANGE.length()+1)+"",
+                                 (0x8000L | 0x4000L)+"",
+                                 STALE_KEY_EXCHANGE + "%"});
 
         // MMS Updates
 
@@ -481,40 +505,41 @@ public class DatabaseFactory {
 
         db.execSQL("ALTER TABLE thread ADD COLUMN snippet_type INTEGER;");
 
-        if (cursor != null)
-          cursor.close();
+        db.execSQL("UPDATE thread SET snippet = substr(snippet, ?), " +
+                   "snippet_type = ? WHERE snippet LIKE ?",
+                   new String[] {(SYMMETRIC_ENCRYPT.length()+1)+"",
+                                 0x80000000L+"",
+                                 SYMMETRIC_ENCRYPT + "%"});
 
-        cursor = db.query("thread", null,"snippet LIKE ?",
-                          new String[] {SYMMETRIC_ENCRYPT + "%"}, null, null, null);
+        db.execSQL("UPDATE thread SET snippet = substr(snippet, ?), " +
+                   "snippet_type = ? WHERE snippet LIKE ?",
+                   new String[] {(ASYMMETRIC_LOCAL_ENCRYPT.length()+1)+"",
+                                  0x40000000L+"",
+                                  ASYMMETRIC_LOCAL_ENCRYPT + "%"});
 
-        updateThreadSnippetAndType(db, cursor, SYMMETRIC_ENCRYPT, 0x80000000L);
+        db.execSQL("UPDATE thread SET snippet = substr(snippet, ?), " +
+                   "snippet_type = ? WHERE snippet LIKE ?",
+                   new String[] {(ASYMMETRIC_ENCRYPT.length()+1)+"",
+                                 (0x800000L | 0x20000000L)+"",
+                                 ASYMMETRIC_ENCRYPT + "%"});
 
-        if (cursor != null)
-          cursor.close();
+        db.execSQL("UPDATE thread SET snippet = substr(snippet, ?), " +
+                   "snippet_type = ? WHERE snippet LIKE ?",
+                   new String[] {(KEY_EXCHANGE.length()+1)+"",
+                       0x8000L+"",
+                       KEY_EXCHANGE + "%"});
 
-        cursor = db.query("thread", null,"snippet LIKE ?",
-                          new String[] {KEY_EXCHANGE + "%"}, null, null, null);
+        db.execSQL("UPDATE thread SET snippet = substr(snippet, ?), " +
+                   "snippet_type = ? WHERE snippet LIKE ?",
+                   new String[] {(STALE_KEY_EXCHANGE.length()+1)+"",
+                                 (0x8000L | 0x4000L)+"",
+                                 STALE_KEY_EXCHANGE + "%"});
 
-        updateThreadSnippetAndType(db, cursor, KEY_EXCHANGE, 0x8000L);
-
-        if (cursor != null)
-          cursor.close();
-
-        cursor = db.query("thread", null,"snippet LIKE ?",
-                          new String[] {STALE_KEY_EXCHANGE + "%"}, null, null, null);
-
-        updateThreadSnippetAndType(db, cursor, STALE_KEY_EXCHANGE, 0x8000L | 0x4000L);
-
-        if (cursor != null)
-          cursor.close();
-
-        cursor = db.query("thread", null,"snippet LIKE ?",
-                          new String[] {PROCESSED_KEY_EXCHANGE + "%"}, null, null, null);
-
-        updateThreadSnippetAndType(db, cursor, KEY_EXCHANGE, 0x8000L | 0x2000L);
-
-        if (cursor != null)
-          cursor.close();
+        db.execSQL("UPDATE thread SET snippet = substr(snippet, ?), " +
+                   "snippet_type = ? WHERE snippet LIKE ?",
+                   new String[] {(PROCESSED_KEY_EXCHANGE.length()+1)+"",
+                                 (0x8000L | 0x2000L)+"",
+                                 PROCESSED_KEY_EXCHANGE + "%"});
       }
 
       if (oldVersion < INTRODUCED_MMS_BODY_VERSION) {
@@ -543,46 +568,6 @@ public class DatabaseFactory {
 
       db.setTransactionSuccessful();
       db.endTransaction();
-    }
-
-    private void updateSmsBodyAndType(SQLiteDatabase db, Cursor cursor, String prefix, long typeMask)
-    {
-      while (cursor != null && cursor.moveToNext()) {
-        String body = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-        long type   = cursor.getLong(cursor.getColumnIndexOrThrow("type"));
-        long id     = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-
-        if (body.startsWith(prefix)) {
-          body  = body.substring(prefix.length());
-          type |= typeMask;
-
-          db.execSQL("UPDATE sms SET type = ?, body = ? WHERE _id = ?",
-                     new String[]{type+"", body, id+""});
-        }
-      }
-
-      if (cursor != null)
-        cursor.close();
-    }
-
-    private void updateThreadSnippetAndType(SQLiteDatabase db, Cursor cursor, String prefix, long typeMask)
-    {
-      while (cursor != null && cursor.moveToNext()) {
-        String snippet = cursor.getString(cursor.getColumnIndexOrThrow("snippet"));
-        long type      = cursor.getLong(cursor.getColumnIndexOrThrow("snippet_type"));
-        long id       = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-
-        if (snippet.startsWith(prefix)) {
-          snippet = snippet.substring(prefix.length());
-          type   |= typeMask;
-
-          db.execSQL("UPDATE thread SET snippet_type = ?, snippet = ? WHERE _id = ?",
-                     new String[]{type+"", snippet, id+""});
-        }
-      }
-
-      if (cursor != null)
-        cursor.close();
     }
 
     private void executeStatements(SQLiteDatabase db, String[] statements) {

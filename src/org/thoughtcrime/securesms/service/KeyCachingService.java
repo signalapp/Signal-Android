@@ -32,6 +32,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
@@ -78,8 +79,10 @@ public class KeyCachingService extends Service {
     new Thread() {
       @Override
       public void run() {
-        DecryptingQueue.schedulePendingDecrypts(KeyCachingService.this, masterSecret);
-        MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
+        if (!DatabaseUpgradeActivity.isUpdate(KeyCachingService.this)) {
+          DecryptingQueue.schedulePendingDecrypts(KeyCachingService.this, masterSecret);
+          MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
+        }
       }
     }.start();
   }
