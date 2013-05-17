@@ -495,7 +495,7 @@ public class ConversationItem extends LinearLayout {
     public void onClick(View v) {
       if (failedIconHandler != null && !messageRecord.isKeyExchange()) {
         Message message = Message.obtain();
-        message.obj     = messageRecord.getBody();
+        message.obj     = messageRecord.getBody().getBody();
         failedIconHandler.dispatchMessage(message);
       }
     }
