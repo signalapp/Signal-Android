@@ -434,7 +434,14 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
 
     private Recipients getRecipientsFor(String address) {
       try {
-        return RecipientFactory.getRecipientsFromString(context, address, false);
+        Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false);
+
+        if (recipients == null || recipients.isEmpty()) {
+          return new Recipients(new Recipient("Unknown", "Unknown", null,
+                                              ContactPhotoFactory.getDefaultContactPhoto(context)));
+        }
+
+        return recipients;
       } catch (RecipientFormattingException e) {
         Log.w("EncryptingSmsDatabase", e);
         return new Recipients(new Recipient("Unknown", "Unknown", null,

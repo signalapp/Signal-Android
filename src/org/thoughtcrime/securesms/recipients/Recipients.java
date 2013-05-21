@@ -64,11 +64,11 @@ public class Recipients implements Parcelable {
     this.recipients.addAll(recipients.getRecipientsList());
   }
 
-  public Recipients truncateToSingleRecipient() {
-    assert(!this.recipients.isEmpty());
-    this.recipients = this.recipients.subList(0, 1);
-    return this;
-  }
+//  public Recipients truncateToSingleRecipient() {
+//    assert(!this.recipients.isEmpty());
+//    this.recipients = this.recipients.subList(0, 1);
+//    return this;
+//  }
 
   public void addListener(RecipientModifiedListener listener) {
     for (Recipient recipient : recipients) {
