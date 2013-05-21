@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 
@@ -56,7 +57,7 @@ public class ImageSlide extends Slide {
     super(context, masterSecret, part);
   }
 
-  public ImageSlide(Context context, Uri uri) throws IOException {
+  public ImageSlide(Context context, Uri uri) throws IOException, BitmapDecodingException {
     super(context, constructPartFromUri(context, uri));
   }
 		
@@ -76,6 +77,9 @@ public class ImageSlide extends Slide {
 
       return thumbnail;
     } catch (FileNotFoundException e) {
+      Log.w("ImageSlide", e);
+      return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_missing_thumbnail_picture);
+    } catch (BitmapDecodingException e) {
       Log.w("ImageSlide", e);
       return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_missing_thumbnail_picture);
     }
@@ -148,7 +152,9 @@ public class ImageSlide extends Slide {
     return true;
   }
 	
-  private static PduPart constructPartFromUri(Context context, Uri uri) throws IOException {
+  private static PduPart constructPartFromUri(Context context, Uri uri)
+      throws IOException, BitmapDecodingException
+  {
     PduPart part = new PduPart();
     byte[] data  = BitmapUtil.createScaledBytes(context, uri, 640, 480, (300 * 1024) - 5000);
 

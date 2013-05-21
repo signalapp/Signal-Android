@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.IOException;
 
@@ -51,7 +52,7 @@ public class AttachmentManager {
     attachmentView.setVisibility(View.GONE);
   }
 
-  public void setImage(Uri image) throws IOException {
+  public void setImage(Uri image) throws IOException, BitmapDecodingException {
     ImageSlide slide = new ImageSlide(context, image);
     slideDeck.addSlide(slide);
     thumbnail.setImageBitmap(slide.getThumbnail(345, 261));

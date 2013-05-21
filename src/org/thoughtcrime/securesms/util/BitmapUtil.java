@@ -19,7 +19,7 @@ public class BitmapUtil {
 
   public static byte[] createScaledBytes(Context context, Uri uri, int maxWidth,
                                          int maxHeight, int maxSize)
-      throws IOException
+      throws IOException, BitmapDecodingException
   {
     InputStream measure = context.getContentResolver().openInputStream(uri);
     InputStream data    = context.getContentResolver().openInputStream(uri);
@@ -44,6 +44,7 @@ public class BitmapUtil {
 
   public static Bitmap createScaledBitmap(InputStream measure, InputStream data,
                                           int maxWidth, int maxHeight)
+      throws BitmapDecodingException
   {
     BitmapFactory.Options options = getImageDimensions(measure);
     int imageWidth                = options.outWidth;
@@ -61,6 +62,10 @@ public class BitmapUtil {
     options.inJustDecodeBounds = false;
 
     Bitmap roughThumbnail  = BitmapFactory.decodeStream(data, null, options);
+
+    if (roughThumbnail == null) {
+      throw new BitmapDecodingException("Decoded stream was null.");
+    }
 
     if (imageWidth > maxWidth || imageHeight > maxHeight) {
       Log.w("BitmapUtil", "Scaling to max width and height: " + maxWidth + "," + maxHeight);

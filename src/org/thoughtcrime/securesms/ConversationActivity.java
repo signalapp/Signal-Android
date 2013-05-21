@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
@@ -619,10 +620,15 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     try {
       attachmentManager.setImage(imageUri);
     } catch (IOException e) {
+      Log.w("ConversationActivity", e);
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
-      Log.w("ComposeMessageActivity", e);
+    } catch (BitmapDecodingException e) {
+      Log.w("ConversationActivity", e);
+      attachmentManager.clear();
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+                     Toast.LENGTH_LONG).show();
     }
   }
 
