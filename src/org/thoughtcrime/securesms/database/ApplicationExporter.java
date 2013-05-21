@@ -103,7 +103,7 @@ public class ApplicationExporter {
     File directory       = new File(getExportDirectoryPath() + File.separator + directoryName);
     File importDirectory = new File(context.getFilesDir().getParent() + File.separator + directoryName);
 
-    if (directory.exists()) {
+    if (directory.exists() && directory.isDirectory()) {
       importDirectory.mkdirs();
 
       File[] contents = directory.listFiles();
@@ -112,7 +112,7 @@ public class ApplicationExporter {
         if (exportedFile.isFile()) {
           File localFile = new File(importDirectory.getAbsolutePath() + File.separator + exportedFile.getName());
           migrateFile(exportedFile, localFile);
-        } else {
+        } else if (exportedFile.isDirectory()) {
           importDirectory(context, directoryName + File.separator + exportedFile.getName());
         }
       }
