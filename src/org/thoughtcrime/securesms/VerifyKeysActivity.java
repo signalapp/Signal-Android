@@ -16,8 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -34,7 +32,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  * @author Moxie Marlinspike
  *
  */
-public class VerifyKeysActivity extends KeyVerifyingActivity {
+public class VerifyKeysActivity extends KeyScanningActivity {
 
   private byte[] yourFingerprintBytes;
   private byte[] theirFingerprintBytes;
@@ -58,28 +56,6 @@ public class VerifyKeysActivity extends KeyVerifyingActivity {
   protected void onDestroy() {
     MemoryCleaner.clean(masterSecret);
     super.onDestroy();
-  }
-
-  @Override
-  protected void handleVerified() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setIcon(android.R.drawable.ic_dialog_alert);
-    builder.setTitle(R.string.VerifyKeysActivity_mark_session_verified_question);
-    builder.setMessage(R.string.VerifyKeysActivity_are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified);
-    builder.setPositiveButton(R.string.VerifyKeysActivity_mark_verified,
-                              new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        SessionRecord sessionRecord = new SessionRecord(VerifyKeysActivity.this, masterSecret,
-                                                        recipient);
-        sessionRecord.setVerifiedSessionKey(true);
-        sessionRecord.save();
-        VerifyKeysActivity.this.finish();
-      }
-    });
-
-    builder.setNegativeButton(android.R.string.cancel, null);
-    builder.show();
   }
 
   private void initializeResources() {

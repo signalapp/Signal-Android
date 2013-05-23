@@ -307,9 +307,7 @@ public class DecryptingQueue {
 
           if (processor.isStale(keyExchangeMessage)) {
             DatabaseFactory.getEncryptingSmsDatabase(context).markAsStaleKeyExchange(messageId);
-          } else if (!processor.hasCompletedSession() ||
-                     processor.hasSameSessionIdentity(keyExchangeMessage))
-          {
+          } else if (processor.isTrusted(keyExchangeMessage)) {
             DatabaseFactory.getEncryptingSmsDatabase(context).markAsProcessedKeyExchange(messageId);
             processor.processKeyExchangeMessage(keyExchangeMessage, threadId);
           }

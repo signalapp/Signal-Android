@@ -17,20 +17,32 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import org.thoughtcrime.securesms.crypto.IdentityKey;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipients;
 
 /**
  * List item view for displaying user identity keys.
  *
  * @author Moxie Marlinspike
  */
-public class IdentityKeyView extends RelativeLayout {
+public class IdentityKeyView extends RelativeLayout
+    implements Recipient.RecipientModifiedListener
+{
 
   private TextView identityName;
-  private String   identityKeyString;
+
+  private Recipients  recipients;
+  private IdentityKey identityKey;
+
+  private final Handler handler = new Handler();
 
   public IdentityKeyView(Context context) {
     super(context);
@@ -45,17 +57,30 @@ public class IdentityKeyView extends RelativeLayout {
     super(context, attributeSet);
   }
 
-  public void set(String name, String identityKeyString) {
-    identityName.setText(name);
-    this.identityKeyString = identityKeyString;
+  public void set(IdentityDatabase.Identity identity) {
+    this.recipients  = identity.getRecipients();
+    this.identityKey = identity.getIdentityKey();
+
+    this.recipients.addListener(this);
+
+    identityName.setText(recipients.toShortString());
   }
 
-  public String getIdentityKeyString() {
-    return this.identityKeyString;
+  public IdentityKey getIdentityKey() {
+    return this.identityKey;
   }
 
   private void initializeResources() {
     this.identityName = (TextView)findViewById(R.id.identity_name);
   }
 
+  @Override
+  public void onModified(Recipient recipient) {
+    handler.post(new Runnable() {
+      @Override
+      public void run() {
+        IdentityKeyView.this.identityName.setText(recipients.toShortString());
+      }
+    });
+  }
 }

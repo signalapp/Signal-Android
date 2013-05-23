@@ -108,7 +108,7 @@ public class SmsReceiver {
 
         if (processor.isStale(keyExchangeMessage)) {
           message.setStale(true);
-        } else if (!processor.hasCompletedSession() || processor.hasSameSessionIdentity(keyExchangeMessage)) {
+        } else if (processor.isTrusted(keyExchangeMessage)) {
           message.setProcessed(true);
 
           Pair<Long, Long> messageAndThreadId = storeStandardMessage(masterSecret, message);

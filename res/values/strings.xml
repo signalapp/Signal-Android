@@ -316,8 +316,13 @@
     <!-- receive_key_activity -->
     <string name="receive_key_activity__session">Session</string>
     <string name="receive_key_activity__identities">Identities</string>
-    <string name="receive_key_activity__complete_exchange">Complete Exchange</string>
-    
+    <string name="receive_key_activity__complete">Complete</string>
+    <string name="receive_key_activity__the_signature_on_this_key_exchange_is_different">The
+        signature on this key exchange is different than what you\'ve previously received from this
+        contact. This could either mean that someone is trying to intercept your communication, or
+        that this contact simply re-installed TextSecure and now has a new identity key.
+    </string>
+
     <!-- recipients_panel -->
     <string name="recipients_panel__to">To</string>
     
@@ -473,7 +478,6 @@
     <string name="conversation_list__menu_search">Search</string>
 
     <!-- conversation_secure_verified -->
-    <!-- conversation_secure_unverified -->
     <string name="conversation_secure_verified__menu_security">Security</string>
     <string name="conversation_secure_verified__menu_verify_session">Verify Session</string>
     <string name="conversation_secure_verified__menu_verify_recipient">Verify Recipient</string>
@@ -508,6 +512,9 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
+    <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">You may wish to verify
+        this contact.
+    </string>
 
     <!-- Misc. piggybacking -->
 

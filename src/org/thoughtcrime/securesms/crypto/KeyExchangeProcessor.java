@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import org.bouncycastle.util.Arrays;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
 import org.thoughtcrime.securesms.database.keys.RemoteKeyRecord;
 import org.thoughtcrime.securesms.database.keys.SessionRecord;
@@ -58,16 +59,13 @@ public class KeyExchangeProcessor {
     this.sessionRecord   = new SessionRecord(context, masterSecret, recipient);
   }
 
-  public boolean hasCompletedSession() {
-    return sessionRecord.getLocalFingerprint() != null;
-  }
+  public boolean isTrusted(KeyExchangeMessage message) {
+    if (!message.hasIdentityKey()) {
+      return false;
+    }
 
-  public boolean hasSameSessionIdentity(KeyExchangeMessage message) {
-    return
-      (this.sessionRecord.getIdentityKey() != null) &&
-      (message.getIdentityKey() != null)            &&
-      (this.sessionRecord.getIdentityKey().equals(message.getIdentityKey()) &&
-       !isRemoteKeyExchangeForExistingSession(message));
+    return DatabaseFactory.getIdentityDatabase(context).isValidIdentity(masterSecret, recipient,
+                                                                        message.getIdentityKey());
   }
 
   public boolean hasInitiatedSession() {
@@ -76,14 +74,6 @@ public class KeyExchangeProcessor {
 
   private boolean needsResponseFromUs() {
     return !hasInitiatedSession() || remoteKeyRecord.getCurrentRemoteKey() != null;
-  }
-
-  public boolean isRemoteKeyExchangeForExistingSession(KeyExchangeMessage message) {
-    return Arrays.areEqual(message.getPublicKey().getFingerprintBytes(), sessionRecord.getRemoteFingerprint());
-  }
-
-  public boolean isLocalKeyExchangeForExistingSession(KeyExchangeMessage message) {
-    return Arrays.areEqual(message.getPublicKey().getFingerprintBytes(), sessionRecord.getLocalFingerprint());
   }
 
   public boolean isStale(KeyExchangeMessage message) {
@@ -120,6 +110,9 @@ public class KeyExchangeProcessor {
     Log.w("KeyExchangeUtil", "Setting session version: " + Math.min(Message.SUPPORTED_VERSION, message.getMaxVersion()));
 
     sessionRecord.save();
+
+    DatabaseFactory.getIdentityDatabase(context)
+                   .saveIdentity(masterSecret, recipient, message.getIdentityKey());
 
     DecryptingQueue.scheduleRogueMessages(context, masterSecret, recipient);
 

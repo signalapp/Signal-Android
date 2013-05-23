@@ -23,8 +23,6 @@ import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.thoughtcrime.securesms.database.keys.Record;
-import org.thoughtcrime.securesms.database.keys.SessionKey;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.io.FileInputStream;
@@ -56,23 +54,27 @@ public class SessionRecord extends Record {
   private final MasterSecret masterSecret;
 
   public SessionRecord(Context context, MasterSecret masterSecret, Recipient recipient) {
-    super(context, getFileNameForRecipient(context, recipient));
+    this(context, masterSecret, getRecipientId(context, recipient));
+  }
+
+  public SessionRecord(Context context, MasterSecret masterSecret, long recipientId) {
+    super(context, recipientId+"");
     this.masterSecret   = masterSecret;
     this.sessionVersion = 31337;
     loadData();
   }
 
   public static void delete(Context context, Recipient recipient) {
-    Record.delete(context, getFileNameForRecipient(context, recipient));
+    Record.delete(context, getRecipientId(context, recipient)+"");
   }
 
   public static boolean hasSession(Context context, Recipient recipient) {
-    Log.w("LocalKeyRecord", "Checking: " + getFileNameForRecipient(context, recipient));
-    return Record.hasRecord(context, getFileNameForRecipient(context, recipient));
+    Log.w("LocalKeyRecord", "Checking: " + getRecipientId(context, recipient));
+    return Record.hasRecord(context, getRecipientId(context, recipient)+"");
   }
 
-  private static String getFileNameForRecipient(Context context, Recipient recipient) {
-    return CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(recipient.getNumber()) + "";
+  private static long getRecipientId(Context context, Recipient recipient) {
+    return CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(recipient.getNumber());
   }
 
   public void setSessionKey(SessionKey sessionKeyRecord) {
@@ -116,9 +118,9 @@ public class SessionRecord extends Record {
     return this.identityKey;
   }
 
-  public void setVerifiedSessionKey(boolean verifiedSessionKey) {
-    this.verifiedSessionKey = verifiedSessionKey;
-  }
+//  public void setVerifiedSessionKey(boolean verifiedSessionKey) {
+//    this.verifiedSessionKey = verifiedSessionKey;
+//  }
 
   public boolean isVerifiedSession() {
     return this.verifiedSessionKey;
@@ -130,8 +132,8 @@ public class SessionRecord extends Record {
   }
 
   private boolean isValidVersionMarker(int versionMarker) {
-    for (int i=0;i<VALID_VERSION_MARKERS.length;i++)
-      if (versionMarker == VALID_VERSION_MARKERS[i])
+    for (int VALID_VERSION_MARKER : VALID_VERSION_MARKERS)
+      if (versionMarker == VALID_VERSION_MARKER)
         return true;
 
     return false;
@@ -199,7 +201,7 @@ public class SessionRecord extends Record {
 
           if (versionMarker >=  0X55555556) {
             readIdentityKey(in);
-            this.verifiedSessionKey = (readInteger(in) == 1) ? true : false;
+            this.verifiedSessionKey = (readInteger(in) == 1);
           }
 
           if (in.available() != 0)
@@ -209,7 +211,7 @@ public class SessionRecord extends Record {
         }
       } catch (FileNotFoundException e) {
         Log.w("SessionRecord", "No session information found.");
-        return;
+        // XXX
       } catch (IOException ioe) {
         Log.w("keyrecord", ioe);
         // XXX

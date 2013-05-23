@@ -1,59 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:id="@+id/ScrollView" 
-			android:layout_width="fill_parent" 
-			android:layout_height="fill_parent"
-			xmlns:android="http://schemas.android.com/apk/res/android">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:background="@drawable/background_pattern_repeat">
 
-<LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dip">
+    <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center">
 
-	<TextView android:id="@+id/description_text"
-			  android:layout_width="fill_parent"
-			  android:layout_height="wrap_content"
-			  android:textSize="17dip"
-			  android:layout_marginBottom="5dip" />
-			  
-	<TextView android:id="@+id/signature_text"
-			  android:layout_width="fill_parent"
-			  android:layout_height="wrap_content"
-			  android:textSize="17dip"
-			  android:textStyle="italic"
-			  android:layout_marginBottom="10dip" />
-			  
-	<LinearLayout android:layout_width="fill_parent"
-				  android:layout_height="wrap_content"
-				  android:orientation="horizontal">
-				  
-		<Button android:id="@+id/verify_session_button"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/receive_key_activity__session"
-				android:visibility="gone"
-				android:gravity="center" />		  
+        <LinearLayout android:paddingRight="16dip"
+                      android:paddingLeft="16dip"
+                      android:paddingTop="10dip"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:orientation="vertical">
 
-		<Button android:id="@+id/verify_identity_button"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/receive_key_activity__identities"
-				android:visibility="gone"
-				android:gravity="center" />		  
-				  
-		<Button android:id="@+id/ok_button"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/receive_key_activity__complete_exchange"
-				android:gravity="center"/>
-				
-		<Button android:id="@+id/cancel_button"
-				android:text="@android:string/cancel"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:gravity="center"/>
-	</LinearLayout>
-</LinearLayout>
+            <TextView style="@style/Registration.Description"
+                      android:id="@+id/description_text"
+                      android:layout_width="fill_parent"
+                      android:layout_marginBottom="16dip"
+                      android:layout_marginTop="16dip"
+                      android:text="@string/receive_key_activity__the_signature_on_this_key_exchange_is_different"/>
+
+            <LinearLayout android:layout_height="wrap_content"
+                          android:layout_width="match_parent"
+                          android:layout_marginBottom="7dip"
+                          android:orientation="horizontal">
+
+                <Button android:id="@+id/cancel_button"
+                        android:text="@android:string/cancel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                <Button android:id="@+id/ok_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/receive_key_activity__complete"/>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 </ScrollView>
 
 

@@ -55,7 +55,6 @@ import java.util.List;
 public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
 
   private static final int   PICK_IDENTITY_CONTACT        = 1;
-  private static final int   IMPORT_IDENTITY_ID           = 2;
 
   public static final String RINGTONE_PREF                    = "pref_key_ringtone";
   public static final String VIBRATE_PREF                     = "pref_key_vibrate";
@@ -107,10 +106,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     this.findPreference(VIEW_MY_IDENTITY_PREF)
       .setOnPreferenceClickListener(new ViewMyIdentityClickListener());
-    this.findPreference(EXPORT_MY_IDENTITY_PREF)
-      .setOnPreferenceClickListener(new ExportMyIdentityClickListener());
-    this.findPreference(IMPORT_CONTACT_IDENTITY_PREF)
-      .setOnPreferenceClickListener(new ImportContactIdentityClickListener());
     this.findPreference(MANAGE_IDENTITIES_PREF)
       .setOnPreferenceClickListener(new ManageIdentitiesClickListener());
     this.findPreference(CHANGE_PASSPHRASE_PREF)
@@ -133,8 +128,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     if (resultCode == Activity.RESULT_OK) {
       switch (reqCode) {
-      case (PICK_IDENTITY_CONTACT) : handleIdentitySelection(data); break;
-      case IMPORT_IDENTITY_ID:       importIdentityKey(data.getData()); break;
+      case PICK_IDENTITY_CONTACT: handleIdentitySelection(data); break;
       }
     }
   }
@@ -209,25 +203,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
-  private void importIdentityKey(Uri uri) {
-    IdentityKey identityKey = ContactAccessor.getInstance().importIdentityKey(this, uri);
-    String contactName      = ContactAccessor.getInstance().getNameFromContact(this, uri);
-
-    if (identityKey == null) {
-      Dialogs.displayAlert(this,
-                           getString(R.string.ApplicationPreferenceActivity_not_found_exclamation),
-                           getString(R.string.ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact),
-                           android.R.drawable.ic_dialog_alert);
-      return;
-    }
-
-    Intent verifyImportedKeyIntent = new Intent(this, VerifyImportedIdentityActivity.class);
-    verifyImportedKeyIntent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
-    verifyImportedKeyIntent.putExtra("identity_key", identityKey);
-    verifyImportedKeyIntent.putExtra("contact_name", contactName);
-    startActivity(verifyImportedKeyIntent);
-  }
-
   private class IdentityPreferenceClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
@@ -244,57 +219,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       Intent viewIdentityIntent = new Intent(ApplicationPreferencesActivity.this, ViewIdentityActivity.class);
       viewIdentityIntent.putExtra("identity_key", IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
       startActivity(viewIdentityIntent);
-
-      return true;
-    }
-  }
-
-  private class ExportMyIdentityClickListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      if (!IdentityKeyUtil.hasIdentityKey(ApplicationPreferencesActivity.this)) {
-        Toast.makeText(ApplicationPreferencesActivity.this,
-                       R.string.ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation,
-                       Toast.LENGTH_LONG).show();
-        return true;
-      }
-
-      List<Long> rawContactIds = ContactIdentityManager
-                                   .getInstance(ApplicationPreferencesActivity.this)
-                                   .getSelfIdentityRawContactIds();
-
-      if (rawContactIds== null) {
-          Toast.makeText(ApplicationPreferencesActivity.this,
-                         R.string.ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself,
-                         Toast.LENGTH_LONG).show();
-          return true;
-      }
-
-      ContactAccessor.getInstance().insertIdentityKey(ApplicationPreferencesActivity.this, rawContactIds,
-                                                      IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
-
-      Toast.makeText(ApplicationPreferencesActivity.this,
-                     R.string.ApplicationPreferenceActivity_exported_to_contacts_database,
-                     Toast.LENGTH_LONG).show();
-
-      return true;
-    }
-  }
-
-  private class ImportContactIdentityClickListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      MasterSecret masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
-
-      if (masterSecret != null) {
-        Intent importIntent = new Intent(Intent.ACTION_PICK);
-        importIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
-        startActivityForResult(importIntent, IMPORT_IDENTITY_ID);
-      } else {
-        Toast.makeText(ApplicationPreferencesActivity.this,
-                       R.string.ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys,
-                       Toast.LENGTH_LONG).show();
-      }
 
       return true;
     }

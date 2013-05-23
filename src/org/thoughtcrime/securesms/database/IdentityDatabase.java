@@ -28,6 +28,9 @@ import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Base64;
 
 import java.io.IOException;
@@ -38,13 +41,15 @@ public class IdentityDatabase extends Database {
 
   private static final String TABLE_NAME    = "identities";
   private static final String ID            = "_id";
+  public  static final String RECIPIENT     = "recipient";
   public  static final String IDENTITY_KEY  = "key";
-  public  static final String IDENTITY_NAME = "name";
   public  static final String MAC           = "mac";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
-    IDENTITY_KEY + " TEXT UNIQUE, " + IDENTITY_NAME + " TEXT UNIQUE, "  +
-    MAC + " TEXT);";
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
+      " (" + ID + " INTEGER PRIMARY KEY, " +
+      RECIPIENT + " INTEGER UNIQUE, " +
+      IDENTITY_KEY + " TEXT, " +
+      MAC + " TEXT);";
 
   public IdentityDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -60,69 +65,127 @@ public class IdentityDatabase extends Database {
     return cursor;
   }
 
-  public String getNameForIdentity(MasterSecret masterSecret, IdentityKey identityKey) {
-    if (identityKey == null)
-      return null;
-
-    MasterCipher masterCipher = new MasterCipher(masterSecret);
+  public boolean isValidIdentity(MasterSecret masterSecret,
+                                 Recipient recipient,
+                                 IdentityKey theirIdentity)
+  {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    String number             = recipient.getNumber();
+    long recipientId          = DatabaseFactory.getAddressDatabase(context).getCanonicalAddress(number);
+    MasterCipher masterCipher = new MasterCipher(masterSecret);
     Cursor cursor             = null;
 
-    Log.w("IdentityDatabase", "Querying for: " + Base64.encodeBytes(identityKey.serialize()));
-
     try {
-      cursor = database.query(TABLE_NAME, null, IDENTITY_KEY + " = ?", new String[] {Base64.encodeBytes(identityKey.serialize())}, null, null, null);
+      cursor = database.query(TABLE_NAME, null, RECIPIENT + " = ?",
+                              new String[] {recipientId+""}, null, null,null);
 
-      if (cursor == null || !cursor.moveToFirst())
-        return null;
+      if (cursor != null && cursor.moveToFirst()) {
+        String serializedIdentity = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
+        String mac                = cursor.getString(cursor.getColumnIndexOrThrow(MAC));
 
-      String identityName       = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_NAME));
-      String identityKeyString  = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
-      byte[] mac                = Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(MAC)));
+        if (!masterCipher.verifyMacFor(recipientId + serializedIdentity, Base64.decode(mac))) {
+          Log.w("IdentityDatabase", "MAC failed");
+          return false;
+        }
 
-      if (!masterCipher.verifyMacFor(identityName + identityKeyString, mac)) {
-        Log.w("IdentityDatabase", "Mac check failed!");
-        return null;
+        IdentityKey ourIdentity = new IdentityKey(Base64.decode(serializedIdentity), 0);
+        return ourIdentity.equals(theirIdentity);
+      } else {
+        return true;
       }
-
-      Log.w("IdentityDatabase", "Returning identity name: " + identityName);
-      return identityName;
     } catch (IOException e) {
       Log.w("IdentityDatabase", e);
-      return null;
+      return false;
+    } catch (InvalidKeyException e) {
+      Log.w("IdentityDatabase", e);
+      return false;
     } finally {
-      if (cursor != null)
+      if (cursor != null) {
         cursor.close();
+      }
     }
   }
 
-  public void saveIdentity(MasterSecret masterSecret, IdentityKey identityKey, String tagName) throws InvalidKeyException {
+  public void saveIdentity(MasterSecret masterSecret, Recipient recipient, IdentityKey identityKey)
+  {
     SQLiteDatabase database   = databaseHelper.getWritableDatabase();
+    String number             = recipient.getNumber();
+    long recipientId          = DatabaseFactory.getAddressDatabase(context).getCanonicalAddress(number);
     MasterCipher masterCipher = new MasterCipher(masterSecret);
     String identityKeyString  = Base64.encodeBytes(identityKey.serialize());
-    String macString          = Base64.encodeBytes(masterCipher.getMacFor(tagName + identityKeyString));
+    String macString          = Base64.encodeBytes(masterCipher.getMacFor(recipientId +
+                                                                              identityKeyString));
 
     ContentValues contentValues = new ContentValues();
+    contentValues.put(RECIPIENT, recipientId);
     contentValues.put(IDENTITY_KEY, identityKeyString);
-    contentValues.put(IDENTITY_NAME, tagName);
     contentValues.put(MAC, macString);
 
-    long id = database.insert(TABLE_NAME, null, contentValues);
-
-    if (id == -1)
-      throw new InvalidKeyException("Error inserting key!");
+    database.replace(TABLE_NAME, null, contentValues);
 
     context.getContentResolver().notifyChange(CHANGE_URI, null);
   }
 
-  public void deleteIdentity(String name, String keyString) {
+  public void deleteIdentity(long id) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    String where            = IDENTITY_NAME + " = ? AND " + IDENTITY_KEY + " = ?";
-    String[] args           = new String[] {name, keyString};
-
-    database.delete(TABLE_NAME, where, args);
+    database.delete(TABLE_NAME, ID_WHERE, new String[] {id+""});
 
     context.getContentResolver().notifyChange(CHANGE_URI, null);
+  }
+
+  public Reader readerFor(MasterSecret masterSecret, Cursor cursor) {
+    return new Reader(masterSecret, cursor);
+  }
+
+  public class Reader {
+    private final Cursor cursor;
+    private final MasterCipher cipher;
+
+    public Reader(MasterSecret masterSecret, Cursor cursor) {
+      this.cursor = cursor;
+      this.cipher = new MasterCipher(masterSecret);
+    }
+
+    public Identity getCurrent() {
+      long recipientId      = cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT));
+      Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientId + "", true);
+
+      try {
+        String identityKeyString = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
+        String mac               = cursor.getString(cursor.getColumnIndexOrThrow(MAC));
+
+        if (!cipher.verifyMacFor(recipientId + identityKeyString, Base64.decode(mac))) {
+          return new Identity(recipients, null);
+        }
+
+        IdentityKey identityKey = new IdentityKey(Base64.decode(identityKeyString), 0);
+        return new Identity(recipients, identityKey);
+      } catch (IOException e) {
+        Log.w("IdentityDatabase", e);
+        return new Identity(recipients, null);
+      } catch (InvalidKeyException e) {
+        Log.w("IdentityDatabase", e);
+        return new Identity(recipients, null);
+      }
+    }
+  }
+
+  public class Identity {
+    private final Recipients  recipients;
+    private final IdentityKey identityKey;
+
+    public Identity(Recipients recipients, IdentityKey identityKey) {
+      this.recipients  = recipients;
+      this.identityKey = identityKey;
+    }
+
+    public Recipients getRecipients() {
+      return recipients;
+    }
+
+    public IdentityKey getIdentityKey() {
+      return identityKey;
+    }
   }
 
 }

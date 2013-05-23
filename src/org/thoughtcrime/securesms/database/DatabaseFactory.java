@@ -26,9 +26,12 @@ import android.util.Log;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
+import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -40,14 +43,15 @@ import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
-  private static final int INTRODUCED_IDENTITIES_VERSION  = 2;
-  private static final int INTRODUCED_INDEXES_VERSION     = 3;
-  private static final int INTRODUCED_DATE_SENT_VERSION   = 4;
-  private static final int INTRODUCED_DRAFTS_VERSION      = 5;
-  private static final int INTRODUCED_NEW_TYPES_VERSION   = 6;
-  private static final int INTRODUCED_MMS_BODY_VERSION    = 7;
-  private static final int INTRODUCED_MMS_FROM_VERSION    = 8;
-  private static final int DATABASE_VERSION               = 8;
+  private static final int INTRODUCED_IDENTITIES_VERSION    = 2;
+  private static final int INTRODUCED_INDEXES_VERSION       = 3;
+  private static final int INTRODUCED_DATE_SENT_VERSION     = 4;
+  private static final int INTRODUCED_DRAFTS_VERSION        = 5;
+  private static final int INTRODUCED_NEW_TYPES_VERSION     = 6;
+  private static final int INTRODUCED_MMS_BODY_VERSION      = 7;
+  private static final int INTRODUCED_MMS_FROM_VERSION      = 8;
+  private static final int INTRODUCED_TOFU_IDENTITY_VERSION = 9;
+  private static final int DATABASE_VERSION                 = 9;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -357,6 +361,36 @@ public class DatabaseFactory {
       }
     }
 
+    if (fromVersion < DatabaseUpgradeActivity.TOFU_IDENTITIES_VERSION) {
+      File sessionDirectory = new File(context.getFilesDir() + File.separator + "sessions");
+
+      if (sessionDirectory.exists() && sessionDirectory.isDirectory()) {
+        File[] sessions = sessionDirectory.listFiles();
+
+        if (sessions != null) {
+          for (File session : sessions) {
+            String name = session.getName();
+
+            if (name.matches("[0-9]+")) {
+              long recipientId            = Long.parseLong(name);
+              SessionRecord sessionRecord = new SessionRecord(context, masterSecret, recipientId);
+              IdentityKey identityKey     = sessionRecord.getIdentityKey();
+
+              if (identityKey != null) {
+                MasterCipher masterCipher = new MasterCipher(masterSecret);
+                String identityKeyString  = Base64.encodeBytes(identityKey.serialize());
+                String macString          = Base64.encodeBytes(masterCipher.getMacFor(recipientId +
+                                                                                      identityKeyString));
+
+                db.execSQL("REPLACE INTO identities (recipient, key, mac) VALUES (?, ?, ?)",
+                           new String[] {recipientId+"", identityKeyString, macString});
+              }
+            }
+          }
+        }
+      }
+    }
+
     db.setTransactionSuccessful();
     db.endTransaction();
 
@@ -564,6 +598,11 @@ public class DatabaseFactory {
 
         if (cursor != null)
           cursor.close();
+      }
+
+      if (oldVersion < INTRODUCED_TOFU_IDENTITY_VERSION) {
+        db.execSQL("DROP TABLE identities");
+        db.execSQL("CREATE TABLE identities (_id INTEGER PRIMARY KEY, recipient INTEGER UNIQUE, key TEXT, mac TEXT);");
       }
 
       db.setTransactionSuccessful();

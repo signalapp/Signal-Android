@@ -91,6 +91,14 @@ public class KeyUtil {
       (RemoteKeyRecord.hasRecord(context, recipient)) &&
       (SessionRecord.hasSession(context, recipient));
   }
+
+  public static boolean isIdentityKeyFor(Context context,
+                                         MasterSecret masterSecret,
+                                         Recipient recipient)
+  {
+    return isSessionFor(context, recipient) &&
+        new SessionRecord(context, masterSecret, recipient).getIdentityKey() != null;
+  }
 	
   public static LocalKeyRecord initializeRecordFor(Recipient recipient, Context context, MasterSecret masterSecret) {
     Log.w("KeyUtil", "Initializing local key pairs...");

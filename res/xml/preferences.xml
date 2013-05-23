@@ -123,14 +123,6 @@
                         android:title="@string/preferences__view_my_identity_key"
                         android:summary="@string/preferences__view_my_identity_key"/>
 
-          <Preference android:key="pref_export_identity"
-                        android:title="@string/preferences__export_my_identity_key"
-                        android:summary="@string/preferences__export_my_identity_key"/>
-
-          <Preference android:key="pref_import_identity"
-                        android:title="@string/preferences__import_contacts_key"
-                        android:summary="@string/preferences__import_an_identity_key_from_a_contact"/>
-
           <Preference android:key="pref_manage_identity"
                         android:title="@string/preferences__manage_identity_keys"
                         android:summary="@string/preferences__manage_configured_identity_keys"/>

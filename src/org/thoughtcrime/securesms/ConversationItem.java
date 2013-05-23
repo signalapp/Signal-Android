@@ -322,6 +322,7 @@ public class ConversationItem extends LinearLayout {
     intent.putExtra("recipient", messageRecord.getIndividualRecipient());
     intent.putExtra("body", messageRecord.getBody().getBody());
     intent.putExtra("thread_id", messageRecord.getThreadId());
+    intent.putExtra("message_id", messageRecord.getId());
     intent.putExtra("master_secret", masterSecret);
     intent.putExtra("sent", messageRecord.isOutgoing());
     context.startActivity(intent);

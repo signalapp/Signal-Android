@@ -16,192 +16,24 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CursorAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.thoughtcrime.securesms.crypto.IdentityKey;
-import org.thoughtcrime.securesms.crypto.InvalidKeyException;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
-
-import java.io.IOException;
-
-/**
- * Activity for reviewing/managing saved identity keys.
- *
- * @author Moxie Marlinspike
- */
-public class ReviewIdentitiesActivity extends SherlockListActivity {
-
-  private static final int MENU_OPTION_DELETE = 2;
-
-  private MasterSecret masterSecret;
-  private MasterCipher masterCipher;
-
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    this.setContentView(R.layout.review_identities);
-    this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-    initializeResources();
-    registerForContextMenu(this.getListView());
-  }
-
-  @Override
-  protected void onDestroy() {
-    masterCipher = null;
-    System.gc();
-    MemoryCleaner.clean(masterSecret);
-    super.onDestroy();
-  }
-
-  @Override
-  public void onListItemClick(ListView listView, View view, int position, long id) {
-    viewIdentity(((IdentityKeyView)view).getIdentityKeyString());
-  }
-
-  @Override
-  public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-    menu.add(0, MENU_OPTION_DELETE, Menu.NONE, R.string.delete);
-  }
-
-  @Override
-  public boolean onContextItemSelected(android.view.MenuItem item) {
-    Cursor cursor            = ((CursorAdapter)this.getListAdapter()).getCursor();
-    String identityKeyString = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.IDENTITY_KEY));
-    String identityName      = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.IDENTITY_NAME));
-
-
-    switch(item.getItemId()) {
-    case MENU_OPTION_DELETE:
-      deleteIdentity(identityName, identityKeyString);
-      return true;
-    }
-    return false;
+public class ReviewIdentitiesActivity extends SherlockFragmentActivity {
+  public void onCreate(Bundle bundle) {
+    super.onCreate(bundle);
+    setContentView(R.layout.review_identities);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-    case android.R.id.home: finish(); return true;
+      case android.R.id.home: finish(); return true;
     }
 
     return false;
-  }
-
-
-  private void initializeResources() {
-    this.masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
-    this.masterCipher = new MasterCipher(masterSecret);
-
-    Cursor cursor = DatabaseFactory.getIdentityDatabase(this).getIdentities();
-    this.startManagingCursor(cursor);
-    this.setListAdapter(new IdentitiesListAdapter(this, cursor));
-  }
-
-  private void viewIdentity(String identityKeyString) {
-    try {
-      Intent viewIntent = new Intent(this, ViewIdentityActivity.class);
-      viewIntent.putExtra("identity_key", new IdentityKey(Base64.decode(identityKeyString), 0));
-      startActivity(viewIntent);
-    } catch (InvalidKeyException ike) {
-      Log.w("ReviewIdentitiesActivity", ike);
-      Toast.makeText(this, R.string.ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation,
-                     Toast.LENGTH_LONG).show();
-    } catch (IOException e) {
-      Log.w("ReviewIdentitiesActivity", e);
-      Toast.makeText(this, R.string.ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation,
-                     Toast.LENGTH_LONG).show();
-    }
-  }
-
-  private void deleteIdentity(String name, String keyString) {
-    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-    alertDialog.setTitle(R.string.ReviewIdentitiesActivity_delete_identity);
-    alertDialog.setMessage(R.string.ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key);
-    alertDialog.setCancelable(true);
-    alertDialog.setNegativeButton(R.string.no, null);
-    alertDialog.setPositiveButton(R.string.yes, new DeleteIdentityListener(name, keyString));
-    alertDialog.show();
-  }
-
-  private class DeleteIdentityListener implements OnClickListener {
-    private final String name;
-    private final String keyString;
-
-    public DeleteIdentityListener(String name, String keyString) {
-      this.name      = name;
-      this.keyString = keyString;
-    }
-
-    public void onClick(DialogInterface arg0, int arg1) {
-      DatabaseFactory.getIdentityDatabase(ReviewIdentitiesActivity.this)
-        .deleteIdentity(name, keyString);
-    }
-  }
-
-  private class IdentitiesListAdapter extends CursorAdapter {
-
-    public IdentitiesListAdapter(Context context, Cursor cursor) {
-      super(context, cursor);
-    }
-
-    public IdentitiesListAdapter(Context context, Cursor c, boolean autoRequery) {
-      super(context, c, autoRequery);
-    }
-
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-      IdentityKey identityKey;
-      boolean valid;
-
-      String identityKeyString = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.IDENTITY_KEY));
-      String identityName      = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.IDENTITY_NAME));
-
-      try {
-        String mac             = cursor.getString(cursor.getColumnIndexOrThrow(IdentityDatabase.MAC));
-        valid                  = masterCipher.verifyMacFor(identityName + identityKeyString, Base64.decode(mac));
-        identityKey            = new IdentityKey(Base64.decode(identityKeyString), 0);
-      } catch (InvalidKeyException ike) {
-        Log.w("ReviewIdentitiesActivity",ike);
-        valid = false;
-      } catch (IOException e) {
-        Log.w("ReviewIdentitiesActivity",e);
-        valid = false;
-      }
-
-      if (!valid)
-        identityName = getString(R.string.ReviewIdentitiesActivity_invalid_identity);
-
-      ((IdentityKeyView)view).set(identityName, identityKeyString);
-    }
-
-    @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      IdentityKeyView identityKeyView = new IdentityKeyView(context);
-      bindView(identityKeyView, context, cursor);
-      return identityKeyView;
-    }
   }
 }

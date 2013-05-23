@@ -16,13 +16,11 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -35,7 +33,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  *
  * @author Moxie Marlinspike
  */
-public class VerifyIdentityActivity extends KeyVerifyingActivity {
+public class VerifyIdentityActivity extends KeyScanningActivity {
 
   private Recipient recipient;
   private MasterSecret masterSecret;
@@ -46,6 +44,7 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
   @Override
   public void onCreate(Bundle state) {
     super.onCreate(state);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.verify_identity_activity);
 
     initializeResources();
@@ -59,35 +58,12 @@ public class VerifyIdentityActivity extends KeyVerifyingActivity {
   }
 
   @Override
-  protected void handleVerified() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setIcon(android.R.drawable.ic_dialog_alert);
-    builder.setTitle(R.string.VerifyIdentityActivity_mark_identity_verified_question);
-    builder.setMessage(R.string.VerifyIdentityActivity_are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified);
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home: finish(); return true;
+    }
 
-    builder.setPositiveButton(R.string.VerifyIdentityActivity_mark_verified,
-                              new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        SessionRecord sessionRecord = new SessionRecord(VerifyIdentityActivity.this,
-                                                        masterSecret, recipient);
-        IdentityKey identityKey     = sessionRecord.getIdentityKey();
-        String recipientName        = recipient.getName();
-
-        Intent intent               = new Intent(VerifyIdentityActivity.this,
-                                                 SaveIdentityActivity.class);
-
-        intent.putExtra("name_suggestion", recipientName);
-        intent.putExtra("master_secret", masterSecret);
-        intent.putExtra("identity_key", identityKey);
-
-        startActivity(intent);
-        finish();
-      }
-    });
-
-    builder.setNegativeButton(android.R.string.cancel, null);
-    builder.show();
+    return false;
   }
 
   private void initializeLocalIdentityKey() {

@@ -48,7 +48,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.components.RecipientsPanel;
-import org.thoughtcrime.securesms.crypto.AuthenticityCalculator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyUtil;
@@ -125,6 +124,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private long threadId;
   private int distributionType;
   private boolean isEncryptedConversation;
+  private boolean isAuthenticatedConversation;
   private boolean isMmsEnabled = true;
 
   private CharacterCalculator characterCalculator = new CharacterCalculator();
@@ -211,10 +211,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     if (isSingleConversation() && isEncryptedConversation)
     {
-      if (isAuthenticatedSession()) {
-        inflater.inflate(R.menu.conversation_secure_verified, menu);
+      if (isAuthenticatedConversation) {
+        inflater.inflate(R.menu.conversation_secure_identity, menu);
       } else {
-        inflater.inflate(R.menu.conversation_secure_unverified, menu);
+        inflater.inflate(R.menu.conversation_secure_no_identity, menu);
       }
     } else if (isSingleConversation()) {
       inflater.inflate(R.menu.conversation_insecure, menu);
@@ -435,16 +435,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     String subtitle = null;
 
     if (isSingleConversation()) {
-
-      if (isEncryptedConversation) {
-        title = AuthenticityCalculator.getAuthenticatedName(this,
-                                                            getRecipients().getPrimaryRecipient(),
-                                                            masterSecret);
-      }
-
-      if (title == null || title.trim().length() == 0) {
-        title = getRecipients().getPrimaryRecipient().getName();
-      }
+      title = getRecipients().getPrimaryRecipient().getName();
 
       if (title == null || title.trim().length() == 0) {
         title = getRecipients().getPrimaryRecipient().getNumber();
@@ -512,12 +503,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         KeyUtil.isSessionFor(this, getRecipients().getPrimaryRecipient()))
     {
       sendButton.setImageResource(R.drawable.ic_send_encrypted_holo_light);
-      this.isEncryptedConversation = true;
-      this.characterCalculator     = new EncryptedCharacterCalculator();
+      this.isEncryptedConversation     = true;
+      this.isAuthenticatedConversation = KeyUtil.isIdentityKeyFor(this, masterSecret, getRecipients().getPrimaryRecipient());
+      this.characterCalculator         = new EncryptedCharacterCalculator();
     } else {
       sendButton.setImageResource(R.drawable.ic_send_holo_light);
-      this.isEncryptedConversation = false;
-      this.characterCalculator     = new CharacterCalculator();
+      this.isEncryptedConversation     = false;
+      this.isAuthenticatedConversation = false;
+      this.characterCalculator         = new CharacterCalculator();
     }
 
     calculateCharactersRemaining();
@@ -726,12 +719,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private boolean isGroupConversation() {
     return getRecipients() != null && !getRecipients().isSingleRecipient();
-  }
-
-  private boolean isAuthenticatedSession() {
-    return AuthenticityCalculator.isAuthenticated(this,
-                                                  getRecipients().getPrimaryRecipient(),
-                                                  masterSecret);
   }
 
   private Recipients getRecipients() {
