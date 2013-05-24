@@ -32,8 +32,6 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
@@ -63,7 +61,6 @@ public class ConversationListItem extends RelativeLayout
   private TextView          subjectView;
   private TextView          fromView;
   private TextView          dateView;
-  private CheckBox          checkbox;
   private long              count;
   private boolean           read;
 
@@ -85,16 +82,14 @@ public class ConversationListItem extends RelativeLayout
 
   @Override
   protected void onFinishInflate() {
-    this.subjectView     = (TextView)findViewById(R.id.subject);
-    this.fromView        = (TextView)findViewById(R.id.from);
-    this.dateView        = (TextView)findViewById(R.id.date);
-    this.checkbox        = (CheckBox)findViewById(R.id.checkbox);
+    this.subjectView       = (TextView) findViewById(R.id.subject);
+    this.fromView          = (TextView) findViewById(R.id.from);
+    this.dateView          = (TextView) findViewById(R.id.date);
 
-    this.contactPhotoBadge = (QuickContactBadge)findViewById(R.id.contact_photo_badge);
-    this.contactPhotoImage = (ImageView)findViewById(R.id.contact_photo_image);
+    this.contactPhotoBadge = (QuickContactBadge) findViewById(R.id.contact_photo_badge);
+    this.contactPhotoImage = (ImageView) findViewById(R.id.contact_photo_image);
 
     initializeContactWidgetVisibility();
-    intializeListeners();
   }
 
   public void set(ThreadRecord thread, Set<Long> selectedThreads, boolean batchMode) {
@@ -112,22 +107,12 @@ public class ConversationListItem extends RelativeLayout
     if (thread.getDate() > 0)
       this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), thread.getDate(), false));
 
-    if (selectedThreads != null)
-      this.checkbox.setChecked(selectedThreads.contains(threadId));
-
-    if (batchMode) checkbox.setVisibility(View.VISIBLE);
-    else           checkbox.setVisibility(View.GONE);
-
     setBackground(read, batchMode);
     setContactPhoto(this.recipients.getPrimaryRecipient());
   }
 
   public void unbind() {
     this.recipients.removeListener(this);
-  }
-
-  private void intializeListeners() {
-    checkbox.setOnCheckedChangeListener(new CheckedChangedListener());
   }
 
   private void initializeContactWidgetVisibility() {
@@ -163,7 +148,7 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private void setBackground(boolean read, boolean batch) {
-    if (batch && checkbox.isChecked()) {
+    if (batch && selectedThreads.contains(threadId)) {
       setBackgroundResource(R.drawable.list_selected_holo_light);
     } else if (read) {
       setBackgroundResource(R.drawable.conversation_list_item_background_read);
@@ -205,16 +190,6 @@ public class ConversationListItem extends RelativeLayout
 
   public int getDistributionType() {
     return distributionType;
-  }
-
-  private class CheckedChangedListener implements CompoundButton.OnCheckedChangeListener {
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-      if (isChecked) selectedThreads.add(threadId);
-      else           selectedThreads.remove(threadId);
-
-      setBackground(read, true);
-    }
   }
 
   @Override

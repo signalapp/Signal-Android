@@ -25,6 +25,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,10 @@ public class ConversationListFragment extends SherlockListFragment
 
   private ConversationSelectedListener listener;
   private MasterSecret masterSecret;
+  private ActionMode actionMode;
+
   private String queryFilter = "";
+  private boolean batchMode  = false;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -96,8 +100,15 @@ public class ConversationListFragment extends SherlockListFragment
   public void onListItemClick(ListView l, View v, int position, long id) {
     if (v instanceof ConversationListItem) {
       ConversationListItem headerView = (ConversationListItem) v;
-      handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
-                               headerView.getDistributionType());
+      Log.w("ConversationListFragment", "Batch mode: " + batchMode);
+      if (!batchMode) {
+        handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
+                                 headerView.getDistributionType());
+      } else {
+        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
+        adapter.addToBatchSet(headerView.getThreadId());
+        adapter.notifyDataSetChanged();
+      }
     }
   }
 
@@ -131,10 +142,11 @@ public class ConversationListFragment extends SherlockListFragment
       @Override
       public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
         ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
-        getSherlockActivity().startActionMode(ConversationListFragment.this);
+        actionMode = getSherlockActivity().startActionMode(ConversationListFragment.this);
+        batchMode  = true;
 
         adapter.initializeBatchMode(true);
-        adapter.addToBatchSet(((ConversationListItem)v).getThreadId());
+        adapter.addToBatchSet(((ConversationListItem) v).getThreadId());
         adapter.notifyDataSetChanged();
 
         return true;
@@ -183,6 +195,11 @@ public class ConversationListFragment extends SherlockListFragment
             @Override
             protected void onPostExecute(Void result) {
               dialog.dismiss();
+              if (actionMode != null) {
+                actionMode.finish();
+                actionMode = null;
+                batchMode  = false;
+              }
             }
           }.execute();
         }

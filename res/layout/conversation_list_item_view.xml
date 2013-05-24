@@ -5,8 +5,8 @@
     android:paddingRight="10dip"
     >
 
-    <FrameLayout android:id="@+id/contact_photo_frame" 
-                 android:layout_width="wrap_content" 
+    <FrameLayout android:id="@+id/contact_photo_frame"
+                 android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:layout_centerVertical="true"
                  android:layout_alignParentLeft="true"
@@ -14,21 +14,21 @@
 	    <QuickContactBadge android:id="@+id/contact_photo_badge"
 	                       style="?android:attr/quickContactBadgeStyleWindowLarge"
 	                       android:visibility="gone" />
-	
+
 	    <ImageView android:id="@+id/contact_photo_image"
 	               android:layout_width="60dp"
 	               android:layout_height="60dp"
 	               android:cropToPadding="true"
-	               android:scaleType="centerCrop" 
-	               android:visibility="gone" />    	        
+	               android:scaleType="centerCrop"
+	               android:visibility="gone" />
     </FrameLayout>
-    
-    <CheckBox android:id="@+id/checkbox"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_alignParentRight="true"
-              android:layout_alignParentTop="true"
-              android:visibility="gone" />
+
+    <!--<CheckBox android:id="@+id/checkbox"-->
+              <!--android:layout_width="wrap_content"-->
+              <!--android:layout_height="wrap_content"-->
+              <!--android:layout_alignParentRight="true"-->
+              <!--android:layout_alignParentTop="true"-->
+              <!--android:visibility="gone" />-->
 
     <TextView android:id="@+id/from"
         android:layout_width="wrap_content"
@@ -40,10 +40,10 @@
         android:layout_marginLeft="5dip"
         android:layout_alignTop="@id/contact_photo_frame"
         android:layout_toRightOf="@id/contact_photo_frame"
-        android:layout_toLeftOf="@id/checkbox"
         android:layout_alignWithParentIfMissing="true"
         android:ellipsize="marquee"
         android:textColor="#000000"/>
+    <!--android:layout_toLeftOf="@id/checkbox"-->
 
 
     <TextView android:id="@+id/date"
@@ -54,7 +54,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="?android:attr/textColorSecondary"
         android:singleLine="true"
-        android:layout_alignBottom="@id/contact_photo_frame"        
+        android:layout_alignBottom="@id/contact_photo_frame"
         android:layout_alignParentRight="true"/>
 
     <ImageView android:id="@+id/error"
