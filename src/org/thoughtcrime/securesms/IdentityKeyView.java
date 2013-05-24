@@ -17,9 +17,12 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,7 +40,10 @@ public class IdentityKeyView extends RelativeLayout
     implements Recipient.RecipientModifiedListener
 {
 
-  private TextView identityName;
+  private TextView          identityName;
+  private TextView          fingerprint;
+  private QuickContactBadge contactBadge;
+  private ImageView         contactImage;
 
   private Recipients  recipients;
   private IdentityKey identityKey;
@@ -46,15 +52,26 @@ public class IdentityKeyView extends RelativeLayout
 
   public IdentityKeyView(Context context) {
     super(context);
-
-    LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    li.inflate(R.layout.identity_key_view, this, true);
-
-    initializeResources();
   }
 
   public IdentityKeyView(Context context, AttributeSet attributeSet) {
     super(context, attributeSet);
+  }
+
+  @Override
+  public void onFinishInflate() {
+    this.identityName = (TextView)findViewById(R.id.identity_name);
+    this.fingerprint  = (TextView)findViewById(R.id.fingerprint);
+    this.contactBadge = (QuickContactBadge)findViewById(R.id.contact_photo_badge);
+    this.contactImage = (ImageView)findViewById(R.id.contact_photo_image);
+
+    if (isBadgeEnabled()) {
+      this.contactBadge.setVisibility(View.VISIBLE);
+      this.contactImage.setVisibility(View.GONE);
+    } else {
+      this.contactBadge.setVisibility(View.GONE);
+      this.contactImage.setVisibility(View.VISIBLE);
+    }
   }
 
   public void set(IdentityDatabase.Identity identity) {
@@ -64,14 +81,19 @@ public class IdentityKeyView extends RelativeLayout
     this.recipients.addListener(this);
 
     identityName.setText(recipients.toShortString());
+    fingerprint.setText(identity.getIdentityKey().getFingerprint());
+
+    contactBadge.setImageBitmap(recipients.getPrimaryRecipient().getContactPhoto());
+    contactBadge.assignContactFromPhone(recipients.getPrimaryRecipient().getNumber(), true);
+    contactImage.setImageBitmap(recipients.getPrimaryRecipient().getContactPhoto());
   }
 
   public IdentityKey getIdentityKey() {
     return this.identityKey;
   }
 
-  private void initializeResources() {
-    this.identityName = (TextView)findViewById(R.id.identity_name);
+  private boolean isBadgeEnabled() {
+    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
   }
 
   @Override

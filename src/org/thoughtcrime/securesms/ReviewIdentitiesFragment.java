@@ -66,10 +66,12 @@ public class ReviewIdentitiesFragment extends SherlockListFragment
 
   private class IdentitiesListAdapter extends CursorAdapter {
     private final MasterSecret masterSecret;
+    private final LayoutInflater inflater;
 
     public IdentitiesListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
       super(context, cursor);
       this.masterSecret = masterSecret;
+      this.inflater     = LayoutInflater.from(context);
     }
 
     @Override
@@ -82,9 +84,7 @@ public class ReviewIdentitiesFragment extends SherlockListFragment
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      IdentityKeyView identityKeyView = new IdentityKeyView(context);
-      bindView(identityKeyView, context, cursor);
-      return identityKeyView;
+      return inflater.inflate(R.layout.identity_key_view, parent, false);
     }
   }
 }

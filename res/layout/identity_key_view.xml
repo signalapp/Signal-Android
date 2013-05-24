@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.IdentityKeyView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:orientation="horizontal"
-    android:padding="15dip">
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingRight="10dip">
+
+    <FrameLayout android:id="@+id/contact_photo_frame"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerVertical="true"
+                 android:layout_alignParentLeft="true"
+                 android:visibility="visible">
+        <QuickContactBadge android:id="@+id/contact_photo_badge"
+                           style="?android:attr/quickContactBadgeStyleWindowLarge"
+                           android:visibility="gone" />
+
+        <ImageView android:id="@+id/contact_photo_image"
+                   android:layout_width="60dp"
+                   android:layout_height="60dp"
+                   android:cropToPadding="true"
+                   android:scaleType="centerCrop"
+                   android:visibility="gone" />
+    </FrameLayout>
 
     <TextView android:id="@+id/identity_name"
               android:layout_width="wrap_content"
@@ -13,8 +30,22 @@
               android:layout_marginTop="6dip"
               android:layout_marginRight="5dip"
               android:layout_marginLeft="5dip"
+              android:layout_alignTop="@id/contact_photo_frame"
+              android:layout_toRightOf="@id/contact_photo_frame"
+              android:layout_alignWithParentIfMissing="true"
               android:ellipsize="marquee"
-              android:layout_alignParentLeft="true"
-              android:layout_centerVertical="true" />
+              android:textColor="#000000"/>
+
+    <TextView android:id="@+id/fingerprint"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:singleLine="true"
+              android:layout_marginBottom="10dip"
+              android:layout_marginLeft="5dip"
+              android:layout_alignBottom="@id/contact_photo_frame"
+              android:layout_toRightOf="@id/contact_photo_frame"
+              android:layout_toLeftOf="@id/date"
+              android:ellipsize="end" />
 
 </org.thoughtcrime.securesms.IdentityKeyView>
