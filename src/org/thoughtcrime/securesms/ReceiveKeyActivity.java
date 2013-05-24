@@ -84,7 +84,16 @@ public class ReceiveKeyActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private void initializeText() {
-    SpannableString spannableString = new SpannableString(descriptionText.getText() + " " +
+    if (keyExchangeProcessor.isTrusted(keyExchangeMessage)) initializeTrustedText();
+    else                                                    initializeUntrustedText();
+  }
+
+  private void initializeTrustedText() {
+    descriptionText.setText(getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but));
+  }
+
+  private void initializeUntrustedText() {
+    SpannableString spannableString = new SpannableString(getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different) + " " +
                                                           getString(R.string.ReceiveKeyActivity_you_may_wish_to_verify_this_contact));
     spannableString.setSpan(new ClickableSpan() {
       @Override
@@ -94,7 +103,8 @@ public class ReceiveKeyActivity extends PassphraseRequiredSherlockActivity {
         intent.putExtra("master_secret", masterSecret);
         startActivity(intent);
       }
-    }, descriptionText.getText().length()+1, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }, getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different).length() +1,
+       spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     descriptionText.setText(spannableString);
     descriptionText.setMovementMethod(LinkMovementMethod.getInstance());

@@ -21,8 +21,7 @@
                       android:id="@+id/description_text"
                       android:layout_width="fill_parent"
                       android:layout_marginBottom="16dip"
-                      android:layout_marginTop="16dip"
-                      android:text="@string/receive_key_activity__the_signature_on_this_key_exchange_is_different"/>
+                      android:layout_marginTop="16dip"/>
 
             <LinearLayout android:layout_height="wrap_content"
                           android:layout_width="match_parent"

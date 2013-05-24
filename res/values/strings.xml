@@ -140,7 +140,20 @@
     <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">You have received a Key Exchange message from %s.  You have previously initiated a session with this contact, and by accepting this key you will complete the key exchange.  Would you like to complete this key exchange?</string>
     <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">You have initiated a Key Exchange message with %s but have not yet received a reply.</string>
     <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">You have received a Key Exchange message from %s.  You have no existing session with this contact, would you like to complete this key exchange?</string>
-    
+    <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">The
+        signature on this key exchange is different than what you\'ve previously received from this
+        contact. This could either mean that someone is trying to intercept your communication, or
+        that this contact simply re-installed TextSecure and now has a new identity key.
+    </string>
+    <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">You may wish to verify
+        this contact.
+    </string>
+    <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">The
+        signature on this key exchange is trusted, but you have the \'automatically complete key
+        exchanges\' setting disabled.
+    </string>
+
+
     <!-- ReviewIdentitiesActivity -->
     <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Unable to view corrupted identity key!</string>
     <string name="ReviewIdentitiesActivity_delete_identity">Delete identity?</string>
@@ -317,11 +330,6 @@
     <string name="receive_key_activity__session">Session</string>
     <string name="receive_key_activity__identities">Identities</string>
     <string name="receive_key_activity__complete">Complete</string>
-    <string name="receive_key_activity__the_signature_on_this_key_exchange_is_different">The
-        signature on this key exchange is different than what you\'ve previously received from this
-        contact. This could either mean that someone is trying to intercept your communication, or
-        that this contact simply re-installed TextSecure and now has a new identity key.
-    </string>
 
     <!-- recipients_panel -->
     <string name="recipients_panel__to">To</string>
@@ -512,11 +520,6 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
-    <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">You may wish to verify
-        this contact.
-    </string>
-
-    <!-- Misc. piggybacking -->
 
     <!-- EOF -->
 
