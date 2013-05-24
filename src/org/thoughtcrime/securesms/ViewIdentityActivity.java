@@ -17,8 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.IdentityKey;
@@ -30,18 +28,16 @@ import org.thoughtcrime.securesms.crypto.IdentityKey;
  */
 public class ViewIdentityActivity extends KeyScanningActivity {
 
-  private TextView identityFingerprint;
-  private Button compareButton;
-  private Button okButton;
+  private TextView    identityFingerprint;
   private IdentityKey identityKey;
 
   @Override
   public void onCreate(Bundle state) {
     super.onCreate(state);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.view_identity_activity);
 
     initializeResources();
-    initializeListeners();
     initializeFingerprint();
   }
 
@@ -53,27 +49,13 @@ public class ViewIdentityActivity extends KeyScanningActivity {
     }
   }
 
-  private void initializeListeners() {
-    this.okButton.setOnClickListener(new OkButtonListener());
-    this.compareButton.setOnClickListener(new CompareListener());
-  }
-
   private void initializeResources() {
     this.identityKey         = (IdentityKey)getIntent().getParcelableExtra("identity_key");
     this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
-    this.okButton	           = (Button)findViewById(R.id.ok_button);
-    this.compareButton       = (Button)findViewById(R.id.compare_button);
-  }
+    String title             = getIntent().getStringExtra("title");
 
-  private class CompareListener implements View.OnClickListener {
-    public void onClick(View v) {
-      initiateDisplay();
-    }
-  }
-
-  private class OkButtonListener implements View.OnClickListener {
-    public void onClick(View v) {
-      finish();
+    if (title != null) {
+      getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
     }
   }
 

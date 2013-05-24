@@ -118,7 +118,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ViewIdentityActivity"
-              android:theme="@style/Theme.Sherlock.Light.Dialog"
               android:label="@string/AndroidManifest__public_identity_key"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -135,12 +134,6 @@
               android:label="@string/AndroidManifest__verify_identity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".SaveIdentityActivity"
-              android:theme="@style/Theme.Sherlock.Light.Dialog"
-              android:label="@string/AndroidManifest__save_identity"
-              android:windowSoftInputMode="stateVisible"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".ReviewIdentitiesActivity"
               android:label="@string/AndroidManifest__manage_identity_keys"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -151,11 +144,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     
     <activity android:name=".ApplicationPreferencesActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".VerifyImportedIdentityActivity" 
-              android:theme="@style/Theme.Sherlock.Light.Dialog" 
-              android:label="@string/AndroidManifest__verify_imported_identity" 
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".RegistrationActivity"

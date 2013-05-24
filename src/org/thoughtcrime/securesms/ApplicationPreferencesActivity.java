@@ -118,7 +118,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   @Override
   public void onDestroy() {
-    MemoryCleaner.clean((MasterSecret)getIntent().getParcelableExtra("master_secret"));
+    MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra("master_secret"));
     super.onDestroy();
   }
 
@@ -157,7 +157,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
       @Override
       public boolean onPreferenceChange(Preference pref, Object newValue) {
-        preference.setSummary(newValue == null ? "Not set" : ((String)newValue));
+        preference.setSummary(newValue == null ? "Not set" : ((String) newValue));
         return true;
       }
     });
@@ -218,6 +218,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     public boolean onPreferenceClick(Preference preference) {
       Intent viewIdentityIntent = new Intent(ApplicationPreferencesActivity.this, ViewIdentityActivity.class);
       viewIdentityIntent.putExtra("identity_key", IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
+      viewIdentityIntent.putExtra("title", getString(R.string.ApplicationPreferencesActivity_my) + " " +
+                                           getString(R.string.ViewIdentityActivity_identity_fingerprint));
       startActivity(viewIdentityIntent);
 
       return true;

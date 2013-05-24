@@ -41,6 +41,8 @@ public class ReviewIdentitiesFragment extends SherlockListFragment
   public void onListItemClick(ListView listView, View view, int position, long id) {
     Intent viewIntent = new Intent(getActivity(), ViewIdentityActivity.class);
     viewIntent.putExtra("identity_key", ((IdentityKeyView)view).getIdentityKey());
+    viewIntent.putExtra("title", ((IdentityKeyView)view).getRecipient().toShortString() + " " +
+                                 getString(R.string.ViewIdentityActivity_identity_fingerprint));
     startActivity(viewIntent);
   }
 

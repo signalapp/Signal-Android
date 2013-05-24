@@ -92,6 +92,10 @@ public class IdentityKeyView extends RelativeLayout
     return this.identityKey;
   }
 
+  public Recipient getRecipient() {
+    return this.recipients.getPrimaryRecipient();
+  }
+
   private boolean isBadgeEnabled() {
     return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
   }
