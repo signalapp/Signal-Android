@@ -30,12 +30,12 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.thoughtcrime.securesms.service.MmscProcessor;
 import org.thoughtcrime.securesms.util.Util;
 
-import ws.com.google.android.mms.pdu.PduParser;
-import ws.com.google.android.mms.pdu.SendConf;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import ws.com.google.android.mms.pdu.PduParser;
+import ws.com.google.android.mms.pdu.SendConf;
 
 public class MmsSendHelper extends MmsCommunication {
 

@@ -90,7 +90,8 @@ public class KeyExchangeMessage {
       this.serialized       = messageBody;
 			
       if (messageVersion > Message.SUPPORTED_VERSION)
-        throw new InvalidVersionException("Key exchange with version: " + messageVersion + " but we only support: " + Message.SUPPORTED_VERSION);
+        throw new InvalidVersionException("Key exchange with version: " + messageVersion +
+                                          " but we only support: " + Message.SUPPORTED_VERSION);
 				
       if (messageVersion >= 1)
         keyBytes = Base64.decodeWithoutPadding(messageBody);

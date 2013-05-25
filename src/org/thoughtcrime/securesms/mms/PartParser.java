@@ -19,8 +19,12 @@ public class PartParser {
         String partText;
 
         try {
-          partText = new String(body.getPart(i).getData(),
-                                CharacterSets.getMimeName(body.getPart(i).getCharset()));
+          String characterSet = CharacterSets.getMimeName(body.getPart(i).getCharset());
+
+          if (characterSet.equals(CharacterSets.MIMENAME_ANY_CHARSET))
+            characterSet = CharacterSets.MIMENAME_ISO_8859_1;
+
+          partText = new String(body.getPart(i).getData(), characterSet);
         } catch (UnsupportedEncodingException e) {
           Log.w("PartParser", e);
           partText = "Unsupported Encoding!";

@@ -190,7 +190,21 @@ public class DecryptingQueue {
         synchronized (SessionCipher.CIPHER_LOCK) {
           Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
           SessionCipher cipher = new SessionCipher(context, masterSecret, recipient, new TextTransport());
-          plaintextPduBytes    = cipher.decryptMessage(ciphertextPduBytes);
+          try {
+            plaintextPduBytes = cipher.decryptMessage(ciphertextPduBytes);
+          } catch (InvalidMessageException ime) {
+            // XXX - For some reason, Sprint seems to append a single character to the
+            // end of message text segments.  I don't know why, so here we just try
+            // truncating the message by one if the MAC fails.
+            if (ciphertextPduBytes.length > 2) {
+              Log.w("DecryptingQueue", "Attempting truncated decrypt...");
+              byte[] truncated = new byte[ciphertextPduBytes.length - 1];
+              System.arraycopy(ciphertextPduBytes, 0, truncated, 0, truncated.length);
+              plaintextPduBytes = cipher.decryptMessage(truncated);
+            } else {
+              throw ime;
+            }
+          }
         }
 
         MultimediaMessagePdu plaintextGenericPdu = (MultimediaMessagePdu)new PduParser(plaintextPduBytes).parse();

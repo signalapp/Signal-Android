@@ -209,20 +209,21 @@ public class MmsSender extends MmscProcessor {
     EncodedStringValue[] encodedRecipient = pdu.getTo();
     String recipient                      = encodedRecipient[0].getString();
     byte[] pduBytes                       = new PduComposer(context, pdu).make();
-    byte[] encryptedPdu                   = getEncryptedPdu(masterSecret, recipient, pduBytes);
-    Log.w("MmsSendeR", "Got encrypted bytes: " + encryptedPdu.length);
-    PduBody body                          = new PduBody();
-    PduPart part                          = new PduPart();
+    byte[] encryptedPduBytes              = getEncryptedPdu(masterSecret, recipient, pduBytes);
+
+    PduBody body         = new PduBody();
+    PduPart part         = new PduPart();
+    SendReq encryptedPdu = new SendReq(pdu.getPduHeaders(), body);
 
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setContentType(ContentType.TEXT_PLAIN.getBytes());
     part.setName((System.currentTimeMillis()+"").getBytes());
-    part.setData(encryptedPdu);
+    part.setData(encryptedPduBytes);
     body.addPart(part);
-    pdu.setSubject(new EncodedStringValue(WirePrefix.calculateEncryptedMmsSubject()));
-    pdu.setBody(body);
+    encryptedPdu.setSubject(new EncodedStringValue(WirePrefix.calculateEncryptedMmsSubject()));
+    encryptedPdu.setBody(body);
 
-    return pdu;
+    return encryptedPdu;
   }
 
   private void scheduleSendWithMmsRadioAndProxy(SendItem item) {
