@@ -7,7 +7,7 @@
     
     <!-- ApplicationExportManager -->
     <string name="ApplicationExportManager_import_database_and_settings_title">Import Database and Settings?</string>
-    <string name="ApplicationExportManager_import_database_and_settings_message">Import TextSecure database, keys, and settings from the SD Card?\n\nWARNING: This will clobber any existing messages, keys, and  settings!</string>
+    <string name="ApplicationExportManager_import_database_and_settings_message">Import TextSecure database, keys, and settings from the SD Card?\n\nWARNING: This will clobber any existing messages, keys, and settings!</string>
     <string name="ApplicationExportManager_importing_database_and_keys">Importing Database and Keys</string>
     <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Importing your SMS database, keys, and settings...</string>
     <string name="ApplicationExportManager_export_database_question">Export Database?</string>
@@ -51,7 +51,7 @@
     <string name="ConversationItem_saving_attachment">Saving Attachment</string>
     <string name="ConversationItem_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
     <string name="ConversationItem_save_to_sd_card">Save to SD Card?</string>
-    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted, would you like to continue?</string>
+    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted. Would you like to continue?</string>
     <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
     <string name="ConversationItem_success_exclamation">Success!</string>
     <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Unable to write to SD Card!</string>
@@ -130,8 +130,8 @@
     <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">You can modify these values from the TextSecure settings menu at any time.</string>    
     
     <!-- ReceiveKeyActivity -->
-    <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERROR:\n\nYou have received a corrupted public key.  This key can not be processed, please re-initiate a secure session.</string>
-    <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERROR:\n\nYou have received a public key from an unsupported version of the protocol.  This key can not be processed, please re-initiate a secure session.</string>
+    <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERROR:\n\nYou have received a corrupted public key.  This key cannot be processed, please re-initiate a secure session.</string>
+    <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERROR:\n\nYou have received a public key from an unsupported version of the protocol.  This key cannot be processed, please re-initiate a secure session.</string>
     <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">This key exchange message does not include an identity signature.</string>
     <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">This key exchange message includes an identity signature, but you do not yet trust it.</string>
     <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">This key exchange message includes an identity signature which you trust for: %s</string>
