@@ -1,6 +1,12 @@
 package org.thoughtcrime.securesms.notifications;
 
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
+
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -36,4 +42,26 @@ public class NotificationState {
     return notifications.get(0).getIndividualRecipient().getContactPhoto();
   }
 
+  public PendingIntent getMarkAsReadIntent(Context context, MasterSecret masterSecret) {
+    long[] threadArray = new long[threads.size()];
+    int index          = 0;
+
+    for (long thread : threads) {
+      Log.w("NotificationState", "Added thread: " + thread);
+      threadArray[index++] = thread;
+    }
+
+    Intent intent = new Intent(MarkReadReceiver.CLEAR_ACTION);
+    intent.putExtra("thread_ids", threadArray);
+    intent.putExtra("master_secret", masterSecret);
+    intent.setPackage(context.getPackageName());
+
+    // XXX : This is an Android bug.  If we don't pull off the extra
+    // once before handing off the PendingIntent, the array will be
+    // truncated to one element when the PendingIntent fires.  Thanks guys!
+    Log.w("NotificationState", "Pending array off intent length: " +
+        intent.getLongArrayExtra("thread_ids").length);
+
+    return PendingIntent.getBroadcast(context, 0, intent, 0);
+  }
 }

@@ -259,8 +259,10 @@
     <string name="MessageNotifier_no_subject">(No Subject)</string>
     <string name="MessageNotifier_message_delivery_failed">Message delivery failed.</string>
     <string name="MessageNotifier_failed_to_deliver_message">Failed to deliver message.</string>
-    <string name="MessageNotifier_error_delivering_message">Error delivering message.</string>    
-    
+    <string name="MessageNotifier_error_delivering_message">Error delivering message.</string>
+    <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
+    <string name="MessageNotifier_mark_as_read">Mark as read</string>
+
     <!-- SmsReceiver -->
     <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Currently unable to send your SMS message. It will be sent once service becomes available.</string>
     

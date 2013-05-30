@@ -204,6 +204,14 @@
               </intent-filter>              
     </receiver>
 
+    <receiver android:name=".notifications.MarkReadReceiver"
+              android:enabled="true"
+              android:exported="true">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.notifications.CLEAR"></action>
+        </intent-filter>
+    </receiver>
+
     <provider android:name=".providers.PartProvider" 
               android:authorities="org.thoughtcrime.provider.securesms" />
 

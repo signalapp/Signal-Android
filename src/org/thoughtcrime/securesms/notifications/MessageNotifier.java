@@ -136,9 +136,9 @@ public class MessageNotifier {
       NotificationState notificationState = constructNotificationState(context, masterSecret, cursor);
 
       if (notificationState.hasMultipleThreads()) {
-        sendMultipleThreadNotification(context, notificationState, signal);
+        sendMultipleThreadNotification(context, masterSecret, notificationState, signal);
       } else {
-        sendSingleThreadNotification(context, notificationState, signal);
+        sendSingleThreadNotification(context, masterSecret, notificationState, signal);
       }
     } finally {
       if (cursor != null)
@@ -147,6 +147,7 @@ public class MessageNotifier {
   }
 
   private static void sendSingleThreadNotification(Context context,
+                                                   MasterSecret masterSecret,
                                                    NotificationState notificationState,
                                                    boolean signal)
   {
@@ -159,6 +160,11 @@ public class MessageNotifier {
     builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
+
+    if (masterSecret != null) {
+      builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
+                        notificationState.getMarkAsReadIntent(context, masterSecret));
+    }
 
     SpannableStringBuilder content = new SpannableStringBuilder();
 
@@ -180,6 +186,7 @@ public class MessageNotifier {
   }
 
   private static void sendMultipleThreadNotification(Context context,
+                                                     MasterSecret masterSecret,
                                                      NotificationState notificationState,
                                                      boolean signal)
   {
@@ -194,6 +201,11 @@ public class MessageNotifier {
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
                                          notifications.get(0).getIndividualRecipientName()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
+
+    if (masterSecret != null) {
+      builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read),
+                        notificationState.getMarkAsReadIntent(context, masterSecret));
+    }
 
     InboxStyle style = new InboxStyle();
 
