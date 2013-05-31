@@ -84,7 +84,7 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
   private void handleSelectionFinished() {
     recipients = contactsFragment.getSelectedContacts();
     recipients.append(recentFragment.getSelectedContacts());
-    recipients.append(groupsFragment.getSelectedContacts());
+    recipients.append(groupsFragment.getSelectedContacts(this));
 
     Intent resultIntent = getIntent();
     resultIntent.putExtra("recipients", this.recipients);
