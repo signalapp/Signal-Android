@@ -647,7 +647,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     cvb.add(DELIVERY_TIME, headers.getLongInteger(PduHeaders.DELIVERY_TIME));
     cvb.add(EXPIRY, headers.getLongInteger(PduHeaders.EXPIRY));
     cvb.add(MESSAGE_SIZE, headers.getLongInteger(PduHeaders.MESSAGE_SIZE));
-    cvb.add(ADDRESS, headers.getEncodedStringValue(PduHeaders.FROM).getTextString());
+
+    if (headers.getEncodedStringValue(PduHeaders.FROM) != null)
+      cvb.add(ADDRESS, headers.getEncodedStringValue(PduHeaders.FROM).getTextString());
+    else
+      cvb.add(ADDRESS, null);
 
     return cvb.getContentValues();
   }
