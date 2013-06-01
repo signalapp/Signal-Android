@@ -300,6 +300,12 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void handleStartSecureSession() {
+    if (getRecipients() == null) {
+      Toast.makeText(this, getString(R.string.ConversationActivity_invalid_recipient),
+                     Toast.LENGTH_LONG).show();
+      return;
+    }
+
     final Recipient recipient   = getRecipients().getPrimaryRecipient();
     String recipientName        = (recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     AlertDialog.Builder builder = new AlertDialog.Builder(this);

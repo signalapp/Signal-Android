@@ -81,6 +81,7 @@
     <string name="ConversationActivity_group_conversation">Group Conversation</string>
     <string name="ConversationActivity_d_recipients_in_group">%d recipients in group</string>    
     <string name="ConversationActivity_saving_draft">Saving draft...</string>
+    <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
     
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
