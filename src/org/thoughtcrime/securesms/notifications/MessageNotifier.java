@@ -21,6 +21,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -50,7 +51,11 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Handles posting system notifications for new messages.
@@ -117,6 +122,12 @@ public class MessageNotifier {
       DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       sendInThreadNotification(context);
     } else {
+      if (PreferenceManager.getDefaultSharedPreferences(context)
+              .getBoolean(ApplicationPreferencesActivity.PEBBLE_NOTIFICATION_PREF, false))
+      {
+          sendPebbleNotification(context, masterSecret, threadId);
+      }
+
       updateNotification(context, masterSecret, true);
     }
   }
@@ -144,6 +155,65 @@ public class MessageNotifier {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  // Code taken from PebbleKit
+  public static boolean isWatchConnected(final Context context) {
+      Cursor c = context.getContentResolver().query(Uri.parse("content://com.getpebble.android.provider/state"),
+              null, null, null, null);
+      if (c == null || !c.moveToNext()) {
+          return false;
+      }
+      return c.getInt(0) == 1;
+  }
+
+  public static void sendPebbleNotification(Context context, MasterSecret masterSecret, long threadId) {
+      // Check that pebble app is installed and a watch is connected
+      if(!isWatchConnected(context)) return;
+
+      Cursor cursor = null;
+
+      try {
+        cursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
+
+        if (cursor == null || cursor.isAfterLast()) return;
+
+        NotificationState notificationState = constructNotificationState(context, masterSecret, cursor);
+
+        List<NotificationItem>notifications = notificationState.getNotifications();
+
+        NotificationItem notification = null;
+        long latestDateReceived = 0;
+
+        // There must be a better way to do this...
+        for(NotificationItem curNotification : notifications) {
+          if(curNotification.getThreadId() == threadId && curNotification.getDateReceived() > latestDateReceived) {
+              latestDateReceived = curNotification.getDateReceived();
+              notification = curNotification;
+          }
+        }
+
+        if(notification == null) return;
+
+        final HashMap data = new HashMap();
+        data.put("title", notification.getIndividualRecipientName());
+        data.put("body", notification.getText());
+        JSONObject jsonData = new JSONObject(data);
+        String notificationData = new JSONArray().put(jsonData).toString();
+
+        final Intent i = new Intent("com.getpebble.action.SEND_NOTIFICATION");
+
+        i.putExtra("messageType", "PEBBLE_ALERT");
+        i.putExtra("sender", context.getResources().getString(R.string.app_name));
+        i.putExtra("notificationData", notificationData);
+
+        context.sendBroadcast(i);
+
+        Log.i("MessageNotifier", "Pebble notification sent.");
+      } finally {
+          if (cursor != null)
+              cursor.close();
+      }
   }
 
   private static void sendSingleThreadNotification(Context context,
@@ -276,6 +346,7 @@ public class MessageNotifier {
       long         threadId = record.getThreadId();
       SpannableString body  = record.getDisplayBody();
       Uri          image    = null;
+      long dateReceived     = record.getDateReceived();
 
       // XXXX This is so fucked up.  FIX ME!
       if (body.toString().equals(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait))) {
@@ -283,7 +354,7 @@ public class MessageNotifier {
         body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
 
-      notificationState.addNotification(new NotificationItem(recipient, recipients, threadId, body, image));
+      notificationState.addNotification(new NotificationItem(recipient, recipients, threadId, body, image, dateReceived));
     }
 
     reader.close();

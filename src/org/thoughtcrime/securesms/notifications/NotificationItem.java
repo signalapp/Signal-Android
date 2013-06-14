@@ -18,15 +18,17 @@ public class NotificationItem {
   private final long         threadId;
   private final CharSequence text;
   private final Uri          image;
+  private final long         dateReceived;
 
   public NotificationItem(Recipient individualRecipient, Recipients recipients, long threadId,
-                          CharSequence text, Uri image)
+                          CharSequence text, Uri image, long dateReceived)
   {
     this.individualRecipient = individualRecipient;
     this.recipients          = recipients;
     this.text                = text;
     this.image               = image;
     this.threadId            = threadId;
+    this.dateReceived        = dateReceived;
   }
 
   public Recipient getIndividualRecipient() {
@@ -51,6 +53,10 @@ public class NotificationItem {
 
   public long getThreadId() {
     return threadId;
+  }
+
+  public long getDateReceived() {
+      return dateReceived;
   }
 
   public CharSequence getBigStyleSummary() {

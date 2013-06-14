@@ -60,6 +60,12 @@
                             android:defaultValue="true"
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
+
+        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
+                            android:key="pref_pebble_notifications"
+                            android:defaultValue="false"
+                            android:title="@string/preferences__pebble_notifications"
+                            android:summary="@string/preferences__display_message_notifications_on_your_pebble_watch" />
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__storage">

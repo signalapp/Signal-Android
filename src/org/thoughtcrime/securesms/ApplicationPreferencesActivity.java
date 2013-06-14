@@ -21,6 +21,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -62,6 +63,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String LED_COLOR_PREF                   = "pref_led_color";
   public static final String LED_BLINK_PREF                   = "pref_led_blink";
   public static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
+  public static final String PEBBLE_NOTIFICATION_PREF         = "pref_pebble_notifications";
   public static final String IDENTITY_PREF                    = "pref_choose_identity";
   public static final String ALL_MMS_PERF                     = "pref_all_mms";
   public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
@@ -103,6 +105,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     initializeIdentitySelection();
     initializeEditTextSummaries();
+    initializePebbleNotificationSupport();
 
     this.findPreference(VIEW_MY_IDENTITY_PREF)
       .setOnPreferenceClickListener(new ViewMyIdentityClickListener());
@@ -188,6 +191,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       this.findPreference(IDENTITY_PREF)
         .setOnPreferenceClickListener(new IdentityPreferenceClickListener());
     }
+  }
+
+  private void initializePebbleNotificationSupport()
+  {
+      Cursor c = getContentResolver().query(Uri.parse("content://com.getpebble.android.provider/state"),
+              null, null, null, null);
+      if (c == null || !c.moveToNext()) {
+          this.findPreference(PEBBLE_NOTIFICATION_PREF).setEnabled(false);
+      }
   }
 
   private void handleIdentitySelection(Intent data) {
