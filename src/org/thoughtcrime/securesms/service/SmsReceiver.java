@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.PebbleNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
@@ -139,6 +140,8 @@ public class SmsReceiver {
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
       MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      if(!message.isSecureMessage() && !message.isKeyExchange())
+          PebbleNotifier.sendSmsNotification(context, masterSecret, messageAndThreadId.first, messageAndThreadId.second);
     }
   }
 

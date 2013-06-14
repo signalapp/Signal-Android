@@ -22,7 +22,8 @@
                           android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
                           android:title="@string/preferences__pref_enter_sends_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences__notifications">
+    <PreferenceCategory android:key="pref_notifications_category"
+                        android:title="@string/preferences__notifications">
         <CheckBoxPreference android:key="pref_key_enable_notifications"
                             android:title="@string/preferences__notifications"
                             android:summary="@string/preferences__display_message_notifications_in_status_bar"

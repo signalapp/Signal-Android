@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.notifications.PebbleNotifier;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Trimmer;
@@ -70,6 +72,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
 
+  private static final String NOTIFICATION_CATEGORY_PREF   = "pref_notifications_category";
   private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
 
   private static final String VIEW_MY_IDENTITY_PREF        = "pref_view_identity";
@@ -195,10 +198,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private void initializePebbleNotificationSupport()
   {
-      Cursor c = getContentResolver().query(Uri.parse("content://com.getpebble.android.provider/state"),
-              null, null, null, null);
-      if (c == null || !c.moveToNext()) {
-          this.findPreference(PEBBLE_NOTIFICATION_PREF).setEnabled(false);
+      if (!PebbleNotifier.isPebbleAppInstalled(this)) {
+          Preference pebble_pref = this.findPreference(PEBBLE_NOTIFICATION_PREF);
+          ((PreferenceCategory)this.findPreference(NOTIFICATION_CATEGORY_PREF)).removePreference(pebble_pref);
       }
   }
 
