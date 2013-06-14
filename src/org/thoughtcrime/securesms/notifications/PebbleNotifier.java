@@ -36,7 +36,7 @@ public class PebbleNotifier {
 
         MessageRecord record;
         if((record = findMessage(context, masterSecret, messageId, threadId, isMms)) != null)
-            sendNotification(context, record.getIndividualRecipient().toShortString(), record.getBody().getBody());
+            sendNotification(context, record.getIndividualRecipient().toShortString(), record.getDisplayBody().toString());
     }
 
     private static MessageRecord findMessage(Context context, MasterSecret masterSecret, long messageId, long threadId, boolean isMms) {
