@@ -47,15 +47,13 @@
                           android:entryValues="@array/pref_led_blink_pattern_values"
                           android:dialogTitle="@string/preferences__pref_led_blink_dialogtitle" />
 
-
-        <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
-                            android:dependency="pref_key_enable_notifications"
+        <RingtonePreference android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_ringtone"
                             android:title="@string/preferences__select_ringtone"
                             android:ringtoneType="notification"
                             android:defaultValue="content://settings/system/notification_sound" />
-        <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
-                            android:dependency="pref_key_enable_notifications"
+
+        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_vibrate"
                             android:defaultValue="true"
                             android:title="@string/preferences__vibrate"
