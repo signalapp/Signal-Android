@@ -21,7 +21,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -35,12 +34,10 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.PebbleNotifier;
-import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Trimmer;
 
@@ -196,12 +193,11 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
-  private void initializePebbleNotificationSupport()
-  {
-      if (!PebbleNotifier.isPebbleAppInstalled(this)) {
-          Preference pebble_pref = this.findPreference(PEBBLE_NOTIFICATION_PREF);
-          ((PreferenceCategory)this.findPreference(NOTIFICATION_CATEGORY_PREF)).removePreference(pebble_pref);
-      }
+  private void initializePebbleNotificationSupport() {
+    if (!PebbleNotifier.isPebbleAppInstalled(this)) {
+      Preference pebble_pref = this.findPreference(PEBBLE_NOTIFICATION_PREF);
+      ((PreferenceCategory)this.findPreference(NOTIFICATION_CATEGORY_PREF)).removePreference(pebble_pref);
+    }
   }
 
   private void handleIdentitySelection(Intent data) {
