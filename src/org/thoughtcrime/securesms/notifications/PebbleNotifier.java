@@ -34,7 +34,10 @@ import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * Handles sending notifications to Pebble watches.
@@ -44,8 +47,22 @@ import java.util.HashMap;
  */
 public class PebbleNotifier {
 
+  private static Set<Long> suppressedSmsIds;
+
+  static {
+    suppressedSmsIds = Collections.synchronizedSet(new HashSet<Long>());
+  }
+
+  public static void suppressNotificationForSms(long messageId) {
+    suppressedSmsIds.add(messageId);
+  }
+
   public static void sendSmsNotification(Context context, MasterSecret masterSecret, long messageId) {
     if(!isPebbleNotificationEnabled(context)) return;
+    if(suppressedSmsIds.contains(messageId)) {
+      suppressedSmsIds.remove(messageId);
+      return;
+    }
 
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
     EncryptingSmsDatabase.Reader reader = database.getMessage(masterSecret, messageId);
@@ -90,7 +107,7 @@ public class PebbleNotifier {
     // Check that pebble app is installed and a watch is connected
     if(!isPebbleConnected(context) || !isPebbleNotificationEnabled(context)) return;
 
-    final HashMap data = new HashMap();
+    final HashMap<String, String> data = new HashMap<String, String>();
     data.put("title", title);
     data.put("body", body);
     JSONObject jsonData = new JSONObject(data);

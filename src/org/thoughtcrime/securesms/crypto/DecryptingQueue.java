@@ -133,6 +133,8 @@ public class DecryptingQueue {
     boolean isSecureMessage = record.isSecure();
     boolean isKeyExchange   = record.isKeyExchange();
 
+    PebbleNotifier.suppressNotificationForSms(messageId);
+
     scheduleDecryption(context, masterSecret, messageId,  threadId,
                        originator, body, isSecureMessage, isKeyExchange);
   }
