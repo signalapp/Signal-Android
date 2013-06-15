@@ -78,6 +78,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return MmsSmsColumns.Types.isSecureType(type);
   }
 
+  public boolean isDecryptInProgress() {
+    return MmsSmsColumns.Types.isDecryptInProgressType(type);
+  }
+
   @Override
   public SpannableString getDisplayBody() {
     return new SpannableString(getBody().getBody());

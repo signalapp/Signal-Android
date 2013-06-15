@@ -149,8 +149,7 @@ public class MmsDownloader extends MmscProcessor {
 
     mmsDatabase.delete(item.getMessageId());
     MessageNotifier.updateNotification(context, item.getMasterSecret(), messageAndThreadId.second);
-    if(item.getMasterSecret() == null)
-        PebbleNotifier.sendMmsNotification(context, item.getMasterSecret(), messageAndThreadId.first, messageAndThreadId.second);
+    PebbleNotifier.sendMmsNotification(context, item.getMasterSecret(), messageAndThreadId.first);
   }
 
   private void sendRetrievedAcknowledgement(DownloadItem item) {

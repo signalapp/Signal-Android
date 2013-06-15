@@ -201,7 +201,7 @@ public class DecryptingQueue {
         Log.w("DecryptingQueue", "Successfully decrypted MMS!");
         Pair<Long, Long> messageAndThreadId = database.insertSecureDecryptedMessageInbox(masterSecret, plaintextPdu, threadId);
         database.delete(messageId);
-        PebbleNotifier.sendMmsNotification(context, masterSecret, messageAndThreadId.first, messageAndThreadId.second);
+        PebbleNotifier.sendMmsNotification(context, masterSecret, messageAndThreadId.first);
       } catch (RecipientFormattingException rfe) {
         Log.w("DecryptingQueue", rfe);
         database.markAsDecryptFailed(messageId, threadId);
@@ -272,7 +272,7 @@ public class DecryptingQueue {
 
       database.updateMessageBody(masterSecret, messageId, plaintextBody);
       MessageNotifier.updateNotification(context, masterSecret);
-      PebbleNotifier.sendSmsNotification(context, masterSecret, messageId, threadId);
+      PebbleNotifier.sendSmsNotification(context, masterSecret, messageId);
     }
 
     private void handleLocalAsymmetricEncrypt() {

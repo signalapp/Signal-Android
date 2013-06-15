@@ -140,8 +140,7 @@ public class SmsReceiver {
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
       MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
-      if(!message.isSecureMessage() && !message.isKeyExchange())
-          PebbleNotifier.sendSmsNotification(context, masterSecret, messageAndThreadId.first, messageAndThreadId.second);
+      PebbleNotifier.sendSmsNotification(context, masterSecret, messageAndThreadId.first);
     }
   }
 

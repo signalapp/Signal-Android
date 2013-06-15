@@ -215,6 +215,15 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
   }
 
+  public Cursor getMessage(long messageId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    return db.query(TABLE_NAME, MMS_PROJECTION, ID_WHERE, new String[] {messageId+""}, null, null, null);
+  }
+
+  public Reader getMessage(MasterSecret masterSecret, long messageId) {
+    return readerFor(masterSecret, getMessage(messageId));
+  }
+
   public void updateResponseStatus(long messageId, int status) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     ContentValues contentValues = new ContentValues();
