@@ -54,7 +54,8 @@ public class MasterSecretUtil {
 
   public static MasterSecret changeMasterSecretPassphrase(Context context,
                                                           MasterSecret masterSecret,
-                                                          String newPassphrase)
+                                                          String newPassphrase,
+                                                          int iterations)
   {
     try {
       byte[] combinedSecrets = combineSecrets(masterSecret.getEncryptionKey().getEncoded(),
@@ -79,11 +80,11 @@ public class MasterSecretUtil {
     return masterSecret;
   }
 
-  public static MasterSecret getMasterSecret(Context context, String passphrase) throws InvalidPassphraseException {
+  public static MasterSecret getMasterSecret(Context context, String passphrase, int iterations) throws InvalidPassphraseException {
     try {
       byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret");
       byte[] encryptedMasterSecret        = verifyMac(context, encryptedAndMacdMasterSecret, passphrase);
-      byte[] combinedSecrets              = decryptWithPassphrase(context, encryptedMasterSecret, passphrase);
+      byte[] combinedSecrets              = decryptWithPassphrase(context, encryptedMasterSecret, passphrase, iterations);
       byte[] encryptionSecret             = getEncryptionSecret(combinedSecrets);
       byte[] macSecret                    = getMacSecret(combinedSecrets);
 
@@ -129,13 +130,13 @@ public class MasterSecretUtil {
     return new AsymmetricMasterSecret(publicKey, privateKey);
   }
 
-  public static MasterSecret generateMasterSecret(Context context, String passphrase) {
+  public static MasterSecret generateMasterSecret(Context context, String passphrase, int iterations) {
     try {
       byte[] encryptionSecret             = generateEncryptionSecret();
       byte[] macSecret                    = generateMacSecret();
       byte[] masterSecret                 = combineSecrets(encryptionSecret, macSecret);
 
-      encryptWithPassphraseAndSave(context, masterSecret, passphrase);
+      encryptWithPassphraseAndSave(context, masterSecret, passphrase, iterations);
 
       return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
 			      new SecretKeySpec(macSecret, "HmacSHA1"));
@@ -155,8 +156,8 @@ public class MasterSecretUtil {
     return preferences.getBoolean("passphrase_initialized", false);
   }
 
-  private static void encryptWithPassphraseAndSave(Context context, byte[] masterSecret, String passphrase) throws GeneralSecurityException {
-    byte[] encryptedMasterSecret        = encryptWithPassphrase(context, masterSecret, passphrase);
+  private static void encryptWithPassphraseAndSave(Context context, byte[] masterSecret, String passphrase, int iterations) throws GeneralSecurityException {
+    byte[] encryptedMasterSecret        = encryptWithPassphrase(context, masterSecret, passphrase, iterations);
     byte[] encryptedAndMacdMasterSecret = macWithPassphrase(context, encryptedMasterSecret, passphrase);
 
     save(context, "master_secret", encryptedAndMacdMasterSecret);
@@ -244,26 +245,26 @@ public class MasterSecretUtil {
     return skf.generateSecret(keyspec);
   }
 
-  private static Cipher getCipherFromPassphrase(String passphrase, byte[] salt, int opMode) throws GeneralSecurityException {
+  private static Cipher getCipherFromPassphrase(String passphrase, byte[] salt, int opMode, int iterations) throws GeneralSecurityException {
     SecretKey key              = getKeyFromPassphrase(passphrase, salt);
     Cipher cipher              = Cipher.getInstance(key.getAlgorithm());
-    cipher.init(opMode, key, new PBEParameterSpec(salt, 100));
+    cipher.init(opMode, key, new PBEParameterSpec(salt, iterations));
 
     return cipher;
   }
 
-  private static byte[] encryptWithPassphrase(Context context, byte[] data, String passphrase) throws NoSuchAlgorithmException, GeneralSecurityException {
+  private static byte[] encryptWithPassphrase(Context context, byte[] data, String passphrase, int iterations) throws NoSuchAlgorithmException, GeneralSecurityException {
     byte[] encryptionSalt = generateSalt();
-    Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.ENCRYPT_MODE);
+    Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.ENCRYPT_MODE, iterations);
     byte[] cipherText     = cipher.doFinal(data);
 
     save(context, "encryption_salt", encryptionSalt);
     return cipherText;
   }
 
-  private static byte[] decryptWithPassphrase(Context context, byte[] data, String passphrase) throws GeneralSecurityException, IOException {
+  private static byte[] decryptWithPassphrase(Context context, byte[] data, String passphrase, int iterations) throws GeneralSecurityException, IOException {
     byte[] encryptionSalt = retrieve(context, "encryption_salt");
-    Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.DECRYPT_MODE);
+    Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.DECRYPT_MODE, iterations);
     return cipher.doFinal(data);
   }
 
