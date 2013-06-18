@@ -33,6 +33,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">امسح كل الرسائل القديمة الآن؟</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من مسح كل الرسائل بالمحادثات وابقاء أحدث %s رسالة فقط؟</string>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
+  <string name="ApplicationPreferencesActivity_my">أنا</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">صورة</string>
   <string name="AttachmentTypeSelectorAdapter_video">فيديو</string>
@@ -73,6 +74,8 @@
   <string name="ConversationActivity_group_conversation_recipients">مستقبلي رسائل المحادثة الجماعية</string>
   <string name="ConversationActivity_group_conversation">محادثة جماعية</string>
   <string name="ConversationActivity_d_recipients_in_group">%d مشاركين في المجموعة</string>
+  <string name="ConversationActivity_saving_draft">حفظ مسودة</string>
+  <string name="ConversationActivity_invalid_recipient">جهة اتصال غير صحيحة!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">المرسل: %1$s\nالاتصال: %2$s\nارسال/استقبال: %3$s</string>
@@ -85,22 +88,33 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">حذف المحادثة؟</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">هل تريد حذف كل المحادثات المختارة نهائياَ؟</string>
+  <string name="ConversationListFragment_deleting">مسح</string>
+  <string name="ConversationListFragment_deleting_selected_threads">مسح المحادثات المختارة</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">لم يتم العثور على مفتاح!</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">لا يوجد اتصال لرسائل الوسائط المتعددة. حاول مرة أخرى لاحقاً.</string>
+  <string name="MmsDownloader_error_storing_mms">خطأ بتخزين الرسالة!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">خطأ في الاتصال مع مزود خدمة رسالة الوسائط المتعددة...</string>
   <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">رسالة الوسائط المتعددة</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارة السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
   <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match">العبارات السرية لا تتطابق</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">يجب أن تحدد كلمة سرية</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
   <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">يجب أن تحدد عنوان أو رابط لمركز رسائل الوسائط المتعددة.</string>
+  <string name="PromptApnActivity_mms_settings_updated">تم تعديل اعدادات رسائل الوسائط المتعددة</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">يمكنك تعديل هذه البيانات من اعدادات تكست سكيور بأي وقت.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">خطأ:\n\nلقد استقبلت مفتاح عام خطأ.  لا يمكن الاستمرار بهذا المفتاح، من فضلك أعد بدء قناة التشفير</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">خطأ:\n\nلقد استقبلت مفتاح عام من نوعية غير مدعومة، لا يمكن الاستمرار. من فضلك أعد بدء قناة التشفير.</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">لقد استقبلت مفتاح عام خطأ.  لا يمكن الاستمرار بهذا المفتاح، من فضلك أعد بدء قناة التشفير</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">لقد استقبلت مفتاح عام من نوعية غير مدعومة، لا يمكن الاستمرار. من فضلك أعد بدء قناة التشفير.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">رسالة تبادل المفاتيح هذه لا تحتوي على توقيع هوية الكترونية.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">رسالة تبادل المفاتيح هذه تحتوي على توقيع هوية الكترونية، لكنك لا تثق بها.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">رسالة تبادل المفاتيح هذه تحتوي على توقيع هوية الكترونية موثوق بها و تخص: %s</string>
@@ -110,6 +124,9 @@
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">لقد استقبلت رسالة تبادل مفاتيح من %s. لقد قمت مسبقاً ببدء قناة تشفير مع جهة الاتصال هذه، و بقبولك لهذا المفتاح سوف تقوم بإكمال تبادل مفاتيح التشفير. هل تود إكمال عملية تبادل المفاتيح؟</string>
   <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">لقد قمت بإرسال رسالة تبادل مفاتيح مع %s و لكنك لم تحصل على رد حتى الان.</string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">لقد استقبلت رسالة تبادل مفاتيح من %s . لا يوجد لديك قنوات تشفير حالية مع جهة الاتصال هذه، هل تريد اكمال عملية تبادل المفاتيح؟</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">المفتاح لجهة الاتصال هذه مختلف عن المرة السابقة. هذا قد يعني ان هناك محاولة لاعتراض اتصالاتك، أو ان جهة الاتصال قام\قامت بإعادة تنصيب تكست سيكيور لديهم.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">التوقيع لجهة الاتصال هذه معتمد لديك، لكنك قمت بتعطيل خاصية اكمال تبادل المفاتيح اوتوماتيكياً</string>
   <!--ReviewIdentitiesActivity-->
   <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">غير قادر على عرض مفتاح الهوية المحتوي على أخطاء!</string>
   <string name="ReviewIdentitiesActivity_delete_identity">حذف الهوية؟</string>
@@ -164,6 +181,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">المفتاح الذي تم مسحه ضوئياً متطابق!</string>
   <string name="ViewIdentityActivity_verified_exclamation">تم التحقق!</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">بصمة مفتاح الهوية</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">البدء بالاتصال رغم وجود طلب مسبق؟</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">لقد قمت بارسال طلب انشاء قناة اتصال مسبقاً لجهة الاتصال هذه، هل تريد ارسال طلب آخر؟ هذه العملية ستلغي الطلب السابق.</string>
@@ -184,14 +202,27 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">خطأ بالرسالة المشفرة...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
   <!--MmsSender-->
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">غير قادر على ارسال الرسالة حاليا.</string>
   <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد...</string>
+  <string name="ApplicationMigrationService_importing_text_messages">جاري استيراد الرسائل النصية</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">تم حفظ العبارة السرية مؤقتاً</string>
   <string name="KeyCachingService_passphrase_cached">تم حفظ العبارة السرية مؤقتاً</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) رسائل جديدة</string>
   <string name="MessageNotifier_most_recent_from_s">آخر رسالة من: %s</string>
+  <string name="MessageNotifier_key_exchange">تبادل المفاتيح</string>
+  <string name="MessageNotifier_encrypted_message">رسالة مشفرة</string>
+  <string name="MessageNotifier_corrupted_ciphertext">رسالة خاطئة</string>
+  <string name="MessageNotifier_no_subject">(من دون عنوان)</string>
+  <string name="MessageNotifier_message_delivery_failed">خطأ بإيصال الرسالة</string>
+  <string name="MessageNotifier_failed_to_deliver_message">فشل في توصيل الرسالة</string>
+  <string name="MessageNotifier_error_delivering_message">خطأ بالارسال</string>
+  <string name="MessageNotifier_mark_all_as_read">اعتبرها جميعاً رسائل مقروءة</string>
+  <string name="MessageNotifier_mark_as_read">اعتبرها مقروءة</string>
   <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">غير قادر على ارسال الرسالة حاليا. سيتم ارسالها عندما تتوفر الخدمة مرة أخرى.</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">وصلتك رسالة من شخص لديه القدرة على بدء قناة تشفير. هل تريد بدء قناة تشفير حتى يكون الاتصال سري و آمن؟</string>
   <string name="auto_initiate_activity__initiate_exchange">البدء بتبادل المفاتيح</string>
@@ -222,14 +253,30 @@
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">الرجاء اختيار عبارة سرية ليتم استخدامها بتشفير البيانات المحلية. يجب أن تكون عبارة سرية قوية و صعبة التخمين.</string>
   <string name="create_passphrase_activity__passphrase">العبارة السرية:</string>
   <string name="create_passphrase_activity__repeat">تكرار:</string>
+  <string name="create_passphrase_activity__continue">متابعة</string>
+  <string name="create_passphrase_activity__generating_secrets">جاري إنشاء الأسرار</string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">هل تود استيراد الرسائل النصية إلى قواعد بيانات تكست سيكيور المشفرة؟</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>
+  <string name="database_migration_activity__skip">تجاهل</string>
+  <string name="database_migration_activity__import">استيراد</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">قد تستغرق العملية عدة دقائق. يرجى الانتظار. سيتم تنبيهك عند انتهاء العملية.</string>
+  <string name="database_migration_activity__importing">مهم!</string>
   <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">تحديث قواعد البيانات</string>
   <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">العبارة السرية لتكست سيكيور</string>
+  <string name="prompt_passphrase_activity__unlock">فتح القفل</string>
   <!--prompt_apn_activity-->
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">تكست سيكيور يحتاج لإعدادات الشبكة APN لتوصيل رسائل الوسائط المتعددة. جهازك لا يوفر هذه المعلومة.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">لإرسال رسائل الوسائط المتعددة، يجب عليك اكمال اعدادات الشبكة APN. تحتاج لادخال هذه المعلومة مرة واحدة فقط.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">عنوان بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">منفذ بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">قناة اتصال</string>
   <string name="receive_key_activity__identities">الهويات</string>
-  <string name="receive_key_activity__complete_exchange">انهاء التبادل</string>
+  <string name="receive_key_activity__complete">انتهاء</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">إلى</string>
   <!--review_identities-->
@@ -264,6 +311,7 @@
   <string name="AndroidManifest__complete_key_exchange">اكمال تبادل المفاتيح</string>
   <string name="AndroidManifest__verify_imported_identity">تحقق من الهوية المستوردة</string>
   <!--preferences.xml-->
+  <string name="preferences__general">عام</string>
   <string name="preferences__use_settings">استخدم الاعدادات</string>
   <string name="preferences__pref_all_sms_title">استخدام لكل الرسائل القصيرة</string>
   <string name="preferences__pref_all_mms_title">استخدام لكل رسائل الوسائط المتعددة</string>
@@ -276,7 +324,9 @@
   <string name="preferences__choose_identity">اختر هوية</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">اختر جهة الاتصال من القائمة</string>
   <string name="preferences__encryption_settings">اعدادات التشفير</string>
+  <string name="preferences__change_passphrase">غير العبارة السرية</string>
   <string name="preferences__change_my_passphrase">غير عبارتي السرية</string>
+  <string name="preferences__complete_key_exchanges">اكمال تبادل المفاتيح</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">أكمل تبادل المفاتيح اوتوماتيكياً لمحادثات جديدة او قديمة بنفس مفتاح الهوية</string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">أضف وسم مسافة فارغة بنهاية كل رسالة غير مشفرة</string>
   <string name="preferences__include_whitespace_tag">أضف وسم مسافة فارغة</string>
@@ -287,9 +337,12 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">اختيار مدة حفظ العبارة السرية مؤقتاً</string>
   <string name="preferences__pref_timeout_interval_title">مدة الصلاحية</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">الوقت اللازم ليتم مسح العبارة السرية من الذاكرة</string>
+  <string name="preferences__identity_key_settings">مفاتيح الهوية</string>
   <string name="preferences__view_my_identity_key">اعرض مفتاح هويتي</string>
   <string name="preferences__export_my_identity_key">تصدير مفتاح الهوية الخاص بي</string>
+  <string name="preferences__import_contacts_key">استيراد مفتاح خاص بجهة اتصال</string>
   <string name="preferences__import_an_identity_key_from_a_contact">استيراد مفتاح هوية من جهة اتصال</string>
+  <string name="preferences__manage_identity_keys">إدارة مفاتيح الهوية</string>
   <string name="preferences__manage_configured_identity_keys">إدارة مفاتيح الهوية التي تم ضبطها</string>
   <string name="preferences__notification_settings">خيارات التنبيه</string>
   <string name="preferences__notifications">التنبيهات</string>
@@ -315,6 +368,9 @@
   <string name="preferences__normal">طبيعي</string>
   <string name="preferences__slow">بطىء</string>
   <string name="preferences__custom">مخصص</string>
+  <string name="preferences__advanced">متقدم</string>
+  <string name="preferences__passphrase">العبارة السرية</string>
+  <string name="preferences__advanced_mms_access_point_names">مركز رسائل الوسائط المتعددة الاحتياطي</string>
   <string name="preferences__enable_fallback_mmsc">شغل مركز رسائل الوسائط المتعددة الاحتياطي</string>
   <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">استخدم مركز رسائل الوسائط المتعددة هنا اذا لم تتوفر بيناتات اتصال النظام APN</string>
   <string name="preferences__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
@@ -356,7 +412,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">بحث</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">الأمن</string>
   <string name="conversation_secure_verified__menu_verify_session">تحقق من قناة الاتصال</string>
   <string name="conversation_secure_verified__menu_verify_recipient">تحقق من مستقبل الرسالة</string>
@@ -366,6 +421,9 @@
   <string name="conversation__menu_delete_thread">مسح المحاذفة</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">قائمة المشاركين</string>
+  <string name="conversation_group_options__delivery">التوصيل</string>
+  <string name="conversation_group_options__conversation">محادثة</string>
+  <string name="conversation_group_options__broadcast">برودكاست\اعلان</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">قارن</string>
   <string name="key_scanning__menu_get_scanned_to_compare">قم بالمسح الضوئي للمقارنة</string>
@@ -379,8 +437,8 @@
   <string name="text_secure_normal__menu_import">استيراد</string>
   <string name="text_secure_normal__menu_export">تصدير</string>
   <string name="text_secure_normal__menu_clear_passphrase">مسح العبارة السرية</string>
+  <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">تم التحقق!</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

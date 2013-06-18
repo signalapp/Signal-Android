@@ -6,7 +6,6 @@
   <string name="delete">གསུབ། </string>
   <!--ApplicationExportManager-->
   <string name="ApplicationExportManager_import_database_and_settings_title">ཡིག་ཆའི་མཛོད་དང་སྒྲིག་བཟོ་རྣམས་ནང་འཇུག་བྱེད་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུ་(SD Card) ནས་གཡག་འཕྲིན་གི་མཛོད་དང་ལྡེ་མིག སྒྲིག་བཟོ་རྣམས་ནང་འཇུག་བྱེད་རྒྱུ་ཡིན་ནམ།\nཉེན་བརྡ། འདི་ཡིས་ད་ཡོད་འཕྲིན་ཐུང་དང་ལྡེ་མིག སྒྲིག་བཟོ་སོགས་གསུབ་གི་རེད།</string>
   <string name="ApplicationExportManager_importing_database_and_keys">ཡིག་ཆའི་མཛོད་དང་ལྡེ་མིག་རྣམས་ནང་འཇུག་བྱེད་བཞིན་ཡོད།</string>
   <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">ཁྱོད་ཀྱི་འཕྲིན་ཐུང་གི་མཛོད་དང་ལྡེ་མིག སྒྲིག་བཟོ་རྣམས་ནང་འཇུག་བྱེད་བཞིན་ཡོད།</string>
   <string name="ApplicationExportManager_export_database_question">ཡིག་ཆའི་མཛོད་ཕྱི་ལ་དབོར་རྒྱུ་ཡིན་ནམ།</string>
@@ -45,7 +44,6 @@
   <string name="ConversationItem_saving_attachment">ཟུར་སྣོན་ཉར་ཚགས་བྱེད་བཞིན་ཡོད།</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་(SD Card) ནང་ཟུར་སྣོན་ཉར་ཚགས་བྱེད་བཞིན་ཡོད།</string>
   <string name="ConversationItem_save_to_sd_card">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་(SD Card) ནང་ཉར་ཚགས་བྱེད་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">བརྒྱུད་ལམ་འདི་ཡིག་ཆའི་མཛོད་ཀྱི་གསང་སྡོམ་ཁོངས་སུ་ཉར་ཡོད་། ཁྱེད་ནས་ཉེན་སྲུང་འཕྲུལ་ཆའི་བྱང་བུའི་(SD Card) ནང་དུ་ཉར་ཚགས་བྱས་བའི་པར་གཞི་དེ་གསང་སྡོམ་བྱས་མི་འདུག ཁྱེད་ཀྱིས་མུ་མཐུད་ན་འདོད་དམ།</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་ནང་ཟུར་སྣོན་ཉར་ཚགས་བྱེད་སྐབས་ནོར་འཁྲུལ་བྱུང་འདུག </string>
   <string name="ConversationItem_success_exclamation">ལེགས་འགྲུབ། </string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་(SD Card) ནང་དུ་བླུགས་ཐུབ་མི་འདུག </string>
@@ -110,8 +108,6 @@
   <string name="PromptApnActivity_mms_settings_updated">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་གི་སྒྲིག་བཟོར་ཁ་སྣོན་བྱས་ཡོད། </string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">ཁྱེད་ཀྱིས་དུས་ཚོད་གང་རུང་དུ་གཡག་འཕྲིན་སྒྲིག་བཟོའི་ཐོ་བྱང་ནས་འདི་དག་གི་ངོ་བོར་འགྱུར་བ་བཏང་ཆོག </string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ནོར་འཁྲུལ། ཁྱེད་ལ་མི་གཞན་ནས་ངན་ལྷད་ཅན་གྱི་ལྡེ་མིག་ཞིག་འབྱོར་འདུག ལྡེ་མིག་འདི་ལས་སྣོན་བྱེད་མི་ཐུབ། བདེ་འཇགས་གླེང་མོལ་བསྐྱར་དུ་འགོ་འཛུགས་རོགས། </string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ནོར་འཁྲུལ། ཁྱེད་ལ་པར་གཞི་གྲོས་མཐུན་གྱིས་རྒྱབ་སྐྱོར་མ་བྱས་བའི་སྤྱི་སྤྱོད་ལྡེ་མིག་ཞིག་འབྱོར་འདུག  ལྡེ་མིག་དེ་ལས་སྣོན་བྱེད་ཐུབ་གི་མ་རེད། སྐུ་མཁྱེན། ཉེན་སྲུང་གི་གླེང་མོལ་ཞིག་བསྐྱར་དུ་འགོ་ཚུགས། </string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འདིའི་ནང་ངོས་འཛིན་མིང་རྟགས་མེད།</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འདིའི་ནང་ངོས་འཛིན་མིང་རྟགས་ཡོད། ཡིན་ནའང་། ཁྱེད་ཀྱིས་དེ་ལ་ད་དུང་ཡང་ཡིད་ཆེས་བྱེད་ཀྱི་མི་འདུག </string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འདིའི་ནང་ངོས་འཛིན་མིང་རྟགས་ཡོད་པ་དེར་ཁྱེད་ཀྱིས་ཡིད་ཆེས།  : %s</string>
@@ -265,7 +261,6 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">གླེང་མོལ། </string>
   <string name="receive_key_activity__identities">ངོས་འཛིན། </string>
-  <string name="receive_key_activity__complete_exchange">བརྗེ་ལེན་ཚར་བ་བྱོས། </string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">གཏོང་ཡུལ།</string>
   <!--review_identities-->
@@ -392,7 +387,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">འཚོལ།</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">ཉེན་སྲུང་།</string>
   <string name="conversation_secure_verified__menu_verify_session">གླེང་མོལ་ཁུངས་སྐྱེལ་བྱོས། </string>
   <string name="conversation_secure_verified__menu_verify_recipient">འཕྲིན་ཐུང་འབྱོར་ཡུལ་དེ་ཁུངས་སྐྱེལ་བྱོས། </string>
@@ -417,6 +411,5 @@
   <string name="text_secure_normal__menu_clear_passphrase">གསང་ཚིག་མེད་པ་བཟོས།</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">ཁུངས་སྐྱེལ་བྱས་ཟིན།</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

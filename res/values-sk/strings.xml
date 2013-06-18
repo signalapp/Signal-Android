@@ -6,7 +6,6 @@
   <string name="delete">Zmaž</string>
   <!--ApplicationExportManager-->
   <string name="ApplicationExportManager_import_database_and_settings_title">Importovať databázu a nastavenia?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">Importovať TextSecure databázu, kľúče a nastavenia z SD karty?\n\nPOZOR: Akcia zničí existujúce správy, kľúče a nastavenia!</string>
   <string name="ApplicationExportManager_importing_database_and_keys">Importujem databázu a kľúče</string>
   <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Importujem SMS databázu, kľúče a nastavenia...</string>
   <string name="ApplicationExportManager_export_database_question">Exportovať databázu?</string>
@@ -45,7 +44,6 @@
   <string name="ConversationItem_saving_attachment">Ukladám prílohu</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Ukladám prílohu na SD kartu...</string>
   <string name="ConversationItem_save_to_sd_card">Uložiť na SD kartu?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Tieto údaje sú uložené v kryptovanej databáze. Verzia ktorú ukladáte na SD kartu nebude kryptovaná. Chcete pokračovať?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Chyba počas ukladania na SD kartu!</string>
   <string name="ConversationItem_success_exclamation">Hotovo!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Nemôžem zapisovať na SD kartu!</string>
@@ -102,8 +100,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
   <!--PromptApnActivity-->
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">CHYBA:\n\nDostali ste poškodený verejný kľúč.  Tento kľúč sa nedá použiť. Spustite prosím znova vytvorenie bezpečnej session.</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">CHYBA:\n\nDostali ste verejný kľúč nepodporovanej verzie protokolu.  Tento kľúč sa nedá použiť. Spustite prosím znova vytvorenie bezpečnej session.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">Táto správa vzájomnej výmeny kľúčov neobsahuje podpis totožnosti.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Táto správa vzájomnej výmeny kľúčov obsahuje podpis totožnosti, ale zatiaľ mu nedôverujete.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Táto správa vzájomnej výmeny kľúčov obsahuje podpis totožnosti ktorej dôverujete pre: %s</string>
@@ -240,7 +236,6 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Session</string>
   <string name="receive_key_activity__identities">Identifikácie</string>
-  <string name="receive_key_activity__complete_exchange">Dokončiť výmenu</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Pre</string>
   <!--review_identities-->
@@ -367,7 +362,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Hľadaj</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">Bezpečnosť</string>
   <string name="conversation_secure_verified__menu_verify_session">Over session</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Over príjemcu</string>
@@ -392,6 +386,5 @@
   <string name="text_secure_normal__menu_clear_passphrase">Vymaž heslo</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Overené</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

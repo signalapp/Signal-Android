@@ -6,7 +6,6 @@
   <string name="delete">ဖျက်ရန်</string>
   <!--ApplicationExportManager-->
   <string name="ApplicationExportManager_import_database_and_settings_title">Database နှင့် ဆက်တင်များကို တင်သွင်းမည်လား?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">စာသားလံုခြုံမှုဆိုင်ရာ ဒေတာဘေ့၊ ကီးများ နှင့် ဆက်တင်များကို SDကဒ်မှ တင်သွင်းမည်လား၊ သတိပေးချက်၊ နဂိုရှိပြီးသား စာသား၊ ကီး၊ ဆက်တင်များကို အမှားမှားအယွင်းယွင်း ဖြစ်သွားစေနိုင်သည်။ </string>
   <string name="ApplicationExportManager_importing_database_and_keys">ဒေတာဘေ့နှင့်ကီးများထည့်သွင်းနေ</string>
   <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">သင်၏ SMS ဒေတာဘေ့၊ ကီးများနှင့် ဆက်တင်များ သွင်းယူးနေ...</string>
   <string name="ApplicationExportManager_export_database_question">ဒေတာဘေ့ကိုထုတ်ယူမည်လား?</string>
@@ -45,7 +44,6 @@
   <string name="ConversationItem_saving_attachment">ပူးတွဲပါအရာအားသိမ်းဆည်းနေ</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">ပူးတွဲပါအား SD ကဒ်သို့သိမ်းဆည်းနေ...</string>
   <string name="ConversationItem_save_to_sd_card">SD ကဒ်သို့သိမ်းမည်လား</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">ဤမီဒီယာမှာ စာဝှက်စနစ်သံုး ဒေတာဘေ့တွင် သိမ်းဆည်းထားသည်၊ SDကဒ်သို့ သိမ်းမည့်မူကွဲတွင် စာဝှက်စနစ် မပါတော့ပါ။ ဆက်လက်လုပ်ဆောင်မည်လား။　</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">ပူးတွဲမှုအား SDကဒ်သို့ သိမ်းဆည်းနေစဉ်အမှားပေါ်ပေါက်</string>
   <string name="ConversationItem_success_exclamation">အောင်မြင်!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">SDကဒ်သို့ ရေးမှတ်ခြင်းမပြုနိုင်</string>
@@ -110,8 +108,6 @@
   <string name="PromptApnActivity_mms_settings_updated">MMS ဆက်တင် အဆင့်မြှင့်ပြီး</string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">သင်သည်　ဤတန်ဖိုးတွေကို　စာသာလံုခြုံမှု　ဆက်တင်မီနူးမှနေ၍　အချိန်မရွေး　ပြင်ဆင်နိုင်</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ပြဿနာ\n\n ရရှိလာသော Public ကီးမှာ ပျက်ဆီးနေပါသည်။ ၎င်းကီးကို ရှေ့ဆက်ဆောင်ရွက်၍ မရပါ။ ကျေးဇူးပြုပြီး ဆက်ရှင် ပြန်စပါ။</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ပြဿနာ\n\nလက်ခံရရှိလာသော public ကီးမှာ ထောက်ပံထားခြင်းမရှိသည့် ပရိုတိုကောမှ ဖြစ်ပါသည်။ ၎င်းကီးကို ရှေ့ဆက်ဆောင်ရွက်၍ မရပါ။ ကျေးဇူးပြုပြီး ဆက်ရှင် ပြန်စပါ။</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">ဤ　ကီးပြောင်းလဲခြင်း　အကြောင်းကြားချက်တွင်　အသိအမှတ်ပြုအမှတ်အသား　မပါဝင်</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">ဤ　ကီးပြောင်းလဲခြင်း　အကြောင်းကြားချက်တွင်　အသိအမှတ်ပြုအမှတ်အသား　ပါဝင်၊　 you do not yet trust it.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">ဒီကီးအလဲအလှယ်စာသားတွင် အသင်ယုံကြည်သော %S အိုင်ဒီလက်မှတ်ပါပါသည်။</string>
@@ -265,7 +261,6 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">ဆက်ရှင်</string>
   <string name="receive_key_activity__identities">အသိအမှတ်ပြုမှုများ</string>
-  <string name="receive_key_activity__complete_exchange">ပြောင်းလဲခြင်းပြီး</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">သို့</string>
   <!--review_identities-->
@@ -392,7 +387,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">ရှာရန်</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">လုံခြုံရေး</string>
   <string name="conversation_secure_verified__menu_verify_session">ဆက်ရှင်အတည်ပြု</string>
   <string name="conversation_secure_verified__menu_verify_recipient">လက်ခံကိုစစ်ဆေးပါ</string>
@@ -417,6 +411,5 @@
   <string name="text_secure_normal__menu_clear_passphrase">စကားဝှက်ကိုရှင်းလင်းပါ</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">စစ်ဆေးပြီး</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

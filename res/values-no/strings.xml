@@ -5,14 +5,14 @@
   <string name="no">Nei</string>
   <string name="delete">Slett</string>
   <!--ApplicationExportManager-->
-  <string name="ApplicationExportManager_import_database_and_settings_title">Importer database og instillinger?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">Importer TextSecure meldingsdatabase, nøkler og innstillinger fra SD-kort? \n\nADVARSEL: Dette vil overskrive eksisterende meldinger, nøkler og innstillinger!</string>
+  <string name="ApplicationExportManager_import_database_and_settings_title">Importer database og innstillinger?</string>
+  <string name="ApplicationExportManager_import_database_and_settings_message">Importer TextSecure database, nøkler og innstillinger fra SD-kortet?\n\nADVARSEL: Dette vil overskrive eksisterende meldinger, nøkler og innstillinger!</string>
   <string name="ApplicationExportManager_importing_database_and_keys">Importerer database og nøkler</string>
-  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Importerer meldingsdatabasen din, nøkler og instillinger...</string>
+  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Importerer meldingsdatabasen din, samt nøkler og innstillinger...</string>
   <string name="ApplicationExportManager_export_database_question">Eksporter database?</string>
-  <string name="ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt">Eksporter TextSecure meldingsdatabase, nøkler og instillinger til SD-kort?</string>
+  <string name="ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt">Eksporter TextSecure meldingsdatabase, nøkler og innstillinger til SD-kort?</string>
   <string name="ApplicationExportManager_exporting_database_and_keys">Eksporterer database og nøkler</string>
-  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">Eksporterer meldingsdatabasen din, nøkler og instillinger...</string>
+  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">Eksporterer meldingsdatabasen din, samt nøkler og innstillinger...</string>
   <string name="ApplicationExportManager_no_sd_card_found_exclamation">SD-kort ikke funnet!</string>
   <string name="ApplicationExportManager_error_exporting_to_sd_exclamation">Feil ved export til SD-kort!</string>
   <string name="ApplicationExportManager_import_successful_exclamation">Import vellykket!</string>
@@ -33,6 +33,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slette alle gamle meldinger nå?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Er du sikker på at du ønsker å umiddelbart trimme alle samtaletrådene til de siste %s meldinger?</string>
   <string name="ApplicationPreferencesActivity_delete">Slett</string>
+  <string name="ApplicationPreferencesActivity_my">Min</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -45,7 +46,7 @@
   <string name="ConversationItem_saving_attachment">Lagrer vedlegg</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Lagrer vedlegg til SD-kort...</string>
   <string name="ConversationItem_save_to_sd_card">Lagre til SD-kort?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Dette vedlegget har blitt lagret i en kryptert database. Den versjonen du lagrer på SD-kortet vil ikke lenger være kryptert, ønsker du å fortsette?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Dette mediet har blitt lagret i en kryptert database. Versjonen du lagrer på SD-kortet vil ikke lenger være kryptert. Vil du fortsette?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Kunne ikke lagre vedlegg til SD-kort!</string>
   <string name="ConversationItem_success_exclamation">Suksess!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til SD-kort!</string>
@@ -74,6 +75,7 @@
   <string name="ConversationActivity_group_conversation">Gruppesamtale</string>
   <string name="ConversationActivity_d_recipients_in_group">%d mottakere i gruppen</string>
   <string name="ConversationActivity_saving_draft">Lagrer utkast...</string>
+  <string name="ConversationActivity_invalid_recipient">Ugyldig mottaker!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt:%3$s</string>
@@ -111,8 +113,8 @@
   <string name="PromptApnActivity_mms_settings_updated">MMS konfigurasjon oppdatert</string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan forandre disse verdiene når som helst i konfigurasjonsmenyen for TextSecure.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">EN FEIL HAR OPPSTÅTT:\n\nDu har mottatt en korrupt offentlig nøkkel. Denne nøkkelen kan ikke prosesseres; vær vennlig å gjenoppta en sikker sesjon.</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">EN FEIL HAR OPPSTÅTT: \n\nDu har mottatt en offentlig nøkkel fra en usupportert versjon av protokollen. Denne nøkkelen kan ikke prosesseres; vær vennlig å gjenoppta en sikker sesjon.</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">FEIL:\n\nDu har mottatt en korrupt offentlig nøkkel. Denne nøkkelen kan ikke behandles, vær vennlig å re-initiere en sikker sesjon.</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">FEIL:\n\nDu har mottatt en offentlig nøkkel fra en versjon av protokollen som ikke støttes. Denne nøkkelen kan ikke behandles, vær vennlig å re-initiere en sikker sesjon.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">Denne nøkkelutvekslingsmeldingen inneholder ikke en ID-signatur.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Denne nøkkelutvekslingsmeldingen inneholder en ID-signatur, men du har valgt å ikke stole på den ennå.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Denne nøkkelutvekslingsmeldingen inneholder en ID-signatur som du stoler på for: %s</string>
@@ -122,6 +124,9 @@
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">Du har mottatt en nøkkelutvekslingsmelding fra %s. Du har tidligere initiert en sesjon med denne kontakten. Ved å akseptere denne nøkkelen vil du fullføre nøkkelutvekslingen. Ønsker du å fullføre denne nøkkelutvekslingen?</string>
   <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">Du har initiert en nøkkelutveksling med %s men du har ennå ikke fått noe svar på denne.</string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">Du har mottatt en nøkkelutvekslingsmelding fra %s. Du har ingen eksisterende sesjon med denne kontakten. Ønsker du å fullføre nøkkelutvekslingen?</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne nøkkelutvekslingen er ikke lik den du tidligere mottok fra denne\nkontakten. Det kan enten bety at noen prøver å avskjære kommunikasjonen din eller\nat denne kontakten har installert TextSecure på nytt og dermed fått en ny identitetsnøkkel.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verifisere\ndenne kontakten.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen på denne nøkkelutvekslingen er til å stole på, men du har deaktivert innstillingen\n\'fullfør nøkkelutvekslinger automatisk\'.</string>
   <!--ReviewIdentitiesActivity-->
   <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Klarer ikke å vise korrupt ID-nøkkel!</string>
   <string name="ReviewIdentitiesActivity_delete_identity">Slett ID?</string>
@@ -176,6 +181,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekreftet!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøkkelen stemmer overens!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Bekreftet!</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">Identitetens fingeravtrykk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har allerede sendt en forespørsel om å initiere en sesjon til denne mottakeren. Er du sikker på at du vil sende en til? Dette vil ugyldiggjøre tidligere forespørsel.</string>
@@ -213,6 +219,8 @@
   <string name="MessageNotifier_message_delivery_failed">Levering av meldingen mislyktes.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Klarte ikke å levere meldingen.</string>
   <string name="MessageNotifier_error_delivering_message">Feil ved levering av meldingen.</string>
+  <string name="MessageNotifier_mark_all_as_read">Marker alle som lest</string>
+  <string name="MessageNotifier_mark_as_read">Marker som lest</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Det er ikke mulig å sende SMS meldingen akkurat nå. Den vil sendes når tjenesten blir tilgjengelig igjen.</string>
   <!--auto_initiate_activity-->
@@ -268,7 +276,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sesjon</string>
   <string name="receive_key_activity__identities">Identiteter</string>
-  <string name="receive_key_activity__complete_exchange">Fullfør utveksling</string>
+  <string name="receive_key_activity__complete">Complete</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Til</string>
   <!--review_identities-->
@@ -404,7 +412,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Søk</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">Sikkerhet</string>
   <string name="conversation_secure_verified__menu_verify_session">Bekreft sesjon</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Bekreft mottaker</string>
@@ -433,6 +440,5 @@
   <string name="text_secure_normal__mark_all_as_read">Marker alle lest</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekreftet</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

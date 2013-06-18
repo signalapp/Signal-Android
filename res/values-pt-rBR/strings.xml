@@ -6,7 +6,7 @@
   <string name="delete">Apagar</string>
   <!--ApplicationExportManager-->
   <string name="ApplicationExportManager_import_database_and_settings_title">Importar base de dados e configurações?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">Importar a base de dados, chaves e configurações TextSecure a partir do Cartão SD?⏎ ⏎ AVISO: Isto vai sobreescrever as mensagens, chaves e configurações existentes!</string>
+  <string name="ApplicationExportManager_import_database_and_settings_message">Importar do cartão SD a base de dados, chaves e configurações do TextSecure?\n\nATENÇÃO: Isto irá sobrescrever mensagens, chaves e configurações existentes!</string>
   <string name="ApplicationExportManager_importing_database_and_keys">Importar base de dados e chaves</string>
   <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">A importar a base de dados de SMS, chaves e configurações...</string>
   <string name="ApplicationExportManager_export_database_question">Exportar base de dados?</string>
@@ -33,6 +33,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Deletar todas mensagens antigas agora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
   <string name="ApplicationPreferencesActivity_delete">Deletar</string>
+  <string name="ApplicationPreferencesActivity_my">Minhas</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -45,7 +46,7 @@
   <string name="ConversationItem_saving_attachment">A guardar anexo</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">A guardar anexo para o cartão SD...</string>
   <string name="ConversationItem_save_to_sd_card">Guardar para o cartão SD?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Este ficheiro foi armazenado numa base de dados cifrada. A versão que gravar no cartão SD deixará de estar cifrada, pretende continuar?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Este arquivo foi armazenado em uma base de dados criptografada. A versão salva no cartão SD não estará criptografada. Deseja continuar?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o cartão SD...</string>
   <string name="ConversationItem_success_exclamation">Sucesso!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Não é possível escrever no cartão SD...</string>
@@ -74,6 +75,7 @@
   <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
   <string name="ConversationActivity_d_recipients_in_group">%d destinatários no grupo</string>
   <string name="ConversationActivity_saving_draft">Salvando rascunho...</string>
+  <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remetente: %1$s⏎ Transporte: %2$s⏎ Enviadas/Recebidas:%3$s</string>
@@ -111,8 +113,8 @@
   <string name="PromptApnActivity_mms_settings_updated">Configurações MMS Atualizadas</string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Você pode modificar estes valores a qualquer momento nas configurações do TextSecure.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERRO:⏎ ⏎ Recebeu uma chave pública corrompida. Esta chave não pode ser processada, por favor reinicie uma sessão segura.</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERRO:⏎ ⏎ Recebeu uma chave pública de uma versão do protocolo não suportada. Esta chave não pode ser processada, por favor reinicie uma sessão segura.</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">ERRO:\n\nVocê recebeu uma chave pública corrompida. Esta chave não pode ser processada; favor reiniciar uma sessão segura.</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERRO:\n\nVocê recebeu uma chave pública de uma versão de protocolo não suportada. Esta chave não pode ser processada; favor reiniciar uma sessão segura.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">Esta mensagem de intercâmbio de chaves não inclúi uma assinatura de identidade.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Esta mensagem de intercâmbio de chaves inclúi uma assinatura de identidade, mas ainda não confia nela.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Esta mensagem de intercâmbio de chaves inclúi uma assinatura de identidade confiada para: %s</string>
@@ -122,6 +124,9 @@
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">Recebeu uma mensagem de intercâmbio de chaves de %s. Já tem uma sessão cifrada prévia com este contacto e ao aceitar esta chave, completará o intercâmbio de chaves. Deseja completar este intercâmbio de chaves?</string>
   <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">Iniciou uma mensagem de intercâmbio de chaves com %s mas ainda não recebeu resposta.</string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">Recebeu uma mensagem de intercâmbio de chaves de %s. Não tem nenhuma sessão prévia estabelecida com este contacto, deseja completar este intercâmbio de chaves?</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A\n        assinatura nesta troca de chaves é diferente da que você recebeu anteriormente deste\n        contato. Isto pode significar que alguém está tentando interceptar sua comunicação, ou\n        que este contato reinstalou o TextSecure e agora tem uma nova chave de identidade.\n    </string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Talvez você queira verificar\n        este contato.\n    </string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">A\n        assinatura nesta troca de chaves é confiável, mas a opção \'completar troca de chaves automaticamente\'\n        está desabilitada.\n    </string>
   <!--ReviewIdentitiesActivity-->
   <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Não é possível visualizar a chave de identidade corrompida!</string>
   <string name="ReviewIdentitiesActivity_delete_identity">Apagar identidade?</string>
@@ -176,6 +181,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">NÃO verificado!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">A chave lida coincide!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verificado!</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">Impressão digital de identidade</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Já enviou um pedido de início de sessão para este destinatário, tem a certeza que pretende enviar outro? Isto invalidará o pedido anterior.</string>
@@ -213,6 +219,8 @@
   <string name="MessageNotifier_message_delivery_failed">Envio de mensagem falhou.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Falha ao enviar mensagem.</string>
   <string name="MessageNotifier_error_delivering_message">Erro ao enviar mensagem.</string>
+  <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
+  <string name="MessageNotifier_mark_as_read">Marcar como lida</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Mensagem SMS não pôde ser enviada agora. Será enviada quando o serviço estiver disponível.</string>
   <!--auto_initiate_activity-->
@@ -268,7 +276,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessão</string>
   <string name="receive_key_activity__identities">Identidades</string>
-  <string name="receive_key_activity__complete_exchange">Completar intercâmbio</string>
+  <string name="receive_key_activity__complete">Concluído</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Para</string>
   <!--review_identities-->
@@ -404,7 +412,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Procurar</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">Segurança</string>
   <string name="conversation_secure_verified__menu_verify_session">Verificar sessão</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verificar destinatário</string>
@@ -433,6 +440,5 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

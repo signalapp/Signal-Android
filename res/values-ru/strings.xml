@@ -6,7 +6,6 @@
   <string name="delete">Удалить</string>
   <!--ApplicationExportManager-->
   <string name="ApplicationExportManager_import_database_and_settings_title">Импортировать базу данных и настройки?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">Импорт TextSecure базы данных, ключи и настройки на SD-карту ⏎ ⏎ ВНИМАНИЕ: Это сотрет любые существующие сообщения, ключи и настройки!</string>
   <string name="ApplicationExportManager_importing_database_and_keys">Импорт ключей и базы данных</string>
   <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Импорт базы данных СМС, ключей и настроек...</string>
   <string name="ApplicationExportManager_export_database_question">Экспортировать базу данных?</string>
@@ -45,7 +44,6 @@
   <string name="ConversationItem_saving_attachment">Сохранение приложения</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Сохранение приложения на SD карту</string>
   <string name="ConversationItem_save_to_sd_card">Сохранить на SD карту?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Эта информация была сохранена в зашифрованной базе данных. Версия которую вы сохраните на карту памяти SD больше не будет зашифрованна. Хотите продолжать?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Ошибка при сохранении приложения на SD карту!</string>
   <string name="ConversationItem_success_exclamation">Успешно!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Невозможно произвести запись на SD карту!</string>
@@ -110,8 +108,6 @@
   <string name="PromptApnActivity_mms_settings_updated">Настройки MMS Обновлены</string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Вы можете изменить эти значения из TextSecure меню в любое время.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">Ошибка: Вы получили поврежденный ключ общего пользования. Этот ключ не действителен, пожалуйста, начните сессию сначала.</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">ERROR:⏎ ⏎ You have received a public key from an unsupported version of the protocol. This key can not be processed, please re-initiate a secure session.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">В этом сообщении ключевого обмена отсутствует личная подпись.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Это сообщение ключевого обмена содержит личную подпись, но вы ей еще не доверяете.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Это сообщение ключевого обмена содержит личную подпись которой вы доверяете: %s</string>
@@ -265,7 +261,6 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Сессия</string>
   <string name="receive_key_activity__identities">Личности</string>
-  <string name="receive_key_activity__complete_exchange">Завершить Обмен</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">К</string>
   <!--review_identities-->
@@ -392,7 +387,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Поиск</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">Защита</string>
   <string name="conversation_secure_verified__menu_verify_session">Проверь Сессию</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Проверь Получателя</string>
@@ -417,6 +411,5 @@
   <string name="text_secure_normal__menu_clear_passphrase">Удалить пароль</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Проверено</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

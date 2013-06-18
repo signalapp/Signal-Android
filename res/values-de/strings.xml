@@ -33,6 +33,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Bist du dir sicher, dass du alle Konversationen auf die letzten %s Nachrichten kürzen willst?</string>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
+  <string name="ApplicationPreferencesActivity_my">Meine</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -74,6 +75,7 @@
   <string name="ConversationActivity_group_conversation">Gruppengespräch</string>
   <string name="ConversationActivity_d_recipients_in_group">%d Teilnehmer in Gruppe</string>
   <string name="ConversationActivity_saving_draft">Entwurf speichern...</string>
+  <string name="ConversationActivity_invalid_recipient">Ungültiger Empfänger</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s Transport: %2$s Gesendet/Empfangen:%3$s</string>
@@ -93,9 +95,11 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Kein eingelesener Schlüssel gefunden!</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Keine Verbindung für MMS-Download verfügbar, versuchen Sie es später noch einmal..</string>
   <string name="MmsDownloader_error_storing_mms">Fehler beim Speichern der MMSI</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fehler beim Verbinden zum MMS Provider...</string>
   <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimedianachricht</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -110,7 +114,7 @@
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kannst diese Werte jederzeit im TextSecure Einstellungsmenü ändern.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">FEHLER:\n\nSie haben einen beschädigten öffentlichen Schlüssel erhalten. Dieser Schlüssel kann nicht weiter verarbeitet werden, bitte initieren Sie eine neue sichere Sitzung.</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">FEHLER:\n\nSie haben einen öffentlichen Schlüssl erhalten der eine nicht unterstütze Version des Protokolls verwendet. Dieser Schlüssel kann nicht weiter verarbeitet werden, bitte initieren Sie eine neue sichere Sitzung.</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">FEHLER: Sie haben einen öffentlichen Schlüssel einer nicht unterstützten Version des Protokolls erhalten. Dieser Schlüssel kann nicht weiter verarbeitet werden, bitte initieren Sie eine neue sichere Sitzung.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">Diese Schlüsselaustauschnachricht ist nicht signiert.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Diese Schlüsselaustauschnachricht ist von einer Quelle signiert, der Sie noch nicht vertrauen.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Diese Schlüsselaustauschnachricht enthält eine vertraute Signatur von: %s</string>
@@ -120,6 +124,9 @@
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">Sie haben eine Schlüsselaustauschnachricht von %s erhalten. Sie haben schonmal ein Sitzung mit diesem Kontakt initiiert. Wenn sie den Schlüssel akzeptieren, wird der Schlüsselaustausch abgeschlossen. Wollen Sie den Schlüsselaustausch nun abschließen?</string>
   <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">Sie haben eine Schlüsselaustauschnachricht an %s gesendet, aber noch keine Antwort erhalten.</string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">Sie haben eine Schlüsselaustauschnachricht von %s erhalten. Es existiert momentan keine Sitzung mit diesem Kontakt. Wollen die den Schlüsselaustausch abschließen?</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Die Signatur dieses Schlüsselaustauschs ist eine andere als die schon von diesem Kontakt erhaltenen.\nDas könnte bedeuten, dass jemand versucht, Ihr Gespräch abzufangen oder\ndass dieser Kontakt TextSecure neu installiert hat und nun einen neuen Schlüssel benutzt.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Sie können diesen Kontakt überprüfen.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Die Signatur dieses Schlüsselaustauschs ist vertrauenswürdig, aber die Einstellung \'Schlüsselaustausch automatisch vervollständigen\' ist nicht aktiv.</string>
   <!--ReviewIdentitiesActivity-->
   <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Der beschädigte Schlüssel kann nicht angezeigt werden!</string>
   <string name="ReviewIdentitiesActivity_delete_identity">Identität löschen?</string>
@@ -174,6 +181,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">NICHT verifiziert!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Der gescannte Schlüssel stimmt überein!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verifiziert!</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">Fingerabdruck</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz vorhandener Anfragen initiieren?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Sie haben bereits eine Sitzungsaufbau Nachricht an den Empfänger gesendet, sind Sie sicher dass Sie eine weitere senden wollen? Dies macht die erste Nachricht ungültig.</string>
@@ -194,6 +202,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Falsch verschlüsselte MMS...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS wurde für einen nicht existierende Sitzung verschlüsselt...</string>
   <!--MmsSender-->
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">MMS Nachricht kann gerade nicht gesendet werden.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import in Gange</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importiert Nachrichten</string>
@@ -210,7 +219,10 @@
   <string name="MessageNotifier_message_delivery_failed">Senden fehlgeschlagen.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Senden fehlgeschlagen.</string>
   <string name="MessageNotifier_error_delivering_message">Senden fehlgeschlagen.</string>
+  <string name="MessageNotifier_mark_all_as_read">Alle als gelesen markieren</string>
+  <string name="MessageNotifier_mark_as_read">Als gelesen markieren</string>
   <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">SMS kann gerade nicht gesendet werden. Wird gesendet sobald der Dienst wieder verfügbar ist.</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Sie haben eine Nachricht von jemand empfangen, der verschlüsselte Sitzungen über TextSecure unterstützt. Wollen Sie jetzt eine sicher Sitzung aufbauen?</string>
   <string name="auto_initiate_activity__initiate_exchange">Austausch initieren</string>
@@ -251,17 +263,20 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Das könnte eine Weile dauern. Bitte sei geduldig, wir benachrichtigen dich, wenn der Import abgeschlossen ist.</string>
   <string name="database_migration_activity__importing">IMPORTIERT</string>
   <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert...</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSPHRASE</string>
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_apn_activity-->
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure benötigt APN-Parameter um MMS über den Mobilfunkanbieter zu senden. Ihr Gerät gibt diese Informationen nicht preis, was gelegentlich auf restriktive Konfigurationen oder Geräte zutrifft.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Um MMS zu verschicken, füllen Sie bitte die nötige APN Information aus. Die Werte für das Netzwerk können meist gefunden werden, indem man eine Suche ausführt \'&amp;lt;Ihr Netzwerk&amp;gt; APN\'. Diese Operation muss nur einmal ausgeführt werden.</string>
   <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (BENÖTIGT):</string>
   <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONAL):</string>
   <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (OPTIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sitzung</string>
   <string name="receive_key_activity__identities">Identitäten</string>
-  <string name="receive_key_activity__complete_exchange">Vollständiger Austausch</string>
+  <string name="receive_key_activity__complete">Vollständig</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">An</string>
   <!--review_identities-->
@@ -296,6 +311,7 @@
   <string name="AndroidManifest__complete_key_exchange">Vollständiger Schlüsselaustausch</string>
   <string name="AndroidManifest__verify_imported_identity">Importierte Identität verifizieren</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Allgemein</string>
   <string name="preferences__use_settings">Nutzungs-Einstellungen</string>
   <string name="preferences__pref_all_sms_title">Für alle SMS benutzen</string>
   <string name="preferences__pref_all_mms_title">Für alle MMS benutzen</string>
@@ -308,7 +324,9 @@
   <string name="preferences__choose_identity">Identität auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wählen Sie den Kontakt Eintrag aus der Kontakliste.</string>
   <string name="preferences__encryption_settings">Verschlüsselungs-Einstellungen</string>
+  <string name="preferences__change_passphrase">Passwort ändern</string>
   <string name="preferences__change_my_passphrase">Mein Passwort ändern</string>
+  <string name="preferences__complete_key_exchanges">Schlüsselaustausch abschliessen</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatischer Schlüsselaustausch für neue Sitzungen und bestehende Sitzungen mit demselben persönlichen Schlüssel</string>
   <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Leerzeichen am Ende jeder unverschlüsselten Nachricht einfügen</string>
   <string name="preferences__include_whitespace_tag">Leerzeichen einfügen</string>
@@ -319,9 +337,12 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">Auswahl des Passwort-Timeouts</string>
   <string name="preferences__pref_timeout_interval_title">Timeout-Dauer</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Länge des Zeitraums, während dessen das Passwort im Speicher gehalten wird</string>
+  <string name="preferences__identity_key_settings">Identitäten</string>
   <string name="preferences__view_my_identity_key">Meinen persönlichen Schlüssel anzeigen</string>
   <string name="preferences__export_my_identity_key">Meinen persönlichen Schlüssel exportieren</string>
+  <string name="preferences__import_contacts_key">Schlüssel eines Kontakts importieren</string>
   <string name="preferences__import_an_identity_key_from_a_contact">Schlüssel eines Kontakts importieren</string>
+  <string name="preferences__manage_identity_keys">Schlüssel verwalten</string>
   <string name="preferences__manage_configured_identity_keys">Konfigurierte Schlüssel verwalten</string>
   <string name="preferences__notification_settings">Benachrichtigungs-Einstellungen</string>
   <string name="preferences__notifications">Benachrichtigungen</string>
@@ -347,6 +368,11 @@
   <string name="preferences__normal">Mittel</string>
   <string name="preferences__slow">Langsam</string>
   <string name="preferences__custom">Benutzerdefiniert</string>
+  <string name="preferences__advanced">Weitere Einstellungen</string>
+  <string name="preferences__passphrase">Passwort</string>
+  <string name="preferences__advanced_mms_access_point_names">Ersatz für MMSC</string>
+  <string name="preferences__enable_fallback_mmsc">Ersatz für MMSC aktivieren</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Sollten APN-Daten fehlen, die hier folgenden MMSC-Daten nutzen.</string>
   <string name="preferences__mmsc_url_required">MMSC URL(Benötigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Poxy Host (Optional)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>
@@ -360,6 +386,7 @@
   <string name="preferences__storage">Speicher</string>
   <string name="preferences__conversation_length_limit">Limit der Konversationslänge</string>
   <string name="preferences__trim_all_threads_now">Alle Konversationen kürzen</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Alle Gespräche scannen und Gesprächslängenbegrenzungen </string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -385,7 +412,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Suche</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">Sicherheit</string>
   <string name="conversation_secure_verified__menu_verify_session">Sitzung verifizieren</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Empfänger verifizieren</string>
@@ -395,6 +421,9 @@
   <string name="conversation__menu_delete_thread">Thread löschen</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Teilnehmerliste</string>
+  <string name="conversation_group_options__delivery">Zustellung</string>
+  <string name="conversation_group_options__conversation">Gespräch</string>
+  <string name="conversation_group_options__broadcast">Übertragen</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Vergleichen</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Zum Vergleich eingelesen werden</string>
@@ -408,8 +437,8 @@
   <string name="text_secure_normal__menu_import">Import</string>
   <string name="text_secure_normal__menu_export">Export</string>
   <string name="text_secure_normal__menu_clear_passphrase">Passwort löschen</string>
+  <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verifiziert</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

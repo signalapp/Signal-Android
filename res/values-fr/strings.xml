@@ -6,7 +6,7 @@
   <string name="delete">Effacer</string>
   <!--ApplicationExportManager-->
   <string name="ApplicationExportManager_import_database_and_settings_title">Importer la base de données et les paramètres ?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">Importer la base de données, les clés et les paramètres de TextSecure depuis la carte SD ?\n\nAVERTISSEMENT: Cela détruira tous les messages, clés et paramètres existant !</string>
+  <string name="ApplicationExportManager_import_database_and_settings_message">Importer la base de données, les clés et les paramètres de TextSecure depuis la carte SD ?\n\nAVERTISSEMENT: Cela détruira tous les messages, clés et paramètres existants !</string>
   <string name="ApplicationExportManager_importing_database_and_keys">Importation de la base de données et des clés</string>
   <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Importation de votre base de données SMS, des clés et des paramètres…</string>
   <string name="ApplicationExportManager_export_database_question">Exporter la base de données ?</string>
@@ -33,6 +33,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Supprimer tous les anciens messages maintenant ?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Êtes-vous sur de vouloir réduire toutes les conversations aux %s messages les plus récents ?</string>
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
+  <string name="ApplicationPreferencesActivity_my">Mon</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Image</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vidéo</string>
@@ -42,10 +43,10 @@
   <string name="ConversationItem_expires_s">Expiration : %s</string>
   <string name="ConversationItem_error_sending_message">Erreur d’envoi du message</string>
   <string name="ConversationItem_sending">Envoi…</string>
-  <string name="ConversationItem_saving_attachment">Sauver la pièce jointe</string>
+  <string name="ConversationItem_saving_attachment">Sauvegarder la pièce jointe</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Enregistrement de pièce jointe sur la carte SD…</string>
   <string name="ConversationItem_save_to_sd_card">Enregistrer sur la carte SD ?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Ce média est stocké dans une base de données chiffrée. La version que vous sauvez sur carte SD ne sera plus chiffrée, voulez-vous continuer ?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Ce média est stocké dans une base de données chiffrée. La version que vous sauvez sur carte SD ne sera plus chiffrée. Voulez-vous continuer ?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Erreur d’enregistrement de la pièce jointe sur la carte SD !</string>
   <string name="ConversationItem_success_exclamation">Réussite !</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Impossible d’écrire sur la carte SD !</string>
@@ -74,6 +75,7 @@
   <string name="ConversationActivity_group_conversation">Conversation de Groupe</string>
   <string name="ConversationActivity_d_recipients_in_group">%d destinataires dans le groupe</string>
   <string name="ConversationActivity_saving_draft">Sauvegarde du brouillon…</string>
+  <string name="ConversationActivity_invalid_recipient">Destinataire invalide !</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Détails du message</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Expéditeur : %1$s\nTransport : %2$s\nEnvoyé / Reçu : %3$s</string>
@@ -122,6 +124,9 @@
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">Vous avez reçu un message d\'échange de clefs de %s. Vous avez déjà commencé une session avec ce contact, et en acceptant cette clef, vous allez compléter l\'échange de clef. Voulez vous compléter cet échange de clefs?</string>
   <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">Vous avez commencé un échange de clefs avec %s mais n\'avez toujours pas reçu de réponse.</string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">Vous avez reçu un message d\'échange de clefs de %s. Vous n\'avez pas encore de session avec ce contact, voulez vous compléter cet échange de clefs?</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La\nsignature de cet échange de clé est différente de celle que vous avez précédemment reçue de ce\ncontact. Cela peut signifier soit que quelqu’un essaie d’intercepter votre communication, soit\nque ce contact a simplement réinstallé TextSecure et a maintenant une nouvelle clé d’identité.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Peut-être devriez-vous\nvérifier ce contact.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">La\nsignature de cet échange de clé est digne de confiance, mais vous avez le paramètre\n« finaliser automatiquement les échanges de clés » désactivé.</string>
   <!--ReviewIdentitiesActivity-->
   <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Impossible de visualiser une clé d’identité corrompue !</string>
   <string name="ReviewIdentitiesActivity_delete_identity">Supprimer l’identité ?</string>
@@ -176,6 +181,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">NON vérifié !</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Les clefs analysées correspondent!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Vérifié !</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">Empreinte d’identité</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initier malgré la demande existante ?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Vous avez déjà envoyé une demande d’initiation de session à ce destinataire, êtes-vous sûr de vouloir en envoyer une autre ? Cela invalidera la première demande.</string>
@@ -213,6 +219,8 @@
   <string name="MessageNotifier_message_delivery_failed">La distribution du message a échoué.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Échec de distribution du message.</string>
   <string name="MessageNotifier_error_delivering_message">Erreur lors de la distribution du message.</string>
+  <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
+  <string name="MessageNotifier_mark_as_read">Marquer comme lu</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Impossible d’envoyer votre message SMS pour le moment. Il sera envoyé  lorsque le service deviendra disponible.</string>
   <!--auto_initiate_activity-->
@@ -268,7 +276,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Session</string>
   <string name="receive_key_activity__identities">Identités</string>
-  <string name="receive_key_activity__complete_exchange">Finaliser l\'échange</string>
+  <string name="receive_key_activity__complete">Compléter</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">À</string>
   <!--review_identities-->
@@ -404,7 +412,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Chercher</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">Sécurité</string>
   <string name="conversation_secure_verified__menu_verify_session">Vérifier la Session</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Vérifier le Destinataire</string>
@@ -433,6 +440,5 @@
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme Lu</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Vérifié</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>

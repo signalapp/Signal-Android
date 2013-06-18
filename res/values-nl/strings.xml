@@ -6,7 +6,7 @@
   <string name="delete">Verwijder</string>
   <!--ApplicationExportManager-->
   <string name="ApplicationExportManager_import_database_and_settings_title">Importeer Database en Instellingen?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">Importeer TextSecure database, sleutels en instellingen vanaf de SD-kaart?\n\nWAARSCHUWING: Dit kan bestaande berichten, sleutels en instellingen aantasten!</string>
+  <string name="ApplicationExportManager_import_database_and_settings_message">TextSecure database, sleutels en instellingen vanaf de SD-kaart importeren?\n\nWAARSCHUWING: Dit zal bestaande berichten, sleutels en instellingen aantasten!</string>
   <string name="ApplicationExportManager_importing_database_and_keys">Importeren van Database en Sleutels</string>
   <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">SMS database, sleutels en instellingen aan het importeren...</string>
   <string name="ApplicationExportManager_export_database_question">Exporteer Database?</string>
@@ -33,6 +33,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Weet u zeker dat u bij alle conversaties alleen de laatste %s berichten behouden wilt?</string>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
+  <string name="ApplicationPreferencesActivity_my">Mijn</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -45,7 +46,7 @@
   <string name="ConversationItem_saving_attachment">Bijlage Opslaan</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Bijlage aan het opslaan op de SD-kaart...</string>
   <string name="ConversationItem_save_to_sd_card">Opslaan op SD-kaart?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Deze media is opgeslagen in een versleutelde database. De versie die u opslaat op de SD-kaart is niet langer versleuteld, wilt u doorgaan?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Deze media is opgeslagen in een versleutelde database. De versie die u op de SD-kaart opslaat, zal niet langer versleuteld zijn. Wilt u doorgaan?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Fout tijdens het opslaan van de bijlage naar de SD-kaart!</string>
   <string name="ConversationItem_success_exclamation">Succesvol!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">SD-kaart niet beschrijfbaar!</string>
@@ -74,6 +75,7 @@
   <string name="ConversationActivity_group_conversation">Groepsconversatie</string>
   <string name="ConversationActivity_d_recipients_in_group">%d ontvangers in groep</string>
   <string name="ConversationActivity_saving_draft">Concept opslaan...</string>
+  <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Bericht details</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd/Ontvangen:%3$s</string>
@@ -111,8 +113,8 @@
   <string name="PromptApnActivity_mms_settings_updated">MMS Instellingen Geupdate</string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">U kunt deze instellingen op elk gewenst moment wijzigen via het TextSecure instellingen menu.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">FOUT: U heeft een corrupte publieke sleutel ontvangen. Deze sleutel kan niet verwerkt worden, herinitiëer alstublieft een beveiligde sessie.</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">FOUT: U heeft een publieke sleutel ontvangen van een niet ondersteunde versie van het protocol. Deze sleutel kan niet verwerkt worden, herinitiëer alstublieft een beveiligde sessie.</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">FOUT:\n\nU heeft een corrupte publieke sleutel ontvangen. Deze sleutel kan niet verwerkt worden, herinitiëer alstublieft een beveiligde sessie.</string>
+  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">FOUT:\n\nU heeft een publieke sleutel ontvangen van een niet ondersteunde versie van het protocol. Deze sleutel kan niet verwerkt worden, herinitiëer alstublieft een beveiligde sessie.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">Dit sleuteluitwisselingsbericht bevat geen identiteitshandtekening.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Dit sleuteluitwisselingsbericht bevat een identiteitshandtekening, maar u vertrouwt deze nog niet.</string>
   <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Dit sleuteluitwisselingsbericht bevat een identiteitshandtekening welke u vertrouwt voor: %s</string>
@@ -122,6 +124,9 @@
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">U heeft een Sleuteluitwisselingsbericht ontvangen van %s.  U heeft voorheen een sessie geïnitieerd met deze contactpersoon en door deze sleutel te accepteren voltooid u de sleuteluitwisseling. Wilt u de sleuteluitwisseling voltooien?</string>
   <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">U heeft een Sleuteluitwisselingsbericht verstuurd naar %s en heeft nog geen reactie ontvangen.</string>
   <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">U heeft een Sleuteluitwisselingsbericht ontvangen van %s.  U heeft geen bestaande sessie met deze contactpersoon, wilt u deze sleuteluitwisseling voltooien?</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">De handtekening op deze sleuteluitwisseling is anders dan wat u eerder ontvangen heeft van dit contact. Dit kan betekenen dat iemand probeert uw communicatie the onderscheppen, of dat dit contact gewoon TextSecure opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">U kunt wensen dit contact te verifiëren.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">De handtekening op deze sleuteluitwisseling is vertrouwd, maar u heeft de \'automatisch aanvullen sleuteluitwisselingen\' instelling uitgeschakeld.</string>
   <!--ReviewIdentitiesActivity-->
   <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Niet in staat de corrupte identiteitssleutel te bekijken!</string>
   <string name="ReviewIdentitiesActivity_delete_identity">Verwijder identiteit?</string>
@@ -176,6 +181,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">NIET Geverifieerd!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">De gescande sleutel komt overeen!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Geverifieerd!</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">Identiteitsvingerafdruk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiëren Ondanks Bestaand Verzoek?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">U heeft reeds een sessieinititatieverzoek verstuurd naar deze ontvanger, weet u zeker dat u er nog een wilt sturen? Dit maakt het eerdere verzoek ongeldig.</string>
@@ -196,7 +202,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld MMS-bericht...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-bericht versleuteld voor niet bestaande sessie...</string>
   <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Momenteel niet in staat  om uw MMS bericht te versturen.</string>
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">Momenteel niet in staat om uw MMS bericht te versturen.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Bezig met importeren</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tekstberichten aan het importeren</string>
@@ -213,6 +219,8 @@
   <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
   <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
+  <string name="MessageNotifier_mark_all_as_read">Markeer alles als gelezen</string>
+  <string name="MessageNotifier_mark_as_read">Markeer als gelezen</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Momenteel niet in staat om uw SMS bericht te versturen. Zodra de service beschikbaar is zal het verzonden worden .</string>
   <!--auto_initiate_activity-->
@@ -268,7 +276,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__session">Sessie</string>
   <string name="receive_key_activity__identities">Identiteiten</string>
-  <string name="receive_key_activity__complete_exchange">Voltooi Uitwisseling</string>
+  <string name="receive_key_activity__complete">Voltooid</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Aan</string>
   <!--review_identities-->
@@ -404,7 +412,6 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Zoeken</string>
   <!--conversation_secure_verified-->
-  <!--conversation_secure_unverified-->
   <string name="conversation_secure_verified__menu_security">Veiligheid</string>
   <string name="conversation_secure_verified__menu_verify_session">Verifieer Sessie</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verifieer Ontvanger</string>
@@ -433,6 +440,5 @@
   <string name="text_secure_normal__mark_all_as_read">Markeer Alles Als Gelezen</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Geverifieerd</string>
-  <!--Misc. piggybacking-->
   <!--EOF-->
 </resources>
