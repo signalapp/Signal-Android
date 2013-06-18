@@ -82,6 +82,8 @@
     <string name="ConversationActivity_d_recipients_in_group">%d recipients in group</string>    
     <string name="ConversationActivity_saving_draft">Saving draft...</string>
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
+    <string name="ConversationActivity_calls_not_supported">Calls Not Supported</string>
+    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
     
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -525,7 +527,6 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
-
     <!-- EOF -->
 
 </resources>

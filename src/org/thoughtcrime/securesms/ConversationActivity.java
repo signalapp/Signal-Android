@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -379,11 +380,18 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void handleDial(Recipient recipient) {
-    if (recipient == null) return;
+    try {
+      if (recipient == null) return;
 
-    Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                            Uri.parse("tel:" + recipient.getNumber()));
-    startActivity(dialIntent);
+      Intent dialIntent = new Intent(Intent.ACTION_DIAL,
+                              Uri.parse("tel:" + recipient.getNumber()));
+      startActivity(dialIntent);
+    } catch (ActivityNotFoundException anfe) {
+      Log.w("ConversationActivity", anfe);
+      Util.showAlertDialog(this,
+                           getString(R.string.ConversationActivity_calls_not_supported),
+                           getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+    }
   }
 
   private void handleDisplayGroupRecipients() {
