@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import java.io.IOException;
 import java.util.List;
 
+
 /**
  * Handles posting system notifications for new messages.
  *
@@ -64,6 +65,10 @@ public class MessageNotifier {
   public static final int NOTIFICATION_ID = 1338;
 
   private volatile static long visibleThread = -1;
+
+  public static long getVisibleThread() {
+      return visibleThread;
+  }
 
   public static void setVisibleThread(long threadId) {
     visibleThread = threadId;

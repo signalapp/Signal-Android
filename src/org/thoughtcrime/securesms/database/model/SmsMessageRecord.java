@@ -62,7 +62,7 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.ConversationItem_received_key_exchange_message_click_to_process));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
-    } else if (SmsDatabase.Types.isDecryptInProgressType(type)) {
+    } else if (isDecryptInProgress()) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));

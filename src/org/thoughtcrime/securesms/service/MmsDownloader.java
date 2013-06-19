@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.PebbleNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 
 import ws.com.google.android.mms.InvalidHeaderValueException;
@@ -148,6 +149,7 @@ public class MmsDownloader extends MmscProcessor {
 
     mmsDatabase.delete(item.getMessageId());
     MessageNotifier.updateNotification(context, item.getMasterSecret(), messageAndThreadId.second);
+    PebbleNotifier.sendMmsNotification(context, item.getMasterSecret(), messageAndThreadId.first);
   }
 
   private void sendRetrievedAcknowledgement(DownloadItem item) {

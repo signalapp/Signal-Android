@@ -457,8 +457,10 @@
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__trim_all_threads_now">Trim all threads now</string>
     <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Scan through all conversation threads and enforce conversation length limits</string>
-    
-                                    
+    <string name="preferences__pebble_notifications">Pebble Notifications</string>
+    <string name="preferences__display_message_notifications_on_your_pebble_watch">Display message notifications on your Pebble watch</string>
+
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->

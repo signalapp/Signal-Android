@@ -20,6 +20,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -29,6 +30,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.PebbleNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -131,6 +133,8 @@ public class DecryptingQueue {
     boolean isSecureMessage = record.isSecure();
     boolean isKeyExchange   = record.isKeyExchange();
 
+    PebbleNotifier.suppressNotificationForSms(messageId);
+
     scheduleDecryption(context, masterSecret, messageId,  threadId,
                        originator, body, isSecureMessage, isKeyExchange);
   }
@@ -211,8 +215,9 @@ public class DecryptingQueue {
         RetrieveConf plaintextPdu                = new RetrieveConf(plaintextGenericPdu.getPduHeaders(),
                                                                     plaintextGenericPdu.getBody());
         Log.w("DecryptingQueue", "Successfully decrypted MMS!");
-        database.insertSecureDecryptedMessageInbox(masterSecret, plaintextPdu, threadId);
+        Pair<Long, Long> messageAndThreadId = database.insertSecureDecryptedMessageInbox(masterSecret, plaintextPdu, threadId);
         database.delete(messageId);
+        PebbleNotifier.sendMmsNotification(context, masterSecret, messageAndThreadId.first);
       } catch (RecipientFormattingException rfe) {
         Log.w("DecryptingQueue", rfe);
         database.markAsDecryptFailed(messageId, threadId);
@@ -283,6 +288,7 @@ public class DecryptingQueue {
 
       database.updateMessageBody(masterSecret, messageId, plaintextBody);
       MessageNotifier.updateNotification(context, masterSecret);
+      PebbleNotifier.sendSmsNotification(context, masterSecret, messageId);
     }
 
     private void handleLocalAsymmetricEncrypt() {
@@ -317,7 +323,7 @@ public class DecryptingQueue {
           KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(plaintxtBody);
           KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
 
-          Log.w("DecryptingQuue", "KeyExchange with fingerprint: " + keyExchangeMessage.getPublicKey().getFingerprint());
+          Log.w("DecryptingQueue", "KeyExchange with fingerprint: " + keyExchangeMessage.getPublicKey().getFingerprint());
 
           if (processor.isStale(keyExchangeMessage)) {
             DatabaseFactory.getEncryptingSmsDatabase(context).markAsStaleKeyExchange(messageId);

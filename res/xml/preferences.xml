@@ -22,7 +22,8 @@
                           android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
                           android:title="@string/preferences__pref_enter_sends_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences__notifications">
+    <PreferenceCategory android:key="pref_notifications_category"
+                        android:title="@string/preferences__notifications">
         <CheckBoxPreference android:key="pref_key_enable_notifications"
                             android:title="@string/preferences__notifications"
                             android:summary="@string/preferences__display_message_notifications_in_status_bar"
@@ -47,19 +48,23 @@
                           android:entryValues="@array/pref_led_blink_pattern_values"
                           android:dialogTitle="@string/preferences__pref_led_blink_dialogtitle" />
 
-
-        <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
-                            android:dependency="pref_key_enable_notifications"
+        <RingtonePreference android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_ringtone"
                             android:title="@string/preferences__select_ringtone"
                             android:ringtoneType="notification"
                             android:defaultValue="content://settings/system/notification_sound" />
-        <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
-                            android:dependency="pref_key_enable_notifications"
+
+        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_vibrate"
                             android:defaultValue="true"
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
+
+        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
+                            android:key="pref_pebble_notifications"
+                            android:defaultValue="false"
+                            android:title="@string/preferences__pebble_notifications"
+                            android:summary="@string/preferences__display_message_notifications_on_your_pebble_watch" />
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__storage">

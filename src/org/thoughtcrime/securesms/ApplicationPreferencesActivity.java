@@ -25,6 +25,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
@@ -33,11 +34,10 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.notifications.PebbleNotifier;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Trimmer;
 
@@ -62,12 +62,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String LED_COLOR_PREF                   = "pref_led_color";
   public static final String LED_BLINK_PREF                   = "pref_led_blink";
   public static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
+  public static final String PEBBLE_NOTIFICATION_PREF         = "pref_pebble_notifications";
   public static final String IDENTITY_PREF                    = "pref_choose_identity";
   public static final String ALL_MMS_PERF                     = "pref_all_mms";
   public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
 
+  private static final String NOTIFICATION_CATEGORY_PREF   = "pref_notifications_category";
   private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
 
   private static final String VIEW_MY_IDENTITY_PREF        = "pref_view_identity";
@@ -103,6 +105,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     initializeIdentitySelection();
     initializeEditTextSummaries();
+    initializePebbleNotificationSupport();
 
     this.findPreference(VIEW_MY_IDENTITY_PREF)
       .setOnPreferenceClickListener(new ViewMyIdentityClickListener());
@@ -187,6 +190,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
       this.findPreference(IDENTITY_PREF)
         .setOnPreferenceClickListener(new IdentityPreferenceClickListener());
+    }
+  }
+
+  private void initializePebbleNotificationSupport() {
+    if (!PebbleNotifier.isPebbleAppInstalled(this)) {
+      Preference pebble_pref = this.findPreference(PEBBLE_NOTIFICATION_PREF);
+      ((PreferenceCategory)this.findPreference(NOTIFICATION_CATEGORY_PREF)).removePreference(pebble_pref);
     }
   }
 
