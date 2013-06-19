@@ -88,7 +88,11 @@ public class PebbleNotifier {
     if(masterSecret != null && message.isDecryptInProgress()) return;
     if(message.getThreadId() == MessageNotifier.getVisibleThread()) return;
 
-    sendNotification(context, message.getIndividualRecipient().toShortString(), message.getDisplayBody().toString());
+    String body;
+    if(message.isDecryptInProgress()) body = context.getString(R.string.MessageNotifier_encrypted_message);
+    else body = message.getDisplayBody().toString();
+
+    sendNotification(context, message.getIndividualRecipient().toShortString(), body);
   }
 
   public static boolean isPebbleNotificationEnabled(Context context) {
