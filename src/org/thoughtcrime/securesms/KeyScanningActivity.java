@@ -17,11 +17,13 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.SerializableKey;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -35,6 +37,20 @@ import com.google.zxing.integration.android.IntentResult;
  * @author Moxie Marlinspike
  */
 public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActivity {
+
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
+
+  @Override
+  protected void onCreate(Bundle bundle) {
+    dynamicTheme.onCreate(this);
+    super.onCreate(bundle);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
+  }
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {

@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -148,13 +149,21 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private void setBackground(boolean read, boolean batch) {
+    int[]      attributes = new int[]{R.attr.conversation_list_item_background_selected,
+                                      R.attr.conversation_list_item_background_read,
+                                      R.attr.conversation_list_item_background_unread};
+
+    TypedArray drawables  = context.obtainStyledAttributes(attributes);
+
     if (batch && selectedThreads.contains(threadId)) {
-      setBackgroundResource(R.drawable.list_selected_holo_light);
+      setBackgroundDrawable(drawables.getDrawable(0));
     } else if (read) {
-      setBackgroundResource(R.drawable.conversation_list_item_background_read);
+      setBackgroundDrawable(drawables.getDrawable(1));
     } else {
-      setBackgroundResource(R.drawable.conversation_list_item_background_unread);
+      setBackgroundDrawable(drawables.getDrawable(2));
     }
+
+    drawables.recycle();
   }
 
   private boolean isBadgeEnabled() {
@@ -162,12 +171,15 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private CharSequence formatFrom(Recipients from, long count, boolean read) {
+    int attributes[]  = new int[] {R.attr.conversation_list_item_count_color};
+    TypedArray colors = context.obtainStyledAttributes(attributes);
+
     String fromString              = from.toShortString();
     SpannableStringBuilder builder = new SpannableStringBuilder(fromString);
 
     if (count > 0) {
       builder.append(" " + count);
-      builder.setSpan(new ForegroundColorSpan(Color.parseColor("#66333333")),
+      builder.setSpan(new ForegroundColorSpan(colors.getColor(0,0)),
                       fromString.length(), builder.length(),
                       Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
     }
@@ -177,6 +189,7 @@ public class ConversationListItem extends RelativeLayout
                       Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
+    colors.recycle();
     return builder;
   }
 

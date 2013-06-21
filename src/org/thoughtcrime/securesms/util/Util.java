@@ -184,7 +184,6 @@ public class Util {
     return new String(bout.toByteArray());
   }
 
-
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {
   //    return BitmapFactory.decodeStream(src);
   ////  BitmapFactory.Options options = new BitmapFactory.Options();

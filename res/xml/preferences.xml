@@ -62,6 +62,15 @@
                             android:summary="@string/preferences__also_vibrate_when_notified" />
   </PreferenceCategory>
 
+  <PreferenceCategory android:title="@string/preferences__appearance">
+      <ListPreference android:key="pref_theme"
+                      android:title="@string/preferences__theme"
+                      android:entries="@array/pref_theme_entries"
+                      android:entryValues="@array/pref_theme_values"
+                      android:defaultValue="light">
+      </ListPreference>
+  </PreferenceCategory>
+
   <PreferenceCategory android:title="@string/preferences__storage">
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_trim_threads"

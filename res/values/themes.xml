@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextSecure.LightTheme" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+        <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background_read_light</item>
+        <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_background_unread_light</item>
+        <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
+        <item name="conversation_list_item_count_color">#66333333</item>
+
+        <item name="conversation_card_background">#ffdddddd</item>
+        <item name="conversation_background">@color/white</item>
+        <item name="conversation_text_primary_color">@color/abs__primary_text_holo_light</item>
+        <item name="conversation_text_secondary_color">#ffcccccc</item>
+        <item name="conversation_avatar_divet_right">@drawable/divet_right_light</item>
+        <item name="conversation_avatar_divet_left">@drawable/divet_left_light</item>
+        <item name="conversation_editor_background">#eeeeee</item>
+        <item name="conversation_editor_text_color">@color/edit_text_light_theme</item>
+        <item name="conversation_send_button">@drawable/ic_send_holo_light</item>
+        <item name="conversation_send_secure_button">@drawable/ic_send_encrypted_holo_light</item>
+        <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_light</item>
+    </style>
+
+    <style name="TextSecure.DarkTheme" parent="@style/Theme.Sherlock">
+        <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background_read_dark</item>
+        <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_background_unread_dark</item>
+        <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark</item>
+        <item name="conversation_list_item_count_color">#66dddddd</item>
+
+        <item name="conversation_card_background">#ffdddddd</item>
+        <item name="conversation_background">@color/black</item>
+        <item name="conversation_text_primary_color">@color/abs__primary_text_holo_dark</item>
+        <item name="conversation_text_secondary_color">#ffcccccc</item>
+        <item name="conversation_avatar_divet_right">@drawable/divet_right_dark</item>
+        <item name="conversation_avatar_divet_left">@drawable/divet_left_dark</item>
+        <item name="conversation_editor_background">@color/black</item>
+        <item name="conversation_editor_text_color">@color/edit_text_dark_theme</item>
+        <item name="conversation_send_button">@drawable/ic_send_holo_dark</item>
+        <item name="conversation_send_secure_button">@drawable/ic_send_holo_dark_encrypted</item>
+        <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_dark</item>
+    </style>
+
+</resources>

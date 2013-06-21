@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -45,19 +46,24 @@ public class ImageDivet extends ImageView {
   }
 
   private void setDrawable() {
-    Resources r = getContext().getResources();
+    int attributes[]     = new int[] {R.attr.conversation_avatar_divet_left,
+                                      R.attr.conversation_avatar_divet_right};
+
+    TypedArray drawables = getContext().obtainStyledAttributes(attributes);
 
     switch (position) {
     case 0:
-      drawable = r.getDrawable(R.drawable.divet_right);
+      drawable = drawables.getDrawable(1);
       break;
     case 1:
-      drawable = r.getDrawable(R.drawable.divet_left);
+      drawable = drawables.getDrawable(0);
       break;
     }
 
     drawableIntrinsicWidth  = drawable.getIntrinsicWidth();
     drawableIntrinsicHeight = drawable.getIntrinsicHeight();
+
+    drawables.recycle();
   }
 
   @Override

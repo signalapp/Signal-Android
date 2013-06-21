@@ -20,12 +20,24 @@ import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class ReviewIdentitiesActivity extends SherlockFragmentActivity {
+
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
+
+  @Override
   public void onCreate(Bundle bundle) {
+    dynamicTheme.onCreate(this);
     super.onCreate(bundle);
     setContentView(R.layout.review_identities);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
   }
 
   @Override

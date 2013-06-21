@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true"
+        android:drawable="@android:color/transparent" />
+    <item android:state_pressed="true" android:state_selected="false"
+        android:drawable="@android:color/transparent" />
+    <item android:state_selected="false" android:state_activated="false"
+        android:drawable="@color/conversation_list_item_background_read_light" />
+    <item android:state_activated="true"
+        android:drawable="@drawable/list_selector_background_selected" />
+</selector>

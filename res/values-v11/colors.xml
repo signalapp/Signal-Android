@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="edit_text_light_theme">#ff000000</color>
+    <color name="edit_text_dark_theme">#ffeeeeee</color>
+</resources>

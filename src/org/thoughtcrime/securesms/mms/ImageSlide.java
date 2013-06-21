@@ -103,6 +103,9 @@ public class ImageSlide extends Slide {
 
     imageView.setImageDrawable(temporaryDrawable);
 
+    if (maxWidth == 0 || maxHeight == 0)
+      return;
+
     MmsDatabase.slideResolver.execute(new Runnable() {
       @Override
       public void run() {

@@ -6,6 +6,16 @@
   	<item>@string/preferences__hours</item>
   </string-array>
 
+  <string-array name="pref_theme_entries">
+      <item>@string/preferences__light_theme</item>
+      <item>@string/preferences__dark_theme</item>
+  </string-array>
+
+  <string-array name="pref_theme_values" translatable="false">
+      <item>light</item>
+      <item>dark</item>
+  </string-array>
+
   <string-array name="pref_led_color_entries">
     <item>@string/preferences__green</item>
     <item>@string/preferences__red</item>

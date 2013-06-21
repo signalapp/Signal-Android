@@ -21,24 +21,34 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 public class ConversationListActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationListFragment.ConversationSelectedListener
   {
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   private ConversationListFragment fragment;
   private MasterSecret masterSecret;
 
   @Override
   public void onCreate(Bundle icicle) {
+    dynamicTheme.onCreate(this);
     super.onCreate(icicle);
+
     setContentView(R.layout.conversation_list_activity);
     getSupportActionBar().setTitle("TextSecure");
 
     initializeSenderReceiverService();
     initializeResources();
     initializeContactUpdatesReceiver();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
   }
 
   @Override

@@ -23,6 +23,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -41,6 +42,8 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class ContactSelectionActivity extends PassphraseRequiredSherlockFragmentActivity {
 
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
+
   private ContactSelectionListFragment contactsFragment;
   private ContactSelectionGroupsFragment groupsFragment;
   private ContactSelectionRecentFragment recentFragment;
@@ -49,6 +52,7 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
 
   @Override
   protected void onCreate(Bundle icicle) {
+    dynamicTheme.onCreate(this);
     super.onCreate(icicle);
 
     ActionBar actionBar = this.getSupportActionBar();
@@ -60,6 +64,12 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
     setupContactsTab();
     setupGroupsTab();
     setupRecentTab();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
   }
 
   @Override

@@ -8,7 +8,7 @@
         android:paddingBottom="5dip"
         android:paddingLeft="5dip"
         android:paddingRight="5dip"
-        android:background="@drawable/white_background"
+        android:background="?conversation_background"
         android:orientation="vertical" >
 
         <org.thoughtcrime.securesms.contacts.RecipientsEditor android:id="@+id/recipients_text"

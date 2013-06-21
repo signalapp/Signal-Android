@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -75,6 +76,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -129,9 +131,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private boolean isMmsEnabled = true;
 
   private CharacterCalculator characterCalculator = new CharacterCalculator();
+  private DynamicTheme        dynamicTheme        = new DynamicTheme();
 
   @Override
   protected void onCreate(Bundle state) {
+    dynamicTheme.onCreate(this);
     super.onCreate(state);
 
     setContentView(R.layout.conversation_activity);
@@ -154,6 +158,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   @Override
   protected void onResume() {
     super.onResume();
+    dynamicTheme.onResume(this);
+
     initializeSecurity();
     initializeTitleBar();
     initializeMmsEnabledCheck();
@@ -513,21 +519,26 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeSecurity() {
+    int        attributes[] = new int[]{R.attr.conversation_send_button,
+                                        R.attr.conversation_send_secure_button};
+    TypedArray drawables    = obtainStyledAttributes(attributes);
+
     if (isSingleConversation() &&
         KeyUtil.isSessionFor(this, getRecipients().getPrimaryRecipient()))
     {
-      sendButton.setImageResource(R.drawable.ic_send_encrypted_holo_light);
+      sendButton.setImageDrawable(drawables.getDrawable(1));
       this.isEncryptedConversation     = true;
       this.isAuthenticatedConversation = KeyUtil.isIdentityKeyFor(this, masterSecret, getRecipients().getPrimaryRecipient());
       this.characterCalculator         = new EncryptedCharacterCalculator();
     } else {
-      sendButton.setImageResource(R.drawable.ic_send_holo_light);
+      sendButton.setImageDrawable(drawables.getDrawable(0));
       this.isEncryptedConversation     = false;
       this.isAuthenticatedConversation = false;
       this.characterCalculator         = new CharacterCalculator();
     }
 
     calculateCharactersRemaining();
+    drawables.recycle();
   }
 
   private void initializeMmsEnabledCheck() {

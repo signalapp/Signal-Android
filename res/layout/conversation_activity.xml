@@ -18,7 +18,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:background="@drawable/white_background"
+        android:background="?conversation_background"
         android:gravity="bottom">
 
         <fragment
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="5dip"
-                android:background="#fff">
+                android:background="?conversation_background">
 
                <LinearLayout
                  android:id="@+id/attachment_editor"
@@ -51,7 +51,8 @@
                     android:id="@+id/attachment_thumbnail"
                     android:layout_width="fill_parent"
                     android:layout_height="150dip"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:contentDescription="Attachment Thumbnail"/>
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -70,9 +71,9 @@
 
            </LinearLayout>
 
-            <View android:background="#eeeeee"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
+            <View android:background="?conversation_editor_background"
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp" />
 
                 <LinearLayout
                     android:id="@+id/bottom_panel"
@@ -97,7 +98,7 @@
                         android:maxLength="1000"
                         android:maxLines="4"
                         android:nextFocusRight="@+id/send_button"
-                        android:textColor="@android:color/black" />
+                        android:textColor="?conversation_editor_text_color" />
 
                     <ImageButton
                         android:id="@+id/send_button"
@@ -108,19 +109,17 @@
                         android:contentDescription="@string/conversation_activity__send"
                         android:nextFocusLeft="@+id/embedded_text_editor"
                         android:padding="12dp"
-                        android:src="@drawable/ic_send_holo_light"
+                        android:src="?conversation_send_button"
                         android:clickable="false"
                         android:enabled="false" />
-<!--                        android:tint="#66ffffff" />-->
 
-"
+
                 </LinearLayout>
-                       <TextView android:id="@+id/space_left"
-                                    android:paddingLeft="5dip"
-                                     android:layout_width="fill_parent"
-                                     android:layout_height="wrap_content"
-                                     android:text="160/160 (1)"
-                            />
+               <TextView android:id="@+id/space_left"
+                         android:paddingLeft="5dip"
+                         android:layout_width="fill_parent"
+                         android:layout_height="wrap_content"
+                         android:text="160/160 (1)" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

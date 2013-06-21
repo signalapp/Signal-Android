@@ -84,6 +84,7 @@ public class ConversationItem extends LinearLayout {
   private  ImageView contactPhoto;
   private  ImageView deliveredImage;
 
+  private  View      mmsContainer;
   private  ImageView mmsThumbnail;
   private  Button    mmsDownloadButton;
   private  TextView  mmsDownloadingLabel;
@@ -115,6 +116,7 @@ public class ConversationItem extends LinearLayout {
     this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
     this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
     this.keyImage            = (ImageView)findViewById(R.id.key_exchange_indicator);
+    this.mmsContainer        = (View)     findViewById(R.id.mms_view);
     this.mmsThumbnail        = (ImageView)findViewById(R.id.image_view);
     this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
@@ -237,9 +239,11 @@ public class ConversationItem extends LinearLayout {
   private void setMediaMmsAttributes(MediaMmsMessageRecord messageRecord) {
     if (messageRecord.getPartCount() > 0) {
       mmsThumbnail.setVisibility(View.VISIBLE);
+      mmsContainer.setVisibility(View.VISIBLE);
       mmsThumbnail.setImageDrawable(new ColorDrawable(Color.TRANSPARENT));
     } else {
       mmsThumbnail.setVisibility(View.GONE);
+      mmsContainer.setVisibility(View.GONE);
     }
 
     slideDeck = messageRecord.getSlideDeck();

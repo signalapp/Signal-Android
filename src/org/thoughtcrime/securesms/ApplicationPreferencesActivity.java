@@ -38,8 +38,10 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Trimmer;
+import org.thoughtcrime.securesms.util.Util;
 
 import com.actionbarsherlock.view.MenuItem;
 
@@ -52,7 +54,9 @@ import java.util.List;
  *
  */
 
-public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
+public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity
+    implements SharedPreferences.OnSharedPreferenceChangeListener
+{
 
   private static final int   PICK_IDENTITY_CONTACT        = 1;
 
@@ -67,6 +71,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
+  public static final String THEME_PREF                       = "pref_theme";
 
   private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
 
@@ -93,8 +98,11 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String REGISTERED_GCM_PREF  = "pref_gcm_registered";
   public static final String GCM_PASSWORD_PREF    = "pref_gcm_password";
 
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
+
   @Override
   protected void onCreate(Bundle icicle) {
+    dynamicTheme.onCreate(this);
     super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -114,6 +122,24 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setOnPreferenceClickListener(new TrimNowClickListener());
     this.findPreference(THREAD_TRIM_LENGTH)
       .setOnPreferenceChangeListener(new TrimLengthValidationListener());
+  }
+
+  @Override
+  public void onStart() {
+    super.onStart();
+    getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
+  }
+
+  @Override
+  public void onStop() {
+    super.onStop();
+    getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
   }
 
   @Override
@@ -200,6 +226,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       preferences.edit().putString(IDENTITY_PREF, contactUriString).commit();
 
       initializeIdentitySelection();
+    }
+  }
+
+  @Override
+  public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    if (key.equals(THEME_PREF)) {
+      dynamicTheme.onResume(this);
     }
   }
 
@@ -328,4 +361,5 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
             ((PreferenceScreen)preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(this.getWindow().getDecorView().getBackground().getConstantState().newDrawable());
     return false;
   }
+
 }
