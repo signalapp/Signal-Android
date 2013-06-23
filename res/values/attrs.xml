@@ -16,4 +16,9 @@
     <attr name="conversation_send_button" format="reference"/>
     <attr name="conversation_send_secure_button" format="reference"/>
     <attr name="conversation_delivered_indicator" format="reference"/>
+
+    <attr name="navigation_drawer_background" format="reference|color"/>
+    <attr name="navigation_drawer_text_color" format="color"/>
+    <attr name="navigation_drawer_icons" format="reference"/>
+    <attr name="navigation_drawer_shadow" format="reference"/>
 </resources>

@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
 
 public class DynamicTheme {
@@ -36,18 +36,16 @@ public class DynamicTheme {
     }
   }
 
-  public static int getSelectedTheme(Context context) {
-    String theme = PreferenceManager.getDefaultSharedPreferences(context)
+  private static int getSelectedTheme(Activity activity) {
+    String theme = PreferenceManager.getDefaultSharedPreferences(activity)
                                     .getString(ApplicationPreferencesActivity.THEME_PREF, "light");
 
-    return getSelectedTheme(theme);
-  }
-
-  public static int getSelectedTheme(String theme) {
     if (theme.equals("light")) {
-      return R.style.TextSecure_LightTheme;
+      if (activity instanceof ConversationListActivity) return R.style.TextSecure_LightTheme_NavigationDrawer;
+      else                                              return R.style.TextSecure_LightTheme;
     } else if (theme.equals("dark")) {
-      return R.style.TextSecure_DarkTheme;
+      if (activity instanceof ConversationListActivity) return R.style.TextSecure_DarkTheme_NavigationDrawer;
+      else                                              return R.style.TextSecure_DarkTheme;
     }
 
     return R.style.TextSecure_LightTheme;

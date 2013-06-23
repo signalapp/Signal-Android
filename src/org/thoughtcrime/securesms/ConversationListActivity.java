@@ -1,18 +1,26 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.ApplicationExportManager.ApplicationExportListener;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -24,13 +32,20 @@ import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class ConversationListActivity extends PassphraseRequiredSherlockFragmentActivity
-    implements ConversationListFragment.ConversationSelectedListener
+    implements ConversationListFragment.ConversationSelectedListener,
+               ListView.OnItemClickListener
   {
   private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   private ConversationListFragment fragment;
   private MasterSecret masterSecret;
+  private DrawerLayout drawerLayout;
+  private ListView     drawerList;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -40,6 +55,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     setContentView(R.layout.conversation_list_activity);
     getSupportActionBar().setTitle("TextSecure");
 
+    initializeNavigationDrawer();
     initializeSenderReceiverService();
     initializeResources();
     initializeContactUpdatesReceiver();
@@ -77,6 +93,31 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   }
 
   @Override
+  public void onItemClick(AdapterView parent, View view, int position, long id) {
+    String[] values = getResources().getStringArray(R.array.navigation_drawer_values);
+    String selected = values[position];
+
+    Intent intent;
+
+    if (selected.equals("import_export")) {
+      intent = new Intent();
+    } else if (selected.equals("my_identity_key")) {
+      intent = new Intent(this, ViewIdentityActivity.class);
+      intent.putExtra("identity_key", IdentityKeyUtil.getIdentityKey(this));
+      intent.putExtra("title", getString(R.string.ApplicationPreferencesActivity_my) + " " +
+                               getString(R.string.ViewIdentityActivity_identity_fingerprint));
+    } else if (selected.equals("contact_identity_keys")) {
+      intent = new Intent(this, ReviewIdentitiesActivity.class);
+      intent.putExtra("master_secret", masterSecret);
+    } else {
+      return;
+    }
+
+    drawerLayout.closeDrawers();
+    startActivity(intent);
+  }
+
+  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
 
@@ -89,6 +130,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     case R.id.menu_import:           handleImportDatabase();                    return true;
     case R.id.menu_clear_passphrase: handleClearPassphrase();                   return true;
     case R.id.menu_mark_all_read:    handleMarkAllRead();                       return true;
+    case android.R.id.home:          handleNavigationDrawerToggle();            return true;
     }
 
     return false;
@@ -107,6 +149,14 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 
     startActivity(intent);
+  }
+
+  private void handleNavigationDrawerToggle() {
+    if (drawerLayout.isDrawerOpen(drawerList)) {
+      drawerLayout.closeDrawer(drawerList);
+    } else {
+      drawerLayout.openDrawer(drawerList);
+    }
   }
 
   private void handleDisplaySettings() {
@@ -151,6 +201,40 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     }.execute();
   }
 
+  private void initializeNavigationDrawer() {
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setHomeButtonEnabled(true);
+
+    int[]    attributes = new int[]   {R.attr.navigation_drawer_icons, R.attr.navigation_drawer_shadow};
+    String[] from       = new String[]{"navigation_icon", "navigation_text"      };
+    int[]    to         = new int[]   {R.id.navigation_icon, R.id.navigation_text};
+
+    TypedArray iconArray  = obtainStyledAttributes(attributes);
+    int iconArrayResource = iconArray.getResourceId(0, -1);
+    TypedArray icons      = getResources().obtainTypedArray(iconArrayResource);
+    String[] text         = getResources().getStringArray(R.array.navigation_drawer_text);
+
+    List<HashMap<String, String>> items = new ArrayList<HashMap<String, String>>();
+
+    for(int i = 0; i < text.length; i++){
+      HashMap<String, String> item = new HashMap<String, String>();
+      item.put("navigation_icon", Integer.toString(icons.getResourceId(i, -1)));
+      item.put("navigation_text", text[i]);
+      items.add(item);
+    }
+
+    DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+    ListView drawer           = (ListView)findViewById(R.id.left_drawer);
+    SimpleAdapter adapter     = new SimpleAdapter(this, items, R.layout.navigation_drawer_item, from, to);
+
+    drawerLayout.setDrawerShadow(iconArray.getDrawable(1), GravityCompat.START);
+    drawer.setAdapter(adapter);
+    drawer.setOnItemClickListener(this);
+
+    iconArray.recycle();
+    icons.recycle();
+  }
+
   private void initializeContactUpdatesReceiver() {
     ContentObserver observer = new ContentObserver(null) {
       @Override
@@ -179,6 +263,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
                            WindowManager.LayoutParams.FLAG_SECURE);
     }
 
+    this.drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+    this.drawerList   = (ListView)findViewById(R.id.left_drawer);
     this.masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
 
     this.fragment = (ConversationListFragment)this.getSupportFragmentManager()
@@ -186,4 +272,5 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     this.fragment.setMasterSecret(masterSecret);
   }
-}
+
+  }
