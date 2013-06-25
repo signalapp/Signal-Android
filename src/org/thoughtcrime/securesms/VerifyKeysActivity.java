@@ -46,6 +46,7 @@ public class VerifyKeysActivity extends KeyScanningActivity {
   @Override
   protected void onCreate(Bundle state) {
     super.onCreate(state);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.verify_keys_activity);
 
     initializeResources();

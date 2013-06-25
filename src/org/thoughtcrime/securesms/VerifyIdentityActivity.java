@@ -57,15 +57,6 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     super.onDestroy();
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home: finish(); return true;
-    }
-
-    return false;
-  }
-
   private void initializeLocalIdentityKey() {
     if (!IdentityKeyUtil.hasIdentityKey(this)) {
       localIdentityFingerprint.setText(R.string.VerifyIdentityActivity_you_do_not_have_an_identity_key);
