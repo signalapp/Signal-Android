@@ -111,8 +111,10 @@ public class KeyExchangeProcessor {
 
     sessionRecord.save();
 
-    DatabaseFactory.getIdentityDatabase(context)
-                   .saveIdentity(masterSecret, recipient, message.getIdentityKey());
+    if (message.hasIdentityKey()) {
+      DatabaseFactory.getIdentityDatabase(context)
+                     .saveIdentity(masterSecret, recipient, message.getIdentityKey());
+    }
 
     DecryptingQueue.scheduleRogueMessages(context, masterSecret, recipient);
 

@@ -113,7 +113,8 @@ public class ConversationListItem extends RelativeLayout
   }
 
   public void unbind() {
-    this.recipients.removeListener(this);
+    if (this.recipients != null)
+      this.recipients.removeListener(this);
   }
 
   private void initializeContactWidgetVisibility() {
