@@ -65,6 +65,11 @@ public class DatabaseMigrationActivity extends PassphraseRequiredSherlockActivit
     shutdownServiceBinding();
   }
 
+  @Override
+  public void onBackPressed() {
+
+  }
+
   private void initializeServiceBinding() {
     Intent intent = new Intent(this, ApplicationMigrationService.class);
     bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);

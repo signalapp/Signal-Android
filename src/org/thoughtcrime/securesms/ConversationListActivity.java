@@ -19,7 +19,6 @@ import android.widget.SimpleAdapter;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import org.thoughtcrime.securesms.ApplicationExportManager.ApplicationExportListener;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -100,7 +99,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     Intent intent;
 
     if (selected.equals("import_export")) {
-      intent = new Intent();
+      intent = new Intent(this, ImportExportActivity.class);
+      intent.putExtra("master_secret", masterSecret);
     } else if (selected.equals("my_identity_key")) {
       intent = new Intent(this, ViewIdentityActivity.class);
       intent.putExtra("identity_key", IdentityKeyUtil.getIdentityKey(this));
@@ -126,8 +126,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     switch (item.getItemId()) {
     case R.id.menu_new_message:      createConversation(-1, null, defaultType); return true;
     case R.id.menu_settings:         handleDisplaySettings();                   return true;
-    case R.id.menu_export:           handleExportDatabase();                    return true;
-    case R.id.menu_import:           handleImportDatabase();                    return true;
     case R.id.menu_clear_passphrase: handleClearPassphrase();                   return true;
     case R.id.menu_mark_all_read:    handleMarkAllRead();                       return true;
     case android.R.id.home:          handleNavigationDrawerToggle();            return true;
@@ -163,25 +161,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     Intent preferencesIntent = new Intent(this, ApplicationPreferencesActivity.class);
     preferencesIntent.putExtra("master_secret", masterSecret);
     startActivity(preferencesIntent);
-  }
-
-  private void handleExportDatabase() {
-    ApplicationExportManager exportManager = new ApplicationExportManager(this);
-    exportManager.exportDatabase();
-  }
-
-  private void handleImportDatabase() {
-    ApplicationExportManager exportManager = new ApplicationExportManager(this);
-    ApplicationExportListener listener = new ApplicationExportManager.ApplicationExportListener() {
-      @Override
-      public void onPrepareForImport() {
-        onMasterSecretCleared();
-        handleClearPassphrase();
-      }
-    };
-
-    exportManager.setListener(listener);
-    exportManager.importDatabase();
   }
 
   private void handleClearPassphrase() {

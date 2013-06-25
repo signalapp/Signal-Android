@@ -61,6 +61,10 @@ public interface MmsSmsColumns {
               (type & BASE_TYPE_MASK) == BASE_SENDING_TYPE;
     }
 
+    public static boolean isInboxType(long type) {
+      return (type & BASE_TYPE_MASK) == BASE_INBOX_TYPE;
+    }
+
     public static boolean isSecureType(long type) {
       return (type & SECURE_MESSAGE_BIT) != 0;
     }
@@ -110,6 +114,14 @@ public interface MmsSmsColumns {
       }
 
       return BASE_INBOX_TYPE;
+    }
+
+    public static int translateToSystemBaseType(long type) {
+      if      (isInboxType(type))           return 1;
+      else if (isOutgoingMessageType(type)) return 2;
+      else if (isFailedMessageType(type))   return 5;
+
+      return 1;
     }
 
 

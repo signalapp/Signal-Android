@@ -102,6 +102,11 @@ public class EncryptingSmsDatabase extends SmsDatabase {
                              Types.ENCRYPTION_SYMMETRIC_BIT);
   }
 
+  public Reader getMessages(MasterSecret masterSecret, int skip, int limit) {
+    Cursor cursor = super.getMessages(skip, limit);
+    return new DecryptingReader(masterSecret, cursor);
+  }
+
   public Reader getOutgoingMessages(MasterSecret masterSecret) {
     Cursor cursor = super.getOutgoingMessages();
     return new DecryptingReader(masterSecret, cursor);

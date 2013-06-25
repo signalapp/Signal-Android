@@ -59,7 +59,7 @@ public class DatabaseFactory {
   private static DatabaseFactory instance;
   private static EncryptingPartDatabase encryptingPartInstance;
 
-  private final DatabaseHelper databaseHelper;
+  private DatabaseHelper databaseHelper;
 
   private final SmsDatabase sms;
   private final EncryptingSmsDatabase encryptingSms;
@@ -146,10 +146,22 @@ public class DatabaseFactory {
     this.draftDatabase    = new DraftDatabase(context, databaseHelper);
   }
 
-  public void close() {
-    databaseHelper.close();
-    address.close();
-    instance = null;
+  public void reset(Context context) {
+    DatabaseHelper old = this.databaseHelper;
+    this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+    this.sms.reset(databaseHelper);
+    this.encryptingSms.reset(databaseHelper);
+    this.mms.reset(databaseHelper);
+    this.part.reset(databaseHelper);
+    this.thread.reset(databaseHelper);
+    this.mmsAddress.reset(databaseHelper);
+    this.mmsSmsDatabase.reset(databaseHelper);
+    this.identityDatabase.reset(databaseHelper);
+    this.draftDatabase.reset(databaseHelper);
+    old.close();
+
+    this.address.reset(context);
   }
 
   public void onApplicationLevelUpgrade(Context context, MasterSecret masterSecret, int fromVersion,

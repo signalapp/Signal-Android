@@ -29,7 +29,7 @@ public abstract class Database {
   private static final String CONVERSATION_URI      = "content://textsecure/thread/";
   private static final String CONVERSATION_LIST_URI = "content://textsecure/conversation-list";
 
-  protected final SQLiteOpenHelper databaseHelper;
+  protected       SQLiteOpenHelper databaseHelper;
   protected final Context context;
 
   public Database(Context context, SQLiteOpenHelper databaseHelper) {
@@ -56,6 +56,10 @@ public abstract class Database {
 
   protected void setNotifyConverationListListeners(Cursor cursor) {
     cursor.setNotificationUri(context.getContentResolver(), Uri.parse(CONVERSATION_LIST_URI));
+  }
+
+  public void reset(SQLiteOpenHelper databaseHelper) {
+    this.databaseHelper = databaseHelper;
   }
 
 }

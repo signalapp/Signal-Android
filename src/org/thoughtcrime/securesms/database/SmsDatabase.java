@@ -121,6 +121,21 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     }
   }
 
+  public int getMessageCount() {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor     = null;
+
+    try {
+      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, null, null, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) return cursor.getInt(0);
+      else                                        return 0;
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
   public int getMessageCountForThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;
@@ -290,6 +305,11 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     return messageIds;
   }
 
+  Cursor getMessages(int skip, int limit) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    return db.query(TABLE_NAME, MESSAGE_PROJECTION, null, null, null, null, ID, skip + "," + limit);
+  }
+
   Cursor getOutgoingMessages() {
     String outgoingSelection = TYPE + " & "  + Types.BASE_TYPE_MASK + " = " + Types.BASE_OUTBOX_TYPE;
     SQLiteDatabase db        = databaseHelper.getReadableDatabase();
@@ -413,6 +433,11 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
         return null;
 
       return getCurrent();
+    }
+
+    public int getCount() {
+      if (cursor == null) return 0;
+      else                return cursor.getCount();
     }
 
     public SmsMessageRecord getCurrent() {

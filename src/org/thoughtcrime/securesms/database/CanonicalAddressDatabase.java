@@ -44,7 +44,7 @@ public class CanonicalAddressDatabase {
   private static final Object lock             = new Object();
 
   private static CanonicalAddressDatabase instance;
-  private final DatabaseHelper databaseHelper;
+  private DatabaseHelper databaseHelper;
 
   private final Map<String,Long> addressCache = Collections.synchronizedMap(new HashMap<String,Long>());
   private final Map<String,String> idCache    = Collections.synchronizedMap(new HashMap<String,String>());
@@ -60,6 +60,13 @@ public class CanonicalAddressDatabase {
 
   private CanonicalAddressDatabase(Context context) {
     databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    fillCache();
+  }
+
+  public void reset(Context context) {
+    DatabaseHelper old  = this.databaseHelper;
+    this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    old.close();
     fillCache();
   }
 

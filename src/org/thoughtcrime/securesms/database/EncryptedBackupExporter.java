@@ -26,7 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
-public class ApplicationExporter {
+public class EncryptedBackupExporter {
 
   public static void exportToSd(Context context) throws NoExternalStorageException, IOException {
     verifyExternalStorageForExport();
@@ -71,7 +71,7 @@ public class ApplicationExporter {
         destination.close();
       }
     } catch (IOException ioe) {
-      Log.w("ApplicationExporter", ioe);
+      Log.w("EncryptedBackupExporter", ioe);
     }
   }
 
@@ -95,7 +95,7 @@ public class ApplicationExporter {
         }
       }
     } else {
-      Log.w("ApplicationExporter", "Could not find directory: " + directory.getAbsolutePath());
+      Log.w("EncryptedBackupExporter", "Could not find directory: " + directory.getAbsolutePath());
     }
   }
 

@@ -13,19 +13,6 @@
           android:id="@+id/menu_mark_all_read"
           android:icon="@android:drawable/ic_menu_set_as" />
 
-    <item android:title="@string/text_secure_normal__menu_import_export"
-          android:icon="@android:drawable/ic_menu_save">
-        <menu>
-            <item android:title="@string/text_secure_normal__menu_import"
-                  android:id="@+id/menu_import"
-                  android:icon="@android:drawable/ic_menu_revert" />
-
-            <item android:title="@string/text_secure_normal__menu_export"
-                  android:id="@+id/menu_export"
-                  android:icon="@android:drawable/ic_menu_save" />
-        </menu>
-    </item>
-
     <item android:title="@string/text_secure_normal__menu_settings"
           android:id="@+id/menu_settings"
           android:icon="@android:drawable/ic_menu_preferences" />

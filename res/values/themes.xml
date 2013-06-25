@@ -20,8 +20,8 @@
     </style>
 
     <style name="TextSecure.LightTheme.NavigationDrawer" parent="@style/TextSecure.LightTheme">
+        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
         <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
-
         <item name="navigation_drawer_background">@color/abs__background_holo_light</item>
         <item name="navigation_drawer_text_color">#ff333333</item>
         <item name="navigation_drawer_icons">@array/navigation_drawer_icons_light</item>
@@ -49,6 +49,7 @@
     </style>
 
     <style name="TextSecure.DarkTheme.NavigationDrawer" parent="@style/TextSecure.DarkTheme">
+        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
         <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
         <item name="navigation_drawer_background">#ff333333</item>
         <item name="navigation_drawer_text_color">#ffdddddd</item>

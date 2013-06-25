@@ -191,8 +191,8 @@ public class SmsMigrator {
                                      MasterSecret masterSecret,
                                      SmsMigrationProgressListener listener)
   {
-    if (context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).getBoolean("migrated", false))
-      return;
+//    if (context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).getBoolean("migrated", false))
+//      return;
 
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Cursor cursor                 = null;
