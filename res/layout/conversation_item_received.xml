@@ -45,7 +45,7 @@
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/mms_view"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:paddingTop="7dip"
                 android:paddingBottom="7dip">
