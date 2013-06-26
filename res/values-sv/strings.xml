@@ -4,29 +4,8 @@
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="delete">Radera</string>
-  <!--ApplicationExportManager-->
-  <string name="ApplicationExportManager_import_database_and_settings_title">Importera Databas och Inställningar?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">Importera TextSecure databas, nycklar och inställningar från SD-kortet?\n\nVARNING: Detta kommer förstöra alla existerande meddelanden, nycklar och inställningar!</string>
-  <string name="ApplicationExportManager_importing_database_and_keys">Importerar Databas och Nycklar</string>
-  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Importerar din SMS databas, nycklar, och inställningar...</string>
-  <string name="ApplicationExportManager_export_database_question">Exportera Databas?</string>
-  <string name="ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt">Exportera TextSecure databas, nycklar, och inställningar till SD kort?</string>
-  <string name="ApplicationExportManager_exporting_database_and_keys">Exporterar Databas och Nycklar</string>
-  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">Exporterar din SMS databas, nycklar, och inställningar.</string>
-  <string name="ApplicationExportManager_no_sd_card_found_exclamation">Inget SD kort hittat!</string>
-  <string name="ApplicationExportManager_error_exporting_to_sd_exclamation">Det gick inte att exportera til SD!</string>
-  <string name="ApplicationExportManager_import_successful_exclamation">Import Lyckades!</string>
-  <string name="ApplicationExportManager_export_successful_exclamation">Export Lyckades!</string>
-  <string name="ApplicationExportManager_import">Importera</string>
-  <string name="ApplicationExportManager_export">Exportera</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nuvarande: %s</string>
-  <string name="ApplicationPreferenceActivity_not_found_exclamation">Inte funnen!</string>
-  <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">Ingen giltig identitetsnyckel funnen i den valda kontakten.</string>
-  <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen identitetsnyckel!</string>
-  <string name="ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself">Du har inte definierat en kontakt för dig själv! Välj en i menyn Inställningar.</string>
-  <string name="ApplicationPreferenceActivity_exported_to_contacts_database">Exporterad till kontaktens databas!</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Du behöver skriva in ditt lösenord innan du importerar nycklar...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Du behöver skriva in ditt lösenord innan du hanterar nycklar...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte valt ett lösenord än!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">meddelanden per konversation</string>
@@ -52,7 +31,6 @@
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Kan ej skriva till SD Kort!</string>
   <string name="ConversationItem_view_secure_media_question">Visa säker media?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denna media har lagrats i en krypterad databas. Tyvärr, för att öppna den med en extern visare behöver datan tillfälligt dekrypteras och skrivas till disken. Är du säker på att du vill göra detta?</string>
-  <string name="ConversationItem_key_exchange_message">Nyckelutbytesmeddelande</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Tog emot och bearbetade nyckelutbytesmeddelande.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fel, tog emot gammalt nyckeutbytesmeddelande.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Tog emot nyckelutbytesmeddelande, klicka för att bearbeta</string>
@@ -76,6 +54,8 @@
   <string name="ConversationActivity_d_recipients_in_group">%d mottagare i grupp</string>
   <string name="ConversationActivity_saving_draft">Sparar utkast...</string>
   <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
+  <string name="ConversationActivity_calls_not_supported">Samtal stöds ej</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp handlingar.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelande detaljer</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Avsändare: %1$s\nTransport: %2$s\nSkickat/Mottaget: %3$s</string>
@@ -83,7 +63,6 @@
   <string name="ConversationFragment_confirm_message_delete">Bekräfta radering av meddelande</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Är du säker på att du vill ta bort detta meddelande permanent?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_encrypted_message_enter_passphrase">Krypterat meddelande, skriv in lösenord...</string>
   <string name="ConversationListAdapter_key_exchange_message">Nyckelutbytesmeddelande...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Radera trådar?</string>
@@ -92,6 +71,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">Raderar markerade trådar...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande...</string>
+  <!--ExportFragment-->
+  <!--ImportFragment-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannad nyckel funnen!</string>
   <!--MmsDownloader-->
@@ -113,34 +94,10 @@
   <string name="PromptApnActivity_mms_settings_updated">MMS-inställningar uppdaterade</string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan modifiera dessa värden från TextSecure inställningsmenyn när du vill.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">FEL:\n\nDu har mottagit en publik nyckel som är skadad. Denna nyckel kan inte behandlas, var vänlig initiera en säker session igen.</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">Fel:\n\nDu har mottagit en publik nyckel från en version av protokollet som inte stöds. Denna nyckel kan inte behandlas, var vänlig initiera en säker session igen.</string>
-  <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">Detta nyckelutbytesmeddelande inkluderar inte en identitetssignatur.</string>
-  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Detta nyckelutbytesmeddelande inkluderar en meddelandesignatur, men du litar inte på den ännu.</string>
-  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Detta nyckelutbytesmeddelande innehåller en identitetssignatur vilken du litar på för: %s</string>
-  <string name="ReceiveKeyActivity_this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_s">Detta är nyckeln du skickar för att starta din säkra krypterade session med %s</string>
-  <string name="ReceiveKeyActivity_this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s">Detta är nyckeln du tar emot för att starta din nuvarande krypterade session med %s</string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session">Du har tagit emot ett nyckelutbytesmeddelande från %s.\n\nVARNING: Du har redan en krypterad session med denna kontakt. Om du väljer att acceptera detta nyckelutbytesmeddelande kommer det förstöra din nuvarande session och du kommer behöva återbekräfta. Vill du fullfölja nyckelutbytet?</string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">Du har tagit emot ett nyckelutbytesmeddelande från %s. Du har tidigare initierat en session med denna kontakt, och genom att acceptera denna nyckel fullföljer du nyckelutbytet. Vill du fullfölja nyckelutbytet?</string>
-  <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">Du har initierat ett nyckelutbytesmeddelande med %s men du har inte ännu fått något svar.</string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">Du har fått ett nyckelutbytesmeddelande från %s. Du har ingen existerade session med denna kontakt, vill du fullfölja nyckelutbytet?</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen för detta nyckelutbytet skiljer sig från det som du tidigare har mottagit från denna kontakt.\nDetta kan innebära antingen att någon försöker avlyssna din kommunikation, eller att denna kontakt helt enkelt installerade om TextSecure och nu har en ny identitetsnyckel.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Det kan vara en bra idé att\nverifiera denna kontakt.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen för detta nyckelutbytet är betrodd, men du har inställningen \'fullborda nyckelutbyten automatiskt\' avstängd.</string>
-  <!--ReviewIdentitiesActivity-->
-  <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Kan ej visa korrupt identitetsnyckel!</string>
-  <string name="ReviewIdentitiesActivity_delete_identity">Radera identitet?</string>
-  <string name="ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key">Är du säker på att du vill radera denna identitetsnyckel permanent?</string>
-  <string name="ReviewIdentitiesActivity_invalid_identity">Ogiltig identitet!</string>
-  <!--SaveIdentityActivity-->
-  <string name="SaveIdentityActivity_you_must_specify_a_name_for_this_identity_exclamation">Du måste specificera ett namn för denna identitet!</string>
-  <string name="SaveIdentityActivity_identity_name_exists_exclamation">Identitetsnamn existerar!</string>
-  <string name="SaveIdentityActivity_an_identity_key_with_the_specified_name_already_exists">En identitetsnyckel med det specificerade namnet existerar redan.</string>
-  <string name="SaveIdentityActivity_manage_identities">Hantera identiteter</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_mark_identity_verified_question">Markera identitet som verifierad?</string>
-  <string name="VerifyIdentityActivity_are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified">Är du säker att du har validerat mottagarens identitetsfingeravtryck och vill markera det som verifierat?</string>
-  <string name="VerifyIdentityActivity_mark_verified">Markera som verifierad</string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnyckel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottagaren har ingen identitetsnyckel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Mottagaren har ingen identitetsnyckel!</string>
@@ -151,22 +108,7 @@
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Deras nyckel är korrekt. Det är också nödvändigt att verifiera din nyckel med dom.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Verifierad!</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen identitetsnyckel!</string>
-  <!--VerifyImportedIdentityActivity-->
-  <string name="VerifyImportedIdentityActivity_you_must_specify_a_name_for_this_contact_exclamation">Du måste specificera ett namn för denna kontakt!</string>
-  <string name="VerifyImportedIdentityActivity_save_identity_key_question">Spara identitetsnyckel?</string>
-  <string name="VerifyImportedIdentityActivity_error_saving_identity_key_exclamation">Error vid sparning av identitetsnyckel!</string>
-  <string name="VerifyImportedIdentityActivity_this_identity_key_or_an_identity_key_with_the_same_name_already_exists_please_edit_your_key_database">Denna identitetsnyckel eller en identitetsnyckel med samma namn existerar redan. Var vänlig redigera din nyckeldatabas.</string>
-  <string name="VerifyImportedIdentityActivity_scan_to_compare">Skanna för att jämföra</string>
-  <string name="VerifyImportedIdentityActivity_get_scanned_to_compare">Bli skannad för att jämföra</string>
-  <string name="VerifyImportedIdentityActivity_not_verified_exclamation">INTE verifierad!</string>
-  <string name="VerifyImportedIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">VARNING, den skannade nyckeln matchar INTE!</string>
-  <string name="VerifyImportedIdentityActivity_the_scanned_key_matches_exclamation">Den skannade nyckeln matchar!</string>
-  <string name="VerifyImportedIdentityActivity_verified_exclamation">Verifierad!</string>
-  <string name="VerifyImportedIdentityActivity_are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s">Är du säker på att du vill markera denna som en giltig identitetsnyckel för all framtida korrespondens med %s? Du bör endast göra detta om du faktiskt verifierat fingeravtrycket.</string>
   <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_mark_session_verified_question">Markera session som verifierad?</string>
-  <string name="VerifyKeysActivity_are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified">Är du säker på att du validerat dessa fingeravtryck och vill markera sessionen som verifierad?</string>
-  <string name="VerifyKeysActivity_mark_verified">Markera verifierad!</string>
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Få mitt fingeravtryck skannat</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">Skanna deras fingeravtryck</string>
   <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">VARNING, den skannade nyckeln matchar INTE! Var vänlig kolla fingeravtryck texten noggrant.</string>
@@ -190,13 +132,11 @@
   <string name="MessageDisplayHelper_bad_encrypted_message">Dåligt krypterat meddelande...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterar, var vänlig vänta...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande krypterat för icke-existerande session...</string>
-  <string name="MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question">Dekrypteringsfel: lokalt meddelande korrupt, MAC matchar inte. Potentiellt fiffel?</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Ansluter till MMS server...</string>
   <string name="MmsDatabase_downloading_mms">Laddar ner MMS...</string>
   <string name="MmsDatabase_mms_download_failed">MMS nedladdning misslyckades!</string>
   <string name="MmsDatabase_downloading">Laddar ner...</string>
-  <string name="MmsDatabase_anonymous">Anonym</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterar MMS, var vänlig vänta...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Dåligt krypterat MMS meddelande...</string>
@@ -212,9 +152,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d nya meddelanden</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från: %s</string>
-  <string name="MessageNotifier_key_exchange">Nyckelutbyte...</string>
   <string name="MessageNotifier_encrypted_message">Krypterat meddelande...</string>
-  <string name="MessageNotifier_corrupted_ciphertext">Korrupt chiffertext</string>
   <string name="MessageNotifier_no_subject">(Inget ämne)</string>
   <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kunde inte leverera meddelande.</string>
@@ -274,15 +212,11 @@
   <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY VÄRD (VALFRITT):</string>
   <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (VALFRITT):</string>
   <!--receive_key_activity-->
-  <string name="receive_key_activity__session">Session</string>
-  <string name="receive_key_activity__identities">Identiteter</string>
   <string name="receive_key_activity__complete">Klart</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Till</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Du har för närvarande inga identitetsnycklar i din förtroendedatabas.</string>
-  <!--save_identity_activity-->
-  <string name="save_identity_activity__identity_name">Identitetsnamn:</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Deras identitet (de läser):</string>
   <string name="verify_identity_activity__your_identity_you_read">Din identitet (du läser):</string>
@@ -294,9 +228,6 @@
   <!--verify_keys_activity-->
   <string name="verify_keys_activity__they_read_this">De läser detta:</string>
   <string name="verify_keys_activity__you_read_this">Du läser detta:</string>
-  <!--view_identity_activity-->
-  <string name="view_identity_activity__identity">Identitet:</string>
-  <string name="view_identity_activity__qr_code">QR Kod</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Skapa lösenord</string>
   <string name="AndroidManifest__enter_passphrase">Skriv lösenord</string>
@@ -306,32 +237,24 @@
   <string name="AndroidManifest__change_passphrase">Ändra lösenord</string>
   <string name="AndroidManifest__verify_session">Verifiera session</string>
   <string name="AndroidManifest__verify_identity">Verifiera identitet</string>
-  <string name="AndroidManifest__save_identity">Spara identitet</string>
   <string name="AndroidManifest__manage_identity_keys">Hantera identitetsnycklar</string>
   <string name="AndroidManifest__complete_key_exchange">Fullborda nyckelutbyte</string>
-  <string name="AndroidManifest__verify_imported_identity">Verifiera importerad identitet</string>
+  <!--arrays.xml-->
   <!--preferences.xml-->
-  <string name="preferences__general">Allmänna</string>
-  <string name="preferences__use_settings">Användningsinställningar</string>
+  <string name="preferences__general">Allmänt</string>
   <string name="preferences__pref_all_sms_title">Använd för alla SMS</string>
   <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Använd TextSecure för att läsa och lagra alla inkommande text meddelanden</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Använd TextSecure för att se och lagra alla inkommande multimedia meddelanden</string>
-  <string name="preferences__input_settings">Inputinställningar</string>
   <string name="preferences__pref_enter_sends_title">Enter skickar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Klick på enter-tangenten skickar text meddelanden</string>
   <string name="preferences__display_settings">Visningsinställningar</string>
   <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontakt listan.</string>
-  <string name="preferences__encryption_settings">Krypteringsinställningar</string>
-  <string name="preferences__change_passphrase">Ändra lösenfras</string>
+  <string name="preferences__change_passphrase">Ändra lösenord</string>
   <string name="preferences__change_my_passphrase">Ändra mitt lösenord</string>
   <string name="preferences__complete_key_exchanges">Fullborda nyckelutbyten</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Fullfölj nyckelutbyten automatiskt för nya sessioner eller för existerande sessioner med samma identitetsnyckel</string>
-  <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Inkludera en blanksteg tagg i slutet av varje okrypterat meddelande.</string>
-  <string name="preferences__include_whitespace_tag">Inkludera blanktecken tagg</string>
-  <string name="preferences__sign_key_exchange_messages_with_identity_key">Signera nyckelutbytesmeddelanden med identitetsnyckel</string>
-  <string name="preferences__sign_key_exchange">Signera nyckelutbyte</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Glöm lösenord från minnet efter ett intervall</string>
   <string name="preferences__timeout_passphrase">Timeout lösenord</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Välj lösenordstimeout</string>
@@ -339,12 +262,8 @@
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Väntetiden innan lösenordet glöms från minnet</string>
   <string name="preferences__identity_key_settings">Identitetsnycklar</string>
   <string name="preferences__view_my_identity_key">Visa min identitetsnyckel</string>
-  <string name="preferences__export_my_identity_key">Exportera min identitetsnyckel</string>
-  <string name="preferences__import_contacts_key">Importera nyckeln för en kontakt</string>
-  <string name="preferences__import_an_identity_key_from_a_contact">Importera en identitetsnyckel från en kontakt</string>
   <string name="preferences__manage_identity_keys">Hantera identitetsnycklar</string>
   <string name="preferences__manage_configured_identity_keys">Hantera konfigurerade identitetsnycklar</string>
-  <string name="preferences__notification_settings">Notifikationsinställningar</string>
   <string name="preferences__notifications">Notifikationer</string>
   <string name="preferences__display_message_notifications_in_status_bar">Visa meddelande notifikationer i statusraden</string>
   <string name="preferences__led_color">LED-färg</string>
@@ -376,10 +295,7 @@
   <string name="preferences__mmsc_url_required">MMSC URL (nödvändigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxyvärd (valfritt)</string>
   <string name="preferences__mms_proxy_port_optional">MMS proxyport (valfritt)</string>
-  <string name="preferences__delivery_reports">Leveransrapporter</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Begär en leveransrapport för varje SMS meddelande du skickar</string>
-  <string name="preferences__request_a_delivery_report_for_each_mms_message_you_send">Begär en leveransrapport för varje MMS meddelande du skickar</string>
-  <string name="preferences__mms_delivery_reports">MMS leveransrapporter</string>
   <string name="preferences__sms_delivery_reports">SMS leveransrapporter</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Radera automatiskt gamla meddelanden när en konversationstråd överstiger en specificerad längd</string>
   <string name="preferences__delete_old_messages">Radera gamla meddelanden</string>
@@ -387,6 +303,10 @@
   <string name="preferences__conversation_length_limit">Konversationstrådslängd</string>
   <string name="preferences__trim_all_threads_now">Trimma alla trådar nu</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skanna igenom alla konversationstrådar och framtvinga konversationstrådslängder.</string>
+  <string name="preferences__light_theme">Ljust tema</string>
+  <string name="preferences__dark_theme">Mörkt tema</string>
+  <string name="preferences__appearance">Utseende</string>
+  <string name="preferences__theme">Tema</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -433,9 +353,6 @@
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nytt meddelande</string>
   <string name="text_secure_normal__menu_settings">Inställningar</string>
-  <string name="text_secure_normal__menu_import_export">Importera/Exportera</string>
-  <string name="text_secure_normal__menu_import">Importera</string>
-  <string name="text_secure_normal__menu_export">Exportera</string>
   <string name="text_secure_normal__menu_clear_passphrase">Rensa lösenord</string>
   <string name="text_secure_normal__mark_all_as_read">Markera alla som lästa</string>
   <!--verify_keys-->

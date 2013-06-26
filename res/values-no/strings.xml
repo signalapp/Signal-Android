@@ -4,29 +4,8 @@
   <string name="yes">Ja</string>
   <string name="no">Nei</string>
   <string name="delete">Slett</string>
-  <!--ApplicationExportManager-->
-  <string name="ApplicationExportManager_import_database_and_settings_title">Importer database og innstillinger?</string>
-  <string name="ApplicationExportManager_import_database_and_settings_message">Importer TextSecure database, nøkler og innstillinger fra SD-kortet?\n\nADVARSEL: Dette vil overskrive eksisterende meldinger, nøkler og innstillinger!</string>
-  <string name="ApplicationExportManager_importing_database_and_keys">Importerer database og nøkler</string>
-  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">Importerer meldingsdatabasen din, samt nøkler og innstillinger...</string>
-  <string name="ApplicationExportManager_export_database_question">Eksporter database?</string>
-  <string name="ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt">Eksporter TextSecure meldingsdatabase, nøkler og innstillinger til SD-kort?</string>
-  <string name="ApplicationExportManager_exporting_database_and_keys">Eksporterer database og nøkler</string>
-  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">Eksporterer meldingsdatabasen din, samt nøkler og innstillinger...</string>
-  <string name="ApplicationExportManager_no_sd_card_found_exclamation">SD-kort ikke funnet!</string>
-  <string name="ApplicationExportManager_error_exporting_to_sd_exclamation">Feil ved export til SD-kort!</string>
-  <string name="ApplicationExportManager_import_successful_exclamation">Import vellykket!</string>
-  <string name="ApplicationExportManager_export_successful_exclamation">Eksport vellykket!</string>
-  <string name="ApplicationExportManager_import">Importer</string>
-  <string name="ApplicationExportManager_export">Eksporter</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nå: %s</string>
-  <string name="ApplicationPreferenceActivity_not_found_exclamation">Ikke funnet!</string>
-  <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">Ingen gyldig ID-nøkkel ble funnet i den angitte kontakten.</string>
-  <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen ID-nøkkel!</string>
-  <string name="ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself">Du har ennå ikke definert en kontakt for deg selv! Velg en i Innstillinger-menyen.</string>
-  <string name="ApplicationPreferenceActivity_exported_to_contacts_database">Eksportert til kontakt-databasen!</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">Du må taste inn passordet før du importerer nøkler...</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Du må taste inn passordet før du administrerer nøkler...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke definert et passord ennå!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">meldinger per samtale</string>
@@ -52,7 +31,6 @@
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til SD-kort!</string>
   <string name="ConversationItem_view_secure_media_question">Vise kryptert vedlegg?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Dette vedlegget har blitt lagret i en kryptert database. For å vise det med en ekstern fremviser må vedlegget dessverre midlertidig dekrypteres og lagres til et usikkert område. Er du sikker på at du ønsker å gjøre dette?</string>
-  <string name="ConversationItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Nøkkelutvekslingsmelding mottatt og behandlet.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Feil, fikk en gammel nøkkelutvekslingsmelding.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Nøkkelutvekslingsmelding mottatt, klikk for å behandle</string>
@@ -76,6 +54,8 @@
   <string name="ConversationActivity_d_recipients_in_group">%d mottakere i gruppen</string>
   <string name="ConversationActivity_saving_draft">Lagrer utkast...</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig mottaker!</string>
+  <string name="ConversationActivity_calls_not_supported">Anrop er ikke støttet</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne enheten ser ikke ut til å kunne initiere anrop.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt:%3$s</string>
@@ -83,7 +63,6 @@
   <string name="ConversationFragment_confirm_message_delete">Bekreft sletting av melding</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker å slette denne meldingen?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_encrypted_message_enter_passphrase">Kryptert melding, tast inn passord...</string>
   <string name="ConversationListAdapter_key_exchange_message">Nøkkelutvekslingsmelding...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Slette trådene?</string>
@@ -92,6 +71,38 @@
   <string name="ConversationListFragment_deleting_selected_threads">Sletter utvalgte tråder...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">Eksporter til SD-kort?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dette vil eksportere dine krypteringsnøkler, innstillinger og meldinger til SD-kortet.</string>
+  <string name="ExportFragment_export">Eksporter</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Eksportere klartekst til SD-kort?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Advarsel! Dette vil eksportere klartekstinnholdet i dine TextSecure meldinger til SD-kortet.</string>
+  <string name="ExportFragment_cancel">Avbryt</string>
+  <string name="ExportFragment_exporting">Eksporterer</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksporterer klartekst til SD-kort...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">En feil har oppstått; kan ikke skrive til SD-kort!</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">En feil oppstod under lagring til SD-kort.</string>
+  <string name="ExportFragment_success">Suksess!</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Eksporterer krypterte nøkler, innstillinger og meldinger...</string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Importer systemets SMS database?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere meldinger fra systemets SMS database til TextSecure. Dersom du har gjort en import tidligere, vil dette føre til dupliserte meldinger.</string>
+  <string name="ImportFragment_import">Importer</string>
+  <string name="ImportFragment_cancel">Avbryt</string>
+  <string name="ImportFragment_restore_encrypted_backup">Gjenopprett kryptert backup?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nGjenoppretting av en kryptert backup vil overskrive eksisterende nøkler, innstillinger og meldinger. Du vil miste informasjon i TextSecure som ikke finnes i backup.</string>
+  <string name="ImportFragment_restore">Gjenopprett</string>
+  <string name="ImportFragment_import_plaintext_backup">Importere klartekst backup?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dette vil importere meldinger fra en klartekst backup. Dersom du har gjort en import tidligere, vil dette føre til dupliserte meldinger.</string>
+  <string name="ImportFragment_importing">Importerer</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importerer klartekst backup...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Ingen klartekst backup funnet!</string>
+  <string name="ImportFragment_error_importing_backup">Feil oppstod ved import av backup!</string>
+  <string name="ImportFragment_import_complete">Import fullført!</string>
+  <string name="ImportFragment_restoring">Gjenoppretter</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Gjenoppretter kryptert backup...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Ingen kryptert backup funnet!</string>
+  <string name="ImportFragment_restore_complete">Gjenoppretting fullført!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannet nøkkel funnet!</string>
   <!--MmsDownloader-->
@@ -113,34 +124,10 @@
   <string name="PromptApnActivity_mms_settings_updated">MMS konfigurasjon oppdatert</string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan forandre disse verdiene når som helst i konfigurasjonsmenyen for TextSecure.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_error_you_have_received_a_corrupted_public_key">FEIL:\n\nDu har mottatt en korrupt offentlig nøkkel. Denne nøkkelen kan ikke behandles, vær vennlig å re-initiere en sikker sesjon.</string>
-  <string name="ReceiveKeyActivity_error_you_have_received_a_public_key_from_an_unsupported_version_of_the_protocol">FEIL:\n\nDu har mottatt en offentlig nøkkel fra en versjon av protokollen som ikke støttes. Denne nøkkelen kan ikke behandles, vær vennlig å re-initiere en sikker sesjon.</string>
-  <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">Denne nøkkelutvekslingsmeldingen inneholder ikke en ID-signatur.</string>
-  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">Denne nøkkelutvekslingsmeldingen inneholder en ID-signatur, men du har valgt å ikke stole på den ennå.</string>
-  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">Denne nøkkelutvekslingsmeldingen inneholder en ID-signatur som du stoler på for: %s</string>
-  <string name="ReceiveKeyActivity_this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_s">Dette er nøkkelen du sendte for å starte din nåværende krypterte sesjon med %s</string>
-  <string name="ReceiveKeyActivity_this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s">Dette er nøkkelen du mottok for å starte din nåværende kryptere sesjon med %s</string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session">Du har mottatt en nøkkelutvekslingsmelding fra %s.\n\nADVARSEL: Du har allerede en pågående kryptert sesjon med denne kontakten. Dersom du godtar denne nøkkelutvekslingen vil din eksisterende sesjon avbrytes og du vil være nødt til å re-autentisere. Ønsker du å fullføre nøkkelutvekslingen?</string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">Du har mottatt en nøkkelutvekslingsmelding fra %s. Du har tidligere initiert en sesjon med denne kontakten. Ved å akseptere denne nøkkelen vil du fullføre nøkkelutvekslingen. Ønsker du å fullføre denne nøkkelutvekslingen?</string>
-  <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">Du har initiert en nøkkelutveksling med %s men du har ennå ikke fått noe svar på denne.</string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">Du har mottatt en nøkkelutvekslingsmelding fra %s. Du har ingen eksisterende sesjon med denne kontakten. Ønsker du å fullføre nøkkelutvekslingen?</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne nøkkelutvekslingen er ikke lik den du tidligere mottok fra denne\nkontakten. Det kan enten bety at noen prøver å avskjære kommunikasjonen din eller\nat denne kontakten har installert TextSecure på nytt og dermed fått en ny identitetsnøkkel.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verifisere\ndenne kontakten.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen på denne nøkkelutvekslingen er til å stole på, men du har deaktivert innstillingen\n\'fullfør nøkkelutvekslinger automatisk\'.</string>
-  <!--ReviewIdentitiesActivity-->
-  <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">Klarer ikke å vise korrupt ID-nøkkel!</string>
-  <string name="ReviewIdentitiesActivity_delete_identity">Slett ID?</string>
-  <string name="ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key">Er du sikker på at du ønsker å slette denne ID-nøkkelen?</string>
-  <string name="ReviewIdentitiesActivity_invalid_identity">Ukjent ID!</string>
-  <!--SaveIdentityActivity-->
-  <string name="SaveIdentityActivity_you_must_specify_a_name_for_this_identity_exclamation">Du må gi denne identiten et navn!</string>
-  <string name="SaveIdentityActivity_identity_name_exists_exclamation">Navnet på denne identiten finnes fra før!</string>
-  <string name="SaveIdentityActivity_an_identity_key_with_the_specified_name_already_exists">En ID-nøkkel med det angitte navnet finnes fra før.</string>
-  <string name="SaveIdentityActivity_manage_identities">Administrere identiteter</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_mark_identity_verified_question">Merk ID som bekreftet?</string>
-  <string name="VerifyIdentityActivity_are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified">Er du sikker på at du har validert mottakerens ID-fingeravtrykk og ønsker å markere det som bekreftet?</string>
-  <string name="VerifyIdentityActivity_mark_verified">Merk som bekreftet</string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Mottakeren har ingen ID-nøkkel!</string>
@@ -151,22 +138,7 @@
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Nøkkelen deres er korrekt. Det er også nødvendig å bekrefte nøkkelen din med dem også.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Bekreftet!</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen ID-nøkkel!</string>
-  <!--VerifyImportedIdentityActivity-->
-  <string name="VerifyImportedIdentityActivity_you_must_specify_a_name_for_this_contact_exclamation">Du må gi denne kontakten et navn!</string>
-  <string name="VerifyImportedIdentityActivity_save_identity_key_question">Lagre ID-nøkkel?</string>
-  <string name="VerifyImportedIdentityActivity_error_saving_identity_key_exclamation">Feil ved lagring av ID-nøkkel!</string>
-  <string name="VerifyImportedIdentityActivity_this_identity_key_or_an_identity_key_with_the_same_name_already_exists_please_edit_your_key_database">Denne ID-nøkkelen, eller en annen ID-nøkkel med samme navn, finnes allerede. Vær vennlig å redigere nøkkeldatabasen.</string>
-  <string name="VerifyImportedIdentityActivity_scan_to_compare">Skann for å sammenligne</string>
-  <string name="VerifyImportedIdentityActivity_get_scanned_to_compare">Få den skannet for å sammenligne</string>
-  <string name="VerifyImportedIdentityActivity_not_verified_exclamation">IKKE bekreftet!</string>
-  <string name="VerifyImportedIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME!</string>
-  <string name="VerifyImportedIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøkkelen stemmer overens!</string>
-  <string name="VerifyImportedIdentityActivity_verified_exclamation">Bekreftet!</string>
-  <string name="VerifyImportedIdentityActivity_are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s">Er du sikker på at du ønsker å markere denne som en gyldig ID-nøkkel for videre korrespondanse med %s? Du bør bare gjøre dette hvis du faktisk har bekreftet fingeravtrykket.</string>
   <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_mark_session_verified_question">Merk sesjonen som bekreftet?</string>
-  <string name="VerifyKeysActivity_are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified">Er du sikker på at du har validert disse fingeravtrykkene og ønsker å markere denne sesjonen som bekreftet?</string>
-  <string name="VerifyKeysActivity_mark_verified">Merk som bekreftet</string>
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Få mitt fingeravtrykk skannet</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">Skann motpartens fingeravtrykk</string>
   <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME! Vær vennlig å sjekke fingeravtrykkets tekst nøye.</string>
@@ -190,13 +162,11 @@
   <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterer, vennligst vent...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for en ikke-eksisterende sesjon...</string>
-  <string name="MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question">Feil ved dekryptering: Lokal melding korrupt, MAC\'en stemmer ikke. Potensiell tukling?</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Kobler til MMS tjener...</string>
   <string name="MmsDatabase_downloading_mms">Laster ned MMS...</string>
   <string name="MmsDatabase_mms_download_failed">MMS nedlasting feilet!</string>
   <string name="MmsDatabase_downloading">Laster ned...</string>
-  <string name="MmsDatabase_anonymous">Anonym</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS, vennligst vent...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS...</string>
@@ -212,9 +182,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nye meldinger</string>
   <string name="MessageNotifier_most_recent_from_s">Sist mottatt fra: %s</string>
-  <string name="MessageNotifier_key_exchange">Nøkkelutveksling...</string>
   <string name="MessageNotifier_encrypted_message">Kryptert melding...</string>
-  <string name="MessageNotifier_corrupted_ciphertext">Korrumpert chiffertext</string>
   <string name="MessageNotifier_no_subject">(Mangler emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering av meldingen mislyktes.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Klarte ikke å levere meldingen.</string>
@@ -264,6 +232,16 @@
   <string name="database_migration_activity__importing">IMPORTERER</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Oppdaterer database...</string>
+  <string name="export_fragment__export_encrypted_backup">Eksporter kryptert backup</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Eksporter en kryptert backup til SD-kortet.</string>
+  <string name="export_fragment__export_plaintext_backup">Eksporter klartekst backup</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksporter en klartekst backup kompatibel med \'SMSBackup And Restore\' til SD-kortet.</string>
+  <string name="import_fragment__import_system_sms_database">Importer systemets SMS database</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importer databasen fra systemets SMS applikasjon.</string>
+  <string name="import_fragment__import_encrypted_backup">Importer kryptert backup</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nGjenopprett en tidligere eksportert kryptert TextSecure backup.</string>
+  <string name="import_fragment__import_plaintext_backup">Importer klartekst backup</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nImporter en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSORD</string>
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
@@ -274,15 +252,11 @@
   <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY VERT (IKKE PÅKREVD):</string>
   <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (IKKE PÅKREVD):</string>
   <!--receive_key_activity-->
-  <string name="receive_key_activity__session">Sesjon</string>
-  <string name="receive_key_activity__identities">Identiteter</string>
   <string name="receive_key_activity__complete">Complete</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Til</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Du har ingen ID-nøkler som du stoler på.</string>
-  <!--save_identity_activity-->
-  <string name="save_identity_activity__identity_name">Identitetens navn:</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Deres identitet (de leser):</string>
   <string name="verify_identity_activity__your_identity_you_read">Din identitet (du leser):</string>
@@ -294,9 +268,6 @@
   <!--verify_keys_activity-->
   <string name="verify_keys_activity__they_read_this">De leser dette:</string>
   <string name="verify_keys_activity__you_read_this">Du leser dette:</string>
-  <!--view_identity_activity-->
-  <string name="view_identity_activity__identity">Identitet:</string>
-  <string name="view_identity_activity__qr_code">QR kode</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Opprett passord</string>
   <string name="AndroidManifest__enter_passphrase">Tast inn passord</string>
@@ -306,32 +277,27 @@
   <string name="AndroidManifest__change_passphrase">Bytt passord</string>
   <string name="AndroidManifest__verify_session">Bekreft sesjon</string>
   <string name="AndroidManifest__verify_identity">Bekreft identitet</string>
-  <string name="AndroidManifest__save_identity">Lagre identitet</string>
   <string name="AndroidManifest__manage_identity_keys">Administrer ID-nøkler</string>
   <string name="AndroidManifest__complete_key_exchange">Fullfør nøkkelutveksling</string>
-  <string name="AndroidManifest__verify_imported_identity">Bekreft importert identitet</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">Importer / eksporter</string>
+  <string name="arrays__my_identity_key">Min ID-nøkkel</string>
+  <string name="arrays__contact_keys">Kontaktnøkler</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
-  <string name="preferences__use_settings">Innstillinger for bruk</string>
   <string name="preferences__pref_all_sms_title">Benytt for all SMS</string>
   <string name="preferences__pref_all_mms_title">Benytt for all MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Benytt TextSecure for å lese og lagre alle innkommende SMS meldinger.</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Benytt TextSecure for å lese og lagre alle innkommende MMS meldinger.</string>
-  <string name="preferences__input_settings">Innstillinger for inndata</string>
   <string name="preferences__pref_enter_sends_title">\"Enter\" sender</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Inntasting av \"Enter\" fører til at meldingen blir sendt</string>
   <string name="preferences__display_settings">Innstillinger for visning</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg din kontakt fra kontaktlisten.</string>
-  <string name="preferences__encryption_settings">Innstillinger for kryptering</string>
   <string name="preferences__change_passphrase">Endre passord</string>
   <string name="preferences__change_my_passphrase">Endre mitt passord</string>
   <string name="preferences__complete_key_exchanges">Fullfør nøkkelutvekslinger</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisk fullføre nøkkelutvekslinger for nye sesjoner eller sesjoner med samme ID-nøkkel</string>
-  <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">Inkluder en \"whitespace tag\" på slutten av alle ukrypterte meldinger</string>
-  <string name="preferences__include_whitespace_tag">Inkluder \"whitespace tag\"</string>
-  <string name="preferences__sign_key_exchange_messages_with_identity_key">Signer nøkkelutvekslingsmeldinger med ID-nøkkel</string>
-  <string name="preferences__sign_key_exchange">Signer nøkkelutveksling</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern passord fra minnet etter et gitt intervall</string>
   <string name="preferences__timeout_passphrase">Passordtimeout</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Velg passord timeout</string>
@@ -339,12 +305,8 @@
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hvor lang tid det skal gå før passordet slettes fra minnet</string>
   <string name="preferences__identity_key_settings">ID-nøkler</string>
   <string name="preferences__view_my_identity_key">Vis min ID-nøkkel</string>
-  <string name="preferences__export_my_identity_key">Eksporter min ID-nøkkel</string>
-  <string name="preferences__import_contacts_key">Importer kontaktens ID-nøkkel</string>
-  <string name="preferences__import_an_identity_key_from_a_contact">Importer en ID-nøkkel fra en kontaktperson</string>
   <string name="preferences__manage_identity_keys">Administrer ID-nøkler</string>
   <string name="preferences__manage_configured_identity_keys">Administrer konfigurerte ID-nøkler</string>
-  <string name="preferences__notification_settings">Innstillinger for varsling</string>
   <string name="preferences__notifications">Varsling</string>
   <string name="preferences__display_message_notifications_in_status_bar">Vis varsel om meldinger i status feltet</string>
   <string name="preferences__led_color">LED farge</string>
@@ -376,10 +338,7 @@
   <string name="preferences__mmsc_url_required">MMSC URL (påkrevd)</string>
   <string name="preferences__mms_proxy_host_optional">MMS proxy host (valgfritt)</string>
   <string name="preferences__mms_proxy_port_optional">MMS proxy port (valgfritt)</string>
-  <string name="preferences__delivery_reports">Leveringsrapporter</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om en leveringsrapport for hver SMS-melding du sender</string>
-  <string name="preferences__request_a_delivery_report_for_each_mms_message_you_send">Be om en leveringsrapport for hver MMS-melding du sender</string>
-  <string name="preferences__mms_delivery_reports">Leveringsrapport for MMS</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapport for SMS</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Slett eldre meldinger automatisk når en samtale tråd overskrider en spesifisert lengde</string>
   <string name="preferences__delete_old_messages">Slett gamle meldinger</string>
@@ -387,6 +346,10 @@
   <string name="preferences__conversation_length_limit">Grense på samtalelengde</string>
   <string name="preferences__trim_all_threads_now">Trimme alle samtaletråder nå</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skanne gjennom alle samtaletrådene og håndheve grensen på samtalelengde </string>
+  <string name="preferences__light_theme">Lyst tema</string>
+  <string name="preferences__dark_theme">Mørkt tema</string>
+  <string name="preferences__appearance">Utseende</string>
+  <string name="preferences__theme">Tema</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -433,9 +396,6 @@
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Ny melding</string>
   <string name="text_secure_normal__menu_settings">Innstillinger</string>
-  <string name="text_secure_normal__menu_import_export">Importere/eksportere</string>
-  <string name="text_secure_normal__menu_import">Importer</string>
-  <string name="text_secure_normal__menu_export">Eksporter</string>
   <string name="text_secure_normal__menu_clear_passphrase">Fjern passord</string>
   <string name="text_secure_normal__mark_all_as_read">Marker alle lest</string>
   <!--verify_keys-->

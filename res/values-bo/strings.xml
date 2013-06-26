@@ -4,28 +4,8 @@
   <string name="yes">ཡིན།</string>
   <string name="no">མིན། </string>
   <string name="delete">གསུབ། </string>
-  <!--ApplicationExportManager-->
-  <string name="ApplicationExportManager_import_database_and_settings_title">ཡིག་ཆའི་མཛོད་དང་སྒྲིག་བཟོ་རྣམས་ནང་འཇུག་བྱེད་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="ApplicationExportManager_importing_database_and_keys">ཡིག་ཆའི་མཛོད་དང་ལྡེ་མིག་རྣམས་ནང་འཇུག་བྱེད་བཞིན་ཡོད།</string>
-  <string name="ApplicationExportManager_importing_your_sms_database_keys_and_settings">ཁྱོད་ཀྱི་འཕྲིན་ཐུང་གི་མཛོད་དང་ལྡེ་མིག སྒྲིག་བཟོ་རྣམས་ནང་འཇུག་བྱེད་བཞིན་ཡོད།</string>
-  <string name="ApplicationExportManager_export_database_question">ཡིག་ཆའི་མཛོད་ཕྱི་ལ་དབོར་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="ApplicationExportManager_export_textsecure_database_keys_and_settings_prompt">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུ (SD Card)  ནས་གཡག་འཕྲིན་གི་མཛོད། ལྡེ་མིག་དང་སྒྲིག་བཟོ་རྣམས་ཕྱིར་འདོན་བྱེད་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="ApplicationExportManager_exporting_database_and_keys">ཡིག་ཆའི་མཛོད་དང་ལྡེ་མིག་ཕྱིར་འདོན་བྱེད་བཞིན་ཡོད།</string>
-  <string name="ApplicationExportManager_exporting_your_sms_database_keys_and_settings">ཁྱོད་ཀྱི་འཕྲིན་ཐུང་གི་མཛོད་དང་ལྡེ་མིག་། སྒྲིག་བཟོ་རྣམས་ཕྱིར་འདོན་བྱེད་བཞིན་ཡོད།</string>
-  <string name="ApplicationExportManager_no_sd_card_found_exclamation">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུ་(SD Card) རྙེད་མ་སོང་། </string>
-  <string name="ApplicationExportManager_error_exporting_to_sd_exclamation">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུ་ཕྱིར་འདྲེན་བྱེད་པར་ནོར་འཁྲུལ་འདུག  </string>
-  <string name="ApplicationExportManager_import_successful_exclamation">ནང་འཇུག་ལེགས་འགྲུབ་བྱུང་། </string>
-  <string name="ApplicationExportManager_export_successful_exclamation">ཕྱིར་འདོན་ལེགས་འགྲུབ་བྱུང་། </string>
-  <string name="ApplicationExportManager_import">ནང་འདྲེན་བྱོས། </string>
-  <string name="ApplicationExportManager_export">ཕར་ལ་ཐོངས། </string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ད་ལྟ།:%s</string>
-  <string name="ApplicationPreferenceActivity_not_found_exclamation">རྙེད་མ་སོང་། </string>
-  <string name="ApplicationPreferenceActivity_no_valid_identity_key_was_found_in_the_specified_contact">དམིགས་སུ་བཀར་བའི་འབྲེལ་གཏུགས་ཁོངས་སུ་ངོས་འཛིན་ཅན་གྱི་ལྡེ་མིག་མི་འདུག </string>
-  <string name="ApplicationPreferenceActivity_you_don_t_have_an_identity_key_exclamation">ཁྱེད་ལ་ངོས་འཛིན་ལྡེ་མིག་མི་འདུག </string>
-  <string name="ApplicationPreferenceActivity_you_have_not_yet_defined_a_contact_for_yourself">ཁྱེད་ཀྱིས་འབྲེལ་ལམ་བྱ་ཡུལ་གསལ་བཤད་བྱས་མི་འདུག སྒྲིག་བཟོའི་འདེམ་ཐོ་ལས་འདེམས་རོགས། </string>
-  <string name="ApplicationPreferenceActivity_exported_to_contacts_database">འབྲེལ་མིང་གི་མཛོད་ཁོངས་སུ་བཏང་ཚར། </string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_importing_keys">ཁྱོད་ཀྱིས་ལྡེ་མིག་ནང་འཇུག་མ་བྱས་སྔོན་ལ་གསང་གྲངས་འཇོག་དགོས།</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">ཁྱོད་ཀྱིས་ལྡེ་མིག་དོ་དམ་མ་བྱས་སྔོན་ལ་གསང་གྲངས་འཇོག་དགོས།</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ཁྱོད་ཀྱིས་གསང་ཚིག་བཟོས་མི་འདུག</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">གླེང་མོལ་རེ་རེའི་འཕྲིན་ཐུང་། </string>
@@ -49,7 +29,6 @@
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་(SD Card) ནང་དུ་བླུགས་ཐུབ་མི་འདུག </string>
   <string name="ConversationItem_view_secure_media_question">ཉེན་སྲུང་ཡོད་པའི་བརྒྱུད་ལམ་ལ་ལྟོས། </string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">བརྒྱུད་ལམ་འདི་ཡིག་ཆའི་མཛོད་ཀྱི་གསང་སྡོམ་ཁོངས་སུ་ཉར་ཡོད། སྟབས་མི་ལེགས་པ་ཞིག་ལ། ཕྱི་རོལ་གྱི་པར་གཞི་ཞིག་དང་མཉམ་དུ་དེ་ལ་བལྟ་བ་ལ་གནས་སྐབས་རིང་གསང་སྡོམ་བྱས་མེད་པའི་གཞི་གྲངས་ཤིག་དགོས་ཀྱི་ཡོད། ཁྱེད་རང་གིས་དེ་ལྟར་བྱེད་ན་འདོད་དམ། </string>
-  <string name="ConversationItem_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལེན། </string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འབྱོར་ཚར། </string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">ནོར་འཁྲུལ། ལྡེ་མིག་རྙིང་པ་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འབྱོར་ཚར། དེ་རུ་ནོར་འཁྲུལ་འདུག </string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འབྱོར་བྱུང་། བསྣུན་ནས་ལས་སྣོན་བྱོས། </string>
@@ -79,7 +58,6 @@
   <string name="ConversationFragment_confirm_message_delete">འཕྲིན་ཐུང་གསུབ་པ་ངེས་བརྟན་བཟོས། </string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_encrypted_message_enter_passphrase">འཕྲིན་ཐུང་དེ་གསང་སྡོམ་བྱས་འདུག  གསང་ཚིག་ནང་འཇུག་བྱོས། </string>
   <string name="ConversationListAdapter_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན།</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
@@ -88,6 +66,11 @@
   <string name="ConversationListFragment_deleting_selected_threads">འཕྲིན་ཐུང་སྐུད་རིམ་རྣམས་གསུབ་བཞིན་ཡོད།</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན།</string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export">ཕྱི་འདྲེན་བྱོས། </string>
+  <string name="ExportFragment_success">ལེགས་འགྲུབ། </string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import">ནང་འདྲེན་བྱོས། </string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ཞིབ་བརྟག་བྱས་པའི་ལྡེ་མིག་རྙེད་མི་ཐུབ།</string>
   <!--MmsDownloader-->
@@ -108,29 +91,7 @@
   <string name="PromptApnActivity_mms_settings_updated">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་གི་སྒྲིག་བཟོར་ཁ་སྣོན་བྱས་ཡོད། </string>
   <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">ཁྱེད་ཀྱིས་དུས་ཚོད་གང་རུང་དུ་གཡག་འཕྲིན་སྒྲིག་བཟོའི་ཐོ་བྱང་ནས་འདི་དག་གི་ངོ་བོར་འགྱུར་བ་བཏང་ཆོག </string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_this_key_exchange_message_does_not_include_an_identity_signature">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འདིའི་ནང་ངོས་འཛིན་མིང་རྟགས་མེད།</string>
-  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_but_you_do_not_yet_trust_it">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འདིའི་ནང་ངོས་འཛིན་མིང་རྟགས་ཡོད། ཡིན་ནའང་། ཁྱེད་ཀྱིས་དེ་ལ་ད་དུང་ཡང་ཡིད་ཆེས་བྱེད་ཀྱི་མི་འདུག </string>
-  <string name="ReceiveKeyActivity_this_key_exchange_message_includes_an_identity_signature_which_you_trust_for_s">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འདིའི་ནང་ངོས་འཛིན་མིང་རྟགས་ཡོད་པ་དེར་ཁྱེད་ཀྱིས་ཡིད་ཆེས།  : %s</string>
-  <string name="ReceiveKeyActivity_this_is_the_key_that_you_sent_to_start_your_current_encrypted_session_with_s">%s དང་ལྷན་དུ་། འདི་ནི་ཁྱེད་ཀྱིས་ད་ཡོད་གསང་སྡོམ་གླེང་མོལ་དེ་འགོ་འཛུགས་པར་བཏང་བའི་ལྡེ་མིག་དེ་རེད། </string>
-  <string name="ReceiveKeyActivity_this_is_the_key_that_you_received_to_start_your_current_encrypted_session_with_s">%s དང་ལྷན་དུ། འདི་ནི་ད་ཡོད་གསང་སྡོམ་གླེང་མོལ་དེ་འགོ་འཛུགས་པར་ཁྱེད་ལ་འབྱོར་བའི་ལྡེ་མིག་དེ་རེད། </string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_warning_you_already_have_an_encrypted_session">(%s.⏎ ⏎ )ནས་ཁྱེད་ལ་ཕན་ཚུན་ལྡེ་མིག་བརྗེ་ལེན་གྱི་བརྡ་ལན་ཞིག་འབྱོར་འདུག \nཉེན་བརྡ། འབྲེལ་བ་འདི་དང་མཉམ་དུ་ཁྱོད་ལ་གསང་རྒྱ་ཅན་གྱི་གླེང་མོལ་ཞིག་འདུག གལ་སྲིད་ཁྱོད་ཀྱིས་ལྡེ་མིག་བརྗེ་ལེན་གྱི་བརྡ་ལན་འདི་ངོས་ལེན་བྱས་ཚེ། དེས་ཁྱེད་ཀྱི་ད་ཡོད་གླེང་མོལ་དེ་གཏོར་བཤིག་གཏོང་བ་མ་ཟད་ཁྱེད་ནས་ཡང་བསྐྱར་ཁུངས་སྐྱེལ་བྱེད་དགོས། ཁྱེད་ཀྱིས་ལྡེ་མིག་བརྗེ་ལེན་འདི་ལེགས་འགྲུབ་བྱེད་འདོད་དམ། </string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_previously_initiated">%s ནས་ཁྱེད་ལ་ཕན་ཚུན་ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འབྱོར་འདུག ཁྱེད་ཀྱི་འབྲེལ་མིང་འདིའི་ལྷན་དུ་གཏམ་གླེང་འགོ་བཙུགས་འདུག་པ་དང་ལྡེ་མིག་འདི་ངོས་ལེན་བརྒྱུད་ཁྱེད་ཀྱིས་ལྡེ་མིག་བརྗེ་ལེན་གྱི་རིམ་པ་འདི་ལེགས་འགྲུབ་བྱེད་ཀྱི་ཡོད། ཁྱེད་རང་གིས་ལྡེ་མིག་འདིའི་བརྗེ་བསྒྱུར་ལེགས་འགྲུབ་བྱེད་འདོད་འདུག་གམ།</string>
-  <string name="ReceiveKeyActivity_you_have_initiated_a_key_exchange_message_with_s_but_have_not_yet_received_a_reply">%s དང་མཉམ་དུ། ཁྱོད་ཀྱིས་ཕན་ཚུན་ལྡེ་མིག་བརྗེ་ལེན་བྱ་རྒྱུའི་བརྡ་ལན་འགོ་བཙུགས་འདུག ཡིན་ནའང་། དེར་ཡ་ལན་འབྱོར་མི་འདུག </string>
-  <string name="ReceiveKeyActivity_you_have_received_a_key_exchange_message_from_s_you_have_no_existing_session">%s ནས། ཁྱེད་ལ་ཕན་ཚུན་ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འབྱོར་འདུག ཁྱེད་ལ་འབྲེལ་བ་འདིའི་མཉམ་དུ་སོར་གནས་སྡེ་ཚན་མི་འདུག  ཁྱེད་རང་གིས་ལྡེ་མིག་འདི་བརྗེ་བསྒྱུར་ཆ་ཚང་བར་བྱེད་འདོད་དམ། </string>
-  <!--ReviewIdentitiesActivity-->
-  <string name="ReviewIdentitiesActivity_unable_to_view_corrupted_identity_key_exclamation">ངན་ལྷད་ཅན་གྱི་ངོས་འཛིན་ལྡེ་མིག་དེར་བལྟ་ཐུབ་གི་མི་འདུག </string>
-  <string name="ReviewIdentitiesActivity_delete_identity">ངོས་འཛིན་དེ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="ReviewIdentitiesActivity_delete_identity_are_you_sure_you_want_to_delete_this_identity_key">ཁྱེད་ཀྱིས་དངོས་གནས་ངོས་འཛིན་ལྡེ་མིག་དེ་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="ReviewIdentitiesActivity_invalid_identity">ཁུངས་མེད་ངོས་འཛིན། </string>
-  <!--SaveIdentityActivity-->
-  <string name="SaveIdentityActivity_you_must_specify_a_name_for_this_identity_exclamation">ངོས་འཛིན་འདི་ལ་མིང་དམིགས་བསལ་བ་ཞིག་ཐོགས། </string>
-  <string name="SaveIdentityActivity_identity_name_exists_exclamation">ངོས་འཛིན་སའི་མིང་འདུག </string>
-  <string name="SaveIdentityActivity_an_identity_key_with_the_specified_name_already_exists">མིང་ཁ་གསལ་སྟོན་པའི་ངོས་འཛིན་ལྡེ་མིག་ཅིག་སྔོན་ནས་འདུག</string>
-  <string name="SaveIdentityActivity_manage_identities">ངོས་འཛིན་རྣམས་བཟོ་སྒྲིག་བྱོས། </string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_mark_identity_verified_question">བདེན་དཔང་བྱས་བའི་ངོས་འཛིན་ལ་རྟགས་རྒྱོབས། </string>
-  <string name="VerifyIdentityActivity_are_you_sure_you_have_validated_the_recipients_identity_fingerprint_and_would_like_to_mark_it_as_verified">ཁྱེད་ཀྱིས་དངོས་གནས་གཏོང་ཡུལ་དེའི་ངོས་འཛིན་མཛུབ་ཐེལ་དེ་ཁུངས་དག་བཟོས་སམ།  དེ་ལ་ཁྱེད་ཀྱིས་ཁུངས་ཐུབ་ཀྱི་རྟགས་རྒྱག་འདོད་དམ། </string>
-  <string name="VerifyIdentityActivity_mark_verified">ཁུངས་ཐུབ་ཡིན་པའི་རྟགས་བཀོད། </string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">ཁྱེད་ལ་ངོས་འཛིན་བྱེད་ཀྱི་ལྡེ་མིག་མི་འདུག</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">གཏོང་ཡུལ་ལ་ངོས་འཛིན་བྱེད་ཀྱི་ལྡེ་མིག་མི་འདུག</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">གཏོང་ཡུལ་ལ་ངོས་འཛིན་བྱེད་ཀྱི་ལྡེ་མིག་མི་འདུག</string>
@@ -141,22 +102,7 @@
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">གཞན་གྱི་ལྡེ་མིག་འགྲིག་འདུག  ཁྱེད་ཀྱི་ལྡེ་མིག་གཞན་དང་མཉམ་དུ་ར་སྤྲོད་བྱེད་དགོས་ངེས་རེད། </string>
   <string name="VerifyIdentityActivity_verified_exclamation">ར་སྤྲོད་བྱས་ཟིན།</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">ཁྱེད་ལ་ངོ་འཛིན་ལྡེ་མིག་མི་འདུག</string>
-  <!--VerifyImportedIdentityActivity-->
-  <string name="VerifyImportedIdentityActivity_you_must_specify_a_name_for_this_contact_exclamation">འབྲེལ་བ་བྱ་ཡུལ་དེའི་མིང་ངེས་པར་དུ་ཁ་གསལ་སྟོན་དགོས།</string>
-  <string name="VerifyImportedIdentityActivity_save_identity_key_question">ངོས་འཛིན་ལྡེ་མིག་དེ་ཉར་ཚགས་བྱེད་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="VerifyImportedIdentityActivity_error_saving_identity_key_exclamation">ངོས་འཛིན་ལྡེ་མིག་ཉར་ཚགས་བྱེད་སྐབས་ནོར་འཁྲུལ་བྱུང་འདུག </string>
-  <string name="VerifyImportedIdentityActivity_this_identity_key_or_an_identity_key_with_the_same_name_already_exists_please_edit_your_key_database">ངོས་འཛིན་ལྡེ་མིག་འདི་འམ། ཡང་ན་མིང་མཚུངས་ཅན་གྱི་ལྡེ་མིག་ཞིག་སྔོན་ནས་འདུག ལྡེ་མིག་གི་མཛོད་དེ་རྩོམ་སྒྲིག་བྱོས། </string>
-  <string name="VerifyImportedIdentityActivity_scan_to_compare">གཤིབ་སྡུར་ཆེད་ཞིབ་བརྟག་བྱོས། </string>
-  <string name="VerifyImportedIdentityActivity_get_scanned_to_compare">གཤིབ་སྡུར་སླད་ཞིབ་བརྟག་ཚར་བ་བྱོས། </string>
-  <string name="VerifyImportedIdentityActivity_not_verified_exclamation">ར་སྤྲོད་བྱས་མི་འདུག</string>
-  <string name="VerifyImportedIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ཉེན་བརྡ། ཞིབ་བརྟག་བྱས་པའི་ལྡེ་མིག་དེ་མཚུངས་གི་མི་འདུག </string>
-  <string name="VerifyImportedIdentityActivity_the_scanned_key_matches_exclamation">ཞིབ་བརྟག་བྱས་པའི་ལྡེ་མིག་དེ་ཆ་མཚུངས་ཀྱི་འདུག </string>
-  <string name="VerifyImportedIdentityActivity_verified_exclamation">ར་སྤྲོད་བྱས་ཟིན།</string>
-  <string name="VerifyImportedIdentityActivity_are_you_sure_that_you_would_like_to_mark_this_as_a_valid_identity_key_for_all_future_correspondence_with_s">%s འདིའི་ལྷན་དུ། ཁྱེད་ཀྱིས་འབྱུང་འགྱུར་གྱི་ཡིག་འབྲེལ་ཚང་མའི་མཉམ་དུ། ཁུངས་ཐུབ་ཀྱི་ངོས་འཛིན་ལྡེ་མིག་འདིར་རྟགས་རྒྱག་འདོད་ཡོད་དམ། སྤྱིར་བཏང་ནས་ཁྱེད་ཀྱིས་མཛུབ་ཐེལ་ཁུངས་སྐྱེལ་བྱས་ཡོད་ན། ད་གཟོད་འདི་ལྟར་བྱེད་དགོས་རེད། </string>
   <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_mark_session_verified_question">ཁུངས་ཐུབ་ཀྱི་སྡེ་ཚན་ལ་རྟགས་འཁོད། </string>
-  <string name="VerifyKeysActivity_are_you_sure_that_you_have_validated_these_fingerprints_and_would_like_to_mark_this_session_as_verified">ཁྱེད་ཀྱིས་དངོས་གནས་མཛུབ་ཐེལ་འདི་དག་གི་ཁུངས་སྐྱེལ་བྱས་ཡོད་དམ། ཁྱེད་ཀྱིས་སྡེ་ཚན་འདི་ལ་བདེན་དཔང་ཡིན་པའི་རྟགས་རྒྱག་གི་འདོད་དམ། </string>
-  <string name="VerifyKeysActivity_mark_verified">རྒྱབ་གཉེར་གྱི་རྟགས་འཁོད། </string>
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">ངའི་མཛུབ་ཐེལ་ཞིབ་བརྟག་བྱོས། </string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">ཁོང་ཚོའི་མཛུབ་ཐེལ་ཞིབ་བརྟག་བྱོས། </string>
   <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ཉེན་བརྡ། ཞིབ་བརྟག་བྱས་པའི་ལྡེ་མིག་དེ་མི་མཚུངས། མཛུབ་ཐེལ་ཡི་གེ་དེ་གཟབ་ནན་ངང་ཞིབ་བཤེར་བྱོས།</string>
@@ -179,13 +125,11 @@
   <string name="MessageDisplayHelper_bad_encrypted_message">གསང་སྡོམ་འཕྲིན་ཐུང་ཕན་མེད་ཞིག </string>
   <string name="MessageDisplayHelper_decrypting_please_wait">གསང་སྡོམ་བཤིག་བཞིན་ཡོད། ཅུང་སྒུག་དང་།</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">རྙེད་རྒྱུ་མེད་པའི་སྡེ་ཚན་ཞིག་གི་ཆེད་དུ་འཕྲིན་ཐུང་གསང་སྡོམ་བྱས་ཡོད། </string>
-  <string name="MessageDisplayHelper_decryption_error_local_message_corrupted_mac_doesn_t_match_potential_tampering_question">གསང་གྲོལ་ནོར་འཁྲུལ། གཞི་རིམ་འཕྲིན་ཐུང་འཕྲོ་བརླགས་བཏང་འདུག MAC མཚུངས་ཀྱི་མི་འདུག ཡར་རྒྱས་འདུག་གམ།</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་ MMS ཞབས་ཞུའི་ཡོ་ཆས་ལ་མཐུད་བཞིན་ཡོད།</string>
   <string name="MmsDatabase_downloading_mms">བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་ MMS ཕབ་ལེན་བྱེད་བཞིན་ཡོད།</string>
   <string name="MmsDatabase_mms_download_failed">བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་ MMS ཕབ་ལེན་བྱེད་ཐུབ་མ་སོང་།</string>
   <string name="MmsDatabase_downloading">ཕབ་ལེན་བྱེད་བཞིན་ཡོད།</string>
-  <string name="MmsDatabase_anonymous">མིང་མེད། </string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་MMS གསང་གྲོལ་བྱེད་བཞིན་ཡོད། ཅུང་སྒུག་རོགས། </string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">མཁོ་མེད་གསང་སྡོམ་བྱས་བའི་བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་MMS </string>
@@ -200,9 +144,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) ཡི་འཕྲིན་ཐུང་གསར་པ་རྣམས།</string>
   <string name="MessageNotifier_most_recent_from_s">%s: ནས་ཉེ་ཆར་གྱི་དེ། </string>
-  <string name="MessageNotifier_key_exchange">ལྡེ་མིག་བརྗེ་ལེན། </string>
   <string name="MessageNotifier_encrypted_message">གསང་སྡོམ་འཕྲིན་ཐུང་། </string>
-  <string name="MessageNotifier_corrupted_ciphertext">སྐྱོན་ཤོར་བའི་གསང་ཡིག </string>
   <string name="MessageNotifier_no_subject">བརྗོད་བྱ་མེད། </string>
   <string name="MessageNotifier_message_delivery_failed">འཕྲིན་ཐུང་བཏང་བ་དེ་འགྲོ་མི་འདུག </string>
   <string name="MessageNotifier_failed_to_deliver_message">འཕྲིན་ཐུང་གཏོང་ཐུབ་མ་སོང་། </string>
@@ -259,14 +201,10 @@
   <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY PORT (གདམ་ཁ་ཅན།): </string>
   <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (གདམ་ཁ་ཅན):</string>
   <!--receive_key_activity-->
-  <string name="receive_key_activity__session">གླེང་མོལ། </string>
-  <string name="receive_key_activity__identities">ངོས་འཛིན། </string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">གཏོང་ཡུལ།</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">གནས་སྐབས་རིང་ཁྱེད་ཀྱི་ཡིད་ཆེས་མཛོད་ཀྱི་ཁོངས་སུ་ཁྱེད་ལ་ངོས་འཛིན་ལྡེ་མིག་མི་འདུག  </string>
-  <!--save_identity_activity-->
-  <string name="save_identity_activity__identity_name">ངོས་འཛིན་གྱི་མིང་། </string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">གཞན་གྱི་ངོས་འཛིན། (ཁོང་ཚོས་ཀློགས)</string>
   <string name="verify_identity_activity__your_identity_you_read">ཁྱེད་ཀྱི་ངོས་འཛིན། (ཁྱེད་ཀྱིས་ཀློགས)</string>
@@ -278,9 +216,6 @@
   <!--verify_keys_activity-->
   <string name="verify_keys_activity__they_read_this">གཞན་གྱིསའདི་བཀླགས། </string>
   <string name="verify_keys_activity__you_read_this">ཁྱེད་ཀྱིས་འདི་བཀླགས། </string>
-  <!--view_identity_activity-->
-  <string name="view_identity_activity__identity">ངོས་འཛིན། </string>
-  <string name="view_identity_activity__qr_code">QR ཨང་རྟགས། </string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">གསང་ཚིག་གསར་བཟོ་བྱོས། </string>
   <string name="AndroidManifest__enter_passphrase">གསང་ཚིག་ནང་འཇུག་བྱོས། </string>
@@ -290,39 +225,28 @@
   <string name="AndroidManifest__change_passphrase">གསང་ཚིག་བརྗེ་བོ་རྒྱོབས།</string>
   <string name="AndroidManifest__verify_session">གླེང་མོལ་ཁུངས་སྐྱེལ་བྱོས། </string>
   <string name="AndroidManifest__verify_identity">ངོས་འཛིན་ཁུངས་སྐྱེལ་བྱོས། </string>
-  <string name="AndroidManifest__save_identity">ངོས་འཛིན་ཉར་ཚགས་བྱོས། </string>
   <string name="AndroidManifest__manage_identity_keys">ངོས་འཛིན་གྱི་་ལྡེ་མིག་ལ་དོ་དམ་བྱོས། </string>
   <string name="AndroidManifest__complete_key_exchange">ལྡེ་མིག་བརྗེ་ལེན་ཚར་བ་བྱོས། </string>
-  <string name="AndroidManifest__verify_imported_identity">ནང་འདྲེན་ངོས་འཛིན་ཁུངས་སྐྱེལ་བྱོས། </string>
+  <!--arrays.xml-->
   <!--preferences.xml-->
-  <string name="preferences__use_settings">སྒྲིག་བཟོ་བཀོལ་སྤྱོད་བྱོས། </string>
   <string name="preferences__pref_all_sms_title">འཕྲིན་ཐུང་SMSཚང་མའི་ཆེད་དུ་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__pref_all_mms_title"> སྣ་མང་འཕྲིན་ཐུང་ཚང་མའི་ཆེད་དུ་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">ནང་ཡོང་འཕྲིན་ཐུང་ཚང་མར་བལྟ་བ་དང་ཉར་བ་ལ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">ནང་ཡོང་སྣ་མང་འཕྲིན་ཐུང་རིགས་ལ་ཉར་ཚགས་དང་ཞིབ་ལྟའི་ཆེད་དུ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
-  <string name="preferences__input_settings">ནང་འཇུག་སྒྲིག་བཟོ། </string>
   <string name="preferences__pref_enter_sends_title">གཏོང་བ་ནང་འཇུག་བྱོས། </string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ནང་འཛུལ་ལྡེ་མིག་ལ་བསྣུན་ན་འཕྲིན་ཐུང་གཏོང་། </string>
   <string name="preferences__display_settings">སྒྲིག་བཟོ་སྟོན། </string>
   <string name="preferences__choose_identity">ངོས་འཛིན་འདེམས། </string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">འབྲེལ་ཐོ་ནས་ཁྱེད་ཀྱིས་འབྲེལ་བ་བྱེད་ས་དེ་གདེམས། </string>
-  <string name="preferences__encryption_settings">གསང་སྡོམ་སྒྲིག་བཟོ།</string>
   <string name="preferences__change_my_passphrase">ངའི་གསང་ཚིག་བརྗེ་བོ་རྒྱོབས།</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">ལྡེ་མིག་གི་ངོས་འཛིན་གཅིག་པའི་ད་ཡོད་སྡེ་ཚན་ཞིག་གམ་ཡང་ན་སྡེ་ཚན་གསར་བ་ཞིག་གི་སླད་དུ། རང་བཞིན་ནས་ལྡེ་མིག་བརྗེ་ལེན་དེ་འགྲུབ་པ་བྱོས།</string>
-  <string name="preferences__include_a_whitespace_tag_at_the_end_of_every_non_encrypted_message">གསང་སྡོམ་མ་ཡིན་པའི་འཕྲིན་ཐུང་རེ་རེའི་རྗེས་སུ་དཀར་ངོས་ཀྱི་འཛེར་མ་རེ་སྦྱར།</string>
-  <string name="preferences__include_whitespace_tag">དཀར་ངོས་ཀྱི་འཛེར་མ་དེ་མཉམ་དུ་སྦྱར།</string>
-  <string name="preferences__sign_key_exchange_messages_with_identity_key">ངོས་འཛིན་ལྡེ་མིག་དེའི་མཉམ་དུ་འཕྲིན་ཐུང་བརྗེ་བསྒྱུར་གྱི་ལྡེ་མིག་དེར་རྟགས་རྒྱོབས།</string>
-  <string name="preferences__sign_key_exchange">ལྡེ་མིག་བརྗེ་ལེན་དེར་རྟགས་རྒྱོབས།</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">དུས་བརྒལ་གྱི་དབར་དྲན་ཐོ་ནས་གསང་ཚིག་བརྗེད། </string>
   <string name="preferences__timeout_passphrase">གསང་ཚིག་གི་དུས་ཚོད་ཡོལ་འདུག</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">གསང་ཚིག་དུས་ཚོད་ཡོལ་བ་འདེམས། </string>
   <string name="preferences__pref_timeout_interval_title">བར་སེང་མཚམས་ཞོག </string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">དྲན་ཐོ་ནས་གསང་ཚིག་མ་བརྗེད་གོང་སྒུག་ཡུན་དུས་ཚོད།</string>
   <string name="preferences__view_my_identity_key">ངའི་ངོས་འཛིན་ལྡེ་མིག་ལ་ལྟོས། </string>
-  <string name="preferences__export_my_identity_key">ངའི་ངོས་འཛིན་ལྡེ་མིག་དེ་ཕར་ལ་ཐོངས། </string>
-  <string name="preferences__import_an_identity_key_from_a_contact">འབྲེལ་བ་བྱེད་ས་ནས་ངོས་འཛིན་ལྡེ་མིག་ནང་འདྲེན་བྱོས། </string>
   <string name="preferences__manage_configured_identity_keys">སྡེབ་སྒྲིག་ཟིན་པའི་ངོས་འཛིན་ལྡེ་མིག་དོ་དམ་བྱོས། </string>
-  <string name="preferences__notification_settings">བརྡ་གཏོང་སྒྲིག་བཟོ།</string>
   <string name="preferences__notifications">བརྡ་གཏོང་།</string>
   <string name="preferences__display_message_notifications_in_status_bar">འཕྲིན་ཐུང་གི་བརྡ་ཁྱབ་དེ་རྣམ་པའི་ཚན་བྱང་གི་ནང་དུ་བཀྲམས། </string>
   <string name="preferences__led_color">LED ཡི་ཚོན་མདོག </string>
@@ -351,10 +275,7 @@
   <string name="preferences__mmsc_url_required">MMSC URL(དགོས་ངེས་ཅན) </string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (གདམ་ཀ་ཅན) </string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (གདམ་ཀ་ཅན) </string>
-  <string name="preferences__delivery_reports">སྙན་ཐོ་སྐྱེལ། </string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ཁྱེད་ཀྱིས་གཏོང་བའི་འཕྲིན་ཐུང་རེ་རེར་སྙན་ཐོ་སྐྱེལ་བའི་རེ་སྐུལ་བྱོས། </string>
-  <string name="preferences__request_a_delivery_report_for_each_mms_message_you_send">ཁྱེད་ཀྱིས་གཏོང་བའི་སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་རེ་རེར་སྙན་ཐོ་སྐྱེལ་བའི་རེ་སྐུལ་བྱོས། </string>
-  <string name="preferences__mms_delivery_reports">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་གིས་སྙན་ཐོ་སྐྱེལ། </string>
   <string name="preferences__sms_delivery_reports">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་གིས་སྙན་ཐོ་སྐྱེལ། </string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">གླེང་མོལ་གྱི་སྐུད་པའི་དམིགས་བསལ་རིང་ཚད་རྫོགས་མཚམས། རང་བཞིན་ནས་འཕྲིན་ཐུང་རྙིང་པ་དག་བསུབ་འགྲོ་གི་རེད། </string>
   <string name="preferences__delete_old_messages">འཕྲིན་ཐུང་རྙིང་པ་གསུབ། </string>
@@ -405,9 +326,6 @@
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">འཕྲིན་ཐུང་གསར་པ།</string>
   <string name="text_secure_normal__menu_settings">སྒྲིག་བཟོ།</string>
-  <string name="text_secure_normal__menu_import_export">ནང་འཇུག/ཕྱིར་འདོན།</string>
-  <string name="text_secure_normal__menu_import">ནང་འདྲེན་བྱོས། </string>
-  <string name="text_secure_normal__menu_export">ཕར་ལ་ཐོངས།  </string>
   <string name="text_secure_normal__menu_clear_passphrase">གསང་ཚིག་མེད་པ་བཟོས།</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">ཁུངས་སྐྱེལ་བྱས་ཟིན།</string>
