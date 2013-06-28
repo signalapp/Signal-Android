@@ -24,6 +24,7 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Emoji;
 
+import java.io.File;
 import java.io.IOException;
 
 public class EmojiDrawer extends FrameLayout {
@@ -32,6 +33,7 @@ public class EmojiDrawer extends FrameLayout {
   private FrameLayout   recentEmojiGridLayout;
 
   private EditText      composeText;
+  private Emoji         emoji;
 
   public EmojiDrawer(Context context) {
     super(context);
@@ -57,6 +59,7 @@ public class EmojiDrawer extends FrameLayout {
   }
 
   private void initialize() {
+    this.emoji              = Emoji.getInstance(getContext());
     LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.emoji_drawer, this, true);
 
@@ -79,14 +82,14 @@ public class EmojiDrawer extends FrameLayout {
   private class EmojiClickListener implements AdapterView.OnItemClickListener {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      int    start = composeText.getSelectionStart();
-      int    end   = composeText.getSelectionEnd  ();
-      String emoji = Emoji.EMOJI_ASSET_CODE_MAP.get(Emoji.EMOJI_ASSETS.get(position));
+      int    start      = composeText.getSelectionStart();
+      int    end        = composeText.getSelectionEnd  ();
+      String characters = emoji.getEmojiUnicode(position);
 
       composeText.getText().replace(Math.min(start, end), Math.max(start, end),
-                                    emoji, 0, emoji.length());
+                                    characters, 0, characters.length());
 
-      composeText.setText(Emoji.emojify(getContext(), composeText.getText().toString()),
+      composeText.setText(emoji.emojify(composeText.getText().toString()),
                           TextView.BufferType.SPANNABLE);
 
       composeText.setSelection(end+2);
@@ -97,7 +100,7 @@ public class EmojiDrawer extends FrameLayout {
 
     @Override
     public int getCount() {
-      return Emoji.EMOJI_ASSETS.size();
+      return emoji.getEmojiAssetCount();
     }
 
     @Override
@@ -112,24 +115,18 @@ public class EmojiDrawer extends FrameLayout {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-      try {
-        String asset        = Emoji.EMOJI_ASSETS.get(position);
-        Drawable drawable   = Drawable.createFromStream(getContext().getAssets().open(asset + ".png"), null);
+      Drawable drawable = emoji.getEmojiDrawable(position);
 
-        if (convertView != null && convertView instanceof ImageView) {
-          ((ImageView)convertView).setImageDrawable(drawable);
-          return convertView;
-        } else {
-          ImageView imageView = new ImageView(getContext());
-          imageView.setImageDrawable(drawable);
-          return imageView;
-        }
-      } catch (IOException ioe) {
-        throw new AssertionError(ioe);
+      if (convertView != null && convertView instanceof ImageView) {
+        ((ImageView)convertView).setImageDrawable(drawable);
+        return convertView;
+      } else {
+        ImageView imageView = new ImageView(getContext());
+        imageView.setImageDrawable(drawable);
+        return imageView;
       }
     }
   }
-
 
   private class EmojiPagerAdapter extends PagerAdapter {
 

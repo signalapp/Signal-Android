@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -41,6 +40,7 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Set;
 
@@ -103,7 +103,9 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
-    this.subjectView.setText(thread.getDisplayBody(), TextView.BufferType.SPANNABLE);
+    this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
+                                                                Emoji.EMOJI_SMALL),
+                             TextView.BufferType.SPANNABLE);
 
     if (thread.getDate() > 0)
       this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), thread.getDate(), false));
