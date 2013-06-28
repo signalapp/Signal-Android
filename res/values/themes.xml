@@ -17,6 +17,8 @@
         <item name="conversation_send_button">@drawable/ic_send_holo_light</item>
         <item name="conversation_send_secure_button">@drawable/ic_send_encrypted_holo_light</item>
         <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_light</item>
+        <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
+        <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
     </style>
 
     <style name="TextSecure.LightTheme.NavigationDrawer" parent="@style/TextSecure.LightTheme">
@@ -45,6 +47,8 @@
         <item name="conversation_send_button">@drawable/ic_send_holo_dark</item>
         <item name="conversation_send_secure_button">@drawable/ic_send_holo_dark_encrypted</item>
         <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_dark</item>
+        <item name="conversation_emoji_toggle">@drawable/ic_emoji_light</item>
+        <item name="conversation_keyboard_toggle">@drawable/ic_ime_light</item>
 
     </style>
 

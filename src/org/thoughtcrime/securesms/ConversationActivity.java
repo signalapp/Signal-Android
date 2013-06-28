@@ -41,6 +41,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -49,6 +50,8 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import org.thoughtcrime.securesms.components.EmojiDrawer;
+import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.RecipientsPanel;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
@@ -122,6 +125,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager attachmentManager;
   private BroadcastReceiver securityUpdateReceiver;
+  private EmojiDrawer emojiDrawer;
+  private EmojiToggle emojiToggle;
 
   private Recipients recipients;
   private long threadId;
@@ -280,6 +285,16 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
 
     return false;
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (emojiDrawer.getVisibility() == View.VISIBLE) {
+      emojiDrawer.setVisibility(View.GONE);
+      emojiToggle.toggle();
+    } else {
+      super.onBackPressed();
+    }
   }
 
   //////// Event Handlers
@@ -566,19 +581,25 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     composeText         = (EditText)findViewById(R.id.embedded_text_editor);
     masterSecret        = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     charactersLeft      = (TextView)findViewById(R.id.space_left);
+    emojiDrawer         = (EmojiDrawer)findViewById(R.id.emoji_drawer);
+    emojiToggle         = (EmojiToggle)findViewById(R.id.emoji_toggle);
 
     attachmentAdapter   = new AttachmentTypeSelectorAdapter(this);
     attachmentManager   = new AttachmentManager(this);
 
-    SendButtonListener sendButtonListener = new SendButtonListener();
+    SendButtonListener        sendButtonListener        = new SendButtonListener();
+    ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
     recipientsPanel.setPanelChangeListener(new RecipientsPanelChangeListener());
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
     addContactButton.setOnClickListener(new AddRecipientButtonListener());
-    composeText.setOnKeyListener(new ComposeKeyPressedListener());
-    composeText.addTextChangedListener(new OnTextChangedListener());
+    composeText.setOnKeyListener(composeKeyPressedListener);
+    composeText.addTextChangedListener(composeKeyPressedListener);
     composeText.setOnEditorActionListener(sendButtonListener);
+    composeText.setOnClickListener(composeKeyPressedListener);
+    emojiDrawer.setComposeEditText(composeText);
+    emojiToggle.setOnClickListener(new EmojiToggleListener());
 
     registerForContextMenu(sendButton);
 
@@ -729,7 +750,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void calculateCharactersRemaining() {
-    int charactersSpent                               = composeText.getText().length();
+    int charactersSpent                               = composeText.getText().toString().length();
     CharacterCalculator.CharacterState characterState = characterCalculator.calculateCharacters(charactersSpent);
     charactersLeft.setText(characterState.charactersRemaining + "/" + characterState.maxMessageSize + " (" + characterState.messagesSpent + ")");
   }
@@ -873,6 +894,21 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
   }
 
+  private class EmojiToggleListener implements OnClickListener {
+    @Override
+    public void onClick(View v) {
+      InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
+      if (emojiDrawer.getVisibility() == View.VISIBLE) {
+        input.showSoftInput(composeText, 0);
+        emojiDrawer.setVisibility(View.GONE);
+      } else {
+        input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
+        emojiDrawer.setVisibility(View.VISIBLE);
+      }
+    }
+  }
+
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
@@ -890,7 +926,29 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
   }
 
-  private class OnTextChangedListener implements TextWatcher {
+  private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher {
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+      if (event.getAction() == KeyEvent.ACTION_DOWN) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+          if (PreferenceManager.getDefaultSharedPreferences(ConversationActivity.this).getBoolean("pref_enter_sends", false)) {
+            sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+            sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+      if (emojiDrawer.isOpen()) {
+        emojiToggle.performClick();
+      }
+    }
+
     @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
@@ -908,28 +966,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
     @Override
     public void onTextChanged(CharSequence s, int start, int before,int count) {}
-
-  }
-
-  private class ComposeKeyPressedListener implements OnKeyListener {
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-      if (event.getAction() == KeyEvent.ACTION_DOWN) {
-        if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (PreferenceManager.getDefaultSharedPreferences(ConversationActivity.this).getBoolean("pref_enter_sends", false)) {
-            sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-            sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
-            return true;
-          }
-        }
-      }
-
-      return false;
-    }
   }
 
   @Override
   public void setComposeText(String text) {
     this.composeText.setText(text);
   }
+
 }
