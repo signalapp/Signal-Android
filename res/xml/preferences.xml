@@ -17,10 +17,6 @@
                             android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
                             android:title="@string/preferences__sms_delivery_reports" />
 
-        <CheckBoxPreference android:defaultValue="false"
-                          android:key="pref_enter_sends"
-                          android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
-                          android:title="@string/preferences__pref_enter_sends_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences__notifications">
         <CheckBoxPreference android:key="pref_key_enable_notifications"
@@ -60,6 +56,19 @@
                             android:defaultValue="true"
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="Input Settings">
+      <CheckBoxPreference android:defaultValue="false"
+                          android:key="pref_enter_key"
+                          android:title="Enable enter key"
+                          android:summary="Replace the smiley key with an enter key"/>
+
+      <CheckBoxPreference android:defaultValue="false"
+                          android:key="pref_enter_sends"
+                          android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
+                          android:title="@string/preferences__pref_enter_sends_title" />
+
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__appearance">

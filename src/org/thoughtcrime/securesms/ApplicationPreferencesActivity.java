@@ -72,12 +72,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
   public static final String THEME_PREF                       = "pref_theme";
+  public static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
+  public static final String ENTER_PRESENT_PREF               = "pref_enter_key";
 
   private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
 
   private static final String VIEW_MY_IDENTITY_PREF        = "pref_view_identity";
-  private static final String EXPORT_MY_IDENTITY_PREF      = "pref_export_identity";
-  private static final String IMPORT_CONTACT_IDENTITY_PREF = "pref_import_identity";
   private static final String MANAGE_IDENTITIES_PREF       = "pref_manage_identity";
   private static final String CHANGE_PASSPHRASE_PREF	     = "pref_change_passphrase";
 

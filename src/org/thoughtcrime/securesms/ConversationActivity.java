@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -168,6 +169,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     initializeSecurity();
     initializeTitleBar();
     initializeMmsEnabledCheck();
+    initializeIme();
     calculateCharactersRemaining();
 
     MessageNotifier.setVisibleThread(threadId);
@@ -570,6 +572,16 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }.execute();
   }
 
+  private void initializeIme() {
+    if (PreferenceManager.getDefaultSharedPreferences(this)
+                         .getBoolean(ApplicationPreferencesActivity.ENTER_PRESENT_PREF, false))
+    {
+      composeText.setInputType(composeText.getInputType() & (~InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE));
+    } else {
+      composeText.setInputType(composeText.getInputType() | (InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE));
+    }
+  }
+
   private void initializeResources() {
     recipientsPanel     = (RecipientsPanel)findViewById(R.id.recipients);
     recipients          = getIntent().getParcelableExtra(RECIPIENTS_EXTRA);
@@ -607,8 +619,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
     }
 
-    if (getIntent().getStringExtra("forwarded_message") != null)
-      composeText.setText(getString(R.string.ConversationActivity_forward_message_prefix)+": " + getIntent().getStringExtra("forwarded_message"));
+    if (getIntent().getStringExtra("forwarded_message") != null) {
+      composeText.setText(getString(R.string.ConversationActivity_forward_message_prefix) + ": " +
+                          getIntent().getStringExtra("forwarded_message"));
+    }
   }
 
   private void initializeRecipientsInput() {
@@ -931,7 +945,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (PreferenceManager.getDefaultSharedPreferences(ConversationActivity.this).getBoolean("pref_enter_sends", false)) {
+          if (PreferenceManager.getDefaultSharedPreferences(ConversationActivity.this)
+                               .getBoolean(ApplicationPreferencesActivity.ENTER_SENDS_PREF, false))
+          {
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
             return true;
