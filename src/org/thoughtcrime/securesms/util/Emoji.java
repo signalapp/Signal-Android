@@ -1,16 +1,27 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.Log;
 
+import com.google.thoughtcrimegson.Gson;
+import com.google.thoughtcrimegson.reflect.TypeToken;
+
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,9 +59,11 @@ public class Emoji {
   }
 
   public String getEmojiUnicode(int position) {
-    String  hexString    = emojiAssets[position].split("\\.")[0];
-    Integer unicodePoint = Integer.parseInt(hexString, 16);
-    return new String(Character.toChars(unicodePoint));
+    return getEmojiUnicodeFromAssetName(emojiAssets[position]);
+  }
+
+  public String getRecentEmojiUnicode(int position) {
+    return getEmojiUnicodeFromAssetName(EmojiLRU.getRecentlyUsed(context).get(position));
   }
 
   public Drawable getEmojiDrawable(int position) {
@@ -74,7 +87,6 @@ public class Emoji {
           drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth()*size),
                              (int)(drawable.getIntrinsicHeight()*size));
 
-
           ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
           text.setSpan(imageSpan, matches.start(), matches.end(),
                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -84,6 +96,25 @@ public class Emoji {
     }
 
     return text;
+  }
+
+  public void setRecentlyUsed(int position) {
+    String assetName = emojiAssets[position];
+    EmojiLRU.putRecentlyUsed(context, assetName);
+  }
+
+  public int getRecentlyUsedAssetCount() {
+    return EmojiLRU.getRecentlyUsed(context).size();
+  }
+
+  public Drawable getRecentlyUsed(int position) {
+    return getEmojiDrawable(EmojiLRU.getRecentlyUsed(context).get(position));
+  }
+
+  private String getEmojiUnicodeFromAssetName(String assetName) {
+    String hexString     = assetName.split("\\.")[0];
+    Integer unicodePoint = Integer.parseInt(hexString, 16);
+    return new String(Character.toChars(unicodePoint));
   }
 
   private Drawable getEmojiDrawable(String assetName) {
@@ -103,4 +134,34 @@ public class Emoji {
     }
   }
 
+  private static class EmojiLRU {
+
+    private static final String EMOJI_LRU_PREFERENCE = "pref_popular_emoji";
+    private static final int    EMOJI_LRU_SIZE       = 10;
+
+    public static List<String> getRecentlyUsed(Context context) {
+      SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+      String            serialized  = preferences.getString(EMOJI_LRU_PREFERENCE, "[]");
+      Type              type        = new TypeToken<Collection<String>>(){}.getType();
+
+      return new Gson().fromJson(serialized, type);
+    }
+
+    public static void putRecentlyUsed(Context context, String asset) {
+      LinkedHashSet<String> recentlyUsed = new LinkedHashSet<String>(getRecentlyUsed(context));
+      recentlyUsed.add(asset);
+
+      if (recentlyUsed.size() > 10) {
+        Iterator<String> iterator = recentlyUsed.iterator();
+        iterator.next();
+        iterator.remove();
+      }
+
+      String serialized = new Gson().toJson(recentlyUsed);
+      PreferenceManager.getDefaultSharedPreferences(context)
+                       .edit()
+                       .putString(EMOJI_LRU_PREFERENCE, serialized)
+                       .commit();
+    }
+  }
 }

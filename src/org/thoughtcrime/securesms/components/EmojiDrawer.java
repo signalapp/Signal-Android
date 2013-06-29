@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.PagerTabStrip;
@@ -24,16 +23,19 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Emoji;
 
-import java.io.File;
-import java.io.IOException;
-
 public class EmojiDrawer extends FrameLayout {
+
+  private static final int RECENT_TYPE = 0;
+  private static final int ALL_TYPE    = 1;
 
   private FrameLayout   emojiGridLayout;
   private FrameLayout   recentEmojiGridLayout;
-
   private EditText      composeText;
   private Emoji         emoji;
+  private GridView      emojiGrid;
+  private GridView      recentEmojiGrid;
+  private ViewPager     pager;
+  private PagerTabStrip pagerTabStrip;
 
   public EmojiDrawer(Context context) {
     super(context);
@@ -59,32 +61,54 @@ public class EmojiDrawer extends FrameLayout {
   }
 
   private void initialize() {
-    this.emoji              = Emoji.getInstance(getContext());
     LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.emoji_drawer, this, true);
 
-    ViewPager     pager         = (ViewPager    ) findViewById(R.id.emoji_pager    );
-    PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.emoji_tab_strip);
-    this.emojiGridLayout        = (FrameLayout) inflater.inflate(R.layout.emoji_grid_layout, null);
-    this.recentEmojiGridLayout  = (FrameLayout) inflater.inflate(R.layout.emoji_grid_layout, null);
-    GridView emojiGrid          = (GridView) emojiGridLayout.findViewById(R.id.emoji);
-    GridView recentEmojiGrid    = (GridView) recentEmojiGridLayout.findViewById(R.id.emoji);
+    initializeResources();
+    initializeEmojiGrid();
+  }
 
-    pagerTabStrip.setBackgroundColor(Color.parseColor("#ff333333"));
-    pagerTabStrip.setTextSpacing(1);
-    pager.setBackgroundColor(Color.parseColor("#ff333333"));
-    emojiGrid.setAdapter(new AllEmojiGridAdapter());
-    emojiGrid.setOnItemClickListener(new EmojiClickListener());
+  private void initializeResources() {
+    LayoutInflater inflater    = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.pager                 = (ViewPager    )  findViewById(R.id.emoji_pager    );
+    this.pagerTabStrip         = (PagerTabStrip)  findViewById(R.id.emoji_tab_strip);
+    this.emojiGridLayout       = (FrameLayout  )  inflater.inflate(R.layout.emoji_grid_layout, null);
+    this.recentEmojiGridLayout = (FrameLayout  )  inflater.inflate(R.layout.emoji_grid_layout, null);
+    this.emojiGrid             = (GridView     )  emojiGridLayout.findViewById(R.id.emoji);
+    this.recentEmojiGrid       = (GridView     )  recentEmojiGridLayout.findViewById(R.id.emoji);
+    this.emoji                 = Emoji.getInstance(getContext());
+  }
+
+  private void initializeEmojiGrid() {
+    emojiGrid.setAdapter(new EmojiGridAdapter(ALL_TYPE));
+    emojiGrid.setOnItemClickListener(new EmojiClickListener(ALL_TYPE));
+    recentEmojiGrid.setAdapter(new EmojiGridAdapter(RECENT_TYPE));
+    recentEmojiGrid.setOnItemClickListener(new EmojiClickListener(RECENT_TYPE));
+
     pager.setAdapter(new EmojiPagerAdapter());
-    pager.setCurrentItem(1);
+
+    if (emoji.getRecentlyUsedAssetCount() <= 0) {
+      pager.setCurrentItem(1);
+    }
   }
 
   private class EmojiClickListener implements AdapterView.OnItemClickListener {
+
+    private final int type;
+
+    public EmojiClickListener(int type) {
+      this.type = type;
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      int    start      = composeText.getSelectionStart();
-      int    end        = composeText.getSelectionEnd  ();
-      String characters = emoji.getEmojiUnicode(position);
+      String characters;
+
+      if (type == ALL_TYPE ) characters = emoji.getEmojiUnicode(position);
+      else                   characters = emoji.getRecentEmojiUnicode(position);
+
+      int start = composeText.getSelectionStart();
+      int end   = composeText.getSelectionEnd  ();
 
       composeText.getText().replace(Math.min(start, end), Math.max(start, end),
                                     characters, 0, characters.length());
@@ -93,14 +117,27 @@ public class EmojiDrawer extends FrameLayout {
                           TextView.BufferType.SPANNABLE);
 
       composeText.setSelection(end+2);
+
+      if (type != RECENT_TYPE) {
+        emoji.setRecentlyUsed(position);
+        ((BaseAdapter)recentEmojiGrid.getAdapter()).notifyDataSetChanged();
+      }
     }
   }
 
-  private class AllEmojiGridAdapter extends BaseAdapter {
+  private class EmojiGridAdapter extends BaseAdapter {
+
+    private final int type;
+
+    public EmojiGridAdapter(int type) {
+      this.type = type;
+    }
 
     @Override
     public int getCount() {
-      return emoji.getEmojiAssetCount();
+      if (type == RECENT_TYPE) return emoji.getRecentlyUsedAssetCount();
+      else                     return emoji.getEmojiAssetCount();
+
     }
 
     @Override
@@ -115,7 +152,10 @@ public class EmojiDrawer extends FrameLayout {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-      Drawable drawable = emoji.getEmojiDrawable(position);
+      Drawable drawable;
+
+      if (type == RECENT_TYPE) drawable = emoji.getRecentlyUsed(position);
+      else                     drawable = emoji.getEmojiDrawable(position);
 
       if (convertView != null && convertView instanceof ImageView) {
         ((ImageView)convertView).setImageDrawable(drawable);
