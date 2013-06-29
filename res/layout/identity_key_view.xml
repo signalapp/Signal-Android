@@ -33,8 +33,7 @@
               android:layout_alignTop="@id/contact_photo_frame"
               android:layout_toRightOf="@id/contact_photo_frame"
               android:layout_alignWithParentIfMissing="true"
-              android:ellipsize="marquee"
-              android:textColor="#000000"/>
+              android:ellipsize="marquee"/>
 
     <TextView android:id="@+id/fingerprint"
               android:layout_width="wrap_content"
