@@ -445,6 +445,7 @@
     <string name="preferences__dark_theme">Dark Theme</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
+    <string name="preferences__default">Default</string>
                                     
     <!-- **************************************** -->
     <!-- menus -->
@@ -511,6 +512,7 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
+    <string name="preferences__language">Language</string>
     <!-- EOF -->
 
 </resources>

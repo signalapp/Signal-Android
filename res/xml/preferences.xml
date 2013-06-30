@@ -78,6 +78,12 @@
                       android:entryValues="@array/pref_theme_values"
                       android:defaultValue="light">
       </ListPreference>
+
+      <ListPreference android:key="pref_language"
+                      android:title="@string/preferences__language"
+                      android:entries="@array/language_entries"
+                      android:entryValues="@array/language_values"
+                      android:defaultValue="zz"/>
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__storage">

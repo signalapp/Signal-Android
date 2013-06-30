@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -39,7 +40,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     implements ConversationListFragment.ConversationSelectedListener,
                ListView.OnItemClickListener
   {
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ConversationListFragment fragment;
   private MasterSecret masterSecret;
@@ -49,6 +51,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   @Override
   public void onCreate(Bundle icicle) {
     dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
 
     setContentView(R.layout.conversation_list_activity);
@@ -64,6 +67,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
   }
 
   @Override

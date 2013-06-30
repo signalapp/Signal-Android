@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
@@ -138,10 +139,12 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private CharacterCalculator characterCalculator = new CharacterCalculator();
   private DynamicTheme        dynamicTheme        = new DynamicTheme();
+  private DynamicLanguage     dynamicLanguage     = new DynamicLanguage();
 
   @Override
   protected void onCreate(Bundle state) {
     dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
     super.onCreate(state);
 
     setContentView(R.layout.conversation_activity);
@@ -165,6 +168,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   protected void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
 
     initializeSecurity();
     initializeTitleBar();

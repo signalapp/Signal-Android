@@ -25,27 +25,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
-import android.preference.PreferenceScreen;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Trimmer;
-import org.thoughtcrime.securesms.util.Util;
-
-import com.actionbarsherlock.view.MenuItem;
-
-import java.util.List;
 
 /**
  * The Activity for application preference display and management.
@@ -72,6 +67,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
   public static final String THEME_PREF                       = "pref_theme";
+  public static final String LANGUAGE_PREF                    = "pref_language";
   public static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   public static final String ENTER_PRESENT_PREF               = "pref_enter_key";
 
@@ -98,11 +94,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String REGISTERED_GCM_PREF  = "pref_gcm_registered";
   public static final String GCM_PASSWORD_PREF    = "pref_gcm_password";
 
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
   protected void onCreate(Bundle icicle) {
     dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -134,6 +132,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -233,6 +232,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     if (key.equals(THEME_PREF)) {
       dynamicTheme.onResume(this);
+    } else if (key.equals(LANGUAGE_PREF)) {
+      dynamicLanguage.onResume(this);
     }
   }
 

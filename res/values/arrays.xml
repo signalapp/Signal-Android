@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+  <string-array name="language_entries">
+      <item>@string/preferences__default</item>
+      <item>English</item>
+      <item>Arabic العربية</item>
+      <item>Burmese မြန်မာစာ</item>
+      <item>Chinese 中国的</item>
+      <item>Deutsch</item>
+      <item>Español</item>
+      <item>Français</item>
+      <item>Italiano</item>
+      <item>Japanese 日本人</item>
+      <item>Magyar</item>
+      <item>Nederlands</item>
+      <item>Norsk</item>
+      <item>Português</item>
+      <item>Português (Brasil)</item>
+      <item>Russian Pусский</item>
+      <item>Slovenščina</item>
+      <item>Slovenský</item>
+      <item>Svenska</item>
+      <item>Tibetan བོད་སྐད།</item>
+  </string-array>
+
+  <string-array name="language_values">
+      <item>zz</item>
+      <item>en</item>
+      <item>ar</item>
+      <item>my</item>
+      <item>zh_CN</item>
+      <item>de</item>
+      <item>es</item>
+      <item>fr</item>
+      <item>it</item>
+      <item>ja</item>
+      <item>he</item>
+      <item>nl</item>
+      <item>no</item>
+      <item>pt</item>
+      <item>pt_BR</item>
+      <item>ru</item>
+      <item>sl</item>
+      <item>sk</item>
+      <item>sv</item>
+      <item>bo</item>
+  </string-array>
+
   <string-array name="minutes_hours">
   	<item>@string/preferences__minutes</item>
   	<item>@string/preferences__hours</item>
