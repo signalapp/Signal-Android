@@ -126,7 +126,6 @@
 
     <activity android:name=".PassphraseChangeActivity"
               android:label="@string/AndroidManifest__change_passphrase"
-              android:launchMode="singleInstance"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".VerifyKeysActivity"

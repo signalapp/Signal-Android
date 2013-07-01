@@ -21,6 +21,7 @@
                       android:orientation="vertical">
                 
             <TextView style="@style/Registration.Label"
+                      android:id="@+id/old_passphrase_label"
                       android:layout_width="fill_parent"
                       android:textAllCaps="true"
                       android:text="@string/change_passphrase_activity__old_passphrase" />

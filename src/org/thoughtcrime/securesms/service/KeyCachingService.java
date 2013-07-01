@@ -23,11 +23,13 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -36,7 +38,9 @@ import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
+import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 
 /**
@@ -54,6 +58,7 @@ public class KeyCachingService extends Service {
   public  static final String CLEAR_KEY_EVENT          = "org.thoughtcrime.securesms.service.action.CLEAR_KEY_EVENT";
   private static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
   public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
+  public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
   public  static final String ACTIVITY_START_EVENT     = "org.thoughtcrime.securesms.service.action.ACTIVITY_START_EVENT";
   public  static final String ACTIVITY_STOP_EVENT      = "org.thoughtcrime.securesms.service.action.ACTIVITY_STOP_EVENT";
 
@@ -76,20 +81,21 @@ public class KeyCachingService extends Service {
     broadcastNewSecret();
     startTimeoutIfAppropriate();
 
-    new Thread() {
+    new AsyncTask<Void, Void, Void>() {
       @Override
-      public void run() {
+      protected Void doInBackground(Void... params) {
         if (!DatabaseUpgradeActivity.isUpdate(KeyCachingService.this)) {
           DecryptingQueue.schedulePendingDecrypts(KeyCachingService.this, masterSecret);
           MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
         }
+        return null;
       }
-    }.start();
+    }.execute();
   }
 
   @Override
-  public void onStart(Intent intent, int startId) {
-    if (intent == null) return;
+  public int onStartCommand(Intent intent, int flags, int startId) {
+    if (intent == null) return START_NOT_STICKY;
 
     if (intent.getAction() != null && intent.getAction().equals(CLEAR_KEY_ACTION))
       handleClearKey();
@@ -99,12 +105,26 @@ public class KeyCachingService extends Service {
       handleActivityStopped();
     else if (intent.getAction() != null && intent.getAction().equals(PASSPHRASE_EXPIRED_EVENT))
       handleClearKey();
+    else if (intent.getAction() != null && intent.getAction().equals(DISABLE_ACTION))
+      handleDisableService();
+
+    return START_NOT_STICKY;
   }
 
   @Override
   public void onCreate() {
     super.onCreate();
-    pending = PendingIntent.getService(this, 0, new Intent(PASSPHRASE_EXPIRED_EVENT, null, this, KeyCachingService.class), 0);
+    this.pending = PendingIntent.getService(this, 0, new Intent(PASSPHRASE_EXPIRED_EVENT, null,
+                                                                this, KeyCachingService.class), 0);
+
+    if (isPassphraseDisabled()) {
+      try {
+        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+        setMasterSecret(masterSecret);
+      } catch (InvalidPassphraseException e) {
+        Log.w("KeyCachingService", e);
+      }
+    }
   }
 
   @Override
@@ -138,19 +158,25 @@ public class KeyCachingService extends Service {
 
     sendBroadcast(intent, KEY_PERMISSION);
 
-    new Thread() {
+    new AsyncTask<Void, Void, Void>() {
       @Override
-      public void run() {
+      protected Void doInBackground(Void... params) {
         MessageNotifier.updateNotification(KeyCachingService.this, null);
+        return null;
       }
-    }.start();
+    }.execute();
+  }
+
+  private void handleDisableService() {
+    if (isPassphraseDisabled())
+      stopForeground(true);
   }
 
   private void startTimeoutIfAppropriate() {
     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
     boolean timeoutEnabled              = sharedPreferences.getBoolean(ApplicationPreferencesActivity.PASSPHRASE_TIMEOUT_PREF, false);
 
-    if ((activitiesRunning == 0) && (this.masterSecret != null) && timeoutEnabled) {
+    if ((activitiesRunning == 0) && (this.masterSecret != null) && timeoutEnabled && !isPassphraseDisabled()) {
       long timeoutMinutes = sharedPreferences.getInt(ApplicationPreferencesActivity.PASSPHRASE_TIMEOUT_INTERVAL_PREF, 60 * 5);
       long timeoutMillis  = timeoutMinutes * 60 * 1000;
 
@@ -195,6 +221,11 @@ public class KeyCachingService extends Service {
   }
 
   private void foregroundService() {
+    if (isPassphraseDisabled()) {
+      stopForeground(true);
+      return;
+    }
+
     if (Build.VERSION.SDK_INT >= 11) foregroundServiceModern();
     else                             foregroundServiceLegacy();
   }
@@ -207,6 +238,11 @@ public class KeyCachingService extends Service {
     intent.setPackage(getApplicationContext().getPackageName());
 
     sendBroadcast(intent, KEY_PERMISSION);
+  }
+
+  private boolean isPassphraseDisabled() {
+    return PreferenceManager.getDefaultSharedPreferences(this)
+                            .getBoolean(ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false);
   }
 
 

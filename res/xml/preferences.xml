@@ -115,23 +115,30 @@
 
    <PreferenceCategory android:title="@string/preferences__passphrase">
 
-      <Preference android:key="pref_change_passphrase"
-                  android:title="@string/preferences__change_passphrase"
-                   android:summary="@string/preferences__change_my_passphrase"/>
+       <Preference android:key="pref_change_passphrase"
+                   android:title="@string/preferences__change_passphrase"
+                   android:summary="@string/preferences__change_my_passphrase"
+                   android:dependency="pref_disable_passphrase"/>
 
-    <CheckBoxPreference android:defaultValue="false"
-                        android:key="pref_timeout_passphrase"
-                        android:summary="@string/preferences__forget_passphrase_from_memory_after_some_interval"
-                        android:title="@string/preferences__timeout_passphrase" />
+       <CheckBoxPreference android:key="pref_disable_passphrase"
+                           android:defaultValue="false"
+                           android:title="Disable Passphrase"
+                           android:disableDependentsState="true"
+                           android:summary="Disable local encryption of messages and keys"/>
 
+       <CheckBoxPreference android:defaultValue="false"
+                           android:key="pref_timeout_passphrase"
+                           android:summary="@string/preferences__forget_passphrase_from_memory_after_some_interval"
+                           android:title="@string/preferences__timeout_passphrase"
+                           android:dependency="pref_disable_passphrase"/>
 
-    <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
-                        android:key="pref_timeout_interval"
-                        android:defaultValue="300"
-                        android:title="@string/preferences__pref_timeout_interval_title"
-                        android:summary="@string/preferences__the_amount_of_time_to_wait_before_forgetting_passphrase"
-                        android:dependency="pref_timeout_passphrase"
-                        android:dialogTitle="@string/preferences__pref_timeout_interval_dialogtitle" />
+       <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
+               android:key="pref_timeout_interval"
+               android:defaultValue="300"
+               android:title="@string/preferences__pref_timeout_interval_title"
+               android:summary="@string/preferences__the_amount_of_time_to_wait_before_forgetting_passphrase"
+               android:dependency="pref_timeout_passphrase"
+               android:dialogTitle="@string/preferences__pref_timeout_interval_dialogtitle" />
 
 
     </PreferenceCategory>
@@ -141,16 +148,6 @@
                            android:key="pref_auto_complete_key_exchange"
                            android:title="@string/preferences__complete_key_exchanges"
                            android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
-
-        <PreferenceScreen android:title="@string/preferences__identity_key_settings">
-          <Preference android:key="pref_view_identity"
-                        android:title="@string/preferences__view_my_identity_key"
-                        android:summary="@string/preferences__view_my_identity_key"/>
-
-          <Preference android:key="pref_manage_identity"
-                        android:title="@string/preferences__manage_identity_keys"
-                        android:summary="@string/preferences__manage_configured_identity_keys"/>
-        </PreferenceScreen>
 
         <PreferenceScreen android:title="@string/preferences__advanced_mms_access_point_names">
             <CheckBoxPreference android:key="pref_use_local_apns"

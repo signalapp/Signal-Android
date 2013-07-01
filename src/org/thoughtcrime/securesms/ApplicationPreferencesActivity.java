@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -34,9 +35,9 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -53,7 +54,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
 
-  private static final int   PICK_IDENTITY_CONTACT        = 1;
+  private static final int PICK_IDENTITY_CONTACT        = 1;
+  private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
 
   public static final String RINGTONE_PREF                    = "pref_key_ringtone";
   public static final String VIBRATE_PREF                     = "pref_key_vibrate";
@@ -73,9 +75,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
 
-  private static final String VIEW_MY_IDENTITY_PREF        = "pref_view_identity";
-  private static final String MANAGE_IDENTITIES_PREF       = "pref_manage_identity";
   private static final String CHANGE_PASSPHRASE_PREF	     = "pref_change_passphrase";
+  public  static final String DISABLE_PASSPHRASE_PREF      = "pref_disable_passphrase";
 
   public static final String USE_LOCAL_MMS_APNS_PREF = "pref_use_local_apns";
   public static final String MMSC_HOST_PREF          = "pref_apn_mmsc_host";
@@ -83,7 +84,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String MMSC_PROXY_PORT_PREF    = "pref_apn_mms_proxy_port";
 
   public static final String SMS_DELIVERY_REPORT_PREF = "pref_delivery_report_sms";
-  public static final String MMS_DELIVERY_REPORT_PREF = "pref_delivery_report_mms";
 
   public static final String THREAD_TRIM_ENABLED = "pref_trim_threads";
   public static final String THREAD_TRIM_LENGTH  = "pref_trim_length";
@@ -110,16 +110,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     initializeIdentitySelection();
     initializeEditTextSummaries();
 
-    this.findPreference(VIEW_MY_IDENTITY_PREF)
-      .setOnPreferenceClickListener(new ViewMyIdentityClickListener());
-    this.findPreference(MANAGE_IDENTITIES_PREF)
-      .setOnPreferenceClickListener(new ManageIdentitiesClickListener());
     this.findPreference(CHANGE_PASSPHRASE_PREF)
       .setOnPreferenceClickListener(new ChangePassphraseClickListener());
     this.findPreference(THREAD_TRIM_NOW)
       .setOnPreferenceClickListener(new TrimNowClickListener());
     this.findPreference(THREAD_TRIM_LENGTH)
       .setOnPreferenceChangeListener(new TrimLengthValidationListener());
+    this.findPreference(DISABLE_PASSPHRASE_PREF)
+      .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
   }
 
   @Override
@@ -151,9 +149,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public void onActivityResult(int reqCode, int resultCode, Intent data) {
     super.onActivityResult(reqCode, resultCode, data);
 
+    Log.w("ApplicationPreferencesActivity", "Got result: " + resultCode + " for req: " + reqCode);
+
     if (resultCode == Activity.RESULT_OK) {
       switch (reqCode) {
-      case PICK_IDENTITY_CONTACT: handleIdentitySelection(data); break;
+      case PICK_IDENTITY_CONTACT:      handleIdentitySelection(data); break;
+      case ENABLE_PASSPHRASE_ACTIVITY: finish();                      break;
       }
     }
   }
@@ -247,37 +248,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
-  private class ViewMyIdentityClickListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      Intent viewIdentityIntent = new Intent(ApplicationPreferencesActivity.this, ViewIdentityActivity.class);
-      viewIdentityIntent.putExtra("identity_key", IdentityKeyUtil.getIdentityKey(ApplicationPreferencesActivity.this));
-      viewIdentityIntent.putExtra("title", getString(R.string.ApplicationPreferencesActivity_my) + " " +
-                                           getString(R.string.ViewIdentityActivity_identity_fingerprint));
-      startActivity(viewIdentityIntent);
-
-      return true;
-    }
-  }
-
-  private class ManageIdentitiesClickListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      MasterSecret masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
-
-      if (masterSecret != null) {
-        Intent manageIntent = new Intent(ApplicationPreferencesActivity.this, ReviewIdentitiesActivity.class);
-        manageIntent.putExtra("master_secret", masterSecret);
-        startActivity(manageIntent);
-      } else {
-        Toast.makeText(ApplicationPreferencesActivity.this,
-                       R.string.ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys,
-                       Toast.LENGTH_LONG).show();
-      }
-
-      return true;
-    }
-  }
 
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
     @Override
@@ -319,6 +289,48 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
+  private class DisablePassphraseClickListener implements Preference.OnPreferenceChangeListener {
+
+    @Override
+    public boolean onPreferenceChange(final Preference preference, Object newValue) {
+      if (!((CheckBoxPreference)preference).isChecked()) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
+        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_storage_encryption);
+        builder.setMessage(R.string.ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            MasterSecret masterSecret = getIntent().getParcelableExtra("master_secret");
+            MasterSecretUtil.changeMasterSecretPassphrase(ApplicationPreferencesActivity.this,
+                                                          masterSecret,
+                                                          MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+
+
+            PreferenceManager.getDefaultSharedPreferences(ApplicationPreferencesActivity.this)
+                             .edit()
+                             .putBoolean(DISABLE_PASSPHRASE_PREF, true)
+                             .commit();
+
+            ((CheckBoxPreference)preference).setChecked(true);
+
+            Intent intent = new Intent(ApplicationPreferencesActivity.this, KeyCachingService.class);
+            intent.setAction(KeyCachingService.DISABLE_ACTION);
+            startService(intent);
+          }
+        });
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.show();
+      } else {
+        Intent intent = new Intent(ApplicationPreferencesActivity.this,
+                                   PassphraseChangeActivity.class);
+        startActivityForResult(intent, ENABLE_PASSPHRASE_ACTIVITY);
+      }
+
+      return false;
+    }
+  }
+
   private class TrimLengthValidationListener implements Preference.OnPreferenceChangeListener {
 
     public TrimLengthValidationListener() {
@@ -343,7 +355,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         return false;
       }
 
-      preference.setSummary((String)newValue + " " +
+      preference.setSummary(newValue + " " +
                             getString(R.string.ApplicationPreferencesActivity_messages_per_conversation));
       return true;
     }

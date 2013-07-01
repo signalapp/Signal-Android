@@ -17,11 +17,13 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
@@ -36,11 +38,13 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  */
 
 public class PassphraseChangeActivity extends PassphraseActivity {
-  private EditText	originalPassphrase;
-  private EditText	newPassphrase;
-  private EditText	repeatPassphrase;
-  private Button	  okButton;
-  private Button	  cancelButton;
+
+  private EditText originalPassphrase;
+  private EditText newPassphrase;
+  private EditText repeatPassphrase;
+  private TextView originalPassphraseLabel;
+  private Button   okButton;
+  private Button   cancelButton;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -52,15 +56,24 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    this.originalPassphrase = (EditText) findViewById(R.id.old_passphrase);
-    this.newPassphrase      = (EditText) findViewById(R.id.new_passphrase);
-    this.repeatPassphrase   = (EditText) findViewById(R.id.repeat_passphrase);
+    this.originalPassphraseLabel = (TextView) findViewById(R.id.old_passphrase_label);
+    this.originalPassphrase      = (EditText) findViewById(R.id.old_passphrase      );
+    this.newPassphrase           = (EditText) findViewById(R.id.new_passphrase      );
+    this.repeatPassphrase        = (EditText) findViewById(R.id.repeat_passphrase   );
 
-    this.okButton           = (Button) findViewById(R.id.ok_button);
-    this.cancelButton       = (Button) findViewById(R.id.cancel_button);
+    this.okButton                = (Button  ) findViewById(R.id.ok_button           );
+    this.cancelButton            = (Button  ) findViewById(R.id.cancel_button       );
 
     this.okButton.setOnClickListener(new OkButtonClickListener());
     this.cancelButton.setOnClickListener(new CancelButtonClickListener());
+
+    if (isPassphraseDisabled()) {
+      this.originalPassphrase.setVisibility(View.GONE);
+      this.originalPassphraseLabel.setVisibility(View.GONE);
+    } else {
+      this.originalPassphrase.setVisibility(View.VISIBLE);
+      this.originalPassphraseLabel.setVisibility(View.VISIBLE);
+    }
   }
 
   private void verifyAndSavePassphrases() {
@@ -72,6 +85,10 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     String passphrase       = (newText == null ? "" : newText.toString());
     String passphraseRepeat = (repeatText == null ? "" : repeatText.toString());
 
+    if (isPassphraseDisabled()) {
+      original = MasterSecretUtil.UNENCRYPTED_PASSPHRASE;
+    }
+
     try {
       if (!passphrase.equals(passphraseRepeat)) {
         Toast.makeText(getApplicationContext(),
@@ -81,6 +98,12 @@ public class PassphraseChangeActivity extends PassphraseActivity {
         this.repeatPassphrase.setText("");
       } else {
         MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(this, original, passphrase);
+
+        PreferenceManager.getDefaultSharedPreferences(this)
+                         .edit()
+                         .putBoolean(ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false)
+                         .commit();
+
         MemoryCleaner.clean(original);
         MemoryCleaner.clean(passphrase);
         MemoryCleaner.clean(passphraseRepeat);
@@ -92,6 +115,11 @@ public class PassphraseChangeActivity extends PassphraseActivity {
                      Toast.LENGTH_LONG).show();
       this.originalPassphrase.setText("");
     }
+  }
+
+  private boolean isPassphraseDisabled() {
+    return PreferenceManager.getDefaultSharedPreferences(this)
+                            .getBoolean(ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false);
   }
 
   private class CancelButtonClickListener implements OnClickListener {

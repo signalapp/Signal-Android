@@ -48,19 +48,35 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class MasterSecretUtil {
 
+  public static final String UNENCRYPTED_PASSPHRASE  = "unencrypted";
   public static final String PREFERENCES_NAME        = "SecureSMS-Preferences";
   public static final String ASYMMETRIC_LOCAL_PUBLIC = "asymmetric_master_secret_public";
 
-  public static MasterSecret changeMasterSecretPassphrase(Context context, String originalPassphrase, String newPassphrase) throws InvalidPassphraseException {
+  public static MasterSecret changeMasterSecretPassphrase(Context context,
+                                                          MasterSecret masterSecret,
+                                                          String newPassphrase)
+  {
     try {
-      MasterSecret masterSecret    = getMasterSecret(context, originalPassphrase);
-      byte[] combinedSecrets       = combineSecrets(masterSecret.getEncryptionKey().getEncoded(), masterSecret.getMacKey().getEncoded());
+      byte[] combinedSecrets = combineSecrets(masterSecret.getEncryptionKey().getEncoded(),
+                                              masterSecret.getMacKey().getEncoded());
+
       encryptWithPassphraseAndSave(context, combinedSecrets, newPassphrase);
 
       return masterSecret;
     } catch (GeneralSecurityException gse) {
       throw new AssertionError(gse);
     }
+  }
+
+  public static MasterSecret changeMasterSecretPassphrase(Context context,
+                                                          String originalPassphrase,
+                                                          String newPassphrase)
+      throws InvalidPassphraseException
+  {
+    MasterSecret masterSecret = getMasterSecret(context, originalPassphrase);
+    changeMasterSecretPassphrase(context, masterSecret, newPassphrase);
+
+    return masterSecret;
   }
 
   public static MasterSecret getMasterSecret(Context context, String passphrase) throws InvalidPassphraseException {
