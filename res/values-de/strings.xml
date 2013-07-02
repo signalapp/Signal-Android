@@ -72,12 +72,37 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch Nachricht</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">Auf SD-Karte verschieben?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dies\nwird Ihre verschlüsselten Keys, Einstellungen und Nachrichten auf die SD-Karte exportieren</string>
   <string name="ExportFragment_export">Export</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Im Klartext auf SD-Karte exportieren?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung, dies wird\nIhre TextSecure Nachrichten im Klartext auf die SD-Karte exportieren.</string>
   <string name="ExportFragment_cancel">Abbruch</string>
+  <string name="ExportFragment_exporting">Exportieren</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Im Klartext auf die SD-Karte exportieren...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Fehler, es war nicht möglich auf die\nSD-Karte zu schreiben!</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Fehler beim Schreiben auf die SD-Karte.</string>
   <string name="ExportFragment_success">Erfolgreich!</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportiere verschlüsselte Keys,\nEinstellungen und Nachrichten...</string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Soll die SMS-Systemdatenbank importiert werden?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Es werden jetzt die SMS von der Systemdatenbank importiert.\nWenn Sie dies schon einmal gemacht haben, werden ggf. doppelte Einträge erzeugt.</string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Abbruch</string>
+  <string name="ImportFragment_restore_encrypted_backup">Verschlüsselte Sicherung wiederherstellen?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nEine wiederhergestellte verschlüsselten Sicherung ersetzt Ihre bestehenden Keys, Einstellungen und\nNachrichten. Sie werden jegliche Informationen verlieren, die in Ihrer jetzigen TextSecure Installation sind,\naber nicht in der Sicherung.</string>
+  <string name="ImportFragment_restore">Wiederherstellen</string>
+  <string name="ImportFragment_import_plaintext_backup">Importiere Klartext-Sicherung?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Es werden jetzt die SMS von der Systemdatenbank importiert.\nWenn Sie dies schon einmal gemacht haben, werden ggf. doppelte Einträge erzeugt.</string>
+  <string name="ImportFragment_importing">Importiere</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importiere Klartext-Sicherung</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Keine Klartext-Sicherung gefunden</string>
+  <string name="ImportFragment_error_importing_backup">Fehler beim Importieren der Sicherung!</string>
+  <string name="ImportFragment_import_complete">Import fertig! </string>
+  <string name="ImportFragment_restoring">Wiederherstellen</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Verschlüsselte Sicherung wiederherstellen...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Keine verschlüsselte Sicherung gefunden!</string>
+  <string name="ImportFragment_restore_complete">Wiederherstellung fertig!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Kein eingelesener Schlüssel gefunden!</string>
   <!--MmsDownloader-->
@@ -207,6 +232,16 @@
   <string name="database_migration_activity__importing">IMPORTIERT</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert...</string>
+  <string name="export_fragment__export_encrypted_backup">Exportiere verschlüsselte Sicherung</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportiere eine verschlüsselte\nSicherung auf die SD-Karte.</string>
+  <string name="export_fragment__export_plaintext_backup">Exportiere Klartext-Sicherung</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nExportiert eine Klartext-Sicherung kompatibel mit \'SMSBackup And Restore\' auf die SD-Karte</string>
+  <string name="import_fragment__import_system_sms_database">Importiere SMS Systemdatenbank</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importiere die\nSystemdatenbank der Nachrichten App.</string>
+  <string name="import_fragment__import_encrypted_backup">Importiere verschlüsselte Sicherung</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nWiederherstellen einer zuvor exportierten TextSecure Sicherung.</string>
+  <string name="import_fragment__import_plaintext_backup">Importiere Klartext-Sicherung</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nImportiere eine Klartext-Sicherungdatei. Kompatibel mit \'SMSBackup And Restore\'</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSPHRASE</string>
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
@@ -245,6 +280,9 @@
   <string name="AndroidManifest__manage_identity_keys">Schlüssel verwalten</string>
   <string name="AndroidManifest__complete_key_exchange">Vollständiger Schlüsselaustausch</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">Import / Export</string>
+  <string name="arrays__my_identity_key">Mein Identitätsschlüssel</string>
+  <string name="arrays__contact_keys">Kontaktschlüssel</string>
   <!--preferences.xml-->
   <string name="preferences__general">Allgemein</string>
   <string name="preferences__pref_all_sms_title">Für alle SMS benutzen</string>
@@ -308,6 +346,10 @@
   <string name="preferences__conversation_length_limit">Limit der Konversationslänge</string>
   <string name="preferences__trim_all_threads_now">Alle Konversationen kürzen</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Alle Gespräche scannen und Gesprächslängenbegrenzungen </string>
+  <string name="preferences__light_theme">Light Theme</string>
+  <string name="preferences__dark_theme">Dunkles Theme</string>
+  <string name="preferences__appearance">Aussehen</string>
+  <string name="preferences__theme">Theme</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

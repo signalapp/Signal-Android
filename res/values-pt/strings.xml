@@ -13,6 +13,8 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
   <string name="ApplicationPreferencesActivity_delete">Deletar</string>
   <string name="ApplicationPreferencesActivity_my">O meu</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Desactivar cifra de armazenamento?</string>
+  <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -54,6 +56,8 @@
   <string name="ConversationActivity_d_recipients_in_group">%d destinatários no grupo</string>
   <string name="ConversationActivity_saving_draft">A guardar rascunho...</string>
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
+  <string name="ConversationActivity_calls_not_supported">Chamadas não suportadas</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo parece não suportar acções de marcação</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remetente: %1$s⏎ Transporte: %2$s⏎ Enviadas/Recebidas:%3$s</string>
@@ -70,12 +74,29 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">Exportar para cartão SD?</string>
   <string name="ExportFragment_export">Exportar</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Exportar texto simples para cartão SD?</string>
   <string name="ExportFragment_cancel">Cancelar</string>
+  <string name="ExportFragment_exporting">Exportar</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">A exportar texto simples para cartão SD</string>
   <string name="ExportFragment_success">Sucesso!</string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Importar a base de dados SMS do sistema?</string>
   <string name="ImportFragment_import">Importar</string>
   <string name="ImportFragment_cancel">Cancelar</string>
+  <string name="ImportFragment_restore_encrypted_backup">Restaurar cópia de segurança cifrada?</string>
+  <string name="ImportFragment_restore">Restaurar</string>
+  <string name="ImportFragment_import_plaintext_backup">Importar cópia de segurança em texto simples?</string>
+  <string name="ImportFragment_importing">A importar</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">A importar cópia de segurança em texto simples</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Não foi encontrada uma cópia de segurança em texto simples!</string>
+  <string name="ImportFragment_error_importing_backup">Erro a importar cópia de segurança!</string>
+  <string name="ImportFragment_import_complete">Importação completa!</string>
+  <string name="ImportFragment_restoring">A restaurar</string>
+  <string name="ImportFragment_restoring_encrypted_backup">A restaurar cópia de segurança cifrada...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Não foi encontrada uma cópia de segurança cifrada!</string>
+  <string name="ImportFragment_restore_complete">Restauro completo!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Não foi encontrada nenhuma chave lida!</string>
   <!--MmsDownloader-->
@@ -205,6 +226,7 @@
   <string name="database_migration_activity__importing">A IMPORTAR</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">A actualizar a base de dados...</string>
+  <string name="export_fragment__export_encrypted_backup">A exportar cópia de segurança cifrada</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE-CHAVE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
@@ -243,6 +265,8 @@
   <string name="AndroidManifest__manage_identity_keys">Gerir chaves de identidade</string>
   <string name="AndroidManifest__complete_key_exchange">Completar intercâmbio de chaves</string>
   <!--arrays.xml-->
+  <string name="arrays__my_identity_key">A minha chave de identidade</string>
+  <string name="arrays__contact_keys">Chaves de contacto</string>
   <!--preferences.xml-->
   <string name="preferences__general">Geral</string>
   <string name="preferences__pref_all_sms_title">Utilizar para todas as SMS</string>
@@ -306,6 +330,11 @@
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
   <string name="preferences__trim_all_threads_now">Apagar todas conversas agora</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Verificar todas conversas e aplicar tamanho máximo de conversa</string>
+  <string name="preferences__light_theme">Tema Claro</string>
+  <string name="preferences__dark_theme">Tema Escuro</string>
+  <string name="preferences__appearance">Aspecto</string>
+  <string name="preferences__theme">Tema</string>
+  <string name="preferences__default">Opção por omissão</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -356,5 +385,6 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
+  <string name="preferences__language">Língua</string>
   <!--EOF-->
 </resources>

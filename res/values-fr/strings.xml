@@ -73,12 +73,36 @@
   <string name="ConversationListItem_key_exchange_message">Message d’échange de clés…</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exporter vers la carte SD ?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Ceci ⏎\nexportera vos clés chiffrées, les paramètres et les messages sur la carte SD.</string>
   <string name="ExportFragment_export">Exporter</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Exporter le contenu en clair sur ​​la carte SD?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Attention, ceci ⏎\nexportera le contenu en clair de vos messages TextSecure sur la carte SD. ⏎</string>
   <string name="ExportFragment_cancel">Annuler</string>
+  <string name="ExportFragment_exporting">Exporter</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportation du contenu en clair sur la carte SD.</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Impossible d’écrire sur la carte SD !</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Erreur lors de l\'écriture sur la carte SD !</string>
   <string name="ExportFragment_success">Réussite !</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportation des Clés cryptées, ⏎\nparamètres et messages ... ⏎</string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Importer base de données SMS du système?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Cela importera ⏎\nles messages à partir de la base de données SMS par défaut du système vers TextSecure. Si vous avez déjà ⏎\nimporté la base de données SMS du système, l\'importer à nouveau se traduira par des messages dupliqués. ⏎</string>
   <string name="ImportFragment_import">Importer</string>
   <string name="ImportFragment_cancel">Annuler</string>
+  <string name="ImportFragment_restore_encrypted_backup">Restaurer la sauvegarde cryptée?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">La restauration d\'une sauvegarde cryptée va remplacer complètement vos clés existantes, les préférences et ⏎\nles messages. Vous perdrez toutes les informations qui se trouvent dans votre installation TextSecure actuelle mais pas ⏎\ndans la sauvegarde. ⏎</string>
+  <string name="ImportFragment_restore">Restaurer</string>
+  <string name="ImportFragment_import_plaintext_backup">Importer la sauvegarde du contenu en clair ?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Cela importera ⏎\nles messages provenant d\'une sauvegarde en clair. Si vous avez déjà importé la base de données SMS du système, ⏎\nimporter à nouveau se traduira par des messages dupliqués. ⏎</string>
+  <string name="ImportFragment_importing">Importer</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importer la sauvegarde en texte clair ...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Aucune sauvegarde en texte clair trouvée !</string>
+  <string name="ImportFragment_error_importing_backup">Erreur d\'importation de la sauvegarde!</string>
+  <string name="ImportFragment_import_complete">Importation Complète !</string>
+  <string name="ImportFragment_restoring">Restauration</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Restauration d\'une sauvegarde cryptée ...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Aucune sauvegarde cryptée trouvé!</string>
+  <string name="ImportFragment_restore_complete">Restauration complète !</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Aucune clé scannée n’a été trouvée !</string>
   <!--MmsDownloader-->
@@ -208,6 +232,16 @@
   <string name="database_migration_activity__importing">IMPORTATION</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Mise à jour de la base de données…</string>
+  <string name="export_fragment__export_encrypted_backup">Exporter une sauvegarde cryptée</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exporter une sauvegarde cryptée</string>
+  <string name="export_fragment__export_plaintext_backup">Exporter une sauvegarde en texte clair</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter une sauvegarde en texte clair compatible avec «smsbackup et restaurer» sur la carte SD.</string>
+  <string name="import_fragment__import_system_sms_database">Copier la base de données SMS du système ?</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importer la base de données depuis l\'application SMS par défaut</string>
+  <string name="import_fragment__import_encrypted_backup">Importer la sauvegarde cryptée</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Restaurer une sauvegarde cryptée TextSecure précédemment exporté. ⏎</string>
+  <string name="import_fragment__import_plaintext_backup">Importer une sauvegarde en texte clair</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importer un fichier de sauvegarde en texte clair. Compatible avec</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">PHRASE DE PASSE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
@@ -246,6 +280,9 @@
   <string name="AndroidManifest__manage_identity_keys">Gérer les clefs d\'identité</string>
   <string name="AndroidManifest__complete_key_exchange">Finaliser l\'échange de clefs</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">Importer / Exporter</string>
+  <string name="arrays__my_identity_key">Ma clefs d\'identité</string>
+  <string name="arrays__contact_keys">Clefs du contact</string>
   <!--preferences.xml-->
   <string name="preferences__general">Général</string>
   <string name="preferences__pref_all_sms_title">Utiliser pour tous les SMS</string>
@@ -313,6 +350,7 @@
   <string name="preferences__dark_theme">Thème Foncé</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
+  <string name="preferences__default">Par défaut</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -363,5 +401,6 @@
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme Lu</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Vérifié</string>
+  <string name="preferences__language">Langue</string>
   <!--EOF-->
 </resources>

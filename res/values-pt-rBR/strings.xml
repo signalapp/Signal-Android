@@ -13,6 +13,9 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
   <string name="ApplicationPreferencesActivity_delete">Deletar</string>
   <string name="ApplicationPreferencesActivity_my">Minhas</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Desabilitar criptografia de armazenamento?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n        Atenção, isto irá desabilitar a criptografia de armazenamento para todas as mensagens e chaves. Suas sessões\n        criptografadas continuarão funcionando, mas qualquer um com acesso físico ao seu aparelho\n        conseguirá acessá-las.\n    </string>
+  <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -350,6 +353,7 @@
   <string name="preferences__dark_theme">Tema escuro</string>
   <string name="preferences__appearance">Aparência</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__default">Padrão</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -400,5 +404,6 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
+  <string name="preferences__language">Idioma</string>
   <!--EOF-->
 </resources>

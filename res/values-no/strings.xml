@@ -86,7 +86,7 @@
   <string name="ExportFragment_exporting_keys_settings_and_messages">Eksporterer krypterte nøkler, innstillinger og meldinger...</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importer systemets SMS database?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere meldinger fra systemets SMS database til TextSecure. Dersom du har gjort en import tidligere, vil dette føre til dupliserte meldinger.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere meldinger fra systemets standard SMS database til TextSecure. Dersom du har gjort en import tidligere, vil dette føre til dupliserte meldinger.</string>
   <string name="ImportFragment_import">Importer</string>
   <string name="ImportFragment_cancel">Avbryt</string>
   <string name="ImportFragment_restore_encrypted_backup">Gjenopprett kryptert backup?</string>
@@ -237,7 +237,7 @@
   <string name="export_fragment__export_plaintext_backup">Eksporter klartekst backup</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksporter en klartekst backup kompatibel med \'SMSBackup And Restore\' til SD-kortet.</string>
   <string name="import_fragment__import_system_sms_database">Importer systemets SMS database</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importer databasen fra systemets SMS applikasjon.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importer databasen fra systemets standard SMS applikasjon.</string>
   <string name="import_fragment__import_encrypted_backup">Importer kryptert backup</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nGjenopprett en tidligere eksportert kryptert TextSecure backup.</string>
   <string name="import_fragment__import_plaintext_backup">Importer klartekst backup</string>
@@ -350,6 +350,7 @@
   <string name="preferences__dark_theme">Mørkt tema</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__default">Standard</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -400,5 +401,6 @@
   <string name="text_secure_normal__mark_all_as_read">Marker alle lest</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekreftet</string>
+  <string name="preferences__language">Språk</string>
   <!--EOF-->
 </resources>

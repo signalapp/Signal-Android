@@ -13,6 +13,9 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">今すぐ全ての会話スレッドを最新メッセージ%s通にまで縮小（トリム）しますか？</string>
   <string name="ApplicationPreferencesActivity_delete">削除</string>
   <string name="ApplicationPreferencesActivity_my">自分のフィンガープリント</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">端末内保存データの暗号化を無効化にしますか？</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！\n通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
+  <string name="ApplicationPreferencesActivity_disable">無効</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
@@ -27,7 +30,7 @@
   <string name="ConversationItem_save_to_sd_card">SDカードに保存しますか？</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">このファイルは暗号化されたデータベースに保存されています。SDカードに保存される方のバージョンは暗号化されませんが、この作業を続けますか？</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">SDカードへの添付ファイル保存中にエラーが起きました。</string>
-  <string name="ConversationItem_success_exclamation">できました。</string>
+  <string name="ConversationItem_success_exclamation">成功しました。</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">SDカードに書き込めません。</string>
   <string name="ConversationItem_view_secure_media_question">暗号化されたファイルを表示しますか？</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">このファイルは暗号化されたデータベースに保存されています。外部コンテンツのビューアで見るには、データを一時的に復号し、ディスクに書き込まなければなりません。この作業を実行してもいいですか？</string>
@@ -72,36 +75,36 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
   <!--ExportFragment-->
-  <string name="ExportFragment_export_to_sd_card">SDカードへエクスポートします？</string>
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">これであなたの暗号化されたキー、設定、そしてメッセージはSDカードへエクスポートされますが、よろしいですか？</string>
+  <string name="ExportFragment_export_to_sd_card">SDカードへエクスポートしますか？</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">これで、あなたの暗号化された鍵、設定、及びメッセージはSDカードへエクスポートされますが、よろしいですか？</string>
   <string name="ExportFragment_export">エクスポート</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">非暗号のテクストをSDカードへエクスポートしてもよろしいですか？</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">注意：これであなたのTextSecureメッセージは非暗号のままでSDカードへとエクスポートされます！</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">暗号化されていないテキストをSDカードへエクスポートしますか？</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">警告：この作業によって、あなたのTextSecureメッセージは、暗号化されていない状態でSDカードへとエクスポートされます！</string>
   <string name="ExportFragment_cancel">中止</string>
   <string name="ExportFragment_exporting">エクスポート中…</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">SDカードへ非暗号のテクストをエクスポート中…</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">暗号化されてないテキストをSDカードにエクスポート中…</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">SDカードに書き込む途中でエラーが発生しました。</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">SDカードに書き込む途中でエラーが発生しました。</string>
   <string name="ExportFragment_success">成功しました。</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">暗号化されたキー、設定、メッセージをエクスポート中…</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">暗号化されたキー、設定及びメッセージをエクスポート中…</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">システムのSMSデータベースをインポートしますか？</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">これでシステムの既定SMSデータベースのメッセージはTextSecureにインポートされます。以前にこの作業を行ったことがあれば、メッセージが複製される場合があります。</string>
+  <string name="ImportFragment_import_system_sms_database">携帯端末のSMSデータベースをインポートしますか？</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">これで、携帯端末の既定SMSデータベースにあるメッセージがTextSecureにインポートされます。以前にこの作業を行ったことがあれば、メッセージが重複する場合があります。</string>
   <string name="ImportFragment_import">インポート</string>
   <string name="ImportFragment_cancel">中止</string>
-  <string name="ImportFragment_restore_encrypted_backup">暗号化されたバックアップを復元してもよろしいですか？</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n暗号化されたバックアップを復元すると、現在のキー、設定、そしてメッセージは上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップは残ります。</string>
+  <string name="ImportFragment_restore_encrypted_backup">暗号化されたバックアップ・ファイルを復元しますか？</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
   <string name="ImportFragment_restore">復元</string>
-  <string name="ImportFragment_import_plaintext_backup">非暗号のテクストバックアップをインポートしますか？</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">非暗号のテクストバックアップからメッセージをインポートします。以前にこの作業を行ったことがあれば、メッセージが複製される場合があります。</string>
+  <string name="ImportFragment_import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポートしますか？</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前にこの作業を行ったことがあれば、メッセージが重複する場合があります。</string>
   <string name="ImportFragment_importing">インポート中…</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">非暗号のテクストをインポート</string>
-  <string name="ImportFragment_no_plaintext_backup_found">非暗号のテクストバックアップが見つかりませんでした。</string>
-  <string name="ImportFragment_error_importing_backup">バックアップをインポートする際にエラーが発生しました。</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">非暗号テキストをインポート</string>
+  <string name="ImportFragment_no_plaintext_backup_found">非暗号テキストのバックアップ・ファイルが見つかりませんでした。</string>
+  <string name="ImportFragment_error_importing_backup">バックアップ・ファイルのインポート中にエラーが発生しました。</string>
   <string name="ImportFragment_import_complete">インポート完了！</string>
   <string name="ImportFragment_restoring">復元中…</string>
-  <string name="ImportFragment_restoring_encrypted_backup">暗号化されたバックアップをインポート中…</string>
-  <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップが見つかりませんでした。</string>
+  <string name="ImportFragment_restoring_encrypted_backup">暗号化されたバックアップ・ファイルをインポート中…</string>
+  <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップ・ファイルが見つかりませんでした。</string>
   <string name="ImportFragment_restore_complete">復元完了！</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>
@@ -232,16 +235,16 @@
   <string name="database_migration_activity__importing">インポート中</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
-  <string name="export_fragment__export_encrypted_backup">暗号化されたバックアップをエクスポート</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化されたバックアップをエクスポート</string>
-  <string name="export_fragment__export_plaintext_backup">非暗号のテクストバックアップをエクスポート</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nSDカードに”SMSバックアップと復元”と交換性のある、非暗号のテクストバックアップをエクスポート</string>
-  <string name="import_fragment__import_system_sms_database">システムのSMSデータベースをインポート</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">システム既定のメッセンジャーからデータベースをインポート</string>
-  <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップをインポート</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n以前にエクスポートされた暗号化されたTextSecureバックアップを復元</string>
-  <string name="import_fragment__import_plaintext_backup">非暗号のテクストバックアップをインポート</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\n非暗号のテクストバックアップをインポート。”SMSバックアップと復元”と交換できる。</string>
+  <string name="export_fragment__export_encrypted_backup">暗号化されたバックアップ・ファイルをエクスポート</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化されたバックアップ・ファイルをエクスポート</string>
+  <string name="export_fragment__export_plaintext_backup">非暗号テキストのバックアップ・ファイルをエクスポート</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n「SMSバックアップと復元」と互換性のある非暗号テキストのバックアップ・ファイルをSDカードにエクスポート</string>
+  <string name="import_fragment__import_system_sms_database">端末内のSMSデータベースをインポート</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">端末の既定のメッセンジャー・アプリからデータベースをインポート</string>
+  <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップ・ファイルをインポート</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n前回エクスポートした暗号化されたTextSecureバックアップ・ファイルを復元</string>
+  <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\n非暗号テキストのバックアップ・ファイルをインポート。「SMSバックアップと復元」と互換可能。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TextSecureパスワード</string>
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
@@ -280,7 +283,7 @@
   <string name="AndroidManifest__manage_identity_keys">認証キーを管理</string>
   <string name="AndroidManifest__complete_key_exchange">鍵交換を完了</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">インポート・エクスポート</string>
+  <string name="arrays__import_export">インポート／エクスポート</string>
   <string name="arrays__my_identity_key">自分の認証キー</string>
   <string name="arrays__contact_keys">連絡先のキー</string>
   <!--preferences.xml-->
@@ -346,10 +349,11 @@
   <string name="preferences__conversation_length_limit">会話の最大の長さ</string>
   <string name="preferences__trim_all_threads_now">すべてのスレッドを今、トリムする</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">すべての会話スレッドをスキャンして、会話の長さ制限を強制します</string>
-  <string name="preferences__light_theme">白テーマ</string>
-  <string name="preferences__dark_theme">黒テーマ</string>
-  <string name="preferences__appearance">外見</string>
+  <string name="preferences__light_theme">白基調</string>
+  <string name="preferences__dark_theme">黒基調</string>
+  <string name="preferences__appearance">デザイン設定</string>
   <string name="preferences__theme">テーマ</string>
+  <string name="preferences__default">初期設定</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -400,5 +404,6 @@
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">確認済み</string>
+  <string name="preferences__language">言語</string>
   <!--EOF-->
 </resources>
