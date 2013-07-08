@@ -17,7 +17,8 @@ import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
-import org.thoughtcrime.securesms.gcm.GcmSocket;
+import org.thoughtcrime.securesms.gcm.PushServiceSocket;
+import org.thoughtcrime.securesms.gcm.RateLimitException;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -25,8 +26,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * The RegisterationService handles the actual process of registration.  If it receives an
- * intent with a REGISTER_NUMBER_ACTION, it does the following through an executor:
+ * The RegisterationService handles the process of PushService registration and verification.
+ * If it receives an intent with a REGISTER_NUMBER_ACTION, it does the following through
+ * an executor:
  *
  * 1) Generate secrets.
  * 2) Register the specified number and those secrets with the server.
@@ -44,9 +46,12 @@ import java.util.concurrent.Executors;
 
 public class RegistrationService extends Service {
 
+  public static final String REGISTER_NUMBER_ACTION = "org.thoughtcrime.securesms.RegistrationService.REGISTER_NUMBER";
+  public static final String VOICE_REQUESTED_ACTION = "org.thoughtcrime.securesms.RegistrationService.VOICE_REQUESTED";
+  public static final String VOICE_REGISTER_ACTION  = "org.thoughtcrime.securesms.RegistrationService.VOICE_REGISTER";
+
   public static final String NOTIFICATION_TITLE     = "org.thoughtcrime.securesms.NOTIFICATION_TITLE";
   public static final String NOTIFICATION_TEXT      = "org.thoughtcrime.securesms.NOTIFICATION_TEXT";
-  public static final String REGISTER_NUMBER_ACTION = "org.thoughtcrime.securesms.RegistrationService.REGISTER_NUMBER";
   public static final String CHALLENGE_EVENT        = "org.thoughtcrime.securesms.CHALLENGE_EVENT";
   public static final String REGISTRATION_EVENT     = "org.thoughtcrime.securesms.REGISTRATION_EVENT";
   public static final String GCM_REGISTRATION_EVENT = "org.thoughtcrime.securesms.GCM_REGISTRATION_EVENT";
@@ -70,11 +75,13 @@ public class RegistrationService extends Service {
 
   @Override
   public int onStartCommand(final Intent intent, int flags, int startId) {
-    if (intent != null && intent.getAction().equals(REGISTER_NUMBER_ACTION)) {
+    if (intent != null) {
       executor.execute(new Runnable() {
         @Override
         public void run() {
-          handleRegistrationIntent(intent);
+          if      (intent.getAction().equals(REGISTER_NUMBER_ACTION)) handleRegistrationIntent(intent);
+          else if (intent.getAction().equals(VOICE_REQUESTED_ACTION)) handleVoiceRequestedIntent(intent);
+          else if (intent.getAction().equals(VOICE_REGISTER_ACTION))  handleVoiceRegisterIntent(intent);
         }
       });
     }
@@ -141,10 +148,58 @@ public class RegistrationService extends Service {
     }
   }
 
+  private void handleVoiceRequestedIntent(Intent intent) {
+    setState(new RegistrationState(RegistrationState.STATE_VOICE_REQUESTED,
+                                   intent.getStringExtra("e164number"),
+                                   intent.getStringExtra("password")));
+  }
+
+  private void handleVoiceRegisterIntent(Intent intent) {
+    markAsVerifying(true);
+
+    String number   = intent.getStringExtra("e164number");
+    String password = intent.getStringExtra("password");
+
+    try {
+      initializeGcmRegistrationListener();
+
+      PushServiceSocket socket = new PushServiceSocket(this, number, password);
+
+      setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
+      GCMRegistrar.register(this, GcmIntentService.GCM_SENDER_ID);
+      String gcmRegistrationId = waitForGcmRegistrationId();
+
+      socket.registerGcmId(gcmRegistrationId);
+      socket.retrieveDirectory(this);
+
+      markAsVerified(number, password);
+
+      setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
+      broadcastComplete(true);
+    } catch (UnsupportedOperationException uoe) {
+      Log.w("RegistrationService", uoe);
+      setState(new RegistrationState(RegistrationState.STATE_GCM_UNSUPPORTED, number));
+      broadcastComplete(false);
+    } catch (IOException e) {
+      Log.w("RegistrationService", e);
+      setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR, number));
+      broadcastComplete(false);
+    } catch (GcmRegistrationTimeoutException e) {
+      Log.w("RegistrationService", e);
+      setState(new RegistrationState(RegistrationState.STATE_GCM_TIMEOUT));
+      broadcastComplete(false);
+    } catch (RateLimitException e) {
+      Log.w("RegistrationService", e);
+      setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR));
+      broadcastComplete(false);
+    } finally {
+      shutdownGcmRegistrationListener();
+    }
+  }
+
   private void handleRegistrationIntent(Intent intent) {
     markAsVerifying(true);
 
-    GcmSocket socket;
     String number = intent.getStringExtra("e164number");
 
     try {
@@ -153,19 +208,18 @@ public class RegistrationService extends Service {
       initializeGcmRegistrationListener();
 
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
-      socket = new GcmSocket(this, number, password);
-      socket.createAccount();
+      PushServiceSocket socket = new PushServiceSocket(this, number, password);
+      socket.createAccount(false);
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      socket.verifyAccount(challenge, password);
+      socket.verifyAccount(challenge);
 
       setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
       GCMRegistrar.register(this, GcmIntentService.GCM_SENDER_ID);
       String gcmRegistrationId = waitForGcmRegistrationId();
-      socket.registerGcmId(gcmRegistrationId);
 
-      setState(new RegistrationState(RegistrationState.STATE_RETRIEVING_DIRECTORY, number));
+      socket.registerGcmId(gcmRegistrationId);
       socket.retrieveDirectory(this);
 
       markAsVerified(number, password);
@@ -187,6 +241,10 @@ public class RegistrationService extends Service {
     } catch (GcmRegistrationTimeoutException e) {
       Log.w("RegistrationService", e);
       setState(new RegistrationState(RegistrationState.STATE_GCM_TIMEOUT));
+      broadcastComplete(false);
+    } catch (RateLimitException e) {
+      Log.w("RegistrationService", e);
+      setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR));
       broadcastComplete(false);
     } finally {
       shutdownChallengeListener();
@@ -260,7 +318,7 @@ public class RegistrationService extends Service {
     this.registrationState = state;
 
     if (registrationStateHandler != null) {
-      registrationStateHandler.obtainMessage(state.state, state.number).sendToTarget();
+      registrationStateHandler.obtainMessage(state.state, state).sendToTarget();
     }
   }
 
@@ -306,30 +364,36 @@ public class RegistrationService extends Service {
 
   public static class RegistrationState {
 
-    public static final int STATE_IDLE          = 0;
-    public static final int STATE_CONNECTING    = 1;
-    public static final int STATE_VERIFYING     = 2;
-    public static final int STATE_TIMER         = 3;
-    public static final int STATE_COMPLETE      = 4;
-    public static final int STATE_TIMEOUT       = 5;
-    public static final int STATE_NETWORK_ERROR = 6;
+    public static final int STATE_IDLE                 =  0;
+    public static final int STATE_CONNECTING           =  1;
+    public static final int STATE_VERIFYING            =  2;
+    public static final int STATE_TIMER                =  3;
+    public static final int STATE_COMPLETE             =  4;
+    public static final int STATE_TIMEOUT              =  5;
+    public static final int STATE_NETWORK_ERROR        =  6;
 
-    public static final int STATE_GCM_UNSUPPORTED   = 8;
-    public static final int STATE_GCM_REGISTERING   = 9;
-    public static final int STATE_GCM_TIMEOUT       = 10;
+    public static final int STATE_GCM_UNSUPPORTED      =  8;
+    public static final int STATE_GCM_REGISTERING      =  9;
+    public static final int STATE_GCM_TIMEOUT          = 10;
 
-    public static final int STATE_RETRIEVING_DIRECTORY = 11;
+    public static final int STATE_VOICE_REQUESTED      = 12;
 
     public final int    state;
     public final String number;
+    public final String password;
 
     public RegistrationState(int state) {
       this(state, null);
     }
 
     public RegistrationState(int state, String number) {
-      this.state  = state;
-      this.number = number;
+      this(state, number, null);
+    }
+
+    public RegistrationState(int state, String number, String password) {
+      this.state    = state;
+      this.number   = number;
+      this.password = password;
     }
   }
 }

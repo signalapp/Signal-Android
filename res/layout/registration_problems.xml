@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dip"
+                android:paddingRight="10dip"
+                android:baselineAligned="false">
+
+    <ScrollView android:layout_alignParentTop="true"
+                android:layout_above="@+id/button_frame"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:paddingTop="5dip"
+                android:paddingBottom="12dip">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    style="@style/Registration.Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dip"
+                    android:text="@string/registration_problems__some_possible_problems_include" />
+
+            <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                <TableRow>
+
+                    <TextView
+                            style="@style/Registration.Description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="10dip"
+                            android:text="•" />
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/registration_problems__sms_interceptors"
+                                android:textStyle="bold" />
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="@string/registration_problems__some_third_party_text_messaging_clients_such_as_handcent" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                            style="@style/Registration.Description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="10dip"
+                            android:text="•" />
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/registration_problems__incorrect_number"
+                                android:textStyle="bold" />
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="@string/registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                            style="@style/Registration.Description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="•" />
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/registration_problems__google_voice"
+                                android:textStyle="bold" />
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="@string/registration_problems__textsecure_will_not_work_with_google_voice_numbers" />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:id="@+id/button_frame"
+                  android:layout_alignParentBottom="true"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:minHeight="54dip"
+                  android:orientation="vertical"
+                  android:gravity="center">
+
+        <Button android:id="@+id/close_button"
+                android:layout_width="fill_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:text="@android:string/ok"/>
+    </LinearLayout>
+</RelativeLayout>

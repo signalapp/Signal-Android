@@ -184,6 +184,32 @@
         exchanges\' setting disabled.
     </string>
 
+    <!-- RegistrationProblemsActivity -->
+    <string name="RegistrationProblemsActivity_possible_problems">Possible Problems</string>
+
+    <!-- RegistrationProgressActivity -->
+    <string name="RegistrationProgressActivity_verifying_number">Verifying number</string>
+    <string name="RegistrationProgressActivity_edit_s">Edit %s</string>
+    <string name="RegistrationProgressActivity_registration_complete">Registration complete!</string>
+    <string name="RegistrationProgressActivity_possible_problems">Possible problems.</string>
+    <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">You must enter the code you received first...</string>
+    <string name="RegistrationProgressActivity_connecting">Connecting</string>
+    <string name="RegistrationProgressActivity_connecting_for_verification">Connecting for verification...</string>
+    <string name="RegistrationProgressActivity_network_error">Network Error!</string>
+    <string name="RegistrationProgressActivity_unable_to_connect">Unable to connect. Please check your network connection and try again.</string>
+    <string name="RegistrationProgressActivity_verification_failed">Verification Failed!</string>
+    <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">The verification code you submitted is incorrect. Please try again.</string>
+    <string name="RegistrationProgressActivity_too_many_attempts">Too many attempts</string>
+    <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">You\'ve submitted an incorrect verification code too many times. Please wait a minute before trying again.</string>
+    <string name="RegistrationProgressActivity_requesting_call">Requesting Call</string>
+    <string name="RegistrationProgressActivity_requesting_incoming_call">Requesting incoming verification call...</string>
+    <string name="RegistrationProgressActivity_server_error">Server Error</string>
+    <string name="RegistrationProgressActivity_the_server_encountered_an_error">The server encountered an error. Please try again.</string>
+    <string name="RegistrationProgressActivity_too_many_requests">Too Many Requests!</string>
+    <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
+    <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code...</string>
+
+
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
     <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Recipient has no identity key.</string>
@@ -347,6 +373,48 @@
     <!-- receive_key_activity -->
     <string name="receive_key_activity__complete">Complete</string>
 
+    <!-- registration_progress_activity -->
+    <string name="registration_progress_activity__voice_verification">Voice Verification</string>
+    <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+        TextSecure can also call you to verify your number. Tap \'Call Me\' and enter the six digit
+        code that you hear below.
+    </string>
+    <string name="registration_progress_activity__verify">Verify</string>
+    <string name="registration_progress_activity__call_me">Call Me</string>
+    <string name="registration_progress_activity__edit_number">Edit number</string>
+    <string name="registration_progress_activity__connectivity_error">Connectivity error.</string>
+    <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+        TextSecure was unable to connect to the push service.
+    </string>
+    <string name="registration_progress_activity__some_possible_problems_include">Some possible
+        problems include:
+    </string>
+    <string name="registration_progress_activity__no_network_connectivity">No network
+        connectivity.
+    </string>
+    <string name="registration_progress_activity__your_device_needs_network_connectivity">Your
+        device needs network connectivity in order to use this TextSecure feature. Check to ensure
+        that it is connected to 3G or Wifi.
+    </string>
+    <string name="registration_progress_activity__restrictive_firewall">Restrictive firewall.
+    </string>
+    <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+        If you are connected via wifi, it\'s possible that there is a firewall blocking access to
+        the TextSecure server. Try another network or mobile data.
+    </string>
+    <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+        TextSecure will now automatically verify your number with a confirmation SMS message.
+    </string>
+    <string name="registration_progress_activity__connecting">Connecting...</string>
+    <string name="registration_progress_activity__waiting_for_sms_verification">Waiting for SMS
+        verification...
+    </string>
+    <string name="registration_progress_activity__registering_with_server">Registering with server...</string>
+    <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">This
+        could take a moment. Please be patient, we\'ll notify you when verification is complete.
+    </string>
+
+
     <!-- recipients_panel -->
     <string name="recipients_panel__to">To</string>
     
@@ -453,6 +521,7 @@
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>
+    <string name="preferences__language">Language</string>
                                     
     <!-- **************************************** -->
     <!-- menus -->
@@ -519,7 +588,31 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
-    <string name="preferences__language">Language</string>
+    <string name="registration_problems__some_possible_problems_include">Some possible problems
+        include:
+    </string>
+    <string name="registration_problems__sms_interceptors">SMS Interceptors.</string>
+    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+        Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and
+        intercept all incoming SMS messages. Check to see if you received a text message that starts
+        with \'Your TextSecure verification code:\', in which case you\'ll need to configure your
+        third party text messaging app to let text messages through.
+    </string>
+    <string name="registration_problems__incorrect_number">Incorrect number.</string>
+    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+        Please check to make sure you entered your number correctly, and that it is formatted for
+        correctly your region.
+    </string>
+    <string name="registration_problems__google_voice">Google Voice.</string>
+    <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+        TextSecure will not work with Google Voice numbers.
+    </string>
+    <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+        TextSecure timed out while waiting for a verification SMS message.
+    </string>
+    <string name="registration_progress_activity__sms_verification_failed">SMS verification
+        failed.
+    </string>
     <!-- EOF -->
 
 </resources>

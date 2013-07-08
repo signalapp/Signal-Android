@@ -6,6 +6,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
+import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.directory.DirectoryDescriptor;
 import org.thoughtcrime.securesms.directory.NumberFilter;
 import org.thoughtcrime.securesms.util.Util;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
@@ -28,46 +30,48 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.zip.GZIPInputStream;
 
-public class GcmSocket {
+public class PushServiceSocket {
 
-  private static final String CREATE_ACCOUNT_PATH = "/v1/accounts/%s";
-  private static final String VERIFY_ACCOUNT_PATH = "/v1/accounts/%s";
-  private static final String REGISTER_GCM_PATH   = "/v1/accounts/gcm/%s";
-  private static final String DIRECTORY_PATH      = "/v1/directory/";
-  private static final String MESSAGE_PATH        = "/v1/messages/";
+  private static final String CREATE_ACCOUNT_SMS_PATH   = "/v1/accounts/sms/%s";
+  private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/%s";
+  private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
+  private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
+
+  private static final String DIRECTORY_PATH            = "/v1/directory/";
+  private static final String MESSAGE_PATH              = "/v1/messages/";
 
   private final String localNumber;
   private final String password;
   private final TrustManagerFactory trustManagerFactory;
 
-  public GcmSocket(Context context, String localNumber, String password) {
+  public PushServiceSocket(Context context, String localNumber, String password) {
     this.localNumber         = localNumber;
     this.password            = password;
     this.trustManagerFactory = initializeTrustManagerFactory(context);
   }
 
-  public void createAccount() throws IOException {
-    makeRequest(String.format(CREATE_ACCOUNT_PATH, localNumber), "POST", null);
+  public void createAccount(boolean voice) throws IOException, RateLimitException {
+    String path = voice ? CREATE_ACCOUNT_VOICE_PATH : CREATE_ACCOUNT_SMS_PATH;
+    makeRequest(String.format(path, localNumber), "POST", null);
   }
 
-  public void verifyAccount(String verificationCode, String password)
-      throws IOException
+  public void verifyAccount(String verificationCode) throws IOException, RateLimitException {
+    makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode), "PUT", null);
+  }
+
+  public void registerGcmId(String gcmRegistrationId) throws IOException, RateLimitException {
+    GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
+    makeRequest(REGISTER_GCM_PATH, "PUT", new Gson().toJson(registration));
+  }
+
+  public void unregisterGcmId(String gcmRegistrationId) throws IOException, RateLimitException {
+    GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
+    makeRequest(REGISTER_GCM_PATH, "DELETE", new Gson().toJson(registration));
+  }
+
+  public void sendMessage(String recipient, String messageText)
+      throws IOException, RateLimitException
   {
-    Verification verification = new Verification(verificationCode, password);
-    makeRequest(String.format(VERIFY_ACCOUNT_PATH, localNumber), "PUT", new Gson().toJson(verification));
-  }
-
-  public void registerGcmId(String gcmRegistrationId) throws IOException {
-    GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
-    makeRequest(String.format(REGISTER_GCM_PATH, localNumber), "PUT", new Gson().toJson(registration));
-  }
-
-  public void unregisterGcmId(String gcmRegistrationId) throws IOException {
-    GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
-    makeRequest(String.format(REGISTER_GCM_PATH, localNumber), "DELETE", new Gson().toJson(registration));
-  }
-
-  public void sendMessage(String recipient, String messageText) throws IOException {
     OutgoingGcmMessage message  = new OutgoingGcmMessage(recipient, messageText);
     String responseText         = makeRequest(MESSAGE_PATH, "POST", new Gson().toJson(message));
     GcmMessageResponse response = new Gson().fromJson(responseText, GcmMessageResponse.class);
@@ -89,7 +93,9 @@ public class GcmSocket {
                                                directoryDescriptor.getVersion());
 
     } catch (IOException ioe) {
-      Log.w("GcmSocket", ioe);
+      Log.w("PushServiceSocket", ioe);
+    } catch (RateLimitException e) {
+      Log.w("PushServiceSocket", e);
     }
   }
 
@@ -105,8 +111,8 @@ public class GcmSocket {
 
     OutputStream output = new FileOutputStream(download);
     InputStream input   = new GZIPInputStream(connection.getInputStream());
-    int read            = 0;
     byte[] buffer       = new byte[4096];
+    int read;
 
     while ((read = input.read(buffer)) != -1) {
       output.write(buffer, 0, read);
@@ -117,8 +123,10 @@ public class GcmSocket {
     return download;
   }
 
-  private String makeRequest(String urlFragment, String method, String body) throws IOException {
-    HttpsURLConnection connection = getConnection(urlFragment, method);
+  private String makeRequest(String urlFragment, String method, String body)
+      throws IOException, RateLimitException
+  {
+    HttpURLConnection connection = getConnection(urlFragment, method);
 
     if (body != null) {
       connection.setDoOutput(true);
@@ -127,10 +135,14 @@ public class GcmSocket {
     connection.connect();
 
     if (body != null) {
-      Log.w("GcmSocket", method +  "  --  " + body);
+      Log.w("PushServiceSocket", method +  "  --  " + body);
       OutputStream out = connection.getOutputStream();
       out.write(body.getBytes());
       out.close();
+    }
+
+    if (connection.getResponseCode() == 413) {
+      throw new RateLimitException("Rate limit exceeded: " + connection.getResponseCode());
     }
 
     if (connection.getResponseCode() != 200) {
@@ -140,19 +152,22 @@ public class GcmSocket {
     return Util.readFully(connection.getInputStream());
   }
 
-  private HttpsURLConnection getConnection(String urlFragment, String method) throws IOException {
+  private HttpURLConnection getConnection(String urlFragment, String method) throws IOException {
     try {
       SSLContext context = SSLContext.getInstance("TLS");
       context.init(null, trustManagerFactory.getTrustManagers(), null);
 
-      URL url = new URL(String.format("https://gcm.textsecure.whispersystems.org%s", urlFragment));
-      HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-      connection.setSSLSocketFactory(context.getSocketFactory());
+      URL url = new URL(String.format("%s%s", Release.PUSH_SERVICE_URL, urlFragment));
+      HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+
+      if (Release.ENFORCE_SSL) {
+        ((HttpsURLConnection)connection).setSSLSocketFactory(context.getSocketFactory());
+      }
+
       connection.setRequestMethod(method);
       connection.setRequestProperty("Content-Type", "application/json");
 
       if (password != null) {
-        System.out.println("Adding authorization header: " + getAuthorizationHeader());
         connection.setRequestProperty("Authorization", getAuthorizationHeader());
       }
 
@@ -198,20 +213,16 @@ public class GcmSocket {
   }
 
 
-  private class Verification {
-
-    private String verificationCode;
-    private String authenticationToken;
-
-    public Verification() {}
-
-    public Verification(String verificationCode,
-                        String authenticationToken)
-    {
-      this.verificationCode    = verificationCode;
-      this.authenticationToken = authenticationToken;
-    }
-  }
+//  private class Verification {
+//
+//    private String verificationCode;
+//
+//    public Verification() {}
+//
+//    public Verification(String verificationCode) {
+//      this.verificationCode    = verificationCode;
+//    }
+//  }
 
   private class GcmRegistrationId {
     private String gcmRegistrationId;
