@@ -33,6 +33,8 @@ public class GcmIntentService extends GCMBaseIntentService {
         getGcmSocket(context).registerGcmId(registrationId);
       } catch (IOException e) {
         Log.w("GcmIntentService", e);
+      } catch (RateLimitException e) {
+        Log.w("GcmIntentService", e);
       }
     }
   }
@@ -43,6 +45,8 @@ public class GcmIntentService extends GCMBaseIntentService {
       getGcmSocket(context).unregisterGcmId(registrationId);
     } catch (IOException ioe) {
       Log.w("GcmIntentService", ioe);
+    } catch (RateLimitException e) {
+      Log.w("GcmIntentService", e);
     }
   }
 
@@ -71,10 +75,10 @@ public class GcmIntentService extends GCMBaseIntentService {
     Log.w("GcmIntentService", "GCM Error: " + s);
   }
 
-  private GcmSocket getGcmSocket(Context context) {
+  private PushServiceSocket getGcmSocket(Context context) {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
     String localNumber            = preferences.getString(ApplicationPreferencesActivity.LOCAL_NUMBER_PREF, null);
     String password               = preferences.getString(ApplicationPreferencesActivity.GCM_PASSWORD_PREF, null);
-    return new GcmSocket(context, localNumber, password);
+    return new PushServiceSocket(context, localNumber, password);
   }
 }

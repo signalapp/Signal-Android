@@ -34,7 +34,8 @@
                         android:layout_alignParentLeft="true"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:src="@drawable/alert" />
+                        android:src="@drawable/alert"
+                        android:contentDescription="Alert"/>
 
                 <TextView
                         style="@style/Registration.Constant"
@@ -44,130 +45,101 @@
                         android:layout_toRightOf="@id/alert"
                         android:paddingLeft="4.0dip"
                         android:paddingRight="8.0dip"
-                        android:text="SMS verification failed."
+                        android:text="@string/registration_progress_activity__sms_verification_failed"
                         android:textColor="#333333"
                         android:textSize="16.0sp" />
 
                 <TextView
+                        android:id="@+id/sms_failed_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/alert"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:text="TextSecure timed out while waiting for an SMS message to verify your phone number." />
+                        android:text="@string/registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message" />
             </RelativeLayout>
 
-            <Button
-                    android:id="@+id/verification_failure_edit_button"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10.0dip"
-                    android:gravity="center"
-                    android:text="Edit number"
-                    android:textStyle="bold" />
 
-            <TextView
-                    style="@style/Registration.Description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dip"
-                    android:text="Some possible problems include:"/>
+            <RelativeLayout android:id="@+id/voice_verification_layout"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dip"
+                            android:background="@drawable/background_pane">
 
-            <TableLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                <ImageView android:id="@+id/telephone"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:paddingLeft="4dip"
+                           android:paddingRight="4dip"
+                           android:src="@drawable/telephone"
+                           android:contentDescription="Telephone"/>
 
-                <TableRow>
+                <TextView style="@style/Registration.Constant"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_alignBottom="@id/telephone"
+                          android:layout_toRightOf="@id/telephone"
+                          android:paddingLeft="4dip"
+                          android:paddingRight="8dip"
+                          android:text="@string/registration_progress_activity__voice_verification"
+                          android:textColor="#333333"
+                          android:textSize="16sp"/>
 
-                    <TextView
-                            style="@style/Registration.Description"
+                <TextView android:id="@+id/telephone_text"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_alignParentLeft="true"
+                          android:layout_below="@id/telephone"
+                          android:paddingLeft="4dip"
+                          android:paddingRight="4dip"
+                          android:paddingBottom="10dip"
+                          android:text="@string/registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number"/>
+
+                <LinearLayout android:id="@+id/code_container"
+                              android:orientation="horizontal"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_centerHorizontal="true"
+                              android:layout_below="@id/telephone_text">
+
+                    <EditText android:id="@+id/telephone_code"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:ems="6"
+                              android:inputType="number"
+                              android:enabled="false"/>
+
+                    <Button android:id="@+id/verify_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingRight="10dip"
-                            android:text="•" />
+                            android:text="@string/registration_progress_activity__verify"
+                            android:enabled="false"/>
 
-                    <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
+                </LinearLayout>
 
-                        <TextView
-                                style="@style/Registration.Description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="SMS Interceptors."
-                                android:textStyle="bold" />
+                <Button android:id="@+id/call_button"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/code_container"
+                        android:paddingLeft="5dip"
+                        android:paddingRight="5dip"
+                        android:layout_marginTop="10dip"
+                        android:text="@string/registration_progress_activity__call_me"/>
 
-                        <TextView
-                                style="@style/Registration.Description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dip"
-                                android:text="Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and intercept all incoming SMS messages.  Check to see if you received a text message that starts with 'Your TextSecure verification code:', in which case you'll need to configure your third party text messaging app to let text messages through." />
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                            style="@style/Registration.Description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingRight="10dip"
-                            android:text="•" />
-
-                    <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                        <TextView
-                                style="@style/Registration.Description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Incorrect number."
-                                android:textStyle="bold" />
-
-                        <TextView
-                                style="@style/Registration.Description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dip"
-                                android:text="Please check to make sure you entered your number correctly, and that it is formatted for correctly your region." />
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                            style="@style/Registration.Description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="•" />
-
-                    <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                        <TextView
-                                style="@style/Registration.Description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Google Voice."
-                                android:textStyle="bold" />
-
-                        <TextView
-                                style="@style/Registration.Description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dip"
-                                android:text="TextSecure will not work with Google Voice numbers." />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                <Button
+                        android:id="@+id/verification_failure_edit_button"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dip"
+                        android:layout_marginBottom="10.0dip"
+                        android:gravity="center"
+                        android:text="@string/registration_progress_activity__edit_number"
+                        android:textStyle="bold"
+                        android:layout_below="@id/call_button"/>
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -194,7 +166,8 @@
                         android:layout_alignParentLeft="true"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:src="@drawable/alert" />
+                        android:src="@drawable/alert"
+                        android:contentDescription="Alert"/>
 
                 <TextView
                         style="@style/Registration.Constant"
@@ -204,7 +177,7 @@
                         android:layout_toRightOf="@id/connectivity_alert"
                         android:paddingLeft="4.0dip"
                         android:paddingRight="8.0dip"
-                        android:text="Connectivity error."
+                        android:text="@string/registration_progress_activity__connectivity_error"
                         android:textColor="#333333"
                         android:textSize="16.0sp" />
 
@@ -215,7 +188,7 @@
                         android:layout_below="@+id/connectivity_alert"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:text="RedPhone was unable to connect to the switch." />
+                        android:text="@string/registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service" />
             </RelativeLayout>
 
             <Button
@@ -225,7 +198,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10.0dip"
                     android:gravity="center"
-                    android:text="Edit number"
+                    android:text="@string/registration_progress_activity__edit_number"
                     android:textStyle="bold" />
 
             <TextView
@@ -233,7 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dip"
-                    android:text="Some possible problems include:" />
+                    android:text="@string/registration_progress_activity__some_possible_problems_include" />
 
             <TableLayout
                     android:layout_width="fill_parent"
@@ -257,7 +230,7 @@
                                 style="@style/Registration.Description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="No network connectivity."
+                                android:text="@string/registration_progress_activity__no_network_connectivity"
                                 android:textStyle="bold" />
 
                         <TextView
@@ -265,7 +238,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dip"
-                                android:text="Your device needs network connectivity in order to use this TextSecure feature.  Check to ensure that it is connected to 3G or Wifi." />
+                                android:text="@string/registration_progress_activity__your_device_needs_network_connectivity" />
                     </LinearLayout>
                 </TableRow>
 
@@ -287,7 +260,7 @@
                                 style="@style/Registration.Description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Restrictive firewall."
+                                android:text="@string/registration_progress_activity__restrictive_firewall"
                                 android:textStyle="bold" />
 
                         <TextView
@@ -295,7 +268,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dip"
-                                android:text="If you are connected via wifi, it's possible that there is a firewall blocking access to the TextSecure server.  Try another network or mobile data." />
+                                android:text="@string/registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall" />
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
@@ -316,7 +289,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:paddingLeft="5dip"
-                    android:text="TextSecure will now automatically verify your number with a confirmation SMS message." />
+                    android:text="@string/registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message" />
 
             <TableLayout
                     android:layout_width="fill_parent"
@@ -343,8 +316,9 @@
                                 android:gravity="center"
                                 android:paddingLeft="4dip"
                                 android:paddingRight="4dip"
-                                android:src="@drawable/check"
-                                android:visibility="invisible" />
+                                android:src="@drawable/check_dark"
+                                android:visibility="invisible"
+                                android:contentDescription="Check"/>
 
                         <ProgressBar
                                 android:id="@+id/connecting_progress"
@@ -366,7 +340,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
-                            android:text="Registering with server..."
+                            android:text="@string/registration_progress_activity__connecting"
                             android:textSize="16.0sp" />
                 </TableRow>
 
@@ -386,8 +360,9 @@
                                 android:gravity="center"
                                 android:paddingLeft="4dip"
                                 android:paddingRight="4dip"
-                                android:src="@drawable/check"
-                                android:visibility="invisible" />
+                                android:src="@drawable/check_dark"
+                                android:visibility="invisible"
+                                android:contentDescription="Check"/>
 
                         <ProgressBar
                                 android:id="@+id/verification_progress"
@@ -409,7 +384,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
-                            android:text="Waiting for SMS verification..."
+                            android:text="@string/registration_progress_activity__waiting_for_sms_verification"
                             android:textSize="16.0sp" />
                 </TableRow>
 
@@ -429,8 +404,9 @@
                                 android:gravity="center"
                                 android:paddingLeft="4dip"
                                 android:paddingRight="4dip"
-                                android:src="@drawable/check"
-                                android:visibility="invisible" />
+                                android:src="@drawable/check_dark"
+                                android:visibility="invisible"
+                                android:contentDescription="Check"/>
 
                         <ProgressBar
                                 android:id="@+id/gcm_registering_progress"
@@ -452,52 +428,10 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
-                            android:text="Registering for push..."
+                            android:text="@string/registration_progress_activity__registering_with_server"
                             android:textSize="16.0sp" />
                 </TableRow>
 
-                <TableRow>
-
-                    <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center" >
-
-                        <ImageView
-                                android:id="@+id/retrieve_directory_complete"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:paddingLeft="4dip"
-                                android:paddingRight="4dip"
-                                android:src="@drawable/check"
-                                android:visibility="invisible" />
-
-                        <ProgressBar
-                                android:id="@+id/retrieve_directory_progress"
-                                style="?android:attr/android:progressBarStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:indeterminate="true"
-                                android:paddingLeft="4dip"
-                                android:paddingRight="4dip"
-                                android:visibility="invisible" />
-                    </FrameLayout>
-
-                    <TextView
-                            android:id="@+id/retrieve_directory_text"
-                            style="@style/Registration.Constant"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="4.0dip"
-                            android:paddingRight="8.0dip"
-                            android:text="Retrieving directory..."
-                            android:textSize="16.0sp" />
-                </TableRow>
             </TableLayout>
 
             <TextView
@@ -505,7 +439,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dip"
-                    android:text="This could take a moment. Please be patient, we'll notify you when verification is complete." />
+                    android:text="@string/registration_progress_activity__this_couild_take_a_moment_please_be_patient" />
 
             <RelativeLayout
                     android:id="@+id/timer_progress_layout"
@@ -528,7 +462,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:text="Waiting for SMS verification..."
+                        android:text="@string/registration_progress_activity__waiting_for_sms_verification"
                         android:textAllCaps="true"
                         android:textSize="12.0sp"
                         android:textStyle="normal" />
@@ -551,7 +485,7 @@
                     android:layout_weight="1.0"
                     android:gravity="center"
                     android:visibility="gone"
-                    android:text="Edit number"
+                    android:text="@string/registration_progress_activity__edit_number"
                     android:textStyle="bold" />
         </LinearLayout>
     </FrameLayout>

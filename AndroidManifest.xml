@@ -74,6 +74,13 @@
             
         </activity>
 
+    <activity android:name=".RegistrationProblemsActivity"
+              android:theme="@style/Theme.Sherlock.Light.Dialog"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".CountrySelectionActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".ImportExportActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
