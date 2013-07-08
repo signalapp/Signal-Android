@@ -58,8 +58,8 @@ public class OptimizingTransport {
         return;
       }
 
-      GcmSocket gcmSocket = new GcmSocket(context, localNumber, password);
-      gcmSocket.sendMessage(PhoneNumberFormatter.formatNumber(context, recipient), messageText);
+      PushServiceSocket pushServiceSocket = new PushServiceSocket(context, localNumber, password);
+      pushServiceSocket.sendMessage(PhoneNumberFormatter.formatNumber(context, recipient), messageText);
       sentIntent.send(Activity.RESULT_OK);
     } catch (IOException ioe) {
       Log.w("OptimizingTransport", ioe);
@@ -67,6 +67,10 @@ public class OptimizingTransport {
       sendSmsTextMessage(recipient, messageText, sentIntent, deliveredIntent);
     } catch (PendingIntent.CanceledException e) {
       Log.w("OptimizingTransport", e);
+    } catch (RateLimitException e) {
+      Log.w("OptimzingTransport", e);
+      Log.w("OptimzingTransport", "Rate Limit Exceeded, falling back to SMS...");
+      sendSmsTextMessage(recipient, messageText, sentIntent, deliveredIntent);
     }
   }
 

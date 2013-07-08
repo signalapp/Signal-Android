@@ -65,15 +65,19 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private void routeApplicationState() {
-    int state = getApplicationState();
-
-    switch (state) {
-    case STATE_CREATE_PASSPHRASE:    handleCreatePassphrase();          break;
-    case STATE_PROMPT_PASSPHRASE:    handlePromptPassphrase();          break;
-    case STATE_IMPORT_DATABASE:      handleImportDatabase();            break;
-    case STATE_CONVERSATION_OR_LIST: handleDisplayConversationOrList(); break;
-    case STATE_UPGRADE_DATABASE:     handleUpgradeDatabase();           break;
-    }
+    Intent intent = new Intent(this, RegistrationActivity.class);
+    startActivity(intent);
+    return;
+//
+//    int state = getApplicationState();
+//
+//    switch (state) {
+//    case STATE_CREATE_PASSPHRASE:    handleCreatePassphrase();          break;
+//    case STATE_PROMPT_PASSPHRASE:    handlePromptPassphrase();          break;
+//    case STATE_IMPORT_DATABASE:      handleImportDatabase();            break;
+//    case STATE_CONVERSATION_OR_LIST: handleDisplayConversationOrList(); break;
+//    case STATE_UPGRADE_DATABASE:     handleUpgradeDatabase();           break;
+//    }
   }
 
   private void handleCreatePassphrase() {
