@@ -397,6 +397,38 @@
     <!-- receive_key_activity -->
     <string name="receive_key_activity__complete">Complete</string>
 
+    <!-- registration_activity -->
+    <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Please
+        confirm your country code and phone number.
+    </string>
+    <string name="registration_activity__your_country">YOUR COUNTRY</string>
+    <string name="registration_activity__your_country_code_and_phone_number">YOUR COUNTRY CODE AND
+        PHONE NUMBER
+    </string>
+    <string name="registration_activity__phone_number">PHONE NUMBER</string>
+    <string name="registration_activity__register">Register</string>
+
+    <!-- registration_problems -->
+    <string name="registration_problems__some_possible_problems_include">Some possible problems
+        include:
+    </string>
+    <string name="registration_problems__sms_interceptors">SMS Interceptors.</string>
+    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+        Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and
+        intercept all incoming SMS messages. Check to see if you received a text message that starts
+        with \'Your TextSecure verification code:\', in which case you\'ll need to configure your
+        third party text messaging app to let text messages through.
+    </string>
+    <string name="registration_problems__incorrect_number">Incorrect number.</string>
+    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+        Please check to make sure you entered your number correctly, and that it is formatted for
+        correctly your region.
+    </string>
+    <string name="registration_problems__google_voice">Google Voice.</string>
+    <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+        TextSecure will not work with Google Voice numbers.
+    </string>
+
     <!-- registration_progress_activity -->
     <string name="registration_progress_activity__voice_verification">Voice Verification</string>
     <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
@@ -437,7 +469,12 @@
     <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">This
         could take a moment. Please be patient, we\'ll notify you when verification is complete.
     </string>
-
+    <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+        TextSecure timed out while waiting for a verification SMS message.
+    </string>
+    <string name="registration_progress_activity__sms_verification_failed">SMS verification
+        failed.
+    </string>
 
     <!-- recipients_panel -->
     <string name="recipients_panel__to">To</string>
@@ -618,31 +655,6 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
-    <string name="registration_problems__some_possible_problems_include">Some possible problems
-        include:
-    </string>
-    <string name="registration_problems__sms_interceptors">SMS Interceptors.</string>
-    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-        Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and
-        intercept all incoming SMS messages. Check to see if you received a text message that starts
-        with \'Your TextSecure verification code:\', in which case you\'ll need to configure your
-        third party text messaging app to let text messages through.
-    </string>
-    <string name="registration_problems__incorrect_number">Incorrect number.</string>
-    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-        Please check to make sure you entered your number correctly, and that it is formatted for
-        correctly your region.
-    </string>
-    <string name="registration_problems__google_voice">Google Voice.</string>
-    <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-        TextSecure will not work with Google Voice numbers.
-    </string>
-    <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-        TextSecure timed out while waiting for a verification SMS message.
-    </string>
-    <string name="registration_progress_activity__sms_verification_failed">SMS verification
-        failed.
-    </string>
     <!-- EOF -->
 
 </resources>
