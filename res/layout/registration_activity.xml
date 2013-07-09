@@ -6,77 +6,73 @@
             android:fillViewport="true"
             android:background="@drawable/background_pattern_repeat">
 
-    <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center" >
+    <LinearLayout android:paddingRight="16dip"
+                  android:paddingLeft="16dip"
+                  android:paddingTop="10dip"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:gravity="center"
+                  android:orientation="vertical">
 
-        <LinearLayout android:paddingRight="16dip"
-                      android:paddingLeft="16dip"
-                      android:paddingTop="10dip"
+        <TextView style="@style/Registration.Description"
+                  android:layout_width="fill_parent"
+                  android:layout_marginBottom="16dip"
+                  android:layout_marginTop="16dip"
+                  android:text="@string/registration_activity__please_confirm_your_country_code_and_phone_number"/>
+
+        <TextView style="@style/Registration.Label"
+                  android:layout_width="fill_parent"
+                  android:textAllCaps="true"
+                  android:text="@string/registration_activity__your_country" />
+
+        <Spinner android:id="@+id/country_spinner"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="16dip" />
+
+        <TextView style="@style/Registration.Label"
+                  android:layout_width="fill_parent"
+                  android:textAllCaps="true"
+                  android:text="@string/registration_activity__your_country_code_and_phone_number" />
+
+        <LinearLayout android:orientation="horizontal"
                       android:layout_width="fill_parent"
+                      android:layout_height="wrap_content">
+
+            <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_gravity="center"
-                      android:orientation="vertical">
+                      android:textSize="20sp"
+                      style="@style/Registration.Constant"
+                      android:text="+" />
 
-            <TextView style="@style/Registration.Description"
-                      android:layout_width="fill_parent"
-                      android:layout_marginBottom="16dip"
-                      android:layout_marginTop="16dip"
-                      android:text="Please confirm your country code and phone number."/>
+            <EditText android:id="@+id/country_code"
+                      android:layout_width="55dip"
+                      android:layout_height="wrap_content"
+                      android:singleLine="true"
+                      android:gravity="center"
+                      android:inputType="phone"
+                      android:digits="0123456789" />
 
-            <TextView style="@style/Registration.Label"
-                      android:layout_width="fill_parent"
-                      android:textAllCaps="true"
-                      android:text="YOUR COUNTRY" />
+            <EditText android:id="@+id/number"
+                      android:layout_width="0dip"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:inputType="phone"
+                      android:hint="@string/registration_activity__phone_number"
+                      android:gravity="center"
+                      android:singleLine="true"/>
 
-            <Spinner android:id="@+id/country_spinner"
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_marginBottom="16dip" />
-
-            <TextView style="@style/Registration.Label"
-                      android:layout_width="fill_parent"
-                      android:textAllCaps="true"
-                      android:text="YOUR COUNTRY CODE AND PHONE NUMBER" />
-
-            <LinearLayout android:orientation="horizontal"
-                          android:layout_width="fill_parent"
-                          android:layout_height="wrap_content">
-
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textSize="20sp"
-                          style="@style/Registration.Constant"
-                          android:text="+" />
-
-                <EditText android:id="@+id/country_code"
-                          android:layout_width="55dip"
-                          android:layout_height="wrap_content"
-                          android:singleLine="true"
-                          android:gravity="center"
-                          android:inputType="phone"
-                          android:digits="0123456789" />
-
-                <EditText android:id="@+id/number"
-                          android:layout_width="0dip"
-                          android:layout_height="wrap_content"
-                          android:layout_weight="1"
-                          android:inputType="phone"
-                          android:hint="PHONE NUMBER"
-                          android:gravity="center"
-                          android:singleLine="true"/>
-
-            </LinearLayout>
-
-            <Button android:id="@+id/registerButton"
-                    android:text="Register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_marginTop="20dip"
-                    android:layout_marginBottom="20dip"/>
         </LinearLayout>
-    </FrameLayout>
+
+        <Button 
+                android:id="@+id/registerButton"
+                android:text="@string/registration_activity__register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="20dip"
+                android:layout_marginBottom="20dip"/>
+    </LinearLayout>
 </ScrollView>
