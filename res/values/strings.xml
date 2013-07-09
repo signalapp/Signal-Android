@@ -186,6 +186,35 @@
         exchanges\' setting disabled.
     </string>
 
+    <!-- RegistrationActivity -->
+    <string name="RegistrationActivity_connect_with_textsecure">Connect With TextSecure</string>
+    <string name="RegistrationActivity_select_your_country">Select Your Country</string>
+    <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your
+        country code
+    </string>
+    <string name="RegistrationActivity_you_must_specify_your_phone_number">You must specify your
+        phone number
+    </string>
+    <string name="RegistrationActivity_invalid_number">Invalid number</string>
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">The number you
+        specified (%s) is invalid.
+    </string>
+    <string name="RegistrationActivity_unsupported">Unsupported</string>
+    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sorry,
+        this device is not supported for data messaging. Devices running versions of Android older
+        than 4.0 must have a registered Google Account. Devices running Android 4.0 or newer do not
+        require a Google Account, but must have the Play Store app installed.
+    </string>
+    <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+        We will now verify that the following number is associated with this device:
+
+        %s
+
+        Is this number correct, or would you like to edit it before continuing?
+    </string>
+    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_edit">Edit</string>
+
     <!-- RegistrationProblemsActivity -->
     <string name="RegistrationProblemsActivity_possible_problems">Possible Problems</string>
 
