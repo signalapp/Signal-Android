@@ -6,6 +6,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
+import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.directory.DirectoryDescriptor;
 import org.whispersystems.textsecure.directory.NumberFilter;
@@ -191,8 +192,7 @@ public class PushServiceSocket {
 
   private TrustManagerFactory initializeTrustManagerFactory(Context context) {
     try {
-      AssetManager assetManager       = context.getAssets();
-      InputStream keyStoreInputStream = assetManager.open("whisper.store");
+      InputStream keyStoreInputStream = context.getResources().openRawResource(R.raw.whisper);
       KeyStore trustStore             = KeyStore.getInstance("BKS");
 
       trustStore.load(keyStoreInputStream, "whisper".toCharArray());

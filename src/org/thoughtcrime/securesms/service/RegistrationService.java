@@ -15,8 +15,8 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.whispersystems.textsecure.push.GcmIntentService;
-import org.whispersystems.textsecure.push.GcmRegistrationTimeoutException;
+import org.thoughtcrime.securesms.gcm.GcmIntentService;
+import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.Util;
