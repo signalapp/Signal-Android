@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.util.InvalidMessageException;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Trimmer;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.SoftReference;
@@ -133,7 +133,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       DELIVERY_TIME, DELIVERY_REPORT, BODY, PART_COUNT, ADDRESS
   };
 
-  public static final ExecutorService slideResolver = Util.newSingleThreadedLifoExecutor();
+  public static final ExecutorService slideResolver = org.thoughtcrime.securesms.util.Util.newSingleThreadedLifoExecutor();
   private static final Map<Long, SoftReference<SlideDeck>> slideCache =
       Collections.synchronizedMap(new LRUCache<Long, SoftReference<SlideDeck>>(20));
 
@@ -362,7 +362,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     ContentValues contentValues = getContentValuesFromHeader(headers);
     boolean       unread        = Util.isDefaultSmsProvider(context) || ((mailbox & Types.SECURE_MESSAGE_BIT) != 0);
 
-    if (!Util.isEmpty(retrieved.getCc())) {
+    if (!org.thoughtcrime.securesms.util.Util.isEmpty(retrieved.getCc())) {
       try {
         threadId = getThreadIdFor(retrieved);
       } catch (RecipientFormattingException e) {
@@ -773,10 +773,10 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       byte[]transactionIdBytes   = null;
 
       if (!Util.isEmpty(contentLocation))
-        contentLocationBytes = Util.toIsoBytes(contentLocation);
+        contentLocationBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(contentLocation);
 
       if (!Util.isEmpty(transactionId))
-        transactionIdBytes = Util.toIsoBytes(transactionId);
+        transactionIdBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(transactionId);
 
 
       return new NotificationMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),

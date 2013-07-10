@@ -17,13 +17,11 @@
 package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
 import org.thoughtcrime.securesms.protocol.Message;
-import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Conversions;
 
 import java.io.IOException;

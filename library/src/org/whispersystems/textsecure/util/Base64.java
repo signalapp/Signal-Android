@@ -1,6 +1,4 @@
-package org.thoughtcrime.securesms.util;
-
-import java.io.IOException;
+package org.whispersystems.textsecure.util;
 
 /**
  * <p>Encodes and decodes to and from Base64 notation.</p>
