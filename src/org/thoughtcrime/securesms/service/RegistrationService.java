@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
 import org.thoughtcrime.securesms.gcm.PushServiceSocket;
 import org.thoughtcrime.securesms.gcm.RateLimitException;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;

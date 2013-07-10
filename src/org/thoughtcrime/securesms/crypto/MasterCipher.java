@@ -33,7 +33,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
-import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 

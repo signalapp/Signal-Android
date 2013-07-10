@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.transport;
 
 import org.thoughtcrime.securesms.crypto.TransportDetails;
-import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 

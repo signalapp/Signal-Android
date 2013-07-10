@@ -9,7 +9,7 @@ import com.google.thoughtcrimegson.Gson;
 import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.directory.DirectoryDescriptor;
 import org.thoughtcrime.securesms.directory.NumberFilter;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
