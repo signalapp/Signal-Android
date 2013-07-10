@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.directory;
+package org.whispersystems.textsecure.directory;
 
 import android.content.Context;
 import android.util.Log;
@@ -24,7 +24,6 @@ import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonParseException;
 import com.google.thoughtcrimegson.annotations.SerializedName;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.BufferedReader;
@@ -72,12 +71,10 @@ public class NumberFilter {
     this.version     = version;
   }
 
-  public synchronized boolean containsNumber(String number) {
+  public synchronized boolean containsNumber(String number, String localNumber) {
     try {
       if      (bloomFilter == null)                    return false;
       else if (number == null || number.length() == 0) return false;
-
-      String localNumber = TextSecurePreferences.getLocalNumber(context);
 
       return new BloomFilter(bloomFilter, hashCount)
                  .contains(PhoneNumberFormatter.formatNumber(number, localNumber));

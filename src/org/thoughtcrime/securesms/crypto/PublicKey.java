@@ -21,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.math.ec.ECPoint;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 import org.thoughtcrime.securesms.util.Hex;
 
 import android.util.Log;

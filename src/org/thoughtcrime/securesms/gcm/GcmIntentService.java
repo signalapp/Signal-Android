@@ -13,6 +13,9 @@ import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.push.IncomingGcmMessage;
+import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;

@@ -40,7 +40,7 @@ import org.thoughtcrime.securesms.database.keys.SessionKey;
 import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.protocol.Message;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 
 import android.content.Context;
 import android.util.Log;

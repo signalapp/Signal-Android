@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.whispersystems.textsecure;
 
 public class Release {
   public static final String PUSH_SERVICE_URL = "https://gcm.textsecure.whispersystems.org";

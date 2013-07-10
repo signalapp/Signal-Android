@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.directory;
+package org.whispersystems.textsecure.directory;
 
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

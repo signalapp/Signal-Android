@@ -1,6 +1,5 @@
-package org.thoughtcrime.securesms.gcm;
+package org.whispersystems.textsecure.push;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class IncomingGcmMessage {

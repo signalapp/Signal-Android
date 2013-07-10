@@ -6,8 +6,10 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.directory.NumberFilter;
+import org.whispersystems.textsecure.directory.NumberFilter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.IOException;

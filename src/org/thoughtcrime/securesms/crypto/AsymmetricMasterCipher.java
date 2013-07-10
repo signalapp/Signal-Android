@@ -27,7 +27,7 @@ import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
 import org.bouncycastle.crypto.agreement.ECDHBasicAgreement;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.whispersystems.textsecure.util.Base64;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 
 /**
