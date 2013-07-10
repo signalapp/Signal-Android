@@ -29,7 +29,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
@@ -86,7 +85,7 @@ import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.util.LinkedList;

@@ -28,7 +28,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.thoughtcrime.securesms.service.MmscProcessor;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.net.URI;

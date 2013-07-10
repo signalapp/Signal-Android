@@ -26,7 +26,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
 import org.bouncycastle.crypto.agreement.ECDHBasicAgreement;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
-import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 

@@ -36,7 +36,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
-import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 import java.util.ArrayList;

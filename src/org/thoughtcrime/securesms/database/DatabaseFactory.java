@@ -31,9 +31,9 @@ import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;

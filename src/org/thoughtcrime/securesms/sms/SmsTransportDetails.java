@@ -21,7 +21,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.crypto.TransportDetails;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 

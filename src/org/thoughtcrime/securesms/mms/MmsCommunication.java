@@ -17,13 +17,11 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.http.AndroidHttpClient;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -32,12 +30,11 @@ import org.apache.http.conn.params.ConnRouteParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.service.MmsDownloader;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.DataInputStream;
 import java.io.IOException;

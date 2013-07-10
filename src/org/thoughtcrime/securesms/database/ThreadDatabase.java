@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 import java.util.Arrays;
 import java.util.HashSet;

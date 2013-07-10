@@ -24,8 +24,8 @@ import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.util.Util;
 
 /**
  * The register account activity.  Begins the account registration process.

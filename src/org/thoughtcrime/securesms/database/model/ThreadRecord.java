@@ -24,7 +24,7 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 /**
  * The message record model which represents thread heading messages.

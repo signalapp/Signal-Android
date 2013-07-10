@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.Util;
 
 public class PromptApnActivity extends PassphraseRequiredSherlockActivity {
 
