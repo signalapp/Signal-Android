@@ -24,8 +24,6 @@ import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonParseException;
 import com.google.thoughtcrimegson.annotations.SerializedName;
 
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -71,13 +69,12 @@ public class NumberFilter {
     this.version     = version;
   }
 
-  public synchronized boolean containsNumber(String number, String localNumber) {
+  public synchronized boolean containsNumber(String number) {
     try {
       if      (bloomFilter == null)                    return false;
       else if (number == null || number.length() == 0) return false;
 
-      return new BloomFilter(bloomFilter, hashCount)
-                 .contains(PhoneNumberFormatter.formatNumber(number, localNumber));
+      return new BloomFilter(bloomFilter, hashCount).contains(number);
     } catch (IOException ioe) {
       Log.w("NumberFilter", ioe);
       return false;
