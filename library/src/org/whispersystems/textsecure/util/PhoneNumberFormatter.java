@@ -1,16 +1,11 @@
-package org.thoughtcrime.securesms.util;
+package org.whispersystems.textsecure.util;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
-
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 
 import java.util.Locale;
 
@@ -54,10 +49,8 @@ public class PhoneNumberFormatter {
     }
   }
 
-  public static String formatNumber(Context context, String number) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    String localNumber            = preferences.getString(ApplicationPreferencesActivity.LOCAL_NUMBER_PREF, "No Stored Number");
-    number                        = number.replaceAll("[^0-9+]", "");
+  public static String formatNumber(String number, String localNumber) {
+    number = number.replaceAll("[^0-9+]", "");
 
     if (number.charAt(0) == '+')
       return number;

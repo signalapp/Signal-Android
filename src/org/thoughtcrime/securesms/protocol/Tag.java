@@ -10,9 +10,7 @@ public class Tag {
 
   public static final String WHITESPACE_TAG = "             ";
 
-  public static boolean isTaggable(Context context, String message) {
-    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-
+  public static boolean isTaggable(String message) {
     return message.matches(".*[^\\s].*")                                       &&
            message.replaceAll("\\s+$", "").length() + WHITESPACE_TAG.length() <= 158;
   }

@@ -1,15 +1,9 @@
 package org.thoughtcrime.securesms.transport;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.directory.NumberFilter;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.PhoneNumberFormatter;
-
-import java.io.IOException;
 
 public class UniversalTransport {
 
