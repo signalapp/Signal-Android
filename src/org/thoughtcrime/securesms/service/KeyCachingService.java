@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * Small service that stays running to keep a key cached in memory.
@@ -117,7 +118,7 @@ public class KeyCachingService extends Service {
     this.pending = PendingIntent.getService(this, 0, new Intent(PASSPHRASE_EXPIRED_EVENT, null,
                                                                 this, KeyCachingService.class), 0);
 
-    if (isPassphraseDisabled()) {
+    if (TextSecurePreferences.isPasswordDisabled(this)) {
       try {
         MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
         setMasterSecret(masterSecret);
@@ -168,7 +169,7 @@ public class KeyCachingService extends Service {
   }
 
   private void handleDisableService() {
-    if (isPassphraseDisabled())
+    if (TextSecurePreferences.isPasswordDisabled(this))
       stopForeground(true);
   }
 
@@ -176,7 +177,7 @@ public class KeyCachingService extends Service {
     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
     boolean timeoutEnabled              = sharedPreferences.getBoolean(ApplicationPreferencesActivity.PASSPHRASE_TIMEOUT_PREF, false);
 
-    if ((activitiesRunning == 0) && (this.masterSecret != null) && timeoutEnabled && !isPassphraseDisabled()) {
+    if ((activitiesRunning == 0) && (this.masterSecret != null) && timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(this)) {
       long timeoutMinutes = sharedPreferences.getInt(ApplicationPreferencesActivity.PASSPHRASE_TIMEOUT_INTERVAL_PREF, 60 * 5);
       long timeoutMillis  = timeoutMinutes * 60 * 1000;
 
@@ -222,7 +223,7 @@ public class KeyCachingService extends Service {
   }
 
   private void foregroundService() {
-    if (isPassphraseDisabled()) {
+    if (TextSecurePreferences.isPasswordDisabled(this)) {
       stopForeground(true);
       return;
     }
@@ -240,12 +241,6 @@ public class KeyCachingService extends Service {
 
     sendBroadcast(intent, KEY_PERMISSION);
   }
-
-  private boolean isPassphraseDisabled() {
-    return PreferenceManager.getDefaultSharedPreferences(this)
-                            .getBoolean(ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false);
-  }
-
 
   @Override
   public IBinder onBind(Intent arg0) {

@@ -12,6 +12,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.telephony.TelephonyManager;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +25,10 @@ class ContactIdentityManagerGingerbread extends ContactIdentityManager {
 
   @Override
   public Uri getSelfIdentityUri() {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    String contactUriString       = preferences.getString(ApplicationPreferencesActivity.IDENTITY_PREF, null);
+    String contactUriString = TextSecurePreferences.getIdentityContactUri(context);
 
-    if (hasLocalNumber()) {
-      return getContactUriForNumber(getLocalNumber());
-    } else if (contactUriString != null) {
-      return Uri.parse(contactUriString);
-    }
+    if      (hasLocalNumber())         return getContactUriForNumber(getLocalNumber());
+    else if (contactUriString != null) return Uri.parse(contactUriString);
 
     return null;
   }

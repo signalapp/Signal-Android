@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.Hex;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WorkerThread;
 
 import java.io.IOException;
@@ -309,9 +310,7 @@ public class DecryptingQueue {
     }
 
     private void handleKeyExchangeProcessing(String plaintxtBody) {
-      if (PreferenceManager.getDefaultSharedPreferences(context)
-                           .getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true))
-      {
+      if (TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
         try {
           Recipient recipient                   = new Recipient(null, originator, null, null);
           KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(plaintxtBody);

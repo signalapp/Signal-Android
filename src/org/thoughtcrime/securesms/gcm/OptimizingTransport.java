@@ -3,14 +3,12 @@ package org.thoughtcrime.securesms.gcm;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.directory.NumberFilter;
-import org.thoughtcrime.securesms.util.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,10 +18,13 @@ public class OptimizingTransport {
   public static void sendTextMessage(Context context, String destinationAddress, String message,
                                      PendingIntent sentIntent, PendingIntent deliveredIntent)
   {
-    Log.w("OptimzingTransport", "Outgoing message: " + PhoneNumberFormatter.formatNumber(context, destinationAddress));
-    NumberFilter filter = NumberFilter.getInstance(context);
+    String       localNumber                     = TextSecurePreferences.getLocalNumber(context);
+    String       canonicalizedDestinationAddress = PhoneNumberFormatter.formatNumber(destinationAddress, localNumber);
+    NumberFilter filter                          = NumberFilter.getInstance(context);
 
-    if (filter.containsNumber(PhoneNumberFormatter.formatNumber(context, destinationAddress))) {
+    Log.w("OptimzingTransport", "Outgoing message: " + canonicalizedDestinationAddress);
+
+    if (filter.containsNumber(canonicalizedDestinationAddress)) {
       Log.w("OptimzingTransport", "In the filter, sending GCM...");
       sendGcmTextMessage(context, destinationAddress, message, sentIntent, deliveredIntent);
     } else {
@@ -48,9 +49,8 @@ public class OptimizingTransport {
                                          PendingIntent sentIntent, PendingIntent deliveredIntent)
   {
     try {
-      SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-      String localNumber            = preferences.getString(ApplicationPreferencesActivity.LOCAL_NUMBER_PREF, null);
-      String password               = preferences.getString(ApplicationPreferencesActivity.GCM_PASSWORD_PREF, null);
+      String localNumber = TextSecurePreferences.getLocalNumber(context);
+      String password    = TextSecurePreferences.getPushServerPassword(context);
 
       if (localNumber == null || password == null) {
         Log.w("OptimzingTransport", "No credentials, falling back to SMS...");
@@ -59,7 +59,7 @@ public class OptimizingTransport {
       }
 
       PushServiceSocket pushServiceSocket = new PushServiceSocket(context, localNumber, password);
-      pushServiceSocket.sendMessage(PhoneNumberFormatter.formatNumber(context, recipient), messageText);
+      pushServiceSocket.sendMessage(PhoneNumberFormatter.formatNumber(recipient, localNumber), messageText);
       sentIntent.send(Activity.RESULT_OK);
     } catch (IOException ioe) {
       Log.w("OptimizingTransport", ioe);

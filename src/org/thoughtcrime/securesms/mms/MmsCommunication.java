@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.service.MmsDownloader;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.DataInputStream;
@@ -47,10 +48,8 @@ public class MmsCommunication {
   protected static MmsConnectionParameters getLocallyConfiguredMmsConnectionParameters(Context context)
       throws ApnUnavailableException
   {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-    if (preferences.getBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, false)) {
-      String mmsc = preferences.getString(ApplicationPreferencesActivity.MMSC_HOST_PREF, null);
+    if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
+      String mmsc = TextSecurePreferences.getMmscUrl(context);
 
       if (mmsc == null)
         throw new ApnUnavailableException("Malformed locally configured MMSC.");
@@ -58,8 +57,8 @@ public class MmsCommunication {
       if (!mmsc.startsWith("http"))
         mmsc = "http://" + mmsc;
 
-      String proxy = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF, null);
-      String port  = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF, null);
+      String proxy = TextSecurePreferences.getMmscProxy(context);
+      String port  = TextSecurePreferences.getMmscProxyPort(context);
 
       return new MmsConnectionParameters(mmsc, proxy, port);
     }
@@ -70,9 +69,7 @@ public class MmsCommunication {
   protected static MmsConnectionParameters getLocalMmsConnectionParameters(Context context)
       throws ApnUnavailableException
   {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-    if (preferences.getBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, false)) {
+    if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
       return getLocallyConfiguredMmsConnectionParameters(context);
     } else {
       MmsConnectionParameters params = ApnDefaults.getMmsConnectionParameters(context);
@@ -205,7 +202,7 @@ public class MmsCommunication {
     }
 
     public boolean hasProxy() {
-      return proxy != null && proxy.trim().length() != 0;
+      return !Util.isEmpty(proxy);
     }
 
     public String getMmsc() {
@@ -220,7 +217,7 @@ public class MmsCommunication {
     }
 
     public int getPort() {
-      if (port == null || port.trim().length() == 0)
+      if (Util.isEmpty(port))
         return 80;
 
       return Integer.parseInt(port);

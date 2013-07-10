@@ -23,7 +23,9 @@ import android.util.Log;
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonParseException;
 import com.google.thoughtcrimegson.annotations.SerializedName;
-import org.thoughtcrime.securesms.util.PhoneNumberFormatter;
+
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -75,7 +77,10 @@ public class NumberFilter {
       if      (bloomFilter == null)                    return false;
       else if (number == null || number.length() == 0) return false;
 
-      return new BloomFilter(bloomFilter, hashCount).contains(PhoneNumberFormatter.formatNumber(context, number));
+      String localNumber = TextSecurePreferences.getLocalNumber(context);
+
+      return new BloomFilter(bloomFilter, hashCount)
+                 .contains(PhoneNumberFormatter.formatNumber(number, localNumber));
     } catch (IOException ioe) {
       Log.w("NumberFilter", ioe);
       return false;
