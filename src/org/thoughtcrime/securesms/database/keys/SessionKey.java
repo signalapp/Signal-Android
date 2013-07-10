@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms.database.keys;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
 
 import javax.crypto.spec.SecretKeySpec;

@@ -32,7 +32,7 @@ import org.thoughtcrime.bouncycastle.asn1.DERInteger;
 import org.thoughtcrime.bouncycastle.asn1.DERSequence;
 import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Combiner;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 
 import android.content.Context;
 import android.content.SharedPreferences;

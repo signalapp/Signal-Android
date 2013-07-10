@@ -21,7 +21,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.InvalidMessageException;
 import org.thoughtcrime.securesms.crypto.PublicKey;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 
 import java.nio.ByteBuffer;
 

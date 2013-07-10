@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
-import org.thoughtcrime.securesms.gcm.IncomingGcmMessage;
+import org.whispersystems.textsecure.push.IncomingGcmMessage;
 
 import java.util.List;
 

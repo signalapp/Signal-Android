@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.gcm;
+package org.whispersystems.textsecure.push;
 
 
 public class RateLimitException extends Exception {

@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 
 /**
  * This class processes key exchange interactions.

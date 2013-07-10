@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.directory;
+package org.whispersystems.textsecure.directory;
 
 public class DirectoryDescriptor {
   private String version;

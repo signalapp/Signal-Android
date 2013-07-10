@@ -29,8 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
-import org.thoughtcrime.securesms.gcm.PushServiceSocket;
-import org.thoughtcrime.securesms.gcm.RateLimitException;
+import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.RateLimitException;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
