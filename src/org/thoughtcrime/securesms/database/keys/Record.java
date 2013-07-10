@@ -18,7 +18,7 @@ package org.thoughtcrime.securesms.database.keys;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 
 import java.io.File;
 import java.io.FileInputStream;

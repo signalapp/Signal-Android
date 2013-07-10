@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.gcm;
+package org.whispersystems.textsecure.push;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -6,9 +6,9 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
-import org.thoughtcrime.securesms.Release;
-import org.thoughtcrime.securesms.directory.DirectoryDescriptor;
-import org.thoughtcrime.securesms.directory.NumberFilter;
+import org.whispersystems.textsecure.Release;
+import org.whispersystems.textsecure.directory.DirectoryDescriptor;
+import org.whispersystems.textsecure.directory.NumberFilter;
 import org.whispersystems.textsecure.util.Util;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -211,18 +211,6 @@ public class PushServiceSocket {
       throw new AssertionError(ioe);
     }
   }
-
-
-//  private class Verification {
-//
-//    private String verificationCode;
-//
-//    public Verification() {}
-//
-//    public Verification(String verificationCode) {
-//      this.verificationCode    = verificationCode;
-//    }
-//  }
 
   private class GcmRegistrationId {
     private String gcmRegistrationId;

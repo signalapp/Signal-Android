@@ -26,7 +26,7 @@ import java.util.zip.InflaterInputStream;
 
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.crypto.TransportDetails;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.util.Conversions;
 
 import android.util.Log;
 
