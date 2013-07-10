@@ -85,6 +85,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -577,9 +578,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeIme() {
-    if (PreferenceManager.getDefaultSharedPreferences(this)
-                         .getBoolean(ApplicationPreferencesActivity.ENTER_PRESENT_PREF, false))
-    {
+    if (TextSecurePreferences.isEnterImeKeyEnabled(this)) {
       composeText.setInputType(composeText.getInputType() & (~InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE));
     } else {
       composeText.setInputType(composeText.getInputType() | (InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE));
@@ -801,7 +800,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent())
       throw new InvalidMessageException(getString(R.string.ConversationActivity_message_is_empty_exclamation));
 
-    if (!isEncryptedConversation && Tag.isTaggable(this, rawText))
+    if (!isEncryptedConversation && Tag.isTaggable(rawText))
       rawText = Tag.getTaggedMessage(rawText);
 
     return rawText;
@@ -949,9 +948,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (PreferenceManager.getDefaultSharedPreferences(ConversationActivity.this)
-                               .getBoolean(ApplicationPreferencesActivity.ENTER_SENDS_PREF, false))
-          {
+          if (TextSecurePreferences.isEnterSendsEnabled(ConversationActivity.this)) {
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
             return true;

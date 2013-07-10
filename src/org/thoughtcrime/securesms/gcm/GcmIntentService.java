@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -76,9 +77,8 @@ public class GcmIntentService extends GCMBaseIntentService {
   }
 
   private PushServiceSocket getGcmSocket(Context context) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    String localNumber            = preferences.getString(ApplicationPreferencesActivity.LOCAL_NUMBER_PREF, null);
-    String password               = preferences.getString(ApplicationPreferencesActivity.GCM_PASSWORD_PREF, null);
+    String localNumber = TextSecurePreferences.getLocalNumber(context);
+    String password    = TextSecurePreferences.getPushServerPassword(context);
     return new PushServiceSocket(context, localNumber, password);
   }
 }

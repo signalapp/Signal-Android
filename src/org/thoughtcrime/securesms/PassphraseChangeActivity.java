@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * Activity for changing a user's local encryption passphrase.
@@ -67,7 +68,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     this.okButton.setOnClickListener(new OkButtonClickListener());
     this.cancelButton.setOnClickListener(new CancelButtonClickListener());
 
-    if (isPassphraseDisabled()) {
+    if (TextSecurePreferences.isPasswordDisabled(this)) {
       this.originalPassphrase.setVisibility(View.GONE);
       this.originalPassphraseLabel.setVisibility(View.GONE);
     } else {
@@ -85,7 +86,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     String passphrase       = (newText == null ? "" : newText.toString());
     String passphraseRepeat = (repeatText == null ? "" : repeatText.toString());
 
-    if (isPassphraseDisabled()) {
+    if (TextSecurePreferences.isPasswordDisabled(this)) {
       original = MasterSecretUtil.UNENCRYPTED_PASSPHRASE;
     }
 
@@ -98,11 +99,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
         this.repeatPassphrase.setText("");
       } else {
         MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(this, original, passphrase);
-
-        PreferenceManager.getDefaultSharedPreferences(this)
-                         .edit()
-                         .putBoolean(ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false)
-                         .commit();
+        TextSecurePreferences.setPasswordDisabled(this, false);
 
         MemoryCleaner.clean(original);
         MemoryCleaner.clean(passphrase);
@@ -115,11 +112,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
                      Toast.LENGTH_LONG).show();
       this.originalPassphrase.setText("");
     }
-  }
-
-  private boolean isPassphraseDisabled() {
-    return PreferenceManager.getDefaultSharedPreferences(this)
-                            .getBoolean(ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false);
   }
 
   private class CancelButtonClickListener implements OnClickListener {

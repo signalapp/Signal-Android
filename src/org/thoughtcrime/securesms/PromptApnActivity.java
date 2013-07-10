@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 public class PromptApnActivity extends PassphraseRequiredSherlockActivity {
@@ -31,10 +32,9 @@ public class PromptApnActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private void initializeValues() {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-    mmsc.setText(preferences.getString(ApplicationPreferencesActivity.MMSC_HOST_PREF, ""));
-    proxyHost.setText(preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF, ""));
-    proxyPort.setText(preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF, ""));
+    mmsc.setText(TextSecurePreferences.getMmscUrl(this));
+    proxyHost.setText(TextSecurePreferences.getMmscProxy(this));
+    proxyPort.setText(TextSecurePreferences.getMmscProxyPort(this));
   }
 
   private void initializeResources() {
