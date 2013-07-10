@@ -206,10 +206,7 @@
         require a Google Account, but must have the Play Store app installed.
     </string>
     <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-        We will now verify that the following number is associated with this device:
-
-        %s
-
+        We will now verify that the following number is associated with this device:\n\n%s\n\n
         Is this number correct, or would you like to edit it before continuing?
     </string>
     <string name="RegistrationActivity_continue">Continue</string>
