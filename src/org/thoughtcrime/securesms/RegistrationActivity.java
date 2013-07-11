@@ -28,7 +28,8 @@ import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 
 /**
- * The register account activity.  Begins the account registration process.
+ * The register account activity.  Prompts ths user for their registration information
+ * and begins the account registration process.
  *
  * @author Moxie Marlinspike
  *
@@ -53,6 +54,7 @@ public class RegistrationActivity extends SherlockActivity {
     actionBar.setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
 
     initializeResources();
+    initializeSpinner();
     initializeNumber();
   }
 
@@ -71,8 +73,15 @@ public class RegistrationActivity extends SherlockActivity {
     this.number         = (TextView)findViewById(R.id.number);
     this.createButton   = (Button)findViewById(R.id.registerButton);
 
+    this.countryCode.addTextChangedListener(new CountryCodeChangedListener());
+    this.number.addTextChangedListener(new NumberChangedListener());
+    this.createButton.setOnClickListener(new CreateButtonListener());
+  }
+
+  private void initializeSpinner() {
     this.countrySpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
     this.countrySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
     setCountryDisplay(getString(R.string.RegistrationActivity_select_your_country));
 
     this.countrySpinner.setAdapter(this.countrySpinnerAdapter);
@@ -86,12 +95,7 @@ public class RegistrationActivity extends SherlockActivity {
         return true;
       }
     });
-
-    this.countryCode.addTextChangedListener(new CountryCodeChangedListener());
-    this.number.addTextChangedListener(new NumberChangedListener());
-    this.createButton.setOnClickListener(new CreateButtonListener());
   }
-
 
   private void initializeNumber() {
     String localNumber = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE))
