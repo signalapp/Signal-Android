@@ -19,7 +19,7 @@
                   android:layout_width="fill_parent"
                   android:layout_marginBottom="16dip"
                   android:layout_marginTop="16dip"
-                  android:text="@string/registration_activity__please_confirm_your_country_code_and_phone_number"/>
+                  android:text="@string/registration_activity__textsecure_can_use_the_data_channel_to_avoid_sms_charges_when_communicating_with_other_textsecure_users"/>
 
         <TextView style="@style/Registration.Label"
                   android:layout_width="fill_parent"
@@ -65,14 +65,30 @@
 
         </LinearLayout>
 
-        <Button style="@android:style/Widget.Button"
-                android:id="@+id/registerButton"
-                android:text="@string/registration_activity__register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="20dip"
-                android:layout_marginBottom="20dip"/>
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="20dip"
+                      android:layout_marginBottom="20dip"
+                      android:layout_gravity="right"
+                      android:orientation="horizontal">
+
+            <Button style="@android:style/Widget.Button"
+                    android:id="@+id/skipButton"
+                    android:text="Skip"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dip"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <Button style="@android:style/Widget.Button"
+                    android:id="@+id/registerButton"
+                    android:text="@string/registration_activity__register"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

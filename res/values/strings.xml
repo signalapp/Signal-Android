@@ -21,6 +21,9 @@
         able to access them.
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
+    <string name="ApplicationPreferencesActivity_unregistering">Unregistering...</string>
+    <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Unregistering for data based communication</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
 
     <!-- AttachmentTypeSelectorAdapter -->
 
@@ -409,8 +412,9 @@
     <string name="receive_key_activity__complete">Complete</string>
 
     <!-- registration_activity -->
-    <string name="registration_activity__please_confirm_your_country_code_and_phone_number">Please
-        confirm your country code and phone number.
+    <string name="registration_activity__textsecure_can_use_the_data_channel_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+        TextSecure can use the data channel to avoid SMS charges when communicating with other
+        TextSecure users. To enable this feature, please verify your country code and phone number.
     </string>
     <string name="registration_activity__your_country">YOUR COUNTRY</string>
     <string name="registration_activity__your_country_code_and_phone_number">YOUR COUNTRY CODE AND
@@ -594,6 +598,10 @@
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
+    <string name="preferences__use_data_channel">Use data channel</string>
+    <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+        Use the data channel for communication with other TextSecure users
+    </string>
                                     
     <!-- **************************************** -->
     <!-- menus -->

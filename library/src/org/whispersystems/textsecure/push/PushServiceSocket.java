@@ -65,9 +65,8 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "PUT", new Gson().toJson(registration));
   }
 
-  public void unregisterGcmId(String gcmRegistrationId) throws IOException, RateLimitException {
-    GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
-    makeRequest(REGISTER_GCM_PATH, "DELETE", new Gson().toJson(registration));
+  public void unregisterGcmId() throws IOException, RateLimitException {
+    makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
   public void sendMessage(String recipient, String messageText)

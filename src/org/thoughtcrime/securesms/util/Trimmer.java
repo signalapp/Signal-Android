@@ -2,12 +2,9 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 
@@ -18,9 +15,8 @@ public class Trimmer {
   }
 
   public static void trimThread(final Context context, final long threadId) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    boolean trimmingEnabled       = preferences.getBoolean(ApplicationPreferencesActivity.THREAD_TRIM_ENABLED, false);
-    final int threadLengthLimit   = Integer.parseInt(preferences.getString(ApplicationPreferencesActivity.THREAD_TRIM_LENGTH, "500"));
+          boolean trimmingEnabled   = TextSecurePreferences.isThreadLengthTrimmingEnabled(context);
+    final int     threadLengthLimit = TextSecurePreferences.getThreadTrimLength(context);
 
     if (!trimmingEnabled)
       return;

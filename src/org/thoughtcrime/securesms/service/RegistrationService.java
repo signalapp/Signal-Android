@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.Util;
@@ -296,23 +297,18 @@ public class RegistrationService extends Service {
   }
 
   private void markAsVerifying(boolean verifying) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-    Editor editor                 = preferences.edit();
+    TextSecurePreferences.setVerifying(this, verifying);
 
-    editor.putBoolean(ApplicationPreferencesActivity.VERIFYING_STATE_PREF, verifying);
-    editor.putBoolean(ApplicationPreferencesActivity.REGISTERED_GCM_PREF, false);
-    editor.commit();
+    if (verifying) {
+      TextSecurePreferences.setPushRegistered(this, false);
+    }
   }
 
   private void markAsVerified(String number, String password) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-    Editor editor                 = preferences.edit();
-
-    editor.putBoolean(ApplicationPreferencesActivity.VERIFYING_STATE_PREF, false);
-    editor.putBoolean(ApplicationPreferencesActivity.REGISTERED_GCM_PREF, true);
-    editor.putString(ApplicationPreferencesActivity.LOCAL_NUMBER_PREF, number);
-    editor.putString(ApplicationPreferencesActivity.GCM_PASSWORD_PREF, password);
-    editor.commit();
+    TextSecurePreferences.setVerifying(this, false);
+    TextSecurePreferences.setPushRegistered(this, true);
+    TextSecurePreferences.setLocalNumber(this, number);
+    TextSecurePreferences.setPushServerPassword(this, password);
   }
 
   private void setState(RegistrationState state) {

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -66,10 +65,10 @@ public class PromptApnActivity extends PassphraseRequiredSherlockActivity {
     }
 
     PreferenceManager.getDefaultSharedPreferences(this).edit()
-      .putBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, true)
-      .putString(ApplicationPreferencesActivity.MMSC_HOST_PREF, mmsc.getText().toString().trim())
-      .putString(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF, proxyHost.getText().toString().trim())
-      .putString(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF, proxyPort.getText().toString().trim())
+      .putBoolean(TextSecurePreferences.USE_LOCAL_MMS_APNS_PREF, true)
+      .putString(TextSecurePreferences.MMSC_HOST_PREF, mmsc.getText().toString().trim())
+      .putString(TextSecurePreferences.MMSC_PROXY_HOST_PREF, proxyHost.getText().toString().trim())
+      .putString(TextSecurePreferences.MMSC_PROXY_PORT_PREF, proxyPort.getText().toString().trim())
       .commit();
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);

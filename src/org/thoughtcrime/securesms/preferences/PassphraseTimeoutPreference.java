@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * Dialog preference for encryption passphrase timeout.
@@ -81,14 +82,14 @@ public class PassphraseTimeoutPreference extends DialogPreference {
         interval = Math.max(seekBar.getProgress(), 1) * 60;
       }
 
-      this.getSharedPreferences().edit().putInt(ApplicationPreferencesActivity.PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval).commit();
+      TextSecurePreferences.setPassphraseTimeoutInterval(getContext(), interval);
     }
 
     super.onClick(dialog, which);
   }
 
   private void initializeDefaults() {
-    int timeout = this.getSharedPreferences().getInt(ApplicationPreferencesActivity.PASSPHRASE_TIMEOUT_INTERVAL_PREF, 60 * 5);
+    int timeout = TextSecurePreferences.getPassphraseTimeoutInterval(getContext());
 
     if (timeout > 60) {
       scaleSpinner.setSelection(1);

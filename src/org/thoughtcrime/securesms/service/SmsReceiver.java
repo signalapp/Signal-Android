@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;
 
@@ -95,10 +96,7 @@ public class SmsReceiver {
   private Pair<Long, Long> storeKeyExchangeMessage(MasterSecret masterSecret,
                                                    IncomingKeyExchangeMessage message)
   {
-    if (masterSecret != null &&
-        PreferenceManager.getDefaultSharedPreferences(context)
-                         .getBoolean(ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true))
-    {
+    if (masterSecret != null && TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
       try {
         Recipient recipient                   = new Recipient(null, message.getSender(), null, null);
         KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(message.getMessageBody());
