@@ -15,6 +15,7 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -327,11 +328,11 @@ public class RegistrationService extends Service {
     intent.setAction(REGISTRATION_EVENT);
 
     if (success) {
-      intent.putExtra(NOTIFICATION_TITLE, "Registration Complete");
-      intent.putExtra(NOTIFICATION_TEXT, "TextSecure registration has successfully completed.");
+      intent.putExtra(NOTIFICATION_TITLE, getString(R.string.RegistrationService_registration_complete));
+      intent.putExtra(NOTIFICATION_TEXT, getString(R.string.RegistrationService_textsecure_registration_has_successfully_completed));
     } else {
-      intent.putExtra(NOTIFICATION_TITLE, "Registration Error");
-      intent.putExtra(NOTIFICATION_TEXT, "TextSecure registration has encountered a problem.");
+      intent.putExtra(NOTIFICATION_TITLE, getString(R.string.RegistrationService_registration_error));
+      intent.putExtra(NOTIFICATION_TEXT, getString(R.string.RegistrationService_textsecure_registration_has_encountered_a_problem));
     }
 
     this.sendOrderedBroadcast(intent, null);
