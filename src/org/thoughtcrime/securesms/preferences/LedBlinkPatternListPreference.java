@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * List preference for LED blink pattern notification.
@@ -66,13 +67,13 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
     super.onDialogClosed(positiveResult);
 
     if (positiveResult) {
-      String blinkPattern = PreferenceManager.getDefaultSharedPreferences(context).getString(ApplicationPreferencesActivity.LED_BLINK_PREF, "500,2000");
+      String blinkPattern = TextSecurePreferences.getNotificationLedPattern(context);
       if (blinkPattern.equals("custom")) showDialog();
     }
   }
 
   private void initializeSeekBarValues() {
-    String patternString  = PreferenceManager.getDefaultSharedPreferences(context).getString(ApplicationPreferencesActivity.LED_BLINK_PREF_CUSTOM, "500,2000");
+    String patternString  = TextSecurePreferences.getNotificationLedPatternCustom(context);
     String[] patternArray = patternString.split(",");
     seekBarOn.setProgress(Integer.parseInt(patternArray[0]));
     seekBarOff.setProgress(Integer.parseInt(patternArray[1]));
@@ -152,8 +153,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
       String pattern   = seekBarOnLabel.getText() + "," + seekBarOffLabel.getText();
       dialogInProgress = false;
 
-      SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-      preferences.edit().putString(ApplicationPreferencesActivity.LED_BLINK_PREF_CUSTOM, pattern).commit();
+      TextSecurePreferences.setNotificationLedPatternCustom(context, pattern);
       Toast.makeText(context, "Custom LED blink pattern set!", Toast.LENGTH_LONG).show();
     }
 

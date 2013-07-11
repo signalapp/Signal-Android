@@ -174,11 +174,10 @@ public class KeyCachingService extends Service {
   }
 
   private void startTimeoutIfAppropriate() {
-    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-    boolean timeoutEnabled              = sharedPreferences.getBoolean(ApplicationPreferencesActivity.PASSPHRASE_TIMEOUT_PREF, false);
+    boolean timeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(this);
 
     if ((activitiesRunning == 0) && (this.masterSecret != null) && timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(this)) {
-      long timeoutMinutes = sharedPreferences.getInt(ApplicationPreferencesActivity.PASSPHRASE_TIMEOUT_INTERVAL_PREF, 60 * 5);
+      long timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(this);
       long timeoutMillis  = timeoutMinutes * 60 * 1000;
 
       Log.w("KeyCachingService", "Starting timeout: " + timeoutMillis);

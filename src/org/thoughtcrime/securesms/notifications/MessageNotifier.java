@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
 import java.util.List;
@@ -97,9 +98,7 @@ public class MessageNotifier {
 
 
   public static void updateNotification(Context context, MasterSecret masterSecret) {
-    if (!PreferenceManager.getDefaultSharedPreferences(context)
-                          .getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true))
-    {
+    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
       return;
     }
 
@@ -107,9 +106,7 @@ public class MessageNotifier {
   }
 
   public static void updateNotification(Context context, MasterSecret masterSecret, long threadId) {
-    if (!PreferenceManager.getDefaultSharedPreferences(context)
-                          .getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true))
-    {
+    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
       return;
     }
 
@@ -233,7 +230,7 @@ public class MessageNotifier {
     	  return;
       }
       
-      String ringtone      = sp.getString(ApplicationPreferencesActivity.RINGTONE_PREF, null);
+      String ringtone = TextSecurePreferences.getNotificationRingtone(context);
 
       if (ringtone == null)
         return;
@@ -299,13 +296,11 @@ public class MessageNotifier {
                                             NotificationCompat.Builder builder,
                                             boolean signal)
   {
-    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-
-    String ringtone              = sp.getString(ApplicationPreferencesActivity.RINGTONE_PREF, null);
-    boolean vibrate              = sp.getBoolean(ApplicationPreferencesActivity.VIBRATE_PREF, true);
-    String ledColor              = sp.getString(ApplicationPreferencesActivity.LED_COLOR_PREF, "green");
-    String ledBlinkPattern       = sp.getString(ApplicationPreferencesActivity.LED_BLINK_PREF, "500,2000");
-    String ledBlinkPatternCustom = sp.getString(ApplicationPreferencesActivity.LED_BLINK_PREF_CUSTOM, "500,2000");
+    String ringtone              = TextSecurePreferences.getNotificationRingtone(context);
+    boolean vibrate              = TextSecurePreferences.isNotificationVibrateEnabled(context);
+    String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
+    String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
+    String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
     String[] blinkPatternArray   = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
 
     builder.setSound(TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone));

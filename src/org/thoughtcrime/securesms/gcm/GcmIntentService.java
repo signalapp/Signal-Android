@@ -2,13 +2,10 @@ package org.thoughtcrime.securesms.gcm;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.thoughtcrimegson.Gson;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -27,8 +24,7 @@ public class GcmIntentService extends GCMBaseIntentService {
 
   @Override
   protected void onRegistered(Context context, String registrationId) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-    if (!preferences.getBoolean(ApplicationPreferencesActivity.REGISTERED_GCM_PREF, false)) {
+    if (!TextSecurePreferences.isPushRegistered(context)) {
       Intent intent = new Intent(RegistrationService.GCM_REGISTRATION_EVENT);
       intent.putExtra(RegistrationService.GCM_REGISTRATION_ID, registrationId);
       sendBroadcast(intent);
@@ -46,7 +42,7 @@ public class GcmIntentService extends GCMBaseIntentService {
   @Override
   protected void onUnregistered(Context context, String registrationId) {
     try {
-      getGcmSocket(context).unregisterGcmId(registrationId);
+      getGcmSocket(context).unregisterGcmId();
     } catch (IOException ioe) {
       Log.w("GcmIntentService", ioe);
     } catch (RateLimitException e) {

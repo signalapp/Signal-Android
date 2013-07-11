@@ -18,4 +18,13 @@
               android:choiceMode="singleChoice"
               android:dividerHeight="1dp"
               android:background="?navigation_drawer_background"/>
+
+    <TextView android:id="@android:id/empty"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:textColor="?conversation_text_secondary_color"
+              android:text="Empty message list" />
+
 </android.support.v4.widget.DrawerLayout>

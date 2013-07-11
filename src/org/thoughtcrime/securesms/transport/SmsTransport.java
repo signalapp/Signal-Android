@@ -4,11 +4,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionCipher;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -18,6 +16,7 @@ import org.thoughtcrime.securesms.service.SmsListener;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 
@@ -119,9 +118,7 @@ public class SmsTransport {
   }
 
   private ArrayList<PendingIntent> constructDeliveredIntents(long messageId, long type, ArrayList<String> messages) {
-    if (!PreferenceManager.getDefaultSharedPreferences(context)
-                          .getBoolean(ApplicationPreferencesActivity.SMS_DELIVERY_REPORT_PREF, false))
-    {
+    if (!TextSecurePreferences.isSmsDeliveryReportsEnabled(context)) {
       return null;
     }
 

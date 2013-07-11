@@ -2,57 +2,196 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.RoutingActivity;
 
 public class TextSecurePreferences {
 
+  public  static final String IDENTITY_PREF                    = "pref_choose_identity";
+  public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
+  public  static final String DISABLE_PASSPHRASE_PREF          = "pref_disable_passphrase";
+  public  static final String THEME_PREF                       = "pref_theme";
+  public  static final String LANGUAGE_PREF                    = "pref_language";
+  public  static final String MMSC_HOST_PREF                   = "pref_apn_mmsc_host";
+  public  static final String MMSC_PROXY_HOST_PREF             = "pref_apn_mms_proxy";
+  public  static final String MMSC_PROXY_PORT_PREF             = "pref_apn_mms_proxy_port";
+  public  static final String THREAD_TRIM_LENGTH               = "pref_trim_length";
+  public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
+  public  static final String USE_LOCAL_MMS_APNS_PREF          = "pref_use_local_apns";
+
+  private static final String RINGTONE_PREF                    = "pref_key_ringtone";
+  private static final String VIBRATE_PREF                     = "pref_key_vibrate";
+  private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
+  private static final String LED_COLOR_PREF                   = "pref_led_color";
+  private static final String LED_BLINK_PREF                   = "pref_led_blink";
+  private static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
+  private static final String ALL_MMS_PERF                     = "pref_all_mms";
+  private static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
+  private static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
+  private static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
+  private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
+  private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
+  private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
+  private static final String THREAD_TRIM_ENABLED              = "pref_trim_threads";
+  private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
+  private static final String VERIFYING_STATE_PREF             = "pref_verifying";
+  private static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
+  private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
+  private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
+
   public static String getLocalNumber(Context context) {
-    return getStringPreference(context, ApplicationPreferencesActivity.LOCAL_NUMBER_PREF, "No Stored Number");
+    return getStringPreference(context, LOCAL_NUMBER_PREF, "No Stored Number");
+  }
+
+  public static void setLocalNumber(Context context, String localNumber) {
+    setStringPreference(context, LOCAL_NUMBER_PREF, localNumber);
   }
 
   public static String getPushServerPassword(Context context) {
-    return getStringPreference(context, ApplicationPreferencesActivity.GCM_PASSWORD_PREF, null);
+    return getStringPreference(context, GCM_PASSWORD_PREF, null);
+  }
+
+  public static void setPushServerPassword(Context context, String password) {
+    setStringPreference(context, GCM_PASSWORD_PREF, password);
   }
 
   public static boolean isEnterImeKeyEnabled(Context context) {
-    return getBooleanPreference(context, ApplicationPreferencesActivity.ENTER_PRESENT_PREF, false);
+    return getBooleanPreference(context, ENTER_PRESENT_PREF, false);
   }
 
   public static boolean isEnterSendsEnabled(Context context) {
-    return getBooleanPreference(context, ApplicationPreferencesActivity.ENTER_SENDS_PREF, false);
+    return getBooleanPreference(context, ENTER_SENDS_PREF, false);
   }
 
   public static boolean isPasswordDisabled(Context context) {
-    return getBooleanPreference(context, ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false);
+    return getBooleanPreference(context, DISABLE_PASSPHRASE_PREF, false);
   }
 
   public static void setPasswordDisabled(Context context, boolean disabled) {
-    setBooleanPreference(context, ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, disabled);
+    setBooleanPreference(context, DISABLE_PASSPHRASE_PREF, disabled);
   }
 
   public static String getMmscUrl(Context context) {
-    return getStringPreference(context, ApplicationPreferencesActivity.MMSC_HOST_PREF, "");
+    return getStringPreference(context, MMSC_HOST_PREF, "");
   }
 
   public static String getMmscProxy(Context context) {
-    return getStringPreference(context, ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF, "");
+    return getStringPreference(context, MMSC_PROXY_HOST_PREF, "");
   }
 
   public static String getMmscProxyPort(Context context) {
-    return getStringPreference(context, ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF, "");
+    return getStringPreference(context, MMSC_PROXY_PORT_PREF, "");
   }
 
   public static String getIdentityContactUri(Context context) {
-    return getStringPreference(context, ApplicationPreferencesActivity.IDENTITY_PREF, null);
+    return getStringPreference(context, IDENTITY_PREF, null);
+  }
+
+  public static void setIdentityContactUri(Context context, String identityUri) {
+    setStringPreference(context, IDENTITY_PREF, identityUri);
   }
 
   public static boolean isAutoRespondKeyExchangeEnabled(Context context) {
-    return getBooleanPreference(context, ApplicationPreferencesActivity.AUTO_KEY_EXCHANGE_PREF, true);
+    return getBooleanPreference(context, AUTO_KEY_EXCHANGE_PREF, true);
   }
 
   public static boolean isUseLocalApnsEnabled(Context context) {
-    return getBooleanPreference(context, ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, false);
+    return getBooleanPreference(context, USE_LOCAL_MMS_APNS_PREF, false);
+  }
+
+  public static String getTheme(Context context) {
+    return getStringPreference(context, THEME_PREF, "light");
+  }
+
+  public static boolean isVerifying(Context context) {
+    return getBooleanPreference(context, VERIFYING_STATE_PREF, false);
+  }
+
+  public static void setVerifying(Context context, boolean verifying) {
+    setBooleanPreference(context, VERIFYING_STATE_PREF, verifying);
+  }
+
+  public static boolean isPushRegistered(Context context) {
+    return getBooleanPreference(context, REGISTERED_GCM_PREF, false);
+  }
+
+  public static void setPushRegistered(Context context, boolean registered) {
+    Log.w("TextSecurePreferences", "Setting push registered: " + registered);
+    setBooleanPreference(context, REGISTERED_GCM_PREF, registered);
+  }
+
+  public static boolean isPassphraseTimeoutEnabled(Context context) {
+    return getBooleanPreference(context, PASSPHRASE_TIMEOUT_PREF, false);
+  }
+
+  public static int getPassphraseTimeoutInterval(Context context) {
+    return getIntegerPreference(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, 5 * 60);
+  }
+
+  public static void setPassphraseTimeoutInterval(Context context, int interval) {
+    setIntegerPrefrence(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval);
+  }
+
+  public static String getLanguage(Context context) {
+    return getStringPreference(context, LANGUAGE_PREF, "zz");
+  }
+
+  public static void setLanguage(Context context, String language) {
+    setStringPreference(context, LANGUAGE_PREF, language);
+  }
+
+  public static boolean isSmsDeliveryReportsEnabled(Context context) {
+    return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
+  }
+
+  public static boolean hasPromptedPushRegistration(Context context) {
+    return getBooleanPreference(context, PROMPTED_PUSH_REGISTRATION_PREF, false);
+  }
+
+  public static void setPromptedPushRegistration(Context context, boolean value) {
+    setBooleanPreference(context, PROMPTED_PUSH_REGISTRATION_PREF, value);
+  }
+
+  public static boolean isInterceptAllMmsEnabled(Context context) {
+    return getBooleanPreference(context, ALL_MMS_PERF, true);
+  }
+
+  public static boolean isNotificationsEnabled(Context context) {
+    return getBooleanPreference(context, NOTIFICATION_PREF, true);
+  }
+
+  public static String getNotificationRingtone(Context context) {
+    return getStringPreference(context, RINGTONE_PREF, null);
+  }
+
+  public static boolean isNotificationVibrateEnabled(Context context) {
+    return getBooleanPreference(context, VIBRATE_PREF, true);
+  }
+
+  public static String getNotificationLedColor(Context context) {
+    return getStringPreference(context, LED_COLOR_PREF, "green");
+  }
+
+  public static String getNotificationLedPattern(Context context) {
+    return getStringPreference(context, LED_BLINK_PREF, "500,2000");
+  }
+
+  public static String getNotificationLedPatternCustom(Context context) {
+    return getStringPreference(context, LED_BLINK_PREF_CUSTOM, "500,2000");
+  }
+
+  public static void setNotificationLedPatternCustom(Context context, String pattern) {
+    setStringPreference(context, LED_BLINK_PREF_CUSTOM, pattern);
+  }
+
+  public static boolean isThreadLengthTrimmingEnabled(Context context) {
+    return getBooleanPreference(context, THREAD_TRIM_ENABLED, false);
+  }
+
+  public static int getThreadTrimLength(Context context) {
+    return Integer.parseInt(getStringPreference(context, THREAD_TRIM_LENGTH, "500"));
   }
 
   private static void setBooleanPreference(Context context, String key, boolean value) {
@@ -63,7 +202,20 @@ public class TextSecurePreferences {
     return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(key, defaultValue);
   }
 
+  public static void setStringPreference(Context context, String key, String value) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).commit();
+  }
+
   private static String getStringPreference(Context context, String key, String defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getString(key, defaultValue);
   }
+
+  private static int getIntegerPreference(Context context, String key, int defaultValue) {
+    return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, defaultValue);
+  }
+
+  private static void setIntegerPrefrence(Context context, String key, int value) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
+  }
+
 }

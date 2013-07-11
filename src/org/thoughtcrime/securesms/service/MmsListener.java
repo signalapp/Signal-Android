@@ -25,6 +25,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import ws.com.google.android.mms.pdu.GenericPdu;
 import ws.com.google.android.mms.pdu.NotificationInd;
@@ -40,7 +41,7 @@ public class MmsListener extends BroadcastReceiver {
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
 
-    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.ALL_MMS_PERF, true))
+    if (TextSecurePreferences.isInterceptAllMmsEnabled(context))
       return true;
 
     byte[] mmsData   = intent.getByteArrayExtra("data");
