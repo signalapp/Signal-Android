@@ -18,6 +18,8 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +27,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -41,6 +44,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
+import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -49,8 +53,13 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.RateLimitException;
+
+import java.io.IOException;
 
 /**
  * The Activity for application preference display and management.
@@ -66,6 +75,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final int PICK_IDENTITY_CONTACT        = 1;
   private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
 
+<<<<<<< HEAD
   public static final String RINGTONE_PREF                    = "pref_key_ringtone";
   public static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
   public static final String VIBRATE_PREF                     = "pref_key_vibrate";
@@ -86,6 +96,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public static final String ENTER_PRESENT_PREF               = "pref_enter_key";
 
   private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
+  private static final String PUSH_MESSAGING_PREF       = "pref_toggle_push_messaging";
 
   private static final String CHANGE_PASSPHRASE_PREF	     = "pref_change_passphrase";
   public  static final String DISABLE_PASSPHRASE_PREF      = "pref_disable_passphrase";
@@ -122,14 +133,16 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     initializeIdentitySelection();
     initializePlatformSpecificOptions();
+    initializePushMessagingToggle();
+    initializeEditTextSummaries();
 
-    this.findPreference(CHANGE_PASSPHRASE_PREF)
+    this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
       .setOnPreferenceClickListener(new ChangePassphraseClickListener());
-    this.findPreference(THREAD_TRIM_NOW)
+    this.findPreference(TextSecurePreferences.THREAD_TRIM_NOW)
       .setOnPreferenceClickListener(new TrimNowClickListener());
-    this.findPreference(THREAD_TRIM_LENGTH)
+    this.findPreference(TextSecurePreferences.THREAD_TRIM_LENGTH)
       .setOnPreferenceChangeListener(new TrimLengthValidationListener());
-    this.findPreference(DISABLE_PASSPHRASE_PREF)
+    this.findPreference(TextSecurePreferences.DISABLE_PASSPHRASE_PREF)
       .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
     this.findPreference(MMS_PREF)
       .setOnPreferenceClickListener(new ApnPreferencesClickListener());
@@ -219,6 +232,34 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
+  private void initializeEditTextSummary(final EditTextPreference preference) {
+    if (preference.getText() == null) {
+      preference.setSummary("Not set");
+    } else {
+      preference.setSummary(preference.getText());
+    }
+
+    preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+      @Override
+      public boolean onPreferenceChange(Preference pref, Object newValue) {
+        preference.setSummary(newValue == null ? "Not set" : ((String) newValue));
+        return true;
+      }
+    });
+  }
+
+  private void initializeEditTextSummaries() {
+    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_HOST_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_HOST_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_PORT_PREF));
+  }
+
+  private void initializePushMessagingToggle() {
+    CheckBoxPreference preference = (CheckBoxPreference)this.findPreference(PUSH_MESSAGING_PREF);
+    preference.setChecked(TextSecurePreferences.isPushRegistered(this));
+    preference.setOnPreferenceChangeListener(new PushMessagingClickListener());
+  }
+
   private void initializeIdentitySelection() {
     ContactIdentityManager identity = ContactIdentityManager.getInstance(this);
 
@@ -230,12 +271,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
       if (contactUri != null) {
         String contactName = ContactAccessor.getInstance().getNameFromContact(this, contactUri);
-        this.findPreference(IDENTITY_PREF)
+        this.findPreference(TextSecurePreferences.IDENTITY_PREF)
           .setSummary(String.format(getString(R.string.ApplicationPreferencesActivity_currently_s),
                       contactName));
       }
 
-      this.findPreference(IDENTITY_PREF)
+      this.findPreference(TextSecurePreferences.IDENTITY_PREF)
         .setOnPreferenceClickListener(new IdentityPreferenceClickListener());
     }
   }
@@ -256,21 +297,81 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     Uri contactUri = data.getData();
 
     if (contactUri != null) {
-      SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-      String contactUriString       = contactUri.toString();
-
-      preferences.edit().putString(IDENTITY_PREF, contactUriString).commit();
-
+      TextSecurePreferences.setIdentityContactUri(this, contactUri.toString());
       initializeIdentitySelection();
     }
   }
 
   @Override
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-    if (key.equals(THEME_PREF)) {
+    if (key.equals(TextSecurePreferences.THEME_PREF)) {
       dynamicTheme.onResume(this);
-    } else if (key.equals(LANGUAGE_PREF)) {
+    } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
       dynamicLanguage.onResume(this);
+    }
+  }
+
+  private class PushMessagingClickListener implements Preference.OnPreferenceChangeListener {
+
+    private static final int SUCCESS       = 0;
+    private static final int NETWORK_ERROR = 1;
+
+    @Override
+    public boolean onPreferenceChange(final Preference preference, Object newValue) {
+      if (((CheckBoxPreference)preference).isChecked()) {
+        new AsyncTask<Void, Void, Integer>() {
+          private ProgressDialog dialog;
+
+          @Override
+          protected void onPreExecute() {
+            dialog = ProgressDialog.show(ApplicationPreferencesActivity.this,
+                                         getString(R.string.ApplicationPreferencesActivity_unregistering),
+                                         getString(R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication),
+                                         true, false);
+          }
+
+          @Override
+          protected void onPostExecute(Integer result) {
+            if (dialog != null)
+              dialog.dismiss();
+
+            switch (result) {
+              case NETWORK_ERROR:
+                Toast.makeText(ApplicationPreferencesActivity.this,
+                               getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
+                               Toast.LENGTH_LONG).show();
+                break;
+              case SUCCESS:
+                ((CheckBoxPreference)preference).setChecked(false);
+                break;
+            }
+          }
+
+          @Override
+          protected Integer doInBackground(Void... params) {
+            try {
+              Context context          = ApplicationPreferencesActivity.this;
+              String localNumber       = TextSecurePreferences.getLocalNumber(context);
+              String pushPassword      = TextSecurePreferences.getPushServerPassword(context);
+              PushServiceSocket socket = new PushServiceSocket(context, localNumber, pushPassword);
+
+              socket.unregisterGcmId();
+              GCMRegistrar.unregister(context);
+              return SUCCESS;
+            } catch (IOException e) {
+              Log.w("ApplicationPreferencesActivity", e);
+              return NETWORK_ERROR;
+            } catch (RateLimitException e) {
+              Log.w("ApplicationPreferencesActivity", e);
+              return NETWORK_ERROR;
+            }
+          }
+        }.execute();
+      } else {
+        startActivity(new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class));
+      }
+
+      return false;
     }
   }
 
@@ -303,9 +404,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private class TrimNowClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      final int threadLengthLimit = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ApplicationPreferencesActivity.this)
-                                                                      .getString(THREAD_TRIM_LENGTH, "500"));
-
+      final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(ApplicationPreferencesActivity.this);
       AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
       builder.setMessage(String.format(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages),
@@ -343,11 +442,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
                                                           MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
 
 
-            PreferenceManager.getDefaultSharedPreferences(ApplicationPreferencesActivity.this)
-                             .edit()
-                             .putBoolean(DISABLE_PASSPHRASE_PREF, true)
-                             .commit();
-
+            TextSecurePreferences.setPasswordDisabled(ApplicationPreferencesActivity.this, true);
             ((CheckBoxPreference)preference).setChecked(true);
 
             Intent intent = new Intent(ApplicationPreferencesActivity.this, KeyCachingService.class);
@@ -370,7 +465,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private class TrimLengthValidationListener implements Preference.OnPreferenceChangeListener {
 
     public TrimLengthValidationListener() {
-      EditTextPreference preference = (EditTextPreference)findPreference(THREAD_TRIM_LENGTH);
+      EditTextPreference preference = (EditTextPreference)findPreference(TextSecurePreferences.THREAD_TRIM_LENGTH);
       preference.setSummary(preference.getText() + " " + getString(R.string.ApplicationPreferencesActivity_messages_per_conversation));
     }
 

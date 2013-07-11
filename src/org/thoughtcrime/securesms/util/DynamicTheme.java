@@ -37,8 +37,7 @@ public class DynamicTheme {
   }
 
   private static int getSelectedTheme(Activity activity) {
-    String theme = PreferenceManager.getDefaultSharedPreferences(activity)
-                                    .getString(ApplicationPreferencesActivity.THEME_PREF, "light");
+    String theme = TextSecurePreferences.getTheme(activity);
 
     if (theme.equals("light")) {
       if (activity instanceof ConversationListActivity) return R.style.TextSecure_LightTheme_NavigationDrawer;

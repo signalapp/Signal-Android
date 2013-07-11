@@ -4,10 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
-import android.preference.PreferenceManager;
-import android.util.Log;
-
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 
 import java.util.Locale;
 
@@ -54,8 +50,7 @@ public class DynamicLanguage {
   }
 
   private static Locale getSelectedLocale(Activity activity) {
-    String language =  PreferenceManager.getDefaultSharedPreferences(activity)
-                                        .getString(ApplicationPreferencesActivity.LANGUAGE_PREF, DEFAULT);
+    String language = TextSecurePreferences.getLanguage(activity);
 
     if (language.equals(DEFAULT)) return Locale.getDefault();
     else                          return new Locale(language);

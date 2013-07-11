@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 
@@ -127,7 +128,7 @@ public class SmsListener extends BroadcastReceiver {
       return false;
 
     if (messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
-        preferences.getBoolean(ApplicationPreferencesActivity.VERIFYING_STATE_PREF, false))
+        TextSecurePreferences.isVerifying(context))
     {
       return true;
     }

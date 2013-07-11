@@ -27,6 +27,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import ws.com.google.android.mms.pdu.GenericPdu;
 import ws.com.google.android.mms.pdu.NotificationInd;
@@ -52,8 +53,7 @@ public class MmsListener extends BroadcastReceiver {
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ||
-        PreferenceManager.getDefaultSharedPreferences(context)
-                         .getBoolean(ApplicationPreferencesActivity.ALL_MMS_PERF, true))
+        TextSecurePreferences.isInterceptAllMmsEnabled(context))
     {
       return true;
     }
