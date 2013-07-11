@@ -221,6 +221,13 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".service.RegistrationNotifier"
+              android:exported="false">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
+        </intent-filter>
+    </receiver>
+
     <provider android:name=".providers.PartProvider" 
               android:authorities="org.thoughtcrime.provider.securesms" />
 
