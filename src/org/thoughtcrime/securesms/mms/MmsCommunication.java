@@ -142,15 +142,17 @@ public class MmsCommunication {
       return;
     }
 
-    byte[] ipAddressBytes       = inetAddress.getAddress();
-    int ipAddress               = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
-    ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    Log.w("MmsCommunication", "Checking route to address: " + host + " , " + inetAddress.getHostAddress());
 
-    if (!manager.requestRouteToHost(MmsDownloader.TYPE_MOBILE_MMS, ipAddress))
-      throw new IOException("Connection manager could not obtain route to host.");
-    //        if (!manager.requestRouteToHost(ConnectivityManager.TYPE_MOBILE, ipAddress))
-    //        	throw new IOException("Connection manager could not obtain route to host.");
+    byte[] ipAddressBytes = inetAddress.getAddress();
 
+    if (ipAddressBytes != null && ipAddressBytes.length == 4) {
+      int ipAddress               = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
+      ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+      if (!manager.requestRouteToHost(MmsDownloader.TYPE_MOBILE_MMS, ipAddress))
+        throw new IOException("Connection manager could not obtain route to host.");
+    }
   }
 
   protected static AndroidHttpClient constructHttpClient(Context context, MmsConnectionParameters mmsConfig) {
