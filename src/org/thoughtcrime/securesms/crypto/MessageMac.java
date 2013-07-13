@@ -75,11 +75,11 @@ public class MessageMac {
 		
     System.arraycopy(message, message.length-MAC_LENGTH, receivedMacBytes, 0, receivedMacBytes.length);
 		
-    Log.w("mm", "Local Mac: " + Hex.toString(localMacBytes));
-    Log.w("mm", "Remot Mac: " + Hex.toString(receivedMacBytes));
+    Log.w("MessageMac", "Local Mac: " + Hex.toString(localMacBytes));
+    Log.w("MessageMac", "Remote Mac: " + Hex.toString(receivedMacBytes));
 		
     if (!Arrays.equals(localMacBytes, receivedMacBytes))
-      throw new InvalidMacException("MAC on message does not match calculated MAC.");
+      throw new InvalidMacException("MAC on received message does not match calculated MAC of local message.");
   }
 	
 }
