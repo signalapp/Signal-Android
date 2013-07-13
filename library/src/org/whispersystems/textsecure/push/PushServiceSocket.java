@@ -1,7 +1,6 @@
 package org.whispersystems.textsecure.push;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -72,7 +71,7 @@ public class PushServiceSocket {
   public void sendMessage(String recipient, String messageText)
       throws IOException, RateLimitException
   {
-    OutgoingGcmMessage message  = new OutgoingGcmMessage(recipient, messageText);
+    OutgoingPushMessage message = new OutgoingPushMessage(recipient, messageText);
     String responseText         = makeRequest(MESSAGE_PATH, "POST", new Gson().toJson(message));
     GcmMessageResponse response = new Gson().fromJson(responseText, GcmMessageResponse.class);
 

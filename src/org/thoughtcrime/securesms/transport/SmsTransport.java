@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 
-public class SmsTransport {
+public class SmsTransport extends BaseTransport {
 
   private final Context context;
   private final MasterSecret masterSecret;
@@ -107,11 +107,10 @@ public class SmsTransport {
   private ArrayList<PendingIntent> constructSentIntents(long messageId, long type, ArrayList<String> messages) {
     ArrayList<PendingIntent> sentIntents = new ArrayList<PendingIntent>(messages.size());
 
-    for (int i=0;i<messages.size();i++) {
-      Intent pending = new Intent(SendReceiveService.SENT_SMS_ACTION, Uri.parse("custom://" + messageId + System.currentTimeMillis()), context, SmsListener.class);
-      pending.putExtra("type", type);
-      pending.putExtra("message_id", messageId);
-      sentIntents.add(PendingIntent.getBroadcast(context, 0, pending, 0));
+    for (String message : messages) {
+      sentIntents.add(PendingIntent.getBroadcast(context, 0,
+                                                 constructSentIntent(context, messageId, type),
+                                                 0));
     }
 
     return sentIntents;
@@ -124,11 +123,10 @@ public class SmsTransport {
 
     ArrayList<PendingIntent> deliveredIntents = new ArrayList<PendingIntent>(messages.size());
 
-    for (int i=0;i<messages.size();i++) {
-      Intent pending = new Intent(SendReceiveService.DELIVERED_SMS_ACTION, Uri.parse("custom://" + messageId + System.currentTimeMillis()), context, SmsListener.class);
-      pending.putExtra("type", type);
-      pending.putExtra("message_id", messageId);
-      deliveredIntents.add(PendingIntent.getBroadcast(context, 0, pending, 0));
+    for (String message : messages) {
+      deliveredIntents.add(PendingIntent.getBroadcast(context, 0,
+                                                      constructDeliveredIntent(context, messageId, type),
+                                                      0));
     }
 
     return deliveredIntents;
