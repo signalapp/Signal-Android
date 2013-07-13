@@ -3,23 +3,25 @@ package org.whispersystems.textsecure.push;
 import java.util.LinkedList;
 import java.util.List;
 
-public class OutgoingGcmMessage {
+public class OutgoingPushMessage {
 
   private List<String> destinations;
   private String       messageText;
   private List<String> attachments;
 
-  public OutgoingGcmMessage(List<String> destinations, String messageText, List<String> attachments) {
+  public OutgoingPushMessage(List<String> destinations, String messageText,
+                             List<String> attachments)
+  {
     this.destinations = destinations;
     this.messageText  = messageText;
     this.attachments  = attachments;
   }
 
-  public OutgoingGcmMessage(String destination, String messageText) {
+  public OutgoingPushMessage(String destination, String messageText) {
     this.destinations = new LinkedList<String>();
-    this.destinations.add(destination);
-    this.messageText  = messageText;
     this.attachments  = new LinkedList<String>();
+    this.messageText  = messageText;
+    this.destinations.add(destination);
   }
 
   public List<String> getDestinations() {
