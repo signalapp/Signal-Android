@@ -5,15 +5,15 @@ All commands are executed from inside of the TextSecure directory
 
 Fetch ActionBarSherlock:
 
-    git clone --branch 4.2.0 git://github.com/JakeWharton/ActionBarSherlock.git ../ActionBarSherlock
+    git clone git://github.com/JakeWharton/ActionBarSherlock.git ../ActionBarSherlock
 
 Configure ActionBarSherlock for your android target:
 
-    android update project --path ../ActionBarSherlock/actionbarsherlock --target 1
+    android update project --path ../ActionBarSherlock/actionbarsherlock --target android-15
 
 Configure TextSecure for your android target, linking to ASB:
 
-    android update project --path . --target 1 --library ../ActionBarSherlock/actionbarsherlock
+    android update project --path . --target android-15 --library ../ActionBarSherlock/actionbarsherlock
 
 Finally, both codebases must share the android-support jar. As TextSecure's is newer, use it:
 
