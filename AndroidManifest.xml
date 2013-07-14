@@ -116,7 +116,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".AutoInitiateActivity"
-              android:theme="@style/Theme.Sherlock.Light.Dialog"
+              android:theme="@android:style/Theme.Dialog"
               android:label="@string/AndroidManifest__textsecure_detected"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -141,7 +141,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ReceiveKeyActivity" 
-              android:theme="@style/Theme.Sherlock.Light.Dialog" 
+              android:theme="@android:style/Theme.Dialog" 
               android:label="@string/AndroidManifest__complete_key_exchange" 
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     
