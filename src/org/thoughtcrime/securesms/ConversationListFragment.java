@@ -197,8 +197,6 @@ public class ConversationListFragment extends SherlockListFragment
               dialog.dismiss();
               if (actionMode != null) {
                 actionMode.finish();
-                actionMode = null;
-                batchMode  = false;
               }
             }
           }.execute();
@@ -272,6 +270,10 @@ public class ConversationListFragment extends SherlockListFragment
   @Override
   public void onDestroyActionMode(ActionMode mode) {
     ((ConversationListAdapter)getListAdapter()).initializeBatchMode(false);
+    if (actionMode != null) {
+      actionMode = null;
+      batchMode  = false;
+    }
   }
 
 }
