@@ -47,11 +47,10 @@ public class SmsListener extends BroadcastReceiver {
       return true;
     }
 
-    // Sprint Visual Voicemail
     return
       message.getOriginatingAddress().length() < 7 &&
-      (messageBody.startsWith("//ANDROID:") || messageBody.startsWith("//Android:") ||
-       messageBody.startsWith("//android:") || messageBody.startsWith("//BREW:"));
+      (messageBody.toUpperCase().startsWith("//ANDROID:") || // Sprint Visual Voicemail
+       messageBody.startsWith("//BREW:")); //BREW stands for “Binary Runtime Environment for Wireless"
   }
 
   private SmsMessage getSmsMessageFromIntent(Intent intent) {

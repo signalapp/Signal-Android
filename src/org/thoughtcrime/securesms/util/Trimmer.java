@@ -21,12 +21,13 @@ public class Trimmer {
     if (!trimmingEnabled)
       return;
 
-    new Thread() {
+    new AsyncTask<Void, Void, Void>() {
       @Override
-      public void run() {
+      protected Void doInBackground(Void... params) {
         DatabaseFactory.getThreadDatabase(context).trimThread(threadId, threadLengthLimit);
+        return null;
       }
-    }.start();
+    }.execute();
   }
 
   private static class TrimmingProgressTask extends AsyncTask<Integer, Integer, Void> implements ThreadDatabase.ProgressListener {
