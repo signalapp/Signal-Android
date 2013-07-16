@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.text.Spannable;
@@ -11,6 +14,8 @@ import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.reflect.TypeToken;
+
+import org.thoughtcrime.securesms.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,14 +47,16 @@ public class Emoji {
   public  static final double  EMOJI_LARGE = 1;
   public  static final double  EMOJI_SMALL = 0.7;
 
-  private final Context     context;
-  private final String[]    emojiAssets;
-  private final Set<String> emojiAssetsSet;
+  private final Context               context;
+  private final String[]              emojiAssets;
+  private final Set<String>           emojiAssetsSet;
+  private final BitmapFactory.Options bitmapOptions;
 
   private Emoji(Context context) {
     this.context        = context.getApplicationContext();
     this.emojiAssets    = initializeEmojiAssets();
     this.emojiAssetsSet = new HashSet<String>();
+    this.bitmapOptions  = initializeBitmapOptions();
 
     Collections.addAll(this.emojiAssetsSet, emojiAssets);
   }
@@ -119,7 +126,12 @@ public class Emoji {
 
   private Drawable getEmojiDrawable(String assetName) {
     try {
-      return Drawable.createFromStream(context.getAssets().open("emoji" + File.separator + assetName), null);
+      Bitmap bitmap = BitmapFactory.decodeStream(context.getAssets().open("emoji" + File.separator + assetName),
+                                                 null, bitmapOptions);
+
+      bitmap = Bitmap.createScaledBitmap(bitmap, 40, 40, true);
+
+      return  new BitmapDrawable(context.getResources(), bitmap);
     } catch (IOException e) {
       throw new AssertionError(e);
     }
@@ -132,6 +144,18 @@ public class Emoji {
       Log.w("Emoji", e);
       return new String[0];
     }
+  }
+
+  private BitmapFactory.Options initializeBitmapOptions() {
+    BitmapFactory.Options options = new BitmapFactory.Options();
+
+    options.inScaled           = true;
+//    options.inDensity          = 64;
+    options.inTargetDensity    = context.getResources().getDimensionPixelSize(R.dimen.emoji_size);
+    options.inSampleSize       = 1;
+    options.inJustDecodeBounds = false;
+
+    return options;
   }
 
   private static class EmojiLRU {
