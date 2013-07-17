@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -23,6 +24,7 @@ import android.text.style.StyleSpan;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.mms.MmsRadio;
+import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ExecutorService;
@@ -139,6 +141,11 @@ public class Util {
     } catch (InterruptedException ie) {
       throw new AssertionError(ie);
     }
+  }
+
+  public static String canonicalizeNumber(Context context, String number) {
+    String localNumber = TextSecurePreferences.getLocalNumber(context);
+    return PhoneNumberFormatter.formatNumber(number, localNumber);
   }
 
 
