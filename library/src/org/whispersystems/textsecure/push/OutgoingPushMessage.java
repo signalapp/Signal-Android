@@ -9,19 +9,25 @@ public class OutgoingPushMessage {
   private String       messageText;
   private List<String> attachments;
 
+  public OutgoingPushMessage(String destination, String messageText) {
+    this.destinations = new LinkedList<String>();
+    this.attachments  = new LinkedList<String>();
+    this.messageText  = messageText;
+    this.destinations.add(destination);
+  }
+
+  public OutgoingPushMessage(List<String> destinations, String messageText) {
+    this.destinations = destinations;
+    this.messageText  = messageText;
+    this.attachments  = new LinkedList<String>();
+  }
+
   public OutgoingPushMessage(List<String> destinations, String messageText,
                              List<String> attachments)
   {
     this.destinations = destinations;
     this.messageText  = messageText;
     this.attachments  = attachments;
-  }
-
-  public OutgoingPushMessage(String destination, String messageText) {
-    this.destinations = new LinkedList<String>();
-    this.attachments  = new LinkedList<String>();
-    this.messageText  = messageText;
-    this.destinations.add(destination);
   }
 
   public List<String> getDestinations() {

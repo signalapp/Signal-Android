@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * Handles providing lookups, serializing, and deserializing the RedPhone directory.
@@ -75,6 +76,26 @@ public class NumberFilter {
       else if (number == null || number.length() == 0) return false;
 
       return new BloomFilter(bloomFilter, hashCount).contains(number);
+    } catch (IOException ioe) {
+      Log.w("NumberFilter", ioe);
+      return false;
+    }
+  }
+
+  public synchronized boolean containsNumbers(List<String> numbers) {
+    try {
+      if  (bloomFilter == null)                    return false;
+      if  (numbers == null || numbers.size() == 0) return false;
+
+      BloomFilter filter = new BloomFilter(bloomFilter, hashCount);
+
+      for (String number : numbers) {
+        if (!filter.contains(number)) {
+          return false;
+        }
+      }
+
+      return true;
     } catch (IOException ioe) {
       Log.w("NumberFilter", ioe);
       return false;

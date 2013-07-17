@@ -3,6 +3,7 @@ package org.whispersystems.textsecure.push;
 import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Pair;
 
 import com.google.thoughtcrimegson.Gson;
 import org.whispersystems.textsecure.R;
@@ -22,12 +23,16 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 public class PushServiceSocket {
@@ -39,6 +44,7 @@ public class PushServiceSocket {
 
   private static final String DIRECTORY_PATH            = "/v1/directory/";
   private static final String MESSAGE_PATH              = "/v1/messages/";
+  private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
   private final String localNumber;
   private final String password;
@@ -72,6 +78,26 @@ public class PushServiceSocket {
       throws IOException, RateLimitException
   {
     OutgoingPushMessage message = new OutgoingPushMessage(recipient, messageText);
+    sendMessage(message);
+  }
+
+  public void sendMessage(List<String> recipients, String messageText)
+      throws IOException, RateLimitException
+  {
+    OutgoingPushMessage message = new OutgoingPushMessage(recipients, messageText);
+    sendMessage(message);
+  }
+
+  public void sendMessage(List<String> recipients, String messageText,
+                          List<PushAttachment> attachments)
+      throws IOException, RateLimitException
+  {
+    List<String> attachmentIds  = sendAttachments(attachments);
+    OutgoingPushMessage message = new OutgoingPushMessage(recipients, messageText, attachmentIds);
+    sendMessage(message);
+  }
+
+  private void sendMessage(OutgoingPushMessage message) throws IOException, RateLimitException {
     String responseText         = makeRequest(MESSAGE_PATH, "POST", new Gson().toJson(message));
     GcmMessageResponse response = new Gson().fromJson(responseText, GcmMessageResponse.class);
 
@@ -79,12 +105,41 @@ public class PushServiceSocket {
       throw new IOException("Got send failure: " + response.getFailure().get(0));
   }
 
+  private List<String> sendAttachments(List<PushAttachment> attachments)
+      throws IOException, RateLimitException
+  {
+    List<String> attachmentIds = new LinkedList<String>();
+
+    for (PushAttachment attachment : attachments) {
+      attachmentIds.add(sendAttachment(attachment));
+    }
+
+    return attachmentIds;
+  }
+
+  private String sendAttachment(PushAttachment attachment) throws IOException, RateLimitException {
+    Pair<String, String> response = makeRequestForResponseHeader(String.format(ATTACHMENT_PATH, ""),
+                                                                 "GET", null, "Content-Location");
+
+    String contentLocation = response.first;
+    Log.w("PushServiceSocket", "Got attachment content location: " + contentLocation);
+
+    if (contentLocation == null) {
+      throw new IOException("Server failed to allocate an attachment key!");
+    }
+
+    uploadExternalFile("PUT", contentLocation, attachment.getData());
+
+    return new Gson().fromJson(response.second, AttachmentDescriptor.class).getId();
+  }
+
   public void retrieveDirectory(Context context ) {
     try {
       DirectoryDescriptor directoryDescriptor = new Gson().fromJson(makeRequest(DIRECTORY_PATH, "GET", null),
                                                                     DirectoryDescriptor.class);
 
-      File directoryData = downloadExternalFile(context, directoryDescriptor.getUrl());
+      File directoryData = File.createTempFile("directory", ".dat", context.getFilesDir());
+      downloadExternalFile(directoryDescriptor.getUrl(), directoryData);
 
       NumberFilter.getInstance(context).update(directoryData,
                                                directoryDescriptor.getCapacity(),
@@ -98,31 +153,80 @@ public class PushServiceSocket {
     }
   }
 
-  private File downloadExternalFile(Context context, String url) throws IOException {
-    File download                 = File.createTempFile("directory", ".dat", context.getFilesDir());
-    URL downloadUrl               = new URL(url);
-    HttpsURLConnection connection = (HttpsURLConnection)downloadUrl.openConnection();
+  private void downloadExternalFile(String url, File localDestination)
+      throws IOException
+  {
+    URL                downloadUrl = new URL(url);
+    HttpsURLConnection connection  = (HttpsURLConnection) downloadUrl.openConnection();
     connection.setDoInput(true);
 
-    if (connection.getResponseCode() != 200) {
-      throw new IOException("Bad response: " + connection.getResponseCode());
+    try {
+      if (connection.getResponseCode() != 200) {
+        throw new IOException("Bad response: " + connection.getResponseCode());
+      }
+
+      OutputStream output = new FileOutputStream(localDestination);
+      InputStream input   = new GZIPInputStream(connection.getInputStream());
+      byte[] buffer       = new byte[4096];
+      int read;
+
+      while ((read = input.read(buffer)) != -1) {
+        output.write(buffer, 0, read);
+      }
+
+      output.close();
+    } finally {
+      connection.disconnect();
     }
+  }
 
-    OutputStream output = new FileOutputStream(download);
-    InputStream input   = new GZIPInputStream(connection.getInputStream());
-    byte[] buffer       = new byte[4096];
-    int read;
+  private void uploadExternalFile(String method, String url, byte[] data)
+    throws IOException
+  {
+    URL                uploadUrl  = new URL(url);
+    HttpsURLConnection connection = (HttpsURLConnection) uploadUrl.openConnection();
+    connection.setDoOutput(true);
+    connection.setRequestMethod(method);
+    connection.setRequestProperty("Content-Type", "application/octet-stream");
+    connection.connect();
 
-    while ((read = input.read(buffer)) != -1) {
-      output.write(buffer, 0, read);
+    try {
+      OutputStream out = connection.getOutputStream();
+      out.write(data);
+      out.close();
+
+      if (connection.getResponseCode() != 200) {
+        throw new IOException("Bad response: " + connection.getResponseCode() + " " + connection.getResponseMessage());
+      }
+    } finally {
+      connection.disconnect();
     }
+  }
 
-    output.close();
+  private Pair<String, String> makeRequestForResponseHeader(String urlFragment, String method,
+                                                            String body, String responseHeader)
+      throws IOException, RateLimitException
+  {
+    HttpURLConnection connection  = makeBaseRequest(urlFragment, method, body);
+    String            response    = Util.readFully(connection.getInputStream());
+    String            headerValue = connection.getHeaderField(responseHeader);
+    connection.disconnect();
 
-    return download;
+    return new Pair<String, String>(headerValue, response);
   }
 
   private String makeRequest(String urlFragment, String method, String body)
+      throws IOException, RateLimitException
+  {
+    HttpURLConnection connection = makeBaseRequest(urlFragment, method, body);
+    String            response   = Util.readFully(connection.getInputStream());
+
+    connection.disconnect();
+
+    return response;
+  }
+
+  private HttpURLConnection makeBaseRequest(String urlFragment, String method, String body)
       throws IOException, RateLimitException
   {
     HttpURLConnection connection = getConnection(urlFragment, method);
@@ -148,7 +252,7 @@ public class PushServiceSocket {
       throw new IOException("Bad response: " + connection.getResponseCode() + " " + connection.getResponseMessage());
     }
 
-    return Util.readFully(connection.getInputStream());
+    return connection;
   }
 
   private HttpURLConnection getConnection(String urlFragment, String method) throws IOException {
@@ -217,6 +321,18 @@ public class PushServiceSocket {
 
     public GcmRegistrationId(String gcmRegistrationId) {
       this.gcmRegistrationId = gcmRegistrationId;
+    }
+  }
+
+  private class AttachmentDescriptor {
+    private String id;
+
+    public AttachmentDescriptor(String id) {
+      this.id = id;
+    }
+
+    public String getId() {
+      return id;
     }
   }
 
