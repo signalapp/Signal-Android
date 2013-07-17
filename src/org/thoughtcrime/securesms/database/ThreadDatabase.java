@@ -349,7 +349,7 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public Recipients getRecipientsForThreadId(Context context, long threadId) {
+  public Recipients getRecipientsForThreadId(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;
 

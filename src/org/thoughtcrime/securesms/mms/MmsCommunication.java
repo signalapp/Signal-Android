@@ -150,7 +150,7 @@ public class MmsCommunication {
       int ipAddress               = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
       ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-      if (!manager.requestRouteToHost(MmsDownloader.TYPE_MOBILE_MMS, ipAddress))
+      if (!manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress))
         throw new IOException("Connection manager could not obtain route to host.");
     }
   }

@@ -235,6 +235,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
+  public void markAsSending(long messageId) {
+    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE);
+    notifyConversationListeners(getThreadIdForMessage(messageId));
+  }
+
   public void markAsSent(long messageId, byte[] mmsId, long status) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     ContentValues contentValues = new ContentValues();

@@ -7,6 +7,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.ServiceState;
 
+import org.thoughtcrime.securesms.mms.MmsRadio;
+
 public class SystemStateListener extends BroadcastReceiver {
 
   public  static final String ACTION_SERVICE_STATE       = "android.intent.action.SERVICE_STATE";
@@ -42,7 +44,7 @@ public class SystemStateListener extends BroadcastReceiver {
     ConnectivityManager connectivityManager
       = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-    NetworkInfo networkInfo = connectivityManager.getNetworkInfo(MmscProcessor.TYPE_MOBILE_MMS);
+    NetworkInfo networkInfo = connectivityManager.getNetworkInfo(MmsRadio.TYPE_MOBILE_MMS);
 
     if (networkInfo != null  && networkInfo.isAvailable()) {
       sendMmsOutbox(context);
