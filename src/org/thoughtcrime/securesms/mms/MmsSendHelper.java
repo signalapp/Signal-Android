@@ -24,10 +24,8 @@ import android.util.Log;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
-import org.thoughtcrime.securesms.service.MmscProcessor;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -39,7 +37,9 @@ import ws.com.google.android.mms.pdu.SendConf;
 
 public class MmsSendHelper extends MmsCommunication {
 
-  private static byte[] makePost(Context context, MmsConnectionParameters parameters, byte[] mms) throws ClientProtocolException, IOException {
+  private static byte[] makePost(Context context, MmsConnectionParameters parameters, byte[] mms)
+      throws IOException
+  {
     AndroidHttpClient client = null;
 
     try {
@@ -114,7 +114,7 @@ public class MmsSendHelper extends MmsCommunication {
   public static boolean hasNecessaryApnDetails(Context context) {
     try {
       ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-      String apn = connectivityManager.getNetworkInfo(MmscProcessor.TYPE_MOBILE_MMS).getExtraInfo();
+      String apn = connectivityManager.getNetworkInfo(MmsRadio.TYPE_MOBILE_MMS).getExtraInfo();
 
       MmsCommunication.getMmsConnectionParameters(context, apn, true);
       return true;
