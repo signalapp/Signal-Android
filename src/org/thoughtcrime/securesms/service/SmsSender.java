@@ -100,7 +100,7 @@ public class SmsSender {
       registerForRadioChanges();
     } else {
       long threadId         = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
-      Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(context, threadId);
+      Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
 
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
       MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);

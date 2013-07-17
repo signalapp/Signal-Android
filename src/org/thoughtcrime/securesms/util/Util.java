@@ -25,6 +25,8 @@ import android.widget.EditText;
 import android.os.Build;
 import android.provider.Telephony;
 
+import org.thoughtcrime.securesms.mms.MmsRadio;
+
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -131,6 +133,14 @@ public class Util {
     } catch (UnsupportedEncodingException e) {
       Log.w("Util", "ISO_8859_1 must be supported!", e);
       return new byte[0];
+    }
+  }
+
+  public static void wait(Object lock, int timeout) {
+    try {
+      lock.wait(timeout);
+    } catch (InterruptedException ie) {
+      throw new AssertionError(ie);
     }
   }
 
