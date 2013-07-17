@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.transport.MmsTransport;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.transport.UniversalTransport;
 
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
@@ -52,10 +53,10 @@ public class MmsSender {
   }
 
   private void handleSendMms(MasterSecret masterSecret, Intent intent) {
-    long         messageId = intent.getLongExtra("message_id", -1);
-    MmsDatabase  database  = DatabaseFactory.getMmsDatabase(context);
-    ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
-    MmsTransport transport = new MmsTransport(context, masterSecret);
+    long               messageId = intent.getLongExtra("message_id", -1);
+    MmsDatabase        database  = DatabaseFactory.getMmsDatabase(context);
+    ThreadDatabase     threads   = DatabaseFactory.getThreadDatabase(context);
+    UniversalTransport transport = new UniversalTransport(context, masterSecret);
 
     try {
       SendReq[] messages = database.getOutgoingMessages(masterSecret, messageId);
