@@ -1,7 +1,9 @@
 package org.whispersystems.textsecure.push;
 
 
-public class RateLimitException extends Exception {
+import java.io.IOException;
+
+public class RateLimitException extends IOException {
   public RateLimitException(String s) {
     super(s);
   }
