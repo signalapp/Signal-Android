@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Collection;
+import java.util.List;
 
 public class Util {
   public static boolean isEmpty(String value) {
@@ -54,5 +56,19 @@ public class Util {
     in.close();
 
     return new String(bout.toByteArray());
+  }
+
+  public static String join(Collection<String> list, String delimiter) {
+    StringBuilder result = new StringBuilder();
+    int i=0;
+
+    for (String item : list) {
+      result.append(item);
+
+      if (++i < list.size())
+        result.append(delimiter);
+    }
+
+    return result.toString();
   }
 }

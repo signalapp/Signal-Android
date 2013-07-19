@@ -24,8 +24,17 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.RateLimitException;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.GenericPdu;
 import ws.com.google.android.mms.pdu.NotificationInd;
 import ws.com.google.android.mms.pdu.PduHeaders;
@@ -39,6 +48,54 @@ public class MmsReceiver {
     this.context = context;
   }
 
+  public void process(MasterSecret masterSecret, Intent intent) {
+    try {
+      if (intent.getAction().equals(SendReceiveService.RECEIVE_MMS_ACTION)) {
+        handleMmsNotification(intent);
+      } else if (intent.getAction().equals(SendReceiveService.RECEIVE_PUSH_MMS_ACTION)) {
+        handlePushMedia(masterSecret, intent);
+      }
+    } catch (MmsException e) {
+      Log.w("MmsReceiver", e);
+    }
+  }
+
+  private void handleMmsNotification(Intent intent) {
+    byte[] mmsData   = intent.getByteArrayExtra("data");
+    PduParser parser = new PduParser(mmsData);
+    GenericPdu pdu   = parser.parse();
+
+    if (pdu.getMessageType() == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
+      MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
+      Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu);
+
+      Log.w("MmsReceiver", "Inserted received MMS notification...");
+      scheduleDownload((NotificationInd)pdu, messageAndThreadId.first, messageAndThreadId.second);
+    }
+  }
+
+  private void handlePushMedia(MasterSecret masterSecret, Intent intent) throws MmsException {
+    IncomingPushMessage pushMessage = intent.getParcelableExtra("media_message");
+    String              localNumber = TextSecurePreferences.getLocalNumber(context);
+    String              password    = TextSecurePreferences.getPushServerPassword(context);
+    PushServiceSocket   socket      = new PushServiceSocket(context, localNumber, password);
+
+    try {
+      List<File>           attachments = socket.retrieveAttachments(pushMessage.getAttachments());
+      IncomingMediaMessage message     = new IncomingMediaMessage(localNumber, pushMessage, attachments);
+
+      DatabaseFactory.getMmsDatabase(context).insertMessageInbox(masterSecret, message, "", -1);
+    } catch (IOException e) {
+      Log.w("MmsReceiver", e);
+      try {
+        IncomingMediaMessage message = new IncomingMediaMessage(localNumber, pushMessage, null);
+        DatabaseFactory.getMmsDatabase(context).insertMessageInbox(masterSecret, message, "", -1);
+      } catch (IOException e1) {
+        throw new MmsException(e1);
+      }
+    }
+  }
+
   private void scheduleDownload(NotificationInd pdu, long messageId, long threadId) {
     Intent intent = new Intent(SendReceiveService.DOWNLOAD_MMS_ACTION, null, context, SendReceiveService.class);
     intent.putExtra("content_location", new String(pdu.getContentLocation()));
@@ -48,23 +105,6 @@ public class MmsReceiver {
     intent.putExtra("automatic", true);
 
     context.startService(intent);
-  }
-
-  public void process(MasterSecret masterSecret, Intent intent) {
-    byte[] mmsData   = intent.getByteArrayExtra("data");
-    PduParser parser = new PduParser(mmsData);
-    GenericPdu pdu   = parser.parse();
-
-    if (pdu.getMessageType() == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
-      MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
-      Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu);
-//      long threadId        = database.getThreadIdForMessage(messageId);
-
-//      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
-      scheduleDownload((NotificationInd)pdu, messageAndThreadId.first, messageAndThreadId.second);
-
-      Log.w("MmsReceiverService", "Inserted received notification...");
-    }
   }
 
 }

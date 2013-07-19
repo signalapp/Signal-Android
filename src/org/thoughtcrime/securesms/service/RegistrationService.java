@@ -5,24 +5,23 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.Pair;
 
 import com.google.android.gcm.GCMRegistrar;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.directory.DirectoryDescriptor;
+import org.whispersystems.textsecure.directory.NumberFilter;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.Util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -172,7 +171,8 @@ public class RegistrationService extends Service {
       String gcmRegistrationId = waitForGcmRegistrationId();
 
       socket.registerGcmId(gcmRegistrationId);
-      socket.retrieveDirectory(this);
+      Pair<DirectoryDescriptor, File> directory = socket.retrieveDirectory();
+      NumberFilter.getInstance(this).update(directory.first, directory.second);
 
       markAsVerified(number, password);
 
@@ -189,10 +189,6 @@ public class RegistrationService extends Service {
     } catch (GcmRegistrationTimeoutException e) {
       Log.w("RegistrationService", e);
       setState(new RegistrationState(RegistrationState.STATE_GCM_TIMEOUT));
-      broadcastComplete(false);
-    } catch (RateLimitException e) {
-      Log.w("RegistrationService", e);
-      setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR));
       broadcastComplete(false);
     } finally {
       shutdownGcmRegistrationListener();
@@ -222,7 +218,8 @@ public class RegistrationService extends Service {
       String gcmRegistrationId = waitForGcmRegistrationId();
 
       socket.registerGcmId(gcmRegistrationId);
-      socket.retrieveDirectory(this);
+      Pair<DirectoryDescriptor, File> directory = socket.retrieveDirectory();
+      NumberFilter.getInstance(this).update(directory.first, directory.second);
 
       markAsVerified(number, password);
 
@@ -243,10 +240,6 @@ public class RegistrationService extends Service {
     } catch (GcmRegistrationTimeoutException e) {
       Log.w("RegistrationService", e);
       setState(new RegistrationState(RegistrationState.STATE_GCM_TIMEOUT));
-      broadcastComplete(false);
-    } catch (RateLimitException e) {
-      Log.w("RegistrationService", e);
-      setState(new RegistrationState(RegistrationState.STATE_NETWORK_ERROR));
       broadcastComplete(false);
     } finally {
       shutdownChallengeListener();

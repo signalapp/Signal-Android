@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.textsecure.push.PushAttachment;
+import org.whispersystems.textsecure.push.PushAttachmentData;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
@@ -52,11 +52,11 @@ public class PushTransport extends BaseTransport {
 
   public void deliver(SendReq message, List<String> destinations) throws IOException {
     try {
-      String               localNumber = TextSecurePreferences.getLocalNumber(context);
-      String               password    = TextSecurePreferences.getPushServerPassword(context);
-      PushServiceSocket    socket      = new PushServiceSocket(context, localNumber, password);
-      String               messageText = PartParser.getMessageText(message.getBody());
-      List<PushAttachment> attachments = getAttachmentsFromBody(message.getBody());
+      String                   localNumber = TextSecurePreferences.getLocalNumber(context);
+      String                   password    = TextSecurePreferences.getPushServerPassword(context);
+      PushServiceSocket        socket      = new PushServiceSocket(context, localNumber, password);
+      String                   messageText = PartParser.getMessageText(message.getBody());
+      List<PushAttachmentData> attachments = getAttachmentsFromBody(message.getBody());
 
       if (attachments.isEmpty()) socket.sendMessage(destinations, messageText);
       else                       socket.sendMessage(destinations, messageText, attachments);
@@ -66,8 +66,8 @@ public class PushTransport extends BaseTransport {
     }
   }
 
-  private List<PushAttachment> getAttachmentsFromBody(PduBody body) {
-    List<PushAttachment> attachments = new LinkedList<PushAttachment>();
+  private List<PushAttachmentData> getAttachmentsFromBody(PduBody body) {
+    List<PushAttachmentData> attachments = new LinkedList<PushAttachmentData>();
 
     for (int i=0;i<body.getPartsNum();i++) {
       String contentType = Util.toIsoString(body.getPart(i).getContentType());
@@ -76,7 +76,7 @@ public class PushTransport extends BaseTransport {
           ContentType.isAudioType(contentType) ||
           ContentType.isVideoType(contentType))
       {
-        attachments.add(new PushAttachment(contentType, body.getPart(i).getData()));
+        attachments.add(new PushAttachmentData(contentType, body.getPart(i).getData()));
       }
     }
 

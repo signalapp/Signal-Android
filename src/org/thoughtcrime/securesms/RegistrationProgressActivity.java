@@ -452,12 +452,12 @@ public class RegistrationProgressActivity extends SherlockActivity {
             PushServiceSocket socket = new PushServiceSocket(context, e164number, password);
             socket.verifyAccount(code);
             return SUCCESS;
-          } catch (IOException e) {
-            Log.w("RegistrationProgressActivity", e);
-            return NETWORK_ERROR;
           } catch (RateLimitException e) {
             Log.w("RegistrationProgressActivity", e);
             return RATE_LIMIT_ERROR;
+          } catch (IOException e) {
+            Log.w("RegistrationProgressActivity", e);
+            return NETWORK_ERROR;
           }
         }
       }.execute();
@@ -539,12 +539,12 @@ public class RegistrationProgressActivity extends SherlockActivity {
             socket.createAccount(true);
 
             return SUCCESS;
-          } catch (IOException e) {
-            Log.w("RegistrationProgressActivity", e);
-            return NETWORK_ERROR;
           } catch (RateLimitException e) {
             Log.w("RegistrationProgressActivity", e);
             return RATE_LIMIT_EXCEEDED;
+          } catch (IOException e) {
+            Log.w("RegistrationProgressActivity", e);
+            return NETWORK_ERROR;
           }
         }
       }.execute();

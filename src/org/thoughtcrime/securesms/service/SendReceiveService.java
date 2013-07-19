@@ -45,13 +45,14 @@ import java.util.List;
 
 public class SendReceiveService extends Service {
 
-  public static final String SEND_SMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SEND_SMS_ACTION";
-  public static final String SENT_SMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SENT_SMS_ACTION";
-  public static final String DELIVERED_SMS_ACTION             = "org.thoughtcrime.securesms.SendReceiveService.DELIVERED_SMS_ACTION";
-  public static final String RECEIVE_SMS_ACTION               = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_SMS_ACTION";
-  public static final String SEND_MMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SEND_MMS_ACTION";
-  public static final String RECEIVE_MMS_ACTION               = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_MMS_ACTION";
-  public static final String DOWNLOAD_MMS_ACTION              = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_MMS_ACTION";
+  public static final String SEND_SMS_ACTION         = "org.thoughtcrime.securesms.SendReceiveService.SEND_SMS_ACTION";
+  public static final String SENT_SMS_ACTION         = "org.thoughtcrime.securesms.SendReceiveService.SENT_SMS_ACTION";
+  public static final String DELIVERED_SMS_ACTION    = "org.thoughtcrime.securesms.SendReceiveService.DELIVERED_SMS_ACTION";
+  public static final String RECEIVE_SMS_ACTION      = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_SMS_ACTION";
+  public static final String SEND_MMS_ACTION         = "org.thoughtcrime.securesms.SendReceiveService.SEND_MMS_ACTION";
+  public static final String RECEIVE_MMS_ACTION      = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_MMS_ACTION";
+  public static final String RECEIVE_PUSH_MMS_ACTION = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_PUSH_MMS_ACTION";
+  public static final String DOWNLOAD_MMS_ACTION     = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_MMS_ACTION";
 
   private static final int SEND_SMS              = 0;
   private static final int RECEIVE_SMS           = 1;
@@ -89,19 +90,21 @@ public class SendReceiveService extends Service {
   public void onStart(Intent intent, int startId) {
     if (intent == null) return;
 
-    if (intent.getAction().equals(SEND_SMS_ACTION))
+    String action = intent.getAction();
+
+    if (action.equals(SEND_SMS_ACTION))
       scheduleSecretRequiredIntent(SEND_SMS, intent);
-    else if (intent.getAction().equals(RECEIVE_SMS_ACTION))
+    else if (action.equals(RECEIVE_SMS_ACTION))
       scheduleIntent(RECEIVE_SMS, intent);
-    else if (intent.getAction().equals(SENT_SMS_ACTION))
+    else if (action.equals(SENT_SMS_ACTION))
       scheduleIntent(SEND_SMS, intent);
-    else if (intent.getAction().equals(DELIVERED_SMS_ACTION))
+    else if (action.equals(DELIVERED_SMS_ACTION))
       scheduleIntent(SEND_SMS, intent);
-    else if (intent.getAction().equals(SEND_MMS_ACTION))
+    else if (action.equals(SEND_MMS_ACTION))
       scheduleSecretRequiredIntent(SEND_MMS, intent);
-    else if (intent.getAction().equals(RECEIVE_MMS_ACTION))
+    else if (action.equals(RECEIVE_MMS_ACTION) || action.equals(RECEIVE_PUSH_MMS_ACTION))
       scheduleIntent(RECEIVE_MMS, intent);
-    else if (intent.getAction().equals(DOWNLOAD_MMS_ACTION))
+    else if (action.equals(DOWNLOAD_MMS_ACTION))
       scheduleSecretRequiredIntent(DOWNLOAD_MMS, intent);
     else
       Log.w("SendReceiveService", "Received intent with unknown action: " + intent.getAction());

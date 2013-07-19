@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.push.IncomingGcmMessage;
+import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.Util;
@@ -33,8 +33,6 @@ public class GcmIntentService extends GCMBaseIntentService {
         getGcmSocket(context).registerGcmId(registrationId);
       } catch (IOException e) {
         Log.w("GcmIntentService", e);
-      } catch (RateLimitException e) {
-        Log.w("GcmIntentService", e);
       }
     }
   }
@@ -45,22 +43,30 @@ public class GcmIntentService extends GCMBaseIntentService {
       getGcmSocket(context).unregisterGcmId();
     } catch (IOException ioe) {
       Log.w("GcmIntentService", ioe);
-    } catch (RateLimitException e) {
-      Log.w("GcmIntentService", e);
     }
   }
 
 
   @Override
   protected void onMessage(Context context, Intent intent) {
-    Log.w("GcmIntentService", "Got GCM message!");
     String data = intent.getStringExtra("message");
     Log.w("GcmIntentService", "GCM message: " + data);
 
     if (Util.isEmpty(data))
       return;
 
-    IncomingGcmMessage message              = new Gson().fromJson(data, IncomingGcmMessage.class);
+    IncomingPushMessage message = new Gson().fromJson(data, IncomingPushMessage.class);
+
+    if (!message.hasAttachments()) handleIncomingTextMessage(context, message);
+    else                           handleIncomingMediaMessage(context, message);
+  }
+
+  @Override
+  protected void onError(Context context, String s) {
+    Log.w("GcmIntentService", "GCM Error: " + s);
+  }
+
+  private void handleIncomingTextMessage(Context context, IncomingPushMessage message) {
     ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>();
     messages.add(new IncomingTextMessage(message));
 
@@ -70,9 +76,11 @@ public class GcmIntentService extends GCMBaseIntentService {
     context.startService(receivedIntent);
   }
 
-  @Override
-  protected void onError(Context context, String s) {
-    Log.w("GcmIntentService", "GCM Error: " + s);
+  private void handleIncomingMediaMessage(Context context, IncomingPushMessage message) {
+    Intent receivedIntent = new Intent(context, SendReceiveService.class);
+    receivedIntent.setAction(SendReceiveService.RECEIVE_PUSH_MMS_ACTION);
+    receivedIntent.putExtra("media_message", message);
+    context.startService(receivedIntent);
   }
 
   private PushServiceSocket getGcmSocket(Context context) {
