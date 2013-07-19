@@ -5,8 +5,11 @@ import android.content.Context;
 import android.widget.EditText;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Collection;
@@ -44,6 +47,10 @@ public class Util {
     }
   }
 
+  public static String readFully(File file) throws IOException {
+    return readFully(new FileInputStream(file));
+  }
+
   public static String readFully(InputStream in) throws IOException {
     ByteArrayOutputStream bout = new ByteArrayOutputStream();
     byte[] buffer              = new byte[4096];
@@ -56,6 +63,18 @@ public class Util {
     in.close();
 
     return new String(bout.toByteArray());
+  }
+
+  public static void copy(InputStream in, OutputStream out) throws IOException {
+    byte[] buffer = new byte[4096];
+    int read;
+
+    while ((read = in.read(buffer)) != -1) {
+      out.write(buffer, 0, read);
+    }
+
+    in.close();
+    out.close();
   }
 
   public static String join(Collection<String> list, String delimiter) {
