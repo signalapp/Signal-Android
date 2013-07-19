@@ -29,7 +29,11 @@ import android.provider.Telephony;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -151,6 +155,19 @@ public class Util {
     return PhoneNumberFormatter.formatNumber(number, localNumber);
   }
 
+  public static byte[] readFully(InputStream in) throws IOException {
+    ByteArrayOutputStream baos   = new ByteArrayOutputStream();
+    byte[]                buffer = new byte[4069];
+
+    int read;
+
+    while ((read = in.read(buffer)) != -1) {
+      baos.write(buffer, 0, read);
+    }
+
+    in.close();
+    return baos.toByteArray();
+  }
 
   public static boolean isDefaultSmsProvider(Context context){
     return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) ||

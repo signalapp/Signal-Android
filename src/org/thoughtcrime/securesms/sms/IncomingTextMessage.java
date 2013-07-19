@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
-import org.whispersystems.textsecure.push.IncomingGcmMessage;
+import org.whispersystems.textsecure.push.IncomingPushMessage;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class IncomingTextMessage implements Parcelable {
     this.sentTimestampMillis  = message.getTimestampMillis();
   }
 
-  public IncomingTextMessage(IncomingGcmMessage message) {
+  public IncomingTextMessage(IncomingPushMessage message) {
     this.message              = message.getMessageText();
     this.sender               = message.getSource();
     this.protocol             = 31337;

@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
+import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
@@ -177,11 +178,13 @@ public class MmsDownloader {
                                  long messageId, long threadId, RetrieveConf retrieved)
       throws MmsException
   {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
+    IncomingMediaMessage message  = new IncomingMediaMessage(retrieved);
+
     Pair<Long, Long> messageAndThreadId;
 
     if (retrieved.getSubject() != null && WirePrefix.isEncryptedMmsSubject(retrieved.getSubject().getString())) {
-      messageAndThreadId = database.insertSecureMessageInbox(masterSecret, retrieved,
+      messageAndThreadId = database.insertSecureMessageInbox(masterSecret, message,
                                                              contentLocation, threadId);
 
       if (masterSecret != null)
@@ -189,7 +192,7 @@ public class MmsDownloader {
                                            messageAndThreadId.second, retrieved);
 
     } else {
-      messageAndThreadId = database.insertMessageInbox(masterSecret, retrieved,
+      messageAndThreadId = database.insertMessageInbox(masterSecret, message,
                                                        contentLocation, threadId);
     }
 

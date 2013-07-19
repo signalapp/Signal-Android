@@ -33,6 +33,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Handles providing lookups, serializing, and deserializing the RedPhone directory.
@@ -102,7 +103,30 @@ public class NumberFilter {
     }
   }
 
-  public synchronized void update(File bloomFilter, long capacity, int hashCount, String version)
+  public synchronized void update(DirectoryDescriptor descriptor, File compressedData) {
+    try {
+      File             uncompressed = File.createTempFile("directory", ".dat", context.getFilesDir());
+      FileInputStream  fin          = new FileInputStream (compressedData);
+      GZIPInputStream  gin          = new GZIPInputStream(fin);
+      FileOutputStream out          = new FileOutputStream(uncompressed);
+
+      byte[] buffer = new byte[4096];
+      int read;
+
+      while ((read = gin.read(buffer)) != -1) {
+        out.write(buffer, 0, read);
+      }
+
+      out.close();
+      compressedData.delete();
+
+      update(uncompressed, descriptor.getCapacity(), descriptor.getHashCount(), descriptor.getVersion());
+    } catch (IOException ioe) {
+      Log.w("NumberFilter", ioe);
+    }
+  }
+
+  private synchronized void update(File bloomFilter, long capacity, int hashCount, String version)
   {
     if (this.bloomFilter != null)
       this.bloomFilter.delete();

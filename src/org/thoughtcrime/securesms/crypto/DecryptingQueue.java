@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -212,7 +213,7 @@ public class DecryptingQueue {
         RetrieveConf plaintextPdu                = new RetrieveConf(plaintextGenericPdu.getPduHeaders(),
                                                                     plaintextGenericPdu.getBody());
         Log.w("DecryptingQueue", "Successfully decrypted MMS!");
-        database.insertSecureDecryptedMessageInbox(masterSecret, plaintextPdu, threadId);
+        database.insertSecureDecryptedMessageInbox(masterSecret, new IncomingMediaMessage(plaintextPdu), threadId);
         database.delete(messageId);
       } catch (RecipientFormattingException rfe) {
         Log.w("DecryptingQueue", rfe);

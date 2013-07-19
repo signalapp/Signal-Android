@@ -57,7 +57,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.RateLimitException;
 
 import java.io.IOException;
 
@@ -359,9 +358,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
               GCMRegistrar.unregister(context);
               return SUCCESS;
             } catch (IOException e) {
-              Log.w("ApplicationPreferencesActivity", e);
-              return NETWORK_ERROR;
-            } catch (RateLimitException e) {
               Log.w("ApplicationPreferencesActivity", e);
               return NETWORK_ERROR;
             }
