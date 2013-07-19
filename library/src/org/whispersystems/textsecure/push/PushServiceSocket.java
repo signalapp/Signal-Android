@@ -134,10 +134,10 @@ public class PushServiceSocket {
     return new Gson().fromJson(response.second, AttachmentKey.class).getId();
   }
 
-  public List<File> retrieveAttachments(List<PushAttachmentPointer> attachmentIds)
+  public List<Pair<File,String>> retrieveAttachments(List<PushAttachmentPointer> attachmentIds)
       throws IOException
   {
-    List<File> attachments = new LinkedList<File>();
+    List<Pair<File,String>> attachments = new LinkedList<Pair<File,String>>();
 
     for (PushAttachmentPointer attachmentId : attachmentIds) {
       Pair<String, String> response = makeRequestForResponseHeader(String.format(ATTACHMENT_PATH, attachmentId.getKey()),
@@ -146,9 +146,10 @@ public class PushServiceSocket {
       Log.w("PushServiceSocket", "Attachment: " + attachmentId.getKey() + " is at: " + response.first);
 
       File attachment = File.createTempFile("attachment", ".tmp", context.getFilesDir());
-      downloadExternalFile(response.first, attachment);
+      attachment.deleteOnExit();
 
-      attachments.add(attachment);
+      downloadExternalFile(response.first, attachment);
+      attachments.add(new Pair<File, String>(attachment, attachmentId.getContentType()));
     }
 
     return attachments;

@@ -1,15 +1,14 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.PushAttachmentPointer;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import ws.com.google.android.mms.pdu.CharacterSets;
@@ -29,7 +28,8 @@ public class IncomingMediaMessage {
     this.body    = retreived.getBody();
   }
 
-  public IncomingMediaMessage(String localNumber, IncomingPushMessage message, List<File> attachments)
+  public IncomingMediaMessage(String localNumber, IncomingPushMessage message,
+                              List<Pair<File, String>> attachments)
       throws IOException
   {
     this.headers = new PduHeaders();
@@ -53,20 +53,18 @@ public class IncomingMediaMessage {
       body.addPart(text);
     }
 
-    Iterator<PushAttachmentPointer> descriptors = message.getAttachments().iterator();
-
     if (attachments != null) {
-      for (File attachment : attachments) {
+      for (Pair<File, String> attachment : attachments) {
         PduPart               media      = new PduPart();
-        FileInputStream       fin        = new FileInputStream(attachment);
+        FileInputStream       fin        = new FileInputStream(attachment.first);
         byte[]                data       = Util.readFully(fin);
-        PushAttachmentPointer descriptor = descriptors.next();
 
-        Log.w("IncomingMediaMessage", "Adding part: " + descriptor.getContentType() + " with length: " + data.length);
+        Log.w("IncomingMediaMessage", "Adding part: " + attachment.second + " with length: " + data.length);
 
-        media.setContentType(descriptor.getContentType().getBytes(CharacterSets.MIMENAME_ISO_8859_1));
+        media.setContentType(attachment.second.getBytes(CharacterSets.MIMENAME_ISO_8859_1));
         media.setData(data);
         body.addPart(media);
+        attachment.first.delete();
       }
     }
   }
