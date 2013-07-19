@@ -81,8 +81,8 @@ public class MmsReceiver {
     PushServiceSocket   socket      = new PushServiceSocket(context, localNumber, password);
 
     try {
-      List<File>           attachments = socket.retrieveAttachments(pushMessage.getAttachments());
-      IncomingMediaMessage message     = new IncomingMediaMessage(localNumber, pushMessage, attachments);
+      List<Pair<File, String>> attachments = socket.retrieveAttachments(pushMessage.getAttachments());
+      IncomingMediaMessage     message     = new IncomingMediaMessage(localNumber, pushMessage, attachments);
 
       DatabaseFactory.getMmsDatabase(context).insertMessageInbox(masterSecret, message, "", -1);
     } catch (IOException e) {
