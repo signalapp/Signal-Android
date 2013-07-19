@@ -54,8 +54,7 @@ public class MasterSecretUtil {
 
   public static MasterSecret changeMasterSecretPassphrase(Context context,
                                                           MasterSecret masterSecret,
-                                                          String newPassphrase,
-                                                          int iterations)
+                                                          String newPassphrase)
   {
     try {
       byte[] combinedSecrets = combineSecrets(masterSecret.getEncryptionKey().getEncoded(),
@@ -83,6 +82,7 @@ public class MasterSecretUtil {
   public static MasterSecret getMasterSecret(Context context, String passphrase, int iterations) throws InvalidPassphraseException {
     try {
       byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret");
+      int    iterations                   = getIterations(context);
       byte[] encryptedMasterSecret        = verifyMac(context, encryptedAndMacdMasterSecret, passphrase);
       byte[] combinedSecrets              = decryptWithPassphrase(context, encryptedMasterSecret, passphrase, iterations);
       byte[] encryptionSecret             = getEncryptionSecret(combinedSecrets);
@@ -97,6 +97,20 @@ public class MasterSecretUtil {
       Log.w("keyutil", e);
       return null; //XXX
     }
+  }
+
+  public static int getIterations(Context context) {
+      int iterations = retrieve(context, "iterations");
+      if (iterations == null) {
+          iterations = getIterationsForDevice();
+          save(context, "iterations", iterations);
+      }
+
+      return iterations;
+  }
+
+  public static int getIterationsForDevice(void) {
+      return 100;
   }
 
   public static AsymmetricMasterSecret getAsymmetricMasterSecret(Context context, MasterSecret masterSecret) {
