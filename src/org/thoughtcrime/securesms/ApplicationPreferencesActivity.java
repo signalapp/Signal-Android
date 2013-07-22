@@ -286,6 +286,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
                 break;
               case SUCCESS:
                 ((CheckBoxPreference)preference).setChecked(false);
+                TextSecurePreferences.setPushRegistered(ApplicationPreferencesActivity.this, false);
                 break;
             }
           }
