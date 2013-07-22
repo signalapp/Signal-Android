@@ -29,13 +29,17 @@ public class MultipartSmsMessageHandler {
   private final HashMap<String, MultipartSmsTransportMessageFragments> partialMessages =
       new HashMap<String, MultipartSmsTransportMessageFragments>();
 
-  private final HashMap<String, Integer>  idMap = new HashMap<String, Integer>();
-
   private IncomingTextMessage processMultipartMessage(MultipartSmsTransportMessage message) {
     Log.w("MultipartSmsMessageHandler", "Processing multipart message...");
+    Log.w("MultipartSmsMessageHandler", "Multipart Count: " + message.getMultipartCount());
+    Log.w("MultipartSmsMessageHandler", "Multipart ID: " + message.getIdentifier());
+    Log.w("MultipartSmsMessageHandler", "Multipart Key: " + message.getKey());
     MultipartSmsTransportMessageFragments container = partialMessages.get(message.getKey());
 
-    if (container == null) {
+    Log.w("MultipartSmsMessageHandler", "Found multipart container: " + container);
+
+    if (container == null || container.getSize() != message.getMultipartCount() || container.isExpired()) {
+      Log.w("MultipartSmsMessageHandler", "Constructing new container...");
       container = new MultipartSmsTransportMessageFragments(message.getMultipartCount());
       partialMessages.put(message.getKey(), container);
     }
@@ -81,24 +85,9 @@ public class MultipartSmsMessageHandler {
     }
   }
 
-  private byte getIdForRecipient(String recipient) {
-    Integer currentId;
-
-    if (idMap.containsKey(recipient)) {
-      currentId = idMap.get(recipient);
-      idMap.remove(recipient);
-    } else {
-      currentId = 0;
-    }
-
-    byte id  = currentId.byteValue();
-    idMap.put(recipient, (currentId + 1) % 255);
-
-    return id;
-  }
-
   public ArrayList<String> divideMessage(OutgoingTextMessage message) {
-    byte identifier = getIdForRecipient(message.getRecipients().getPrimaryRecipient().getNumber());
+    String number     = message.getRecipients().getPrimaryRecipient().getNumber();
+    byte   identifier = MultipartSmsIdentifier.getInstance().getIdForRecipient(number);
     return MultipartSmsTransportMessage.getEncoded(message, identifier);
   }
 }
