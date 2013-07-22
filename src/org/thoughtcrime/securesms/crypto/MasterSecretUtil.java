@@ -79,7 +79,7 @@ public class MasterSecretUtil {
     return masterSecret;
   }
 
-  public static MasterSecret getMasterSecret(Context context, String passphrase, int iterations) throws InvalidPassphraseException {
+  public static MasterSecret getMasterSecret(Context context, String passphrase) throws InvalidPassphraseException {
     try {
       byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret");
       int    iterations                   = getIterations(context);
