@@ -272,6 +272,8 @@ public class ConversationListFragment extends SherlockListFragment
   @Override
   public void onDestroyActionMode(ActionMode mode) {
     ((ConversationListAdapter)getListAdapter()).initializeBatchMode(false);
+    actionMode = null;
+    batchMode  = false;
   }
 
 }
