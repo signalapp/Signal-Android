@@ -300,6 +300,8 @@
   <string name="preferences__change_passphrase">Mudar frase-chave</string>
   <string name="preferences__change_my_passphrase">Mudar a minha frase-chave</string>
   <string name="preferences__complete_key_exchanges">Completar trocas de chaves</string>
+  <string name="preferences__disable_passphrase">Desabilitar frase-chave</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Desabilitar criptografia local de mensagens e chaves</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automaticamente intercâmbios de chaves para novas sessões ou para sessões existentes com a mesma chave de identidade</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Esquecer a frase-chave após algum intervalo</string>
   <string name="preferences__timeout_passphrase">Expirar frase-chave</string>

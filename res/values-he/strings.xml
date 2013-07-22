@@ -307,6 +307,7 @@
   <string name="preferences__dark_theme">כהה</string>
   <string name="preferences__appearance">מראה</string>
   <string name="preferences__theme">ערכת נושא</string>
+  <string name="preferences__default">ברירת מחדל</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -357,5 +358,6 @@
   <string name="text_secure_normal__mark_all_as_read">סמן הכל כנקרא</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">מאומת</string>
+  <string name="preferences__language">שפה</string>
   <!--EOF-->
 </resources>

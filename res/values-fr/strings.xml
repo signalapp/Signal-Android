@@ -13,6 +13,9 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Êtes-vous sur de vouloir réduire toutes les conversations aux %s messages les plus récents ?</string>
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
   <string name="ApplicationPreferencesActivity_my">Mon</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Désactiver le chiffrement de sauvegarde ?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nAttention, ceci désactivera le chiffrement de stockage pour tous les messages et toutes les clefs. Vos sessions chiffrées continueront de fonctionner mais une personne ayant un accès physique à votre appareil sera en mesure d\'y accéder.</string>
+  <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Image</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vidéo</string>
@@ -297,6 +300,8 @@
   <string name="preferences__change_passphrase">Modifier la phrase de passe</string>
   <string name="preferences__change_my_passphrase">Modifier mon mot de passe</string>
   <string name="preferences__complete_key_exchanges">Finaliser l’échange de clés</string>
+  <string name="preferences__disable_passphrase">Désactiver la phrase de passe</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Désactiver le chiffrement local des messages et des clés</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Finaliser automatiquement les échanges de clés pour les sessions, nouvelles ou existantes, avec la même clef d\'identité.</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Oublier le mot de passe en mémoire après une certaine durée</string>
   <string name="preferences__timeout_passphrase">Expiration du mot de passe</string>

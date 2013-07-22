@@ -13,6 +13,9 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Är du säker på att du omeddelbart vill trimma alla konversationstrådar till de %s senaste meddelandena?</string>
   <string name="ApplicationPreferencesActivity_delete">Radera</string>
   <string name="ApplicationPreferencesActivity_my">Mitt</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Inaktivera lagringskryptering?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nVarning, detta inaktiverar lagringskryptering för alla meddelanden och nycklar. Dina krypterade\nsessioner kommer fortsätta att fungera, men vem som helst med fysisk tillgång till din enhet\nkommer kunna komma åt dem.</string>
+  <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -297,6 +300,8 @@
   <string name="preferences__change_passphrase">Ändra lösenord</string>
   <string name="preferences__change_my_passphrase">Ändra mitt lösenord</string>
   <string name="preferences__complete_key_exchanges">Fullborda nyckelutbyten</string>
+  <string name="preferences__disable_passphrase">Inaktivera lösenord</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Inaktivera lokal kryptering av meddelanden och nycklar</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Fullfölj nyckelutbyten automatiskt för nya sessioner eller för existerande sessioner med samma identitetsnyckel</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Glöm lösenord från minnet efter ett intervall</string>
   <string name="preferences__timeout_passphrase">Timeout lösenord</string>
@@ -350,6 +355,7 @@
   <string name="preferences__dark_theme">Mörkt tema</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__default">Standard</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -400,5 +406,6 @@
   <string name="text_secure_normal__mark_all_as_read">Markera alla som lästa</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verifierad</string>
+  <string name="preferences__language">Språk</string>
   <!--EOF-->
 </resources>
