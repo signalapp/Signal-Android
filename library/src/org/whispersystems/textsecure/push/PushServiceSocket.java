@@ -269,6 +269,10 @@ public class PushServiceSocket {
       throw new RateLimitException("Rate limit exceeded: " + connection.getResponseCode());
     }
 
+    if (connection.getResponseCode() == 403) {
+      throw new AuthorizationFailedException("Authorization failed!");
+    }
+
     if (connection.getResponseCode() != 200) {
       throw new IOException("Bad response: " + connection.getResponseCode() + " " + connection.getResponseMessage());
     }
