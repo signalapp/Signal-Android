@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
+import org.whispersystems.textsecure.push.AuthorizationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 
 import java.io.IOException;
@@ -262,8 +263,11 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
               socket.unregisterGcmId();
               GCMRegistrar.unregister(context);
               return SUCCESS;
-            } catch (IOException e) {
-              Log.w("ApplicationPreferencesActivity", e);
+            } catch (AuthorizationFailedException afe) {
+              Log.w("ApplicationPreferencesActivity", afe);
+              return SUCCESS;
+            } catch (IOException ioe) {
+              Log.w("ApplicationPreferencesActivity", ioe);
               return NETWORK_ERROR;
             }
           }
