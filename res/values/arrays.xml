@@ -71,6 +71,7 @@
     <item>@string/preferences__orange</item>
     <item>@string/preferences__cyan</item>
     <item>@string/preferences__magenta</item>
+    <item>@string/preferences__white</item>
   </string-array>
   
 
@@ -81,12 +82,14 @@
     <item>yellow</item>
     <item>cyan</item>
     <item>magenta</item>
+    <item>white</item>
   </string-array>
   
   <string-array name="pref_led_blink_pattern_entries">
     <item>@string/preferences__fast</item>
     <item>@string/preferences__normal</item>
     <item>@string/preferences__slow</item>
+    <item>@string/preferences__always</item>
     <item>@string/preferences__custom</item>
   </string-array>
 
@@ -94,6 +97,7 @@
     <item>300,300</item>
     <item>500,2000</item>
     <item>3000,3000</item>
+    <item>1,0</item>
     <item>custom</item>
   </string-array>
 

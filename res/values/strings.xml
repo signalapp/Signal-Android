@@ -430,9 +430,11 @@
     <string name="preferences__orange">Orange</string>
     <string name="preferences__cyan">Cyan</string>
     <string name="preferences__magenta">Magenta</string>
+    <string name="preferences__white">White</string>
     <string name="preferences__fast">Fast</string>
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Slow</string>
+    <string name="preferences__always">Always On</string>
     <string name="preferences__custom">Custom</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__passphrase">Passphrase</string>
