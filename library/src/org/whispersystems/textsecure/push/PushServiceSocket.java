@@ -6,10 +6,8 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.google.thoughtcrimegson.Gson;
-import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.directory.DirectoryDescriptor;
-import org.whispersystems.textsecure.directory.NumberFilter;
 import org.whispersystems.textsecure.util.Util;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -33,7 +31,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.zip.GZIPInputStream;
 
 public class PushServiceSocket {
 
