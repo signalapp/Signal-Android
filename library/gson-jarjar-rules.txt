@@ -1,0 +1,1 @@
+rule com.google.gson.** com.google.thoughtcrimegson.@1
