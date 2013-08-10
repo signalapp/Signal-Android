@@ -126,7 +126,7 @@ public class DecryptingPartInputStream extends FileInputStream {
       length = (int)(totalDataSize - totalRead);
 		
     byte[] internalBuffer = new byte[length];
-    int read              = super.read(internalBuffer, 0, internalBuffer.length);
+    int read              = super.read(internalBuffer, 0, internalBuffer.length <= cipher.getBlockSize() ? internalBuffer.length : internalBuffer.length - cipher.getBlockSize());
     totalRead            += read;
 		
     try {
