@@ -18,17 +18,6 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := TextSecureLibrary
-LOCAL_SDK_VERSION := 8
-LOCAL_SRC_FILES := $(call all-java-files-under, src)
-LOCAL_STATIC_JAVA_LIBRARIES := libphonenumber thoughtcrimegson
-LOCAL_AAPT_INCLUDE_ALL_RESOURCES := true
-LOCAL_AAPT_FLAGS := -S $(LOCAL_PATH)/res --auto-add-overlay
-
-include $(BUILD_STATIC_JAVA_LIBRARY)
-
-include $(CLEAR_VARS)
-
 LOCAL_MODULE := thoughtcrimegson
 LOCAL_SDK_VERSION := 8
 LOCAL_SRC_FILES := $(call all-java-files-under, ../../../gson/src/main/java)
@@ -38,9 +27,17 @@ include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := libphonenumber
+LOCAL_MODULE := TextSecureLibrary
 LOCAL_SDK_VERSION := 8
-LOCAL_SRC_FILES := $(call all-java-files-under, ../../../libphonenumber/java/src)
-LOCAL_JARJAR_RULES := $(LOCAL_PATH)/libphonenumber-jarjar-rules.txt
+LOCAL_SRC_FILES := $(call all-java-files-under, src)
+LOCAL_STATIC_JAVA_LIBRARIES := libphonenumbergoogle thoughtcrimegson
+
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libphonenumbergoogle
+LOCAL_SDK_VERSION := 8
+LOCAL_SRC_FILES := $(call all-java-files-under, ../../../libphonenumbergoogle/java/libphonenumber/src)
 
 include $(BUILD_STATIC_JAVA_LIBRARY)
