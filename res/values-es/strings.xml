@@ -13,6 +13,9 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">¿Estás seguro de que te gustaría recortar inmediatamente todos los hilos de conversación a los %s últimos mensajes?</string>
   <string name="ApplicationPreferencesActivity_delete">Eliminar</string>
   <string name="ApplicationPreferencesActivity_my">Mi</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">¿Deshabilitar cifrado del almacenamiento?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n        Atención, esto deshabilitará el cifrado del almacenamiento para todos los mensajes y claves. Sus sesiones cifradas\n        funcionarán pero cualquiera con acceso físico a su dispositivo podrá acceder a ellas.\n    </string>
+  <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografía</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -54,6 +57,8 @@
   <string name="ConversationActivity_d_recipients_in_group">%d receptores en grupo</string>
   <string name="ConversationActivity_saving_draft">Guardando borrador...</string>
   <string name="ConversationActivity_invalid_recipient">Receptor inválido!</string>
+  <string name="ConversationActivity_calls_not_supported">Llamadas no compatibles</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remitente: %1$s\nTransporte: %2$s\nEnviado/Recibido:%3$s</string>
@@ -70,10 +75,37 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">¿Exportar a tarjeta SD?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Esto\n        exportará sus claves cifradas, configuración y mensajes a la tarjeta SD.\n    </string>
   <string name="ExportFragment_export">Exportar</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">¿Exportar mensajes en claro a la tarjeta SD?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atención, esto\n        exportará sus mensajes en claro desde TextSecure a la tarjeta SD.\n    </string>
+  <string name="ExportFragment_cancel">Cancelar</string>
+  <string name="ExportFragment_exporting">Exportando</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando mensajes en claro a la tarjeta SD...\n    </string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, ¡no se puede escribir en la tarjeta SD!\n     \n    </string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Se produjo un error mientras se escribía la tarjeta SD.\n    </string>
   <string name="ExportFragment_success">¡Éxito!</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportando claves cifradas,\n        configuración y mensajes...\n    </string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">¿Importar base de datos de SMS del sistema?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Esto importará\n        los mensajes desde la base de datos de SMS del sistema a TextSecure. Si la ha importado\n        anteriormente, obtendrá mensajes duplicados.\n    </string>
   <string name="ImportFragment_import">Importar</string>
+  <string name="ImportFragment_cancel">Cancelar</string>
+  <string name="ImportFragment_restore_encrypted_backup">¿Restaurar copia de seguridad cifrada?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n        Restaurar una copia de seguridad cifrada reemplazará completamente sus claves, preferencias y\n        mensajes. Perderá cualquier información que se encuentre en su instalación actual de TextSecure pero no\n       en la copia de seguridad.\n    </string>
+  <string name="ImportFragment_restore">Restaurar</string>
+  <string name="ImportFragment_import_plaintext_backup">¿Importar copia de seguridad de los mensajes en claro?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Esto importará\n        los mensajes desde una copia de seguridad sin cifrar. Si ha importado anteriormente la base de datos de SMS del sistema,\n        esto producirá mensajes duplicados.\n    </string>
+  <string name="ImportFragment_importing">Importando</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importando copia de seguridad de mensajes en claro...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">¡No se encontró una copia de seguridad de los mensajes en claro!</string>
+  <string name="ImportFragment_error_importing_backup">¡Error importando copia de seguridad!</string>
+  <string name="ImportFragment_import_complete">¡Se ha importado correctamente!</string>
+  <string name="ImportFragment_restoring">Restaurando</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Restaurando copia de seguridad cifrada...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">¡No se encontró la copia de seguridad cifrada!</string>
+  <string name="ImportFragment_restore_complete">¡Restauración completada!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
   <!--MmsDownloader-->
@@ -203,6 +235,16 @@
   <string name="database_migration_activity__importing">IMPORTANDO</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Actualizando Base de Datos...</string>
+  <string name="export_fragment__export_encrypted_backup">Exportar copia de seguridad cifrada</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportar copia de seguridad\n        cifrada a la tarjeta SD.\n    </string>
+  <string name="export_fragment__export_plaintext_backup">Exportar copia de seguridad de mensajes en claro</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n        Exportar una copia de seguridad de los mensajes en claro compatible con \'SMSBackup And Restore\'  a la tarjeta SD.</string>
+  <string name="import_fragment__import_system_sms_database">Importar base de datos SMS del sistema</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importar la base de datos\n        desde la aplicación de mensajería del sistema por defecto.\n    </string>
+  <string name="import_fragment__import_encrypted_backup">Importar copia de seguridad cifrada</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n       Restaurar una copia de seguridad cifrada previamente exportada desde TextSecure.\n    </string>
+  <string name="import_fragment__import_plaintext_backup">Importar copia de seguridad de mensajes en claro</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\n        Importar una copia de seguridad de mensajes en claro compatible con \'SMSBackup And Restore.\'</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE DE CONTRASEÑA DE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
@@ -241,6 +283,9 @@
   <string name="AndroidManifest__manage_identity_keys">Gestionar claves de identidad</string>
   <string name="AndroidManifest__complete_key_exchange">Completar el intercambio de claves</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">Importar / Exportar</string>
+  <string name="arrays__my_identity_key">Mi clave de identidad</string>
+  <string name="arrays__contact_keys">Claves de contacto</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
   <string name="preferences__pref_all_sms_title">Usar para todos los SMS</string>
@@ -255,6 +300,8 @@
   <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
   <string name="preferences__change_my_passphrase">Cambiar mi frase de contraseña</string>
   <string name="preferences__complete_key_exchanges">Completar intercambio de claves</string>
+  <string name="preferences__disable_passphrase">desactivar la frase de contraseña</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Desactive encriptación local de los mensajes y claves</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automáticamente los intercambios de clave para nuevas sesiones o para sesiones existentes con la misma clave de identidad</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Olvidar la frase de contraseña de la memoria después de un intervalo de tiempo</string>
   <string name="preferences__timeout_passphrase">Expirar la frase de contraseña</string>
@@ -304,6 +351,11 @@
   <string name="preferences__conversation_length_limit">Límite de longitud de la conversación</string>
   <string name="preferences__trim_all_threads_now">Recorta todos los hilos ahora</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Búsqueda a través de todos los hilos de conversación y fuerza los límites de longitud de la misma</string>
+  <string name="preferences__light_theme">Tema claro</string>
+  <string name="preferences__dark_theme">Tema oscuro</string>
+  <string name="preferences__appearance">Apariencia</string>
+  <string name="preferences__theme">Tema</string>
+  <string name="preferences__default">Por defecto</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -354,5 +406,6 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar Todos Leídos</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
+  <string name="preferences__language">Idioma</string>
   <!--EOF-->
 </resources>

@@ -75,17 +75,24 @@
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportar para cartão SD?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">As suas\nchaves de segurança, definições e mensagens serão exportadas para o cartão SD.\n</string>
   <string name="ExportFragment_export">Exportar</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportar texto simples para cartão SD?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atenção, esta operação\nirá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão SD.\n</string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportar</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">A exportar texto simples para cartão SD</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Erro, não é possível escrever para o\ncartão SD!\n</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Erro ao escrever para o cartão SD.\n</string>
   <string name="ExportFragment_success">Sucesso!</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">A exportar chaves de segurança,\ndefinições e mensagens...\n</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importar a base de dados SMS do sistema?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Esta operação irá\nexportar as mensagens da base de dados do seu sistema para o TextSecure. Se já as importou\nanteriormente, importar novamente poderá resultar em mensagens duplicadas.\n</string>
   <string name="ImportFragment_import">Importar</string>
   <string name="ImportFragment_cancel">Cancelar</string>
   <string name="ImportFragment_restore_encrypted_backup">Restaurar cópia de segurança cifrada?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nRestaurar um backup cifrado irá substituir totalmente as suas chaves, definições e msangens.\nIrá perder todas as informações na sua instalação atual do TextSecure, mas não do seu backup.\n</string>
   <string name="ImportFragment_restore">Restaurar</string>
   <string name="ImportFragment_import_plaintext_backup">Importar cópia de segurança em texto simples?</string>
   <string name="ImportFragment_importing">A importar</string>
@@ -227,6 +234,14 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">A actualizar a base de dados...</string>
   <string name="export_fragment__export_encrypted_backup">A exportar cópia de segurança cifrada</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportar um backup\ncifrado para o cartão SD.\n</string>
+  <string name="export_fragment__export_plaintext_backup">Exportar Backup Simples</string>
+  <string name="import_fragment__import_system_sms_database">Importar a base de dados SMS do sistema?</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importar a base de dados\nda aplicação predefinida do sistema.\n</string>
+  <string name="import_fragment__import_encrypted_backup">Importar cópia de segurança cifrada</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nRestaurar uma cópia de segurança cifrada TextSecure exportada.\n</string>
+  <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nImportar uma cópia de segurança de texto simples. Compatível com \'SMSBackup e Restaurar\'</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE-CHAVE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
@@ -265,6 +280,7 @@
   <string name="AndroidManifest__manage_identity_keys">Gerir chaves de identidade</string>
   <string name="AndroidManifest__complete_key_exchange">Completar intercâmbio de chaves</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__my_identity_key">A minha chave de identidade</string>
   <string name="arrays__contact_keys">Chaves de contacto</string>
   <!--preferences.xml-->

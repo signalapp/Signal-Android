@@ -8,12 +8,12 @@
   <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">鍵を管理する前に、パスワードを入力して下さい。</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">スレッド１本におけるメッセージ数</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">通のメッセージ（スレッド１本に対して）</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">全ての古いメッセージを今、削除しますか？</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">今すぐ全ての会話スレッドを最新メッセージ%s通にまで縮小（トリム）しますか？</string>
   <string name="ApplicationPreferencesActivity_delete">削除</string>
-  <string name="ApplicationPreferencesActivity_my">自分のフィンガープリント</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">端末内保存データの暗号化を無効化にしますか？</string>
+  <string name="ApplicationPreferencesActivity_my">自分のﾌｨﾝｶﾞｰﾌﾟﾘﾝﾄ</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">端末内保存データの暗号化を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！\n通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -95,16 +95,16 @@
   <string name="ImportFragment_restore_encrypted_backup">暗号化されたバックアップ・ファイルを復元しますか？</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
   <string name="ImportFragment_restore">復元</string>
-  <string name="ImportFragment_import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポートしますか？</string>
+  <string name="ImportFragment_import_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルをインポートしますか？</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前にこの作業を行ったことがあれば、メッセージが重複する場合があります。</string>
   <string name="ImportFragment_importing">インポート中…</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">非暗号テキストをインポート</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">非暗号テキストのバックアップ・ファイルをインポート中…</string>
   <string name="ImportFragment_no_plaintext_backup_found">非暗号テキストのバックアップ・ファイルが見つかりませんでした。</string>
   <string name="ImportFragment_error_importing_backup">バックアップ・ファイルのインポート中にエラーが発生しました。</string>
   <string name="ImportFragment_import_complete">インポート完了！</string>
   <string name="ImportFragment_restoring">復元中…</string>
   <string name="ImportFragment_restoring_encrypted_backup">暗号化されたバックアップ・ファイルをインポート中…</string>
-  <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップ・ファイルが見つかりませんでした。</string>
+  <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップ・ファイルは見つかりませんでした。</string>
   <string name="ImportFragment_restore_complete">復元完了！</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>
@@ -146,7 +146,7 @@
   <string name="VerifyKeysActivity_scan_their_fingerprint">フィンガープリントをスキャン</string>
   <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">警告、スキャンした鍵が正しくありません！フィンガープリントのテキストを慎重にチェックしてください。</string>
   <string name="VerifyKeysActivity_not_verified_exclamation">照合できませんでした！</string>
-  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">相手の鍵は正しいです。自分のフィンガープリントもスキャンする必要があります。</string>
+  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">相手の鍵は正しいです。自分のフィンガープリントもスキャンしてもらう必要があります。</string>
   <string name="VerifyKeysActivity_verified_exclamation">照合できました。</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>
@@ -156,7 +156,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">スキャンした鍵が一致しました！</string>
   <string name="ViewIdentityActivity_verified_exclamation">照合できました。</string>
-  <string name="ViewIdentityActivity_identity_fingerprint">認証フィンガープリント</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">認証ﾌｨﾝｶﾞｰﾌﾟﾘﾝﾄ</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">セッション開始のリクエストはすでにこの受信者に送られています。別のリクエストをまた送ってもよろしいですか？送信すると、最初に送ったリクエストは無効になります。</string>
@@ -236,15 +236,15 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
   <string name="export_fragment__export_encrypted_backup">暗号化されたバックアップ・ファイルをエクスポート</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化されたバックアップ・ファイルをエクスポート</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化されたバックアップ・ファイルをエクスポートします</string>
   <string name="export_fragment__export_plaintext_backup">非暗号テキストのバックアップ・ファイルをエクスポート</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n「SMSバックアップと復元」と互換性のある非暗号テキストのバックアップ・ファイルをSDカードにエクスポート</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
   <string name="import_fragment__import_system_sms_database">端末内のSMSデータベースをインポート</string>
   <string name="import_fragment__import_the_database_from_the_default_system">端末の既定のメッセンジャー・アプリからデータベースをインポート</string>
   <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップ・ファイルをインポート</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n前回エクスポートした暗号化されたTextSecureバックアップ・ファイルを復元</string>
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\n非暗号テキストのバックアップ・ファイルをインポート。「SMSバックアップと復元」と互換可能。</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\n暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TextSecureパスワード</string>
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
@@ -290,19 +290,21 @@
   <string name="preferences__general">一般設定</string>
   <string name="preferences__pref_all_sms_title">すべてのSMSに使用</string>
   <string name="preferences__pref_all_mms_title">すべてのMMSに使用</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">すべての受信テキスト・メッセージを表示および保存するのにTextSecureを使用する</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信するすべてのファイル付きメッセージを表示および保存するのにTextSecureを使用する</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキストメッセージ）の表示、及び保存にTextSecureを使用します</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）の表示、及び保存にTextSecureを使用します</string>
   <string name="preferences__pref_enter_sends_title">Enterキーで送信</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enterキーを押すとテキストメッセージが送信されます。</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enterキーを押すとテキストメッセージが送信されます</string>
   <string name="preferences__display_settings">表示設定</string>
   <string name="preferences__choose_identity">IDを選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
   <string name="preferences__change_my_passphrase">パスワードの変更</string>
   <string name="preferences__complete_key_exchanges">鍵交換の自動完了</string>
+  <string name="preferences__disable_passphrase">パスワードを無効にする</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">携帯端末におけるメッセージ及び鍵の暗号化を無効にする</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">同じIDネームとの新しいセッション、又は現在のセッションをするのに鍵交換を自動で完了させる</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">一定時間経過するとメモリからパスワードを消去する</string>
-  <string name="preferences__timeout_passphrase">パスワードのタイムアウト</string>
+  <string name="preferences__timeout_passphrase">パスワードの\nタイムアウト</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">パスワードの有効時間を選択</string>
   <string name="preferences__pref_timeout_interval_title">タイムアウトの間隔</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">メモリからパスワードを消去するまでの待ち時間です</string>
@@ -311,9 +313,9 @@
   <string name="preferences__manage_identity_keys">認証キーを管理</string>
   <string name="preferences__manage_configured_identity_keys">設定済みの認証キーを管理</string>
   <string name="preferences__notifications">通知</string>
-  <string name="preferences__display_message_notifications_in_status_bar">通知メッセージをステータスバーに表示</string>
+  <string name="preferences__display_message_notifications_in_status_bar">受信通知をステータスバーに表示</string>
   <string name="preferences__led_color">LED色</string>
-  <string name="preferences__change_notification_led_color">通知するLED色を変更</string>
+  <string name="preferences__change_notification_led_color">受信通知のLED色を変更</string>
   <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
   <string name="preferences__change_notification_blink_pattern">通知LED点滅パターンの変更</string>
   <string name="preferences__pref_led_blink_dialogtitle">LED点滅パターンを選択</string>
@@ -341,19 +343,19 @@
   <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
   <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
   <string name="preferences__mms_proxy_port_optional">MMSプロキシ・ポート（選択自由）</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつける</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
   <string name="preferences__sms_delivery_reports">SMS配信報告</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">会話スレッドが一定の長さを超えると、古いメッセージが自動的に削除されます</string>
   <string name="preferences__delete_old_messages">古いメッセージの削除</string>
   <string name="preferences__storage">ストレージ</string>
   <string name="preferences__conversation_length_limit">会話の最大の長さ</string>
-  <string name="preferences__trim_all_threads_now">すべてのスレッドを今、トリムする</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">すべての会話スレッドをスキャンして、会話の長さ制限を強制します</string>
+  <string name="preferences__trim_all_threads_now">全スレッドを今、トリムする</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">すべての会話スレッドをスキャンして、会話の長さの制限を強制します</string>
   <string name="preferences__light_theme">白基調</string>
   <string name="preferences__dark_theme">黒基調</string>
   <string name="preferences__appearance">デザイン設定</string>
   <string name="preferences__theme">テーマ</string>
-  <string name="preferences__default">初期設定</string>
+  <string name="preferences__default">初期設定の言語</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

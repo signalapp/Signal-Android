@@ -13,6 +13,9 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Er du sikker på at du ønsker å umiddelbart trimme alle samtaletrådene til de siste %s meldinger?</string>
   <string name="ApplicationPreferencesActivity_delete">Slett</string>
   <string name="ApplicationPreferencesActivity_my">Min</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Deaktivere kryptert lagring?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nAdvarsel! Dette vil deaktivere kryptert lagring av alle meldinger og nøkler. Dine krypterte sesjoner vil fortsette å fungere, men alle med fysisk tilgang til enheten din vil kunne få tilgang til dem.</string>
+  <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -297,6 +300,8 @@
   <string name="preferences__change_passphrase">Endre passord</string>
   <string name="preferences__change_my_passphrase">Endre mitt passord</string>
   <string name="preferences__complete_key_exchanges">Fullfør nøkkelutvekslinger</string>
+  <string name="preferences__disable_passphrase">Deaktiver passord</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Deaktiver lokal kryptering av meldinger og nøkler</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisk fullføre nøkkelutvekslinger for nye sesjoner eller sesjoner med samme ID-nøkkel</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern passord fra minnet etter et gitt intervall</string>
   <string name="preferences__timeout_passphrase">Passordtimeout</string>
