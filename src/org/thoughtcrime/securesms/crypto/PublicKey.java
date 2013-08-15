@@ -16,21 +16,19 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import android.util.Log;
+
+import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.thoughtcrime.securesms.util.Hex;
+import org.whispersystems.textsecure.util.Conversions;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.bouncycastle.crypto.params.ECPublicKeyParameters;
-import org.bouncycastle.math.ec.ECPoint;
-import org.whispersystems.textsecure.util.Conversions;
-import org.thoughtcrime.securesms.util.Hex;
-
-import android.util.Log;
-
 public class PublicKey {
-  public  static final int POINT_SIZE = 33;
-  public  static final int KEY_SIZE   = 3 + POINT_SIZE;
+  public static final int KEY_SIZE = 3 + KeyUtil.POINT_SIZE;
 	
-  private ECPublicKeyParameters publicKey;
+  private final ECPublicKeyParameters publicKey;
   private int id;
 	
   public PublicKey(PublicKey publicKey) {
@@ -50,20 +48,8 @@ public class PublicKey {
     if ((bytes.length - offset) < KEY_SIZE)
       throw new InvalidKeyException("Provided bytes are too short.");
 			
-    this.id           = Conversions.byteArrayToMedium(bytes, offset);
-    byte[] pointBytes = new byte[POINT_SIZE];
-		
-    System.arraycopy(bytes, offset+3, pointBytes, 0, pointBytes.length);
-		
-    ECPoint Q;
-		
-    try {
-      Q = KeyUtil.decodePoint(pointBytes);
-    } catch (RuntimeException re) {
-      throw new InvalidKeyException(re);
-    }
-		
-    this.publicKey = new ECPublicKeyParameters(Q, KeyUtil.domainParameters);
+    this.id        = Conversions.byteArrayToMedium(bytes, offset);
+    this.publicKey = KeyUtil.decodePoint(bytes, offset + 3);
   }
 	
   public PublicKey(byte[] bytes) throws InvalidKeyException {
@@ -99,7 +85,7 @@ public class PublicKey {
   public byte[] serialize() {
     byte[] complete        = new byte[KEY_SIZE];
     byte[] serializedPoint = KeyUtil.encodePoint(publicKey.getQ());
-				
+
     Log.w("PublicKey", "Serializing public key point: " + Hex.toString(serializedPoint));
 		
     Conversions.mediumToByteArray(complete, 0, id);

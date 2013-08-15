@@ -58,19 +58,19 @@ public class SessionRecord extends Record {
   }
 
   public SessionRecord(Context context, MasterSecret masterSecret, long recipientId) {
-    super(context, recipientId+"");
+    super(context, SESSIONS_DIRECTORY, recipientId+"");
     this.masterSecret   = masterSecret;
     this.sessionVersion = 31337;
     loadData();
   }
 
   public static void delete(Context context, Recipient recipient) {
-    Record.delete(context, getRecipientId(context, recipient)+"");
+    Record.delete(context, SESSIONS_DIRECTORY, getRecipientId(context, recipient)+"");
   }
 
   public static boolean hasSession(Context context, Recipient recipient) {
     Log.w("LocalKeyRecord", "Checking: " + getRecipientId(context, recipient));
-    return Record.hasRecord(context, getRecipientId(context, recipient)+"");
+    return Record.hasRecord(context, SESSIONS_DIRECTORY, getRecipientId(context, recipient)+"");
   }
 
   private static long getRecipientId(Context context, Recipient recipient) {

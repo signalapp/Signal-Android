@@ -30,6 +30,7 @@ import org.bouncycastle.math.ec.ECCurve;
 import org.bouncycastle.math.ec.ECFieldElement;
 import org.bouncycastle.math.ec.ECPoint;
 import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
+import org.thoughtcrime.securesms.database.keys.PreKeyRecord;
 import org.thoughtcrime.securesms.database.keys.RemoteKeyRecord;
 import org.thoughtcrime.securesms.database.keys.SessionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -55,21 +56,36 @@ public class KeyUtil {
 	
   private static final ECCurve curve = new ECCurve.Fp(q, a, b);
   private static final ECPoint g     = new ECPoint.Fp(curve, x, y, true);
-	
+
+  public static final int POINT_SIZE = 33;
+
   public static final ECDomainParameters domainParameters = new ECDomainParameters(curve, g, n);
-		
-  public static ECPoint decodePoint(byte[] pointBytes) {
-    synchronized (curve) {
-      return curve.decodePoint(pointBytes);
-    }
-  }
-	
+
   public static byte[] encodePoint(ECPoint point) {
     synchronized (curve) {
       return point.getEncoded();
     }
   }
-	
+
+  public static ECPublicKeyParameters decodePoint(byte[] encoded, int offset)
+      throws InvalidKeyException
+  {
+    byte[] pointBytes = new byte[POINT_SIZE];
+    System.arraycopy(encoded, offset, pointBytes, 0, pointBytes.length);
+
+    synchronized (curve) {
+      ECPoint Q;
+
+      try {
+        Q = curve.decodePoint(pointBytes);
+      } catch (RuntimeException re) {
+        throw new InvalidKeyException(re);
+      }
+
+      return new ECPublicKeyParameters(Q, KeyUtil.domainParameters);
+    }
+  }
+
   public static BigInteger calculateAgreement(ECDHBasicAgreement agreement, ECPublicKeyParameters remoteKey) {
     synchronized (curve) {
       return agreement.calculateAgreement(remoteKey);

@@ -18,6 +18,9 @@ package org.thoughtcrime.securesms.database.keys;
 
 import android.content.Context;
 
+import org.thoughtcrime.securesms.crypto.InvalidKeyException;
+import org.thoughtcrime.securesms.crypto.KeyPair;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.whispersystems.textsecure.util.Conversions;
 
 import java.io.File;
@@ -30,24 +33,29 @@ import java.nio.channels.FileChannel;
 
 public abstract class Record {
 
+  protected static final String SESSIONS_DIRECTORY = "sessions";
+  public    static final String PREKEY_DIRECTORY   = "prekeys";
+
   protected final String address;
+  protected final String directory;
   protected final Context context;
 
-  public Record(Context context, String address) {
-    this.context = context;
-    this.address = address;
+  public Record(Context context, String directory, String address) {
+    this.context   = context;
+    this.directory = directory;
+    this.address   = address;
   }
 
   public void delete() {
-    delete(this.context, this.address);
+    delete(this.context, this.directory, this.address);
   }
 
-  protected static void delete(Context context, String address) {
-    getAddressFile(context, address).delete();
+  protected static void delete(Context context, String directory, String address) {
+    getAddressFile(context, directory, address).delete();
   }
 
-  protected static  boolean hasRecord(Context context, String address) {
-    return getAddressFile(context, address).exists();
+  protected static  boolean hasRecord(Context context, String directory, String address) {
+    return getAddressFile(context, directory, address).exists();
   }
 
   protected RandomAccessFile openRandomAccessFile() throws FileNotFoundException {
@@ -59,11 +67,11 @@ public abstract class Record {
   }
 
   private File getAddressFile() {
-    return getAddressFile(context, address);
+    return getAddressFile(context, directory, address);
   }
 
-  private static File getAddressFile(Context context, String address) {
-    return new File(context.getFilesDir().getAbsolutePath() + File.separatorChar + "sessions", address);
+  private static File getAddressFile(Context context, String directory, String address) {
+    return new File(context.getFilesDir().getAbsolutePath() + File.separatorChar + directory, address);
   }
 
   protected byte[] readBlob(FileInputStream in) throws IOException {

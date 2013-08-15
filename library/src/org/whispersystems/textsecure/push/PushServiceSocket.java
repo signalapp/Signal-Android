@@ -39,6 +39,7 @@ public class PushServiceSocket {
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
+  private static final String PREKEY_PATH               = "/v1/keys/";
 
   private static final String DIRECTORY_PATH            = "/v1/directory/";
   private static final String MESSAGE_PATH              = "/v1/messages/";
@@ -104,6 +105,11 @@ public class PushServiceSocket {
     if (response.getFailure().size() != 0)
       throw new IOException("Got send failure: " + response.getFailure().get(0));
   }
+
+  public void registerPreKeys(PreKeyList keys) throws IOException {
+     makeRequest(PREKEY_PATH, "PUT", new Gson().toJson(keys));
+  }
+
 
   private List<PushAttachmentPointer> sendAttachments(List<PushAttachmentData> attachments)
       throws IOException
