@@ -369,7 +369,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           }
         }.execute();
       } else {
-        startActivity(new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class));
+        Intent intent = new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class);
+        intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
+        startActivity(intent);
       }
 
       return false;

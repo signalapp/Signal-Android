@@ -16,12 +16,11 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import org.bouncycastle.crypto.params.ECPublicKeyParameters;
-import org.bouncycastle.math.ec.ECPoint;
-import org.thoughtcrime.securesms.util.Hex;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.thoughtcrime.securesms.util.Hex;
 
 /**
  * A class for representing an identity key.
@@ -45,7 +44,7 @@ public class IdentityKey implements Parcelable, SerializableKey {
     }
   };
 	
-  public  static final int SIZE    = 1 + 33;
+  public  static final int SIZE    = 1 + KeyUtil.POINT_SIZE;
   private static final int VERSION = 1;
 	
   private ECPublicKeyParameters publicKey;
@@ -75,19 +74,8 @@ public class IdentityKey implements Parcelable, SerializableKey {
 		
     if (version > VERSION)
       throw new InvalidKeyException("Unsupported key version: " + version);
-		
-    byte[] pointBytes = new byte[PublicKey.POINT_SIZE];
-    System.arraycopy(bytes, offset+1, pointBytes, 0, pointBytes.length);
-		
-    ECPoint Q;
-		
-    try {
-      Q = KeyUtil.decodePoint(pointBytes);
-    } catch (RuntimeException re) {
-      throw new InvalidKeyException(re);
-    }
-		
-    this.publicKey = new ECPublicKeyParameters(Q, KeyUtil.domainParameters);		
+
+    this.publicKey = KeyUtil.decodePoint(bytes, offset+1);
   }
 	
   public byte[] serialize() {

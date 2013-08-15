@@ -19,22 +19,18 @@ package org.thoughtcrime.securesms.database.keys;
 public class InvalidKeyIdException extends Exception {
 
   public InvalidKeyIdException() {
-    // TODO Auto-generated constructor stub
   }
 
   public InvalidKeyIdException(String detailMessage) {
     super(detailMessage);
-    // TODO Auto-generated constructor stub
   }
 
   public InvalidKeyIdException(Throwable throwable) {
     super(throwable);
-    // TODO Auto-generated constructor stub
   }
 
   public InvalidKeyIdException(String detailMessage, Throwable throwable) {
     super(detailMessage, throwable);
-    // TODO Auto-generated constructor stub
   }
 
 }

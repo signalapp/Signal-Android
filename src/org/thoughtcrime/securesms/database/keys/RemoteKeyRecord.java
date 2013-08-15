@@ -47,17 +47,17 @@ public class RemoteKeyRecord extends Record {
   private PublicKey remoteKeyLast;
 
   public RemoteKeyRecord(Context context, Recipient recipient) {
-    super(context,getFileNameForRecipient(context, recipient));
+    super(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
     loadData();
   }
 
   public static void delete(Context context, Recipient recipient) {
-    Record.delete(context, getFileNameForRecipient(context, recipient));
+    Record.delete(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
   }
 
   public static boolean hasRecord(Context context, Recipient recipient) {
     Log.w("LocalKeyRecord", "Checking: " + getFileNameForRecipient(context, recipient));
-    return Record.hasRecord(context, getFileNameForRecipient(context, recipient));
+    return Record.hasRecord(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
   }
 
   private static String getFileNameForRecipient(Context context, Recipient recipient) {
@@ -126,7 +126,6 @@ public class RemoteKeyRecord extends Record {
         in.close();
       } catch (FileNotFoundException e) {
         Log.w("RemoteKeyRecord", "No remote keys found.");
-        return;
       } catch (IOException ioe) {
         Log.w("keyrecord", ioe);
         // XXX

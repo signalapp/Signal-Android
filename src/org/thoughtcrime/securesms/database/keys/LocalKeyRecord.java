@@ -25,8 +25,6 @@ import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.thoughtcrime.securesms.database.keys.InvalidKeyIdException;
-import org.thoughtcrime.securesms.database.keys.Record;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.io.FileInputStream;
@@ -46,7 +44,7 @@ public class LocalKeyRecord extends Record {
   private final MasterSecret masterSecret;
 
   public LocalKeyRecord(Context context, MasterSecret masterSecret, Recipient recipient) {
-    super(context, getFileNameForRecipient(context, recipient));
+    super(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
     this.masterSecret = masterSecret;
     this.masterCipher = new MasterCipher(masterSecret);
     loadData();
@@ -54,11 +52,11 @@ public class LocalKeyRecord extends Record {
 
   public static boolean hasRecord(Context context, Recipient recipient) {
     Log.w("LocalKeyRecord", "Checking: " + getFileNameForRecipient(context, recipient));
-    return Record.hasRecord(context, getFileNameForRecipient(context, recipient));
+    return Record.hasRecord(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
   }
 
   public static void delete(Context context, Recipient recipient) {
-    Record.delete(context, getFileNameForRecipient(context, recipient));
+    Record.delete(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
   }
 
   private static String getFileNameForRecipient(Context context, Recipient recipient) {
@@ -121,12 +119,11 @@ public class LocalKeyRecord extends Record {
     synchronized (FILE_LOCK) {
       try {
         FileInputStream in  = this.openInputStream();
-        localCurrentKeyPair = readKeyPair(in);
-        localNextKeyPair    = readKeyPair(in);
+        localCurrentKeyPair = readKeyPair(in, masterCipher);
+        localNextKeyPair    = readKeyPair(in, masterCipher);
         in.close();
       } catch (FileNotFoundException e) {
         Log.w("LocalKeyRecord", "No local keypair set found.");
-        return;
       } catch (IOException ioe) {
         Log.w("keyrecord", ioe);
         // XXX
@@ -141,8 +138,11 @@ public class LocalKeyRecord extends Record {
     writeBlob(keyPairBytes, out);
   }
 
-  private KeyPair readKeyPair(FileInputStream in) throws IOException, InvalidKeyException {
+  private KeyPair readKeyPair(FileInputStream in, MasterCipher masterCipher)
+      throws IOException, InvalidKeyException
+  {
     byte[] keyPairBytes = readBlob(in);
     return new KeyPair(keyPairBytes, masterCipher);
   }
+
 }
