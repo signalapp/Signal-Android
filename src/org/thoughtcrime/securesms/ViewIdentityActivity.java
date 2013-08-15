@@ -37,6 +37,10 @@ public class ViewIdentityActivity extends KeyScanningActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.view_identity_activity);
 
+    initialize();
+  }
+
+  protected void initialize() {
     initializeResources();
     initializeFingerprint();
   }

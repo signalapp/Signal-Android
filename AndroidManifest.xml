@@ -38,7 +38,8 @@
                 android:protectionLevel="signature" />
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
         
-    <application android:icon="@drawable/icon"
+    <application android:name="org.thoughtcrime.securesms.ApplicationListener"
+                 android:icon="@drawable/icon"
                  android:label="@string/app_name"
                  android:theme="@style/TextSecure.LightTheme">
 
@@ -122,6 +123,9 @@
 
     <activity android:name=".ViewIdentityActivity"
               android:label="@string/AndroidManifest__public_identity_key"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".ViewLocalIdentityActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphraseChangeActivity"
