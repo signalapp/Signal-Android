@@ -1,0 +1,9 @@
+package textsecure;
+
+option java_package = "org.thoughtcrime.securesms.encoded";
+option java_outer_classname = "PreKeyProtos";
+
+message PreKeyEntity {
+  optional uint64 id  = 1;
+  optional bytes  key = 2;
+}
