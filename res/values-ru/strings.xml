@@ -147,6 +147,7 @@
   <string name="MessageNotifier_message_delivery_failed">Доставка сообщения не удалась.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не удалось доставить сообщение.</string>
   <string name="MessageNotifier_error_delivering_message">Ошибка при доставке сообщения.</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Не можем сейчас отправить MMS-сообщение. Оно будет отправляться когда услуг становится доступным.</string>
   <!--auto_initiate_activity-->

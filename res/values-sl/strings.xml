@@ -192,6 +192,14 @@
   <string name="MessageNotifier_error_delivering_message">Napaka pri dostavi sporočila.</string>
   <string name="MessageNotifier_mark_all_as_read">Označi vsa kot prebrana</string>
   <string name="MessageNotifier_mark_as_read">Označi kot prebrano</string>
+  <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">Ustvarjam nov ključ...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Ustvarjam nov identifikacijski ključ...</string>
+  <string name="ViewLocalIdentityActivity_regenerated">Nov ključ je ustvarjen!</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Ponastavim identifikacijski ključ?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">Pozor! Z generiranjem novega identifikacijskega ključa bo vaš trenutni identifikacijski ključ izgubljen, vaši stiki pa bodo pred vzpostavitvijo varne seje z vami prejeli opozorilo. Ste prepričani, da želite nadaljevati?</string>
+  <string name="ViewLocalIdentityActivity_cancel">Prekliči</string>
+  <string name="ViewLocalIdentityActivity_continue">Nadaljuj</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Sporočila SMS trenutno ni mogoče poslati. Poslano bo, takoj ko bo mogoče.</string>
   <!--auto_initiate_activity-->
@@ -245,6 +253,7 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nObnovi predhodno izvoženo šifrirano varnostno kopijo Text Secure.</string>
   <string name="import_fragment__import_plaintext_backup">Uvozi nešifrirano varnostno kopijo</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\nUvozi nešifrirano datoteko z varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami SMS.</string>
+  <string name="local_identity__regenerate_key">Ustvari nov ključ</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">GESLO TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Odkleni</string>
@@ -356,6 +365,7 @@
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Teme</string>
   <string name="preferences__default">Privzeto</string>
+  <string name="preferences__language">Jezik</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -406,6 +416,5 @@
   <string name="text_secure_normal__mark_all_as_read">Označi vsa kot prebrana</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Overjeno</string>
-  <string name="preferences__language">Jezik</string>
   <!--EOF-->
 </resources>

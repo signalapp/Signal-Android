@@ -13,6 +13,7 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من مسح كل الرسائل بالمحادثات وابقاء أحدث %s رسالة فقط؟</string>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <string name="ApplicationPreferencesActivity_my">أنا</string>
+  <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">صورة</string>
   <string name="AttachmentTypeSelectorAdapter_video">فيديو</string>
@@ -90,9 +91,13 @@
   <string name="ImportFragment_import">استيراد</string>
   <string name="ImportFragment_cancel">الغاء</string>
   <string name="ImportFragment_restore_encrypted_backup">استعادة النسخ الاحتياطية المشفرة؟</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nاسترجاع نسخة احتياطية مشفرة سيمسح بالكامل أي مفاتيح حالية أو اعدادات أو رسائل. ستفقد أي معلومات موجودة الآن في تكست سيكيور ولكن غير موجودة في النسخة الاحتياطية.</string>
   <string name="ImportFragment_restore">استعادة</string>
+  <string name="ImportFragment_import_plaintext_backup">استيراد النسخة الاحتياطية الغير مشفرة؟</string>
+  <string name="ImportFragment_importing">جاري الاستيراد...</string>
   <string name="ImportFragment_import_complete">اكتمال الاستيراد!</string>
   <string name="ImportFragment_restoring">جاري الاستعادة</string>
+  <string name="ImportFragment_restoring_encrypted_backup">جاري استعادة النسخ الاحتياطية المشفرة...</string>
   <string name="ImportFragment_restore_complete">انتهاء الاستعادة</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">لم يتم العثور على مفتاح!</string>
@@ -180,6 +185,8 @@
   <string name="MessageNotifier_error_delivering_message">خطأ بالارسال</string>
   <string name="MessageNotifier_mark_all_as_read">اعتبرها جميعاً رسائل مقروءة</string>
   <string name="MessageNotifier_mark_as_read">اعتبرها مقروءة</string>
+  <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_cancel">الغاء</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">غير قادر على ارسال الرسالة حاليا. سيتم ارسالها عندما تتوفر الخدمة مرة أخرى.</string>
   <!--auto_initiate_activity-->
@@ -223,6 +230,10 @@
   <string name="database_migration_activity__importing">مهم!</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">تحديث قواعد البيانات</string>
+  <string name="export_fragment__export_encrypted_backup">استعادة النسخ الاحتياطية المشفرة</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">تصدير نسخة احتياطية غير مشفرة لكرت الذاكرة...</string>
+  <string name="import_fragment__import_system_sms_database">استيراد الرسائل القصيرة بالنظام</string>
+  <string name="import_fragment__import_encrypted_backup">استيراد النسخ الاحتياطية المشفرة</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">العبارة السرية لتكست سيكيور</string>
   <string name="prompt_passphrase_activity__unlock">فتح القفل</string>
@@ -261,6 +272,8 @@
   <string name="AndroidManifest__manage_identity_keys">إدارة مفاتيح الهوية</string>
   <string name="AndroidManifest__complete_key_exchange">اكمال تبادل المفاتيح</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">استيراد/تصدير</string>
+  <string name="arrays__contact_keys">مفاتيح جهات الاتصال</string>
   <!--preferences.xml-->
   <string name="preferences__general">عام</string>
   <string name="preferences__pref_all_sms_title">استخدام لكل الرسائل القصيرة</string>
@@ -275,6 +288,7 @@
   <string name="preferences__change_passphrase">غير العبارة السرية</string>
   <string name="preferences__change_my_passphrase">غير عبارتي السرية</string>
   <string name="preferences__complete_key_exchanges">اكمال تبادل المفاتيح</string>
+  <string name="preferences__disable_passphrase">تعطيل العبارة السرية</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">أكمل تبادل المفاتيح اوتوماتيكياً لمحادثات جديدة او قديمة بنفس مفتاح الهوية</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">انسى العبارة السرية من ذاكرة الجهاز بعد فترة</string>
   <string name="preferences__timeout_passphrase">نسيان العبارة السرية بعد فترة</string>
@@ -328,6 +342,8 @@
   <string name="preferences__dark_theme">قالب ألوان داكنة</string>
   <string name="preferences__appearance">المظهر</string>
   <string name="preferences__theme">قالب</string>
+  <string name="preferences__default">التلقائي</string>
+  <string name="preferences__language">اللغة</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

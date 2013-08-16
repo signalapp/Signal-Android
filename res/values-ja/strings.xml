@@ -192,6 +192,7 @@
   <string name="MessageNotifier_error_delivering_message">メッセージ配信中にエラーがありました。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_as_read">既読にする</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">現在、このSMSは送信できません。サービスが利用可能になると、すぐに送信されます。</string>
   <!--auto_initiate_activity-->
@@ -356,6 +357,7 @@
   <string name="preferences__appearance">デザイン設定</string>
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__default">初期設定の言語</string>
+  <string name="preferences__language">言語</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -406,6 +408,5 @@
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">確認済み</string>
-  <string name="preferences__language">言語</string>
   <!--EOF-->
 </resources>

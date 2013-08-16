@@ -192,6 +192,7 @@
   <string name="MessageNotifier_error_delivering_message">Fel vid leverans av meddelande.</string>
   <string name="MessageNotifier_mark_all_as_read">Markera alla som lästa</string>
   <string name="MessageNotifier_mark_as_read">Markera som läst</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Kan för tillfället inte skicka ditt SMS meddelande. Det kommer skickas när service blir tillgängligt.</string>
   <!--auto_initiate_activity-->
@@ -356,6 +357,7 @@
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Standard</string>
+  <string name="preferences__language">Språk</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -406,6 +408,5 @@
   <string name="text_secure_normal__mark_all_as_read">Markera alla som lästa</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verifierad</string>
-  <string name="preferences__language">Språk</string>
   <!--EOF-->
 </resources>

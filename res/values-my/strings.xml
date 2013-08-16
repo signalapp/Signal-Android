@@ -146,6 +146,7 @@
   <string name="MessageNotifier_message_delivery_failed">အကြောင်းကြားချက်ပို့လွတ်ခြင်းမအောင်မြင်</string>
   <string name="MessageNotifier_failed_to_deliver_message">အကြောင်းကြားချက်ပို့လွတ်ရန်မအောင်မြင်</string>
   <string name="MessageNotifier_error_delivering_message">အကြောင်းကြားချက်ပို့လွတ်စဉ်အမှား</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">လောလောဆယ် အသင့်၏ SMS စာတိုကို ပို့နိုင်ခြင်း မရှိပါ။ ဆားဗစ်ပြန်ရလာသည်နှင့် ပို့ပေးပါမည်။</string>
   <!--auto_initiate_activity-->
