@@ -22,7 +22,7 @@ import android.util.Log;
 import org.spongycastle.crypto.AsymmetricCipherKeyPair;
 import org.spongycastle.crypto.agreement.ECDHBasicAgreement;
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
-import org.whispersystems.textsecure.protocol.Message;
+import org.whispersystems.textsecure.crypto.protocol.Message;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;

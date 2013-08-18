@@ -22,7 +22,6 @@ import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
 import org.spongycastle.asn1.ASN1Encoding;
-import org.spongycastle.asn1.ASN1Object;
 import org.spongycastle.asn1.ASN1Primitive;
 import org.spongycastle.asn1.ASN1Sequence;
 import org.spongycastle.asn1.DERInteger;
