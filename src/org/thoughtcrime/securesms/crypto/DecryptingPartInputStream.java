@@ -37,6 +37,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 import android.util.Log;
 
+import org.whispersystems.textsecure.crypto.MasterSecret;
+
 /**
  * Class for streaming an encrypted MMS "part" off the disk.
  * 

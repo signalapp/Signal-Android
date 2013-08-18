@@ -29,7 +29,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CanonicalSessionMigrator;
 import org.thoughtcrime.securesms.util.WorkerThread;
 

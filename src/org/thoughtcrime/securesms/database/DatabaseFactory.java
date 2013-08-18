@@ -26,13 +26,13 @@ import android.util.Log;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
-import org.thoughtcrime.securesms.crypto.IdentityKey;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.keys.SessionRecord;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.SessionRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.whispersystems.textsecure.util.Base64;
-import org.thoughtcrime.securesms.util.InvalidMessageException;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;

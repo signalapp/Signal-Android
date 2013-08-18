@@ -18,10 +18,8 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -35,9 +33,14 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
-import org.thoughtcrime.securesms.util.Hex;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.util.Hex;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WorkerThread;
+import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -48,7 +51,6 @@ import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.MultimediaMessagePdu;
 import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.RetrieveConf;
-import ws.com.google.android.mms.pdu.SendReq;
 
 /**
  * A work queue for processing a number of encryption operations.
@@ -170,10 +172,10 @@ public class DecryptingQueue {
       MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
 
       try {
-        String messageFrom        = pdu.getFrom().getString();
-        Recipients recipients     = RecipientFactory.getRecipientsFromString(context, messageFrom, false);
-        Recipient recipient       = recipients.getPrimaryRecipient();
-        byte[] ciphertextPduBytes = getEncryptedData();
+        String     messageFrom        = pdu.getFrom().getString();
+        Recipients recipients         = RecipientFactory.getRecipientsFromString(context, messageFrom, false);
+        Recipient  recipient          = recipients.getPrimaryRecipient();
+        byte[]     ciphertextPduBytes = getEncryptedData();
 
         if (ciphertextPduBytes == null) {
           Log.w("DecryptingQueue", "No encoded PNG data found on parts.");
@@ -261,7 +263,7 @@ public class DecryptingQueue {
         try {
           Log.w("DecryptingQueue", "Parsing recipient for originator: " + originator);
           Recipients recipients = RecipientFactory.getRecipientsFromString(context, originator, false);
-          Recipient recipient   = recipients.getPrimaryRecipient();
+          Recipient  recipient  = recipients.getPrimaryRecipient();
           Log.w("DecryptingQueue", "Parsed Recipient: " + recipient.getNumber());
 
           if (!KeyUtil.isSessionFor(context, recipient)) {

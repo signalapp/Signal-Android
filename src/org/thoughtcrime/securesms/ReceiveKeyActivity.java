@@ -30,11 +30,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.InvalidVersionException;
 import org.thoughtcrime.securesms.crypto.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
