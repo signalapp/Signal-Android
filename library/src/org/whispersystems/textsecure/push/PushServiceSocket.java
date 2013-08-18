@@ -9,8 +9,9 @@ import com.google.thoughtcrimegson.Gson;
 import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.PreKeyPair;
+import org.whispersystems.textsecure.crypto.PreKeyPublic;
 import org.whispersystems.textsecure.directory.DirectoryDescriptor;
-import org.whispersystems.textsecure.encoded.PreKeyProtos.PreKeyEntity;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
@@ -41,7 +42,7 @@ public class PushServiceSocket {
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
-  private static final String PREKEY_PATH               = "/v1/keys/";
+  private static final String PREKEY_PATH               = "/v1/keys/%s";
 
   private static final String DIRECTORY_PATH            = "/v1/directory/";
   private static final String MESSAGE_PATH              = "/v1/messages/";
@@ -111,22 +112,23 @@ public class PushServiceSocket {
   public void registerPreKeys(IdentityKey identityKey, List<PreKeyRecord> records)
       throws IOException
   {
-    List<String> encoded = new LinkedList<String>();
+    List<PreKeyEntity> entities = new LinkedList<PreKeyEntity>();
 
     for (PreKeyRecord record : records) {
-        PreKeyEntity entity  = PreKeyEntity.newBuilder().setId(record.getId())
-                                           .setPublicKey(ByteString.copyFrom(record.getEncodedPublicKey()))
-                                           .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
-                                           .build();
-
-        String encodedEntity = Base64.encodeBytesWithoutPadding(entity.toByteArray());
-
-        encoded.add(encodedEntity);
+      PreKeyEntity entity = new PreKeyEntity(record.getId(),
+                                             record.getKeyPair().getPublicKey(),
+                                             identityKey);
+      entities.add(entity);
     }
 
-     makeRequest(PREKEY_PATH, "PUT", new Gson().toJson(new PreKeyList(encoded)));
+     makeRequest(String.format(PREKEY_PATH, ""), "PUT", PreKeyList.toJson(new PreKeyList(entities)));
   }
 
+  public PreKeyEntity getPreKey(String number) throws IOException {
+    String responseText = makeRequest(String.format(PREKEY_PATH, number), "GET", null);
+    Log.w("PushServiceSocket", "Got prekey: " + responseText);
+    return PreKeyEntity.fromJson(responseText);
+  }
 
   private List<PushAttachmentPointer> sendAttachments(List<PushAttachmentData> attachments)
       throws IOException
