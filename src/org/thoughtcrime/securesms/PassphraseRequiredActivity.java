@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 public interface PassphraseRequiredActivity {
   public void onMasterSecretCleared();

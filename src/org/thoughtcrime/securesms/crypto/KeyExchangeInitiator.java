@@ -22,10 +22,12 @@ import android.content.DialogInterface;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
+import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.LocalKeyRecord;
 
 public class KeyExchangeInitiator {
 

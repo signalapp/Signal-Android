@@ -13,9 +13,9 @@ import android.util.Pair;
 
 import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.PreKeyUtil;
-import org.thoughtcrime.securesms.database.keys.PreKeyRecord;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.PreKeyUtil;
+import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;

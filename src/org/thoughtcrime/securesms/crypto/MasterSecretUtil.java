@@ -21,9 +21,16 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
-import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
-import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
+import org.spongycastle.crypto.AsymmetricCipherKeyPair;
+import org.spongycastle.crypto.params.ECPrivateKeyParameters;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.KeyPair;
+import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.PublicKey;
 import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -203,8 +210,8 @@ public class MasterSecretUtil {
     SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
     String encodedValue        = settings.getString(key, "");
 
-    if (encodedValue == "") return null;
-    else                    return Base64.decode(encodedValue);
+    if (Util.isEmpty(encodedValue)) return null;
+    else                            return Base64.decode(encodedValue);
   }
 
   private static byte[] generateEncryptionSecret() {
@@ -252,7 +259,7 @@ public class MasterSecretUtil {
     return cipher;
   }
 
-  private static byte[] encryptWithPassphrase(Context context, byte[] data, String passphrase) throws NoSuchAlgorithmException, GeneralSecurityException {
+  private static byte[] encryptWithPassphrase(Context context, byte[] data, String passphrase) throws GeneralSecurityException {
     byte[] encryptionSalt = generateSalt();
     Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.ENCRYPT_MODE);
     byte[] cipherText     = cipher.doFinal(data);

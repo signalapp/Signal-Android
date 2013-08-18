@@ -16,28 +16,35 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import java.io.IOException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
-import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
-import org.bouncycastle.crypto.params.ECPublicKeyParameters;
-import org.bouncycastle.crypto.signers.ECDSASigner;
-import org.thoughtcrime.bouncycastle.asn1.ASN1Encodable;
-import org.thoughtcrime.bouncycastle.asn1.ASN1Object;
-import org.thoughtcrime.bouncycastle.asn1.ASN1Sequence;
-import org.thoughtcrime.bouncycastle.asn1.DERInteger;
-import org.thoughtcrime.bouncycastle.asn1.DERSequence;
-import org.whispersystems.textsecure.util.Base64;
-import org.thoughtcrime.securesms.util.Combiner;
-import org.whispersystems.textsecure.util.Conversions;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
+
+import org.spongycastle.asn1.ASN1Encoding;
+import org.spongycastle.asn1.ASN1Object;
+import org.spongycastle.asn1.ASN1Primitive;
+import org.spongycastle.asn1.ASN1Sequence;
+import org.spongycastle.asn1.DERInteger;
+import org.spongycastle.asn1.DERSequence;
+import org.spongycastle.crypto.AsymmetricCipherKeyPair;
+import org.spongycastle.crypto.params.ECPrivateKeyParameters;
+import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.spongycastle.crypto.signers.ECDSASigner;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.Conversions;
+import org.whispersystems.textsecure.util.Util;
+
+import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Utility class for working with identity keys.
@@ -108,7 +115,7 @@ public class IdentityKeyUtil {
 			
       verifier.init(false, identityKey.getPublicKeyParameters());
 			
-      ASN1Sequence sequence          = (ASN1Sequence)ASN1Object.fromByteArray(signatureBytes);
+      ASN1Sequence sequence          = (ASN1Sequence) ASN1Primitive.fromByteArray(signatureBytes);
       BigInteger[] signatureIntegers = new BigInteger[]{
           ((DERInteger)sequence.getObjectAt(0)).getValue(),
           ((DERInteger)sequence.getObjectAt(1)).getValue()
@@ -139,13 +146,13 @@ public class IdentityKeyUtil {
 			
       BigInteger[] messageSignatureInts    = signer.generateSignature(messageHash);
       DERInteger[] derMessageSignatureInts = new DERInteger[]{ new DERInteger(messageSignatureInts[0]), new DERInteger(messageSignatureInts[1]) };
-      byte[] messageSignatureBytes         = new DERSequence(derMessageSignatureInts).getEncoded(ASN1Encodable.DER);
+      byte[] messageSignatureBytes         = new DERSequence(derMessageSignatureInts).getEncoded(ASN1Encoding.DER);
       byte[] messageSignature              = new byte[2 + messageSignatureBytes.length];
 	        
       Conversions.shortToByteArray(messageSignature, 0, messageSignatureBytes.length);	        
       System.arraycopy(messageSignatureBytes, 0, messageSignature, 2, messageSignatureBytes.length);
 	        
-      byte[] combined = Combiner.combine(keyExchangeBytes, publicKeyBytes, messageSignature);
+      byte[] combined = Util.combine(keyExchangeBytes, publicKeyBytes, messageSignature);
  	        
       return combined;
     } catch (IOException ioe) {
