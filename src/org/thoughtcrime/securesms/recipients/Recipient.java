@@ -16,19 +16,22 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 
 import java.util.HashSet;
 
-public class Recipient implements Parcelable {
+public class Recipient implements Parcelable, CanonicalRecipientAddress {
 
   public static final Parcelable.Creator<Recipient> CREATOR = new Parcelable.Creator<Recipient>() {
     public Recipient createFromParcel(Parcel in) {
@@ -143,6 +146,10 @@ public class Recipient implements Parcelable {
 
   public synchronized Bitmap getContactPhoto() {
     return contactPhoto;
+  }
+
+  public long getCanonicalAddress(Context context) {
+    return CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(getNumber());
   }
 
   public static interface RecipientModifiedListener {

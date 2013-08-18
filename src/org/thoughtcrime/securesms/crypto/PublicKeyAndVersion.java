@@ -16,9 +16,12 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.PublicKey;
+
 public class PublicKeyAndVersion {
 
-  public       IdentityKey identityKey;
+  public IdentityKey identityKey;
   public final PublicKey key;
   public final int version;
   public final int maxVersion;

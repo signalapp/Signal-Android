@@ -20,12 +20,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import org.bouncycastle.util.Arrays;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.keys.LocalKeyRecord;
-import org.thoughtcrime.securesms.database.keys.RemoteKeyRecord;
-import org.thoughtcrime.securesms.database.keys.SessionRecord;
-import org.thoughtcrime.securesms.protocol.Message;
+import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.LocalKeyRecord;
+import org.whispersystems.textsecure.storage.RemoteKeyRecord;
+import org.whispersystems.textsecure.storage.SessionRecord;
+import org.whispersystems.textsecure.protocol.Message;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;

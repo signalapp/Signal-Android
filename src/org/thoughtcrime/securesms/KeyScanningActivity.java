@@ -20,7 +20,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.crypto.SerializableKey;
+import org.whispersystems.textsecure.crypto.SerializableKey;
 import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicTheme;

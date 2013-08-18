@@ -34,8 +34,8 @@ import android.support.v4.content.CursorLoader;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.IdentityKey;
-import org.thoughtcrime.securesms.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;

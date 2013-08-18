@@ -18,17 +18,15 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
-import org.thoughtcrime.securesms.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.InvalidVersionException;
 import org.thoughtcrime.securesms.crypto.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;

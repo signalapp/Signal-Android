@@ -16,12 +16,10 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Patterns;
 
-import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.NumberUtil;
 

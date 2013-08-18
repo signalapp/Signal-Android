@@ -20,11 +20,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.view.MenuItem;
-import org.thoughtcrime.securesms.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.keys.SessionRecord;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.SessionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 

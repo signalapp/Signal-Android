@@ -18,7 +18,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;

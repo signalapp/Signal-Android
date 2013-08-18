@@ -20,7 +20,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.io.UnsupportedEncodingException;
