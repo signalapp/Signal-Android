@@ -7,13 +7,13 @@ import org.whispersystems.textsecure.util.Util;
 
 public class PreKeyPair {
 
-  private final MasterCipher masterCipher;
+  private final MasterCipher           masterCipher;
   private final ECPrivateKeyParameters privateKey;
-  private final ECPublicKeyParameters publicKey;
+  private final PreKeyPublic           publicKey;
 
   public PreKeyPair(MasterSecret masterSecret, AsymmetricCipherKeyPair keyPair) {
     this.masterCipher = new MasterCipher(masterSecret);
-    this.publicKey    = (ECPublicKeyParameters)keyPair.getPublic();
+    this.publicKey    = new PreKeyPublic((ECPublicKeyParameters)keyPair.getPublic());
     this.privateKey   = (ECPrivateKeyParameters)keyPair.getPrivate();
   }
 
@@ -25,16 +25,16 @@ public class PreKeyPair {
     System.arraycopy(serialized, KeyUtil.POINT_SIZE, privateKeyBytes, 0, privateKeyBytes.length);
 
     this.masterCipher = new MasterCipher(masterSecret);
-    this.publicKey    = KeyUtil.decodePoint(serialized, 0);
+    this.publicKey    = new PreKeyPublic(serialized, 0);
     this.privateKey   = masterCipher.decryptKey(privateKeyBytes);
   }
 
-  public ECPublicKeyParameters getPublicKey() {
+  public PreKeyPublic getPublicKey() {
     return publicKey;
   }
 
   public byte[] serialize() {
-    byte[] publicKeyBytes  = KeyUtil.encodePoint(publicKey.getQ());
+    byte[] publicKeyBytes  = publicKey.serialize();
     byte[] privateKeyBytes = masterCipher.encryptKey(privateKey);
 
     return Util.combine(publicKeyBytes, privateKeyBytes);

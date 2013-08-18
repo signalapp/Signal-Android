@@ -4,13 +4,17 @@ import java.util.List;
 
 public class PreKeyList {
 
-  private List<String> keys;
+  private List<PreKeyEntity> keys;
 
-  public PreKeyList(List<String> keys) {
+  public PreKeyList(List<PreKeyEntity> keys) {
     this.keys = keys;
   }
 
-  public List<String> getKeys() {
+  public List<PreKeyEntity> getKeys() {
     return keys;
+  }
+
+  public static String toJson(PreKeyList entity) {
+    return PreKeyEntity.getBuilder().create().toJson(entity);
   }
 }
