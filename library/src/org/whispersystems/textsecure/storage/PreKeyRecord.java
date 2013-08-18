@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyPair;
 
@@ -50,10 +49,6 @@ public class PreKeyRecord extends Record {
 
   public PreKeyPair getKeyPair() {
     return keyPair;
-  }
-
-  public byte[] getEncodedPublicKey() {
-    return KeyUtil.encodePoint(keyPair.getPublicKey().getQ());
   }
 
   public static boolean hasRecord(Context context, long id) {
