@@ -15,9 +15,13 @@ public final class PreKeyProtos {
     boolean hasId();
     long getId();
     
-    // optional bytes key = 2;
-    boolean hasKey();
-    com.google.protobuf.ByteString getKey();
+    // optional bytes public_key = 2;
+    boolean hasPublicKey();
+    com.google.protobuf.ByteString getPublicKey();
+    
+    // optional bytes identity_key = 3;
+    boolean hasIdentityKey();
+    com.google.protobuf.ByteString getIdentityKey();
   }
   public static final class PreKeyEntity extends
       com.google.protobuf.GeneratedMessage
@@ -58,19 +62,30 @@ public final class PreKeyProtos {
       return id_;
     }
     
-    // optional bytes key = 2;
-    public static final int KEY_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString key_;
-    public boolean hasKey() {
+    // optional bytes public_key = 2;
+    public static final int PUBLIC_KEY_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString publicKey_;
+    public boolean hasPublicKey() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.google.protobuf.ByteString getKey() {
-      return key_;
+    public com.google.protobuf.ByteString getPublicKey() {
+      return publicKey_;
+    }
+    
+    // optional bytes identity_key = 3;
+    public static final int IDENTITY_KEY_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString identityKey_;
+    public boolean hasIdentityKey() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public com.google.protobuf.ByteString getIdentityKey() {
+      return identityKey_;
     }
     
     private void initFields() {
       id_ = 0L;
-      key_ = com.google.protobuf.ByteString.EMPTY;
+      publicKey_ = com.google.protobuf.ByteString.EMPTY;
+      identityKey_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -88,7 +103,10 @@ public final class PreKeyProtos {
         output.writeUInt64(1, id_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, key_);
+        output.writeBytes(2, publicKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, identityKey_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -105,7 +123,11 @@ public final class PreKeyProtos {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, key_);
+          .computeBytesSize(2, publicKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, identityKey_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -233,8 +255,10 @@ public final class PreKeyProtos {
         super.clear();
         id_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        key_ = com.google.protobuf.ByteString.EMPTY;
+        publicKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
+        identityKey_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -280,7 +304,11 @@ public final class PreKeyProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.key_ = key_;
+        result.publicKey_ = publicKey_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.identityKey_ = identityKey_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -300,8 +328,11 @@ public final class PreKeyProtos {
         if (other.hasId()) {
           setId(other.getId());
         }
-        if (other.hasKey()) {
-          setKey(other.getKey());
+        if (other.hasPublicKey()) {
+          setPublicKey(other.getPublicKey());
+        }
+        if (other.hasIdentityKey()) {
+          setIdentityKey(other.getIdentityKey());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -341,7 +372,12 @@ public final class PreKeyProtos {
             }
             case 18: {
               bitField0_ |= 0x00000002;
-              key_ = input.readBytes();
+              publicKey_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              identityKey_ = input.readBytes();
               break;
             }
           }
@@ -371,26 +407,50 @@ public final class PreKeyProtos {
         return this;
       }
       
-      // optional bytes key = 2;
-      private com.google.protobuf.ByteString key_ = com.google.protobuf.ByteString.EMPTY;
-      public boolean hasKey() {
+      // optional bytes public_key = 2;
+      private com.google.protobuf.ByteString publicKey_ = com.google.protobuf.ByteString.EMPTY;
+      public boolean hasPublicKey() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.google.protobuf.ByteString getKey() {
-        return key_;
+      public com.google.protobuf.ByteString getPublicKey() {
+        return publicKey_;
       }
-      public Builder setKey(com.google.protobuf.ByteString value) {
+      public Builder setPublicKey(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000002;
-        key_ = value;
+        publicKey_ = value;
         onChanged();
         return this;
       }
-      public Builder clearKey() {
+      public Builder clearPublicKey() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        key_ = getDefaultInstance().getKey();
+        publicKey_ = getDefaultInstance().getPublicKey();
+        onChanged();
+        return this;
+      }
+      
+      // optional bytes identity_key = 3;
+      private com.google.protobuf.ByteString identityKey_ = com.google.protobuf.ByteString.EMPTY;
+      public boolean hasIdentityKey() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public com.google.protobuf.ByteString getIdentityKey() {
+        return identityKey_;
+      }
+      public Builder setIdentityKey(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        identityKey_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearIdentityKey() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        identityKey_ = getDefaultInstance().getIdentityKey();
         onChanged();
         return this;
       }
@@ -420,10 +480,10 @@ public final class PreKeyProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022PreKeyEntity.proto\022\ntextsecure\"\'\n\014PreK" +
-      "eyEntity\022\n\n\002id\030\001 \001(\004\022\013\n\003key\030\002 \001(\014B5\n%org" +
-      ".whispersystems.textsecure.encodedB\014PreK" +
-      "eyProtos"
+      "\n\022PreKeyEntity.proto\022\ntextsecure\"D\n\014PreK" +
+      "eyEntity\022\n\n\002id\030\001 \001(\004\022\022\n\npublic_key\030\002 \001(\014" +
+      "\022\024\n\014identity_key\030\003 \001(\014B5\n%org.whispersys" +
+      "tems.textsecure.encodedB\014PreKeyProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -435,7 +495,7 @@ public final class PreKeyProtos {
           internal_static_textsecure_PreKeyEntity_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PreKeyEntity_descriptor,
-              new java.lang.String[] { "Id", "Key", },
+              new java.lang.String[] { "Id", "PublicKey", "IdentityKey", },
               org.whispersystems.textsecure.encoded.PreKeyProtos.PreKeyEntity.class,
               org.whispersystems.textsecure.encoded.PreKeyProtos.PreKeyEntity.Builder.class);
           return null;

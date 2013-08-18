@@ -24,7 +24,7 @@ import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PublicKey;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
-import org.whispersystems.textsecure.protocol.Message;
+import org.whispersystems.textsecure.crypto.protocol.Message;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Conversions;
 

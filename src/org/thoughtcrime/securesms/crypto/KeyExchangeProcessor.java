@@ -26,7 +26,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.storage.RemoteKeyRecord;
 import org.whispersystems.textsecure.storage.SessionRecord;
-import org.whispersystems.textsecure.protocol.Message;
+import org.whispersystems.textsecure.crypto.protocol.Message;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;

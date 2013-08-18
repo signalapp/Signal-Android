@@ -13,6 +13,8 @@ import android.util.Pair;
 
 import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
@@ -268,8 +270,9 @@ public class RegistrationService extends Service {
       throws GcmRegistrationTimeoutException, IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    List<PreKeyRecord> records = waitForPreKeys(masterSecret);
-    socket.registerPreKeys(PreKeyUtil.toJson(records));
+    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this);
+    List<PreKeyRecord> records     = waitForPreKeys(masterSecret);
+    socket.registerPreKeys(identityKey, records);
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
     GCMRegistrar.register(this, GcmIntentService.GCM_SENDER_ID);

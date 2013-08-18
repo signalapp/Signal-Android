@@ -1,15 +1,18 @@
 package org.whispersystems.textsecure.push;
 
 import android.content.Context;
-import android.util.Base64;
 import android.util.Log;
 import android.util.Pair;
 
+import com.google.protobuf.ByteString;
 import com.google.thoughtcrimegson.Gson;
 import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.Release;
+import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.directory.DirectoryDescriptor;
-import org.whispersystems.textsecure.directory.NumberFilter;
+import org.whispersystems.textsecure.encoded.PreKeyProtos.PreKeyEntity;
+import org.whispersystems.textsecure.storage.PreKeyRecord;
+import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -31,7 +34,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.zip.GZIPInputStream;
 
 public class PushServiceSocket {
 
@@ -57,16 +59,16 @@ public class PushServiceSocket {
     this.trustManagerFactory = initializeTrustManagerFactory(context);
   }
 
-  public void createAccount(boolean voice) throws IOException, RateLimitException {
+  public void createAccount(boolean voice) throws IOException {
     String path = voice ? CREATE_ACCOUNT_VOICE_PATH : CREATE_ACCOUNT_SMS_PATH;
     makeRequest(String.format(path, localNumber), "POST", null);
   }
 
-  public void verifyAccount(String verificationCode) throws IOException, RateLimitException {
+  public void verifyAccount(String verificationCode) throws IOException {
     makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode), "PUT", null);
   }
 
-  public void registerGcmId(String gcmRegistrationId) throws IOException, RateLimitException {
+  public void registerGcmId(String gcmRegistrationId) throws IOException {
     GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
     makeRequest(REGISTER_GCM_PATH, "PUT", new Gson().toJson(registration));
   }
@@ -106,8 +108,23 @@ public class PushServiceSocket {
       throw new IOException("Got send failure: " + response.getFailure().get(0));
   }
 
-  public void registerPreKeys(PreKeyList keys) throws IOException {
-     makeRequest(PREKEY_PATH, "PUT", new Gson().toJson(keys));
+  public void registerPreKeys(IdentityKey identityKey, List<PreKeyRecord> records)
+      throws IOException
+  {
+    List<String> encoded = new LinkedList<String>();
+
+    for (PreKeyRecord record : records) {
+        PreKeyEntity entity  = PreKeyEntity.newBuilder().setId(record.getId())
+                                           .setPublicKey(ByteString.copyFrom(record.getEncodedPublicKey()))
+                                           .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
+                                           .build();
+
+        String encodedEntity = Base64.encodeBytesWithoutPadding(entity.toByteArray());
+
+        encoded.add(encodedEntity);
+    }
+
+     makeRequest(PREKEY_PATH, "PUT", new Gson().toJson(new PreKeyList(encoded)));
   }
 
 
@@ -317,7 +334,7 @@ public class PushServiceSocket {
 
   private String getAuthorizationHeader() {
     try {
-      return "Basic " + new String(Base64.encode((localNumber + ":" + password).getBytes("UTF-8"), Base64.NO_WRAP));
+      return "Basic " + Base64.encodeBytes((localNumber + ":" + password).getBytes("UTF-8"));
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);
     }
