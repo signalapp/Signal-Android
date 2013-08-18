@@ -65,22 +65,6 @@ public class PreKeyUtil {
     }
   }
 
-  public static PreKeyList toJson(List<PreKeyRecord> records) {
-    List<String> encoded = new LinkedList<String>();
-
-    for (PreKeyRecord record : records) {
-      PreKeyEntity entity  = PreKeyEntity.newBuilder().setId(record.getId())
-                                         .setKey(ByteString.copyFrom(KeyUtil.encodePoint(record.getKeyPair().getPublicKey().getQ())))
-                                         .build();
-
-      String encodedEntity = Base64.encodeBytesWithoutPadding(entity.toByteArray());
-
-      encoded.add(encodedEntity);
-    }
-
-    return new PreKeyList(encoded);
-  }
-
   private static long getNextPreKeyId(Context context) {
     try {
       File     directory    = getPreKeysDirectory(context);
