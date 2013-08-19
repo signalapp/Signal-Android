@@ -21,9 +21,9 @@ public class PreKeyRecord extends Record {
   private final MasterSecret masterSecret;
 
   private PreKeyPair keyPair;
-  private long id;
+  private int id;
 
-  public PreKeyRecord(Context context, MasterSecret masterSecret, long id)
+  public PreKeyRecord(Context context, MasterSecret masterSecret, int id)
       throws InvalidKeyIdException
   {
     super(context, PREKEY_DIRECTORY, id+"");
@@ -35,7 +35,7 @@ public class PreKeyRecord extends Record {
   }
 
   public PreKeyRecord(Context context, MasterSecret masterSecret,
-                      long id, PreKeyPair keyPair)
+                      int id, PreKeyPair keyPair)
   {
     super(context, PREKEY_DIRECTORY, id+"");
     this.id           = id;
@@ -43,7 +43,7 @@ public class PreKeyRecord extends Record {
     this.masterSecret = masterSecret;
   }
 
-  public long getId() {
+  public int getId() {
     return id;
   }
 
