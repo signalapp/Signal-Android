@@ -119,4 +119,12 @@ public class Util {
 
     return result.toString();
   }
+
+  public static SecureRandom getSecureRandom() {
+    try {
+      return SecureRandom.getInstance("SHA1PRNG");
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
+  }
 }

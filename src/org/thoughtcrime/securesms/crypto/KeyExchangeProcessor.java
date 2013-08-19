@@ -20,9 +20,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.storage.RemoteKeyRecord;
 import org.whispersystems.textsecure.storage.SessionRecord;
@@ -65,8 +69,12 @@ public class KeyExchangeProcessor {
       return false;
     }
 
+    return isTrusted(message.getIdentityKey());
+  }
+
+  public boolean isTrusted(IdentityKey identityKey) {
     return DatabaseFactory.getIdentityDatabase(context).isValidIdentity(masterSecret, recipient,
-                                                                        message.getIdentityKey());
+                                                                        identityKey);
   }
 
   public boolean hasInitiatedSession() {
@@ -86,7 +94,25 @@ public class KeyExchangeProcessor {
       (localKeyRecord.getCurrentKeyPair() != null && localKeyRecord.getCurrentKeyPair().getId() != responseKeyId);
   }
 
-  public boolean processKeyExchangeMessage(KeyExchangeMessage message, long threadId) {
+  public void processKeyExchangeMessage(PreKeyEntity message) {
+    PublicKey remoteKey = new PublicKey(message.getKeyId(), message.getPublicKey());
+    remoteKeyRecord.setCurrentRemoteKey(remoteKey);
+    remoteKeyRecord.setLastRemoteKey(remoteKey);
+    remoteKeyRecord.save();
+
+    localKeyRecord = KeyUtil.initializeRecordFor(recipient, context, masterSecret);
+
+    sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
+                               remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
+    sessionRecord.setIdentityKey(message.getIdentityKey());
+    sessionRecord.setSessionVersion(Message.SUPPORTED_VERSION);
+    sessionRecord.save();
+
+    DatabaseFactory.getIdentityDatabase(context)
+                   .saveIdentity(masterSecret, recipient, message.getIdentityKey());
+  }
+
+  public void processKeyExchangeMessage(KeyExchangeMessage message, long threadId) {
     int initiateKeyId = Conversions.lowBitsToMedium(message.getPublicKey().getId());
     message.getPublicKey().setId(initiateKeyId);
 
@@ -123,8 +149,6 @@ public class KeyExchangeProcessor {
     intent.putExtra("thread_id", threadId);
     intent.setPackage(context.getPackageName());
     context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
-
-    return true;
   }
 
 }

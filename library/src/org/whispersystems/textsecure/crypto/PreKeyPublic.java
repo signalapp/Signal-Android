@@ -18,4 +18,8 @@ public class PreKeyPublic {
     return KeyUtil.encodePoint(publicKey.getQ());
   }
 
+  public ECPublicKeyParameters getPublicKey() {
+    return publicKey;
+  }
+
 }

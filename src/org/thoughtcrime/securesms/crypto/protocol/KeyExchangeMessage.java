@@ -14,11 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.crypto;
+package org.thoughtcrime.securesms.crypto.protocol;
 
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -58,9 +60,9 @@ public class KeyExchangeMessage {
 
   private final int         messageVersion;
   private final int         supportedVersion;
-  private final PublicKey publicKey;
+  private final PublicKey   publicKey;
   private final String      serialized;
-  private IdentityKey identityKey;
+  private       IdentityKey identityKey;
 	
   public KeyExchangeMessage(Context context, MasterSecret masterSecret, int messageVersion, LocalKeyRecord record, int highIdBits) {
     this.publicKey        = new PublicKey(record.getCurrentKeyPair().getPublicKey());
