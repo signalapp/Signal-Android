@@ -3,14 +3,20 @@ package org.thoughtcrime.securesms.transport;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushAttachmentData;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
+import org.whispersystems.textsecure.storage.SessionRecord;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.IOException;
@@ -37,9 +43,21 @@ public class PushTransport extends BaseTransport {
       String            password    = TextSecurePreferences.getPushServerPassword(context);
       PushServiceSocket socket      = new PushServiceSocket(context, localNumber, password);
 
-      String recipientNumber          = message.getIndividualRecipient().getNumber();
-      String recipientCanonicalNumber = PhoneNumberFormatter.formatNumber(recipientNumber,
+      Recipient recipient             = message.getIndividualRecipient();
+      String plaintext                = message.getBody().getBody();
+      String recipientCanonicalNumber = PhoneNumberFormatter.formatNumber(recipient.getNumber(),
                                                                           localNumber);
+
+//      if (SessionRecord.hasSession(context, recipient)) {
+//        byte[] cipherText = getEncryptedMessageForExistingSession(recipient, plaintext);
+//        socket.sendMessage(recipientCanonicalNumber, new String(cipherText));
+//      } else {
+//        byte[] cipherText = getEncryptedMessageForNewSession(socket, recipient,
+//                                                             recipientCanonicalNumber,
+//                                                             plaintext);
+//        socket.sendMessage(recipientCanonicalNumber, new String(cipherText));
+//      }
+
 
       socket.sendMessage(recipientCanonicalNumber, message.getBody().getBody());
 
@@ -82,4 +100,23 @@ public class PushTransport extends BaseTransport {
 
     return attachments;
   }
+
+  private byte[] getEncryptedMessageForNewSession(PushServiceSocket socket, Recipient recipient, String canonicalRecipientNumber, String plaintext) throws IOException {
+    PreKeyEntity         preKey    = socket.getPreKey(canonicalRecipientNumber);
+    KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, recipient);
+    processor.processKeyExchangeMessage(preKey);
+
+    synchronized (SessionCipher.CIPHER_LOCK) {
+      SessionCipher sessionCipher = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
+      return sessionCipher.encryptMessage(plaintext.getBytes());
+    }
+  }
+
+  private byte[] getEncryptedMessageForExistingSession(Recipient recipient, String plaintext) {
+    synchronized (SessionCipher.CIPHER_LOCK) {
+      SessionCipher sessionCipher = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
+      return sessionCipher.encryptMessage(plaintext.getBytes());
+    }
+  }
+
 }

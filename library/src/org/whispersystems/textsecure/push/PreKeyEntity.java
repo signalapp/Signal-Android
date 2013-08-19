@@ -18,17 +18,17 @@ import java.lang.reflect.Type;
 
 public class PreKeyEntity {
 
-  private long         keyId;
+  private int          keyId;
   private PreKeyPublic publicKey;
   private IdentityKey  identityKey;
 
-  public PreKeyEntity(long keyId, PreKeyPublic publicKey, IdentityKey identityKey) {
+  public PreKeyEntity(int keyId, PreKeyPublic publicKey, IdentityKey identityKey) {
     this.keyId       = keyId;
     this.publicKey   = publicKey;
     this.identityKey = identityKey;
   }
 
-  public long getKeyId() {
+  public int getKeyId() {
     return keyId;
   }
 

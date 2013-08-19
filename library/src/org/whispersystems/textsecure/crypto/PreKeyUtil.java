@@ -3,16 +3,17 @@ package org.whispersystems.textsecure.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.protobuf.ByteString;
-import org.whispersystems.textsecure.encoded.PreKeyProtos.PreKeyEntity;
-import org.whispersystems.textsecure.push.PreKeyList;
+import com.google.thoughtcrimegson.Gson;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
-import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.Medium;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -24,17 +25,18 @@ public class PreKeyUtil {
 
   public static List<PreKeyRecord> generatePreKeys(Context context, MasterSecret masterSecret) {
     List<PreKeyRecord> records        = new LinkedList<PreKeyRecord>();
-    long               preKeyIdOffset = getNextPreKeyId(context);
+    int                preKeyIdOffset = getNextPreKeyId(context);
 
     for (int i=0;i<BATCH_SIZE;i++) {
-      Log.w("PreKeyUtil", "Generating PreKey: " + (preKeyIdOffset + i));
-      PreKeyPair keyPair = new PreKeyPair(masterSecret, KeyUtil.generateKeyPair());
-      PreKeyRecord record  = new PreKeyRecord(context, masterSecret, preKeyIdOffset + i, keyPair);
+      int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
+      PreKeyPair   keyPair  = new PreKeyPair(masterSecret, KeyUtil.generateKeyPair());
+      PreKeyRecord record   = new PreKeyRecord(context, masterSecret, preKeyId, keyPair);
 
       record.save();
       records.add(record);
     }
 
+    setNextPreKeyId(context, (preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
     return records;
   }
 
@@ -47,7 +49,7 @@ public class PreKeyUtil {
 
     for (String keyRecordId : keyRecordIds) {
       try {
-        records.add(new PreKeyRecord(context, masterSecret, Long.parseLong(keyRecordId)));
+        records.add(new PreKeyRecord(context, masterSecret, Integer.parseInt(keyRecordId)));
       } catch (InvalidKeyIdException e) {
         Log.w("PreKeyUtil", e);
         new File(getPreKeysDirectory(context), keyRecordId).delete();
@@ -69,23 +71,32 @@ public class PreKeyUtil {
     }
   }
 
-  private static long getNextPreKeyId(Context context) {
+  private static void setNextPreKeyId(Context context, int id) {
     try {
-      File     directory    = getPreKeysDirectory(context);
-      String[] keyRecordIds = directory.list();
-      long     nextPreKeyId = 0;
+      File             nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
+      FileOutputStream fout     = new FileOutputStream(nextFile);
+      fout.write(new Gson().toJson(new PreKeyIndex(id)).getBytes());
+      fout.close();
+    } catch (IOException e) {
+      Log.w("PreKeyUtil", e);
+    }
+  }
 
-      for (String keyRecordId : keyRecordIds) {
-        if (Long.parseLong(keyRecordId) > nextPreKeyId)
-          nextPreKeyId = Long.parseLong(keyRecordId);
+  private static int getNextPreKeyId(Context context) {
+    try {
+      File nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
+
+      if (nextFile.exists()) {
+        return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
+      } else {
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(nextFile));
+        PreKeyIndex       index  = new Gson().fromJson(reader, PreKeyIndex.class);
+        reader.close();
+        return index.nextPreKeyId;
       }
-
-      if (nextPreKeyId == 0)
-        nextPreKeyId = SecureRandom.getInstance("SHA1PRNG").nextInt(Integer.MAX_VALUE/2);
-
-      return nextPreKeyId;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
+    } catch (IOException e) {
+      Log.w("PreKeyUtil", e);
+      return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
     }
   }
 
@@ -111,6 +122,18 @@ public class PreKeyUtil {
       } catch (NumberFormatException e) {
         return 0;
       }
+    }
+  }
+
+  private static class PreKeyIndex {
+    public static final String FILE_NAME = "index.dat";
+
+    private int nextPreKeyId;
+
+    public PreKeyIndex() {}
+
+    public PreKeyIndex(int nextPreKeyId) {
+      this.nextPreKeyId = nextPreKeyId;
     }
   }
 
