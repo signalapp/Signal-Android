@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.util.Hex;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WorkerThread;
@@ -194,9 +195,10 @@ public class DecryptingQueue {
 
         synchronized (SessionCipher.CIPHER_LOCK) {
           Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
-          SessionCipher cipher = new SessionCipher(context, masterSecret, recipient, new TextTransport());
+          EncryptedMessage message = new EncryptedMessage(context, masterSecret, new TextTransport());
+
           try {
-            plaintextPduBytes = cipher.decryptMessage(ciphertextPduBytes);
+            plaintextPduBytes = message.decrypt(recipient, ciphertextPduBytes);
           } catch (InvalidMessageException ime) {
             // XXX - For some reason, Sprint seems to append a single character to the
             // end of message text segments.  I don't know why, so here we just try
@@ -205,7 +207,7 @@ public class DecryptingQueue {
               Log.w("DecryptingQueue", "Attempting truncated decrypt...");
               byte[] truncated = new byte[ciphertextPduBytes.length - 1];
               System.arraycopy(ciphertextPduBytes, 0, truncated, 0, truncated.length);
-              plaintextPduBytes = cipher.decryptMessage(truncated);
+              plaintextPduBytes = message.decrypt(recipient, truncated);
             } else {
               throw ime;
             }
@@ -273,8 +275,8 @@ public class DecryptingQueue {
             return;
           }
 
-          SessionCipher cipher  = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
-          plaintextBody         = new String(cipher.decryptMessage(body.getBytes()));
+          EncryptedMessage message = new EncryptedMessage(context, masterSecret, new SmsTransportDetails());
+          plaintextBody = new String(message.decrypt(recipient, body.getBytes()));
         } catch (InvalidMessageException e) {
           Log.w("DecryptionQueue", e);
           database.markAsDecryptFailed(messageId);

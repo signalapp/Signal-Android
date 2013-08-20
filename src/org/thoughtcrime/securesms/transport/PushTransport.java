@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -12,6 +13,7 @@ import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushAttachmentData;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -106,17 +108,16 @@ public class PushTransport extends BaseTransport {
     KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, recipient);
     processor.processKeyExchangeMessage(preKey);
 
-    synchronized (SessionCipher.CIPHER_LOCK) {
-      SessionCipher sessionCipher = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
-      return sessionCipher.encryptMessage(plaintext.getBytes());
-    }
+    return plaintext.getBytes();
+//    synchronized (SessionCipher.CIPHER_LOCK) {
+//      SessionCipher sessionCipher = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
+//      return sessionCipher.encryptMessage(plaintext.getBytes());
+//    }
   }
 
   private byte[] getEncryptedMessageForExistingSession(Recipient recipient, String plaintext) {
-    synchronized (SessionCipher.CIPHER_LOCK) {
-      SessionCipher sessionCipher = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
-      return sessionCipher.encryptMessage(plaintext.getBytes());
-    }
+    EncryptedMessage message = new EncryptedMessage(context, masterSecret, new TextTransport());
+    return message.encrypt(recipient, plaintext.getBytes());
   }
 
 }
