@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 
 import java.util.ArrayList;
 
@@ -138,9 +139,7 @@ public class SmsTransport extends BaseTransport {
   }
 
   private String getAsymmetricEncrypt(MasterSecret masterSecret, String body, Recipient recipient) {
-    synchronized (SessionCipher.CIPHER_LOCK) {
-      SessionCipher cipher = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
-      return new String(cipher.encryptMessage(body.getBytes()));
-    }
+    EncryptedMessage message = new EncryptedMessage(context, masterSecret, new SmsTransportDetails());
+    return new String(message.encrypt(recipient, body.getBytes()));
   }
 }

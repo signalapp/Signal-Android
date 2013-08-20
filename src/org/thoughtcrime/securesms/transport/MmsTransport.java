@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
@@ -133,13 +134,8 @@ public class MmsTransport {
   }
 
   private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipient, byte[] pduBytes) {
-    synchronized (SessionCipher.CIPHER_LOCK) {
-      SessionCipher cipher = new SessionCipher(context, masterSecret,
-                                               new Recipient(null, recipient, null, null),
-                                               new TextTransport());
-
-      return cipher.encryptMessage(pduBytes);
-    }
+    EncryptedMessage message = new EncryptedMessage(context, masterSecret, new TextTransport());
+    return message.encrypt(new Recipient(null, recipient, null, null), pduBytes);
   }
 
   private boolean isInconsistentResponse(SendReq message, SendConf response) {

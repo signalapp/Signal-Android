@@ -22,7 +22,7 @@ import android.util.Log;
 import org.spongycastle.crypto.AsymmetricCipherKeyPair;
 import org.spongycastle.crypto.agreement.ECDHBasicAgreement;
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
-import org.whispersystems.textsecure.crypto.protocol.Message;
+import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
@@ -37,7 +37,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -57,83 +56,95 @@ public class SessionCipher {
   public static final int CIPHER_KEY_LENGTH = 16;
   public static final int MAC_KEY_LENGTH    = 20;
 	
-  public static final int ENCRYPTED_MESSAGE_OVERHEAD              = Message.HEADER_LENGTH + MessageMac.MAC_LENGTH;
-  //	public static final int ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE  = SmsTransportDetails.SINGLE_MESSAGE_MAX_BYTES - ENCRYPTED_MESSAGE_OVERHEAD;
-	
-  private final LocalKeyRecord   localRecord;
-  private final RemoteKeyRecord  remoteRecord;
-  private final SessionRecord    sessionRecord;
-  private final MasterSecret masterSecret;
-  private final TransportDetails transportDetails;
-	
-  public SessionCipher(Context context, MasterSecret masterSecret, CanonicalRecipientAddress recipient, TransportDetails transportDetails) {
-    Log.w("SessionCipher", "Constructing session cipher...");
-    this.masterSecret     = masterSecret;
-    this.localRecord      = new LocalKeyRecord(context, masterSecret, recipient);
-    this.remoteRecord     = new RemoteKeyRecord(context, recipient);
-    this.sessionRecord    = new SessionRecord(context, masterSecret, recipient);
-    this.transportDetails = transportDetails;
-  }
-  
-  public byte[] encryptMessage(byte[] messageText) {
-    Log.w("SessionCipher", "Encrypting message...");
-    try {
-      int localId           = localRecord.getCurrentKeyPair().getId();
-      int remoteId          = remoteRecord.getCurrentRemoteKey().getId();
-      SessionKey sessionKey = getSessionKey(Cipher.ENCRYPT_MODE, localId, remoteId);
-      byte[]paddedMessage   = transportDetails.getPaddedMessageBody(messageText);
-      byte[]cipherText      = getCiphertext(paddedMessage, sessionKey.getCipherKey());
-      byte[]message         = buildMessageFromCiphertext(cipherText);
-      byte[]messageWithMac  = MessageMac.buildMessageWithMac(message, sessionKey.getMacKey());
+  public static final int ENCRYPTED_MESSAGE_OVERHEAD = EncryptedMessage.HEADER_LENGTH + MessageMac.MAC_LENGTH;
 
-      sessionRecord.setSessionKey(sessionKey);
-      sessionRecord.incrementCounter();
-      sessionRecord.save();
-      
-      return transportDetails.encodeMessage(messageWithMac);
-    } catch (IllegalBlockSizeException e) {
-      throw new IllegalArgumentException(e);
-    } catch (BadPaddingException e) {
-      throw new IllegalArgumentException(e);
+  public SessionCipherContext getEncryptionContext(Context context, MasterSecret masterSecret,
+                                                   CanonicalRecipientAddress recipient)
+  {
+    try {
+      KeyRecords records           = getKeyRecords(context, masterSecret, recipient);
+      int        localKeyId        = records.getLocalKeyRecord().getCurrentKeyPair().getId();
+      int        remoteKeyId       = records.getRemoteKeyRecord().getCurrentRemoteKey().getId();
+      SessionKey sessionKey        = getSessionKey(masterSecret, Cipher.ENCRYPT_MODE, records, localKeyId, remoteKeyId);
+      PublicKey  nextKey           = records.getLocalKeyRecord().getNextKeyPair().getPublicKey();
+      int        counter           = records.getSessionRecord().getCounter();
+      int        negotiatedVersion = records.getSessionRecord().getSessionVersion();
+
+      return new SessionCipherContext(records, sessionKey, localKeyId, remoteKeyId, nextKey, counter, negotiatedVersion);
     } catch (InvalidKeyIdException e) {
       throw new IllegalArgumentException(e);
     }
   }
-  
+
+  public SessionCipherContext getDecryptionContext(Context context, MasterSecret masterSecret,
+                                                   CanonicalRecipientAddress recipient,
+                                                   int senderKeyId, int recipientKeyId,
+                                                   PublicKey nextKey, int counter,
+                                                   int negotiatedVersion)
+      throws InvalidMessageException
+  {
+    try {
+      KeyRecords records    = getKeyRecords(context, masterSecret, recipient);
+      SessionKey sessionKey = getSessionKey(masterSecret, Cipher.DECRYPT_MODE, records, recipientKeyId, senderKeyId);
+      return new SessionCipherContext(records, sessionKey, senderKeyId, recipientKeyId, nextKey, counter, negotiatedVersion);
+    } catch (InvalidKeyIdException e) {
+      throw new InvalidMessageException(e);
+    }
+  }
+
+  public byte[] encrypt(SessionCipherContext context, byte[] paddedMessageBody) {
+    Log.w("SessionCipher", "Encrypting message...");
+    try {
+      byte[]cipherText = getCiphertext(paddedMessageBody, context.getSessionKey().getCipherKey(), context.getSessionRecord().getCounter());
+
+      context.getSessionRecord().setSessionKey(context.getSessionKey());
+      context.getSessionRecord().incrementCounter();
+      context.getSessionRecord().save();
+
+      return cipherText;
+    } catch (IllegalBlockSizeException e) {
+      throw new IllegalArgumentException(e);
+    } catch (BadPaddingException e) {
+      throw new IllegalArgumentException(e);
+    }
+  }
 		
-  public byte[] decryptMessage(byte[] messageText) throws InvalidMessageException {
+  public byte[] decrypt(SessionCipherContext context, byte[] decodedCiphertext)
+      throws InvalidMessageException
+  {
     Log.w("SessionCipher", "Decrypting message...");
     try {
-      byte[] decodedMessage       = transportDetails.decodeMessage(messageText);
-      Message message             = new Message(MessageMac.getMessageWithoutMac(decodedMessage));
-      SessionKey sessionKey       = getSessionKey(Cipher.DECRYPT_MODE, message.getReceiverKeyId(), message.getSenderKeyId());			
+      byte[] plaintextWithPadding = getPlaintext(decodedCiphertext, context.getSessionKey().getCipherKey(), context.getCounter());
+
+      context.getRemoteKeyRecord().updateCurrentRemoteKey(context.getNextKey());
+      context.getRemoteKeyRecord().save();
 			
-      MessageMac.verifyMac(decodedMessage, sessionKey.getMacKey());
+      context.getLocalKeyRecord().advanceKeyIfNecessary(context.getRecipientKeyId());
+      context.getLocalKeyRecord().save();
 			
-      byte[] plaintextWithPadding = getPlaintext(message.getMessageText(), sessionKey.getCipherKey(), message.getCounter());
-      byte[] plaintext            = transportDetails.stripPaddedMessage(plaintextWithPadding);
+      context.getSessionRecord().setSessionKey(context.getSessionKey());
+      context.getSessionRecord().setSessionVersion(context.getNegotiatedVersion());
+      context.getSessionRecord().save();
 			
-      remoteRecord.updateCurrentRemoteKey(message.getNextKey());
-      remoteRecord.save();
-			
-      localRecord.advanceKeyIfNecessary(message.getReceiverKeyId());
-      localRecord.save();
-			
-      sessionRecord.setSessionKey(sessionKey);
-      sessionRecord.setSessionVersion(message.getHighestMutuallySupportedVersion());
-      sessionRecord.save();
-			
-      return plaintext;
-    } catch (IOException e) {
-      throw new InvalidMessageException("Encoding Failure", e);
-    } catch (InvalidKeyIdException e) {
-      throw new InvalidMessageException("Bad Key ID", e);
-    } catch (InvalidMacException e) {
-      throw new InvalidMessageException("Bad MAC", e);
+      return plaintextWithPadding;
     } catch (IllegalBlockSizeException e) {
       throw new InvalidMessageException("assert", e);
     } catch (BadPaddingException e) {
       throw new InvalidMessageException("assert", e);
+    }
+  }
+
+  public byte[] mac(SessionCipherContext context, byte[] formattedCiphertext) {
+    return MessageMac.buildMessageWithMac(formattedCiphertext, context.getSessionKey().getMacKey());
+  }
+
+  public void verifyMac(SessionCipherContext context, byte[] decodedCiphertext)
+      throws InvalidMessageException
+  {
+    try {
+      MessageMac.verifyMac(decodedCiphertext, context.getSessionKey().getMacKey());
+    } catch (InvalidMacException e) {
+      throw new InvalidMessageException(e);
     }
   }
 		
@@ -147,25 +158,14 @@ public class SessionCipher {
       throw new IllegalArgumentException("SHA-1 Not Supported!",e);
     }
   }
-	
-  private byte[] buildMessageFromCiphertext(byte[] cipherText) {
-    Message message = new Message(localRecord.getCurrentKeyPair().getId(),
-				  remoteRecord.getCurrentRemoteKey().getId(),
-				  localRecord.getNextKeyPair().getPublicKey(),
-				  sessionRecord.getCounter(),
-				  cipherText, sessionRecord.getSessionVersion(), Message.SUPPORTED_VERSION);
-		
-    return message.serialize();
-  }
-		
  	
   private byte[] getPlaintext(byte[] cipherText, SecretKeySpec key, int counter) throws IllegalBlockSizeException, BadPaddingException {
     Cipher cipher = getCipher(Cipher.DECRYPT_MODE, key, counter);
     return cipher.doFinal(cipherText);
   }
 	
-  private byte[] getCiphertext(byte[] message, SecretKeySpec key) throws IllegalBlockSizeException, BadPaddingException {
-    Cipher cipher = getCipher(Cipher.ENCRYPT_MODE, key, sessionRecord.getCounter());
+  private byte[] getCiphertext(byte[] message, SecretKeySpec key, int counter) throws IllegalBlockSizeException, BadPaddingException {
+    Cipher cipher = getCipher(Cipher.ENCRYPT_MODE, key, counter);
     return cipher.doFinal(message);
   }
 	
@@ -193,12 +193,16 @@ public class SessionCipher {
     }
   }
 	
-  private SecretKeySpec deriveCipherSecret(int mode, BigInteger sharedSecret, int localKeyId, int remoteKeyId) throws InvalidKeyIdException {
+  private SecretKeySpec deriveCipherSecret(int mode, BigInteger sharedSecret,
+                                           KeyRecords records, int localKeyId,
+                                           int remoteKeyId)
+      throws InvalidKeyIdException
+  {
     byte[] sharedSecretBytes = sharedSecret.toByteArray();
     byte[] derivedBytes      = deriveBytes(sharedSecretBytes, 16 * 2);
     byte[] cipherSecret      = new byte[16];
 		
-    boolean isLowEnd         = isLowEnd(localKeyId, remoteKeyId);
+    boolean isLowEnd         = isLowEnd(records, localKeyId, remoteKeyId);
     isLowEnd                 = (mode == Cipher.ENCRYPT_MODE ? isLowEnd : !isLowEnd);
 		
     if (isLowEnd)  {
@@ -210,9 +214,11 @@ public class SessionCipher {
     return new SecretKeySpec(cipherSecret, "AES");
   }
 	
-  private boolean isLowEnd(int localKeyId, int remoteKeyId) throws InvalidKeyIdException {
-    ECPublicKeyParameters localPublic  = (ECPublicKeyParameters)localRecord.getKeyPairForId(localKeyId).getPublicKey().getKey();
-    ECPublicKeyParameters remotePublic = (ECPublicKeyParameters)remoteRecord.getKeyForId(remoteKeyId).getKey();
+  private boolean isLowEnd(KeyRecords records, int localKeyId, int remoteKeyId)
+      throws InvalidKeyIdException
+  {
+    ECPublicKeyParameters localPublic  = records.getLocalKeyRecord().getKeyPairForId(localKeyId).getPublicKey().getKey();
+    ECPublicKeyParameters remotePublic = records.getRemoteKeyRecord().getKeyForId(remoteKeyId).getKey();
     BigInteger local                   = localPublic.getQ().getX().toBigInteger();
     BigInteger remote                  = remotePublic.getQ().getX().toBigInteger();
 		
@@ -240,26 +246,133 @@ public class SessionCipher {
     return md.digest();
   }
 	
-  private SessionKey getSessionKey(int mode, int localKeyId, int remoteKeyId) throws InvalidKeyIdException {
+  private SessionKey getSessionKey(MasterSecret masterSecret, int mode, KeyRecords records,
+                                   int localKeyId, int remoteKeyId)
+      throws InvalidKeyIdException
+  {
     Log.w("SessionCipher", "Getting session key for local: " + localKeyId + " remote: " + remoteKeyId);
-    SessionKey sessionKey = sessionRecord.getSessionKey(localKeyId, remoteKeyId);
-    if (sessionKey != null) return sessionKey;
+    SessionKey sessionKey = records.getSessionRecord().getSessionKey(localKeyId, remoteKeyId);
+
+    if (sessionKey != null)
+      return sessionKey;
 		
-    BigInteger sharedSecret = calculateSharedSecret(localKeyId, remoteKeyId);
-    SecretKeySpec cipherKey = deriveCipherSecret(mode, sharedSecret, localKeyId, remoteKeyId);
+    BigInteger sharedSecret = calculateSharedSecret(records, localKeyId, remoteKeyId);
+    SecretKeySpec cipherKey = deriveCipherSecret(mode, sharedSecret, records, localKeyId, remoteKeyId);
     SecretKeySpec macKey    = deriveMacSecret(cipherKey);
 
     return new SessionKey(localKeyId, remoteKeyId, cipherKey, macKey, masterSecret);
   }
 	
-  private BigInteger calculateSharedSecret(int localKeyId, int remoteKeyId) throws InvalidKeyIdException {
+  private BigInteger calculateSharedSecret(KeyRecords records, int localKeyId, int remoteKeyId)
+      throws InvalidKeyIdException
+  {
     ECDHBasicAgreement agreement         = new ECDHBasicAgreement();
-    AsymmetricCipherKeyPair localKeyPair = localRecord.getKeyPairForId(localKeyId).getKeyPair();
-    ECPublicKeyParameters remoteKey      = remoteRecord.getKeyForId(remoteKeyId).getKey();
+    AsymmetricCipherKeyPair localKeyPair = records.getLocalKeyRecord().getKeyPairForId(localKeyId).getKeyPair();
+    ECPublicKeyParameters remoteKey      = records.getRemoteKeyRecord().getKeyForId(remoteKeyId).getKey();
 		
     agreement.init(localKeyPair.getPrivate());
-    BigInteger secret = KeyUtil.calculateAgreement(agreement, remoteKey);
-		
-    return secret;
+
+    return KeyUtil.calculateAgreement(agreement, remoteKey);
   }
+
+  private KeyRecords getKeyRecords(Context context, MasterSecret masterSecret,
+                                   CanonicalRecipientAddress recipient)
+  {
+    LocalKeyRecord  localKeyRecord  = new LocalKeyRecord(context, masterSecret, recipient);
+    RemoteKeyRecord remoteKeyRecord = new RemoteKeyRecord(context, recipient);
+    SessionRecord   sessionRecord   = new SessionRecord(context, masterSecret, recipient);
+    return new KeyRecords(localKeyRecord, remoteKeyRecord, sessionRecord);
+  }
+
+  private static class KeyRecords {
+    private final LocalKeyRecord  localKeyRecord;
+    private final RemoteKeyRecord remoteKeyRecord;
+    private final SessionRecord   sessionRecord;
+
+    public KeyRecords(LocalKeyRecord localKeyRecord, RemoteKeyRecord remoteKeyRecord, SessionRecord sessionRecord) {
+      this.localKeyRecord  = localKeyRecord;
+      this.remoteKeyRecord = remoteKeyRecord;
+      this.sessionRecord   = sessionRecord;
+    }
+
+    private LocalKeyRecord getLocalKeyRecord() {
+      return localKeyRecord;
+    }
+
+    private RemoteKeyRecord getRemoteKeyRecord() {
+      return remoteKeyRecord;
+    }
+
+    private SessionRecord getSessionRecord() {
+      return sessionRecord;
+    }
+  }
+
+  public static class SessionCipherContext {
+    private final LocalKeyRecord  localKeyRecord;
+    private final RemoteKeyRecord remoteKeyRecord;
+    private final SessionRecord   sessionRecord;
+    private final SessionKey      sessionKey;
+    private final int             senderKeyId;
+    private final int             recipientKeyId;
+    private final PublicKey       nextKey;
+    private final int             counter;
+    private final int             negotiatedVersion;
+
+    public SessionCipherContext(KeyRecords records,
+                                SessionKey sessionKey,
+                                int senderKeyId,
+                                int receiverKeyId,
+                                PublicKey nextKey,
+                                int counter,
+                                int negotiatedVersion)
+    {
+      this.localKeyRecord    = records.getLocalKeyRecord();
+      this.remoteKeyRecord   = records.getRemoteKeyRecord();
+      this.sessionRecord     = records.getSessionRecord();
+      this.sessionKey        = sessionKey;
+      this.senderKeyId       = senderKeyId;
+      this.recipientKeyId    = receiverKeyId;
+      this.nextKey           = nextKey;
+      this.counter           = counter;
+      this.negotiatedVersion = negotiatedVersion;
+    }
+
+    public LocalKeyRecord getLocalKeyRecord() {
+      return localKeyRecord;
+    }
+
+    public RemoteKeyRecord getRemoteKeyRecord() {
+      return remoteKeyRecord;
+    }
+
+    public SessionRecord getSessionRecord() {
+      return sessionRecord;
+    }
+
+    public SessionKey getSessionKey() {
+      return sessionKey;
+    }
+
+    public PublicKey getNextKey() {
+      return nextKey;
+    }
+
+    public int getCounter() {
+      return counter;
+    }
+
+    public int getSenderKeyId() {
+      return senderKeyId;
+    }
+
+    public int getRecipientKeyId() {
+      return recipientKeyId;
+    }
+
+    public int getNegotiatedVersion() {
+      return negotiatedVersion;
+    }
+  }
+
 }
