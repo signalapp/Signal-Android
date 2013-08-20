@@ -38,20 +38,20 @@ public class SmsTransportDetails implements TransportDetails {
   public static final int ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE = SINGLE_MESSAGE_MAX_BYTES - SessionCipher.ENCRYPTED_MESSAGE_OVERHEAD;
 
   @Override
-  public byte[] encodeMessage(byte[] messageWithMac) {
+  public byte[] getEncodedMessage(byte[] messageWithMac) {
     String encodedMessage = Base64.encodeBytesWithoutPadding(messageWithMac);
     Log.w("SmsTransportDetails", "Encoded Message Length: " + encodedMessage.length());
     return encodedMessage.getBytes();
   }
 
   @Override
-  public byte[] decodeMessage(byte[] encodedMessageBytes) throws IOException {
+  public byte[] getDecodedMessage(byte[] encodedMessageBytes) throws IOException {
     String encodedMessage = new String(encodedMessageBytes);
     return Base64.decodeWithoutPadding(encodedMessage);
   }
 
   @Override
-  public byte[] stripPaddedMessage(byte[] messageWithPadding) {
+  public byte[] getStrippedPaddingMessageBody(byte[] messageWithPadding) {
     int paddingBeginsIndex = 0;
 
     for (int i=1;i<messageWithPadding.length;i++) {
