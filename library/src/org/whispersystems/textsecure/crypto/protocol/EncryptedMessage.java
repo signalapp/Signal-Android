@@ -17,16 +17,20 @@
 package org.whispersystems.textsecure.crypto.protocol;
 
 import android.content.Context;
+import android.util.Log;
 
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MessageMac;
 import org.whispersystems.textsecure.crypto.PublicKey;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.SessionCipher.SessionCipherContext;
 import org.whispersystems.textsecure.crypto.TransportDetails;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.util.Conversions;
+import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -39,29 +43,35 @@ import java.nio.ByteBuffer;
 
 public class EncryptedMessage {
 
-  public static final int SUPPORTED_VERSION       = 1;
+  public static final int SUPPORTED_VERSION        = 2;
+  public static final int CRADLE_AGREEMENT_VERSION = 2;
 
-  private static final int VERSION_LENGTH         = 1;
+          static final int VERSION_LENGTH         = 1;
   private static final int SENDER_KEY_ID_LENGTH   = 3;
   private static final int RECEIVER_KEY_ID_LENGTH = 3;
-  private static final int NEXT_KEY_LENGTH        = PublicKey.KEY_SIZE;
+          static final int NEXT_KEY_LENGTH        = PublicKey.KEY_SIZE;
   private static final int COUNTER_LENGTH         = 3;
   public static final int HEADER_LENGTH          =  VERSION_LENGTH + SENDER_KEY_ID_LENGTH + RECEIVER_KEY_ID_LENGTH + COUNTER_LENGTH + NEXT_KEY_LENGTH;
 
-  private static final int VERSION_OFFSET         = 0;
+          static final int VERSION_OFFSET         = 0;
   private static final int SENDER_KEY_ID_OFFSET   = VERSION_OFFSET + VERSION_LENGTH;
-  private static final int RECEIVER_KEY_ID_OFFSET = SENDER_KEY_ID_OFFSET + SENDER_KEY_ID_LENGTH;
-  private static final int NEXT_KEY_OFFSET        = RECEIVER_KEY_ID_OFFSET + RECEIVER_KEY_ID_LENGTH;
+          static final int RECEIVER_KEY_ID_OFFSET = SENDER_KEY_ID_OFFSET + SENDER_KEY_ID_LENGTH;
+          static final int NEXT_KEY_OFFSET        = RECEIVER_KEY_ID_OFFSET + RECEIVER_KEY_ID_LENGTH;
   private static final int COUNTER_OFFSET         = NEXT_KEY_OFFSET + NEXT_KEY_LENGTH;
   private static final int TEXT_OFFSET            = COUNTER_OFFSET + COUNTER_LENGTH;
 
   private final Context          context;
   private final MasterSecret     masterSecret;
+  private final IdentityKeyPair  localIdentityKey;
   private final TransportDetails transportDetails;
 
-  public EncryptedMessage(Context context, MasterSecret masterSecret, TransportDetails transportDetails) {
+  public EncryptedMessage(Context context, MasterSecret masterSecret,
+                          IdentityKeyPair localIdentityKey,
+                          TransportDetails transportDetails)
+  {
     this.context          = context.getApplicationContext();
     this.masterSecret     = masterSecret;
+    this.localIdentityKey = localIdentityKey;
     this.transportDetails = transportDetails;
   }
 
@@ -69,7 +79,7 @@ public class EncryptedMessage {
     synchronized (SessionCipher.CIPHER_LOCK) {
       byte[]               paddedBody          = transportDetails.getPaddedMessageBody(plaintext);
       SessionCipher        sessionCipher       = new SessionCipher();
-      SessionCipherContext sessionContext      = sessionCipher.getEncryptionContext(context, masterSecret, recipient);
+      SessionCipherContext sessionContext      = sessionCipher.getEncryptionContext(context, masterSecret, localIdentityKey, recipient);
       byte[]               ciphertextBody      = sessionCipher.encrypt(sessionContext, paddedBody);
       byte[]               formattedCiphertext = getFormattedCiphertext(sessionContext, ciphertextBody);
       byte[]               ciphertextMessage   = sessionCipher.mac(sessionContext, formattedCiphertext);
@@ -84,25 +94,33 @@ public class EncryptedMessage {
     synchronized (SessionCipher.CIPHER_LOCK) {
       try {
         byte[] decodedMessage = transportDetails.getDecodedMessage(ciphertext);
-        int    messageVersion = getMessageVersion(decodedMessage);
+
+        if (decodedMessage.length <= HEADER_LENGTH) {
+          throw new InvalidMessageException("Message is shorter than headers");
+        }
+
+        int messageVersion = getMessageVersion(decodedMessage);
 
         if (messageVersion > SUPPORTED_VERSION) {
           throw new InvalidMessageException("Unsupported version: " + messageVersion);
         }
 
-        int                  supportedVersion = getSupportedVersion(decodedMessage);
-        int                  receiverKeyId    = getReceiverKeyId(decodedMessage);
-        int                  senderKeyId      = getSenderKeyId(decodedMessage);
-        int                  counter          = getCiphertextCounter(decodedMessage);
-        byte[]               ciphertextBody   = getMessageBody(decodedMessage);
-        PublicKey            nextRemoteKey    = getNextRemoteKey(decodedMessage);
-        int                  version          = Math.min(supportedVersion, SUPPORTED_VERSION);
-        SessionCipher        sessionCipher    = new SessionCipher();
-        SessionCipherContext sessionContext   = sessionCipher.getDecryptionContext(context, masterSecret,
-                                                                                   recipient, senderKeyId,
-                                                                                   receiverKeyId,
-                                                                                   nextRemoteKey,
-                                                                                   counter, version);
+        int                  supportedVersion  = getSupportedVersion(decodedMessage);
+        int                  receiverKeyId     = getReceiverKeyId(decodedMessage);
+        int                  senderKeyId       = getSenderKeyId(decodedMessage);
+        int                  counter           = getCiphertextCounter(decodedMessage);
+        byte[]               ciphertextBody    = getMessageBody(decodedMessage);
+        PublicKey            nextRemoteKey     = getNextRemoteKey(decodedMessage);
+        int                  negotiatedVersion = Math.min(supportedVersion, SUPPORTED_VERSION);
+        SessionCipher        sessionCipher     = new SessionCipher();
+        SessionCipherContext sessionContext    = sessionCipher.getDecryptionContext(context, masterSecret,
+                                                                                    localIdentityKey,
+                                                                                    recipient, senderKeyId,
+                                                                                    receiverKeyId,
+                                                                                    nextRemoteKey,
+                                                                                    counter,
+                                                                                    messageVersion,
+                                                                                    negotiatedVersion);
 
         sessionCipher.verifyMac(sessionContext, decodedMessage);
 
@@ -155,7 +173,7 @@ public class EncryptedMessage {
   }
 
   private byte[] getMessageBody(byte[] message) {
-    byte[] body = new byte[message.length - HEADER_LENGTH];
+    byte[] body = new byte[message.length - HEADER_LENGTH - MessageMac.MAC_LENGTH];
     System.arraycopy(message, TEXT_OFFSET, body, 0, body.length);
 
     return body;

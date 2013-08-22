@@ -30,7 +30,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.thoughtcrime.securesms.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.whispersystems.textsecure.crypto.MasterSecret;

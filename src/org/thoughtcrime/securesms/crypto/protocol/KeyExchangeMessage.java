@@ -20,7 +20,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -96,7 +96,7 @@ public class KeyExchangeMessage {
       if (messageVersion > EncryptedMessage.SUPPORTED_VERSION)
         throw new InvalidVersionException("Key exchange with version: " + messageVersion +
                                           " but we only support: " + EncryptedMessage.SUPPORTED_VERSION);
-				
+
       if (messageVersion >= 1)
         keyBytes = Base64.decodeWithoutPadding(messageBody);
 			

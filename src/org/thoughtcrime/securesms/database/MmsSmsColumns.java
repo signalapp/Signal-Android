@@ -27,9 +27,11 @@ public interface MmsSmsColumns {
                                                             BASE_SENDING_TYPE, BASE_SENT_FAILED_TYPE};
 
     // Key Exchange Information
-    protected static final long KEY_EXCHANGE_BIT           = 0x8000;
-    protected static final long KEY_EXCHANGE_STALE_BIT     = 0x4000;
-    protected static final long KEY_EXCHANGE_PROCESSED_BIT = 0x2000;
+    protected static final long KEY_EXCHANGE_BIT                 = 0x8000;
+    protected static final long KEY_EXCHANGE_STALE_BIT           = 0x4000;
+    protected static final long KEY_EXCHANGE_PROCESSED_BIT       = 0x2000;
+    protected static final long KEY_EXCHANGE_CORRUPTED_BIT       = 0x1000;
+    protected static final long KEY_EXCHANGE_INVALID_VERSION_BIT =  0x800;
 
     // Secure Message Information
     protected static final long SECURE_MESSAGE_BIT = 0x800000;
@@ -79,6 +81,14 @@ public interface MmsSmsColumns {
 
     public static boolean isProcessedKeyExchange(long type) {
       return (type & KEY_EXCHANGE_PROCESSED_BIT) != 0;
+    }
+
+    public static boolean isCorruptedKeyExchange(long type) {
+      return (type & KEY_EXCHANGE_CORRUPTED_BIT) != 0;
+    }
+
+    public static boolean isInvalidVersionKeyExchange(long type) {
+      return (type & KEY_EXCHANGE_INVALID_VERSION_BIT) != 0;
     }
 
     public static boolean isSymmetricEncryption(long type) {

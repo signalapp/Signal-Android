@@ -34,8 +34,11 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.util.Hex;
@@ -195,7 +198,8 @@ public class DecryptingQueue {
 
         synchronized (SessionCipher.CIPHER_LOCK) {
           Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
-          EncryptedMessage message = new EncryptedMessage(context, masterSecret, new TextTransport());
+          IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          EncryptedMessage message     = new EncryptedMessage(context, masterSecret, identityKey, new TextTransport());
 
           try {
             plaintextPduBytes = message.decrypt(recipient, ciphertextPduBytes);
@@ -275,7 +279,9 @@ public class DecryptingQueue {
             return;
           }
 
-          EncryptedMessage message = new EncryptedMessage(context, masterSecret, new SmsTransportDetails());
+          IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          EncryptedMessage message     = new EncryptedMessage(context, masterSecret, identityKey, new SmsTransportDetails());
+
           plaintextBody = new String(message.decrypt(recipient, body.getBytes()));
         } catch (InvalidMessageException e) {
           Log.w("DecryptionQueue", e);

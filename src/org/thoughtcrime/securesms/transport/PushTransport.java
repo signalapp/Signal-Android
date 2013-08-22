@@ -3,16 +3,20 @@ package org.thoughtcrime.securesms.transport;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.mms.TextTransport;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.SmsTransportDetails;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
+import org.thoughtcrime.securesms.mms.TextTransport;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.sms.RawTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushAttachmentData;
@@ -30,6 +34,11 @@ import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.SendReq;
 
 public class PushTransport extends BaseTransport {
+
+  public static final int TYPE_MESSAGE_PLAINTEXT     = 0;
+  public static final int TYPE_MESSAGE_CIPHERTEXT    = 1;
+  public static final int TYPE_MESSAGE_KEY_EXCHANGE  = 2;
+  public static final int TYPE_MESSAGE_PREKEY_BUNDLE = 3;
 
   private final Context      context;
   private final MasterSecret masterSecret;
@@ -50,18 +59,15 @@ public class PushTransport extends BaseTransport {
       String recipientCanonicalNumber = PhoneNumberFormatter.formatNumber(recipient.getNumber(),
                                                                           localNumber);
 
-//      if (SessionRecord.hasSession(context, recipient)) {
-//        byte[] cipherText = getEncryptedMessageForExistingSession(recipient, plaintext);
-//        socket.sendMessage(recipientCanonicalNumber, new String(cipherText));
-//      } else {
-//        byte[] cipherText = getEncryptedMessageForNewSession(socket, recipient,
-//                                                             recipientCanonicalNumber,
-//                                                             plaintext);
-//        socket.sendMessage(recipientCanonicalNumber, new String(cipherText));
-//      }
-
-
-      socket.sendMessage(recipientCanonicalNumber, message.getBody().getBody());
+      if (SessionRecord.hasSession(context, recipient)) {
+        byte[] cipherText = getEncryptedMessageForExistingSession(recipient, plaintext);
+        socket.sendMessage(recipientCanonicalNumber, new String(cipherText), TYPE_MESSAGE_CIPHERTEXT);
+      } else {
+        byte[] cipherText = getEncryptedMessageForNewSession(socket, recipient,
+                                                             recipientCanonicalNumber,
+                                                             plaintext);
+        socket.sendMessage(recipientCanonicalNumber, new String(cipherText), TYPE_MESSAGE_PREKEY_BUNDLE);
+      }
 
       context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType()));
     } catch (RateLimitException e) {
@@ -78,8 +84,8 @@ public class PushTransport extends BaseTransport {
       String                   messageText = PartParser.getMessageText(message.getBody());
       List<PushAttachmentData> attachments = getAttachmentsFromBody(message.getBody());
 
-      if (attachments.isEmpty()) socket.sendMessage(destinations, messageText);
-      else                       socket.sendMessage(destinations, messageText, attachments);
+      if (attachments.isEmpty()) socket.sendMessage(destinations, messageText, TYPE_MESSAGE_PLAINTEXT);
+      else                       socket.sendMessage(destinations, messageText, attachments, TYPE_MESSAGE_PLAINTEXT);
     } catch (RateLimitException e) {
       Log.w("PushTransport", e);
       throw new IOException("Rate limit exceeded.");
@@ -103,20 +109,29 @@ public class PushTransport extends BaseTransport {
     return attachments;
   }
 
-  private byte[] getEncryptedMessageForNewSession(PushServiceSocket socket, Recipient recipient, String canonicalRecipientNumber, String plaintext) throws IOException {
-    PreKeyEntity         preKey    = socket.getPreKey(canonicalRecipientNumber);
-    KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, recipient);
+  private byte[] getEncryptedMessageForNewSession(PushServiceSocket socket, Recipient recipient,
+                                                  String canonicalRecipientNumber, String plaintext)
+      throws IOException
+  {
+    IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    IdentityKey          identityKey     = identityKeyPair.getPublicKey();
+    PreKeyEntity         preKey          = socket.getPreKey(canonicalRecipientNumber);
+    KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipient);
+
     processor.processKeyExchangeMessage(preKey);
 
-    return plaintext.getBytes();
-//    synchronized (SessionCipher.CIPHER_LOCK) {
-//      SessionCipher sessionCipher = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
-//      return sessionCipher.encryptMessage(plaintext.getBytes());
-//    }
+    EncryptedMessage message = new EncryptedMessage(context, masterSecret, identityKeyPair, new RawTransportDetails());
+    byte[] bundledMessage = message.encrypt(recipient, plaintext.getBytes());
+
+    PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(identityKey, bundledMessage);
+    return preKeyBundleMessage.serialize().getBytes();
   }
 
-  private byte[] getEncryptedMessageForExistingSession(Recipient recipient, String plaintext) {
-    EncryptedMessage message = new EncryptedMessage(context, masterSecret, new TextTransport());
+  private byte[] getEncryptedMessageForExistingSession(Recipient recipient, String plaintext)
+      throws IOException
+  {
+    IdentityKeyPair  identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    EncryptedMessage message         = new EncryptedMessage(context, masterSecret, identityKeyPair, new TextTransport());
     return message.encrypt(recipient, plaintext.getBytes());
   }
 

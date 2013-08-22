@@ -33,6 +33,10 @@ public class PreKeyPair {
     return publicKey;
   }
 
+  public AsymmetricCipherKeyPair getKeyPair() {
+    return new AsymmetricCipherKeyPair(publicKey.getPublicKey(), privateKey);
+  }
+
   public byte[] serialize() {
     byte[] publicKeyBytes  = publicKey.serialize();
     byte[] privateKeyBytes = masterCipher.encryptKey(privateKey);

@@ -78,26 +78,26 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void sendMessage(String recipient, String messageText)
+  public void sendMessage(String recipient, String messageText, int type)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(recipient, messageText);
+    OutgoingPushMessage message = new OutgoingPushMessage(recipient, messageText, type);
     sendMessage(message);
   }
 
-  public void sendMessage(List<String> recipients, String messageText)
+  public void sendMessage(List<String> recipients, String messageText, int type)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(recipients, messageText);
+    OutgoingPushMessage message = new OutgoingPushMessage(recipients, messageText, type);
     sendMessage(message);
   }
 
   public void sendMessage(List<String> recipients, String messageText,
-                          List<PushAttachmentData> attachments)
+                          List<PushAttachmentData> attachments, int type)
       throws IOException
   {
     List<PushAttachmentPointer> attachmentIds = sendAttachments(attachments);
-    OutgoingPushMessage         message       = new OutgoingPushMessage(recipients, messageText, attachmentIds);
+    OutgoingPushMessage         message       = new OutgoingPushMessage(recipients, messageText, attachmentIds, type);
     sendMessage(message);
   }
 

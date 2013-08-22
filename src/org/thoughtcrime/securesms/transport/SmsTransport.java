@@ -5,6 +5,8 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -120,7 +122,8 @@ public class SmsTransport extends BaseTransport {
   }
 
   private String getAsymmetricEncrypt(MasterSecret masterSecret, String body, Recipient recipient) {
-    EncryptedMessage message = new EncryptedMessage(context, masterSecret, new SmsTransportDetails());
+    IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    EncryptedMessage message     = new EncryptedMessage(context, masterSecret, identityKey, new SmsTransportDetails());
     return new String(message.encrypt(recipient, body.getBytes()));
   }
 }
