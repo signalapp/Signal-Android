@@ -6,10 +6,9 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
@@ -17,7 +16,6 @@ import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
@@ -138,7 +136,7 @@ public class MmsTransport {
 
   private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipient, byte[] pduBytes) {
     IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-    EncryptedMessage message     = new EncryptedMessage(context, masterSecret, identityKey, new TextTransport());
+    MessageCipher message     = new MessageCipher(context, masterSecret, identityKey, new TextTransport());
     return message.encrypt(new Recipient(null, recipient, null, null), pduBytes);
   }
 

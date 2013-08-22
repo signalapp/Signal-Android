@@ -16,6 +16,7 @@
  */
 package org.whispersystems.textsecure.crypto.protocol;
 
+import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
@@ -34,14 +35,14 @@ import java.io.IOException;
  */
 public class PreKeyBundleMessage {
 
-  private static final int VERSION_LENGTH      = EncryptedMessage.VERSION_LENGTH;
+  private static final int VERSION_LENGTH      = MessageCipher.VERSION_LENGTH;
   private static final int IDENTITY_KEY_LENGTH = IdentityKey.SIZE;
-  public  static final int HEADER_LENGTH       = IDENTITY_KEY_LENGTH + EncryptedMessage.HEADER_LENGTH;
+  public  static final int HEADER_LENGTH       = IDENTITY_KEY_LENGTH + MessageCipher.HEADER_LENGTH;
 
-  private static final int VERSION_OFFSET         = EncryptedMessage.VERSION_OFFSET;
-  private static final int IDENTITY_KEY_OFFSET    = VERSION_OFFSET + EncryptedMessage.VERSION_LENGTH;
-  private static final int PUBLIC_KEY_OFFSET      = IDENTITY_KEY_LENGTH + EncryptedMessage.NEXT_KEY_OFFSET;
-  private static final int PREKEY_ID_OFFSET       = IDENTITY_KEY_LENGTH + EncryptedMessage.RECEIVER_KEY_ID_OFFSET;
+  private static final int VERSION_OFFSET         = MessageCipher.VERSION_OFFSET;
+  private static final int IDENTITY_KEY_OFFSET    = VERSION_OFFSET + MessageCipher.VERSION_LENGTH;
+  private static final int PUBLIC_KEY_OFFSET      = IDENTITY_KEY_LENGTH + MessageCipher.NEXT_KEY_OFFSET;
+  private static final int PREKEY_ID_OFFSET       = IDENTITY_KEY_LENGTH + MessageCipher.RECEIVER_KEY_ID_OFFSET;
 
   private final byte[] messageBytes;
 
@@ -57,9 +58,9 @@ public class PreKeyBundleMessage {
       this.messageBytes   = Base64.decodeWithoutPadding(message);
       this.messageVersion = Conversions.highBitsToInt(this.messageBytes[VERSION_OFFSET]);
 
-      if (messageVersion > EncryptedMessage.SUPPORTED_VERSION)
+      if (messageVersion > MessageCipher.SUPPORTED_VERSION)
         throw new InvalidVersionException("Key exchange with version: " + messageVersion +
-                                              " but we only support: " + EncryptedMessage.SUPPORTED_VERSION);
+                                              " but we only support: " + MessageCipher.SUPPORTED_VERSION);
 
       this.supportedVersion = Conversions.lowBitsToInt(messageBytes[VERSION_OFFSET]);
       this.publicKey        = new PublicKey(messageBytes, PUBLIC_KEY_OFFSET);
@@ -77,11 +78,11 @@ public class PreKeyBundleMessage {
 
   public PreKeyBundleMessage(IdentityKey identityKey, byte[] bundledMessage) {
     try {
-      this.supportedVersion = EncryptedMessage.SUPPORTED_VERSION;
-      this.messageVersion   = EncryptedMessage.SUPPORTED_VERSION;
+      this.supportedVersion = MessageCipher.SUPPORTED_VERSION;
+      this.messageVersion   = MessageCipher.SUPPORTED_VERSION;
       this.identityKey      = identityKey;
-      this.publicKey        = new PublicKey(bundledMessage, EncryptedMessage.NEXT_KEY_OFFSET);
-      this.preKeyId         = Conversions.byteArrayToMedium(bundledMessage, EncryptedMessage.RECEIVER_KEY_ID_OFFSET);
+      this.publicKey        = new PublicKey(bundledMessage, MessageCipher.NEXT_KEY_OFFSET);
+      this.preKeyId         = Conversions.byteArrayToMedium(bundledMessage, MessageCipher.RECEIVER_KEY_ID_OFFSET);
       this.bundledMessage   = bundledMessage;
       this.messageBytes     = new byte[IDENTITY_KEY_LENGTH + bundledMessage.length];
 

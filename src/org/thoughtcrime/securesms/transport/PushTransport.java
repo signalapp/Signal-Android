@@ -14,10 +14,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
-import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushAttachmentData;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -120,7 +119,7 @@ public class PushTransport extends BaseTransport {
 
     processor.processKeyExchangeMessage(preKey);
 
-    EncryptedMessage message = new EncryptedMessage(context, masterSecret, identityKeyPair, new RawTransportDetails());
+    MessageCipher message = new MessageCipher(context, masterSecret, identityKeyPair, new RawTransportDetails());
     byte[] bundledMessage = message.encrypt(recipient, plaintext.getBytes());
 
     PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(identityKey, bundledMessage);
@@ -131,7 +130,7 @@ public class PushTransport extends BaseTransport {
       throws IOException
   {
     IdentityKeyPair  identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-    EncryptedMessage message         = new EncryptedMessage(context, masterSecret, identityKeyPair, new TextTransport());
+    MessageCipher message         = new MessageCipher(context, masterSecret, identityKeyPair, new TextTransport());
     return message.encrypt(recipient, plaintext.getBytes());
   }
 

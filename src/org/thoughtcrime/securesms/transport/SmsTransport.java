@@ -8,7 +8,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 
 import java.util.ArrayList;
 
@@ -142,7 +141,7 @@ public class SmsTransport extends BaseTransport {
 
   private String getAsymmetricEncrypt(MasterSecret masterSecret, String body, Recipient recipient) {
     IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-    EncryptedMessage message     = new EncryptedMessage(context, masterSecret, identityKey, new SmsTransportDetails());
+    MessageCipher message     = new MessageCipher(context, masterSecret, identityKey, new SmsTransportDetails());
     return new String(message.encrypt(recipient, body.getBytes()));
   }
 }

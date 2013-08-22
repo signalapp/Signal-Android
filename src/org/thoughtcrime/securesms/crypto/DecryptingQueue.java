@@ -34,13 +34,12 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
-import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.util.Hex;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WorkerThread;
@@ -198,8 +197,8 @@ public class DecryptingQueue {
 
         synchronized (SessionCipher.CIPHER_LOCK) {
           Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
-          IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-          EncryptedMessage message     = new EncryptedMessage(context, masterSecret, identityKey, new TextTransport());
+          IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          MessageCipher   message     = new MessageCipher(context, masterSecret, identityKey, new TextTransport());
 
           try {
             plaintextPduBytes = message.decrypt(recipient, ciphertextPduBytes);
@@ -279,8 +278,8 @@ public class DecryptingQueue {
             return;
           }
 
-          IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-          EncryptedMessage message     = new EncryptedMessage(context, masterSecret, identityKey, new SmsTransportDetails());
+          IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          MessageCipher   message     = new MessageCipher(context, masterSecret, identityKey, new SmsTransportDetails());
 
           plaintextBody = new String(message.decrypt(recipient, body.getBytes()));
         } catch (InvalidMessageException e) {
