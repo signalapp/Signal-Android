@@ -36,17 +36,17 @@ public class MessageCipher {
   public static final int SUPPORTED_VERSION        = 2;
   public static final int CRADLE_AGREEMENT_VERSION = 2;
 
-          static final int VERSION_LENGTH         = 1;
+  public  static final int VERSION_LENGTH         = 1;
   private static final int SENDER_KEY_ID_LENGTH   = 3;
   private static final int RECEIVER_KEY_ID_LENGTH = 3;
-          static final int NEXT_KEY_LENGTH        = PublicKey.KEY_SIZE;
+  public  static final int NEXT_KEY_LENGTH        = PublicKey.KEY_SIZE;
   private static final int COUNTER_LENGTH         = 3;
   public static final int HEADER_LENGTH          =  VERSION_LENGTH + SENDER_KEY_ID_LENGTH + RECEIVER_KEY_ID_LENGTH + COUNTER_LENGTH + NEXT_KEY_LENGTH;
 
-          static final int VERSION_OFFSET         = 0;
+  public  static final int VERSION_OFFSET         = 0;
   private static final int SENDER_KEY_ID_OFFSET   = VERSION_OFFSET + VERSION_LENGTH;
-          static final int RECEIVER_KEY_ID_OFFSET = SENDER_KEY_ID_OFFSET + SENDER_KEY_ID_LENGTH;
-          static final int NEXT_KEY_OFFSET        = RECEIVER_KEY_ID_OFFSET + RECEIVER_KEY_ID_LENGTH;
+  public  static final int RECEIVER_KEY_ID_OFFSET = SENDER_KEY_ID_OFFSET + SENDER_KEY_ID_LENGTH;
+  public  static final int NEXT_KEY_OFFSET        = RECEIVER_KEY_ID_OFFSET + RECEIVER_KEY_ID_LENGTH;
   private static final int COUNTER_OFFSET         = NEXT_KEY_OFFSET + NEXT_KEY_LENGTH;
   private static final int TEXT_OFFSET            = COUNTER_OFFSET + COUNTER_LENGTH;
 

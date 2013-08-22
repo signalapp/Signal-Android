@@ -36,8 +36,9 @@ import java.nio.channels.FileChannel;
  */
 
 public class SessionRecord extends Record {
-  private static final int CURRENT_VERSION_MARKER  = 0X55555556;
-  private static final int[] VALID_VERSION_MARKERS = {CURRENT_VERSION_MARKER, 0X55555555};
+
+  private static final int CURRENT_VERSION_MARKER  = 0X55555557;
+  private static final int[] VALID_VERSION_MARKERS = {CURRENT_VERSION_MARKER, 0X55555556, 0X55555555};
   private static final Object FILE_LOCK            = new Object();
 
   private int counter;
@@ -48,6 +49,7 @@ public class SessionRecord extends Record {
   private IdentityKey identityKey;
   private SessionKey sessionKeyRecord;
   private boolean verifiedSessionKey;
+  private boolean prekeyBundleRequired;
 
   private final MasterSecret masterSecret;
 
@@ -63,7 +65,7 @@ public class SessionRecord extends Record {
   }
 
   public static void delete(Context context, CanonicalRecipientAddress recipient) {
-    delete(context, SESSIONS_DIRECTORY, getRecipientId(context, recipient)+"");
+    delete(context, SESSIONS_DIRECTORY, getRecipientId(context, recipient) + "");
   }
 
   public static boolean hasSession(Context context, CanonicalRecipientAddress recipient) {
@@ -116,6 +118,14 @@ public class SessionRecord extends Record {
     return this.identityKey;
   }
 
+  public boolean isPrekeyBundleRequired() {
+    return prekeyBundleRequired;
+  }
+
+  public void setPrekeyBundleRequired(boolean prekeyBundleRequired) {
+    this.prekeyBundleRequired = prekeyBundleRequired;
+  }
+
 //  public void setVerifiedSessionKey(boolean verifiedSessionKey) {
 //    this.verifiedSessionKey = verifiedSessionKey;
 //  }
@@ -162,6 +172,7 @@ public class SessionRecord extends Record {
         writeInteger(sessionVersion, out);
         writeIdentityKey(out);
         writeInteger(verifiedSessionKey ? 1 : 0, out);
+        writeInteger(prekeyBundleRequired ? 1 : 0, out);
 
         if (sessionKeyRecord != null)
           writeBlob(sessionKeyRecord.serialize(), out);
@@ -202,6 +213,10 @@ public class SessionRecord extends Record {
             this.verifiedSessionKey = (readInteger(in) == 1);
           }
 
+          if (versionMarker >= 0X55555557) {
+            this.prekeyBundleRequired = (readInteger(in) == 1);
+          }
+
           if (in.available() != 0)
             this.sessionKeyRecord = new SessionKey(readBlob(in), masterSecret);
 
@@ -226,4 +241,5 @@ public class SessionRecord extends Record {
 
     return null;
   }
+
 }
