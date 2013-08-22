@@ -235,8 +235,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
   protected Pair<Long, Long> insertMessageInbox(IncomingTextMessage message, long type) {
     if (message.isKeyExchange()) {
       type |= Types.KEY_EXCHANGE_BIT;
-      if      (((IncomingKeyExchangeMessage)message).isStale())     type |= Types.KEY_EXCHANGE_STALE_BIT;
-      else if (((IncomingKeyExchangeMessage)message).isProcessed()) type |= Types.KEY_EXCHANGE_PROCESSED_BIT;
+      if      (((IncomingKeyExchangeMessage)message).isStale())          type |= Types.KEY_EXCHANGE_STALE_BIT;
+      else if (((IncomingKeyExchangeMessage)message).isProcessed())      type |= Types.KEY_EXCHANGE_PROCESSED_BIT;
+      else if (((IncomingKeyExchangeMessage)message).isCorrupted())      type |= Types.KEY_EXCHANGE_CORRUPTED_BIT;
+      else if (((IncomingKeyExchangeMessage)message).isInvalidVersion()) type |= Types.KEY_EXCHANGE_INVALID_VERSION_BIT;
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.ENCRYPTION_REMOTE_BIT;

@@ -31,6 +31,7 @@ import org.spongycastle.crypto.params.ECPrivateKeyParameters;
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
 import org.spongycastle.crypto.signers.ECDSASigner;
 import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterCipher;
@@ -73,6 +74,22 @@ public class IdentityKeyUtil {
     } catch (InvalidKeyException e) {
       Log.w("IdentityKeyUtil", e);
       return null;
+    }
+  }
+
+  public static IdentityKeyPair getIdentityKeyPair(Context context, MasterSecret masterSecret) {
+    if (!hasIdentityKey(context))
+      return null;
+
+    try {
+      MasterCipher           masterCipher    = new MasterCipher(masterSecret);
+      IdentityKey            publicKey       = getIdentityKey(context);
+      byte[]                 privateKeyBytes = Base64.decode(retrieve(context, IDENTITY_PRIVATE_KEY_PREF));
+      ECPrivateKeyParameters privateKey      = masterCipher.decryptKey(privateKeyBytes);
+
+      return new IdentityKeyPair(publicKey, privateKey);
+    } catch (IOException e) {
+      throw new AssertionError(e);
     }
   }
 	

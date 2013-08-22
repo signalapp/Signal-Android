@@ -20,6 +20,7 @@ public class IncomingPushMessage implements Parcelable {
     }
   };
 
+  private int                         type;
   private String                      source;
   private List<String>                destinations;
   private String                      messageText;
@@ -27,8 +28,9 @@ public class IncomingPushMessage implements Parcelable {
   private long                        timestamp;
 
   public IncomingPushMessage(String source, List<String> destinations, String messageText,
-                             List<PushAttachmentPointer> attachments, long timestamp)
+                             int type, List<PushAttachmentPointer> attachments, long timestamp)
   {
+    this.type         = type;
     this.source       = source;
     this.destinations = destinations;
     this.messageText  = messageText;
@@ -83,5 +85,9 @@ public class IncomingPushMessage implements Parcelable {
     dest.writeString(messageText);
     dest.writeList(attachments);
     dest.writeLong(timestamp);
+  }
+
+  public int getType() {
+    return type;
   }
 }

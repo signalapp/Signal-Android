@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.sms;
 
 public class IncomingEncryptedMessage extends IncomingTextMessage {
 
-  IncomingEncryptedMessage(IncomingTextMessage base, String newBody) {
+  public IncomingEncryptedMessage(IncomingTextMessage base, String newBody) {
     super(base, newBody);
   }
 

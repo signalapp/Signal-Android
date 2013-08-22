@@ -103,6 +103,14 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isProcessedKeyExchange(type);
   }
 
+  public boolean isCorruptedKeyExchange() {
+    return SmsDatabase.Types.isCorruptedKeyExchange(type);
+  }
+
+  public boolean isInvalidVersionKeyExchange() {
+    return SmsDatabase.Types.isInvalidVersionKeyExchange(type);
+  }
+
   public Recipient getIndividualRecipient() {
     return individualRecipient;
   }
