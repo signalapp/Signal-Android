@@ -107,6 +107,11 @@ public class KeyUtil {
       (SessionRecord.hasSession(context, recipient));
   }
 
+  public static boolean isNonPrekeySessionFor(Context context, MasterSecret masterSecret, CanonicalRecipientAddress recipient) {
+    return isSessionFor(context, recipient) &&
+        !(new SessionRecord(context, masterSecret, recipient).isPrekeyBundleRequired());
+  }
+
   public static boolean isIdentityKeyFor(Context context,
                                          MasterSecret masterSecret,
                                          CanonicalRecipientAddress recipient)

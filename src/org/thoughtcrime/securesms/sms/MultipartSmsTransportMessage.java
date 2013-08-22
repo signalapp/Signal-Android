@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.sms;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.protocol.KeyExchangeWirePrefix;
+import org.thoughtcrime.securesms.protocol.PrekeyBundleWirePrefix;
 import org.thoughtcrime.securesms.protocol.SecureMessageWirePrefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.whispersystems.textsecure.util.Base64;
@@ -22,6 +23,7 @@ public class MultipartSmsTransportMessage {
 
   public static final int WIRETYPE_SECURE = 1;
   public static final int WIRETYPE_KEY    = 2;
+  public static final int WIRETYPE_PREKEY = 3;
 
   private static final int VERSION_OFFSET    = 0;
   private static final int MULTIPART_OFFSET  = 1;
@@ -33,8 +35,11 @@ public class MultipartSmsTransportMessage {
 
   public MultipartSmsTransportMessage(IncomingTextMessage message) throws IOException {
     this.message         = message;
-    this.wireType        = WirePrefix.isEncryptedMessage(message.getMessageBody()) ? WIRETYPE_SECURE : WIRETYPE_KEY;
     this.decodedMessage  = Base64.decodeWithoutPadding(message.getMessageBody().substring(WirePrefix.PREFIX_SIZE));
+
+    if      (WirePrefix.isEncryptedMessage(message.getMessageBody())) wireType = WIRETYPE_SECURE;
+    else if (WirePrefix.isPreKeyBundle(message.getMessageBody()))     wireType = WIRETYPE_PREKEY;
+    else                                                              wireType = WIRETYPE_KEY;
 
     Log.w(TAG, "Decoded message with version: " + getCurrentVersion());
   }
@@ -151,8 +156,9 @@ public class MultipartSmsTransportMessage {
 
       WirePrefix prefix;
 
-      if (message.isKeyExchange()) prefix = new KeyExchangeWirePrefix();
-      else                         prefix = new SecureMessageWirePrefix();
+      if      (message.isKeyExchange())  prefix = new KeyExchangeWirePrefix();
+      else if (message.isPreKeyBundle()) prefix = new PrekeyBundleWirePrefix();
+      else                               prefix = new SecureMessageWirePrefix();
 
       if (count == 1) return getSingleEncoded(decoded, prefix);
       else            return getMultiEncoded(decoded, prefix, count, identifier);
