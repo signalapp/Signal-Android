@@ -132,6 +132,8 @@ public class KeyExchangeProcessor {
     remoteKeyRecord.save();
     sessionRecord.save();
 
+    PreKeyRecord.delete(context, preKeyId);
+
     DatabaseFactory.getIdentityDatabase(context)
                    .saveIdentity(masterSecret, recipient, remoteIdentity);
   }
