@@ -19,10 +19,7 @@ package org.whispersystems.textsecure.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import org.spongycastle.crypto.AsymmetricCipherKeyPair;
-import org.spongycastle.crypto.agreement.ECDHBasicAgreement;
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
-import org.whispersystems.textsecure.crypto.protocol.EncryptedMessage;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
@@ -59,7 +56,7 @@ public class SessionCipher {
   public static final int CIPHER_KEY_LENGTH = 16;
   public static final int MAC_KEY_LENGTH    = 20;
 	
-  public static final int ENCRYPTED_MESSAGE_OVERHEAD = EncryptedMessage.HEADER_LENGTH + MessageMac.MAC_LENGTH;
+  public static final int ENCRYPTED_MESSAGE_OVERHEAD = MessageCipher.HEADER_LENGTH + MessageMac.MAC_LENGTH;
 
   public SessionCipherContext getEncryptionContext(Context context,
                                                    MasterSecret masterSecret,
@@ -309,7 +306,7 @@ public class SessionCipher {
     IdentityKey           remoteIdentityKey = records.getSessionRecord().getIdentityKey();
 
     if (isInitiallyExchangedKeys(records, localKeyId, remoteKeyId) &&
-        messageVersion >= EncryptedMessage.CRADLE_AGREEMENT_VERSION)
+        messageVersion >= MessageCipher.CRADLE_AGREEMENT_VERSION)
     {
       return SharedSecretCalculator.calculateSharedSecret(localKeyPair, localIdentityKey,
                                                           remoteKey, remoteIdentityKey);
