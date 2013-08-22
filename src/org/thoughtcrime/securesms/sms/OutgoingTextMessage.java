@@ -19,8 +19,8 @@ public class OutgoingTextMessage {
   }
 
   protected OutgoingTextMessage(OutgoingTextMessage base, String body) {
-    this.recipients = base.getRecipients();
-    this.message    = body;
+    this.recipients     = base.getRecipients();
+    this.message        = body;
   }
 
   public String getMessageBody() {
@@ -36,6 +36,10 @@ public class OutgoingTextMessage {
   }
 
   public boolean isSecureMessage() {
+    return false;
+  }
+
+  public boolean isPreKeyBundle() {
     return false;
   }
 

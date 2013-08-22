@@ -110,6 +110,11 @@ public class KeyExchangeProcessor {
     Log.w("KeyExchangeProcessor", "Received pre-key with remote key ID: " + remoteKey.getId());
     Log.w("KeyExchangeProcessor", "Received pre-key with local key ID: " + preKeyId);
 
+    if (!PreKeyRecord.hasRecord(context, preKeyId) && KeyUtil.isSessionFor(context, recipient)) {
+      Log.w("KeyExchangeProcessor", "We've already processed the prekey part, letting bundled message fall through...");
+      return;
+    }
+
     if (!PreKeyRecord.hasRecord(context, preKeyId))
       throw new InvalidKeyIdException("No such prekey: " + preKeyId);
 
@@ -152,6 +157,7 @@ public class KeyExchangeProcessor {
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(message.getIdentityKey());
     sessionRecord.setSessionVersion(MessageCipher.SUPPORTED_VERSION);
+    sessionRecord.setPrekeyBundleRequired(true);
     sessionRecord.save();
 
     DatabaseFactory.getIdentityDatabase(context)

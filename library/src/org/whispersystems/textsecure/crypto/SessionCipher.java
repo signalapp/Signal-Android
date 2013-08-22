@@ -131,6 +131,7 @@ public class SessionCipher {
 			
       context.getSessionRecord().setSessionKey(context.getSessionKey());
       context.getSessionRecord().setSessionVersion(context.getNegotiatedVersion());
+      context.getSessionRecord().setPrekeyBundleRequired(false);
       context.getSessionRecord().save();
 			
       return plaintextWithPadding;

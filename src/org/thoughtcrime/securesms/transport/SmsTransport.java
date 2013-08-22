@@ -4,9 +4,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.sms.OutgoingPrekeyBundleMessage;import org.thoughtcrime.securesms.sms.RawTransportDetails;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
+import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -15,6 +18,7 @@ import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 
 import java.util.ArrayList;
 
@@ -41,9 +45,7 @@ public class SmsTransport extends BaseTransport {
     OutgoingTextMessage transportMessage               = OutgoingTextMessage.from(message);
 
     if (message.isSecure()) {
-      String encryptedMessage = getAsymmetricEncrypt(masterSecret, message.getBody().getBody(),
-                                                     message.getIndividualRecipient());
-      transportMessage = transportMessage.withBody(encryptedMessage);
+      transportMessage = getAsymmetricEncrypt(masterSecret, transportMessage);
     }
 
     ArrayList<String> messages                = multipartMessageHandler.divideMessage(transportMessage);
@@ -130,9 +132,26 @@ public class SmsTransport extends BaseTransport {
     return deliveredIntents;
   }
 
-  private String getAsymmetricEncrypt(MasterSecret masterSecret, String body, Recipient recipient) {
-    IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-    MessageCipher message     = new MessageCipher(context, masterSecret, identityKey, new SmsTransportDetails());
-    return new String(message.encrypt(recipient, body.getBytes()));
+  private OutgoingTextMessage getAsymmetricEncrypt(MasterSecret masterSecret,
+                                                   OutgoingTextMessage message)
+  {
+    Recipient       recipient   = message.getRecipients().getPrimaryRecipient();
+    String          body        = message.getMessageBody();
+    IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+
+    if (KeyUtil.isNonPrekeySessionFor(context, masterSecret, recipient)) {
+      Log.w("SmsTransport", "Delivering standard ciphertext...");
+      MessageCipher messageCipher = new MessageCipher(context, masterSecret, identityKey, new SmsTransportDetails());
+      byte[] ciphertext           = messageCipher.encrypt(recipient, body.getBytes());
+
+      return message.withBody(new String(ciphertext));
+    } else {
+      Log.w("SmsTransport", "Delivering prekeybundle ciphertext...");
+      MessageCipher       messageCipher       = new MessageCipher(context, masterSecret, identityKey, new RawTransportDetails());
+      byte[]              bundledMessage      = messageCipher.encrypt(recipient, body.getBytes());
+      PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(identityKey.getPublicKey(), bundledMessage);
+
+      return new OutgoingPrekeyBundleMessage(message, preKeyBundleMessage.serialize());
+    }
   }
 }
