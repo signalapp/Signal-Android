@@ -5,6 +5,9 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Pair;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -134,7 +137,8 @@ public class MmsTransport {
   }
 
   private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipient, byte[] pduBytes) {
-    EncryptedMessage message = new EncryptedMessage(context, masterSecret, new TextTransport());
+    IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    EncryptedMessage message     = new EncryptedMessage(context, masterSecret, identityKey, new TextTransport());
     return message.encrypt(new Recipient(null, recipient, null, null), pduBytes);
   }
 
