@@ -14,23 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.whispersystems.textsecure.crypto.protocol;
+package org.whispersystems.textsecure.crypto;
 
 import android.content.Context;
-import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageMac;
-import org.whispersystems.textsecure.crypto.PublicKey;
-import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.SessionCipher.SessionCipherContext;
-import org.whispersystems.textsecure.crypto.TransportDetails;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.util.Conversions;
-import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -41,7 +31,7 @@ import java.nio.ByteBuffer;
  * @author Moxie Marlinspike
  */
 
-public class EncryptedMessage {
+public class MessageCipher {
 
   public static final int SUPPORTED_VERSION        = 2;
   public static final int CRADLE_AGREEMENT_VERSION = 2;
@@ -65,9 +55,9 @@ public class EncryptedMessage {
   private final IdentityKeyPair  localIdentityKey;
   private final TransportDetails transportDetails;
 
-  public EncryptedMessage(Context context, MasterSecret masterSecret,
-                          IdentityKeyPair localIdentityKey,
-                          TransportDetails transportDetails)
+  public MessageCipher(Context context, MasterSecret masterSecret,
+                       IdentityKeyPair localIdentityKey,
+                       TransportDetails transportDetails)
   {
     this.context          = context.getApplicationContext();
     this.masterSecret     = masterSecret;
