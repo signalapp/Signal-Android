@@ -18,6 +18,7 @@ import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushAttachmentData;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -34,11 +35,6 @@ import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.SendReq;
 
 public class PushTransport extends BaseTransport {
-
-  public static final int TYPE_MESSAGE_PLAINTEXT     = 0;
-  public static final int TYPE_MESSAGE_CIPHERTEXT    = 1;
-  public static final int TYPE_MESSAGE_KEY_EXCHANGE  = 2;
-  public static final int TYPE_MESSAGE_PREKEY_BUNDLE = 3;
 
   private final Context      context;
   private final MasterSecret masterSecret;
@@ -78,8 +74,8 @@ public class PushTransport extends BaseTransport {
       String                   messageText = PartParser.getMessageText(message.getBody());
       List<PushAttachmentData> attachments = getAttachmentsFromBody(message.getBody());
 
-      if (attachments.isEmpty()) socket.sendMessage(destinations, messageText, TYPE_MESSAGE_PLAINTEXT);
-      else                       socket.sendMessage(destinations, messageText, attachments, TYPE_MESSAGE_PLAINTEXT);
+      if (attachments.isEmpty()) socket.sendMessage(destinations, messageText, OutgoingPushMessage.TYPE_MESSAGE_PLAINTEXT);
+      else                       socket.sendMessage(destinations, messageText, attachments, OutgoingPushMessage.TYPE_MESSAGE_PLAINTEXT);
     } catch (RateLimitException e) {
       Log.w("PushTransport", e);
       throw new IOException("Rate limit exceeded.");
@@ -110,15 +106,15 @@ public class PushTransport extends BaseTransport {
     if (KeyUtil.isNonPrekeySessionFor(context, masterSecret, recipient)) {
       Log.w("PushTransport", "Sending standard ciphertext message...");
       String ciphertext = getEncryptedMessageForExistingSession(recipient, plaintext);
-      return new Pair<Integer, String>(TYPE_MESSAGE_CIPHERTEXT, ciphertext);
+      return new Pair<Integer, String>(OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT, ciphertext);
     } else if (KeyUtil.isSessionFor(context, recipient)) {
       Log.w("PushTransport", "Sending prekeybundle ciphertext message for existing session...");
       String ciphertext = getEncryptedPrekeyBundleMessageForExistingSession(recipient, plaintext);
-      return new Pair<Integer, String>(TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
+      return new Pair<Integer, String>(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     } else {
       Log.w("PushTransport", "Sending prekeybundle ciphertext message for new session...");
       String ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, recipient, canonicalRecipientNumber, plaintext);
-      return new Pair<Integer, String>(TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
+      return new Pair<Integer, String>(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     }
   }
 
