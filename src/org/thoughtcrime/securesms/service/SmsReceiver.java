@@ -22,26 +22,26 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
-import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
-import org.thoughtcrime.securesms.transport.PushTransport;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
+import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 
 import java.util.List;
@@ -62,11 +62,11 @@ public class SmsReceiver {
     IncomingTextMessage message = messages.get(0);
 
     switch (pushType) {
-      case PushTransport.TYPE_MESSAGE_CIPHERTEXT:
+      case OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT:
         return new IncomingEncryptedMessage(message, message.getMessageBody());
-      case PushTransport.TYPE_MESSAGE_PREKEY_BUNDLE:
+      case OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE:
         return new IncomingPreKeyBundleMessage(message, message.getMessageBody());
-      case PushTransport.TYPE_MESSAGE_KEY_EXCHANGE:
+      case OutgoingPushMessage.TYPE_MESSAGE_KEY_EXCHANGE:
         return new IncomingKeyExchangeMessage(message, message.getMessageBody());
     }
 

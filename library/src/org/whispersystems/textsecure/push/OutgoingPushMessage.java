@@ -5,8 +5,10 @@ import java.util.List;
 
 public class OutgoingPushMessage {
 
-  public static final int TYPE_MESSAGE          = 1;
-  public static final int TYPE_PREKEYED_MESSAGE = 2;
+  public static final int TYPE_MESSAGE_PLAINTEXT     = 0;
+  public static final int TYPE_MESSAGE_CIPHERTEXT    = 1;
+  public static final int TYPE_MESSAGE_KEY_EXCHANGE  = 2;
+  public static final int TYPE_MESSAGE_PREKEY_BUNDLE = 3;
 
   private int                         type;
   private List<String>                destinations;
