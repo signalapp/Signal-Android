@@ -24,6 +24,7 @@ import org.whispersystems.textsecure.crypto.KeyPair;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.util.Medium;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -65,7 +66,8 @@ public class LocalKeyRecord extends Record {
     Log.w("LocalKeyRecord", "Remote client acknowledges receiving key id: " + keyId);
     if (keyId == localNextKeyPair.getId()) {
       this.localCurrentKeyPair = this.localNextKeyPair;
-      this.localNextKeyPair    = new KeyPair(this.localNextKeyPair.getId()+1, KeyUtil.generateKeyPair(), masterSecret);
+      this.localNextKeyPair    = new KeyPair((this.localNextKeyPair.getId()+1) % Medium.MAX_VALUE,
+                                             KeyUtil.generateKeyPair(), masterSecret);
     }
   }
 

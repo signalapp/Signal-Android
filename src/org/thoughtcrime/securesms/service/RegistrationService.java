@@ -153,6 +153,7 @@ public class RegistrationService extends Service {
       public void run() {
         if (PreKeyUtil.getPreKeys(RegistrationService.this, masterSecret).size() < PreKeyUtil.BATCH_SIZE) {
           PreKeyUtil.generatePreKeys(RegistrationService.this, masterSecret);
+          PreKeyUtil.generateLastResortKey(RegistrationService.this, masterSecret);
         }
 
         synchronized (GENERATING_PREKEYS_SEMAPHOR) {
@@ -188,6 +189,7 @@ public class RegistrationService extends Service {
 
     String       number       = intent.getStringExtra("e164number");
     String       password     = intent.getStringExtra("password"  );
+    String       signalingKey = intent.getStringExtra("signaling_key");
     MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
 
     try {
@@ -198,7 +200,7 @@ public class RegistrationService extends Service {
 
       handleCommonRegistration(masterSecret, socket, number);
 
-      markAsVerified(number, password);
+      markAsVerified(number, password, signalingKey);
 
       setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
       broadcastComplete(true);
@@ -226,7 +228,9 @@ public class RegistrationService extends Service {
     MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
 
     try {
-      String password = Util.getSecret(18);
+      String password     = Util.getSecret(18);
+      String signalingKey = Util.getSecret(52);
+
       initializeChallengeListener();
       initializeGcmRegistrationListener();
       initializePreKeyGenerator(masterSecret);
@@ -237,10 +241,10 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      socket.verifyAccount(challenge);
+      socket.verifyAccount(challenge, signalingKey);
 
       handleCommonRegistration(masterSecret, socket, number);
-      markAsVerified(number, password);
+      markAsVerified(number, password, signalingKey);
 
       setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
       broadcastComplete(true);
@@ -272,7 +276,8 @@ public class RegistrationService extends Service {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
     IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this);
     List<PreKeyRecord> records     = waitForPreKeys(masterSecret);
-    socket.registerPreKeys(identityKey, records);
+    PreKeyRecord       lastResort  = PreKeyUtil.generateLastResortKey(this, masterSecret);
+    socket.registerPreKeys(identityKey, lastResort, records);
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
     GCMRegistrar.register(this, GcmIntentService.GCM_SENDER_ID);
@@ -280,7 +285,10 @@ public class RegistrationService extends Service {
 
     socket.registerGcmId(gcmRegistrationId);
     Pair<DirectoryDescriptor, File> directory = socket.retrieveDirectory();
-    NumberFilter.getInstance(this).update(directory.first, directory.second);
+
+    if (directory != null) {
+      NumberFilter.getInstance(this).update(directory.first, directory.second);
+    }
   }
 
   private synchronized String waitForChallenge() throws AccountVerificationTimeoutException {
@@ -347,11 +355,12 @@ public class RegistrationService extends Service {
     }
   }
 
-  private void markAsVerified(String number, String password) {
+  private void markAsVerified(String number, String password, String signalingKey) {
     TextSecurePreferences.setVerifying(this, false);
     TextSecurePreferences.setPushRegistered(this, true);
     TextSecurePreferences.setLocalNumber(this, number);
     TextSecurePreferences.setPushServerPassword(this, password);
+    TextSecurePreferences.setSignalingKey(this, signalingKey);
   }
 
   private void setState(RegistrationState state) {
@@ -432,9 +441,9 @@ public class RegistrationService extends Service {
     }
 
     public RegistrationState(int state, String number, String password) {
-      this.state    = state;
-      this.number   = number;
-      this.password = password;
+      this.state        = state;
+      this.number       = number;
+      this.password     = password;
     }
   }
 }

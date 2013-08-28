@@ -4,9 +4,6 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.RoutingActivity;
-
 public class TextSecurePreferences {
 
   public  static final String IDENTITY_PREF                    = "pref_choose_identity";
@@ -40,6 +37,7 @@ public class TextSecurePreferences {
   private static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
+  private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
 
   public static String getLocalNumber(Context context) {
     return getStringPreference(context, LOCAL_NUMBER_PREF, "No Stored Number");
@@ -55,6 +53,10 @@ public class TextSecurePreferences {
 
   public static void setPushServerPassword(Context context, String password) {
     setStringPreference(context, GCM_PASSWORD_PREF, password);
+  }
+
+  public static void setSignalingKey(Context context, String signalingKey) {
+    setStringPreference(context, SIGNALING_KEY_PREF, signalingKey);
   }
 
   public static boolean isEnterImeKeyEnabled(Context context) {
