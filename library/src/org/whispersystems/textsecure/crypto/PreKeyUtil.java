@@ -40,6 +40,24 @@ public class PreKeyUtil {
     return records;
   }
 
+  public static PreKeyRecord generateLastResortKey(Context context, MasterSecret masterSecret) {
+    if (PreKeyRecord.hasRecord(context, Medium.MAX_VALUE)) {
+      try {
+        return new PreKeyRecord(context, masterSecret, Medium.MAX_VALUE);
+      } catch (InvalidKeyIdException e) {
+        Log.w("PreKeyUtil", e);
+        PreKeyRecord.delete(context, Medium.MAX_VALUE);
+      }
+    }
+
+    PreKeyPair   keyPair = new PreKeyPair(masterSecret, KeyUtil.generateKeyPair());
+    PreKeyRecord record  = new PreKeyRecord(context, masterSecret, Medium.MAX_VALUE, keyPair);
+
+    record.save();
+
+    return record;
+  }
+
   public static List<PreKeyRecord> getPreKeys(Context context, MasterSecret masterSecret) {
     List<PreKeyRecord> records      = new LinkedList<PreKeyRecord>();
     File               directory    = getPreKeysDirectory(context);
@@ -49,7 +67,9 @@ public class PreKeyUtil {
 
     for (String keyRecordId : keyRecordIds) {
       try {
-        records.add(new PreKeyRecord(context, masterSecret, Integer.parseInt(keyRecordId)));
+        if (Integer.parseInt(keyRecordId) != Medium.MAX_VALUE) {
+          records.add(new PreKeyRecord(context, masterSecret, Integer.parseInt(keyRecordId)));
+        }
       } catch (InvalidKeyIdException e) {
         Log.w("PreKeyUtil", e);
         new File(getPreKeysDirectory(context), keyRecordId).delete();
