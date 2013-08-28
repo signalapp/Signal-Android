@@ -22,6 +22,7 @@ import android.util.Log;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.PublicKey;
 import org.whispersystems.textsecure.util.Hex;
+import org.whispersystems.textsecure.util.Medium;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -62,7 +63,7 @@ public class RemoteKeyRecord extends Record {
 
   public void updateCurrentRemoteKey(PublicKey remoteKey) {
     Log.w("RemoteKeyRecord", "Updating current remote key: " + remoteKey.getId());
-    if (remoteKey.getId() > remoteKeyCurrent.getId()) {
+    if (isWrappingGreaterThan(remoteKey.getId(), remoteKeyCurrent.getId())) {
       this.remoteKeyLast    = this.remoteKeyCurrent;
       this.remoteKeyCurrent = remoteKey;
     }
@@ -110,6 +111,20 @@ public class RemoteKeyRecord extends Record {
         // XXX
       }
     }
+  }
+
+  private boolean isWrappingGreaterThan(int receivedValue, int currentValue) {
+    if (receivedValue > currentValue) {
+      return true;
+    }
+
+    if (receivedValue == currentValue) {
+      return false;
+    }
+
+    int gap = (receivedValue - currentValue) + Medium.MAX_VALUE;
+
+    return (gap >= 0) && (gap < 5);
   }
 
   private void loadData() {

@@ -65,8 +65,9 @@ public class PushServiceSocket {
     makeRequest(String.format(path, localNumber), "POST", null);
   }
 
-  public void verifyAccount(String verificationCode) throws IOException {
-    makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode), "PUT", null);
+  public void verifyAccount(String verificationCode, String signalingKey) throws IOException {
+    SignalingKey signalingKeyEntity = new SignalingKey(signalingKey);
+    makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode), "PUT", new Gson().toJson(signalingKeyEntity));
   }
 
   public void registerGcmId(String gcmRegistrationId) throws IOException {
@@ -109,7 +110,9 @@ public class PushServiceSocket {
       throw new IOException("Got send failure: " + response.getFailure().get(0));
   }
 
-  public void registerPreKeys(IdentityKey identityKey, List<PreKeyRecord> records)
+  public void registerPreKeys(IdentityKey identityKey,
+                              PreKeyRecord lastResortKey,
+                              List<PreKeyRecord> records)
       throws IOException
   {
     List<PreKeyEntity> entities = new LinkedList<PreKeyEntity>();
@@ -121,7 +124,11 @@ public class PushServiceSocket {
       entities.add(entity);
     }
 
-     makeRequest(String.format(PREKEY_PATH, ""), "PUT", PreKeyList.toJson(new PreKeyList(entities)));
+    PreKeyEntity lastResortEntity = new PreKeyEntity(lastResortKey.getId(),
+                                                     lastResortKey.getKeyPair().getPublicKey(),
+                                                     identityKey);
+
+     makeRequest(String.format(PREKEY_PATH, ""), "PUT", PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
   }
 
   public PreKeyEntity getPreKey(String number) throws IOException {
