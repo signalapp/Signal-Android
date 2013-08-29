@@ -30,6 +30,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := TextSecureLibrary
 LOCAL_SDK_VERSION := 8
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
-LOCAL_STATIC_JAVA_LIBRARIES := libphonenumbergoogle thoughtcrimegson
+LOCAL_STATIC_JAVA_LIBRARIES := libphonenumbergoogle thoughtcrimegson spongycastle-light-jdk15on libprotobuf-java-2.3.0-lite
 
 include $(BUILD_STATIC_JAVA_LIBRARY)

@@ -352,7 +352,7 @@ public class PushServiceSocket {
 
   private TrustManagerFactory initializeTrustManagerFactory(Context context) {
     try {
-      InputStream keyStoreInputStream = new ByteArrayInputStream(Base64.decode(WhisperKeyStore.BASE64_KEYSTORE, Base64.NO_WRAP));
+      InputStream keyStoreInputStream = new ByteArrayInputStream(android.util.Base64.decode(WhisperKeyStore.BASE64_KEYSTORE, android.util.Base64.NO_WRAP));
       KeyStore trustStore             = KeyStore.getInstance("BKS");
 
       trustStore.load(keyStoreInputStream, "whisper".toCharArray());
