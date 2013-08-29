@@ -19,7 +19,7 @@ import android.widget.CursorAdapter;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;

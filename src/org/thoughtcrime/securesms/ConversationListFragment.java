@@ -33,7 +33,7 @@ import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -272,6 +272,8 @@ public class ConversationListFragment extends SherlockListFragment
   @Override
   public void onDestroyActionMode(ActionMode mode) {
     ((ConversationListAdapter)getListAdapter()).initializeBatchMode(false);
+    actionMode = null;
+    batchMode  = false;
   }
 
 }

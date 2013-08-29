@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.HashSet;
 import java.util.LinkedList;

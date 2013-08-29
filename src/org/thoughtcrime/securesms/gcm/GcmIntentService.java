@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -73,6 +72,7 @@ public class GcmIntentService extends GCMBaseIntentService {
     Intent receivedIntent = new Intent(context, SendReceiveService.class);
     receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
     receivedIntent.putParcelableArrayListExtra("text_messages", messages);
+    receivedIntent.putExtra("push_type", message.getType());
     context.startService(receivedIntent);
   }
 

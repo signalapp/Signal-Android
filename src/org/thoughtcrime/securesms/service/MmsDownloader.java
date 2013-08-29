@@ -24,7 +24,7 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;

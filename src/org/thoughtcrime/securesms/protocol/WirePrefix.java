@@ -47,12 +47,20 @@ public abstract class WirePrefix {
     return verifyPrefix("?TSM", message);
   }
 
+  public static boolean isPreKeyBundle(String message) {
+    return verifyPrefix("?TSP", message);
+  }
+
   public static String calculateKeyExchangePrefix(String message) {
     return calculatePrefix(("?TSK" + message).getBytes(), PREFIX_BYTES);
   }
 
   public static String calculateEncryptedMesagePrefix(String message) {
     return calculatePrefix(("?TSM" + message).getBytes(), PREFIX_BYTES);
+  }
+
+  public static String calculatePreKeyBundlePrefix(String message) {
+    return calculatePrefix(("?TSP" + message).getBytes(), PREFIX_BYTES);
   }
 
   private static boolean verifyPrefix(String prefixType, String message) {

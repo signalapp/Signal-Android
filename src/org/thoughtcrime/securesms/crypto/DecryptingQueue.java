@@ -18,10 +18,9 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -35,9 +34,17 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
-import org.thoughtcrime.securesms.util.Hex;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.MessageCipher;
+import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.util.Hex;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WorkerThread;
+import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -48,7 +55,6 @@ import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.MultimediaMessagePdu;
 import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.RetrieveConf;
-import ws.com.google.android.mms.pdu.SendReq;
 
 /**
  * A work queue for processing a number of encryption operations.
@@ -170,10 +176,10 @@ public class DecryptingQueue {
       MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
 
       try {
-        String messageFrom        = pdu.getFrom().getString();
-        Recipients recipients     = RecipientFactory.getRecipientsFromString(context, messageFrom, false);
-        Recipient recipient       = recipients.getPrimaryRecipient();
-        byte[] ciphertextPduBytes = getEncryptedData();
+        String     messageFrom        = pdu.getFrom().getString();
+        Recipients recipients         = RecipientFactory.getRecipientsFromString(context, messageFrom, false);
+        Recipient  recipient          = recipients.getPrimaryRecipient();
+        byte[]     ciphertextPduBytes = getEncryptedData();
 
         if (ciphertextPduBytes == null) {
           Log.w("DecryptingQueue", "No encoded PNG data found on parts.");
@@ -191,9 +197,11 @@ public class DecryptingQueue {
 
         synchronized (SessionCipher.CIPHER_LOCK) {
           Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
-          SessionCipher cipher = new SessionCipher(context, masterSecret, recipient, new TextTransport());
+          IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          MessageCipher   message     = new MessageCipher(context, masterSecret, identityKey, new TextTransport());
+
           try {
-            plaintextPduBytes = cipher.decryptMessage(ciphertextPduBytes);
+            plaintextPduBytes = message.decrypt(recipient, ciphertextPduBytes);
           } catch (InvalidMessageException ime) {
             // XXX - For some reason, Sprint seems to append a single character to the
             // end of message text segments.  I don't know why, so here we just try
@@ -202,7 +210,7 @@ public class DecryptingQueue {
               Log.w("DecryptingQueue", "Attempting truncated decrypt...");
               byte[] truncated = new byte[ciphertextPduBytes.length - 1];
               System.arraycopy(ciphertextPduBytes, 0, truncated, 0, truncated.length);
-              plaintextPduBytes = cipher.decryptMessage(truncated);
+              plaintextPduBytes = message.decrypt(recipient, truncated);
             } else {
               throw ime;
             }
@@ -261,7 +269,7 @@ public class DecryptingQueue {
         try {
           Log.w("DecryptingQueue", "Parsing recipient for originator: " + originator);
           Recipients recipients = RecipientFactory.getRecipientsFromString(context, originator, false);
-          Recipient recipient   = recipients.getPrimaryRecipient();
+          Recipient  recipient  = recipients.getPrimaryRecipient();
           Log.w("DecryptingQueue", "Parsed Recipient: " + recipient.getNumber());
 
           if (!KeyUtil.isSessionFor(context, recipient)) {
@@ -270,8 +278,10 @@ public class DecryptingQueue {
             return;
           }
 
-          SessionCipher cipher  = new SessionCipher(context, masterSecret, recipient, new SmsTransportDetails());
-          plaintextBody         = new String(cipher.decryptMessage(body.getBytes()));
+          IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          MessageCipher   message     = new MessageCipher(context, masterSecret, identityKey, new SmsTransportDetails());
+
+          plaintextBody = new String(message.decrypt(recipient, body.getBytes()));
         } catch (InvalidMessageException e) {
           Log.w("DecryptionQueue", e);
           database.markAsDecryptFailed(messageId);

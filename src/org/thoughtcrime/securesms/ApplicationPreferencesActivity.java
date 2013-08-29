@@ -38,7 +38,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -273,7 +273,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           }
         }.execute();
       } else {
-        startActivity(new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class));
+        Intent intent = new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class);
+        intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
+        startActivity(intent);
       }
 
       return false;

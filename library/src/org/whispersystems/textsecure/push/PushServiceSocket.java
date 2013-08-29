@@ -1,13 +1,18 @@
 package org.whispersystems.textsecure.push;
 
 import android.content.Context;
-import android.util.Base64;
 import android.util.Log;
 import android.util.Pair;
 
+import com.google.protobuf.ByteString;
 import com.google.thoughtcrimegson.Gson;
 import org.whispersystems.textsecure.Release;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.PreKeyPair;
+import org.whispersystems.textsecure.crypto.PreKeyPublic;
 import org.whispersystems.textsecure.directory.DirectoryDescriptor;
+import org.whispersystems.textsecure.storage.PreKeyRecord;
+import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -38,6 +43,7 @@ public class PushServiceSocket {
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
+  private static final String PREKEY_PATH               = "/v1/keys/%s";
 
   private static final String DIRECTORY_PATH            = "/v1/directory/";
   private static final String MESSAGE_PATH              = "/v1/messages/";
@@ -55,16 +61,17 @@ public class PushServiceSocket {
     this.trustManagerFactory = initializeTrustManagerFactory(context);
   }
 
-  public void createAccount(boolean voice) throws IOException, RateLimitException {
+  public void createAccount(boolean voice) throws IOException {
     String path = voice ? CREATE_ACCOUNT_VOICE_PATH : CREATE_ACCOUNT_SMS_PATH;
     makeRequest(String.format(path, localNumber), "POST", null);
   }
 
-  public void verifyAccount(String verificationCode) throws IOException, RateLimitException {
-    makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode), "PUT", null);
+  public void verifyAccount(String verificationCode, String signalingKey) throws IOException {
+    SignalingKey signalingKeyEntity = new SignalingKey(signalingKey);
+    makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode), "PUT", new Gson().toJson(signalingKeyEntity));
   }
 
-  public void registerGcmId(String gcmRegistrationId) throws IOException, RateLimitException {
+  public void registerGcmId(String gcmRegistrationId) throws IOException {
     GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
     makeRequest(REGISTER_GCM_PATH, "PUT", new Gson().toJson(registration));
   }
@@ -73,26 +80,26 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void sendMessage(String recipient, String messageText)
+  public void sendMessage(String recipient, String messageText, int type)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(recipient, messageText);
+    OutgoingPushMessage message = new OutgoingPushMessage(recipient, messageText, type);
     sendMessage(message);
   }
 
-  public void sendMessage(List<String> recipients, String messageText)
+  public void sendMessage(List<String> recipients, String messageText, int type)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(recipients, messageText);
+    OutgoingPushMessage message = new OutgoingPushMessage(recipients, messageText, type);
     sendMessage(message);
   }
 
   public void sendMessage(List<String> recipients, String messageText,
-                          List<PushAttachmentData> attachments)
+                          List<PushAttachmentData> attachments, int type)
       throws IOException
   {
     List<PushAttachmentPointer> attachmentIds = sendAttachments(attachments);
-    OutgoingPushMessage         message       = new OutgoingPushMessage(recipients, messageText, attachmentIds);
+    OutgoingPushMessage         message       = new OutgoingPushMessage(recipients, messageText, attachmentIds, type);
     sendMessage(message);
   }
 
@@ -102,6 +109,33 @@ public class PushServiceSocket {
 
     if (response.getFailure().size() != 0)
       throw new IOException("Got send failure: " + response.getFailure().get(0));
+  }
+
+  public void registerPreKeys(IdentityKey identityKey,
+                              PreKeyRecord lastResortKey,
+                              List<PreKeyRecord> records)
+      throws IOException
+  {
+    List<PreKeyEntity> entities = new LinkedList<PreKeyEntity>();
+
+    for (PreKeyRecord record : records) {
+      PreKeyEntity entity = new PreKeyEntity(record.getId(),
+                                             record.getKeyPair().getPublicKey(),
+                                             identityKey);
+      entities.add(entity);
+    }
+
+    PreKeyEntity lastResortEntity = new PreKeyEntity(lastResortKey.getId(),
+                                                     lastResortKey.getKeyPair().getPublicKey(),
+                                                     identityKey);
+
+     makeRequest(String.format(PREKEY_PATH, ""), "PUT", PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
+  }
+
+  public PreKeyEntity getPreKey(String number) throws IOException {
+    String responseText = makeRequest(String.format(PREKEY_PATH, number), "GET", null);
+    Log.w("PushServiceSocket", "Got prekey: " + responseText);
+    return PreKeyEntity.fromJson(responseText);
   }
 
   private List<PushAttachmentPointer> sendAttachments(List<PushAttachmentData> attachments)
@@ -310,7 +344,7 @@ public class PushServiceSocket {
 
   private String getAuthorizationHeader() {
     try {
-      return "Basic " + new String(Base64.encode((localNumber + ":" + password).getBytes("UTF-8"), Base64.NO_WRAP));
+      return "Basic " + Base64.encodeBytes((localNumber + ":" + password).getBytes("UTF-8"));
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);
     }

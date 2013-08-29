@@ -18,28 +18,31 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
-import org.thoughtcrime.securesms.crypto.InvalidKeyException;
-import org.thoughtcrime.securesms.crypto.InvalidVersionException;
-import org.thoughtcrime.securesms.crypto.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
+import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.push.OutgoingPushMessage;
+import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 
 import java.util.List;
 
@@ -50,15 +53,32 @@ public class SmsReceiver {
   private final Context context;
 
   public SmsReceiver(Context context) {
-    this.context      = context;
+    this.context = context;
   }
 
+  private IncomingTextMessage assembleMessageFragments(List<IncomingTextMessage> messages, int pushType) {
+    if (messages.size() != 1) return assembleMessageFragments(messages);
+
+    IncomingTextMessage message = messages.get(0);
+
+    switch (pushType) {
+      case OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT:
+        return new IncomingEncryptedMessage(message, message.getMessageBody());
+      case OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE:
+        return new IncomingPreKeyBundleMessage(message, message.getMessageBody());
+      case OutgoingPushMessage.TYPE_MESSAGE_KEY_EXCHANGE:
+        return new IncomingKeyExchangeMessage(message, message.getMessageBody());
+    }
+
+    return message;
+  }
 
   private IncomingTextMessage assembleMessageFragments(List<IncomingTextMessage> messages) {
     IncomingTextMessage message = new IncomingTextMessage(messages);
 
     if (WirePrefix.isEncryptedMessage(message.getMessageBody()) ||
-        WirePrefix.isKeyExchange(message.getMessageBody()))
+        WirePrefix.isKeyExchange(message.getMessageBody())      ||
+        WirePrefix.isPreKeyBundle(message.getMessageBody()))
     {
       return multipartMessageHandler.processPotentialMultipartMessage(message);
     } else {
@@ -93,6 +113,43 @@ public class SmsReceiver {
     }
   }
 
+  private Pair<Long, Long> storePreKeyBundledMessage(MasterSecret masterSecret,
+                                                     IncomingKeyExchangeMessage message)
+  {
+    Log.w("SmsReceiver", "Processing prekey message...");
+
+    try {
+      Recipient            recipient      = new Recipient(null, message.getSender(), null, null);
+      KeyExchangeProcessor processor      = new KeyExchangeProcessor(context, masterSecret, recipient);
+      PreKeyBundleMessage  preKeyExchange = new PreKeyBundleMessage(message.getMessageBody());
+
+      if (processor.isTrusted(preKeyExchange)) {
+        processor.processKeyExchangeMessage(preKeyExchange);
+
+        IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, preKeyExchange.getBundledMessage());
+        Pair<Long, Long>         messageAndThreadId = storeSecureMessage(masterSecret, bundledMessage);
+
+        Intent intent = new Intent(KeyExchangeProcessor.SECURITY_UPDATE_EVENT);
+        intent.putExtra("thread_id", messageAndThreadId.second);
+        intent.setPackage(context.getPackageName());
+        context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
+
+        return messageAndThreadId;
+      }
+    } catch (InvalidKeyException e) {
+      Log.w("SmsReceiver", e);
+      message.setCorrupted(true);
+    } catch (InvalidVersionException e) {
+      Log.w("SmsReceiver", e);
+      message.setInvalidVersion(true);
+    } catch (InvalidKeyIdException e) {
+      Log.w("SmsReceiver", e);
+      message.setStale(true);
+    }
+
+    return storeStandardMessage(masterSecret, message);
+  }
+
   private Pair<Long, Long> storeKeyExchangeMessage(MasterSecret masterSecret,
                                                    IncomingKeyExchangeMessage message)
   {
@@ -116,8 +173,10 @@ public class SmsReceiver {
         }
       } catch (InvalidVersionException e) {
         Log.w("SmsReceiver", e);
+        message.setInvalidVersion(true);
       } catch (InvalidKeyException e) {
         Log.w("SmsReceiver", e);
+        message.setCorrupted(true);
       }
     }
 
@@ -126,13 +185,19 @@ public class SmsReceiver {
 
   private Pair<Long, Long> storeMessage(MasterSecret masterSecret, IncomingTextMessage message) {
     if      (message.isSecureMessage()) return storeSecureMessage(masterSecret, message);
-    else if (message.isKeyExchange())   return storeKeyExchangeMessage(masterSecret, (IncomingKeyExchangeMessage)message);
+    else if (message.isPreKeyBundle())  return storePreKeyBundledMessage(masterSecret, (IncomingKeyExchangeMessage) message);
+    else if (message.isKeyExchange())   return storeKeyExchangeMessage(masterSecret, (IncomingKeyExchangeMessage) message);
     else                                return storeStandardMessage(masterSecret, message);
   }
 
   private void handleReceiveMessage(MasterSecret masterSecret, Intent intent) {
     List<IncomingTextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
-    IncomingTextMessage message            = assembleMessageFragments(messagesList);
+    int                       pushType     = intent.getIntExtra("push_type", -1);
+
+    IncomingTextMessage message;
+
+    if (pushType != -1) message = assembleMessageFragments(messagesList, pushType);
+    else                message = assembleMessageFragments(messagesList);
 
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);

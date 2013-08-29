@@ -23,12 +23,17 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
-import org.bouncycastle.crypto.agreement.ECDHBasicAgreement;
-import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.spongycastle.crypto.AsymmetricCipherKeyPair;
+import org.spongycastle.crypto.agreement.ECDHBasicAgreement;
+import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.PublicKey;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Conversions;
-import org.thoughtcrime.securesms.util.InvalidMessageException;
 
 /**
  * This class is used to asymmetricly encrypt local data.  This is used in the case
@@ -58,7 +63,7 @@ public class AsymmetricMasterCipher {
     this.asymmetricMasterSecret = asymmetricMasterSecret;
   }
 	
-  public String decryptBody(String body) throws IOException, org.thoughtcrime.securesms.crypto.InvalidMessageException {
+  public String decryptBody(String body) throws IOException, InvalidMessageException {
     try {
       byte[] combined           = Base64.decode(body);
       PublicKey theirPublicKey  = new PublicKey(combined, 0);
@@ -74,9 +79,9 @@ public class AsymmetricMasterCipher {
 			
       return new String(decryptedBodyBytes);
     } catch (InvalidKeyException ike) {
-      throw new org.thoughtcrime.securesms.crypto.InvalidMessageException(ike);
+      throw new InvalidMessageException(ike);
     } catch (InvalidMessageException e) {
-      throw new org.thoughtcrime.securesms.crypto.InvalidMessageException(e);
+      throw new InvalidMessageException(e);
     }		
   }
 	

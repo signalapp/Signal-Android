@@ -5,8 +5,10 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.SessionCipher;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
@@ -14,7 +16,7 @@ import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Hex;
+import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -133,13 +135,9 @@ public class MmsTransport {
   }
 
   private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipient, byte[] pduBytes) {
-    synchronized (SessionCipher.CIPHER_LOCK) {
-      SessionCipher cipher = new SessionCipher(context, masterSecret,
-                                               new Recipient(null, recipient, null, null),
-                                               new TextTransport());
-
-      return cipher.encryptMessage(pduBytes);
-    }
+    IdentityKeyPair  identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    MessageCipher message     = new MessageCipher(context, masterSecret, identityKey, new TextTransport());
+    return message.encrypt(new Recipient(null, recipient, null, null), pduBytes);
   }
 
   private boolean isInconsistentResponse(SendReq message, SendConf response) {

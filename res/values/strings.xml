@@ -490,6 +490,7 @@
     <string name="registration_progress_activity__sms_verification_failed">SMS verification
         failed.
     </string>
+    <string name="registration_progress_activity__generating_keys">Generating keys...</string>
 
     <!-- recipients_panel -->
     <string name="recipients_panel__to">To</string>

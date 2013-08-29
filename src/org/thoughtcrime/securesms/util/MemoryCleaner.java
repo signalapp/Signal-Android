@@ -19,9 +19,7 @@ package org.thoughtcrime.securesms.util;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-import javax.crypto.spec.SecretKeySpec;
-
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import android.util.Log;
 

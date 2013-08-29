@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.net.Uri;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -109,7 +109,7 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private void handlePushRegistration() {
-    Intent intent = new Intent(this, RegistrationActivity.class);
+    Intent intent = getPushRegistrationIntent();
     intent.putExtra("next_intent", getConversationListIntent());
     startActivity(intent);
     finish();
@@ -150,7 +150,10 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private Intent getPushRegistrationIntent() {
-    return new Intent(this, RegistrationActivity.class);
+    Intent intent = new Intent(this, RegistrationActivity.class);
+    intent.putExtra("master_secret", masterSecret);
+
+    return intent;
   }
 
   private int getApplicationState() {

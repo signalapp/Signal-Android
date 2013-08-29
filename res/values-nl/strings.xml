@@ -70,10 +70,20 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">Opslaan op SD-kaart?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dit exporteert je keys, instellingen en berichten versleuteld naar de SD-kaart</string>
   <string name="ExportFragment_export">Exporteer</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Exporteer onversleutelde tekst naar SD-kaart?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Waarschuwing, dit exporteert de onversleutelde tekst van je berichten in Textsecure naar de SD-kaart.</string>
   <string name="ExportFragment_cancel">Annuleren</string>
+  <string name="ExportFragment_exporting">Aan het exporteren</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Aan het exporteren naar de SD-kaart...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Fout, SD-kaart niet beschrijfbaar!</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Fout tijdens het schrijven naar de SD-kaart.</string>
   <string name="ExportFragment_success">Succesvol!</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Keys, instellingen en berichten versleuteld naar de SD-kaart aan het exporteren...</string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
   <string name="ImportFragment_import">Importeer</string>
   <string name="ImportFragment_cancel">Annuleren</string>
   <!--KeyScanningActivity-->
@@ -306,6 +316,10 @@
   <string name="preferences__conversation_length_limit">Conversatielengte limiet</string>
   <string name="preferences__trim_all_threads_now">Oudere conversatieberichten nu verwijderen</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Alle conversaties scannen en de maximale conversatielengte toepassen</string>
+  <string name="preferences__light_theme">Licht Thema</string>
+  <string name="preferences__dark_theme">Donker Thema</string>
+  <string name="preferences__appearance">Uiterlijk</string>
+  <string name="preferences__theme">Thema</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

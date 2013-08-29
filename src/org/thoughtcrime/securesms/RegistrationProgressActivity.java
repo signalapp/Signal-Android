@@ -29,9 +29,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.service.RegistrationService;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
-import org.thoughtcrime.securesms.service.RegistrationService;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 
@@ -58,15 +59,19 @@ public class RegistrationProgressActivity extends SherlockActivity {
   private ProgressBar registrationProgress;
   private ProgressBar connectingProgress;
   private ProgressBar verificationProgress;
+  private ProgressBar generatingKeysProgress;
   private ProgressBar gcmRegistrationProgress;
+
 
   private ImageView   connectingCheck;
   private ImageView   verificationCheck;
+  private ImageView   generatingKeysCheck;
   private ImageView   gcmRegistrationCheck;
 
   private TextView    connectingText;
   private TextView    verificationText;
   private TextView    registrationTimerText;
+  private TextView    generatingKeysText;
   private TextView    gcmRegistrationText;
 
   private Button      verificationFailureButton;
@@ -76,6 +81,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
 
   private EditText    codeEditText;
 
+  private MasterSecret masterSecret;
   private volatile boolean visible;
 
   @Override
@@ -118,19 +124,23 @@ public class RegistrationProgressActivity extends SherlockActivity {
   }
 
   private void initializeResources() {
+    this.masterSecret              = getIntent().getParcelableExtra("master_secret");
     this.registrationLayout        = (LinearLayout)findViewById(R.id.registering_layout);
     this.verificationFailureLayout = (LinearLayout)findViewById(R.id.verification_failure_layout);
     this.connectivityFailureLayout = (LinearLayout)findViewById(R.id.connectivity_failure_layout);
     this.registrationProgress      = (ProgressBar) findViewById(R.id.registration_progress);
     this.connectingProgress        = (ProgressBar) findViewById(R.id.connecting_progress);
     this.verificationProgress      = (ProgressBar) findViewById(R.id.verification_progress);
+    this.generatingKeysProgress    = (ProgressBar) findViewById(R.id.generating_keys_progress);
     this.gcmRegistrationProgress   = (ProgressBar) findViewById(R.id.gcm_registering_progress);
     this.connectingCheck           = (ImageView)   findViewById(R.id.connecting_complete);
     this.verificationCheck         = (ImageView)   findViewById(R.id.verification_complete);
+    this.generatingKeysCheck       = (ImageView)   findViewById(R.id.generating_keys_complete);
     this.gcmRegistrationCheck      = (ImageView)   findViewById(R.id.gcm_registering_complete);
     this.connectingText            = (TextView)    findViewById(R.id.connecting_text);
     this.verificationText          = (TextView)    findViewById(R.id.verification_text);
     this.registrationTimerText     = (TextView)    findViewById(R.id.registration_timer);
+    this.generatingKeysText        = (TextView)    findViewById(R.id.generating_keys_text);
     this.gcmRegistrationText       = (TextView)    findViewById(R.id.gcm_registering_text);
     this.verificationFailureButton = (Button)      findViewById(R.id.verification_failure_edit_button);
     this.connectivityFailureButton = (Button)      findViewById(R.id.connectivity_failure_edit_button);
@@ -181,9 +191,12 @@ public class RegistrationProgressActivity extends SherlockActivity {
       Intent intent = new Intent(this, RegistrationService.class);
       intent.setAction(RegistrationService.REGISTER_NUMBER_ACTION);
       intent.putExtra("e164number", getNumberDirective());
+      intent.putExtra("master_secret", masterSecret);
       startService(intent);
     } else {
-      startActivity(new Intent(this, RegistrationActivity.class));
+      Intent intent = new Intent(this, RegistrationActivity.class);
+      intent.putExtra("master_secret", masterSecret);
+      startActivity(intent);
       finish();
     }
   }
@@ -196,10 +209,13 @@ public class RegistrationProgressActivity extends SherlockActivity {
     this.connectingCheck.setVisibility(View.INVISIBLE);
     this.verificationProgress.setVisibility(View.INVISIBLE);
     this.verificationCheck.setVisibility(View.INVISIBLE);
+    this.generatingKeysProgress.setVisibility(View.INVISIBLE);
+    this.generatingKeysCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(FOCUSED_COLOR);
     this.verificationText.setTextColor(UNFOCUSED_COLOR);
+    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
     this.timeoutProgressLayout.setVisibility(View.VISIBLE);
   }
@@ -212,13 +228,36 @@ public class RegistrationProgressActivity extends SherlockActivity {
     this.connectingCheck.setVisibility(View.VISIBLE);
     this.verificationProgress.setVisibility(View.VISIBLE);
     this.verificationCheck.setVisibility(View.INVISIBLE);
+    this.generatingKeysProgress.setVisibility(View.INVISIBLE);
+    this.generatingKeysCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(UNFOCUSED_COLOR);
     this.verificationText.setTextColor(FOCUSED_COLOR);
+    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
     this.registrationProgress.setVisibility(View.VISIBLE);
     this.timeoutProgressLayout.setVisibility(View.VISIBLE);
+  }
+
+  private void handleStateGeneratingKeys() {
+    this.registrationLayout.setVisibility(View.VISIBLE);
+    this.verificationFailureLayout.setVisibility(View.GONE);
+    this.connectivityFailureLayout.setVisibility(View.GONE);
+    this.connectingProgress.setVisibility(View.INVISIBLE);
+    this.connectingCheck.setVisibility(View.VISIBLE);
+    this.verificationProgress.setVisibility(View.INVISIBLE);
+    this.verificationCheck.setVisibility(View.VISIBLE);
+    this.generatingKeysProgress.setVisibility(View.VISIBLE);
+    this.generatingKeysCheck.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
+    this.connectingText.setTextColor(UNFOCUSED_COLOR);
+    this.verificationText.setTextColor(UNFOCUSED_COLOR);
+    this.generatingKeysText.setTextColor(FOCUSED_COLOR);
+    this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
+    this.registrationProgress.setVisibility(View.INVISIBLE);
+    this.timeoutProgressLayout.setVisibility(View.INVISIBLE);
   }
 
   private void handleStateGcmRegistering() {
@@ -229,10 +268,13 @@ public class RegistrationProgressActivity extends SherlockActivity {
     this.connectingCheck.setVisibility(View.VISIBLE);
     this.verificationProgress.setVisibility(View.INVISIBLE);
     this.verificationCheck.setVisibility(View.VISIBLE);
+    this.generatingKeysProgress.setVisibility(View.INVISIBLE);
+    this.generatingKeysCheck.setVisibility(View.VISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.VISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
     this.connectingText.setTextColor(UNFOCUSED_COLOR);
     this.verificationText.setTextColor(UNFOCUSED_COLOR);
+    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
     this.gcmRegistrationText.setTextColor(FOCUSED_COLOR);
     this.registrationProgress.setVisibility(View.INVISIBLE);
     this.timeoutProgressLayout.setVisibility(View.INVISIBLE);
@@ -351,6 +393,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
       case RegistrationState.STATE_CONNECTING:           handleStateConnecting();                 break;
       case RegistrationState.STATE_VERIFYING:            handleStateVerifying();                  break;
       case RegistrationState.STATE_TIMER:                handleTimerUpdate();                     break;
+      case RegistrationState.STATE_GENERATING_KEYS:      handleStateGeneratingKeys();             break;
       case RegistrationState.STATE_GCM_REGISTERING:      handleStateGcmRegistering();             break;
       case RegistrationState.STATE_TIMEOUT:              handleVerificationTimeout(state);        break;
       case RegistrationState.STATE_COMPLETE:             handleVerificationComplete();            break;
@@ -367,6 +410,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
       shutdownService();
 
       Intent activityIntent = new Intent(RegistrationProgressActivity.this, RegistrationActivity.class);
+      activityIntent.putExtra("master_secret", masterSecret);
       startActivity(activityIntent);
       finish();
     }
@@ -388,14 +432,16 @@ public class RegistrationProgressActivity extends SherlockActivity {
 
     private final String e164number;
     private final String password;
+    private final String signalingKey;
     private final Context context;
 
     private ProgressDialog progressDialog;
 
     public VerifyClickListener(String e164number, String password) {
-      this.e164number = e164number;
-      this.password   = password;
-      this.context    = RegistrationProgressActivity.this;
+      this.e164number   = e164number;
+      this.password     = password;
+      this.signalingKey = Util.getSecret(52);
+      this.context      = RegistrationProgressActivity.this;
     }
 
     @Override
@@ -429,6 +475,8 @@ public class RegistrationProgressActivity extends SherlockActivity {
               intent.setAction(RegistrationService.VOICE_REGISTER_ACTION);
               intent.putExtra("e164number", e164number);
               intent.putExtra("password", password);
+              intent.putExtra("signaling_key", signalingKey);
+              intent.putExtra("master_secret", masterSecret);
               startService(intent);
               break;
             case NETWORK_ERROR:
@@ -450,7 +498,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
         protected Integer doInBackground(Void... params) {
           try {
             PushServiceSocket socket = new PushServiceSocket(context, e164number, password);
-            socket.verifyAccount(code);
+            socket.verifyAccount(code, signalingKey);
             return SUCCESS;
           } catch (RateLimitException e) {
             Log.w("RegistrationProgressActivity", e);
@@ -476,9 +524,9 @@ public class RegistrationProgressActivity extends SherlockActivity {
     private final Context context;
 
     public CallClickListener(String e164number) {
-      this.e164number = e164number;
-      this.password   = Util.getSecret(18);
-      this.context    = RegistrationProgressActivity.this;
+      this.e164number   = e164number;
+      this.password     = Util.getSecret(18);
+      this.context      = RegistrationProgressActivity.this;
     }
 
     @Override
@@ -504,6 +552,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
               intent.setAction(RegistrationService.VOICE_REQUESTED_ACTION);
               intent.putExtra("e164number", e164number);
               intent.putExtra("password", password);
+              intent.putExtra("master_secret", masterSecret);
               startService(intent);
 
               callButton.setEnabled(false);
