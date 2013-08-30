@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
-import com.google.thoughtcrimegson.Gson;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.Util;
@@ -48,16 +49,24 @@ public class GcmIntentService extends GCMBaseIntentService {
 
   @Override
   protected void onMessage(Context context, Intent intent) {
-    String data = intent.getStringExtra("message");
-    Log.w("GcmIntentService", "GCM message: " + data);
+    try {
+      String data = intent.getStringExtra("message");
+      Log.w("GcmIntentService", "GCM message: " + data);
 
-    if (Util.isEmpty(data))
-      return;
+      if (Util.isEmpty(data))
+        return;
 
-    IncomingPushMessage message = new Gson().fromJson(data, IncomingPushMessage.class);
+      String                       sessionKey       = TextSecurePreferences.getSignalingKey(context);
+      IncomingEncryptedPushMessage encryptedMessage = new IncomingEncryptedPushMessage(data, sessionKey);
+      IncomingPushMessage          message          = encryptedMessage.getIncomingPushMessage();
 
-    if (!message.hasAttachments()) handleIncomingTextMessage(context, message);
-    else                           handleIncomingMediaMessage(context, message);
+      if (!message.hasAttachments()) handleIncomingTextMessage(context, message);
+      else                           handleIncomingMediaMessage(context, message);
+    } catch (IOException e) {
+      Log.w("GcmIntentService", e);
+    } catch (InvalidVersionException e) {
+      Log.w("GcmIntentService", e);
+    }
   }
 
   @Override

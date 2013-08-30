@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.util.Base64;
 
 import java.util.ArrayList;
 
@@ -141,7 +142,7 @@ public class SmsTransport extends BaseTransport {
       byte[]              bundledMessage      = messageCipher.encrypt(recipient, body.getBytes());
       PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(identityKey.getPublicKey(), bundledMessage);
 
-      return new OutgoingPrekeyBundleMessage(message, preKeyBundleMessage.serialize());
+      return new OutgoingPrekeyBundleMessage(message, Base64.encodeBytesWithoutPadding(preKeyBundleMessage.serialize()));
     }
   }
 }
