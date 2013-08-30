@@ -96,8 +96,8 @@ public class PreKeyBundleMessage {
     }
   }
 
-  public String serialize() {
-    return Base64.encodeBytesWithoutPadding(this.messageBytes);
+  public byte[] serialize() {
+    return this.messageBytes;
   }
 
   public int getSupportedVersion() {

@@ -1,3 +1,3 @@
 
 all:
-	protoc --java_out=../src/ PreKeyEntity.proto
+	protoc --java_out=../src/ IncomingPushMessageSignal.proto

@@ -42,6 +42,7 @@ import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
+import org.whispersystems.textsecure.push.PushMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 
 import java.util.List;
@@ -62,11 +63,11 @@ public class SmsReceiver {
     IncomingTextMessage message = messages.get(0);
 
     switch (pushType) {
-      case OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT:
+      case PushMessage.TYPE_MESSAGE_CIPHERTEXT:
         return new IncomingEncryptedMessage(message, message.getMessageBody());
-      case OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE:
+      case PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE:
         return new IncomingPreKeyBundleMessage(message, message.getMessageBody());
-      case OutgoingPushMessage.TYPE_MESSAGE_KEY_EXCHANGE:
+      case PushMessage.TYPE_MESSAGE_KEY_EXCHANGE:
         return new IncomingKeyExchangeMessage(message, message.getMessageBody());
     }
 

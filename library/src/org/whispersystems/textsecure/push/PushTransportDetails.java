@@ -34,11 +34,11 @@ public class PushTransportDetails implements TransportDetails {
 
   @Override
   public byte[] getEncodedMessage(byte[] messageWithMac) {
-    return Base64.encodeBytesWithoutPadding(messageWithMac).getBytes();
+    return messageWithMac;
   }
 
   @Override
   public byte[] getDecodedMessage(byte[] encodedMessageBytes) throws IOException {
-    return Base64.decodeWithoutPadding(new String(encodedMessageBytes));
+    return encodedMessageBytes;
   }
 }
