@@ -1,0 +1,19 @@
+package textsecure;
+
+option java_package = "org.whispersystems.textsecure.push";
+option java_outer_classname = "PushMessageProtos";
+
+message IncomingPushMessageSignal {
+  optional uint32 type = 1;
+  optional string source = 2;
+  repeated string destinations = 3;
+  optional bytes message = 4;
+
+  message AttachmentPointer {
+    optional string contentType = 1;
+    optional string key = 2;
+  }
+
+  repeated AttachmentPointer attachments = 5;
+  optional uint64 timestamp = 6;
+}

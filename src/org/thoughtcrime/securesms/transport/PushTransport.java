@@ -55,7 +55,7 @@ public class PushTransport extends BaseTransport {
       String    recipientCanonicalNumber = PhoneNumberFormatter.formatNumber(recipient.getNumber(),
                                                                              localNumber);
 
-      Pair<Integer, String> typeAndCiphertext = getEncryptedMessage(socket, recipient, recipientCanonicalNumber, plaintext);
+      Pair<Integer, byte[]> typeAndCiphertext = getEncryptedMessage(socket, recipient, recipientCanonicalNumber, plaintext);
 
       socket.sendMessage(recipientCanonicalNumber, typeAndCiphertext.second, typeAndCiphertext.first);
 
@@ -71,11 +71,19 @@ public class PushTransport extends BaseTransport {
       String                   localNumber = TextSecurePreferences.getLocalNumber(context);
       String                   password    = TextSecurePreferences.getPushServerPassword(context);
       PushServiceSocket        socket      = new PushServiceSocket(context, localNumber, password);
-      String                   messageText = PartParser.getMessageText(message.getBody());
+      byte[]                   messageText = PartParser.getMessageText(message.getBody()).getBytes();
       List<PushAttachmentData> attachments = getAttachmentsFromBody(message.getBody());
 
-      if (attachments.isEmpty()) socket.sendMessage(destinations, messageText, OutgoingPushMessage.TYPE_MESSAGE_PLAINTEXT);
-      else                       socket.sendMessage(destinations, messageText, attachments, OutgoingPushMessage.TYPE_MESSAGE_PLAINTEXT);
+      List<byte[]>                   messagesList    = new LinkedList<byte[]>();
+      List<List<PushAttachmentData>> attachmentsList = new LinkedList<List<PushAttachmentData>>();
+
+      for (String recipient : destinations) {
+        messagesList.add(messageText);
+        attachmentsList.add(attachments);
+      }
+
+      socket.sendMessage(destinations, messagesList, attachmentsList,
+                         OutgoingPushMessage.TYPE_MESSAGE_PLAINTEXT);
     } catch (RateLimitException e) {
       Log.w("PushTransport", e);
       throw new IOException("Rate limit exceeded.");
@@ -99,26 +107,26 @@ public class PushTransport extends BaseTransport {
     return attachments;
   }
 
-  private Pair<Integer, String> getEncryptedMessage(PushServiceSocket socket, Recipient recipient,
+  private Pair<Integer, byte[]> getEncryptedMessage(PushServiceSocket socket, Recipient recipient,
                                                     String canonicalRecipientNumber, String plaintext)
       throws IOException
   {
     if (KeyUtil.isNonPrekeySessionFor(context, masterSecret, recipient)) {
       Log.w("PushTransport", "Sending standard ciphertext message...");
-      String ciphertext = getEncryptedMessageForExistingSession(recipient, plaintext);
-      return new Pair<Integer, String>(OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT, ciphertext);
+      byte[] ciphertext = getEncryptedMessageForExistingSession(recipient, plaintext);
+      return new Pair<Integer, byte[]>(OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT, ciphertext);
     } else if (KeyUtil.isSessionFor(context, recipient)) {
       Log.w("PushTransport", "Sending prekeybundle ciphertext message for existing session...");
-      String ciphertext = getEncryptedPrekeyBundleMessageForExistingSession(recipient, plaintext);
-      return new Pair<Integer, String>(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
+      byte[] ciphertext = getEncryptedPrekeyBundleMessageForExistingSession(recipient, plaintext);
+      return new Pair<Integer, byte[]>(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     } else {
       Log.w("PushTransport", "Sending prekeybundle ciphertext message for new session...");
-      String ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, recipient, canonicalRecipientNumber, plaintext);
-      return new Pair<Integer, String>(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
+      byte[] ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, recipient, canonicalRecipientNumber, plaintext);
+      return new Pair<Integer, byte[]>(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     }
   }
 
-  private String getEncryptedPrekeyBundleMessageForExistingSession(Recipient recipient,
+  private byte[] getEncryptedPrekeyBundleMessageForExistingSession(Recipient recipient,
                                                                    String plaintext)
   {
     IdentityKeyPair identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
@@ -131,7 +139,7 @@ public class PushTransport extends BaseTransport {
     return preKeyBundleMessage.serialize();
   }
 
-  private String getEncryptedPrekeyBundleMessageForNewSession(PushServiceSocket socket,
+  private byte[] getEncryptedPrekeyBundleMessageForNewSession(PushServiceSocket socket,
                                                               Recipient recipient,
                                                               String canonicalRecipientNumber,
                                                               String plaintext)
@@ -151,14 +159,14 @@ public class PushTransport extends BaseTransport {
     return preKeyBundleMessage.serialize();
   }
 
-  private String getEncryptedMessageForExistingSession(Recipient recipient, String plaintext)
+  private byte[] getEncryptedMessageForExistingSession(Recipient recipient, String plaintext)
       throws IOException
   {
     IdentityKeyPair identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     MessageCipher   messageCipher   = new MessageCipher(context, masterSecret, identityKeyPair,
                                                         new PushTransportDetails());
 
-    return new String(messageCipher.encrypt(recipient, plaintext.getBytes()));
+    return messageCipher.encrypt(recipient, plaintext.getBytes());
   }
 
 }
