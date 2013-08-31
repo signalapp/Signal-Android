@@ -16,15 +16,12 @@
  */
 package org.whispersystems.textsecure.crypto.protocol;
 
-import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.PublicKey;
-import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Conversions;
-
-import java.io.IOException;
 
 /**
  * Class responsible for parsing and constructing PreKeyBundle messages.
@@ -53,27 +50,25 @@ public class PreKeyBundleMessage {
   private final PublicKey   publicKey;
   private final byte[]      bundledMessage;
 
-  public PreKeyBundleMessage(String message) throws InvalidKeyException, InvalidVersionException {
-    try {
-      this.messageBytes   = Base64.decodeWithoutPadding(message);
-      this.messageVersion = Conversions.highBitsToInt(this.messageBytes[VERSION_OFFSET]);
+  public PreKeyBundleMessage(byte[] messageBytes)
+      throws InvalidKeyException, InvalidVersionException
+  {
+    this.messageBytes   = messageBytes;
+    this.messageVersion = Conversions.highBitsToInt(this.messageBytes[VERSION_OFFSET]);
 
-      if (messageVersion > MessageCipher.SUPPORTED_VERSION)
-        throw new InvalidVersionException("Key exchange with version: " + messageVersion +
-                                              " but we only support: " + MessageCipher.SUPPORTED_VERSION);
+    if (messageVersion > MessageCipher.SUPPORTED_VERSION)
+      throw new InvalidVersionException("Key exchange with version: " + messageVersion +
+                                            " but we only support: " + MessageCipher.SUPPORTED_VERSION);
 
-      this.supportedVersion = Conversions.lowBitsToInt(messageBytes[VERSION_OFFSET]);
-      this.publicKey        = new PublicKey(messageBytes, PUBLIC_KEY_OFFSET);
-      this.identityKey      = new IdentityKey(messageBytes, IDENTITY_KEY_OFFSET);
-      this.preKeyId         = Conversions.byteArrayToMedium(messageBytes, PREKEY_ID_OFFSET);
-      this.bundledMessage   = new byte[messageBytes.length - IDENTITY_KEY_LENGTH];
+    this.supportedVersion = Conversions.lowBitsToInt(messageBytes[VERSION_OFFSET]);
+    this.publicKey        = new PublicKey(messageBytes, PUBLIC_KEY_OFFSET);
+    this.identityKey      = new IdentityKey(messageBytes, IDENTITY_KEY_OFFSET);
+    this.preKeyId         = Conversions.byteArrayToMedium(messageBytes, PREKEY_ID_OFFSET);
+    this.bundledMessage   = new byte[messageBytes.length - IDENTITY_KEY_LENGTH];
 
 
-      this.bundledMessage[VERSION_OFFSET] = this.messageBytes[VERSION_OFFSET];
-      System.arraycopy(messageBytes, IDENTITY_KEY_OFFSET+IDENTITY_KEY_LENGTH, bundledMessage, VERSION_OFFSET+VERSION_LENGTH, bundledMessage.length-VERSION_LENGTH);
-    } catch (IOException e) {
-      throw new InvalidKeyException(e);
-    }
+    this.bundledMessage[VERSION_OFFSET] = this.messageBytes[VERSION_OFFSET];
+    System.arraycopy(messageBytes, IDENTITY_KEY_OFFSET+IDENTITY_KEY_LENGTH, bundledMessage, VERSION_OFFSET+VERSION_LENGTH, bundledMessage.length-VERSION_LENGTH);
   }
 
   public PreKeyBundleMessage(IdentityKey identityKey, byte[] bundledMessage) {
@@ -116,8 +111,8 @@ public class PreKeyBundleMessage {
     return publicKey;
   }
 
-  public String getBundledMessage() {
-    return Base64.encodeBytesWithoutPadding(bundledMessage);
+  public byte[] getBundledMessage() {
+    return bundledMessage;
   }
 
   public int getPreKeyId() {
