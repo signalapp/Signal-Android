@@ -50,6 +50,7 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
     this.destinations = new LinkedList<String>();
     this.attachments  = new LinkedList<PushAttachmentPointer>();
 
+    this.type   = in.readInt();
     this.source = in.readString();
     in.readStringList(destinations);
     this.message = new byte[in.readInt()];
@@ -70,15 +71,8 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
     return attachments;
   }
 
-  public String getMessageText() {
-    if (type == TYPE_MESSAGE_CIPHERTEXT   ||
-        type == TYPE_MESSAGE_KEY_EXCHANGE ||
-        type == TYPE_MESSAGE_PREKEY_BUNDLE)
-    {
-      return Base64.encodeBytesWithoutPadding(message);
-    }
-
-    return new String(message);
+  public byte[] getBody() {
+    return message;
   }
 
   public List<String> getDestinations() {
@@ -96,6 +90,7 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
+    dest.writeInt(type);
     dest.writeString(source);
     dest.writeStringList(destinations);
     dest.writeInt(message.length);

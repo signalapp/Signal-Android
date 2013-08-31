@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.RawTransportDetails;
+import org.whispersystems.textsecure.push.RawTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.IdentityKey;

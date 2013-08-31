@@ -46,9 +46,9 @@ public class IncomingMediaMessage {
 
     this.headers.setLongInteger(message.getTimestampMillis() / 1000, PduHeaders.DATE);
 
-    if (message.getMessageText() != null && message.getMessageText().length() > 0) {
+    if (message.getBody() != null && message.getBody().length > 0) {
       PduPart text = new PduPart();
-      text.setData(message.getMessageText().getBytes());
+      text.setData(message.getBody());
       text.setContentType("text/plain".getBytes(CharacterSets.MIMENAME_ISO_8859_1));
       body.addPart(text);
     }

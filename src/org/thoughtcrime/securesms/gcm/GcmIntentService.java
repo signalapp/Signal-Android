@@ -8,6 +8,7 @@ import com.google.android.gcm.GCMBaseIntentService;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
@@ -76,7 +77,8 @@ public class GcmIntentService extends GCMBaseIntentService {
 
   private void handleIncomingTextMessage(Context context, IncomingPushMessage message) {
     ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>();
-    messages.add(new IncomingTextMessage(message));
+    String encodedBody = new String(new SmsTransportDetails().getEncodedMessage(message.getBody()));
+    messages.add(new IncomingTextMessage(message, encodedBody));
 
     Intent receivedIntent = new Intent(context, SendReceiveService.class);
     receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);

@@ -40,8 +40,8 @@ public class IncomingTextMessage implements Parcelable {
     this.sentTimestampMillis  = message.getTimestampMillis();
   }
 
-  public IncomingTextMessage(IncomingPushMessage message) {
-    this.message              = message.getMessageText();
+  public IncomingTextMessage(IncomingPushMessage message, String encodedBody) {
+    this.message              = encodedBody;
     this.sender               = message.getSource();
     this.protocol             = 31337;
     this.serviceCenterAddress = "GCM";

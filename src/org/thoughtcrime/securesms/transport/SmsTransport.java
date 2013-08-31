@@ -4,10 +4,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.sms.OutgoingPrekeyBundleMessage;import org.thoughtcrime.securesms.sms.RawTransportDetails;
+import org.thoughtcrime.securesms.sms.OutgoingPrekeyBundleMessage;import org.whispersystems.textsecure.push.RawTransportDetails;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
