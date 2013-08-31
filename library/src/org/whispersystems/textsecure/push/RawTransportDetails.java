@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.sms;
+package org.whispersystems.textsecure.push;
 
 import org.whispersystems.textsecure.crypto.TransportDetails;
 
