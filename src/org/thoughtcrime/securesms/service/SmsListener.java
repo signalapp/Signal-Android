@@ -102,7 +102,7 @@ public class SmsListener extends BroadcastReceiver {
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
       return true;
 
-    return WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody);
+    return WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody) || WirePrefix.isAbortSession(messageBody);
   }
 
   private boolean isChallenge(Context context, Intent intent) {

@@ -32,7 +32,7 @@ public class SmsTransport {
   }
 
   public void deliver(SmsMessageRecord message) throws UndeliverableMessageException {
-    if (message.isSecure() || message.isKeyExchange()) {
+    if (message.isSecure() || message.isKeyExchange() || message.isAbortSession()) {
       deliverSecureMessage(message);
     } else {
       deliverPlaintextMessage(message);

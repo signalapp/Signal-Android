@@ -237,6 +237,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       type |= Types.KEY_EXCHANGE_BIT;
       if      (((IncomingKeyExchangeMessage)message).isStale())     type |= Types.KEY_EXCHANGE_STALE_BIT;
       else if (((IncomingKeyExchangeMessage)message).isProcessed()) type |= Types.KEY_EXCHANGE_PROCESSED_BIT;
+    } else if (message.isAbortSession()) {
+      type |= Types.ABORT_SESSION_BIT;
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.ENCRYPTION_REMOTE_BIT;
@@ -278,7 +280,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
   }
 
   protected List<Long> insertMessageOutbox(long threadId, OutgoingTextMessage message, long type) {
-    if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
+    if (message.isKeyExchange())type |= Types.KEY_EXCHANGE_BIT;
+    else if (message.isAbortMessage()) type |= Types.ABORT_SESSION_BIT;
     else if (message.isSecureMessage()) type |= Types.SECURE_MESSAGE_BIT;
 
     long date             = System.currentTimeMillis();

@@ -35,6 +35,10 @@ public class OutgoingTextMessage {
     return false;
   }
 
+  public boolean isAbortMessage() {
+    return false;
+  }
+
   public boolean isSecureMessage() {
     return false;
   }
@@ -44,6 +48,8 @@ public class OutgoingTextMessage {
       return new OutgoingEncryptedMessage(record.getIndividualRecipient(), record.getBody().getBody());
     } else if (record.isKeyExchange()) {
       return new OutgoingKeyExchangeMessage(record.getIndividualRecipient(), record.getBody().getBody());
+    } else if (record.isAbortSession()) {
+      return new OutgoingAbortSessionMessage(record.getIndividualRecipient(), record.getBody().getBody());
     } else {
       return new OutgoingTextMessage(record.getIndividualRecipient(), record.getBody().getBody());
     }

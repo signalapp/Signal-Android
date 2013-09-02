@@ -45,6 +45,7 @@
     <string name="ConversationItem_received_and_processed_key_exchange_message">Received and processed key exchange message.</string>
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
     <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process</string>
+    <string name="ConversationItem_aborting_session">Aborting secure session</string>
     
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate Secure Session?</string>
