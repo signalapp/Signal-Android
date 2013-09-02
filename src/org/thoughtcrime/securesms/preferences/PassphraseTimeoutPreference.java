@@ -60,8 +60,6 @@ public class PassphraseTimeoutPreference extends DialogPreference {
     // Can't figure out how to style a DialogPreference.
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
       this.timeoutText.setTextColor(Color.parseColor("#cccccc"));
-    } else {
-      this.timeoutText.setTextColor(Color.parseColor("#000000"));
     }
 
     initializeDefaults();
