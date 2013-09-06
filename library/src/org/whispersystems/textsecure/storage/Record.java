@@ -68,7 +68,13 @@ public abstract class Record {
   }
 
   private static File getAddressFile(Context context, String directory, String address) {
-    return new File(context.getFilesDir().getAbsolutePath() + File.separatorChar + directory, address);
+    File parent = new File(context.getFilesDir(), directory);
+
+    if (!parent.exists()) {
+      parent.mkdirs();
+    }
+
+    return new File(parent, address);
   }
 
   protected byte[] readBlob(FileInputStream in) throws IOException {

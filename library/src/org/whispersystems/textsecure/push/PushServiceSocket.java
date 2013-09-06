@@ -4,12 +4,9 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 
-import com.google.protobuf.ByteString;
 import com.google.thoughtcrimegson.Gson;
 import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.PreKeyPair;
-import org.whispersystems.textsecure.crypto.PreKeyPublic;
 import org.whispersystems.textsecure.directory.DirectoryDescriptor;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
@@ -34,6 +31,7 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,31 +78,45 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void sendMessage(String recipient, String messageText, int type)
+  public void sendMessage(String recipient, byte[] body, int type)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(recipient, messageText, type);
-    sendMessage(message);
+    OutgoingPushMessage message = new OutgoingPushMessage(recipient, body, type);
+    sendMessage(new OutgoingPushMessageList(message));
   }
 
-  public void sendMessage(List<String> recipients, String messageText, int type)
+  public void sendMessage(List<String> recipients, List<byte[]> bodies,
+                          List<List<PushAttachmentData>> attachmentsList, int type)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(recipients, messageText, type);
-    sendMessage(message);
+    List<OutgoingPushMessage> messages = new LinkedList<OutgoingPushMessage>();
+
+    Iterator<String>                   recipientsIterator  = recipients.iterator();
+    Iterator<byte[]>                   bodiesIterator      = bodies.iterator();
+    Iterator<List<PushAttachmentData>> attachmentsIterator = attachmentsList.iterator();
+
+    while (recipientsIterator.hasNext()) {
+      String                   recipient   = recipientsIterator.next();
+      byte[]                   body        = bodiesIterator.next();
+      List<PushAttachmentData> attachments = attachmentsIterator.next();
+
+      OutgoingPushMessage message;
+
+      if (!attachments.isEmpty()) {
+        List<PushAttachmentPointer> attachmentIds = sendAttachments(attachments);
+        message = new OutgoingPushMessage(recipient, body, attachmentIds, type);
+      } else {
+        message = new OutgoingPushMessage(recipient, body, type);
+      }
+
+      messages.add(message);
+    }
+
+    sendMessage(new OutgoingPushMessageList(messages));
   }
 
-  public void sendMessage(List<String> recipients, String messageText,
-                          List<PushAttachmentData> attachments, int type)
-      throws IOException
-  {
-    List<PushAttachmentPointer> attachmentIds = sendAttachments(attachments);
-    OutgoingPushMessage         message       = new OutgoingPushMessage(recipients, messageText, attachmentIds, type);
-    sendMessage(message);
-  }
-
-  private void sendMessage(OutgoingPushMessage message) throws IOException {
-    String              responseText = makeRequest(MESSAGE_PATH, "POST", new Gson().toJson(message));
+  private void sendMessage(OutgoingPushMessageList messages) throws IOException {
+    String              responseText = makeRequest(MESSAGE_PATH, "POST", new Gson().toJson(messages));
     PushMessageResponse response     = new Gson().fromJson(responseText, PushMessageResponse.class);
 
     if (response.getFailure().size() != 0)
