@@ -18,12 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.*;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -47,51 +42,35 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.RecipientsPanel;
-import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.KeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.*;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.mms.AttachmentManager;
-import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
-import org.thoughtcrime.securesms.mms.MediaTooLargeException;
-import org.thoughtcrime.securesms.mms.MmsSendHelper;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.mms.*;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.CharacterCalculator;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
+import org.thoughtcrime.securesms.util.*;
 import org.thoughtcrime.securesms.util.InvalidMessageException;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
-import org.thoughtcrime.securesms.util.Util;
+import ws.com.google.android.mms.MmsException;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
-import ws.com.google.android.mms.MmsException;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -574,6 +553,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         ConversationActivity.this.isMmsEnabled = isMmsEnabled;
       }
     }.execute();
+
+    Intent downloadStalledMmsIntent = new Intent(SendReceiveService.DOWNLOAD_STALLED_MMS_ACTION, null, this,
+                                                 SendReceiveService.class);
+    startService(downloadStalledMmsIntent);
   }
 
   private void initializeIme() {
@@ -845,6 +828,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
       if (recipients == null)
         throw new RecipientFormattingException("Badly formatted");
+
+      if (!recipients.isSingleRecipient() && !isMmsEnabled)
+        startActivity(new Intent(ConversationActivity.this, PromptApnActivity.class));
 
       String body             = getMessage();
       long allocatedThreadId;

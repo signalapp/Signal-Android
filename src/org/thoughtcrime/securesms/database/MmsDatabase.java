@@ -24,7 +24,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -40,11 +39,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.InvalidMessageException;
-import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Trimmer;
-import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.*;
+import ws.com.google.android.mms.InvalidHeaderValueException;
+import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.*;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.SoftReference;
@@ -54,17 +52,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
-
-import ws.com.google.android.mms.InvalidHeaderValueException;
-import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.EncodedStringValue;
-import ws.com.google.android.mms.pdu.MultimediaMessagePdu;
-import ws.com.google.android.mms.pdu.NotificationInd;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduHeaders;
-import ws.com.google.android.mms.pdu.RetrieveConf;
-import ws.com.google.android.mms.pdu.SendReq;
 
 // XXXX Clean up MMS efficiency:
 // 1) We need to be careful about how much memory we're using for parts. SoftRefereences.
@@ -102,6 +89,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   private static final String DELIVERY_TIME      = "d_tm";
   private static final String DELIVERY_REPORT    = "d_rpt";
           static final String PART_COUNT         = "part_count";
+
+  protected static final String STATUS_WHERE     = STATUS + " = ?";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
     THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + " INTEGER, " + MESSAGE_BOX + " INTEGER, " +
@@ -338,6 +327,16 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public Reader getNotificationsWithDownloadState(MasterSecret masterSecret, long state) {
+    SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    String selection          = STATUS_WHERE;
+    String[] selectionArgs    = new String[]{state + ""};
+
+
+    Cursor cursor = database.query(TABLE_NAME, MMS_PROJECTION, selection, selectionArgs, null, null, null);
+    return new Reader(masterSecret, cursor);
   }
 
   private Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
@@ -674,6 +673,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     public static final int DOWNLOAD_CONNECTING      = 3;
     public static final int DOWNLOAD_SOFT_FAILURE    = 4;
     public static final int DOWNLOAD_HARD_FAILURE    = 5;
+    public static final int DOWNLOAD_APN_UNAVAILABLE = 6;
+
+    public static boolean isPromptApnActivityOnClick(int status) {
+      return status == DOWNLOAD_APN_UNAVAILABLE;
+    }
 
     public static boolean isDisplayDownloadButton(int status) {
       return
@@ -684,9 +688,10 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
     public static String getLabelForStatus(Context context, int status) {
       switch (status) {
-        case DOWNLOAD_CONNECTING:   return context.getString(R.string.MmsDatabase_connecting_to_mms_server);
-        case DOWNLOAD_INITIALIZED:  return context.getString(R.string.MmsDatabase_downloading_mms);
-        case DOWNLOAD_HARD_FAILURE: return context.getString(R.string.MmsDatabase_mms_download_failed);
+        case DOWNLOAD_CONNECTING:      return context.getString(R.string.MmsDatabase_connecting_to_mms_server);
+        case DOWNLOAD_INITIALIZED:     return context.getString(R.string.MmsDatabase_downloading_mms);
+        case DOWNLOAD_HARD_FAILURE:    return context.getString(R.string.MmsDatabase_mms_download_failed);
+        case DOWNLOAD_APN_UNAVAILABLE: return context.getString(R.string.MmsDatabase_mms_configure_fallback_mmsc_to_download);
       }
 
       return context.getString(R.string.MmsDatabase_downloading);

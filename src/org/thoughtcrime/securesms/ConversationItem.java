@@ -91,10 +91,11 @@ public class ConversationItem extends LinearLayout {
   private  TextView  mmsDownloadingLabel;
   private  ListenableFutureTask<SlideDeck> slideDeck;
 
-  private final FailedIconClickListener failedIconClickListener   = new FailedIconClickListener();
-  private final MmsDownloadClickListener mmsDownloadClickListener = new MmsDownloadClickListener();
-  private final ClickListener clickListener                       = new ClickListener();
-  private final Handler handler                                   = new Handler();
+  private final FailedIconClickListener failedIconClickListener     = new FailedIconClickListener();
+  private final MmsDownloadClickListener mmsDownloadClickListener   = new MmsDownloadClickListener();
+  private final FallbackMmscClickListener fallbackMmscClickListener = new FallbackMmscClickListener();
+  private final ClickListener clickListener                         = new ClickListener();
+  private final Handler handler                                     = new Handler();
   private final Context context;
 
   public ConversationItem(Context context) {
@@ -167,7 +168,7 @@ public class ConversationItem extends LinearLayout {
 
   private void setBodyText(MessageRecord messageRecord) {
     bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
-                     TextView.BufferType.SPANNABLE);
+        TextView.BufferType.SPANNABLE);
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
@@ -231,11 +232,18 @@ public class ConversationItem extends LinearLayout {
     if (MmsDatabase.Status.isDisplayDownloadButton(messageRecord.getStatus())) {
       mmsDownloadButton.setVisibility(View.VISIBLE);
       mmsDownloadingLabel.setVisibility(View.GONE);
-    } else {
+    }
+    else {
       mmsDownloadingLabel.setText(MmsDatabase.Status.getLabelForStatus(context, messageRecord.getStatus()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
+
+      if (MmsDatabase.Status.isPromptApnActivityOnClick(messageRecord.getStatus()))
+        setOnClickListener(fallbackMmscClickListener);
+      else if (MmsDatabase.Status.isHardError(messageRecord.getStatus()) & !messageRecord.isOutgoing())
+        setOnClickListener(mmsDownloadClickListener);
     }
+
   }
 
   private void setMediaMmsAttributes(MediaMmsMessageRecord messageRecord) {
@@ -306,13 +314,13 @@ public class ConversationItem extends LinearLayout {
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
     contactPhoto.setImageBitmap(recipient.getContactPhoto());
-    contactPhoto.setOnClickListener(new View.OnClickListener() {
+    contactPhoto.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         if (recipient.getContactUri() != null) {
           QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
         } else {
-          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
+          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT, Uri.fromParts("tel", recipient.getNumber(), null));
           context.startActivity(intent);
         }
       }
@@ -334,7 +342,7 @@ public class ConversationItem extends LinearLayout {
     context.startActivity(intent);
   }
 
-  private class ThumbnailSaveListener extends Handler implements View.OnLongClickListener, Runnable, MediaScannerConnection.MediaScannerConnectionClient {
+  private class ThumbnailSaveListener extends Handler implements OnLongClickListener, Runnable, MediaScannerConnection.MediaScannerConnectionClient {
     private static final int SUCCESS              = 0;
     private static final int FAILURE              = 1;
     private static final int WRITE_ACCESS_FAILURE = 2;
@@ -450,7 +458,7 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class ThumbnailClickListener implements View.OnClickListener {
+  private class ThumbnailClickListener implements OnClickListener {
     private final Slide slide;
 
     public ThumbnailClickListener(Slide slide) {
@@ -481,7 +489,7 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class MmsDownloadClickListener implements View.OnClickListener {
+  private class MmsDownloadClickListener implements OnClickListener {
     public void onClick(View v) {
       NotificationMmsMessageRecord notificationRecord = (NotificationMmsMessageRecord)messageRecord;
       Log.w("MmsDownloadClickListener", "Content location: " + new String(notificationRecord.getContentLocation()));
@@ -498,7 +506,14 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class FailedIconClickListener implements View.OnClickListener {
+  private class FallbackMmscClickListener implements OnClickListener {
+    public void onClick(View v) {
+      Intent intent = new Intent(context, PromptApnActivity.class);
+      context.startActivity(intent);
+    }
+  }
+
+  private class FailedIconClickListener implements OnClickListener {
     public void onClick(View v) {
       if (failedIconHandler != null && !messageRecord.isKeyExchange()) {
         Message message = Message.obtain();
@@ -508,7 +523,7 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class ClickListener implements View.OnClickListener {
+  private class ClickListener implements OnClickListener {
     public void onClick(View v) {
       if (messageRecord.isKeyExchange()           &&
           !messageRecord.isOutgoing()             &&
