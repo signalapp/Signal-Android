@@ -39,10 +39,12 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.*;
-import ws.com.google.android.mms.InvalidHeaderValueException;
-import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.*;
+import org.thoughtcrime.securesms.util.InvalidMessageException;
+import org.thoughtcrime.securesms.util.LRUCache;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.Trimmer;
+import org.thoughtcrime.securesms.util.Util;
+
 
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.SoftReference;
@@ -52,6 +54,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
+
+import ws.com.google.android.mms.InvalidHeaderValueException;
+import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.CharacterSets;
+import ws.com.google.android.mms.pdu.EncodedStringValue;
+import ws.com.google.android.mms.pdu.MultimediaMessagePdu;
+import ws.com.google.android.mms.pdu.NotificationInd;
+import ws.com.google.android.mms.pdu.PduBody;
+import ws.com.google.android.mms.pdu.PduHeaders;
+import ws.com.google.android.mms.pdu.RetrieveConf;
+import ws.com.google.android.mms.pdu.SendReq;
 
 // XXXX Clean up MMS efficiency:
 // 1) We need to be careful about how much memory we're using for parts. SoftRefereences.

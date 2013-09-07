@@ -23,12 +23,13 @@ import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.HttpGet;
-import ws.com.google.android.mms.pdu.PduParser;
-import ws.com.google.android.mms.pdu.RetrieveConf;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import ws.com.google.android.mms.pdu.PduParser;
+import ws.com.google.android.mms.pdu.RetrieveConf;
 
 public class MmsDownloadHelper extends MmsCommunication {
 
