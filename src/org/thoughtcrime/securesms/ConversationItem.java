@@ -168,7 +168,7 @@ public class ConversationItem extends LinearLayout {
 
   private void setBodyText(MessageRecord messageRecord) {
     bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
-        TextView.BufferType.SPANNABLE);
+                     TextView.BufferType.SPANNABLE);
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
@@ -232,8 +232,7 @@ public class ConversationItem extends LinearLayout {
     if (MmsDatabase.Status.isDisplayDownloadButton(messageRecord.getStatus())) {
       mmsDownloadButton.setVisibility(View.VISIBLE);
       mmsDownloadingLabel.setVisibility(View.GONE);
-    }
-    else {
+    } else {
       mmsDownloadingLabel.setText(MmsDatabase.Status.getLabelForStatus(context, messageRecord.getStatus()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
@@ -314,7 +313,7 @@ public class ConversationItem extends LinearLayout {
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
     contactPhoto.setImageBitmap(recipient.getContactPhoto());
-    contactPhoto.setOnClickListener(new OnClickListener() {
+    contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (recipient.getContactUri() != null) {

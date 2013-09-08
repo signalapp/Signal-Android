@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -231,10 +232,10 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   }
 
   private void initializeSenderReceiverService() {
-    Intent smsSenderIntent          = new Intent(SendReceiveService.SEND_SMS_ACTION, null, this,
-                                                 SendReceiveService.class);
-    Intent mmsSenderIntent          = new Intent(SendReceiveService.SEND_MMS_ACTION, null, this,
-                                                 SendReceiveService.class);
+    Intent smsSenderIntent = new Intent(SendReceiveService.SEND_SMS_ACTION, null, this,
+                                        SendReceiveService.class);
+    Intent mmsSenderIntent = new Intent(SendReceiveService.SEND_MMS_ACTION, null, this,
+                                        SendReceiveService.class);
     startService(smsSenderIntent);
     startService(mmsSenderIntent);
   }

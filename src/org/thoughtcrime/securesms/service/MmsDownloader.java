@@ -67,8 +67,7 @@ public class MmsDownloader extends MmscProcessor {
       handleDownloadMmsAction(item);
     } else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_CONNECTIVITY_ACTION)) {
       handleConnectivityChange();
-    }
-    else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_STALLED_MMS_ACTION)) {
+    } else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_STALLED_MMS_ACTION)) {
       handleDownloadStalledMmsAction(masterSecret);
     }
   }

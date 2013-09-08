@@ -24,6 +24,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -102,8 +103,6 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   private static final String DELIVERY_TIME      = "d_tm";
   private static final String DELIVERY_REPORT    = "d_rpt";
           static final String PART_COUNT         = "part_count";
-
-  protected static final String STATUS_WHERE     = STATUS + " = ?";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
     THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + " INTEGER, " + MESSAGE_BOX + " INTEGER, " +
@@ -344,7 +343,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
   public Reader getNotificationsWithDownloadState(MasterSecret masterSecret, long state) {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
-    String selection          = STATUS_WHERE;
+    String selection          = STATUS + " = ?";
     String[] selectionArgs    = new String[]{state + ""};
 
 

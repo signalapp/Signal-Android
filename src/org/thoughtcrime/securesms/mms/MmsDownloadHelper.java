@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
+
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
