@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -33,22 +34,26 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.PushDownloader;
+import org.thoughtcrime.securesms.service.PushReceiver;
+import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.MessageCipher;
-import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.util.Hex;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.WorkerThread;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MessageCipher;
+import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.push.PushTransportDetails;
+import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
@@ -64,21 +69,13 @@ import ws.com.google.android.mms.pdu.RetrieveConf;
 
 public class DecryptingQueue {
 
-  private static final List<Runnable> workQueue = new LinkedList<Runnable>();
-
-  static {
-    Thread workerThread = new WorkerThread(workQueue, "Async Decryption Thread");
-    workerThread.start();
-  }
+  private static final Executor executor = Executors.newSingleThreadExecutor();
 
   public static void scheduleDecryption(Context context, MasterSecret masterSecret,
                                         long messageId, long threadId, MultimediaMessagePdu mms)
   {
     MmsDecryptionItem runnable = new MmsDecryptionItem(context, masterSecret, messageId, threadId, mms);
-    synchronized (workQueue) {
-      workQueue.add(runnable);
-      workQueue.notifyAll();
-    }
+    executor.execute(runnable);
   }
 
   public static void scheduleDecryption(Context context, MasterSecret masterSecret,
@@ -87,10 +84,15 @@ public class DecryptingQueue {
   {
     DecryptionWorkItem runnable = new DecryptionWorkItem(context, masterSecret, messageId, threadId,
                                                          originator, body, isSecureMessage, isKeyExchange);
-    synchronized (workQueue) {
-      workQueue.add(runnable);
-      workQueue.notifyAll();
-    }
+    executor.execute(runnable);
+  }
+
+  public static void scheduleDecryption(Context context, MasterSecret masterSecret,
+                                        long messageId, IncomingPushMessage message)
+  {
+    PushDecryptionWorkItem runnable = new PushDecryptionWorkItem(context, masterSecret,
+                                                                 messageId, message);
+    executor.execute(runnable);
   }
 
   public static void schedulePendingDecrypts(Context context, MasterSecret masterSecret) {
@@ -141,6 +143,59 @@ public class DecryptingQueue {
 
     scheduleDecryption(context, masterSecret, messageId,  threadId,
                        originator, body, isSecureMessage, isKeyExchange);
+  }
+
+  private static class PushDecryptionWorkItem implements Runnable {
+
+    private Context             context;
+    private MasterSecret        masterSecret;
+    private long                messageId;
+    private IncomingPushMessage message;
+
+    public PushDecryptionWorkItem(Context context, MasterSecret masterSecret,
+                                  long messageId, IncomingPushMessage message)
+    {
+      this.context      = context;
+      this.masterSecret = masterSecret;
+      this.messageId    = messageId;
+      this.message      = message;
+    }
+
+    public void run() {
+      synchronized (SessionCipher.CIPHER_LOCK) {
+        try {
+          Recipients recipients = RecipientFactory.getRecipientsFromString(context, message.getSource(), false);
+          Recipient  recipient  = recipients.getPrimaryRecipient();
+
+          if (!KeyUtil.isSessionFor(context, recipient)) {
+            sendResult(PushReceiver.RESULT_NO_SESSION);
+            return;
+          }
+
+          IdentityKeyPair identityKey   = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          MessageCipher   messageCipher = new MessageCipher(context, masterSecret, identityKey, new PushTransportDetails());
+
+          byte[] plaintextBody = messageCipher.decrypt(recipient, message.getBody());
+          message = message.withBody(plaintextBody);
+          sendResult(PushReceiver.RESULT_OK);
+        } catch (InvalidMessageException e) {
+          Log.w("DecryptionQueue", e);
+          sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
+        } catch (RecipientFormattingException e) {
+          Log.w("DecryptionQueue", e);
+          sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
+        }
+      }
+    }
+
+    private void sendResult(int result) {
+      Intent intent = new Intent(context, SendReceiveService.class);
+      intent.setAction(SendReceiveService.DECRYPTED_PUSH_ACTION);
+      intent.putExtra("message", message);
+      intent.putExtra("message_id", messageId);
+      intent.putExtra("result", result);
+      context.startService(intent);
+    }
   }
 
   private static class MmsDecryptionItem implements Runnable {
@@ -267,13 +322,10 @@ public class DecryptingQueue {
 
       synchronized (SessionCipher.CIPHER_LOCK) {
         try {
-          Log.w("DecryptingQueue", "Parsing recipient for originator: " + originator);
           Recipients recipients = RecipientFactory.getRecipientsFromString(context, originator, false);
           Recipient  recipient  = recipients.getPrimaryRecipient();
-          Log.w("DecryptingQueue", "Parsed Recipient: " + recipient.getNumber());
 
           if (!KeyUtil.isSessionFor(context, recipient)) {
-            Log.w("DecryptingQueue", "No such recipient session...");
             database.markAsNoSession(messageId);
             return;
           }

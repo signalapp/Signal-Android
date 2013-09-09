@@ -18,23 +18,33 @@ public class PushAttachmentPointer implements Parcelable {
   };
 
   private final String contentType;
-  private final String key;
+  private final long   id;
+  private final byte[] key;
 
-  public PushAttachmentPointer(String contentType, String key) {
+  public PushAttachmentPointer(String contentType, long id, byte[] key) {
     this.contentType = contentType;
+    this.id          = id;
     this.key         = key;
   }
 
   public PushAttachmentPointer(Parcel in) {
     this.contentType = in.readString();
-    this.key         = in.readString();
+    this.id          = in.readLong();
+
+    int keyLength = in.readInt();
+    this.key      = new byte[keyLength];
+    in.readByteArray(this.key);
   }
 
   public String getContentType() {
     return contentType;
   }
 
-  public String getKey() {
+  public long getId() {
+    return id;
+  }
+
+  public byte[] getKey() {
     return key;
   }
 
@@ -46,6 +56,8 @@ public class PushAttachmentPointer implements Parcelable {
   @Override
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(contentType);
-    dest.writeString(key);
+    dest.writeLong(id);
+    dest.writeInt(this.key.length);
+    dest.writeByteArray(this.key);
   }
 }

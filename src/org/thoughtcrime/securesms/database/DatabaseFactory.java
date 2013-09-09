@@ -51,7 +51,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_MMS_BODY_VERSION      = 7;
   private static final int INTRODUCED_MMS_FROM_VERSION      = 8;
   private static final int INTRODUCED_TOFU_IDENTITY_VERSION = 9;
-  private static final int DATABASE_VERSION                 = 9;
+  private static final int INTRODUCED_PUSH_DATABASE_VERSION = 10;
+  private static final int DATABASE_VERSION                 = 10;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -71,6 +72,7 @@ public class DatabaseFactory {
   private final MmsSmsDatabase mmsSmsDatabase;
   private final IdentityDatabase identityDatabase;
   private final DraftDatabase draftDatabase;
+  private final PushDatabase pushDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -132,6 +134,10 @@ public class DatabaseFactory {
     return getInstance(context).draftDatabase;
   }
 
+  public static PushDatabase getPushDatabase(Context context) {
+    return getInstance(context).pushDatabase;
+  }
+
   private DatabaseFactory(Context context) {
     this.databaseHelper   = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     this.sms              = new SmsDatabase(context, databaseHelper);
@@ -144,6 +150,7 @@ public class DatabaseFactory {
     this.mmsSmsDatabase   = new MmsSmsDatabase(context, databaseHelper);
     this.identityDatabase = new IdentityDatabase(context, databaseHelper);
     this.draftDatabase    = new DraftDatabase(context, databaseHelper);
+    this.pushDatabase     = new PushDatabase(context, databaseHelper);
   }
 
   public void reset(Context context) {
@@ -425,6 +432,7 @@ public class DatabaseFactory {
       db.execSQL(MmsAddressDatabase.CREATE_TABLE);
       db.execSQL(IdentityDatabase.CREATE_TABLE);
       db.execSQL(DraftDatabase.CREATE_TABLE);
+      db.execSQL(PushDatabase.CREATE_TABLE);
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -615,6 +623,12 @@ public class DatabaseFactory {
       if (oldVersion < INTRODUCED_TOFU_IDENTITY_VERSION) {
         db.execSQL("DROP TABLE identities");
         db.execSQL("CREATE TABLE identities (_id INTEGER PRIMARY KEY, recipient INTEGER UNIQUE, key TEXT, mac TEXT);");
+      }
+
+      if (oldVersion < INTRODUCED_PUSH_DATABASE_VERSION) {
+        db.execSQL("CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, destinations TEXT, body TEXT, TIMESTAMP INTEGER);");
+        db.execSQL("ALTER TABLE part ADD COLUMN pending_push INTEGER;");
+        db.execSQL("CREATE INDEX IF NOT EXISTS pending_push_index ON parts (pending_push);");
       }
 
       db.setTransactionSuccessful();
