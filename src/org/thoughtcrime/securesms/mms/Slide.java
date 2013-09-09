@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.providers.PartProvider;
 import android.content.ContentUris;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
@@ -90,12 +91,12 @@ public abstract class Slide {
     return part.getDataUri();
   }
 	
-  public Bitmap getThumbnail(int maxWidth, int maxHeight) {
+  public Drawable getThumbnail(int maxWidth, int maxHeight) {
     throw new AssertionError("getThumbnail() called on non-thumbnail producing slide!");
   }
 
   public void setThumbnailOn(ImageView imageView) {
-    imageView.setImageBitmap(getThumbnail(imageView.getWidth(), imageView.getHeight()));
+    imageView.setImageDrawable(getThumbnail(imageView.getWidth(), imageView.getHeight()));
   }
 
   public boolean hasImage() {

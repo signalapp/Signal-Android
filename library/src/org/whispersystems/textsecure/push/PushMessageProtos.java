@@ -24,23 +24,13 @@ public final class PushMessageProtos {
     int getDestinationsCount();
     String getDestinations(int index);
     
-    // optional bytes message = 4;
-    boolean hasMessage();
-    com.google.protobuf.ByteString getMessage();
-    
-    // repeated .textsecure.IncomingPushMessageSignal.AttachmentPointer attachments = 5;
-    java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer> 
-        getAttachmentsList();
-    org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer getAttachments(int index);
-    int getAttachmentsCount();
-    java.util.List<? extends org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder> 
-        getAttachmentsOrBuilderList();
-    org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder getAttachmentsOrBuilder(
-        int index);
-    
-    // optional uint64 timestamp = 6;
+    // optional uint64 timestamp = 4;
     boolean hasTimestamp();
     long getTimestamp();
+    
+    // optional bytes message = 5;
+    boolean hasMessage();
+    com.google.protobuf.ByteString getMessage();
   }
   public static final class IncomingPushMessageSignal extends
       com.google.protobuf.GeneratedMessage
@@ -68,475 +58,6 @@ public final class PushMessageProtos {
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_IncomingPushMessageSignal_fieldAccessorTable;
-    }
-    
-    public interface AttachmentPointerOrBuilder
-        extends com.google.protobuf.MessageOrBuilder {
-      
-      // optional string contentType = 1;
-      boolean hasContentType();
-      String getContentType();
-      
-      // optional string key = 2;
-      boolean hasKey();
-      String getKey();
-    }
-    public static final class AttachmentPointer extends
-        com.google.protobuf.GeneratedMessage
-        implements AttachmentPointerOrBuilder {
-      // Use AttachmentPointer.newBuilder() to construct.
-      private AttachmentPointer(Builder builder) {
-        super(builder);
-      }
-      private AttachmentPointer(boolean noInit) {}
-      
-      private static final AttachmentPointer defaultInstance;
-      public static AttachmentPointer getDefaultInstance() {
-        return defaultInstance;
-      }
-      
-      public AttachmentPointer getDefaultInstanceForType() {
-        return defaultInstance;
-      }
-      
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_fieldAccessorTable;
-      }
-      
-      private int bitField0_;
-      // optional string contentType = 1;
-      public static final int CONTENTTYPE_FIELD_NUMBER = 1;
-      private java.lang.Object contentType_;
-      public boolean hasContentType() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public String getContentType() {
-        java.lang.Object ref = contentType_;
-        if (ref instanceof String) {
-          return (String) ref;
-        } else {
-          com.google.protobuf.ByteString bs = 
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-            contentType_ = s;
-          }
-          return s;
-        }
-      }
-      private com.google.protobuf.ByteString getContentTypeBytes() {
-        java.lang.Object ref = contentType_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-          contentType_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      
-      // optional string key = 2;
-      public static final int KEY_FIELD_NUMBER = 2;
-      private java.lang.Object key_;
-      public boolean hasKey() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public String getKey() {
-        java.lang.Object ref = key_;
-        if (ref instanceof String) {
-          return (String) ref;
-        } else {
-          com.google.protobuf.ByteString bs = 
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-            key_ = s;
-          }
-          return s;
-        }
-      }
-      private com.google.protobuf.ByteString getKeyBytes() {
-        java.lang.Object ref = key_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-          key_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      
-      private void initFields() {
-        contentType_ = "";
-        key_ = "";
-      }
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized != -1) return isInitialized == 1;
-        
-        memoizedIsInitialized = 1;
-        return true;
-      }
-      
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        getSerializedSize();
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          output.writeBytes(1, getContentTypeBytes());
-        }
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          output.writeBytes(2, getKeyBytes());
-        }
-        getUnknownFields().writeTo(output);
-      }
-      
-      private int memoizedSerializedSize = -1;
-      public int getSerializedSize() {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-      
-        size = 0;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(1, getContentTypeBytes());
-        }
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(2, getKeyBytes());
-        }
-        size += getUnknownFields().getSerializedSize();
-        memoizedSerializedSize = size;
-        return size;
-      }
-      
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      protected java.lang.Object writeReplace()
-          throws java.io.ObjectStreamException {
-        return super.writeReplace();
-      }
-      
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data).buildParsed();
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data, extensionRegistry)
-                 .buildParsed();
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data).buildParsed();
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data, extensionRegistry)
-                 .buildParsed();
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return newBuilder().mergeFrom(input).buildParsed();
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return newBuilder().mergeFrom(input, extensionRegistry)
-                 .buildParsed();
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        Builder builder = newBuilder();
-        if (builder.mergeDelimitedFrom(input)) {
-          return builder.buildParsed();
-        } else {
-          return null;
-        }
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Builder builder = newBuilder();
-        if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-          return builder.buildParsed();
-        } else {
-          return null;
-        }
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return newBuilder().mergeFrom(input).buildParsed();
-      }
-      public static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return newBuilder().mergeFrom(input, extensionRegistry)
-                 .buildParsed();
-      }
-      
-      public static Builder newBuilder() { return Builder.create(); }
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder(org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer prototype) {
-        return newBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() { return newBuilder(this); }
-      
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessage.Builder<Builder>
-         implements org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_descriptor;
-        }
-        
-        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_fieldAccessorTable;
-        }
-        
-        // Construct using org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-        
-        private Builder(BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          }
-        }
-        private static Builder create() {
-          return new Builder();
-        }
-        
-        public Builder clear() {
-          super.clear();
-          contentType_ = "";
-          bitField0_ = (bitField0_ & ~0x00000001);
-          key_ = "";
-          bitField0_ = (bitField0_ & ~0x00000002);
-          return this;
-        }
-        
-        public Builder clone() {
-          return create().mergeFrom(buildPartial());
-        }
-        
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.getDescriptor();
-        }
-        
-        public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer getDefaultInstanceForType() {
-          return org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.getDefaultInstance();
-        }
-        
-        public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer build() {
-          org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-        
-        private org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer buildParsed()
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(
-              result).asInvalidProtocolBufferException();
-          }
-          return result;
-        }
-        
-        public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer buildPartial() {
-          org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer result = new org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer(this);
-          int from_bitField0_ = bitField0_;
-          int to_bitField0_ = 0;
-          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-            to_bitField0_ |= 0x00000001;
-          }
-          result.contentType_ = contentType_;
-          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-            to_bitField0_ |= 0x00000002;
-          }
-          result.key_ = key_;
-          result.bitField0_ = to_bitField0_;
-          onBuilt();
-          return result;
-        }
-        
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer) {
-            return mergeFrom((org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-        
-        public Builder mergeFrom(org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer other) {
-          if (other == org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.getDefaultInstance()) return this;
-          if (other.hasContentType()) {
-            setContentType(other.getContentType());
-          }
-          if (other.hasKey()) {
-            setKey(other.getKey());
-          }
-          this.mergeUnknownFields(other.getUnknownFields());
-          return this;
-        }
-        
-        public final boolean isInitialized() {
-          return true;
-        }
-        
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder(
-              this.getUnknownFields());
-          while (true) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              default: {
-                if (!parseUnknownField(input, unknownFields,
-                                       extensionRegistry, tag)) {
-                  this.setUnknownFields(unknownFields.build());
-                  onChanged();
-                  return this;
-                }
-                break;
-              }
-              case 10: {
-                bitField0_ |= 0x00000001;
-                contentType_ = input.readBytes();
-                break;
-              }
-              case 18: {
-                bitField0_ |= 0x00000002;
-                key_ = input.readBytes();
-                break;
-              }
-            }
-          }
-        }
-        
-        private int bitField0_;
-        
-        // optional string contentType = 1;
-        private java.lang.Object contentType_ = "";
-        public boolean hasContentType() {
-          return ((bitField0_ & 0x00000001) == 0x00000001);
-        }
-        public String getContentType() {
-          java.lang.Object ref = contentType_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-            contentType_ = s;
-            return s;
-          } else {
-            return (String) ref;
-          }
-        }
-        public Builder setContentType(String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-          contentType_ = value;
-          onChanged();
-          return this;
-        }
-        public Builder clearContentType() {
-          bitField0_ = (bitField0_ & ~0x00000001);
-          contentType_ = getDefaultInstance().getContentType();
-          onChanged();
-          return this;
-        }
-        void setContentType(com.google.protobuf.ByteString value) {
-          bitField0_ |= 0x00000001;
-          contentType_ = value;
-          onChanged();
-        }
-        
-        // optional string key = 2;
-        private java.lang.Object key_ = "";
-        public boolean hasKey() {
-          return ((bitField0_ & 0x00000002) == 0x00000002);
-        }
-        public String getKey() {
-          java.lang.Object ref = key_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-            key_ = s;
-            return s;
-          } else {
-            return (String) ref;
-          }
-        }
-        public Builder setKey(String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-          key_ = value;
-          onChanged();
-          return this;
-        }
-        public Builder clearKey() {
-          bitField0_ = (bitField0_ & ~0x00000002);
-          key_ = getDefaultInstance().getKey();
-          onChanged();
-          return this;
-        }
-        void setKey(com.google.protobuf.ByteString value) {
-          bitField0_ |= 0x00000002;
-          key_ = value;
-          onChanged();
-        }
-        
-        // @@protoc_insertion_point(builder_scope:textsecure.IncomingPushMessageSignal.AttachmentPointer)
-      }
-      
-      static {
-        defaultInstance = new AttachmentPointer(true);
-        defaultInstance.initFields();
-      }
-      
-      // @@protoc_insertion_point(class_scope:textsecure.IncomingPushMessageSignal.AttachmentPointer)
     }
     
     private int bitField0_;
@@ -596,54 +117,32 @@ public final class PushMessageProtos {
       return destinations_.get(index);
     }
     
-    // optional bytes message = 4;
-    public static final int MESSAGE_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString message_;
-    public boolean hasMessage() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public com.google.protobuf.ByteString getMessage() {
-      return message_;
-    }
-    
-    // repeated .textsecure.IncomingPushMessageSignal.AttachmentPointer attachments = 5;
-    public static final int ATTACHMENTS_FIELD_NUMBER = 5;
-    private java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer> attachments_;
-    public java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer> getAttachmentsList() {
-      return attachments_;
-    }
-    public java.util.List<? extends org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder> 
-        getAttachmentsOrBuilderList() {
-      return attachments_;
-    }
-    public int getAttachmentsCount() {
-      return attachments_.size();
-    }
-    public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer getAttachments(int index) {
-      return attachments_.get(index);
-    }
-    public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder getAttachmentsOrBuilder(
-        int index) {
-      return attachments_.get(index);
-    }
-    
-    // optional uint64 timestamp = 6;
-    public static final int TIMESTAMP_FIELD_NUMBER = 6;
+    // optional uint64 timestamp = 4;
+    public static final int TIMESTAMP_FIELD_NUMBER = 4;
     private long timestamp_;
     public boolean hasTimestamp() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public long getTimestamp() {
       return timestamp_;
+    }
+    
+    // optional bytes message = 5;
+    public static final int MESSAGE_FIELD_NUMBER = 5;
+    private com.google.protobuf.ByteString message_;
+    public boolean hasMessage() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public com.google.protobuf.ByteString getMessage() {
+      return message_;
     }
     
     private void initFields() {
       type_ = 0;
       source_ = "";
       destinations_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      message_ = com.google.protobuf.ByteString.EMPTY;
-      attachments_ = java.util.Collections.emptyList();
       timestamp_ = 0L;
+      message_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -667,13 +166,10 @@ public final class PushMessageProtos {
         output.writeBytes(3, destinations_.getByteString(i));
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(4, message_);
-      }
-      for (int i = 0; i < attachments_.size(); i++) {
-        output.writeMessage(5, attachments_.get(i));
+        output.writeUInt64(4, timestamp_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeUInt64(6, timestamp_);
+        output.writeBytes(5, message_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -703,15 +199,11 @@ public final class PushMessageProtos {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, message_);
-      }
-      for (int i = 0; i < attachments_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, attachments_.get(i));
+          .computeUInt64Size(4, timestamp_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(6, timestamp_);
+          .computeBytesSize(5, message_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -829,7 +321,6 @@ public final class PushMessageProtos {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getAttachmentsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -844,16 +335,10 @@ public final class PushMessageProtos {
         bitField0_ = (bitField0_ & ~0x00000002);
         destinations_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
-        message_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        if (attachmentsBuilder_ == null) {
-          attachments_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
-        } else {
-          attachmentsBuilder_.clear();
-        }
         timestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000008);
+        message_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -909,20 +394,11 @@ public final class PushMessageProtos {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.message_ = message_;
-        if (attachmentsBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010)) {
-            attachments_ = java.util.Collections.unmodifiableList(attachments_);
-            bitField0_ = (bitField0_ & ~0x00000010);
-          }
-          result.attachments_ = attachments_;
-        } else {
-          result.attachments_ = attachmentsBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+        result.timestamp_ = timestamp_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.timestamp_ = timestamp_;
+        result.message_ = message_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -955,37 +431,11 @@ public final class PushMessageProtos {
           }
           onChanged();
         }
-        if (other.hasMessage()) {
-          setMessage(other.getMessage());
-        }
-        if (attachmentsBuilder_ == null) {
-          if (!other.attachments_.isEmpty()) {
-            if (attachments_.isEmpty()) {
-              attachments_ = other.attachments_;
-              bitField0_ = (bitField0_ & ~0x00000010);
-            } else {
-              ensureAttachmentsIsMutable();
-              attachments_.addAll(other.attachments_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.attachments_.isEmpty()) {
-            if (attachmentsBuilder_.isEmpty()) {
-              attachmentsBuilder_.dispose();
-              attachmentsBuilder_ = null;
-              attachments_ = other.attachments_;
-              bitField0_ = (bitField0_ & ~0x00000010);
-              attachmentsBuilder_ = 
-                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getAttachmentsFieldBuilder() : null;
-            } else {
-              attachmentsBuilder_.addAllMessages(other.attachments_);
-            }
-          }
-        }
         if (other.hasTimestamp()) {
           setTimestamp(other.getTimestamp());
+        }
+        if (other.hasMessage()) {
+          setMessage(other.getMessage());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1033,20 +483,14 @@ public final class PushMessageProtos {
               destinations_.add(input.readBytes());
               break;
             }
-            case 34: {
+            case 32: {
               bitField0_ |= 0x00000008;
-              message_ = input.readBytes();
+              timestamp_ = input.readUInt64();
               break;
             }
             case 42: {
-              org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder subBuilder = org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addAttachments(subBuilder.buildPartial());
-              break;
-            }
-            case 48: {
-              bitField0_ |= 0x00000020;
-              timestamp_ = input.readUInt64();
+              bitField0_ |= 0x00000010;
+              message_ = input.readBytes();
               break;
             }
           }
@@ -1168,10 +612,31 @@ public final class PushMessageProtos {
         onChanged();
       }
       
-      // optional bytes message = 4;
+      // optional uint64 timestamp = 4;
+      private long timestamp_ ;
+      public boolean hasTimestamp() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      public Builder setTimestamp(long value) {
+        bitField0_ |= 0x00000008;
+        timestamp_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTimestamp() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        timestamp_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional bytes message = 5;
       private com.google.protobuf.ByteString message_ = com.google.protobuf.ByteString.EMPTY;
       public boolean hasMessage() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public com.google.protobuf.ByteString getMessage() {
         return message_;
@@ -1180,32 +645,986 @@ public final class PushMessageProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000010;
         message_ = value;
         onChanged();
         return this;
       }
       public Builder clearMessage() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         message_ = getDefaultInstance().getMessage();
         onChanged();
         return this;
       }
       
-      // repeated .textsecure.IncomingPushMessageSignal.AttachmentPointer attachments = 5;
-      private java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer> attachments_ =
+      // @@protoc_insertion_point(builder_scope:textsecure.IncomingPushMessageSignal)
+    }
+    
+    static {
+      defaultInstance = new IncomingPushMessageSignal(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:textsecure.IncomingPushMessageSignal)
+  }
+  
+  public interface PushMessageContentOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional string body = 1;
+    boolean hasBody();
+    String getBody();
+    
+    // repeated .textsecure.PushMessageContent.AttachmentPointer attachments = 2;
+    java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer> 
+        getAttachmentsList();
+    org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer getAttachments(int index);
+    int getAttachmentsCount();
+    java.util.List<? extends org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder> 
+        getAttachmentsOrBuilderList();
+    org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder getAttachmentsOrBuilder(
+        int index);
+  }
+  public static final class PushMessageContent extends
+      com.google.protobuf.GeneratedMessage
+      implements PushMessageContentOrBuilder {
+    // Use PushMessageContent.newBuilder() to construct.
+    private PushMessageContent(Builder builder) {
+      super(builder);
+    }
+    private PushMessageContent(boolean noInit) {}
+    
+    private static final PushMessageContent defaultInstance;
+    public static PushMessageContent getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public PushMessageContent getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_fieldAccessorTable;
+    }
+    
+    public interface AttachmentPointerOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+      
+      // optional fixed64 id = 1;
+      boolean hasId();
+      long getId();
+      
+      // optional string contentType = 2;
+      boolean hasContentType();
+      String getContentType();
+      
+      // optional bytes key = 3;
+      boolean hasKey();
+      com.google.protobuf.ByteString getKey();
+    }
+    public static final class AttachmentPointer extends
+        com.google.protobuf.GeneratedMessage
+        implements AttachmentPointerOrBuilder {
+      // Use AttachmentPointer.newBuilder() to construct.
+      private AttachmentPointer(Builder builder) {
+        super(builder);
+      }
+      private AttachmentPointer(boolean noInit) {}
+      
+      private static final AttachmentPointer defaultInstance;
+      public static AttachmentPointer getDefaultInstance() {
+        return defaultInstance;
+      }
+      
+      public AttachmentPointer getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+      
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_AttachmentPointer_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_AttachmentPointer_fieldAccessorTable;
+      }
+      
+      private int bitField0_;
+      // optional fixed64 id = 1;
+      public static final int ID_FIELD_NUMBER = 1;
+      private long id_;
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getId() {
+        return id_;
+      }
+      
+      // optional string contentType = 2;
+      public static final int CONTENTTYPE_FIELD_NUMBER = 2;
+      private java.lang.Object contentType_;
+      public boolean hasContentType() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getContentType() {
+        java.lang.Object ref = contentType_;
+        if (ref instanceof String) {
+          return (String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+            contentType_ = s;
+          }
+          return s;
+        }
+      }
+      private com.google.protobuf.ByteString getContentTypeBytes() {
+        java.lang.Object ref = contentType_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+          contentType_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      
+      // optional bytes key = 3;
+      public static final int KEY_FIELD_NUMBER = 3;
+      private com.google.protobuf.ByteString key_;
+      public boolean hasKey() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public com.google.protobuf.ByteString getKey() {
+        return key_;
+      }
+      
+      private void initFields() {
+        id_ = 0L;
+        contentType_ = "";
+        key_ = com.google.protobuf.ByteString.EMPTY;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+        
+        memoizedIsInitialized = 1;
+        return true;
+      }
+      
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeFixed64(1, id_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeBytes(2, getContentTypeBytes());
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          output.writeBytes(3, key_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+      
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+      
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeFixed64Size(1, id_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, getContentTypeBytes());
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(3, key_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+      
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+      
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input).buildParsed();
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input, extensionRegistry)
+                 .buildParsed();
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        Builder builder = newBuilder();
+        if (builder.mergeDelimitedFrom(input)) {
+          return builder.buildParsed();
+        } else {
+          return null;
+        }
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Builder builder = newBuilder();
+        if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+          return builder.buildParsed();
+        } else {
+          return null;
+        }
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input).buildParsed();
+      }
+      public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input, extensionRegistry)
+                 .buildParsed();
+      }
+      
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+      
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_AttachmentPointer_descriptor;
+        }
+        
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_AttachmentPointer_fieldAccessorTable;
+        }
+        
+        // Construct using org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+        
+        private Builder(BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+        
+        public Builder clear() {
+          super.clear();
+          id_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          contentType_ = "";
+          bitField0_ = (bitField0_ & ~0x00000002);
+          key_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000004);
+          return this;
+        }
+        
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+        
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.getDescriptor();
+        }
+        
+        public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer getDefaultInstanceForType() {
+          return org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.getDefaultInstance();
+        }
+        
+        public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer build() {
+          org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+        
+        private org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer buildParsed()
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(
+              result).asInvalidProtocolBufferException();
+          }
+          return result;
+        }
+        
+        public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer buildPartial() {
+          org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer result = new org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.id_ = id_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.contentType_ = contentType_;
+          if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+            to_bitField0_ |= 0x00000004;
+          }
+          result.key_ = key_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+        
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer) {
+            return mergeFrom((org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+        
+        public Builder mergeFrom(org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer other) {
+          if (other == org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.getDefaultInstance()) return this;
+          if (other.hasId()) {
+            setId(other.getId());
+          }
+          if (other.hasContentType()) {
+            setContentType(other.getContentType());
+          }
+          if (other.hasKey()) {
+            setKey(other.getKey());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+        
+        public final boolean isInitialized() {
+          return true;
+        }
+        
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder(
+              this.getUnknownFields());
+          while (true) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  this.setUnknownFields(unknownFields.build());
+                  onChanged();
+                  return this;
+                }
+                break;
+              }
+              case 9: {
+                bitField0_ |= 0x00000001;
+                id_ = input.readFixed64();
+                break;
+              }
+              case 18: {
+                bitField0_ |= 0x00000002;
+                contentType_ = input.readBytes();
+                break;
+              }
+              case 26: {
+                bitField0_ |= 0x00000004;
+                key_ = input.readBytes();
+                break;
+              }
+            }
+          }
+        }
+        
+        private int bitField0_;
+        
+        // optional fixed64 id = 1;
+        private long id_ ;
+        public boolean hasId() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        public long getId() {
+          return id_;
+        }
+        public Builder setId(long value) {
+          bitField0_ |= 0x00000001;
+          id_ = value;
+          onChanged();
+          return this;
+        }
+        public Builder clearId() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          id_ = 0L;
+          onChanged();
+          return this;
+        }
+        
+        // optional string contentType = 2;
+        private java.lang.Object contentType_ = "";
+        public boolean hasContentType() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        public String getContentType() {
+          java.lang.Object ref = contentType_;
+          if (!(ref instanceof String)) {
+            String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+            contentType_ = s;
+            return s;
+          } else {
+            return (String) ref;
+          }
+        }
+        public Builder setContentType(String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          contentType_ = value;
+          onChanged();
+          return this;
+        }
+        public Builder clearContentType() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          contentType_ = getDefaultInstance().getContentType();
+          onChanged();
+          return this;
+        }
+        void setContentType(com.google.protobuf.ByteString value) {
+          bitField0_ |= 0x00000002;
+          contentType_ = value;
+          onChanged();
+        }
+        
+        // optional bytes key = 3;
+        private com.google.protobuf.ByteString key_ = com.google.protobuf.ByteString.EMPTY;
+        public boolean hasKey() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        public com.google.protobuf.ByteString getKey() {
+          return key_;
+        }
+        public Builder setKey(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+          key_ = value;
+          onChanged();
+          return this;
+        }
+        public Builder clearKey() {
+          bitField0_ = (bitField0_ & ~0x00000004);
+          key_ = getDefaultInstance().getKey();
+          onChanged();
+          return this;
+        }
+        
+        // @@protoc_insertion_point(builder_scope:textsecure.PushMessageContent.AttachmentPointer)
+      }
+      
+      static {
+        defaultInstance = new AttachmentPointer(true);
+        defaultInstance.initFields();
+      }
+      
+      // @@protoc_insertion_point(class_scope:textsecure.PushMessageContent.AttachmentPointer)
+    }
+    
+    private int bitField0_;
+    // optional string body = 1;
+    public static final int BODY_FIELD_NUMBER = 1;
+    private java.lang.Object body_;
+    public boolean hasBody() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getBody() {
+      java.lang.Object ref = body_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          body_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getBodyBytes() {
+      java.lang.Object ref = body_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        body_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // repeated .textsecure.PushMessageContent.AttachmentPointer attachments = 2;
+    public static final int ATTACHMENTS_FIELD_NUMBER = 2;
+    private java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer> attachments_;
+    public java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer> getAttachmentsList() {
+      return attachments_;
+    }
+    public java.util.List<? extends org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder> 
+        getAttachmentsOrBuilderList() {
+      return attachments_;
+    }
+    public int getAttachmentsCount() {
+      return attachments_.size();
+    }
+    public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer getAttachments(int index) {
+      return attachments_.get(index);
+    }
+    public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder getAttachmentsOrBuilder(
+        int index) {
+      return attachments_.get(index);
+    }
+    
+    private void initFields() {
+      body_ = "";
+      attachments_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getBodyBytes());
+      }
+      for (int i = 0; i < attachments_.size(); i++) {
+        output.writeMessage(2, attachments_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getBodyBytes());
+      }
+      for (int i = 0; i < attachments_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, attachments_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContentOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_fieldAccessorTable;
+      }
+      
+      // Construct using org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getAttachmentsFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        body_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (attachmentsBuilder_ == null) {
+          attachments_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          attachmentsBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.getDescriptor();
+      }
+      
+      public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent getDefaultInstanceForType() {
+        return org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.getDefaultInstance();
+      }
+      
+      public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent build() {
+        org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent buildPartial() {
+        org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent result = new org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.body_ = body_;
+        if (attachmentsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            attachments_ = java.util.Collections.unmodifiableList(attachments_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.attachments_ = attachments_;
+        } else {
+          result.attachments_ = attachmentsBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent) {
+          return mergeFrom((org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent other) {
+        if (other == org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.getDefaultInstance()) return this;
+        if (other.hasBody()) {
+          setBody(other.getBody());
+        }
+        if (attachmentsBuilder_ == null) {
+          if (!other.attachments_.isEmpty()) {
+            if (attachments_.isEmpty()) {
+              attachments_ = other.attachments_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureAttachmentsIsMutable();
+              attachments_.addAll(other.attachments_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.attachments_.isEmpty()) {
+            if (attachmentsBuilder_.isEmpty()) {
+              attachmentsBuilder_.dispose();
+              attachmentsBuilder_ = null;
+              attachments_ = other.attachments_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              attachmentsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAttachmentsFieldBuilder() : null;
+            } else {
+              attachmentsBuilder_.addAllMessages(other.attachments_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              body_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder subBuilder = org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAttachments(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional string body = 1;
+      private java.lang.Object body_ = "";
+      public boolean hasBody() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getBody() {
+        java.lang.Object ref = body_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          body_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setBody(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        body_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearBody() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        body_ = getDefaultInstance().getBody();
+        onChanged();
+        return this;
+      }
+      void setBody(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        body_ = value;
+        onChanged();
+      }
+      
+      // repeated .textsecure.PushMessageContent.AttachmentPointer attachments = 2;
+      private java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer> attachments_ =
         java.util.Collections.emptyList();
       private void ensureAttachmentsIsMutable() {
-        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
-          attachments_ = new java.util.ArrayList<org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer>(attachments_);
-          bitField0_ |= 0x00000010;
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          attachments_ = new java.util.ArrayList<org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer>(attachments_);
+          bitField0_ |= 0x00000002;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder> attachmentsBuilder_;
+          org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder> attachmentsBuilder_;
       
-      public java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer> getAttachmentsList() {
+      public java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer> getAttachmentsList() {
         if (attachmentsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(attachments_);
         } else {
@@ -1219,7 +1638,7 @@ public final class PushMessageProtos {
           return attachmentsBuilder_.getCount();
         }
       }
-      public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer getAttachments(int index) {
+      public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer getAttachments(int index) {
         if (attachmentsBuilder_ == null) {
           return attachments_.get(index);
         } else {
@@ -1227,7 +1646,7 @@ public final class PushMessageProtos {
         }
       }
       public Builder setAttachments(
-          int index, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer value) {
+          int index, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer value) {
         if (attachmentsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1241,7 +1660,7 @@ public final class PushMessageProtos {
         return this;
       }
       public Builder setAttachments(
-          int index, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder builderForValue) {
+          int index, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder builderForValue) {
         if (attachmentsBuilder_ == null) {
           ensureAttachmentsIsMutable();
           attachments_.set(index, builderForValue.build());
@@ -1251,7 +1670,7 @@ public final class PushMessageProtos {
         }
         return this;
       }
-      public Builder addAttachments(org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer value) {
+      public Builder addAttachments(org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer value) {
         if (attachmentsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1265,7 +1684,7 @@ public final class PushMessageProtos {
         return this;
       }
       public Builder addAttachments(
-          int index, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer value) {
+          int index, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer value) {
         if (attachmentsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1279,7 +1698,7 @@ public final class PushMessageProtos {
         return this;
       }
       public Builder addAttachments(
-          org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder builderForValue) {
+          org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder builderForValue) {
         if (attachmentsBuilder_ == null) {
           ensureAttachmentsIsMutable();
           attachments_.add(builderForValue.build());
@@ -1290,7 +1709,7 @@ public final class PushMessageProtos {
         return this;
       }
       public Builder addAttachments(
-          int index, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder builderForValue) {
+          int index, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder builderForValue) {
         if (attachmentsBuilder_ == null) {
           ensureAttachmentsIsMutable();
           attachments_.add(index, builderForValue.build());
@@ -1301,7 +1720,7 @@ public final class PushMessageProtos {
         return this;
       }
       public Builder addAllAttachments(
-          java.lang.Iterable<? extends org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer> values) {
+          java.lang.Iterable<? extends org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer> values) {
         if (attachmentsBuilder_ == null) {
           ensureAttachmentsIsMutable();
           super.addAll(values, attachments_);
@@ -1314,7 +1733,7 @@ public final class PushMessageProtos {
       public Builder clearAttachments() {
         if (attachmentsBuilder_ == null) {
           attachments_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           attachmentsBuilder_.clear();
@@ -1331,18 +1750,18 @@ public final class PushMessageProtos {
         }
         return this;
       }
-      public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder getAttachmentsBuilder(
+      public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder getAttachmentsBuilder(
           int index) {
         return getAttachmentsFieldBuilder().getBuilder(index);
       }
-      public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder getAttachmentsOrBuilder(
+      public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder getAttachmentsOrBuilder(
           int index) {
         if (attachmentsBuilder_ == null) {
           return attachments_.get(index);  } else {
           return attachmentsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder> 
+      public java.util.List<? extends org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder> 
            getAttachmentsOrBuilderList() {
         if (attachmentsBuilder_ != null) {
           return attachmentsBuilder_.getMessageOrBuilderList();
@@ -1350,27 +1769,27 @@ public final class PushMessageProtos {
           return java.util.Collections.unmodifiableList(attachments_);
         }
       }
-      public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder addAttachmentsBuilder() {
+      public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder addAttachmentsBuilder() {
         return getAttachmentsFieldBuilder().addBuilder(
-            org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.getDefaultInstance());
+            org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.getDefaultInstance());
       }
-      public org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder addAttachmentsBuilder(
+      public org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder addAttachmentsBuilder(
           int index) {
         return getAttachmentsFieldBuilder().addBuilder(
-            index, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.getDefaultInstance());
+            index, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.getDefaultInstance());
       }
-      public java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder> 
+      public java.util.List<org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder> 
            getAttachmentsBuilderList() {
         return getAttachmentsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder> 
+          org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder> 
           getAttachmentsFieldBuilder() {
         if (attachmentsBuilder_ == null) {
           attachmentsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder, org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointerOrBuilder>(
+              org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder, org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointerOrBuilder>(
                   attachments_,
-                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
                   isClean());
           attachments_ = null;
@@ -1378,36 +1797,15 @@ public final class PushMessageProtos {
         return attachmentsBuilder_;
       }
       
-      // optional uint64 timestamp = 6;
-      private long timestamp_ ;
-      public boolean hasTimestamp() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      public long getTimestamp() {
-        return timestamp_;
-      }
-      public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000020;
-        timestamp_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearTimestamp() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        timestamp_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // @@protoc_insertion_point(builder_scope:textsecure.IncomingPushMessageSignal)
+      // @@protoc_insertion_point(builder_scope:textsecure.PushMessageContent)
     }
     
     static {
-      defaultInstance = new IncomingPushMessageSignal(true);
+      defaultInstance = new PushMessageContent(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:textsecure.IncomingPushMessageSignal)
+    // @@protoc_insertion_point(class_scope:textsecure.PushMessageContent)
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
@@ -1416,10 +1814,15 @@ public final class PushMessageProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_textsecure_IncomingPushMessageSignal_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_descriptor;
+    internal_static_textsecure_PushMessageContent_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_fieldAccessorTable;
+      internal_static_textsecure_PushMessageContent_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_PushMessageContent_AttachmentPointer_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_PushMessageContent_AttachmentPointer_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1430,14 +1833,15 @@ public final class PushMessageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\037IncomingPushMessageSignal.proto\022\ntexts" +
-      "ecure\"\370\001\n\031IncomingPushMessageSignal\022\014\n\004t" +
-      "ype\030\001 \001(\r\022\016\n\006source\030\002 \001(\t\022\024\n\014destination" +
-      "s\030\003 \003(\t\022\017\n\007message\030\004 \001(\014\022L\n\013attachments\030" +
-      "\005 \003(\01327.textsecure.IncomingPushMessageSi" +
-      "gnal.AttachmentPointer\022\021\n\ttimestamp\030\006 \001(" +
-      "\004\0325\n\021AttachmentPointer\022\023\n\013contentType\030\001 " +
-      "\001(\t\022\013\n\003key\030\002 \001(\tB7\n\"org.whispersystems.t" +
-      "extsecure.pushB\021PushMessageProtos"
+      "ecure\"s\n\031IncomingPushMessageSignal\022\014\n\004ty" +
+      "pe\030\001 \001(\r\022\016\n\006source\030\002 \001(\t\022\024\n\014destinations" +
+      "\030\003 \003(\t\022\021\n\ttimestamp\030\004 \001(\004\022\017\n\007message\030\005 \001" +
+      "(\014\"\254\001\n\022PushMessageContent\022\014\n\004body\030\001 \001(\t\022" +
+      "E\n\013attachments\030\002 \003(\01320.textsecure.PushMe" +
+      "ssageContent.AttachmentPointer\032A\n\021Attach" +
+      "mentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030\002" +
+      " \001(\t\022\013\n\003key\030\003 \001(\014B7\n\"org.whispersystems." +
+      "textsecure.pushB\021PushMessageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1449,17 +1853,25 @@ public final class PushMessageProtos {
           internal_static_textsecure_IncomingPushMessageSignal_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_IncomingPushMessageSignal_descriptor,
-              new java.lang.String[] { "Type", "Source", "Destinations", "Message", "Attachments", "Timestamp", },
+              new java.lang.String[] { "Type", "Source", "Destinations", "Timestamp", "Message", },
               org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.class,
               org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.Builder.class);
-          internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_descriptor =
-            internal_static_textsecure_IncomingPushMessageSignal_descriptor.getNestedTypes().get(0);
-          internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_fieldAccessorTable = new
+          internal_static_textsecure_PushMessageContent_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_textsecure_PushMessageContent_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_textsecure_IncomingPushMessageSignal_AttachmentPointer_descriptor,
-              new java.lang.String[] { "ContentType", "Key", },
-              org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.class,
-              org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.AttachmentPointer.Builder.class);
+              internal_static_textsecure_PushMessageContent_descriptor,
+              new java.lang.String[] { "Body", "Attachments", },
+              org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.class,
+              org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.Builder.class);
+          internal_static_textsecure_PushMessageContent_AttachmentPointer_descriptor =
+            internal_static_textsecure_PushMessageContent_descriptor.getNestedTypes().get(0);
+          internal_static_textsecure_PushMessageContent_AttachmentPointer_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_PushMessageContent_AttachmentPointer_descriptor,
+              new java.lang.String[] { "Id", "ContentType", "Key", },
+              org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.class,
+              org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer.Builder.class);
           return null;
         }
       };

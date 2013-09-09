@@ -7,8 +7,6 @@ import android.util.Log;
 import com.google.android.gcm.GCMBaseIntentService;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
@@ -17,7 +15,6 @@ import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class GcmIntentService extends GCMBaseIntentService {
 
@@ -61,8 +58,11 @@ public class GcmIntentService extends GCMBaseIntentService {
       IncomingEncryptedPushMessage encryptedMessage = new IncomingEncryptedPushMessage(data, sessionKey);
       IncomingPushMessage          message          = encryptedMessage.getIncomingPushMessage();
 
-      if (!message.hasAttachments()) handleIncomingTextMessage(context, message);
-      else                           handleIncomingMediaMessage(context, message);
+      Intent service = new Intent(context, SendReceiveService.class);
+      service.setAction(SendReceiveService.RECEIVE_PUSH_ACTION);
+      service.putExtra("message", message);
+
+      context.startService(service);
     } catch (IOException e) {
       Log.w("GcmIntentService", e);
     } catch (InvalidVersionException e) {
@@ -73,25 +73,6 @@ public class GcmIntentService extends GCMBaseIntentService {
   @Override
   protected void onError(Context context, String s) {
     Log.w("GcmIntentService", "GCM Error: " + s);
-  }
-
-  private void handleIncomingTextMessage(Context context, IncomingPushMessage message) {
-    ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>();
-    String encodedBody = new String(new SmsTransportDetails().getEncodedMessage(message.getBody()));
-    messages.add(new IncomingTextMessage(message, encodedBody));
-
-    Intent receivedIntent = new Intent(context, SendReceiveService.class);
-    receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
-    receivedIntent.putParcelableArrayListExtra("text_messages", messages);
-    receivedIntent.putExtra("push_type", message.getType());
-    context.startService(receivedIntent);
-  }
-
-  private void handleIncomingMediaMessage(Context context, IncomingPushMessage message) {
-    Intent receivedIntent = new Intent(context, SendReceiveService.class);
-    receivedIntent.setAction(SendReceiveService.RECEIVE_PUSH_MMS_ACTION);
-    receivedIntent.putExtra("media_message", message);
-    context.startService(receivedIntent);
   }
 
   private PushServiceSocket getGcmSocket(Context context) {

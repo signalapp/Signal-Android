@@ -84,31 +84,21 @@ public class PushServiceSocket {
     sendMessage(new OutgoingPushMessageList(message));
   }
 
-  public void sendMessage(List<String> recipients, List<byte[]> bodies,
-                          List<List<PushAttachmentData>> attachmentsList, int type)
+  public void sendMessage(List<String> recipients, List<byte[]> bodies, List<Integer> types)
       throws IOException
   {
     List<OutgoingPushMessage> messages = new LinkedList<OutgoingPushMessage>();
 
-    Iterator<String>                   recipientsIterator  = recipients.iterator();
-    Iterator<byte[]>                   bodiesIterator      = bodies.iterator();
-    Iterator<List<PushAttachmentData>> attachmentsIterator = attachmentsList.iterator();
+    Iterator<String>  recipientsIterator = recipients.iterator();
+    Iterator<byte[]>  bodiesIterator     = bodies.iterator();
+    Iterator<Integer> typesIterator      = types.iterator();
 
     while (recipientsIterator.hasNext()) {
-      String                   recipient   = recipientsIterator.next();
-      byte[]                   body        = bodiesIterator.next();
-      List<PushAttachmentData> attachments = attachmentsIterator.next();
+      String recipient = recipientsIterator.next();
+      byte[] body      = bodiesIterator.next();
+      int    type      = typesIterator.next();
 
-      OutgoingPushMessage message;
-
-      if (!attachments.isEmpty()) {
-        List<PushAttachmentPointer> attachmentIds = sendAttachments(attachments);
-        message = new OutgoingPushMessage(recipient, body, attachmentIds, type);
-      } else {
-        message = new OutgoingPushMessage(recipient, body, type);
-      }
-
-      messages.add(message);
+      messages.add(new OutgoingPushMessage(recipient, body, type));
     }
 
     sendMessage(new OutgoingPushMessageList(messages));
@@ -149,20 +139,7 @@ public class PushServiceSocket {
     return PreKeyEntity.fromJson(responseText);
   }
 
-  private List<PushAttachmentPointer> sendAttachments(List<PushAttachmentData> attachments)
-      throws IOException
-  {
-    List<PushAttachmentPointer> attachmentIds = new LinkedList<PushAttachmentPointer>();
-
-    for (PushAttachmentData attachment : attachments) {
-      attachmentIds.add(new PushAttachmentPointer(attachment.getContentType(),
-                                                  sendAttachment(attachment)));
-    }
-
-    return attachmentIds;
-  }
-
-  private String sendAttachment(PushAttachmentData attachment) throws IOException {
+  public long sendAttachment(PushAttachmentData attachment) throws IOException {
     Pair<String, String> response = makeRequestForResponseHeader(String.format(ATTACHMENT_PATH, ""),
                                                                  "GET", null, "Content-Location");
 
@@ -178,25 +155,18 @@ public class PushServiceSocket {
     return new Gson().fromJson(response.second, AttachmentKey.class).getId();
   }
 
-  public List<Pair<File,String>> retrieveAttachments(List<PushAttachmentPointer> attachmentIds)
-      throws IOException
-  {
-    List<Pair<File,String>> attachments = new LinkedList<Pair<File,String>>();
+  public File retrieveAttachment(long attachmentId) throws IOException {
+    Pair<String, String> response = makeRequestForResponseHeader(String.format(ATTACHMENT_PATH, String.valueOf(attachmentId)),
+                                                                 "GET", null, "Content-Location");
 
-    for (PushAttachmentPointer attachmentId : attachmentIds) {
-      Pair<String, String> response = makeRequestForResponseHeader(String.format(ATTACHMENT_PATH, attachmentId.getKey()),
-                                                                   "GET", null, "Content-Location");
+    Log.w("PushServiceSocket", "Attachment: " + attachmentId + " is at: " + response.first);
 
-      Log.w("PushServiceSocket", "Attachment: " + attachmentId.getKey() + " is at: " + response.first);
+    File attachment = File.createTempFile("attachment", ".tmp", context.getFilesDir());
+    attachment.deleteOnExit();
 
-      File attachment = File.createTempFile("attachment", ".tmp", context.getFilesDir());
-      attachment.deleteOnExit();
+    downloadExternalFile(response.first, attachment);
 
-      downloadExternalFile(response.first, attachment);
-      attachments.add(new Pair<File, String>(attachment, attachmentId.getContentType()));
-    }
-
-    return attachments;
+    return attachment;
   }
 
   public Pair<DirectoryDescriptor, File> retrieveDirectory() {
@@ -394,13 +364,13 @@ public class PushServiceSocket {
   }
 
   private static class AttachmentKey {
-    private String id;
+    private long id;
 
-    public AttachmentKey(String id) {
+    public AttachmentKey(long id) {
       this.id = id;
     }
 
-    public String getId() {
+    public long getId() {
       return id;
     }
   }

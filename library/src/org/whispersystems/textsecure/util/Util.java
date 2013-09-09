@@ -45,6 +45,33 @@ public class Util {
 
   }
 
+  public static byte[][] split(byte[] input, int firstLength, int secondLength) {
+    byte[][] parts = new byte[2][];
+
+    parts[0] = new byte[firstLength];
+    System.arraycopy(input, 0, parts[0], 0, firstLength);
+
+    parts[1] = new byte[secondLength];
+    System.arraycopy(input, firstLength, parts[1], 0, secondLength);
+
+    return parts;
+  }
+
+  public static byte[][] split(byte[] input, int firstLength, int secondLength, int thirdLength) {
+    byte[][] parts = new byte[3][];
+
+    parts[0] = new byte[firstLength];
+    System.arraycopy(input, 0, parts[0], 0, firstLength);
+
+    parts[1] = new byte[secondLength];
+    System.arraycopy(input, firstLength, parts[1], 0, secondLength);
+
+    parts[2] = new byte[thirdLength];
+    System.arraycopy(input, firstLength + secondLength, parts[2], 0, thirdLength);
+
+    return parts;
+  }
+
   public static boolean isEmpty(String value) {
     return value == null || value.trim().length() == 0;
   }
@@ -93,6 +120,18 @@ public class Util {
 
     return new String(bout.toByteArray());
   }
+
+  public static void readFully(InputStream in, byte[] buffer) throws IOException {
+    int offset = 0;
+
+    for (;;) {
+      int read = in.read(buffer, offset, buffer.length - offset);
+
+      if (read + offset < buffer.length) offset += read;
+      else                		           return;
+    }
+  }
+
 
   public static void copy(InputStream in, OutputStream out) throws IOException {
     byte[] buffer = new byte[4096];
