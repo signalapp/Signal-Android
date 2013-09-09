@@ -55,7 +55,6 @@ public class SendReceiveService extends Service {
   public static final String DOWNLOAD_MMS_ACTION              = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_MMS_ACTION";
   public static final String DOWNLOAD_MMS_CONNECTIVITY_ACTION = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_MMS_CONNECTIVITY_ACTION";
 
-
   private static final int SEND_SMS              = 0;
   private static final int RECEIVE_SMS           = 1;
   private static final int SEND_MMS              = 2;
@@ -217,11 +216,11 @@ public class SendReceiveService extends Service {
     @Override
     public void run() {
       switch (what) {
-      case RECEIVE_SMS:	         smsReceiver.process(masterSecret, intent);   return;
-      case SEND_SMS:		         smsSender.process(masterSecret, intent);     return;
-      case RECEIVE_MMS:          mmsReceiver.process(masterSecret, intent);   return;
-      case SEND_MMS:             mmsSender.process(masterSecret, intent);     return;
-      case DOWNLOAD_MMS:         mmsDownloader.process(masterSecret, intent); return;
+      case RECEIVE_SMS:	 smsReceiver.process(masterSecret, intent);   return;
+      case SEND_SMS:		 smsSender.process(masterSecret, intent);     return;
+      case RECEIVE_MMS:  mmsReceiver.process(masterSecret, intent);   return;
+      case SEND_MMS:     mmsSender.process(masterSecret, intent);     return;
+      case DOWNLOAD_MMS: mmsDownloader.process(masterSecret, intent); return;
       }
     }
   }

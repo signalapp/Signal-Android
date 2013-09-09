@@ -167,7 +167,7 @@ public class ConversationItem extends LinearLayout {
 
   private void setBodyText(MessageRecord messageRecord) {
     bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
-        TextView.BufferType.SPANNABLE);
+                     TextView.BufferType.SPANNABLE);
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
@@ -338,7 +338,7 @@ public class ConversationItem extends LinearLayout {
     context.startActivity(intent);
   }
 
-  private class ThumbnailSaveListener extends Handler implements OnLongClickListener, Runnable, MediaScannerConnection.MediaScannerConnectionClient {
+  private class ThumbnailSaveListener extends Handler implements View.OnLongClickListener, Runnable, MediaScannerConnection.MediaScannerConnectionClient {
     private static final int SUCCESS              = 0;
     private static final int FAILURE              = 1;
     private static final int WRITE_ACCESS_FAILURE = 2;
@@ -454,7 +454,7 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class ThumbnailClickListener implements OnClickListener {
+  private class ThumbnailClickListener implements View.OnClickListener {
     private final Slide slide;
 
     public ThumbnailClickListener(Slide slide) {
@@ -485,7 +485,7 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class MmsDownloadClickListener implements OnClickListener {
+  private class MmsDownloadClickListener implements View.OnClickListener {
     public void onClick(View v) {
       NotificationMmsMessageRecord notificationRecord = (NotificationMmsMessageRecord)messageRecord;
       Log.w("MmsDownloadClickListener", "Content location: " + new String(notificationRecord.getContentLocation()));
@@ -502,7 +502,7 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class FailedIconClickListener implements OnClickListener {
+  private class FailedIconClickListener implements View.OnClickListener {
     public void onClick(View v) {
       if (failedIconHandler != null && !messageRecord.isKeyExchange()) {
         Message message = Message.obtain();
@@ -512,7 +512,7 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class ClickListener implements OnClickListener {
+  private class ClickListener implements View.OnClickListener {
     public void onClick(View v) {
       if (messageRecord.isKeyExchange()           &&
           !messageRecord.isOutgoing()             &&
