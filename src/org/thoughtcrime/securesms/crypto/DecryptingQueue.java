@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.PushDownloader;
 import org.thoughtcrime.securesms.service.PushReceiver;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
@@ -98,18 +98,42 @@ public class DecryptingQueue {
   public static void schedulePendingDecrypts(Context context, MasterSecret masterSecret) {
     Log.w("DecryptingQueue", "Processing pending decrypts...");
 
-    EncryptingSmsDatabase.Reader reader = null;
+    EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(context);
+    PushDatabase          pushDatabase = DatabaseFactory.getPushDatabase(context);
+
+    EncryptingSmsDatabase.Reader smsReader  = null;
+    PushDatabase.Reader          pushReader = null;
+
     SmsMessageRecord record;
+    IncomingPushMessage message;
 
     try {
-      reader = DatabaseFactory.getEncryptingSmsDatabase(context).getDecryptInProgressMessages(masterSecret);
+      smsReader  = smsDatabase.getDecryptInProgressMessages(masterSecret);
+      pushReader = pushDatabase.readerFor(pushDatabase.getPending());
 
-      while ((record = reader.getNext()) != null) {
+      while ((record = smsReader.getNext()) != null) {
         scheduleDecryptFromCursor(context, masterSecret, record);
       }
+
+      while ((message = pushReader.getNext()) != null) {
+        if (message.isPreKeyBundle()) {
+          Intent intent = new Intent(context, SendReceiveService.class);
+          intent.setAction(SendReceiveService.RECEIVE_PUSH_ACTION);
+          intent.putExtra("message", message);
+          context.startService(intent);
+
+          pushDatabase.delete(pushReader.getCurrentId());
+        } else {
+          scheduleDecryption(context, masterSecret, pushReader.getCurrentId(), message);
+        }
+      }
+
     } finally {
-      if (reader != null)
-        reader.close();
+      if (smsReader != null)
+        smsReader.close();
+
+      if (pushReader != null)
+        pushReader.close();
     }
   }
 

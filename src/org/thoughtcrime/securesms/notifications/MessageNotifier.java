@@ -39,6 +39,10 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -46,6 +50,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.push.IncomingPushMessage;
 
 import java.io.IOException;
 import java.util.List;
@@ -116,18 +121,24 @@ public class MessageNotifier {
   }
 
   private static void updateNotification(Context context, MasterSecret masterSecret, boolean signal) {
-    Cursor cursor = null;
+    Cursor telcoCursor = null;
+    Cursor pushCursor  = null;
 
     try {
-      cursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
+      telcoCursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
+      pushCursor  = DatabaseFactory.getPushDatabase(context).getPending();
 
-      if (cursor == null || cursor.isAfterLast()) {
+      if ((telcoCursor == null || telcoCursor.isAfterLast()) &&
+          (pushCursor == null || pushCursor.isAfterLast()))
+      {
         ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(NOTIFICATION_ID);
         return;
       }
 
-      NotificationState notificationState = constructNotificationState(context, masterSecret, cursor);
+      NotificationState notificationState = constructNotificationState(context, masterSecret, telcoCursor);
+
+      appendPushNotificationState(context, masterSecret, notificationState, pushCursor);
 
       if (notificationState.hasMultipleThreads()) {
         sendMultipleThreadNotification(context, masterSecret, notificationState, signal);
@@ -135,8 +146,8 @@ public class MessageNotifier {
         sendSingleThreadNotification(context, masterSecret, notificationState, signal);
       }
     } finally {
-      if (cursor != null)
-        cursor.close();
+      if (telcoCursor != null) telcoCursor.close();
+      if (pushCursor != null)  pushCursor.close();
     }
   }
 
@@ -145,6 +156,12 @@ public class MessageNotifier {
                                                    NotificationState notificationState,
                                                    boolean signal)
   {
+    if (notificationState.getNotifications().isEmpty()) {
+      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+          .cancel(NOTIFICATION_ID);
+      return;
+    }
+
     List<NotificationItem>notifications = notificationState.getNotifications();
     NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
     Recipient recipient                 = notifications.get(0).getIndividualRecipient();
@@ -255,6 +272,42 @@ public class MessageNotifier {
       player.start();
     } catch (IOException ioe) {
       Log.w("MessageNotifier", ioe);
+    }
+  }
+
+  private static void appendPushNotificationState(Context context,
+                                                  MasterSecret masterSecret,
+                                                  NotificationState notificationState,
+                                                  Cursor cursor)
+  {
+    if (masterSecret != null) return;
+
+    PushDatabase.Reader reader = null;
+    IncomingPushMessage message;
+
+    try {
+      reader = DatabaseFactory.getPushDatabase(context).readerFor(cursor);
+
+      while ((message = reader.getNext()) != null) {
+        Recipient recipient;
+
+        try {
+          recipient = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
+        } catch (RecipientFormattingException e) {
+          Log.w("MessageNotifier", e);
+          recipient = new Recipient("Unknown", "Unknown", null, ContactPhotoFactory.getDefaultContactPhoto(context));
+        }
+
+        Recipients      recipients = RecipientFactory.getRecipientsFromMessage(context, message, false);
+        long            threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+        SpannableString body       = new SpannableString(context.getString(R.string.MessageNotifier_encrypted_message));
+        body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        notificationState.addNotification(new NotificationItem(recipient, recipients, threadId, body, null));
+      }
+    } finally {
+      if (reader != null)
+        reader.close();
     }
   }
 

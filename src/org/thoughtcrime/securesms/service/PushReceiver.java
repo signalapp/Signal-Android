@@ -12,7 +12,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -69,10 +72,22 @@ public class PushReceiver {
 
   private void handleReceivedSecureMessage(MasterSecret masterSecret, IncomingPushMessage message) {
     long id = DatabaseFactory.getPushDatabase(context).insert(message);
-    DecryptingQueue.scheduleDecryption(context, masterSecret, id, message);
+
+    if (masterSecret != null) {
+      DecryptingQueue.scheduleDecryption(context, masterSecret, id, message);
+    } else {
+      Recipients recipients = RecipientFactory.getRecipientsFromMessage(context, message, false);
+      long       threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+      MessageNotifier.updateNotification(context, masterSecret, threadId);
+    }
   }
 
   private void handleReceivedPreKeyBundle(MasterSecret masterSecret, IncomingPushMessage message) {
+    if (masterSecret == null) {
+      handleReceivedSecureMessage(masterSecret, message);
+      return;
+    }
+
     try {
       Recipient            recipient      = new Recipient(null, message.getSource(), null, null);
       KeyExchangeProcessor processor      = new KeyExchangeProcessor(context, masterSecret, recipient);
@@ -105,7 +120,7 @@ public class PushReceiver {
     try {
       PushMessageContent messageContent = PushMessageContent.parseFrom(message.getBody());
 
-      if (messageContent.getAttachmentsCount() > 0) {
+      if (messageContent.getAttachmentsCount() > 0 || message.getDestinations().size() > 0) {
         Log.w("PushReceiver", "Received push media message...");
         handleReceivedMediaMessage(masterSecret, message, messageContent, secure);
       } else {
@@ -143,6 +158,7 @@ public class PushReceiver {
       intent.putExtra("message_id", messageAndThreadId.first);
       context.startService(intent);
 
+      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     } catch (MmsException e) {
       Log.w("PushReceiver", e);
       // XXX
@@ -163,14 +179,18 @@ public class PushReceiver {
 
     Pair<Long, Long> messageAndThreadId = database.insertMessageInbox(masterSecret, textMessage);
     database.updateMessageBody(masterSecret, messageAndThreadId.first, messageContent.getBody());
+
+    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
   private void handleReceivedCorruptedMessage(MasterSecret masterSecret,
                                               IncomingPushMessage message,
                                               boolean secure)
   {
-    long messageId = insertMessagePlaceholder(masterSecret, message, secure);
-    DatabaseFactory.getEncryptingSmsDatabase(context).markAsDecryptFailed(messageId);
+    Pair<Long, Long> messageAndThreadId = insertMessagePlaceholder(masterSecret, message, secure);
+    DatabaseFactory.getEncryptingSmsDatabase(context).markAsDecryptFailed(messageAndThreadId.first);
+
+    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
   private void handleReceivedCorruptedKey(MasterSecret masterSecret,
@@ -183,17 +203,22 @@ public class PushReceiver {
     if (!invalidVersion) corruptedKeyMessage.setCorrupted(true);
     else                 corruptedKeyMessage.setInvalidVersion(true);
 
-    DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, corruptedKeyMessage);
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getEncryptingSmsDatabase(context)
+                                                         .insertMessageInbox(masterSecret,
+                                                                             corruptedKeyMessage);
+
+    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
   private void handleReceivedMessageForNoSession(MasterSecret masterSecret,
                                                  IncomingPushMessage message)
   {
-    long messageId = insertMessagePlaceholder(masterSecret, message, true);
-    DatabaseFactory.getEncryptingSmsDatabase(context).markAsNoSession(messageId);
+    Pair<Long, Long> messageAndThreadId = insertMessagePlaceholder(masterSecret, message, true);
+    DatabaseFactory.getEncryptingSmsDatabase(context).markAsNoSession(messageAndThreadId.first);
+    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
-  private long insertMessagePlaceholder(MasterSecret masterSecret,
+  private Pair<Long, Long> insertMessagePlaceholder(MasterSecret masterSecret,
                                         IncomingPushMessage message,
                                         boolean secure)
   {
@@ -206,6 +231,6 @@ public class PushReceiver {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getEncryptingSmsDatabase(context)
                                                          .insertMessageInbox(masterSecret,
                                                                              placeholder);
-    return messageAndThreadId.first;
+    return messageAndThreadId;
   }
 }

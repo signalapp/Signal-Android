@@ -71,6 +71,17 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
     this.timestamp = in.readLong();
   }
 
+  public IncomingPushMessage(int type, String source,
+                             List<String> destinations,
+                             byte[] body, long timestamp)
+  {
+    this.type         = type;
+    this.source       = source;
+    this.destinations = destinations;
+    this.message      = body;
+    this.timestamp    = timestamp;
+  }
+
   public long getTimestampMillis() {
     return timestamp;
   }
