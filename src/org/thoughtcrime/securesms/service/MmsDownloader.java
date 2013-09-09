@@ -18,31 +18,31 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.CursorIndexOutOfBoundsException;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Pair;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.NotifyRespInd;
 import ws.com.google.android.mms.pdu.PduComposer;
 import ws.com.google.android.mms.pdu.PduHeaders;
 import ws.com.google.android.mms.pdu.RetrieveConf;
-
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 public class MmsDownloader extends MmscProcessor {
 
@@ -67,8 +67,6 @@ public class MmsDownloader extends MmscProcessor {
       handleDownloadMmsAction(item);
     } else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_CONNECTIVITY_ACTION)) {
       handleConnectivityChange();
-    } else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_STALLED_MMS_ACTION)) {
-      handleDownloadStalledMmsAction(masterSecret);
     }
   }
 
@@ -113,7 +111,7 @@ public class MmsDownloader extends MmscProcessor {
     } catch (ApnUnavailableException e) {
       Log.w("MmsDownloader", e);
       handleDownloadError(item, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
-                          context.getString(R.string.MmsDownloader_error_fallback_mmsc_unavailable));
+                          context.getString(R.string.MmsDownloader_error_reading_mms_settings));
     } catch (IOException e) {
       Log.w("MmsDownloader", e);
       if (!item.useMmsRadioMode() && !item.proxyRequestIfPossible()) {
@@ -130,40 +128,6 @@ public class MmsDownloader extends MmscProcessor {
       Log.w("MmsDownloader", e);
       handleDownloadError(item, MmsDatabase.Status.DOWNLOAD_HARD_FAILURE,
                           context.getString(R.string.MmsDownloader_error_storing_mms));
-    }
-  }
-
-  private void handleDownloadStalledMmsAction(MasterSecret masterSecret) {
-    MmsDatabase mmsDatabase;
-    MmsDatabase.Reader stalledMmsReader;
-    NotificationMmsMessageRecord stalledMmsRecord;
-
-    if (MmsDownloadHelper.isMmsConnectionParametersAvailable(context, getApnInformation(), false)) {
-      Log.w("MmsDownloader", "Querying database for stalled SMS downloads...");
-
-      mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-      stalledMmsReader = mmsDatabase.getNotificationsWithDownloadState(masterSecret,
-                                                                       MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE);
-
-
-      try {
-        while (stalledMmsReader.getNext() != null) {
-          stalledMmsRecord = (NotificationMmsMessageRecord) stalledMmsReader.getCurrent();
-
-          Intent intent = new Intent(SendReceiveService.DOWNLOAD_MMS_ACTION, null, context, SendReceiveService.class);
-          intent.putExtra("content_location", new String(stalledMmsRecord.getContentLocation()));
-          intent.putExtra("message_id", stalledMmsRecord.getId());
-          intent.putExtra("transaction_id", stalledMmsRecord.getTransactionId());
-          intent.putExtra("thread_id", stalledMmsRecord.getThreadId());
-          intent.putExtra("automatic", true);
-          context.startService(intent);
-        }
-
-      } catch (CursorIndexOutOfBoundsException e) {
-        Log.w("MmsDownloader", "Error reading stalled MMS from database: " + e);
-      }
-      stalledMmsReader.close();
-
     }
   }
 

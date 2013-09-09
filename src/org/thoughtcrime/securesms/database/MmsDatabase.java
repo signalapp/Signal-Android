@@ -687,10 +687,6 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     public static final int DOWNLOAD_HARD_FAILURE    = 5;
     public static final int DOWNLOAD_APN_UNAVAILABLE = 6;
 
-    public static boolean isPromptApnActivityOnClick(int status) {
-      return status == DOWNLOAD_APN_UNAVAILABLE;
-    }
-
     public static boolean isDisplayDownloadButton(int status) {
       return
           status == DOWNLOAD_INITIALIZED     ||
