@@ -465,8 +465,17 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
       builder.show();
     } else {
-      startActivity(new Intent(this, PromptApnActivity.class));
+      handleFallbackMmscRequired();
     }
+  }
+
+  private void handleFallbackMmscRequired() {
+    Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
+
+    Intent intent = new Intent(this, FallbackMmscPreferencesActivity.class);
+    intent.setAction(FallbackMmscPreferencesActivity.FALLBACK_MMSC_REQUIRED_ACTION);
+    intent.putExtras(getIntent().getExtras());
+    startActivity(intent);
   }
 
   ///// Initializers
@@ -849,14 +858,18 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       String body             = getMessage();
       long allocatedThreadId;
 
-      if (attachmentManager.isAttachmentPresent()) {
+      if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
+        handleFallbackMmscRequired();
+      } else if (attachmentManager.isAttachmentPresent()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, attachmentManager.getSlideDeck(), body,
                                                   distributionType, isEncryptedConversation && !forcePlaintext);
+        sendComplete(recipients, allocatedThreadId);
       } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, new SlideDeck(), body, distributionType,
                                                   isEncryptedConversation && !forcePlaintext);
+        sendComplete(recipients, allocatedThreadId);
       } else {
         OutgoingTextMessage message;
 
@@ -869,9 +882,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         Log.w("ConversationActivity", "Sending message...");
         allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
                                                message, threadId);
+        sendComplete(recipients, allocatedThreadId);
       }
-
-      sendComplete(recipients, allocatedThreadId);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
                      R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,

@@ -27,10 +27,15 @@ import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
@@ -38,10 +43,6 @@ import ws.com.google.android.mms.pdu.NotifyRespInd;
 import ws.com.google.android.mms.pdu.PduComposer;
 import ws.com.google.android.mms.pdu.PduHeaders;
 import ws.com.google.android.mms.pdu.RetrieveConf;
-
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 public class MmsDownloader extends MmscProcessor {
 
@@ -107,6 +108,10 @@ public class MmsDownloader extends MmscProcessor {
       storeRetrievedMms(mmsDatabase, item, retrieved);
       sendRetrievedAcknowledgement(item);
 
+    } catch (ApnUnavailableException e) {
+      Log.w("MmsDownloader", e);
+      handleDownloadError(item, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
+                          context.getString(R.string.MmsDownloader_error_reading_mms_settings));
     } catch (IOException e) {
       Log.w("MmsDownloader", e);
       if (!item.useMmsRadioMode() && !item.proxyRequestIfPossible()) {
@@ -188,18 +193,9 @@ public class MmsDownloader extends MmscProcessor {
   }
 
   private void handleDownloadError(List<DownloadItem> items, int downloadStatus, String error) {
-    MmsDatabase db = DatabaseFactory.getMmsDatabase(context);
-
     for (DownloadItem item : items) {
-      db.markDownloadState(item.getMessageId(), downloadStatus);
-
-      if (item.isAutomatic()) {
-        db.markIncomingNotificationReceived(item.getThreadId());
-        MessageNotifier.updateNotification(context, item.getMasterSecret(), item.getThreadId());
-      }
+      handleDownloadError(item, downloadStatus, error);
     }
-
-    toastHandler.makeToast(error);
   }
 
   private void handleDownloadError(DownloadItem item, int downloadStatus, String error) {

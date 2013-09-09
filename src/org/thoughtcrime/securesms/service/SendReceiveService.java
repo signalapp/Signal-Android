@@ -216,11 +216,11 @@ public class SendReceiveService extends Service {
     @Override
     public void run() {
       switch (what) {
-      case RECEIVE_SMS:	  smsReceiver.process(masterSecret, intent);   return;
-      case SEND_SMS:		  smsSender.process(masterSecret, intent);     return;
-      case RECEIVE_MMS:   mmsReceiver.process(masterSecret, intent);   return;
-      case SEND_MMS:      mmsSender.process(masterSecret, intent);     return;
-      case DOWNLOAD_MMS:  mmsDownloader.process(masterSecret, intent); return;
+      case RECEIVE_SMS:	 smsReceiver.process(masterSecret, intent);   return;
+      case SEND_SMS:		 smsSender.process(masterSecret, intent);     return;
+      case RECEIVE_MMS:  mmsReceiver.process(masterSecret, intent);   return;
+      case SEND_MMS:     mmsSender.process(masterSecret, intent);     return;
+      case DOWNLOAD_MMS: mmsDownloader.process(masterSecret, intent); return;
       }
     }
   }

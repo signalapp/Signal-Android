@@ -150,6 +150,7 @@
     <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No connectivity available for MMS download, try again later...</string>
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
     <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>
+    <string name="MmsDownloader_error_reading_mms_settings">Error reading MMS settings...</string>
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia Message</string>
@@ -228,6 +229,7 @@
     <string name="MmsDatabase_connecting_to_mms_server">Connecting to MMS server...</string>
     <string name="MmsDatabase_downloading_mms">Downloading MMS...</string>
     <string name="MmsDatabase_mms_download_failed">MMS Download failed!</string>
+    <string name="MmsDatabase_mms_configure_fallback_mmsc_to_download">Configure \"Fallback MMSC\" settings to continue download.</string>
     <string name="MmsDatabase_downloading">Downloading...</string>
 
     <!-- MmsMessageRecord -->

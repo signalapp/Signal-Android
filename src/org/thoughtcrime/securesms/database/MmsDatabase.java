@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 
+
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.SoftReference;
 import java.util.Collections;
@@ -338,6 +339,16 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public Reader getNotificationsWithDownloadState(MasterSecret masterSecret, long state) {
+    SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    String selection          = STATUS + " = ?";
+    String[] selectionArgs    = new String[]{state + ""};
+
+
+    Cursor cursor = database.query(TABLE_NAME, MMS_PROJECTION, selection, selectionArgs, null, null, null);
+    return new Reader(masterSecret, cursor);
   }
 
   private Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret, RetrieveConf retrieved,
@@ -674,6 +685,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     public static final int DOWNLOAD_CONNECTING      = 3;
     public static final int DOWNLOAD_SOFT_FAILURE    = 4;
     public static final int DOWNLOAD_HARD_FAILURE    = 5;
+    public static final int DOWNLOAD_APN_UNAVAILABLE = 6;
 
     public static boolean isDisplayDownloadButton(int status) {
       return
@@ -684,9 +696,10 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
     public static String getLabelForStatus(Context context, int status) {
       switch (status) {
-        case DOWNLOAD_CONNECTING:   return context.getString(R.string.MmsDatabase_connecting_to_mms_server);
-        case DOWNLOAD_INITIALIZED:  return context.getString(R.string.MmsDatabase_downloading_mms);
-        case DOWNLOAD_HARD_FAILURE: return context.getString(R.string.MmsDatabase_mms_download_failed);
+        case DOWNLOAD_CONNECTING:      return context.getString(R.string.MmsDatabase_connecting_to_mms_server);
+        case DOWNLOAD_INITIALIZED:     return context.getString(R.string.MmsDatabase_downloading_mms);
+        case DOWNLOAD_HARD_FAILURE:    return context.getString(R.string.MmsDatabase_mms_download_failed);
+        case DOWNLOAD_APN_UNAVAILABLE: return context.getString(R.string.MmsDatabase_mms_configure_fallback_mmsc_to_download);
       }
 
       return context.getString(R.string.MmsDatabase_downloading);

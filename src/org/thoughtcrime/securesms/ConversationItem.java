@@ -235,7 +235,11 @@ public class ConversationItem extends LinearLayout {
       mmsDownloadingLabel.setText(MmsDatabase.Status.getLabelForStatus(context, messageRecord.getStatus()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
+
+      if (MmsDatabase.Status.isHardError(messageRecord.getStatus()) & !messageRecord.isOutgoing())
+        setOnClickListener(mmsDownloadClickListener);
     }
+
   }
 
   private void setMediaMmsAttributes(MediaMmsMessageRecord messageRecord) {
@@ -312,7 +316,7 @@ public class ConversationItem extends LinearLayout {
         if (recipient.getContactUri() != null) {
           QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
         } else {
-          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
+          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT, Uri.fromParts("tel", recipient.getNumber(), null));
           context.startActivity(intent);
         }
       }

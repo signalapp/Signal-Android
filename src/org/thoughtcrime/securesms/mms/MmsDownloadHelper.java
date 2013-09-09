@@ -64,18 +64,21 @@ public class MmsDownloadHelper extends MmsCommunication {
     }
   }
 
+  public static boolean isMmsConnectionParametersAvailable(Context context, String apn, boolean proxyIfPossible) {
+    try {
+      getMmsConnectionParameters(context, apn, proxyIfPossible);
+      return true;
+    } catch (ApnUnavailableException e) {
+      return false;
+    }
+  }
+
   public static RetrieveConf retrieveMms(Context context, String url, String apn,
                                          boolean usingMmsRadio, boolean proxyIfPossible)
-      throws IOException
+      throws IOException, ApnUnavailableException
   {
-    MmsConnectionParameters connectionParameters;
 
-    try {
-      connectionParameters = getMmsConnectionParameters(context, apn, proxyIfPossible);
-    } catch (ApnUnavailableException aue) {
-      Log.w("MmsDownloadHelper", aue);
-      connectionParameters = new MmsConnectionParameters(null, null, null);
-    }
+    MmsConnectionParameters connectionParameters = getMmsConnectionParameters(context, apn, proxyIfPossible);
 
     checkRouteToHost(context, connectionParameters, url, usingMmsRadio);
 
