@@ -55,21 +55,21 @@ public class AttachmentManager {
   public void setImage(Uri image) throws IOException, BitmapDecodingException {
     ImageSlide slide = new ImageSlide(context, image);
     slideDeck.addSlide(slide);
-    thumbnail.setImageBitmap(slide.getThumbnail(345, 261));
+    thumbnail.setImageDrawable(slide.getThumbnail(345, 261));
     attachmentView.setVisibility(View.VISIBLE);
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
     VideoSlide slide = new VideoSlide(context, video);
     slideDeck.addSlide(slide);
-    thumbnail.setImageBitmap(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
+    thumbnail.setImageDrawable(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
     attachmentView.setVisibility(View.VISIBLE);
   }
 
   public void setAudio(Uri audio)throws IOException, MediaTooLargeException {
     AudioSlide slide = new AudioSlide(context, audio);
     slideDeck.addSlide(slide);
-    thumbnail.setImageBitmap(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
+    thumbnail.setImageDrawable(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
     attachmentView.setVisibility(View.VISIBLE);
   }
 

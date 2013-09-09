@@ -25,6 +25,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
 import android.widget.ImageView;
@@ -50,8 +51,8 @@ public class AudioSlide extends Slide {
   }
 	
   @Override
-  public Bitmap getThumbnail(int maxWidth, int maxHeight) {
-    return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_menu_add_sound);
+  public Drawable getThumbnail(int maxWidth, int maxHeight) {
+    return context.getResources().getDrawable(R.drawable.ic_menu_add_sound);
   }
 
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {

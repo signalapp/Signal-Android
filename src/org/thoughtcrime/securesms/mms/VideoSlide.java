@@ -26,6 +26,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -42,8 +43,8 @@ public class VideoSlide extends Slide {
   }
 	
   @Override
-  public Bitmap getThumbnail(int width, int height) {
-    return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_video_player);
+  public Drawable getThumbnail(int width, int height) {
+    return context.getResources().getDrawable(R.drawable.ic_launcher_video_player);
   }
 
   @Override

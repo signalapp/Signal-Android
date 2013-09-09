@@ -51,10 +51,12 @@ public class SendReceiveService extends Service {
   public static final String RECEIVE_SMS_ACTION               = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_SMS_ACTION";
   public static final String SEND_MMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SEND_MMS_ACTION";
   public static final String RECEIVE_MMS_ACTION               = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_MMS_ACTION";
-  public static final String RECEIVE_PUSH_MMS_ACTION          = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_PUSH_MMS_ACTION";
   public static final String DOWNLOAD_MMS_ACTION              = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_MMS_ACTION";
   public static final String DOWNLOAD_MMS_CONNECTIVITY_ACTION = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_MMS_CONNECTIVITY_ACTION";
   public static final String DOWNLOAD_MMS_PENDING_APN_ACTION  = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_MMS_PENDING_APN_ACTION";
+  public static final String RECEIVE_PUSH_ACTION              = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_PUSH_ACTION";
+  public static final String DECRYPTED_PUSH_ACTION            = "org.thoughtcrime.securesms.SendReceiveService.DECRYPTED_PUSH_ACTION";
+  public static final String DOWNLOAD_PUSH_ACTION             = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_PUSH_ACTION";
 
   private static final int SEND_SMS              = 0;
   private static final int RECEIVE_SMS           = 1;
@@ -62,14 +64,18 @@ public class SendReceiveService extends Service {
   private static final int RECEIVE_MMS           = 3;
   private static final int DOWNLOAD_MMS          = 4;
   private static final int DOWNLOAD_MMS_PENDING  = 5;
+  private static final int RECEIVE_PUSH          = 6;
+  private static final int DOWNLOAD_PUSH         = 7;
 
   private ToastHandler toastHandler;
 
-  private SmsReceiver   smsReceiver;
-  private SmsSender     smsSender;
-  private MmsReceiver   mmsReceiver;
-  private MmsSender     mmsSender;
-  private MmsDownloader mmsDownloader;
+  private SmsReceiver    smsReceiver;
+  private SmsSender      smsSender;
+  private MmsReceiver    mmsReceiver;
+  private MmsSender      mmsSender;
+  private MmsDownloader  mmsDownloader;
+  private PushReceiver   pushReceiver;
+  private PushDownloader pushDownloader;
 
   private MasterSecret masterSecret;
   private boolean      hasSecret;
@@ -78,7 +84,6 @@ public class SendReceiveService extends Service {
   private ClearKeyReceiver clearKeyReceiver;
   private List<Runnable> workQueue;
   private List<Runnable> pendingSecretList;
-  private Thread workerThread;
 
   @Override
   public void onCreate() {
@@ -105,12 +110,18 @@ public class SendReceiveService extends Service {
       scheduleIntent(SEND_SMS, intent);
     else if (action.equals(SEND_MMS_ACTION))
       scheduleSecretRequiredIntent(SEND_MMS, intent);
-    else if (action.equals(RECEIVE_MMS_ACTION) || action.equals(RECEIVE_PUSH_MMS_ACTION))
+    else if (action.equals(RECEIVE_MMS_ACTION))
       scheduleIntent(RECEIVE_MMS, intent);
     else if (action.equals(DOWNLOAD_MMS_ACTION))
       scheduleSecretRequiredIntent(DOWNLOAD_MMS, intent);
     else if (intent.getAction().equals(DOWNLOAD_MMS_PENDING_APN_ACTION))
       scheduleSecretRequiredIntent(DOWNLOAD_MMS_PENDING, intent);
+    else if (action.equals(RECEIVE_PUSH_ACTION))
+      scheduleIntent(RECEIVE_PUSH, intent);
+    else if (action.equals(DECRYPTED_PUSH_ACTION))
+      scheduleSecretRequiredIntent(RECEIVE_PUSH, intent);
+    else if (action.equals(DOWNLOAD_PUSH_ACTION))
+      scheduleSecretRequiredIntent(DOWNLOAD_PUSH, intent);
     else
       Log.w("SendReceiveService", "Received intent with unknown action: " + intent.getAction());
   }
@@ -142,13 +153,15 @@ public class SendReceiveService extends Service {
     mmsReceiver    = new MmsReceiver(this);
     mmsSender      = new MmsSender(this, toastHandler);
     mmsDownloader  = new MmsDownloader(this, toastHandler);
+    pushReceiver   = new PushReceiver(this);
+    pushDownloader = new PushDownloader(this);
   }
 
   private void initializeWorkQueue() {
     pendingSecretList = new LinkedList<Runnable>();
     workQueue         = new LinkedList<Runnable>();
-    workerThread      = new WorkerThread(workQueue, "SendReceveService-WorkerThread");
 
+    Thread workerThread = new WorkerThread(workQueue, "SendReceveService-WorkerThread");
     workerThread.start();
   }
 
@@ -222,12 +235,14 @@ public class SendReceiveService extends Service {
     @Override
     public void run() {
       switch (what) {
-      case RECEIVE_SMS:	         smsReceiver.process(masterSecret, intent);   return;
-      case SEND_SMS:		         smsSender.process(masterSecret, intent);     return;
-      case RECEIVE_MMS:          mmsReceiver.process(masterSecret, intent);   return;
-      case SEND_MMS:             mmsSender.process(masterSecret, intent);     return;
-      case DOWNLOAD_MMS:         mmsDownloader.process(masterSecret, intent); return;
+      case RECEIVE_SMS:	  smsReceiver.process(masterSecret, intent);    return;
+      case SEND_SMS:		  smsSender.process(masterSecret, intent);      return;
+      case RECEIVE_MMS:   mmsReceiver.process(masterSecret, intent);    return;
+      case SEND_MMS:      mmsSender.process(masterSecret, intent);      return;
+      case DOWNLOAD_MMS:  mmsDownloader.process(masterSecret, intent);  return;
       case DOWNLOAD_MMS_PENDING: mmsDownloader.process(masterSecret, intent); return;
+      case RECEIVE_PUSH:  pushReceiver.process(masterSecret, intent);   return;
+      case DOWNLOAD_PUSH: pushDownloader.process(masterSecret, intent); return;
       }
     }
   }

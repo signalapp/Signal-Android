@@ -48,14 +48,8 @@ public class MmsReceiver {
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
-    try {
-      if (intent.getAction().equals(SendReceiveService.RECEIVE_MMS_ACTION)) {
-        handleMmsNotification(intent);
-      } else if (intent.getAction().equals(SendReceiveService.RECEIVE_PUSH_MMS_ACTION)) {
-        handlePushMedia(masterSecret, intent);
-      }
-    } catch (MmsException e) {
-      Log.w("MmsReceiver", e);
+    if (intent.getAction().equals(SendReceiveService.RECEIVE_MMS_ACTION)) {
+      handleMmsNotification(intent);
     }
   }
 
@@ -70,28 +64,6 @@ public class MmsReceiver {
 
       Log.w("MmsReceiver", "Inserted received MMS notification...");
       scheduleDownload((NotificationInd)pdu, messageAndThreadId.first, messageAndThreadId.second);
-    }
-  }
-
-  private void handlePushMedia(MasterSecret masterSecret, Intent intent) throws MmsException {
-    IncomingPushMessage pushMessage = intent.getParcelableExtra("media_message");
-    String              localNumber = TextSecurePreferences.getLocalNumber(context);
-    String              password    = TextSecurePreferences.getPushServerPassword(context);
-    PushServiceSocket   socket      = new PushServiceSocket(context, localNumber, password);
-
-    try {
-      List<Pair<File, String>> attachments = socket.retrieveAttachments(pushMessage.getAttachments());
-      IncomingMediaMessage     message     = new IncomingMediaMessage(localNumber, pushMessage, attachments);
-
-      DatabaseFactory.getMmsDatabase(context).insertMessageInbox(masterSecret, message, "", -1);
-    } catch (IOException e) {
-      Log.w("MmsReceiver", e);
-      try {
-        IncomingMediaMessage message = new IncomingMediaMessage(localNumber, pushMessage, null);
-        DatabaseFactory.getMmsDatabase(context).insertMessageInbox(masterSecret, message, "", -1);
-      } catch (IOException e1) {
-        throw new MmsException(e1);
-      }
     }
   }
 
