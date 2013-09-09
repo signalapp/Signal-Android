@@ -17,13 +17,18 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.NumberUtil;
+import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.util.Util;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class RecipientFactory {
@@ -68,6 +73,23 @@ public class RecipientFactory {
     }
 
     return new Recipients(results);
+  }
+
+  public static Recipients getRecipientsFromMessage(Context context,
+                                                    IncomingPushMessage message,
+                                                    boolean asynchronous)
+  {
+    Set<String> recipients = new HashSet<String>();
+    recipients.add(message.getSource());
+    recipients.addAll(message.getDestinations());
+
+    try {
+      return getRecipientsFromString(context, Util.join(recipients, ","), asynchronous);
+    } catch (RecipientFormattingException e) {
+      Log.w("RecipientFactory", e);
+      return new Recipients(new Recipient("Unknown", "Unknown", null,
+                                          ContactPhotoFactory.getDefaultContactPhoto(context)));
+    }
   }
 
   private static Recipient getRecipientFromProviderId(Context context, String recipientId, boolean asynchronous) {

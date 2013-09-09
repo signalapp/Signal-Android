@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Util {
@@ -157,6 +158,22 @@ public class Util {
     }
 
     return result.toString();
+  }
+
+  public static List<String> split(String source, String delimiter) {
+    List<String> results = new LinkedList<String>();
+
+    if (isEmpty(source)) {
+      return results;
+    }
+
+    String[] elements = source.split(delimiter);
+
+    for (String element : elements) {
+      results.add(element);
+    }
+
+    return results;
   }
 
   public static SecureRandom getSecureRandom() {
