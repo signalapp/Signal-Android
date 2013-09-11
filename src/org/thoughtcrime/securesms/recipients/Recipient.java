@@ -25,8 +25,8 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.whispersystems.textsecure.util.FutureTaskListener;
+import org.whispersystems.textsecure.util.ListenableFutureTask;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 
 import java.util.HashSet;
