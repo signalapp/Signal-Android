@@ -13,6 +13,9 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">אתה בטוח שברצונך לקצץ מיד את כל שרשורי השיחות עד להודעות ה-%s הכי חדשות?</string>
   <string name="ApplicationPreferencesActivity_delete">מחק</string>
   <string name="ApplicationPreferencesActivity_my">שלי</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">לבטל הצפנת אחסון?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nאזהרה, פעולה זו תבטל הצפנה מקומית לכל ההודעות והמפתחות. החיבורים\nהמאובטחים שלך ימשיכו לתפקד, אבל כל אחד עם גישה פיזית למכשירך יוכל\nלגשת אליהם.\n</string>
+  <string name="ApplicationPreferencesActivity_disable">בטל</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">תמונה</string>
   <string name="AttachmentTypeSelectorAdapter_video">וידאו</string>
@@ -72,7 +75,37 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">לייצא לכרטיס ה-SD?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">פעולה זו\nתייצא את המפתחות, ההגדרות וההודעות המוצפנות שלך לכרטיס ה-SD.\n</string>
+  <string name="ExportFragment_export">יצא</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">לייצא לכרטיס ה-SD ללא הצפנה?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">אזהרה, פעולה זו\nתייצא את תוכן הודעות ה-TextSecure שלך לכרטיס ה-SD ללא הצפנה.\n</string>
+  <string name="ExportFragment_cancel">בטל</string>
+  <string name="ExportFragment_exporting">מייצא</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">מייצא טקסט ללא הצפנה לכרטיס ה-SD...\n</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">שגיאה, לא ניתן לכתוב לכרטיס\nה-SD!\n</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">שגיאה בכתיבה לכרטיס ה-SD.\n</string>
+  <string name="ExportFragment_success">הצליח!</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">מייצא מפתחות, הגדרות\nוהודעות מוצפנות...\n</string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">לייבא את בסיס הנתונים של ה-SMS מהמערכת?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">פעולה זו תייבא\nהודעות מבסיס הנתונים של ה-SMS ברירת המחדל של המערכת ל-TextSecure.\n אם כבר ייבאת מבסיס נתונים זה, ייבוא מחדש יגרום להודעות כפולות.</string>
+  <string name="ImportFragment_import">יבא</string>
+  <string name="ImportFragment_cancel">בטל</string>
+  <string name="ImportFragment_restore_encrypted_backup">לשחזר גיבוי מוצפן?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nשחזור גיבוי מוצפן יחליף לגמרי את המפתחות, ההגדרות וההודעות הקיימות.\nאתה \nתאבד את כל המידע שבהתקנת ה-TextSecure הנוכחית שלך אבל לא שבגיבוי.\n</string>
+  <string name="ImportFragment_restore">שחזר</string>
+  <string name="ImportFragment_import_plaintext_backup">לייבא גיבוי לא מוצפן?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">פעולה זו תייבא\nהודעות מגיבוי לא מוצפן. אם כבר ייבאת בעבר את בסיס הנתונים\nשל ה-SMS\nשל המערכת, ייבוא מחדש יגרום להודעות כפולות.\n</string>
+  <string name="ImportFragment_importing">מייבא</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">יבא גיבוי לא מוצפן...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">לא נמצא גיבוי לא מוצפן!</string>
+  <string name="ImportFragment_error_importing_backup">שגיאה בייבוא הגיבוי!</string>
+  <string name="ImportFragment_import_complete">הייבוא הסתיים!</string>
+  <string name="ImportFragment_restoring">משחזר</string>
+  <string name="ImportFragment_restoring_encrypted_backup">משחזר גיבוי מוצפן...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">לא נמצא גיבוי מוצפן!</string>
+  <string name="ImportFragment_restore_complete">השחזור הסתיים!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">לא נמצא מפתח סרוק!</string>
   <!--MmsDownloader-->
@@ -159,6 +192,7 @@
   <string name="MessageNotifier_error_delivering_message">שגיאה במסירת ההודעה.</string>
   <string name="MessageNotifier_mark_all_as_read">סמן הכל כנקרא</string>
   <string name="MessageNotifier_mark_as_read">סמן כנקרא</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">לא ניתן לשלוח כעת את הודעת ה-SMS שלך. היא תשלח כשהשירות יהיה זמין.</string>
   <!--auto_initiate_activity-->
@@ -202,6 +236,16 @@
   <string name="database_migration_activity__importing">מייבא</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">מעדכן את בסיס הנתונים...</string>
+  <string name="export_fragment__export_encrypted_backup">יצא גיבוי מוצפן</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">יצא גיבוי\nמוצפן לכרטיס ה-SD.\n</string>
+  <string name="export_fragment__export_plaintext_backup">יצא גיבוי לא מוצפן.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nיצא גיבוי לא מוצפן שתואם את האפליקציה \'SMSBackup And Restore\' לכרטיס ה-SD.</string>
+  <string name="import_fragment__import_system_sms_database">מייבא </string>
+  <string name="import_fragment__import_the_database_from_the_default_system">יבא את בסיס הנתונים\nמאפליקציית ברירת המחדל של המערכת.\n</string>
+  <string name="import_fragment__import_encrypted_backup">יבא גיבוי מוצפן</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nשחזר גיבוי מוצפן של TextSecure שיוצא בעבר.\n</string>
+  <string name="import_fragment__import_plaintext_backup">יבא גיבוי לא מוצפן</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nיבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">סיסמת TextSecure</string>
   <string name="prompt_passphrase_activity__unlock">פתח</string>
@@ -240,6 +284,9 @@
   <string name="AndroidManifest__manage_identity_keys">נהל מפתחות זהות</string>
   <string name="AndroidManifest__complete_key_exchange">השלם החלפת מפתח</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">יבא / יצא</string>
+  <string name="arrays__my_identity_key">מפתח הזהות שלי</string>
+  <string name="arrays__contact_keys">מפתחות אנשי קשר</string>
   <!--preferences.xml-->
   <string name="preferences__general">כללי</string>
   <string name="preferences__pref_all_sms_title">עשה שימוש לכל ה-SMS</string>
@@ -254,6 +301,8 @@
   <string name="preferences__change_passphrase">שנה סיסמה</string>
   <string name="preferences__change_my_passphrase">שנה סיסמה</string>
   <string name="preferences__complete_key_exchanges">השלם החלפות מפתח</string>
+  <string name="preferences__disable_passphrase">בטל סיסמה</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">בטל הצפנה מקומית של הודעות ומפתחות</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">השלם אוטומטית החלפות מפתח לחיבורים חדשים או קיימים עם אותו מפתח הזהות</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">שכח את הסיסמה מהזיכרון לאחר זמן מסויים </string>
   <string name="preferences__timeout_passphrase">זמן תוקף לסיסמה</string>
@@ -308,6 +357,7 @@
   <string name="preferences__appearance">מראה</string>
   <string name="preferences__theme">ערכת נושא</string>
   <string name="preferences__default">ברירת מחדל</string>
+  <string name="preferences__language">שפה</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -358,6 +408,5 @@
   <string name="text_secure_normal__mark_all_as_read">סמן הכל כנקרא</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">מאומת</string>
-  <string name="preferences__language">שפה</string>
   <!--EOF-->
 </resources>

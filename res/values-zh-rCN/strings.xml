@@ -126,6 +126,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) 新邮件</string>
   <string name="MessageNotifier_most_recent_from_s">最新邮件来自： %s</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">您收到一条支持 TextSecure 加密会话的人发送的消息。  是否要启动安全会话？</string>

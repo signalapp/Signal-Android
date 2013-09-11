@@ -192,6 +192,8 @@
   <string name="MessageNotifier_error_delivering_message">Erreur lors de la distribution du message.</string>
   <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
   <string name="MessageNotifier_mark_as_read">Marquer comme lu</string>
+  <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_cancel">Annuler</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Impossible d’envoyer votre message SMS pour le moment. Il sera envoyé  lorsque le service deviendra disponible.</string>
   <!--auto_initiate_activity-->
@@ -356,6 +358,7 @@
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
   <string name="preferences__default">Par défaut</string>
+  <string name="preferences__language">Langue</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -406,6 +409,5 @@
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme Lu</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Vérifié</string>
-  <string name="preferences__language">Langue</string>
   <!--EOF-->
 </resources>

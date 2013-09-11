@@ -190,6 +190,8 @@
   <string name="MessageNotifier_error_delivering_message">Erro a remeter a mensagem.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
   <string name="MessageNotifier_mark_as_read">Marcar como lidas</string>
+  <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_cancel">Cancelar</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Presentemente não é possível remeter a mensagem SMS. Será reenviada assim que o serviço esteja disponível.</string>
   <!--auto_initiate_activity-->
@@ -351,6 +353,7 @@
   <string name="preferences__appearance">Aspecto</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Opção por omissão</string>
+  <string name="preferences__language">Língua</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -401,6 +404,5 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
-  <string name="preferences__language">Língua</string>
   <!--EOF-->
 </resources>

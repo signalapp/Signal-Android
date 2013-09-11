@@ -192,6 +192,7 @@
   <string name="MessageNotifier_error_delivering_message">A aparut o eroare la trimiterea mesajului.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcheaza tot ca citit</string>
   <string name="MessageNotifier_mark_as_read">Marcheaza ca citit</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Mesajul SMS nu poate fi trimis in acest moment. Va fi trimis de indata ce serviciul devine disponibil.</string>
   <!--auto_initiate_activity-->
@@ -356,6 +357,7 @@
   <string name="preferences__appearance">Aspect</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Implicit</string>
+  <string name="preferences__language">Limba</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -406,6 +408,5 @@
   <string name="text_secure_normal__mark_all_as_read">Marcheaza tot ca citit</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificat</string>
-  <string name="preferences__language">Limba</string>
   <!--EOF-->
 </resources>

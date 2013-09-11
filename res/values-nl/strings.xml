@@ -6,13 +6,16 @@
   <string name="delete">Verwijder</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">U moet uw wachtwoord opgegeven voor het beheren van sleutels...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">U moet uw wachtwoord hebben ingevoerd voor het beheren van sleutels...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">U heeft nog geen wachtwoord ingesteld!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">berichten per conversatie</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Weet u zeker dat u bij alle conversaties alleen de laatste %s berichten behouden wilt?</string>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
   <string name="ApplicationPreferencesActivity_my">Mijn</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Opslagversleuteling uitschakelen?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nLet op, dit schakelt opslagversleuteling uit voor alle berichten en sleutels. Je versleutelde sessies zullen blijven werken, maar iedereen met fysieke toegang tot je apparaat zal ze kunnen benaderen.</string>
+  <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -54,6 +57,8 @@
   <string name="ConversationActivity_d_recipients_in_group">%d ontvangers in groep</string>
   <string name="ConversationActivity_saving_draft">Concept opslaan...</string>
   <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
+  <string name="ConversationActivity_calls_not_supported">Oproepen Niet Ondersteund</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt dial-acties niet te ondersteunen.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Bericht details</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd/Ontvangen:%3$s</string>
@@ -84,8 +89,23 @@
   <string name="ExportFragment_exporting_keys_settings_and_messages">Keys, instellingen en berichten versleuteld naar de SD-kaart aan het exporteren...</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard SMS-database van het systeem importeren naar TextSecure. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_import">Importeer</string>
   <string name="ImportFragment_cancel">Annuleren</string>
+  <string name="ImportFragment_restore_encrypted_backup">Versleutelde Back-up Herstellen?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nHerstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en berichten volledig vervangen. Je zult alle informatie verliezen die wel in je huidige TextSecure-installatie zit, maar niet de back-up.</string>
+  <string name="ImportFragment_restore">Herstellen</string>
+  <string name="ImportFragment_import_plaintext_backup">Niet-versleutelde Back-up Importeren?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dit zal berichten uit een niet-versleutelde back-up importeren. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
+  <string name="ImportFragment_importing">Importeren</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Niet-versleutelde back-up importeren...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Geen niet-versleutelde back-up gevonden!</string>
+  <string name="ImportFragment_error_importing_backup">Fout bij het importeren van back-up!</string>
+  <string name="ImportFragment_import_complete">Importeren voltooid!</string>
+  <string name="ImportFragment_restoring">Herstellen</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Versleutelde back-up herstellen...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Geen versleutelde back-up gevonden!</string>
+  <string name="ImportFragment_restore_complete">Herstellen voltooid!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Geen gescande sleutel gevonden!</string>
   <!--MmsDownloader-->
@@ -172,6 +192,8 @@
   <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
   <string name="MessageNotifier_mark_all_as_read">Markeer alles als gelezen</string>
   <string name="MessageNotifier_mark_as_read">Markeer als gelezen</string>
+  <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_cancel">Annuleren</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Momenteel niet in staat om uw SMS bericht te versturen. Zodra de service beschikbaar is zal het verzonden worden .</string>
   <!--auto_initiate_activity-->
@@ -215,6 +237,16 @@
   <string name="database_migration_activity__importing">AAN HET IMPORTEREN</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Database aan het updaten...</string>
+  <string name="export_fragment__export_encrypted_backup">Exporteer Versleutelde Back-up</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Export een versleutelde back-up naar de SD-kaart.</string>
+  <string name="export_fragment__export_plaintext_backup">Exporteer Niet-versleutelde Back-up</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nExporteer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\' naar de SD-kaart.</string>
+  <string name="import_fragment__import_system_sms_database">SMS-berichten uit de Systeemdatabase Importeren</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database uit de standaard berichtenapp van het systeem.</string>
+  <string name="import_fragment__import_encrypted_backup">Importeer Versleutelde Back-up</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nHerstel een eerder geëxporteerde versleutelde back-up van TextSecure.</string>
+  <string name="import_fragment__import_plaintext_backup">Importeer Niet-versleutelde Back-up</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nImporteer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE WACHTWOORD</string>
   <string name="prompt_passphrase_activity__unlock">Ontgrendel</string>
@@ -253,6 +285,9 @@
   <string name="AndroidManifest__manage_identity_keys">Identiteitssleutels Beheren</string>
   <string name="AndroidManifest__complete_key_exchange">Sleuteluitwisseling Voltooien</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">Importeer / Exporteer</string>
+  <string name="arrays__my_identity_key">Mijn Identiteitssleutel</string>
+  <string name="arrays__contact_keys">Sleutels van Contacten</string>
   <!--preferences.xml-->
   <string name="preferences__general">Algemeen</string>
   <string name="preferences__pref_all_sms_title">Gebruik voor alle SMS</string>
@@ -267,6 +302,8 @@
   <string name="preferences__change_passphrase">Verander wachtwoord</string>
   <string name="preferences__change_my_passphrase">Verander mijn wachtwoord</string>
   <string name="preferences__complete_key_exchanges">Voltooi sleuteluitwisselingen</string>
+  <string name="preferences__disable_passphrase">Wachtwoord uitschakelen</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Lokale versleuteling van berichten en sleutels uitschakelen</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisch sleuteluitwisselingen voltooien voor nieuwe sessies of voor bestaande sessies met dezelfde identiteitssleutel</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Vergeet het wachtwoord uit het geheugen na een bepaalde tijd</string>
   <string name="preferences__timeout_passphrase">Time-out wachtwoord</string>
@@ -320,6 +357,8 @@
   <string name="preferences__dark_theme">Donker Thema</string>
   <string name="preferences__appearance">Uiterlijk</string>
   <string name="preferences__theme">Thema</string>
+  <string name="preferences__default">Standaard</string>
+  <string name="preferences__language">Taal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

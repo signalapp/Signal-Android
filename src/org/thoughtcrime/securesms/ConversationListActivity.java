@@ -106,10 +106,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
       intent = new Intent(this, ImportExportActivity.class);
       intent.putExtra("master_secret", masterSecret);
     } else if (selected.equals("my_identity_key")) {
-      intent = new Intent(this, ViewIdentityActivity.class);
-      intent.putExtra("identity_key", IdentityKeyUtil.getIdentityKey(this));
-      intent.putExtra("title", getString(R.string.ApplicationPreferencesActivity_my) + " " +
-                               getString(R.string.ViewIdentityActivity_identity_fingerprint));
+      intent = new Intent(this, ViewLocalIdentityActivity.class);
+      intent.putExtra("master_secret", masterSecret);
     } else if (selected.equals("contact_identity_keys")) {
       intent = new Intent(this, ReviewIdentitiesActivity.class);
       intent.putExtra("master_secret", masterSecret);

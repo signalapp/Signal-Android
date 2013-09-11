@@ -57,7 +57,7 @@
   <string name="ConversationActivity_d_recipients_in_group">%d receptores en grupo</string>
   <string name="ConversationActivity_saving_draft">Guardando borrador...</string>
   <string name="ConversationActivity_invalid_recipient">Receptor inválido!</string>
-  <string name="ConversationActivity_calls_not_supported">Llamadas no compatibles</string>
+  <string name="ConversationActivity_calls_not_supported">Llamadas no soportadas</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
@@ -192,6 +192,7 @@
   <string name="MessageNotifier_error_delivering_message">Error entregando mensaje.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
   <string name="MessageNotifier_mark_as_read">Marcar como leídos</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Actualmente no se puede enviar tu mensaje SMS. Será enviado en cuanto el servicio esté disponible.</string>
   <!--auto_initiate_activity-->
@@ -300,8 +301,8 @@
   <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
   <string name="preferences__change_my_passphrase">Cambiar mi frase de contraseña</string>
   <string name="preferences__complete_key_exchanges">Completar intercambio de claves</string>
-  <string name="preferences__disable_passphrase">desactivar la frase de contraseña</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Desactive encriptación local de los mensajes y claves</string>
+  <string name="preferences__disable_passphrase">Desactivar la frase de contraseña</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Desactivar el cifrado local de los mensajes y claves</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automáticamente los intercambios de clave para nuevas sesiones o para sesiones existentes con la misma clave de identidad</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Olvidar la frase de contraseña de la memoria después de un intervalo de tiempo</string>
   <string name="preferences__timeout_passphrase">Expirar la frase de contraseña</string>
@@ -356,6 +357,7 @@
   <string name="preferences__appearance">Apariencia</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Por defecto</string>
+  <string name="preferences__language">Idioma</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -406,6 +408,5 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar Todos Leídos</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
-  <string name="preferences__language">Idioma</string>
   <!--EOF-->
 </resources>
