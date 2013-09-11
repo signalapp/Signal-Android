@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.whispersystems.textsecure.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.whispersystems.textsecure.util.Util;
 
