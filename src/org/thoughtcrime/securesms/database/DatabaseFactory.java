@@ -628,7 +628,7 @@ public class DatabaseFactory {
       if (oldVersion < INTRODUCED_PUSH_DATABASE_VERSION) {
         db.execSQL("CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, destinations TEXT, body TEXT, TIMESTAMP INTEGER);");
         db.execSQL("ALTER TABLE part ADD COLUMN pending_push INTEGER;");
-        db.execSQL("CREATE INDEX IF NOT EXISTS pending_push_index ON parts (pending_push);");
+        db.execSQL("CREATE INDEX IF NOT EXISTS pending_push_index ON part (pending_push);");
       }
 
       db.setTransactionSuccessful();

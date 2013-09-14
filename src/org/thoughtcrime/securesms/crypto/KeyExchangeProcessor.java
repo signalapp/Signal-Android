@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.whispersystems.textsecure.util.Conversions;
+import org.whispersystems.textsecure.util.Medium;
 
 /**
  * This class processes key exchange interactions.
@@ -131,13 +132,15 @@ public class KeyExchangeProcessor {
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(remoteIdentity);
     sessionRecord.setSessionVersion(Math.min(message.getSupportedVersion(), MessageCipher.SUPPORTED_VERSION));
-
+    sessionRecord.setNegotiatedSessionVersion(sessionRecord.getSessionVersion());
 
     localKeyRecord.save();
     remoteKeyRecord.save();
     sessionRecord.save();
 
-    PreKeyRecord.delete(context, preKeyId);
+    if (preKeyId != Medium.MAX_VALUE) {
+      PreKeyRecord.delete(context, preKeyId);
+    }
 
     DatabaseFactory.getIdentityDatabase(context)
                    .saveIdentity(masterSecret, recipient, remoteIdentity);
@@ -156,6 +159,7 @@ public class KeyExchangeProcessor {
     sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(message.getIdentityKey());
+    sessionRecord.setNegotiatedSessionVersion(MessageCipher.SUPPORTED_VERSION);
     sessionRecord.setSessionVersion(MessageCipher.SUPPORTED_VERSION);
     sessionRecord.setPrekeyBundleRequired(true);
     sessionRecord.save();
@@ -185,6 +189,7 @@ public class KeyExchangeProcessor {
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(message.getIdentityKey());
     sessionRecord.setSessionVersion(Math.min(MessageCipher.SUPPORTED_VERSION, message.getMaxVersion()));
+    sessionRecord.setNegotiatedSessionVersion(sessionRecord.getSessionVersion());
 
     Log.w("KeyExchangeUtil", "Setting session version: " + Math.min(MessageCipher.SUPPORTED_VERSION, message.getMaxVersion()));
 

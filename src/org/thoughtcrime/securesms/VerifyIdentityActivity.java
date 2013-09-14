@@ -66,8 +66,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   private void initializeRemoteIdentityKey() {
-    SessionRecord sessionRecord = new SessionRecord(this, masterSecret, recipient);
-    IdentityKey identityKey     = sessionRecord.getIdentityKey();
+    IdentityKey identityKey = getIntent().getParcelableExtra("remote_identity");
+
+    if (identityKey == null) {
+      SessionRecord sessionRecord = new SessionRecord(this, masterSecret, recipient);
+      identityKey = sessionRecord.getIdentityKey();
+    }
 
     if (identityKey == null) {
       remoteIdentityFingerprint.setText(R.string.VerifyIdentityActivity_recipient_has_no_identity_key);
