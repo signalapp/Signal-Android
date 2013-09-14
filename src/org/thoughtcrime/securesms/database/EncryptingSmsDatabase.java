@@ -96,6 +96,11 @@ public class EncryptingSmsDatabase extends SmsDatabase {
     return insertMessageInbox(message, type);
   }
 
+  public void updateBundleMessageBody(MasterSecret masterSecret, long messageId, String body) {
+    updateMessageBodyAndType(messageId, body, Types.TOTAL_MASK,
+                             Types.BASE_INBOX_TYPE | Types.ENCRYPTION_REMOTE_BIT | Types.SECURE_MESSAGE_BIT);
+  }
+
   public void updateMessageBody(MasterSecret masterSecret, long messageId, String body) {
     String encryptedBody = getEncryptedBody(masterSecret, body);
     updateMessageBodyAndType(messageId, encryptedBody, Types.ENCRYPTION_MASK,

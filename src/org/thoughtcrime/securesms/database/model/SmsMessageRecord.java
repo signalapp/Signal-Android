@@ -56,6 +56,12 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.ConversationItem_received_and_processed_key_exchange_message));
     } else if (isStaleKeyExchange()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_error_received_stale_key_exchange_message));
+    } else if (isCorruptedKeyExchange()) {
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_corrupted_key_exchange_message));
+    } else if (isInvalidVersionKeyExchange()) {
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version));
+    } else if (isBundleKeyExchange()) {
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process));
     } else if (isKeyExchange() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.ConversationListAdapter_key_exchange_message));
     } else if (isKeyExchange() && !isOutgoing()) {

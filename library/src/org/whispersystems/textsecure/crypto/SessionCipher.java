@@ -89,7 +89,14 @@ public class SessionCipher {
       throws InvalidMessageException
   {
     try {
-      KeyRecords records    = getKeyRecords(context, masterSecret, recipient);
+      KeyRecords records = getKeyRecords(context, masterSecret, recipient);
+
+      if (messageVersion < records.getSessionRecord().getNegotiatedSessionVersion()) {
+        throw new InvalidMessageException("Message version: " + messageVersion +
+                                          " but negotiated session version: "  +
+                                          records.getSessionRecord().getNegotiatedSessionVersion());
+      }
+
       SessionKey sessionKey = getSessionKey(masterSecret, Cipher.DECRYPT_MODE, messageVersion, localIdentityKey, records, recipientKeyId, senderKeyId);
       return new SessionCipherContext(records, sessionKey, senderKeyId,
                                       recipientKeyId, nextKey, counter,

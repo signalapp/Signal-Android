@@ -29,6 +29,7 @@ import org.whispersystems.textsecure.crypto.PublicKey;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Conversions;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 
@@ -70,20 +71,26 @@ public class KeyExchangeMessage {
     this.supportedVersion = MessageCipher.SUPPORTED_VERSION;
 		
     publicKey.setId(publicKey.getId() | (highIdBits << 12));
-		
+
+    byte[] versionBytes     = {Conversions.intsToByteHighAndLow(messageVersion, supportedVersion)};
     byte[] publicKeyBytes   = publicKey.serialize();
-    byte[] keyExchangeBytes = new byte[1 + publicKeyBytes.length];
-		
-    keyExchangeBytes[0]     = Conversions.intsToByteHighAndLow(messageVersion, supportedVersion);
-    System.arraycopy(publicKeyBytes, 0, keyExchangeBytes, 1, publicKeyBytes.length);
 
-    if (includeIdentitySignature(messageVersion, context)) 
-      keyExchangeBytes = IdentityKeyUtil.getSignedKeyExchange(context, masterSecret, keyExchangeBytes);
+    byte[] serializedBytes;
 
-    if (messageVersion < 1)
-      this.serialized = Base64.encodeBytes(keyExchangeBytes);
-    else
-      this.serialized = Base64.encodeBytesWithoutPadding(keyExchangeBytes);
+    if (includeIdentityNoSignature(messageVersion, context)) {
+      byte[] identityKey = IdentityKeyUtil.getIdentityKey(context).serialize();
+
+      serializedBytes = Util.combine(versionBytes, publicKeyBytes, identityKey);
+    } else if (includeIdentitySignature(messageVersion, context)) {
+      byte[] prolog          = Util.combine(versionBytes, publicKeyBytes);
+
+      serializedBytes = IdentityKeyUtil.getSignedKeyExchange(context, masterSecret, prolog);
+    } else {
+      serializedBytes = Util.combine(versionBytes, publicKeyBytes);
+    }
+
+    if (messageVersion < 1) this.serialized = Base64.encodeBytes(serializedBytes);
+    else                    this.serialized = Base64.encodeBytesWithoutPadding(serializedBytes);
   }
 	
   public KeyExchangeMessage(String messageBody) throws InvalidVersionException, InvalidKeyException {
@@ -104,23 +111,33 @@ public class KeyExchangeMessage {
 			
       if (keyBytes.length <= PublicKey.KEY_SIZE + 1) {
         this.identityKey = null;
-      } else {
+      } else if (messageVersion == 1) {
         try {
           this.identityKey = IdentityKeyUtil.verifySignedKeyExchange(keyBytes);
         } catch (InvalidKeyException ike) {
           Log.w("KeyUtil", ike);
           this.identityKey = null;
         }
-      }			
+      } else if (messageVersion == 2) {
+        try {
+          this.identityKey = new IdentityKey(keyBytes, 1 + PublicKey.KEY_SIZE);
+        } catch (InvalidKeyException ike) {
+          Log.w("KeyUtil", ike);
+          this.identityKey = null;
+        }
+      }
     } catch (IOException ioe) {
       throw new InvalidKeyException(ioe);
     }
   }
 	
   private static boolean includeIdentitySignature(int messageVersion, Context context) {
-    return IdentityKeyUtil.hasIdentityKey(context) && (messageVersion >= 1);
+    return IdentityKeyUtil.hasIdentityKey(context) && (messageVersion == 1);
   }
 
+  private static boolean includeIdentityNoSignature(int messageVersion, Context context) {
+    return IdentityKeyUtil.hasIdentityKey(context) && (messageVersion >= 2);
+  }
 	
   public PublicKey getPublicKey() {
     return publicKey;
