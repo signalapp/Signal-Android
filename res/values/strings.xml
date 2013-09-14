@@ -317,6 +317,22 @@
     <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
     <string name="MessageNotifier_mark_as_read">Mark as read</string>
 
+    <!-- ViewLocalIdentityActivity -->
+    <string name="ViewLocalIdentityActivity_regenerating">Regenerating...</string>
+    <string name="ViewLocalIdentityActivity_regenerating_identity_key">Regenerating identity
+        key...
+    </string>
+    <string name="ViewLocalIdentityActivity_regenerated">Regenerated!</string>
+    <string name="ViewLocalIdentityActivity_reset_identity_key">Reset Identity Key?</string>
+    <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+        Caution! By regenerating your identity key, your current identity key will be permanently lost,
+        and your existing contacts will receive warnings when establishing new secure sessions with you.
+        Are you sure you would like to continue?
+    </string>
+    <string name="ViewLocalIdentityActivity_cancel">Cancel</string>
+    <string name="ViewLocalIdentityActivity_continue">Continue</string>
+
+
     <!-- SmsReceiver -->
     <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Currently unable to send your SMS message. It will be sent once service becomes available.</string>
     
@@ -396,6 +412,7 @@
     <string name="import_fragment__import_a_plaintext_backup_file">
         Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
 
+    <string name="local_identity__regenerate_key">Regenerate Key</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSPHRASE</string>

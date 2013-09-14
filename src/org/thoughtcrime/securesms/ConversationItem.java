@@ -52,8 +52,8 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.Emoji;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.whispersystems.textsecure.util.FutureTaskListener;
+import org.whispersystems.textsecure.util.ListenableFutureTask;
 
 import java.io.File;
 import java.io.FileOutputStream;

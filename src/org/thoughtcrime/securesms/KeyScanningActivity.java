@@ -28,8 +28,8 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+import org.whispersystems.textsecure.zxing.integration.IntentIntegrator;
+import org.whispersystems.textsecure.zxing.integration.IntentResult;
 
 /**
  * Activity for initiating/receiving key QR code scans.

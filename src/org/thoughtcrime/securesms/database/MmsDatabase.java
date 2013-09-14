@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.whispersystems.textsecure.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.whispersystems.textsecure.util.Util;
 
@@ -51,6 +51,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.ref.SoftReference;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -63,6 +64,7 @@ import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.NotificationInd;
 import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduHeaders;
+import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendReq;
 
 // XXXX Clean up MMS efficiency:
@@ -284,11 +286,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   public SendReq[] getOutgoingMessages(MasterSecret masterSecret, long messageId)
       throws MmsException
   {
-    MmsAddressDatabase addr   = DatabaseFactory.getMmsAddressDatabase(context);
-    PartDatabase parts        = getPartDatabase(masterSecret);
-    SQLiteDatabase database   = databaseHelper.getReadableDatabase();
-    MasterCipher masterCipher = masterSecret == null ? null : new MasterCipher(masterSecret);
-    Cursor cursor             = null;
+    MmsAddressDatabase addr         = DatabaseFactory.getMmsAddressDatabase(context);
+    PartDatabase       partDatabase = getPartDatabase(masterSecret);
+    SQLiteDatabase     database     = databaseHelper.getReadableDatabase();
+    MasterCipher       masterCipher = masterSecret == null ? null : new MasterCipher(masterSecret);
+    Cursor             cursor       = null;
 
 
     String selection;
@@ -317,8 +319,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
         String messageText  = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
         PduHeaders headers  = getHeadersFromCursor(cursor);
         addr.getAddressesForId(messageId, headers);
-        PduBody body       = parts.getParts(messageId, true);
 
+        PduBody body = getPartsAsBody(partDatabase.getParts(messageId, true));
 
         try {
           if (!Util.isEmpty(messageText) && Types.isSymmetricEncryption(outboxType)) {
@@ -838,9 +840,12 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
           if (masterSecret == null)
             return null;
 
-          PduBody body = getPartDatabase(masterSecret).getParts(id, false);
+          PduBody   body      = getPartsAsBody(getPartDatabase(masterSecret).getParts(id, false));
           SlideDeck slideDeck = new SlideDeck(context, masterSecret, body);
-          slideCache.put(id, new SoftReference<SlideDeck>(slideDeck));
+
+          if (!body.containsPushInProgress()) {
+            slideCache.put(id, new SoftReference<SlideDeck>(slideDeck));
+          }
 
           return slideDeck;
         }
@@ -879,6 +884,16 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     public void close() {
       cursor.close();
     }
+  }
+
+  private PduBody getPartsAsBody(List<Pair<Long, PduPart>> parts) {
+    PduBody body = new PduBody();
+
+    for (Pair<Long, PduPart> part : parts) {
+      body.addPart(part.second);
+    }
+
+    return body;
   }
 
 }

@@ -1,6 +1,5 @@
-package org.thoughtcrime.securesms.util;
+package org.whispersystems.textsecure.util;
 
-import java.lang.ref.WeakReference;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;

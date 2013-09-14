@@ -1,15 +1,13 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.util.Log;
-import android.util.Pair;
-
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
+import org.whispersystems.textsecure.util.Base64;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
 
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
@@ -28,9 +26,9 @@ public class IncomingMediaMessage {
     this.body    = retreived.getBody();
   }
 
-  public IncomingMediaMessage(String localNumber, IncomingPushMessage message,
-                              List<Pair<File, String>> attachments)
-      throws IOException
+  public IncomingMediaMessage(MasterSecret masterSecret, String localNumber,
+                              IncomingPushMessage message,
+                              PushMessageContent messageContent)
   {
     this.headers = new PduHeaders();
     this.body    = new PduBody();
@@ -39,32 +37,29 @@ public class IncomingMediaMessage {
     this.headers.appendEncodedStringValue(new EncodedStringValue(localNumber), PduHeaders.TO);
 
     for (String destination : message.getDestinations()) {
-      if (!destination.equals(localNumber)) {
-        this.headers.appendEncodedStringValue(new EncodedStringValue(destination), PduHeaders.CC);
-      }
+      this.headers.appendEncodedStringValue(new EncodedStringValue(destination), PduHeaders.CC);
     }
 
     this.headers.setLongInteger(message.getTimestampMillis() / 1000, PduHeaders.DATE);
 
-    if (message.getBody() != null && message.getBody().length > 0) {
+    if (messageContent.getBody() != null && messageContent.getBody().length() > 0) {
       PduPart text = new PduPart();
-      text.setData(message.getBody());
-      text.setContentType("text/plain".getBytes(CharacterSets.MIMENAME_ISO_8859_1));
+      text.setData(Util.toIsoBytes(messageContent.getBody()));
+      text.setContentType(Util.toIsoBytes("text/plain"));
       body.addPart(text);
     }
 
-    if (attachments != null) {
-      for (Pair<File, String> attachment : attachments) {
-        PduPart               media      = new PduPart();
-        FileInputStream       fin        = new FileInputStream(attachment.first);
-        byte[]                data       = Util.readFully(fin);
+    if (messageContent.getAttachmentsCount() > 0) {
+      for (PushMessageContent.AttachmentPointer attachment : messageContent.getAttachmentsList()) {
+        PduPart media        = new PduPart();
+        byte[]  encryptedKey = new MasterCipher(masterSecret).encryptBytes(attachment.getKey().toByteArray());
 
-        Log.w("IncomingMediaMessage", "Adding part: " + attachment.second + " with length: " + data.length);
+        media.setContentType(Util.toIsoBytes(attachment.getContentType()));
+        media.setContentLocation(Util.toIsoBytes(String.valueOf(attachment.getId())));
+        media.setContentDisposition(Util.toIsoBytes(Base64.encodeBytes(encryptedKey)));
+        media.setPendingPush(true);
 
-        media.setContentType(attachment.second.getBytes(CharacterSets.MIMENAME_ISO_8859_1));
-        media.setData(data);
         body.addPart(media);
-        attachment.first.delete();
       }
     }
   }

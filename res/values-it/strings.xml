@@ -162,6 +162,7 @@
   <string name="MessageNotifier_error_delivering_message">C\'e stato un errore durante l\'invio del messagio</string>
   <string name="MessageNotifier_mark_all_as_read">Segna tutti come gia\' letto</string>
   <string name="MessageNotifier_mark_as_read">Segna come gia\' letto</string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">In questo momento non e\' possibile inviare il tuo messagio SMS. Sara\' inviato quando la communicazione e\' disponibile</string>
   <!--auto_initiate_activity-->

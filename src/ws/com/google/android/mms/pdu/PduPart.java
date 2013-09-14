@@ -122,6 +122,7 @@ public class PduPart {
      private static final String TAG = "PduPart";
 
      private boolean isEncrypted;
+     private boolean isPendingPush;
      
      /**
       * Empty Constructor.
@@ -136,6 +137,14 @@ public class PduPart {
      
      public boolean getEncrypted() {
     	 return isEncrypted;
+     }
+
+     public void setPendingPush(boolean isPendingPush) {
+       this.isPendingPush = isPendingPush;
+     }
+
+     public boolean isPendingPush() {
+       return isPendingPush;
      }
      
      /**

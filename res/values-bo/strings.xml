@@ -149,6 +149,7 @@
   <string name="MessageNotifier_message_delivery_failed">འཕྲིན་ཐུང་བཏང་བ་དེ་འགྲོ་མི་འདུག </string>
   <string name="MessageNotifier_failed_to_deliver_message">འཕྲིན་ཐུང་གཏོང་ཐུབ་མ་སོང་། </string>
   <string name="MessageNotifier_error_delivering_message">འཕྲིན་ཐུང་གཏོང་བར་སྐྱོན་ཤོར་འདུག </string>
+  <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">གནས་སྐབས་རིང་ཁྱེད་ཀྱི་སྣ་མང་བརྒྱུད་ལམ་འཕྲིན་ཐུང་དེ་གཏོང་ཐུབ་པ་མི་འདུག དྲ་འབྲེལ་སླར་གསོ་བྱུང་མཚམས་གཏོང་གི་རེད། </string>
   <!--auto_initiate_activity-->

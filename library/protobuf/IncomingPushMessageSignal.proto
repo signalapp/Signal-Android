@@ -7,13 +7,18 @@ message IncomingPushMessageSignal {
   optional uint32 type = 1;
   optional string source = 2;
   repeated string destinations = 3;
-  optional bytes message = 4;
+  optional uint64 timestamp = 4;
+  optional bytes message = 5; // Contains an encrypted IncomingPushMessageContent
+}
+
+message PushMessageContent {
+  optional string body = 1;
 
   message AttachmentPointer {
-    optional string contentType = 1;
-    optional string key = 2;
+    optional fixed64 id = 1;
+    optional string contentType = 2;
+    optional bytes key = 3;
   }
 
-  repeated AttachmentPointer attachments = 5;
-  optional uint64 timestamp = 6;
+  repeated AttachmentPointer attachments = 2;
 }

@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
-import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
@@ -42,7 +41,6 @@ import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
-import org.whispersystems.textsecure.push.PushMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 
 import java.io.IOException;
@@ -56,23 +54,6 @@ public class SmsReceiver {
 
   public SmsReceiver(Context context) {
     this.context = context;
-  }
-
-  private IncomingTextMessage assembleMessageFragments(List<IncomingTextMessage> messages, int pushType) {
-    if (messages.size() != 1) return assembleMessageFragments(messages);
-
-    IncomingTextMessage message = messages.get(0);
-
-    switch (pushType) {
-      case PushMessage.TYPE_MESSAGE_CIPHERTEXT:
-        return new IncomingEncryptedMessage(message, message.getMessageBody());
-      case PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE:
-        return new IncomingPreKeyBundleMessage(message, message.getMessageBody());
-      case PushMessage.TYPE_MESSAGE_KEY_EXCHANGE:
-        return new IncomingKeyExchangeMessage(message, message.getMessageBody());
-    }
-
-    return message;
   }
 
   private IncomingTextMessage assembleMessageFragments(List<IncomingTextMessage> messages) {
@@ -201,12 +182,7 @@ public class SmsReceiver {
 
   private void handleReceiveMessage(MasterSecret masterSecret, Intent intent) {
     List<IncomingTextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
-    int                       pushType     = intent.getIntExtra("push_type", -1);
-
-    IncomingTextMessage message;
-
-    if (pushType != -1) message = assembleMessageFragments(messagesList, pushType);
-    else                message = assembleMessageFragments(messagesList);
+    IncomingTextMessage       message      = assembleMessageFragments(messagesList);
 
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);

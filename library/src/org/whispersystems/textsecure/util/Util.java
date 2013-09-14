@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Util {
@@ -43,6 +44,33 @@ public class Util {
 
     return combined;
 
+  }
+
+  public static byte[][] split(byte[] input, int firstLength, int secondLength) {
+    byte[][] parts = new byte[2][];
+
+    parts[0] = new byte[firstLength];
+    System.arraycopy(input, 0, parts[0], 0, firstLength);
+
+    parts[1] = new byte[secondLength];
+    System.arraycopy(input, firstLength, parts[1], 0, secondLength);
+
+    return parts;
+  }
+
+  public static byte[][] split(byte[] input, int firstLength, int secondLength, int thirdLength) {
+    byte[][] parts = new byte[3][];
+
+    parts[0] = new byte[firstLength];
+    System.arraycopy(input, 0, parts[0], 0, firstLength);
+
+    parts[1] = new byte[secondLength];
+    System.arraycopy(input, firstLength, parts[1], 0, secondLength);
+
+    parts[2] = new byte[thirdLength];
+    System.arraycopy(input, firstLength + secondLength, parts[2], 0, thirdLength);
+
+    return parts;
   }
 
   public static boolean isEmpty(String value) {
@@ -94,6 +122,18 @@ public class Util {
     return new String(bout.toByteArray());
   }
 
+  public static void readFully(InputStream in, byte[] buffer) throws IOException {
+    int offset = 0;
+
+    for (;;) {
+      int read = in.read(buffer, offset, buffer.length - offset);
+
+      if (read + offset < buffer.length) offset += read;
+      else                		           return;
+    }
+  }
+
+
   public static void copy(InputStream in, OutputStream out) throws IOException {
     byte[] buffer = new byte[4096];
     int read;
@@ -118,6 +158,22 @@ public class Util {
     }
 
     return result.toString();
+  }
+
+  public static List<String> split(String source, String delimiter) {
+    List<String> results = new LinkedList<String>();
+
+    if (isEmpty(source)) {
+      return results;
+    }
+
+    String[] elements = source.split(delimiter);
+
+    for (String element : elements) {
+      results.add(element);
+    }
+
+    return results;
   }
 
   public static SecureRandom getSecureRandom() {
