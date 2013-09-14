@@ -44,7 +44,8 @@ public class SessionRecord extends Record {
   private int counter;
   private byte[] localFingerprint;
   private byte[] remoteFingerprint;
-  private int sessionVersion;
+  private int negotiatedSessionVersion;
+  private int currentSessionVersion;
 
   private IdentityKey identityKey;
   private SessionKey sessionKeyRecord;
@@ -59,8 +60,8 @@ public class SessionRecord extends Record {
 
   public SessionRecord(Context context, MasterSecret masterSecret, long recipientId) {
     super(context, SESSIONS_DIRECTORY, recipientId+"");
-    this.masterSecret   = masterSecret;
-    this.sessionVersion = 31337;
+    this.masterSecret          = masterSecret;
+    this.currentSessionVersion = 31337;
     loadData();
   }
 
@@ -91,11 +92,19 @@ public class SessionRecord extends Record {
   }
 
   public int getSessionVersion() {
-    return (sessionVersion == 31337 ? 0 : sessionVersion);
+    return (currentSessionVersion == 31337 ? 0 : currentSessionVersion);
+  }
+
+  public int getNegotiatedSessionVersion() {
+    return negotiatedSessionVersion;
+  }
+
+  public void setNegotiatedSessionVersion(int sessionVersion) {
+    this.negotiatedSessionVersion = sessionVersion;
   }
 
   public void setSessionVersion(int sessionVersion) {
-    this.sessionVersion = sessionVersion;
+    this.currentSessionVersion = sessionVersion;
   }
 
   public int getCounter() {
@@ -169,10 +178,11 @@ public class SessionRecord extends Record {
         writeInteger(counter, out);
         writeBlob(localFingerprint, out);
         writeBlob(remoteFingerprint, out);
-        writeInteger(sessionVersion, out);
+        writeInteger(currentSessionVersion, out);
         writeIdentityKey(out);
         writeInteger(verifiedSessionKey ? 1 : 0, out);
         writeInteger(prekeyBundleRequired ? 1 : 0, out);
+        writeInteger(negotiatedSessionVersion, out);
 
         if (sessionKeyRecord != null)
           writeBlob(sessionKeyRecord.serialize(), out);
@@ -193,20 +203,20 @@ public class SessionRecord extends Record {
 
         // Sigh, always put a version number on everything.
         if (!isValidVersionMarker(versionMarker)) {
-          this.counter           = versionMarker;
-          this.localFingerprint  = readBlob(in);
-          this.remoteFingerprint = readBlob(in);
-          this.sessionVersion    = 31337;
+          this.counter               = versionMarker;
+          this.localFingerprint      = readBlob(in);
+          this.remoteFingerprint     = readBlob(in);
+          this.currentSessionVersion = 31337;
 
           if (in.available() != 0)
             this.sessionKeyRecord = new SessionKey(readBlob(in), masterSecret);
 
           in.close();
         } else {
-          this.counter           = readInteger(in);
-          this.localFingerprint  = readBlob(in);
-          this.remoteFingerprint = readBlob(in);
-          this.sessionVersion    = readInteger(in);
+          this.counter               = readInteger(in);
+          this.localFingerprint      = readBlob   (in);
+          this.remoteFingerprint     = readBlob   (in);
+          this.currentSessionVersion = readInteger(in);
 
           if (versionMarker >=  0X55555556) {
             readIdentityKey(in);
@@ -214,7 +224,10 @@ public class SessionRecord extends Record {
           }
 
           if (versionMarker >= 0X55555557) {
-            this.prekeyBundleRequired = (readInteger(in) == 1);
+            this.prekeyBundleRequired     = (readInteger(in) == 1);
+            this.negotiatedSessionVersion = readInteger(in);
+          } else {
+            this.negotiatedSessionVersion = currentSessionVersion;
           }
 
           if (in.available() != 0)

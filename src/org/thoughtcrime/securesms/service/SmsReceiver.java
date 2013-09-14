@@ -120,8 +120,6 @@ public class SmsReceiver {
         context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
 
         return messageAndThreadId;
-      } else {
-        /// XXX
       }
     } catch (InvalidKeyException e) {
       Log.w("SmsReceiver", e);

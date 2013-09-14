@@ -18,7 +18,10 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
+import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.SmsTransportDetails;
+import org.thoughtcrime.securesms.transport.SmsTransport;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
@@ -99,7 +102,12 @@ public class PushReceiver {
         IncomingPushMessage bundledMessage = message.withBody(preKeyExchange.getBundledMessage());
         handleReceivedSecureMessage(masterSecret, bundledMessage);
       } else {
-        /// XXX
+        SmsTransportDetails transportDetails = new SmsTransportDetails();
+        String              encoded          = new String(transportDetails.getEncodedMessage(message.getBody()));
+        IncomingTextMessage textMessage      = new IncomingTextMessage(message, "");
+
+        textMessage = new IncomingPreKeyBundleMessage(textMessage, encoded);
+        DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, textMessage);
       }
     } catch (InvalidKeyException e) {
       Log.w("SmsReceiver", e);
@@ -118,6 +126,7 @@ public class PushReceiver {
                                      boolean secure)
   {
     try {
+      Log.w("PushReceiver", "Processing: " + new String(message.getBody()));
       PushMessageContent messageContent = PushMessageContent.parseFrom(message.getBody());
 
       if (messageContent.getAttachmentsCount() > 0 || message.getDestinations().size() > 0) {
