@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Vous devez renseigner un mot de passe</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Phrase de passe incorrecte !</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Vous devez indiquer une URL MMSC de votre opérateur.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Paramètres MMS mis à jour</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vous pouvez modifier ces valeurs depuis le menu des paramètres de TextSecure à tout moment.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Vous devez indiquer une URL MMSC de votre opérateur.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Paramètres MMS mis à jour</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vous pouvez modifier ces valeurs depuis le menu des paramètres de TextSecure à tout moment.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La\nsignature de cet échange de clé est différente de celle que vous avez précédemment reçue de ce\ncontact. Cela peut signifier soit que quelqu’un essaie d’intercepter votre communication, soit\nque ce contact a simplement réinstallé TextSecure et a maintenant une nouvelle clé d’identité.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Peut-être devriez-vous\nvérifier ce contact.</string>
@@ -251,11 +251,11 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">PHRASE DE PASSE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure nécessite que les paramètres APN distribuent les messages multimédia via votre opérateur mobile. Votre appareil ne rend pas ces informations disponibles, ce qui est parfois le cas des appareils verrouillés et d’autres configurations restrictives.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Pour envoyer des messages multimédia, merci de compléter les informations sur l’APN ci-dessous. Les valeurs de votre opérateur peuvent généralement être trouvées en cherchant \'APN &amp;lt;votre opérateur&amp;gt;\'. Vous aurez besoin de faire cela une seule fois.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (OBLIGATOIRE) :</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">HÔTE PROXY MMS (OPTIONNEL) :</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">PORT PROXY MMS (OPTIONNEL) :</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure nécessite que les paramètres APN distribuent les messages multimédia via votre opérateur mobile. Votre appareil ne rend pas ces informations disponibles, ce qui est parfois le cas des appareils verrouillés et d’autres configurations restrictives.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pour envoyer des messages multimédia, merci de compléter les informations sur l’APN ci-dessous. Les valeurs de votre opérateur peuvent généralement être trouvées en cherchant \'APN &amp;lt;votre opérateur&amp;gt;\'. Vous aurez besoin de faire cela une seule fois.</string>
+  <string name="prompt_mms_activity__mmsc_url_required">URL MMSC (OBLIGATOIRE) :</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">HÔTE PROXY MMS (OPTIONNEL) :</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">PORT PROXY MMS (OPTIONNEL) :</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Compléter</string>
   <!--recipients_panel-->
@@ -340,8 +340,8 @@
   <string name="preferences__advanced">Avancé</string>
   <string name="preferences__passphrase">Phrase de passe</string>
   <string name="preferences__advanced_mms_access_point_names">MMSC par défaut</string>
-  <string name="preferences__enable_fallback_mmsc">Activer le MMSC par défaut</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Utiliser les informations MMSC configurée ici lorsque les informations APN ne sont pas disponibles</string>
+  <string name="preferences__enable_manual_mms">Activer le MMSC par défaut</string>
+  <string name="preferences__override_system_mms_settings">Utiliser les informations MMSC configurée ici lorsque les informations APN ne sont pas disponibles</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Obligatoire)</string>
   <string name="preferences__mms_proxy_host_optional">Hôte Proxy MMS (Optionnel)</string>
   <string name="preferences__mms_proxy_port_optional">Port Proxy MMS (Optionnel)</string>

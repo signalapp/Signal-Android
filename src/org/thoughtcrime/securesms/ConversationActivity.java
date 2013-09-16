@@ -465,8 +465,16 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
       builder.show();
     } else {
-      startActivity(new Intent(this, PromptApnActivity.class));
+      handleManualMmsRequired();
     }
+  }
+
+  private void handleManualMmsRequired() {
+    Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
+
+    Intent intent = new Intent(this, PromptMmsActivity.class);
+    intent.putExtras(getIntent().getExtras());
+    startActivity(intent);
   }
 
   ///// Initializers
@@ -849,7 +857,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       String body             = getMessage();
       long allocatedThreadId;
 
-      if (attachmentManager.isAttachmentPresent()) {
+      if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
+        handleManualMmsRequired();
+        return;
+      } else if (attachmentManager.isAttachmentPresent()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, attachmentManager.getSlideDeck(), body,
                                                   distributionType, isEncryptedConversation && !forcePlaintext);
@@ -870,7 +881,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
                                                message, threadId);
       }
-
       sendComplete(recipients, allocatedThreadId);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,

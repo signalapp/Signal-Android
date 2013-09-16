@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Trebuie specificata o parola</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parola Incorecta!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Trebuie sa specifici un URL MMSC pentru operatorul tau.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Setarile MMS au fost actualizate</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Poti modifica aceste valori in orice moment din meniul Setari al TextSecure.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Trebuie sa specifici un URL MMSC pentru operatorul tau.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Setarile MMS au fost actualizate</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Poti modifica aceste valori in orice moment din meniul Setari al TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Semnatura digitala din acest schimb de chei este diferita fata de ce ai primit anterior de la aceasta persoana. Asta poate insemna ca cineva incearca sa intercepteze comunicatia sau ca aceasta persoana a reinstalat TextSecure si acum are o noua cheie de identitate.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Probabil ca doresti sa verifici aceasta persoana.</string>
@@ -250,11 +250,11 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">PAROLA TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Deblocheaza</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure are nevoie de setari APN pentru a trimite mesaje multimedia prin operatorul wireless. Acest aparat nu ofera informatiile necesare, lucru care se poate intampla uneori pentru dispozitive blocate sau alte configuratii restrictive.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Pentru a trimite mesaje multimedia te rog sa completezi mai jos informatiile APN necesare. Valorile corecte pentru operatorul tau pot fi gasite deseori cautand dupa \'&amp;lt;operatorul tau&amp;gt; APN\'. Acest lucru trebuie facut o singura data.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (Necesar):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">Host proxy MMS (Optional):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">Port proxy MMS (Optional):</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure are nevoie de setari APN pentru a trimite mesaje multimedia prin operatorul wireless. Acest aparat nu ofera informatiile necesare, lucru care se poate intampla uneori pentru dispozitive blocate sau alte configuratii restrictive.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pentru a trimite mesaje multimedia te rog sa completezi mai jos informatiile APN necesare. Valorile corecte pentru operatorul tau pot fi gasite deseori cautand dupa \'&amp;lt;operatorul tau&amp;gt; APN\'. Acest lucru trebuie facut o singura data.</string>
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (Necesar):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">Host proxy MMS (Optional):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">Port proxy MMS (Optional):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Complet</string>
   <!--recipients_panel-->
@@ -339,8 +339,8 @@
   <string name="preferences__advanced">Avansat</string>
   <string name="preferences__passphrase">Parola</string>
   <string name="preferences__advanced_mms_access_point_names">MMSC de rezerva</string>
-  <string name="preferences__enable_fallback_mmsc">Activeaza MMSC de rezerva</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Foloseste informatiile MMSC configurate aici cand informatiile despre sistemul APN nu sunt disponibile</string>
+  <string name="preferences__enable_manual_mms">Activeaza MMSC de rezerva</string>
+  <string name="preferences__override_system_mms_settings">Foloseste informatiile MMSC configurate aici cand informatiile despre sistemul APN nu sunt disponibile</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Necesar)</string>
   <string name="preferences__mms_proxy_host_optional">Host proxy MMS (Optional)</string>
   <string name="preferences__mms_proxy_port_optional">Port proxy MMS (Optional)</string>

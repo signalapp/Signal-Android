@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference android:key="pref_enable_manual_mms"
+                        android:defaultValue="false"
+                        android:title="@string/preferences__enable_manual_mms"
+                        android:summary="@string/preferences__override_system_mms_settings"/>
+
+    <EditTextPreference android:key="pref_apn_mmsc_host"
+                        android:title="@string/preferences__mmsc_url_required"
+                        android:dependency="pref_enable_manual_mms"
+                        android:inputType="textUri" />
+
+    <EditTextPreference android:key="pref_apn_mms_proxy"
+                        android:title="@string/preferences__mms_proxy_host_optional"
+                        android:dependency="pref_enable_manual_mms"
+                        android:inputType="textUri" />
+
+    <EditTextPreference android:key="pref_apn_mms_proxy_port"
+                        android:title="@string/preferences__mms_proxy_port_optional"
+                        android:dependency="pref_enable_manual_mms"
+                        android:inputType="number" />
+</PreferenceScreen>

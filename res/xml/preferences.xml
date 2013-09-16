@@ -159,24 +159,7 @@
                            android:title="@string/preferences__complete_key_exchanges"
                            android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
 
-        <PreferenceScreen android:title="@string/preferences__advanced_mms_access_point_names">
-            <CheckBoxPreference android:key="pref_use_local_apns"
-                                android:defaultValue="false"
-                                android:title="@string/preferences__enable_fallback_mmsc"
-                                android:summary="@string/preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable"/>
-
-            <EditTextPreference android:key="pref_apn_mmsc_host"
-                                android:title="@string/preferences__mmsc_url_required"
-                                android:dependency="pref_use_local_apns" />
-
-            <EditTextPreference android:key="pref_apn_mms_proxy"
-                                android:title="@string/preferences__mms_proxy_host_optional"
-                                android:dependency="pref_use_local_apns" />
-
-            <EditTextPreference android:key="pref_apn_mms_proxy_port"
-                                android:title="@string/preferences__mms_proxy_port_optional"
-                                android:dependency="pref_use_local_apns"
-                                android:inputType="number" />
-        </PreferenceScreen>
+        <Preference android:key="pref_mms_preferences"
+                    android:title="@string/preferences__advanced_mms_access_point_names"/>
     </PreferenceCategory>
 </PreferenceScreen>

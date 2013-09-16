@@ -49,11 +49,14 @@ public class MmsCommunication {
   {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-    if (preferences.getBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, false)) {
+    if (preferences.getBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, false)) {
       String mmsc = preferences.getString(ApplicationPreferencesActivity.MMSC_HOST_PREF, null);
 
-      if (mmsc == null || !mmsc.startsWith("http"))
-        throw new ApnUnavailableException("Malformed locally configured MMSC: " + mmsc);
+      if (mmsc == null)
+        throw new ApnUnavailableException("Malformed locally configured MMSC.");
+
+      if (!mmsc.startsWith("http"))
+        mmsc = "http://" + mmsc;
 
       String proxy = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF, null);
       String port  = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF, null);
@@ -69,7 +72,7 @@ public class MmsCommunication {
   {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-    if (preferences.getBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, false)) {
+    if (preferences.getBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, false)) {
       return getLocallyConfiguredMmsConnectionParameters(context);
     } else {
       MmsConnectionParameters params = ApnDefaults.getMmsConnectionParameters(context);

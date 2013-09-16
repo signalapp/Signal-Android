@@ -92,10 +92,11 @@ public class ConversationItem extends LinearLayout {
   private  TextView  mmsDownloadingLabel;
   private  ListenableFutureTask<SlideDeck> slideDeck;
 
-  private final FailedIconClickListener failedIconClickListener   = new FailedIconClickListener();
-  private final MmsDownloadClickListener mmsDownloadClickListener = new MmsDownloadClickListener();
-  private final ClickListener clickListener                       = new ClickListener();
-  private final Handler handler                                   = new Handler();
+  private final FailedIconClickListener failedIconClickListener         = new FailedIconClickListener();
+  private final MmsDownloadClickListener mmsDownloadClickListener       = new MmsDownloadClickListener();
+  private final MmsPreferencesClickListener mmsPreferencesClickListener = new MmsPreferencesClickListener();
+  private final ClickListener clickListener                             = new ClickListener();
+  private final Handler handler                                         = new Handler();
   private final Context context;
 
   public ConversationItem(Context context) {
@@ -168,7 +169,7 @@ public class ConversationItem extends LinearLayout {
 
   private void setBodyText(MessageRecord messageRecord) {
     bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
-                     TextView.BufferType.SPANNABLE);
+        TextView.BufferType.SPANNABLE);
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
@@ -203,8 +204,8 @@ public class ConversationItem extends LinearLayout {
 
     if (!messageRecord.isOutgoing() && messageRecord.getRecipients().isSingleRecipient()) {
       checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-                           messageRecord.getBody().getBody(),
-                           messageRecord.getThreadId());
+          messageRecord.getBody().getBody(),
+          messageRecord.getThreadId());
     }
   }
 
@@ -236,6 +237,11 @@ public class ConversationItem extends LinearLayout {
       mmsDownloadingLabel.setText(MmsDatabase.Status.getLabelForStatus(context, messageRecord.getStatus()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
+
+      if (MmsDatabase.Status.isHardError(messageRecord.getStatus()) && !messageRecord.isOutgoing())
+        setOnClickListener(mmsDownloadClickListener);
+      else if (MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE == messageRecord.getStatus() && !messageRecord.isOutgoing())
+        setOnClickListener(mmsPreferencesClickListener);
     }
   }
 
@@ -313,7 +319,7 @@ public class ConversationItem extends LinearLayout {
         if (recipient.getContactUri() != null) {
           QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
         } else {
-          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
+          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT, Uri.fromParts("tel", recipient.getNumber(), null));
           context.startActivity(intent);
         }
       }
@@ -501,6 +507,16 @@ public class ConversationItem extends LinearLayout {
       intent.putExtra("thread_id", notificationRecord.getThreadId());
       intent.setAction(SendReceiveService.DOWNLOAD_MMS_ACTION);
       context.startService(intent);
+    }
+  }
+
+  private class MmsPreferencesClickListener implements View.OnClickListener {
+    public void onClick(View v) {
+      Intent intent = new Intent(context, PromptMmsActivity.class);
+      intent.putExtra("message_id", messageRecord.getId());
+      intent.putExtra("thread_id", messageRecord.getThreadId());
+      intent.putExtra("automatic", true);
+      context.startActivity(intent);
     }
   }
 

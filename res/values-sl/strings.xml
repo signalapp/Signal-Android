@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Določiti morate geslo</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neveljavno geslo!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Navesti morate MMSC URL vašega operaterja.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Nastavitve MMS posodobljene</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vnešeno lahko kadarkoli popravite v nastavitvah TextSecure.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Navesti morate MMSC URL vašega operaterja.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Nastavitve MMS posodobljene</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vnešeno lahko kadarkoli popravite v nastavitvah TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis pri tej izmenjavi ključev se razlikuje od tistih pri predhodno izmenjanih ključih s to osebo. To lahko pomeni, da nekdo prestreza komunikacijo, ali pa, da je oseba ponovno namestila TextSecure in ima zdaj nov identifikacijski ključ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Morda bi želeli overoviti ta stik.</string>
@@ -258,11 +258,11 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">GESLO TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Odkleni</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">Za posredovanje sporočil preko vašega mobilnega operaterja potrebuje TextSecure ustrezne nastavitve APN. Pri vaši napravi ti podatki niso na voljo. To je značilno predvsem za zaklenjene naprave ali različne omejene konfiguracije.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Za pošiljanje multimedijskih sporočil vnesite ustrezne nastavitve APN. Podatke za vašega operaterja lahko verjetno najdete s poizvedbo za \'&amp;lt;vaš operater&amp;gt; APN\'. To morate storiti le enkrat.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (ZAHTEVANO):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">GOSTITELJ POSRED. STREŽNIKA MMS (IZBIRNO):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">VRATA POSRED. STREŽNIKA MMS (IZBIRNO):</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Za posredovanje sporočil preko vašega mobilnega operaterja potrebuje TextSecure ustrezne nastavitve APN. Pri vaši napravi ti podatki niso na voljo. To je značilno predvsem za zaklenjene naprave ali različne omejene konfiguracije.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Za pošiljanje multimedijskih sporočil vnesite ustrezne nastavitve APN. Podatke za vašega operaterja lahko verjetno najdete s poizvedbo za \'&amp;lt;vaš operater&amp;gt; APN\'. To morate storiti le enkrat.</string>
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (ZAHTEVANO):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">GOSTITELJ POSRED. STREŽNIKA MMS (IZBIRNO):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">VRATA POSRED. STREŽNIKA MMS (IZBIRNO):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Končano</string>
   <!--recipients_panel-->
@@ -347,8 +347,8 @@
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__passphrase">Geslo</string>
   <string name="preferences__advanced_mms_access_point_names">Nadomestni MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Omogoči nadomestni MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Uporabi tu izbrane MMSC nastavitve kadar sistemske APN nastavitve niso na voljo.</string>
+  <string name="preferences__enable_manual_mms">Omogoči nadomestni MMSC</string>
+  <string name="preferences__override_system_mms_settings">Uporabi tu izbrane MMSC nastavitve kadar sistemske APN nastavitve niso na voljo.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (zahtevano)</string>
   <string name="preferences__mms_proxy_host_optional">Posredniški strežnik za MMS (opcijsko)</string>
   <string name="preferences__mms_proxy_port_optional">Vrata posredniškega strežnika za MMS (opcijsko)</string>

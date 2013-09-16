@@ -86,10 +86,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">ཁྱེད་ཀྱིས་ངེས་པར་དུ་གསང་ཚིག་ཞིག་གཏན་འཁེལ་བྱོས། </string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">གསང་ཡིག་ཁུངས་ལྡན་རེད་མི་འདུག </string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">ཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ཐུང་སྐྱེལ་མཁན་དེའི་སླད་དུ་ཁྱེད་ཀྱིས་ངེས་པར་དུ MMSC URL ཞིག་དམིགས་འདོན་བྱེད་དགོས། </string>
-  <string name="PromptApnActivity_mms_settings_updated">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་གི་སྒྲིག་བཟོར་ཁ་སྣོན་བྱས་ཡོད། </string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">ཁྱེད་ཀྱིས་དུས་ཚོད་གང་རུང་དུ་གཡག་འཕྲིན་སྒྲིག་བཟོའི་ཐོ་བྱང་ནས་འདི་དག་གི་ངོ་བོར་འགྱུར་བ་བཏང་ཆོག </string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">ཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ཐུང་སྐྱེལ་མཁན་དེའི་སླད་དུ་ཁྱེད་ཀྱིས་ངེས་པར་དུ MMSC URL ཞིག་དམིགས་འདོན་བྱེད་དགོས། </string>
+  <string name="PromptMmsActivity_mms_settings_updated">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་གི་སྒྲིག་བཟོར་ཁ་སྣོན་བྱས་ཡོད། </string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">ཁྱེད་ཀྱིས་དུས་ཚོད་གང་རུང་དུ་གཡག་འཕྲིན་སྒྲིག་བཟོའི་ཐོ་བྱང་ནས་འདི་དག་གི་ངོ་བོར་འགྱུར་བ་བཏང་ཆོག </string>
   <!--ReceiveKeyActivity-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">ཁྱེད་ལ་ངོས་འཛིན་བྱེད་ཀྱི་ལྡེ་མིག་མི་འདུག</string>
@@ -196,11 +196,11 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">གཡག་འཕྲིན་གྱི་གསང་ཚིག </string>
   <string name="prompt_passphrase_activity__unlock">སྒོ་ཕྱེས། </string>
   <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">ཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ལམ་བརྒྱུད་འཕྲིན་ཐུང་གཏོང་བ་ལ་གཡག་འཕྲིན་ལ་ APN སྒྲིག་བཟོ་དགོས་ཀྱི་ཡོད། ཁྱེད་ཀྱི་ལག་ཆ་དེས་གནས་ཚུལ་འདི་ཐོབ་རུང་བ་བཟོས་མི་འདུག་ཅིང་། དེ་ནི་མཚམས་ལན་རེར་སྒོ་ལྕགས་བརྒྱབ་ཡོད་པའི་ལག་ཆའི་རིགས་དང་བཀག་རྒྱ་ཅན་གྱི་བཟོ་སྒྲིག་རིགས་ལ་བདེན་པ་ཡིན། </string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">བརྒྱུད་ལམ་གྱི་འཕྲིན་ཐུང་དག་གཏོང་བ་ལ་གཤམ་གྱི་ APN ཡི་གནས་ཚུལ་གལ་ཆེན་རིགས་ཚར་བ་བྱོས། \nཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ཐུང་འཁྱེར་མཁན་དེའི་ངོ་བོ་ནི་ \'&amp;lt;your carrier&amp;gt; APN\'.་བ་བརྒྱུད་གཏན་འབེབས་བྱེད་ཐུབ། ཁྱེད་ཀྱིས་འདི་ཐེངས་གཅིག་ལ་བྱས་ན་འགྲིག </string>
-  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (དགོས་ངེས་རེད།):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY PORT (གདམ་ཁ་ཅན།): </string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (གདམ་ཁ་ཅན):</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">ཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ལམ་བརྒྱུད་འཕྲིན་ཐུང་གཏོང་བ་ལ་གཡག་འཕྲིན་ལ་ APN སྒྲིག་བཟོ་དགོས་ཀྱི་ཡོད། ཁྱེད་ཀྱི་ལག་ཆ་དེས་གནས་ཚུལ་འདི་ཐོབ་རུང་བ་བཟོས་མི་འདུག་ཅིང་། དེ་ནི་མཚམས་ལན་རེར་སྒོ་ལྕགས་བརྒྱབ་ཡོད་པའི་ལག་ཆའི་རིགས་དང་བཀག་རྒྱ་ཅན་གྱི་བཟོ་སྒྲིག་རིགས་ལ་བདེན་པ་ཡིན། </string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">བརྒྱུད་ལམ་གྱི་འཕྲིན་ཐུང་དག་གཏོང་བ་ལ་གཤམ་གྱི་ APN ཡི་གནས་ཚུལ་གལ་ཆེན་རིགས་ཚར་བ་བྱོས། \nཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ཐུང་འཁྱེར་མཁན་དེའི་ངོ་བོ་ནི་ \'&amp;lt;your carrier&amp;gt; APN\'.་བ་བརྒྱུད་གཏན་འབེབས་བྱེད་ཐུབ། ཁྱེད་ཀྱིས་འདི་ཐེངས་གཅིག་ལ་བྱས་ན་འགྲིག </string>
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (དགོས་ངེས་རེད།):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY PORT (གདམ་ཁ་ཅན།): </string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (གདམ་ཁ་ཅན):</string>
   <!--receive_key_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to">གཏོང་ཡུལ།</string>
@@ -271,8 +271,8 @@
   <string name="preferences__normal">སྤྱིར་བཏང་། </string>
   <string name="preferences__slow">དལ་བོ། </string>
   <string name="preferences__custom">ཡུལ་སྲོལ། </string>
-  <string name="preferences__enable_fallback_mmsc">Fallback MMSC དེ་བསྐྱར་དུ་བྱེད་ནུས་ཅན་བཟོས། </string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">APN ཡི་མ་ལག་གི་བརྡ་ལན་དེ་མི་རྙེད་དུས། MMSC ཡི་བརྡ་ལན་སྡེབ་སྒྲིག་བྱས་བ་དེ་བེད་སྤྱོད་ཐོངས། </string>
+  <string name="preferences__enable_manual_mms">Fallback MMSC དེ་བསྐྱར་དུ་བྱེད་ནུས་ཅན་བཟོས། </string>
+  <string name="preferences__override_system_mms_settings">APN ཡི་མ་ལག་གི་བརྡ་ལན་དེ་མི་རྙེད་དུས། MMSC ཡི་བརྡ་ལན་སྡེབ་སྒྲིག་བྱས་བ་དེ་བེད་སྤྱོད་ཐོངས། </string>
   <string name="preferences__mmsc_url_required">MMSC URL(དགོས་ངེས་ཅན) </string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (གདམ་ཀ་ཅན) </string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (གདམ་ཀ་ཅན) </string>

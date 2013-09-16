@@ -150,6 +150,7 @@
     <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No connectivity available for MMS download, try again later...</string>
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
     <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>
+    <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings...</string>
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia Message</string>
@@ -165,10 +166,10 @@
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid Passphrase!</string>
     
-    <!-- PromptApnActivity -->
-    <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">You must specify an MMSC URL for your carrier.</string>
-    <string name="PromptApnActivity_mms_settings_updated">MMS Settings Updated</string>
-    <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">You can modify these values from the TextSecure settings menu at any time.</string>    
+    <!-- PromptMmsActivity -->
+    <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">You must specify an MMSC URL for your carrier.</string>
+    <string name="PromptMmsActivity_mms_settings_updated">MMS Settings Updated</string>
+    <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">You can modify these values from the TextSecure settings menu at any time.</string>
     
     <!-- ReceiveKeyActivity -->
     <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">The
@@ -229,6 +230,7 @@
     <string name="MmsDatabase_downloading_mms">Downloading MMS...</string>
     <string name="MmsDatabase_mms_download_failed">MMS Download failed!</string>
     <string name="MmsDatabase_downloading">Downloading...</string>
+    <string name="MmsDatabase_mms_pending_download">Tap and configure MMS settings to continue download.</string>
 
     <!-- MmsMessageRecord -->
     <string name="MmsMessageRecord_decrypting_mms_please_wait">Decrypting MMS, please wait...</string>
@@ -350,16 +352,20 @@
 
     <string name="local_identity__regenerate_key">Regenerate Key</string>
 
+    <!-- mms_preferences_activity -->
+    <string name="mms_preferences_activity__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
+
+
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSPHRASE</string>
     <string name="prompt_passphrase_activity__unlock">Unlock</string>
     
-    <!-- prompt_apn_activity -->
-    <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure requires APN settings to deliver media messages via your wireless carrier.  Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
-    <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">To send media messages, please complete the necessary APN information below. The values for your carrier can generally be located by searching for \'&amp;lt;your carrier&amp;gt; APN\'.  You will only need to do this once.</string>
-    <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (REQUIRED):</string>
-    <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONAL):</string>
-    <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (OPTIONAL):</string>    
+    <!-- prompt_mms_activity -->
+    <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
+    <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">To send media and group messages, click \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
+    <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (REQUIRED):</string>
+    <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONAL):</string>
+    <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (OPTIONAL):</string>
     
     <!-- receive_key_activity -->
     <string name="receive_key_activity__complete">Complete</string>
@@ -455,9 +461,9 @@
     <string name="preferences__custom">Custom</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__passphrase">Passphrase</string>
-    <string name="preferences__advanced_mms_access_point_names">Fallback MMSC</string>
-    <string name="preferences__enable_fallback_mmsc">Enable Fallback MMSC</string>
-    <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Use MMSC information configured here when system APN information is unavailable.</string>
+    <string name="preferences__advanced_mms_access_point_names">MMS Preferences</string>
+    <string name="preferences__enable_manual_mms">Enable Manual MMS</string>
+    <string name="preferences__override_system_mms_settings">Override system MMS settings with the below information.</string>
     <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
     <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
     <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>

@@ -84,10 +84,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Вы должны указать пароль</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неправильный пароль!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Вы должны указать MMSC URL для вашего оператора.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Настройки MMS Обновлены</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Вы можете изменить эти значения из TextSecure меню в любое время.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Вы должны указать MMSC URL для вашего оператора.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Настройки MMS Обновлены</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Вы можете изменить эти значения из TextSecure меню в любое время.</string>
   <!--ReceiveKeyActivity-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет персонального ключа!</string>
@@ -194,11 +194,11 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE ПАРОЛЬ</string>
   <string name="prompt_passphrase_activity__unlock">Отпереть</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure требует настройки APN для доставки сообщений медиа через ваш беспроводной связи. Эта информация недоступна на вашем устройстве. Это может произойти, если устройство заблокировано или ограничено.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Для отправки сообщений СМИ, заполните информацию APN здесь. Значения вашего оператора обычно можно находить поиске  \'&amp;lt;your carrier&amp;gt; APN\'. Это только надо сделать один раз.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (ОБЯЗАТЕЛЬНО):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS ПРОКСИ-СЕРВЕРА (НЕОБЯЗАТЕЛЬНО):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS ПОРТА ПРОКСИ (НЕОБЯЗАТЕЛЬНО):</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure требует настройки APN для доставки сообщений медиа через ваш беспроводной связи. Эта информация недоступна на вашем устройстве. Это может произойти, если устройство заблокировано или ограничено.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Для отправки сообщений СМИ, заполните информацию APN здесь. Значения вашего оператора обычно можно находить поиске  \'&amp;lt;your carrier&amp;gt; APN\'. Это только надо сделать один раз.</string>
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (ОБЯЗАТЕЛЬНО):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS ПРОКСИ-СЕРВЕРА (НЕОБЯЗАТЕЛЬНО):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS ПОРТА ПРОКСИ (НЕОБЯЗАТЕЛЬНО):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Завершено</string>
   <!--recipients_panel-->
@@ -271,8 +271,8 @@
   <string name="preferences__slow">Медленно</string>
   <string name="preferences__custom">Свой</string>
   <string name="preferences__passphrase">Пароль</string>
-  <string name="preferences__enable_fallback_mmsc">Включите Резервной MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Используйте установленную здесь информацию MMSC когда информационная система APN недоступна.</string>
+  <string name="preferences__enable_manual_mms">Включите Резервной MMSC</string>
+  <string name="preferences__override_system_mms_settings">Используйте установленную здесь информацию MMSC когда информационная система APN недоступна.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (обязательно)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Адрес Прокси (Необязательно)</string>
   <string name="preferences__mms_proxy_port_optional"> MMS Порт Прокси (необязательно)</string>

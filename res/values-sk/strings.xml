@@ -78,7 +78,7 @@
   <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
-  <!--PromptApnActivity-->
+  <!--PromptMmsActivity-->
   <!--ReceiveKeyActivity-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte kľúč totožnosti.</string>
@@ -243,8 +243,8 @@
   <string name="preferences__normal">Normálne</string>
   <string name="preferences__slow">Pomaly</string>
   <string name="preferences__custom">Vlastné</string>
-  <string name="preferences__enable_fallback_mmsc">Povoľ fallback MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Použi nastavenia MMSC ak nie sú dostupné APN informácie.</string>
+  <string name="preferences__enable_manual_mms">Povoľ fallback MMSC</string>
+  <string name="preferences__override_system_mms_settings">Použi nastavenia MMSC ak nie sú dostupné APN informácie.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nutné)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy (voliteľné)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy port (voliteľné)</string>
