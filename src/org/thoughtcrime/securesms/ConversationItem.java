@@ -91,10 +91,11 @@ public class ConversationItem extends LinearLayout {
   private  TextView  mmsDownloadingLabel;
   private  ListenableFutureTask<SlideDeck> slideDeck;
 
-  private final FailedIconClickListener failedIconClickListener   = new FailedIconClickListener();
-  private final MmsDownloadClickListener mmsDownloadClickListener = new MmsDownloadClickListener();
-  private final ClickListener clickListener                       = new ClickListener();
-  private final Handler handler                                   = new Handler();
+  private final FailedIconClickListener failedIconClickListener         = new FailedIconClickListener();
+  private final MmsDownloadClickListener mmsDownloadClickListener       = new MmsDownloadClickListener();
+  private final ApnPreferencesClickListener apnPreferencesClickListener = new ApnPreferencesClickListener();
+  private final ClickListener clickListener                             = new ClickListener();
+  private final Handler handler                                         = new Handler();
   private final Context context;
 
   public ConversationItem(Context context) {
@@ -235,6 +236,11 @@ public class ConversationItem extends LinearLayout {
       mmsDownloadingLabel.setText(MmsDatabase.Status.getLabelForStatus(context, messageRecord.getStatus()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
+
+      if (MmsDatabase.Status.isHardError(messageRecord.getStatus()) && !messageRecord.isOutgoing())
+        setOnClickListener(mmsDownloadClickListener);
+      else if (MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE == messageRecord.getStatus() && !messageRecord.isOutgoing())
+        setOnClickListener(apnPreferencesClickListener);
     }
   }
 
@@ -495,6 +501,16 @@ public class ConversationItem extends LinearLayout {
       intent.putExtra("thread_id", notificationRecord.getThreadId());
       intent.setAction(SendReceiveService.DOWNLOAD_MMS_ACTION);
       context.startService(intent);
+    }
+  }
+
+  private class ApnPreferencesClickListener implements View.OnClickListener {
+    public void onClick(View v) {
+      Intent intent = new Intent(context, PromptApnActivity.class);
+      intent.putExtra("message_id", messageRecord.getId());
+      intent.putExtra("thread_id", messageRecord.getThreadId());
+      intent.putExtra("automatic", true);
+      context.startActivity(intent);
     }
   }
 

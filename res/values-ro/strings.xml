@@ -339,8 +339,8 @@
   <string name="preferences__advanced">Avansat</string>
   <string name="preferences__passphrase">Parola</string>
   <string name="preferences__advanced_mms_access_point_names">MMSC de rezerva</string>
-  <string name="preferences__enable_fallback_mmsc">Activeaza MMSC de rezerva</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Foloseste informatiile MMSC configurate aici cand informatiile despre sistemul APN nu sunt disponibile</string>
+  <string name="preferences__enable_manual_apn">Activeaza MMSC de rezerva</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Foloseste informatiile MMSC configurate aici cand informatiile despre sistemul APN nu sunt disponibile</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Necesar)</string>
   <string name="preferences__mms_proxy_host_optional">Host proxy MMS (Optional)</string>
   <string name="preferences__mms_proxy_port_optional">Port proxy MMS (Optional)</string>

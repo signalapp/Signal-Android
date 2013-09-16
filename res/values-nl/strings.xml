@@ -340,8 +340,8 @@
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__passphrase">Wachtwoord</string>
   <string name="preferences__advanced_mms_access_point_names">Reserve MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Fallback MMSC Activeren</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Gebruik de hier ingestelde MMSC informatie wanneer de APN informatie van het systeem niet beschikbaar is.</string>
+  <string name="preferences__enable_manual_apn">Fallback MMSC Activeren</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Gebruik de hier ingestelde MMSC informatie wanneer de APN informatie van het systeem niet beschikbaar is.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Vereist)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optioneel)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Poort (Optioneel)</string>

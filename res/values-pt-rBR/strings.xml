@@ -339,8 +339,8 @@
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__passphrase">Frase-chave</string>
   <string name="preferences__advanced_mms_access_point_names">MMSC Reserva</string>
-  <string name="preferences__enable_fallback_mmsc">Habilitar MMSC de reseva</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usar esta informação de MMSC quando APN do sistema estiver indisponível.</string>
+  <string name="preferences__enable_manual_apn">Habilitar MMSC de reseva</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Usar esta informação de MMSC quando APN do sistema estiver indisponível.</string>
   <string name="preferences__mmsc_url_required">URL do MMSC (Necessário)</string>
   <string name="preferences__mms_proxy_host_optional">Proxy MMS (Opcional)</string>
   <string name="preferences__mms_proxy_port_optional">Porta do Proxy MMS (Opcional)</string>

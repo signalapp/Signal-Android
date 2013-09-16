@@ -325,8 +325,8 @@
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__passphrase">العبارة السرية</string>
   <string name="preferences__advanced_mms_access_point_names">مركز رسائل الوسائط المتعددة الاحتياطي</string>
-  <string name="preferences__enable_fallback_mmsc">شغل مركز رسائل الوسائط المتعددة الاحتياطي</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">استخدم مركز رسائل الوسائط المتعددة هنا اذا لم تتوفر بيناتات اتصال النظام APN</string>
+  <string name="preferences__enable_manual_apn">شغل مركز رسائل الوسائط المتعددة الاحتياطي</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">استخدم مركز رسائل الوسائط المتعددة هنا اذا لم تتوفر بيناتات اتصال النظام APN</string>
   <string name="preferences__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
   <string name="preferences__mms_proxy_host_optional">عنوان بروكسي رسائل الوسائط المتعددة (غير الزامي)</string>
   <string name="preferences__mms_proxy_port_optional">منفذ او بورت بروكسي  الرسائل الوسائط المتعددة (غير الزامي)</string>

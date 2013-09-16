@@ -268,8 +268,8 @@
   <string name="preferences__normal">ပုံမှန်</string>
   <string name="preferences__slow">အနှေး</string>
   <string name="preferences__custom">စိတ်ကြိုက်</string>
-  <string name="preferences__enable_fallback_mmsc">Fallback MMSC ကို ခွင့်ပြုပါ</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">စနစ်၏ APN အချက်အလက်များကိုသုံး၍မရပါက ဤနေရာတွင်သတ်မှတ်ထားသော MMSC အချက်အလက်များကိုအသုံးပြုပါ</string>
+  <string name="preferences__enable_manual_apn">Fallback MMSC ကို ခွင့်ပြုပါ</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">စနစ်၏ APN အချက်အလက်များကိုသုံး၍မရပါက ဤနေရာတွင်သတ်မှတ်ထားသော MMSC အချက်အလက်များကိုအသုံးပြုပါ</string>
   <string name="preferences__mmsc_url_required">MMSC URL (အရေးကြီး)</string>
   <string name="preferences__mms_proxy_host_optional">MMS ပရောက်ဇီ အိမ်ရှင်စက် (အရေးမကြီး)</string>
   <string name="preferences__mms_proxy_port_optional">MMS ပရောက်ဇီ Port (အရေးမကြီး)</string>

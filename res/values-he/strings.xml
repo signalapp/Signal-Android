@@ -339,8 +339,8 @@
   <string name="preferences__advanced">מתקדם</string>
   <string name="preferences__passphrase">סיסמה</string>
   <string name="preferences__advanced_mms_access_point_names">נסיגה ל-MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">אפשר נסיגה ל-MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">השתמש במידע ה-MMSC המוגדר כאן כשמידע ה-APN של המערכת לא זמין.</string>
+  <string name="preferences__enable_manual_apn">אפשר נסיגה ל-MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">השתמש במידע ה-MMSC המוגדר כאן כשמידע ה-APN של המערכת לא זמין.</string>
   <string name="preferences__mmsc_url_required">כתובת MMSC (חובה)</string>
   <string name="preferences__mms_proxy_host_optional">שרת Proxy של MMS (לא חובה)</string>
   <string name="preferences__mms_proxy_port_optional">יציאת MMS (לא חובה)</string>

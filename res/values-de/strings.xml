@@ -340,8 +340,8 @@
   <string name="preferences__advanced">Weitere Einstellungen</string>
   <string name="preferences__passphrase">Passwort</string>
   <string name="preferences__advanced_mms_access_point_names">Ersatz für MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Ersatz für MMSC aktivieren</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Benutzen Sie die hier konfigurierten MMSC-Daten, falls keine System APN-Daten vorliegen,</string>
+  <string name="preferences__enable_manual_apn">Ersatz für MMSC aktivieren</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Benutzen Sie die hier konfigurierten MMSC-Daten, falls keine System APN-Daten vorliegen,</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Benötigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>

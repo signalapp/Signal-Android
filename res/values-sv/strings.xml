@@ -339,8 +339,8 @@
   <string name="preferences__advanced">Avancerade</string>
   <string name="preferences__passphrase">Lösenfras</string>
   <string name="preferences__advanced_mms_access_point_names">Reserv MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Aktivera Fallback MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Använd MMSC information konfugerad här när system APN information är otillgänglig.</string>
+  <string name="preferences__enable_manual_apn">Aktivera Fallback MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Använd MMSC information konfugerad här när system APN information är otillgänglig.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nödvändigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxyvärd (valfritt)</string>
   <string name="preferences__mms_proxy_port_optional">MMS proxyport (valfritt)</string>

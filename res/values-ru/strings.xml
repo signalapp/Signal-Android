@@ -271,8 +271,8 @@
   <string name="preferences__slow">Медленно</string>
   <string name="preferences__custom">Свой</string>
   <string name="preferences__passphrase">Пароль</string>
-  <string name="preferences__enable_fallback_mmsc">Включите Резервной MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Используйте установленную здесь информацию MMSC когда информационная система APN недоступна.</string>
+  <string name="preferences__enable_manual_apn">Включите Резервной MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Используйте установленную здесь информацию MMSC когда информационная система APN недоступна.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (обязательно)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Адрес Прокси (Необязательно)</string>
   <string name="preferences__mms_proxy_port_optional"> MMS Порт Прокси (необязательно)</string>

@@ -339,8 +339,8 @@
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__passphrase">パスワード</string>
   <string name="preferences__advanced_mms_access_point_names">MMSCのフォールバック</string>
-  <string name="preferences__enable_fallback_mmsc">MMSCのフォールバックを有効にする</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">APNからの情報が携帯端末で利用できない時に、ここで設定されたMMSセンターからの情報を使う。</string>
+  <string name="preferences__enable_manual_apn">MMSCのフォールバックを有効にする</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">APNからの情報が携帯端末で利用できない時に、ここで設定されたMMSセンターからの情報を使う。</string>
   <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
   <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
   <string name="preferences__mms_proxy_port_optional">MMSプロキシ・ポート（選択自由）</string>

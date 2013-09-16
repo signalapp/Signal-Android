@@ -347,8 +347,8 @@
   <string name="preferences__advanced">Avansert</string>
   <string name="preferences__passphrase">Passord</string>
   <string name="preferences__advanced_mms_access_point_names">Alternativ MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Aktiver alternativ MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Benytt MMSC informasjonen konfigurert her når systemets APN informasjon er utilgjengelig.</string>
+  <string name="preferences__enable_manual_apn">Aktiver alternativ MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Benytt MMSC informasjonen konfigurert her når systemets APN informasjon er utilgjengelig.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (påkrevd)</string>
   <string name="preferences__mms_proxy_host_optional">MMS proxy host (valgfritt)</string>
   <string name="preferences__mms_proxy_port_optional">MMS proxy port (valgfritt)</string>

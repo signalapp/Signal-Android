@@ -339,8 +339,8 @@
   <string name="preferences__advanced">Avanzado</string>
   <string name="preferences__passphrase">Frase de contraseña</string>
   <string name="preferences__advanced_mms_access_point_names">Fallback MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Activar Fallback MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usar la información MMSC configurada aquí cuando el sistema de información APN no está disponible.</string>
+  <string name="preferences__enable_manual_apn">Activar Fallback MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Usar la información MMSC configurada aquí cuando el sistema de información APN no está disponible.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Requerido)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Opcional)</string>
   <string name="preferences__mms_proxy_port_optional">Puerto de Proxy MMS (Opcional)</string>

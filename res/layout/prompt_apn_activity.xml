@@ -30,37 +30,6 @@
                       android:layout_height="wrap_content"
                       android:layout_marginBottom="16dip"
                       android:text="@string/prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below"/>
-
-            <TextView style="@style/Registration.Label"
-                      android:layout_width="fill_parent"
-                      android:text="@string/prompt_apn_activity__mmsc_url_required"/>
-
-            <EditText android:id="@+id/mmsc_url"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:singleLine="true"
-                      android:layout_marginBottom="10dip" />
-
-            <TextView style="@style/Registration.Label"
-                      android:layout_width="fill_parent"
-                      android:text="@string/prompt_apn_activity__mms_proxy_host_optional"/>
-
-            <EditText android:id="@+id/mms_proxy_host"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:singleLine="true"
-                      android:layout_marginBottom="10dip" />
-            
-            <TextView style="@style/Registration.Label"
-                      android:layout_width="fill_parent"
-                      android:text="@string/prompt_apn_activity__mms_proxy_port_optional"/>
-
-            <EditText android:id="@+id/mms_proxy_port"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginBottom="10dip"
-                      android:inputType="number"
-                      android:singleLine="true" />      
                         
             <LinearLayout android:orientation="horizontal"
                           android:gravity="center"

@@ -271,8 +271,8 @@
   <string name="preferences__normal">སྤྱིར་བཏང་། </string>
   <string name="preferences__slow">དལ་བོ། </string>
   <string name="preferences__custom">ཡུལ་སྲོལ། </string>
-  <string name="preferences__enable_fallback_mmsc">Fallback MMSC དེ་བསྐྱར་དུ་བྱེད་ནུས་ཅན་བཟོས། </string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">APN ཡི་མ་ལག་གི་བརྡ་ལན་དེ་མི་རྙེད་དུས། MMSC ཡི་བརྡ་ལན་སྡེབ་སྒྲིག་བྱས་བ་དེ་བེད་སྤྱོད་ཐོངས། </string>
+  <string name="preferences__enable_manual_apn">Fallback MMSC དེ་བསྐྱར་དུ་བྱེད་ནུས་ཅན་བཟོས། </string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">APN ཡི་མ་ལག་གི་བརྡ་ལན་དེ་མི་རྙེད་དུས། MMSC ཡི་བརྡ་ལན་སྡེབ་སྒྲིག་བྱས་བ་དེ་བེད་སྤྱོད་ཐོངས། </string>
   <string name="preferences__mmsc_url_required">MMSC URL(དགོས་ངེས་ཅན) </string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (གདམ་ཀ་ཅན) </string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (གདམ་ཀ་ཅན) </string>

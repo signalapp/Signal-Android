@@ -339,8 +339,8 @@
   <string name="preferences__advanced">За напреднали</string>
   <string name="preferences__passphrase">Парола</string>
   <string name="preferences__advanced_mms_access_point_names">Резервен MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Активирайте Резервен MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Използвайте MMSC информация конфигурирана тук, когато системната APN информация не е налична.</string>
+  <string name="preferences__enable_manual_apn">Активирайте Резервен MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Използвайте MMSC информация конфигурирана тук, когато системната APN информация не е налична.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Задължително)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (По изборl)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (По избор)</string>

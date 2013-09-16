@@ -243,8 +243,8 @@
   <string name="preferences__normal">Normálne</string>
   <string name="preferences__slow">Pomaly</string>
   <string name="preferences__custom">Vlastné</string>
-  <string name="preferences__enable_fallback_mmsc">Povoľ fallback MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Použi nastavenia MMSC ak nie sú dostupné APN informácie.</string>
+  <string name="preferences__enable_manual_apn">Povoľ fallback MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Použi nastavenia MMSC ak nie sú dostupné APN informácie.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nutné)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy (voliteľné)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy port (voliteľné)</string>

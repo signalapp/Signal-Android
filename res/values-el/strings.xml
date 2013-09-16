@@ -339,8 +339,8 @@
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__passphrase">Συνθηματική φράση</string>
   <string name="preferences__advanced_mms_access_point_names">Εναλλακτικό MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Ενεργοποίηση εναλλακτικού MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Να χρησιμοποιούνται αυτές οι ρυθμίσεις MMSC όταν οι ρυθμίσεις APN δεν είναι διαθέσιμες.</string>
+  <string name="preferences__enable_manual_apn">Ενεργοποίηση εναλλακτικού MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Να χρησιμοποιούνται αυτές οι ρυθμίσεις MMSC όταν οι ρυθμίσεις APN δεν είναι διαθέσιμες.</string>
   <string name="preferences__mmsc_url_required">Διεύθυνση MMSC (απαραίτητη)</string>
   <string name="preferences__mms_proxy_host_optional">Διακομιστής MMS Proxy (Προαιρετικό)</string>
   <string name="preferences__mms_proxy_port_optional">Επιλογή πόρτας MMS Proxy (προαιρετικό)</string>

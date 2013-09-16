@@ -78,7 +78,10 @@
               android:windowSoftInputMode="stateUnchanged"              
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ConversationListActivity"
+     <activity android:name=".ApnPreferencesActivity"
+               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+        <activity android:name=".ConversationListActivity"
               android:label="@string/app_name"
               android:launchMode="singleTask"
               android:uiOptions="splitActionBarWhenNarrow"

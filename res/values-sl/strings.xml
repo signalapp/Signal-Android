@@ -347,8 +347,8 @@
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__passphrase">Geslo</string>
   <string name="preferences__advanced_mms_access_point_names">Nadomestni MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Omogoči nadomestni MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Uporabi tu izbrane MMSC nastavitve kadar sistemske APN nastavitve niso na voljo.</string>
+  <string name="preferences__enable_manual_apn">Omogoči nadomestni MMSC</string>
+  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">Uporabi tu izbrane MMSC nastavitve kadar sistemske APN nastavitve niso na voljo.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (zahtevano)</string>
   <string name="preferences__mms_proxy_host_optional">Posredniški strežnik za MMS (opcijsko)</string>
   <string name="preferences__mms_proxy_port_optional">Vrata posredniškega strežnika za MMS (opcijsko)</string>
