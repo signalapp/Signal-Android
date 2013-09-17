@@ -1,0 +1,1 @@
+rule com.android.** com.google.@1

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.google.thoughtcrimegson.Gson;
-import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.directory.DirectoryDescriptor;
@@ -16,6 +15,8 @@ import org.whispersystems.textsecure.util.Util;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
+
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -333,7 +334,7 @@ public class PushServiceSocket {
 
   private TrustManagerFactory initializeTrustManagerFactory(Context context) {
     try {
-      InputStream keyStoreInputStream = context.getResources().openRawResource(R.raw.whisper);
+      InputStream keyStoreInputStream = new ByteArrayInputStream(android.util.Base64.decode(WhisperKeyStore.BASE64_KEYSTORE, android.util.Base64.NO_WRAP));
       KeyStore trustStore             = KeyStore.getInstance("BKS");
 
       trustStore.load(keyStoreInputStream, "whisper".toCharArray());
