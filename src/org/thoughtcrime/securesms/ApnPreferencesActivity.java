@@ -56,15 +56,6 @@ public class ApnPreferencesActivity extends PassphraseRequiredSherlockPreference
   }
 
   @Override
-  public void onStop() {
-    super.onStop();
-
-    Intent intent = new Intent(SendReceiveService.DOWNLOAD_MMS_PENDING_APN_ACTION,
-                               null, this, SendReceiveService.class);
-    startService(intent);
-  }
-
-  @Override
   public void onDestroy() {
     MemoryCleaner.clean(masterSecret);
     MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra("master_secret"));
@@ -75,11 +66,19 @@ public class ApnPreferencesActivity extends PassphraseRequiredSherlockPreference
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
+        handleDownloadMmsPendingApn();
         finish();
         return true;
     }
 
     return false;
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+
+    handleDownloadMmsPendingApn();
   }
 
   private void initializeEditTextSummary(final EditTextPreference preference) {
@@ -102,5 +101,11 @@ public class ApnPreferencesActivity extends PassphraseRequiredSherlockPreference
     initializeEditTextSummary((EditTextPreference)this.findPreference(ApplicationPreferencesActivity.MMSC_HOST_PREF));
     initializeEditTextSummary((EditTextPreference)this.findPreference(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF));
     initializeEditTextSummary((EditTextPreference)this.findPreference(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF));
+  }
+
+  private void handleDownloadMmsPendingApn() {
+    Intent intent = new Intent(this, SendReceiveService.class);
+    intent.setAction(SendReceiveService.DOWNLOAD_MMS_PENDING_APN_ACTION);
+    startService(intent);
   }
 }
