@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.CursorIndexOutOfBoundsException;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Pair;
@@ -95,20 +94,16 @@ public class MmsDownloader extends MmscProcessor {
     MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
     MmsDatabase.Reader stalledMmsReader = mmsDatabase.getNotificationsWithDownloadState(masterSecret,
                                                                                         MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE);
-    try {
-      while (stalledMmsReader.getNext() != null) {
-        NotificationMmsMessageRecord stalledMmsRecord = (NotificationMmsMessageRecord) stalledMmsReader.getCurrent();
+    while (stalledMmsReader.getNext() != null) {
+      NotificationMmsMessageRecord stalledMmsRecord = (NotificationMmsMessageRecord) stalledMmsReader.getCurrent();
 
-        Intent intent = new Intent(SendReceiveService.DOWNLOAD_MMS_ACTION, null, context, SendReceiveService.class);
-        intent.putExtra("content_location", new String(stalledMmsRecord.getContentLocation()));
-        intent.putExtra("message_id", stalledMmsRecord.getId());
-        intent.putExtra("transaction_id", stalledMmsRecord.getTransactionId());
-        intent.putExtra("thread_id", stalledMmsRecord.getThreadId());
-        intent.putExtra("automatic", true);
-        context.startService(intent);
-      }
-    } catch (CursorIndexOutOfBoundsException e) {
-      Log.w("MmsDownloader", "Error reading stalled MMS from database: " + e);
+      Intent intent = new Intent(SendReceiveService.DOWNLOAD_MMS_ACTION, null, context, SendReceiveService.class);
+      intent.putExtra("content_location", new String(stalledMmsRecord.getContentLocation()));
+      intent.putExtra("message_id", stalledMmsRecord.getId());
+      intent.putExtra("transaction_id", stalledMmsRecord.getTransactionId());
+      intent.putExtra("thread_id", stalledMmsRecord.getThreadId());
+      intent.putExtra("automatic", true);
+      context.startService(intent);
     }
 
     stalledMmsReader.close();

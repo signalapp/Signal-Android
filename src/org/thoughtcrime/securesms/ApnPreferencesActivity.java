@@ -76,9 +76,8 @@ public class ApnPreferencesActivity extends PassphraseRequiredSherlockPreference
 
   @Override
   public void onBackPressed() {
-    super.onBackPressed();
-
     handleDownloadMmsPendingApn();
+    super.onBackPressed();
   }
 
   private void initializeEditTextSummary(final EditTextPreference preference) {
