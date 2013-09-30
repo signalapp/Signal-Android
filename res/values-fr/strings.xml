@@ -322,7 +322,7 @@
   <string name="preferences__change_notification_blink_pattern">Modifier le rythme de clignotement de la LED de notification</string>
   <string name="preferences__pref_led_blink_dialogtitle">Choisir le rythme de clignotement de la LED</string>
   <string name="preferences__select_led_color">Choisir la couleur de la LED</string>
-  <string name="preferences__select_ringtone">Choisir une sonnerie</string>
+  <string name="preferences__sound">Choisir une sonnerie</string>
   <string name="preferences__vibrate">Vibrer</string>
   <string name="preferences__also_vibrate_when_notified">Vibrer aussi lors des notifications</string>
   <string name="preferences__minutes">minutes</string>

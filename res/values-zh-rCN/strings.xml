@@ -218,7 +218,7 @@
   <string name="preferences__change_notification_blink_pattern">更改通知 LED 闪烁模式</string>
   <string name="preferences__pref_led_blink_dialogtitle">选择 LED 闪烁模式</string>
   <string name="preferences__select_led_color">选择 LED 颜色</string>
-  <string name="preferences__select_ringtone">选择铃声</string>
+  <string name="preferences__sound">选择铃声</string>
   <string name="preferences__vibrate">振动</string>
   <string name="preferences__also_vibrate_when_notified">通知时同时振动</string>
   <string name="preferences__minutes">分钟</string>

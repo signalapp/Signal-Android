@@ -256,7 +256,7 @@
   <string name="preferences__change_notification_blink_pattern">LED རྒྱན་རིས་ཀྱི་བརྡ་གཏོང་བརྗེས།</string>
   <string name="preferences__pref_led_blink_dialogtitle">LED ཡི་བཀོད་རིས་དེ་འདེམས། </string>
   <string name="preferences__select_led_color">LED ཡི་ཚོན་མདོག་དེ་འདེམས། </string>
-  <string name="preferences__select_ringtone">དྲིལ་སྒྲ་འདེམས། </string>
+  <string name="preferences__sound">དྲིལ་སྒྲ་འདེམས། </string>
   <string name="preferences__vibrate"> འདར་བཅུག</string>
   <string name="preferences__also_vibrate_when_notified">བརྡ་གཏོང་སྐབས་འདར་བཅུག</string>
   <string name="preferences__minutes">སྐར་མ།</string>

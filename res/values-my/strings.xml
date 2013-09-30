@@ -253,7 +253,7 @@
   <string name="preferences__change_notification_blink_pattern">အချက်ပြ LED လင်းမည့်ပုံစံကိုရွေးချယ်ပါ</string>
   <string name="preferences__pref_led_blink_dialogtitle">LED လင်းမည့်ပုံစံရွေးချယ်ပါ</string>
   <string name="preferences__select_led_color">LED အရောင်ရွေးချယ်ပါ</string>
-  <string name="preferences__select_ringtone">သံစဉ်ရွေးချယ်ပါ</string>
+  <string name="preferences__sound">သံစဉ်ရွေးချယ်ပါ</string>
   <string name="preferences__vibrate">တုန်ခါမှု</string>
   <string name="preferences__also_vibrate_when_notified">အချက်ပြစဉ်တုန်ခါပါ</string>
   <string name="preferences__minutes">မိနစ်</string>

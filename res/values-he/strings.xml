@@ -321,7 +321,7 @@
   <string name="preferences__change_notification_blink_pattern">שנה את תבנית הבהוב הLED בהתראה</string>
   <string name="preferences__pref_led_blink_dialogtitle">בחר תבנית הבהוב ה-LED</string>
   <string name="preferences__select_led_color">בחר צבע LED</string>
-  <string name="preferences__select_ringtone">בחר רינגטון</string>
+  <string name="preferences__sound">בחר רינגטון</string>
   <string name="preferences__vibrate">רטט</string>
   <string name="preferences__also_vibrate_when_notified">הפעל רטט בקבלת התראה</string>
   <string name="preferences__minutes">דקות</string>

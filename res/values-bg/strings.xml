@@ -321,7 +321,7 @@
   <string name="preferences__change_notification_blink_pattern">Промени известяването с LED мигане</string>
   <string name="preferences__pref_led_blink_dialogtitle">Избери LED мигане</string>
   <string name="preferences__select_led_color">Изберете LED цвят</string>
-  <string name="preferences__select_ringtone">Избери мелодия</string>
+  <string name="preferences__sound">Избери мелодия</string>
   <string name="preferences__vibrate">Вибрирай</string>
   <string name="preferences__also_vibrate_when_notified">Вибрирай после известявай</string>
   <string name="preferences__minutes">минути</string>
