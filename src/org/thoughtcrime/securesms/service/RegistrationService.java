@@ -9,7 +9,6 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.util.Pair;
 
 import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.R;
@@ -20,15 +19,14 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
-import org.whispersystems.textsecure.directory.DirectoryDescriptor;
-import org.whispersystems.textsecure.directory.NumberFilter;
+import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -282,12 +280,14 @@ public class RegistrationService extends Service {
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
     GCMRegistrar.register(this, GcmIntentService.GCM_SENDER_ID);
     String gcmRegistrationId = waitForGcmRegistrationId();
-
     socket.registerGcmId(gcmRegistrationId);
-    Pair<DirectoryDescriptor, File> directory = socket.retrieveDirectory();
 
-    if (directory != null) {
-      NumberFilter.getInstance(this).update(directory.first, directory.second);
+    Set<String> contactTokens = Directory.getInstance(this).getPushEligibleContactTokens(number);
+    List<String> activeTokens = socket.retrieveDirectory(contactTokens);
+
+    if (activeTokens != null) {
+      Directory.getInstance(this).setActiveTokens(activeTokens);
+//      NumberFilter.getInstance(this).update(directory.first, directory.second);
     }
   }
 

@@ -67,7 +67,7 @@ public class PreKeyUtil {
 
     for (String keyRecordId : keyRecordIds) {
       try {
-        if (Integer.parseInt(keyRecordId) != Medium.MAX_VALUE) {
+        if (!keyRecordId.equals(PreKeyIndex.FILE_NAME) && Integer.parseInt(keyRecordId) != Medium.MAX_VALUE) {
           records.add(new PreKeyRecord(context, masterSecret, Integer.parseInt(keyRecordId)));
         }
       } catch (InvalidKeyIdException e) {

@@ -8,7 +8,6 @@ import com.google.thoughtcrimegson.Gson;
 import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.directory.DirectoryDescriptor;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
@@ -33,6 +32,7 @@ import java.security.cert.CertificateException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class PushServiceSocket {
 
@@ -169,16 +169,13 @@ public class PushServiceSocket {
     return attachment;
   }
 
-  public Pair<DirectoryDescriptor, File> retrieveDirectory() {
+  public List<String> retrieveDirectory(Set<String> contactTokens) {
     try {
-      DirectoryDescriptor directoryDescriptor = new Gson().fromJson(makeRequest(DIRECTORY_PATH, "GET", null),
-                                                                    DirectoryDescriptor.class);
+      ContactTokenList contactTokenList = new ContactTokenList(new LinkedList(contactTokens));
+      String           response         = makeRequest(DIRECTORY_PATH, "PUT", new Gson().toJson(contactTokenList));
+      ContactTokenList activeTokens     = new Gson().fromJson(response, ContactTokenList.class);
 
-      File directoryData = File.createTempFile("directory", ".dat", context.getFilesDir());
-
-      downloadExternalFile(directoryDescriptor.getUrl(), directoryData);
-
-      return new Pair<DirectoryDescriptor, File>(directoryDescriptor, directoryData);
+      return activeTokens.getContacts();
     } catch (IOException ioe) {
       Log.w("PushServiceSocket", ioe);
       return null;
