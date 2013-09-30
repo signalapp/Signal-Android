@@ -20,12 +20,12 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.textsecure.directory.NumberFilter;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.directory.Directory;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -57,7 +57,7 @@ public class UniversalTransport {
     Recipient recipient = message.getIndividualRecipient();
     String number       = Util.canonicalizeNumber(context, recipient.getNumber());
 
-    if (NumberFilter.getInstance(context).containsNumber(number)) {
+    if (Directory.getInstance(context).containsNumber(number)) {
       try {
         Log.w("UniversalTransport", "Delivering with GCM...");
         pushTransport.deliver(message);
@@ -78,7 +78,7 @@ public class UniversalTransport {
 
     List<String> destinations = getMediaDestinations(mediaMessage);
 
-    if (NumberFilter.getInstance(context).containsNumbers(destinations)) {
+    if (Directory.getInstance(context).containsNumbers(destinations)) {
       try {
         Log.w("UniversalTransport", "Delivering media message with GCM...");
         pushTransport.deliver(mediaMessage, destinations);
