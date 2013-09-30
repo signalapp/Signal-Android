@@ -329,7 +329,7 @@
   <string name="preferences__change_notification_blink_pattern">Spremeni vzorec utripanja LED za obvestila</string>
   <string name="preferences__pref_led_blink_dialogtitle">Izveri vzorec utripanja LED</string>
   <string name="preferences__select_led_color">Izberi barvo LED</string>
-  <string name="preferences__select_ringtone">Izberi zvonenje</string>
+  <string name="preferences__sound">Izberi zvonenje</string>
   <string name="preferences__vibrate">Vibriranje</string>
   <string name="preferences__also_vibrate_when_notified">Vibriranje ob obvestilu</string>
   <string name="preferences__minutes">minut</string>

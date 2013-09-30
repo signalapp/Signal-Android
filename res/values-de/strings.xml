@@ -322,7 +322,7 @@
   <string name="preferences__change_notification_blink_pattern">Ändern des LED Blinkmusters für Benachrichtigungen</string>
   <string name="preferences__pref_led_blink_dialogtitle">LED Blinkmuster auswählen</string>
   <string name="preferences__select_led_color">LED Farbe auswählen</string>
-  <string name="preferences__select_ringtone">Klingelton auswählen</string>
+  <string name="preferences__sound">Klingelton auswählen</string>
   <string name="preferences__vibrate">Vibrieren</string>
   <string name="preferences__also_vibrate_when_notified">Bei Benachrichtigung vibrieren</string>
   <string name="preferences__minutes">Minuten</string>

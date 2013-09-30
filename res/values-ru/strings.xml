@@ -255,7 +255,7 @@
   <string name="preferences__change_notification_blink_pattern">Поменяй мигания светодиода</string>
   <string name="preferences__pref_led_blink_dialogtitle">Выберите мигания светодиода</string>
   <string name="preferences__select_led_color">Выберите Цвет светодиода</string>
-  <string name="preferences__select_ringtone">Выбор Мелодии</string>
+  <string name="preferences__sound">Выбор Мелодии</string>
   <string name="preferences__vibrate">Вибрировать</string>
   <string name="preferences__also_vibrate_when_notified">Вибрировать при уведомлении</string>
   <string name="preferences__minutes">мин.</string>

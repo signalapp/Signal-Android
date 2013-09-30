@@ -321,7 +321,7 @@
   <string name="preferences__change_notification_blink_pattern">Schimba sablonul de clipire a LED-ului de notificare</string>
   <string name="preferences__pref_led_blink_dialogtitle">Selecteaza sablonul de clipire a LED-ului</string>
   <string name="preferences__select_led_color">Alege culoarea LED-ului</string>
-  <string name="preferences__select_ringtone">Alege sunet de apel</string>
+  <string name="preferences__sound">Alege sunet de apel</string>
   <string name="preferences__vibrate">Vibreaza</string>
   <string name="preferences__also_vibrate_when_notified">Vibreaza si cand esti notificat</string>
   <string name="preferences__minutes">minute</string>

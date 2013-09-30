@@ -321,7 +321,7 @@
   <string name="preferences__change_notification_blink_pattern">Cambiar el patrón de parpadeo de la notificación LED</string>
   <string name="preferences__pref_led_blink_dialogtitle">Seleccionar un patrón e parpadeo del LED</string>
   <string name="preferences__select_led_color">Seleccionar color LED</string>
-  <string name="preferences__select_ringtone">Seleccionar tono</string>
+  <string name="preferences__sound">Seleccionar tono</string>
   <string name="preferences__vibrate">Vibración</string>
   <string name="preferences__also_vibrate_when_notified">También vibrar con notificaciones</string>
   <string name="preferences__minutes">minutos</string>

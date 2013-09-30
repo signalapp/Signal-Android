@@ -228,7 +228,7 @@
   <string name="preferences__change_notification_blink_pattern">Zmena vzoru blikania LED hlásení</string>
   <string name="preferences__pref_led_blink_dialogtitle">Vyberte vzor blikania LED</string>
   <string name="preferences__select_led_color">Vyber farbu LED</string>
-  <string name="preferences__select_ringtone">Vyber zvonenie</string>
+  <string name="preferences__sound">Vyber zvonenie</string>
   <string name="preferences__vibrate">Vybruj</string>
   <string name="preferences__also_vibrate_when_notified">Počas hlásenia tiež vibruj</string>
   <string name="preferences__minutes">minúty</string>

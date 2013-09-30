@@ -307,7 +307,7 @@
   <string name="preferences__change_notification_blink_pattern">تغيير اسلوب وميض تنبيهات LED</string>
   <string name="preferences__pref_led_blink_dialogtitle">اختيار اسلوب وميض LED</string>
   <string name="preferences__select_led_color">اختيار لون ضوء التنبيه LED</string>
-  <string name="preferences__select_ringtone">اختر نغمة</string>
+  <string name="preferences__sound">اختر نغمة</string>
   <string name="preferences__vibrate">هزاز</string>
   <string name="preferences__also_vibrate_when_notified">شغل الهزاز عند وصول تنبيه</string>
   <string name="preferences__minutes">دقائق</string>
