@@ -286,8 +286,8 @@ public class RegistrationService extends Service {
     List<String> activeTokens = socket.retrieveDirectory(contactTokens);
 
     if (activeTokens != null) {
-      Directory.getInstance(this).setActiveTokens(activeTokens);
-//      NumberFilter.getInstance(this).update(directory.first, directory.second);
+      contactTokens.removeAll(activeTokens);
+      Directory.getInstance(this).setTokens(activeTokens, contactTokens);
     }
   }
 

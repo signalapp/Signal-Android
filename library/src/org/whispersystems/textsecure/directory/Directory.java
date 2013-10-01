@@ -15,8 +15,8 @@ import org.whispersystems.textsecure.util.Util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -53,20 +53,7 @@ public class Directory {
     this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
-  public boolean containsNumbers(List<String> e164numbers) {
-    if (e164numbers == null || e164numbers.isEmpty()) {
-      return false;
-    }
-
-    for (String e164number : e164numbers) {
-      if (!containsNumber(e164number))
-        return false;
-    }
-
-    return true;
-  }
-
-  public boolean containsNumber(String e164number) {
+  public boolean isActiveNumber(String e164number) throws NotInDirectoryException {
     if (e164number == null || e164number.length() == 0) {
       return false;
     }
@@ -82,32 +69,44 @@ public class Directory {
 
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0) == 1;
+      } else {
+        throw new NotInDirectoryException();
       }
 
-      return false;
     } finally {
       if (cursor != null)
         cursor.close();
     }
   }
 
-  public void setActiveTokens(List<String> tokens) {
+  public void setToken(String token, boolean active) {
+    SQLiteDatabase db     = databaseHelper.getWritableDatabase();
+    ContentValues  values = new ContentValues();
+    values.put(TOKEN, token);
+    values.put(REGISTERED, active ? 1 : 0);
+    values.put(TIMESTAMP, System.currentTimeMillis());
+    db.replace(TABLE_NAME, null, values);
+  }
+
+  public void setTokens(List<String> activeTokens, Collection<String> inactiveTokens) {
     long timestamp    = System.currentTimeMillis();
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.beginTransaction();
 
     try {
-      ContentValues clear = new ContentValues();
-      clear.put(REGISTERED, 0);
-      clear.put(TIMESTAMP, timestamp);
-      db.update(TABLE_NAME, clear, null, null);
-
-
-      for (String token : tokens) {
-        Log.w("Directory", "Adding token: " + token);
+      for (String token : activeTokens) {
+        Log.w("Directory", "Adding active token: " + token);
         ContentValues values = new ContentValues();
         values.put(TOKEN, token);
         values.put(REGISTERED, 1);
+        values.put(TIMESTAMP, timestamp);
+        db.replace(TABLE_NAME, null, values);
+      }
+
+      for (String token : inactiveTokens) {
+        ContentValues values = new ContentValues();
+        values.put(TOKEN, token);
+        values.put(REGISTERED, 0);
         values.put(TIMESTAMP, timestamp);
         db.replace(TABLE_NAME, null, values);
       }
@@ -135,6 +134,15 @@ public class Directory {
         }
       }
 
+      cursor.close();
+
+      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {TOKEN},
+                                                          null, null, null, null, null);
+
+      while (cursor.moveToNext()) {
+        results.add(cursor.getString(0));
+      }
+
       return results;
     } finally {
       if (cursor != null)
@@ -142,7 +150,7 @@ public class Directory {
     }
   }
 
-  private String getToken(String e164number) {
+  public String getToken(String e164number) {
     try {
       MessageDigest digest = MessageDigest.getInstance("SHA1");
       byte[]        token  = Util.trim(digest.digest(e164number.getBytes()), 10);
