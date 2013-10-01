@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
-public class PromptApnActivity extends PassphraseRequiredSherlockActivity {
+public class PromptMmsActivity extends PassphraseRequiredSherlockActivity {
 
   private Button okButton;
   private Button cancelButton;
