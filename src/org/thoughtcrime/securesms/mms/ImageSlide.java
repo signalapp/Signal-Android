@@ -72,7 +72,7 @@ public class ImageSlide extends Slide {
       InputStream measureStream = getPartDataInputStream();
       InputStream dataStream    = getPartDataInputStream();
 
-      thumbnail = BitmapUtil.createScaledBitmap(measureStream, dataStream, maxWidth, maxHeight);
+      thumbnail = BitmapUtil.createScaledBitmapWithAspect(measureStream, dataStream, maxWidth, maxHeight);
       thumbnailCache.put(part.getDataUri(), new SoftReference<Bitmap>(thumbnail));
 
       return thumbnail;
@@ -159,7 +159,7 @@ public class ImageSlide extends Slide {
       throws IOException, BitmapDecodingException
   {
     PduPart part = new PduPart();
-    byte[] data  = BitmapUtil.createScaledBytes(context, uri, 640, 480, (300 * 1024) - 5000);
+    byte[] data  = BitmapUtil.createScaledBytesWithAspect(context, uri, 640, 480, (300 * 1024) - 5000);
 
     part.setData(data);
     part.setDataUri(uri);
