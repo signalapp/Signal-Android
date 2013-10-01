@@ -67,9 +67,22 @@ public class BitmapUtil {
       throw new BitmapDecodingException("Decoded stream was null.");
     }
 
-    if (imageWidth > maxWidth || imageHeight > maxHeight) {
-      Log.w("BitmapUtil", "Scaling to max width and height: " + maxWidth + "," + maxHeight);
-      Bitmap scaledThumbnail = Bitmap.createScaledBitmap(roughThumbnail, maxWidth, maxHeight, true);
+    if (roughThumbnail.getWidth() > maxWidth || roughThumbnail.getHeight() > maxHeight) {
+      float aspectWidth, aspectHeight;
+
+      if (imageWidth == 0 || imageHeight == 0) {
+        aspectWidth = maxWidth;
+        aspectHeight = maxHeight;
+      } else if (options.outWidth >= options.outHeight) {
+        aspectWidth = maxWidth;
+        aspectHeight = (aspectWidth / options.outWidth) * options.outHeight;
+      } else {
+        aspectHeight = maxHeight;
+        aspectWidth = (aspectHeight / options.outHeight) * options.outWidth;
+      }
+
+      Log.w("BitmapUtil", "Scaling to max width and height: " + aspectWidth + "," + aspectHeight);
+      Bitmap scaledThumbnail = Bitmap.createScaledBitmap(roughThumbnail, (int)aspectWidth, (int)aspectHeight, true);
       roughThumbnail.recycle();
       return scaledThumbnail;
     } else {
