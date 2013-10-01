@@ -472,7 +472,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private void handleApnPreferencesRequired() {
     Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
 
-    Intent intent = new Intent(this, PromptApnActivity.class);
+    Intent intent = new Intent(this, PromptMmsActivity.class);
     intent.putExtras(getIntent().getExtras());
     startActivity(intent);
   }

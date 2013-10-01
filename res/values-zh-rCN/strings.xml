@@ -73,7 +73,7 @@
   <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">无效密码！</string>
-  <!--PromptApnActivity-->
+  <!--PromptMmsActivity-->
   <!--ReceiveKeyActivity-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>

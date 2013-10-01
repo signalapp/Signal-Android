@@ -23,13 +23,13 @@
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:layout_marginBottom="16dip"
-                      android:text="@string/prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier"/>
+                      android:text="@string/prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages"/>
                     
             <TextView style="@style/Registration.Description"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:layout_marginBottom="16dip"
-                      android:text="@string/prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below"/>
+                      android:text="@string/prompt_mms_activity__to_send_media_and_group_messages_click_ok"/>
                         
             <LinearLayout android:orientation="horizontal"
                           android:gravity="center"

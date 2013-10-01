@@ -203,8 +203,8 @@ public class ConversationItem extends LinearLayout {
 
     if (!messageRecord.isOutgoing() && messageRecord.getRecipients().isSingleRecipient()) {
       checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-                           messageRecord.getBody().getBody(),
-                           messageRecord.getThreadId());
+          messageRecord.getBody().getBody(),
+          messageRecord.getThreadId());
     }
   }
 
@@ -506,7 +506,7 @@ public class ConversationItem extends LinearLayout {
 
   private class ApnPreferencesClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      Intent intent = new Intent(context, PromptApnActivity.class);
+      Intent intent = new Intent(context, PromptMmsActivity.class);
       intent.putExtra("message_id", messageRecord.getId());
       intent.putExtra("thread_id", messageRecord.getThreadId());
       intent.putExtra("automatic", true);

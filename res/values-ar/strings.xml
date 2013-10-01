@@ -115,10 +115,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">يجب أن تحدد كلمة سرية</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">يجب أن تحدد عنوان أو رابط لمركز رسائل الوسائط المتعددة.</string>
-  <string name="PromptApnActivity_mms_settings_updated">تم تعديل اعدادات رسائل الوسائط المتعددة</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">يمكنك تعديل هذه البيانات من اعدادات تكست سكيور بأي وقت.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">يجب أن تحدد عنوان أو رابط لمركز رسائل الوسائط المتعددة.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">تم تعديل اعدادات رسائل الوسائط المتعددة</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">يمكنك تعديل هذه البيانات من اعدادات تكست سكيور بأي وقت.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">المفتاح لجهة الاتصال هذه مختلف عن المرة السابقة. هذا قد يعني ان هناك محاولة لاعتراض اتصالاتك، أو ان جهة الاتصال قام\قامت بإعادة تنصيب تكست سيكيور لديهم.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه</string>
@@ -238,11 +238,11 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">العبارة السرية لتكست سيكيور</string>
   <string name="prompt_passphrase_activity__unlock">فتح القفل</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">تكست سيكيور يحتاج لإعدادات الشبكة APN لتوصيل رسائل الوسائط المتعددة. جهازك لا يوفر هذه المعلومة.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">لإرسال رسائل الوسائط المتعددة، يجب عليك اكمال اعدادات الشبكة APN. تحتاج لادخال هذه المعلومة مرة واحدة فقط.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">عنوان بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">منفذ بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">تكست سيكيور يحتاج لإعدادات الشبكة APN لتوصيل رسائل الوسائط المتعددة. جهازك لا يوفر هذه المعلومة.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">لإرسال رسائل الوسائط المتعددة، يجب عليك اكمال اعدادات الشبكة APN. تحتاج لادخال هذه المعلومة مرة واحدة فقط.</string>
+  <string name="prompt_mms_activity__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">عنوان بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">منفذ بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">انتهاء</string>
   <!--recipients_panel-->
@@ -325,8 +325,8 @@
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__passphrase">العبارة السرية</string>
   <string name="preferences__advanced_mms_access_point_names">مركز رسائل الوسائط المتعددة الاحتياطي</string>
-  <string name="preferences__enable_manual_apn">شغل مركز رسائل الوسائط المتعددة الاحتياطي</string>
-  <string name="preferences__use_configuration_here_when_system_apn_information_is_unavailable">استخدم مركز رسائل الوسائط المتعددة هنا اذا لم تتوفر بيناتات اتصال النظام APN</string>
+  <string name="preferences__enable_manual_mms">شغل مركز رسائل الوسائط المتعددة الاحتياطي</string>
+  <string name="preferences__override_system_mms_settings">استخدم مركز رسائل الوسائط المتعددة هنا اذا لم تتوفر بيناتات اتصال النظام APN</string>
   <string name="preferences__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
   <string name="preferences__mms_proxy_host_optional">عنوان بروكسي رسائل الوسائط المتعددة (غير الزامي)</string>
   <string name="preferences__mms_proxy_port_optional">منفذ او بورت بروكسي  الرسائل الوسائط المتعددة (غير الزامي)</string>
