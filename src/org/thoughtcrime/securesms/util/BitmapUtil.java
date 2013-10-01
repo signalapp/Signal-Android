@@ -42,6 +42,31 @@ public class BitmapUtil {
     else                        throw new IOException("Unable to scale image below: " + baos.size());
   }
 
+  public static byte[] createScaledBytesWithAspect(Context context, Uri uri, int maxWidth,
+                                         int maxHeight, int maxSize)
+      throws IOException, BitmapDecodingException
+  {
+    InputStream measure = context.getContentResolver().openInputStream(uri);
+    InputStream data    = context.getContentResolver().openInputStream(uri);
+    Bitmap bitmap       = createScaledBitmapWithAspect(measure, data, maxWidth, maxHeight);
+    int quality         = MAX_COMPRESSION_QUALITY;
+    int attempts        = 0;
+
+    ByteArrayOutputStream baos;
+
+    do {
+      baos = new ByteArrayOutputStream();
+      bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
+
+      quality = Math.max((quality * maxSize) / baos.size(), MIN_COMPRESSION_QUALITY);
+    } while (baos.size() > maxSize && attempts++ < MAX_COMPRESSION_ATTEMPTS);
+
+    bitmap.recycle();
+
+    if (baos.size() <= maxSize) return baos.toByteArray();
+    else                        throw new IOException("Unable to scale image below: " + baos.size());
+  }
+
   public static Bitmap createScaledBitmap(InputStream measure, InputStream data,
                                           int maxWidth, int maxHeight)
       throws BitmapDecodingException
@@ -75,6 +100,39 @@ public class BitmapUtil {
     } else {
       return roughThumbnail;
     }
+  }
+
+  public static Bitmap createScaledBitmapWithAspect(InputStream measure, InputStream data,
+                                          int maxWidth, int maxHeight)
+      throws BitmapDecodingException
+  {
+    BitmapFactory.Options options = getImageDimensions(measure);
+    int imageWidth                = options.outWidth;
+    int imageHeight               = options.outHeight;
+
+    float aspectWidth, aspectHeight;
+
+    if (imageWidth == 0 || imageHeight == 0) {
+      aspectWidth = maxWidth;
+      aspectHeight = maxHeight;
+    } else if (options.outWidth >= options.outHeight) {
+      aspectWidth = maxWidth;
+      aspectHeight = ((float)aspectWidth / options.outWidth) * options.outHeight;
+    } else {
+      aspectHeight = maxHeight;
+      aspectWidth = ((float)aspectHeight / options.outHeight) * options.outWidth;
+    }
+
+    options.inJustDecodeBounds = false;
+    Bitmap decoded = BitmapFactory.decodeStream(data, null, options);
+
+    if (decoded == null) {
+      throw new BitmapDecodingException("Decoded stream was null.");
+    }
+
+    Bitmap scaledThumbnail = Bitmap.createScaledBitmap(decoded, (int)aspectWidth, (int)aspectHeight, true);
+    decoded.recycle();
+    return scaledThumbnail;
   }
 
   private static BitmapFactory.Options getImageDimensions(InputStream inputStream) {
