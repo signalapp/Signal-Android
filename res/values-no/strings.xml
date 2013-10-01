@@ -329,7 +329,7 @@
   <string name="preferences__change_notification_blink_pattern">Endre LED-varslingens blinkemønster</string>
   <string name="preferences__pref_led_blink_dialogtitle">Velg LED blinkemønster</string>
   <string name="preferences__select_led_color">Velg LED farge</string>
-  <string name="preferences__select_ringtone">Velg varslingstone</string>
+  <string name="preferences__sound">Velg varslingstone</string>
   <string name="preferences__vibrate">Vibrasjon</string>
   <string name="preferences__also_vibrate_when_notified">Også vibrere ved varsling</string>
   <string name="preferences__minutes">minutter</string>

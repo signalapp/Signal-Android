@@ -436,7 +436,7 @@
     <string name="preferences__change_notification_blink_pattern">Change notification LED blink pattern</string>
     <string name="preferences__pref_led_blink_dialogtitle">Select LED Blink Pattern</string>
     <string name="preferences__select_led_color">Select LED Color</string>
-    <string name="preferences__select_ringtone">Select Ringtone</string>
+    <string name="preferences__sound">Sound</string>
     <string name="preferences__vibrate">Vibrate</string>
     <string name="preferences__also_vibrate_when_notified">Also vibrate when notified</string>
     <string name="preferences__minutes">minutes</string>

@@ -321,7 +321,7 @@
   <string name="preferences__change_notification_blink_pattern">Ändra LED-blinkmönster för notifikationer</string>
   <string name="preferences__pref_led_blink_dialogtitle">Välj LED-blinkmönster</string>
   <string name="preferences__select_led_color">Välj LED-färg</string>
-  <string name="preferences__select_ringtone">Välj rington</string>
+  <string name="preferences__sound">Välj rington</string>
   <string name="preferences__vibrate">Vibrera</string>
   <string name="preferences__also_vibrate_when_notified">Vibrera också vid notifikation</string>
   <string name="preferences__minutes">minuter</string>

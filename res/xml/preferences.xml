@@ -47,7 +47,7 @@
         <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
                             android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_ringtone"
-                            android:title="@string/preferences__select_ringtone"
+                            android:title="@string/preferences__sound"
                             android:ringtoneType="notification"
                             android:defaultValue="content://settings/system/notification_sound" />
         <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"

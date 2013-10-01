@@ -276,7 +276,7 @@
   <string name="preferences__change_notification_blink_pattern">Cambia il lampeggio del LED di notifica</string>
   <string name="preferences__pref_led_blink_dialogtitle">Seleziona un impostazione per il LED di notifica</string>
   <string name="preferences__select_led_color">Selezione il colore del LED</string>
-  <string name="preferences__select_ringtone">Seleziona una suoneria</string>
+  <string name="preferences__sound">Seleziona una suoneria</string>
   <string name="preferences__vibrate">Vibrazione</string>
   <string name="preferences__also_vibrate_when_notified">Vibra anche durante l\'arrivo di una notifica</string>
   <string name="preferences__minutes">minuti</string>

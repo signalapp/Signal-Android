@@ -321,7 +321,7 @@
   <string name="preferences__change_notification_blink_pattern">Αλλάξτε το πώς αναβοσβήνει το LED</string>
   <string name="preferences__pref_led_blink_dialogtitle">Επιλογή τρόπου αναβοσβήματος του LED</string>
   <string name="preferences__select_led_color">Επιλέξτε χρώμα LED</string>
-  <string name="preferences__select_ringtone">Επιλέξτε κουδούνισμα</string>
+  <string name="preferences__sound">Επιλέξτε κουδούνισμα</string>
   <string name="preferences__vibrate">Δόνηση</string>
   <string name="preferences__also_vibrate_when_notified">Δόνηση και κατά την ειδοποίηση</string>
   <string name="preferences__minutes">λεπτά</string>

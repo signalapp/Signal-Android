@@ -321,7 +321,7 @@
   <string name="preferences__change_notification_blink_pattern">Alterar padrão de pisca do LED</string>
   <string name="preferences__pref_led_blink_dialogtitle">Seleccionar padrão de pisca do LED</string>
   <string name="preferences__select_led_color">Seleccionar cor do LED</string>
-  <string name="preferences__select_ringtone">Seleccionar toque</string>
+  <string name="preferences__sound">Seleccionar toque</string>
   <string name="preferences__vibrate">Vibrar</string>
   <string name="preferences__also_vibrate_when_notified">Vibrar também quando notificado</string>
   <string name="preferences__minutes">minutos</string>

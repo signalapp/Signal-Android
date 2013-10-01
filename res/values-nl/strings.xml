@@ -322,7 +322,7 @@
   <string name="preferences__change_notification_blink_pattern">Verander notificatie LED knipperpatroon</string>
   <string name="preferences__pref_led_blink_dialogtitle">Selecteer LED Knipperpatroon</string>
   <string name="preferences__select_led_color">Selecteer LED Kleur</string>
-  <string name="preferences__select_ringtone">Selecteer ringtone</string>
+  <string name="preferences__sound">Selecteer ringtone</string>
   <string name="preferences__vibrate">Trillen</string>
   <string name="preferences__also_vibrate_when_notified">Ook trillen bij notificaties</string>
   <string name="preferences__minutes">minuten</string>
