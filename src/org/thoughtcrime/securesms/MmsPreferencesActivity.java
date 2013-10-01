@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -28,7 +30,10 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
-public class ApnPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
+public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
+
+  public static final String MANUAL_MMS_REQUIRED = "org.thoughtcrime.securesms.MmsPreferencesActivity.MANUAL_MMS_REQUIRED";
+
   private MasterSecret masterSecret;
 
   private final DynamicTheme dynamicTheme       = new DynamicTheme();
@@ -41,7 +46,7 @@ public class ApnPreferencesActivity extends PassphraseRequiredSherlockPreference
     super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    addPreferencesFromResource(R.xml.apn_preferences);
+    initializePreferences();
 
     masterSecret = getIntent().getParcelableExtra("master_secret");
 
@@ -80,6 +85,18 @@ public class ApnPreferencesActivity extends PassphraseRequiredSherlockPreference
     super.onBackPressed();
   }
 
+  private void initializePreferences() {
+    if (this.getIntent().getExtras() != null &&
+        this.getIntent().getExtras().getBoolean(MANUAL_MMS_REQUIRED, false)) {
+      PreferenceManager.getDefaultSharedPreferences(this).edit()
+          .putBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, true).commit();
+      addPreferencesFromResource(R.xml.mms_preferences);
+      this.findPreference(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
+    }
+    else
+      addPreferencesFromResource(R.xml.mms_preferences);
+  }
+
   private void initializeEditTextSummary(final EditTextPreference preference) {
     if (preference.getText() == null) {
       preference.setSummary("Not set");
@@ -107,4 +124,15 @@ public class ApnPreferencesActivity extends PassphraseRequiredSherlockPreference
     intent.setAction(SendReceiveService.DOWNLOAD_MMS_PENDING_APN_ACTION);
     startService(intent);
   }
+
+  private class OverrideMmsChangeListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object o) {
+      PreferenceManager.getDefaultSharedPreferences(MmsPreferencesActivity.this).edit()
+          .putBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, true).commit();
+      Toast.makeText(MmsPreferencesActivity.this, R.string.mms_preferences_activity__manual_mms_settings_are_required, Toast.LENGTH_SHORT).show();
+      return false;
+    }
+  }
+
 }

@@ -78,7 +78,7 @@
               android:windowSoftInputMode="stateUnchanged"              
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-     <activity android:name=".ApnPreferencesActivity"
+     <activity android:name=".MmsPreferencesActivity"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <activity android:name=".ConversationListActivity"

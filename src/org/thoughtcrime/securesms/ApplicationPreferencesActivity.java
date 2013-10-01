@@ -346,7 +346,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      startActivity(new Intent(ApplicationPreferencesActivity.this, ApnPreferencesActivity.class));
+      startActivity(new Intent(ApplicationPreferencesActivity.this, MmsPreferencesActivity.class));
       return true;
     }
   }
