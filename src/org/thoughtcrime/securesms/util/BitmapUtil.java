@@ -67,7 +67,7 @@ public class BitmapUtil {
       throw new BitmapDecodingException("Decoded stream was null.");
     }
 
-    if (imageWidth > maxWidth || imageHeight > maxHeight) {
+    if (roughThumbnail.getWidth() > maxWidth || roughThumbnail.getHeight() > maxHeight) {
       float aspectWidth, aspectHeight;
 
       if (imageWidth == 0 || imageHeight == 0) {
