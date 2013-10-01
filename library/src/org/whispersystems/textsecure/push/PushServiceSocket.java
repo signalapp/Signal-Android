@@ -42,7 +42,8 @@ public class PushServiceSocket {
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
   private static final String PREKEY_PATH               = "/v1/keys/%s";
 
-  private static final String DIRECTORY_PATH            = "/v1/directory/";
+  private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
+  private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
   private static final String MESSAGE_PATH              = "/v1/messages/";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
@@ -172,13 +173,22 @@ public class PushServiceSocket {
   public List<String> retrieveDirectory(Set<String> contactTokens) {
     try {
       ContactTokenList contactTokenList = new ContactTokenList(new LinkedList(contactTokens));
-      String           response         = makeRequest(DIRECTORY_PATH, "PUT", new Gson().toJson(contactTokenList));
+      String           response         = makeRequest(DIRECTORY_TOKENS_PATH, "PUT", new Gson().toJson(contactTokenList));
       ContactTokenList activeTokens     = new Gson().fromJson(response, ContactTokenList.class);
 
       return activeTokens.getContacts();
     } catch (IOException ioe) {
       Log.w("PushServiceSocket", ioe);
       return null;
+    }
+  }
+
+  public boolean isRegisteredUser(String contactToken) throws IOException {
+    try {
+      makeRequest(String.format(DIRECTORY_VERIFY_PATH, contactToken), "GET", null);
+      return true;
+    } catch (NotFoundException nfe) {
+      return false;
     }
   }
 
@@ -282,6 +292,10 @@ public class PushServiceSocket {
 
     if (connection.getResponseCode() == 403) {
       throw new AuthorizationFailedException("Authorization failed!");
+    }
+
+    if (connection.getResponseCode() == 404) {
+      throw new NotFoundException("Not found");
     }
 
     if (connection.getResponseCode() != 200) {

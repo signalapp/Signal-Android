@@ -26,6 +26,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.push.PushServiceSocket;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -57,7 +59,7 @@ public class UniversalTransport {
     Recipient recipient = message.getIndividualRecipient();
     String number       = Util.canonicalizeNumber(context, recipient.getNumber());
 
-    if (Directory.getInstance(context).containsNumber(number)) {
+    if (isPushTransport(number)) {
       try {
         Log.w("UniversalTransport", "Delivering with GCM...");
         pushTransport.deliver(message);
@@ -78,7 +80,7 @@ public class UniversalTransport {
 
     List<String> destinations = getMediaDestinations(mediaMessage);
 
-    if (Directory.getInstance(context).containsNumbers(destinations)) {
+    if (isPushTransport(destinations)) {
       try {
         Log.w("UniversalTransport", "Delivering media message with GCM...");
         pushTransport.deliver(mediaMessage, destinations);
@@ -117,4 +119,36 @@ public class UniversalTransport {
     return destinations;
   }
 
+  private boolean isPushTransport(String destination) {
+    Directory directory = Directory.getInstance(context);
+
+    try {
+      return directory.isActiveNumber(destination);
+    } catch (NotInDirectoryException e) {
+      try {
+        String            localNumber    = TextSecurePreferences.getLocalNumber(context);
+        String            pushPassword   = TextSecurePreferences.getPushServerPassword(context);
+        String            contactToken   = directory.getToken(destination);
+        PushServiceSocket socket         = new PushServiceSocket(context, localNumber, pushPassword);
+        boolean           registeredUser = socket.isRegisteredUser(contactToken);
+
+        directory.setToken(contactToken, registeredUser);
+
+        return registeredUser;
+      } catch (IOException e1) {
+        Log.w("UniversalTransport", e1);
+        return false;
+      }
+    }
+  }
+
+  private boolean isPushTransport(List<String> destinations) {
+    for (String destination : destinations) {
+      if (!isPushTransport(destination)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 }
