@@ -3,7 +3,8 @@ Building TextSecure
 
 Fetch ActionBarSherlock:
 
-    git clone --branch 4.2.0 git://github.com/JakeWharton/ActionBarSherlock.git ../ActionBarSherlock
+    git clone git://github.com/JakeWharton/ActionBarSherlock.git ../ActionBarSherlock
+    pushd ../ActionBarSherlock && git checkout 4.2.0 && popd
 
 Configure ActionBarSherlock for your android target:
 
