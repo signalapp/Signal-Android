@@ -465,11 +465,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
       builder.show();
     } else {
-      handleApnPreferencesRequired();
+      handleManualMmsRequired();
     }
   }
 
-  private void handleApnPreferencesRequired() {
+  private void handleManualMmsRequired() {
     Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
 
     Intent intent = new Intent(this, PromptMmsActivity.class);
@@ -858,7 +858,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       long allocatedThreadId;
 
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
-        handleApnPreferencesRequired();
+        handleManualMmsRequired();
       } else if (attachmentManager.isAttachmentPresent()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, attachmentManager.getSlideDeck(), body,

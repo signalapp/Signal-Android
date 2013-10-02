@@ -353,7 +353,7 @@
     <string name="local_identity__regenerate_key">Regenerate Key</string>
 
     <!-- mms_preferences_activity -->
-    <string name="mms_preferences_activity__manual_mms_settings_are_required">Manual MMS settings are required.</string>
+    <string name="mms_preferences_activity__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
 
 
     <!-- prompt_passphrase_activity -->

@@ -96,9 +96,9 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
   private void initializePreferences() {
     if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(this, null, false)) {
       PreferenceManager.getDefaultSharedPreferences(this).edit()
-          .putBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, true).commit();
+          .putBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, true).commit();
       addPreferencesFromResource(R.xml.mms_preferences);
-      this.findPreference(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
+      this.findPreference(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
     }
     else
       addPreferencesFromResource(R.xml.mms_preferences);
@@ -136,7 +136,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
       PreferenceManager.getDefaultSharedPreferences(MmsPreferencesActivity.this).edit()
-          .putBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, true).commit();
+          .putBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, true).commit();
       Toast.makeText(MmsPreferencesActivity.this, R.string.mms_preferences_activity__manual_mms_settings_are_required, Toast.LENGTH_SHORT).show();
       return false;
     }

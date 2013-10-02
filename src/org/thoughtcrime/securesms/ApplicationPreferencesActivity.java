@@ -78,11 +78,11 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final String CHANGE_PASSPHRASE_PREF	     = "pref_change_passphrase";
   public  static final String DISABLE_PASSPHRASE_PREF      = "pref_disable_passphrase";
 
-  public static final String APN_PREF                = "pref_apn_preferences";
-  public static final String USE_LOCAL_MMS_APNS_PREF = "pref_use_local_apns";
-  public static final String MMSC_HOST_PREF          = "pref_apn_mmsc_host";
-  public static final String MMSC_PROXY_HOST_PREF    = "pref_apn_mms_proxy";
-  public static final String MMSC_PROXY_PORT_PREF    = "pref_apn_mms_proxy_port";
+  public static final String MMS_PREF               = "pref_mms_preferences";
+  public static final String ENABLE_MANUAL_MMS_PREF = "pref_enable_manual_mms";
+  public static final String MMSC_HOST_PREF         = "pref_apn_mmsc_host";
+  public static final String MMSC_PROXY_HOST_PREF   = "pref_apn_mms_proxy";
+  public static final String MMSC_PROXY_PORT_PREF   = "pref_apn_mms_proxy_port";
 
   public static final String SMS_DELIVERY_REPORT_PREF = "pref_delivery_report_sms";
 
@@ -118,7 +118,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setOnPreferenceChangeListener(new TrimLengthValidationListener());
     this.findPreference(DISABLE_PASSPHRASE_PREF)
       .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
-    this.findPreference(APN_PREF)
+    this.findPreference(MMS_PREF)
       .setOnPreferenceClickListener(new ApnPreferencesClickListener());
   }
 
