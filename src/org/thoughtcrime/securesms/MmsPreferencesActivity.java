@@ -34,6 +34,8 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
 
   public static final String MANUAL_MMS_REQUIRED = "org.thoughtcrime.securesms.MmsPreferencesActivity.MANUAL_MMS_REQUIRED";
 
+  public static final int RESULT_FINISH_PROMPT = 1337;
+
   private MasterSecret masterSecret;
 
   private final DynamicTheme dynamicTheme       = new DynamicTheme();
@@ -92,6 +94,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
           .putBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, true).commit();
       addPreferencesFromResource(R.xml.mms_preferences);
       this.findPreference(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
+      setResult(RESULT_FINISH_PROMPT);
     }
     else
       addPreferencesFromResource(R.xml.mms_preferences);
