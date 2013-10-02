@@ -8,7 +8,8 @@
 
     <EditTextPreference android:key="pref_apn_mmsc_host"
                         android:title="@string/preferences__mmsc_url_required"
-                        android:dependency="pref_use_local_apns" />
+                        android:dependency="pref_use_local_apns"
+                        android:inputType="textUri"/>
 
     <EditTextPreference android:key="pref_apn_mms_proxy"
                         android:title="@string/preferences__mms_proxy_host_optional"

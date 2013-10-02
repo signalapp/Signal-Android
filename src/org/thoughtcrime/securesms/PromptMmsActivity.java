@@ -22,7 +22,7 @@ public class PromptMmsActivity extends PassphraseRequiredSherlockActivity {
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
-    if (resultCode == MmsPreferencesActivity.RESULT_FINISH_PROMPT)
+    if (resultCode == MmsPreferencesActivity.RESULT_FINISH_MMS_PROMPT)
       finish();
   }
 
@@ -35,7 +35,7 @@ public class PromptMmsActivity extends PassphraseRequiredSherlockActivity {
       public void onClick(View v) {
         Intent intent = new Intent(PromptMmsActivity.this, MmsPreferencesActivity.class);
         intent.putExtras(PromptMmsActivity.this.getIntent().getExtras());
-        intent.putExtra(MmsPreferencesActivity.MANUAL_MMS_REQUIRED, true);
+        intent.putExtra(MmsPreferencesActivity.PARENT_IS_PROMPT_MMS, true);
         startActivityForResult(intent, 1337);
       }
     });

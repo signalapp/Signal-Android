@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -32,9 +33,9 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
 
-  public static final String MANUAL_MMS_REQUIRED = "org.thoughtcrime.securesms.MmsPreferencesActivity.MANUAL_MMS_REQUIRED";
+  public static final String PARENT_IS_PROMPT_MMS = "org.thoughtcrime.securesms.MmsPreferencesActivity.PARENT_IS_PROMPT_MMS";
 
-  public static final int RESULT_FINISH_PROMPT = 1337;
+  public static final int RESULT_FINISH_MMS_PROMPT = 1337;
 
   private MasterSecret masterSecret;
 
@@ -53,6 +54,11 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
     masterSecret = getIntent().getParcelableExtra("master_secret");
 
     initializeEditTextSummaries();
+
+    if (this.getIntent().getExtras() != null &&
+        this.getIntent().getExtras().getBoolean(PARENT_IS_PROMPT_MMS, false)) {
+      setResult(RESULT_FINISH_MMS_PROMPT);
+    }
   }
 
   @Override
@@ -88,13 +94,11 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
   }
 
   private void initializePreferences() {
-    if (this.getIntent().getExtras() != null &&
-        this.getIntent().getExtras().getBoolean(MANUAL_MMS_REQUIRED, false)) {
+    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(this, null, false)) {
       PreferenceManager.getDefaultSharedPreferences(this).edit()
           .putBoolean(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF, true).commit();
       addPreferencesFromResource(R.xml.mms_preferences);
       this.findPreference(ApplicationPreferencesActivity.USE_LOCAL_MMS_APNS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
-      setResult(RESULT_FINISH_PROMPT);
     }
     else
       addPreferencesFromResource(R.xml.mms_preferences);
