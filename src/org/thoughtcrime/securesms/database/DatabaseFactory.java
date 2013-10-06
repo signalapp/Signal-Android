@@ -16,11 +16,14 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
@@ -51,7 +54,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_MMS_BODY_VERSION      = 7;
   private static final int INTRODUCED_MMS_FROM_VERSION      = 8;
   private static final int INTRODUCED_TOFU_IDENTITY_VERSION = 9;
-  private static final int DATABASE_VERSION                 = 9;
+  private static final int INTRODUCED_NOTIFICATIONS         = 10;
+  private static final int DATABASE_VERSION                 = 10;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -71,6 +75,7 @@ public class DatabaseFactory {
   private final MmsSmsDatabase mmsSmsDatabase;
   private final IdentityDatabase identityDatabase;
   private final DraftDatabase draftDatabase;
+  private final NotificationsDatabase notificationsDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -132,6 +137,10 @@ public class DatabaseFactory {
     return getInstance(context).draftDatabase;
   }
 
+  public static NotificationsDatabase getNotificationsDatabase(Context context) {
+    return getInstance(context).notificationsDatabase;
+  }
+
   private DatabaseFactory(Context context) {
     this.databaseHelper   = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     this.sms              = new SmsDatabase(context, databaseHelper);
@@ -144,6 +153,7 @@ public class DatabaseFactory {
     this.mmsSmsDatabase   = new MmsSmsDatabase(context, databaseHelper);
     this.identityDatabase = new IdentityDatabase(context, databaseHelper);
     this.draftDatabase    = new DraftDatabase(context, databaseHelper);
+    this.notificationsDatabase    = new NotificationsDatabase(context, databaseHelper);
   }
 
   public void reset(Context context) {
@@ -159,6 +169,7 @@ public class DatabaseFactory {
     this.mmsSmsDatabase.reset(databaseHelper);
     this.identityDatabase.reset(databaseHelper);
     this.draftDatabase.reset(databaseHelper);
+    this.notificationsDatabase.reset(databaseHelper);
     old.close();
 
     this.address.reset(context);
@@ -412,8 +423,11 @@ public class DatabaseFactory {
 
   private static class DatabaseHelper extends SQLiteOpenHelper {
 
+    Context context;
+
     public DatabaseHelper(Context context, String name, CursorFactory factory, int version) {
       super(context, name, factory, version);
+      this.context = context;
     }
 
     @Override
@@ -425,6 +439,7 @@ public class DatabaseFactory {
       db.execSQL(MmsAddressDatabase.CREATE_TABLE);
       db.execSQL(IdentityDatabase.CREATE_TABLE);
       db.execSQL(DraftDatabase.CREATE_TABLE);
+      db.execSQL(NotificationsDatabase.CREATE_TABLE);
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -615,6 +630,35 @@ public class DatabaseFactory {
       if (oldVersion < INTRODUCED_TOFU_IDENTITY_VERSION) {
         db.execSQL("DROP TABLE identities");
         db.execSQL("CREATE TABLE identities (_id INTEGER PRIMARY KEY, recipient INTEGER UNIQUE, key TEXT, mac TEXT);");
+      }
+      
+      if (oldVersion < INTRODUCED_NOTIFICATIONS)
+      {
+        db.execSQL(NotificationsDatabase.CREATE_TABLE);
+
+        // Migrate existing preference values into the 'defaults' database entry
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+        Boolean enabled              = sp.getBoolean("pref_key_enable_notifications", true);
+        String sound                 = sp.getString("pref_key_ringtone", null);
+        Boolean vibrate              = sp.getBoolean("pref_key_vibrate", true);
+        String ledColor              = sp.getString("pref_led_color", "green");
+        String ledPattern            = sp.getString("pref_led_blink", "500,2000");
+        String ledPatternCustom      = sp.getString("pref_led_blink_custom", "500,2000");
+
+        ContentValues vals = new ContentValues();
+        vals.put(NotificationsDatabase._ID, 0);
+        vals.put(NotificationsDatabase.CONTACT_ID, "0");
+        vals.put(NotificationsDatabase.CONTACT_LOOKUPKEY, "0");
+        vals.put(NotificationsDatabase.CONTACT_NAME, "default");
+        vals.put(NotificationsDatabase.ENABLED, (Boolean) enabled);
+        vals.put(NotificationsDatabase.SOUND, sound);
+        vals.put(NotificationsDatabase.VIBRATE, (Boolean) vibrate);
+        vals.put(NotificationsDatabase.LED_COLOR, ledColor);
+        vals.put(NotificationsDatabase.LED_PATTERN, ledPattern);
+        vals.put(NotificationsDatabase.LED_PATTERN_CUSTOM, ledPatternCustom);
+
+        db.insertOrThrow(NotificationsDatabase.TABLE_NAME, null, vals);
       }
 
       db.setTransactionSuccessful();
