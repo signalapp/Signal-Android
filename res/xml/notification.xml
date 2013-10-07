@@ -26,7 +26,16 @@
                             android:defaultValue="true"
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
-
+                        
+		<org.thoughtcrime.securesms.preferences.VibratePatternListPreference
+							android:key="c_pref_key_vibrate_pattern"
+							android:title="@string/preferences__vibrate_pattern_title"
+							android:summary="@string/preferences__vibrate_pattern_summary"
+							android:entries="@array/pref_vibrate_pattern_entries"
+							android:entryValues="@array/pref_vibrate_pattern_values"
+							android:dependency="c_pref_key_vibrate" />
+		</PreferenceCategory>
+            
         <PreferenceCategory android:title="@string/preferences__led_category_title" >
         <CheckBoxPreference
                     android:defaultValue="true"

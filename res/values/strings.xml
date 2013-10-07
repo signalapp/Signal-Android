@@ -504,6 +504,24 @@
     <string name="preferences__vibrate_summaryon">Vibrate is on</string>
     <string name="preferences__vibrate_summaryoff">Vibrate is off</string>
 
+    <string name="preferences__vibrate_pattern_title">Vibrate Pattern</string>
+    <string name="preferences__vibrate_pattern_summary">Set the vibration pattern</string>
+    <string name="preferences__vibrate_pattern_ok">Custom vibrate pattern set</string>
+    <string name="preferences__vibrate_pattern_bad">Custom vibrate pattern invalid</string>
+    <string name="preferences__vibrate_pattern_custom_title">Set Custom Vibrate Pattern</string>
+    <string name="preferences__vibrate_pattern_help">Enter a custom vibrate pattern, in the format:\nmillisOff, millisOn, etc.\n\nFor example:\n0,1000\n0,500,200,500,200,500</string>
+    <string name="preferences__vibrate_pattern_set">Custom vibrate pattern set!</string>
+
+    <string name="preferences__vibrate_pattern_3_short">3 Short</string>
+    <string name="preferences__vibrate_pattern_short_short_long">Short, Short, Long</string>
+    <string name="preferences__vibrate_pattern_short_long_short">Short, Long, Short</string>
+    <string name="preferences__vibrate_pattern_short_long_long">Short, Long, Long</string>
+
+    <string name="preferences__vibrate_pattern_3_long">3 Long</string>
+    <string name="preferences__vibrate_pattern_long_long_short">Long, Long, Short</string>
+    <string name="preferences__vibrate_pattern_long_short_long">Long, Short, Long</string>
+    <string name="preferences__vibrate_pattern_long_short_short">Long, Short, Short</string>
+
     <!-- LED Preferences -->
     <string name="preferences__led_title">Blink LED</string>
     <string name="preferences__led_summaryon">Blink LED when a message is received</string>

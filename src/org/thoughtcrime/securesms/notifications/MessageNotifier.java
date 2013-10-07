@@ -307,7 +307,25 @@ public class MessageNotifier {
     builder.setSound(TextUtils.isEmpty(sound) || !signal ? null : Uri.parse(sound));
 
     if (signal && vibrate)
-      builder.setDefaults(Notification.DEFAULT_VIBRATE);
+    {
+      if ( vibratePattern.equals(PATTERN_NONE)) {
+      }
+      else if ( vibratePattern.equals(PATTERN_DEFAULT) ) {
+        builder.setDefaults(Notification.DEFAULT_VIBRATE);
+      }
+      else {
+        long[] vibratePatternArray;
+        if ( vibratePattern.equals(PATTERN_CUSTOM) ) {
+          vibratePatternArray = parsePattern(vibratePatternCustom);
+        }
+        else {
+          vibratePatternArray = parsePattern(vibratePattern);
+        }
+        if ( vibratePatternArray.length > 1)
+          builder.setVibrate( vibratePatternArray );
+      }
+
+    }
 
     if ( led )
     {
