@@ -19,10 +19,9 @@ package org.thoughtcrime.securesms.preferences;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Parcelable;
 import android.preference.ListPreference;
-import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,8 +30,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.NotificationsDatabase;
 
 /**
  * List preference for LED blink pattern notification.
@@ -51,6 +51,8 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
 
   private boolean dialogInProgress;
 
+  private long rowId;
+
   public LedBlinkPatternListPreference(Context context) {
     super(context);
     this.context = context;
@@ -61,18 +63,24 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
     this.context = context;
   }
 
+  public void setRowId(long rowId) {
+    this.rowId = rowId;
+  }
+
   @Override
   protected void onDialogClosed(boolean positiveResult) {
     super.onDialogClosed(positiveResult);
 
     if (positiveResult) {
-      String blinkPattern = PreferenceManager.getDefaultSharedPreferences(context).getString(ApplicationPreferencesActivity.LED_BLINK_PREF, "500,2000");
+      String blinkPattern = this.getValue();
       if (blinkPattern.equals("custom")) showDialog();
     }
   }
 
   private void initializeSeekBarValues() {
-    String patternString  = PreferenceManager.getDefaultSharedPreferences(context).getString(ApplicationPreferencesActivity.LED_BLINK_PREF_CUSTOM, "500,2000");
+    Cursor c = DatabaseFactory.getNotificationsDatabase(context).getDefaultNotification();
+    String patternString = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_PATTERN_CUSTOM));
+    c.close();
     String[] patternArray = patternString.split(",");
     seekBarOn.setProgress(Integer.parseInt(patternArray[0]));
     seekBarOff.setProgress(Integer.parseInt(patternArray[1]));
@@ -152,8 +160,8 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
       String pattern   = seekBarOnLabel.getText() + "," + seekBarOffLabel.getText();
       dialogInProgress = false;
 
-      SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-      preferences.edit().putString(ApplicationPreferencesActivity.LED_BLINK_PREF_CUSTOM, pattern).commit();
+      DatabaseFactory.getNotificationsDatabase(context)
+        .updateNotification(rowId, NotificationsDatabase.LED_PATTERN_CUSTOM, pattern);
       Toast.makeText(context, context.getResources().getString(R.string.preferences__led_pattern_set), Toast.LENGTH_LONG).show();
     }
 

@@ -158,6 +158,13 @@
 
     <activity android:name=".RegistrationProgressActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+    <activity
+              android:name=".ConfigNotificationActivity"
+              android:configChanges="keyboardHidden|orientation|screenSize"
+              android:label="@string/preferences__contacts_title"
+              android:launchMode="singleTop" >
+    </activity>
+
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
@@ -220,6 +227,8 @@
 
     <provider android:name=".providers.PartProvider" 
               android:authorities="org.thoughtcrime.provider.securesms" />
+    <provider android:name=".providers.NotificationProvider" 
+              android:authorities="org.thoughtcrime.notificationprovider.securesms" />
 
        <uses-library android:name="android.test.runner" />
 </application>

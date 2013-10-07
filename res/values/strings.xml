@@ -475,7 +475,40 @@
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
-                                    
+
+    <!-- Notification Preferences -->
+    <string name="preferences__notif_title">Notifications</string>
+    <string name="preferences__notif_summary">Notification configuration</string>
+
+    <!-- Summary -->
+    <string name="preferences__summary_notifications_enabled">Notifications enabled</string>
+    <string name="preferences__summary_notifications_disabled">Notifications disabled</string>
+    <string name="preferences__summary_vibrate_enabled">Vibrate enabled</string>
+    <string name="preferences__summary_led_color">%s LED</string>
+
+    <!-- Category headings -->
+    <string name="preferences__notif_category_title">Notification Configuration</string>
+    <string name="preferences__vibrate_category_title">Vibrate Configuration</string>
+    <string name="preferences__led_category_title">LED Configuration</string>
+
+    <!-- General Notification Preferences -->
+    <string name="preferences__notif_enabled_title">Enable Notifications</string>
+    <string name="preferences__notif_enabled_summaryon">Notifications are enabled</string>
+    <string name="preferences__notif_enabled_summaryoff">Notifications are disabled</string>
+    <string name="preferences__notif_sound_title">Notification Sound</string>
+    <string name="preferences__notif_sound_summary">This sound will play when a message is received</string>
+    <string name="sound_silent">Silent</string>
+
+    <!-- Vibrate Preferences -->
+    <string name="preferences__vibrate_title">Vibrate</string>
+    <string name="preferences__vibrate_summaryon">Vibrate is on</string>
+    <string name="preferences__vibrate_summaryoff">Vibrate is off</string>
+
+    <!-- LED Preferences -->
+    <string name="preferences__led_title">Blink LED</string>
+    <string name="preferences__led_summaryon">Blink LED when a message is received</string>
+    <string name="preferences__led_summaryoff">Do not blink LED when a message is received</string>
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->
