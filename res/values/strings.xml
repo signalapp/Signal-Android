@@ -530,6 +530,23 @@
     <string name="preferences__led_summaryon">Blink LED when a message is received</string>
     <string name="preferences__led_summaryoff">Do not blink LED when a message is received</string>
 
+    <!-- Contact Notification Customization Strings -->
+    <string name="preferences__notif_default_title">Default Notifications</string>
+    <string name="preferences__notif_default_summary">Notifications for all contacts without an individual customization</string>
+    <string name="preferences__contacts_title">Contacts Notifications</string>
+    <string name="preferences__contacts_summary">Individual contact customization</string>
+    <string name="preferences__notif_help_title">Help</string>
+    <string name="preferences__notif_help_summary">Notifications Help</string>
+    <string name="preferences__notif_help_message">TextSecure offers the ability to customize notifications on a per contact basis.  When a new message comes in, TextSecure will first check if the contact has a customized notification.  If so, those settings are used, otherwise the default notifications are used.</string>
+    <string name="contact_customization_add">Add Custom Notifications</string>
+    <string name="contact_customization_edit">Edit Custom Notification</string>
+    <string name="contact_customization_remove">Remove Custom Notification</string>
+    <string name="contact_customization_save">Save</string>
+    <string name="contact_customization_title">Notifications for %s</string>
+    <string name="contact_customization_enabled">Notifications are enabled for %s</string>
+    <string name="contact_customization_disabled">Notifications are disabled for %s</string>
+    <string name="contact_customization_add_hint">Add/Edit contact notifications…</string>
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->

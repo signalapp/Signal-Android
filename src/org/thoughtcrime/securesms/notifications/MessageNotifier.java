@@ -165,7 +165,7 @@ public class MessageNotifier {
 
     builder.setStyle(new BigTextStyle().bigText(content));
 
-    setNotificationAlarms(context, builder, signal);
+    setNotificationAlarms(context, builder, signal, recipient);
 
     if (signal) {
       builder.setTicker(notifications.get(0).getTickerText());
@@ -205,7 +205,7 @@ public class MessageNotifier {
 
     builder.setStyle(style);
 
-    setNotificationAlarms(context, builder, signal);
+    setNotificationAlarms(context, builder, signal, notifications.get(0).getIndividualRecipient());
 
     if (signal) {
       builder.setTicker(notifications.get(0).getTickerText());
@@ -285,7 +285,44 @@ public class MessageNotifier {
                                             NotificationCompat.Builder builder,
                                             boolean signal)
   {
-    Cursor c = DatabaseFactory.getNotificationsDatabase(context).getDefaultNotification();
+    // use the default notification "0","0"
+    setNotificationAlarms(context, builder, signal, "0", "0");
+  }
+
+  private static void setNotificationAlarms(Context context,
+      NotificationCompat.Builder builder,
+      boolean signal,
+      Recipient recipient)
+  {
+
+    // get the default notification if there's no contactUri
+    String lookupKey = "0";
+    String contactId = "0";
+
+    Uri contactUri = recipient.getContactUri();
+    if (contactUri != null)
+    {
+      final List<String> segments = contactUri.getPathSegments();
+      lookupKey = segments.get(segments.size() - 2);
+      contactId = segments.get(segments.size() - 1);
+    }
+
+    setNotificationAlarms(context,builder,signal,lookupKey,contactId);
+  }
+
+  public static void setNotificationAlarms(Context context,
+      NotificationCompat.Builder builder,
+      boolean signal,
+      String lookupKey,
+      String contactId)
+  {
+
+    // Check for a contact-specific notification
+    Cursor c = DatabaseFactory.getNotificationsDatabase(context).getNotification(lookupKey, contactId);
+    if (c == null) {
+      // otherwise, use the default notification
+      c = DatabaseFactory.getNotificationsDatabase(context).getDefaultNotification();
+    }
 
     final String one = "1";
 

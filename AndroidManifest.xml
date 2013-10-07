@@ -159,6 +159,12 @@
     <activity android:name=".RegistrationProgressActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     <activity
+              android:name=".ConfigContactsActivity"
+              android:configChanges="keyboardHidden|orientation|screenSize"
+              android:label="@string/preferences__contacts_title"
+              android:launchMode="singleTop" >
+    </activity>
+    <activity
               android:name=".ConfigNotificationActivity"
               android:configChanges="keyboardHidden|orientation|screenSize"
               android:label="@string/preferences__contacts_title"

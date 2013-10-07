@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.providers.NotificationContract.ContactNotifications;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -58,6 +59,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
 
   public static final String DEFAULT_NOTIFICATION_PREF        = "pref_key_notif_defaults";
+  public static final String CONTACT_NOTIFICATION_PREF        = "pref_key_notif_contacts";
   public static final String IDENTITY_PREF                    = "pref_choose_identity";
   public static final String ALL_MMS_PERF                     = "pref_all_mms";
   public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
@@ -119,6 +121,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setIntent( new Intent(this, org.thoughtcrime.securesms.ConfigNotificationActivity.class)
         .putExtra( ConfigNotificationActivity.EXTRA_CONTACT_URI, ContactNotifications.buildLookupUri("0","0") ) );
 
+    // Set intent for contact notification option
+    this.findPreference(CONTACT_NOTIFICATION_PREF)
+      .setIntent( new Intent(this, org.thoughtcrime.securesms.ConfigContactsActivity.class) );
   }
 
   @Override
