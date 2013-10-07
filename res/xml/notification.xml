@@ -12,6 +12,16 @@
 							android:summaryOff="@string/preferences__notif_enabled_summaryoff"
 							android:defaultValue="true" />
 
+		<org.thoughtcrime.securesms.preferences.TestNotificationDialogPreference
+							android:key="c_pref_key_test_notification"
+							android:dialogIcon="@drawable/android:ic_dialog_alert"
+							android:title="@string/preferences__notif_test_title"
+							android:dialogTitle="@string/preferences__notif_test_title"
+							android:dialogMessage="@string/preferences__notif_test_message"
+							android:summary="@string/preferences__notif_test_summary"
+							android:dependency="c_pref_key_notification_enabled"
+							android:negativeButtonText="@null" />
+
         <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
                             android:dependency="c_pref_key_notification_enabled"
                             android:key="c_pref_key_sound"

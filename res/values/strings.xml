@@ -495,6 +495,9 @@
     <string name="preferences__notif_enabled_title">Enable Notifications</string>
     <string name="preferences__notif_enabled_summaryon">Notifications are enabled</string>
     <string name="preferences__notif_enabled_summaryoff">Notifications are disabled</string>
+    <string name="preferences__notif_test_title">Test Notification</string>
+    <string name="preferences__notif_test_summary">Test out your notification</string>
+    <string name="preferences__notif_test_message">Testing your notification now!</string>
     <string name="preferences__notif_sound_title">Notification Sound</string>
     <string name="preferences__notif_sound_summary">This sound will play when a message is received</string>
     <string name="sound_silent">Silent</string>
