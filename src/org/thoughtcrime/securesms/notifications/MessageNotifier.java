@@ -228,6 +228,11 @@ public class MessageNotifier {
   private static void sendInThreadNotification(Context context) {
     try {
       SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+      
+      if (!sp.getBoolean(ApplicationPreferencesActivity.IN_THREAD_NOTIFICATION_PREF, true)) {
+    	  return;
+      }
+      
       String ringtone      = sp.getString(ApplicationPreferencesActivity.RINGTONE_PREF, null);
 
       if (ringtone == null)

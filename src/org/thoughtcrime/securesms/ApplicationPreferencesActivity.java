@@ -58,6 +58,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
 
   public static final String RINGTONE_PREF                    = "pref_key_ringtone";
+  public static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
   public static final String VIBRATE_PREF                     = "pref_key_vibrate";
   public static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
   public static final String LED_COLOR_PREF                   = "pref_led_color";
