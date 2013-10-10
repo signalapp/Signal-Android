@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import org.thoughtcrime.securesms.preferences.SoundPreference;
 import org.thoughtcrime.securesms.preferences.VibratePatternListPreference;
 import org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference;
 import org.thoughtcrime.securesms.preferences.TestNotificationDialogPreference;
@@ -11,7 +12,6 @@ import org.thoughtcrime.securesms.database.NotificationsDatabase;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -22,8 +22,6 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
-import android.preference.RingtonePreference;
 import android.provider.ContactsContract.Contacts;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,7 +31,6 @@ public class ConfigNotificationActivity extends PreferenceActivity {
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
 
   private long rowId;
-  private RingtonePreference soundPref;
   public static final String EXTRA_CONTACT_URI = "org.thoughtcrime.securesms.EXTRA_CONTACT_URI";
 
   public static final String PREF_ENABLED                = "c_pref_key_notification_enabled";
@@ -62,12 +59,11 @@ public class ConfigNotificationActivity extends PreferenceActivity {
   protected void onResume() {
     super.onResume();
 
-    final SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-    final Uri ringtoneUri = Uri.parse(myPrefs.getString(PREF_SOUND, NotificationsDatabase.DEFAULT_SOUND));
+    SoundPreference soundPref = (SoundPreference) findPreference(PREF_SOUND);
+    final Uri ringtoneUri = soundPref.getSound();
     final Ringtone sound = RingtoneManager.getRingtone(this, ringtoneUri);
 
-    if (ringtoneUri.toString().isEmpty() || sound == null) {
+    if (sound == null || ringtoneUri.toString().isEmpty()) {
       soundPref.setSummary(getString(R.string.sound_silent));
     } else {
       soundPref.setSummary(sound.getTitle(this));
@@ -89,61 +85,10 @@ public class ConfigNotificationActivity extends PreferenceActivity {
     // Let Activity manage the cursor
     startManagingCursor(c);
 
-    // Retrieve preferences from database
-    retrievePreferences(c);
-
     // Add preference layout from XML
     addPreferencesFromResource(R.xml.notification);
 
-    // Customize Activity title + main notif enabled preference summaries
-    String contactName =
-        c.getString(c.getColumnIndex(NotificationsDatabase.CONTACT_NAME));
-
-    CheckBoxPreference enabledPref =
-        (CheckBoxPreference) findPreference(PREF_ENABLED);
-    enabledPref.setSummaryOn(
-        getString(R.string.contact_customization_enabled, contactName));
-    enabledPref.setSummaryOff(
-        getString(R.string.contact_customization_disabled, contactName));
-    enabledPref.setOnPreferenceChangeListener(onPrefChangeListener);
-
-    /*
-     * Main Prefs
-     */
-
-    soundPref = (RingtonePreference) findPreference(PREF_SOUND);
-    soundPref.setOnPreferenceChangeListener(onPrefChangeListener);
-
-    TestNotificationDialogPreference testPref = (TestNotificationDialogPreference) findPreference(PREF_TEST);
-    testPref.setRowId(rowId);
-
-    /*
-     * Vibrate Prefs
-     */
-    CheckBoxPreference enableVibratePref =
-        (CheckBoxPreference) findPreference(PREF_VIBRATE);
-    enableVibratePref.setOnPreferenceChangeListener(onPrefChangeListener);
-
-    VibratePatternListPreference vibratePatternPref =
-        (VibratePatternListPreference) findPreference(PREF_VIBRATE_PATTERN);
-    vibratePatternPref.setOnPreferenceChangeListener(onPrefChangeListener);
-    vibratePatternPref.setRowId(rowId);
-
-    /*
-     * LED Prefs
-     */
-    CheckBoxPreference ledEnabledPref =
-        (CheckBoxPreference) findPreference(PREF_LED);
-    ledEnabledPref.setOnPreferenceChangeListener(onPrefChangeListener);
-
-    ListPreference ledColorPref =
-        (ListPreference) findPreference(PREF_LED_COLOR);
-    ledColorPref.setOnPreferenceChangeListener(onPrefChangeListener);
-
-    LedBlinkPatternListPreference ledPatternPref =
-        (LedBlinkPatternListPreference) findPreference(PREF_LED_PATTERN);
-    ledPatternPref.setOnPreferenceChangeListener(onPrefChangeListener);
-    ledPatternPref.setRowId(rowId);
+    initPreferences(c);
   }
 
   /*
@@ -197,55 +142,65 @@ public class ConfigNotificationActivity extends PreferenceActivity {
     return rows == 1 ? true : false;
   }
 
-  /*
-   * Retrieve all preferences from the database into preferences
-   */
-  private void retrievePreferences(Cursor c) {
-    if (c == null || c.getCount() != 1) {
-      return;
-    }
+  private void initPreferences(Cursor c) {
+    final String one = "1";
+    String contactName = c.getString(c.getColumnIndex(NotificationsDatabase.CONTACT_NAME));
 
-    if (c.moveToFirst()) {
+    CheckBoxPreference enabledPref = (CheckBoxPreference) findPreference(PREF_ENABLED);
+    enabledPref.setChecked(
+        one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.ENABLED))));
+    enabledPref.setSummaryOn(
+            getString(R.string.contact_customization_enabled, contactName));
+    enabledPref.setSummaryOff(
+            getString(R.string.contact_customization_disabled, contactName));
+    enabledPref.setOnPreferenceChangeListener(onPrefChangeListener);
 
-      rowId = c.getLong(c.getColumnIndexOrThrow(NotificationsDatabase._ID));
+    SoundPreference soundPref = (SoundPreference) findPreference(PREF_SOUND);
+    soundPref.setOnPreferenceChangeListener(onPrefChangeListener);
+    soundPref.setNotificationId(rowId);
 
-      final String one = "1";
-      SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-      SharedPreferences.Editor editor = myPrefs.edit();
+    TestNotificationDialogPreference testPref = (TestNotificationDialogPreference) findPreference(PREF_TEST);
+    testPref.setRowId(rowId);
 
-      /*
-       * Fetch Main Prefs
-       */
-      editor.putBoolean(PREF_ENABLED,
-          one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.ENABLED))));
-      editor.putString(PREF_SOUND,
-          c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.SOUND)));
+    /*
+     * Vibrate Prefs
+     */
+    CheckBoxPreference enableVibratePref =
+            (CheckBoxPreference) findPreference(PREF_VIBRATE);
+    enableVibratePref.setOnPreferenceChangeListener(onPrefChangeListener);
+    enableVibratePref.setChecked(
+        one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE))));
 
-      /*
-       * Fetch Vibrate prefs
-       */
-      editor.putBoolean(PREF_VIBRATE,
-          one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE))));
-      editor.putString(PREF_VIBRATE_PATTERN,
-          c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE_PATTERN)));
-      editor.putString(PREF_VIBRATE_PATTERN_CUSTOM,
-          c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE_PATTERN_CUSTOM)));
-      /*
-       * Fetch LED prefs
-       */
-      editor.putBoolean(PREF_LED,
-          one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED))));
-      editor.putString(PREF_LED_COLOR,
-          c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_COLOR)));
-      editor.putString(PREF_LED_PATTERN,
-          c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_PATTERN)));
-      editor.putString(PREF_LED_PATTERN_CUSTOM,
-          c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_PATTERN_CUSTOM)));
+    VibratePatternListPreference vibratePatternPref =
+            (VibratePatternListPreference) findPreference(PREF_VIBRATE_PATTERN);
+    vibratePatternPref.setValue(
+        c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE_PATTERN)));
+    vibratePatternPref.setOnPreferenceChangeListener(onPrefChangeListener);
+    vibratePatternPref.setRowId(rowId);
 
-      // Commit prefs
-      editor.commit();
-    }
+    /*
+     * LED Prefs
+     */
+    CheckBoxPreference ledEnabledPref =
+        (CheckBoxPreference) findPreference(PREF_LED);
+    ledEnabledPref.setChecked(
+        one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED))));
+    ledEnabledPref.setOnPreferenceChangeListener(onPrefChangeListener);
+
+    ListPreference ledColorPref =
+        (ListPreference) findPreference(PREF_LED_COLOR);
+    ledColorPref.setValue(
+        c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_COLOR)));
+    ledColorPref.setOnPreferenceChangeListener(onPrefChangeListener);
+
+    LedBlinkPatternListPreference ledPatternPref =
+            (LedBlinkPatternListPreference) findPreference(PREF_LED_PATTERN);
+    ledPatternPref.setValue(
+        c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_PATTERN)));
+    ledPatternPref.setOnPreferenceChangeListener(onPrefChangeListener);
+    ledPatternPref.setRowId(rowId);
   }
+
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

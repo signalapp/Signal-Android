@@ -7,6 +7,7 @@
     android:key="c_pref_category">
     <CheckBoxPreference
               android:key="c_pref_key_notification_enabled"
+              android:persistent="false"
               android:title="@string/preferences__notif_enabled_title"
               android:summaryOn="@string/preferences__notif_enabled_summaryon"
               android:summaryOff="@string/preferences__notif_enabled_summaryoff"
@@ -14,6 +15,7 @@
 
     <org.thoughtcrime.securesms.preferences.TestNotificationDialogPreference
               android:key="c_pref_key_test_notification"
+              android:persistent="false"
               android:dialogIcon="@drawable/android:ic_dialog_alert"
               android:title="@string/preferences__notif_test_title"
               android:dialogTitle="@string/preferences__notif_test_title"
@@ -22,9 +24,11 @@
               android:dependency="c_pref_key_notification_enabled"
               android:negativeButtonText="@null" />
 
-    <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
+    <org.thoughtcrime.securesms.preferences.SoundPreference
+              android:layout="?android:attr/preferenceLayoutChild"
               android:dependency="c_pref_key_notification_enabled"
               android:key="c_pref_key_sound"
+              android:persistent="false"
               android:title="@string/preferences__sound"
               android:ringtoneType="notification" />
   </PreferenceCategory>
@@ -34,12 +38,14 @@
               android:layout="?android:attr/preferenceLayoutChild"
               android:dependency="c_pref_key_notification_enabled"
               android:key="c_pref_key_vibrate"
+              android:persistent="false"
               android:defaultValue="true"
               android:title="@string/preferences__vibrate"
               android:summary="@string/preferences__also_vibrate_when_notified" />
 
     <org.thoughtcrime.securesms.preferences.VibratePatternListPreference
               android:key="c_pref_key_vibrate_pattern"
+              android:persistent="false"
               android:title="@string/preferences__vibrate_pattern_title"
               android:summary="@string/preferences__vibrate_pattern_summary"
               android:entries="@array/pref_vibrate_pattern_entries"
@@ -52,12 +58,14 @@
               android:defaultValue="true"
               android:dependency="c_pref_key_notification_enabled"
               android:key="c_pref_key_led"
+              android:persistent="false"
               android:summaryOff="@string/preferences__led_summaryoff"
               android:summaryOn="@string/preferences__led_summaryon"
               android:title="@string/preferences__led_title" />
 
     <ListPreference
               android:key="c_pref_key_led_color"
+              android:persistent="false"
               android:title="@string/preferences__led_color"
               android:dependency="c_pref_key_led"
               android:summary="@string/preferences__change_notification_led_color"
@@ -67,6 +75,7 @@
 
     <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
               android:key="c_pref_key_led_pattern"
+              android:persistent="false"
               android:title="@string/preferences__pref_led_blink_title"
               android:dependency="c_pref_key_led"
               android:summary="@string/preferences__change_notification_blink_pattern"
