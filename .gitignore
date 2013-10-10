@@ -12,3 +12,11 @@ lint.xml
 local.properties
 ant.properties
 .DS_Store
+build.log
+build-log.xml
+.gradle
+build
+signing.properties
+gradle
+gradlew
+gradlew.bat

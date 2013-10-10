@@ -69,5 +69,20 @@
         <item name="android:shadowRadius">0.0</item>
         <item name="android:lineSpacingMultiplier">1.25</item>        
     </style>
-	
+
+    <!-- For Holo Light Dialog Activity Styling Emulation -->
+    <style name="TextSecureDialogWindowTitle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/textsecure_holo_blue_light</item>
+    </style>
+
+    <style name="TextSecureDialogButtonBar">
+        <item name="android:background">@null</item>
+        <item name="android:dividerPadding">0dp</item>
+    </style>
+
+    <style name="TextSecureBorderlessButtonSmall">
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

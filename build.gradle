@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.+'
+    }
+}
+
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://raw.github.com/whispersystems/maven/master/gcm-client/releases/"
+    }
+    maven {
+        url "https://raw.github.com/whispersystems/maven/master/gson/releases/"
+    }
+}
+
+dependencies {
+    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+    compile 'com.googlecode.libphonenumber:libphonenumber:5.3'
+    compile 'com.android.support:support-v4:18.0.0'
+    compile 'org.whispersystems:gson:2.1'
+    compile 'com.google.android.gcm:gcm-client:1.0.2'
+}
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion '17.0.0'
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 17
+    }
+
+    android {
+        sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src']
+                resources.srcDirs = ['src']
+                aild.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
+                assets.srcDirs = ['assets']
+            }
+        }
+    }
+
+    signingConfigs {
+        release
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+def Properties props = new Properties()
+def propFile = new File('signing.properties')
+
+if (propFile.canRead()){
+    props.load(new FileInputStream(propFile))
+
+    if (props !=null &&
+        props.containsKey('STORE_FILE')     &&
+        props.containsKey('STORE_PASSWORD') &&
+        props.containsKey('KEY_ALIAS')      &&
+        props.containsKey('KEY_PASSWORD'))
+    {
+        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+        android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
+        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+    } else {
+        println 'signing.properties found but some entries are missing'
+        android.buildTypes.release.signingConfig = null
+    }
+}else {
+    println 'signing.properties not found'
+    android.buildTypes.release.signingConfig = null
+}

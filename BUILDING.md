@@ -1,23 +1,9 @@
 Building TextSecure
 ===================
 
-Fetch ActionBarSherlock:
+1. Ensure the 'Android Support Repository' is installed from the Android SDK manager.
+1. Ensure gradle >= 1.8 is installed.
 
-    git clone git://github.com/JakeWharton/ActionBarSherlock.git ../ActionBarSherlock
-    pushd ../ActionBarSherlock && git checkout 4.2.0 && popd
+Execute Gradle:
 
-Configure ActionBarSherlock for your android target:
-
-    android update project --path ../ActionBarSherlock/library --target 1
-
-Configure TextSecure for your android target, linking to ASB:
-
-    android update project --path . --target 1 --library ../ActionBarSherlock/library
-
-Finally, both codebases must share the android-support jar. As TextSecure's is newer, use it:
-
-    cp libs/android-support-v4.jar ../ActionBarSherlock/library/libs/android-support-v4.jar
-
-Assuming your android toolchain is correctly configured, it should now be possible to build the TextSecure apk.
-
-    ant debug
+    gradle build

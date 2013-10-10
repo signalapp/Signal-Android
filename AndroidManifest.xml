@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.thoughtcrime.securesms"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="org.thoughtcrime.securesms"
       android:versionCode="56"
       android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16"/>
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -13,7 +14,8 @@
 	<uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
-    <uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"/>
+    <uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"
+                     tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -117,7 +119,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".AutoInitiateActivity"
-              android:theme="@style/Theme.Sherlock.Light.Dialog"
+              android:theme="@style/TextSecure.Light.Dialog"
               android:label="@string/AndroidManifest__textsecure_detected"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -145,8 +147,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ReceiveKeyActivity" 
-              android:theme="@style/Theme.Sherlock.Light.Dialog" 
-              android:label="@string/AndroidManifest__complete_key_exchange" 
+              android:label="@string/AndroidManifest__complete_key_exchange"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     
     <activity android:name=".ApplicationPreferencesActivity"
@@ -185,10 +186,10 @@
               android:enabled="true"
               android:exported="true">
              <intent-filter android:priority="1001">
-                 <action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
+                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
              </intent-filter>
              <intent-filter>
-                 <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"></action>
+                 <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
              </intent-filter>
     </receiver>
 
@@ -197,7 +198,7 @@
               android:exported="true"
               android:permission="android.permission.BROADCAST_WAP_PUSH">
              <intent-filter android:priority="1001">
-                 <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED"></action>
+                 <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED"/>
                  <data android:mimeType="application/vnd.wap.mms-message" />
              </intent-filter>
     </receiver>
@@ -206,7 +207,7 @@
               android:enabled="true"
               android:exported="true">
               <intent-filter>
-                  <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>                  
+                  <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
               </intent-filter>              
     </receiver>
 
@@ -214,7 +215,7 @@
               android:enabled="true"
               android:exported="true">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.notifications.CLEAR"></action>
+            <action android:name="org.thoughtcrime.securesms.notifications.CLEAR"/>
         </intent-filter>
     </receiver>
 

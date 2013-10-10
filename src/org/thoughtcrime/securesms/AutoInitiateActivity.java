@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  * @author Moxie Marlinspike
  *
  */
-public class AutoInitiateActivity extends PassphraseRequiredSherlockActivity {
+public class AutoInitiateActivity extends Activity {
 
   private long threadId;
   private Recipient recipient;

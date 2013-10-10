@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextSecure.Light.Dialog" parent="@android:style/Theme.Holo.Light.Dialog"/>
+
+</resources>
