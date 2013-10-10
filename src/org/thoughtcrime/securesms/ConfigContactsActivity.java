@@ -104,9 +104,6 @@ public class ConfigContactsActivity extends FragmentActivity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-    case android.R.id.home:
-      finish();
-      break;
     case R.id.add_menu_item:
       startContactPicker();
       break;
