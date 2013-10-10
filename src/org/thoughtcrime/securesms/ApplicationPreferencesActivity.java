@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.providers.NotificationContract.ContactNotifications;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -57,12 +58,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final int PICK_IDENTITY_CONTACT        = 1;
   private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
 
-  public static final String RINGTONE_PREF                    = "pref_key_ringtone";
-  public static final String VIBRATE_PREF                     = "pref_key_vibrate";
-  public static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
-  public static final String LED_COLOR_PREF                   = "pref_led_color";
-  public static final String LED_BLINK_PREF                   = "pref_led_blink";
-  public static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
+  public static final String DEFAULT_NOTIFICATION_PREF        = "pref_key_notif_defaults";
+  public static final String CONTACT_NOTIFICATION_PREF        = "pref_key_notif_contacts";
   public static final String IDENTITY_PREF                    = "pref_choose_identity";
   public static final String ALL_MMS_PERF                     = "pref_all_mms";
   public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
@@ -118,6 +115,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setOnPreferenceChangeListener(new TrimLengthValidationListener());
     this.findPreference(DISABLE_PASSPHRASE_PREF)
       .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
+
+    // Set intent for default notification option
+    this.findPreference(DEFAULT_NOTIFICATION_PREF)
+      .setIntent( new Intent(this, org.thoughtcrime.securesms.ConfigNotificationActivity.class)
+        .putExtra( ConfigNotificationActivity.EXTRA_CONTACT_URI, ContactNotifications.buildLookupUri("0","0") ) );
+
+    // Set intent for contact notification option
+    this.findPreference(CONTACT_NOTIFICATION_PREF)
+      .setIntent( new Intent(this, org.thoughtcrime.securesms.ConfigContactsActivity.class) );
   }
 
   @Override

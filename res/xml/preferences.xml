@@ -17,45 +17,30 @@
                             android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
                             android:title="@string/preferences__sms_delivery_reports" />
 
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences__notifications">
-        <CheckBoxPreference android:key="pref_key_enable_notifications"
-                            android:title="@string/preferences__notifications"
-                            android:summary="@string/preferences__display_message_notifications_in_status_bar"
-                            android:defaultValue="true" />
-        <ListPreference
-                          android:key="pref_led_color"
-                          android:defaultValue="green"
-                          android:title="@string/preferences__led_color"
-                          android:dependency="pref_key_enable_notifications"
-                          android:summary="@string/preferences__change_notification_led_color"
-                          android:entries="@array/pref_led_color_entries"
-                          android:entryValues="@array/pref_led_color_values"
-                          android:dialogTitle="@string/preferences__select_led_color" />
+        <PreferenceScreen
+                          android:key="pref_key_notifications"
+                          android:summary="@string/preferences__notif_default_summary"
+                          android:title="@string/preferences__notif_category_title" >
+                          <PreferenceScreen
+                                            android:key="pref_key_notif_defaults"
+                                            android:summary="@string/preferences__notif_default_summary"
+                                            android:title="@string/preferences__notif_default_title">
+                          </PreferenceScreen>
+                          <PreferenceScreen
+                                            android:key="pref_key_notif_contacts"
+                                            android:title="@string/preferences__contacts_title"
+                                            android:summary="@string/preferences__contacts_summary">
+                          </PreferenceScreen>
 
-        <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
-                          android:key="pref_led_blink"
-                          android:defaultValue="500,2000"
-                          android:title="@string/preferences__pref_led_blink_title"
-                          android:dependency="pref_key_enable_notifications"
-                          android:summary="@string/preferences__change_notification_blink_pattern"
-                          android:entries="@array/pref_led_blink_pattern_entries"
-                          android:entryValues="@array/pref_led_blink_pattern_values"
-                          android:dialogTitle="@string/preferences__pref_led_blink_dialogtitle" />
-
-
-        <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
-                            android:dependency="pref_key_enable_notifications"
-                            android:key="pref_key_ringtone"
-                            android:title="@string/preferences__sound"
-                            android:ringtoneType="notification"
-                            android:defaultValue="content://settings/system/notification_sound" />
-        <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
-                            android:dependency="pref_key_enable_notifications"
-                            android:key="pref_key_vibrate"
-                            android:defaultValue="true"
-                            android:title="@string/preferences__vibrate"
-                            android:summary="@string/preferences__also_vibrate_when_notified" />
+                          <org.thoughtcrime.securesms.preferences.DialogPreference
+                                            android:key="pref_key_notif_help"
+                                            android:title="@string/preferences__notif_help_title"
+                                            android:summary="@string/preferences__notif_help_summary"
+                                            android:dialogIcon="@android:drawable/ic_dialog_info"
+                                            android:dialogTitle="@string/preferences__notif_help_summary"
+                                            android:dialogMessage="@string/preferences__notif_help_message"
+                                            android:negativeButtonText="@null" />
+        </PreferenceScreen>
   </PreferenceCategory>
 
   <PreferenceCategory android:title="Input Settings">

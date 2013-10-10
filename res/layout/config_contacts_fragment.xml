@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent"
+  android:layout_width="fill_parent"
+  android:orientation="vertical"
+  android:background="?conversation_background">
+
+  <AutoCompleteTextView
+    android:text=""
+    android:hint="@string/contact_customization_add_hint"
+    android:id="@+id/ContactsAutoCompleteTextView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:completionThreshold="2"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:imeOptions="actionDone"
+    android:inputType="textCapWords|textPersonName" />
+  <ListView
+    android:id="@android:id/list"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:drawSelectorOnTop="false"
+    android:scrollbarStyle="insideOverlay"
+    android:fadingEdgeLength="16dip" />
+</LinearLayout>

@@ -1,6 +1,4 @@
 /**
- * Copyright (C) 2011 Whisper Systems
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -22,12 +20,12 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Parcelable;
 import android.preference.ListPreference;
+import android.text.InputType;
+import android.text.method.NumberKeyListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
@@ -35,30 +33,23 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotificationsDatabase;
 
 /**
- * List preference for LED blink pattern notification.
+ * List preference for Vibrate pattern notification.
  *
- * @author Moxie Marlinspike
  */
 
-public class LedBlinkPatternListPreference extends ListPreference implements OnSeekBarChangeListener {
+public class VibratePatternListPreference extends ListPreference {
 
   private Context context;
-  private SeekBar seekBarOn;
-  private SeekBar seekBarOff;
-
-  private TextView seekBarOnLabel;
-  private TextView seekBarOffLabel;
-
   private boolean dialogInProgress;
-
+  private EditText editText;
   private long rowId;
 
-  public LedBlinkPatternListPreference(Context context) {
+  public VibratePatternListPreference(Context context) {
     super(context);
     this.context = context;
   }
 
-  public LedBlinkPatternListPreference(Context context, AttributeSet attrs) {
+  public VibratePatternListPreference(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.context = context;
   }
@@ -70,26 +61,36 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
   @Override
   protected void onDialogClosed(boolean positiveResult) {
     super.onDialogClosed(positiveResult);
-
+    
     if (positiveResult) {
-      String blinkPattern = this.getValue();
-      if (blinkPattern.equals("custom")) showDialog();
+      String vibratePattern = this.getValue();
+
+      if (vibratePattern.equals("custom")) showDialog();
     }
   }
 
-  private void initializeSeekBarValues() {
-    Cursor c = DatabaseFactory.getNotificationsDatabase(context).getDefaultNotification();
-    String patternString = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_PATTERN_CUSTOM));
-    c.close();
-    String[] patternArray = patternString.split(",");
-    seekBarOn.setProgress(Integer.parseInt(patternArray[0]));
-    seekBarOff.setProgress(Integer.parseInt(patternArray[1]));
-  }
-
   private void initializeDialog(View view) {
+    Cursor c = DatabaseFactory.getNotificationsDatabase(context).getDefaultNotification();
+    String vibratePattern = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE_PATTERN_CUSTOM));
+    c.close();
+    
+    editText = (EditText) view.findViewById(R.id.CustomVibrateEditText);
+    editText.setText(vibratePattern);
+    editText.setKeyListener(new NumberKeyListener() {
+      @Override
+      public int getInputType() {
+        return InputType.TYPE_MASK_VARIATION;
+      }
+
+      @Override
+      protected char[] getAcceptedChars() {
+        return new char[]{',', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+      }
+    });
+    
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setIcon(android.R.drawable.ic_dialog_info);
-    builder.setTitle(context.getResources().getString(R.string.preferences__led_pattern_custom_title)); 
+    builder.setTitle(context.getResources().getString(R.string.preferences__vibrate_pattern_custom_title)); 
     builder.setView(view);
     builder.setOnCancelListener(new CustomDialogCancelListener());
     builder.setNegativeButton(android.R.string.cancel, new CustomDialogCancelListener());
@@ -99,20 +100,9 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
 
   private void showDialog() {
     LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    View view               = inflater.inflate(R.layout.led_pattern_dialog, null);
+    View view               = inflater.inflate(R.layout.vibrate_pattern_dialog, null);
 
-    this.seekBarOn       = (SeekBar)view.findViewById(R.id.SeekBarOn);
-    this.seekBarOff      = (SeekBar)view.findViewById(R.id.SeekBarOff);
-    this.seekBarOnLabel  = (TextView)view.findViewById(R.id.SeekBarOnMsLabel);
-    this.seekBarOffLabel = (TextView)view.findViewById(R.id.SeekBarOffMsLabel);
-
-    this.seekBarOn.setOnSeekBarChangeListener(this);
-    this.seekBarOff.setOnSeekBarChangeListener(this);
-
-    initializeSeekBarValues();
     initializeDialog(view);
-    dialogInProgress = true;
-
     dialogInProgress = true;
   }
 
@@ -130,20 +120,6 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
     return super.onCreateDialogView();
   }
 
-  public void onProgressChanged(SeekBar seekbar, int progress, boolean fromTouch) {
-    if (seekbar.equals(seekBarOn)) {
-      seekBarOnLabel.setText(Integer.toString(progress));
-    } else if (seekbar.equals(seekBarOff)) {
-      seekBarOffLabel.setText(Integer.toString(progress));
-    }
-  }
-
-  public void onStartTrackingTouch(SeekBar seekBar) {
-  }
-
-  public void onStopTrackingTouch(SeekBar seekBar) {
-  }
-
   private class CustomDialogCancelListener implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
     public void onClick(DialogInterface dialog, int which) {
       dialogInProgress = false;
@@ -157,12 +133,13 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
   private class CustomDialogClickListener implements DialogInterface.OnClickListener {
 
     public void onClick(DialogInterface dialog, int which) {
-      String pattern   = seekBarOnLabel.getText() + "," + seekBarOffLabel.getText();
+      String pattern   = editText.getText().toString();
       dialogInProgress = false;
-
+      
       DatabaseFactory.getNotificationsDatabase(context)
-        .updateNotification(rowId, NotificationsDatabase.LED_PATTERN_CUSTOM, pattern);
-      Toast.makeText(context, context.getResources().getString(R.string.preferences__led_pattern_set), Toast.LENGTH_LONG).show();
+      .updateNotification(rowId, NotificationsDatabase.VIBRATE_PATTERN_CUSTOM, pattern);
+
+      Toast.makeText(context, context.getResources().getString(R.string.preferences__vibrate_pattern_set), Toast.LENGTH_LONG).show();
     }
 
   }

@@ -21,14 +21,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
@@ -39,12 +37,12 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.NotificationsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -60,6 +58,10 @@ import java.util.List;
  */
 
 public class MessageNotifier {
+
+  public static final String PATTERN_NONE    = "none";
+  public static final String PATTERN_DEFAULT = "default";
+  public static final String PATTERN_CUSTOM  = "custom";
 
   public static final int NOTIFICATION_ID = 1338;
 
@@ -97,22 +99,10 @@ public class MessageNotifier {
 
 
   public static void updateNotification(Context context, MasterSecret masterSecret) {
-    if (!PreferenceManager.getDefaultSharedPreferences(context)
-                          .getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true))
-    {
-      return;
-    }
-
     updateNotification(context, masterSecret, false);
   }
 
   public static void updateNotification(Context context, MasterSecret masterSecret, long threadId) {
-    if (!PreferenceManager.getDefaultSharedPreferences(context)
-                          .getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true))
-    {
-      return;
-    }
-
     if (visibleThread == threadId) {
       DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       sendInThreadNotification(context);
@@ -175,7 +165,7 @@ public class MessageNotifier {
 
     builder.setStyle(new BigTextStyle().bigText(content));
 
-    setNotificationAlarms(context, builder, signal);
+    setNotificationAlarms(context, builder, signal, recipient);
 
     if (signal) {
       builder.setTicker(notifications.get(0).getTickerText());
@@ -215,7 +205,7 @@ public class MessageNotifier {
 
     builder.setStyle(style);
 
-    setNotificationAlarms(context, builder, signal);
+    setNotificationAlarms(context, builder, signal, notifications.get(0).getIndividualRecipient());
 
     if (signal) {
       builder.setTicker(notifications.get(0).getTickerText());
@@ -227,8 +217,9 @@ public class MessageNotifier {
 
   private static void sendInThreadNotification(Context context) {
     try {
-      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-      String ringtone      = sp.getString(ApplicationPreferencesActivity.RINGTONE_PREF, null);
+      Cursor c = DatabaseFactory.getNotificationsDatabase(context).getDefaultNotification();
+      String ringtone = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.SOUND));
+      c.close();
 
       if (ringtone == null)
         return;
@@ -290,32 +281,119 @@ public class MessageNotifier {
     return notificationState;
   }
 
-  private static void setNotificationAlarms(Context context,
+  public static void setNotificationAlarms(Context context,
                                             NotificationCompat.Builder builder,
                                             boolean signal)
   {
-    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-
-    String ringtone              = sp.getString(ApplicationPreferencesActivity.RINGTONE_PREF, null);
-    boolean vibrate              = sp.getBoolean(ApplicationPreferencesActivity.VIBRATE_PREF, true);
-    String ledColor              = sp.getString(ApplicationPreferencesActivity.LED_COLOR_PREF, "green");
-    String ledBlinkPattern       = sp.getString(ApplicationPreferencesActivity.LED_BLINK_PREF, "500,2000");
-    String ledBlinkPatternCustom = sp.getString(ApplicationPreferencesActivity.LED_BLINK_PREF_CUSTOM, "500,2000");
-    String[] blinkPatternArray   = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
-
-    builder.setSound(TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone));
-
-    if (signal && vibrate)
-      builder.setDefaults(Notification.DEFAULT_VIBRATE);
-
-    builder.setLights(Color.parseColor(ledColor), Integer.parseInt(blinkPatternArray[0]),
-                      Integer.parseInt(blinkPatternArray[1]));
+    // use the default notification "0","0"
+    setNotificationAlarms(context, builder, signal, "0", "0");
   }
 
-  private static String[] parseBlinkPattern(String blinkPattern, String blinkPatternCustom) {
-    if (blinkPattern.equals("custom"))
-      blinkPattern = blinkPatternCustom;
+  private static void setNotificationAlarms(Context context,
+      NotificationCompat.Builder builder,
+      boolean signal,
+      Recipient recipient)
+  {
 
-    return blinkPattern.split(",");
+    // get the default notification if there's no contactUri
+    String lookupKey = "0";
+    String contactId = "0";
+
+    Uri contactUri = recipient.getContactUri();
+    if (contactUri != null)
+    {
+      final List<String> segments = contactUri.getPathSegments();
+      lookupKey = segments.get(segments.size() - 2);
+      contactId = segments.get(segments.size() - 1);
+    }
+
+    setNotificationAlarms(context,builder,signal,lookupKey,contactId);
+  }
+
+  public static void setNotificationAlarms(Context context,
+      NotificationCompat.Builder builder,
+      boolean signal,
+      String lookupKey,
+      String contactId)
+  {
+
+    // Check for a contact-specific notification
+    Cursor c = DatabaseFactory.getNotificationsDatabase(context).getNotification(lookupKey, contactId);
+    if (c == null) {
+      // otherwise, use the default notification
+      c = DatabaseFactory.getNotificationsDatabase(context).getDefaultNotification();
+    }
+
+    final String one = "1";
+
+    if ( ! one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.ENABLED))) )
+    {
+        return;
+    }
+    
+    String sound                = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.SOUND));
+    Boolean vibrate             = one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE)));
+    String vibratePattern       = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE_PATTERN));
+    String vibratePatternCustom = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE_PATTERN_CUSTOM));
+    Boolean led                 = one.equals(c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED)));
+    String ledColor             = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_COLOR));
+    String ledPattern           = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_PATTERN));
+    String ledPatternCustom     = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.LED_PATTERN_CUSTOM));
+    c.close();
+    
+    builder.setSound(TextUtils.isEmpty(sound) || !signal ? null : Uri.parse(sound));
+
+    if (signal && vibrate)
+    {
+      if ( vibratePattern.equals(PATTERN_NONE)) {
+      }
+      else if ( vibratePattern.equals(PATTERN_DEFAULT) ) {
+        builder.setDefaults(Notification.DEFAULT_VIBRATE);
+      }
+      else {
+        long[] vibratePatternArray;
+        if ( vibratePattern.equals(PATTERN_CUSTOM) ) {
+          vibratePatternArray = parsePattern(vibratePatternCustom);
+        }
+        else {
+          vibratePatternArray = parsePattern(vibratePattern);
+        }
+        if ( vibratePatternArray.length > 1)
+          builder.setVibrate( vibratePatternArray );
+      }
+
+    }
+
+    if ( led )
+    {
+      long[] ledPatternArray;
+      if (ledPattern.equals(PATTERN_CUSTOM)) {
+        ledPatternArray = parsePattern(ledPatternCustom);
+      }
+      else {
+        ledPatternArray = parsePattern(ledPattern);
+      }
+      builder.setLights(Color.parseColor(ledColor), (int)ledPatternArray[0], (int)ledPatternArray[1] );
+    }
+
+  }
+
+
+  private static long[] parsePattern(String pattern) {
+
+    if ( pattern == null || pattern.isEmpty() ||  !pattern.matches("[,0-9]+") )
+    {
+      long[] retval={0,0};
+      return retval;
+    }
+
+    String [] strArray = pattern.split(",");
+
+    long[] intArray = new long[ strArray.length ];
+
+    for (int i=0; i< strArray.length; i++)
+      intArray[i] = Integer.parseInt(strArray[i]);
+
+    return intArray;
   }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+    android:title="@string/preferences__notif_category_title"
+    android:key="c_pref_category">
+		<CheckBoxPreference
+							android:key="c_pref_key_notification_enabled"
+							android:title="@string/preferences__notif_enabled_title"
+							android:summaryOn="@string/preferences__notif_enabled_summaryon"
+							android:summaryOff="@string/preferences__notif_enabled_summaryoff"
+							android:defaultValue="true" />
+
+		<org.thoughtcrime.securesms.preferences.TestNotificationDialogPreference
+							android:key="c_pref_key_test_notification"
+							android:dialogIcon="@drawable/android:ic_dialog_alert"
+							android:title="@string/preferences__notif_test_title"
+							android:dialogTitle="@string/preferences__notif_test_title"
+							android:dialogMessage="@string/preferences__notif_test_message"
+							android:summary="@string/preferences__notif_test_summary"
+							android:dependency="c_pref_key_notification_enabled"
+							android:negativeButtonText="@null" />
+
+        <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
+                            android:dependency="c_pref_key_notification_enabled"
+                            android:key="c_pref_key_sound"
+                            android:title="@string/preferences__sound"
+                            android:ringtoneType="notification" />
+		</PreferenceCategory>
+        <PreferenceCategory android:title="@string/preferences__vibrate_category_title" >
+
+        <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
+                            android:dependency="c_pref_key_notification_enabled"
+                            android:key="c_pref_key_vibrate"
+                            android:defaultValue="true"
+                            android:title="@string/preferences__vibrate"
+                            android:summary="@string/preferences__also_vibrate_when_notified" />
+                        
+		<org.thoughtcrime.securesms.preferences.VibratePatternListPreference
+							android:key="c_pref_key_vibrate_pattern"
+							android:title="@string/preferences__vibrate_pattern_title"
+							android:summary="@string/preferences__vibrate_pattern_summary"
+							android:entries="@array/pref_vibrate_pattern_entries"
+							android:entryValues="@array/pref_vibrate_pattern_values"
+							android:dependency="c_pref_key_vibrate" />
+		</PreferenceCategory>
+            
+        <PreferenceCategory android:title="@string/preferences__led_category_title" >
+        <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:dependency="c_pref_key_notification_enabled"
+                    android:key="c_pref_key_led"
+                    android:summaryOff="@string/preferences__led_summaryoff"
+                    android:summaryOn="@string/preferences__led_summaryon"
+                    android:title="@string/preferences__led_title" />
+
+		<ListPreference
+                          android:key="c_pref_key_led_color"
+                          android:title="@string/preferences__led_color"
+                          android:dependency="c_pref_key_led"
+                          android:summary="@string/preferences__change_notification_led_color"
+                          android:entries="@array/pref_led_color_entries"
+                          android:entryValues="@array/pref_led_color_values"
+                          android:dialogTitle="@string/preferences__select_led_color" />
+
+        <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
+                          android:key="c_pref_key_led_pattern"
+                          android:title="@string/preferences__pref_led_blink_title"
+                          android:dependency="c_pref_key_led"
+                          android:summary="@string/preferences__change_notification_blink_pattern"
+                          android:entries="@array/pref_led_blink_pattern_entries"
+                          android:entryValues="@array/pref_led_blink_pattern_values"
+                          android:dialogTitle="@string/preferences__pref_led_blink_dialogtitle" />
+
+        </PreferenceCategory>
+
+</PreferenceScreen>

@@ -435,6 +435,8 @@
     <string name="preferences__pref_led_blink_title">LED Blink Pattern</string>
     <string name="preferences__change_notification_blink_pattern">Change notification LED blink pattern</string>
     <string name="preferences__pref_led_blink_dialogtitle">Select LED Blink Pattern</string>
+    <string name="preferences__led_pattern_custom_title">Set Custom LED Pattern</string>
+    <string name="preferences__led_pattern_set">Custom LED blink pattern set!</string>
     <string name="preferences__select_led_color">Select LED Color</string>
     <string name="preferences__sound">Sound</string>
     <string name="preferences__vibrate">Vibrate</string>
@@ -473,7 +475,78 @@
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
-                                    
+
+    <!-- Notification Preferences -->
+    <string name="preferences__notif_title">Notifications</string>
+    <string name="preferences__notif_summary">Notification configuration</string>
+
+    <!-- Summary -->
+    <string name="preferences__summary_notifications_enabled">Notifications enabled</string>
+    <string name="preferences__summary_notifications_disabled">Notifications disabled</string>
+    <string name="preferences__summary_vibrate_enabled">Vibrate enabled</string>
+    <string name="preferences__summary_led_color">%s LED</string>
+
+    <!-- Category headings -->
+    <string name="preferences__notif_category_title">Notification Configuration</string>
+    <string name="preferences__vibrate_category_title">Vibrate Configuration</string>
+    <string name="preferences__led_category_title">LED Configuration</string>
+
+    <!-- General Notification Preferences -->
+    <string name="preferences__notif_enabled_title">Enable Notifications</string>
+    <string name="preferences__notif_enabled_summaryon">Notifications are enabled</string>
+    <string name="preferences__notif_enabled_summaryoff">Notifications are disabled</string>
+    <string name="preferences__notif_test_title">Test Notification</string>
+    <string name="preferences__notif_test_summary">Test out your notification</string>
+    <string name="preferences__notif_test_message">Testing your notification now!</string>
+    <string name="preferences__notif_sound_title">Notification Sound</string>
+    <string name="preferences__notif_sound_summary">This sound will play when a message is received</string>
+    <string name="sound_silent">Silent</string>
+
+    <!-- Vibrate Preferences -->
+    <string name="preferences__vibrate_title">Vibrate</string>
+    <string name="preferences__vibrate_summaryon">Vibrate is on</string>
+    <string name="preferences__vibrate_summaryoff">Vibrate is off</string>
+
+    <string name="preferences__vibrate_pattern_title">Vibrate Pattern</string>
+    <string name="preferences__vibrate_pattern_summary">Set the vibration pattern</string>
+    <string name="preferences__vibrate_pattern_ok">Custom vibrate pattern set</string>
+    <string name="preferences__vibrate_pattern_bad">Custom vibrate pattern invalid</string>
+    <string name="preferences__vibrate_pattern_custom_title">Set Custom Vibrate Pattern</string>
+    <string name="preferences__vibrate_pattern_help">Enter a custom vibrate pattern, in the format:\nmillisOff, millisOn, etc.\n\nFor example:\n0,1000\n0,500,200,500,200,500</string>
+    <string name="preferences__vibrate_pattern_set">Custom vibrate pattern set!</string>
+
+    <string name="preferences__vibrate_pattern_3_short">3 Short</string>
+    <string name="preferences__vibrate_pattern_short_short_long">Short, Short, Long</string>
+    <string name="preferences__vibrate_pattern_short_long_short">Short, Long, Short</string>
+    <string name="preferences__vibrate_pattern_short_long_long">Short, Long, Long</string>
+
+    <string name="preferences__vibrate_pattern_3_long">3 Long</string>
+    <string name="preferences__vibrate_pattern_long_long_short">Long, Long, Short</string>
+    <string name="preferences__vibrate_pattern_long_short_long">Long, Short, Long</string>
+    <string name="preferences__vibrate_pattern_long_short_short">Long, Short, Short</string>
+
+    <!-- LED Preferences -->
+    <string name="preferences__led_title">Blink LED</string>
+    <string name="preferences__led_summaryon">Blink LED when a message is received</string>
+    <string name="preferences__led_summaryoff">Do not blink LED when a message is received</string>
+
+    <!-- Contact Notification Customization Strings -->
+    <string name="preferences__notif_default_title">Default Notifications</string>
+    <string name="preferences__notif_default_summary">Notifications for all contacts without an individual customization</string>
+    <string name="preferences__contacts_title">Contacts Notifications</string>
+    <string name="preferences__contacts_summary">Individual contact customization</string>
+    <string name="preferences__notif_help_title">Help</string>
+    <string name="preferences__notif_help_summary">Notifications Help</string>
+    <string name="preferences__notif_help_message">TextSecure offers the ability to customize notifications on a per contact basis.  When a new message comes in, TextSecure will first check if the contact has a customized notification.  If so, those settings are used, otherwise the default notifications are used.</string>
+    <string name="contact_customization_add">Add Custom Notifications</string>
+    <string name="contact_customization_edit">Edit Custom Notification</string>
+    <string name="contact_customization_remove">Remove Custom Notification</string>
+    <string name="contact_customization_save">Save</string>
+    <string name="contact_customization_title">Notifications for %s</string>
+    <string name="contact_customization_enabled">Notifications are enabled for %s</string>
+    <string name="contact_customization_disabled">Notifications are disabled for %s</string>
+    <string name="contact_customization_add_hint">Add/Edit contact notifications…</string>
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->
