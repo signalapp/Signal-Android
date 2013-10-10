@@ -31,78 +31,76 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class TestNotificationDialogPreference extends DialogPreference {
-    private Context context;
-    private String rowId = null;
+  private Context context;
+  private String rowId = null;
 
-    public TestNotificationDialogPreference(Context _context, AttributeSet attrs) {
-        super(_context, attrs);
-        context = _context;
+  public TestNotificationDialogPreference(Context _context, AttributeSet attrs) {
+    super(_context, attrs);
+    context = _context;
+  }
+
+  public TestNotificationDialogPreference(Context _context, AttributeSet attrs, int defStyle) {
+    super(_context, attrs, defStyle);
+    context = _context;
+  }
+
+  public void setRowId(long rowId) {
+    this.rowId = String.valueOf(rowId);
+  }
+
+  @Override
+  public void onDismiss(DialogInterface dialog) {
+    super.onDismiss(dialog);
+  }
+
+  @Override
+  protected View onCreateDialogView() {
+
+    // Create a test SmsMmsMessage
+    String testPhone = "123-456-7890";
+    String contactLookup = null;
+    String sysContactId = null;
+
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+
+    builder.setSmallIcon(R.drawable.icon_notification);
+    PendingIntent pendingIntent =
+        PendingIntent.getActivity(context, 0, new Intent(), Intent.FLAG_ACTIVITY_NEW_TASK);
+    builder.setContentIntent(pendingIntent);
+
+    // If contactId is set, use its notification details else just use a default.
+    if (rowId != null) {
+      Cursor contactCursor =
+          context.getContentResolver().query(ContactNotifications.buildContactUri(rowId), null,
+              null, null, null);
+      if (contactCursor != null && contactCursor.moveToFirst()) {
+        testPhone =
+            contactCursor.getString(contactCursor
+                .getColumnIndexOrThrow(ContactNotifications.CONTACT_NAME));
+        sysContactId =
+            contactCursor.getString(contactCursor
+                .getColumnIndexOrThrow(ContactNotifications.CONTACT_ID));
+        contactLookup =
+            contactCursor.getString(contactCursor
+                .getColumnIndexOrThrow(ContactNotifications.CONTACT_LOOKUPKEY));
+        contactCursor.close();
+      }
     }
 
-    public TestNotificationDialogPreference(Context _context, AttributeSet attrs, int defStyle) {
-        super(_context, attrs, defStyle);
-        context = _context;
+    if (sysContactId != null) {
+      MessageNotifier.setNotificationAlarms(context, builder, true, contactLookup, sysContactId);
+    } else {
+      MessageNotifier.setNotificationAlarms(context, builder, true);
     }
 
-    public void setRowId(long rowId) {
-        this.rowId = String.valueOf(rowId);
-    }
+    builder.setContentTitle(testPhone);
+    builder.setContentText(context.getString(R.string.preferences__notif_test_title));
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-    }
+    NotificationManager nm =
+        (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+    nm.notify(0, builder.build());
 
-    @Override
-    protected View onCreateDialogView() {
-
-        // Create a test SmsMmsMessage
-        String testPhone = "123-456-7890";
-        String contactLookup = null;
-        String sysContactId = null;
-
-        NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
-
-        builder.setSmallIcon(R.drawable.icon_notification);
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-            context, 
-            0, 
-            new Intent(),  //Dummy Intent do nothing 
-            Intent.FLAG_ACTIVITY_NEW_TASK);
-        builder.setContentIntent(pendingIntent);
-        
-        
-        // If contactId is set, use its notification details else just use a default.
-        if (rowId != null) {
-            Cursor contactCursor = context.getContentResolver().query(
-                                ContactNotifications.buildContactUri(rowId),
-                                null, null, null, null);
-            if (contactCursor != null && contactCursor.moveToFirst()) {
-                testPhone = contactCursor.getString(
-                                contactCursor.getColumnIndexOrThrow(ContactNotifications.CONTACT_NAME));
-                sysContactId = contactCursor.getString(
-                        contactCursor.getColumnIndexOrThrow(ContactNotifications.CONTACT_ID));
-                contactLookup = contactCursor.getString(
-                        contactCursor.getColumnIndexOrThrow(ContactNotifications.CONTACT_LOOKUPKEY));
-                contactCursor.close();
-            }
-        }
-
-        if (sysContactId != null) {
-          MessageNotifier.setNotificationAlarms(context, builder, true, contactLookup, sysContactId);
-        }
-        else {
-          MessageNotifier.setNotificationAlarms(context, builder, true);
-        }
-        
-        builder.setContentTitle(testPhone);
-        builder.setContentText(context.getString(R.string.preferences__notif_test_title));
-        
-        NotificationManager nm = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.notify( 0, builder.build() );
-        
-        return super.onCreateDialogView();
-    }
+    return super.onCreateDialogView();
+  }
 
 }
-

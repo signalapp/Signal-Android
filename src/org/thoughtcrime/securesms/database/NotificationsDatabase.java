@@ -28,15 +28,15 @@ public class NotificationsDatabase extends Database {
 
   public static final String DEFAULT_VIBRATE_PATTERN         = "default";
   public static final String DEFAULT_VIBRATE_PATTERN_CUSTOM  = "0,200,300,200";
-  
+
   public static final String DEFAULT_LED_COLOR               = "green";
   public static final String DEFAULT_LED_PATTERN             = "500,2000";
   public static final String DEFAULT_LED_PATTERN_CUSTOM      = "500,2000";
-  
+
   private static final Uri CHANGE_URI = Uri.parse("content://textsecure/notifications");
 
   public static final String TABLE_NAME    = "notifications";
-  
+
   public static final String _ID                      = "_id";
   public static final String CONTACT_ID               = "contact_id";
   public static final String CONTACT_LOOKUPKEY        = "contact_lookupkey";
@@ -52,7 +52,7 @@ public class NotificationsDatabase extends Database {
   public static final String LED_PATTERN              = "led_pattern";
   public static final String LED_PATTERN_CUSTOM       = "led_pattern_custom";
 
-  
+
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("  +
       _ID                    + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
@@ -88,7 +88,7 @@ public class NotificationsDatabase extends Database {
     String[] selectionArgs = new String[]{rowId+""};
 
     Cursor cursor = database.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
-    
+
     if (cursor == null || cursor.getCount() != 1)
       return null;
 
@@ -100,12 +100,12 @@ public class NotificationsDatabase extends Database {
 
   public Cursor getNotification(String notificationKey, String contactId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    
+
     String selection = CONTACT_ID + " = ? OR " + CONTACT_LOOKUPKEY + " = ? ";
     String[] selectionArgs = new String[]{contactId+"", notificationKey+""};
 
     Cursor cursor = database.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
-    
+
     if (cursor == null || cursor.getCount() != 1)
       return null;
 
@@ -114,13 +114,13 @@ public class NotificationsDatabase extends Database {
 
     return cursor;
   }
-  
+
   public Cursor getNotifications() {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
 
-    String selection = _ID + " > 0"; // 0 is the 'default' setting, return everything but that
-    
-    Cursor cursor           = database.query(TABLE_NAME, null, selection, null, null, null, CONTACT_NAME);
+    String selection = _ID + " > 0";
+
+    Cursor cursor = database.query(TABLE_NAME, null, selection, null, null, null, CONTACT_NAME);
 
     if (cursor == null || cursor.getCount() < 1)
     {
@@ -156,9 +156,9 @@ public class NotificationsDatabase extends Database {
     context.getContentResolver().notifyChange(CHANGE_URI, null);
   }
 
-  public int deleteNotification(String rowId) {  
+  public int deleteNotification(String rowId) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    
+
     String selection = _ID + " = ? ";
     String[] selectionArgs = new String[]{rowId+""};
 
@@ -168,16 +168,16 @@ public class NotificationsDatabase extends Database {
     return count;
   }
 
-  
+
   public boolean updateNotification(long rowId, String column, Object newValue)
   {
     ContentValues vals = new ContentValues();
     if (newValue.getClass().equals(Boolean.class)) {
-        vals.put(column, (Boolean) newValue);
+      vals.put(column, (Boolean) newValue);
     } else {
-        vals.put(column, String.valueOf(newValue));
+      vals.put(column, String.valueOf(newValue));
     }
-    
+
     int rows = updateNotification(rowId, vals);
 
     return (rows == 1);

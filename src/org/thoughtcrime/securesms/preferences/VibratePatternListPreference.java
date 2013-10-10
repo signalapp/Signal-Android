@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.database.NotificationsDatabase;
 
 /**
  * List preference for Vibrate pattern notification.
- *
+ * 
  */
 
 public class VibratePatternListPreference extends ListPreference {
@@ -61,19 +61,21 @@ public class VibratePatternListPreference extends ListPreference {
   @Override
   protected void onDialogClosed(boolean positiveResult) {
     super.onDialogClosed(positiveResult);
-    
+
     if (positiveResult) {
       String vibratePattern = this.getValue();
 
-      if (vibratePattern.equals("custom")) showDialog();
+      if (vibratePattern.equals("custom"))
+        showDialog();
     }
   }
 
   private void initializeDialog(View view) {
     Cursor c = DatabaseFactory.getNotificationsDatabase(context).getDefaultNotification();
-    String vibratePattern = c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE_PATTERN_CUSTOM));
+    String vibratePattern =
+        c.getString(c.getColumnIndexOrThrow(NotificationsDatabase.VIBRATE_PATTERN_CUSTOM));
     c.close();
-    
+
     editText = (EditText) view.findViewById(R.id.CustomVibrateEditText);
     editText.setText(vibratePattern);
     editText.setKeyListener(new NumberKeyListener() {
@@ -84,13 +86,14 @@ public class VibratePatternListPreference extends ListPreference {
 
       @Override
       protected char[] getAcceptedChars() {
-        return new char[]{',', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+        return new char[] { ',', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
       }
     });
-    
+
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setIcon(android.R.drawable.ic_dialog_info);
-    builder.setTitle(context.getResources().getString(R.string.preferences__vibrate_pattern_custom_title)); 
+    builder.setTitle(context.getResources().getString(
+        R.string.preferences__vibrate_pattern_custom_title));
     builder.setView(view);
     builder.setOnCancelListener(new CustomDialogCancelListener());
     builder.setNegativeButton(android.R.string.cancel, new CustomDialogCancelListener());
@@ -99,8 +102,9 @@ public class VibratePatternListPreference extends ListPreference {
   }
 
   private void showDialog() {
-    LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    View view               = inflater.inflate(R.layout.vibrate_pattern_dialog, null);
+    LayoutInflater inflater =
+        (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    View view = inflater.inflate(R.layout.vibrate_pattern_dialog, null);
 
     initializeDialog(view);
     dialogInProgress = true;
@@ -120,7 +124,8 @@ public class VibratePatternListPreference extends ListPreference {
     return super.onCreateDialogView();
   }
 
-  private class CustomDialogCancelListener implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
+  private class CustomDialogCancelListener implements DialogInterface.OnClickListener,
+      DialogInterface.OnCancelListener {
     public void onClick(DialogInterface dialog, int which) {
       dialogInProgress = false;
     }
@@ -133,13 +138,15 @@ public class VibratePatternListPreference extends ListPreference {
   private class CustomDialogClickListener implements DialogInterface.OnClickListener {
 
     public void onClick(DialogInterface dialog, int which) {
-      String pattern   = editText.getText().toString();
+      String pattern = editText.getText().toString();
       dialogInProgress = false;
-      
-      DatabaseFactory.getNotificationsDatabase(context)
-      .updateNotification(rowId, NotificationsDatabase.VIBRATE_PATTERN_CUSTOM, pattern);
 
-      Toast.makeText(context, context.getResources().getString(R.string.preferences__vibrate_pattern_set), Toast.LENGTH_LONG).show();
+      DatabaseFactory.getNotificationsDatabase(context).updateNotification(rowId,
+          NotificationsDatabase.VIBRATE_PATTERN_CUSTOM, pattern);
+
+      Toast.makeText(context,
+          context.getResources().getString(R.string.preferences__vibrate_pattern_set),
+          Toast.LENGTH_LONG).show();
     }
 
   }
