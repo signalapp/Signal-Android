@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.NotificationsDatabase;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -44,7 +43,6 @@ public class ConfigNotificationActivity extends PreferenceActivity {
   public static final String PREF_LED_PATTERN            = "c_pref_key_led_pattern";
   public static final String PREF_LED_PATTERN_CUSTOM     = "c_pref_key_led_pattern_custom";
 
-  @SuppressLint("NewApi")
   @Override
   public void onCreate(Bundle savedInstanceState) {
     dynamicTheme.onCreate(this);

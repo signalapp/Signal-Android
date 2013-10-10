@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.thoughtcrime.securesms.R;
 
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -66,7 +65,6 @@ public class ConfigContactsActivity extends FragmentActivity {
   private static final int COLUMN_DISPLAY_NAME = 1;
   private static final int COLUMN_LOOKUP_KEY = 2;
 
-  @SuppressLint("NewApi")
   @Override
   public void onCreate(Bundle savedInstanceState) {
     dynamicTheme.onCreate(this);
