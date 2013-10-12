@@ -189,7 +189,7 @@ public class KeyCachingService extends Service {
   }
 
   private void foregroundServiceModern() {
-    Notification notification = new Notification(R.drawable.icon_cached, null, System.currentTimeMillis());
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
     RemoteViews remoteViews   = new RemoteViews(getPackageName(), R.layout.key_caching_notification);
 
     Intent intent = new Intent(this, KeyCachingService.class);
@@ -197,10 +197,11 @@ public class KeyCachingService extends Service {
     PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
     remoteViews.setOnClickPendingIntent(R.id.lock_cache_icon, pendingIntent);
 
-    notification.contentView  = remoteViews;
+    builder.setSmallIcon(R.drawable.icon_cached);
+    builder.setContent(remoteViews);
 
     stopForeground(true);
-    startForeground(SERVICE_RUNNING_ID, notification);
+    startForeground(SERVICE_RUNNING_ID, builder.build());
   }
 
   private void foregroundServiceLegacy() {
