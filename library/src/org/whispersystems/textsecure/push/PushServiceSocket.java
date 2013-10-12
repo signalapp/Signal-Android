@@ -36,8 +36,8 @@ import java.util.Set;
 
 public class PushServiceSocket {
 
-  private static final String CREATE_ACCOUNT_SMS_PATH   = "/v1/accounts/sms/%s";
-  private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/%s";
+  private static final String CREATE_ACCOUNT_SMS_PATH   = "/v1/accounts/sms/code/%s";
+  private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
   private static final String PREKEY_PATH               = "/v1/keys/%s";
@@ -61,7 +61,7 @@ public class PushServiceSocket {
 
   public void createAccount(boolean voice) throws IOException {
     String path = voice ? CREATE_ACCOUNT_VOICE_PATH : CREATE_ACCOUNT_SMS_PATH;
-    makeRequest(String.format(path, localNumber), "POST", null);
+    makeRequest(String.format(path, localNumber), "GET", null);
   }
 
   public void verifyAccount(String verificationCode, String signalingKey) throws IOException {
