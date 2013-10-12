@@ -27,7 +27,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 /**
  * Activity that displays the local identity key and offers the option to regenerate it.

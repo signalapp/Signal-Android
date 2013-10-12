@@ -75,7 +75,7 @@
         </activity>
 
     <activity android:name=".RegistrationProblemsActivity"
-              android:theme="@style/Theme.Sherlock.Light.Dialog"
+              android:theme="@style/TextSecure.Light.Dialog"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".CountrySelectionActivity"
