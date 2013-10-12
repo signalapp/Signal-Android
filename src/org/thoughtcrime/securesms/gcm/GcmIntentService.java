@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -61,6 +62,9 @@ public class GcmIntentService extends GCMBaseIntentService {
       Intent service = new Intent(context, SendReceiveService.class);
       service.setAction(SendReceiveService.RECEIVE_PUSH_ACTION);
       service.putExtra("message", message);
+
+      Directory directory = Directory.getInstance(context);
+      directory.setToken(directory.getToken(message.getSource()), true);
 
       context.startService(service);
     } catch (IOException e) {
