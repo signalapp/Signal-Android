@@ -66,13 +66,13 @@ public class SmsTransport {
                                                 sentIntents.get(i),
                                                 deliveredIntents == null ? null : deliveredIntents.get(i));
       } catch (NullPointerException npe) {
-        Log.w("SmsSender", npe);
+        Log.w("SmsTransport", npe);
         Log.w("SmsTransport", "Recipient: " + message.getIndividualRecipient().getNumber());
         Log.w("SmsTransport", "Message Total Parts/Current: " + messages.size() + "/" + i);
         Log.w("SmsTransport", "Message Part Length: " + messages.get(i).getBytes().length);
         throw new UndeliverableMessageException(npe);
       } catch (IllegalArgumentException iae) {
-        Log.w("SmsSender", iae);
+        Log.w("SmsTransport", iae);
         throw new UndeliverableMessageException(iae);
       }
     }
