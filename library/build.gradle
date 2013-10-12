@@ -9,6 +9,7 @@ buildscript {
 }
 
 apply plugin: 'android-library'
+apply plugin: 'maven'
 
 repositories {
     mavenCentral()
@@ -39,6 +40,18 @@ android {
                 res.srcDirs = ['res']
                 assets.srcDirs = ['assets']
             }
+        }
+    }
+}
+
+version '0.1'
+group 'org.whispersystems.textsecure'
+archivesBaseName = 'textsecure-library'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().getUrl())
         }
     }
 }
