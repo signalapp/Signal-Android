@@ -60,15 +60,19 @@ public class SmsTransport {
       // and messages, this will throw an NPE.  I have no idea why, so I'm just catching it and marking
       // the message as a failure.  That way at least it doesn't repeatedly crash every time you start
       // the app.
+      // d3sre 12/10/13 -- extended the log file to further analyse the problem
       try {
         SmsManager.getDefault().sendTextMessage(message.getIndividualRecipient().getNumber(), null, messages.get(i),
                                                 sentIntents.get(i),
                                                 deliveredIntents == null ? null : deliveredIntents.get(i));
       } catch (NullPointerException npe) {
-        Log.w("SmsSender", npe);
+        Log.w("SmsTransport", npe);
+        Log.w("SmsTransport", "Recipient: " + message.getIndividualRecipient().getNumber());
+        Log.w("SmsTransport", "Message Total Parts/Current: " + messages.size() + "/" + i);
+        Log.w("SmsTransport", "Message Part Length: " + messages.get(i).getBytes().length);
         throw new UndeliverableMessageException(npe);
       } catch (IllegalArgumentException iae) {
-        Log.w("SmsSender", iae);
+        Log.w("SmsTransport", iae);
         throw new UndeliverableMessageException(iae);
       }
     }
@@ -87,10 +91,16 @@ public class SmsTransport {
     // and messages, this will throw an NPE.  I have no idea why, so I'm just catching it and marking
     // the message as a failure.  That way at least it doesn't repeatedly crash every time you start
     // the app.
+    // d3sre 12/10/13 -- extended the log file to further analyse the problem
     try {
       SmsManager.getDefault().sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException npe) {
       Log.w("SmsTransport", npe);
+      Log.w("SmsTransport", "Recipient: " + recipient);
+      Log.w("SmsTransport", "Message Parts: " + messages.size());
+      for (String messagePart: messages) {
+          Log.w("SmsTransport", "Message Part Length: " + messagePart.getBytes().length);
+      }
       throw new UndeliverableMessageException(npe);
     }
   }
