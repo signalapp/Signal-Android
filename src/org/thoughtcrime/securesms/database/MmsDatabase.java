@@ -230,6 +230,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
                " WHERE " + ID + " = ?", new String[] {id + ""});
   }
 
+  public void markAsSending(long messageId) {
+    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE);
+    notifyConversationListeners(getThreadIdForMessage(messageId));
+  }
+
   public void markAsSentFailed(long messageId) {
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_FAILED_TYPE);
     notifyConversationListeners(getThreadIdForMessage(messageId));

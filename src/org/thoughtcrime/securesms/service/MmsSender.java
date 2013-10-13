@@ -68,6 +68,9 @@ public class MmsSender extends MmscProcessor {
       MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
 
       try {
+        if (messageId != -1)
+          database.markAsSending(messageId);
+
         List<SendReq> sendRequests = getOutgoingMessages(masterSecret, messageId);
 
         for (SendReq sendRequest : sendRequests) {
@@ -78,7 +81,7 @@ public class MmsSender extends MmscProcessor {
         Log.w("MmsSender", me);
         if (messageId != -1)
           database.markAsSentFailed(messageId);
-        }
+      }
     } else if (intent.getAction().equals(SendReceiveService.SEND_MMS_CONNECTIVITY_ACTION)) {
       handleConnectivityChange();
     }

@@ -12,6 +12,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
 import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.SendReceiveService;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -37,6 +39,7 @@ public class ConversationFragment extends SherlockListFragment
   private MasterSecret masterSecret;
   private Recipients   recipients;
   private long         threadId;
+  private MessageRecord messageRecord;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -58,19 +61,28 @@ public class ConversationFragment extends SherlockListFragment
     menu.clear();
 
     inflater.inflate(R.menu.conversation_context, menu);
+
+    messageRecord = getMessageRecord();
+    if (messageRecord.isFailed()) {
+      MenuItem resend = menu.findItem(R.id.menu_context_resend);
+      resend.setVisible(true);
+    }
+  }
+
+  private MessageRecord getMessageRecord() {
+    Cursor cursor                     = ((CursorAdapter)getListAdapter()).getCursor();
+    ConversationItem conversationItem = (ConversationItem)(((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
+    return conversationItem.getMessageRecord();
   }
 
   @Override
   public boolean onContextItemSelected(android.view.MenuItem item) {
-    Cursor cursor                     = ((CursorAdapter)getListAdapter()).getCursor();
-    ConversationItem conversationItem = (ConversationItem)(((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
-    MessageRecord messageRecord       = conversationItem.getMessageRecord();
-
     switch(item.getItemId()) {
     case R.id.menu_context_copy:           handleCopyMessage(messageRecord);     return true;
     case R.id.menu_context_delete_message: handleDeleteMessage(messageRecord);   return true;
     case R.id.menu_context_details:        handleDisplayDetails(messageRecord);  return true;
     case R.id.menu_context_forward:        handleForwardMessage(messageRecord);  return true;
+    case R.id.menu_context_resend:         handleResendMessage(messageRecord);   return true;
     }
 
     return false;
@@ -156,6 +168,23 @@ public class ConversationFragment extends SherlockListFragment
     composeIntent.putExtra("forwarded_message", message.getDisplayBody().toString());
     composeIntent.putExtra("master_secret", masterSecret);
     startActivity(composeIntent);
+  }
+
+  private void handleResendMessage(MessageRecord message) {
+    long messageId = message.getId();
+    final Activity activity = getActivity();
+
+    Intent intent;
+    if (message.isMms()) {
+      intent  = new Intent(SendReceiveService.SEND_MMS_ACTION, null,
+                           activity, SendReceiveService.class);
+    } else {
+      intent  = new Intent(SendReceiveService.SEND_SMS_ACTION, null,
+                           activity, SendReceiveService.class);
+    }
+    intent.putExtra("message_id", messageId);
+
+    activity.startService(intent);
   }
 
   private void initializeResources() {
