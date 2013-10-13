@@ -289,6 +289,8 @@ public class RegistrationService extends Service {
       contactTokens.removeAll(activeTokens);
       Directory.getInstance(this).setTokens(activeTokens, contactTokens);
     }
+
+    DirectoryRefreshListener.schedule(this);
   }
 
   private synchronized String waitForChallenge() throws AccountVerificationTimeoutException {
