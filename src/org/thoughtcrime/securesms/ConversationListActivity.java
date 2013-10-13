@@ -20,6 +20,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -61,6 +62,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     initializeSenderReceiverService();
     initializeResources();
     initializeContactUpdatesReceiver();
+
+    DirectoryRefreshListener.schedule(this);
   }
 
   @Override

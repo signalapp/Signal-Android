@@ -38,6 +38,15 @@ public class TextSecurePreferences {
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
+  private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
+
+  public static long getDirectoryRefreshTime(Context context) {
+    return getLongPreference(context, DIRECTORY_FRESH_TIME_PREF, 0L);
+  }
+
+  public static void setDirectoryRefreshTime(Context context, long value) {
+    setLongPreference(context, DIRECTORY_FRESH_TIME_PREF, value);
+  }
 
   public static String getLocalNumber(Context context) {
     return getStringPreference(context, LOCAL_NUMBER_PREF, "No Stored Number");
@@ -223,5 +232,14 @@ public class TextSecurePreferences {
   private static void setIntegerPrefrence(Context context, String key, int value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
   }
+
+  private static long getLongPreference(Context context, String key, long defaultValue) {
+    return PreferenceManager.getDefaultSharedPreferences(context).getLong(key, defaultValue);
+  }
+
+  private static void setLongPreference(Context context, String key, long value) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).commit();
+  }
+
 
 }
