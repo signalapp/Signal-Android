@@ -1,7 +1,18 @@
+/*
+ * This software is provided 'as-is', without any express or implied
+ * warranty.  In no event will Google be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, as long as the origin is not misrepresented.
+ */
+
 package org.thoughtcrime.securesms.crypto;
 
 import android.os.Build;
 import android.os.Process;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -25,7 +36,6 @@ import java.security.Security;
  * Since I still don't know exactly what the source of this bug was, I'm using
  * this class verbatim under the assumption that the Android team knows what
  * they're doing.  Although, at this point, that is perhaps a foolish assumption.
- *
  */
 
 /**
@@ -213,10 +223,13 @@ public final class PRNGFixes {
         }
         out.write(bytes);
         out.flush();
-        mSeeded = true;
       } catch (IOException e) {
-        throw new SecurityException(
-            "Failed to mix seed into " + URANDOM_FILE, e);
+        // On a small fraction of devices /dev/urandom is not writable.
+        // Log and ignore.
+        Log.w(PRNGFixes.class.getSimpleName(),
+              "Failed to mix seed into " + URANDOM_FILE);
+      } finally {
+        mSeeded = true;
       }
     }
 
@@ -267,15 +280,10 @@ public final class PRNGFixes {
       }
     }
 
-    private OutputStream getUrandomOutputStream() {
+    private OutputStream getUrandomOutputStream() throws IOException {
       synchronized (sLock) {
         if (sUrandomOut == null) {
-          try {
-            sUrandomOut = new FileOutputStream(URANDOM_FILE);
-          } catch (IOException e) {
-            throw new SecurityException("Failed to open "
-                                            + URANDOM_FILE + " for writing", e);
-          }
+          sUrandomOut = new FileOutputStream(URANDOM_FILE);
         }
         return sUrandomOut;
       }
