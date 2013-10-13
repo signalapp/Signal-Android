@@ -95,6 +95,23 @@ public class MessageSender {
     return threadId;
   }
 
+  public static void resend(Context context, long messageId, boolean isMms)
+  {
+
+    Intent intent;
+    if (isMms) {
+      DatabaseFactory.getMmsDatabase(context).markAsSending(messageId);
+      intent  = new Intent(SendReceiveService.SEND_MMS_ACTION, null,
+                           context, SendReceiveService.class);
+    } else {
+      DatabaseFactory.getSmsDatabase(context).markAsSending(messageId);
+      intent  = new Intent(SendReceiveService.SEND_SMS_ACTION, null,
+                           context, SendReceiveService.class);
+    }
+    intent.putExtra("message_id", messageId);
+    context.startService(intent);
+  }
+
   private static void sendMms(Context context, Recipients recipients, MasterSecret masterSecret,
                               SendReq sendRequest, long threadId, int distributionType, boolean secure)
     throws MmsException

@@ -12,6 +12,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
 import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.MessageSender;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -58,19 +60,23 @@ public class ConversationFragment extends SherlockListFragment
     menu.clear();
 
     inflater.inflate(R.menu.conversation_context, menu);
+
+    MessageRecord messageRecord = getMessageRecord();
+    if (messageRecord.isFailed()) {
+      MenuItem resend = menu.findItem(R.id.menu_context_resend);
+      resend.setVisible(true);
+    }
   }
 
   @Override
   public boolean onContextItemSelected(android.view.MenuItem item) {
-    Cursor cursor                     = ((CursorAdapter)getListAdapter()).getCursor();
-    ConversationItem conversationItem = (ConversationItem)(((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
-    MessageRecord messageRecord       = conversationItem.getMessageRecord();
-
+    MessageRecord messageRecord = getMessageRecord();
     switch(item.getItemId()) {
     case R.id.menu_context_copy:           handleCopyMessage(messageRecord);     return true;
     case R.id.menu_context_delete_message: handleDeleteMessage(messageRecord);   return true;
     case R.id.menu_context_details:        handleDisplayDetails(messageRecord);  return true;
     case R.id.menu_context_forward:        handleForwardMessage(messageRecord);  return true;
+    case R.id.menu_context_resend:         handleResendMessage(messageRecord);   return true;
     }
 
     return false;
@@ -80,6 +86,12 @@ public class ConversationFragment extends SherlockListFragment
   public void onAttach(Activity activity) {
     super.onAttach(activity);
     this.listener = (ConversationFragmentListener)activity;
+  }
+
+  private MessageRecord getMessageRecord() {
+    Cursor cursor                     = ((CursorAdapter)getListAdapter()).getCursor();
+    ConversationItem conversationItem = (ConversationItem)(((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
+    return conversationItem.getMessageRecord();
   }
 
   public void reload(Recipients recipients, long threadId) {
@@ -156,6 +168,12 @@ public class ConversationFragment extends SherlockListFragment
     composeIntent.putExtra("forwarded_message", message.getDisplayBody().toString());
     composeIntent.putExtra("master_secret", masterSecret);
     startActivity(composeIntent);
+  }
+
+  private void handleResendMessage(MessageRecord message) {
+    long messageId = message.getId();
+    final Activity activity = getActivity();
+    MessageSender.resend(activity, messageId, message.isMms());
   }
 
   private void initializeResources() {
