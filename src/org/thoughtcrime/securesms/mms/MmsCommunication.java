@@ -52,11 +52,17 @@ public class MmsCommunication {
     if (preferences.getBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, false)) {
       String mmsc = preferences.getString(ApplicationPreferencesActivity.MMSC_HOST_PREF, null);
 
-      if (mmsc == null || !mmsc.startsWith("http"))
+      if (mmsc == null)
         throw new ApnUnavailableException("Malformed locally configured MMSC: " + mmsc);
+
+      if (!mmsc.startsWith("http"))
+        mmsc = "http://" + mmsc;
 
       String proxy = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF, null);
       String port  = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF, null);
+
+      if (proxy != null && !proxy.startsWith("http"))
+        proxy = "http://" + proxy;
 
       return new MmsConnectionParameters(mmsc, proxy, port);
     }
