@@ -53,7 +53,7 @@ public class MmsCommunication {
       String mmsc = preferences.getString(ApplicationPreferencesActivity.MMSC_HOST_PREF, null);
 
       if (mmsc == null)
-        throw new ApnUnavailableException("Malformed locally configured MMSC: " + mmsc);
+        throw new ApnUnavailableException("Malformed locally configured MMSC.");
 
       if (!mmsc.startsWith("http"))
         mmsc = "http://" + mmsc;
