@@ -61,9 +61,6 @@ public class MmsCommunication {
       String proxy = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF, null);
       String port  = preferences.getString(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF, null);
 
-      if (proxy != null && !proxy.startsWith("http"))
-        proxy = "http://" + proxy;
-
       return new MmsConnectionParameters(mmsc, proxy, port);
     }
 
