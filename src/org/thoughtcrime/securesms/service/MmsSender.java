@@ -78,7 +78,7 @@ public class MmsSender extends MmscProcessor {
         Log.w("MmsSender", me);
         if (messageId != -1)
           database.markAsSentFailed(messageId);
-        }
+      }
     } else if (intent.getAction().equals(SendReceiveService.SEND_MMS_CONNECTIVITY_ACTION)) {
       handleConnectivityChange();
     }
