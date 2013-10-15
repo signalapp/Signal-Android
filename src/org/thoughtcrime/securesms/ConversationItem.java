@@ -39,6 +39,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
@@ -387,9 +388,14 @@ public class ConversationItem extends LinearLayout {
         outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Music");
       else
         outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Pictures");
-
       outputDirectory.mkdirs();
-      return File.createTempFile("textsecure", ".attach", outputDirectory);
+
+      MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+      String extension = mimeTypeMap.getExtensionFromMimeType(slide.getContentType());
+      if (extension == null)
+          extension = "attach";
+
+      return File.createTempFile("textsecure", "." + extension, outputDirectory);
     }
 
     private void saveToSdCard() {
