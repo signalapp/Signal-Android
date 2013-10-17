@@ -30,6 +30,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
@@ -54,6 +55,9 @@ import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.RecipientsPanel;
+import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyUtil;
@@ -116,6 +120,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private static final int PICK_IMAGE            = 2;
   private static final int PICK_VIDEO            = 3;
   private static final int PICK_AUDIO            = 4;
+  private static final int PICK_CONTACT_INFO     = 5;
 
   private MasterSecret masterSecret;
   private RecipientsPanel recipientsPanel;
@@ -219,6 +224,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case PICK_AUDIO:
       addAttachmentAudio(data.getData());
       break;
+    case PICK_CONTACT_INFO:
+      addContactInfo(data.getData());
+      break;
     }
   }
 
@@ -262,6 +270,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     switch (item.getItemId()) {
     case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
     case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
+    case R.id.menu_add_contact_info:          handleAddContactInfo();                            return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_start_secure_session:      handleStartSecureSession();                        return true;
     case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
@@ -455,6 +464,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     builder.setNegativeButton(R.string.no, null);
     builder.show();
+  }
+
+  private void handleAddContactInfo() {
+    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+    startActivityForResult(intent, PICK_CONTACT_INFO);
   }
 
   private void handleAddAttachment() {
@@ -719,6 +733,35 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
+  }
+
+  private void addContactInfo(Uri contactUri) {
+    ContactAccessor contactDataList = ContactAccessor.getInstance();
+    ContactData contactData = contactDataList.getContactData(this, contactUri);
+
+    if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
+    else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
+  }
+
+  private void selectContactInfo(ContactData contactData) {
+    final CharSequence[] numbers = new CharSequence[contactData.numbers.size()];
+    final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
+    for (int i = 0; i < contactData.numbers.size(); i++) {
+      numbers[i] = contactData.numbers.get(i).number;
+      numberItems[i] = contactData.numbers.get(i).type + ": " + contactData.numbers.get(i).number;
+    }
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setIcon(R.drawable.ic_contact_picture);
+    builder.setTitle(R.string.ConversationActivity_select_contact_info);
+
+    builder.setItems(numberItems, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        composeText.append(numbers[which]);
+      }
+    });
+    builder.show();
   }
 
   private List<Draft> getDraftsForCurrentState() {
