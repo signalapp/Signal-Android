@@ -84,31 +84,32 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void sendMessage(String relay, String recipient, byte[] body, int type)
+  public void sendMessage(PushDestination recipient, byte[] body, int type)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(relay, recipient, body, type);
+    OutgoingPushMessage message = new OutgoingPushMessage(recipient.getRelay(),
+                                                          recipient.getNumber(),
+                                                          body, type);
+
     sendMessage(new OutgoingPushMessageList(message));
   }
 
-  public void sendMessage(List<String> relays, List<String> recipients,
+  public void sendMessage(List<PushDestination> recipients,
                           List<byte[]> bodies, List<Integer> types)
       throws IOException
   {
     List<OutgoingPushMessage> messages = new LinkedList<OutgoingPushMessage>();
 
-    Iterator<String>  relaysIterator     = relays.iterator();
-    Iterator<String>  recipientsIterator = recipients.iterator();
-    Iterator<byte[]>  bodiesIterator     = bodies.iterator();
-    Iterator<Integer> typesIterator      = types.iterator();
+    Iterator<PushDestination> recipientsIterator = recipients.iterator();
+    Iterator<byte[]>          bodiesIterator     = bodies.iterator();
+    Iterator<Integer>         typesIterator      = types.iterator();
 
     while (recipientsIterator.hasNext()) {
-      String relay     = relaysIterator.next();
-      String recipient = recipientsIterator.next();
-      byte[] body      = bodiesIterator.next();
-      int    type      = typesIterator.next();
+      PushDestination recipient = recipientsIterator.next();
+      byte[]          body      = bodiesIterator.next();
+      int             type      = typesIterator.next();
 
-      messages.add(new OutgoingPushMessage(relay, recipient, body, type));
+      messages.add(new OutgoingPushMessage(recipient.getRelay(), recipient.getNumber(), body, type));
     }
 
     sendMessage(new OutgoingPushMessageList(messages));
@@ -143,11 +144,11 @@ public class PushServiceSocket {
      makeRequest(String.format(PREKEY_PATH, ""), "PUT", PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
   }
 
-  public PreKeyEntity getPreKey(String relay, String number) throws IOException {
-    String path = String.format(PREKEY_PATH, number);
+  public PreKeyEntity getPreKey(PushDestination destination) throws IOException {
+    String path = String.format(PREKEY_PATH, destination.getNumber());
 
-    if (relay != null) {
-      path = path + "?relay=" + relay;
+    if (destination.getRelay() != null) {
+      path = path + "?relay=" + destination.getRelay();
     }
 
     String responseText = makeRequest(path, "GET", null);

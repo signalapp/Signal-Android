@@ -29,6 +29,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
+import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class UniversalTransport {
       return mmsTransport.deliver(mediaMessage);
     }
 
-    List<String> destinations = getMediaDestinations(mediaMessage);
+    List<PushDestination> destinations = getMediaDestinations(mediaMessage);
 
     if (isPushTransport(destinations)) {
       try {
@@ -97,24 +98,25 @@ public class UniversalTransport {
     }
   }
 
-  private List<String> getMediaDestinations(SendReq mediaMessage) {
-    LinkedList<String> destinations = new LinkedList<String>();
+  private List<PushDestination> getMediaDestinations(SendReq mediaMessage) {
+    TextSecurePushCredentials   credentials  = TextSecurePushCredentials.getInstance();
+    LinkedList<PushDestination> destinations = new LinkedList<PushDestination>();
 
     if (mediaMessage.getTo() != null) {
       for (EncodedStringValue to : mediaMessage.getTo()) {
-        destinations.add(Util.canonicalizeNumber(context, to.getString()));
+        destinations.add(PushDestination.getInstance(context, credentials, to.getString()));
       }
     }
 
     if (mediaMessage.getCc() != null) {
       for (EncodedStringValue cc : mediaMessage.getCc()) {
-        destinations.add(Util.canonicalizeNumber(context, cc.getString()));
+        destinations.add(PushDestination.getInstance(context, credentials, cc.getString()));
       }
     }
 
     if (mediaMessage.getBcc() != null) {
       for (EncodedStringValue bcc : mediaMessage.getBcc()) {
-        destinations.add(Util.canonicalizeNumber(context, bcc.getString()));
+        destinations.add(PushDestination.getInstance(context, credentials, bcc.getString()));
       }
     }
 
@@ -147,9 +149,9 @@ public class UniversalTransport {
     }
   }
 
-  private boolean isPushTransport(List<String> destinations) {
-    for (String destination : destinations) {
-      if (!isPushTransport(destination)) {
+  private boolean isPushTransport(List<PushDestination> destinations) {
+    for (PushDestination destination : destinations) {
+      if (!isPushTransport(destination.getNumber())) {
         return false;
       }
     }
