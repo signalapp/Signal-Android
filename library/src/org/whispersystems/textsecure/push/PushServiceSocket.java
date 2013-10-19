@@ -139,7 +139,7 @@ public class PushServiceSocket {
      makeRequest(String.format(PREKEY_PATH, ""), "PUT", PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
   }
 
-  public PreKeyEntity getPreKey(String number, String relay) throws IOException {
+  public PreKeyEntity getPreKey(String relay, String number) throws IOException {
     String path = String.format(PREKEY_PATH, number);
 
     if (relay != null) {

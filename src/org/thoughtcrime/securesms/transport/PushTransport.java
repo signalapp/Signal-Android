@@ -191,7 +191,7 @@ public class PushTransport extends BaseTransport {
     IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     IdentityKey          identityKey     = identityKeyPair.getPublicKey();
     String               relay           = Directory.getInstance(context).getRelay(canonicalRecipientNumber);
-    PreKeyEntity         preKey          = socket.getPreKey(canonicalRecipientNumber, relay);
+    PreKeyEntity         preKey          = socket.getPreKey(relay, canonicalRecipientNumber);
     KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipient);
 
     processor.processKeyExchangeMessage(preKey);
