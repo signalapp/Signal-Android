@@ -20,6 +20,7 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
@@ -282,11 +283,13 @@ public class RegistrationService extends Service {
     String gcmRegistrationId = waitForGcmRegistrationId();
     socket.registerGcmId(gcmRegistrationId);
 
-    Set<String> contactTokens = Directory.getInstance(this).getPushEligibleContactTokens(number);
-    List<String> activeTokens = socket.retrieveDirectory(contactTokens);
+    Set<String>               contactTokens = Directory.getInstance(this).getPushEligibleContactTokens(number);
+    List<ContactTokenDetails> activeTokens  = socket.retrieveDirectory(contactTokens);
 
     if (activeTokens != null) {
-      contactTokens.removeAll(activeTokens);
+      for (ContactTokenDetails activeToken : activeTokens) {
+        contactTokens.remove(activeToken.getToken());
+      }
       Directory.getInstance(this).setTokens(activeTokens, contactTokens);
     }
 

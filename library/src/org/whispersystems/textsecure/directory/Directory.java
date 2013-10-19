@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
+import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
@@ -29,11 +30,15 @@ public class Directory {
   private static final String ID           = "_id";
   private static final String TOKEN        = "token";
   private static final String REGISTERED   = "registered";
+  private static final String RELAY        = "relay";
   private static final String SUPPORTS_SMS = "supports_sms";
   private static final String TIMESTAMP    = "timestamp";
   private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID + " INTEGER PRIMARY KEY, " +
-                                             TOKEN + " TEXT UNIQUE, " + REGISTERED + " INTEGER, " +
-                                             SUPPORTS_SMS + " INTEGER, " + TIMESTAMP + " INTEGER);";
+                                             TOKEN        + " TEXT UNIQUE, " +
+                                             REGISTERED   + " INTEGER, " +
+                                             RELAY        + " TEXT " +
+                                             SUPPORTS_SMS + " INTEGER, " +
+                                             TIMESTAMP    + " INTEGER);";
 
   private static Directory instance;
 
@@ -79,27 +84,49 @@ public class Directory {
     }
   }
 
-  public void setToken(String token, boolean active) {
+  public String getRelay(String e164number) {
+    String         token    = getToken(e164number);
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, null, TOKEN + " = ?", new String[]{token}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getString(cursor.getColumnIndexOrThrow(RELAY));
+      }
+
+      return null;
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
+  public void setToken(ContactTokenDetails token, boolean active) {
     SQLiteDatabase db     = databaseHelper.getWritableDatabase();
     ContentValues  values = new ContentValues();
-    values.put(TOKEN, token);
+    values.put(TOKEN, token.getToken());
+    values.put(RELAY, token.getRelay());
     values.put(REGISTERED, active ? 1 : 0);
+    values.put(SUPPORTS_SMS, token.isSupportsSms());
     values.put(TIMESTAMP, System.currentTimeMillis());
     db.replace(TABLE_NAME, null, values);
   }
 
-  public void setTokens(List<String> activeTokens, Collection<String> inactiveTokens) {
+  public void setTokens(List<ContactTokenDetails> activeTokens, Collection<String> inactiveTokens) {
     long timestamp    = System.currentTimeMillis();
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.beginTransaction();
 
     try {
-      for (String token : activeTokens) {
+      for (ContactTokenDetails token : activeTokens) {
         Log.w("Directory", "Adding active token: " + token);
         ContentValues values = new ContentValues();
-        values.put(TOKEN, token);
+        values.put(TOKEN, token.getToken());
         values.put(REGISTERED, 1);
         values.put(TIMESTAMP, timestamp);
+        values.put(RELAY, token.getRelay());
         db.replace(TABLE_NAME, null, values);
       }
 
@@ -125,7 +152,7 @@ public class Directory {
     try {
       cursor = context.getContentResolver().query(uri, new String[] {Phone.NUMBER}, null, null, null);
 
-      while (cursor.moveToNext()) {
+      while (cursor != null && cursor.moveToNext()) {
         String rawNumber = cursor.getString(0);
 
         if (rawNumber != null) {
@@ -134,12 +161,13 @@ public class Directory {
         }
       }
 
-      cursor.close();
+      if (cursor != null)
+        cursor.close();
 
       cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {TOKEN},
                                                           null, null, null, null, null);
 
-      while (cursor.moveToNext()) {
+      while (cursor != null && cursor.moveToNext()) {
         results.add(cursor.getString(0));
       }
 

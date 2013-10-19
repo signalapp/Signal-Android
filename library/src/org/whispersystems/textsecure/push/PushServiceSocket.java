@@ -5,6 +5,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.google.thoughtcrimegson.Gson;
+
 import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -12,9 +13,6 @@ import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,6 +31,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 
 public class PushServiceSocket {
 
@@ -78,28 +80,31 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void sendMessage(String recipient, byte[] body, int type)
+  public void sendMessage(String relay, String recipient, byte[] body, int type)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(recipient, body, type);
+    OutgoingPushMessage message = new OutgoingPushMessage(relay, recipient, body, type);
     sendMessage(new OutgoingPushMessageList(message));
   }
 
-  public void sendMessage(List<String> recipients, List<byte[]> bodies, List<Integer> types)
+  public void sendMessage(List<String> relays, List<String> recipients,
+                          List<byte[]> bodies, List<Integer> types)
       throws IOException
   {
     List<OutgoingPushMessage> messages = new LinkedList<OutgoingPushMessage>();
 
+    Iterator<String>  relaysIterator     = relays.iterator();
     Iterator<String>  recipientsIterator = recipients.iterator();
     Iterator<byte[]>  bodiesIterator     = bodies.iterator();
     Iterator<Integer> typesIterator      = types.iterator();
 
     while (recipientsIterator.hasNext()) {
+      String relay     = relaysIterator.next();
       String recipient = recipientsIterator.next();
       byte[] body      = bodiesIterator.next();
       int    type      = typesIterator.next();
 
-      messages.add(new OutgoingPushMessage(recipient, body, type));
+      messages.add(new OutgoingPushMessage(relay, recipient, body, type));
     }
 
     sendMessage(new OutgoingPushMessageList(messages));
@@ -134,8 +139,14 @@ public class PushServiceSocket {
      makeRequest(String.format(PREKEY_PATH, ""), "PUT", PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
   }
 
-  public PreKeyEntity getPreKey(String number) throws IOException {
-    String responseText = makeRequest(String.format(PREKEY_PATH, number), "GET", null);
+  public PreKeyEntity getPreKey(String number, String relay) throws IOException {
+    String path = String.format(PREKEY_PATH, number);
+
+    if (relay != null) {
+      path = path + "?relay=" + relay;
+    }
+
+    String responseText = makeRequest(path, "GET", null);
     Log.w("PushServiceSocket", "Got prekey: " + responseText);
     return PreKeyEntity.fromJson(responseText);
   }
@@ -170,11 +181,11 @@ public class PushServiceSocket {
     return attachment;
   }
 
-  public List<String> retrieveDirectory(Set<String> contactTokens) {
+  public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens) {
     try {
-      ContactTokenList contactTokenList = new ContactTokenList(new LinkedList(contactTokens));
-      String           response         = makeRequest(DIRECTORY_TOKENS_PATH, "PUT", new Gson().toJson(contactTokenList));
-      ContactTokenList activeTokens     = new Gson().fromJson(response, ContactTokenList.class);
+      ContactTokenList        contactTokenList = new ContactTokenList(new LinkedList(contactTokens));
+      String                  response         = makeRequest(DIRECTORY_TOKENS_PATH, "PUT", new Gson().toJson(contactTokenList));
+      ContactTokenDetailsList activeTokens     = new Gson().fromJson(response, ContactTokenDetailsList.class);
 
       return activeTokens.getContacts();
     } catch (IOException ioe) {
@@ -183,12 +194,12 @@ public class PushServiceSocket {
     }
   }
 
-  public boolean isRegisteredUser(String contactToken) throws IOException {
+  public ContactTokenDetails getContactTokenDetails(String contactToken) throws IOException {
     try {
-      makeRequest(String.format(DIRECTORY_VERIFY_PATH, contactToken), "GET", null);
-      return true;
+      String response = makeRequest(String.format(DIRECTORY_VERIFY_PATH, contactToken), "GET", null);
+      return new Gson().fromJson(response, ContactTokenDetails.class);
     } catch (NotFoundException nfe) {
-      return false;
+      return null;
     }
   }
 
@@ -311,6 +322,9 @@ public class PushServiceSocket {
       context.init(null, trustManagerFactory.getTrustManagers(), null);
 
       URL url = new URL(String.format("%s%s", Release.PUSH_SERVICE_URL, urlFragment));
+      Log.w("PushServiceSocket", "Push service URL: " + Release.PUSH_SERVICE_URL);
+      Log.w("PushServiceSocket", "Opening URL: " + url);
+
       HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
       if (Release.ENFORCE_SSL) {

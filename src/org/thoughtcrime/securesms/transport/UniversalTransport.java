@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 
 import java.io.IOException;
@@ -126,15 +127,20 @@ public class UniversalTransport {
       return directory.isActiveNumber(destination);
     } catch (NotInDirectoryException e) {
       try {
-        String            localNumber    = TextSecurePreferences.getLocalNumber(context);
-        String            pushPassword   = TextSecurePreferences.getPushServerPassword(context);
-        String            contactToken   = directory.getToken(destination);
-        PushServiceSocket socket         = new PushServiceSocket(context, localNumber, pushPassword);
-        boolean           registeredUser = socket.isRegisteredUser(contactToken);
+        String              localNumber    = TextSecurePreferences.getLocalNumber(context);
+        String              pushPassword   = TextSecurePreferences.getPushServerPassword(context);
+        String              contactToken   = directory.getToken(destination);
+        PushServiceSocket   socket         = new PushServiceSocket(context, localNumber, pushPassword);
+        ContactTokenDetails registeredUser = socket.getContactTokenDetails(contactToken);
 
-        directory.setToken(contactToken, registeredUser);
-
-        return registeredUser;
+        if (registeredUser == null) {
+          registeredUser = new ContactTokenDetails(contactToken);
+          directory.setToken(registeredUser, false);
+          return false;
+        } else {
+          directory.setToken(registeredUser, true);
+          return true;
+        }
       } catch (IOException e1) {
         Log.w("UniversalTransport", e1);
         return false;

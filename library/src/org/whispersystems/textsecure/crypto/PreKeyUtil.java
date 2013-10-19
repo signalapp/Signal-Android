@@ -132,6 +132,9 @@ public class PreKeyUtil {
   private static class PreKeyRecordIdComparator implements Comparator<String> {
     @Override
     public int compare(String lhs, String rhs) {
+      if      (lhs.equals(PreKeyIndex.FILE_NAME)) return -1;
+      else if (rhs.equals(PreKeyIndex.FILE_NAME)) return 1;
+
       try {
         long lhsLong = Long.parseLong(lhs);
         long rhsLong = Long.parseLong(rhs);

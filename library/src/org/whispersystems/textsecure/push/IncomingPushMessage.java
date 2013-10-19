@@ -43,14 +43,16 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
   private List<String> destinations;
   private byte[]       message;
   private long         timestamp;
+  private String       relay;
 
   private IncomingPushMessage(IncomingPushMessage message, byte[] body) {
     this.type         = message.type;
     this.source       = message.source;
+    this.timestamp    = message.timestamp;
+    this.relay        = message.relay;
+    this.message      = body;
     this.destinations = new LinkedList<String>();
     this.destinations.addAll(message.destinations);
-    this.message   = body;
-    this.timestamp = message.timestamp;
   }
 
   public IncomingPushMessage(IncomingPushMessageSignal signal) {
@@ -59,12 +61,18 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
     this.destinations = signal.getDestinationsList();
     this.message      = signal.getMessage().toByteArray();
     this.timestamp    = signal.getTimestamp();
+    this.relay        = signal.getRelay();
   }
 
   public IncomingPushMessage(Parcel in) {
     this.destinations = new LinkedList<String>();
     this.type   = in.readInt();
     this.source = in.readString();
+
+    if (in.readInt() == 1) {
+      this.relay  = in.readString();
+    }
+
     in.readStringList(destinations);
     this.message = new byte[in.readInt()];
     in.readByteArray(this.message);
@@ -80,6 +88,10 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
     this.destinations = destinations;
     this.message      = body;
     this.timestamp    = timestamp;
+  }
+
+  public String getRelay() {
+    return relay;
   }
 
   public long getTimestampMillis() {
@@ -107,6 +119,10 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeInt(type);
     dest.writeString(source);
+    dest.writeInt(relay == null ? 0 : 1);
+    if (relay != null) {
+      dest.writeString(relay);
+    }
     dest.writeStringList(destinations);
     dest.writeInt(message.length);
     dest.writeByteArray(message);
