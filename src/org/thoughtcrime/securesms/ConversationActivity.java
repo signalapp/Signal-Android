@@ -859,16 +859,15 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
+        return;
       } else if (attachmentManager.isAttachmentPresent()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, attachmentManager.getSlideDeck(), body,
                                                   distributionType, isEncryptedConversation && !forcePlaintext);
-        sendComplete(recipients, allocatedThreadId);
       } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, new SlideDeck(), body, distributionType,
                                                   isEncryptedConversation && !forcePlaintext);
-        sendComplete(recipients, allocatedThreadId);
       } else {
         OutgoingTextMessage message;
 
@@ -881,8 +880,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         Log.w("ConversationActivity", "Sending message...");
         allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
                                                message, threadId);
-        sendComplete(recipients, allocatedThreadId);
       }
+      sendComplete(recipients, allocatedThreadId);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
                      R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,

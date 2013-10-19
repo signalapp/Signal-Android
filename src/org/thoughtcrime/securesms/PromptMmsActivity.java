@@ -18,14 +18,6 @@ public class PromptMmsActivity extends PassphraseRequiredSherlockActivity {
     initializeResources();
   }
 
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    if (resultCode == MmsPreferencesActivity.RESULT_FINISH_MMS_PROMPT)
-      finish();
-  }
-
   private void initializeResources() {
     this.okButton     = (Button)findViewById(R.id.ok_button);
     this.cancelButton = (Button)findViewById(R.id.cancel_button);
@@ -35,8 +27,8 @@ public class PromptMmsActivity extends PassphraseRequiredSherlockActivity {
       public void onClick(View v) {
         Intent intent = new Intent(PromptMmsActivity.this, MmsPreferencesActivity.class);
         intent.putExtras(PromptMmsActivity.this.getIntent().getExtras());
-        intent.putExtra(MmsPreferencesActivity.PARENT_IS_PROMPT_MMS, true);
-        startActivityForResult(intent, 1337);
+        startActivity(intent);
+        finish();
       }
     });
 

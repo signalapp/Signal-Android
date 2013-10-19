@@ -33,10 +33,6 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
 
-  public static final String PARENT_IS_PROMPT_MMS = "org.thoughtcrime.securesms.MmsPreferencesActivity.PARENT_IS_PROMPT_MMS";
-
-  public static final int RESULT_FINISH_MMS_PROMPT = 1337;
-
   private MasterSecret masterSecret;
 
   private final DynamicTheme dynamicTheme       = new DynamicTheme();
@@ -54,11 +50,6 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
     masterSecret = getIntent().getParcelableExtra("master_secret");
 
     initializeEditTextSummaries();
-
-    if (this.getIntent().getExtras() != null &&
-        this.getIntent().getExtras().getBoolean(PARENT_IS_PROMPT_MMS, false)) {
-      setResult(RESULT_FINISH_MMS_PROMPT);
-    }
   }
 
   @Override
@@ -99,9 +90,9 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
           .putBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, true).commit();
       addPreferencesFromResource(R.xml.mms_preferences);
       this.findPreference(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
-    }
-    else
+    } else {
       addPreferencesFromResource(R.xml.mms_preferences);
+    }
   }
 
   private void initializeEditTextSummary(final EditTextPreference preference) {
