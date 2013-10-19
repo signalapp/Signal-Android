@@ -8,6 +8,7 @@ import com.google.android.gcm.GCMBaseIntentService;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
@@ -31,7 +32,8 @@ public class GcmIntentService extends GCMBaseIntentService {
       sendBroadcast(intent);
     } else {
       try {
-        getGcmSocket(context).registerGcmId(registrationId);
+        PushServiceSocket pushSocket = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
+        pushSocket.registerGcmId(registrationId);
       } catch (IOException e) {
         Log.w("GcmIntentService", e);
       }
@@ -41,7 +43,8 @@ public class GcmIntentService extends GCMBaseIntentService {
   @Override
   protected void onUnregistered(Context context, String registrationId) {
     try {
-      getGcmSocket(context).unregisterGcmId();
+      PushServiceSocket pushSocket = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
+      pushSocket.unregisterGcmId();
     } catch (IOException ioe) {
       Log.w("GcmIntentService", ioe);
     }
@@ -82,12 +85,6 @@ public class GcmIntentService extends GCMBaseIntentService {
   @Override
   protected void onError(Context context, String s) {
     Log.w("GcmIntentService", "GCM Error: " + s);
-  }
-
-  private PushServiceSocket getGcmSocket(Context context) {
-    String localNumber = TextSecurePreferences.getLocalNumber(context);
-    String password    = TextSecurePreferences.getPushServerPassword(context);
-    return new PushServiceSocket(context, localNumber, password);
   }
 
   private boolean isActiveNumber(Context context, String e164number) {

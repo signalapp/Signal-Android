@@ -23,6 +23,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
@@ -127,10 +128,8 @@ public class UniversalTransport {
       return directory.isActiveNumber(destination);
     } catch (NotInDirectoryException e) {
       try {
-        String              localNumber    = TextSecurePreferences.getLocalNumber(context);
-        String              pushPassword   = TextSecurePreferences.getPushServerPassword(context);
+        PushServiceSocket   socket         = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
         String              contactToken   = directory.getToken(destination);
-        PushServiceSocket   socket         = new PushServiceSocket(context, localNumber, pushPassword);
         ContactTokenDetails registeredUser = socket.getContactTokenDetails(contactToken);
 
         if (registeredUser == null) {

@@ -9,6 +9,7 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -57,12 +58,10 @@ public class DirectoryRefreshService extends Service {
     public void run() {
       try {
         Log.w("DirectoryRefreshService", "Refreshing directory...");
-        Directory         directory   = Directory.getInstance(context);
-        String            localNumber = TextSecurePreferences.getLocalNumber(context);
-        String            password    = TextSecurePreferences.getPushServerPassword(context);
-        PushServiceSocket socket      = new PushServiceSocket(context, localNumber, password);
+        Directory         directory = Directory.getInstance(context);
+        PushServiceSocket socket    = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
 
-        Set<String> eligibleContactTokens = directory.getPushEligibleContactTokens(localNumber);
+        Set<String> eligibleContactTokens = directory.getPushEligibleContactTokens(TextSecurePreferences.getLocalNumber(context));
         List<ContactTokenDetails> activeTokens  = socket.retrieveDirectory(eligibleContactTokens);
 
         if (activeTokens != null) {

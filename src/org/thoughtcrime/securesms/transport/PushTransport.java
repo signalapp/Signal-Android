@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.AttachmentCipher;
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -54,10 +55,9 @@ public class PushTransport extends BaseTransport {
 
   public void deliver(SmsMessageRecord message) throws IOException {
     try {
-      String            localNumber = TextSecurePreferences.getLocalNumber(context);
-      String            password    = TextSecurePreferences.getPushServerPassword(context);
-      PushServiceSocket socket      = new PushServiceSocket(context, localNumber, password);
+      PushServiceSocket socket = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
 
+      String                     localNumber              = TextSecurePreferences.getLocalNumber(context);
       Recipient                  recipient                = message.getIndividualRecipient();
       String                     plaintextBody            = message.getBody().getBody();
       PushMessageContent.Builder builder                  = PushMessageContent.newBuilder();
@@ -78,9 +78,7 @@ public class PushTransport extends BaseTransport {
 
   public void deliver(SendReq message, List<String> destinations) throws IOException {
     try {
-      String            localNumber = TextSecurePreferences.getLocalNumber(context);
-      String            password    = TextSecurePreferences.getPushServerPassword(context);
-      PushServiceSocket socket      = new PushServiceSocket(context, localNumber, password);
+      PushServiceSocket socket      = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
       String            messageBody = PartParser.getMessageText(message.getBody());
       List<String>      relays      = new LinkedList<String>();
       List<byte[]>      ciphertext  = new LinkedList<byte[]>();

@@ -61,6 +61,10 @@ public class PushServiceSocket {
     this.trustManagerFactory = initializeTrustManagerFactory(context);
   }
 
+  public PushServiceSocket(Context context, PushCredentials credentials) {
+    this(context, credentials.getLocalNumber(context), credentials.getPassword(context));
+  }
+
   public void createAccount(boolean voice) throws IOException {
     String path = voice ? CREATE_ACCOUNT_VOICE_PATH : CREATE_ACCOUNT_SMS_PATH;
     makeRequest(String.format(path, localNumber), "GET", null);
@@ -400,4 +404,8 @@ public class PushServiceSocket {
     }
   }
 
+  public interface PushCredentials {
+    public String getLocalNumber(Context context);
+    public String getPassword(Context context);
+  }
 }
