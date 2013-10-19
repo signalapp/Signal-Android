@@ -47,6 +47,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gcm.GCMRegistrar;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
+import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -351,10 +352,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           @Override
           protected Integer doInBackground(Void... params) {
             try {
-              Context context          = ApplicationPreferencesActivity.this;
-              String localNumber       = TextSecurePreferences.getLocalNumber(context);
-              String pushPassword      = TextSecurePreferences.getPushServerPassword(context);
-              PushServiceSocket socket = new PushServiceSocket(context, localNumber, pushPassword);
+              Context           context = ApplicationPreferencesActivity.this;
+              PushServiceSocket socket  = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
 
               socket.unregisterGcmId();
               GCMRegistrar.unregister(context);
