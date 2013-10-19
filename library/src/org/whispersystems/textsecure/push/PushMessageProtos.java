@@ -19,16 +19,20 @@ public final class PushMessageProtos {
     boolean hasSource();
     String getSource();
     
-    // repeated string destinations = 3;
+    // optional string relay = 3;
+    boolean hasRelay();
+    String getRelay();
+    
+    // repeated string destinations = 4;
     java.util.List<String> getDestinationsList();
     int getDestinationsCount();
     String getDestinations(int index);
     
-    // optional uint64 timestamp = 4;
+    // optional uint64 timestamp = 5;
     boolean hasTimestamp();
     long getTimestamp();
     
-    // optional bytes message = 5;
+    // optional bytes message = 6;
     boolean hasMessage();
     com.google.protobuf.ByteString getMessage();
   }
@@ -103,8 +107,40 @@ public final class PushMessageProtos {
       }
     }
     
-    // repeated string destinations = 3;
-    public static final int DESTINATIONS_FIELD_NUMBER = 3;
+    // optional string relay = 3;
+    public static final int RELAY_FIELD_NUMBER = 3;
+    private java.lang.Object relay_;
+    public boolean hasRelay() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getRelay() {
+      java.lang.Object ref = relay_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          relay_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getRelayBytes() {
+      java.lang.Object ref = relay_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        relay_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // repeated string destinations = 4;
+    public static final int DESTINATIONS_FIELD_NUMBER = 4;
     private com.google.protobuf.LazyStringList destinations_;
     public java.util.List<String>
         getDestinationsList() {
@@ -117,21 +153,21 @@ public final class PushMessageProtos {
       return destinations_.get(index);
     }
     
-    // optional uint64 timestamp = 4;
-    public static final int TIMESTAMP_FIELD_NUMBER = 4;
+    // optional uint64 timestamp = 5;
+    public static final int TIMESTAMP_FIELD_NUMBER = 5;
     private long timestamp_;
     public boolean hasTimestamp() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public long getTimestamp() {
       return timestamp_;
     }
     
-    // optional bytes message = 5;
-    public static final int MESSAGE_FIELD_NUMBER = 5;
+    // optional bytes message = 6;
+    public static final int MESSAGE_FIELD_NUMBER = 6;
     private com.google.protobuf.ByteString message_;
     public boolean hasMessage() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public com.google.protobuf.ByteString getMessage() {
       return message_;
@@ -140,6 +176,7 @@ public final class PushMessageProtos {
     private void initFields() {
       type_ = 0;
       source_ = "";
+      relay_ = "";
       destinations_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       timestamp_ = 0L;
       message_ = com.google.protobuf.ByteString.EMPTY;
@@ -162,14 +199,17 @@ public final class PushMessageProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getSourceBytes());
       }
-      for (int i = 0; i < destinations_.size(); i++) {
-        output.writeBytes(3, destinations_.getByteString(i));
-      }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt64(4, timestamp_);
+        output.writeBytes(3, getRelayBytes());
+      }
+      for (int i = 0; i < destinations_.size(); i++) {
+        output.writeBytes(4, destinations_.getByteString(i));
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(5, message_);
+        output.writeUInt64(5, timestamp_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(6, message_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -188,6 +228,10 @@ public final class PushMessageProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getSourceBytes());
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getRelayBytes());
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < destinations_.size(); i++) {
@@ -197,13 +241,13 @@ public final class PushMessageProtos {
         size += dataSize;
         size += 1 * getDestinationsList().size();
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(4, timestamp_);
-      }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, message_);
+          .computeUInt64Size(5, timestamp_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, message_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -333,12 +377,14 @@ public final class PushMessageProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         source_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        destinations_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        relay_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        timestamp_ = 0L;
+        destinations_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000008);
-        message_ = com.google.protobuf.ByteString.EMPTY;
+        timestamp_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000010);
+        message_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -385,18 +431,22 @@ public final class PushMessageProtos {
           to_bitField0_ |= 0x00000002;
         }
         result.source_ = source_;
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          destinations_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              destinations_);
-          bitField0_ = (bitField0_ & ~0x00000004);
-        }
-        result.destinations_ = destinations_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.timestamp_ = timestamp_;
+        result.relay_ = relay_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          destinations_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              destinations_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.destinations_ = destinations_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000008;
+        }
+        result.timestamp_ = timestamp_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000010;
         }
         result.message_ = message_;
         result.bitField0_ = to_bitField0_;
@@ -421,10 +471,13 @@ public final class PushMessageProtos {
         if (other.hasSource()) {
           setSource(other.getSource());
         }
+        if (other.hasRelay()) {
+          setRelay(other.getRelay());
+        }
         if (!other.destinations_.isEmpty()) {
           if (destinations_.isEmpty()) {
             destinations_ = other.destinations_;
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureDestinationsIsMutable();
             destinations_.addAll(other.destinations_);
@@ -479,17 +532,22 @@ public final class PushMessageProtos {
               break;
             }
             case 26: {
+              bitField0_ |= 0x00000004;
+              relay_ = input.readBytes();
+              break;
+            }
+            case 34: {
               ensureDestinationsIsMutable();
               destinations_.add(input.readBytes());
               break;
             }
-            case 32: {
-              bitField0_ |= 0x00000008;
+            case 40: {
+              bitField0_ |= 0x00000010;
               timestamp_ = input.readUInt64();
               break;
             }
-            case 42: {
-              bitField0_ |= 0x00000010;
+            case 50: {
+              bitField0_ |= 0x00000020;
               message_ = input.readBytes();
               break;
             }
@@ -556,12 +614,48 @@ public final class PushMessageProtos {
         onChanged();
       }
       
-      // repeated string destinations = 3;
+      // optional string relay = 3;
+      private java.lang.Object relay_ = "";
+      public boolean hasRelay() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getRelay() {
+        java.lang.Object ref = relay_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          relay_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setRelay(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        relay_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearRelay() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        relay_ = getDefaultInstance().getRelay();
+        onChanged();
+        return this;
+      }
+      void setRelay(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        relay_ = value;
+        onChanged();
+      }
+      
+      // repeated string destinations = 4;
       private com.google.protobuf.LazyStringList destinations_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureDestinationsIsMutable() {
-        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
           destinations_ = new com.google.protobuf.LazyStringArrayList(destinations_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
          }
       }
       public java.util.List<String>
@@ -602,7 +696,7 @@ public final class PushMessageProtos {
       }
       public Builder clearDestinations() {
         destinations_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -612,31 +706,31 @@ public final class PushMessageProtos {
         onChanged();
       }
       
-      // optional uint64 timestamp = 4;
+      // optional uint64 timestamp = 5;
       private long timestamp_ ;
       public boolean hasTimestamp() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public long getTimestamp() {
         return timestamp_;
       }
       public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         timestamp_ = value;
         onChanged();
         return this;
       }
       public Builder clearTimestamp() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         timestamp_ = 0L;
         onChanged();
         return this;
       }
       
-      // optional bytes message = 5;
+      // optional bytes message = 6;
       private com.google.protobuf.ByteString message_ = com.google.protobuf.ByteString.EMPTY;
       public boolean hasMessage() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public com.google.protobuf.ByteString getMessage() {
         return message_;
@@ -645,13 +739,13 @@ public final class PushMessageProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000020;
         message_ = value;
         onChanged();
         return this;
       }
       public Builder clearMessage() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         message_ = getDefaultInstance().getMessage();
         onChanged();
         return this;
@@ -1833,15 +1927,16 @@ public final class PushMessageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\037IncomingPushMessageSignal.proto\022\ntexts" +
-      "ecure\"s\n\031IncomingPushMessageSignal\022\014\n\004ty" +
-      "pe\030\001 \001(\r\022\016\n\006source\030\002 \001(\t\022\024\n\014destinations" +
-      "\030\003 \003(\t\022\021\n\ttimestamp\030\004 \001(\004\022\017\n\007message\030\005 \001" +
-      "(\014\"\254\001\n\022PushMessageContent\022\014\n\004body\030\001 \001(\t\022" +
-      "E\n\013attachments\030\002 \003(\01320.textsecure.PushMe" +
-      "ssageContent.AttachmentPointer\032A\n\021Attach" +
-      "mentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030\002" +
-      " \001(\t\022\013\n\003key\030\003 \001(\014B7\n\"org.whispersystems." +
-      "textsecure.pushB\021PushMessageProtos"
+      "ecure\"\202\001\n\031IncomingPushMessageSignal\022\014\n\004t" +
+      "ype\030\001 \001(\r\022\016\n\006source\030\002 \001(\t\022\r\n\005relay\030\003 \001(\t" +
+      "\022\024\n\014destinations\030\004 \003(\t\022\021\n\ttimestamp\030\005 \001(" +
+      "\004\022\017\n\007message\030\006 \001(\014\"\254\001\n\022PushMessageConten" +
+      "t\022\014\n\004body\030\001 \001(\t\022E\n\013attachments\030\002 \003(\01320.t" +
+      "extsecure.PushMessageContent.AttachmentP" +
+      "ointer\032A\n\021AttachmentPointer\022\n\n\002id\030\001 \001(\006\022" +
+      "\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014B7\n\"org" +
+      ".whispersystems.textsecure.pushB\021PushMes",
+      "sageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1853,7 +1948,7 @@ public final class PushMessageProtos {
           internal_static_textsecure_IncomingPushMessageSignal_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_IncomingPushMessageSignal_descriptor,
-              new java.lang.String[] { "Type", "Source", "Destinations", "Timestamp", "Message", },
+              new java.lang.String[] { "Type", "Source", "Relay", "Destinations", "Timestamp", "Message", },
               org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.class,
               org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.Builder.class);
           internal_static_textsecure_PushMessageContent_descriptor =

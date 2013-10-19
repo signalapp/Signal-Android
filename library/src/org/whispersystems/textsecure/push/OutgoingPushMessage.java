@@ -23,8 +23,14 @@ public class OutgoingPushMessage implements PushMessage {
   private int    type;
   private String destination;
   private String body;
+  private String relay;
 
   public OutgoingPushMessage(String destination, byte[] body, int type) {
+    this(null, destination, body, type);
+  }
+
+  public OutgoingPushMessage(String relay, String destination, byte[] body, int type) {
+    this.relay       = relay;
     this.destination = destination;
     this.body        = Base64.encodeBytes(body);
     this.type        = type;
@@ -40,5 +46,9 @@ public class OutgoingPushMessage implements PushMessage {
 
   public int getType() {
     return type;
+  }
+
+  public String getRelay() {
+    return relay;
   }
 }

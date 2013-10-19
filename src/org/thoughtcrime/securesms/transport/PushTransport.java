@@ -22,6 +22,7 @@ import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushAttachmentData;
@@ -61,12 +62,12 @@ public class PushTransport extends BaseTransport {
       String                     plaintextBody            = message.getBody().getBody();
       PushMessageContent.Builder builder                  = PushMessageContent.newBuilder();
       byte[]                     plaintext                = builder.setBody(plaintextBody).build().toByteArray();
-      String                     recipientCanonicalNumber = PhoneNumberFormatter.formatNumber(recipient.getNumber(),
-                                                                                              localNumber);
+      String                     recipientCanonicalNumber = PhoneNumberFormatter.formatNumber(recipient.getNumber(), localNumber);
+      String                     relay                    = Directory.getInstance(context).getRelay(recipientCanonicalNumber);
 
       Pair<Integer, byte[]> typeAndCiphertext = getEncryptedMessage(socket, recipient, recipientCanonicalNumber, plaintext);
 
-      socket.sendMessage(recipientCanonicalNumber, typeAndCiphertext.second, typeAndCiphertext.first);
+      socket.sendMessage(relay, recipientCanonicalNumber, typeAndCiphertext.second, typeAndCiphertext.first);
 
       context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType()));
     } catch (RateLimitException e) {
@@ -81,7 +82,8 @@ public class PushTransport extends BaseTransport {
       String            password    = TextSecurePreferences.getPushServerPassword(context);
       PushServiceSocket socket      = new PushServiceSocket(context, localNumber, password);
       String            messageBody = PartParser.getMessageText(message.getBody());
-      List<byte[]>      ciphertext  = new LinkedList<byte[]> ();
+      List<String>      relays      = new LinkedList<String>();
+      List<byte[]>      ciphertext  = new LinkedList<byte[]>();
       List<Integer>     types       = new LinkedList<Integer>();
 
       for (String destination : destinations) {
@@ -108,11 +110,12 @@ public class PushTransport extends BaseTransport {
         Pair<Integer, byte[]> typeAndCiphertext = getEncryptedMessage(socket, recipients.getPrimaryRecipient(),
                                                                       destination, plaintext);
 
+        relays.add(Directory.getInstance(context).getRelay(destination));
         types.add(typeAndCiphertext.first);
         ciphertext.add(typeAndCiphertext.second);
       }
 
-      socket.sendMessage(destinations, ciphertext, types);
+      socket.sendMessage(relays, destinations, ciphertext, types);
 
     } catch (RateLimitException e) {
       Log.w("PushTransport", e);
@@ -187,7 +190,8 @@ public class PushTransport extends BaseTransport {
   {
     IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     IdentityKey          identityKey     = identityKeyPair.getPublicKey();
-    PreKeyEntity         preKey          = socket.getPreKey(canonicalRecipientNumber);
+    String               relay           = Directory.getInstance(context).getRelay(canonicalRecipientNumber);
+    PreKeyEntity         preKey          = socket.getPreKey(canonicalRecipientNumber, relay);
     KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipient);
 
     processor.processKeyExchangeMessage(preKey);

@@ -6,9 +6,10 @@ option java_outer_classname = "PushMessageProtos";
 message IncomingPushMessageSignal {
   optional uint32 type = 1;
   optional string source = 2;
-  repeated string destinations = 3;
-  optional uint64 timestamp = 4;
-  optional bytes message = 5; // Contains an encrypted IncomingPushMessageContent
+  optional string relay = 3;
+  repeated string destinations = 4;
+  optional uint64 timestamp = 5;
+  optional bytes message = 6; // Contains an encrypted PushMessageContent
 }
 
 message PushMessageContent {
