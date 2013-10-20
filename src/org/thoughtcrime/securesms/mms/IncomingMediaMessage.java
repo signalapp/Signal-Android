@@ -57,6 +57,11 @@ public class IncomingMediaMessage {
         media.setContentType(Util.toIsoBytes(attachment.getContentType()));
         media.setContentLocation(Util.toIsoBytes(String.valueOf(attachment.getId())));
         media.setContentDisposition(Util.toIsoBytes(Base64.encodeBytes(encryptedKey)));
+
+        if (message.getRelay() != null) {
+          media.setName(Util.toIsoBytes(message.getRelay()));
+        }
+
         media.setPendingPush(true);
 
         body.addPart(media);
