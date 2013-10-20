@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.util.Base64;
 
 import java.io.IOException;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -128,7 +129,11 @@ public class ContactAccessor {
     return getContactData(context,
                           cursor.getString(cursor.getColumnIndexOrThrow(Contacts.DISPLAY_NAME)),
                           cursor.getLong(cursor.getColumnIndexOrThrow(Contacts._ID)));
-}
+  }
+
+  public ContactData getContactData(Context context, Uri uri) {
+    return getContactData(context, getNameFromContact(context, uri),  Long.parseLong(uri.getLastPathSegment()));
+  }
 
   private ContactData getContactData(Context context, String displayName, long id) {
     ContactData contactData = new ContactData(id, displayName);
