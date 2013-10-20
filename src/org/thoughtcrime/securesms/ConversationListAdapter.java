@@ -69,8 +69,12 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
     }
   }
 
-  public void addToBatchSet(long threadId) {
-    batchSet.add(threadId);
+  public void toggleThreadInBatchSet(long threadId) {
+    if (batchSet.contains(threadId)) {
+      batchSet.remove(threadId);
+    } else {
+      batchSet.add(threadId);
+    }
   }
 
   public Set<Long> getBatchSelections() {
