@@ -69,8 +69,13 @@ public class PushDownloader {
       MasterCipher masterCipher    = new MasterCipher(masterSecret);
       long         contentLocation = Long.parseLong(Util.toIsoString(part.getContentLocation()));
       byte[]       key             = masterCipher.decryptBytes(Base64.decode(Util.toIsoString(part.getContentDisposition())));
+      String       relay           = null;
 
-      attachmentFile              = downloadAttachment(contentLocation);
+      if (part.getName() != null) {
+        relay = Util.toIsoString(part.getName());
+      }
+
+      attachmentFile              = downloadAttachment(relay, contentLocation);
       InputStream attachmentInput = new AttachmentCipherInputStream(attachmentFile, key);
 
       database.updateDownloadedPart(messageId, partId, part, attachmentInput);
@@ -97,9 +102,9 @@ public class PushDownloader {
     }
   }
 
-  private File downloadAttachment(long contentLocation) throws IOException {
+  private File downloadAttachment(String relay, long contentLocation) throws IOException {
     PushServiceSocket socket = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
-    return socket.retrieveAttachment(contentLocation);
+    return socket.retrieveAttachment(relay, contentLocation);
   }
 
 }

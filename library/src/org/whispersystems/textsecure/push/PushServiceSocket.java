@@ -172,9 +172,14 @@ public class PushServiceSocket {
     return new Gson().fromJson(response.second, AttachmentKey.class).getId();
   }
 
-  public File retrieveAttachment(long attachmentId) throws IOException {
-    Pair<String, String> response = makeRequestForResponseHeader(String.format(ATTACHMENT_PATH, String.valueOf(attachmentId)),
-                                                                 "GET", null, "Content-Location");
+  public File retrieveAttachment(String relay, long attachmentId) throws IOException {
+    String path = String.format(ATTACHMENT_PATH, String.valueOf(attachmentId));
+
+    if (relay != null) {
+      path = path + "?relay=" + relay;
+    }
+
+    Pair<String, String> response = makeRequestForResponseHeader(path, "GET", null, "Content-Location");
 
     Log.w("PushServiceSocket", "Attachment: " + attachmentId + " is at: " + response.first);
 
