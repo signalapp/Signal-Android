@@ -106,7 +106,7 @@ public class ConversationListFragment extends SherlockListFragment
                                  headerView.getDistributionType());
       } else {
         ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
-        adapter.addToBatchSet(headerView.getThreadId());
+        adapter.toggleThreadInBatchSet(headerView.getThreadId());
         adapter.notifyDataSetChanged();
       }
     }
@@ -146,7 +146,7 @@ public class ConversationListFragment extends SherlockListFragment
         batchMode  = true;
 
         adapter.initializeBatchMode(true);
-        adapter.addToBatchSet(((ConversationListItem) v).getThreadId());
+        adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
         adapter.notifyDataSetChanged();
 
         return true;
