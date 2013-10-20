@@ -23,9 +23,9 @@ public class PushDestination {
     return relay;
   }
 
-  public static PushDestination getInstance(Context context,
-                                            PushServiceSocket.PushCredentials credentials,
-                                            String destinationNumber)
+  public static PushDestination create(Context context,
+                                       PushServiceSocket.PushCredentials credentials,
+                                       String destinationNumber)
   {
     String e164destination = PhoneNumberFormatter.formatNumber(destinationNumber, credentials.getLocalNumber(context));
     String relay           = Directory.getInstance(context).getRelay(e164destination);

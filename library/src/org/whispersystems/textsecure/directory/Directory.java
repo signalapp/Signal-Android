@@ -109,7 +109,7 @@ public class Directory {
     values.put(TOKEN, token.getToken());
     values.put(RELAY, token.getRelay());
     values.put(REGISTERED, active ? 1 : 0);
-    values.put(SUPPORTS_SMS, token.isSupportsSms());
+    values.put(SUPPORTS_SMS, token.isSupportsSms() ? 1 : 0);
     values.put(TIMESTAMP, System.currentTimeMillis());
     db.replace(TABLE_NAME, null, values);
   }
@@ -127,6 +127,7 @@ public class Directory {
         values.put(REGISTERED, 1);
         values.put(TIMESTAMP, timestamp);
         values.put(RELAY, token.getRelay());
+        values.put(SUPPORTS_SMS, token.isSupportsSms() ? 1 : 0);
         db.replace(TABLE_NAME, null, values);
       }
 

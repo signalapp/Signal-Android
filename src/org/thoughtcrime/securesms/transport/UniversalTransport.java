@@ -104,19 +104,19 @@ public class UniversalTransport {
 
     if (mediaMessage.getTo() != null) {
       for (EncodedStringValue to : mediaMessage.getTo()) {
-        destinations.add(PushDestination.getInstance(context, credentials, to.getString()));
+        destinations.add(PushDestination.create(context, credentials, to.getString()));
       }
     }
 
     if (mediaMessage.getCc() != null) {
       for (EncodedStringValue cc : mediaMessage.getCc()) {
-        destinations.add(PushDestination.getInstance(context, credentials, cc.getString()));
+        destinations.add(PushDestination.create(context, credentials, cc.getString()));
       }
     }
 
     if (mediaMessage.getBcc() != null) {
       for (EncodedStringValue bcc : mediaMessage.getBcc()) {
-        destinations.add(PushDestination.getInstance(context, credentials, bcc.getString()));
+        destinations.add(PushDestination.create(context, credentials, bcc.getString()));
       }
     }
 

@@ -59,8 +59,8 @@ public class PushTransport extends BaseTransport {
       TextSecurePushCredentials credentials = TextSecurePushCredentials.getInstance();
       Recipient                 recipient   = message.getIndividualRecipient();
       PushServiceSocket         socket      = new PushServiceSocket(context, credentials);
-      PushDestination           destination = PushDestination.getInstance(context, credentials,
-                                                                          recipient.getNumber());
+      PushDestination           destination = PushDestination.create(context, credentials,
+                                                                     recipient.getNumber());
 
       String                     plaintextBody = message.getBody().getBody();
       byte[]                     plaintext     = PushMessageContent.newBuilder()
