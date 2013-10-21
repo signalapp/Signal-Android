@@ -94,10 +94,15 @@
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nاسترجاع نسخة احتياطية مشفرة سيمسح بالكامل أي مفاتيح حالية أو اعدادات أو رسائل. ستفقد أي معلومات موجودة الآن في تكست سيكيور ولكن غير موجودة في النسخة الاحتياطية.</string>
   <string name="ImportFragment_restore">استعادة</string>
   <string name="ImportFragment_import_plaintext_backup">استيراد النسخة الاحتياطية الغير مشفرة؟</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">هذه الخاصية ستستورد الرسائل القصيرة من النظام إلى داخل تكست سيكيور. إذا قمت بعمل هذا من قبل فسيتم تكرار رسائلك القصيرة.</string>
   <string name="ImportFragment_importing">جاري الاستيراد...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">استيراد النسخ الاحتياطية الغير المشفرة</string>
+  <string name="ImportFragment_no_plaintext_backup_found">لم يتم العثور على نسح احتياطية غير مشفرة!</string>
+  <string name="ImportFragment_error_importing_backup">خطأ باستيراد النسخة الاحتياطية!</string>
   <string name="ImportFragment_import_complete">اكتمال الاستيراد!</string>
   <string name="ImportFragment_restoring">جاري الاستعادة</string>
   <string name="ImportFragment_restoring_encrypted_backup">جاري استعادة النسخ الاحتياطية المشفرة...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">لم يتم العثور على النسخ الاحتياطية المشفرة</string>
   <string name="ImportFragment_restore_complete">انتهاء الاستعادة</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">لم يتم العثور على مفتاح!</string>
@@ -115,10 +120,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">يجب أن تحدد كلمة سرية</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">يجب أن تحدد عنوان أو رابط لمركز رسائل الوسائط المتعددة.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">تم تعديل اعدادات رسائل الوسائط المتعددة</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">يمكنك تعديل هذه البيانات من اعدادات تكست سكيور بأي وقت.</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">يجب أن تحدد عنوان أو رابط لمركز رسائل الوسائط المتعددة.</string>
+  <string name="PromptApnActivity_mms_settings_updated">تم تعديل اعدادات رسائل الوسائط المتعددة</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">يمكنك تعديل هذه البيانات من اعدادات تكست سكيور بأي وقت.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">المفتاح لجهة الاتصال هذه مختلف عن المرة السابقة. هذا قد يعني ان هناك محاولة لاعتراض اتصالاتك، أو ان جهة الاتصال قام\قامت بإعادة تنصيب تكست سيكيور لديهم.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه</string>
@@ -186,6 +191,9 @@
   <string name="MessageNotifier_mark_all_as_read">اعتبرها جميعاً رسائل مقروءة</string>
   <string name="MessageNotifier_mark_as_read">اعتبرها مقروءة</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">إعادة الانشاء...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">إعادة إنشاء مفتاح الهوية...</string>
+  <string name="ViewLocalIdentityActivity_regenerated">تم إعادة الانشاء!</string>
   <string name="ViewLocalIdentityActivity_cancel">الغاء</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">غير قادر على ارسال الرسالة حاليا. سيتم ارسالها عندما تتوفر الخدمة مرة أخرى.</string>
@@ -232,17 +240,20 @@
   <string name="database_upgrade_activity__updating_database">تحديث قواعد البيانات</string>
   <string name="export_fragment__export_encrypted_backup">استعادة النسخ الاحتياطية المشفرة</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">تصدير نسخة احتياطية غير مشفرة لكرت الذاكرة...</string>
+  <string name="export_fragment__export_plaintext_backup">تصدير النسخة الاحتياطية الغير مشفرة</string>
   <string name="import_fragment__import_system_sms_database">استيراد الرسائل القصيرة بالنظام</string>
   <string name="import_fragment__import_encrypted_backup">استيراد النسخ الاحتياطية المشفرة</string>
+  <string name="import_fragment__import_plaintext_backup">استيراد النسخة الاحتياطية الغير مشفرة</string>
+  <string name="local_identity__regenerate_key">إعادة إنشاء المفتاح</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">العبارة السرية لتكست سيكيور</string>
   <string name="prompt_passphrase_activity__unlock">فتح القفل</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">تكست سيكيور يحتاج لإعدادات الشبكة APN لتوصيل رسائل الوسائط المتعددة. جهازك لا يوفر هذه المعلومة.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">لإرسال رسائل الوسائط المتعددة، يجب عليك اكمال اعدادات الشبكة APN. تحتاج لادخال هذه المعلومة مرة واحدة فقط.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">عنوان بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">منفذ بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">تكست سيكيور يحتاج لإعدادات الشبكة APN لتوصيل رسائل الوسائط المتعددة. جهازك لا يوفر هذه المعلومة.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">لإرسال رسائل الوسائط المتعددة، يجب عليك اكمال اعدادات الشبكة APN. تحتاج لادخال هذه المعلومة مرة واحدة فقط.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">عنوان بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">منفذ بروكسي مركز رسائل الوسائط المتعددة (اختياري):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">انتهاء</string>
   <!--recipients_panel-->
@@ -307,7 +318,6 @@
   <string name="preferences__change_notification_blink_pattern">تغيير اسلوب وميض تنبيهات LED</string>
   <string name="preferences__pref_led_blink_dialogtitle">اختيار اسلوب وميض LED</string>
   <string name="preferences__select_led_color">اختيار لون ضوء التنبيه LED</string>
-  <string name="preferences__sound">اختر نغمة</string>
   <string name="preferences__vibrate">هزاز</string>
   <string name="preferences__also_vibrate_when_notified">شغل الهزاز عند وصول تنبيه</string>
   <string name="preferences__minutes">دقائق</string>
@@ -325,8 +335,8 @@
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__passphrase">العبارة السرية</string>
   <string name="preferences__advanced_mms_access_point_names">مركز رسائل الوسائط المتعددة الاحتياطي</string>
-  <string name="preferences__enable_manual_mms">شغل مركز رسائل الوسائط المتعددة الاحتياطي</string>
-  <string name="preferences__override_system_mms_settings">استخدم مركز رسائل الوسائط المتعددة هنا اذا لم تتوفر بيناتات اتصال النظام APN</string>
+  <string name="preferences__enable_fallback_mmsc">شغل مركز رسائل الوسائط المتعددة الاحتياطي</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">استخدم مركز رسائل الوسائط المتعددة هنا اذا لم تتوفر بيناتات اتصال النظام APN</string>
   <string name="preferences__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
   <string name="preferences__mms_proxy_host_optional">عنوان بروكسي رسائل الوسائط المتعددة (غير الزامي)</string>
   <string name="preferences__mms_proxy_port_optional">منفذ او بورت بروكسي  الرسائل الوسائط المتعددة (غير الزامي)</string>

@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">パスワードを指定して下さい</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスワードです。</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">お使いの通信事業者のMMSセンター用URLを指定して下さい。</string>
-  <string name="PromptMmsActivity_mms_settings_updated">MMSの設定を更新しました</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">TextSecure設定メニューから、これらの値をいつでも変更できます。</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">お使いの通信事業者のMMSセンター用URLを指定して下さい。</string>
+  <string name="PromptApnActivity_mms_settings_updated">MMSの設定を更新しました</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">TextSecure設定メニューから、これらの値をいつでも変更できます。</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">この\n鍵交換の電子署名は、以前この連絡先から受信したものと違っています。\n誰かがあなたの通信を傍受しようとしているか、もしくは\n単にこの連絡先がTextSecureを再インストールしたため、認証キーが新しくなった可能性があります。</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">この連絡先を\n照合することが推奨されています。</string>
@@ -138,7 +138,7 @@
   <string name="VerifyIdentityActivity_get_my_key_scanned">自分の鍵をスキャンしてもらう</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告、スキャンした鍵が正しくありません！フィンガープリントのテキストを慎重にチェックしてください。</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">相手の鍵が正しくありません。これらの鍵と一緒に、自分の鍵も照合する必要があります。</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">鍵が一致しました。これらの鍵と一緒に、自分の鍵も確認する必要があります。</string>
   <string name="VerifyIdentityActivity_verified_exclamation">照合しました。</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">認証キーがありません。</string>
   <!--VerifyKeysActivity-->
@@ -193,6 +193,13 @@
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_as_read">既読にする</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">再生成中…</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">アイデンティティー鍵を再生成中…</string>
+  <string name="ViewLocalIdentityActivity_regenerated">再生成完了！</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">アイデンティティー鍵をリセットしますか？</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\n警告!アイデンティティー鍵を再生成することで、現在の鍵は失われ、\n既存の連絡先はあなたと暗号化されたセッションを開始するときに警告を受けることになります。\n続行しますか？</string>
+  <string name="ViewLocalIdentityActivity_cancel">取り消し</string>
+  <string name="ViewLocalIdentityActivity_continue">続行</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">現在、このSMSは送信できません。サービスが利用可能になると、すぐに送信されます。</string>
   <!--auto_initiate_activity-->
@@ -237,24 +244,25 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
   <string name="export_fragment__export_encrypted_backup">暗号化されたバックアップ・ファイルをエクスポート</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化されたバックアップ・ファイルをエクスポートします</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化された\nバックアップ・ファイルをエクスポートします</string>
   <string name="export_fragment__export_plaintext_backup">非暗号テキストのバックアップ・ファイルをエクスポート</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
   <string name="import_fragment__import_system_sms_database">端末内のSMSデータベースをインポート</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">端末の既定のメッセンジャー・アプリからデータベースをインポート</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">端末の既定のメッセンジャー・アプリから\nデータベースをインポート</string>
   <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップ・ファイルをインポート</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n前回エクスポートした暗号化されたTextSecureバックアップ・ファイルを復元</string>
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\n暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
+  <string name="local_identity__regenerate_key">鍵を再生成する</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TextSecureパスワード</string>
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecureでは、無線通信事業者からファイル付きメッセージを配信するのに、APN設定が必要です。お使いの携帯端末では、この設定のための情報が取得できません。ロックされた端末であるか、その他の制限設定があると、このような状況が生じます。</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ファイル付きメッセージを配信するのに必要な以下のAPN情報を入力してください。お使いの通信事業者への設定値は、通常\'&amp;lt;your carrier&amp;gt; APN\'検索によって設定されます。この作業は一度だけでいいです。</string>
-  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (必須):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">MMSプロキシ・ホスト (自由選択):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">MMSプロキシ・ポート (自由選択)</string>
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecureでは、無線通信事業者からファイル付きメッセージを配信するのに、APN設定が必要です。お使いの携帯端末では、この設定のための情報が取得できません。ロックされた端末であるか、その他の制限設定があると、このような状況が生じます。</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">ファイル付きメッセージを配信するのに必要な以下のAPN情報を入力してください。お使いの通信事業者への設定値は、通常\'&amp;lt;your carrier&amp;gt; APN\'検索によって設定されます。この作業は一度だけでいいです。</string>
+  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (必須):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">MMSプロキシ・ホスト (自由選択):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">MMSプロキシ・ポート (自由選択)</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完了</string>
   <!--recipients_panel-->
@@ -321,7 +329,6 @@
   <string name="preferences__change_notification_blink_pattern">通知LED点滅パターンの変更</string>
   <string name="preferences__pref_led_blink_dialogtitle">LED点滅パターンを選択</string>
   <string name="preferences__select_led_color">LED色を選択</string>
-  <string name="preferences__sound">着信音を選択</string>
   <string name="preferences__vibrate">振動</string>
   <string name="preferences__also_vibrate_when_notified">通知する時に振動もする</string>
   <string name="preferences__minutes">分</string>
@@ -339,8 +346,8 @@
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__passphrase">パスワード</string>
   <string name="preferences__advanced_mms_access_point_names">MMSCのフォールバック</string>
-  <string name="preferences__enable_manual_mms">MMSCのフォールバックを有効にする</string>
-  <string name="preferences__override_system_mms_settings">APNからの情報が携帯端末で利用できない時に、ここで設定されたMMSセンターからの情報を使う。</string>
+  <string name="preferences__enable_fallback_mmsc">MMSCのフォールバックを有効にする</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">APNからの情報が携帯端末で利用できない時に、ここで設定されたMMSセンターからの情報を使う。</string>
   <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
   <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
   <string name="preferences__mms_proxy_port_optional">MMSプロキシ・ポート（選択自由）</string>

@@ -24,10 +24,10 @@
   <string name="ConversationItem_message_size_d_kb">Tamanho da mensagem: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
   <string name="ConversationItem_error_sending_message">Erro no envio da mensagem</string>
-  <string name="ConversationItem_sending">A enviar...</string>
-  <string name="ConversationItem_saving_attachment">A guardar anexo</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">A guardar anexo para o cartão SD...</string>
-  <string name="ConversationItem_save_to_sd_card">Guardar para o cartão SD?</string>
+  <string name="ConversationItem_sending">Enviando...</string>
+  <string name="ConversationItem_saving_attachment">Salvando Anexo</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Salvando anexo no cartão SD...</string>
+  <string name="ConversationItem_save_to_sd_card">Salvar no Cartão SD?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Este arquivo foi armazenado em uma base de dados criptografada. A versão salva no cartão SD não estará criptografada. Deseja continuar?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o cartão SD...</string>
   <string name="ConversationItem_success_exclamation">Sucesso!</string>
@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Você deve especificar uma senha</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Você deve especificar a URL do MMSC da sua operadora.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">Configurações MMS Atualizadas</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Você pode modificar estes valores a qualquer momento nas configurações do TextSecure.</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Você deve especificar a URL do MMSC da sua operadora.</string>
+  <string name="PromptApnActivity_mms_settings_updated">Configurações MMS Atualizadas</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Você pode modificar estes valores a qualquer momento nas configurações do TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A\n        assinatura nesta troca de chaves é diferente da que você recebeu anteriormente deste\n        contato. Isto pode significar que alguém está tentando interceptar sua comunicação, ou\n        que este contato reinstalou o TextSecure e agora tem uma nova chave de identidade.\n    </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Talvez você queira verificar\n        este contato.\n    </string>
@@ -193,6 +193,13 @@
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
   <string name="MessageNotifier_mark_as_read">Marcar como lida</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">Recriando...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Recriando chave\n        de identidade...\n    </string>
+  <string name="ViewLocalIdentityActivity_regenerated">Recriada!</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Resetar Chave de Identidade?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\n        Atenção! Ao recriar sua chave de identidade, sua atual chave de identidade será permanentemente perdida,\n        e seus contatos existentes receberão avisos quando estabelecerem novas sessões seguras com você.\n        Tem certeza que quer continuar?\n    </string>
+  <string name="ViewLocalIdentityActivity_cancel">Cancelar</string>
+  <string name="ViewLocalIdentityActivity_continue">Continuar</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Mensagem SMS não pôde ser enviada agora. Será enviada quando o serviço estiver disponível.</string>
   <!--auto_initiate_activity-->
@@ -246,15 +253,16 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n        Restaurar um backup TextSecure criptografado previamente exportado.\n    </string>
   <string name="import_fragment__import_plaintext_backup">Importar Backup de Texto Puro</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\n        Importar um backup de texto puro. Compatível com \'SMSBackup And Restore.\'</string>
+  <string name="local_identity__regenerate_key">Gerar Nova Chave</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">Palavra-chave do TextSecure</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">O TextSecure precisa das configurações de APN para entregar mensagens MMS via sua operadora móvel. Seu aparelho não disponibiliza esta informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar mensagens MMS, complete as informações de APN abaixo. Os valores para sua operadora normalmente podem ser localizados procurando por \'&amp;lt;operadora&amp;gt; APN\'. Você só precisará fazer isso uma vez.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">URL MMSC (NECESSÁRIO):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">PROXY MMS (OPCIONAL):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">PORTA DO PROXY MMS (OPCIONAL):</string>
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">O TextSecure precisa das configurações de APN para entregar mensagens MMS via sua operadora móvel. Seu aparelho não disponibiliza esta informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Para enviar mensagens MMS, complete as informações de APN abaixo. Os valores para sua operadora normalmente podem ser localizados procurando por \'&amp;lt;operadora&amp;gt; APN\'. Você só precisará fazer isso uma vez.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (NECESSÁRIO):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">PROXY MMS (OPCIONAL):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">PORTA DO PROXY MMS (OPCIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Concluído</string>
   <!--recipients_panel-->
@@ -321,7 +329,9 @@
   <string name="preferences__change_notification_blink_pattern">Alterar padrão de pisca do LED</string>
   <string name="preferences__pref_led_blink_dialogtitle">Seleccionar padrão de pisca do LED</string>
   <string name="preferences__select_led_color">Seleccionar cor do LED</string>
-  <string name="preferences__sound">Seleccionar toque</string>
+  <string name="preferences__sound">Som</string>
+  <string name="preferences__inthread_notifications">Notificações em conversas</string>
+  <string name="preferences__play_inthread_notifications">Tocar som de notificação quando vendo uma conversa ativa.</string>
   <string name="preferences__vibrate">Vibrar</string>
   <string name="preferences__also_vibrate_when_notified">Vibrar também quando notificado</string>
   <string name="preferences__minutes">minutos</string>
@@ -339,8 +349,8 @@
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__passphrase">Frase-chave</string>
   <string name="preferences__advanced_mms_access_point_names">MMSC Reserva</string>
-  <string name="preferences__enable_manual_mms">Habilitar MMSC de reseva</string>
-  <string name="preferences__override_system_mms_settings">Usar esta informação de MMSC quando APN do sistema estiver indisponível.</string>
+  <string name="preferences__enable_fallback_mmsc">Habilitar MMSC de reseva</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usar esta informação de MMSC quando APN do sistema estiver indisponível.</string>
   <string name="preferences__mmsc_url_required">URL do MMSC (Necessário)</string>
   <string name="preferences__mms_proxy_host_optional">Proxy MMS (Opcional)</string>
   <string name="preferences__mms_proxy_port_optional">Porta do Proxy MMS (Opcional)</string>
@@ -375,6 +385,7 @@
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
   <string name="conversation_context__menu_delete_message">Apagar mensagem</string>
   <string name="conversation_context__menu_forward_message">Reencaminhar mensagem</string>
+  <string name="conversation_context__menu_resend_message">Reenviar mensagem</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Iniciar sessão segura</string>
   <!--conversation_list_batch-->

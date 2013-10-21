@@ -14,7 +14,7 @@
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
   <string name="ApplicationPreferencesActivity_my">Mon</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Désactiver le chiffrement de sauvegarde ?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nAttention, ceci désactivera le chiffrement de stockage pour tous les messages et toutes les clefs. Vos sessions chiffrées continueront de fonctionner mais une personne ayant un accès physique à votre appareil sera en mesure d\'y accéder.</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nAttention, ceci désactivera le chiffrement de stockage pour tous les messages et toutes les clés. Vos sessions chiffrées continueront de fonctionner mais une personne ayant un accès physique à votre appareil sera en mesure d’y accéder.</string>
   <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Image</string>
@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Vous devez renseigner un mot de passe</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Phrase de passe incorrecte !</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Vous devez indiquer une URL MMSC de votre opérateur.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">Paramètres MMS mis à jour</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vous pouvez modifier ces valeurs depuis le menu des paramètres de TextSecure à tout moment.</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Vous devez indiquer une URL MMSC de votre opérateur.</string>
+  <string name="PromptApnActivity_mms_settings_updated">Paramètres MMS mis à jour</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vous pouvez modifier ces valeurs depuis le menu des paramètres de TextSecure à tout moment.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La\nsignature de cet échange de clé est différente de celle que vous avez précédemment reçue de ce\ncontact. Cela peut signifier soit que quelqu’un essaie d’intercepter votre communication, soit\nque ce contact a simplement réinstallé TextSecure et a maintenant une nouvelle clé d’identité.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Peut-être devriez-vous\nvérifier ce contact.</string>
@@ -134,27 +134,27 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Vous n’avez pas de clé d’identité.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Le destinataire n’a pas de clé d’identité.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Le destinataire n’a pas de clé d’identité !</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Analyser leur clef pour comparer</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Analyser mes clefs</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATTENTION, les clefs scannées sont DIFFERENTES. Veuillez vérifier scrupuleusement le texte de l\'empreinte de clefs.</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Analyser leur clé pour comparer</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">Analyser mes clés</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATTENTION, les clés scannées sont DIFFÉRENTES. Veuillez vérifier scrupuleusement le texte de l\'empreinte.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NON vérifié !</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Leur clef est correcte. Il est aussi nécessaire de vérifier votre clef avec la leur</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Leur clé est correcte. Il est aussi nécessaire de vérifier votre clé avec la leur</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Vérifié !</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Vous n’avez aucune clé d’identité !</string>
   <!--VerifyKeysActivity-->
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Analyser mon empreinte</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">Analyser leur empreinte</string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ATTENTION: les clefs analysées ne correspondent PAS! Veuillez vérifier scrupuleusement  le texte de l\'empreinte</string>
+  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ATTENTION : les clés analysées ne correspondent PAS ! Veuillez vérifier scrupuleusement  le texte de l\'empreinte.</string>
   <string name="VerifyKeysActivity_not_verified_exclamation">NON vérifié !</string>
-  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Leur clef est valide. Il est aussi nécessaire d\'analyser votre empreinte.</string>
+  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Leur clé est valide. Il est aussi nécessaire d\'analyser votre empreinte.</string>
   <string name="VerifyKeysActivity_verified_exclamation">Vérifié !</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Vous n’avez pas de clé d’identité.</string>
   <string name="ViewIdentityActivity_scan_to_compare">Analyser pour comparer</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">Être analysé pour comparer</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ATTENTION, les clefs analysées ne correspondent PAS!</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ATTENTION, les clés analysées ne correspondent PAS !</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NON vérifié !</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Les clefs analysées correspondent!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Les clés analysées correspondent !</string>
   <string name="ViewIdentityActivity_verified_exclamation">Vérifié !</string>
   <string name="ViewIdentityActivity_identity_fingerprint">Empreinte d’identité</string>
   <!--KeyExchangeInitiator-->
@@ -193,7 +193,13 @@
   <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
   <string name="MessageNotifier_mark_as_read">Marquer comme lu</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">Renouvellement…</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Renouvellement de la clé\nd’identité…</string>
+  <string name="ViewLocalIdentityActivity_regenerated">Renouvelée !</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Réinitialiser la clé d’identité ?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nAttention ! En renouvelant votre clé d’identité, votre clé d’identité actuelle sera définitivement perdue,\net vos contacts existant recevront des avertissements en établissant de nouvelles sessions sécurisées avec vous.\nÊtes-vous sûr de vouloir continuer ?</string>
   <string name="ViewLocalIdentityActivity_cancel">Annuler</string>
+  <string name="ViewLocalIdentityActivity_continue">Continuer</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Impossible d’envoyer votre message SMS pour le moment. Il sera envoyé  lorsque le service deviendra disponible.</string>
   <!--auto_initiate_activity-->
@@ -247,21 +253,22 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Restaurer une sauvegarde cryptée TextSecure précédemment exporté. ⏎</string>
   <string name="import_fragment__import_plaintext_backup">Importer une sauvegarde en texte clair</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importer un fichier de sauvegarde en texte clair. Compatible avec</string>
+  <string name="local_identity__regenerate_key">Renouveler la clé</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">PHRASE DE PASSE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure nécessite que les paramètres APN distribuent les messages multimédia via votre opérateur mobile. Votre appareil ne rend pas ces informations disponibles, ce qui est parfois le cas des appareils verrouillés et d’autres configurations restrictives.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pour envoyer des messages multimédia, merci de compléter les informations sur l’APN ci-dessous. Les valeurs de votre opérateur peuvent généralement être trouvées en cherchant \'APN &amp;lt;votre opérateur&amp;gt;\'. Vous aurez besoin de faire cela une seule fois.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">URL MMSC (OBLIGATOIRE) :</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">HÔTE PROXY MMS (OPTIONNEL) :</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">PORT PROXY MMS (OPTIONNEL) :</string>
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure nécessite que les paramètres APN distribuent les messages multimédia via votre opérateur mobile. Votre appareil ne rend pas ces informations disponibles, ce qui est parfois le cas des appareils verrouillés et d’autres configurations restrictives.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Pour envoyer des messages multimédia, merci de compléter les informations sur l’APN ci-dessous. Les valeurs de votre opérateur peuvent généralement être trouvées en cherchant \'APN &amp;lt;votre opérateur&amp;gt;\'. Vous aurez besoin de faire cela une seule fois.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (OBLIGATOIRE) :</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">HÔTE PROXY MMS (OPTIONNEL) :</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">PORT PROXY MMS (OPTIONNEL) :</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Compléter</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">À</string>
   <!--review_identities-->
-  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Vous n\'avez pour l’instant pas de clef d\'identité dans votre base de données de confiance.</string>
+  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Vous n\'avez pour l’instant pas de clé d\'identité dans votre base de données de confiance.</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Leur identité (ce qu\'ils lisent) :</string>
   <string name="verify_identity_activity__your_identity_you_read">Votre identité (ce que vous lisez) :</string>
@@ -278,16 +285,16 @@
   <string name="AndroidManifest__enter_passphrase">Saisir la phrase de passe</string>
   <string name="AndroidManifest__select_contacts">Sélectionner des contacts</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure détecté</string>
-  <string name="AndroidManifest__public_identity_key">Clef d\'Identité Publique</string>
+  <string name="AndroidManifest__public_identity_key">Clé d\'Identité Publique</string>
   <string name="AndroidManifest__change_passphrase">Modifier la phrase de passe</string>
   <string name="AndroidManifest__verify_session">Vérifier la session</string>
   <string name="AndroidManifest__verify_identity">Vérifier l’identité</string>
-  <string name="AndroidManifest__manage_identity_keys">Gérer les clefs d\'identité</string>
-  <string name="AndroidManifest__complete_key_exchange">Finaliser l\'échange de clefs</string>
+  <string name="AndroidManifest__manage_identity_keys">Gérer les clés d\'identité</string>
+  <string name="AndroidManifest__complete_key_exchange">Finaliser l\'échange de clés</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / Exporter</string>
-  <string name="arrays__my_identity_key">Ma clefs d\'identité</string>
-  <string name="arrays__contact_keys">Clefs du contact</string>
+  <string name="arrays__my_identity_key">Ma clé d\'identité</string>
+  <string name="arrays__contact_keys">Clés du contact</string>
   <!--preferences.xml-->
   <string name="preferences__general">Général</string>
   <string name="preferences__pref_all_sms_title">Utiliser pour tous les SMS</string>
@@ -304,7 +311,7 @@
   <string name="preferences__complete_key_exchanges">Finaliser l’échange de clés</string>
   <string name="preferences__disable_passphrase">Désactiver la phrase de passe</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Désactiver le chiffrement local des messages et des clés</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Finaliser automatiquement les échanges de clés pour les sessions, nouvelles ou existantes, avec la même clef d\'identité.</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Finaliser automatiquement les échanges de clés pour les sessions, nouvelles ou existantes, avec la même clé d\'identité.</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Oublier le mot de passe en mémoire après une certaine durée</string>
   <string name="preferences__timeout_passphrase">Expiration du mot de passe</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Choisir la durée de validité du mot de passe</string>
@@ -322,7 +329,9 @@
   <string name="preferences__change_notification_blink_pattern">Modifier le rythme de clignotement de la LED de notification</string>
   <string name="preferences__pref_led_blink_dialogtitle">Choisir le rythme de clignotement de la LED</string>
   <string name="preferences__select_led_color">Choisir la couleur de la LED</string>
-  <string name="preferences__sound">Choisir une sonnerie</string>
+  <string name="preferences__sound">Son</string>
+  <string name="preferences__inthread_notifications">Notifications dans la discussion</string>
+  <string name="preferences__play_inthread_notifications">Émettre une notification sonore lors de la lecture d’une discussion active.</string>
   <string name="preferences__vibrate">Vibrer</string>
   <string name="preferences__also_vibrate_when_notified">Vibrer aussi lors des notifications</string>
   <string name="preferences__minutes">minutes</string>
@@ -340,14 +349,14 @@
   <string name="preferences__advanced">Avancé</string>
   <string name="preferences__passphrase">Phrase de passe</string>
   <string name="preferences__advanced_mms_access_point_names">MMSC par défaut</string>
-  <string name="preferences__enable_manual_mms">Activer le MMSC par défaut</string>
-  <string name="preferences__override_system_mms_settings">Utiliser les informations MMSC configurée ici lorsque les informations APN ne sont pas disponibles</string>
+  <string name="preferences__enable_fallback_mmsc">Activer le MMSC par défaut</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Utiliser les informations MMSC configurée ici lorsque les informations APN ne sont pas disponibles</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Obligatoire)</string>
   <string name="preferences__mms_proxy_host_optional">Hôte Proxy MMS (Optionnel)</string>
   <string name="preferences__mms_proxy_port_optional">Port Proxy MMS (Optionnel)</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un accusé de réception pour chaque SMS envoyé</string>
   <string name="preferences__sms_delivery_reports">Accusés de réception SMS</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Supprimer automatique les anciens messages lorsque la conversation dépasse un certaine taille d\'échange.</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Supprimer automatiquement les anciens messages lorsque la conversation dépasse un certaine taille d\'échange.</string>
   <string name="preferences__delete_old_messages">Supprimer les anciens messages</string>
   <string name="preferences__storage">Stockage</string>
   <string name="preferences__conversation_length_limit">Limite de taille de conversation</string>
@@ -376,6 +385,7 @@
   <string name="conversation_context__menu_copy_text">Copier le texte</string>
   <string name="conversation_context__menu_delete_message">Supprimer le message</string>
   <string name="conversation_context__menu_forward_message">Faire suivre le message</string>
+  <string name="conversation_context__menu_resend_message">Réenvoyer le message</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Commencer une session sécurisée</string>
   <!--conversation_list_batch-->

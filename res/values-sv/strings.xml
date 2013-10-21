@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Du måste specificera ett lösenord</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Fel Lösenord!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du måste specificera en MMSC URL för din operatör.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">MMS-inställningar uppdaterade</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan modifiera dessa värden från TextSecure inställningsmenyn när du vill.</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du måste specificera en MMSC URL för din operatör.</string>
+  <string name="PromptApnActivity_mms_settings_updated">MMS-inställningar uppdaterade</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan modifiera dessa värden från TextSecure inställningsmenyn när du vill.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen för detta nyckelutbytet skiljer sig från det som du tidigare har mottagit från denna kontakt.\nDetta kan innebära antingen att någon försöker avlyssna din kommunikation, eller att denna kontakt helt enkelt installerade om TextSecure och nu har en ny identitetsnyckel.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Det kan vara en bra idé att\nverifiera denna kontakt.</string>
@@ -193,6 +193,13 @@
   <string name="MessageNotifier_mark_all_as_read">Markera alla som lästa</string>
   <string name="MessageNotifier_mark_as_read">Markera som läst</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">Återgenererar...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Återgenererar identitets\nnyckel...</string>
+  <string name="ViewLocalIdentityActivity_regenerated">Återgenererad!</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Återställ identitetsnyckel?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nVarning! Genom att återgenerera din identitetsnyckel kommer din nuvarande identitetsnyckel att permanent förloras,\noch dina existerande kontakter kommer att få varningar när de etablerar nya säkra sessioner med dig.\nÄr du säker på att du vill fortsätta?</string>
+  <string name="ViewLocalIdentityActivity_cancel">Avbryt</string>
+  <string name="ViewLocalIdentityActivity_continue">Fortsätt</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Kan för tillfället inte skicka ditt SMS meddelande. Det kommer skickas när service blir tillgängligt.</string>
   <!--auto_initiate_activity-->
@@ -246,15 +253,16 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Återställ en tidigare krypterad säkerhetskopia av TextSecure.</string>
   <string name="import_fragment__import_plaintext_backup">Importera okrypterad säkerhetskopia</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\'.</string>
+  <string name="local_identity__regenerate_key">Återgenerera nyckel</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE LÖSENORD</string>
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure kräver APN inställningar för att leverera mediemeddelanden via din mobilöperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">För att skicka mediemeddelanden, var vänlig fyll i den nödvändiga APN informationen nedan. Värdena för din operatör kan generellt sett hittas genom att söka på \'&amp;lt;din operatör&amp;lt; APN\'. Du behöver bara göra detta en gång.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (KRÄVS):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY VÄRD (VALFRITT):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (VALFRITT):</string>
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure kräver APN inställningar för att leverera mediemeddelanden via din mobilöperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">För att skicka mediemeddelanden, var vänlig fyll i den nödvändiga APN informationen nedan. Värdena för din operatör kan generellt sett hittas genom att söka på \'&amp;lt;din operatör&amp;lt; APN\'. Du behöver bara göra detta en gång.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (KRÄVS):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY VÄRD (VALFRITT):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (VALFRITT):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Klart</string>
   <!--recipients_panel-->
@@ -321,7 +329,7 @@
   <string name="preferences__change_notification_blink_pattern">Ändra LED-blinkmönster för notifikationer</string>
   <string name="preferences__pref_led_blink_dialogtitle">Välj LED-blinkmönster</string>
   <string name="preferences__select_led_color">Välj LED-färg</string>
-  <string name="preferences__sound">Välj rington</string>
+  <string name="preferences__sound">Ljud</string>
   <string name="preferences__vibrate">Vibrera</string>
   <string name="preferences__also_vibrate_when_notified">Vibrera också vid notifikation</string>
   <string name="preferences__minutes">minuter</string>
@@ -339,8 +347,8 @@
   <string name="preferences__advanced">Avancerade</string>
   <string name="preferences__passphrase">Lösenfras</string>
   <string name="preferences__advanced_mms_access_point_names">Reserv MMSC</string>
-  <string name="preferences__enable_manual_mms">Aktivera Fallback MMSC</string>
-  <string name="preferences__override_system_mms_settings">Använd MMSC information konfugerad här när system APN information är otillgänglig.</string>
+  <string name="preferences__enable_fallback_mmsc">Aktivera Fallback MMSC</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Använd MMSC information konfugerad här när system APN information är otillgänglig.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nödvändigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxyvärd (valfritt)</string>
   <string name="preferences__mms_proxy_port_optional">MMS proxyport (valfritt)</string>

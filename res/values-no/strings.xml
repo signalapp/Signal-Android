@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Du må oppgi et passord</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Feil passord!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du må spesifisere en MMSC URL for din operatør.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">MMS konfigurasjon oppdatert</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan forandre disse verdiene når som helst i konfigurasjonsmenyen for TextSecure.</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du må spesifisere en MMSC URL for din operatør.</string>
+  <string name="PromptApnActivity_mms_settings_updated">MMS konfigurasjon oppdatert</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan forandre disse verdiene når som helst i konfigurasjonsmenyen for TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne nøkkelutvekslingen er ikke lik den du tidligere mottok fra denne\nkontakten. Det kan enten bety at noen prøver å avskjære kommunikasjonen din eller\nat denne kontakten har installert TextSecure på nytt og dermed fått en ny identitetsnøkkel.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verifisere\ndenne kontakten.</string>
@@ -258,11 +258,11 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSORD</string>
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">En gyldig APN konfigurasjon er nødvendig for at TextSecure kan sende og motta multimedia meldinger via operatøren din. Enheten din tilgjengeliggjør ikke denne konfigurasjonen. Dette er ofte tilfelle for operatørlåste enheter og annen restriktiv konfigurasjon.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">For å sende multimedia meldinger, vær vennlig å fullfør den nødvendige APN informasjonen under. Verdiene for din operatør kan ofte finnes ved å lete etter \'&amp;lt;din operatør&amp;gt; APN\'. Du trenger kun å gjøre dette en gang.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (PÅKREVD):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY VERT (IKKE PÅKREVD):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (IKKE PÅKREVD):</string>
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">En gyldig APN konfigurasjon er nødvendig for at TextSecure kan sende og motta multimedia meldinger via operatøren din. Enheten din tilgjengeliggjør ikke denne konfigurasjonen. Dette er ofte tilfelle for operatørlåste enheter og annen restriktiv konfigurasjon.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">For å sende multimedia meldinger, vær vennlig å fullfør den nødvendige APN informasjonen under. Verdiene for din operatør kan ofte finnes ved å lete etter \'&amp;lt;din operatør&amp;gt; APN\'. Du trenger kun å gjøre dette en gang.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (PÅKREVD):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY VERT (IKKE PÅKREVD):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (IKKE PÅKREVD):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Complete</string>
   <!--recipients_panel-->
@@ -329,7 +329,9 @@
   <string name="preferences__change_notification_blink_pattern">Endre LED-varslingens blinkemønster</string>
   <string name="preferences__pref_led_blink_dialogtitle">Velg LED blinkemønster</string>
   <string name="preferences__select_led_color">Velg LED farge</string>
-  <string name="preferences__sound">Velg varslingstone</string>
+  <string name="preferences__sound">Lyd</string>
+  <string name="preferences__inthread_notifications">Varsling i aktiv tråd</string>
+  <string name="preferences__play_inthread_notifications">Spill av varslingslyd ved visning av en aktiv samtaletråd. </string>
   <string name="preferences__vibrate">Vibrasjon</string>
   <string name="preferences__also_vibrate_when_notified">Også vibrere ved varsling</string>
   <string name="preferences__minutes">minutter</string>
@@ -347,8 +349,8 @@
   <string name="preferences__advanced">Avansert</string>
   <string name="preferences__passphrase">Passord</string>
   <string name="preferences__advanced_mms_access_point_names">Alternativ MMSC</string>
-  <string name="preferences__enable_manual_mms">Aktiver alternativ MMSC</string>
-  <string name="preferences__override_system_mms_settings">Benytt MMSC informasjonen konfigurert her når systemets APN informasjon er utilgjengelig.</string>
+  <string name="preferences__enable_fallback_mmsc">Aktiver alternativ MMSC</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Benytt MMSC informasjonen konfigurert her når systemets APN informasjon er utilgjengelig.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (påkrevd)</string>
   <string name="preferences__mms_proxy_host_optional">MMS proxy host (valgfritt)</string>
   <string name="preferences__mms_proxy_port_optional">MMS proxy port (valgfritt)</string>
@@ -383,6 +385,7 @@
   <string name="conversation_context__menu_copy_text">Kopier tekst</string>
   <string name="conversation_context__menu_delete_message">Slett melding</string>
   <string name="conversation_context__menu_forward_message">Videresend melding</string>
+  <string name="conversation_context__menu_resend_message">Send melding om igjen</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Start sikker sesjon</string>
   <!--conversation_list_batch-->

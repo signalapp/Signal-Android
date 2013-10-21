@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Sie müssen ein Passwort angeben</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ungültiges Passwort!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Sie müssen eine MMSC URL für Ihren Provider angeben.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">MMS Einstellungen aktualisiert</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Sie können diese Werte jederzeit in den TextSecure Einstellungen ändern.</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Sie müssen eine MMSC URL für Ihren Provider angeben.</string>
+  <string name="PromptApnActivity_mms_settings_updated">MMS Einstellungen aktualisiert</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Sie können diese Werte jederzeit in den TextSecure Einstellungen ändern.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Die Signatur dieses Schlüsselaustauschs ist eine andere als die schon von diesem Kontakt erhaltenen.\nDas könnte bedeuten, dass jemand versucht, Ihr Gespräch abzufangen oder\nauch nur, dass dieser Kontakt TextSecure neu installiert hat und nun einen neuen Schlüssel benutzt.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Sie können diesen Kontakt überprüfen.</string>
@@ -193,7 +193,13 @@
   <string name="MessageNotifier_mark_all_as_read">Alle als gelesen markieren</string>
   <string name="MessageNotifier_mark_as_read">Als gelesen markieren</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">Neuerzeugung...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Schlüssel wird\nneu erzeugt...</string>
+  <string name="ViewLocalIdentityActivity_regenerated">Schlüssel neu erzeugt!</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Schlüssel zurücksetzen?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nVorsicht! Das Neuerzeugen des Schlüssels führt dazu, dass der jetzige Schlüssel permanent gelöscht wird.⏎\nSchon existierende Kontakte erhalten eine Warnung, wenn Sie neue Sitzungen mit Ihnen beginnen.⏎\nMöchten Sie dennoch fortfahren?</string>
   <string name="ViewLocalIdentityActivity_cancel">Abbruch</string>
+  <string name="ViewLocalIdentityActivity_continue">Fortsetzen</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">SMS kann gerade nicht gesendet werden. Sie wird gesendet, sobald der Dienst wieder verfügbar ist.</string>
   <!--auto_initiate_activity-->
@@ -247,15 +253,16 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nWiederherstellen einer zuvor exportierten TextSecure Sicherung.</string>
   <string name="import_fragment__import_plaintext_backup">Importiere Klartext-Sicherung</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\nImportiere eine Klartext-Sicherungdatei. Kompatibel mit \'SMSBackup And Restore\'</string>
+  <string name="local_identity__regenerate_key">Schlüssel neu erstellen</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSWORT</string>
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure benötigt APN-Parameter, um MMS über den Mobilfunkanbieter zu senden. Ihr Gerät stellt diese Informationen nicht bereit, was gelegentlich auf gesperrte Geräte oder restriktive Konfigurationen hindeutet.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Um MMS zu verschicken, tragen Sie bitte die nötige APN Information ein. Die Werte für das Netzwerk können normalerweise gefunden werden, indem man nach \'&amp;lt;Ihr Netzwerk&amp;gt; APN\' sucht. Das müssen Sie nur einmal tun.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (BENÖTIGT):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONAL):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (OPTIONAL):</string>
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure benötigt APN-Parameter, um MMS über den Mobilfunkanbieter zu senden. Ihr Gerät stellt diese Informationen nicht bereit, was gelegentlich auf gesperrte Geräte oder restriktive Konfigurationen hindeutet.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Um MMS zu verschicken, tragen Sie bitte die nötige APN Information ein. Die Werte für das Netzwerk können normalerweise gefunden werden, indem man nach \'&amp;lt;Ihr Netzwerk&amp;gt; APN\' sucht. Das müssen Sie nur einmal tun.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (BENÖTIGT):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONAL):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (OPTIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Vollständig</string>
   <!--recipients_panel-->
@@ -322,7 +329,6 @@
   <string name="preferences__change_notification_blink_pattern">Ändern des LED Blinkmusters für Benachrichtigungen</string>
   <string name="preferences__pref_led_blink_dialogtitle">LED Blinkmuster auswählen</string>
   <string name="preferences__select_led_color">LED Farbe auswählen</string>
-  <string name="preferences__sound">Klingelton auswählen</string>
   <string name="preferences__vibrate">Vibrieren</string>
   <string name="preferences__also_vibrate_when_notified">Bei Benachrichtigung vibrieren</string>
   <string name="preferences__minutes">Minuten</string>
@@ -340,8 +346,8 @@
   <string name="preferences__advanced">Weitere Einstellungen</string>
   <string name="preferences__passphrase">Passwort</string>
   <string name="preferences__advanced_mms_access_point_names">Ersatz für MMSC</string>
-  <string name="preferences__enable_manual_mms">Ersatz für MMSC aktivieren</string>
-  <string name="preferences__override_system_mms_settings">Benutzen Sie die hier konfigurierten MMSC-Daten, falls keine System APN-Daten vorliegen,</string>
+  <string name="preferences__enable_fallback_mmsc">Ersatz für MMSC aktivieren</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Benutzen Sie die hier konfigurierten MMSC-Daten, falls keine System APN-Daten vorliegen,</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Benötigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>

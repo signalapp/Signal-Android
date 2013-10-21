@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Трябва да посочите парола</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Грешна Парола!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Трябва да определите MMSC URL за вашия оператор.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">MMS настройки са обновени</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Можете да промените тези стойности по всяко време от менюто за настройките на TextSecure</string>
+  <!--PromptApnActivity-->
+  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Трябва да определите MMSC URL за вашия оператор.</string>
+  <string name="PromptApnActivity_mms_settings_updated">MMS настройки са обновени</string>
+  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Можете да промените тези стойности по всяко време от менюто за настройките на TextSecure</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different"> ⏎\nподписа на този обмен на ключове е по-различно от това, което сте получавали преди това от този ⏎\nконтакт. Това може да означава, че някой се опитва да прихване комуникацията ви, или ⏎\nче този контакт просто е преинсталирал TextSecure и сега има нов ключ за идентичност. ⏎</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Може би е добре да се провери ⏎\nтози контакт. ⏎</string>
@@ -250,11 +250,11 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE ПАРОЛА</string>
   <string name="prompt_passphrase_activity__unlock">Отключи</string>
   <!--prompt_apn_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure изисква APN настройки, за да достави медийни съобщения чрез вашата безжична мрежа. Вашето устройство не предоставят тази информация, която е  вярно за заключени устройства и други ограничителни конфигурации.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">За да изпратите медийни съобщения, моля, попълнете необходимата информация за APN-долу. Стойностите за оператора ви могат да се намерят чрез търсене на  \'&amp;lt;your carrier&amp;gt; APN\'. Вие  трябва да направите това само веднъж.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (ИЗИСКВАНО):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY HOST (ДОПЪЛНИТЕЛНО):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (ДОПЪЛНИТЕЛНО):</string>
+  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure изисква APN настройки, за да достави медийни съобщения чрез вашата безжична мрежа. Вашето устройство не предоставят тази информация, която е  вярно за заключени устройства и други ограничителни конфигурации.</string>
+  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">За да изпратите медийни съобщения, моля, попълнете необходимата информация за APN-долу. Стойностите за оператора ви могат да се намерят чрез търсене на  \'&amp;lt;your carrier&amp;gt; APN\'. Вие  трябва да направите това само веднъж.</string>
+  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (ИЗИСКВАНО):</string>
+  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (ДОПЪЛНИТЕЛНО):</string>
+  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (ДОПЪЛНИТЕЛНО):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Завършен</string>
   <!--recipients_panel-->
@@ -321,7 +321,6 @@
   <string name="preferences__change_notification_blink_pattern">Промени известяването с LED мигане</string>
   <string name="preferences__pref_led_blink_dialogtitle">Избери LED мигане</string>
   <string name="preferences__select_led_color">Изберете LED цвят</string>
-  <string name="preferences__sound">Избери мелодия</string>
   <string name="preferences__vibrate">Вибрирай</string>
   <string name="preferences__also_vibrate_when_notified">Вибрирай после известявай</string>
   <string name="preferences__minutes">минути</string>
@@ -339,8 +338,8 @@
   <string name="preferences__advanced">За напреднали</string>
   <string name="preferences__passphrase">Парола</string>
   <string name="preferences__advanced_mms_access_point_names">Резервен MMSC</string>
-  <string name="preferences__enable_manual_mms">Активирайте Резервен MMSC</string>
-  <string name="preferences__override_system_mms_settings">Използвайте MMSC информация конфигурирана тук, когато системната APN информация не е налична.</string>
+  <string name="preferences__enable_fallback_mmsc">Активирайте Резервен MMSC</string>
+  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Използвайте MMSC информация конфигурирана тук, когато системната APN информация не е налична.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Задължително)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (По изборl)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (По избор)</string>
