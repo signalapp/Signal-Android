@@ -223,7 +223,8 @@
         </intent-filter>
     </receiver>
 
-    <provider android:name=".providers.PartProvider" 
+    <provider android:name=".providers.PartProvider"
+              android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
 
        <uses-library android:name="android.test.runner" />
