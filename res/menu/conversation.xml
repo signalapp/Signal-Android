@@ -7,7 +7,7 @@
 
     <item android:title="@string/conversation__menu_add_contact_info"
           android:id="@+id/menu_add_contact_info"
-          android:icon="@drawable/ic_contact_picture" />
+          android:icon="@drawable/ic_menu_friendslist" />
 
     <item android:title="@string/conversation__menu_delete_thread"
           android:id="@+id/menu_delete_thread"
