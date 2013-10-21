@@ -151,6 +151,7 @@
 
     <activity android:name=".ReceiveKeyActivity" 
               android:label="@string/AndroidManifest__complete_key_exchange"
+              android:theme="@style/TextSecure.Light.Dialog"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     
     <activity android:name=".ApplicationPreferencesActivity"

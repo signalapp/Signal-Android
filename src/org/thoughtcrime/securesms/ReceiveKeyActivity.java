@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -44,7 +45,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  * @author Moxie Marlinspike
  */
 
-public class ReceiveKeyActivity extends PassphraseRequiredSherlockActivity {
+public class ReceiveKeyActivity extends Activity {
 
   private TextView descriptionText;
 
