@@ -85,7 +85,7 @@ public class KeyExchangeProcessor {
       (localKeyRecord.getCurrentKeyPair() != null && localKeyRecord.getCurrentKeyPair().getId() != responseKeyId);
   }
 
-  public boolean processKeyExchangeMessage(KeyExchangeMessage message, long threadId) {
+  public void processKeyExchangeMessage(KeyExchangeMessage message, long threadId) {
     int initiateKeyId = Conversions.lowBitsToMedium(message.getPublicKey().getId());
     message.getPublicKey().setId(initiateKeyId);
 
@@ -121,9 +121,7 @@ public class KeyExchangeProcessor {
     Intent intent = new Intent(SECURITY_UPDATE_EVENT);
     intent.putExtra("thread_id", threadId);
     intent.setPackage(context.getPackageName());
+
     context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
-
-    return true;
   }
-
 }

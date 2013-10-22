@@ -56,6 +56,8 @@ public class MultipartSmsMessageHandler {
 
     if (message.getWireType() == MultipartSmsTransportMessage.WIRETYPE_KEY) {
       return new IncomingKeyExchangeMessage(message.getBaseMessage(), strippedMessage);
+    } else if (message.getWireType() == MultipartSmsTransportMessage.WIRETYPE_ABORT) {
+      return new IncomingAbortSessionMessage(message.getBaseMessage(), strippedMessage);
     } else {
       return new IncomingEncryptedMessage(message.getBaseMessage(), strippedMessage);
     }
@@ -67,6 +69,8 @@ public class MultipartSmsMessageHandler {
 
     if (message.getWireType() == MultipartSmsTransportMessage.WIRETYPE_KEY) {
       return new IncomingKeyExchangeMessage(message.getBaseMessage(), strippedMessage);
+    } else if (message.getWireType() == MultipartSmsTransportMessage.WIRETYPE_ABORT) {
+      return new IncomingAbortSessionMessage(message.getBaseMessage(), strippedMessage);
     } else {
       return new IncomingEncryptedMessage(message.getBaseMessage(), strippedMessage);
     }

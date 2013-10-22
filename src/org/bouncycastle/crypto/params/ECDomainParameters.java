@@ -78,4 +78,26 @@ public class ECDomainParameters
     {
         return seed;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+
+        if (!(o instanceof ECDomainParameters))
+            return false;
+
+        ECDomainParameters otherParams = (ECDomainParameters)o;
+
+        //In the case where either seed is null, default to true
+        boolean checkSeed = true;
+        if (this.getSeed() != null && otherParams.getSeed() != null)
+            checkSeed = this.getSeed().equals(otherParams.getSeed());
+
+        return this.getCurve().equals(otherParams.getCurve()) &&
+                this.getG().equals(otherParams.getG()) &&
+                this.getN().equals(otherParams.getN()) &&
+                this.getH().equals(otherParams.getH()) &&
+                checkSeed;
+    }
 }

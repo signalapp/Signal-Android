@@ -4,6 +4,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.protocol.KeyExchangeWirePrefix;
 import org.thoughtcrime.securesms.protocol.SecureMessageWirePrefix;
+import org.thoughtcrime.securesms.protocol.AbortSessionWirePrefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Conversions;
@@ -22,6 +23,7 @@ public class MultipartSmsTransportMessage {
 
   public static final int WIRETYPE_SECURE = 1;
   public static final int WIRETYPE_KEY    = 2;
+  public static final int WIRETYPE_ABORT  = 3;
 
   private static final int VERSION_OFFSET    = 0;
   private static final int MULTIPART_OFFSET  = 1;
@@ -33,7 +35,18 @@ public class MultipartSmsTransportMessage {
 
   public MultipartSmsTransportMessage(IncomingTextMessage message) throws IOException {
     this.message         = message;
-    this.wireType        = WirePrefix.isEncryptedMessage(message.getMessageBody()) ? WIRETYPE_SECURE : WIRETYPE_KEY;
+
+    String messageBody = message.getMessageBody();
+    if (WirePrefix.isEncryptedMessage(messageBody)) {
+      this.wireType = WIRETYPE_SECURE;
+    } else {
+      if (WirePrefix.isAbortSession(messageBody)) {
+        this.wireType = WIRETYPE_ABORT;
+      } else {
+        this.wireType = WIRETYPE_KEY;
+      }
+    }
+
     this.decodedMessage  = Base64.decodeWithoutPadding(message.getMessageBody().substring(WirePrefix.PREFIX_SIZE));
 
     Log.w(TAG, "Decoded message with version: " + getCurrentVersion());
@@ -151,8 +164,9 @@ public class MultipartSmsTransportMessage {
 
       WirePrefix prefix;
 
-      if (message.isKeyExchange()) prefix = new KeyExchangeWirePrefix();
-      else                         prefix = new SecureMessageWirePrefix();
+      if (message.isKeyExchange())       prefix = new KeyExchangeWirePrefix();
+      else if (message.isAbortMessage()) prefix = new AbortSessionWirePrefix();
+      else                               prefix = new SecureMessageWirePrefix();
 
       if (count == 1) return getSingleEncoded(decoded, prefix);
       else            return getMultiEncoded(decoded, prefix, count, identifier);

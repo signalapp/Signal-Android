@@ -26,8 +26,10 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.InvalidVersionException;
+import org.thoughtcrime.securesms.crypto.AbortSessionMessage;
 import org.thoughtcrime.securesms.crypto.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.AbortSessionProcessor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -36,9 +38,13 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.IncomingAbortSessionMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
+
 
 import java.util.List;
 
@@ -57,7 +63,8 @@ public class SmsReceiver {
     IncomingTextMessage message = new IncomingTextMessage(messages);
 
     if (WirePrefix.isEncryptedMessage(message.getMessageBody()) ||
-        WirePrefix.isKeyExchange(message.getMessageBody()))
+        WirePrefix.isKeyExchange(message.getMessageBody()) ||
+        WirePrefix.isAbortSession(message.getMessageBody()))
     {
       return multipartMessageHandler.processPotentialMultipartMessage(message);
     } else {
@@ -126,9 +133,32 @@ public class SmsReceiver {
     return storeStandardMessage(masterSecret, message);
   }
 
+  private Pair<Long, Long> abortSessionMessage(MasterSecret masterSecret,
+      IncomingAbortSessionMessage message)
+  {
+    if (masterSecret != null) {
+      try {
+        Recipients recipients                   = RecipientFactory.getRecipientsFromString(context, message.getSender(), false);
+        AbortSessionMessage abortSessionMessage = new AbortSessionMessage(message.getMessageBody());
+        Recipient recipient                     = recipients.getPrimaryRecipient();
+        AbortSessionProcessor processor         = new AbortSessionProcessor(context, recipient);
+
+        Pair<Long, Long> messageAndThreadId = storeStandardMessage(masterSecret, message);
+        processor.processAbortSessionMessage(abortSessionMessage, messageAndThreadId.second);
+
+        return messageAndThreadId;
+      } catch (Exception e) {
+        Log.w("SmsReceiver", e);
+      }
+    }
+
+    return storeStandardMessage(masterSecret, message);
+  }
+
   private Pair<Long, Long> storeMessage(MasterSecret masterSecret, IncomingTextMessage message) {
     if      (message.isSecureMessage()) return storeSecureMessage(masterSecret, message);
     else if (message.isKeyExchange())   return storeKeyExchangeMessage(masterSecret, (IncomingKeyExchangeMessage)message);
+    else if (message.isAbortSession())  return abortSessionMessage(masterSecret, (IncomingAbortSessionMessage)message);
     else                                return storeStandardMessage(masterSecret, message);
   }
 

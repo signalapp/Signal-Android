@@ -43,12 +43,20 @@ public abstract class WirePrefix {
     return verifyPrefix("?TSK", message);
   }
 
+  public static boolean isAbortSession(String message) {
+    return verifyPrefix("?TSA", message);
+  }
+
   public static boolean isEncryptedMessage(String message) {
     return verifyPrefix("?TSM", message);
   }
 
   public static String calculateKeyExchangePrefix(String message) {
     return calculatePrefix(("?TSK" + message).getBytes(), PREFIX_BYTES);
+  }
+
+  public static String calculateAbortSessionPrefix(String message) {
+    return calculatePrefix(("?TSA" + message).getBytes(), PREFIX_BYTES);
   }
 
   public static String calculateEncryptedMesagePrefix(String message) {

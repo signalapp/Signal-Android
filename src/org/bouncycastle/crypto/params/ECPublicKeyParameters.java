@@ -19,4 +19,16 @@ public class ECPublicKeyParameters
     {
         return Q;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+
+        if (!(o instanceof ECPublicKeyParameters))
+            return false;
+
+        ECPublicKeyParameters otherParams = (ECPublicKeyParameters)o;
+        return this.getParameters().equals(otherParams.getParameters());
+    }
 }

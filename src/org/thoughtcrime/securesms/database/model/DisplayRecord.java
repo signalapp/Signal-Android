@@ -80,6 +80,10 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isKeyExchangeType(type);
   }
 
+  public boolean isAbortSession() {
+    return SmsDatabase.Types.isAbortSessionType(type);
+  }
+
   public static class Body {
     private final String body;
     private final boolean plaintext;

@@ -31,6 +31,9 @@ public interface MmsSmsColumns {
     protected static final long KEY_EXCHANGE_STALE_BIT     = 0x4000;
     protected static final long KEY_EXCHANGE_PROCESSED_BIT = 0x2000;
 
+    // Abort Session Information
+    protected static final long ABORT_SESSION_BIT = 0x1000;
+
     // Secure Message Information
     protected static final long SECURE_MESSAGE_BIT = 0x800000;
 
@@ -41,6 +44,7 @@ public interface MmsSmsColumns {
     protected static final long ENCRYPTION_REMOTE_BIT            = 0x20000000;
     protected static final long ENCRYPTION_REMOTE_FAILED_BIT     = 0x10000000;
     protected static final long ENCRYPTION_REMOTE_NO_SESSION_BIT = 0x08000000;
+
 
     public static boolean isFailedMessageType(long type) {
       return (type & BASE_TYPE_MASK) == BASE_SENT_FAILED_TYPE;
@@ -79,6 +83,10 @@ public interface MmsSmsColumns {
 
     public static boolean isProcessedKeyExchange(long type) {
       return (type & KEY_EXCHANGE_PROCESSED_BIT) != 0;
+    }
+
+    public static boolean isAbortSessionType(long type) {
+      return (type & ABORT_SESSION_BIT) != 0;
     }
 
     public static boolean isSymmetricEncryption(long type) {

@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.AbortSessionProcessor;
 import org.thoughtcrime.securesms.crypto.KeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -373,7 +374,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       @Override
       public void onClick(DialogInterface dialog, int which) {
         if (isSingleConversation()) {
-          KeyUtil.abortSessionFor(ConversationActivity.this, getRecipients().getPrimaryRecipient());
+          KeyUtil.abortSessionFor(ConversationActivity.this, getRecipients().getPrimaryRecipient(), masterSecret);
           initializeSecurity();
           initializeTitleBar();
         }
@@ -677,6 +678,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     registerReceiver(securityUpdateReceiver,
                      new IntentFilter(KeyExchangeProcessor.SECURITY_UPDATE_EVENT),
+                     KeyCachingService.KEY_PERMISSION, null);
+
+    registerReceiver(securityUpdateReceiver,
+                     new IntentFilter(AbortSessionProcessor.ABORT_SESSION_EVENT),
                      KeyCachingService.KEY_PERMISSION, null);
   }
 
