@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -36,10 +37,32 @@ public class DynamicTheme {
     }
   }
 
-  private static int getSelectedTheme(Activity activity) {
-    String theme = PreferenceManager.getDefaultSharedPreferences(activity)
-                                    .getString(ApplicationPreferencesActivity.THEME_PREF, "light");
+  public static int getDrawableAttachPicture(Context context) {
+    String theme = getThemeString(context);
+    if (theme.equals("dark")) {
+      return R.drawable.ic_attach_picture_holo_dark;
+    }
+    return R.drawable.ic_attach_picture_holo_light;
+  }
 
+  public static int getDrawableAttachVideo(Context context) {
+    String theme = getThemeString(context);
+    if (theme.equals("dark")) {
+      return R.drawable.ic_attach_video_holo_dark;
+    }
+    return R.drawable.ic_attach_video_holo_light;
+  }
+
+  public static int getDrawableAttachAudio(Context context) {
+    String theme = getThemeString(context);
+    if (theme.equals("dark")) {
+      return R.drawable.ic_attach_audio_holo_dark;
+    }
+    return R.drawable.ic_attach_audio_holo_light;
+  }
+
+  private static int getSelectedTheme(Activity activity) {
+    String theme = getThemeString(activity);
     if (theme.equals("light")) {
       if (activity instanceof ConversationListActivity) return R.style.TextSecure_LightTheme_NavigationDrawer;
       else                                              return R.style.TextSecure_LightTheme;
@@ -49,6 +72,11 @@ public class DynamicTheme {
     }
 
     return R.style.TextSecure_LightTheme;
+  }
+
+  private static String getThemeString(Context context) {
+    return PreferenceManager.getDefaultSharedPreferences(context)
+                            .getString(ApplicationPreferencesActivity.THEME_PREF, "light");
   }
 
   private static final class OverridePendingTransition {

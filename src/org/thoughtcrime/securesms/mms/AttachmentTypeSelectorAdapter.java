@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,13 +76,13 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 	private static List<IconListItem> getItemList(Context context) {
 	  List<IconListItem> data = new ArrayList<IconListItem>(7);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_picture),
-	          R.drawable.ic_attach_picture_holo_light, ADD_IMAGE);
+	          DynamicTheme.getDrawableAttachPicture(context), ADD_IMAGE);
 //        addItem(data, "Capture picture", R.drawable.ic_launcher_camera, TAKE_PICTURE);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video),
-	          R.drawable.ic_attach_video_holo_light, ADD_VIDEO);
+	          DynamicTheme.getDrawableAttachVideo(context), ADD_VIDEO);
 //        addItem(data, "Capture video", R.drawable.ic_launcher_camera_record, RECORD_VIDEO);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio),
-	          R.drawable.ic_attach_audio_holo_light, ADD_SOUND);
+	          DynamicTheme.getDrawableAttachAudio(context), ADD_SOUND);
 //        addItem(data, "Record audio", R.drawable.ic_launcher_record_audio, RECORD_SOUND);
 
 	  return data;
