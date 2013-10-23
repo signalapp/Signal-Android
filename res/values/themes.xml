@@ -19,6 +19,9 @@
         <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_light</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
+        <item name="conversation_attach_picture">@drawable/ic_attach_picture_holo_light</item>
+        <item name="conversation_attach_video">@drawable/ic_attach_video_holo_light</item>
+        <item name="conversation_attach_audio">@drawable/ic_attach_audio_holo_light</item>
     </style>
 
     <style name="TextSecure.LightTheme.NavigationDrawer" parent="@style/TextSecure.LightTheme">
@@ -49,6 +52,9 @@
         <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_dark</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_light</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_light</item>
+        <item name="conversation_attach_picture">@drawable/ic_attach_picture_holo_dark</item>
+        <item name="conversation_attach_video">@drawable/ic_attach_video_holo_dark</item>
+        <item name="conversation_attach_audio">@drawable/ic_attach_audio_holo_dark</item>
 
     </style>
 

@@ -18,6 +18,8 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,37 +69,43 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 	  text.setText(getItem(position).getTitle());
 
 	  image = (ImageView) view.findViewById(R.id.icon);
-	  image.setImageResource(getItem(position).getResource());
+	  image.setImageDrawable(getItem(position).getDrawable());
 
 	  return view;
 	}
 
 	private static List<IconListItem> getItemList(Context context) {
+	  int        attributes[] = new int[]{R.attr.conversation_attach_picture,
+	                                      R.attr.conversation_attach_video,
+	                                      R.attr.conversation_attach_audio};
+	  TypedArray drawables    = context.obtainStyledAttributes(attributes);
+
 	  List<IconListItem> data = new ArrayList<IconListItem>(7);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_picture),
-	          R.drawable.ic_attach_picture_holo_light, ADD_IMAGE);
+	          drawables.getDrawable(0), ADD_IMAGE);
 //        addItem(data, "Capture picture", R.drawable.ic_launcher_camera, TAKE_PICTURE);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video),
-	          R.drawable.ic_attach_video_holo_light, ADD_VIDEO);
+	          drawables.getDrawable(1), ADD_VIDEO);
 //        addItem(data, "Capture video", R.drawable.ic_launcher_camera_record, RECORD_VIDEO);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio),
-	          R.drawable.ic_attach_audio_holo_light, ADD_SOUND);
+	          drawables.getDrawable(2), ADD_SOUND);
 //        addItem(data, "Record audio", R.drawable.ic_launcher_record_audio, RECORD_SOUND);
 
+	  drawables.recycle();
 	  return data;
 	}
 
-	private static void addItem(List<IconListItem> list, String text, int resource, int id) {
-		list.add(new IconListItem(text, resource, id));
+	private static void addItem(List<IconListItem> list, String text, Drawable drawable, int id) {
+		list.add(new IconListItem(text, drawable, id));
 	}
 
 	public static class IconListItem {
 	  private final String mTitle;
-	  private final int mResource;
+	  private final Drawable mDrawable;
 	  private final int id;
 
-	  public IconListItem(String title, int resource, int id) {
-	    mResource = resource;
+	  public IconListItem(String title, Drawable drawable, int id) {
+	    mDrawable = drawable;
 	    mTitle = title;
 	    this.id = id;
 	  }
@@ -110,8 +118,8 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 	    return mTitle;
 	  }
 
-	  public int getResource() {
-	    return mResource;
+	  public Drawable getDrawable() {
+	    return mDrawable;
 	  }
 	}
 }

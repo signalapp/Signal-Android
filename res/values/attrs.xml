@@ -18,6 +18,9 @@
     <attr name="conversation_delivered_indicator" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
+    <attr name="conversation_attach_picture" format="reference"/>
+    <attr name="conversation_attach_video" format="reference"/>
+    <attr name="conversation_attach_audio" format="reference"/>
 
     <attr name="navigation_drawer_background" format="reference|color"/>
     <attr name="navigation_drawer_text_color" format="color"/>
