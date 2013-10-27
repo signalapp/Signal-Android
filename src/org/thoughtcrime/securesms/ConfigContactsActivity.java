@@ -161,16 +161,6 @@ public class ConfigContactsActivity extends FragmentActivity {
       return cursor.getString(COLUMN_DISPLAY_NAME);
     }
 
-    @Override
-    public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-      if (getFilterQueryProvider() != null) {
-        return getFilterQueryProvider().runQuery(constraint);
-      }
-
-      return mContentResolver.query(
-          Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI, (String) constraint),
-          CONTACT_PROJECTION, null, null, null);
-    }
   }
 
   public static class ConfigContactsListFragment extends ListFragment implements
