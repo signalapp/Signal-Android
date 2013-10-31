@@ -319,7 +319,7 @@ public class PushServiceSocket {
       throw new NotFoundException("Not found");
     }
 
-    if (connection.getResponseCode() != 200) {
+    if (connection.getResponseCode() != 200 && connection.getResponseCode() != 204) {
       throw new IOException("Bad response: " + connection.getResponseCode() + " " + connection.getResponseMessage());
     }
 
