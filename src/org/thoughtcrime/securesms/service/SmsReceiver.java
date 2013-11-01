@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 
@@ -110,7 +111,8 @@ public class SmsReceiver {
       if (processor.isTrusted(preKeyExchange)) {
         processor.processKeyExchangeMessage(preKeyExchange);
 
-        String                   bundledMessageBody = new String(transportDetails.getEncodedMessage(preKeyExchange.getBundledMessage()));
+        CiphertextMessage        ciphertextMessage  = preKeyExchange.getBundledMessage();
+        String                   bundledMessageBody = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
         IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, bundledMessageBody);
         Pair<Long, Long>         messageAndThreadId = storeSecureMessage(masterSecret, bundledMessage);
 

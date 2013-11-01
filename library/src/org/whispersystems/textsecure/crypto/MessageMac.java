@@ -31,7 +31,7 @@ public class MessageMac {
 
   public static final int MAC_LENGTH  = 10;
 	
-  private static byte[] calculateMac(byte[] message, int offset, int length, SecretKeySpec macKey) {
+  public static byte[] calculateMac(byte[] message, int offset, int length, SecretKeySpec macKey) {
     try {
       Mac mac = Mac.getInstance("HmacSHA1");
       mac.init(macKey);
@@ -50,36 +50,19 @@ public class MessageMac {
       throw new IllegalArgumentException(e);
     }
   }
-	
-  public static byte[] buildMessageWithMac(byte[] message, SecretKeySpec macKey) {
-    byte[] macBytes = calculateMac(message, 0, message.length, macKey);
-    byte[] combined = new byte[macBytes.length + message.length];
-    System.arraycopy(message, 0, combined, 0, message.length);
-    System.arraycopy(macBytes, 0, combined, message.length, macBytes.length);
+
+  public static void verifyMac(byte[] message, int offset, int length,
+                               byte[] receivedMac, SecretKeySpec macKey)
+      throws InvalidMacException
+  {
+    byte[] localMac = calculateMac(message, offset, length, macKey);
+
+    Log.w("MessageMac", "Local Mac: " + Hex.toString(localMac));
+    Log.w("MessageMac", "Remot Mac: " + Hex.toString(receivedMac));
 		
-    return combined;
-  }
-	
-  public static byte[] getMessageWithoutMac(byte[] message) throws InvalidMacException {
-    if (message == null || message.length <= MAC_LENGTH)
-      throw new InvalidMacException("Message shorter than MAC!");
-		
-    byte[] strippedMessage = new byte[message.length - MAC_LENGTH];
-    System.arraycopy(message, 0, strippedMessage, 0, strippedMessage.length);
-    return strippedMessage;
-  }
-	
-  public static void verifyMac(byte[] message, SecretKeySpec macKey) throws InvalidMacException {
-    byte[] localMacBytes = calculateMac(message, 0, message.length - MAC_LENGTH, macKey);
-    byte[] receivedMacBytes = new byte[MAC_LENGTH];
-		
-    System.arraycopy(message, message.length-MAC_LENGTH, receivedMacBytes, 0, receivedMacBytes.length);
-		
-    Log.w("mm", "Local Mac: " + Hex.toString(localMacBytes));
-    Log.w("mm", "Remot Mac: " + Hex.toString(receivedMacBytes));
-		
-    if (!Arrays.equals(localMacBytes, receivedMacBytes))
+    if (!Arrays.equals(localMac, receivedMac)) {
       throw new InvalidMacException("MAC on message does not match calculated MAC.");
+    }
   }
 	
 }

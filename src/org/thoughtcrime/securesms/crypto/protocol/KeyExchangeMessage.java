@@ -20,12 +20,12 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Conversions;
@@ -59,6 +59,8 @@ import java.io.IOException;
 
 public class KeyExchangeMessage {
 
+  private static final int SUPPORTED_VERSION = CiphertextMessage.SUPPORTED_VERSION;
+
   private final int         messageVersion;
   private final int         supportedVersion;
   private final PublicKey   publicKey;
@@ -68,7 +70,7 @@ public class KeyExchangeMessage {
   public KeyExchangeMessage(Context context, MasterSecret masterSecret, int messageVersion, LocalKeyRecord record, int highIdBits) {
     this.publicKey        = new PublicKey(record.getCurrentKeyPair().getPublicKey());
     this.messageVersion   = messageVersion;
-    this.supportedVersion = MessageCipher.SUPPORTED_VERSION;
+    this.supportedVersion = SUPPORTED_VERSION;
 		
     publicKey.setId(publicKey.getId() | (highIdBits << 12));
 
@@ -100,9 +102,9 @@ public class KeyExchangeMessage {
       this.supportedVersion = Conversions.lowBitsToInt(keyBytes[0]);
       this.serialized       = messageBody;
 			
-      if (messageVersion > MessageCipher.SUPPORTED_VERSION)
+      if (messageVersion > SUPPORTED_VERSION)
         throw new InvalidVersionException("Key exchange with version: " + messageVersion +
-                                          " but we only support: " + MessageCipher.SUPPORTED_VERSION);
+                                          " but we only support: " + SUPPORTED_VERSION);
 
       if (messageVersion >= 1)
         keyBytes = Base64.decodeWithoutPadding(messageBody);

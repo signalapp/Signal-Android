@@ -20,6 +20,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
@@ -55,8 +56,6 @@ public class SessionCipher {
 	
   public static final int CIPHER_KEY_LENGTH = 16;
   public static final int MAC_KEY_LENGTH    = 20;
-	
-  public static final int ENCRYPTED_MESSAGE_OVERHEAD = MessageCipher.HEADER_LENGTH + MessageMac.MAC_LENGTH;
 
   public SessionCipherContext getEncryptionContext(Context context,
                                                    MasterSecret masterSecret,
@@ -149,20 +148,6 @@ public class SessionCipher {
     }
   }
 
-  public byte[] mac(SessionCipherContext context, byte[] formattedCiphertext) {
-    return MessageMac.buildMessageWithMac(formattedCiphertext, context.getSessionKey().getMacKey());
-  }
-
-  public void verifyMac(SessionCipherContext context, byte[] decodedCiphertext)
-      throws InvalidMessageException
-  {
-    try {
-      MessageMac.verifyMac(decodedCiphertext, context.getSessionKey().getMacKey());
-    } catch (InvalidMacException e) {
-      throw new InvalidMessageException(e);
-    }
-  }
-		
   private SecretKeySpec deriveMacSecret(SecretKeySpec key) {
     try {
       MessageDigest md = MessageDigest.getInstance("SHA-1");
@@ -314,7 +299,7 @@ public class SessionCipher {
     IdentityKey           remoteIdentityKey = records.getSessionRecord().getIdentityKey();
 
     if (isInitiallyExchangedKeys(records, localKeyId, remoteKeyId) &&
-        messageVersion >= MessageCipher.CRADLE_AGREEMENT_VERSION)
+        messageVersion >= CiphertextMessage.CRADLE_AGREEMENT_VERSION)
     {
       return SharedSecretCalculator.calculateSharedSecret(localKeyPair, localIdentityKey,
                                                           remoteKey, remoteIdentityKey);

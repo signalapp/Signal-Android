@@ -40,6 +40,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 
@@ -182,9 +183,9 @@ public class ReceiveKeyActivity extends Activity {
           } else if (keyExchangeMessageBundle != null) {
             try {
               keyExchangeProcessor.processKeyExchangeMessage(keyExchangeMessageBundle);
-              byte[]              bundledMessage   = keyExchangeMessageBundle.getBundledMessage();
+              CiphertextMessage bundledMessage     = keyExchangeMessageBundle.getBundledMessage();
               SmsTransportDetails transportDetails = new SmsTransportDetails();
-              String              messageBody      = new String(transportDetails.getEncodedMessage(bundledMessage));
+              String              messageBody      = new String(transportDetails.getEncodedMessage(bundledMessage.serialize()));
 
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
                              .updateBundleMessageBody(masterSecret, messageId, messageBody);
@@ -193,6 +194,10 @@ public class ReceiveKeyActivity extends Activity {
                                                  threadId, recipient.getNumber(), messageBody,
                                                  true, false);
             } catch (InvalidKeyIdException e) {
+              Log.w("ReceiveKeyActivity", e);
+              DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
+                             .markAsCorruptKeyExchange(messageId);
+            } catch (InvalidKeyException e) {
               Log.w("ReceiveKeyActivity", e);
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
                              .markAsCorruptKeyExchange(messageId);
