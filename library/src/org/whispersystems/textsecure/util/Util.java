@@ -18,32 +18,18 @@ import java.util.List;
 
 public class Util {
 
-  public static byte[] combine(byte[] one, byte[] two) {
-    byte[] combined = new byte[one.length + two.length];
-    System.arraycopy(one, 0, combined, 0, one.length);
-    System.arraycopy(two, 0, combined, one.length, two.length);
+  public static byte[] combine(byte[]... elements) {
+    try {
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-    return combined;
-  }
+      for (byte[] element : elements) {
+        baos.write(element);
+      }
 
-  public static byte[] combine(byte[] one, byte[] two, byte[] three) {
-    byte[] combined = new byte[one.length + two.length + three.length];
-    System.arraycopy(one, 0, combined, 0, one.length);
-    System.arraycopy(two, 0, combined, one.length, two.length);
-    System.arraycopy(three, 0, combined, one.length + two.length, three.length);
-
-    return combined;
-  }
-
-  public static byte[] combine(byte[] one, byte[] two, byte[] three, byte[] four) {
-    byte[] combined = new byte[one.length + two.length + three.length + four.length];
-    System.arraycopy(one, 0, combined, 0, one.length);
-    System.arraycopy(two, 0, combined, one.length, two.length);
-    System.arraycopy(three, 0, combined, one.length + two.length, three.length);
-    System.arraycopy(four, 0, combined, one.length + two.length + three.length, four.length);
-
-    return combined;
-
+      return baos.toByteArray();
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public static byte[][] split(byte[] input, int firstLength, int secondLength) {
