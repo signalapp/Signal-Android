@@ -22,12 +22,17 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.KeyPair;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
@@ -35,10 +40,6 @@ import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.storage.RemoteKeyRecord;
 import org.whispersystems.textsecure.storage.SessionRecord;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.whispersystems.textsecure.util.Conversions;
 import org.whispersystems.textsecure.util.Medium;
 
@@ -103,7 +104,9 @@ public class KeyExchangeProcessor {
       (localKeyRecord.getCurrentKeyPair() != null && localKeyRecord.getCurrentKeyPair().getId() != responseKeyId);
   }
 
-  public void processKeyExchangeMessage(PreKeyBundleMessage message) throws InvalidKeyIdException {
+  public void processKeyExchangeMessage(PreKeyBundleMessage message)
+      throws InvalidKeyIdException, InvalidKeyException
+  {
     int preKeyId               = message.getPreKeyId();
     PublicKey   remoteKey      = message.getPublicKey();
     IdentityKey remoteIdentity = message.getIdentityKey();
@@ -131,7 +134,7 @@ public class KeyExchangeProcessor {
     sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(remoteIdentity);
-    sessionRecord.setSessionVersion(Math.min(message.getSupportedVersion(), MessageCipher.SUPPORTED_VERSION));
+    sessionRecord.setSessionVersion(Math.min(message.getSupportedVersion(), PreKeyBundleMessage.SUPPORTED_VERSION));
     sessionRecord.setNegotiatedSessionVersion(sessionRecord.getSessionVersion());
 
     localKeyRecord.save();
@@ -159,8 +162,8 @@ public class KeyExchangeProcessor {
     sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(message.getIdentityKey());
-    sessionRecord.setNegotiatedSessionVersion(MessageCipher.SUPPORTED_VERSION);
-    sessionRecord.setSessionVersion(MessageCipher.SUPPORTED_VERSION);
+    sessionRecord.setNegotiatedSessionVersion(CiphertextMessage.SUPPORTED_VERSION);
+    sessionRecord.setSessionVersion(CiphertextMessage.SUPPORTED_VERSION);
     sessionRecord.setPrekeyBundleRequired(true);
     sessionRecord.save();
 
@@ -174,7 +177,7 @@ public class KeyExchangeProcessor {
 
     if (needsResponseFromUs()) {
       localKeyRecord                = KeyUtil.initializeRecordFor(recipient, context, masterSecret);
-      KeyExchangeMessage ourMessage = new KeyExchangeMessage(context, masterSecret, Math.min(MessageCipher.SUPPORTED_VERSION, message.getMaxVersion()), localKeyRecord, initiateKeyId);
+      KeyExchangeMessage ourMessage = new KeyExchangeMessage(context, masterSecret, Math.min(CiphertextMessage.SUPPORTED_VERSION, message.getMaxVersion()), localKeyRecord, initiateKeyId);
       OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, ourMessage.serialize());
       Log.w("KeyExchangeProcessor", "Responding with key exchange message fingerprint: " + ourMessage.getPublicKey().getFingerprint());
       Log.w("KeyExchangeProcessor", "Which has a local key record fingerprint: " + localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprint());
@@ -188,10 +191,10 @@ public class KeyExchangeProcessor {
     sessionRecord.setSessionId(localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprintBytes(),
                                remoteKeyRecord.getCurrentRemoteKey().getFingerprintBytes());
     sessionRecord.setIdentityKey(message.getIdentityKey());
-    sessionRecord.setSessionVersion(Math.min(MessageCipher.SUPPORTED_VERSION, message.getMaxVersion()));
+    sessionRecord.setSessionVersion(Math.min(CiphertextMessage.SUPPORTED_VERSION, message.getMaxVersion()));
     sessionRecord.setNegotiatedSessionVersion(sessionRecord.getSessionVersion());
 
-    Log.w("KeyExchangeUtil", "Setting session version: " + Math.min(MessageCipher.SUPPORTED_VERSION, message.getMaxVersion()));
+    Log.w("KeyExchangeUtil", "Setting session version: " + Math.min(CiphertextMessage.SUPPORTED_VERSION, message.getMaxVersion()));
 
     sessionRecord.save();
 

@@ -48,7 +48,6 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.PushTransportDetails;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
@@ -197,9 +196,9 @@ public class DecryptingQueue {
           }
 
           IdentityKeyPair identityKey   = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-          MessageCipher   messageCipher = new MessageCipher(context, masterSecret, identityKey, new PushTransportDetails());
+          MessageCipher   messageCipher = new MessageCipher(context, masterSecret, identityKey);
+          byte[]          plaintextBody = messageCipher.decrypt(recipient, message.getBody());
 
-          byte[] plaintextBody = messageCipher.decrypt(recipient, message.getBody());
           message = message.withBody(plaintextBody);
           sendResult(PushReceiver.RESULT_OK);
         } catch (InvalidMessageException e) {
@@ -276,11 +275,13 @@ public class DecryptingQueue {
 
         synchronized (SessionCipher.CIPHER_LOCK) {
           Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
-          IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-          MessageCipher   message     = new MessageCipher(context, masterSecret, identityKey, new TextTransport());
+          TextTransport   transportDetails = new TextTransport();
+          IdentityKeyPair identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          MessageCipher   messageCipher    = new MessageCipher(context, masterSecret, identityKey);
+          byte[]          ciphertext       = transportDetails.getDecodedMessage(ciphertextPduBytes);
 
           try {
-            plaintextPduBytes = message.decrypt(recipient, ciphertextPduBytes);
+            plaintextPduBytes = messageCipher.decrypt(recipient, ciphertext);
           } catch (InvalidMessageException ime) {
             // XXX - For some reason, Sprint seems to append a single character to the
             // end of message text segments.  I don't know why, so here we just try
@@ -289,7 +290,8 @@ public class DecryptingQueue {
               Log.w("DecryptingQueue", "Attempting truncated decrypt...");
               byte[] truncated = new byte[ciphertextPduBytes.length - 1];
               System.arraycopy(ciphertextPduBytes, 0, truncated, 0, truncated.length);
-              plaintextPduBytes = message.decrypt(recipient, truncated);
+              ciphertext        = transportDetails.getDecodedMessage(truncated);
+              plaintextPduBytes = messageCipher.decrypt(recipient, ciphertext);
             } else {
               throw ime;
             }
@@ -310,6 +312,9 @@ public class DecryptingQueue {
         database.markAsDecryptFailed(messageId, threadId);
       } catch (MmsException mme) {
         Log.w("DecryptingQueue", mme);
+        database.markAsDecryptFailed(messageId, threadId);
+      } catch (IOException e) {
+        Log.w("DecryptingQueue", e);
         database.markAsDecryptFailed(messageId, threadId);
       }
     }
@@ -354,15 +359,22 @@ public class DecryptingQueue {
             return;
           }
 
-          IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-          MessageCipher   message     = new MessageCipher(context, masterSecret, identityKey, new SmsTransportDetails());
+          SmsTransportDetails transportDetails = new SmsTransportDetails();
+          IdentityKeyPair     identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          MessageCipher       messageCipher    = new MessageCipher(context, masterSecret, identityKey);
+          byte[]              ciphertext       = transportDetails.getDecodedMessage(body.getBytes());
+          byte[]              paddedPlaintext  = messageCipher.decrypt(recipient, ciphertext);
 
-          plaintextBody = new String(message.decrypt(recipient, body.getBytes()));
+          plaintextBody = new String(transportDetails.getStrippedPaddingMessageBody(paddedPlaintext));
         } catch (InvalidMessageException e) {
           Log.w("DecryptionQueue", e);
           database.markAsDecryptFailed(messageId);
           return;
         } catch (RecipientFormattingException e) {
+          Log.w("DecryptionQueue", e);
+          database.markAsDecryptFailed(messageId);
+          return;
+        } catch (IOException e) {
           Log.w("DecryptionQueue", e);
           database.markAsDecryptFailed(messageId);
           return;

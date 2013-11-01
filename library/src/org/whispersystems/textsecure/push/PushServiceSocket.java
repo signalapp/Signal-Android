@@ -84,32 +84,31 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void sendMessage(PushDestination recipient, byte[] body, int type)
+  public void sendMessage(PushDestination recipient, PushBody pushBody)
       throws IOException
   {
     OutgoingPushMessage message = new OutgoingPushMessage(recipient.getRelay(),
                                                           recipient.getNumber(),
-                                                          body, type);
+                                                          pushBody.getBody(),
+                                                          pushBody.getType());
 
     sendMessage(new OutgoingPushMessageList(message));
   }
 
-  public void sendMessage(List<PushDestination> recipients,
-                          List<byte[]> bodies, List<Integer> types)
+  public void sendMessage(List<PushDestination> recipients, List<PushBody> bodies)
       throws IOException
   {
     List<OutgoingPushMessage> messages = new LinkedList<OutgoingPushMessage>();
 
     Iterator<PushDestination> recipientsIterator = recipients.iterator();
-    Iterator<byte[]>          bodiesIterator     = bodies.iterator();
-    Iterator<Integer>         typesIterator      = types.iterator();
+    Iterator<PushBody>        bodiesIterator     = bodies.iterator();
 
     while (recipientsIterator.hasNext()) {
       PushDestination recipient = recipientsIterator.next();
-      byte[]          body      = bodiesIterator.next();
-      int             type      = typesIterator.next();
+      PushBody        body      = bodiesIterator.next();
 
-      messages.add(new OutgoingPushMessage(recipient.getRelay(), recipient.getNumber(), body, type));
+      messages.add(new OutgoingPushMessage(recipient.getRelay(), recipient.getNumber(),
+                                           body.getBody(), body.getType()));
     }
 
     sendMessage(new OutgoingPushMessageList(messages));

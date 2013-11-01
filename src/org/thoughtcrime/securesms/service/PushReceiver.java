@@ -6,6 +6,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.google.protobuf.InvalidProtocolBufferException;
+
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
-import org.thoughtcrime.securesms.transport.SmsTransport;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
@@ -99,7 +99,7 @@ public class PushReceiver {
       if (processor.isTrusted(preKeyExchange)) {
         processor.processKeyExchangeMessage(preKeyExchange);
 
-        IncomingPushMessage bundledMessage = message.withBody(preKeyExchange.getBundledMessage());
+        IncomingPushMessage bundledMessage = message.withBody(preKeyExchange.getBundledMessage().serialize());
         handleReceivedSecureMessage(masterSecret, bundledMessage);
       } else {
         SmsTransportDetails transportDetails = new SmsTransportDetails();

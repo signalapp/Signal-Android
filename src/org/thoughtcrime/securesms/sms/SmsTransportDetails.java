@@ -18,9 +18,9 @@ package org.thoughtcrime.securesms.sms;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.crypto.TransportDetails;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+import org.whispersystems.textsecure.crypto.TransportDetails;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class SmsTransportDetails implements TransportDetails {
   public static final int MULTI_MESSAGE_MAX_BYTES       = BASE_MAX_BYTES - MultipartSmsTransportMessage.MULTI_MESSAGE_MULTIPART_OVERHEAD;
   public static final int FIRST_MULTI_MESSAGE_MAX_BYTES = BASE_MAX_BYTES - MultipartSmsTransportMessage.FIRST_MULTI_MESSAGE_MULTIPART_OVERHEAD;
 
-  public static final int ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE = SINGLE_MESSAGE_MAX_BYTES - SessionCipher.ENCRYPTED_MESSAGE_OVERHEAD;
+  public static final int ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE = SINGLE_MESSAGE_MAX_BYTES - CiphertextMessage.ENCRYPTED_MESSAGE_OVERHEAD;
 
   @Override
   public byte[] getEncodedMessage(byte[] messageWithMac) {
@@ -73,7 +73,7 @@ public class SmsTransportDetails implements TransportDetails {
   @Override
   public byte[] getPaddedMessageBody(byte[] messageBody) {
     int paddedBodySize = getMaxBodySizeForBytes(messageBody.length);
-    Log.w("SessionCipher", "Padding message body out to: " + paddedBodySize);
+    Log.w("SmsTransportDetails", "Padding message body out to: " + paddedBodySize);
 
     byte[] paddedBody = new byte[paddedBodySize];
     System.arraycopy(messageBody, 0, paddedBody, 0, messageBody.length);
@@ -82,7 +82,7 @@ public class SmsTransportDetails implements TransportDetails {
   }
 
   private int getMaxBodySizeForBytes(int bodyLength) {
-    int encryptedBodyLength   = bodyLength + SessionCipher.ENCRYPTED_MESSAGE_OVERHEAD;
+    int encryptedBodyLength   = bodyLength + CiphertextMessage.ENCRYPTED_MESSAGE_OVERHEAD;
     int messageRecordsForBody = getMessageCountForBytes(encryptedBodyLength);
 
     if (messageRecordsForBody == 1) {
@@ -91,7 +91,7 @@ public class SmsTransportDetails implements TransportDetails {
       return
           FIRST_MULTI_MESSAGE_MAX_BYTES +
           (MULTI_MESSAGE_MAX_BYTES * (messageRecordsForBody-1)) -
-              SessionCipher.ENCRYPTED_MESSAGE_OVERHEAD;
+              CiphertextMessage.ENCRYPTED_MESSAGE_OVERHEAD;
     }
   }
 
