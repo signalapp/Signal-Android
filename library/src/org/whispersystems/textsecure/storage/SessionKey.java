@@ -16,6 +16,7 @@
  */
 package org.whispersystems.textsecure.storage;
 
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
@@ -34,13 +35,18 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class SessionKey {
 
-  private int localKeyId;
-  private int remoteKeyId;
+  private int           mode;
+  private int           localKeyId;
+  private int           remoteKeyId;
   private SecretKeySpec cipherKey;
   private SecretKeySpec macKey;
-  private MasterCipher masterCipher;
+  private MasterCipher  masterCipher;
 
-  public SessionKey(int localKeyId, int remoteKeyId, SecretKeySpec cipherKey, SecretKeySpec macKey, MasterSecret masterSecret) {
+  public SessionKey(int mode, int localKeyId, int remoteKeyId,
+                    SecretKeySpec cipherKey, SecretKeySpec macKey,
+                    MasterSecret masterSecret)
+  {
+    this.mode         = mode;
     this.localKeyId   = localKeyId;
     this.remoteKeyId  = remoteKeyId;
     this.cipherKey    = cipherKey;
@@ -48,7 +54,7 @@ public class SessionKey {
     this.masterCipher = new MasterCipher(masterSecret);
   }
 
-  public SessionKey(byte[] bytes, MasterSecret masterSecret) {
+  public SessionKey(byte[] bytes, MasterSecret masterSecret) throws InvalidMessageException {
     this.masterCipher = new MasterCipher(masterSecret);
     deserialize(bytes);
   }
@@ -58,13 +64,16 @@ public class SessionKey {
     byte[] remoteKeyIdBytes = Conversions.mediumToByteArray(remoteKeyId);
     byte[] cipherKeyBytes   = cipherKey.getEncoded();
     byte[] macKeyBytes      = macKey.getEncoded();
-    byte[] combined         = Util.combine(localKeyIdBytes, remoteKeyIdBytes, cipherKeyBytes, macKeyBytes);
+    byte[] modeBytes        = {(byte)mode};
+    byte[] combined         = Util.combine(localKeyIdBytes, remoteKeyIdBytes,
+                                           cipherKeyBytes, macKeyBytes, modeBytes);
 
     return masterCipher.encryptBytes(combined);
   }
 
-  private void deserialize(byte[] bytes) {
-    byte[] decrypted = masterCipher.encryptBytes(bytes);
+  private void deserialize(byte[] bytes) throws InvalidMessageException {
+    byte[] decrypted = masterCipher.decryptBytes(bytes);
+    
     this.localKeyId  = Conversions.byteArrayToMedium(decrypted, 0);
     this.remoteKeyId = Conversions.byteArrayToMedium(decrypted, 3);
 
@@ -73,6 +82,12 @@ public class SessionKey {
 
     byte[] macBytes  = new byte[SessionCipher.MAC_KEY_LENGTH];
     System.arraycopy(decrypted, 6 + keyBytes.length, macBytes, 0, macBytes.length);
+    
+    if (decrypted.length < 6 + SessionCipher.CIPHER_KEY_LENGTH + SessionCipher.MAC_KEY_LENGTH + 1) {
+      throw new InvalidMessageException("No mode included");
+    }
+    
+    this.mode = decrypted[6 + keyBytes.length + macBytes.length];
 
     this.cipherKey         = new SecretKeySpec(keyBytes, "AES");
     this.macKey            = new SecretKeySpec(macBytes, "HmacSHA1");
@@ -94,4 +109,7 @@ public class SessionKey {
     return this.macKey;
   }
 
+  public int getMode() {
+    return mode;
+  }
 }

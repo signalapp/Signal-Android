@@ -21,6 +21,7 @@ import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.io.FileInputStream;
@@ -41,16 +42,16 @@ public class SessionRecord extends Record {
   private static final int[] VALID_VERSION_MARKERS = {CURRENT_VERSION_MARKER, 0X55555556, 0X55555555};
   private static final Object FILE_LOCK            = new Object();
 
-  private int counter;
+  private int    counter;
   private byte[] localFingerprint;
   private byte[] remoteFingerprint;
-  private int negotiatedSessionVersion;
-  private int currentSessionVersion;
+  private int    negotiatedSessionVersion;
+  private int    currentSessionVersion;
 
   private IdentityKey identityKey;
-  private SessionKey sessionKeyRecord;
-  private boolean verifiedSessionKey;
-  private boolean prekeyBundleRequired;
+  private SessionKey  sessionKeyRecord;
+  private boolean     verifiedSessionKey;
+  private boolean     prekeyBundleRequired;
 
   private final MasterSecret masterSecret;
 
@@ -208,8 +209,14 @@ public class SessionRecord extends Record {
           this.remoteFingerprint     = readBlob(in);
           this.currentSessionVersion = 31337;
 
-          if (in.available() != 0)
-            this.sessionKeyRecord = new SessionKey(readBlob(in), masterSecret);
+          if (in.available() != 0) {
+            try {
+              this.sessionKeyRecord = new SessionKey(readBlob(in), masterSecret);
+            } catch (InvalidMessageException e) {
+              Log.w("SessionRecord", e);
+              this.sessionKeyRecord = null;
+            }
+          }
 
           in.close();
         } else {
@@ -230,8 +237,14 @@ public class SessionRecord extends Record {
             this.negotiatedSessionVersion = currentSessionVersion;
           }
 
-          if (in.available() != 0)
-            this.sessionKeyRecord = new SessionKey(readBlob(in), masterSecret);
+          if (in.available() != 0) {
+            try {
+              this.sessionKeyRecord = new SessionKey(readBlob(in), masterSecret);
+            } catch (InvalidMessageException e) {
+              Log.w("SessionRecord", e);
+              this.sessionKeyRecord = null;
+            }
+          }
 
           in.close();
         }
@@ -245,12 +258,15 @@ public class SessionRecord extends Record {
     }
   }
 
-  public SessionKey getSessionKey(int localKeyId, int remoteKeyId) {
+  public SessionKey getSessionKey(int mode, int localKeyId, int remoteKeyId) {
     if (this.sessionKeyRecord == null) return null;
 
-    if ((this.sessionKeyRecord.getLocalKeyId() == localKeyId) &&
-        (this.sessionKeyRecord.getRemoteKeyId() == remoteKeyId))
+    if ((this.sessionKeyRecord.getLocalKeyId() == localKeyId)   &&
+        (this.sessionKeyRecord.getRemoteKeyId() == remoteKeyId) &&
+        (this.sessionKeyRecord.getMode() == mode))
+    {
         return this.sessionKeyRecord;
+    }
 
     return null;
   }

@@ -20,6 +20,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.whispersystems.textsecure.crypto.kdf.DerivedSecrets;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
@@ -38,11 +39,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * This is where the session encryption magic happens.  Implements a compressed version of the OTR protocol.
@@ -148,23 +146,16 @@ public class SessionCipher {
     }
   }
 
-  private SecretKeySpec deriveMacSecret(SecretKeySpec key) {
-    try {
-      MessageDigest md = MessageDigest.getInstance("SHA-1");
-      byte[] secret    = md.digest(key.getEncoded());
-		
-      return new SecretKeySpec(secret, "HmacSHA1");
-    } catch (NoSuchAlgorithmException e) {
-      throw new IllegalArgumentException("SHA-1 Not Supported!",e);
-    }
-  }
- 	
-  private byte[] getPlaintext(byte[] cipherText, SecretKeySpec key, int counter) throws IllegalBlockSizeException, BadPaddingException {
+  private byte[] getPlaintext(byte[] cipherText, SecretKeySpec key, int counter)
+      throws IllegalBlockSizeException, BadPaddingException
+  {
     Cipher cipher = getCipher(Cipher.DECRYPT_MODE, key, counter);
     return cipher.doFinal(cipherText);
   }
 	
-  private byte[] getCiphertext(byte[] message, SecretKeySpec key, int counter) throws IllegalBlockSizeException, BadPaddingException {
+  private byte[] getCiphertext(byte[] message, SecretKeySpec key, int counter)
+      throws IllegalBlockSizeException, BadPaddingException
+  {
     Cipher cipher = getCipher(Cipher.ENCRYPT_MODE, key, counter);
     return cipher.doFinal(message);
   }
@@ -192,49 +183,53 @@ public class SessionCipher {
       throw new IllegalArgumentException("Bad IV?");
     }
   }
-	
-  private SecretKeySpec deriveCipherSecret(int mode, List<BigInteger> sharedSecret,
-                                           KeyRecords records, int localKeyId,
-                                           int remoteKeyId)
+
+  private SessionKey getSessionKey(MasterSecret masterSecret, int mode,
+                                   int messageVersion,
+                                   IdentityKeyPair localIdentityKey,
+                                   KeyRecords records,
+                                   int localKeyId, int remoteKeyId)
       throws InvalidKeyIdException
   {
-    byte[] sharedSecretBytes = concatenateSharedSecrets(sharedSecret);
-    byte[] derivedBytes      = deriveBytes(sharedSecretBytes, 16 * 2);
-    byte[] cipherSecret      = new byte[16];
-		
-    boolean isLowEnd         = isLowEnd(records, localKeyId, remoteKeyId);
-    isLowEnd                 = (mode == Cipher.ENCRYPT_MODE ? isLowEnd : !isLowEnd);
-		
-    if (isLowEnd)  {
-      System.arraycopy(derivedBytes, 16, cipherSecret, 0, 16);
-    } else {
-      System.arraycopy(derivedBytes, 0, cipherSecret, 0, 16);
-    }
-		
-    return new SecretKeySpec(cipherSecret, "AES");
-  }
+    Log.w("SessionCipher", "Getting session key for local: " + localKeyId + " remote: " + remoteKeyId);
+    SessionKey sessionKey = records.getSessionRecord().getSessionKey(mode, localKeyId, remoteKeyId);
 
-  private byte[] concatenateSharedSecrets(List<BigInteger> sharedSecrets) {
-    int          totalByteSize = 0;
-    List<byte[]> byteValues    = new LinkedList<byte[]>();
+    if (sessionKey != null)
+      return sessionKey;
 
-    for (BigInteger sharedSecret : sharedSecrets) {
-      byte[] byteValue = sharedSecret.toByteArray();
-      totalByteSize += byteValue.length;
-      byteValues.add(byteValue);
-    }
+    DerivedSecrets derivedSecrets = calculateSharedSecret(messageVersion, mode, localIdentityKey,
+                                                          records, localKeyId, remoteKeyId);
 
-    byte[] combined = new byte[totalByteSize];
-    int offset      = 0;
-
-    for (byte[] byteValue : byteValues) {
-      System.arraycopy(byteValue, 0, combined, offset, byteValue.length);
-      offset += byteValue.length;
-    }
-
-    return combined;
+    return new SessionKey(mode, localKeyId, remoteKeyId, derivedSecrets.getCipherKey(),
+                          derivedSecrets.getMacKey(), masterSecret);
   }
 	
+  private DerivedSecrets calculateSharedSecret(int messageVersion, int mode,
+                                               IdentityKeyPair localIdentityKey,
+                                               KeyRecords records,
+                                               int localKeyId, int remoteKeyId)
+      throws InvalidKeyIdException
+  {
+    KeyPair               localKeyPair      = records.getLocalKeyRecord().getKeyPairForId(localKeyId);
+    ECPublicKeyParameters remoteKey         = records.getRemoteKeyRecord().getKeyForId(remoteKeyId).getKey();
+    IdentityKey           remoteIdentityKey = records.getSessionRecord().getIdentityKey();
+    boolean               isLowEnd          = isLowEnd(records, localKeyId, remoteKeyId);
+
+    isLowEnd = (mode == Cipher.ENCRYPT_MODE ? isLowEnd : !isLowEnd);
+
+    if (isInitiallyExchangedKeys(records, localKeyId, remoteKeyId) &&
+        messageVersion >= CiphertextMessage.DHE3_INTRODUCED_VERSION)
+    {
+      return SharedSecretCalculator.calculateSharedSecret(isLowEnd,
+                                                          localKeyPair, localKeyId, localIdentityKey,
+                                                          remoteKey, remoteKeyId, remoteIdentityKey);
+    } else {
+      return SharedSecretCalculator.calculateSharedSecret(messageVersion, isLowEnd,
+                                                          localKeyPair, localKeyId,
+                                                          remoteKey, remoteKeyId);
+    }
+  }
+
   private boolean isLowEnd(KeyRecords records, int localKeyId, int remoteKeyId)
       throws InvalidKeyIdException
   {
@@ -245,67 +240,6 @@ public class SessionCipher {
     BigInteger remote                  = remotePublic.getQ().getX().toBigInteger();
 
     return local.compareTo(remote) < 0;
-  }
-
-  private byte[] deriveBytes(byte[] seed, int bytesNeeded) {
-    MessageDigest md;
-
-    try {
-      md = MessageDigest.getInstance("SHA-256");
-    } catch (NoSuchAlgorithmException e) {
-      Log.w("SessionCipher",e);
-      throw new IllegalArgumentException("SHA-256 Not Supported!");
-    }
-		
-    int rounds = bytesNeeded / md.getDigestLength();
-		
-    for (int i=1;i<=rounds;i++) {
-      byte[] roundBytes = Conversions.intToByteArray(i);
-      md.update(roundBytes);
-      md.update(seed);
-    }
-		
-    return md.digest();
-  }
-	
-  private SessionKey getSessionKey(MasterSecret masterSecret, int mode,
-                                   int messageVersion,
-                                   IdentityKeyPair localIdentityKey,
-                                   KeyRecords records,
-                                   int localKeyId, int remoteKeyId)
-      throws InvalidKeyIdException
-  {
-    Log.w("SessionCipher", "Getting session key for local: " + localKeyId + " remote: " + remoteKeyId);
-    SessionKey sessionKey = records.getSessionRecord().getSessionKey(localKeyId, remoteKeyId);
-
-    if (sessionKey != null)
-      return sessionKey;
-		
-    List<BigInteger> sharedSecret = calculateSharedSecret(messageVersion, localIdentityKey, records, localKeyId, remoteKeyId);
-    SecretKeySpec    cipherKey    = deriveCipherSecret(mode, sharedSecret, records, localKeyId, remoteKeyId);
-    SecretKeySpec    macKey       = deriveMacSecret(cipherKey);
-
-    return new SessionKey(localKeyId, remoteKeyId, cipherKey, macKey, masterSecret);
-  }
-	
-  private List<BigInteger> calculateSharedSecret(int messageVersion,
-                                                 IdentityKeyPair localIdentityKey,
-                                                 KeyRecords records,
-                                                 int localKeyId, int remoteKeyId)
-      throws InvalidKeyIdException
-  {
-    KeyPair               localKeyPair      = records.getLocalKeyRecord().getKeyPairForId(localKeyId);
-    ECPublicKeyParameters remoteKey         = records.getRemoteKeyRecord().getKeyForId(remoteKeyId).getKey();
-    IdentityKey           remoteIdentityKey = records.getSessionRecord().getIdentityKey();
-
-    if (isInitiallyExchangedKeys(records, localKeyId, remoteKeyId) &&
-        messageVersion >= CiphertextMessage.CRADLE_AGREEMENT_VERSION)
-    {
-      return SharedSecretCalculator.calculateSharedSecret(localKeyPair, localIdentityKey,
-                                                          remoteKey, remoteIdentityKey);
-    } else {
-      return SharedSecretCalculator.calculateSharedSecret(localKeyPair, remoteKey);
-    }
   }
 
   private boolean isInitiallyExchangedKeys(KeyRecords records, int localKeyId, int remoteKeyId)
