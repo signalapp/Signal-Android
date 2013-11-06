@@ -20,6 +20,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 public class SmsListener extends BroadcastReceiver {
 
   private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+  private static final String SMS_DELIVER_ACTION = "android.provider.Telephony.SMS_DELIVER";
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -129,18 +131,23 @@ public class SmsListener extends BroadcastReceiver {
     return codeParts[0] + codeParts[1];
   }
 
+  private boolean usesSmsBroadcast()
+  {
+      return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT);
+  }
+
   @Override
   public void onReceive(Context context, Intent intent) {
     Log.w("SMSListener", "Got SMS broadcast...");
 
-    if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isChallenge(context, intent)) {
+    if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isChallenge(context, intent) && !usesSmsBroadcast()) {
       Log.w("SmsListener", "Got challenge!");
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
       challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(context, intent));
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
-    } else if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent)) {
+    } else if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent) && !usesSmsBroadcast()) {
       Intent receivedIntent = new Intent(context, SendReceiveService.class);
       receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
       receivedIntent.putExtra("ResultCode", this.getResultCode());
@@ -148,6 +155,21 @@ public class SmsListener extends BroadcastReceiver {
       context.startService(receivedIntent);
 
       abortBroadcast();
+    } else if (intent.getAction().equals(SMS_DELIVER_ACTION) && isChallenge(context, intent) && usesSmsBroadcast()) {
+        Log.w("SmsListener", "Got challenge!");
+        Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
+        challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(context, intent));
+        context.sendBroadcast(challengeIntent);
+
+        abortBroadcast();
+    } else if (intent.getAction().equals(SMS_DELIVER_ACTION) && isRelevant(context, intent) && usesSmsBroadcast()) {
+        Intent receivedIntent = new Intent(context, SendReceiveService.class);
+        receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
+        receivedIntent.putExtra("ResultCode", this.getResultCode());
+        receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
+        context.startService(receivedIntent);
+
+        abortBroadcast();
     } else if (intent.getAction().equals(SendReceiveService.SENT_SMS_ACTION)) {
       intent.putExtra("ResultCode", this.getResultCode());
       intent.setClass(context, SendReceiveService.class);

@@ -31,6 +31,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.provider.Telephony;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
@@ -630,7 +631,16 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     recipientsPanel.setPanelChangeListener(new RecipientsPanelChangeListener());
     sendButton.setOnClickListener(sendButtonListener);
-    sendButton.setEnabled(true);
+    // Only enable send button if version is >4.4 and default sms app
+    boolean sendEnabled = false;
+    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if(Telephony.Sms.getDefaultSmsPackage(this.getApplicationContext()).equals(this.getApplicationContext().getPackageName())) {
+            sendEnabled = true;
+        }
+    } else {
+        sendEnabled = true;
+    }
+    sendButton.setEnabled(sendEnabled);
     addContactButton.setOnClickListener(new AddRecipientButtonListener());
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
