@@ -33,6 +33,9 @@ import ws.com.google.android.mms.pdu.PduParser;
 
 public class MmsListener extends BroadcastReceiver {
 
+  private static final String WAP_PUSH_RECEIVED_ACTION = "android.provider.Telephony.WAP_PUSH_RECEIVED";
+  private static final String WAP_PUSH_DELIVER_ACTION = "android.provider.Telephony.WAP_PUSH_DELIVER";
+
   private boolean isRelevent(Context context, Intent intent) {
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT)
       return false;
@@ -58,19 +61,32 @@ public class MmsListener extends BroadcastReceiver {
     return WirePrefix.isEncryptedMmsSubject(notificationPdu.getSubject().getString());
   }
 
+  private void handleMmsReception(Context context, Intent intent)
+  {
+    intent.setAction(SendReceiveService.RECEIVE_MMS_ACTION);
+    intent.putExtra("ResultCode", this.getResultCode());
+    intent.setClass(context, SendReceiveService.class);
+
+    context.startService(intent);
+    abortBroadcast();
+  }
+
   @Override
     public void onReceive(Context context, Intent intent) {
     Log.w("MmsListener", "Got MMS broadcast...");
 
     if (isRelevent(context, intent)) {
-      intent.setAction(SendReceiveService.RECEIVE_MMS_ACTION);
-      intent.putExtra("ResultCode", this.getResultCode());
-      intent.setClass(context, SendReceiveService.class);
-
-      context.startService(intent);
-      abortBroadcast();
+      // use only WAP_PUSH_DELIVER_ACTION for >KITKAT
+      if((Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)) {
+          if (intent.getAction().equals(WAP_PUSH_DELIVER_ACTION)) {
+            handleMmsReception(context, intent);
+          }
+      } else if (intent.getAction().equals(WAP_PUSH_RECEIVED_ACTION)) {
+        handleMmsReception(context, intent);
+      }
     }
   }
+
 
 
 
