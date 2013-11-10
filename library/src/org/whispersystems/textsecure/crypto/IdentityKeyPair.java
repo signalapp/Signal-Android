@@ -16,7 +16,7 @@
  */
 package org.whispersystems.textsecure.crypto;
 
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
+import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
 
 /**
  * Holder for public and private identity key pair.
@@ -26,9 +26,9 @@ import org.spongycastle.crypto.params.ECPrivateKeyParameters;
 public class IdentityKeyPair {
 
   private final IdentityKey publicKey;
-  private final ECPrivateKeyParameters privateKey;
+  private final ECPrivateKey privateKey;
 
-  public IdentityKeyPair(IdentityKey publicKey, ECPrivateKeyParameters privateKey) {
+  public IdentityKeyPair(IdentityKey publicKey, ECPrivateKey privateKey) {
     this.publicKey  = publicKey;
     this.privateKey = privateKey;
   }
@@ -37,7 +37,7 @@ public class IdentityKeyPair {
     return publicKey;
   }
 
-  public ECPrivateKeyParameters getPrivateKey() {
+  public ECPrivateKey getPrivateKey() {
     return privateKey;
   }
 }

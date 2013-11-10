@@ -1,5 +1,5 @@
 /** 
- * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ package org.whispersystems.textsecure.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.crypto.kdf.DerivedSecrets;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
@@ -30,17 +30,16 @@ import org.whispersystems.textsecure.storage.SessionKey;
 import org.whispersystems.textsecure.storage.SessionRecord;
 import org.whispersystems.textsecure.util.Conversions;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.math.BigInteger;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 /**
  * This is where the session encryption magic happens.  Implements a compressed version of the OTR protocol.
@@ -61,18 +60,20 @@ public class SessionCipher {
                                                    CanonicalRecipientAddress recipient)
   {
     try {
-      KeyRecords records           = getKeyRecords(context, masterSecret, recipient);
-      int        localKeyId        = records.getLocalKeyRecord().getCurrentKeyPair().getId();
-      int        remoteKeyId       = records.getRemoteKeyRecord().getCurrentRemoteKey().getId();
-      int        negotiatedVersion = records.getSessionRecord().getSessionVersion();
-      SessionKey sessionKey        = getSessionKey(masterSecret, Cipher.ENCRYPT_MODE, negotiatedVersion, localIdentityKey, records, localKeyId, remoteKeyId);
-      PublicKey  nextKey           = records.getLocalKeyRecord().getNextKeyPair().getPublicKey();
-      int        counter           = records.getSessionRecord().getCounter();
+      KeyRecords records        = getKeyRecords(context, masterSecret, recipient);
+      int        localKeyId     = records.getLocalKeyRecord().getCurrentKeyPair().getId();
+      int        remoteKeyId    = records.getRemoteKeyRecord().getCurrentRemoteKey().getId();
+      int        sessionVersion = records.getSessionRecord().getSessionVersion();
+      SessionKey sessionKey     = getSessionKey(masterSecret, Cipher.ENCRYPT_MODE, sessionVersion, localIdentityKey, records, localKeyId, remoteKeyId);
+      PublicKey  nextKey        = records.getLocalKeyRecord().getNextKeyPair().getPublicKey();
+      int        counter        = records.getSessionRecord().getCounter();
 
 
       return new SessionCipherContext(records, sessionKey, localKeyId, remoteKeyId,
-                                      nextKey, counter, negotiatedVersion, negotiatedVersion);
+                                      nextKey, counter, sessionVersion);
     } catch (InvalidKeyIdException e) {
+      throw new IllegalArgumentException(e);
+    } catch (InvalidKeyException e) {
       throw new IllegalArgumentException(e);
     }
   }
@@ -82,7 +83,7 @@ public class SessionCipher {
                                                    CanonicalRecipientAddress recipient,
                                                    int senderKeyId, int recipientKeyId,
                                                    PublicKey nextKey, int counter,
-                                                   int messageVersion, int negotiatedVersion)
+                                                   int messageVersion)
       throws InvalidMessageException
   {
     try {
@@ -94,11 +95,15 @@ public class SessionCipher {
                                           records.getSessionRecord().getNegotiatedSessionVersion());
       }
 
-      SessionKey sessionKey = getSessionKey(masterSecret, Cipher.DECRYPT_MODE, messageVersion, localIdentityKey, records, recipientKeyId, senderKeyId);
+      SessionKey sessionKey = getSessionKey(masterSecret, Cipher.DECRYPT_MODE, messageVersion,
+                                            localIdentityKey, records, recipientKeyId, senderKeyId);
+
       return new SessionCipherContext(records, sessionKey, senderKeyId,
                                       recipientKeyId, nextKey, counter,
-                                      messageVersion, negotiatedVersion);
+                                      messageVersion);
     } catch (InvalidKeyIdException e) {
+      throw new InvalidMessageException(e);
+    } catch (InvalidKeyException e) {
       throw new InvalidMessageException(e);
     }
   }
@@ -125,7 +130,9 @@ public class SessionCipher {
   {
     Log.w("SessionCipher", "Decrypting message...");
     try {
-      byte[] plaintextWithPadding = getPlaintext(decodedCiphertext, context.getSessionKey().getCipherKey(), context.getCounter());
+      byte[] plaintextWithPadding = getPlaintext(decodedCiphertext,
+                                                 context.getSessionKey().getCipherKey(),
+                                                 context.getCounter());
 
       context.getRemoteKeyRecord().updateCurrentRemoteKey(context.getNextKey());
       context.getRemoteKeyRecord().save();
@@ -134,7 +141,6 @@ public class SessionCipher {
       context.getLocalKeyRecord().save();
 			
       context.getSessionRecord().setSessionKey(context.getSessionKey());
-      context.getSessionRecord().setSessionVersion(context.getNegotiatedVersion());
       context.getSessionRecord().setPrekeyBundleRequired(false);
       context.getSessionRecord().save();
 			
@@ -175,7 +181,7 @@ public class SessionCipher {
       throw new IllegalArgumentException("AES Not Supported!");
     } catch (NoSuchPaddingException e) {
       throw new IllegalArgumentException("NoPadding Not Supported!");
-    } catch (InvalidKeyException e) {
+    } catch (java.security.InvalidKeyException e) {
       Log.w("SessionCipher", e);
       throw new IllegalArgumentException("Invaid Key?");
     } catch (InvalidAlgorithmParameterException e) {
@@ -189,7 +195,7 @@ public class SessionCipher {
                                    IdentityKeyPair localIdentityKey,
                                    KeyRecords records,
                                    int localKeyId, int remoteKeyId)
-      throws InvalidKeyIdException
+      throws InvalidKeyIdException, InvalidKeyException
   {
     Log.w("SessionCipher", "Getting session key for local: " + localKeyId + " remote: " + remoteKeyId);
     SessionKey sessionKey = records.getSessionRecord().getSessionKey(mode, localKeyId, remoteKeyId);
@@ -208,12 +214,12 @@ public class SessionCipher {
                                                IdentityKeyPair localIdentityKey,
                                                KeyRecords records,
                                                int localKeyId, int remoteKeyId)
-      throws InvalidKeyIdException
+      throws InvalidKeyIdException, InvalidKeyException
   {
-    KeyPair               localKeyPair      = records.getLocalKeyRecord().getKeyPairForId(localKeyId);
-    ECPublicKeyParameters remoteKey         = records.getRemoteKeyRecord().getKeyForId(remoteKeyId).getKey();
-    IdentityKey           remoteIdentityKey = records.getSessionRecord().getIdentityKey();
-    boolean               isLowEnd          = isLowEnd(records, localKeyId, remoteKeyId);
+    KeyPair     localKeyPair      = records.getLocalKeyRecord().getKeyPairForId(localKeyId);
+    ECPublicKey remoteKey         = records.getRemoteKeyRecord().getKeyForId(remoteKeyId).getKey();
+    IdentityKey remoteIdentityKey = records.getSessionRecord().getIdentityKey();
+    boolean     isLowEnd          = isLowEnd(records, localKeyId, remoteKeyId);
 
     isLowEnd = (mode == Cipher.ENCRYPT_MODE ? isLowEnd : !isLowEnd);
 
@@ -233,13 +239,10 @@ public class SessionCipher {
   private boolean isLowEnd(KeyRecords records, int localKeyId, int remoteKeyId)
       throws InvalidKeyIdException
   {
-    ECPublicKeyParameters localPublic  = records.getLocalKeyRecord().getKeyPairForId(localKeyId).getPublicKey().getKey();
-    ECPublicKeyParameters remotePublic = records.getRemoteKeyRecord().getKeyForId(remoteKeyId).getKey();
+    ECPublicKey localPublic  = records.getLocalKeyRecord().getKeyPairForId(localKeyId).getPublicKey().getKey();
+    ECPublicKey remotePublic = records.getRemoteKeyRecord().getKeyForId(remoteKeyId).getKey();
 
-    BigInteger local                   = localPublic.getQ().getX().toBigInteger();
-    BigInteger remote                  = remotePublic.getQ().getX().toBigInteger();
-
-    return local.compareTo(remote) < 0;
+    return localPublic.compareTo(remotePublic) < 0;
   }
 
   private boolean isInitiallyExchangedKeys(KeyRecords records, int localKeyId, int remoteKeyId)
@@ -297,7 +300,6 @@ public class SessionCipher {
     private final PublicKey       nextKey;
     private final int             counter;
     private final int             messageVersion;
-    private final int             negotiatedVersion;
 
     public SessionCipherContext(KeyRecords records,
                                 SessionKey sessionKey,
@@ -305,8 +307,7 @@ public class SessionCipher {
                                 int receiverKeyId,
                                 PublicKey nextKey,
                                 int counter,
-                                int messageVersion,
-                                int negotiatedVersion)
+                                int messageVersion)
     {
       this.localKeyRecord    = records.getLocalKeyRecord();
       this.remoteKeyRecord   = records.getRemoteKeyRecord();
@@ -317,7 +318,6 @@ public class SessionCipher {
       this.nextKey           = nextKey;
       this.counter           = counter;
       this.messageVersion    = messageVersion;
-      this.negotiatedVersion = negotiatedVersion;
     }
 
     public LocalKeyRecord getLocalKeyRecord() {
@@ -350,10 +350,6 @@ public class SessionCipher {
 
     public int getRecipientKeyId() {
       return recipientKeyId;
-    }
-
-    public int getNegotiatedVersion() {
-      return negotiatedVersion;
     }
 
     public int getMessageVersion() {

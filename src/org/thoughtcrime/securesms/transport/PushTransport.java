@@ -1,3 +1,20 @@
+/**
+ * Copyright (C) 2013 Open Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.thoughtcrime.securesms.transport;
 
 import android.content.Context;
@@ -21,6 +38,7 @@ import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
@@ -162,7 +180,7 @@ public class PushTransport extends BaseTransport {
   private byte[] getEncryptedPrekeyBundleMessageForExistingSession(Recipient recipient,
                                                                    byte[] plaintext)
   {
-    IdentityKeyPair     identityKeyPair     = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    IdentityKeyPair     identityKeyPair     = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
     IdentityKey         identityKey         = identityKeyPair.getPublicKey();
     MessageCipher       messageCipher       = new MessageCipher(context, masterSecret, identityKeyPair);
     CiphertextMessage   ciphertextMessage   = messageCipher.encrypt(recipient, plaintext);
@@ -177,7 +195,7 @@ public class PushTransport extends BaseTransport {
                                                               byte[] plaintext)
       throws IOException
   {
-    IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
     IdentityKey          identityKey     = identityKeyPair.getPublicKey();
     PreKeyEntity         preKey          = socket.getPreKey(pushDestination);
     KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipient);
@@ -194,7 +212,7 @@ public class PushTransport extends BaseTransport {
   private byte[] getEncryptedMessageForExistingSession(Recipient recipient, byte[] plaintext)
       throws IOException
   {
-    IdentityKeyPair   identityKeyPair   = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    IdentityKeyPair   identityKeyPair   = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
     MessageCipher     messageCipher     = new MessageCipher(context, masterSecret, identityKeyPair);
     CiphertextMessage ciphertextMessage = messageCipher.encrypt(recipient, plaintext);
 

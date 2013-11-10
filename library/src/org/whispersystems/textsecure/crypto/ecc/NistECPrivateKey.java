@@ -15,25 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.whispersystems.textsecure.crypto.kdf;
+package org.whispersystems.textsecure.crypto.ecc;
 
-import javax.crypto.spec.SecretKeySpec;
+import org.spongycastle.crypto.params.ECPrivateKeyParameters;
 
-public class DerivedSecrets {
+public class NistECPrivateKey implements ECPrivateKey {
 
-  private final SecretKeySpec cipherKey;
-  private final SecretKeySpec macKey;
+  private final ECPrivateKeyParameters privateKey;
 
-  public DerivedSecrets(SecretKeySpec cipherKey, SecretKeySpec macKey) {
-    this.cipherKey = cipherKey;
-    this.macKey    = macKey;
+  public NistECPrivateKey(ECPrivateKeyParameters privateKey) {
+    this.privateKey = privateKey;
   }
 
-  public SecretKeySpec getCipherKey() {
-    return cipherKey;
+  @Override
+  public byte[] serialize() {
+    return privateKey.getD().toByteArray();
   }
 
-  public SecretKeySpec getMacKey() {
-    return macKey;
+  @Override
+  public int getType() {
+    return Curve.NIST_TYPE;
+  }
+
+  public ECPrivateKeyParameters getParameters() {
+    return privateKey;
   }
 }

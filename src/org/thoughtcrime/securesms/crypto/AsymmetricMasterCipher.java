@@ -1,5 +1,6 @@
 /** 
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,24 +17,24 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
+import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
+import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.Conversions;
+import org.whispersystems.textsecure.util.Util;
+
 import java.io.IOException;
-import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.spongycastle.crypto.AsymmetricCipherKeyPair;
-import org.spongycastle.crypto.agreement.ECDHBasicAgreement;
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.KeyUtil;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.PublicKey;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Conversions;
 
 /**
  * This class is used to asymmetricly encrypt local data.  This is used in the case
@@ -58,26 +59,23 @@ import org.whispersystems.textsecure.util.Conversions;
 public class AsymmetricMasterCipher {
 
   private final AsymmetricMasterSecret asymmetricMasterSecret;
-	
+
   public AsymmetricMasterCipher(AsymmetricMasterSecret asymmetricMasterSecret) {
     this.asymmetricMasterSecret = asymmetricMasterSecret;
   }
 	
   public String decryptBody(String body) throws IOException, InvalidMessageException {
     try {
-      byte[] combined           = Base64.decode(body);
-      PublicKey theirPublicKey  = new PublicKey(combined, 0);
-      byte[] encryptedBodyBytes = new byte[combined.length - PublicKey.KEY_SIZE];
-      System.arraycopy(combined, PublicKey.KEY_SIZE, encryptedBodyBytes, 0, encryptedBodyBytes.length);
-			
-      ECDHBasicAgreement agreement = new ECDHBasicAgreement();
-      agreement.init(asymmetricMasterSecret.getPrivateKey());
-			
-      BigInteger secret         = KeyUtil.calculateAgreement(agreement, theirPublicKey.getKey());
-      MasterCipher masterCipher = getMasterCipherForSecret(secret);
-      byte[] decryptedBodyBytes = masterCipher.decryptBytes(encryptedBodyBytes);
-			
-      return new String(decryptedBodyBytes);
+      byte[]    combined       = Base64.decode(body);
+      byte[][]  parts          = Util.split(combined, PublicKey.KEY_SIZE, combined.length - PublicKey.KEY_SIZE);
+      PublicKey theirPublicKey = new PublicKey(parts[0], 0);
+
+      ECPrivateKey ourPrivateKey = asymmetricMasterSecret.getPrivateKey(theirPublicKey.getType());
+      byte[]       secret        = Curve.calculateAgreement(theirPublicKey.getKey(), ourPrivateKey);
+      MasterCipher masterCipher  = getMasterCipherForSecret(secret);
+      byte[]       decryptedBody = masterCipher.decryptBytes(parts[1]);
+
+      return new String(decryptedBody);
     } catch (InvalidKeyException ike) {
       throw new InvalidMessageException(ike);
     } catch (InvalidMessageException e) {
@@ -86,26 +84,31 @@ public class AsymmetricMasterCipher {
   }
 	
   public String encryptBody(String body) {
-    ECDHBasicAgreement agreement    = new ECDHBasicAgreement();
-    AsymmetricCipherKeyPair keyPair = KeyUtil.generateKeyPair();
-		
-    agreement.init(keyPair.getPrivate());
-		
-    BigInteger secret         = KeyUtil.calculateAgreement(agreement, asymmetricMasterSecret.getPublicKey().getKey());
-    MasterCipher masterCipher = getMasterCipherForSecret(secret);
-    byte[] encryptedBodyBytes = masterCipher.encryptBytes(body.getBytes());
-    PublicKey publicKey       = new PublicKey(31337, (ECPublicKeyParameters)keyPair.getPublic());
-    byte[] publicKeyBytes     = publicKey.serialize();
-    byte[] combined           = new byte[publicKeyBytes.length + encryptedBodyBytes.length];
-		
-    System.arraycopy(publicKeyBytes, 0, combined, 0, publicKeyBytes.length);
-    System.arraycopy(encryptedBodyBytes, 0, combined, publicKeyBytes.length, encryptedBodyBytes.length);
-		
-    return Base64.encodeBytes(combined);
+    try {
+      ECPublicKey theirPublic;
+
+      if (asymmetricMasterSecret.getDjbPublicKey() != null) {
+        theirPublic = asymmetricMasterSecret.getDjbPublicKey();
+      } else {
+        theirPublic = asymmetricMasterSecret.getNistPublicKey();
+      }
+
+      ECKeyPair    ourKeyPair         = Curve.generateKeyPairForType(theirPublic.getType());
+      byte[]       secret             = Curve.calculateAgreement(theirPublic, ourKeyPair.getPrivateKey());
+      MasterCipher masterCipher       = getMasterCipherForSecret(secret);
+      byte[]       encryptedBodyBytes = masterCipher.encryptBytes(body.getBytes());
+
+      PublicKey    ourPublicKey       = new PublicKey(31337, ourKeyPair.getPublicKey());
+      byte[]       publicKeyBytes     = ourPublicKey.serialize();
+      byte[]       combined           = Util.combine(publicKeyBytes, encryptedBodyBytes);
+
+      return Base64.encodeBytes(combined);
+    } catch (InvalidKeyException e) {
+      throw new AssertionError(e);
+    }
   }
 	
-  private MasterCipher getMasterCipherForSecret(BigInteger secret) {
-    byte[] secretBytes        = secret.toByteArray();
+  private MasterCipher getMasterCipherForSecret(byte[] secretBytes) {
     SecretKeySpec cipherKey   = deriveCipherKey(secretBytes);
     SecretKeySpec macKey      = deriveMacKey(secretBytes);
     MasterSecret masterSecret = new MasterSecret(cipherKey, macKey);

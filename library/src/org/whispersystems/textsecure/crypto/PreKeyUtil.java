@@ -1,9 +1,28 @@
+/**
+ * Copyright (C) 2013 Open Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.whispersystems.textsecure.crypto;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
+
+import org.whispersystems.textsecure.crypto.ecc.Curve25519;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Medium;
@@ -21,7 +40,7 @@ import java.util.List;
 
 public class PreKeyUtil {
 
-  public static final int BATCH_SIZE = 70;
+  public static final int BATCH_SIZE = 20;
 
   public static List<PreKeyRecord> generatePreKeys(Context context, MasterSecret masterSecret) {
     List<PreKeyRecord> records        = new LinkedList<PreKeyRecord>();
@@ -29,7 +48,7 @@ public class PreKeyUtil {
 
     for (int i=0;i<BATCH_SIZE;i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
-      PreKeyPair   keyPair  = new PreKeyPair(masterSecret, KeyUtil.generateKeyPair());
+      PreKeyPair   keyPair  = new PreKeyPair(masterSecret, Curve25519.generateKeyPair());
       PreKeyRecord record   = new PreKeyRecord(context, masterSecret, preKeyId, keyPair);
 
       record.save();
@@ -50,7 +69,7 @@ public class PreKeyUtil {
       }
     }
 
-    PreKeyPair   keyPair = new PreKeyPair(masterSecret, KeyUtil.generateKeyPair());
+    PreKeyPair   keyPair = new PreKeyPair(masterSecret, Curve25519.generateKeyPair());
     PreKeyRecord record  = new PreKeyRecord(context, masterSecret, Medium.MAX_VALUE, keyPair);
 
     record.save();

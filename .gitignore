@@ -20,3 +20,5 @@ signing.properties
 gradle
 gradlew
 gradlew.bat
+library/lib/
+library/obj/

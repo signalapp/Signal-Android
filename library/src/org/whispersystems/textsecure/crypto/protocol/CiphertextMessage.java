@@ -9,8 +9,9 @@ import org.whispersystems.textsecure.util.Conversions;
 
 public class CiphertextMessage {
 
-  public static final int SUPPORTED_VERSION       = 2;
-  public static final int DHE3_INTRODUCED_VERSION = 2;
+  public static final int SUPPORTED_VERSION             = 2;
+  public static final int DHE3_INTRODUCED_VERSION       = 2;
+  public static final int CURVE25519_INTRODUCED_VERSION = 2;
 
           static final int VERSION_LENGTH         = 1;
   private static final int SENDER_KEY_ID_LENGTH   = 3;

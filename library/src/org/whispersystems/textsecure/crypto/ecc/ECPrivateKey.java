@@ -15,25 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.whispersystems.textsecure.crypto.kdf;
+package org.whispersystems.textsecure.crypto.ecc;
 
-import javax.crypto.spec.SecretKeySpec;
-
-public class DerivedSecrets {
-
-  private final SecretKeySpec cipherKey;
-  private final SecretKeySpec macKey;
-
-  public DerivedSecrets(SecretKeySpec cipherKey, SecretKeySpec macKey) {
-    this.cipherKey = cipherKey;
-    this.macKey    = macKey;
-  }
-
-  public SecretKeySpec getCipherKey() {
-    return cipherKey;
-  }
-
-  public SecretKeySpec getMacKey() {
-    return macKey;
-  }
+public interface ECPrivateKey {
+  public byte[] serialize();
+  public int getType();
 }

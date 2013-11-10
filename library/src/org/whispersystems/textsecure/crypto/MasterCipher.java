@@ -1,5 +1,6 @@
 /** 
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +17,14 @@
  */
 package org.whispersystems.textsecure.crypto;
 
+import android.util.Log;
+
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
+import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.Hex;
+
 import java.io.IOException;
-import java.math.BigInteger;
 import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -31,12 +38,6 @@ import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Hex;
-
-import android.util.Log;
 
 /**
  * Class that handles encryption for local storage.
@@ -69,13 +70,11 @@ public class MasterCipher {
       throw new AssertionError(e);
     }
   }
-	
-  public byte[] encryptKey(ECPrivateKeyParameters params) {
-    BigInteger d  = params.getD();
-    byte[] dBytes = d.toByteArray();
-    return encryptBytes(dBytes);
+
+  public byte[] encryptKey(ECPrivateKey privateKey) {
+    return encryptBytes(privateKey.serialize());
   }
-	
+
   public String encryptBody(String body)  {
     return encryptAndEncodeBytes(body.getBytes());
   }
@@ -84,13 +83,13 @@ public class MasterCipher {
     return new String(decodeAndDecryptBytes(body));
   }
 	
-  public ECPrivateKeyParameters decryptKey(byte[] key) {
+  public ECPrivateKey decryptKey(int type, byte[] key)
+      throws org.whispersystems.textsecure.crypto.InvalidKeyException
+  {
     try {
-      BigInteger d = new BigInteger(decryptBytes(key));
-      return new ECPrivateKeyParameters(d, KeyUtil.domainParameters);
+      return Curve.decodePrivatePoint(type, decryptBytes(key));
     } catch (InvalidMessageException ime) {
-      Log.w("bodycipher", ime);
-      return null; // XXX
+      throw new org.whispersystems.textsecure.crypto.InvalidKeyException(ime);
     }
   }
 	

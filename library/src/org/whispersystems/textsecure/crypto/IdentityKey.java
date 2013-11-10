@@ -1,5 +1,6 @@
 /** 
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +20,10 @@ package org.whispersystems.textsecure.crypto;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Hex;
+import org.whispersystems.textsecure.util.Util;
 
 /**
  * A class for representing an identity key.
@@ -44,15 +47,15 @@ public class IdentityKey implements Parcelable, SerializableKey {
     }
   };
 	
-  public  static final int SIZE    = 1 + KeyUtil.POINT_SIZE;
-  private static final int VERSION = 1;
-	
-  private ECPublicKeyParameters publicKey;
-	
-  public IdentityKey(ECPublicKeyParameters publicKey) {
+  public  static final int SIZE           = 1 + ECPublicKey.KEY_SIZE;
+  private static final int CURRENT_VESION = 1;
+
+  private ECPublicKey publicKey;
+
+  public IdentityKey(ECPublicKey publicKey) {
     this.publicKey = publicKey;
   }
-	
+
   public IdentityKey(Parcel in) throws InvalidKeyException {
     int length        = in.readInt();
     byte[] serialized = new byte[length];
@@ -64,43 +67,42 @@ public class IdentityKey implements Parcelable, SerializableKey {
   public IdentityKey(byte[] bytes, int offset) throws InvalidKeyException {
     initializeFromSerialized(bytes, offset);
   }
-	
-  public ECPublicKeyParameters getPublicKeyParameters() {
-    return this.publicKey;
+
+  public ECPublicKey getPublicKey() {
+    return publicKey;
   }
-	
+
   private void initializeFromSerialized(byte[] bytes, int offset) throws InvalidKeyException {
-    int version       = bytes[offset] & 0xff;
+    int version = bytes[offset] & 0xff;
 		
-    if (version > VERSION)
+    if (version > CURRENT_VESION)
       throw new InvalidKeyException("Unsupported key version: " + version);
 
-    this.publicKey = KeyUtil.decodePoint(bytes, offset+1);
+    this.publicKey = Curve.decodePoint(bytes, offset + 1);
   }
 	
   public byte[] serialize() {
-    byte[] encodedKey = KeyUtil.encodePoint(publicKey.getQ());
-    byte[] combined   = new byte[1 + encodedKey.length];
-		
-    combined[0]       = (byte)VERSION;
-    System.arraycopy(encodedKey, 0, combined, 1, encodedKey.length);
-		
-    return combined;
+    byte[] versionBytes = {(byte)CURRENT_VESION};
+    byte[] encodedKey   = publicKey.serialize();
+
+    return Util.combine(versionBytes, encodedKey);
   }
-	
+
   public String getFingerprint() {
-    return Hex.toString(serialize());
+    return Hex.toString(publicKey.serialize());
   }
 	
   @Override
   public boolean equals(Object other) {
+    if (other == null)                   return false;
     if (!(other instanceof IdentityKey)) return false;
-    return publicKey.getQ().equals(((IdentityKey)other).publicKey.getQ());
+
+    return publicKey.equals(((IdentityKey) other).getPublicKey());
   }
 	
   @Override
   public int hashCode() {
-    return publicKey.getQ().hashCode();
+    return publicKey.hashCode();
   }
 
   public int describeContents() {
