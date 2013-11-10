@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,11 +72,7 @@ public class KeyExchangeProcessor {
   }
 
   public boolean isTrusted(KeyExchangeMessage message) {
-    if (!message.hasIdentityKey()) {
-      return false;
-    }
-
-    return isTrusted(message.getIdentityKey());
+    return message.hasIdentityKey() && isTrusted(message.getIdentityKey());
   }
 
   public boolean isTrusted(PreKeyBundleMessage message) {
@@ -155,7 +152,7 @@ public class KeyExchangeProcessor {
     remoteKeyRecord.setLastRemoteKey(remoteKey);
     remoteKeyRecord.save();
 
-    localKeyRecord = KeyUtil.initializeRecordFor(recipient, context, masterSecret);
+    localKeyRecord = KeyUtil.initializeRecordFor(context, masterSecret, recipient, CiphertextMessage.SUPPORTED_VERSION);
     localKeyRecord.setNextKeyPair(localKeyRecord.getCurrentKeyPair());
     localKeyRecord.save();
 
@@ -176,7 +173,7 @@ public class KeyExchangeProcessor {
     message.getPublicKey().setId(initiateKeyId);
 
     if (needsResponseFromUs()) {
-      localKeyRecord                = KeyUtil.initializeRecordFor(recipient, context, masterSecret);
+      localKeyRecord                = KeyUtil.initializeRecordFor(context, masterSecret, recipient, message.getMessageVersion());
       KeyExchangeMessage ourMessage = new KeyExchangeMessage(context, masterSecret, Math.min(CiphertextMessage.SUPPORTED_VERSION, message.getMaxVersion()), localKeyRecord, initiateKeyId);
       OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, ourMessage.serialize());
       Log.w("KeyExchangeProcessor", "Responding with key exchange message fingerprint: " + ourMessage.getPublicKey().getFingerprint());

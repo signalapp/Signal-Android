@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,9 +22,9 @@ import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.KeyPair;
-import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.util.Medium;
 
 import java.io.FileInputStream;
@@ -65,9 +66,12 @@ public class LocalKeyRecord extends Record {
   public void advanceKeyIfNecessary(int keyId) {
     Log.w("LocalKeyRecord", "Remote client acknowledges receiving key id: " + keyId);
     if (keyId == localNextKeyPair.getId()) {
+      int keyType = this.localNextKeyPair.getPublicKey().getType();
+
       this.localCurrentKeyPair = this.localNextKeyPair;
       this.localNextKeyPair    = new KeyPair((this.localNextKeyPair.getId()+1) % Medium.MAX_VALUE,
-                                             KeyUtil.generateKeyPair(), masterSecret);
+                                             Curve.generateKeyPairForType(keyType),
+                                             masterSecret);
     }
   }
 

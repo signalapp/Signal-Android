@@ -1,5 +1,6 @@
 /** 
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +26,8 @@ import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
@@ -59,8 +62,6 @@ import java.io.IOException;
 
 public class KeyExchangeMessage {
 
-  private static final int SUPPORTED_VERSION = CiphertextMessage.SUPPORTED_VERSION;
-
   private final int         messageVersion;
   private final int         supportedVersion;
   private final PublicKey   publicKey;
@@ -70,7 +71,7 @@ public class KeyExchangeMessage {
   public KeyExchangeMessage(Context context, MasterSecret masterSecret, int messageVersion, LocalKeyRecord record, int highIdBits) {
     this.publicKey        = new PublicKey(record.getCurrentKeyPair().getPublicKey());
     this.messageVersion   = messageVersion;
-    this.supportedVersion = SUPPORTED_VERSION;
+    this.supportedVersion = CiphertextMessage.SUPPORTED_VERSION;
 		
     publicKey.setId(publicKey.getId() | (highIdBits << 12));
 
@@ -80,11 +81,11 @@ public class KeyExchangeMessage {
     byte[] serializedBytes;
 
     if (includeIdentityNoSignature(messageVersion, context)) {
-      byte[] identityKey = IdentityKeyUtil.getIdentityKey(context).serialize();
+      byte[] identityKey = IdentityKeyUtil.getIdentityKey(context, Curve.DJB_TYPE).serialize();
 
       serializedBytes = Util.combine(versionBytes, publicKeyBytes, identityKey);
     } else if (includeIdentitySignature(messageVersion, context)) {
-      byte[] prolog          = Util.combine(versionBytes, publicKeyBytes);
+      byte[] prolog = Util.combine(versionBytes, publicKeyBytes);
 
       serializedBytes = IdentityKeyUtil.getSignedKeyExchange(context, masterSecret, prolog);
     } else {
@@ -102,14 +103,13 @@ public class KeyExchangeMessage {
       this.supportedVersion = Conversions.lowBitsToInt(keyBytes[0]);
       this.serialized       = messageBody;
 			
-      if (messageVersion > SUPPORTED_VERSION)
-        throw new InvalidVersionException("Key exchange with version: " + messageVersion +
-                                          " but we only support: " + SUPPORTED_VERSION);
+      if (messageVersion > CiphertextMessage.SUPPORTED_VERSION)
+        throw new InvalidVersionException("Key exchange with version: " + messageVersion);
 
       if (messageVersion >= 1)
         keyBytes = Base64.decodeWithoutPadding(messageBody);
 			
-      this.publicKey  = new PublicKey(keyBytes, 1);
+      this.publicKey = new PublicKey(keyBytes, 1);
 			
       if (keyBytes.length <= PublicKey.KEY_SIZE + 1) {
         this.identityKey = null;
@@ -134,11 +134,11 @@ public class KeyExchangeMessage {
   }
 	
   private static boolean includeIdentitySignature(int messageVersion, Context context) {
-    return IdentityKeyUtil.hasIdentityKey(context) && (messageVersion == 1);
+    return IdentityKeyUtil.hasIdentityKey(context, Curve.NIST_TYPE) && (messageVersion == 1);
   }
 
   private static boolean includeIdentityNoSignature(int messageVersion, Context context) {
-    return IdentityKeyUtil.hasIdentityKey(context) && (messageVersion >= 2);
+    return IdentityKeyUtil.hasIdentityKey(context, Curve.DJB_TYPE) && (messageVersion >= 2);
   }
 	
   public PublicKey getPublicKey() {
@@ -151,6 +151,10 @@ public class KeyExchangeMessage {
 	
   public int getMaxVersion() {
     return supportedVersion;
+  }
+
+  public int getMessageVersion() {
+    return messageVersion;
   }
 	
   public boolean hasIdentityKey() {

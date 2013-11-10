@@ -77,7 +77,9 @@ public class PreKeyBundleMessage {
 
     messageBytes[VERSION_OFFSET] = bundledMessageBytes[VERSION_OFFSET];
     System.arraycopy(identityKeyBytes, 0, messageBytes, IDENTITY_KEY_OFFSET, identityKeyBytes.length);
-    System.arraycopy(bundledMessageBytes, VERSION_OFFSET+VERSION_LENGTH, messageBytes, IDENTITY_KEY_OFFSET+IDENTITY_KEY_LENGTH, bundledMessageBytes.length-VERSION_LENGTH);
+    System.arraycopy(bundledMessageBytes, VERSION_OFFSET+VERSION_LENGTH,
+                     messageBytes, IDENTITY_KEY_OFFSET+IDENTITY_KEY_LENGTH,
+                     bundledMessageBytes.length-VERSION_LENGTH);
   }
 
   public byte[] serialize() {

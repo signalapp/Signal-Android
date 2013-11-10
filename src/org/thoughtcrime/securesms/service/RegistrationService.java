@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -273,7 +275,7 @@ public class RegistrationService extends Service {
       throws GcmRegistrationTimeoutException, IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this);
+    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this, Curve.DJB_TYPE);
     List<PreKeyRecord> records     = waitForPreKeys(masterSecret);
     PreKeyRecord       lastResort  = PreKeyUtil.generateLastResortKey(this, masterSecret);
     socket.registerPreKeys(identityKey, lastResort, records);

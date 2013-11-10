@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,14 +58,12 @@ public class MessageCipher {
       try {
         CiphertextMessage message = new CiphertextMessage(ciphertext);
 
-        int       messageVersion    = message.getCurrentVersion();
-        int       supportedVersion  = message.getSupportedVersion();
-        int       negotiatedVersion = Math.min(supportedVersion, CiphertextMessage.SUPPORTED_VERSION);
-        int       senderKeyId       = message.getSenderKeyId();
-        int       receiverKeyId     = message.getReceiverKeyId();
-        PublicKey nextRemoteKey     = new PublicKey(message.getNextKeyBytes());
-        int       counter           = message.getCounter();
-        byte[]    body              = message.getBody();
+        int       messageVersion = message.getCurrentVersion();
+        int       senderKeyId    = message.getSenderKeyId();
+        int       receiverKeyId  = message.getReceiverKeyId();
+        PublicKey nextRemoteKey  = new PublicKey(message.getNextKeyBytes());
+        int       counter        = message.getCounter();
+        byte[]    body           = message.getBody();
 
         SessionCipher        sessionCipher     = new SessionCipher();
         SessionCipherContext sessionContext    = sessionCipher.getDecryptionContext(context, masterSecret,
@@ -73,8 +72,7 @@ public class MessageCipher {
                                                                                     receiverKeyId,
                                                                                     nextRemoteKey,
                                                                                     counter,
-                                                                                    messageVersion,
-                                                                                    negotiatedVersion);
+                                                                                    messageVersion);
 
         message.verifyMac(sessionContext);
 
@@ -84,5 +82,4 @@ public class MessageCipher {
       }
     }
   }
-
 }

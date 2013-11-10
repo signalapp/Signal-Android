@@ -24,13 +24,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
@@ -89,6 +90,13 @@ public class IdentityDatabase extends Database {
         }
 
         IdentityKey ourIdentity = new IdentityKey(Base64.decode(serializedIdentity), 0);
+
+        if (theirIdentity.getPublicKey().getType() == Curve.DJB_TYPE &&
+            ourIdentity.getPublicKey().getType() == Curve.NIST_TYPE)
+        {
+          return true;
+        }
+
         return ourIdentity.equals(theirIdentity);
       } else {
         return true;

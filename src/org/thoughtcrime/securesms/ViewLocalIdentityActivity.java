@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +29,8 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 
 /**
  * Activity that displays the local identity key and offers the option to regenerate it.
@@ -41,7 +44,7 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
   public void onCreate(Bundle bundle) {
     this.masterSecret = getIntent().getParcelableExtra("master_secret");
 
-    getIntent().putExtra("identity_key", IdentityKeyUtil.getIdentityKey(this));
+    getIntent().putExtra("identity_key", IdentityKeyUtil.getIdentityKey(this, Curve.DJB_TYPE));
     getIntent().putExtra("title", getString(R.string.ApplicationPreferencesActivity_my) + " " +
         getString(R.string.ViewIdentityActivity_identity_fingerprint));
     super.onCreate(bundle);
@@ -113,7 +116,8 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
                        Toast.LENGTH_LONG).show();
 
         getIntent().putExtra("identity_key",
-                             IdentityKeyUtil.getIdentityKey(ViewLocalIdentityActivity.this));
+                             IdentityKeyUtil.getIdentityKey(ViewLocalIdentityActivity.this,
+                                                            Curve.DJB_TYPE));
         initialize();
       }
 

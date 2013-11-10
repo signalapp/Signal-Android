@@ -1,3 +1,20 @@
+/**
+ * Copyright (C) 2013 Open Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.thoughtcrime.securesms.transport;
 
 import android.app.PendingIntent;
@@ -17,6 +34,8 @@ import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 
@@ -107,7 +126,7 @@ public class SmsTransport extends BaseTransport {
   private ArrayList<PendingIntent> constructSentIntents(long messageId, long type, ArrayList<String> messages) {
     ArrayList<PendingIntent> sentIntents = new ArrayList<PendingIntent>(messages.size());
 
-    for (String message : messages) {
+    for (String ignored : messages) {
       sentIntents.add(PendingIntent.getBroadcast(context, 0,
                                                  constructSentIntent(context, messageId, type),
                                                  0));
@@ -123,7 +142,7 @@ public class SmsTransport extends BaseTransport {
 
     ArrayList<PendingIntent> deliveredIntents = new ArrayList<PendingIntent>(messages.size());
 
-    for (String message : messages) {
+    for (String ignored : messages) {
       deliveredIntents.add(PendingIntent.getBroadcast(context, 0,
                                                       constructDeliveredIntent(context, messageId, type),
                                                       0));
@@ -137,7 +156,9 @@ public class SmsTransport extends BaseTransport {
   {
     Recipient           recipient        = message.getRecipients().getPrimaryRecipient();
     String              body             = message.getMessageBody();
-    IdentityKeyPair     identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    IdentityKeyPair     identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret,
+                                                                              Curve.DJB_TYPE);
+
     SmsTransportDetails transportDetails = new SmsTransportDetails();
 
     if (KeyUtil.isNonPrekeySessionFor(context, masterSecret, recipient)) {

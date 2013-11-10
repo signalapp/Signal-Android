@@ -1,5 +1,6 @@
 /** 
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +17,9 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 
 /**
  * When a user first initializes TextSecure, a few secrets
@@ -38,19 +40,35 @@ import org.whispersystems.textsecure.crypto.PublicKey;
 
 public class AsymmetricMasterSecret {
 
-  private final PublicKey publicKey;
-  private final ECPrivateKeyParameters privateKey;
-	
-  public AsymmetricMasterSecret(PublicKey publicKey, ECPrivateKeyParameters privateKey) {
-    this.publicKey  = publicKey;
-    this.privateKey = privateKey;
+  private final ECPublicKey  djbPublicKey;
+  private final ECPrivateKey djbPrivateKey;
+
+  private final ECPublicKey  nistPublicKey;
+  private final ECPrivateKey nistPrivateKey;
+
+  public AsymmetricMasterSecret(ECPublicKey djbPublicKey, ECPrivateKey djbPrivateKey,
+                                ECPublicKey nistPublicKey, ECPrivateKey nistPrivateKey)
+  {
+    this.djbPublicKey   = djbPublicKey;
+    this.djbPrivateKey  = djbPrivateKey;
+    this.nistPublicKey  = nistPublicKey;
+    this.nistPrivateKey = nistPrivateKey;
   }
-	
-  public PublicKey getPublicKey() {
-    return publicKey;
+
+  public ECPublicKey getDjbPublicKey() {
+    return djbPublicKey;
   }
-	
-  public ECPrivateKeyParameters getPrivateKey() {
-    return privateKey;
+
+  public ECPublicKey getNistPublicKey() {
+    return nistPublicKey;
   }
+
+  public ECPrivateKey getPrivateKey(int type) {
+    if (type == Curve.DJB_TYPE) {
+      return djbPrivateKey;
+    } else {
+      return nistPrivateKey;
+    }
+  }
+
 }

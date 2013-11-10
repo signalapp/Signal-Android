@@ -1,5 +1,6 @@
 /** 
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,17 +27,18 @@ import org.spongycastle.asn1.ASN1Primitive;
 import org.spongycastle.asn1.ASN1Sequence;
 import org.spongycastle.asn1.DERInteger;
 import org.spongycastle.asn1.DERSequence;
-import org.spongycastle.crypto.AsymmetricCipherKeyPair;
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
 import org.spongycastle.crypto.signers.ECDSASigner;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PublicKey;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
+import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
+import org.whispersystems.textsecure.crypto.ecc.NistECPrivateKey;
+import org.whispersystems.textsecure.crypto.ecc.NistECPublicKey;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Conversions;
 import org.whispersystems.textsecure.util.Util;
@@ -54,19 +56,39 @@ import java.security.NoSuchAlgorithmException;
 
 public class IdentityKeyUtil {
 
-  private static final String IDENTITY_PUBLIC_KEY_PREF  = "pref_identity_public";
-  private static final String IDENTITY_PRIVATE_KEY_PREF = "pref_identity_private";
+  private static final String IDENTITY_PUBLIC_KEY_NIST_PREF  = "pref_identity_public";
+  private static final String IDENTITY_PRIVATE_KEY_NIST_PREF = "pref_identity_private";
+
+  private static final String IDENTITY_PUBLIC_KEY_DJB_PREF  = "pref_identity_public_curve25519";
+  private static final String IDENTITY_PRIVATE_KEY_DJB_PREF = "pref_identity_private_curve25519";
 	
-  public static boolean hasIdentityKey(Context context) {
+  public static boolean hasIdentityKey(Context context, int type) {
     SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
-    return preferences.contains(IDENTITY_PUBLIC_KEY_PREF) && preferences.contains(IDENTITY_PRIVATE_KEY_PREF);
+
+    if (type == Curve.DJB_TYPE) {
+      return
+          preferences.contains(IDENTITY_PUBLIC_KEY_DJB_PREF) &&
+          preferences.contains(IDENTITY_PRIVATE_KEY_DJB_PREF);
+    } else if (type == Curve.NIST_TYPE) {
+      return
+          preferences.contains(IDENTITY_PUBLIC_KEY_NIST_PREF) &&
+          preferences.contains(IDENTITY_PRIVATE_KEY_NIST_PREF);
+    }
+
+    return false;
   }
 	
-  public static IdentityKey getIdentityKey(Context context) {
-    if (!hasIdentityKey(context)) return null;
+  public static IdentityKey getIdentityKey(Context context, int type) {
+    if (!hasIdentityKey(context, type)) return null;
 		
     try {
-      byte[] publicKeyBytes = Base64.decode(retrieve(context, IDENTITY_PUBLIC_KEY_PREF));
+      String key;
+
+      if      (type == Curve.DJB_TYPE)  key = IDENTITY_PUBLIC_KEY_DJB_PREF;
+      else if (type == Curve.NIST_TYPE) key = IDENTITY_PUBLIC_KEY_NIST_PREF;
+      else                              return null;
+
+      byte[] publicKeyBytes = Base64.decode(retrieve(context, key));
       return new IdentityKey(publicKeyBytes, 0);
     } catch (IOException ioe) {
       Log.w("IdentityKeyUtil", ioe);
@@ -77,43 +99,78 @@ public class IdentityKeyUtil {
     }
   }
 
-  public static IdentityKeyPair getIdentityKeyPair(Context context, MasterSecret masterSecret) {
-    if (!hasIdentityKey(context))
+  public static IdentityKeyPair getIdentityKeyPair(Context context,
+                                                   MasterSecret masterSecret,
+                                                   int type)
+  {
+    if (!hasIdentityKey(context, type))
       return null;
 
     try {
-      MasterCipher           masterCipher    = new MasterCipher(masterSecret);
-      IdentityKey            publicKey       = getIdentityKey(context);
-      byte[]                 privateKeyBytes = Base64.decode(retrieve(context, IDENTITY_PRIVATE_KEY_PREF));
-      ECPrivateKeyParameters privateKey      = masterCipher.decryptKey(privateKeyBytes);
+      String key;
+
+      if      (type == Curve.DJB_TYPE)  key = IDENTITY_PRIVATE_KEY_DJB_PREF;
+      else if (type == Curve.NIST_TYPE) key = IDENTITY_PRIVATE_KEY_NIST_PREF;
+      else                              return null;
+
+      MasterCipher masterCipher = new MasterCipher(masterSecret);
+      IdentityKey  publicKey    = getIdentityKey(context, type);
+      ECPrivateKey privateKey   = masterCipher.decryptKey(type, Base64.decode(retrieve(context, key)));
 
       return new IdentityKeyPair(publicKey, privateKey);
     } catch (IOException e) {
       throw new AssertionError(e);
+    } catch (InvalidKeyException e) {
+      throw new AssertionError(e);
     }
   }
 	
-  public static String getFingerprint(Context context) {
-    if (!hasIdentityKey(context)) return null;
+  public static String getFingerprint(Context context, int type) {
+    if (!hasIdentityKey(context, type)) return null;
 		
-    IdentityKey identityKey = getIdentityKey(context);
+    IdentityKey identityKey = getIdentityKey(context, type);
 		
     if (identityKey == null) return null;
     else                     return identityKey.getFingerprint();
   }
 	
   public static void generateIdentityKeys(Context context, MasterSecret masterSecret) {
-    MasterCipher masterCipher       = new MasterCipher(masterSecret);
-    AsymmetricCipherKeyPair keyPair = KeyUtil.generateKeyPair();
-    IdentityKey identityKey         = new IdentityKey((ECPublicKeyParameters)keyPair.getPublic());
-    byte[] serializedPublicKey      = identityKey.serialize();
-    byte[] serializedPrivateKey     = masterCipher.encryptKey((ECPrivateKeyParameters)keyPair.getPrivate());
-		
-    save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(serializedPublicKey));
-    save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(serializedPrivateKey));
+    ECKeyPair    nistKeyPair     = Curve.generateKeyPairForType(Curve.NIST_TYPE);
+    ECKeyPair    djbKeyPair      = Curve.generateKeyPairForType(Curve.DJB_TYPE);
+
+    MasterCipher masterCipher    = new MasterCipher(masterSecret);
+    IdentityKey  nistIdentityKey = new IdentityKey(nistKeyPair.getPublicKey());
+    IdentityKey  djbIdentityKey  = new IdentityKey(djbKeyPair.getPublicKey());
+
+    byte[]       nistPrivateKey  = masterCipher.encryptKey(nistKeyPair.getPrivateKey());
+    byte[]       djbPrivateKey   = masterCipher.encryptKey(djbKeyPair.getPrivateKey());
+
+    save(context, IDENTITY_PUBLIC_KEY_NIST_PREF, Base64.encodeBytes(nistIdentityKey.serialize()));
+    save(context, IDENTITY_PUBLIC_KEY_DJB_PREF, Base64.encodeBytes(djbIdentityKey.serialize()));
+
+    save(context, IDENTITY_PRIVATE_KEY_NIST_PREF, Base64.encodeBytes(nistPrivateKey));
+    save(context, IDENTITY_PRIVATE_KEY_DJB_PREF, Base64.encodeBytes(djbPrivateKey));
+  }
+
+  public static boolean hasCurve25519IdentityKeys(Context context) {
+    return
+        retrieve(context, IDENTITY_PUBLIC_KEY_DJB_PREF) != null &&
+        retrieve(context, IDENTITY_PRIVATE_KEY_DJB_PREF) != null;
+  }
+
+  public static void generateCurve25519IdentityKeys(Context context, MasterSecret masterSecret) {
+    MasterCipher masterCipher    = new MasterCipher(masterSecret);
+    ECKeyPair    djbKeyPair      = Curve.generateKeyPairForType(Curve.DJB_TYPE);
+    IdentityKey  djbIdentityKey  = new IdentityKey(djbKeyPair.getPublicKey());
+    byte[]       djbPrivateKey   = masterCipher.encryptKey(djbKeyPair.getPrivateKey());
+
+    save(context, IDENTITY_PUBLIC_KEY_DJB_PREF, Base64.encodeBytes(djbIdentityKey.serialize()));
+    save(context, IDENTITY_PRIVATE_KEY_DJB_PREF, Base64.encodeBytes(djbPrivateKey));
   }
 	
-  public static IdentityKey verifySignedKeyExchange(byte[] keyExchangeBytes) throws InvalidKeyException {
+  public static IdentityKey verifySignedKeyExchange(byte[] keyExchangeBytes)
+      throws InvalidKeyException
+  {
     try {
       byte[] messageBytes   = new byte[1 + PublicKey.KEY_SIZE];
       System.arraycopy(keyExchangeBytes, 0, messageBytes, 0, messageBytes.length);
@@ -128,8 +185,12 @@ public class IdentityKeyUtil {
       byte[] messageHash      = getMessageHash(messageBytes, publicKeyBytes);
       IdentityKey identityKey = new IdentityKey(publicKeyBytes, 0);
       ECDSASigner verifier    = new ECDSASigner();
-			
-      verifier.init(false, identityKey.getPublicKeyParameters());
+
+      if (identityKey.getPublicKey().getType() != Curve.NIST_TYPE) {
+        throw new InvalidKeyException("Signing only support on P256 keys!");
+      }
+
+      verifier.init(false, ((NistECPublicKey)identityKey.getPublicKey()).getParameters());
 			
       ASN1Sequence sequence          = (ASN1Sequence) ASN1Primitive.fromByteArray(signatureBytes);
       BigInteger[] signatureIntegers = new BigInteger[]{
@@ -148,17 +209,18 @@ public class IdentityKeyUtil {
 		
   }
 
-  public static byte[] getSignedKeyExchange(Context context, MasterSecret masterSecret, byte[] keyExchangeBytes) {
+  public static byte[] getSignedKeyExchange(Context context, MasterSecret masterSecret,
+                                            byte[] keyExchangeBytes)
+  {
     try {
-	
-      MasterCipher masterCipher         = new MasterCipher(masterSecret);
-      byte[] publicKeyBytes             = getIdentityKey(context).serialize();
-      byte[] messageHash                = getMessageHash(keyExchangeBytes, publicKeyBytes);
-      byte[] privateKeyBytes            = Base64.decode(retrieve(context, IDENTITY_PRIVATE_KEY_PREF));
-      ECPrivateKeyParameters privateKey = masterCipher.decryptKey(privateKeyBytes);
-      ECDSASigner signer                = new ECDSASigner();
+      MasterCipher masterCipher    = new MasterCipher(masterSecret);
+      byte[]       publicKeyBytes  = getIdentityKey(context, Curve.NIST_TYPE).serialize();
+      byte[]       messageHash     = getMessageHash(keyExchangeBytes, publicKeyBytes);
+      byte[]       privateKeyBytes = Base64.decode(retrieve(context, IDENTITY_PRIVATE_KEY_NIST_PREF));
+      ECPrivateKey privateKey      = masterCipher.decryptKey(Curve.NIST_TYPE, privateKeyBytes);
+      ECDSASigner  signer          = new ECDSASigner();
 			
-      signer.init(true, privateKey);
+      signer.init(true, ((NistECPrivateKey)privateKey).getParameters());
 			
       BigInteger[] messageSignatureInts    = signer.generateSignature(messageHash);
       DERInteger[] derMessageSignatureInts = new DERInteger[]{ new DERInteger(messageSignatureInts[0]), new DERInteger(messageSignatureInts[1]) };
@@ -167,12 +229,12 @@ public class IdentityKeyUtil {
 	        
       Conversions.shortToByteArray(messageSignature, 0, messageSignatureBytes.length);	        
       System.arraycopy(messageSignatureBytes, 0, messageSignature, 2, messageSignatureBytes.length);
-	        
-      byte[] combined = Util.combine(keyExchangeBytes, publicKeyBytes, messageSignature);
- 	        
-      return combined;
+
+      return Util.combine(keyExchangeBytes, publicKeyBytes, messageSignature);
     } catch (IOException ioe) {
       throw new AssertionError(ioe);
+    } catch (InvalidKeyException e) {
+      throw new AssertionError(e);
     }
   }
 	

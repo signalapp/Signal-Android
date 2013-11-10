@@ -1,5 +1,6 @@
 /** 
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +17,12 @@
  */
 package org.whispersystems.textsecure.crypto;
 
-import org.spongycastle.crypto.AsymmetricCipherKeyPair;
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
-import org.whispersystems.textsecure.util.Hex;
-
 import android.util.Log;
+
+import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
+import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
+import org.whispersystems.textsecure.util.Hex;
+import org.whispersystems.textsecure.util.Util;
 
 /**
  * Represents a session's active KeyPair.
@@ -31,15 +32,15 @@ import android.util.Log;
 
 public class KeyPair {
 
-  private ECPrivateKeyParameters privateKey;
-  private PublicKey publicKey;
-		
+  private PublicKey    publicKey;
+  private ECPrivateKey privateKey;
+
   private final MasterCipher masterCipher;
 	
-  public KeyPair(int keyPairId, AsymmetricCipherKeyPair keyPair, MasterSecret masterSecret) {
+  public KeyPair(int keyPairId, ECKeyPair keyPair, MasterSecret masterSecret) {
     this.masterCipher = new MasterCipher(masterSecret);
-    this.publicKey    = new PublicKey(keyPairId, (ECPublicKeyParameters)keyPair.getPublic());
-    this.privateKey   = (ECPrivateKeyParameters)keyPair.getPrivate();
+    this.publicKey    = new PublicKey(keyPairId, keyPair.getPublicKey());
+    this.privateKey   = keyPair.getPrivateKey();
   }
 	
   public KeyPair(byte[] bytes, MasterCipher masterCipher) throws InvalidKeyException {
@@ -54,11 +55,11 @@ public class KeyPair {
   public PublicKey getPublicKey() {
     return publicKey;
   }
-	
-  public AsymmetricCipherKeyPair getKeyPair() {
-    return new AsymmetricCipherKeyPair(publicKey.getKey(), privateKey);
+
+  public ECPrivateKey getPrivateKey() {
+    return privateKey;
   }
-	
+
   public byte[] toBytes() {
     return serialize();
   }
@@ -67,18 +68,14 @@ public class KeyPair {
     this.publicKey         = new PublicKey(bytes);
     byte[] privateKeyBytes = new byte[bytes.length - PublicKey.KEY_SIZE];
     System.arraycopy(bytes, PublicKey.KEY_SIZE, privateKeyBytes, 0, privateKeyBytes.length);
-    this.privateKey        = masterCipher.decryptKey(privateKeyBytes);
+    this.privateKey        = masterCipher.decryptKey(this.publicKey.getType(), privateKeyBytes);
   }
 	
   public byte[] serialize() {
     byte[] publicKeyBytes  = publicKey.serialize();
     Log.w("KeyPair", "Serialized public key bytes: " + Hex.toString(publicKeyBytes));
-    byte[] privateKeyBytes = masterCipher.encryptKey(privateKey);		
-    byte[] combined        = new byte[publicKeyBytes.length + privateKeyBytes.length];
-    System.arraycopy(publicKeyBytes, 0, combined, 0, publicKeyBytes.length);
-    System.arraycopy(privateKeyBytes, 0, combined, publicKeyBytes.length, privateKeyBytes.length);
-
-    return combined;
+    byte[] privateKeyBytes = masterCipher.encryptKey(privateKey);
+    return Util.combine(publicKeyBytes, privateKeyBytes);
   }
 	
 }

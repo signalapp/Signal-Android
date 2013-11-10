@@ -1,5 +1,6 @@
 /** 
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +19,20 @@ package org.whispersystems.textsecure.crypto;
 
 import android.util.Log;
 
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
-import org.whispersystems.textsecure.util.Hex;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Conversions;
+import org.whispersystems.textsecure.util.Hex;
+import org.whispersystems.textsecure.util.Util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class PublicKey {
-  public static final int KEY_SIZE = 3 + KeyUtil.POINT_SIZE;
-	
-  private final ECPublicKeyParameters publicKey;
+
+  public static final int KEY_SIZE = 3 + ECPublicKey.KEY_SIZE;
+
+  private final ECPublicKey publicKey;
   private int id;
 	
   public PublicKey(PublicKey publicKey) {
@@ -38,7 +42,7 @@ public class PublicKey {
     this.publicKey = publicKey.publicKey;
   }
 	
-  public PublicKey(int id, ECPublicKeyParameters publicKey) {
+  public PublicKey(int id, ECPublicKey publicKey) {
     this.publicKey = publicKey;
     this.id        = id;
   }
@@ -50,15 +54,20 @@ public class PublicKey {
 
   public PublicKey(byte[] bytes, int offset) throws InvalidKeyException {
     Log.w("PublicKey", "PublicKey Length: " + (bytes.length - offset));
+
     if ((bytes.length - offset) < KEY_SIZE)
       throw new InvalidKeyException("Provided bytes are too short.");
-			
+
     this.id        = Conversions.byteArrayToMedium(bytes, offset);
-    this.publicKey = KeyUtil.decodePoint(bytes, offset + 3);
+    this.publicKey = Curve.decodePoint(bytes, offset + 3);
   }
-	
+
   public PublicKey(byte[] bytes) throws InvalidKeyException {
     this(bytes, 0);
+  }
+
+  public int getType() {
+    return publicKey.getType();
   }
 	
   public void setId(int id) {
@@ -69,7 +78,7 @@ public class PublicKey {
     return id;
   }
 	
-  public ECPublicKeyParameters getKey() {
+  public ECPublicKey getKey() {
     return publicKey;
   }
 	
@@ -88,14 +97,11 @@ public class PublicKey {
   }
 	
   public byte[] serialize() {
-    byte[] complete        = new byte[KEY_SIZE];
-    byte[] serializedPoint = KeyUtil.encodePoint(publicKey.getQ());
+    byte[] keyIdBytes      = Conversions.mediumToByteArray(id);
+    byte[] serializedPoint = publicKey.serialize();
 
     Log.w("PublicKey", "Serializing public key point: " + Hex.toString(serializedPoint));
-		
-    Conversions.mediumToByteArray(complete, 0, id);
-    System.arraycopy(serializedPoint, 0, complete, 3, serializedPoint.length);
-		
-    return complete;
-  }	
+
+    return Util.combine(keyIdBytes, serializedPoint);
+  }
 }

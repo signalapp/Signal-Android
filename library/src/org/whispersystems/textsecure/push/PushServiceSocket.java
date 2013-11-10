@@ -133,6 +133,7 @@ public class PushServiceSocket {
       PreKeyEntity entity = new PreKeyEntity(record.getId(),
                                              record.getKeyPair().getPublicKey(),
                                              identityKey);
+
       entities.add(entity);
     }
 
@@ -140,7 +141,9 @@ public class PushServiceSocket {
                                                      lastResortKey.getKeyPair().getPublicKey(),
                                                      identityKey);
 
-     makeRequest(String.format(PREKEY_PATH, ""), "PUT", PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
+
+    makeRequest(String.format(PREKEY_PATH, ""), "PUT",
+                PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
   }
 
   public PreKeyEntity getPreKey(PushDestination destination) throws IOException {

@@ -1,3 +1,20 @@
+/**
+ * Copyright (C) 2013 Open Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
@@ -10,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.VersionTracker;
@@ -22,10 +40,12 @@ public class DatabaseUpgradeActivity extends Activity {
   public static final int NO_MORE_KEY_EXCHANGE_PREFIX_VERSION = 46;
   public static final int MMS_BODY_VERSION                    = 46;
   public static final int TOFU_IDENTITIES_VERSION             = 50;
+  public static final int CURVE25519_VERSION                  = 58;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
     add(TOFU_IDENTITIES_VERSION);
+    add(CURVE25519_VERSION);
   }};
 
   private MasterSecret masterSecret;
@@ -33,9 +53,9 @@ public class DatabaseUpgradeActivity extends Activity {
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
+    this.masterSecret = getIntent().getParcelableExtra("master_secret");
 
-    if (needsDatabaseUpgrade()) {
+    if (needsUpgradeTask()) {
       Log.w("DatabaseUpgradeActivity", "Upgrading...");
       setContentView(R.layout.database_upgrade_activity);
 
@@ -51,7 +71,7 @@ public class DatabaseUpgradeActivity extends Activity {
     }
   }
 
-  private boolean needsDatabaseUpgrade() {
+  private boolean needsUpgradeTask() {
     try {
       int currentVersionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
       int lastSeenVersion    = VersionTracker.getLastSeenVersion(this);
@@ -102,10 +122,18 @@ public class DatabaseUpgradeActivity extends Activity {
 
     @Override
     protected Void doInBackground(Integer... params) {
+      Context context = DatabaseUpgradeActivity.this.getApplicationContext();
+
       Log.w("DatabaseUpgradeActivity", "Running background upgrade..");
       DatabaseFactory.getInstance(DatabaseUpgradeActivity.this)
-                     .onApplicationLevelUpgrade(DatabaseUpgradeActivity.this.getApplicationContext(),
-                                                masterSecret, params[0], this);
+                     .onApplicationLevelUpgrade(context, masterSecret, params[0], this);
+
+      if (params[0] < CURVE25519_VERSION) {
+        if (!IdentityKeyUtil.hasCurve25519IdentityKeys(context)) {
+          IdentityKeyUtil.generateCurve25519IdentityKeys(context, masterSecret);
+        }
+      }
+
       return null;
     }
 

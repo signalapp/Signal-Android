@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,6 +48,8 @@ import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Hex;
 
@@ -195,7 +198,7 @@ public class DecryptingQueue {
             return;
           }
 
-          IdentityKeyPair identityKey   = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          IdentityKeyPair identityKey   = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
           MessageCipher   messageCipher = new MessageCipher(context, masterSecret, identityKey);
           byte[]          plaintextBody = messageCipher.decrypt(recipient, message.getBody());
 
@@ -276,7 +279,7 @@ public class DecryptingQueue {
         synchronized (SessionCipher.CIPHER_LOCK) {
           Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
           TextTransport   transportDetails = new TextTransport();
-          IdentityKeyPair identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          IdentityKeyPair identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
           MessageCipher   messageCipher    = new MessageCipher(context, masterSecret, identityKey);
           byte[]          ciphertext       = transportDetails.getDecodedMessage(ciphertextPduBytes);
 
@@ -360,7 +363,7 @@ public class DecryptingQueue {
           }
 
           SmsTransportDetails transportDetails = new SmsTransportDetails();
-          IdentityKeyPair     identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          IdentityKeyPair     identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
           MessageCipher       messageCipher    = new MessageCipher(context, masterSecret, identityKey);
           byte[]              ciphertext       = transportDetails.getDecodedMessage(body.getBytes());
           byte[]              paddedPlaintext  = messageCipher.decrypt(recipient, ciphertext);

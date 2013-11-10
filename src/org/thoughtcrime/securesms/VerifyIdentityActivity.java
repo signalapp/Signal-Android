@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +24,9 @@ import android.widget.Toast;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.SessionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -39,6 +43,8 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   private TextView localIdentityFingerprint;
   private TextView remoteIdentityFingerprint;
+
+  private int keyType;
 
   @Override
   public void onCreate(Bundle state) {
@@ -57,12 +63,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   private void initializeLocalIdentityKey() {
-    if (!IdentityKeyUtil.hasIdentityKey(this)) {
+    if (!IdentityKeyUtil.hasIdentityKey(this, keyType)) {
       localIdentityFingerprint.setText(R.string.VerifyIdentityActivity_you_do_not_have_an_identity_key);
       return;
     }
 
-    localIdentityFingerprint.setText(IdentityKeyUtil.getFingerprint(this));
+    localIdentityFingerprint.setText(IdentityKeyUtil.getFingerprint(this, keyType));
   }
 
   private void initializeRemoteIdentityKey() {
@@ -86,15 +92,24 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   private void initializeResources() {
-    localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
-    remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
-    recipient                 = (Recipient)this.getIntent().getParcelableExtra("recipient");
-    masterSecret              = (MasterSecret)this.getIntent().getParcelableExtra("master_secret");
+    this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
+    this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
+    this.recipient                 = this.getIntent().getParcelableExtra("recipient");
+    this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
+
+    SessionRecord sessionRecord  = new SessionRecord(this, masterSecret, recipient);
+    int           sessionVersion = sessionRecord.getSessionVersion();
+
+    if (sessionVersion >= CiphertextMessage.CURVE25519_INTRODUCED_VERSION) {
+      this.keyType = Curve.DJB_TYPE;
+    } else {
+      this.keyType = Curve.NIST_TYPE;
+    }
   }
 
   @Override
   protected void initiateDisplay() {
-    if (!IdentityKeyUtil.hasIdentityKey(this)) {
+    if (!IdentityKeyUtil.hasIdentityKey(this, keyType)) {
       Toast.makeText(this,
                      R.string.VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation,
                      Toast.LENGTH_LONG).show();
@@ -135,7 +150,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected IdentityKey getIdentityKeyToDisplay() {
-    return IdentityKeyUtil.getIdentityKey(this);
+    return IdentityKeyUtil.getIdentityKey(this, keyType);
   }
 
   @Override

@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
 
 public class KeyExchangeInitiator {
@@ -52,8 +54,8 @@ public class KeyExchangeInitiator {
   }
 
   private static void initiateKeyExchange(Context context, MasterSecret masterSecret, Recipient recipient) {
-    LocalKeyRecord record                  = KeyUtil.initializeRecordFor(recipient, context, masterSecret);
-    KeyExchangeMessage message             = new KeyExchangeMessage(context, masterSecret, 1, record, 0);
+    LocalKeyRecord record                  = KeyUtil.initializeRecordFor(context, masterSecret, recipient, CiphertextMessage.CURVE25519_INTRODUCED_VERSION);
+    KeyExchangeMessage message             = new KeyExchangeMessage(context, masterSecret, CiphertextMessage.CURVE25519_INTRODUCED_VERSION, record, 0);
     OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, message.serialize());
 
     Log.w("SendKeyActivity", "Sending public key: " + record.getCurrentKeyPair().getPublicKey().getFingerprint());
