@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
@@ -33,7 +34,11 @@ import java.util.ArrayList;
 
 public class SmsListener extends BroadcastReceiver {
 
-  private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+  // in 4.4 we only want to listen for SMS_DELIVER
+  private static final String SMS_RECEIVED_ACTION = 
+    (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+      ? "android.provider.Telephony.SMS_DELIVER"
+      : "android.provider.Telephony.SMS_RECEIVED";
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
