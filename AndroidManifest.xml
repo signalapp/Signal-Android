@@ -5,7 +5,7 @@
       android:versionCode="58"
       android:versionName="1.0.2">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19"/>
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -60,6 +60,8 @@
                   <category android:name="android.intent.category.DEFAULT" />
                   <data android:scheme="sms" />
                   <data android:scheme="smsto" />
+                  <data android:scheme="mms" />
+                  <data android:scheme="mmsto" />
             </intent-filter>
             
             <intent-filter>
@@ -193,6 +195,9 @@
                  <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
              </intent-filter>
              <intent-filter>
+                 <action android:name="android.provider.Telephony.SMS_DELIVER"/>
+             </intent-filter>
+             <intent-filter>
                  <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
              </intent-filter>
     </receiver>
@@ -203,6 +208,10 @@
               android:permission="android.permission.BROADCAST_WAP_PUSH">
              <intent-filter android:priority="1001">
                  <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED"/>
+                 <data android:mimeType="application/vnd.wap.mms-message" />
+             </intent-filter>
+             <intent-filter>
+                 <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER"/>
                  <data android:mimeType="application/vnd.wap.mms-message" />
              </intent-filter>
     </receiver>
