@@ -5,72 +5,75 @@
       android:versionCode="58"
       android:versionName="1.0.2">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
+  <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19"/>
 
-    <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
+  <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
-                android:protectionLevel="signature" />    
-    
-	<uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
-    <uses-permission android:name="android.permission.READ_PROFILE"/>
-    <uses-permission android:name="android.permission.WRITE_PROFILE"/>
-    <uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"
-                     tools:ignore="ProtectedPermissions"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_MMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.WRITE_SMS"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_CALL_LOG" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
-    <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
                 android:protectionLevel="signature" />
-    <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
-        
-    <application android:name="org.thoughtcrime.securesms.ApplicationListener"
-                 android:icon="@drawable/icon"
-                 android:label="@string/app_name"
-                 android:theme="@style/TextSecure.LightTheme">
 
-        <activity android:name=".RoutingActivity"
-                  android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"            
-                  android:launchMode="singleTask"
-                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+  <uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
+  <uses-permission android:name="android.permission.READ_PROFILE"/>
+  <uses-permission android:name="android.permission.WRITE_PROFILE"/>
+  <uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"
+                   tools:ignore="ProtectedPermissions"/>
+  <uses-permission android:name="android.permission.READ_CONTACTS"/>
+  <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+  <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+  <uses-permission android:name="android.permission.RECEIVE_MMS"/>
+  <uses-permission android:name="android.permission.READ_SMS"/>
+  <uses-permission android:name="android.permission.SEND_SMS"/>
+  <uses-permission android:name="android.permission.WRITE_SMS"/>
+  <uses-permission android:name="android.permission.BROADCAST_SMS"/>
+  <uses-permission android:name="android.permission.VIBRATE"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_CALL_LOG" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            
-            <intent-filter>
-                  <action android:name="android.intent.action.SENDTO"/>
-                  <category android:name="android.intent.category.DEFAULT" />
-                  <data android:scheme="sms" />
-                  <data android:scheme="smsto" />
-            </intent-filter>
-            
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="audio/*" />
-                <data android:mimeType="image/*" />
-                <data android:mimeType="text/*" />
-            </intent-filter>            
-            
-        </activity>
+  <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
+              android:protectionLevel="signature" />
+  <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
+
+  <application android:name="org.thoughtcrime.securesms.ApplicationListener"
+               android:icon="@drawable/icon"
+               android:label="@string/app_name"
+               android:theme="@style/TextSecure.LightTheme">
+
+    <activity android:name=".RoutingActivity"
+              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+
+      <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+
+      <intent-filter>
+            <action android:name="android.intent.action.SENDTO"/>
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="sms" />
+            <data android:scheme="smsto" />
+            <data android:scheme="mms" />
+            <data android:scheme="mmsto" />
+      </intent-filter>
+
+      <intent-filter>
+          <action android:name="android.intent.action.SEND" />
+          <category android:name="android.intent.category.DEFAULT"/>
+          <data android:mimeType="audio/*" />
+          <data android:mimeType="image/*" />
+          <data android:mimeType="text/*" />
+      </intent-filter>
+
+    </activity>
 
     <activity android:name=".ImportExportActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -80,10 +83,10 @@
               android:windowSoftInputMode="stateUnchanged"              
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-     <activity android:name=".MmsPreferencesActivity"
-               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+    <activity android:name=".MmsPreferencesActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-        <activity android:name=".ConversationListActivity"
+    <activity android:name=".ConversationListActivity"
               android:label="@string/app_name"
               android:launchMode="singleTask"
               android:uiOptions="splitActionBarWhenNarrow"
@@ -153,7 +156,7 @@
               android:label="@string/AndroidManifest__complete_key_exchange"
               android:theme="@style/TextSecure.Light.Dialog"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-    
+
     <activity android:name=".ApplicationPreferencesActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -166,17 +169,28 @@
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
-    <service android:enabled="true" android:name=".service.SendReceiveService"/>
+    <service android:enabled="true" android:name=".service.SendReceiveService"
+      android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
+      android:exported="true" >
+      <intent-filter>
+        <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:scheme="sms" />
+        <data android:scheme="smsto" />
+        <data android:scheme="mms" />
+        <data android:scheme="mmsto" />
+      </intent-filter>
+    </service>
     <service android:enabled="true" android:name=".service.RegistrationService"/>
     <service android:enabled="true" android:name=".gcm.GcmIntentService"/>
 
-<!--	<receiver android:name=".service.BootListener" -->
-<!-- 			  android:enabled="true" -->
-<!-- 			  android:exported="false">-->
-<!--    		<intent-filter>-->
-<!--        		<action android:name="android.intent.action.BOOT_COMPLETED" />-->
-<!--    		</intent-filter>-->
-<!--	</receiver>-->
+<!--  <receiver android:name=".service.BootListener" -->
+<!--         android:enabled="true" -->
+<!--         android:exported="false">-->
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+<!--        </intent-filter>-->
+<!--  </receiver>-->
 
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>
@@ -188,9 +202,13 @@
 
     <receiver android:name=".service.SmsListener"
               android:enabled="true"
+              android:permission="android.permission.BROADCAST_SMS"
               android:exported="true">
              <intent-filter android:priority="1001">
                  <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+             </intent-filter>
+             <intent-filter>
+                 <action android:name="android.provider.Telephony.SMS_DELIVER"/>
              </intent-filter>
              <intent-filter>
                  <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
@@ -205,14 +223,18 @@
                  <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED"/>
                  <data android:mimeType="application/vnd.wap.mms-message" />
              </intent-filter>
+             <intent-filter>
+                 <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER"/>
+                 <data android:mimeType="application/vnd.wap.mms-message" />
+             </intent-filter>
     </receiver>
-    
+
     <receiver android:name=".service.SystemStateListener"
               android:enabled="true"
               android:exported="true">
               <intent-filter>
                   <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-              </intent-filter>              
+              </intent-filter>
     </receiver>
 
     <receiver android:name=".notifications.MarkReadReceiver"
@@ -227,10 +249,10 @@
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
 
-       <uses-library android:name="android.test.runner" />
-</application>
+    <uses-library android:name="android.test.runner" />
+  </application>
 
-<instrumentation android:name="android.test.InstrumentationTestRunner"
+  <instrumentation android:name="android.test.InstrumentationTestRunner"
        android:targetPackage="org.thoughtcrime.securesms.tests" android:label="Tests for My App" />
 
 </manifest>
