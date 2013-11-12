@@ -157,7 +157,7 @@ public class DecryptingPartInputStream extends FileInputStream {
       //data retrieved using cipher.update doesn't always match cipher.getOutputSize (but should never be larger)
       int outputLen = cipher.getOutputSize(read);
 
-      if (outputLen < length) {
+      if (outputLen <= length) {
         readLength += cipher.update(internalBuffer, 0, read, buffer, offset);
         return readLength;
       }
