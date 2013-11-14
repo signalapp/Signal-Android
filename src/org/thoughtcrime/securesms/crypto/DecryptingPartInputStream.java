@@ -125,23 +125,22 @@ public class DecryptingPartInputStream extends FileInputStream {
 	
   private int readIncremental(byte[] buffer, int offset, int length) throws IOException {
     int readLength = 0;
-    //Use data from overflow buffer first if present
     if (null != overflowBuffer) {
-        if (overflowBuffer.length > length) {
-            System.arraycopy(overflowBuffer, 0, buffer, offset, length);
-            overflowBuffer = Arrays.copyOfRange(overflowBuffer, length, overflowBuffer.length);
-            return length;
-        } else if (overflowBuffer.length == length) {
-            System.arraycopy(overflowBuffer, 0, buffer, offset, length);
-            overflowBuffer = null;
-            return length;
-        } else {
-            System.arraycopy(overflowBuffer, 0, buffer, offset, overflowBuffer.length);
-            readLength += overflowBuffer.length;
-            offset += readLength;
-            length -= readLength;
-            overflowBuffer = null;
-        }
+      if (overflowBuffer.length > length) {
+        System.arraycopy(overflowBuffer, 0, buffer, offset, length);
+        overflowBuffer = Arrays.copyOfRange(overflowBuffer, length, overflowBuffer.length);
+        return length;
+      } else if (overflowBuffer.length == length) {
+        System.arraycopy(overflowBuffer, 0, buffer, offset, length);
+        overflowBuffer = null;
+        return length;
+      } else {
+        System.arraycopy(overflowBuffer, 0, buffer, offset, overflowBuffer.length);
+        readLength += overflowBuffer.length;
+        offset += readLength;
+        length -= readLength;
+        overflowBuffer = null;
+      }
     }
 
     if (length + totalRead > totalDataSize)
@@ -154,7 +153,6 @@ public class DecryptingPartInputStream extends FileInputStream {
     try {
       mac.update(internalBuffer, 0, read);
 
-      //data retrieved using cipher.update doesn't always match cipher.getOutputSize (but should never be larger)
       int outputLen = cipher.getOutputSize(read);
 
       if (outputLen <= length) {
