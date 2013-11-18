@@ -41,187 +41,187 @@ import ws.com.google.android.mms.MmsException;
  */
 public class ActionResponseService extends Service {
 
-    public static String RESPOND_VIA_MESSAGE_ACTION = "android.intent.action.RESPOND_VIA_MESSAGE";
+  public static String RESPOND_VIA_MESSAGE_ACTION = "android.intent.action.RESPOND_VIA_MESSAGE";
 
-    private MasterSecret masterSecret;
-    private boolean      hasSecret;
-    private Object       masterSecretLock = new Object();
+  private MasterSecret masterSecret;
+  private boolean      hasSecret;
+  private Object       masterSecretLock = new Object();
 
-    private NewKeyReceiver newKeyReceiver;
-    private ClearKeyReceiver clearKeyReceiver;
+  private NewKeyReceiver newKeyReceiver;
+  private ClearKeyReceiver clearKeyReceiver;
 
-    private boolean isMmsEnabled = true;
+  private boolean isMmsEnabled = true;
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+  @Override
+  public IBinder onBind(Intent intent) {
+    return null;
+  }
 
-    @Override
-    public void onCreate() {
-        initializeMasterSecret();
-        // I cannot call this due to no android.permission.WRITE_APN_SETTINGS permission, how does ConversationActivity get away with it?
-        //initializeMmsEnabledCheck();
-    }
+  @Override
+  public void onCreate() {
+    initializeMasterSecret();
+    // I cannot call this due to no android.permission.WRITE_APN_SETTINGS permission, how does ConversationActivity get away with it?
+    initializeMmsEnabledCheck();
+  }
 
-    @Override
-    public void onDestroy() {
-        Log.w("ActionResponseService", "onDestroy()...");
-        super.onDestroy();
+  @Override
+  public void onDestroy() {
+    Log.w("ActionResponseService", "onDestroy()...");
+    super.onDestroy();
 
-        if (newKeyReceiver != null)
-            unregisterReceiver(newKeyReceiver);
+    if (newKeyReceiver != null)
+      unregisterReceiver(newKeyReceiver);
 
-        if (clearKeyReceiver != null)
-            unregisterReceiver(clearKeyReceiver);
-    }
+    if (clearKeyReceiver != null)
+      unregisterReceiver(clearKeyReceiver);
+  }
 
-    private void initializeMasterSecret() {
-        hasSecret           = false;
-        newKeyReceiver      = new NewKeyReceiver();
-        clearKeyReceiver    = new ClearKeyReceiver();
+  private void initializeMasterSecret() {
+    hasSecret           = false;
+    newKeyReceiver      = new NewKeyReceiver();
+    clearKeyReceiver    = new ClearKeyReceiver();
 
-        IntentFilter newKeyFilter = new IntentFilter(KeyCachingService.NEW_KEY_EVENT);
-        registerReceiver(newKeyReceiver, newKeyFilter, KeyCachingService.KEY_PERMISSION, null);
+    IntentFilter newKeyFilter = new IntentFilter(KeyCachingService.NEW_KEY_EVENT);
+    registerReceiver(newKeyReceiver, newKeyFilter, KeyCachingService.KEY_PERMISSION, null);
 
-        IntentFilter clearKeyFilter = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
-        registerReceiver(clearKeyReceiver, clearKeyFilter, KeyCachingService.KEY_PERMISSION, null);
+    IntentFilter clearKeyFilter = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
+    registerReceiver(clearKeyReceiver, clearKeyFilter, KeyCachingService.KEY_PERMISSION, null);
 
-        Intent bindIntent   = new Intent(this, KeyCachingService.class);
-        bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
-    }
+    Intent bindIntent   = new Intent(this, KeyCachingService.class);
+    bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+  }
 
-    private void initializeMmsEnabledCheck() {
-        new AsyncTask<Void, Void, Boolean>() {
-            @Override
-            protected Boolean doInBackground(Void... params) {
-                return MmsSendHelper.hasNecessaryApnDetails(ActionResponseService.this);
-            }
+  private void initializeMmsEnabledCheck() {
+    new AsyncTask<Void, Void, Boolean>() {
+      @Override
+      protected Boolean doInBackground(Void... params) {
+        return MmsSendHelper.hasNecessaryApnDetails(ActionResponseService.this);
+      }
 
-            @Override
-            protected void onPostExecute(Boolean isMmsEnabled) {
-                ActionResponseService.this.isMmsEnabled = isMmsEnabled;
-            }
-        }.execute();
-    }
+      @Override
+      protected void onPostExecute(Boolean isMmsEnabled) {
+        ActionResponseService.this.isMmsEnabled = isMmsEnabled;
+      }
+    }.execute();
+  }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        try {
-            Recipients recipients = getRecipients(intent);
+  @Override
+  public int onStartCommand(Intent intent, int flags, int startId) {
+    try {
+      Recipients recipients = getRecipients(intent);
 
-            if(recipients != null)
-            {
-                long       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
+      if(recipients != null)
+      {
+        long       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
 
-                String subject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
-                String body = intent.getStringExtra(Intent.EXTRA_TEXT);
+        String subject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+        String body = intent.getStringExtra(Intent.EXTRA_TEXT);
 
-                boolean isEncryptedConversation = isEncryptedConversation(recipients);
+        boolean isEncryptedConversation = isEncryptedConversation(recipients);
 
-                if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
-                    handleManualMmsRequired(intent);
-                } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient()) {
-                    MessageSender.sendMms(ActionResponseService.this, masterSecret, recipients,
-                        threadId, new SlideDeck(), body, ThreadDatabase.DistributionTypes.DEFAULT, isEncryptedConversation);
-                } else {
-                    OutgoingTextMessage message;
+        if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
+          handleManualMmsRequired(intent);
+        } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient()) {
+          MessageSender.sendMms(ActionResponseService.this, masterSecret, recipients,
+            threadId, new SlideDeck(), body, ThreadDatabase.DistributionTypes.DEFAULT, isEncryptedConversation);
+        } else {
+          OutgoingTextMessage message;
 
-                    if (isEncryptedConversation) {
-                        message = new OutgoingEncryptedMessage(recipients, body);
-                    } else {
-                        message = new OutgoingTextMessage(recipients, body);
-                    }
+          if (isEncryptedConversation) {
+            message = new OutgoingEncryptedMessage(recipients, body);
+          } else {
+            message = new OutgoingTextMessage(recipients, body);
+          }
 
-                    Log.w("ConversationActivity", "Sending message...");
-                    MessageSender.send(ActionResponseService.this, masterSecret, message, threadId);
-                }
-            }
-        } catch (MmsException e) {
-            Log.w("ActionResponseService", e);
+          Log.w("ConversationActivity", "Sending message...");
+          MessageSender.send(ActionResponseService.this, masterSecret, message, threadId);
         }
-
-        return START_STICKY;
+      }
+    } catch (MmsException e) {
+      Log.w("ActionResponseService", e);
     }
 
-    private void handleManualMmsRequired(Intent in) {
-        Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
+    return START_STICKY;
+  }
 
-        Intent intent = new Intent(this, PromptMmsActivity.class);
-        intent.putExtras(in.getExtras());
-        startActivity(intent);
+  private void handleManualMmsRequired(Intent in) {
+    Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
+
+    Intent intent = new Intent(this, PromptMmsActivity.class);
+    intent.putExtras(in.getExtras());
+    startActivity(intent);
+  }
+
+  private Recipients getRecipients(Intent intent)
+  {
+    Recipients recipients = null;
+    try {
+      String data = intent.getData().getSchemeSpecificPart();
+      recipients = RecipientFactory.getRecipientsFromString(this, data, false);
+    } catch (Exception e) {
+      recipients = null;
     }
+    return recipients;
+  }
 
-    private Recipients getRecipients(Intent intent)
-    {
-        Recipients recipients = null;
-        try {
-            String data = intent.getData().getSchemeSpecificPart();
-            recipients = RecipientFactory.getRecipientsFromString(this, data, false);
-        } catch (Exception e) {
-            recipients = null;
-        }
-        return recipients;
-    }
+  /**
+   * @param recipient
+   * @return true if there is a single recipient else false
+   */
+  private boolean isSingleConversation(Recipients recipient) {
+    return recipient != null && recipient.isSingleRecipient();
+  }
 
-    /**
-     * @param recipient
-     * @return true if there is a single recipient else false
-     */
-    private boolean isSingleConversation(Recipients recipient) {
-        return recipient != null && recipient.isSingleRecipient();
-    }
+  /**
+   * @param recipient
+   * @return true if the conversation is encrypted else false
+   */
+  private boolean isEncryptedConversation(Recipients recipient)
+  {
+      return (isSingleConversation(recipient) && KeyUtil.isSessionFor(this, recipient.getPrimaryRecipient()));
+  }
 
-    /**
-     * @param recipient
-     * @return true if the conversation is encrypted else false
-     */
-    private boolean isEncryptedConversation(Recipients recipient)
-    {
-        return (isSingleConversation(recipient) && KeyUtil.isSessionFor(this, recipient.getPrimaryRecipient()));
-    }
+  private void setMasterSecret(MasterSecret masterSecret) {
+      synchronized (masterSecretLock) {
+          this.masterSecret = masterSecret;
+          this.hasSecret    = true;
+      }
+  }
 
-    private void setMasterSecret(MasterSecret masterSecret) {
-        synchronized (masterSecretLock) {
-            this.masterSecret = masterSecret;
-            this.hasSecret    = true;
-        }
-    }
+  private ServiceConnection serviceConnection = new ServiceConnection() {
+      @Override
+      public void onServiceConnected(ComponentName className, IBinder service) {
+          KeyCachingService keyCachingService  = ((KeyCachingService.KeyCachingBinder)service).getService();
+          MasterSecret masterSecret            = keyCachingService.getMasterSecret();
 
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            KeyCachingService keyCachingService  = ((KeyCachingService.KeyCachingBinder)service).getService();
-            MasterSecret masterSecret            = keyCachingService.getMasterSecret();
+          ActionResponseService.this.setMasterSecret(masterSecret);
 
-            ActionResponseService.this.setMasterSecret(masterSecret);
+          ActionResponseService.this.unbindService(this);
+      }
 
-            ActionResponseService.this.unbindService(this);
-        }
+      @Override
+      public void onServiceDisconnected(ComponentName name) {}
+  };
 
-        @Override
-        public void onServiceDisconnected(ComponentName name) {}
-    };
+  /**
+   * This class receives broadcast notifications containing the MasterSecret
+   */
+  private class NewKeyReceiver extends BroadcastReceiver {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+          Log.w("ActionResponseService", "Got a MasterSecret broadcast...");
+          ActionResponseService.this.setMasterSecret((MasterSecret) intent.getParcelableExtra("master_secret"));
+      }
+  }
 
-    /**
-     * This class receives broadcast notifications containing the MasterSecret
-     */
-    private class NewKeyReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.w("ActionResponseService", "Got a MasterSecret broadcast...");
-            ActionResponseService.this.setMasterSecret((MasterSecret) intent.getParcelableExtra("master_secret"));
-        }
-    }
-
-    /**
-     * This class receives broadcast notifications to clear the MasterSecret.
-     */
-    private class ClearKeyReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.w("ActionResponseService", "Got a clear mastersecret broadcast...");
-            ActionResponseService.this.setMasterSecret(null);
-        }
-    };
+  /**
+   * This class receives broadcast notifications to clear the MasterSecret.
+   */
+  private class ClearKeyReceiver extends BroadcastReceiver {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+          Log.w("ActionResponseService", "Got a clear mastersecret broadcast...");
+          ActionResponseService.this.setMasterSecret(null);
+      }
+  };
 }

@@ -132,23 +132,28 @@ public class SmsListener extends BroadcastReceiver {
     return codeParts[0] + codeParts[1];
   }
 
-  private boolean usesSmsBroadcast()
-  {
-      return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT);
+  /**
+   * Either listen to SMS_RECEIVED_ACTION or SMS_DELIVER_ACTION, not both.
+   */
+  private boolean isIncomingSmsAction(Context context, Intent intent) {
+    final boolean isDefaultSmsApp = Telephony.Sms.getDefaultSmsPackage(context).equals(context.getPackageName());
+    return (intent.getAction().equals(SMS_RECEIVED_ACTION) && !isDefaultSmsApp)
+        || (intent.getAction().equals(SMS_DELIVER_ACTION) && isDefaultSmsApp);
   }
 
-  private void handleSmsChallengeReception(Context context, Intent intent)
-  {
+  @Override
+  public void onReceive(Context context, Intent intent) {
+    Log.w("SMSListener", "Got SMS broadcast...");
+
+    // Receive texts even if not default application
+    if (isIncomingSmsAction(context, intent) && isChallenge(context, intent)) {
       Log.w("SmsListener", "Got challenge!");
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
       challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(context, intent));
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
-  }
-
-  private void handleSmsReception(Context context, Intent intent)
-  {
+    } else if (isIncomingSmsAction(context, intent) && isRelevant(context, intent)) {
       Intent receivedIntent = new Intent(context, SendReceiveService.class);
       receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
       receivedIntent.putExtra("ResultCode", this.getResultCode());
@@ -156,26 +161,6 @@ public class SmsListener extends BroadcastReceiver {
       context.startService(receivedIntent);
 
       abortBroadcast();
-  }
-
-  @Override
-  public void onReceive(Context context, Intent intent) {
-    Log.w("SMSListener", "Got SMS broadcast...");
-    final boolean isDefaultSmsApp = Telephony.Sms.getDefaultSmsPackage(context).equals(context.getPackageName());
-    // Either listen to SMS_RECEIVED_ACTION or SMS_DELIVER_ACTION, not both. Ignore old action when appropriate.
-    // This will receive texts even if not default sms application
-    if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isChallenge(context, intent)) {
-        if(!usesSmsBroadcast() || !isDefaultSmsApp) {
-            handleSmsChallengeReception(context, intent);
-        }
-    } else if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent)) {
-        if(!usesSmsBroadcast() || !isDefaultSmsApp) {
-            handleSmsReception(context, intent);
-        }
-    } else if (intent.getAction().equals(SMS_DELIVER_ACTION) && isChallenge(context, intent)) {
-        handleSmsChallengeReception(context, intent);
-    } else if (intent.getAction().equals(SMS_DELIVER_ACTION) && isRelevant(context, intent)) {
-        handleSmsReception(context, intent);
     } else if (intent.getAction().equals(SendReceiveService.SENT_SMS_ACTION)) {
       intent.putExtra("ResultCode", this.getResultCode());
       intent.setClass(context, SendReceiveService.class);

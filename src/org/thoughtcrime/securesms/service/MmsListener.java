@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Telephony;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -39,6 +40,12 @@ public class MmsListener extends BroadcastReceiver {
   private boolean isRelevent(Context context, Intent intent) {
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT)
       return false;
+
+    // use only WAP_PUSH_DELIVER_ACTION for >KITKAT
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
+        Telephony.Sms.Intents.WAP_PUSH_DELIVER_ACTION.equals(intent.getAction())) {
+      return false;
+    }
 
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
@@ -61,29 +68,17 @@ public class MmsListener extends BroadcastReceiver {
     return WirePrefix.isEncryptedMmsSubject(notificationPdu.getSubject().getString());
   }
 
-  private void handleMmsReception(Context context, Intent intent)
-  {
-    intent.setAction(SendReceiveService.RECEIVE_MMS_ACTION);
-    intent.putExtra("ResultCode", this.getResultCode());
-    intent.setClass(context, SendReceiveService.class);
-
-    context.startService(intent);
-    abortBroadcast();
-  }
-
   @Override
     public void onReceive(Context context, Intent intent) {
     Log.w("MmsListener", "Got MMS broadcast...");
 
     if (isRelevent(context, intent)) {
-      // use only WAP_PUSH_DELIVER_ACTION for >KITKAT
-      if((Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)) {
-          if (intent.getAction().equals(WAP_PUSH_DELIVER_ACTION)) {
-            handleMmsReception(context, intent);
-          }
-      } else if (intent.getAction().equals(WAP_PUSH_RECEIVED_ACTION)) {
-        handleMmsReception(context, intent);
-      }
+      intent.setAction(SendReceiveService.RECEIVE_MMS_ACTION);
+      intent.putExtra("ResultCode", this.getResultCode());
+      intent.setClass(context, SendReceiveService.class);
+
+      context.startService(intent);
+      abortBroadcast();
     }
   }
 
