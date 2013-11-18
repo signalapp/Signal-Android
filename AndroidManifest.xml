@@ -5,7 +5,7 @@
       android:versionCode="58"
       android:versionName="1.0.2">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19"/>
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -64,10 +64,15 @@
             
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="audio/*" />
                 <data android:mimeType="image/*" />
                 <data android:mimeType="text/*" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
             </intent-filter>            
             
         </activity>
@@ -77,7 +82,7 @@
 
     <activity android:name=".PromptMmsActivity"
               android:label="Configure MMS Settings"
-              android:windowSoftInputMode="stateUnchanged"              
+              android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
      <activity android:name=".MmsPreferencesActivity"
@@ -149,7 +154,7 @@
               android:label="@string/AndroidManifest__manage_identity_keys"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ReceiveKeyActivity" 
+    <activity android:name=".ReceiveKeyActivity"
               android:label="@string/AndroidManifest__complete_key_exchange"
               android:theme="@style/TextSecure.Light.Dialog"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -169,7 +174,18 @@
     <service android:enabled="true" android:name=".service.SendReceiveService"/>
     <service android:enabled="true" android:name=".service.RegistrationService"/>
     <service android:enabled="true" android:name=".gcm.GcmIntentService"/>
-
+    <service android:name=".service.ActionResponseService"
+             android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
+             android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="sms" />
+            <data android:scheme="smsto" />
+            <data android:scheme="mms" />
+            <data android:scheme="mmsto" />
+        </intent-filter>
+    </service>
 <!--	<receiver android:name=".service.BootListener" -->
 <!-- 			  android:enabled="true" -->
 <!-- 			  android:exported="false">-->
@@ -188,13 +204,17 @@
 
     <receiver android:name=".service.SmsListener"
               android:enabled="true"
-              android:exported="true">
-             <intent-filter android:priority="1001">
-                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-             </intent-filter>
-             <intent-filter>
-                 <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
-             </intent-filter>
+              android:exported="true"
+              android:permission="android.permission.BROADCAST_SMS">
+        <intent-filter android:priority="1001">
+            <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+        </intent-filter>
+        <intent-filter> <!-- This is for active listening based off current selected sms app -->
+            <action android:name="android.provider.Telephony.SMS_DELIVER"/>
+        </intent-filter>
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
+        </intent-filter>
     </receiver>
 
     <receiver android:name=".service.MmsListener"
@@ -205,14 +225,18 @@
                  <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED"/>
                  <data android:mimeType="application/vnd.wap.mms-message" />
              </intent-filter>
+             <intent-filter>
+                 <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER"/>
+                 <data android:mimeType="application/vnd.wap.mms-message" />
+             </intent-filter>
     </receiver>
-    
+
     <receiver android:name=".service.SystemStateListener"
               android:enabled="true"
               android:exported="true">
               <intent-filter>
                   <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-              </intent-filter>              
+              </intent-filter>
     </receiver>
 
     <receiver android:name=".notifications.MarkReadReceiver"

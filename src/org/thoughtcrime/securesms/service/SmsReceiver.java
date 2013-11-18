@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.service;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.provider.Telephony;
 import android.util.Log;
 import android.util.Pair;
 
@@ -138,7 +139,10 @@ public class SmsReceiver {
 
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      // Only notify if default SMS app
+      if(Telephony.Sms.getDefaultSmsPackage(context).equals(context.getPackageName())) {
+       MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      }
     }
   }
 

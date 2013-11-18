@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Telephony;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -33,9 +34,18 @@ import ws.com.google.android.mms.pdu.PduParser;
 
 public class MmsListener extends BroadcastReceiver {
 
+  private static final String WAP_PUSH_RECEIVED_ACTION = "android.provider.Telephony.WAP_PUSH_RECEIVED";
+  private static final String WAP_PUSH_DELIVER_ACTION = "android.provider.Telephony.WAP_PUSH_DELIVER";
+
   private boolean isRelevent(Context context, Intent intent) {
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT)
       return false;
+
+    // use only WAP_PUSH_DELIVER_ACTION for >KITKAT
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
+        Telephony.Sms.Intents.WAP_PUSH_DELIVER_ACTION.equals(intent.getAction())) {
+      return false;
+    }
 
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
@@ -71,6 +81,7 @@ public class MmsListener extends BroadcastReceiver {
       abortBroadcast();
     }
   }
+
 
 
 

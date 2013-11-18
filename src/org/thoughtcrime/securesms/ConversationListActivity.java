@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.ActionResponseService;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -59,6 +60,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     initializeNavigationDrawer();
     initializeSenderReceiverService();
+    initializeActionResponseService();
     initializeResources();
     initializeContactUpdatesReceiver();
   }
@@ -236,6 +238,12 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
                                         SendReceiveService.class);
     startService(smsSenderIntent);
     startService(mmsSenderIntent);
+  }
+
+  private void initializeActionResponseService() {
+    Intent arIntent = new Intent(ActionResponseService.RESPOND_VIA_MESSAGE_ACTION, null, this,
+                                 ActionResponseService.class);
+    startService(arIntent);
   }
 
   private void initializeResources() {
