@@ -24,12 +24,13 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
 
@@ -87,9 +88,9 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
   private void initializePreferences() {
     if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(this, null, false)) {
       PreferenceManager.getDefaultSharedPreferences(this).edit()
-          .putBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, true).commit();
+          .putBoolean(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF, true).commit();
       addPreferencesFromResource(R.xml.mms_preferences);
-      this.findPreference(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
+      this.findPreference(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
     } else {
       addPreferencesFromResource(R.xml.mms_preferences);
     }
@@ -112,9 +113,9 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
   }
 
   private void initializeEditTextSummaries() {
-    initializeEditTextSummary((EditTextPreference)this.findPreference(ApplicationPreferencesActivity.MMSC_HOST_PREF));
-    initializeEditTextSummary((EditTextPreference)this.findPreference(ApplicationPreferencesActivity.MMSC_PROXY_HOST_PREF));
-    initializeEditTextSummary((EditTextPreference)this.findPreference(ApplicationPreferencesActivity.MMSC_PROXY_PORT_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_HOST_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_HOST_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_PORT_PREF));
   }
 
   private void handleDownloadMmsPendingApn() {
@@ -127,7 +128,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
       PreferenceManager.getDefaultSharedPreferences(MmsPreferencesActivity.this).edit()
-          .putBoolean(ApplicationPreferencesActivity.ENABLE_MANUAL_MMS_PREF, true).commit();
+          .putBoolean(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF, true).commit();
       Toast.makeText(MmsPreferencesActivity.this, R.string.mms_preferences_activity__manual_mms_settings_are_required, Toast.LENGTH_SHORT).show();
       return false;
     }

@@ -164,7 +164,7 @@ public class MmsDownloader {
   private void retrieveAndStore(MasterSecret masterSecret, long messageId, long threadId,
                                 String contentLocation, byte[] transactionId,
                                 boolean radioEnabled, boolean useProxy)
-      throws IOException, MmsException
+      throws IOException, MmsException, ApnUnavailableException
   {
     RetrieveConf retrieved = MmsDownloadHelper.retrieveMms(context, contentLocation,
                                                            radio.getApnInformation(),

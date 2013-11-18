@@ -241,12 +241,10 @@ public class MessageNotifier {
 
   private static void sendInThreadNotification(Context context) {
     try {
-      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-      
-      if (!sp.getBoolean(ApplicationPreferencesActivity.IN_THREAD_NOTIFICATION_PREF, true)) {
-    	  return;
+      if (!TextSecurePreferences.isInThreadNotifications(context)) {
+        return;
       }
-      
+
       String ringtone = TextSecurePreferences.getNotificationRingtone(context);
 
       if (ringtone == null)

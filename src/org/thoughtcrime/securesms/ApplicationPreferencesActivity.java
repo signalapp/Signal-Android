@@ -76,48 +76,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final int PICK_IDENTITY_CONTACT        = 1;
   private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
 
-<<<<<<< HEAD
-  public static final String RINGTONE_PREF                    = "pref_key_ringtone";
-  public static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
-  public static final String VIBRATE_PREF                     = "pref_key_vibrate";
-  public static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
-  public static final String LED_COLOR_PREF                   = "pref_led_color";
-  public static final String LED_BLINK_PREF                   = "pref_led_blink";
-  public static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
-  public static final String IDENTITY_PREF                    = "pref_choose_identity";
-  public static final String ALL_SMS_PREF                     = "pref_all_sms";
-  public static final String ALL_MMS_PERF                     = "pref_all_mms";
-  public static final String KITKAT_DEFAULT_PREF              = "pref_set_default";
-  public static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
-  public static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
-  public static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
-  public static final String THEME_PREF                       = "pref_theme";
-  public static final String LANGUAGE_PREF                    = "pref_language";
-  public static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
-  public static final String ENTER_PRESENT_PREF               = "pref_enter_key";
-
-  private static final String DISPLAY_CATEGORY_PREF        = "pref_display_category";
-  private static final String PUSH_MESSAGING_PREF       = "pref_toggle_push_messaging";
-
-  private static final String CHANGE_PASSPHRASE_PREF	     = "pref_change_passphrase";
-  public  static final String DISABLE_PASSPHRASE_PREF      = "pref_disable_passphrase";
-
-  public static final String MMS_PREF               = "pref_mms_preferences";
-  public static final String ENABLE_MANUAL_MMS_PREF = "pref_enable_manual_mms";
-  public static final String MMSC_HOST_PREF         = "pref_apn_mmsc_host";
-  public static final String MMSC_PROXY_HOST_PREF   = "pref_apn_mms_proxy";
-  public static final String MMSC_PROXY_PORT_PREF   = "pref_apn_mms_proxy_port";
-
-  public static final String SMS_DELIVERY_REPORT_PREF = "pref_delivery_report_sms";
-
-  public static final String THREAD_TRIM_ENABLED = "pref_trim_threads";
-  public static final String THREAD_TRIM_LENGTH  = "pref_trim_length";
-  public static final String THREAD_TRIM_NOW     = "pref_trim_now";
-
-  public static final String LOCAL_NUMBER_PREF    = "pref_local_number";
-  public static final String VERIFYING_STATE_PREF = "pref_verifying";
-  public static final String REGISTERED_GCM_PREF  = "pref_gcm_registered";
-  public static final String GCM_PASSWORD_PREF    = "pref_gcm_password";
+  private static final String DISPLAY_CATEGORY_PREF = "pref_display_category";
+  private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
+  private static final String MMS_PREF              = "pref_mms_preferences";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
