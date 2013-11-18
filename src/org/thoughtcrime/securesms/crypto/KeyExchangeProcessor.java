@@ -146,7 +146,7 @@ public class KeyExchangeProcessor {
                    .saveIdentity(masterSecret, recipient, remoteIdentity);
   }
 
-  public void processKeyExchangeMessage(PreKeyEntity message) {
+  public void processKeyExchangeMessage(PreKeyEntity message, long threadId) {
     PublicKey remoteKey = new PublicKey(message.getKeyId(), message.getPublicKey());
     remoteKeyRecord.setCurrentRemoteKey(remoteKey);
     remoteKeyRecord.setLastRemoteKey(remoteKey);
@@ -166,6 +166,8 @@ public class KeyExchangeProcessor {
 
     DatabaseFactory.getIdentityDatabase(context)
                    .saveIdentity(masterSecret, recipient, message.getIdentityKey());
+
+    broadcastSecurityUpdateEvent(context, threadId);
   }
 
   public void processKeyExchangeMessage(KeyExchangeMessage message, long threadId) {
@@ -202,6 +204,10 @@ public class KeyExchangeProcessor {
 
     DecryptingQueue.scheduleRogueMessages(context, masterSecret, recipient);
 
+    broadcastSecurityUpdateEvent(context, threadId);
+  }
+
+  private static void broadcastSecurityUpdateEvent(Context context, long threadId) {
     Intent intent = new Intent(SECURITY_UPDATE_EVENT);
     intent.putExtra("thread_id", threadId);
     intent.setPackage(context.getPackageName());

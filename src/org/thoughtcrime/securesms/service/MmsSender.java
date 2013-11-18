@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.util.Pair;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -30,23 +29,22 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
 
 public class MmsSender {
 
-  private final Context      context;
-  private final ToastHandler toastHandler;
+  private final Context context;
 
   public MmsSender(Context context, ToastHandler toastHandler) {
-    this.context      = context;
-    this.toastHandler = toastHandler;
+    this.context = context;
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
     Log.w("MmsSender", "Got intent action: " + intent.getAction());
-    if (intent.getAction().equals(SendReceiveService.SEND_MMS_ACTION)) {
+    if (SendReceiveService.SEND_MMS_ACTION.equals(intent.getAction())) {
       handleSendMms(masterSecret, intent);
     }
   }
@@ -61,15 +59,16 @@ public class MmsSender {
       SendReq[] messages = database.getOutgoingMessages(masterSecret, messageId);
 
       for (SendReq message : messages) {
+        long threadId = database.getThreadIdForMessage(message.getDatabaseMessageId());
+
         try {
           Log.w("MmsSender", "Passing to MMS transport: " + message.getDatabaseMessageId());
           database.markAsSending(message.getDatabaseMessageId());
-          Pair<byte[], Integer> result = transport.deliver(message);
+          Pair<byte[], Integer> result = transport.deliver(message, threadId);
           database.markAsSent(message.getDatabaseMessageId(), result.first, result.second);
         } catch (UndeliverableMessageException e) {
           Log.w("MmsSender", e);
           database.markAsSentFailed(message.getDatabaseMessageId());
-          long threadId         = database.getThreadIdForMessage(messageId);
           Recipients recipients = threads.getRecipientsForThreadId(threadId);
           MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
         }

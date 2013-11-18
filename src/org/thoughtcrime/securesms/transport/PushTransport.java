@@ -73,24 +73,27 @@ public class PushTransport extends BaseTransport {
     try {
       TextSecurePushCredentials credentials = TextSecurePushCredentials.getInstance();
       Recipient                 recipient   = message.getIndividualRecipient();
+      long                      threadId    = message.getThreadId();
       PushServiceSocket         socket      = new PushServiceSocket(context, credentials);
       PushDestination           destination = PushDestination.create(context, credentials,
                                                                      recipient.getNumber());
 
       String   plaintextBody = message.getBody().getBody();
       byte[]   plaintext     = PushMessageContent.newBuilder().setBody(plaintextBody).build().toByteArray();
-      PushBody pushBody      = getEncryptedMessage(socket, recipient, destination, plaintext);
+      PushBody pushBody      = getEncryptedMessage(socket, threadId, recipient, destination, plaintext);
 
       socket.sendMessage(destination, pushBody);
 
-      context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType()));
+      context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType(), true));
     } catch (RateLimitException e) {
       Log.w("PushTransport", e);
       throw new IOException("Rate limit exceeded.");
     }
   }
 
-  public void deliver(SendReq message, List<PushDestination> destinations) throws IOException {
+  public void deliver(SendReq message, List<PushDestination> destinations, long threadId)
+      throws IOException
+  {
     try {
       TextSecurePushCredentials credentials = TextSecurePushCredentials.getInstance();
       PushServiceSocket         socket      = new PushServiceSocket(context, credentials);
@@ -118,7 +121,7 @@ public class PushTransport extends BaseTransport {
         }
 
         byte[]   plaintext = builder.build().toByteArray();
-        PushBody pushBody  = getEncryptedMessage(socket, recipients.getPrimaryRecipient(), destination, plaintext);
+        PushBody pushBody  = getEncryptedMessage(socket, threadId, recipients.getPrimaryRecipient(), destination, plaintext);
 
         pushBodies.add(pushBody);
       }
@@ -158,7 +161,7 @@ public class PushTransport extends BaseTransport {
     return attachments;
   }
 
-  private PushBody getEncryptedMessage(PushServiceSocket socket, Recipient recipient,
+  private PushBody getEncryptedMessage(PushServiceSocket socket, long threadId, Recipient recipient,
                                        PushDestination pushDestination, byte[] plaintext)
       throws IOException
   {
@@ -172,7 +175,7 @@ public class PushTransport extends BaseTransport {
       return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     } else {
       Log.w("PushTransport", "Sending prekeybundle ciphertext message for new session...");
-      byte[] ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, recipient, pushDestination, plaintext);
+      byte[] ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, threadId, recipient, pushDestination, plaintext);
       return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
     }
   }
@@ -190,6 +193,7 @@ public class PushTransport extends BaseTransport {
   }
 
   private byte[] getEncryptedPrekeyBundleMessageForNewSession(PushServiceSocket socket,
+                                                              long threadId,
                                                               Recipient recipient,
                                                               PushDestination pushDestination,
                                                               byte[] plaintext)
@@ -200,7 +204,7 @@ public class PushTransport extends BaseTransport {
     PreKeyEntity         preKey          = socket.getPreKey(pushDestination);
     KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipient);
 
-    processor.processKeyExchangeMessage(preKey);
+    processor.processKeyExchangeMessage(preKey, threadId);
 
     MessageCipher       messageCipher       = new MessageCipher(context, masterSecret, identityKeyPair);
     CiphertextMessage   ciphertextMessage   = messageCipher.encrypt(recipient, plaintext);

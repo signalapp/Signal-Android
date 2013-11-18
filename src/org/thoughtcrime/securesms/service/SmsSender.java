@@ -83,14 +83,20 @@ public class SmsSender {
   }
 
   private void handleSentMessage(Intent intent) {
-    long messageId = intent.getLongExtra("message_id", -1);
-    int result     = intent.getIntExtra("ResultCode", -31337);
+    long    messageId = intent.getLongExtra("message_id", -1);
+    int     result    = intent.getIntExtra("ResultCode", -31337);
+    boolean upgraded  = intent.getBooleanExtra("upgraded", false);
 
     Log.w("SMSReceiverService", "Intent resultcode: " + result);
     Log.w("SMSReceiverService", "Running sent callback: " + messageId);
 
     if (result == Activity.RESULT_OK) {
       DatabaseFactory.getSmsDatabase(context).markAsSent(messageId);
+
+      if (upgraded) {
+        DatabaseFactory.getSmsDatabase(context).markAsSecure(messageId);
+      }
+
       unregisterForRadioChanges();
     } else if (result == SmsManager.RESULT_ERROR_NO_SERVICE || result == SmsManager.RESULT_ERROR_RADIO_OFF) {
       DatabaseFactory.getSmsDatabase(context).markAsOutbox(messageId);

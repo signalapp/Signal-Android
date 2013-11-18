@@ -166,6 +166,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     updateTypeBitmask(id, 0, Types.KEY_EXCHANGE_CORRUPTED_BIT);
   }
 
+  public void markAsSecure(long id) {
+    updateTypeBitmask(id, 0, Types.SECURE_MESSAGE_BIT);
+  }
+
   public void markAsDecryptFailed(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
   }

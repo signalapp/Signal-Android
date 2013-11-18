@@ -133,6 +133,7 @@ public class MessageSender {
     Intent intent  = new Intent(SendReceiveService.SEND_MMS_ACTION, null,
                                 context, SendReceiveService.class);
     intent.putExtra("message_id", messageId);
+    intent.putExtra("thread_id", threadId);
 
     context.startService(intent);
   }
