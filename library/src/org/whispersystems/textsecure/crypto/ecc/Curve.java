@@ -23,7 +23,7 @@ public class Curve {
 
   public  static final int NIST_TYPE  = 0x02;
   private static final int NIST_TYPE2 = 0x03;
-  public  static final int DJB_TYPE   = 0x04;
+  public  static final int DJB_TYPE   = 0x05;
 
   public static ECKeyPair generateKeyPairForType(int keyType) {
     if (keyType == DJB_TYPE) {
