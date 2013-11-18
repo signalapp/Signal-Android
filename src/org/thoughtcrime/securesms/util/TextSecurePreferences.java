@@ -16,7 +16,7 @@ public class TextSecurePreferences {
   public  static final String MMSC_PROXY_PORT_PREF             = "pref_apn_mms_proxy_port";
   public  static final String THREAD_TRIM_LENGTH               = "pref_trim_length";
   public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
-  public  static final String USE_LOCAL_MMS_APNS_PREF          = "pref_use_local_apns";
+  public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
 
   private static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
@@ -39,6 +39,11 @@ public class TextSecurePreferences {
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
+  private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
+
+  public static boolean isInThreadNotifications(Context context) {
+    return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
+  }
 
   public static long getDirectoryRefreshTime(Context context) {
     return getLongPreference(context, DIRECTORY_FRESH_TIME_PREF, 0L);
@@ -113,7 +118,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isUseLocalApnsEnabled(Context context) {
-    return getBooleanPreference(context, USE_LOCAL_MMS_APNS_PREF, false);
+    return getBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, false);
   }
 
   public static String getTheme(Context context) {
