@@ -6,6 +6,7 @@ import android.util.Pair;
 
 import com.google.thoughtcrimegson.Gson;
 
+import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -32,6 +33,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
@@ -341,6 +343,7 @@ public class PushServiceSocket {
 
       if (Release.ENFORCE_SSL) {
         ((HttpsURLConnection)connection).setSSLSocketFactory(context.getSocketFactory());
+        ((HttpsURLConnection)connection).setHostnameVerifier(new StrictHostnameVerifier());
       }
 
       connection.setRequestMethod(method);
