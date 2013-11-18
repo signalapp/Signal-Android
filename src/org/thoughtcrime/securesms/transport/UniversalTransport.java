@@ -76,7 +76,9 @@ public class UniversalTransport {
     }
   }
 
-  public Pair<byte[], Integer> deliver(SendReq mediaMessage) throws UndeliverableMessageException {
+  public Pair<byte[], Integer> deliver(SendReq mediaMessage, long threadId)
+      throws UndeliverableMessageException
+  {
     if (!TextSecurePreferences.isPushRegistered(context)) {
       return mmsTransport.deliver(mediaMessage);
     }
@@ -86,7 +88,7 @@ public class UniversalTransport {
     if (isPushTransport(destinations)) {
       try {
         Log.w("UniversalTransport", "Delivering media message with GCM...");
-        pushTransport.deliver(mediaMessage, destinations);
+        pushTransport.deliver(mediaMessage, destinations, threadId);
         return new Pair<byte[], Integer>("push".getBytes("UTF-8"), 0);
       } catch (IOException ioe) {
         Log.w("UniversalTransport", ioe);

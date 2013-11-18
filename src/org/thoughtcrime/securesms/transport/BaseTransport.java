@@ -9,13 +9,14 @@ import org.thoughtcrime.securesms.service.SmsListener;
 
 public abstract class BaseTransport {
 
-  protected Intent constructSentIntent(Context context, long messageId, long type) {
+  protected Intent constructSentIntent(Context context, long messageId, long type, boolean upgraded) {
     Intent pending = new Intent(SendReceiveService.SENT_SMS_ACTION,
                                 Uri.parse("custom://" + messageId + System.currentTimeMillis()),
                                 context, SmsListener.class);
 
     pending.putExtra("type", type);
     pending.putExtra("message_id", messageId);
+    pending.putExtra("upgraded", upgraded);
 
     return pending;
   }

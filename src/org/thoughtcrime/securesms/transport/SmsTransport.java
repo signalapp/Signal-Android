@@ -35,7 +35,6 @@ import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 
@@ -68,7 +67,7 @@ public class SmsTransport extends BaseTransport {
     }
 
     ArrayList<String> messages                = multipartMessageHandler.divideMessage(transportMessage);
-    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages);
+    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, true);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
 
     Log.w("SmsTransport", "Secure divide into message parts: " + messages.size());
@@ -101,7 +100,7 @@ public class SmsTransport extends BaseTransport {
       throws UndeliverableMessageException
   {
     ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody().getBody());
-    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages);
+    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, false);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
     String recipient                          = message.getIndividualRecipient().getNumber();
 
@@ -123,12 +122,14 @@ public class SmsTransport extends BaseTransport {
     }
   }
 
-  private ArrayList<PendingIntent> constructSentIntents(long messageId, long type, ArrayList<String> messages) {
+  private ArrayList<PendingIntent> constructSentIntents(long messageId, long type,
+                                                        ArrayList<String> messages, boolean secure)
+  {
     ArrayList<PendingIntent> sentIntents = new ArrayList<PendingIntent>(messages.size());
 
     for (String ignored : messages) {
       sentIntents.add(PendingIntent.getBroadcast(context, 0,
-                                                 constructSentIntent(context, messageId, type),
+                                                 constructSentIntent(context, messageId, type, secure),
                                                  0));
     }
 
