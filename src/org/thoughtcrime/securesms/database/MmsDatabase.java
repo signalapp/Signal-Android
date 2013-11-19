@@ -262,6 +262,10 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     notifyConversationListeners(threadId);
   }
 
+  public void markAsSecure(long messageId) {
+    updateMailboxBitmask(messageId, 0, Types.SECURE_MESSAGE_BIT);
+  }
+
   public void markAsDecryptFailed(long messageId, long threadId) {
     updateMailboxBitmask(messageId, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
     notifyConversationListeners(threadId);
