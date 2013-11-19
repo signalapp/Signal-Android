@@ -151,7 +151,7 @@ public class PushServiceSocket {
   public PreKeyEntity getPreKey(PushDestination destination) throws IOException {
     String path = String.format(PREKEY_PATH, destination.getNumber());
 
-    if (destination.getRelay() != null) {
+    if (!Util.isEmpty(destination.getRelay())) {
       path = path + "?relay=" + destination.getRelay();
     }
 
@@ -179,7 +179,7 @@ public class PushServiceSocket {
   public File retrieveAttachment(String relay, long attachmentId) throws IOException {
     String path = String.format(ATTACHMENT_PATH, String.valueOf(attachmentId));
 
-    if (relay != null) {
+    if (!Util.isEmpty(relay)) {
       path = path + "?relay=" + relay;
     }
 
