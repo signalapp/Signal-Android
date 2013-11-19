@@ -20,21 +20,20 @@ package org.thoughtcrime.securesms.transport;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.MmsSendHelper;
+import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.util.Hex;
 
@@ -62,7 +61,7 @@ public class MmsTransport {
     this.radio        = MmsRadio.getInstance(context);
   }
 
-  public Pair<byte[], Integer> deliver(SendReq message) throws UndeliverableMessageException {
+  public MmsSendResult deliver(SendReq message) throws UndeliverableMessageException {
     try {
       if (isCdmaDevice()) {
         Log.w("MmsTransport", "Sending MMS directly without radio change...");
@@ -77,7 +76,7 @@ public class MmsTransport {
       radio.connect();
 
       try {
-        Pair<byte[], Integer> result = sendMms(message, true, false);
+        MmsSendResult result = sendMms(message, true, false);
         radio.disconnect();
         return result;
       } catch (IOException e) {
@@ -87,7 +86,7 @@ public class MmsTransport {
       Log.w("MmsTransport", "Sending MMS with radio change and proxy...");
 
       try {
-        Pair<byte[], Integer> result = sendMms(message, true, true);
+        MmsSendResult result = sendMms(message, true, true);
         radio.disconnect();
         return result;
       } catch (IOException ioe) {
@@ -102,13 +101,15 @@ public class MmsTransport {
     }
   }
 
-  private Pair<byte[], Integer> sendMms(SendReq message, boolean usingMmsRadio, boolean useProxy)
+  private MmsSendResult sendMms(SendReq message, boolean usingMmsRadio, boolean useProxy)
       throws IOException, UndeliverableMessageException
   {
-    String number = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+    String  number         = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+    boolean upgradedSecure = false;
 
     if (MmsDatabase.Types.isSecureType(message.getDatabaseMessageBox())) {
-      message = getEncryptedMessage(message);
+      message        = getEncryptedMessage(message);
+      upgradedSecure = true;
     }
 
     if (number != null && number.trim().length() != 0) {
@@ -129,7 +130,7 @@ public class MmsTransport {
     } else if (isInconsistentResponse(message, conf)) {
       throw new UndeliverableMessageException("Mismatched response!");
     } else {
-      return new Pair<byte[], Integer>(conf.getMessageId(), conf.getResponseStatus());
+      return new MmsSendResult(conf.getMessageId(), conf.getResponseStatus(), upgradedSecure);
     }
   }
 

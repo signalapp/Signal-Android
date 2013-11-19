@@ -24,6 +24,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
@@ -64,8 +65,14 @@ public class MmsSender {
         try {
           Log.w("MmsSender", "Passing to MMS transport: " + message.getDatabaseMessageId());
           database.markAsSending(message.getDatabaseMessageId());
-          Pair<byte[], Integer> result = transport.deliver(message, threadId);
-          database.markAsSent(message.getDatabaseMessageId(), result.first, result.second);
+          MmsSendResult result = transport.deliver(message, threadId);
+
+          if (result.isUpgradedSecure()) {
+            database.markAsSecure(message.getDatabaseMessageId());
+          }
+          
+          database.markAsSent(message.getDatabaseMessageId(), result.getMessageId(),
+                              result.getResponseStatus());
         } catch (UndeliverableMessageException e) {
           Log.w("MmsSender", e);
           database.markAsSentFailed(message.getDatabaseMessageId());

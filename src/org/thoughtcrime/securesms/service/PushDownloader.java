@@ -16,6 +16,7 @@ import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.push.NotFoundException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.Base64;
 
@@ -79,6 +80,13 @@ public class PushDownloader {
       InputStream attachmentInput = new AttachmentCipherInputStream(attachmentFile, key);
 
       database.updateDownloadedPart(messageId, partId, part, attachmentInput);
+    } catch (NotFoundException e) {
+      Log.w("PushDownloader", e);
+      try {
+        database.updateFailedDownloadedPart(messageId, partId, part);
+      } catch (MmsException mme) {
+        Log.w("PushDownloader", mme);
+      }
     } catch (InvalidMessageException e) {
       Log.w("PushDownloader", e);
       try {

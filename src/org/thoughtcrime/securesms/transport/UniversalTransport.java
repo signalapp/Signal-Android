@@ -21,6 +21,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
@@ -76,7 +77,7 @@ public class UniversalTransport {
     }
   }
 
-  public Pair<byte[], Integer> deliver(SendReq mediaMessage, long threadId)
+  public MmsSendResult deliver(SendReq mediaMessage, long threadId)
       throws UndeliverableMessageException
   {
     if (!TextSecurePreferences.isPushRegistered(context)) {
@@ -89,7 +90,7 @@ public class UniversalTransport {
       try {
         Log.w("UniversalTransport", "Delivering media message with GCM...");
         pushTransport.deliver(mediaMessage, destinations, threadId);
-        return new Pair<byte[], Integer>("push".getBytes("UTF-8"), 0);
+        return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
       } catch (IOException ioe) {
         Log.w("UniversalTransport", ioe);
         return mmsTransport.deliver(mediaMessage);
