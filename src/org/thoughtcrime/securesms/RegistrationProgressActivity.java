@@ -29,8 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+
 import org.thoughtcrime.securesms.service.RegistrationService;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
@@ -497,7 +498,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            PushServiceSocket socket = new PushServiceSocket(context, e164number, password);
+            PushServiceSocket socket = new PushServiceSocket(context, Release.PUSH_URL, e164number, password);
             socket.verifyAccount(code, signalingKey);
             return SUCCESS;
           } catch (RateLimitException e) {
@@ -584,7 +585,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            PushServiceSocket socket = new PushServiceSocket(context, e164number, password);
+            PushServiceSocket socket = new PushServiceSocket(context, Release.PUSH_URL, e164number, password);
             socket.createAccount(true);
 
             return SUCCESS;

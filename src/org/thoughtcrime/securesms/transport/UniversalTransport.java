@@ -18,8 +18,8 @@ package org.thoughtcrime.securesms.transport;
 
 import android.content.Context;
 import android.util.Log;
-import android.util.Pair;
 
+import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -133,7 +133,7 @@ public class UniversalTransport {
       return directory.isActiveNumber(destination);
     } catch (NotInDirectoryException e) {
       try {
-        PushServiceSocket   socket         = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
+        PushServiceSocket   socket         = new PushServiceSocket(context, Release.PUSH_URL, TextSecurePushCredentials.getInstance());
         String              contactToken   = directory.getToken(destination);
         ContactTokenDetails registeredUser = socket.getContactTokenDetails(contactToken);
 

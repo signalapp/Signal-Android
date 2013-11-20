@@ -11,7 +11,9 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.google.android.gcm.GCMRegistrar;
+
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
@@ -20,7 +22,6 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -197,7 +198,7 @@ public class RegistrationService extends Service {
       initializeGcmRegistrationListener();
       initializePreKeyGenerator(masterSecret);
 
-      PushServiceSocket socket = new PushServiceSocket(this, number, password);
+      PushServiceSocket socket = new PushServiceSocket(this, Release.PUSH_URL, number, password);
 
       handleCommonRegistration(masterSecret, socket, number);
 
@@ -237,7 +238,7 @@ public class RegistrationService extends Service {
       initializePreKeyGenerator(masterSecret);
 
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
-      PushServiceSocket socket = new PushServiceSocket(this, number, password);
+      PushServiceSocket socket = new PushServiceSocket(this, Release.PUSH_URL, number, password);
       socket.createAccount(false);
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
