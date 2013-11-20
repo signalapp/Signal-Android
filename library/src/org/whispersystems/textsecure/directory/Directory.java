@@ -36,7 +36,7 @@ public class Directory {
   private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID + " INTEGER PRIMARY KEY, " +
                                              TOKEN        + " TEXT UNIQUE, " +
                                              REGISTERED   + " INTEGER, " +
-                                             RELAY        + " TEXT " +
+                                             RELAY        + " TEXT, " +
                                              SUPPORTS_SMS + " INTEGER, " +
                                              TIMESTAMP    + " INTEGER);";
 
