@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
+
+import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -32,7 +34,7 @@ public class GcmIntentService extends GCMBaseIntentService {
       sendBroadcast(intent);
     } else {
       try {
-        PushServiceSocket pushSocket = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
+        PushServiceSocket pushSocket = new PushServiceSocket(context, Release.PUSH_URL, TextSecurePushCredentials.getInstance());
         pushSocket.registerGcmId(registrationId);
       } catch (IOException e) {
         Log.w("GcmIntentService", e);
@@ -43,7 +45,7 @@ public class GcmIntentService extends GCMBaseIntentService {
   @Override
   protected void onUnregistered(Context context, String registrationId) {
     try {
-      PushServiceSocket pushSocket = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
+      PushServiceSocket pushSocket = new PushServiceSocket(context, Release.PUSH_URL, TextSecurePushCredentials.getInstance());
       pushSocket.unregisterGcmId();
     } catch (IOException ioe) {
       Log.w("GcmIntentService", ioe);

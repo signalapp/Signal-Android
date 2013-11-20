@@ -260,7 +260,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           protected Integer doInBackground(Void... params) {
             try {
               Context           context = ApplicationPreferencesActivity.this;
-              PushServiceSocket socket  = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
+              PushServiceSocket socket  = new PushServiceSocket(context, Release.PUSH_URL,
+                                                                TextSecurePushCredentials.getInstance());
 
               socket.unregisterGcmId();
               GCMRegistrar.unregister(context);

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.service;
 
-
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +7,10 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
+
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -59,7 +60,7 @@ public class DirectoryRefreshService extends Service {
       try {
         Log.w("DirectoryRefreshService", "Refreshing directory...");
         Directory         directory = Directory.getInstance(context);
-        PushServiceSocket socket    = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
+        PushServiceSocket socket    = new PushServiceSocket(context, Release.PUSH_URL, TextSecurePushCredentials.getInstance());
 
         Set<String> eligibleContactTokens = directory.getPushEligibleContactTokens(TextSecurePreferences.getLocalNumber(context));
         List<ContactTokenDetails> activeTokens  = socket.retrieveDirectory(eligibleContactTokens);

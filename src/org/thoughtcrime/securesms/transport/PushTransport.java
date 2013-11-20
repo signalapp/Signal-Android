@@ -22,6 +22,7 @@ import android.util.Log;
 
 import com.google.protobuf.ByteString;
 
+import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -74,7 +75,7 @@ public class PushTransport extends BaseTransport {
       TextSecurePushCredentials credentials = TextSecurePushCredentials.getInstance();
       Recipient                 recipient   = message.getIndividualRecipient();
       long                      threadId    = message.getThreadId();
-      PushServiceSocket         socket      = new PushServiceSocket(context, credentials);
+      PushServiceSocket         socket      = new PushServiceSocket(context, Release.PUSH_URL, credentials);
       PushDestination           destination = PushDestination.create(context, credentials,
                                                                      recipient.getNumber());
 
@@ -96,7 +97,7 @@ public class PushTransport extends BaseTransport {
   {
     try {
       TextSecurePushCredentials credentials = TextSecurePushCredentials.getInstance();
-      PushServiceSocket         socket      = new PushServiceSocket(context, credentials);
+      PushServiceSocket         socket      = new PushServiceSocket(context, Release.PUSH_URL, credentials);
       String                    messageBody = PartParser.getMessageText(message.getBody());
       List<PushBody>            pushBodies  = new LinkedList<PushBody>();
 

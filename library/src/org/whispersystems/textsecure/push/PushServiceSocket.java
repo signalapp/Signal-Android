@@ -8,7 +8,6 @@ import com.google.thoughtcrimegson.Gson;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.textsecure.R;
-import org.whispersystems.textsecure.Release;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
@@ -33,7 +32,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
@@ -51,20 +49,24 @@ public class PushServiceSocket {
   private static final String MESSAGE_PATH              = "/v1/messages/";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
+  private static final boolean ENFORCE_SSL = true;
+
   private final Context context;
+  private final String serviceUrl;
   private final String localNumber;
   private final String password;
   private final TrustManagerFactory trustManagerFactory;
 
-  public PushServiceSocket(Context context, String localNumber, String password) {
+  public PushServiceSocket(Context context, String serviceUrl, String localNumber, String password) {
     this.context             = context.getApplicationContext();
+    this.serviceUrl          = serviceUrl;
     this.localNumber         = localNumber;
     this.password            = password;
     this.trustManagerFactory = initializeTrustManagerFactory(context);
   }
 
-  public PushServiceSocket(Context context, PushCredentials credentials) {
-    this(context, credentials.getLocalNumber(context), credentials.getPassword(context));
+  public PushServiceSocket(Context context, String serviceUrl, PushCredentials credentials) {
+    this(context, serviceUrl, credentials.getLocalNumber(context), credentials.getPassword(context));
   }
 
   public void createAccount(boolean voice) throws IOException {
@@ -335,13 +337,13 @@ public class PushServiceSocket {
       SSLContext context = SSLContext.getInstance("TLS");
       context.init(null, trustManagerFactory.getTrustManagers(), null);
 
-      URL url = new URL(String.format("%s%s", Release.PUSH_SERVICE_URL, urlFragment));
-      Log.w("PushServiceSocket", "Push service URL: " + Release.PUSH_SERVICE_URL);
+      URL url = new URL(String.format("%s%s", serviceUrl, urlFragment));
+      Log.w("PushServiceSocket", "Push service URL: " + serviceUrl);
       Log.w("PushServiceSocket", "Opening URL: " + url);
 
       HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
-      if (Release.ENFORCE_SSL) {
+      if (ENFORCE_SSL) {
         ((HttpsURLConnection)connection).setSSLSocketFactory(context.getSocketFactory());
         ((HttpsURLConnection)connection).setHostnameVerifier(new StrictHostnameVerifier());
       }

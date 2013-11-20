@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.util.Log;
 import android.util.Pair;
 
+import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingPartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
@@ -111,7 +111,7 @@ public class PushDownloader {
   }
 
   private File downloadAttachment(String relay, long contentLocation) throws IOException {
-    PushServiceSocket socket = new PushServiceSocket(context, TextSecurePushCredentials.getInstance());
+    PushServiceSocket socket = new PushServiceSocket(context, Release.PUSH_URL, TextSecurePushCredentials.getInstance());
     return socket.retrieveAttachment(relay, contentLocation);
   }
 
