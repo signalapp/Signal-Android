@@ -134,11 +134,13 @@ public class SmsReceiver {
 
   private void handleReceiveMessage(MasterSecret masterSecret, Intent intent) {
     List<IncomingTextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
+    boolean shouldNotify = intent.getBooleanExtra("should_notify",true);
     IncomingTextMessage message            = assembleMessageFragments(messagesList);
 
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      if (shouldNotify)
+        MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     }
   }
 

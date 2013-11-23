@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
+import android.provider.Telephony;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -34,11 +35,15 @@ import java.util.ArrayList;
 
 public class SmsListener extends BroadcastReceiver {
 
-  // in 4.4 we only want to listen for SMS_DELIVER
-  private static final String SMS_RECEIVED_ACTION = 
-    (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-      ? "android.provider.Telephony.SMS_DELIVER"
-      : "android.provider.Telephony.SMS_RECEIVED";
+  // in 4.4 we only want to listen for SMS_DELIVER for messages targeted to us
+  // and SMS_RECEIVED to keep our database in sync when not the default SMS provider
+  private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+  private static final String SMS_DELIVERED_ACTION = "android.provider.Telephony.SMS_DELIVER";
+
+  private boolean isDefaultSmsProvider(Context context){
+    return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) && 
+      (Telephony.Sms.getDefaultSmsPackage(context) == context.getPackageName());
+  }
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -145,10 +150,21 @@ public class SmsListener extends BroadcastReceiver {
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
-    } else if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent)) {
+    } else if ((intent.getAction().equals(SMS_RECEIVED_ACTION) || 
+                intent.getAction().equals(SMS_DELIVERED_ACTION)) && 
+                isRelevant(context, intent)) {
+      boolean shouldNotify = true;
+      if (intent.getAction().equals(SMS_RECEIVED_ACTION) && 
+          Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
+          !isDefaultSmsProvider(context)) {
+        // we werent targeted by this message, but we still want to
+        // ingest the message silently to stay in sync with the systemDB
+        shouldNotify = false;
+      }
       Intent receivedIntent = new Intent(context, SendReceiveService.class);
       receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
       receivedIntent.putExtra("ResultCode", this.getResultCode());
+      receivedIntent.putExtra("should_notify", shouldNotify);
       receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
       context.startService(receivedIntent);
 
