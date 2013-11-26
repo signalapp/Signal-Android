@@ -51,18 +51,14 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.RecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.KeyUtil;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -89,6 +85,10 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -275,7 +275,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_start_secure_session:      handleStartSecureSession();                        return true;
     case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
     case R.id.menu_verify_recipient:          handleVerifyRecipient();                           return true;
-    case R.id.menu_verify_session:            handleVerifySession();                             return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
@@ -329,13 +328,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     startActivity(verifyIdentityIntent);
   }
 
-  private void handleVerifySession() {
-    Intent verifyKeysIntent = new Intent(this, VerifyKeysActivity.class);
-    verifyKeysIntent.putExtra("recipient", getRecipients().getPrimaryRecipient());
-    verifyKeysIntent.putExtra("master_secret", masterSecret);
-    startActivity(verifyKeysIntent);
-  }
-
   private void handleStartSecureSession() {
     if (getRecipients() == null) {
       Toast.makeText(this, getString(R.string.ConversationActivity_invalid_recipient),
@@ -373,7 +365,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       @Override
       public void onClick(DialogInterface dialog, int which) {
         if (isSingleConversation()) {
-          KeyUtil.abortSessionFor(ConversationActivity.this, getRecipients().getPrimaryRecipient());
+          Session.abortSessionFor(ConversationActivity.this, getRecipients().getPrimaryRecipient());
           initializeSecurity();
           initializeTitleBar();
         }
@@ -567,11 +559,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     TypedArray drawables    = obtainStyledAttributes(attributes);
 
     if (isSingleConversation() &&
-        KeyUtil.isSessionFor(this, getRecipients().getPrimaryRecipient()))
+        Session.hasSession(this, masterSecret, getRecipients().getPrimaryRecipient()))
     {
       sendButton.setImageDrawable(drawables.getDrawable(1));
       this.isEncryptedConversation     = true;
-      this.isAuthenticatedConversation = KeyUtil.isIdentityKeyFor(this, masterSecret, getRecipients().getPrimaryRecipient());
+      this.isAuthenticatedConversation = Session.hasRemoteIdentityKey(this, masterSecret, getRecipients().getPrimaryRecipient());
       this.characterCalculator         = new EncryptedCharacterCalculator();
     } else {
       sendButton.setImageDrawable(drawables.getDrawable(0));

@@ -682,7 +682,7 @@
 
     <!-- conversation_secure_verified -->
     <string name="conversation_secure_verified__menu_security">Security</string>
-    <string name="conversation_secure_verified__menu_verify_session">Verify Session</string>
+    <string name="conversation_secure_verified__menu_no_identity">No Identity Available</string>
     <string name="conversation_secure_verified__menu_verify_recipient">Verify Recipient</string>
     <string name="conversation_secure_verified__menu_abort_secure_session">Abort Secure Session</string>
     

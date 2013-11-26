@@ -30,8 +30,8 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.storage.SessionRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
 
@@ -392,8 +392,7 @@ public class DatabaseFactory {
 
             if (name.matches("[0-9]+")) {
               long recipientId            = Long.parseLong(name);
-              SessionRecord sessionRecord = new SessionRecord(context, masterSecret, recipientId);
-              IdentityKey identityKey     = sessionRecord.getIdentityKey();
+              IdentityKey identityKey     = Session.getRemoteIdentityKey(context, masterSecret, recipientId);
 
               if (identityKey != null) {
                 MasterCipher masterCipher = new MasterCipher(masterSecret);

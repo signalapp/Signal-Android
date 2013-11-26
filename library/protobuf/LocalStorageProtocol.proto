@@ -1,0 +1,54 @@
+package textsecure;
+
+option java_package = "org.whispersystems.textsecure.storage";
+option java_outer_classname = "StorageProtos";
+
+message SessionStructure {
+  message Chain {
+    optional bytes senderEphemeral = 1;
+    optional bytes senderEphemeralPrivate = 2;
+
+    message ChainKey {
+      optional uint32 index = 1;
+      optional bytes  key   = 2;
+    }
+
+    optional ChainKey chainKey = 3;
+
+    message MessageKey {
+      optional uint32 index     = 1;
+      optional bytes  cipherKey = 2;
+      optional bytes  macKey    = 3;
+    }
+
+    repeated MessageKey messageKeys = 4;
+  }
+
+  message PendingKeyExchange {
+    optional uint32 sequence                 = 1;
+    optional bytes  localBaseKey             = 2;
+    optional bytes  localBaseKeyPrivate      = 3;
+    optional bytes  localEphemeralKey        = 4;
+    optional bytes  localEphemeralKeyPrivate = 5;
+    optional bytes  localIdentityKey         = 7;
+    optional bytes  localIdentityKeyPrivate  = 8;
+  }
+
+  message PendingPreKey {
+    optional uint32 preKeyId = 1;
+    optional bytes  baseKey  = 2;
+  }
+
+  optional uint32 sessionVersion      = 1;
+  optional bytes localIdentityPublic  = 2;
+  optional bytes remoteIdentityPublic = 3;
+
+  optional bytes rootKey              = 4;
+  optional uint32 previousCounter     = 5;
+
+  optional Chain senderChain          = 6;
+  repeated Chain receiverChains       = 7;
+
+  optional PendingKeyExchange pendingKeyExchange = 8;
+  optional PendingPreKey      pendingPreKey      = 9;
+}

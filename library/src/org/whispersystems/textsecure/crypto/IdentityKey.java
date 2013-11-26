@@ -47,8 +47,7 @@ public class IdentityKey implements Parcelable, SerializableKey {
     }
   };
 	
-  public  static final int SIZE           = 1 + ECPublicKey.KEY_SIZE;
-  private static final int CURRENT_VESION = 1;
+  public  static final int NIST_SIZE = 1 + ECPublicKey.KEY_SIZE;
 
   private ECPublicKey publicKey;
 
@@ -73,19 +72,22 @@ public class IdentityKey implements Parcelable, SerializableKey {
   }
 
   private void initializeFromSerialized(byte[] bytes, int offset) throws InvalidKeyException {
-    int version = bytes[offset] & 0xff;
-		
-    if (version > CURRENT_VESION)
-      throw new InvalidKeyException("Unsupported key version: " + version);
-
-    this.publicKey = Curve.decodePoint(bytes, offset + 1);
+    if ((bytes[offset] & 0xff) == 1) {
+      this.publicKey = Curve.decodePoint(bytes, offset +1);
+    } else {
+      this.publicKey = Curve.decodePoint(bytes, offset);
+    }
   }
 	
   public byte[] serialize() {
-    byte[] versionBytes = {(byte)CURRENT_VESION};
-    byte[] encodedKey   = publicKey.serialize();
+    if (publicKey.getType() == Curve.NIST_TYPE) {
+      byte[] versionBytes = {0x01};
+      byte[] encodedKey   = publicKey.serialize();
 
-    return Util.combine(versionBytes, encodedKey);
+      return Util.combine(versionBytes, encodedKey);
+    } else {
+      return publicKey.serialize();
+    }
   }
 
   public String getFingerprint() {

@@ -20,17 +20,21 @@ package org.thoughtcrime.securesms.crypto;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
+import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessageV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
-import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.storage.LocalKeyRecord;
+import org.whispersystems.textsecure.storage.SessionRecordV2;
+
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 public class KeyExchangeInitiator {
 
@@ -54,18 +58,42 @@ public class KeyExchangeInitiator {
   }
 
   private static void initiateKeyExchange(Context context, MasterSecret masterSecret, Recipient recipient) {
-    LocalKeyRecord record                  = KeyUtil.initializeRecordFor(context, masterSecret, recipient, CiphertextMessage.CURVE25519_INTRODUCED_VERSION);
-    KeyExchangeMessage message             = new KeyExchangeMessage(context, masterSecret, CiphertextMessage.CURVE25519_INTRODUCED_VERSION, record, 0);
+    int             sequence     = getRandomSequence();
+    int             flags        = KeyExchangeMessageV2.INITIATE_FLAG;
+    ECKeyPair       baseKey      = Curve.generateKeyPairForSession(CiphertextMessage.CURRENT_VERSION);
+    ECKeyPair       ephemeralKey = Curve.generateKeyPairForSession(CiphertextMessage.CURRENT_VERSION);
+    IdentityKeyPair identityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
+
+    KeyExchangeMessageV2 message = new KeyExchangeMessageV2(sequence, flags,
+                                                            baseKey.getPublicKey(),
+                                                            ephemeralKey.getPublicKey(),
+                                                            identityKey.getPublicKey());
+
     OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, message.serialize());
 
-    Log.w("SendKeyActivity", "Sending public key: " + record.getCurrentKeyPair().getPublicKey().getFingerprint());
+    SessionRecordV2 sessionRecordV2 = new SessionRecordV2(context, masterSecret, recipient);
+    sessionRecordV2.setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
+    sessionRecordV2.save();
 
     MessageSender.send(context, masterSecret, textMessage, -1);
   }
 
-  private static boolean hasInitiatedSession(Context context, MasterSecret masterSecret, Recipient recipient) {
+  private static boolean hasInitiatedSession(Context context, MasterSecret masterSecret,
+                                             Recipient recipient)
+  {
     return
-      LocalKeyRecord.hasRecord(context, recipient) &&
-      new LocalKeyRecord(context, masterSecret, recipient).getCurrentKeyPair() != null;
+        new SessionRecordV2(context, masterSecret, recipient)
+            .hasPendingKeyExchange();
+  }
+
+  private static int getRandomSequence() {
+    try {
+      SecureRandom random    = SecureRandom.getInstance("SHA1PRNG");
+      int          candidate = Math.abs(random.nextInt());
+
+      return candidate % 65535;
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
   }
 }

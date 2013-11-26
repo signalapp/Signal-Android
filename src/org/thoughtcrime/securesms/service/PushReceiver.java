@@ -8,7 +8,7 @@ import android.util.Pair;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -24,9 +24,10 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
@@ -46,9 +47,9 @@ public class PushReceiver {
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
-    if (intent.getAction().equals(SendReceiveService.RECEIVE_PUSH_ACTION)) {
+    if (SendReceiveService.RECEIVE_PUSH_ACTION.equals(intent.getAction())) {
       handleMessage(masterSecret, intent);
-    } else if (intent.getAction().equals(SendReceiveService.DECRYPTED_PUSH_ACTION)) {
+    } else if (SendReceiveService.DECRYPTED_PUSH_ACTION.equals(intent.getAction())) {
       handleDecrypt(masterSecret, intent);
     }
   }
@@ -81,25 +82,25 @@ public class PushReceiver {
     } else {
       Recipients recipients = RecipientFactory.getRecipientsFromMessage(context, message, false);
       long       threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-      MessageNotifier.updateNotification(context, masterSecret, threadId);
+      MessageNotifier.updateNotification(context, null, threadId);
     }
   }
 
   private void handleReceivedPreKeyBundle(MasterSecret masterSecret, IncomingPushMessage message) {
     if (masterSecret == null) {
-      handleReceivedSecureMessage(masterSecret, message);
+      handleReceivedSecureMessage(null, message);
       return;
     }
 
     try {
-      Recipient            recipient      = new Recipient(null, message.getSource(), null, null);
-      KeyExchangeProcessor processor      = new KeyExchangeProcessor(context, masterSecret, recipient);
-      PreKeyBundleMessage  preKeyExchange = new PreKeyBundleMessage(message.getBody());
+      Recipient              recipient      = new Recipient(null, message.getSource(), null, null);
+      KeyExchangeProcessorV2 processor      = new KeyExchangeProcessorV2(context, masterSecret, recipient);
+      PreKeyWhisperMessage   preKeyExchange = new PreKeyWhisperMessage(message.getBody());
 
       if (processor.isTrusted(preKeyExchange)) {
         processor.processKeyExchangeMessage(preKeyExchange);
 
-        IncomingPushMessage bundledMessage = message.withBody(preKeyExchange.getBundledMessage().serialize());
+        IncomingPushMessage bundledMessage = message.withBody(preKeyExchange.getWhisperMessage().serialize());
         handleReceivedSecureMessage(masterSecret, bundledMessage);
       } else {
         SmsTransportDetails transportDetails = new SmsTransportDetails();
@@ -110,13 +111,16 @@ public class PushReceiver {
         DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, textMessage);
       }
     } catch (InvalidKeyException e) {
-      Log.w("SmsReceiver", e);
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
     } catch (InvalidVersionException e) {
-      Log.w("SmsReceiver", e);
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, true);
     } catch (InvalidKeyIdException e) {
-      Log.w("SmsReceiver", e);
+      Log.w("PushReceiver", e);
+      handleReceivedCorruptedKey(masterSecret, message, false);
+    } catch (InvalidMessageException e) {
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
     }
   }
@@ -237,9 +241,7 @@ public class PushReceiver {
       placeholder = new IncomingEncryptedMessage(placeholder, "");
     }
 
-    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getEncryptingSmsDatabase(context)
-                                                         .insertMessageInbox(masterSecret,
-                                                                             placeholder);
-    return messageAndThreadId;
+    return DatabaseFactory.getEncryptingSmsDatabase(context)
+                          .insertMessageInbox(masterSecret, placeholder);
   }
 }

@@ -85,7 +85,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     initializeIdentitySelection();
     initializePushMessagingToggle();
-    initializeEditTextSummaries();
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
       .setOnPreferenceClickListener(new ChangePassphraseClickListener());
@@ -166,12 +165,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         return true;
       }
     });
-  }
-
-  private void initializeEditTextSummaries() {
-    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_HOST_PREF));
-    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_HOST_PREF));
-    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_PORT_PREF));
   }
 
   private void initializePushMessagingToggle() {

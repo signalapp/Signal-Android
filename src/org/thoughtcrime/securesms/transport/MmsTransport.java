@@ -21,7 +21,6 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
@@ -30,10 +29,8 @@ import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageCipher;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.util.Hex;
 
@@ -158,9 +155,8 @@ public class MmsTransport {
   private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipientString, byte[] pduBytes) {
     TextTransport     transportDetails  = new TextTransport();
     Recipient         recipient         = new Recipient(null, recipientString, null, null);
-    IdentityKeyPair   identityKey       = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
-    MessageCipher     messageCipher     = new MessageCipher(context, masterSecret, identityKey);
-    CiphertextMessage ciphertextMessage = messageCipher.encrypt(recipient, pduBytes);
+    SessionCipher     sessionCipher     = SessionCipher.createFor(context, masterSecret, recipient);
+    CiphertextMessage ciphertextMessage = sessionCipher.encrypt(pduBytes);
 
     return transportDetails.getEncodedMessage(ciphertextMessage.serialize());
   }

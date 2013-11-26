@@ -23,6 +23,7 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -33,15 +34,17 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
+import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
+import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
+import org.whispersystems.textsecure.crypto.protocol.WhisperMessageV2;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 
 import java.io.IOException;
@@ -97,26 +100,27 @@ public class SmsReceiver {
     }
   }
 
-  private Pair<Long, Long> storePreKeyBundledMessage(MasterSecret masterSecret,
-                                                     IncomingKeyExchangeMessage message)
+  private Pair<Long, Long> storePreKeyWhisperMessage(MasterSecret masterSecret,
+                                                     IncomingPreKeyBundleMessage message)
   {
     Log.w("SmsReceiver", "Processing prekey message...");
 
     try {
-      Recipient            recipient        = new Recipient(null, message.getSender(), null, null);
-      KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
-      SmsTransportDetails  transportDetails = new SmsTransportDetails();
-      PreKeyBundleMessage  preKeyExchange   = new PreKeyBundleMessage(transportDetails.getDecodedMessage(message.getMessageBody().getBytes()));
+      Recipient              recipient        = new Recipient(null, message.getSender(), null, null);
+      KeyExchangeProcessorV2 processor        = new KeyExchangeProcessorV2(context, masterSecret, recipient);
+      SmsTransportDetails    transportDetails = new SmsTransportDetails();
+      byte[]                 rawMessage       = transportDetails.getDecodedMessage(message.getMessageBody().getBytes());
+      PreKeyWhisperMessage   preKeyExchange   = new PreKeyWhisperMessage(rawMessage);
 
       if (processor.isTrusted(preKeyExchange)) {
         processor.processKeyExchangeMessage(preKeyExchange);
 
-        CiphertextMessage        ciphertextMessage  = preKeyExchange.getBundledMessage();
+        WhisperMessageV2         ciphertextMessage  = preKeyExchange.getWhisperMessage();
         String                   bundledMessageBody = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
         IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, bundledMessageBody);
         Pair<Long, Long>         messageAndThreadId = storeSecureMessage(masterSecret, bundledMessage);
 
-        Intent intent = new Intent(KeyExchangeProcessor.SECURITY_UPDATE_EVENT);
+        Intent intent = new Intent(KeyExchangeProcessorV2.SECURITY_UPDATE_EVENT);
         intent.putExtra("thread_id", messageAndThreadId.second);
         intent.setPackage(context.getPackageName());
         context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
@@ -135,6 +139,9 @@ public class SmsReceiver {
     } catch (IOException e) {
       Log.w("SmsReceive", e);
       message.setCorrupted(true);
+    } catch (InvalidMessageException e) {
+      Log.w("SmsReceiver", e);
+      message.setCorrupted(true);
     }
 
     return storeStandardMessage(masterSecret, message);
@@ -145,19 +152,17 @@ public class SmsReceiver {
   {
     if (masterSecret != null && TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
       try {
-        Recipient recipient                   = new Recipient(null, message.getSender(), null, null);
-        KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(message.getMessageBody());
-        KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
+        Recipient            recipient       = new Recipient(null, message.getSender(), null, null);
+        KeyExchangeMessage   exchangeMessage = KeyExchangeMessage.createFor(message.getMessageBody());
+        KeyExchangeProcessor processor       = KeyExchangeProcessor.createFor(context, masterSecret, recipient, exchangeMessage);
 
-        Log.w("SmsReceiver", "Received key with fingerprint: " + keyExchangeMessage.getPublicKey().getFingerprint());
-
-        if (processor.isStale(keyExchangeMessage)) {
+        if (processor.isStale(exchangeMessage)) {
           message.setStale(true);
-        } else if (processor.isTrusted(keyExchangeMessage)) {
+        } else if (processor.isTrusted(exchangeMessage)) {
           message.setProcessed(true);
 
           Pair<Long, Long> messageAndThreadId = storeStandardMessage(masterSecret, message);
-          processor.processKeyExchangeMessage(keyExchangeMessage, messageAndThreadId.second);
+          processor.processKeyExchangeMessage(exchangeMessage, messageAndThreadId.second);
 
           return messageAndThreadId;
         }
@@ -165,6 +170,9 @@ public class SmsReceiver {
         Log.w("SmsReceiver", e);
         message.setInvalidVersion(true);
       } catch (InvalidKeyException e) {
+        Log.w("SmsReceiver", e);
+        message.setCorrupted(true);
+      } catch (InvalidMessageException e) {
         Log.w("SmsReceiver", e);
         message.setCorrupted(true);
       }
@@ -175,7 +183,7 @@ public class SmsReceiver {
 
   private Pair<Long, Long> storeMessage(MasterSecret masterSecret, IncomingTextMessage message) {
     if      (message.isSecureMessage()) return storeSecureMessage(masterSecret, message);
-    else if (message.isPreKeyBundle())  return storePreKeyBundledMessage(masterSecret, (IncomingKeyExchangeMessage) message);
+    else if (message.isPreKeyBundle())  return storePreKeyWhisperMessage(masterSecret, (IncomingPreKeyBundleMessage) message);
     else if (message.isKeyExchange())   return storeKeyExchangeMessage(masterSecret, (IncomingKeyExchangeMessage) message);
     else                                return storeStandardMessage(masterSecret, message);
   }
@@ -191,7 +199,7 @@ public class SmsReceiver {
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
-    if (intent.getAction().equals(SendReceiveService.RECEIVE_SMS_ACTION)) {
+    if (SendReceiveService.RECEIVE_SMS_ACTION.equals(intent.getAction())) {
       handleReceiveMessage(masterSecret, intent);
     }
   }

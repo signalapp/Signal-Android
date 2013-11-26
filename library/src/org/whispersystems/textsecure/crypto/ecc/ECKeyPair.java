@@ -27,7 +27,6 @@ public class ECKeyPair {
     this.privateKey = privateKey;
   }
 
-
   public ECPublicKey getPublicKey() {
     return publicKey;
   }

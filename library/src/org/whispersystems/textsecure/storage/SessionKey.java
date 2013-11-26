@@ -19,7 +19,7 @@ package org.whispersystems.textsecure.storage;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.kdf.NKDF;
 import org.whispersystems.textsecure.util.Conversions;
 import org.whispersystems.textsecure.util.Util;
 
@@ -77,13 +77,13 @@ public class SessionKey {
     this.localKeyId  = Conversions.byteArrayToMedium(decrypted, 0);
     this.remoteKeyId = Conversions.byteArrayToMedium(decrypted, 3);
 
-    byte[] keyBytes  = new byte[SessionCipher.CIPHER_KEY_LENGTH];
+    byte[] keyBytes  = new byte[NKDF.LEGACY_CIPHER_KEY_LENGTH];
     System.arraycopy(decrypted, 6, keyBytes, 0, keyBytes.length);
 
-    byte[] macBytes  = new byte[SessionCipher.MAC_KEY_LENGTH];
+    byte[] macBytes  = new byte[NKDF.LEGACY_MAC_KEY_LENGTH];
     System.arraycopy(decrypted, 6 + keyBytes.length, macBytes, 0, macBytes.length);
     
-    if (decrypted.length < 6 + SessionCipher.CIPHER_KEY_LENGTH + SessionCipher.MAC_KEY_LENGTH + 1) {
+    if (decrypted.length < 6 + NKDF.LEGACY_CIPHER_KEY_LENGTH + NKDF.LEGACY_MAC_KEY_LENGTH + 1) {
       throw new InvalidMessageException("No mode included");
     }
     

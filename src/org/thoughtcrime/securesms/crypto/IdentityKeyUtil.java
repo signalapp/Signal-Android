@@ -175,7 +175,7 @@ public class IdentityKeyUtil {
       byte[] messageBytes   = new byte[1 + PublicKey.KEY_SIZE];
       System.arraycopy(keyExchangeBytes, 0, messageBytes, 0, messageBytes.length);
 			
-      byte[] publicKeyBytes = new byte[IdentityKey.SIZE];
+      byte[] publicKeyBytes = new byte[IdentityKey.NIST_SIZE];
       System.arraycopy(keyExchangeBytes, messageBytes.length, publicKeyBytes, 0, publicKeyBytes.length);
 			
       int signatureLength   = Conversions.byteArrayToShort(keyExchangeBytes, messageBytes.length + publicKeyBytes.length);
