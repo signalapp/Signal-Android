@@ -24,7 +24,6 @@
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.WRITE_SMS"/>
-    <uses-permission android:name="android.permission.BROADCAST_SMS"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -191,7 +190,6 @@
 
     <receiver android:name=".service.SmsListener"
               android:enabled="true"
-              android:permission="android.permission.BROADCAST_SMS"
               android:exported="true">
              <intent-filter android:priority="1001">
                  <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
