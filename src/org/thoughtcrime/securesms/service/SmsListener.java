@@ -107,12 +107,12 @@ public class SmsListener extends BroadcastReceiver {
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
 
-    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
-      return true;
-
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && 
         intent.getAction().equals(SMS_RECEIVED_ACTION) && isDefaultSmsProvider(context))
       return false;
+
+    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
+      return true;
 
     return WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody);
   }
