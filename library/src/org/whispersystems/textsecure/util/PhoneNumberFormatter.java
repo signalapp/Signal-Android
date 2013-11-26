@@ -21,7 +21,9 @@ public class PhoneNumberFormatter {
     return number.matches("^\\+[0-9]{10,}");
   }
 
-  private static String impreciseFormatNumber(String number, String localNumber) {
+  private static String impreciseFormatNumber(String number, String localNumber)
+      throws InvalidNumberException
+  {
     number = number.replaceAll("[^0-9+]", "");
 
     if (number.charAt(0) == '+')
@@ -49,8 +51,18 @@ public class PhoneNumberFormatter {
     }
   }
 
-  public static String formatNumber(String number, String localNumber) {
+  public static String formatNumber(String number, String localNumber)
+      throws InvalidNumberException
+  {
+    if (number.contains("@")) {
+      throw new InvalidNumberException("Possible attempt to use email address.");
+    }
+
     number = number.replaceAll("[^0-9+]", "");
+
+    if (number.length() == 0) {
+      throw new InvalidNumberException("No valid characters found.");
+    }
 
     if (number.charAt(0) == '+')
       return number;

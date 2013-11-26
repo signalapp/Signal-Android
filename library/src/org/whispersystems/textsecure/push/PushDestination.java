@@ -3,6 +3,7 @@ package org.whispersystems.textsecure.push;
 import android.content.Context;
 
 import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 public class PushDestination {
@@ -26,6 +27,7 @@ public class PushDestination {
   public static PushDestination create(Context context,
                                        PushServiceSocket.PushCredentials credentials,
                                        String destinationNumber)
+      throws InvalidNumberException
   {
     String e164destination = PhoneNumberFormatter.formatNumber(destinationNumber, credentials.getLocalNumber(context));
     String relay           = Directory.getInstance(context).getRelay(e164destination);

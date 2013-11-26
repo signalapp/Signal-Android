@@ -32,6 +32,7 @@ import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -60,19 +61,24 @@ public class UniversalTransport {
       return;
     }
 
-    Recipient recipient = message.getIndividualRecipient();
-    String number       = Util.canonicalizeNumber(context, recipient.getNumber());
+    try {
+      Recipient recipient = message.getIndividualRecipient();
+      String number       = Util.canonicalizeNumber(context, recipient.getNumber());
 
-    if (isPushTransport(number)) {
-      try {
-        Log.w("UniversalTransport", "Delivering with GCM...");
-        pushTransport.deliver(message);
-      } catch (IOException ioe) {
-        Log.w("UniversalTransport", ioe);
+      if (isPushTransport(number)) {
+        try {
+          Log.w("UniversalTransport", "Delivering with GCM...");
+          pushTransport.deliver(message);
+        } catch (IOException ioe) {
+          Log.w("UniversalTransport", ioe);
+          smsTransport.deliver(message);
+        }
+      } else {
+        Log.w("UniversalTransport", "Delivering with SMS...");
         smsTransport.deliver(message);
       }
-    } else {
-      Log.w("UniversalTransport", "Delivering with SMS...");
+    } catch (InvalidNumberException e) {
+      Log.w("UniversalTransport", e);
       smsTransport.deliver(message);
     }
   }
@@ -84,24 +90,31 @@ public class UniversalTransport {
       return mmsTransport.deliver(mediaMessage);
     }
 
-    List<PushDestination> destinations = getMediaDestinations(mediaMessage);
+    try {
+      List<PushDestination> destinations = getMediaDestinations(mediaMessage);
 
-    if (isPushTransport(destinations)) {
-      try {
-        Log.w("UniversalTransport", "Delivering media message with GCM...");
-        pushTransport.deliver(mediaMessage, destinations, threadId);
-        return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
-      } catch (IOException ioe) {
-        Log.w("UniversalTransport", ioe);
+      if (isPushTransport(destinations)) {
+        try {
+          Log.w("UniversalTransport", "Delivering media message with GCM...");
+          pushTransport.deliver(mediaMessage, destinations, threadId);
+          return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
+        } catch (IOException ioe) {
+          Log.w("UniversalTransport", ioe);
+          return mmsTransport.deliver(mediaMessage);
+        }
+      } else {
+        Log.w("UniversalTransport", "Delivering media message with MMS...");
         return mmsTransport.deliver(mediaMessage);
       }
-    } else {
-      Log.w("UniversalTransport", "Delivering media message with MMS...");
+    } catch (InvalidNumberException e) {
+      Log.w("UniversalTransport", e);
       return mmsTransport.deliver(mediaMessage);
     }
   }
 
-  private List<PushDestination> getMediaDestinations(SendReq mediaMessage) {
+  private List<PushDestination> getMediaDestinations(SendReq mediaMessage)
+      throws InvalidNumberException
+  {
     TextSecurePushCredentials   credentials  = TextSecurePushCredentials.getInstance();
     LinkedList<PushDestination> destinations = new LinkedList<PushDestination>();
 
