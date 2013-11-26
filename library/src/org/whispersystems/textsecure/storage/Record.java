@@ -30,8 +30,9 @@ import java.nio.channels.FileChannel;
 
 public abstract class Record {
 
-  protected static final String SESSIONS_DIRECTORY = "sessions";
-  public    static final String PREKEY_DIRECTORY   = "prekeys";
+  protected static final String SESSIONS_DIRECTORY    = "sessions";
+  protected static final String SESSIONS_DIRECTORY_V2 = "sessions-v2";
+  public    static final String PREKEY_DIRECTORY      = "prekeys";
 
   protected final String address;
   protected final String directory;

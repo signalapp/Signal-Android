@@ -40,18 +40,15 @@ import org.thoughtcrime.securesms.service.PushReceiver;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageCipher;
 import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.Hex;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.util.concurrent.Executor;
@@ -188,29 +185,26 @@ public class DecryptingQueue {
     }
 
     public void run() {
-      synchronized (SessionCipher.CIPHER_LOCK) {
-        try {
-          Recipients recipients = RecipientFactory.getRecipientsFromString(context, message.getSource(), false);
-          Recipient  recipient  = recipients.getPrimaryRecipient();
+      try {
+        Recipients recipients = RecipientFactory.getRecipientsFromString(context, message.getSource(), false);
+        Recipient  recipient  = recipients.getPrimaryRecipient();
 
-          if (!KeyUtil.isSessionFor(context, recipient)) {
-            sendResult(PushReceiver.RESULT_NO_SESSION);
-            return;
-          }
-
-          IdentityKeyPair identityKey   = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
-          MessageCipher   messageCipher = new MessageCipher(context, masterSecret, identityKey);
-          byte[]          plaintextBody = messageCipher.decrypt(recipient, message.getBody());
-
-          message = message.withBody(plaintextBody);
-          sendResult(PushReceiver.RESULT_OK);
-        } catch (InvalidMessageException e) {
-          Log.w("DecryptionQueue", e);
-          sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
-        } catch (RecipientFormattingException e) {
-          Log.w("DecryptionQueue", e);
-          sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
+        if (!Session.hasSession(context, masterSecret, recipient)) {
+          sendResult(PushReceiver.RESULT_NO_SESSION);
+          return;
         }
+
+        SessionCipher sessionCipher = SessionCipher.createFor(context, masterSecret, recipient);
+        byte[]        plaintextBody = sessionCipher.decrypt(message.getBody());
+
+        message = message.withBody(plaintextBody);
+        sendResult(PushReceiver.RESULT_OK);
+      } catch (InvalidMessageException e) {
+        Log.w("DecryptionQueue", e);
+        sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
+      } catch (RecipientFormattingException e) {
+        Log.w("DecryptionQueue", e);
+        sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
       }
     }
 
@@ -268,7 +262,7 @@ public class DecryptingQueue {
           return;
         }
 
-        if (!KeyUtil.isSessionFor(context, recipient)) {
+        if (!Session.hasSession(context, masterSecret, recipient)) {
           Log.w("DecryptingQueue", "No such recipient session for MMS...");
           database.markAsNoSession(messageId, threadId);
           return;
@@ -276,28 +270,24 @@ public class DecryptingQueue {
 
         byte[] plaintextPduBytes;
 
-        synchronized (SessionCipher.CIPHER_LOCK) {
-          Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
-          TextTransport   transportDetails = new TextTransport();
-          IdentityKeyPair identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
-          MessageCipher   messageCipher    = new MessageCipher(context, masterSecret, identityKey);
-          byte[]          ciphertext       = transportDetails.getDecodedMessage(ciphertextPduBytes);
+        Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
+        TextTransport transportDetails  = new TextTransport();
+        SessionCipher sessionCipher     = SessionCipher.createFor(context, masterSecret, recipient);
+        byte[]        decodedCiphertext = transportDetails.getDecodedMessage(ciphertextPduBytes);
 
-          try {
-            plaintextPduBytes = messageCipher.decrypt(recipient, ciphertext);
-          } catch (InvalidMessageException ime) {
-            // XXX - For some reason, Sprint seems to append a single character to the
-            // end of message text segments.  I don't know why, so here we just try
-            // truncating the message by one if the MAC fails.
-            if (ciphertextPduBytes.length > 2) {
-              Log.w("DecryptingQueue", "Attempting truncated decrypt...");
-              byte[] truncated = new byte[ciphertextPduBytes.length - 1];
-              System.arraycopy(ciphertextPduBytes, 0, truncated, 0, truncated.length);
-              ciphertext        = transportDetails.getDecodedMessage(truncated);
-              plaintextPduBytes = messageCipher.decrypt(recipient, ciphertext);
-            } else {
-              throw ime;
-            }
+        try {
+          plaintextPduBytes = sessionCipher.decrypt(decodedCiphertext);
+        } catch (InvalidMessageException ime) {
+          // XXX - For some reason, Sprint seems to append a single character to the
+          // end of message text segments.  I don't know why, so here we just try
+          // truncating the message by one if the MAC fails.
+          if (ciphertextPduBytes.length > 2) {
+            Log.w("DecryptingQueue", "Attempting truncated decrypt...");
+            byte[] truncated = Util.trim(ciphertextPduBytes, ciphertextPduBytes.length - 1);
+            decodedCiphertext = transportDetails.getDecodedMessage(truncated);
+            plaintextPduBytes = sessionCipher.decrypt(decodedCiphertext);
+          } else {
+            throw ime;
           }
         }
 
@@ -352,36 +342,33 @@ public class DecryptingQueue {
       EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
       String plaintextBody;
 
-      synchronized (SessionCipher.CIPHER_LOCK) {
-        try {
-          Recipients recipients = RecipientFactory.getRecipientsFromString(context, originator, false);
-          Recipient  recipient  = recipients.getPrimaryRecipient();
+      try {
+        Recipients recipients = RecipientFactory.getRecipientsFromString(context, originator, false);
+        Recipient  recipient  = recipients.getPrimaryRecipient();
 
-          if (!KeyUtil.isSessionFor(context, recipient)) {
-            database.markAsNoSession(messageId);
-            return;
-          }
-
-          SmsTransportDetails transportDetails = new SmsTransportDetails();
-          IdentityKeyPair     identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
-          MessageCipher       messageCipher    = new MessageCipher(context, masterSecret, identityKey);
-          byte[]              ciphertext       = transportDetails.getDecodedMessage(body.getBytes());
-          byte[]              paddedPlaintext  = messageCipher.decrypt(recipient, ciphertext);
-
-          plaintextBody = new String(transportDetails.getStrippedPaddingMessageBody(paddedPlaintext));
-        } catch (InvalidMessageException e) {
-          Log.w("DecryptionQueue", e);
-          database.markAsDecryptFailed(messageId);
-          return;
-        } catch (RecipientFormattingException e) {
-          Log.w("DecryptionQueue", e);
-          database.markAsDecryptFailed(messageId);
-          return;
-        } catch (IOException e) {
-          Log.w("DecryptionQueue", e);
-          database.markAsDecryptFailed(messageId);
+        if (!Session.hasSession(context, masterSecret, recipient)) {
+          database.markAsNoSession(messageId);
           return;
         }
+
+        SmsTransportDetails transportDetails  = new SmsTransportDetails();
+        SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipient);
+        byte[]              decodedCiphertext = transportDetails.getDecodedMessage(body.getBytes());
+        byte[]              paddedPlaintext   = sessionCipher.decrypt(decodedCiphertext);
+
+        plaintextBody = new String(transportDetails.getStrippedPaddingMessageBody(paddedPlaintext));
+      } catch (InvalidMessageException e) {
+        Log.w("DecryptionQueue", e);
+        database.markAsDecryptFailed(messageId);
+        return;
+      } catch (RecipientFormattingException e) {
+        Log.w("DecryptionQueue", e);
+        database.markAsDecryptFailed(messageId);
+        return;
+      } catch (IOException e) {
+        Log.w("DecryptionQueue", e);
+        database.markAsDecryptFailed(messageId);
+        return;
       }
 
       database.updateMessageBody(masterSecret, messageId, plaintextBody);
@@ -414,22 +401,25 @@ public class DecryptingQueue {
     private void handleKeyExchangeProcessing(String plaintxtBody) {
       if (TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
         try {
-          Recipient recipient                   = new Recipient(null, originator, null, null);
-          KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(plaintxtBody);
-          KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
+          Recipient            recipient = new Recipient(null, originator, null, null);
+          KeyExchangeMessage   message   = KeyExchangeMessage.createFor(plaintxtBody);
+          KeyExchangeProcessor processor = KeyExchangeProcessor.createFor(context, masterSecret, recipient, message);
 
-          Log.w("DecryptingQuue", "KeyExchange with fingerprint: " + keyExchangeMessage.getPublicKey().getFingerprint());
-
-          if (processor.isStale(keyExchangeMessage)) {
+          if (processor.isStale(message)) {
             DatabaseFactory.getEncryptingSmsDatabase(context).markAsStaleKeyExchange(messageId);
-          } else if (processor.isTrusted(keyExchangeMessage)) {
+          } else if (processor.isTrusted(message)) {
             DatabaseFactory.getEncryptingSmsDatabase(context).markAsProcessedKeyExchange(messageId);
-            processor.processKeyExchangeMessage(keyExchangeMessage, threadId);
+            processor.processKeyExchangeMessage(message, threadId);
           }
         } catch (InvalidVersionException e) {
           Log.w("DecryptingQueue", e);
+          DatabaseFactory.getEncryptingSmsDatabase(context).markAsInvalidVersionKeyExchange(messageId);
         } catch (InvalidKeyException e) {
           Log.w("DecryptingQueue", e);
+          DatabaseFactory.getEncryptingSmsDatabase(context).markAsCorruptKeyExchange(messageId);
+        } catch (InvalidMessageException e) {
+          Log.w("DecryptingQueue", e);
+          DatabaseFactory.getEncryptingSmsDatabase(context).markAsCorruptKeyExchange(messageId);
         }
       }
     }

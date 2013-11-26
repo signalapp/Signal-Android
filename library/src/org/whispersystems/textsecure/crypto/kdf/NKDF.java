@@ -23,15 +23,15 @@ import org.whispersystems.textsecure.util.Conversions;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 import javax.crypto.spec.SecretKeySpec;
 
-public class NKDF extends KDF {
+public class NKDF {
 
-  @Override
-  public DerivedSecrets deriveSecrets(List<byte[]> sharedSecret,
-                                      boolean isLowEnd, byte[] info)
+  public static final int LEGACY_CIPHER_KEY_LENGTH = 16;
+  public static final int LEGACY_MAC_KEY_LENGTH    = 20;
+
+  public DerivedSecrets deriveSecrets(byte[] sharedSecret, boolean isLowEnd)
   {
     SecretKeySpec cipherKey = deriveCipherSecret(isLowEnd, sharedSecret);
     SecretKeySpec macKey    = deriveMacSecret(cipherKey);
@@ -39,15 +39,14 @@ public class NKDF extends KDF {
     return new DerivedSecrets(cipherKey, macKey);
   }
 
-  private SecretKeySpec deriveCipherSecret(boolean isLowEnd, List<byte[]> sharedSecret) {
-    byte[] sharedSecretBytes = concatenateSharedSecrets(sharedSecret);
-    byte[] derivedBytes      = deriveBytes(sharedSecretBytes, 16 * 2);
-    byte[] cipherSecret      = new byte[16];
+  private SecretKeySpec deriveCipherSecret(boolean isLowEnd, byte[] sharedSecret) {
+    byte[] derivedBytes = deriveBytes(sharedSecret, LEGACY_CIPHER_KEY_LENGTH * 2);
+    byte[] cipherSecret = new byte[LEGACY_CIPHER_KEY_LENGTH];
 
     if (isLowEnd)  {
-      System.arraycopy(derivedBytes, 16, cipherSecret, 0, 16);
+      System.arraycopy(derivedBytes, LEGACY_CIPHER_KEY_LENGTH, cipherSecret, 0, LEGACY_CIPHER_KEY_LENGTH);
     } else {
-      System.arraycopy(derivedBytes, 0, cipherSecret, 0, 16);
+      System.arraycopy(derivedBytes, 0, cipherSecret, 0, LEGACY_CIPHER_KEY_LENGTH);
     }
 
     return new SecretKeySpec(cipherSecret, "AES");
@@ -84,6 +83,4 @@ public class NKDF extends KDF {
 
     return md.digest();
   }
-
-
 }

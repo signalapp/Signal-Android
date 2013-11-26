@@ -22,7 +22,6 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
@@ -32,13 +31,9 @@ import org.thoughtcrime.securesms.sms.OutgoingPrekeyBundleMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
-import org.whispersystems.textsecure.crypto.KeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageCipher;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 
 import java.util.ArrayList;
 
@@ -69,7 +64,7 @@ public class SmsTransport extends BaseTransport {
     }
 
     ArrayList<String> messages                = multipartMessageHandler.divideMessage(transportMessage);
-    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, true);
+    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, message.isSecure());
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
 
     Log.w("SmsTransport", "Secure divide into message parts: " + messages.size());
@@ -164,30 +159,20 @@ public class SmsTransport extends BaseTransport {
   private OutgoingTextMessage getAsymmetricEncrypt(MasterSecret masterSecret,
                                                    OutgoingTextMessage message)
   {
-    Recipient           recipient        = message.getRecipients().getPrimaryRecipient();
-    String              body             = message.getMessageBody();
-    IdentityKeyPair     identityKey      = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret,
-                                                                              Curve.DJB_TYPE);
+    Recipient           recipient         = message.getRecipients().getPrimaryRecipient();
+    String              body              = message.getMessageBody();
+    SmsTransportDetails transportDetails  = new SmsTransportDetails();
+    SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipient);
+    byte[]              paddedPlaintext   = transportDetails.getPaddedMessageBody(body.getBytes());
+    CiphertextMessage   ciphertextMessage = sessionCipher.encrypt(paddedPlaintext);
+    String              encodedCiphertext = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
 
-    SmsTransportDetails transportDetails = new SmsTransportDetails();
-
-    if (KeyUtil.isNonPrekeySessionFor(context, masterSecret, recipient)) {
-      Log.w("SmsTransport", "Delivering standard ciphertext...");
-
-      MessageCipher       messageCipher     = new MessageCipher(context, masterSecret, identityKey);
-      byte[]              paddedPlaintext   = transportDetails.getPaddedMessageBody(body.getBytes());
-      CiphertextMessage   ciphertextMessage = messageCipher.encrypt(recipient, paddedPlaintext);
-      String              ciphertxt         = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
-
-      return message.withBody(ciphertxt);
+    if (ciphertextMessage.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
+      message = new OutgoingPrekeyBundleMessage(message, encodedCiphertext);
     } else {
-      Log.w("SmsTransport", "Delivering prekeybundle ciphertext...");
-      MessageCipher       messageCipher       = new MessageCipher(context, masterSecret, identityKey);
-      CiphertextMessage   ciphertextMessage   = messageCipher.encrypt(recipient, body.getBytes());
-      PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(ciphertextMessage, identityKey.getPublicKey());
-      byte[]              cipherText          = preKeyBundleMessage.serialize();
-
-      return new OutgoingPrekeyBundleMessage(message, new String(transportDetails.getEncodedMessage(cipherText)));
+      message = message.withBody(encodedCiphertext);
     }
+
+    return message;
   }
 }

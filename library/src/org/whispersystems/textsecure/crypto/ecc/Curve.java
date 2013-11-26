@@ -36,10 +36,10 @@ public class Curve {
   }
 
   public static ECKeyPair generateKeyPairForSession(int messageVersion) {
-    if (messageVersion >= CiphertextMessage.CURVE25519_INTRODUCED_VERSION) {
-      return generateKeyPairForType(DJB_TYPE);
-    } else {
+    if (messageVersion <= CiphertextMessage.LEGACY_VERSION) {
       return generateKeyPairForType(NIST_TYPE);
+    } else {
+      return generateKeyPairForType(DJB_TYPE);
     }
   }
 

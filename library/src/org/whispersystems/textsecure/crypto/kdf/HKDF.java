@@ -26,50 +26,38 @@ import java.util.List;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-public class HKDF extends KDF {
+public class HKDF {
 
   private static final int HASH_OUTPUT_SIZE  = 32;
-  private static final int KEY_MATERIAL_SIZE = 72;
+  private static final int KEY_MATERIAL_SIZE = 64;
 
   private static final int CIPHER_KEYS_OFFSET = 0;
   private static final int MAC_KEYS_OFFSET    = 32;
 
-  @Override
-  public DerivedSecrets deriveSecrets(List<byte[]> sharedSecret,
-                                      boolean isLowEnd, byte[] info)
-  {
-    byte[] inputKeyMaterial = concatenateSharedSecrets(sharedSecret);
-    byte[] salt             = new byte[HASH_OUTPUT_SIZE];
+  public DerivedSecrets deriveSecrets(byte[] inputKeyMaterial, byte[] info) {
+    byte[] salt = new byte[HASH_OUTPUT_SIZE];
+    return deriveSecrets(inputKeyMaterial, salt, info);
+  }
+
+  public DerivedSecrets deriveSecrets(byte[] inputKeyMaterial, byte[] salt, byte[] info) {
     byte[] prk              = extract(salt, inputKeyMaterial);
     byte[] okm              = expand(prk, info, KEY_MATERIAL_SIZE);
 
-    SecretKeySpec cipherKey = deriveCipherKey(okm, isLowEnd);
-    SecretKeySpec macKey    = deriveMacKey(okm, isLowEnd);
+    SecretKeySpec cipherKey = deriveCipherKey(okm);
+    SecretKeySpec macKey    = deriveMacKey(okm);
 
     return new DerivedSecrets(cipherKey, macKey);
   }
 
-  private SecretKeySpec deriveCipherKey(byte[] okm, boolean isLowEnd) {
-    byte[] cipherKey = new byte[16];
-
-    if (isLowEnd) {
-      System.arraycopy(okm, CIPHER_KEYS_OFFSET + 0, cipherKey, 0, cipherKey.length);
-    } else {
-      System.arraycopy(okm, CIPHER_KEYS_OFFSET + 16, cipherKey, 0, cipherKey.length);
-    }
-
+  private SecretKeySpec deriveCipherKey(byte[] okm) {
+    byte[] cipherKey = new byte[32];
+    System.arraycopy(okm, CIPHER_KEYS_OFFSET, cipherKey, 0, cipherKey.length);
     return new SecretKeySpec(cipherKey, "AES");
   }
 
-  private SecretKeySpec deriveMacKey(byte[] okm, boolean isLowEnd) {
-    byte[] macKey = new byte[20];
-
-    if (isLowEnd) {
-      System.arraycopy(okm, MAC_KEYS_OFFSET + 0, macKey, 0, macKey.length);
-    } else {
-      System.arraycopy(okm, MAC_KEYS_OFFSET + 20, macKey, 0, macKey.length);
-    }
-
+  private SecretKeySpec deriveMacKey(byte[] okm) {
+    byte[] macKey = new byte[32];
+    System.arraycopy(okm, MAC_KEYS_OFFSET, macKey, 0, macKey.length);
     return new SecretKeySpec(macKey, "HmacSHA1");
   }
 
@@ -96,7 +84,9 @@ public class HKDF extends KDF {
         mac.init(new SecretKeySpec(prk, "HmacSHA256"));
 
         mac.update(mixin);
-        mac.update(info);
+        if (info != null) {
+          mac.update(info);
+        }
         mac.update((byte)i);
 
         byte[] stepResult = mac.doFinal();

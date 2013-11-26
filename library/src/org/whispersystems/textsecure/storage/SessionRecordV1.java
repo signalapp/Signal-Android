@@ -1,19 +1,3 @@
-/**
- * Copyright (C) 2011 Whisper Systems
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package org.whispersystems.textsecure.storage;
 
 import android.content.Context;
@@ -36,30 +20,28 @@ import java.nio.channels.FileChannel;
  * @author Moxie Marlinspike
  */
 
-public class SessionRecord extends Record {
+public class SessionRecordV1 extends Record {
 
-  private static final int CURRENT_VERSION_MARKER  = 0X55555557;
-  private static final int[] VALID_VERSION_MARKERS = {CURRENT_VERSION_MARKER, 0X55555556, 0X55555555};
+  private static final int CURRENT_VERSION_MARKER  = 0X55555556;
+  private static final int[] VALID_VERSION_MARKERS = {CURRENT_VERSION_MARKER, 0X55555555};
   private static final Object FILE_LOCK            = new Object();
 
   private int    counter;
   private byte[] localFingerprint;
   private byte[] remoteFingerprint;
-  private int    negotiatedSessionVersion;
   private int    currentSessionVersion;
 
   private IdentityKey identityKey;
   private SessionKey  sessionKeyRecord;
   private boolean     verifiedSessionKey;
-  private boolean     prekeyBundleRequired;
 
   private final MasterSecret masterSecret;
 
-  public SessionRecord(Context context, MasterSecret masterSecret, CanonicalRecipientAddress recipient) {
+  public SessionRecordV1(Context context, MasterSecret masterSecret, CanonicalRecipientAddress recipient) {
     this(context, masterSecret, getRecipientId(context, recipient));
   }
 
-  public SessionRecord(Context context, MasterSecret masterSecret, long recipientId) {
+  public SessionRecordV1(Context context, MasterSecret masterSecret, long recipientId) {
     super(context, SESSIONS_DIRECTORY, recipientId+"");
     this.masterSecret          = masterSecret;
     this.currentSessionVersion = 31337;
@@ -71,8 +53,12 @@ public class SessionRecord extends Record {
   }
 
   public static boolean hasSession(Context context, CanonicalRecipientAddress recipient) {
-    Log.w("LocalKeyRecord", "Checking: " + getRecipientId(context, recipient));
-    return hasRecord(context, SESSIONS_DIRECTORY, getRecipientId(context, recipient)+"");
+    return hasSession(context, getRecipientId(context, recipient));
+  }
+
+  public static boolean hasSession(Context context, long recipientId) {
+    Log.w("SessionRecordV1", "Checking: " + recipientId);
+    return hasRecord(context, SESSIONS_DIRECTORY, recipientId+"");
   }
 
   private static long getRecipientId(Context context, CanonicalRecipientAddress recipient) {
@@ -94,14 +80,6 @@ public class SessionRecord extends Record {
 
   public int getSessionVersion() {
     return (currentSessionVersion == 31337 ? 0 : currentSessionVersion);
-  }
-
-  public int getNegotiatedSessionVersion() {
-    return negotiatedSessionVersion;
-  }
-
-  public void setNegotiatedSessionVersion(int sessionVersion) {
-    this.negotiatedSessionVersion = sessionVersion;
   }
 
   public void setSessionVersion(int sessionVersion) {
@@ -127,18 +105,6 @@ public class SessionRecord extends Record {
   public IdentityKey getIdentityKey() {
     return this.identityKey;
   }
-
-  public boolean isPrekeyBundleRequired() {
-    return prekeyBundleRequired;
-  }
-
-  public void setPrekeyBundleRequired(boolean prekeyBundleRequired) {
-    this.prekeyBundleRequired = prekeyBundleRequired;
-  }
-
-//  public void setVerifiedSessionKey(boolean verifiedSessionKey) {
-//    this.verifiedSessionKey = verifiedSessionKey;
-//  }
 
   public boolean isVerifiedSession() {
     return this.verifiedSessionKey;
@@ -182,8 +148,6 @@ public class SessionRecord extends Record {
         writeInteger(currentSessionVersion, out);
         writeIdentityKey(out);
         writeInteger(verifiedSessionKey ? 1 : 0, out);
-        writeInteger(prekeyBundleRequired ? 1 : 0, out);
-        writeInteger(negotiatedSessionVersion, out);
 
         if (sessionKeyRecord != null)
           writeBlob(sessionKeyRecord.serialize(), out);
@@ -230,13 +194,6 @@ public class SessionRecord extends Record {
             this.verifiedSessionKey = (readInteger(in) == 1);
           }
 
-          if (versionMarker >= 0X55555557) {
-            this.prekeyBundleRequired     = (readInteger(in) == 1);
-            this.negotiatedSessionVersion = readInteger(in);
-          } else {
-            this.negotiatedSessionVersion = currentSessionVersion;
-          }
-
           if (in.available() != 0) {
             try {
               this.sessionKeyRecord = new SessionKey(readBlob(in), masterSecret);
@@ -265,7 +222,7 @@ public class SessionRecord extends Record {
         (this.sessionKeyRecord.getRemoteKeyId() == remoteKeyId) &&
         (this.sessionKeyRecord.getMode() == mode))
     {
-        return this.sessionKeyRecord;
+      return this.sessionKeyRecord;
     }
 
     return null;

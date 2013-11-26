@@ -24,7 +24,7 @@ import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -34,14 +34,10 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.AttachmentCipher;
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
-import org.whispersystems.textsecure.crypto.KeyUtil;
+import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.MessageCipher;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyBundleMessage;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushAttachmentData;
@@ -51,6 +47,7 @@ import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
+import org.whispersystems.textsecure.storage.SessionRecordV2;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -166,62 +163,27 @@ public class PushTransport extends BaseTransport {
                                        PushDestination pushDestination, byte[] plaintext)
       throws IOException
   {
-    if (KeyUtil.isNonPrekeySessionFor(context, masterSecret, recipient)) {
-      Log.w("PushTransport", "Sending standard ciphertext message...");
-      byte[] ciphertext = getEncryptedMessageForExistingSession(recipient, plaintext);
-      return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT, ciphertext);
-    } else if (KeyUtil.isSessionFor(context, recipient)) {
-      Log.w("PushTransport", "Sending prekeybundle ciphertext message for existing session...");
-      byte[] ciphertext = getEncryptedPrekeyBundleMessageForExistingSession(recipient, plaintext);
-      return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
+    if (!SessionRecordV2.hasSession(context, masterSecret, recipient)) {
+      try {
+        PreKeyEntity           preKey    = socket.getPreKey(pushDestination);
+        KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(context, masterSecret, recipient);
+
+        processor.processKeyExchangeMessage(preKey, threadId);
+      } catch (InvalidKeyException e) {
+        Log.w("PushTransport", e);
+        throw new IOException("Invalid PreKey!");
+      }
+    }
+
+    SessionCipher     cipher  = SessionCipher.createFor(context, masterSecret, recipient);
+    CiphertextMessage message = cipher.encrypt(plaintext);
+
+    if (message.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
+      return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, message.serialize());
+    } else if (message.getType() == CiphertextMessage.CURRENT_WHISPER_TYPE) {
+      return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT, message.serialize());
     } else {
-      Log.w("PushTransport", "Sending prekeybundle ciphertext message for new session...");
-      byte[] ciphertext = getEncryptedPrekeyBundleMessageForNewSession(socket, threadId, recipient, pushDestination, plaintext);
-      return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, ciphertext);
+      throw new AssertionError("Unknown ciphertext type: " + message.getType());
     }
   }
-
-  private byte[] getEncryptedPrekeyBundleMessageForExistingSession(Recipient recipient,
-                                                                   byte[] plaintext)
-  {
-    IdentityKeyPair     identityKeyPair     = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
-    IdentityKey         identityKey         = identityKeyPair.getPublicKey();
-    MessageCipher       messageCipher       = new MessageCipher(context, masterSecret, identityKeyPair);
-    CiphertextMessage   ciphertextMessage   = messageCipher.encrypt(recipient, plaintext);
-    PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(ciphertextMessage, identityKey);
-
-    return preKeyBundleMessage.serialize();
-  }
-
-  private byte[] getEncryptedPrekeyBundleMessageForNewSession(PushServiceSocket socket,
-                                                              long threadId,
-                                                              Recipient recipient,
-                                                              PushDestination pushDestination,
-                                                              byte[] plaintext)
-      throws IOException
-  {
-    IdentityKeyPair      identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
-    IdentityKey          identityKey     = identityKeyPair.getPublicKey();
-    PreKeyEntity         preKey          = socket.getPreKey(pushDestination);
-    KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipient);
-
-    processor.processKeyExchangeMessage(preKey, threadId);
-
-    MessageCipher       messageCipher       = new MessageCipher(context, masterSecret, identityKeyPair);
-    CiphertextMessage   ciphertextMessage   = messageCipher.encrypt(recipient, plaintext);
-    PreKeyBundleMessage preKeyBundleMessage = new PreKeyBundleMessage(ciphertextMessage, identityKey);
-
-    return preKeyBundleMessage.serialize();
-  }
-
-  private byte[] getEncryptedMessageForExistingSession(Recipient recipient, byte[] plaintext)
-      throws IOException
-  {
-    IdentityKeyPair   identityKeyPair   = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
-    MessageCipher     messageCipher     = new MessageCipher(context, masterSecret, identityKeyPair);
-    CiphertextMessage ciphertextMessage = messageCipher.encrypt(recipient, plaintext);
-
-    return ciphertextMessage.serialize();
-  }
-
 }

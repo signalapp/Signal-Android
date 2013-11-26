@@ -21,15 +21,14 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.storage.SessionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
+import org.whispersystems.textsecure.storage.Session;
 
 /**
  * Activity for verifying identity keys.
@@ -68,15 +67,14 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       return;
     }
 
-    localIdentityFingerprint.setText(IdentityKeyUtil.getFingerprint(this, keyType));
+    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this, keyType).getFingerprint());
   }
 
   private void initializeRemoteIdentityKey() {
     IdentityKey identityKey = getIntent().getParcelableExtra("remote_identity");
 
     if (identityKey == null) {
-      SessionRecord sessionRecord = new SessionRecord(this, masterSecret, recipient);
-      identityKey = sessionRecord.getIdentityKey();
+      identityKey = Session.getRemoteIdentityKey(this, masterSecret, recipient);
     }
 
     if (identityKey == null) {
@@ -97,13 +95,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     this.recipient                 = this.getIntent().getParcelableExtra("recipient");
     this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
 
-    SessionRecord sessionRecord  = new SessionRecord(this, masterSecret, recipient);
-    int           sessionVersion = sessionRecord.getSessionVersion();
+    int sessionVersion = Session.getSessionVersion(this, masterSecret, recipient);
 
-    if (sessionVersion >= CiphertextMessage.CURVE25519_INTRODUCED_VERSION) {
-      this.keyType = Curve.DJB_TYPE;
-    } else {
+    if (sessionVersion <= CiphertextMessage.LEGACY_VERSION) {
       this.keyType = Curve.NIST_TYPE;
+    } else {
+      this.keyType = Curve.DJB_TYPE;
     }
   }
 
@@ -121,8 +118,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected void initiateScan() {
-    SessionRecord sessionRecord = new SessionRecord(this, masterSecret, recipient);
-    IdentityKey identityKey     = sessionRecord.getIdentityKey();
+    IdentityKey identityKey = Session.getRemoteIdentityKey(this, masterSecret, recipient);
 
     if (identityKey == null) {
       Toast.makeText(this, R.string.VerifyIdentityActivity_recipient_has_no_identity_key_exclamation,
@@ -144,8 +140,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected IdentityKey getIdentityKeyToCompare() {
-    SessionRecord sessionRecord = new SessionRecord(this, masterSecret, recipient);
-    return sessionRecord.getIdentityKey();
+    return Session.getRemoteIdentityKey(this, masterSecret, recipient);
   }
 
   @Override
