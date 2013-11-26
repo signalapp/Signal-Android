@@ -24,6 +24,8 @@ import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.widget.EditText;
+import android.os.Build;
+import android.provider.Telephony;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -182,6 +184,11 @@ public class Util {
     in.close();
 
     return new String(bout.toByteArray());
+  }
+
+  public static boolean isDefaultSmsProvider(Context context){
+    return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) ||
+      (Telephony.Sms.getDefaultSmsPackage(context) == context.getPackageName());
   }
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {

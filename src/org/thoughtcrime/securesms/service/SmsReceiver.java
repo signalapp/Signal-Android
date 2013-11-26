@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
 
@@ -134,12 +135,11 @@ public class SmsReceiver {
 
   private void handleReceiveMessage(MasterSecret masterSecret, Intent intent) {
     List<IncomingTextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
-    boolean shouldNotify = intent.getBooleanExtra("should_notify",true);
     IncomingTextMessage message            = assembleMessageFragments(messagesList);
 
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
-      if (shouldNotify)
+      if (Util.isDefaultSmsProvider(context))
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     }
   }

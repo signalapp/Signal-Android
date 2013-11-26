@@ -24,12 +24,12 @@ import android.os.Bundle;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
-import android.provider.Telephony;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 
@@ -37,11 +37,6 @@ public class SmsListener extends BroadcastReceiver {
 
   private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
   private static final String SMS_DELIVERED_ACTION = "android.provider.Telephony.SMS_DELIVER";
-
-  private boolean isDefaultSmsProvider(Context context){
-    return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) || 
-      (Telephony.Sms.getDefaultSmsPackage(context) == context.getPackageName());
-  }
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -108,7 +103,7 @@ public class SmsListener extends BroadcastReceiver {
       return false;
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && 
-        intent.getAction().equals(SMS_RECEIVED_ACTION) && isDefaultSmsProvider(context))
+        intent.getAction().equals(SMS_RECEIVED_ACTION) && Util.isDefaultSmsProvider(context))
       return false;
 
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
@@ -158,7 +153,6 @@ public class SmsListener extends BroadcastReceiver {
       Intent receivedIntent = new Intent(context, SendReceiveService.class);
       receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
       receivedIntent.putExtra("ResultCode", this.getResultCode());
-      receivedIntent.putExtra("should_notify", isDefaultSmsProvider(context));
       receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
       context.startService(receivedIntent);
 
