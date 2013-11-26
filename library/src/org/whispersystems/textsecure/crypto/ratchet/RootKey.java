@@ -30,8 +30,8 @@ public class RootKey {
     HKDF           kdf          = new HKDF();
     byte[]         sharedSecret = Curve.calculateAgreement(theirEphemeral, ourEphemeral.getPrivateKey());
     DerivedSecrets keys         = kdf.deriveSecrets(sharedSecret, key, "WhisperRatchet".getBytes());
-    RootKey        newRootKey   = new RootKey(keys.getMacKey().getEncoded());
-    ChainKey       newChainKey  = new ChainKey(keys.getCipherKey().getEncoded(), 0);
+    RootKey        newRootKey   = new RootKey(keys.getCipherKey().getEncoded());
+    ChainKey       newChainKey  = new ChainKey(keys.getMacKey().getEncoded(), 0);
 
     return new Pair<RootKey, ChainKey>(newRootKey, newChainKey);
   }

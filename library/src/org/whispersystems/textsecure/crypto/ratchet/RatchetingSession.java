@@ -71,8 +71,8 @@ public class RatchetingSession {
     sessionRecord.setRootKey(sendingChain.first);
   }
 
-  public static Pair<RootKey, ChainKey> calculate3DHE(ECKeyPair ourEphemeral, ECPublicKey theirEphemeral,
-                                                      IdentityKeyPair ourIdentity, IdentityKey theirIdentity)
+  private static Pair<RootKey, ChainKey> calculate3DHE(ECKeyPair ourEphemeral, ECPublicKey theirEphemeral,
+                                                       IdentityKeyPair ourIdentity, IdentityKey theirIdentity)
       throws InvalidKeyException
   {
     try {
