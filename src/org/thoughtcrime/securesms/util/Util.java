@@ -27,6 +27,7 @@ import android.os.Build;
 import android.provider.Telephony;
 
 import org.thoughtcrime.securesms.mms.MmsRadio;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
@@ -122,7 +123,9 @@ public class Util {
     }
   }
 
-  public static String canonicalizeNumber(Context context, String number) {
+  public static String canonicalizeNumber(Context context, String number)
+      throws InvalidNumberException
+  {
     String localNumber = TextSecurePreferences.getLocalNumber(context);
     return PhoneNumberFormatter.formatNumber(number, localNumber);
   }

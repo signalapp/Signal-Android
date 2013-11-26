@@ -11,6 +11,7 @@ import android.util.Log;
 
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 
@@ -157,8 +158,12 @@ public class Directory {
         String rawNumber = cursor.getString(0);
 
         if (rawNumber != null) {
-          String e164Number = PhoneNumberFormatter.formatNumber(rawNumber, localNumber);
-          results.add(getToken(e164Number));
+          try {
+            String e164Number = PhoneNumberFormatter.formatNumber(rawNumber, localNumber);
+            results.add(getToken(e164Number));
+          } catch (InvalidNumberException e) {
+            Log.w("Directory", "Invalid number: " + rawNumber);
+          }
         }
       }
 

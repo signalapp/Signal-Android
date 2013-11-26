@@ -48,6 +48,7 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -86,6 +87,9 @@ public class PushTransport extends BaseTransport {
     } catch (RateLimitException e) {
       Log.w("PushTransport", e);
       throw new IOException("Rate limit exceeded.");
+    } catch (InvalidNumberException e) {
+      Log.w("PushTransport", e);
+      throw new IOException("Badly formatted number.");
     }
   }
 
