@@ -25,6 +25,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.pdu.GenericPdu;
 import ws.com.google.android.mms.pdu.NotificationInd;
@@ -33,11 +34,17 @@ import ws.com.google.android.mms.pdu.PduParser;
 
 public class MmsListener extends BroadcastReceiver {
 
+  private static final String WAP_PUSH_RECEIVE_ACTION = "android.provider.Telephony.WAP_PUSH_RECEIVE";
+
   private boolean isRelevent(Context context, Intent intent) {
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT)
       return false;
 
     if (!ApplicationMigrationService.isDatabaseImported(context))
+      return false;
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
+        intent.getAction().equals(WAP_PUSH_RECEIVE_ACTION) && Util.isDefaultSmsProvider(context))
       return false;
 
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.ALL_MMS_PERF, true))

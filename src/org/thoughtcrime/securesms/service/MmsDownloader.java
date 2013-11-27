@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -177,7 +178,8 @@ public class MmsDownloader extends MmscProcessor {
     }
 
     mmsDatabase.delete(item.getMessageId());
-    MessageNotifier.updateNotification(context, item.getMasterSecret(), messageAndThreadId.second);
+    if (Util.isDefaultSmsProvider(context))
+      MessageNotifier.updateNotification(context, item.getMasterSecret(), messageAndThreadId.second);
   }
 
   private void sendRetrievedAcknowledgement(DownloadItem item) {
@@ -227,7 +229,7 @@ public class MmsDownloader extends MmscProcessor {
     MmsDatabase db = DatabaseFactory.getMmsDatabase(context);
     db.markDownloadState(item.getMessageId(), downloadStatus);
 
-    if (item.isAutomatic()) {
+    if (item.isAutomatic() && Util.isDefaultSmsProvider(context)) {
       db.markIncomingNotificationReceived(item.getThreadId());
       MessageNotifier.updateNotification(context, item.getMasterSecret(), item.getThreadId());
     }
