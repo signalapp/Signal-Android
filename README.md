@@ -60,5 +60,6 @@ License
 ---------------------
 
 Copyright 2011 Whisper Systems
+Copyright 2013 Open WhisperSystems
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
