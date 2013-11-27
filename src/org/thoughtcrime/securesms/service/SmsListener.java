@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
@@ -28,12 +29,14 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 
 public class SmsListener extends BroadcastReceiver {
 
   private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+  private static final String SMS_DELIVERED_ACTION = "android.provider.Telephony.SMS_DELIVER";
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -99,6 +102,10 @@ public class SmsListener extends BroadcastReceiver {
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
 
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && 
+        intent.getAction().equals(SMS_RECEIVED_ACTION) && Util.isDefaultSmsProvider(context))
+      return false;
+
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
       return true;
 
@@ -140,7 +147,9 @@ public class SmsListener extends BroadcastReceiver {
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
-    } else if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isRelevant(context, intent)) {
+    } else if ((intent.getAction().equals(SMS_RECEIVED_ACTION) || 
+                intent.getAction().equals(SMS_DELIVERED_ACTION)) && 
+                isRelevant(context, intent)) {
       Intent receivedIntent = new Intent(context, SendReceiveService.class);
       receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
       receivedIntent.putExtra("ResultCode", this.getResultCode());

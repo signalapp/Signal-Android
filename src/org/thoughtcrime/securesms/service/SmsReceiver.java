@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
 
@@ -138,7 +139,8 @@ public class SmsReceiver {
 
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      if (Util.isDefaultSmsProvider(context))
+        MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     }
   }
 
