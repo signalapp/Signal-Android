@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingPartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase;
-import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
+import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
@@ -111,7 +111,7 @@ public class PushDownloader {
   }
 
   private File downloadAttachment(String relay, long contentLocation) throws IOException {
-    PushServiceSocket socket = new PushServiceSocket(context, Release.PUSH_URL, TextSecurePushCredentials.getInstance());
+    PushServiceSocket socket = PushServiceSocketFactory.create(context);
     return socket.retrieveAttachment(relay, contentLocation);
   }
 

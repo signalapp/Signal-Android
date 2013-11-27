@@ -36,17 +36,18 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gcm.GCMRegistrar;
+
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.AuthorizationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 
@@ -253,8 +254,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           protected Integer doInBackground(Void... params) {
             try {
               Context           context = ApplicationPreferencesActivity.this;
-              PushServiceSocket socket  = new PushServiceSocket(context, Release.PUSH_URL,
-                                                                TextSecurePushCredentials.getInstance());
+              PushServiceSocket socket  = PushServiceSocketFactory.create(context);
 
               socket.unregisterGcmId();
               GCMRegistrar.unregister(context);

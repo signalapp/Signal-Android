@@ -19,12 +19,11 @@ package org.thoughtcrime.securesms.transport;
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
+import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
@@ -115,24 +114,24 @@ public class UniversalTransport {
   private List<PushDestination> getMediaDestinations(SendReq mediaMessage)
       throws InvalidNumberException
   {
-    TextSecurePushCredentials   credentials  = TextSecurePushCredentials.getInstance();
+    String                      localNumber  = TextSecurePreferences.getLocalNumber(context);
     LinkedList<PushDestination> destinations = new LinkedList<PushDestination>();
 
     if (mediaMessage.getTo() != null) {
       for (EncodedStringValue to : mediaMessage.getTo()) {
-        destinations.add(PushDestination.create(context, credentials, to.getString()));
+        destinations.add(PushDestination.create(context, localNumber, to.getString()));
       }
     }
 
     if (mediaMessage.getCc() != null) {
       for (EncodedStringValue cc : mediaMessage.getCc()) {
-        destinations.add(PushDestination.create(context, credentials, cc.getString()));
+        destinations.add(PushDestination.create(context, localNumber, cc.getString()));
       }
     }
 
     if (mediaMessage.getBcc() != null) {
       for (EncodedStringValue bcc : mediaMessage.getBcc()) {
-        destinations.add(PushDestination.create(context, credentials, bcc.getString()));
+        destinations.add(PushDestination.create(context, localNumber, bcc.getString()));
       }
     }
 
@@ -146,7 +145,7 @@ public class UniversalTransport {
       return directory.isActiveNumber(destination);
     } catch (NotInDirectoryException e) {
       try {
-        PushServiceSocket   socket         = new PushServiceSocket(context, Release.PUSH_URL, TextSecurePushCredentials.getInstance());
+        PushServiceSocket   socket         = PushServiceSocketFactory.create(context);
         String              contactToken   = directory.getToken(destination);
         ContactTokenDetails registeredUser = socket.getContactTokenDetails(contactToken);
 

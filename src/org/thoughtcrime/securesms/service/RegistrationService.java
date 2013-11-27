@@ -13,10 +13,10 @@ import android.util.Log;
 import com.google.android.gcm.GCMRegistrar;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
+import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -198,7 +198,7 @@ public class RegistrationService extends Service {
       initializeGcmRegistrationListener();
       initializePreKeyGenerator(masterSecret);
 
-      PushServiceSocket socket = new PushServiceSocket(this, Release.PUSH_URL, number, password);
+      PushServiceSocket socket = PushServiceSocketFactory.create(this, number, password);
 
       handleCommonRegistration(masterSecret, socket, number);
 
@@ -238,7 +238,7 @@ public class RegistrationService extends Service {
       initializePreKeyGenerator(masterSecret);
 
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
-      PushServiceSocket socket = new PushServiceSocket(this, Release.PUSH_URL, number, password);
+      PushServiceSocket socket = PushServiceSocketFactory.create(this, number, password);
       socket.createAccount(false);
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
