@@ -7,7 +7,6 @@ import android.util.Pair;
 import com.google.thoughtcrimegson.Gson;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
-import org.whispersystems.textsecure.R;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
@@ -57,16 +56,14 @@ public class PushServiceSocket {
   private final String password;
   private final TrustManagerFactory trustManagerFactory;
 
-  public PushServiceSocket(Context context, String serviceUrl, String localNumber, String password) {
+  public PushServiceSocket(Context context, String serviceUrl, TrustStore trustStore,
+                           String localNumber, String password)
+  {
     this.context             = context.getApplicationContext();
     this.serviceUrl          = serviceUrl;
     this.localNumber         = localNumber;
     this.password            = password;
-    this.trustManagerFactory = initializeTrustManagerFactory(context);
-  }
-
-  public PushServiceSocket(Context context, String serviceUrl, PushCredentials credentials) {
-    this(context, serviceUrl, credentials.getLocalNumber(context), credentials.getPassword(context));
+    this.trustManagerFactory = initializeTrustManagerFactory(trustStore);
   }
 
   public void createAccount(boolean voice) throws IOException {
@@ -76,7 +73,8 @@ public class PushServiceSocket {
 
   public void verifyAccount(String verificationCode, String signalingKey) throws IOException {
     SignalingKey signalingKeyEntity = new SignalingKey(signalingKey);
-    makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode), "PUT", new Gson().toJson(signalingKeyEntity));
+    makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode),
+                "PUT", new Gson().toJson(signalingKeyEntity));
   }
 
   public void registerGcmId(String gcmRegistrationId) throws IOException {
@@ -373,15 +371,15 @@ public class PushServiceSocket {
     }
   }
 
-  private TrustManagerFactory initializeTrustManagerFactory(Context context) {
+  private TrustManagerFactory initializeTrustManagerFactory(TrustStore trustStore) {
     try {
-      InputStream keyStoreInputStream = context.getResources().openRawResource(R.raw.whisper);
-      KeyStore trustStore             = KeyStore.getInstance("BKS");
+      InputStream keyStoreInputStream = trustStore.getKeyStoreInputStream();
+      KeyStore    keyStore            = KeyStore.getInstance("BKS");
 
-      trustStore.load(keyStoreInputStream, "whisper".toCharArray());
+      keyStore.load(keyStoreInputStream, trustStore.getKeyStorePassword().toCharArray());
 
       TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("X509");
-      trustManagerFactory.init(trustStore);
+      trustManagerFactory.init(keyStore);
 
       return trustManagerFactory;
     } catch (KeyStoreException kse) {
@@ -417,8 +415,8 @@ public class PushServiceSocket {
     }
   }
 
-  public interface PushCredentials {
-    public String getLocalNumber(Context context);
-    public String getPassword(Context context);
+  public interface TrustStore {
+    public InputStream getKeyStoreInputStream();
+    public String getKeyStorePassword();
   }
 }

@@ -22,16 +22,15 @@ import android.util.Log;
 
 import com.google.protobuf.ByteString;
 
-import org.thoughtcrime.securesms.Release;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
+import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.TextSecurePushCredentials;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.AttachmentCipher;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
@@ -70,12 +69,12 @@ public class PushTransport extends BaseTransport {
 
   public void deliver(SmsMessageRecord message) throws IOException {
     try {
-      TextSecurePushCredentials credentials = TextSecurePushCredentials.getInstance();
-      Recipient                 recipient   = message.getIndividualRecipient();
-      long                      threadId    = message.getThreadId();
-      PushServiceSocket         socket      = new PushServiceSocket(context, Release.PUSH_URL, credentials);
-      PushDestination           destination = PushDestination.create(context, credentials,
-                                                                     recipient.getNumber());
+      String            localNumber = TextSecurePreferences.getLocalNumber(context);
+      Recipient         recipient   = message.getIndividualRecipient();
+      long              threadId    = message.getThreadId();
+      PushServiceSocket socket      = PushServiceSocketFactory.create(context);
+      PushDestination   destination = PushDestination.create(context, localNumber,
+                                                             recipient.getNumber());
 
       String   plaintextBody = message.getBody().getBody();
       byte[]   plaintext     = PushMessageContent.newBuilder().setBody(plaintextBody).build().toByteArray();
@@ -97,10 +96,9 @@ public class PushTransport extends BaseTransport {
       throws IOException
   {
     try {
-      TextSecurePushCredentials credentials = TextSecurePushCredentials.getInstance();
-      PushServiceSocket         socket      = new PushServiceSocket(context, Release.PUSH_URL, credentials);
-      String                    messageBody = PartParser.getMessageText(message.getBody());
-      List<PushBody>            pushBodies  = new LinkedList<PushBody>();
+      PushServiceSocket socket      = PushServiceSocketFactory.create(context);
+      String            messageBody = PartParser.getMessageText(message.getBody());
+      List<PushBody>    pushBodies  = new LinkedList<PushBody>();
 
       for (PushDestination destination : destinations) {
         Recipients                  recipients  = RecipientFactory.getRecipientsFromString(context, destination.getNumber(), false);

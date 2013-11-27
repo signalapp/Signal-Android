@@ -25,11 +25,11 @@ public class PushDestination {
   }
 
   public static PushDestination create(Context context,
-                                       PushServiceSocket.PushCredentials credentials,
+                                       String localNumber,
                                        String destinationNumber)
       throws InvalidNumberException
   {
-    String e164destination = PhoneNumberFormatter.formatNumber(destinationNumber, credentials.getLocalNumber(context));
+    String e164destination = PhoneNumberFormatter.formatNumber(destinationNumber, localNumber);
     String relay           = Directory.getInstance(context).getRelay(e164destination);
 
     return new PushDestination(e164destination, relay);
