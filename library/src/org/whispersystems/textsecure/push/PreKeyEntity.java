@@ -8,9 +8,11 @@ import com.google.thoughtcrimegson.JsonParseException;
 import com.google.thoughtcrimegson.JsonPrimitive;
 import com.google.thoughtcrimegson.JsonSerializationContext;
 import com.google.thoughtcrimegson.JsonSerializer;
+
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.PreKeyPublic;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
@@ -18,11 +20,11 @@ import java.lang.reflect.Type;
 
 public class PreKeyEntity {
 
-  private int          keyId;
-  private PreKeyPublic publicKey;
-  private IdentityKey  identityKey;
+  private int         keyId;
+  private ECPublicKey publicKey;
+  private IdentityKey identityKey;
 
-  public PreKeyEntity(int keyId, PreKeyPublic publicKey, IdentityKey identityKey) {
+  public PreKeyEntity(int keyId, ECPublicKey publicKey, IdentityKey identityKey) {
     this.keyId       = keyId;
     this.publicKey   = publicKey;
     this.identityKey = identityKey;
@@ -32,7 +34,7 @@ public class PreKeyEntity {
     return keyId;
   }
 
-  public PreKeyPublic getPublicKey() {
+  public ECPublicKey getPublicKey() {
     return publicKey;
   }
 
@@ -50,29 +52,29 @@ public class PreKeyEntity {
 
   public static GsonBuilder getBuilder() {
     GsonBuilder builder = new GsonBuilder();
-    builder.registerTypeAdapter(PreKeyPublic.class, new PreKeyPublicJsonAdapter());
+    builder.registerTypeAdapter(ECPublicKey.class, new ECPublicKeyJsonAdapter());
     builder.registerTypeAdapter(IdentityKey.class, new IdentityKeyJsonAdapter());
 
     return builder;
   }
 
-  private static class PreKeyPublicJsonAdapter
-      implements JsonSerializer<PreKeyPublic>, JsonDeserializer<PreKeyPublic>
+  private static class ECPublicKeyJsonAdapter
+      implements JsonSerializer<ECPublicKey>, JsonDeserializer<ECPublicKey>
   {
     @Override
-    public JsonElement serialize(PreKeyPublic preKeyPublic, Type type,
+    public JsonElement serialize(ECPublicKey preKeyPublic, Type type,
                                  JsonSerializationContext jsonSerializationContext)
     {
       return new JsonPrimitive(Base64.encodeBytesWithoutPadding(preKeyPublic.serialize()));
     }
 
     @Override
-    public PreKeyPublic deserialize(JsonElement jsonElement, Type type,
+    public ECPublicKey deserialize(JsonElement jsonElement, Type type,
                                     JsonDeserializationContext jsonDeserializationContext)
         throws JsonParseException
     {
       try {
-        return new PreKeyPublic(Base64.decodeWithoutPadding(jsonElement.getAsJsonPrimitive().getAsString()), 0);
+        return Curve.decodePoint(Base64.decodeWithoutPadding(jsonElement.getAsJsonPrimitive().getAsString()), 0);
       } catch (InvalidKeyException e) {
         throw new JsonParseException(e);
       } catch (IOException e) {

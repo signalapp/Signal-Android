@@ -23,6 +23,7 @@ import android.util.Log;
 import com.google.thoughtcrimegson.Gson;
 
 import org.whispersystems.textsecure.crypto.ecc.Curve25519;
+import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Medium;
@@ -40,7 +41,7 @@ import java.util.List;
 
 public class PreKeyUtil {
 
-  public static final int BATCH_SIZE = 20;
+  public static final int BATCH_SIZE = 100;
 
   public static List<PreKeyRecord> generatePreKeys(Context context, MasterSecret masterSecret) {
     List<PreKeyRecord> records        = new LinkedList<PreKeyRecord>();
@@ -48,7 +49,7 @@ public class PreKeyUtil {
 
     for (int i=0;i<BATCH_SIZE;i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
-      PreKeyPair   keyPair  = new PreKeyPair(masterSecret, Curve25519.generateKeyPair());
+      ECKeyPair    keyPair  = Curve25519.generateKeyPair();
       PreKeyRecord record   = new PreKeyRecord(context, masterSecret, preKeyId, keyPair);
 
       record.save();
@@ -69,7 +70,7 @@ public class PreKeyUtil {
       }
     }
 
-    PreKeyPair   keyPair = new PreKeyPair(masterSecret, Curve25519.generateKeyPair());
+    ECKeyPair    keyPair = Curve25519.generateKeyPair();
     PreKeyRecord record  = new PreKeyRecord(context, masterSecret, Medium.MAX_VALUE, keyPair);
 
     record.save();

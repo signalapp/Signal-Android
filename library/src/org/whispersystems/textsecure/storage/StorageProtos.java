@@ -4054,6 +4054,464 @@ public final class StorageProtos {
     // @@protoc_insertion_point(class_scope:textsecure.SessionStructure)
   }
   
+  public interface PreKeyRecordStructureOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional uint32 id = 1;
+    boolean hasId();
+    int getId();
+    
+    // optional bytes publicKey = 2;
+    boolean hasPublicKey();
+    com.google.protobuf.ByteString getPublicKey();
+    
+    // optional bytes privateKey = 3;
+    boolean hasPrivateKey();
+    com.google.protobuf.ByteString getPrivateKey();
+  }
+  public static final class PreKeyRecordStructure extends
+      com.google.protobuf.GeneratedMessage
+      implements PreKeyRecordStructureOrBuilder {
+    // Use PreKeyRecordStructure.newBuilder() to construct.
+    private PreKeyRecordStructure(Builder builder) {
+      super(builder);
+    }
+    private PreKeyRecordStructure(boolean noInit) {}
+    
+    private static final PreKeyRecordStructure defaultInstance;
+    public static PreKeyRecordStructure getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public PreKeyRecordStructure getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.whispersystems.textsecure.storage.StorageProtos.internal_static_textsecure_PreKeyRecordStructure_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.whispersystems.textsecure.storage.StorageProtos.internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional uint32 id = 1;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public int getId() {
+      return id_;
+    }
+    
+    // optional bytes publicKey = 2;
+    public static final int PUBLICKEY_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString publicKey_;
+    public boolean hasPublicKey() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.google.protobuf.ByteString getPublicKey() {
+      return publicKey_;
+    }
+    
+    // optional bytes privateKey = 3;
+    public static final int PRIVATEKEY_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString privateKey_;
+    public boolean hasPrivateKey() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public com.google.protobuf.ByteString getPrivateKey() {
+      return privateKey_;
+    }
+    
+    private void initFields() {
+      id_ = 0;
+      publicKey_ = com.google.protobuf.ByteString.EMPTY;
+      privateKey_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, publicKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, privateKey_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, publicKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, privateKey_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructureOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.textsecure.storage.StorageProtos.internal_static_textsecure_PreKeyRecordStructure_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.textsecure.storage.StorageProtos.internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable;
+      }
+      
+      // Construct using org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        publicKey_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        privateKey_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure.getDescriptor();
+      }
+      
+      public org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure getDefaultInstanceForType() {
+        return org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure.getDefaultInstance();
+      }
+      
+      public org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure build() {
+        org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure buildPartial() {
+        org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure result = new org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.id_ = id_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.publicKey_ = publicKey_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.privateKey_ = privateKey_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure) {
+          return mergeFrom((org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure other) {
+        if (other == org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          setId(other.getId());
+        }
+        if (other.hasPublicKey()) {
+          setPublicKey(other.getPublicKey());
+        }
+        if (other.hasPrivateKey()) {
+          setPrivateKey(other.getPrivateKey());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              id_ = input.readUInt32();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              publicKey_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              privateKey_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional uint32 id = 1;
+      private int id_ ;
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public int getId() {
+        return id_;
+      }
+      public Builder setId(int value) {
+        bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional bytes publicKey = 2;
+      private com.google.protobuf.ByteString publicKey_ = com.google.protobuf.ByteString.EMPTY;
+      public boolean hasPublicKey() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public com.google.protobuf.ByteString getPublicKey() {
+        return publicKey_;
+      }
+      public Builder setPublicKey(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        publicKey_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPublicKey() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        publicKey_ = getDefaultInstance().getPublicKey();
+        onChanged();
+        return this;
+      }
+      
+      // optional bytes privateKey = 3;
+      private com.google.protobuf.ByteString privateKey_ = com.google.protobuf.ByteString.EMPTY;
+      public boolean hasPrivateKey() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public com.google.protobuf.ByteString getPrivateKey() {
+        return privateKey_;
+      }
+      public Builder setPrivateKey(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        privateKey_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPrivateKey() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        privateKey_ = getDefaultInstance().getPrivateKey();
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:textsecure.PreKeyRecordStructure)
+    }
+    
+    static {
+      defaultInstance = new PreKeyRecordStructure(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:textsecure.PreKeyRecordStructure)
+  }
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_textsecure_SessionStructure_descriptor;
   private static
@@ -4084,6 +4542,11 @@ public final class StorageProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_textsecure_SessionStructure_PendingPreKey_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_PreKeyRecordStructure_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -4118,8 +4581,10 @@ public final class StorageProtos {
       "emeralKeyPrivate\030\005 \001(\014\022\030\n\020localIdentityK" +
       "ey\030\007 \001(\014\022\037\n\027localIdentityKeyPrivate\030\010 \001(" +
       "\014\0322\n\rPendingPreKey\022\020\n\010preKeyId\030\001 \001(\r\022\017\n\007" +
-      "baseKey\030\002 \001(\014B6\n%org.whispersystems.text" +
-      "secure.storageB\rStorageProtos"
+      "baseKey\030\002 \001(\014\"J\n\025PreKeyRecordStructure\022\n" +
+      "\n\002id\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivate" +
+      "Key\030\003 \001(\014B6\n%org.whispersystems.textsecu" +
+      "re.storageB\rStorageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4174,6 +4639,14 @@ public final class StorageProtos {
               new java.lang.String[] { "PreKeyId", "BaseKey", },
               org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKey.class,
               org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKey.Builder.class);
+          internal_static_textsecure_PreKeyRecordStructure_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_PreKeyRecordStructure_descriptor,
+              new java.lang.String[] { "Id", "PublicKey", "PrivateKey", },
+              org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure.class,
+              org.whispersystems.textsecure.storage.StorageProtos.PreKeyRecordStructure.Builder.class);
           return null;
         }
       };

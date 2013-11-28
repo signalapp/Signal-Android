@@ -52,3 +52,9 @@ message SessionStructure {
   optional PendingKeyExchange pendingKeyExchange = 8;
   optional PendingPreKey      pendingPreKey      = 9;
 }
+
+message PreKeyRecordStructure {
+  optional uint32 id        = 1;
+  optional bytes  publicKey = 2;
+  optional bytes  privateKey = 3;
+}

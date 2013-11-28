@@ -47,11 +47,6 @@ public class PublicKey {
     this.id        = id;
   }
 
-  public PublicKey(int preKeyId, PreKeyPublic publicKey) {
-    this.id        = preKeyId;
-    this.publicKey = publicKey.getPublicKey();
-  }
-
   public PublicKey(byte[] bytes, int offset) throws InvalidKeyException {
     Log.w("PublicKey", "PublicKey Length: " + (bytes.length - offset));
 
