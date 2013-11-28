@@ -20,6 +20,10 @@ public class PreKeyList {
     return PreKeyEntity.getBuilder().create().toJson(entity);
   }
 
+  public static PreKeyList fromJson(String serialized) {
+    return PreKeyEntity.getBuilder().create().fromJson(serialized, PreKeyList.class);
+  }
+
   public PreKeyEntity getLastResortKey() {
     return lastResortKey;
   }

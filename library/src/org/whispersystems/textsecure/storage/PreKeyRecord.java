@@ -3,9 +3,16 @@ package org.whispersystems.textsecure.storage;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.protobuf.ByteString;
+
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.PreKeyPair;
+import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
+import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
+import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,36 +26,46 @@ public class PreKeyRecord extends Record {
   private static final int    CURRENT_VERSION_MARKER = 1;
 
   private final MasterSecret masterSecret;
-
-  private PreKeyPair keyPair;
-  private int id;
+  private StorageProtos.PreKeyRecordStructure structure;
 
   public PreKeyRecord(Context context, MasterSecret masterSecret, int id)
       throws InvalidKeyIdException
   {
     super(context, PREKEY_DIRECTORY, id+"");
 
-    this.id           = id;
+    this.structure    = StorageProtos.PreKeyRecordStructure.newBuilder().setId(id).build();
     this.masterSecret = masterSecret;
 
     loadData();
   }
 
   public PreKeyRecord(Context context, MasterSecret masterSecret,
-                      int id, PreKeyPair keyPair)
+                      int id, ECKeyPair keyPair)
   {
     super(context, PREKEY_DIRECTORY, id+"");
-    this.id           = id;
-    this.keyPair      = keyPair;
     this.masterSecret = masterSecret;
+    this.structure    = StorageProtos.PreKeyRecordStructure.newBuilder()
+                                     .setId(id)
+                                     .setPublicKey(ByteString.copyFrom(keyPair.getPublicKey()
+                                                                              .serialize()))
+                                     .setPrivateKey(ByteString.copyFrom(keyPair.getPrivateKey()
+                                                                               .serialize()))
+                                     .build();
   }
 
   public int getId() {
-    return id;
+    return this.structure.getId();
   }
 
-  public PreKeyPair getKeyPair() {
-    return keyPair;
+  public ECKeyPair getKeyPair() {
+    try {
+      ECPublicKey  publicKey  = Curve.decodePoint(this.structure.getPublicKey().toByteArray(), 0);
+      ECPrivateKey privateKey = Curve.decodePrivatePoint(publicKey.getType(), this.structure.getPrivateKey().toByteArray());
+
+      return new ECKeyPair(publicKey, privateKey);
+    } catch (InvalidKeyException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public static boolean hasRecord(Context context, long id) {
@@ -67,8 +84,10 @@ public class PreKeyRecord extends Record {
         FileChannel out       = file.getChannel();
         out.position(0);
 
+        MasterCipher masterCipher = new MasterCipher(masterSecret);
+
         writeInteger(CURRENT_VERSION_MARKER, out);
-        writeKeyPair(keyPair, out);
+        writeBlob(masterCipher.encryptBytes(structure.toByteArray()), out);
 
         out.force(true);
         out.truncate(out.position());
@@ -83,15 +102,18 @@ public class PreKeyRecord extends Record {
   private void loadData() throws InvalidKeyIdException {
     synchronized (FILE_LOCK) {
       try {
-        FileInputStream in = this.openInputStream();
-        int recordVersion  = readInteger(in);
+        MasterCipher    masterCipher  = new MasterCipher(masterSecret);
+        FileInputStream in            = this.openInputStream();
+        int             recordVersion = readInteger(in);
 
         if (recordVersion != CURRENT_VERSION_MARKER) {
           Log.w("PreKeyRecord", "Invalid version: " + recordVersion);
           return;
         }
 
-        keyPair = readKeyPair(in);
+        this.structure =
+            StorageProtos.PreKeyRecordStructure.parseFrom(masterCipher.decryptBytes(readBlob(in)));
+
         in.close();
       } catch (FileNotFoundException e) {
         Log.w("PreKeyRecord", e);
@@ -99,23 +121,10 @@ public class PreKeyRecord extends Record {
       } catch (IOException ioe) {
         Log.w("PreKeyRecord", ioe);
         throw new InvalidKeyIdException(ioe);
-      } catch (InvalidKeyException ike) {
-        Log.w("LocalKeyRecord", ike);
-        throw new InvalidKeyIdException(ike);
+      } catch (InvalidMessageException ime) {
+        Log.w("PreKeyRecord", ime);
+        throw new InvalidKeyIdException(ime);
       }
     }
   }
-
-  private void writeKeyPair(PreKeyPair keyPair, FileChannel out) throws IOException {
-    byte[] serialized = keyPair.serialize();
-    writeBlob(serialized, out);
-  }
-
-  private PreKeyPair readKeyPair(FileInputStream in)
-      throws IOException, InvalidKeyException
-  {
-    byte[] keyPairBytes = readBlob(in);
-    return new PreKeyPair(masterSecret, keyPairBytes);
-  }
-
 }
