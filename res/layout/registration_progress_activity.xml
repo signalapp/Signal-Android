@@ -536,7 +536,7 @@
 
             <ProgressBar
                     android:id="@+id/registration_progress"
-                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    style="@style/Widget.ProgressBar.Horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="14.0dip"

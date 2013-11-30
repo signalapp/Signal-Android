@@ -43,8 +43,7 @@
                           android:layout_height="wrap_content"
                           android:layout_marginTop="20dip">
 
-                <Button style="@android:style/Widget.Button"
-                        android:id="@+id/skip_button"
+                <Button android:id="@+id/skip_button"
                         android:text="@string/database_migration_activity__skip"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -52,8 +51,7 @@
                         android:layout_marginRight="7dip"
                         android:textAppearance="?android:attr/textAppearanceMedium"/>
                 
-                <Button style="@android:style/Widget.Button"
-                        android:id="@+id/import_button"
+                <Button android:id="@+id/import_button"
                         android:text="@string/database_migration_activity__import"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -112,7 +110,7 @@
 
             <ProgressBar
                 android:id="@+id/import_progress"
-                style="@android:style/Widget.ProgressBar.Horizontal"
+                style="@style/Widget.ProgressBar.Horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14.0dip"

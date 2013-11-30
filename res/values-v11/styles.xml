@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
+    </style>
+
+</resources>

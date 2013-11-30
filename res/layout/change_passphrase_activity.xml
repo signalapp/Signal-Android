@@ -60,8 +60,7 @@
                           android:layout_height="wrap_content"
                           android:layout_marginTop="30dip">
 
-                <Button style="@android:style/Widget.Button"
-                        android:id="@+id/cancel_button"
+                <Button android:id="@+id/cancel_button"
                         android:text="@android:string/cancel"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -69,8 +68,7 @@
                         android:layout_marginRight="7dip"
                         android:textAppearance="?android:attr/textAppearanceMedium"/>
                 
-                <Button style="@android:style/Widget.Button"
-                        android:id="@+id/ok_button"
+                <Button android:id="@+id/ok_button"
                         android:text="@android:string/ok"
                         android:layout_weight="1"
                         android:layout_width="0dp"

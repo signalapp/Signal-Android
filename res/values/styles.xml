@@ -85,4 +85,7 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
+    </style>
+
 </resources>
