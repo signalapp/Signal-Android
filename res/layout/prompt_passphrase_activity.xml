@@ -1,57 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:fillViewport="true"
             android:background="@drawable/background_pattern_repeat">
 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center" >
-        
-        <LinearLayout android:id="@+id/prompt_layout"
-                      android:paddingRight="16dip"
-                      android:paddingLeft="16dip"
-                      android:paddingTop="10dip"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center"
-                      android:orientation="vertical">
-                
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:layout_marginBottom="30dip"
-                       android:src="@drawable/padlock_prompt"/>
-        
-            <TextView style="@style/Registration.Label"
-                      android:layout_width="fill_parent"
-                      android:textAllCaps="true"
-                      android:text="@string/prompt_passphrase_activity__textsecure_passphrase" />
-            
-            <EditText android:id="@+id/passphrase_edit"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textPassword"
-                      android:layout_marginBottom="10dip"
-                      android:singleLine="true"/>                                    
-            
-            <LinearLayout android:orientation="horizontal"
-                          android:gravity="right"
-                          android:layout_width="fill_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_marginTop="20dip"
-                          android:layout_marginRight="20dip">
-                
-                <Button android:id="@+id/ok_button"
-                        android:text="@string/prompt_passphrase_activity__unlock"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:textAppearance="?android:attr/textAppearanceMedium"/>                
-            </LinearLayout>
-        </LinearLayout>        
-    </FrameLayout>
+    <LinearLayout android:id="@+id/prompt_layout"
+                  android:padding="16dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_horizontal|center_vertical"
+                  android:orientation="vertical">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:layout_marginBottom="24dp"
+                   android:src="@drawable/padlock_prompt"/>
+
+        <TextView style="@style/Registration.Label"
+                  android:layout_width="match_parent"
+                  android:textAllCaps="true"
+                  android:text="@string/prompt_passphrase_activity__textsecure_passphrase" />
+
+        <EditText android:id="@+id/passphrase_edit"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="textPassword"
+                  android:layout_marginBottom="8dp"
+                  android:singleLine="true"/>
+
+        <Button android:id="@+id/ok_button"
+                android:text="@string/prompt_passphrase_activity__unlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    </LinearLayout>
+
 </ScrollView>
