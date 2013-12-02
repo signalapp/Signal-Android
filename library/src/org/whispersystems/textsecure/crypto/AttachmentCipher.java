@@ -41,7 +41,7 @@ import java.util.Arrays;
 public class AttachmentCipher {
 
   static final int CIPHER_KEY_SIZE = 32;
-  static final int MAC_KEY_SIZE    = 20;
+  static final int MAC_KEY_SIZE    = 32;
 
   private final SecretKeySpec cipherKey;
   private final SecretKeySpec macKey;
@@ -58,7 +58,7 @@ public class AttachmentCipher {
   public AttachmentCipher(byte[] combinedKeyMaterial) {
     byte[][] parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
     this.cipherKey = new SecretKeySpec(parts[0], "AES");
-    this.macKey    = new SecretKeySpec(parts[1], "HmacSHA1");
+    this.macKey    = new SecretKeySpec(parts[1], "HmacSHA256");
     this.cipher    = initializeCipher();
     this.mac       = initializeMac();
   }
@@ -123,7 +123,7 @@ public class AttachmentCipher {
 
   private Mac initializeMac() {
     try {
-      Mac mac = Mac.getInstance("HmacSHA1");
+      Mac mac = Mac.getInstance("HmacSHA256");
       return mac;
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
@@ -150,7 +150,7 @@ public class AttachmentCipher {
   private SecretKeySpec initializeRandomMacKey() {
     byte[] key = new byte[MAC_KEY_SIZE];
     Util.getSecureRandom().nextBytes(key);
-    return new SecretKeySpec(key, "HmacSHA1");
+    return new SecretKeySpec(key, "HmacSHA256");
   }
 
 }
