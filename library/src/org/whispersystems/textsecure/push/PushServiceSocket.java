@@ -5,6 +5,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.google.thoughtcrimegson.Gson;
+import com.google.thoughtcrimegson.JsonParseException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -149,15 +150,20 @@ public class PushServiceSocket {
   }
 
   public PreKeyEntity getPreKey(PushDestination destination) throws IOException {
-    String path = String.format(PREKEY_PATH, destination.getNumber());
+    try {
+      String path = String.format(PREKEY_PATH, destination.getNumber());
 
-    if (!Util.isEmpty(destination.getRelay())) {
-      path = path + "?relay=" + destination.getRelay();
+      if (!Util.isEmpty(destination.getRelay())) {
+        path = path + "?relay=" + destination.getRelay();
+      }
+
+      String responseText = makeRequest(path, "GET", null);
+      Log.w("PushServiceSocket", "Got prekey: " + responseText);
+      return PreKeyEntity.fromJson(responseText);
+    } catch (JsonParseException e) {
+      Log.w("PushServiceSocket", e);
+      throw new IOException("Bad prekey");
     }
-
-    String responseText = makeRequest(path, "GET", null);
-    Log.w("PushServiceSocket", "Got prekey: " + responseText);
-    return PreKeyEntity.fromJson(responseText);
   }
 
   public long sendAttachment(PushAttachmentData attachment) throws IOException {
