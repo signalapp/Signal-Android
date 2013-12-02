@@ -45,8 +45,7 @@
                           android:layout_marginTop="20dip"
                           android:layout_marginRight="20dip">
                 
-                <Button style="@android:style/Widget.Button"
-                        android:id="@+id/ok_button"
+                <Button android:id="@+id/ok_button"
                         android:text="@string/prompt_passphrase_activity__unlock"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
