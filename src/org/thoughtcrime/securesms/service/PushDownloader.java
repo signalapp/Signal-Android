@@ -37,7 +37,7 @@ public class PushDownloader {
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
-    if (!intent.getAction().equals(SendReceiveService.DOWNLOAD_PUSH_ACTION))
+    if (!SendReceiveService.DOWNLOAD_PUSH_ACTION.equals(intent.getAction()))
       return;
 
     long         messageId = intent.getLongExtra("message_id", -1);

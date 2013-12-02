@@ -18,8 +18,16 @@ package org.whispersystems.textsecure.crypto;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -29,14 +37,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.ShortBufferException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 /**
  * Class for streaming an encrypted push attachment off disk.
@@ -63,8 +63,8 @@ public class AttachmentCipherInputStream extends FileInputStream {
                                   AttachmentCipher.CIPHER_KEY_SIZE,
                                   AttachmentCipher.MAC_KEY_SIZE);
 
-      Mac mac = Mac.getInstance("HmacSHA1");
-      mac.init(new SecretKeySpec(parts[1], "HmacSHA1"));
+      Mac mac = Mac.getInstance("HmacSHA256");
+      mac.init(new SecretKeySpec(parts[1], "HmacSHA256"));
 
       if (file.length() <= BLOCK_SIZE + mac.getMacLength()) {
         throw new InvalidMessageException("Message shorter than crypto overhead!");
