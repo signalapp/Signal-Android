@@ -172,6 +172,20 @@
     <service android:enabled="true" android:name=".service.RegistrationService"/>
     <service android:enabled="true" android:name=".gcm.GcmIntentService"/>
 
+    <service android:name=".service.QuickResponseService"
+             android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
+             android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="sms" />
+            <data android:scheme="smsto" />
+            <data android:scheme="mms" />
+            <data android:scheme="mmsto" />
+        </intent-filter>
+    </service>
+
+
 <!--	<receiver android:name=".service.BootListener" -->
 <!-- 			  android:enabled="true" -->
 <!-- 			  android:exported="false">-->
@@ -189,6 +203,7 @@
     </receiver>
 
     <receiver android:name=".service.SmsListener"
+              android:permission="android.permission.BROADCAST_SMS"
               android:enabled="true"
               android:exported="true">
              <intent-filter android:priority="1001">
@@ -197,9 +212,13 @@
              <intent-filter>
                  <action android:name="android.provider.Telephony.SMS_DELIVER"/>
              </intent-filter>
-             <intent-filter>
-                 <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
-             </intent-filter>
+    </receiver>
+
+    <receiver android:name=".service.SmsDeliveryListener"
+              android:exported="true">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
+        </intent-filter>
     </receiver>
 
     <receiver android:name=".service.MmsListener"

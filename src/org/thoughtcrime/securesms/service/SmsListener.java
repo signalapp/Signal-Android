@@ -106,8 +106,11 @@ public class SmsListener extends BroadcastReceiver {
         intent.getAction().equals(SMS_RECEIVED_ACTION) && Util.isDefaultSmsProvider(context))
       return false;
 
-    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_all_sms", true))
+    if (PreferenceManager.getDefaultSharedPreferences(context)
+                         .getBoolean(ApplicationPreferencesActivity.ALL_SMS_PREF, true))
+    {
       return true;
+    }
 
     return WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody);
   }
@@ -140,7 +143,7 @@ public class SmsListener extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     Log.w("SMSListener", "Got SMS broadcast...");
 
-    if (intent.getAction().equals(SMS_RECEIVED_ACTION) && isChallenge(context, intent)) {
+    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, intent)) {
       Log.w("SmsListener", "Got challenge!");
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
       challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(context, intent));
@@ -148,8 +151,9 @@ public class SmsListener extends BroadcastReceiver {
 
       abortBroadcast();
     } else if ((intent.getAction().equals(SMS_RECEIVED_ACTION) || 
-                intent.getAction().equals(SMS_DELIVERED_ACTION)) && 
-                isRelevant(context, intent)) {
+                intent.getAction().equals(SMS_DELIVERED_ACTION)) &&
+                isRelevant(context, intent))
+    {
       Intent receivedIntent = new Intent(context, SendReceiveService.class);
       receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
       receivedIntent.putExtra("ResultCode", this.getResultCode());
@@ -157,14 +161,6 @@ public class SmsListener extends BroadcastReceiver {
       context.startService(receivedIntent);
 
       abortBroadcast();
-    } else if (intent.getAction().equals(SendReceiveService.SENT_SMS_ACTION)) {
-      intent.putExtra("ResultCode", this.getResultCode());
-      intent.setClass(context, SendReceiveService.class);
-      context.startService(intent);
-    } else if (intent.getAction().equals(SendReceiveService.DELIVERED_SMS_ACTION)) {
-      intent.putExtra("ResultCode", this.getResultCode());
-      intent.setClass(context, SendReceiveService.class);
-      context.startService(intent);
     }
   }
 }

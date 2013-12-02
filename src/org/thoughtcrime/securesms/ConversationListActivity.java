@@ -6,7 +6,9 @@ import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.provider.Telephony;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -19,7 +21,7 @@ import android.widget.SimpleAdapter;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -31,6 +33,7 @@ import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +71,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+
+    initializeDefaultMessengerCheck();
   }
 
   @Override
@@ -254,4 +259,17 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     this.fragment.setMasterSecret(masterSecret);
   }
 
+  private void initializeDefaultMessengerCheck() {
+    if (!Util.isDefaultSmsProvider(this) &&
+        !(PreferenceManager.getDefaultSharedPreferences(this)
+                           .getBoolean("pref_prompted_default_sms", false)))
+    {
+      PreferenceManager.getDefaultSharedPreferences(this).edit()
+                       .putBoolean("pref_prompted_default_sms", true).commit();
+      Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
+      intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
+      startActivity(intent);
+    }
   }
+
+}

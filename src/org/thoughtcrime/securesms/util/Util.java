@@ -188,7 +188,7 @@ public class Util {
 
   public static boolean isDefaultSmsProvider(Context context){
     return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) ||
-      (Telephony.Sms.getDefaultSmsPackage(context) == context.getPackageName());
+      (Telephony.Sms.getDefaultSmsPackage(context).equals(context.getPackageName()));
   }
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {
