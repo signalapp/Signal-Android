@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">パスワードを指定して下さい</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスワードです。</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">お使いの通信事業者のMMSセンター用URLを指定して下さい。</string>
-  <string name="PromptApnActivity_mms_settings_updated">MMSの設定を更新しました</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">TextSecure設定メニューから、これらの値をいつでも変更できます。</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">お使いの通信事業者のMMSセンター用URLを指定して下さい。</string>
+  <string name="PromptMmsActivity_mms_settings_updated">MMSの設定を更新しました</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">TextSecure設定メニューから、これらの値をいつでも変更できます。</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">この\n鍵交換の電子署名は、以前この連絡先から受信したものと違っています。\n誰かがあなたの通信を傍受しようとしているか、もしくは\n単にこの連絡先がTextSecureを再インストールしたため、認証キーが新しくなった可能性があります。</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">この連絡先を\n照合することが推奨されています。</string>
@@ -254,15 +254,14 @@
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\n暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
   <string name="local_identity__regenerate_key">鍵を再生成する</string>
+  <!--mms_preferences_activity-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TextSecureパスワード</string>
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecureでは、無線通信事業者からファイル付きメッセージを配信するのに、APN設定が必要です。お使いの携帯端末では、この設定のための情報が取得できません。ロックされた端末であるか、その他の制限設定があると、このような状況が生じます。</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">ファイル付きメッセージを配信するのに必要な以下のAPN情報を入力してください。お使いの通信事業者への設定値は、通常\'&amp;lt;your carrier&amp;gt; APN\'検索によって設定されます。この作業は一度だけでいいです。</string>
-  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (必須):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">MMSプロキシ・ホスト (自由選択):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">MMSプロキシ・ポート (自由選択)</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (必須):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMSプロキシ・ホスト (自由選択):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">MMSプロキシ・ポート (自由選択)</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完了</string>
   <!--recipients_panel-->
@@ -345,9 +344,6 @@
   <string name="preferences__custom">カスタム</string>
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__passphrase">パスワード</string>
-  <string name="preferences__advanced_mms_access_point_names">MMSCのフォールバック</string>
-  <string name="preferences__enable_fallback_mmsc">MMSCのフォールバックを有効にする</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">APNからの情報が携帯端末で利用できない時に、ここで設定されたMMSセンターからの情報を使う。</string>
   <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
   <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
   <string name="preferences__mms_proxy_port_optional">MMSプロキシ・ポート（選択自由）</string>

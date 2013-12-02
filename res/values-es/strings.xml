@@ -45,6 +45,7 @@
   <string name="ConversationActivity_delete_thread_confirmation">Confirmar borrado de conversación</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">¿Está seguro de que desea borrar esta conversación permanentemente?</string>
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
+  <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Escribir mensaje</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lo sentimos, hubo un error en su archivo adjunto.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Lo sentimos, el video seleccionado excede las restricciones de tamaño del mensaje.</string>
@@ -112,6 +113,7 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No hay conexiones disponibles para descargar MMS, inténtalo de nuevo más tarde...</string>
   <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Error conectando al proveedor MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Error leyendo las configuraciones MMS (sistema de mensajería multimedia) del provedor inalámbrico...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensaje Multimedia</string>
   <!--PassphraseChangeActivity-->
@@ -122,10 +124,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Debes especificar una contraseña</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de contraseña inválida</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Debes especificar una URL MMSC para tu operador.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Configuración MMS Actualizada</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Puedes modificar estos valores en el menú de configuración de TextSecure en cualquier momento.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Debes especificar una URL MMSC para tu operador.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Configuración MMS Actualizada</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Puedes modificar estos valores en el menú de configuración de TextSecure en cualquier momento.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La firma en este intercambio de claves es diferente de lo que previamente ha recibido de este contacto. Esto podría significar que alguien está intentando interceptar las comunicaciones o que este contacto simplemente reinstaló TextSecure y ahora tiene una nueva clave de identidad.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Puede que desees verificar⏎\neste contacto.⏎</string>
@@ -170,6 +172,7 @@
   <string name="MmsDatabase_downloading_mms">Descargado MMS...</string>
   <string name="MmsDatabase_mms_download_failed">Falló la descarga del MMS</string>
   <string name="MmsDatabase_downloading">Descargando...</string>
+  <string name="MmsDatabase_mms_pending_download">Pulse y configure las preferencias MMS para continuar la descarga.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Descifrando MMS, por favor espere...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS mal cifrado</string>
@@ -254,15 +257,17 @@
   <string name="import_fragment__import_plaintext_backup">Importar copia de seguridad de mensajes en claro</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\n        Importar una copia de seguridad de mensajes en claro compatible con \'SMSBackup And Restore.\'</string>
   <string name="local_identity__regenerate_key">Regenerar clave</string>
+  <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">Se requiere configuración manual de MMS para su teléfono.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE DE CONTRASEÑA DE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure necesita las opciones de APN para enviar mensajes multimedia por tu operador móvil. Tu dispositivo no proporciona esta información, lo que sería porque tu dispositivo está bloqueado o presenta otra configuración restrictiva.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Para enviar mensajes multimedia, por favor completa la información APN necesaria abajo. Los valores para tu proveedor pueden por lo general ser encontrados buscando \'&amp;lt;tu operador&amp;gt; APN\'. Solo necesitarás hacer esto una única vez.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (REQUERIDA):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (OPCIONAL):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">PUERTO PROXY MMS (OPCIONAL):</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure requiere configuraciones MMS (sistema de mensajería multimedia) para entregar mensajes audiovisuales y de grupo a través de su transportador inalámbrico. Su dispositivo no hace disponible esta información, lo cual ocurre ocasionalmente para dispositivos bloqueados y otras configuraciones restrictivas.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar mensajes audiovisuales y de grupo, haga clic en \'Aceptar\' y complete las configuraciones requeridas. Las configuraciones MMS (sistema de mensajería multimedia) para su transportador pueden ser localizadas generalmente buscando \'el APN (nombre de punto de acceso) de su transportador\'. Sólo necesitará hacer esto una vez.</string>
+  <string name="prompt_mms_activity__mmsc_url_required">URL MMSC (REQUERIDA):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY HOST (OPCIONAL):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">PUERTO PROXY MMS (OPCIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completo</string>
   <!--recipients_panel-->
@@ -329,6 +334,9 @@
   <string name="preferences__change_notification_blink_pattern">Cambiar el patrón de parpadeo de la notificación LED</string>
   <string name="preferences__pref_led_blink_dialogtitle">Seleccionar un patrón e parpadeo del LED</string>
   <string name="preferences__select_led_color">Seleccionar color LED</string>
+  <string name="preferences__sound">Sonido</string>
+  <string name="preferences__inthread_notifications">Notificaciones en-el-hilo</string>
+  <string name="preferences__play_inthread_notifications">Reproducir sonido de notificación cuando esté viendo una conversación activa.</string>
   <string name="preferences__vibrate">Vibración</string>
   <string name="preferences__also_vibrate_when_notified">También vibrar con notificaciones</string>
   <string name="preferences__minutes">minutos</string>
@@ -345,9 +353,9 @@
   <string name="preferences__custom">Personalizado</string>
   <string name="preferences__advanced">Avanzado</string>
   <string name="preferences__passphrase">Frase de contraseña</string>
-  <string name="preferences__advanced_mms_access_point_names">Fallback MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Activar Fallback MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usar la información MMSC configurada aquí cuando el sistema de información APN no está disponible.</string>
+  <string name="preferences__advanced_mms_access_point_names">Preferencias MMS </string>
+  <string name="preferences__enable_manual_mms">Habilitar MMS manual</string>
+  <string name="preferences__override_system_mms_settings">Imponer la información de debajo sobre las configuraciones MMS del sistema.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Requerido)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Opcional)</string>
   <string name="preferences__mms_proxy_port_optional">Puerto de Proxy MMS (Opcional)</string>
@@ -382,6 +390,7 @@
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
   <string name="conversation_context__menu_delete_message">Borrar mensaje</string>
   <string name="conversation_context__menu_forward_message">Reenviar mensaje</string>
+  <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Iniciar sesión segura</string>
   <!--conversation_list_batch-->
@@ -396,6 +405,7 @@
   <string name="conversation_secure_verified__menu_abort_secure_session">Abandonar la sesión segura</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Añadir archivo adjunto</string>
+  <string name="conversation__menu_add_contact_info">Añadir información de contacto.</string>
   <string name="conversation__menu_delete_thread">Borrar conversación</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista de receptores</string>

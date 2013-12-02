@@ -45,6 +45,7 @@
   <string name="ConversationActivity_delete_thread_confirmation">Επιβεβαίωση Διαγραφής Συζήτησης</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Είστε σίγουροι πως θέλετε να διαγράψετε οριστικά αυτήν τη συζήτηση;</string>
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
+  <string name="ConversationActivity_select_contact_info">Επιλέξτε πληροφορίες επαφής</string>
   <string name="ConversationActivity_compose_message">Νέο Μήνυμα</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Συγγνώμη, σφάλμα κατά τη σύναψη αρχείου.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Συγγνώμη, το επιλεγμένο βίντεο υπερβαίνει το μέγιστο μέγεθος μηνύματος.</string>
@@ -112,6 +113,7 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Δε βρέθηκε σύνδεση για παραλαβή  MMS , δοκιμάστε αργότερα...</string>
   <string name="MmsDownloader_error_storing_mms">Σφάλμα κατά την αποθήκευση MMS! </string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Σφάλμα κατά στη σύνδεση στον πάροχο MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Σφάλμα κατά την διάβαση των ρυθμίσεων MMS του παροχέα...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Μήνυμα Πολυμέσων</string>
   <!--PassphraseChangeActivity-->
@@ -122,10 +124,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Πρέπει να επιλέξετε ένα κωδικό</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Μη Έγκυρη Συνθηματική Φράση!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Πρέπει να καθορίσετε μια διεύθυνση MMSC για τον πάροχό σας.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Ρυθμίσεις MMS Ενημερώθηκαν</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Μπορείτε να αλλάξετε αυτές τις ρυθμίσεις από το μενού ρυθμίσεων του TextSecure.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Πρέπει να καθορίσετε μια διεύθυνση MMSC για τον πάροχό σας.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Ρυθμίσεις MMS Ενημερώθηκαν</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Μπορείτε να αλλάξετε αυτές τις ρυθμίσεις από το μενού ρυθμίσεων του TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Το\n        αποτύπωμα αυτής της ανταλλαγής κλειδιών είναι διαφορετικό από αυτό που λάβαμε πρωτύτερα από αυτή την\n        επαφή. Αυτό σημαίνει είτε ότι κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, ή\n        ότι αυτή η επαφή απλά επανεγκτέστησε το TextSecure και τώρα έχει νέο κλειδί ταυτότητας.\n    </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Προτείνεται να επιβεβαιώσετε\n        αυτήν την επαφή.\n    </string>
@@ -170,6 +172,7 @@
   <string name="MmsDatabase_downloading_mms">Λήψη MMS...</string>
   <string name="MmsDatabase_mms_download_failed">Λήψη MMS απέτυχε!</string>
   <string name="MmsDatabase_downloading">Γίνεται λήψη...</string>
+  <string name="MmsDatabase_mms_pending_download">Πατήστε και ρυθμίσετε το MMS για να συνεχίσετε την λήψη.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Αποκρυπτογράφηση MMS, παρακαλώ περιμένετε...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Κακό κρυπτογραφημένο μήνυμα MMS...</string>
@@ -254,15 +257,15 @@
   <string name="import_fragment__import_plaintext_backup">Εισαγωγή Μη Κρυπτογραφημένου Αντιγράφου Ασφαλείας</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\n        Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας. Συμβατό με την εφαρμογή «SMSBackup And Restore».</string>
   <string name="local_identity__regenerate_key">Ανανέωση Κλειδιού</string>
+  <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">Απαιτούνται προσαρμοσμένες ρυθμίσεις MMS για το κινητό σας.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">ΣΥΝΘΗΜΑΤΙΚΗ ΦΡΑΣΗ TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Ξεκλείδωμα</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">Το TextSecure χρειάζεται τις ρυθμίσεις APN για να στείλει μηνύματα πολυμέσων μέσω του παρόχού σας. Η συσκευή σας δε παρέχει αυτές τις ρυθμίσεις, κάτι που ισχύει σε κλειδωμένες συσκευές και άλλες περιοριστικές διαμορφώσεις.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Για να στείλετε μηνύματα πολυμέσων, παρακαλώ συμπληρώστε τις απαραίτητες ρυθμίσεις APN εδώ. Βρείτε τις σωστές ρυθμίσεις για τον πάροχό σας ψάχνοντας online για \'&amp;lt;το όνομα του παρόχού σας&amp;gt; APN\'. Αυτό θα χρειαστεί μόνο μία φορά.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">ΔΙΕΥΘΥΝΣΗ MMSC (ΑΠΑΙΤΕΙΤΑΙ):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">ΔΙΑΚΟΜΙΣΤΗΣ ΜΕΣΟΛΑΒΗΣΗΣ MMS (ΠΡΟΑΙΡΕΤΙΚΟΣ):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">ΘΥΡΑ ΔΙΑΚΟΜΙΣΤΗ ΜΕΣΟΛΑΒΗΣΗΣ MMS (ΠΡΟΑΙΡΕΤΙΚΟ):</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__mmsc_url_required">ΔΙΕΥΘΥΝΣΗ MMSC (ΑΠΑΙΤΕΙΤΑΙ):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">ΔΙΑΚΟΜΙΣΤΗΣ ΜΕΣΟΛΑΒΗΣΗΣ MMS (ΠΡΟΑΙΡΕΤΙΚΟΣ):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">ΘΥΡΑ ΔΙΑΚΟΜΙΣΤΗ ΜΕΣΟΛΑΒΗΣΗΣ MMS (ΠΡΟΑΙΡΕΤΙΚΟ):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Ολοκληρώθηκε</string>
   <!--recipients_panel-->
@@ -348,9 +351,8 @@
   <string name="preferences__custom">Προσαρμοσμένο</string>
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__passphrase">Συνθηματική φράση</string>
-  <string name="preferences__advanced_mms_access_point_names">Εναλλακτικό MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Ενεργοποίηση Εναλλακτικού MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Να χρησιμοποιούνται αυτές οι ρυθμίσεις MMSC όταν οι ρυθμίσεις APN δεν είναι διαθέσιμες.</string>
+  <string name="preferences__advanced_mms_access_point_names">Προτιμήσεις MMS</string>
+  <string name="preferences__enable_manual_mms">Ενεργοποίηση Προσαρμοσμένου MMS</string>
   <string name="preferences__mmsc_url_required">Διεύθυνση MMSC (Απαραίτητη)</string>
   <string name="preferences__mms_proxy_host_optional">Διακομιστής Μεσολάβησης MMS (Προαιρετικός)</string>
   <string name="preferences__mms_proxy_port_optional">Επιλογή Θύρας Διακομιστή Μεσολάβησης MMS (Προαιρετική)</string>
@@ -400,6 +402,7 @@
   <string name="conversation_secure_verified__menu_abort_secure_session">Τερματισμός Ασφαλούς Συζήτησης</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Πρόσθεση συνημμένου</string>
+  <string name="conversation__menu_add_contact_info">Προσθήκη πληροφοριών επαφής</string>
   <string name="conversation__menu_delete_thread">Διαγραφή συζήτησης</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Λίστα παραληπτών</string>

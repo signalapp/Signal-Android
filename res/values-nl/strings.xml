@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">U moet een wachtwoord specificeren</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">U moet een MMSC URL specificeren voor uw provider.</string>
-  <string name="PromptApnActivity_mms_settings_updated">MMS Instellingen Geupdate</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">U kunt deze instellingen op elk gewenst moment wijzigen via het TextSecure instellingen menu.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">U moet een MMSC URL specificeren voor uw provider.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">MMS Instellingen Geupdate</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">U kunt deze instellingen op elk gewenst moment wijzigen via het TextSecure instellingen menu.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">De handtekening op deze sleuteluitwisseling is anders dan wat u eerder ontvangen heeft van dit contact. Dit kan betekenen dat iemand probeert uw communicatie the onderscheppen, of dat dit contact gewoon TextSecure opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">U kunt wensen dit contact te verifiëren.</string>
@@ -254,15 +254,14 @@
   <string name="import_fragment__import_plaintext_backup">Importeer Niet-versleutelde Back-up</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\nImporteer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</string>
   <string name="local_identity__regenerate_key">Sleutel regenereren</string>
+  <!--mms_preferences_activity-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE WACHTWOORD</string>
   <string name="prompt_passphrase_activity__unlock">Ontgrendel</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure heeft APN instellingen nodig om mediaberichten te kunnen versturen via uw telefoonprovider. Uw toestel heeft deze informatie niet beschikbaar, iets wat vaker voorkomt bij gelockte toestellen en andere beperkende configuraties.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Om mediaberichten te versturen, moet u de benodigde APN informatie hieronder opgeven. De waarden voor uw provider kunnen meestal gevonden worden door te zoeken naar \'&amp;lt;uw provider&amp;gt; APN\'. U hoeft dit maar eenmaal te doen.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (VEREIST):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONEEL):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY POORT (OPTIONEEL):</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (VEREIST):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONEEL):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY POORT (OPTIONEEL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Voltooid</string>
   <!--recipients_panel-->
@@ -345,9 +344,6 @@
   <string name="preferences__custom">Aangepast</string>
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__passphrase">Wachtwoord</string>
-  <string name="preferences__advanced_mms_access_point_names">Reserve MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Fallback MMSC Activeren</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Gebruik de hier ingestelde MMSC informatie wanneer de APN informatie van het systeem niet beschikbaar is.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Vereist)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optioneel)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Poort (Optioneel)</string>

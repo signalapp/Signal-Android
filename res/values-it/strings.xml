@@ -13,6 +13,7 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Sei sicuro che vorresti ritagliare subito tutte le thread delle conversazioni ai %s piu\' recenti messagi?</string>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_my">Il mio</string>
+  <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Immagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -72,10 +73,17 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Messaggio di scambio della chiave...</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">Esporta alla scheda SD?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Verranno\n        esportate nella scheda SD le tue chiavi crittografiche, le impostazioni ed i messaggi.\n    </string>
   <string name="ExportFragment_export">Esporta</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Esporta il testo in formato PlainText nella scheda SD?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Attenzione, verranno\n        esportati i contenuti dei tuoi messaggi TextSecure in formato plaintext nella scheda SD.\n    </string>
+  <string name="ExportFragment_cancel">Cancella</string>
+  <string name="ExportFragment_exporting">In esportazione</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import">Importa</string>
+  <string name="ImportFragment_cancel">Cancella</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nessuna chiave scansionata trovata!</string>
   <!--MmsDownloader-->
@@ -92,10 +100,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Devi creare un password</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password errata!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Devi specificare un MMSC URL per il tuo provider.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Impostazioni MMS aggiornate.</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Puoi modificare questi valori dalle impostazioni di TextSecure in ogni momento.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Devi specificare un MMSC URL per il tuo provider.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Impostazioni MMS aggiornate.</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Puoi modificare questi valori dalle impostazioni di TextSecure in ogni momento.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La\nfirma su questo scambio di chiavi è differente di quella ricevuta precedentemente. Questo potrebbe significare che qualcuno stà cercando di intercettare la tua comunicazione\no\nche il contatto ha reinstallato TextSecure e ora ha una nuova chiave.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Dovresti verificare\nquesto contatto.</string>
@@ -163,6 +171,7 @@
   <string name="MessageNotifier_mark_all_as_read">Segna tutti come gia\' letto</string>
   <string name="MessageNotifier_mark_as_read">Segna come gia\' letto</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_cancel">Cancella</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">In questo momento non e\' possibile inviare il tuo messagio SMS. Sara\' inviato quando la communicazione e\' disponibile</string>
   <!--auto_initiate_activity-->
@@ -206,15 +215,14 @@
   <string name="database_migration_activity__importing">COPIA</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aggiornamento Database...</string>
+  <!--mms_preferences_activity-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">PASSWORD TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure richiede le impostazioni del APN per inviare messaggi multimediali ( MMS ) con il tuo provider. Il tuo dispositivo non ha queste impostazioni disponibili, il che è occasionalmente vero per device con operatore bloccato o altre configurazioni restrittive.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Per inviare messaggi multimediali ( MMS ), completare le informazioni APN necessarie. I valori del vostro operatore generalmente si trovano cercando \'&amp;lt;yourcarrier&amp;gt; APN\'. L\'operazione dovrà essere effettuata solo una volta.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL ( RICHIESTO )</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS INDIRIZZO PROXY ( OPZIONALE )</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PORTA PROXY ( OPZIONALE )</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL ( RICHIESTO )</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS INDIRIZZO PROXY ( OPZIONALE )</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PORTA PROXY ( OPZIONALE )</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completato</string>
   <!--recipients_panel-->
@@ -292,9 +300,6 @@
   <string name="preferences__custom">Personalizzato</string>
   <string name="preferences__advanced">Avanzate</string>
   <string name="preferences__passphrase">Passphrase</string>
-  <string name="preferences__advanced_mms_access_point_names">Fallback MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Fallback MMSC Abilitato</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usa le informazioni MMSC impostate quì quando l\'APN di sistema non è disponibile</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Richiesto)</string>
   <string name="preferences__mms_proxy_host_optional">MMS - Indirizzo Proxy ( Opzionale )</string>
   <string name="preferences__mms_proxy_port_optional">MMS - Porta Proxy ( Opzionale )</string>
@@ -310,6 +315,7 @@
   <string name="preferences__dark_theme">Tema Scuro</string>
   <string name="preferences__appearance">Aspetto</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__language">Lingua</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

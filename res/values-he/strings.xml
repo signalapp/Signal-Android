@@ -45,6 +45,7 @@
   <string name="ConversationActivity_delete_thread_confirmation">אישור מחיקת שרשור</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">אתה בטוח שאתה רוצה למחוק את השיחה הזאת לתמיד?</string>
   <string name="ConversationActivity_add_attachment">צרף קובץ</string>
+  <string name="ConversationActivity_select_contact_info">בחר מידע של איש קשר</string>
   <string name="ConversationActivity_compose_message">חבר הודעה</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">סליחה, הייתה שגיאה בהצבת הקובץ המצורף שלך.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">סליחה, קובץ הוידאו שנבחר חורג מגבולות גודל ההודעה.</string>
@@ -112,6 +113,7 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">אין חיבור זמין להורדת MMS, נסה שוב לאחר מכן...</string>
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה-MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה-MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות ה-MMS של ספק השירות...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">הודעת מולטימדיה</string>
   <!--PassphraseChangeActivity-->
@@ -122,10 +124,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">אתה חייב לציין סיסמה</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">סיסמה שגויה!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">אתה חייב לציין כתובת MMSC עבור ספק השירות שלך.</string>
-  <string name="PromptApnActivity_mms_settings_updated">הגדרות ה-MMS עודכנו</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">אתה יכול לערוך את הערכים האלו מתפריט ההגדרות של TextSecure בכל זמן.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">אתה חייב לציין כתובת MMSC עבור ספק השירות שלך.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">הגדרות ה-MMS עודכנו</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">אתה יכול לערוך את הערכים האלו מתפריט ההגדרות של TextSecure בכל זמן.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה\nעל החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.\nזה יכול להעיד שמישהו מנסה ליירט את התקשורת שלך\nאו\nשאיש הקשר פשוט התקין מחדש את TextSecure ועכשיו יש לו מפתח זהות חדש.\n</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת\nאת איש הקשר הזה.\n</string>
@@ -170,6 +172,7 @@
   <string name="MmsDatabase_downloading_mms">מוריד MMS...</string>
   <string name="MmsDatabase_mms_download_failed">הורדת MMS נכשלה!</string>
   <string name="MmsDatabase_downloading">מוריד...</string>
+  <string name="MmsDatabase_mms_pending_download">גע להגדרת תצורת ה-MMS ולהמשך הורדה.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">מפענח MMS, אנא המתן...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">הודעת MMS מוצפנת פגומה...</string>
@@ -254,15 +257,17 @@
   <string name="import_fragment__import_plaintext_backup">יבא גיבוי לא מוצפן</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\nיבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
   <string name="local_identity__regenerate_key">יצר מפתח מחדש</string>
+  <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">סיסמת TextSecure</string>
   <string name="prompt_passphrase_activity__unlock">פתח</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure חייבת הגדרות APN כדי לשלוח הודעות מולטימדיה דרך ספק השירות שלך. המכשיר שלך לא מספק את המידע הזה, זה קורה לעיתים במכשירים נעולים או קונפיגורציות מוגבלות אחרות.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">כדי לשלוח הודעות מולטימדיה, בבקשה השלם את מידע ה-APN הנצרך למטה. את הערכים עבור ספק השירות שלך אתה יכול למצוא בד\"כ ע\"י חיפוש \'&amp;lt;your carrier&amp;gt; APN\'. אתה תצטרך להשלים מידע זה רק פעם אחת.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">כתובת MMSC (חובה):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">שרת Proxy של MMS (לא חובה):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">פתחת ה-Proxy של שרת ה-MMS (לא חובה):</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure דורש הגדרות MMS כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות דרך ספק השירות שלך. המכשיר שלך לא מספק את המידע הזה, זה קורה לעיתים במכשירים נעולים או קונפיגורציות מוגבלות אחרות.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות,לחץ \'אישור\' והשלם את ההגדרות המתבקשות.את הגדרות ה-MMS עבור ספק השירות שלך אתה יכול למצוא בד\"כ ע\"י חיפוש \"ספק השרות APN\". אתה תצטרך להשלים מידע זה רק פעם אחת.</string>
+  <string name="prompt_mms_activity__mmsc_url_required">כתובת MMSC (חובה):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">שרת Proxy של MMS (לא חובה):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">פתחת ה-Proxy של שרת ה-MMS (לא חובה):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">השלם</string>
   <!--recipients_panel-->
@@ -330,6 +335,8 @@
   <string name="preferences__pref_led_blink_dialogtitle">בחר תבנית הבהוב ה-LED</string>
   <string name="preferences__select_led_color">בחר צבע LED</string>
   <string name="preferences__sound">קול</string>
+  <string name="preferences__inthread_notifications">התראות תוך-שרשוריות</string>
+  <string name="preferences__play_inthread_notifications">נגן צליל התראות כשצופים בשיחה פעילה.</string>
   <string name="preferences__vibrate">רטט</string>
   <string name="preferences__also_vibrate_when_notified">הפעל רטט בקבלת התראה</string>
   <string name="preferences__minutes">דקות</string>
@@ -346,9 +353,9 @@
   <string name="preferences__custom">מותאם אישית</string>
   <string name="preferences__advanced">מתקדם</string>
   <string name="preferences__passphrase">סיסמה</string>
-  <string name="preferences__advanced_mms_access_point_names">נסיגה ל-MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">אפשר נסיגה ל-MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">השתמש במידע ה-MMSC המוגדר כאן כשמידע ה-APN של המערכת לא זמין.</string>
+  <string name="preferences__advanced_mms_access_point_names">העדפות MMS</string>
+  <string name="preferences__enable_manual_mms">אפשר MMS ידני</string>
+  <string name="preferences__override_system_mms_settings">החלף את הגדרות ה-MMS של המערכת עם המידע הבא.</string>
   <string name="preferences__mmsc_url_required">כתובת MMSC (חובה)</string>
   <string name="preferences__mms_proxy_host_optional">שרת Proxy של MMS (לא חובה)</string>
   <string name="preferences__mms_proxy_port_optional">יציאת MMS (לא חובה)</string>
@@ -383,6 +390,7 @@
   <string name="conversation_context__menu_copy_text">העתק טקסט</string>
   <string name="conversation_context__menu_delete_message">מחק הודעה</string>
   <string name="conversation_context__menu_forward_message">העבר הודעה</string>
+  <string name="conversation_context__menu_resend_message">שלח הודעה מחדש</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">החל חיבור מאובטח</string>
   <!--conversation_list_batch-->
@@ -397,6 +405,7 @@
   <string name="conversation_secure_verified__menu_abort_secure_session">בטל חיבור מאובטח</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">צרף קובץ</string>
+  <string name="conversation__menu_add_contact_info">הוסף מידע לאיש הקשר</string>
   <string name="conversation__menu_delete_thread">מחק שרשור</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">רשימת נמענים</string>

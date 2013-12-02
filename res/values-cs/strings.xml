@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">TextSecure</string>
+  <string name="yes">Ano</string>
+  <string name="no">Ne</string>
+  <string name="delete">Vymazat</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Před manipulací s klíči musíte zadat své heslo</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastaveno své heslo</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Vymazat všechny staré zprávy?</string>
+  <string name="ApplicationPreferencesActivity_delete">Vymazat</string>
+  <string name="ApplicationPreferencesActivity_my">Já</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Deaktivovat šifrování lokálně uložených zpráv?</string>
+  <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Foto</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">Délka zprávy: %d KB</string>
+  <string name="ConversationItem_expires_s">Vyprší: %s</string>
+  <string name="ConversationItem_error_sending_message">Chyba při odeslání zprávy</string>
+  <string name="ConversationItem_sending">Odesílám...</string>
+  <string name="ConversationItem_saving_attachment">Ukládám přílohu</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Ukládám přílohu na SD kartu..</string>
+  <string name="ConversationItem_save_to_sd_card">Uložit na SD kartu?</string>
+  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Chyba při ukládání přílohy na SD kartu!</string>
+  <string name="ConversationItem_success_exclamation">Úspěšně dokončeno!</string>
+  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Nedaří se zapisovat na SD kartu!</string>
+  <string name="ConversationItem_view_secure_media_question">Zobrazit zabezpečená média?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tato média byla uložena v zašifrované databázi. Aby bylo možné je zobrazit v jiném programu, musí být dočasně dešifrována a v dešifrované podobě uložena. Opravdu to chcete udělat?</string>
+  <string name="ConversationItem_received_and_processed_key_exchange_message">Došlo k úspěšnému předání klíčů.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Chyba při předávání klíčů.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Byl vám doručen klíč, klepněte pro jeho přijetí</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">Zahájit šifrovanou komunikaci?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">Zahájit šifrovanou komunikaci s %s?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Přerušit potvrzení šifrované komunikace</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Opravdu už nechcete komunikaci šifrovat?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Vymazat potvrzení vlákna</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Opravdu chcete zcela vymazat tuto konverzaci?</string>
+  <string name="ConversationActivity_add_attachment">Přidat přílohu</string>
+  <string name="ConversationActivity_compose_message">Napište zprávu</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Omlouváme se, ale došlo k chybě při zpracování přílohy</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Omlouváme se, ale zvolený video soubor je příliš velký.</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Omlouváme se, ale zvolený audio soubor je příliš velký.</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Adresa příjemce není ve správném tvaru! (sms či email)</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">Zpráva je prázdná!</string>
+  <string name="ConversationActivity_forward_message_prefix">FWD</string>
+  <string name="ConversationActivity_group_conversation_recipients">Příjemci skupinové konverzace</string>
+  <string name="ConversationActivity_group_conversation">Skupinová konverzace</string>
+  <string name="ConversationActivity_saving_draft">Ukládám koncept...</string>
+  <string name="ConversationActivity_invalid_recipient">Chybný příjemce!</string>
+  <string name="ConversationActivity_calls_not_supported">Vytáčení čísel není podporováno!</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Toto zařízení zřejmě neumí vytáčet telefonní čísla</string>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">Podrobnosti zprávy</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Odesilatel: %1$s\nPřenos: %2$s\nOdesláno/Obdrženo:%3$s</string>
+  <string name="ConversationFragment_confirm_message_delete">Potvrdit výmaz zpráv</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Opravdu chcete trvale vymazat tyto zprávy?</string>
+  <!--ConversationListAdapter-->
+  <string name="ConversationListAdapter_key_exchange_message">Předání klíčů...</string>
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_delete_threads_question">Vymazat konverace?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Opravdu chcete vymazat VŠECHNY označené konverzace?</string>
+  <string name="ConversationListFragment_deleting">Mažu</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Mažu označené konverzace...</string>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Předání klíčů...</string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">Exportovat na SD kartu?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Tímto\nexportujete šifrované klíče, nastavení a zprávy na SD kartu.</string>
+  <string name="ExportFragment_export">Export</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Exportovat prostý text na SD kartu?</string>
+  <string name="ExportFragment_cancel">Storno</string>
+  <string name="ExportFragment_exporting">Exportuji</string>
+  <string name="ExportFragment_success">Úspěšně dokončeno!</string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Importovat všechny SMSky v telefonu</string>
+  <string name="ImportFragment_import">Import</string>
+  <string name="ImportFragment_cancel">Storno</string>
+  <string name="ImportFragment_restore_encrypted_backup">Obnovit šifrovanou zálohu?</string>
+  <string name="ImportFragment_restore">Obnovení</string>
+  <string name="ImportFragment_import_plaintext_backup">Importovat zálohu ve formě prostého textu?</string>
+  <string name="ImportFragment_importing">Importuji</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Impor zálohy ve formě prostého textu...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Nenalezena záloha ve formě prostého textu!</string>
+  <string name="ImportFragment_error_importing_backup">Chyba při importování zálohy!</string>
+  <string name="ImportFragment_import_complete">Import dokončen!</string>
+  <string name="ImportFragment_restoring">Obnovuji</string>
+  <!--KeyScanningActivity-->
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Klíč při snímání nebyl nalezen!</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_storing_mms">Chyba při ukládání MMS!</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimediální zpráva</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nesouhlasí!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Chybné staré heslo!</string>
+  <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match">Hesla nejsou stejná</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Uveďte heslo</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Chybné heslo!</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_mms_settings_updated">Nastavení MMS aktualizováno</string>
+  <!--ReceiveKeyActivity-->
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Příjemce nemá identifikační klíč.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Příjemce nemá identifikační klíč!</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Nasnímejte cizí klíč pro srovnání</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">Klíč byl nasnímán</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">VAROVÁNÍ, nasnímaný klíč NENÍ SPRÁVNÝ! Zkontrolujte prosím textový otisk.</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">NEověřeno!</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Cizí klíč je správný. Je však ještě potřeba ověřit i vlastní klíč.</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">Ověřeno!</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nemáte identifikační klíč!</string>
+  <!--VerifyKeysActivity-->
+  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">VAROVÁNÍ, nasnímaný klíč NENÍ SPRÁVNÝ! Zkontrolujte prosím textový otisk.</string>
+  <string name="VerifyKeysActivity_not_verified_exclamation">NEověřeno!</string>
+  <string name="VerifyKeysActivity_verified_exclamation">Ověřeno!</string>
+  <!--ViewIdentityActivity-->
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
+  <string name="ViewIdentityActivity_scan_to_compare">Nasnímej a porovnej</string>
+  <string name="ViewIdentityActivity_not_verified_exclamation">NEověřeno!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Nasnímané klíče souhlasí!</string>
+  <string name="ViewIdentityActivity_verified_exclamation">Ověřeno!</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">Identifikační otisk</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_send">Odeslat</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Chybně zašifrovaná zpráva...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Dešifruji, prosím čekejte...</string>
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">Kontaktuji MMS server...</string>
+  <string name="MmsDatabase_downloading_mms">Stahuji MMS...</string>
+  <string name="MmsDatabase_mms_download_failed">Stažení MMS se nepodařilo!</string>
+  <string name="MmsDatabase_downloading">Stahuji...</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifruji MMS, čekejte prosím...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Chybně zašifrovaná MMS ...</string>
+  <!--MmsSender-->
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Importuji textové zprávy</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">TextSecure heslo je v krátkodobé paměti</string>
+  <string name="KeyCachingService_passphrase_cached">Heslo v krátkodobé paměti</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages">%d nových zpráv</string>
+  <string name="MessageNotifier_most_recent_from_s">Poslední od: %s</string>
+  <string name="MessageNotifier_encrypted_message">Šifrovaná zpráva...</string>
+  <string name="MessageNotifier_no_subject">(Předmět neuveden)</string>
+  <string name="MessageNotifier_message_delivery_failed">Selhalo doručení zprávy.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Selhalo doručení zprávy.</string>
+  <string name="MessageNotifier_error_delivering_message">Chyba při doručení zprávy.</string>
+  <string name="MessageNotifier_mark_all_as_read">Označit vše jako přečtené</string>
+  <string name="MessageNotifier_mark_as_read">Označit jako přečtené</string>
+  <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">Generuji...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Generuji nový identifikační\nklíč...</string>
+  <string name="ViewLocalIdentityActivity_regenerated">Regenerováno!</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Resetovat identifikační klíč?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nVarování! Generováním nového vlastního klíče bude váš starý klíč nevratně smazán,\na vaše dřívější kontakty obdrží varování při pokusu o aktivaci šifrované konverzace s vámi.\nOpravdu to chcete provést?</string>
+  <string name="ViewLocalIdentityActivity_cancel">Storno</string>
+  <string name="ViewLocalIdentityActivity_continue">Pokračovat</string>
+  <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">V této chvíli není možné poslat SMS. Ta bude odeslána jakmile bude služba operátora opět dostupná.</string>
+  <!--auto_initiate_activity-->
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">STARÉ HESLO</string>
+  <string name="change_passphrase_activity__new_passphrase">NOVÉ HESLO</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">ZNOVU NOVÉ HESLO</string>
+  <!--contact_selection_group_activity-->
+  <!--contact_selection_list_activity-->
+  <string name="contact_selection_group_activity__no_contacts">Žádný kontakt</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">Vybrat</string>
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">Žádné nedávné hovory</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message">Psaní zprávy</string>
+  <string name="conversation_activity__send">Odeslat</string>
+  <string name="conversation_activity__remove">Odebrat</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Stažení</string>
+  <string name="conversation_item_sent__downloading">Stahuji</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Stažení</string>
+  <string name="conversation_item_received__downloading">Stahuji</string>
+  <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">Hromadný výběr</string>
+  <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Prosím vyberte heslo, které bude použito k lokálnímu šifrování zpráv.\n\nMělo by být delší a obtížně uhodnutelné.</string>
+  <string name="create_passphrase_activity__passphrase">HESLO:</string>
+  <string name="create_passphrase_activity__repeat">ZNOVU:</string>
+  <string name="create_passphrase_activity__continue">Pokračovat</string>
+  <string name="create_passphrase_activity__generating_secrets">GENERUJI TAJEMSTVÍ</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovat své dosavadní textové zprávy do šifrované databáze TextSecure?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Původní systémová databáze tím nebude dotčena, ani žádným způsobem modifikována.</string>
+  <string name="database_migration_activity__skip">Přeskočit</string>
+  <string name="database_migration_activity__import">Import</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Může to chvíli trvat. Prosíme o trpělivost, upozorníme Vás až bude import dokončen.</string>
+  <string name="database_migration_activity__importing">IMPORTUJI</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Aktualizuji databázi...</string>
+  <string name="import_fragment__import_plaintext_backup">Importovat zálohu ve formě prostého textu</string>
+  <string name="local_identity__regenerate_key">Vygenerovat klíč</string>
+  <!--mms_preferences_activity-->
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">HESLO (TEXTSECURE)</string>
+  <string name="prompt_passphrase_activity__unlock">Odemknout</string>
+  <!--prompt_mms_activity-->
+  <!--receive_key_activity-->
+  <string name="receive_key_activity__complete">Hotovo</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to">Komu</string>
+  <!--review_identities-->
+  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Aktuálně nemáte žádné cizí identifikační klíče v databázi.</string>
+  <!--verify_identity_activity-->
+  <string name="verify_identity_activity__their_identity_they_read">Jejich identita (čtou)</string>
+  <string name="verify_identity_activity__your_identity_you_read">Vaše identita (čteš):</string>
+  <!--verify_import_identity_activity-->
+  <string name="verify_import_identity_activity__identity_name_n">Jméno identity:\n</string>
+  <string name="verify_import_identity_activity__imported_identity_n">Importované identity:\n</string>
+  <string name="verify_import_identity_activity__verified">Ověřeno!</string>
+  <string name="verify_import_identity_activity__compare">Porovnat</string>
+  <!--verify_keys_activity-->
+  <string name="verify_keys_activity__they_read_this">Čtou toto:</string>
+  <string name="verify_keys_activity__you_read_this">Čteš toto:</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">Vytvořit heslo</string>
+  <string name="AndroidManifest__enter_passphrase">Zadat heslo</string>
+  <string name="AndroidManifest__select_contacts">Výběr kontaktů</string>
+  <string name="AndroidManifest__textsecure_detected">Rozpoznáno použití TextSecure</string>
+  <string name="AndroidManifest__public_identity_key">Veřejný identifikační klíč</string>
+  <string name="AndroidManifest__change_passphrase">Změna hesla</string>
+  <string name="AndroidManifest__verify_session">Ověření konverzace</string>
+  <string name="AndroidManifest__verify_identity">Ověření identity</string>
+  <string name="AndroidManifest__manage_identity_keys">Správa identifikačních klíčů</string>
+  <string name="AndroidManifest__complete_key_exchange">Dokončení předání klíčů</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">Import / export</string>
+  <!--preferences.xml-->
+  <string name="preferences__general">Obecné</string>
+  <string name="preferences__pref_all_sms_title">Použít pro všechny SMS</string>
+  <string name="preferences__pref_all_mms_title">Použít pro všechny MMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Používat TextSecure k prohlížení a uchování všech SMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Používat TextSecure k prohlížení a uchování všech MMS</string>
+  <string name="preferences__pref_enter_sends_title">Klávesa \'Enter\' odesílá</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka \'enter\' na klávesnici odešle zprávu</string>
+  <string name="preferences__display_settings">Nastavení zobrazení</string>
+  <string name="preferences__choose_identity">Zvolit identitu</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zvolte osobu ze svého adresáře</string>
+  <string name="preferences__change_passphrase">Změnit heslo</string>
+  <string name="preferences__change_my_passphrase">Změnit své heslo</string>
+  <string name="preferences__complete_key_exchanges">Dokončení předání klíčů</string>
+  <string name="preferences__disable_passphrase">Deaktivovat heslo</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Deaktivovat lokální šifrování zpráv a klíčů</string>
+  <string name="preferences__timeout_passphrase">Vypršení hesla</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">Volba zapomenutí hesla</string>
+  <string name="preferences__pref_timeout_interval_title">Limit čekání</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Doba po kterou si pamatovat vyplněné heslo</string>
+  <string name="preferences__identity_key_settings">Identifikační klíče</string>
+  <string name="preferences__view_my_identity_key">Zobrazit vlastní identifikační klíč</string>
+  <string name="preferences__manage_identity_keys">Správa identifikačních klíčů</string>
+  <string name="preferences__manage_configured_identity_keys">Spravovat nastavené identifikační klíče</string>
+  <string name="preferences__notifications">Upozornění</string>
+  <string name="preferences__led_color">Barva LED</string>
+  <string name="preferences__change_notification_led_color">Změnit barvu upozorňující LED</string>
+  <string name="preferences__pref_led_blink_title">Způsob blikání LED</string>
+  <string name="preferences__change_notification_blink_pattern">Změnit způsob blikání LED</string>
+  <string name="preferences__pref_led_blink_dialogtitle">Vyber způsob blikání LED</string>
+  <string name="preferences__select_led_color">Zvolit barvu LED</string>
+  <string name="preferences__sound">Zvuk</string>
+  <string name="preferences__vibrate">Vibrovat</string>
+  <string name="preferences__minutes">minut</string>
+  <string name="preferences__hours">hodin</string>
+  <string name="preferences__green">Zelená</string>
+  <string name="preferences__red">Červená</string>
+  <string name="preferences__blue">Modrá</string>
+  <string name="preferences__orange">Oranžová</string>
+  <string name="preferences__cyan">Bledě modrá</string>
+  <string name="preferences__magenta">Fialová</string>
+  <string name="preferences__fast">Rychle</string>
+  <string name="preferences__normal">Normálně</string>
+  <string name="preferences__slow">Pomalu</string>
+  <string name="preferences__custom">Vlastní</string>
+  <string name="preferences__advanced">Rozšířené možnosti</string>
+  <string name="preferences__passphrase">Heslo</string>
+  <string name="preferences__sms_delivery_reports">Doručenky SMS</string>
+  <string name="preferences__delete_old_messages">Vymazat staré zprávy</string>
+  <string name="preferences__storage">Úložiště</string>
+  <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
+  <string name="preferences__trim_all_threads_now">Zastřihnout konverzace</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Pohledat všechny konverzace a uplatnit limit délky.</string>
+  <string name="preferences__light_theme">Světlý vzhled</string>
+  <string name="preferences__dark_theme">Tmavý vzhled</string>
+  <string name="preferences__appearance">Chování</string>
+  <string name="preferences__theme">Vzhled</string>
+  <string name="preferences__default">Výchozí</string>
+  <string name="preferences__language">Jazyk</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">Označit vše</string>
+  <string name="contact_selection_list__menu_unselect_all">Odznačit vše</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">Dokončeno</string>
+  <!--conversation_button_context-->
+  <string name="conversation_button_context__menu_send_unencrypted">Odeslat nezašifrovaně</string>
+  <!--conversation_callable-->
+  <string name="conversation_callable__menu_call">Volat</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">Podrobnosti zprávy</string>
+  <string name="conversation_context__menu_copy_text">Kopírovat text</string>
+  <string name="conversation_context__menu_delete_message">Vymazat zprávu</string>
+  <string name="conversation_context__menu_forward_message">Přeposlat zprávu</string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__menu_start_secure_session">Zahájit šifrovanou konverzaci</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">Vymazat označené</string>
+  <string name="conversation_list_batch__menu_select_all">Vybrat vše</string>
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">Hledat</string>
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_security">Zabezpečení</string>
+  <string name="conversation_secure_verified__menu_verify_session">Ověřit konverzaci</string>
+  <string name="conversation_secure_verified__menu_verify_recipient">Ověřit příjemce</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Přerušit zabezpečenou konverzaci</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">Přidat přílohu</string>
+  <string name="conversation__menu_delete_thread">Vymazt konverzaci</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Seznam příjemců</string>
+  <string name="conversation_group_options__delivery">Doručení</string>
+  <string name="conversation_group_options__conversation">Konverzace</string>
+  <string name="conversation_group_options__broadcast">Rozeslat</string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">Porovnat</string>
+  <string name="key_scanning__menu_scan_to_compare">Nasnímej a porovnej</string>
+  <!--text_secure_locked-->
+  <string name="text_secure_locked__menu_unlock">Odemknout</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">Nová zpráva</string>
+  <string name="text_secure_normal__menu_settings">Nastavení</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Zapomenout heslo</string>
+  <string name="text_secure_normal__mark_all_as_read">Označit jako přečtené</string>
+  <!--verify_keys-->
+  <string name="verify_keys__menu_verified">Ověřeno</string>
+  <!--EOF-->
+</resources>

@@ -14,7 +14,7 @@
   <string name="ApplicationPreferencesActivity_delete">Удалить</string>
   <string name="ApplicationPreferencesActivity_my">Мой</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Отключить шифрование базы?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nВнимание, этим вы отключите шифрование при хранении всех своих сообщений и ключей. При общении шифрование продолжит работать, однако любой, кто имеет физический доступ к вашему устройству, сможет их прочитать.</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nВнимание, вы собираетесь отключить шифрование базы данных, в которой хранятся все ваши сообщения и ключи. При переписке шифрование продолжит работать, однако любой, кто имеет физический доступ к вашему устройству, сможет прочитать ваши сообщения.</string>
   <string name="ApplicationPreferencesActivity_disable">Отключить</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Изображение</string>
@@ -45,6 +45,7 @@
   <string name="ConversationActivity_delete_thread_confirmation">Подтвердите удаление разговора</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Вы уверены, что хотите навсегда удалить этот разговор?</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
+  <string name="ConversationActivity_select_contact_info">Выбрать контакт</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извините, произошла ошибка при обработке вложения.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Извините, выбранный видео-файл больше максимального размера сообщения.</string>
@@ -76,10 +77,10 @@
   <string name="ConversationListItem_key_exchange_message">Сообщениe обмена ключами...</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Экспортировать на SD-карту?</string>
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Этим вы экспортируете на SD-карту свои зашифрованные ключи, настройки и сообщения.</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Вы собираетесь экспортировать на SD-карту свои зашифрованные ключи, настройки и сообщения.</string>
   <string name="ExportFragment_export">Экспорт</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Экспортировать открытым текстом?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, этим вы экспортируете на SD-карту свои сообщения в незашифрованном виде.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, вы собираетесь экспортировать на SD-карту свои сообщения в незашифрованном виде.</string>
   <string name="ExportFragment_cancel">Отмена</string>
   <string name="ExportFragment_exporting">Экспорт</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Экспортируем открытым текстом на карту памяти...</string>
@@ -89,14 +90,14 @@
   <string name="ExportFragment_exporting_keys_settings_and_messages">Производится экспорт зашифрованных ключей, настроек и сообщений...</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Импортировать системную базу SMS?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Этим вы импортируете SMS-сообщения из системной базы данных в TextSecure. Если вы уже это делали, повторный импорт приведёт к дублированию сообщений.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Вы собираетесь импортировать SMS-сообщения из системной базы данных в TextSecure. Если вы уже это делали ранее, повторный импорт приведёт к дублированию сообщений.</string>
   <string name="ImportFragment_import">Импортировать</string>
   <string name="ImportFragment_cancel">Отмена</string>
   <string name="ImportFragment_restore_encrypted_backup">Восстановить из зашфированной резервной копии?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nВосстановление из зашифрованной резервной копии полностью заменит существующие ключи, настройки и сообщения. Вы потеряете всю информацию, которая сейчас содержится в TextSecure, но не в резервной копии.</string>
   <string name="ImportFragment_restore">Восстановить</string>
   <string name="ImportFragment_import_plaintext_backup">Импортировать из нешифрованной резервной копии?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Этим вы импортируете сообщения из незашифрованной резервной копии. Если вы ранее уже импортировали SMS-сообщения из системной базы данных, повторный импорт приведёт к дублированию сообщений.</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Вы собираетесь импортировать сообщения из незашифрованной резервной копии. Если вы ранее уже импортировали SMS-сообщения из системной базы данных, повторный импорт приведёт к дублированию сообщений.</string>
   <string name="ImportFragment_importing">Импорт</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Импортируем из незашифрованной резервной копии...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Незашифрованная резервная копия не найдена!</string>
@@ -112,6 +113,7 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Нет подключения, через которое можно скачать MMS; попробуйте позже ...</string>
   <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка подключения к провайдеру MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
   <!--PassphraseChangeActivity-->
@@ -122,10 +124,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Необходимо указать пароль</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неверная парольная фраза!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Вы должны указать адрес MMS-центра вашего оператора.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Настройки MMS обновлены</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Вы можете в любое время изменить эти значения в настройках TextSecure.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Необходимо указать адрес MMS-центра вашего оператора.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Настройки MMS сохранены</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Вы можете в любое время изменить эти значения через меню настроек приложения.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпись, полученная сейчас при обмене ключами, отличается от той, которой собеседник подписывался ранее. Это может означать, что кто-то пытается перехватить вашу переписку или что ваш собеседник переустановил TextSecure, и теперь у него новый личный ключ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Возможно, вы захотите перепроверить этого собеседника.</string>
@@ -170,6 +172,7 @@
   <string name="MmsDatabase_downloading_mms">Скачиваем MMS-сообщение...</string>
   <string name="MmsDatabase_mms_download_failed">Не удалось скачать MMS-сообщение!</string>
   <string name="MmsDatabase_downloading">Скачиваем...</string>
+  <string name="MmsDatabase_mms_pending_download">Чтобы продолжить скачивание, нажмите сюда и настройте MMS.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Расшифровываем MMS-сообщение...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Зашифрованное MMS-сообщение испорчено...</string>
@@ -178,7 +181,7 @@
   <string name="MmsSender_currently_unable_to_send_your_mms_message">В настоящий момент невозможно отправить MMS-сообщение.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Идёт импорт</string>
-  <string name="ApplicationMigrationService_importing_text_messages">Импортирование текстовых сообщений</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Импортируем текстовые сообщения</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Парольная фраза TextSecure кэширована.</string>
   <string name="KeyCachingService_passphrase_cached">Парольная фраза кэширована</string>
@@ -254,15 +257,17 @@
   <string name="import_fragment__import_plaintext_backup">Импорт незашифрованной резервной копии</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\nИмпортировать из незашифрованной резервной копии. Совместимо с приложением «SMSBackup And Restore».</string>
   <string name="local_identity__regenerate_key">Повторно сгенерировать ключ</string>
+  <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">ПАРОЛЬНАЯ ФРАЗА TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Открыть</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">Для отправки MMS-сообщений TextSecure необходимо знать настройки APN вашего оператора. Однако ваше устройство не предоставляет этой информации — так иногда бывает, если оно заблокировано или соответствующим образом настроено.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Чтобы иметь возможность отправлять MMS-сообщения, введите информацию об APN ниже. Нужные значения для вашего оператора можно найти в интернете по запросу «&amp;lt;оператор&amp;gt; APN» или в его службе поддержки. Это нужно сделать только один раз.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">АДРЕС MMS-ЦЕНТРА (ОБЯЗАТЕЛЬНО):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">ПРОКСИ ДЛЯ MMS (НЕОБЯЗАТЕЛЬНО):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">ПОРТ ПРОКСИ ДЛЯ MMS (НЕОБЯЗАТЕЛЬНО):</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Приложению TextSecure необходимо знать настройки MMS вашего сотового оператора, чтобы отправлять и получать мультимедийные и групповые сообщения. Ваше устройство не даёт доступа к этой информации — так иногда бывает, если в телефоне запрещена смена SIM-карты и в некоторых иных случаях.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Чтобы отправлять мультимедийные и групповые сообщения, нажмите «ОК» и настройте MMS. Это нужно сделать только один раз. Настройки для вашего оператора можно узнать в службе техподдержки или в интернете по запросу «ваш оператор APN».</string>
+  <string name="prompt_mms_activity__mmsc_url_required">АДРЕС MMS-ЦЕНТРА (ОБЯЗАТЕЛЬНО):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">ПРОКСИ ДЛЯ MMS (НЕОБЯЗАТЕЛЬНО):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">ПОРТ ПРОКСИ ДЛЯ MMS (НЕОБЯЗАТЕЛЬНО):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Выполнить</string>
   <!--recipients_panel-->
@@ -302,7 +307,7 @@
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Использовать TextSecure для просмотра и хранения всех входящих текстовых сообщений</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать TextSecure для просмотра и хранения всех входящих мультимедийных сообщений</string>
   <string name="preferences__pref_enter_sends_title">Отправка по «Enter»</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Сообщения будут отправляться при нажатии клавиши \"Ввод\"</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Сообщения будут отправляться при нажатии клавиши «Ввод»</string>
   <string name="preferences__display_settings">Настройки отображения</string>
   <string name="preferences__choose_identity">Выбрать личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
@@ -319,7 +324,7 @@
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Время, по прошествии которого парольная фраза будет стёрта из памяти</string>
   <string name="preferences__identity_key_settings">Личные ключи</string>
   <string name="preferences__view_my_identity_key">Показать мой личный ключ</string>
-  <string name="preferences__manage_identity_keys">Управление личные ключами</string>
+  <string name="preferences__manage_identity_keys">Управление личными ключами</string>
   <string name="preferences__manage_configured_identity_keys">Управление настроенными личными ключами</string>
   <string name="preferences__notifications">Уведомления</string>
   <string name="preferences__display_message_notifications_in_status_bar">Показывать уведомления о сообщениях в статусной строке</string>
@@ -345,12 +350,12 @@
   <string name="preferences__fast">Быстро</string>
   <string name="preferences__normal">Средне</string>
   <string name="preferences__slow">Медленно</string>
-  <string name="preferences__custom">Свой</string>
+  <string name="preferences__custom">Настроить</string>
   <string name="preferences__advanced">Расширенные</string>
   <string name="preferences__passphrase">Парольная фраза</string>
-  <string name="preferences__advanced_mms_access_point_names">Резервный MMS-центр</string>
-  <string name="preferences__enable_fallback_mmsc">Включить резервный MMS-центр</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Использовать указанный здесь MMS-центр, когда нет системной информации об APN.</string>
+  <string name="preferences__advanced_mms_access_point_names">Настройки MMS</string>
+  <string name="preferences__enable_manual_mms">Настроить MMS вручную</string>
+  <string name="preferences__override_system_mms_settings">Использовать указанную ниже информацию вместо системных настроек MMS.</string>
   <string name="preferences__mmsc_url_required">Адрес MMS-центра (обязательно)</string>
   <string name="preferences__mms_proxy_host_optional">Адрес прокси для MMS (необязательно)</string>
   <string name="preferences__mms_proxy_port_optional">Порт прокси для MMS (необязательно)</string>
@@ -400,6 +405,7 @@
   <string name="conversation_secure_verified__menu_abort_secure_session">Закончить защищённый сеанс</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Добавить вложение</string>
+  <string name="conversation__menu_add_contact_info">Добавить контакт</string>
   <string name="conversation__menu_delete_thread">Удалить разговор</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Список получателей</string>

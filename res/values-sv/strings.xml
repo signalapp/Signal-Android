@@ -45,6 +45,7 @@
   <string name="ConversationActivity_delete_thread_confirmation">Radera tråd bekräftelse</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Är du säker att du vill permanent radera denna konversation?</string>
   <string name="ConversationActivity_add_attachment">Bifoga fil</string>
+  <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Skriv Meddelande</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ursäkta, det blev ett fel med att bifoga din fil.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr är den valda video för stor.</string>
@@ -112,6 +113,7 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Ingen anslutning tillgänglig för MMS nerladdning, testa igen senare...</string>
   <string name="MmsDownloader_error_storing_mms">Fel vid lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fel vid anslutning till MMS leverantör...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsning av operatörens MMS inställningar...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediameddelande</string>
   <!--PassphraseChangeActivity-->
@@ -122,10 +124,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Du måste specificera ett lösenord</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Fel Lösenord!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du måste specificera en MMSC URL för din operatör.</string>
-  <string name="PromptApnActivity_mms_settings_updated">MMS-inställningar uppdaterade</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan modifiera dessa värden från TextSecure inställningsmenyn när du vill.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du måste specificera en MMSC URL för din operatör.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">MMS-inställningar uppdaterade</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan modifiera dessa värden från TextSecure inställningsmenyn när du vill.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen för detta nyckelutbytet skiljer sig från det som du tidigare har mottagit från denna kontakt.\nDetta kan innebära antingen att någon försöker avlyssna din kommunikation, eller att denna kontakt helt enkelt installerade om TextSecure och nu har en ny identitetsnyckel.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Det kan vara en bra idé att\nverifiera denna kontakt.</string>
@@ -170,6 +172,7 @@
   <string name="MmsDatabase_downloading_mms">Laddar ner MMS...</string>
   <string name="MmsDatabase_mms_download_failed">MMS nedladdning misslyckades!</string>
   <string name="MmsDatabase_downloading">Laddar ner...</string>
+  <string name="MmsDatabase_mms_pending_download">Tappa och ställ in MMS inställningar för att fortsätta nedladdning.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterar MMS, var vänlig vänta...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Dåligt krypterat MMS meddelande...</string>
@@ -254,15 +257,17 @@
   <string name="import_fragment__import_plaintext_backup">Importera okrypterad säkerhetskopia</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\'.</string>
   <string name="local_identity__regenerate_key">Återgenerera nyckel</string>
+  <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">Manuella MMS inställningar krävs för din telefon.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE LÖSENORD</string>
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure kräver APN inställningar för att leverera mediemeddelanden via din mobilöperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">För att skicka mediemeddelanden, var vänlig fyll i den nödvändiga APN informationen nedan. Värdena för din operatör kan generellt sett hittas genom att söka på \'&amp;lt;din operatör&amp;lt; APN\'. Du behöver bara göra detta en gång.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">MMSC URL (KRÄVS):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">MMS PROXY VÄRD (VALFRITT):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">MMS PROXY PORT (VALFRITT):</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure kräver MMS inställningar för att leverera medie- och gruppmeddelanden via din mobilöperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">För att skicka medie- och gruppmeddelande, klicka \'OK\' och fyll i de begärda inställningarna. MMS inställningarna för din operatör kan generellt hittas genom att söka efter \'din operatör APN\'. Du behöver bara göra det här en gång.</string>
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (KRÄVS):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY VÄRD (VALFRITT):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (VALFRITT):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Klart</string>
   <!--recipients_panel-->
@@ -330,6 +335,8 @@
   <string name="preferences__pref_led_blink_dialogtitle">Välj LED-blinkmönster</string>
   <string name="preferences__select_led_color">Välj LED-färg</string>
   <string name="preferences__sound">Ljud</string>
+  <string name="preferences__inthread_notifications">Inom-tråd notifikationer</string>
+  <string name="preferences__play_inthread_notifications">Spela notifikationsljud när en aktiv konversation visas</string>
   <string name="preferences__vibrate">Vibrera</string>
   <string name="preferences__also_vibrate_when_notified">Vibrera också vid notifikation</string>
   <string name="preferences__minutes">minuter</string>
@@ -346,9 +353,9 @@
   <string name="preferences__custom">Skräddarsydd</string>
   <string name="preferences__advanced">Avancerade</string>
   <string name="preferences__passphrase">Lösenfras</string>
-  <string name="preferences__advanced_mms_access_point_names">Reserv MMSC</string>
-  <string name="preferences__enable_fallback_mmsc">Aktivera Fallback MMSC</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Använd MMSC information konfugerad här när system APN information är otillgänglig.</string>
+  <string name="preferences__advanced_mms_access_point_names">MMS inställningar</string>
+  <string name="preferences__enable_manual_mms">Aktivera manuell MMS</string>
+  <string name="preferences__override_system_mms_settings">Skriv över systemets MMS inställningar med nedanstående information</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nödvändigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxyvärd (valfritt)</string>
   <string name="preferences__mms_proxy_port_optional">MMS proxyport (valfritt)</string>
@@ -383,6 +390,7 @@
   <string name="conversation_context__menu_copy_text">Kopiera text</string>
   <string name="conversation_context__menu_delete_message">Radera meddelande</string>
   <string name="conversation_context__menu_forward_message">Vidarebefodra meddelande</string>
+  <string name="conversation_context__menu_resend_message">Skicka meddelande igen</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Starta säker session</string>
   <!--conversation_list_batch-->
@@ -397,6 +405,7 @@
   <string name="conversation_secure_verified__menu_abort_secure_session">Avbryt säker session</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Bifoga fil</string>
+  <string name="conversation__menu_add_contact_info">Lägg till kontaktinfo</string>
   <string name="conversation__menu_delete_thread">Radera tråd</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Mottagare lista</string>

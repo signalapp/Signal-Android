@@ -122,10 +122,10 @@
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Tem de especificar uma palavra-chave</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
-  <!--PromptApnActivity-->
-  <string name="PromptApnActivity_you_must_specify_an_mmsc_url_for_your_carrier">Tem de especificar uma URL MMSC para a sua operadora.</string>
-  <string name="PromptApnActivity_mms_settings_updated">Configuração MMS Actualizada</string>
-  <string name="PromptApnActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Pode modificar estes valores a partir do menu de configuração TextSecure em qualquer altura.</string>
+  <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Tem de especificar uma URL MMSC para a sua operadora.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Configuração MMS Actualizada</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Pode modificar estes valores a partir do menu de configuração TextSecure em qualquer altura.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A assinatura deste intercâmbio de chaves é diferente da previamente recebida deste contacto. Isto pode significar que alguém está a tentar interceptar esta comunicação ou simplesmente que este contacto reinstalou o TextSecure e tem agora uma nova chave de identidade.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contracto.</string>
@@ -254,15 +254,14 @@
   <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\nImportar uma cópia de segurança de texto simples. Compatível com \'SMSBackup e Restaurar\'</string>
   <string name="local_identity__regenerate_key">Criar chave nova</string>
+  <!--mms_preferences_activity-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">FRASE-CHAVE TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
-  <!--prompt_apn_activity-->
-  <string name="prompt_apn_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure requer configurações APN para entregar mensagens multimédia através da sua operadora sem fios. O seu dispositivo não disponibiliza esta informação, o que é ocasionalmente o caso para dispositivos bloqueados e outras configurações restritivas.</string>
-  <string name="prompt_apn_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">Para enviar mensagens multimédia, por favor complete a informação APN requerida abaixo. Os valores para a sua operadora podem habitualmente ser encontrados procurando por \'APN &amp;lt;Operadora&amp;gt;\'. Apenas necessita de efectuar esta operação uma vez.</string>
-  <string name="prompt_apn_activity__mmsc_url_required">URL MMSC (OBRIGATÓRIO):</string>
-  <string name="prompt_apn_activity__mms_proxy_host_optional">ANFITRIÃO PROXY MMS (OPCIONAL):</string>
-  <string name="prompt_apn_activity__mms_proxy_port_optional">PORTA PROXY MMS (OPCIONAL):</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__mmsc_url_required">URL MMSC (OBRIGATÓRIO):</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">ANFITRIÃO PROXY MMS (OPCIONAL):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">PORTA PROXY MMS (OPCIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completo</string>
   <!--recipients_panel-->
@@ -345,9 +344,6 @@
   <string name="preferences__custom">Personalizado</string>
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__passphrase">Frase-chave</string>
-  <string name="preferences__advanced_mms_access_point_names">MMSC de recurso</string>
-  <string name="preferences__enable_fallback_mmsc">Habilitar MMSC de reseva</string>
-  <string name="preferences__use_mmsc_information_configured_here_when_system_apn_information_is_unavailable">Usar esta informação de MMSC quando APN do sistema estiver indisponível.</string>
   <string name="preferences__mmsc_url_required">URL do MMSC (Necessário)</string>
   <string name="preferences__mms_proxy_host_optional">Proxy MMS (Opcional)</string>
   <string name="preferences__mms_proxy_port_optional">Porta do Proxy MMS (Opcional)</string>
