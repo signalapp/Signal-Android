@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Telephony;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -34,21 +35,28 @@ import ws.com.google.android.mms.pdu.PduParser;
 
 public class MmsListener extends BroadcastReceiver {
 
-  private static final String WAP_PUSH_RECEIVE_ACTION = "android.provider.Telephony.WAP_PUSH_RECEIVE";
-
-  private boolean isRelevent(Context context, Intent intent) {
-    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT)
+  private boolean isRelevant(Context context, Intent intent) {
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT) {
       return false;
+    }
 
-    if (!ApplicationMigrationService.isDatabaseImported(context))
+    if (!ApplicationMigrationService.isDatabaseImported(context)) {
       return false;
+    }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
-        intent.getAction().equals(WAP_PUSH_RECEIVE_ACTION) && Util.isDefaultSmsProvider(context))
+        Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION.equals(intent.getAction()) &&
+        Util.isDefaultSmsProvider(context))
+    {
       return false;
+    }
 
-    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ApplicationPreferencesActivity.ALL_MMS_PERF, true))
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
+        PreferenceManager.getDefaultSharedPreferences(context)
+                         .getBoolean(ApplicationPreferencesActivity.ALL_MMS_PERF, true))
+    {
       return true;
+    }
 
     byte[] mmsData   = intent.getByteArrayExtra("data");
     PduParser parser = new PduParser(mmsData);
@@ -67,9 +75,10 @@ public class MmsListener extends BroadcastReceiver {
 
   @Override
     public void onReceive(Context context, Intent intent) {
-    Log.w("MmsListener", "Got MMS broadcast...");
+    Log.w("MmsListener", "Got MMS broadcast..." + intent.getAction());
 
-    if (isRelevent(context, intent)) {
+    if (isRelevant(context, intent)) {
+      Log.w("MmsListener", "Relevant!");
       intent.setAction(SendReceiveService.RECEIVE_MMS_ACTION);
       intent.putExtra("ResultCode", this.getResultCode());
       intent.setClass(context, SendReceiveService.class);
