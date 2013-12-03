@@ -62,6 +62,6 @@ public class NotificationState {
     Log.w("NotificationState", "Pending array off intent length: " +
         intent.getLongArrayExtra("thread_ids").length);
 
-    return PendingIntent.getBroadcast(context, 0, intent, 0);
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 }
