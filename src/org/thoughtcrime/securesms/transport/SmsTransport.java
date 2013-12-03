@@ -98,10 +98,17 @@ public class SmsTransport {
       Log.w("SmsTransport", npe);
       Log.w("SmsTransport", "Recipient: " + recipient);
       Log.w("SmsTransport", "Message Parts: " + messages.size());
-      for (String messagePart: messages) {
-          Log.w("SmsTransport", "Message Part Length: " + messagePart.getBytes().length);
+
+      try {
+        for (int i=0;i<messages.size();i++) {
+          SmsManager.getDefault().sendTextMessage(recipient, null, messages.get(i),
+                                                  sentIntents.get(i),
+                                                  deliveredIntents == null ? null : deliveredIntents.get(i));
+        }
+      } catch (NullPointerException npe2) {
+        Log.w("SmsTransport", npe);
+        throw new UndeliverableMessageException(npe2);
       }
-      throw new UndeliverableMessageException(npe);
     }
   }
 
