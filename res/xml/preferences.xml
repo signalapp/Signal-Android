@@ -32,20 +32,16 @@
                           android:defaultValue="green"
                           android:title="@string/preferences__led_color"
                           android:dependency="pref_key_enable_notifications"
-                          android:summary="@string/preferences__change_notification_led_color"
                           android:entries="@array/pref_led_color_entries"
-                          android:entryValues="@array/pref_led_color_values"
-                          android:dialogTitle="@string/preferences__select_led_color" />
+                          android:entryValues="@array/pref_led_color_values" />
 
         <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
                           android:key="pref_led_blink"
                           android:defaultValue="500,2000"
                           android:title="@string/preferences__pref_led_blink_title"
                           android:dependency="pref_key_enable_notifications"
-                          android:summary="@string/preferences__change_notification_blink_pattern"
                           android:entries="@array/pref_led_blink_pattern_entries"
-                          android:entryValues="@array/pref_led_blink_pattern_values"
-                          android:dialogTitle="@string/preferences__pref_led_blink_dialogtitle" />
+                          android:entryValues="@array/pref_led_blink_pattern_values" />
 
 
         <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
