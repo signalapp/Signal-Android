@@ -485,7 +485,7 @@
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
-    <string name="preferences__make_default_sms_app">Make Default SMS App</string>
+    <string name="preferences__make_default_sms_app">Make default SMS app</string>
     <string name="preferences__make_textsecure_the_default_sms_mms_app">Make TextSecure the default SMS/MMS app for your system.</string>
                                     
     <!-- **************************************** -->
