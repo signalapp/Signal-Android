@@ -11,4 +11,6 @@
 
     <color name="textsecure_holo_blue_light">#ff33b5e5</color>
 
+    <color name="card_background_active">#9933b5e5</color>
+
 </resources>
