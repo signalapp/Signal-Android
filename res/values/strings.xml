@@ -447,6 +447,7 @@
     <string name="preferences__pref_led_blink_dialogtitle">Select LED Blink Pattern</string>
     <string name="preferences__select_led_color">Select LED Color</string>
     <string name="preferences__sound">Sound</string>
+    <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__inthread_notifications">In-thread notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation.</string>
     <string name="preferences__vibrate">Vibrate</string>
