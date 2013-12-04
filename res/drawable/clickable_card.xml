@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@android:drawable/list_selector_background"
-          android:state_pressed="true" />
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/card_background_active" />
+        </shape>
+        <bitmap android:src="@drawable/card" />
+    </item>
     <item android:drawable="@drawable/card" />
 </selector>
