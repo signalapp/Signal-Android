@@ -230,8 +230,13 @@ public class SessionRecordV2 extends Record {
                        .setSenderEphemeral(ByteString.copyFrom(senderEphemeral.serialize()))
                        .build();
 
-    // XXX knock old chain out.
     this.sessionStructure = this.sessionStructure.toBuilder().addReceiverChains(chain).build();
+
+    if (this.sessionStructure.getReceiverChainsList().size() > 5) {
+      this.sessionStructure = this.sessionStructure.toBuilder()
+                                                   .removeReceiverChains(0)
+                                                   .build();
+    }
   }
 
   public void setSenderChain(ECKeyPair senderEphemeralPair, ChainKey chainKey) {
