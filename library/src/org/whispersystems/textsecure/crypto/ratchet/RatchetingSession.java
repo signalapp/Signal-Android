@@ -46,7 +46,7 @@ public class RatchetingSession {
     sessionRecord.setLocalIdentityKey(ourIdentityKey.getPublicKey());
 
     ECKeyPair               sendingKey     = Curve.generateKeyPairForType(ourIdentityKey.getPublicKey().getPublicKey().getType());
-    Pair<RootKey, ChainKey> receivingChain = calculate3DHE(ourBaseKey, theirBaseKey, ourIdentityKey, theirIdentityKey);
+    Pair<RootKey, ChainKey> receivingChain = calculate3DHE(true, ourBaseKey, theirBaseKey, ourIdentityKey, theirIdentityKey);
     Pair<RootKey, ChainKey> sendingChain   = receivingChain.first.createChain(theirEphemeralKey, sendingKey);
 
     sessionRecord.addReceiverChain(theirEphemeralKey, receivingChain.second);
@@ -64,21 +64,22 @@ public class RatchetingSession {
     sessionRecord.setRemoteIdentityKey(theirIdentityKey);
     sessionRecord.setLocalIdentityKey(ourIdentityKey.getPublicKey());
 
-    Pair<RootKey, ChainKey> sendingChain = calculate3DHE(ourBaseKey, theirBaseKey,
+    Pair<RootKey, ChainKey> sendingChain = calculate3DHE(false, ourBaseKey, theirBaseKey,
                                                          ourIdentityKey, theirIdentityKey);
 
     sessionRecord.setSenderChain(ourEphemeralKey, sendingChain.second);
     sessionRecord.setRootKey(sendingChain.first);
   }
 
-  private static Pair<RootKey, ChainKey> calculate3DHE(ECKeyPair ourEphemeral, ECPublicKey theirEphemeral,
+  private static Pair<RootKey, ChainKey> calculate3DHE(boolean isAlice,
+                                                       ECKeyPair ourEphemeral, ECPublicKey theirEphemeral,
                                                        IdentityKeyPair ourIdentity, IdentityKey theirIdentity)
       throws InvalidKeyException
   {
     try {
       ByteArrayOutputStream secrets = new ByteArrayOutputStream();
 
-      if (isLowEnd(ourEphemeral.getPublicKey(), theirEphemeral)) {
+      if (isAlice) {
         secrets.write(Curve.calculateAgreement(theirEphemeral, ourIdentity.getPrivateKey()));
         secrets.write(Curve.calculateAgreement(theirIdentity.getPublicKey(), ourEphemeral.getPrivateKey()));
       } else {
