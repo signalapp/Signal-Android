@@ -58,7 +58,7 @@ public class HKDF {
   private SecretKeySpec deriveMacKey(byte[] okm) {
     byte[] macKey = new byte[32];
     System.arraycopy(okm, MAC_KEYS_OFFSET, macKey, 0, macKey.length);
-    return new SecretKeySpec(macKey, "HmacSHA1");
+    return new SecretKeySpec(macKey, "HmacSHA256");
   }
 
   private byte[] extract(byte[] salt, byte[] inputKeyMaterial) {
