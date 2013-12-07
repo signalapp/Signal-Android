@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.util.List;
@@ -104,10 +103,6 @@ public class MessageNotifier {
       return;
     }
 
-    if (!Util.isDefaultSmsProvider(context)) {
-      return;
-    }
-
     updateNotification(context, masterSecret, false);
   }
 
@@ -115,10 +110,6 @@ public class MessageNotifier {
     if (!PreferenceManager.getDefaultSharedPreferences(context)
                           .getBoolean(ApplicationPreferencesActivity.NOTIFICATION_PREF, true))
     {
-      return;
-    }
-
-    if (!Util.isDefaultSmsProvider(context)) {
       return;
     }
 

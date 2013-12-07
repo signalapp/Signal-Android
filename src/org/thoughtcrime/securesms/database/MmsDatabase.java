@@ -358,8 +358,9 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
                                               String contentLocation, long threadId, long mailbox)
       throws MmsException
   {
-    PduHeaders headers          = retrieved.getPduHeaders();
+    PduHeaders    headers       = retrieved.getPduHeaders();
     ContentValues contentValues = getContentValuesFromHeader(headers);
+    boolean       unread        = Util.isDefaultSmsProvider(context) || ((mailbox & Types.SECURE_MESSAGE_BIT) != 0);
 
     if (!Util.isEmpty(retrieved.getCc())) {
       try {
@@ -374,13 +375,17 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     contentValues.put(CONTENT_LOCATION, contentLocation);
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
     contentValues.put(DATE_RECEIVED, System.currentTimeMillis() / 1000);
+    contentValues.put(READ, unread ? 0 : 1);
 
     if (!contentValues.containsKey(DATE_SENT))
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
 
     long messageId = insertMediaMessage(masterSecret, retrieved, contentValues);
 
-    DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+    if (unread) {
+      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+    }
+
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
     Trimmer.trimThread(context, threadId);
@@ -427,6 +432,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       contentValues.put(THREAD_ID, threadId);
       contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
       contentValues.put(DATE_RECEIVED, System.currentTimeMillis() / 1000);
+      contentValues.put(READ, Util.isDefaultSmsProvider(context) ? 0 : 1);
 
       if (!contentValues.containsKey(DATE_SENT))
         contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
@@ -449,7 +455,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   public void markIncomingNotificationReceived(long threadId) {
     notifyConversationListeners(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId);
-    DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+
+    if (Util.isDefaultSmsProvider(context)) {
+      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+    }
+
     Trimmer.trimThread(context, threadId);
   }
 

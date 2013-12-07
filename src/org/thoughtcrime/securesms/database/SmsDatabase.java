@@ -242,16 +242,17 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       type |= Types.ENCRYPTION_REMOTE_BIT;
     }
 
-    Recipient recipient   = new Recipient(null, message.getSender(), null, null);
+    Recipient  recipient  = new Recipient(null, message.getSender(), null, null);
     Recipients recipients = new Recipients(recipient);
-    long threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    long       threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    boolean    unread     = Util.isDefaultSmsProvider(context) || message.isSecureMessage() || message.isKeyExchange();
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender());
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(PROTOCOL, message.getProtocol());
-    values.put(READ, 0);
+    values.put(READ, unread ? 0 : 1);
 
     if (!Util.isEmpty(message.getPseudoSubject()))
       values.put(SUBJECT, message.getPseudoSubject());
@@ -265,7 +266,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long messageId    = db.insert(TABLE_NAME, null, values);
 
-    DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+    if (unread) {
+      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+    }
+
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
     Trimmer.trimThread(context, threadId);
