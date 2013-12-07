@@ -205,6 +205,7 @@
   <string name="ViewLocalIdentityActivity_continue">המשך</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">לא ניתן לשלוח כעת את הודעת ה-SMS שלך. היא תשלח כשהשירות יהיה זמין.</string>
+  <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">קיבלת הודעה ממישהו שתומך בחיבור מאובטח של TextSecure. האם ברצונך להתחיל חיבור מאובטח? </string>
   <string name="auto_initiate_activity__initiate_exchange">התחל החלפה</string>

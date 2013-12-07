@@ -45,6 +45,7 @@
   <string name="ConversationActivity_delete_thread_confirmation">Bestätigung zum Löschen des Threads</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Sind Sie sicher, dass Sie diese Konversation unwiderruflich löschen möchten?</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
+  <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht erstellen</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Leider ist ein Fehler beim Hinzufügen des Anhangs aufgetreten.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Das ausgewählte Video überschreitet leider die maximal mögliche Nachrichtengröße.</string>
@@ -112,6 +113,7 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Keine Verbindung für MMS-Download verfügbar, versuchen Sie es später noch einmal ...</string>
   <string name="MmsDownloader_error_storing_mms">Fehler beim Speichern der MMSI</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fehler beim Verbinden zum MMS Provider...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Die Einstellungen des MMS-Anbieters konnten nicht gelesen werden...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedianachricht</string>
   <!--PassphraseChangeActivity-->
@@ -149,7 +151,7 @@
   <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Dieser Schlüssel ist korrekt. Sie sollten auch Ihren eigenen Fingerabdruck einlesen lassen.</string>
   <string name="VerifyKeysActivity_verified_exclamation">Verifiziert!</string>
   <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen Schlüssel.</string>
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen persönlichen Schlüssel.</string>
   <string name="ViewIdentityActivity_scan_to_compare">Zum Vergleich einlesen</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">Zum Vergleich einlesen lassen</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ACHTUNG, der eingelesene Schlüssel stimmt NICHT überein!</string>
@@ -170,6 +172,7 @@
   <string name="MmsDatabase_downloading_mms">MMS werden heruntergeladen...</string>
   <string name="MmsDatabase_mms_download_failed">MMS Download fehlgeschlagen!</string>
   <string name="MmsDatabase_downloading">Herunterladen...</string>
+  <string name="MmsDatabase_mms_pending_download">Antippen und MMS-Einstellungen konfigurieren um den Download fortzusetzen.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS wird entschlüsselt, bitte warten...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlererhaft verschlüsselte MMS...</string>
@@ -202,6 +205,8 @@
   <string name="ViewLocalIdentityActivity_continue">Fortsetzen</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">SMS kann gerade nicht gesendet werden. Sie wird gesendet, sobald der Dienst wieder verfügbar ist.</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Leider werden Schnellantworten noch nicht von TextSecure unterstützt!</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Sie haben eine Nachricht von jemandem empfangen, der verschlüsselte Sitzungen über TextSecure unterstützt. Wollen Sie jetzt eine sichere Sitzung aufbauen?</string>
   <string name="auto_initiate_activity__initiate_exchange">Austausch initiieren</string>
@@ -255,10 +260,13 @@
   <string name="import_fragment__import_a_plaintext_backup_file">\nImportiere eine Klartext-Sicherungdatei. Kompatibel mit \'SMSBackup And Restore\'</string>
   <string name="local_identity__regenerate_key">Schlüssel neu erstellen</string>
   <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">Für Ihr Telefon werden manuelle MMS-Einstellungen benötigt.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PASSWORT</string>
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure benötigt MMS-Einstellungen um Medien- und Gruppennachrichten zu senden. Ihr Telefon stellt diese Informationen nicht zur Verfügung, was daran liegen kann, dass manche Geräte blockiert sind oder anderweitig restriktiv konfiguriert sind.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Um Medien- und Gruppennachrichten zu senden, bitte auf \"OK\" klicken und die Einstellungen ausfüllen. Die MMS-Einstellungen des Anbieters können gefunden werden, indem man nach dem \"APN\" des Anbieters sucht. Diese Operation muss nur einmal ausgeführt werden.</string>
   <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (BENÖTIGT):</string>
   <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONAL):</string>
   <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (OPTIONAL):</string>
@@ -328,6 +336,9 @@
   <string name="preferences__change_notification_blink_pattern">Ändern des LED Blinkmusters für Benachrichtigungen</string>
   <string name="preferences__pref_led_blink_dialogtitle">LED Blinkmuster auswählen</string>
   <string name="preferences__select_led_color">LED Farbe auswählen</string>
+  <string name="preferences__sound">Ton</string>
+  <string name="preferences__inthread_notifications">Benachrichtigungen im Thread</string>
+  <string name="preferences__play_inthread_notifications">Einen Alarmton abspielen wenn Sie ein aktives Gespräch ansehen.</string>
   <string name="preferences__vibrate">Vibrieren</string>
   <string name="preferences__also_vibrate_when_notified">Bei Benachrichtigung vibrieren</string>
   <string name="preferences__minutes">Minuten</string>
@@ -344,6 +355,9 @@
   <string name="preferences__custom">Benutzerdefiniert</string>
   <string name="preferences__advanced">Weitere Einstellungen</string>
   <string name="preferences__passphrase">Passwort</string>
+  <string name="preferences__advanced_mms_access_point_names">MMS-Einstellungen</string>
+  <string name="preferences__enable_manual_mms">Manuelle MMS erlauben</string>
+  <string name="preferences__override_system_mms_settings">Statt der Systemeinstellungen für SMS die unten genannten Einstellungen benutzen.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Benötigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>
@@ -361,6 +375,8 @@
   <string name="preferences__theme">Design</string>
   <string name="preferences__default">Voreinstellung</string>
   <string name="preferences__language">Sprache</string>
+  <string name="preferences__make_default_sms_app">Als Standard SMS-Programm einrichten</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Text/Secure als Standard SMS/MMS-Programm einrichten.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -378,6 +394,7 @@
   <string name="conversation_context__menu_copy_text">Text kopieren</string>
   <string name="conversation_context__menu_delete_message">Nachricht löschen</string>
   <string name="conversation_context__menu_forward_message">Nachricht weiterleiten</string>
+  <string name="conversation_context__menu_resend_message">Nachricht erneut senden</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Sichere Sitzung starten</string>
   <!--conversation_list_batch-->
@@ -392,6 +409,7 @@
   <string name="conversation_secure_verified__menu_abort_secure_session">Sichere Sitzung abbrechen</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Anhang hinzufügen</string>
+  <string name="conversation__menu_add_contact_info">Kontaktinfo hinzufügen</string>
   <string name="conversation__menu_delete_thread">Thread löschen</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Teilnehmerliste</string>

@@ -205,6 +205,8 @@
   <string name="ViewLocalIdentityActivity_continue">Kontynuuj</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Nie można wysłać wiadomości SMS. Zostanie ona wysłana, gdy usługa znów będzie dostępna.</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Przepraszamy, Szybka Odpowiedź nie jest jeszcze wspierana przez TextSecure!</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostałeś wiadomość od kogoś kto obsługuje szyfrowane sesje TextSecure. Czy chcesz zacząć bezpieczną sesję?</string>
   <string name="auto_initiate_activity__initiate_exchange">Rozpocznij Wymianę</string>
@@ -373,6 +375,8 @@
   <string name="preferences__theme">Skórka</string>
   <string name="preferences__default">Domyślne</string>
   <string name="preferences__language">Język</string>
+  <string name="preferences__make_default_sms_app">Ustaw jako domyślną aplikację SMS</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Ustaw TextSecure jako domyślną aplikację SMS/MMS.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

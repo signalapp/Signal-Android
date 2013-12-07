@@ -205,6 +205,8 @@
   <string name="ViewLocalIdentityActivity_continue">Continuar</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Actualmente no se puede enviar tu mensaje SMS. Será enviado en cuanto el servicio esté disponible.</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Lo sentimos, ¡la Respuesta Rápida aún no está soportada por TextSecure!</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Ha recibido un mensaje de alguien que tiene soporte para sesiones cifradas de TextSecure. ¿Desea iniciar una sesión segura?</string>
   <string name="auto_initiate_activity__initiate_exchange">Iniciar intercambio</string>
@@ -373,6 +375,8 @@
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Por defecto</string>
   <string name="preferences__language">Idioma</string>
+  <string name="preferences__make_default_sms_app">Establecer como la aplicación SMS predeterminada</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Hace de TextSecure la aplicación SMS/MMS predeterminada para su sistema.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -405,7 +409,7 @@
   <string name="conversation_secure_verified__menu_abort_secure_session">Abandonar la sesión segura</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Añadir archivo adjunto</string>
-  <string name="conversation__menu_add_contact_info">Añadir información de contacto.</string>
+  <string name="conversation__menu_add_contact_info">Añadir información de contacto</string>
   <string name="conversation__menu_delete_thread">Borrar conversación</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista de receptores</string>

@@ -205,6 +205,8 @@
   <string name="ViewLocalIdentityActivity_continue">ಮುಂದುವರಿಸು</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">ಪ್ರಸ್ತುತ ನಿಮ್ಮ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ಸೇವೆ ಲಭ್ಯವಾದ ತಕ್ಷಣ ಕಳುಹಿಸಲಾಗುವುದು.</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">ಕ್ಷಮಿಸಿ, ತ್ವರಿತ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಸದ್ಯಕ್ಕೆ ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬೆಂಬಲಿಸುತ್ತಿಲ್ಲ!</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">ನೀವು ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಗೂಢಲಿಪೀಕರಿಸಿದ ಸೆಷನ್ಗಳನ್ನು  ಬೆಂಬಲಿಸುವರೋಬ್ಬರಿಂದ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಿದ್ದೀರಿ. ನೀವು ಸುರಕ್ಷಿತ ಸೆಷನ್ ಆರಂಭಿಸಲು ಬಯಸುವಿರಾ?</string>
   <string name="auto_initiate_activity__initiate_exchange">ವಿನಿಮಯ ಆರಂಭಿಸು</string>
@@ -373,6 +375,8 @@
   <string name="preferences__theme">ವಿನ್ಯಾಸ</string>
   <string name="preferences__default">ಪೂರ್ವನಿಯೋಜಿತ</string>
   <string name="preferences__language">ಭಾಷೆ</string>
+  <string name="preferences__make_default_sms_app">ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಹೊಂದಿಸಿ</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ / ಎಂಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಮಾಡಿ.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
