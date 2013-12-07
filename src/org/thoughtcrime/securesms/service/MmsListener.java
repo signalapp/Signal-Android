@@ -51,7 +51,7 @@ public class MmsListener extends BroadcastReceiver {
       return false;
     }
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ||
         PreferenceManager.getDefaultSharedPreferences(context)
                          .getBoolean(ApplicationPreferencesActivity.ALL_MMS_PERF, true))
     {
