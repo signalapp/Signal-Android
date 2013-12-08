@@ -46,6 +46,7 @@ import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
+import org.whispersystems.textsecure.push.UnregisteredUserException;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
@@ -83,6 +84,10 @@ public class PushTransport extends BaseTransport {
       socket.sendMessage(destination, pushBody);
 
       context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType(), true));
+    } catch (UnregisteredUserException e) {
+      Log.w("PushTransport", e);
+      destroySessions(e.getAddresses());
+      throw new IOException("Not push registered after all.");
     } catch (RateLimitException e) {
       Log.w("PushTransport", e);
       throw new IOException("Rate limit exceeded.");
@@ -128,6 +133,10 @@ public class PushTransport extends BaseTransport {
 
       socket.sendMessage(destinations, pushBodies);
 
+    } catch (UnregisteredUserException e) {
+      Log.w("PushTransport", e);
+      destroySessions(e.getAddresses());
+      throw new IOException("No push registered after all.");
     } catch (RateLimitException e) {
       Log.w("PushTransport", e);
       throw new IOException("Rate limit exceeded.");
@@ -186,6 +195,18 @@ public class PushTransport extends BaseTransport {
       return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT, message.serialize());
     } else {
       throw new AssertionError("Unknown ciphertext type: " + message.getType());
+    }
+  }
+
+  private void destroySessions(List<String> unregisteredUsers) {
+    for (String unregisteredUser : unregisteredUsers) {
+      Log.w("PushTransport", "Destroying session for: " + unregisteredUser);
+      try {
+        Recipients recipients = RecipientFactory.getRecipientsFromString(context, unregisteredUser, false);
+        SessionRecordV2.delete(context, recipients.getPrimaryRecipient());
+      } catch (RecipientFormattingException e) {
+        Log.w("PushTransport", e);
+      }
     }
   }
 }
