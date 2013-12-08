@@ -116,12 +116,14 @@ public class PushServiceSocket {
     sendMessage(new OutgoingPushMessageList(messages));
   }
 
-  private void sendMessage(OutgoingPushMessageList messages) throws IOException {
+  private void sendMessage(OutgoingPushMessageList messages)
+      throws IOException
+  {
     String              responseText = makeRequest(MESSAGE_PATH, "POST", new Gson().toJson(messages));
     PushMessageResponse response     = new Gson().fromJson(responseText, PushMessageResponse.class);
 
     if (response.getFailure().size() != 0)
-      throw new IOException("Got send failure: " + response.getFailure().get(0));
+      throw new UnregisteredUserException(response.getFailure());
   }
 
   public void registerPreKeys(IdentityKey identityKey,
