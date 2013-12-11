@@ -84,3 +84,7 @@ if (propFile.canRead()){
     println 'signing.properties not found'
     android.buildTypes.release.signingConfig = null
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.8'
+}

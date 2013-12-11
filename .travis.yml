@@ -12,6 +12,6 @@ before_install:
   # only update the sdk for the tools and platform-tools and required api level
   # (run "android list sdk --extended" to get the full list)
   - echo "y" | android update sdk --filter tools,platform-tools,build-tools-17.0.0,android-17 --no-ui --force
-install: gradle assemble -S -q
-script: gradle check
+install: ./gradlew assemble -S -q
+script: ./gradlew check -S -q
 
