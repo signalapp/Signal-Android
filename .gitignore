@@ -7,7 +7,6 @@ gen/
 .idea/
 *.iml
 out
-tests
 lint.xml
 local.properties
 ant.properties
