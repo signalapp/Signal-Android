@@ -1,0 +1,17 @@
+#based on https://raw.github.com/leviwilson/android-travis-ci-example/master/.travis.yml
+language: java
+before_install:
+  # install necessary x32-libs for Android SDK, see http://rkistner.github.io/android/2013/02/05/android-builds-on-travis-ci/
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libstdc++6:i386 lib32z1
+  # download the latest android sdk and unzip
+  - wget http://dl.google.com/android/android-sdk_r22.3-linux.tgz
+  - tar -zxf android-sdk_r22.3-linux.tgz
+  - export ANDROID_HOME=`pwd`/android-sdk-linux
+  - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+  # only update the sdk for the tools and platform-tools and required api level
+  # (run "android list sdk --extended" to get the full list)
+  - echo "y" | android update sdk -a --filter tools,platform-tools,build-tools-17.0.0,android-17,extra-android-m2repository --no-ui --force
+install: ./gradlew assemble -S -q
+script: ./gradlew check -S -q
+

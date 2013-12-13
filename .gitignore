@@ -7,7 +7,6 @@ gen/
 .idea/
 *.iml
 out
-tests
 lint.xml
 local.properties
 ant.properties
@@ -17,8 +16,5 @@ build-log.xml
 .gradle
 build
 signing.properties
-gradle
-gradlew
-gradlew.bat
 library/lib/
 library/obj/
