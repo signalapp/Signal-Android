@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -19,11 +18,9 @@ public class MarkReadReceiver extends BroadcastReceiver {
     if (!intent.getAction().equals(CLEAR_ACTION))
       return;
 
-    final long[]       threadIds    = intent.getLongArrayExtra("thread_ids");
     final MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
 
-    if (threadIds != null && masterSecret != null) {
-      Log.w("MarkReadReceiver", "threadIds length: " + threadIds.length);
+    if (masterSecret != null) {
 
       ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(MessageNotifier.NOTIFICATION_ID);
@@ -31,10 +28,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          for (long threadId : threadIds) {
-            Log.w("MarkReadReceiver", "Marking as read: " + threadId);
-            DatabaseFactory.getThreadDatabase(context).setRead(threadId);
-          }
+          DatabaseFactory.getThreadDatabase(context).setAllThreadsRead();
 
           MessageNotifier.updateNotification(context, masterSecret);
           return null;
