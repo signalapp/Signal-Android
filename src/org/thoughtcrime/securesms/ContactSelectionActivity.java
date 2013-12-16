@@ -20,7 +20,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -44,6 +46,7 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
 
   private final DynamicTheme dynamicTheme = new DynamicTheme();
 
+  private ViewPager viewPager;
   private ContactSelectionListFragment contactsFragment;
   private ContactSelectionGroupsFragment groupsFragment;
   private ContactSelectionRecentFragment recentFragment;
@@ -61,9 +64,9 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
 
     setContentView(R.layout.contact_selection_activity);
 
-    setupContactsTab();
-    setupGroupsTab();
-    setupRecentTab();
+    setupFragments();
+    setupViewPager();
+    setupTabs();
   }
 
   @Override
@@ -104,56 +107,97 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
     finish();
   }
 
-  private ActionBar.Tab constructTab(final Fragment fragment) {
-    ActionBar actionBar = this.getSupportActionBar();
-    ActionBar.Tab tab   = actionBar.newTab();
+  private void setupViewPager() {
+    viewPager = (ViewPager) findViewById(R.id.pager);
+    viewPager.setAdapter(new SelectionPagerAdapter());
+    viewPager.setOnPageChangeListener(new TabSwitchingPageListener());
+  }
 
-    tab.setTabListener(new TabListener(){
-      @Override
-      public void onTabSelected(Tab tab, FragmentTransaction ignore) {
-        FragmentManager manager = ContactSelectionActivity.this.getSupportFragmentManager();
-        FragmentTransaction ft  = manager.beginTransaction();
+  private void setupTabs() {
+    int[] icons = new int[] { R.drawable.ic_tab_contacts, R.drawable.ic_tab_groups, R.drawable.ic_tab_recent };
 
-        ft.add(R.id.fragment_container, fragment);
-        ft.commit();
+    for (int i = 0; i < icons.length; i++) {
+      ActionBar.Tab tab = getSupportActionBar().newTab();
+      tab.setIcon(icons[i]);
+      tab.setTabListener(new ViewPagerTabListener(i));
+      getSupportActionBar().addTab(tab);
+    }
+  }
+
+  private void setupFragments() {
+    contactsFragment = new ContactSelectionListFragment();
+    groupsFragment = new ContactSelectionGroupsFragment();
+    recentFragment = new ContactSelectionRecentFragment();
+  }
+
+  private class SelectionPagerAdapter extends FragmentPagerAdapter {
+
+    public SelectionPagerAdapter() {
+      super(getSupportFragmentManager());
+    }
+
+    @Override
+    public Fragment getItem(int i) {
+      switch (i) {
+        case 0:
+          return contactsFragment;
+        case 1:
+          return groupsFragment;
+        case 2:
+        default:
+          return recentFragment;
       }
+    }
 
-      @Override
-      public void onTabUnselected(Tab tab, FragmentTransaction ignore) {
-        FragmentManager manager = ContactSelectionActivity.this.getSupportFragmentManager();
-        FragmentTransaction ft  = manager.beginTransaction();
-        ft.remove(fragment);
-        ft.commit();
-      }
-      @Override
-      public void onTabReselected(Tab tab, FragmentTransaction ft) {}
-    });
+    @Override
+    public int getCount() {
+      return 3;
+    }
 
-    return tab;
   }
 
-  private void setupContactsTab() {
-    contactsFragment = (ContactSelectionListFragment)Fragment.instantiate(this,
-                        ContactSelectionListFragment.class.getName());
-    ActionBar.Tab contactsTab = constructTab(contactsFragment);
-    contactsTab.setIcon(R.drawable.ic_tab_contacts);
-    this.getSupportActionBar().addTab(contactsTab);
+  private class ViewPagerTabListener implements TabListener {
+
+    private int tabIndex;
+
+    public ViewPagerTabListener(int index) {
+      tabIndex = index;
+    }
+
+    @Override
+    public void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction) {
+      viewPager.setCurrentItem(tabIndex);
+    }
+
+    @Override
+    public void onTabUnselected(Tab tab, FragmentTransaction fragmentTransaction) {
+
+    }
+
+    @Override
+    public void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction) {
+
+    }
+
   }
 
-  private void setupGroupsTab() {
-    groupsFragment = (ContactSelectionGroupsFragment)Fragment.instantiate(this,
-                      ContactSelectionGroupsFragment.class.getName());
-    ActionBar.Tab groupsTab = constructTab(groupsFragment);
-    groupsTab.setIcon(R.drawable.ic_tab_groups);
-    this.getSupportActionBar().addTab(groupsTab);
+  private class TabSwitchingPageListener implements ViewPager.OnPageChangeListener {
+
+    @Override
+    public void onPageScrolled(int i, float v, int i2) {
+
+    }
+
+    @Override
+    public void onPageSelected(int i) {
+      getSupportActionBar().setSelectedNavigationItem(i);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int i) {
+
+    }
+
   }
 
-  private void setupRecentTab() {
-    recentFragment = (ContactSelectionRecentFragment)Fragment.instantiate(this,
-                      ContactSelectionRecentFragment.class.getName());
-
-    ActionBar.Tab recentTab = constructTab(recentFragment);
-    recentTab.setIcon(R.drawable.ic_tab_recent);
-    this.getSupportActionBar().addTab(recentTab);
-  }
 }
