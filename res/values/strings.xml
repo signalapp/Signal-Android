@@ -41,10 +41,10 @@
     <string name="ConversationItem_success_exclamation">Success!</string>
     <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Unable to write to SD Card!</string>
     <string name="ConversationItem_view_secure_media_question">View secure media?</string>
-    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk.  Are you sure that you would like to do this?</string>
+    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk. Are you sure that you would like to do this?</string>
     <string name="ConversationItem_received_and_processed_key_exchange_message">Received and processed key exchange message.</string>
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
-    <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process</string>
+    <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process.</string>
     
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate Secure Session?</string>
@@ -130,7 +130,7 @@
     <string name="ImportFragment_restore">Restore</string>
     <string name="ImportFragment_import_plaintext_backup">Import Plaintext Backup?</string>
     <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">This will import
-        messages from a plaintext backup. If you\'ve previously imported the system\'s SMS database,
+        messages from a plaintext backup. If you\'ve previously imported this backup,
         importing again will result in duplicated messages.
     </string>
     <string name="ImportFragment_importing">Importing</string>
@@ -468,12 +468,12 @@
     <string name="preferences__passphrase">Passphrase</string>
     <string name="preferences__advanced_mms_access_point_names">MMS Preferences</string>
     <string name="preferences__enable_manual_mms">Enable Manual MMS</string>
-    <string name="preferences__override_system_mms_settings">Override system MMS settings with the below information.</string>
+    <string name="preferences__override_system_mms_settings">Override system MMS settings with the information below.</string>
     <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
     <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
     <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>
-    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
     <string name="preferences__sms_delivery_reports">SMS delivery reports</string>
+    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
     <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automatically delete older messages once a conversation thread exceeds a specified length</string>
     <string name="preferences__delete_old_messages">Delete old messages</string>
     <string name="preferences__storage">Storage</string>
