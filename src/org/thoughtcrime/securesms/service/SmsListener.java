@@ -145,7 +145,7 @@ public class SmsListener extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    Log.w("SMSListener", "Got SMS broadcast...");
+    Log.w("SmsListener", "Got SMS broadcast...");
 
     if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, intent)) {
       Log.w("SmsListener", "Got challenge!");
