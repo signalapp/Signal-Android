@@ -160,6 +160,7 @@ public class MessageNotifier {
     builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
+    builder.setContentInfo(notificationState.getMessageCount()+"");
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
@@ -201,6 +202,8 @@ public class MessageNotifier {
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
                                          notifications.get(0).getIndividualRecipientName()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
+
+    builder.setContentInfo(notificationState.getMessageCount()+"");
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read),
