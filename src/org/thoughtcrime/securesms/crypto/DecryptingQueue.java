@@ -317,7 +317,7 @@ public class DecryptingQueue {
           KeyExchangeMessage keyExchangeMessage = new KeyExchangeMessage(plaintxtBody);
           KeyExchangeProcessor processor        = new KeyExchangeProcessor(context, masterSecret, recipient);
 
-          Log.w("DecryptingQuue", "KeyExchange with fingerprint: " + keyExchangeMessage.getPublicKey().getFingerprint());
+          Log.w("DecryptingQueue", "KeyExchange with fingerprint: " + keyExchangeMessage.getPublicKey().getFingerprint());
 
           if (processor.isStale(keyExchangeMessage)) {
             DatabaseFactory.getEncryptingSmsDatabase(context).markAsStaleKeyExchange(messageId);

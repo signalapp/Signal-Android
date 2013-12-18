@@ -132,7 +132,7 @@ public class KeyUtil {
         return cloneKeyPairWithPointCompression(keyPair);
       }
     } catch (NoSuchAlgorithmException nsae) {
-      Log.w("keyutil", nsae);
+      Log.w("KeyUtil", nsae);
       return null;
     }
   }

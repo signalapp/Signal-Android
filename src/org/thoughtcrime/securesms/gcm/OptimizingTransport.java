@@ -20,14 +20,14 @@ public class OptimizingTransport {
   public static void sendTextMessage(Context context, String destinationAddress, String message,
                                      PendingIntent sentIntent, PendingIntent deliveredIntent)
   {
-    Log.w("OptimzingTransport", "Outgoing message: " + PhoneNumberFormatter.formatNumber(context, destinationAddress));
+    Log.w("OptimizingTransport", "Outgoing message: " + PhoneNumberFormatter.formatNumber(context, destinationAddress));
     NumberFilter filter = NumberFilter.getInstance(context);
 
     if (filter.containsNumber(PhoneNumberFormatter.formatNumber(context, destinationAddress))) {
-      Log.w("OptimzingTransport", "In the filter, sending GCM...");
+      Log.w("OptimizingTransport", "In the filter, sending GCM...");
       sendGcmTextMessage(context, destinationAddress, message, sentIntent, deliveredIntent);
     } else {
-      Log.w("OptimzingTransport", "Not in the filter, sending SMS...");
+      Log.w("OptimizingTransport", "Not in the filter, sending SMS...");
       sendSmsTextMessage(destinationAddress, message, sentIntent, deliveredIntent);
     }
   }
@@ -53,7 +53,7 @@ public class OptimizingTransport {
       String password               = preferences.getString(ApplicationPreferencesActivity.GCM_PASSWORD_PREF, null);
 
       if (localNumber == null || password == null) {
-        Log.w("OptimzingTransport", "No credentials, falling back to SMS...");
+        Log.w("OptimizingTransport", "No credentials, falling back to SMS...");
         sendSmsTextMessage(recipient, messageText, sentIntent, deliveredIntent);
         return;
       }
@@ -63,7 +63,7 @@ public class OptimizingTransport {
       sentIntent.send(Activity.RESULT_OK);
     } catch (IOException ioe) {
       Log.w("OptimizingTransport", ioe);
-      Log.w("OptimzingTransport", "IOException, falling back to SMS...");
+      Log.w("OptimizingTransport", "IOException, falling back to SMS...");
       sendSmsTextMessage(recipient, messageText, sentIntent, deliveredIntent);
     } catch (PendingIntent.CanceledException e) {
       Log.w("OptimizingTransport", e);

@@ -426,7 +426,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long threadId                      = getThreadIdFor(notification);
       MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
 
-      Log.w("MmsDatabse", "Message received type: " + headers.getOctet(PduHeaders.MESSAGE_TYPE));
+      Log.w("MmsDatabase", "Message received type: " + headers.getOctet(PduHeaders.MESSAGE_TYPE));
 
       contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE);
       contentValues.put(THREAD_ID, threadId);
