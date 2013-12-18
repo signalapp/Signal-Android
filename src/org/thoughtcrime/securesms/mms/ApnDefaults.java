@@ -37,6 +37,19 @@ public class ApnDefaults {
 
             // Virgin Mobile US - Untested
             put("310053", new MmsConnectionParameters("http://mmsc.vmobl.com:8080/mms", "205.239.233.136", "81"));
+
+            // Slovenia MOBITEL - Untested
+            put("29341", new MmsConnectionParameters("http://mms.mobitel.si/servlets/mms", "213.229.249.40", "8080"));
+
+            // Slovenia SI.MOBIL - Untested
+            put("29340", new MmsConnectionParameters("http://mmc", "80.95.224.46", "9201"));
+
+            // Slovenia TUSMOBIL - Untested
+            put("29370", new MmsConnectionParameters("http://mms.tusmobil.si:8002", "91.185.221.85", "8002"));
+
+            // Slovenia T-2 - Untested
+            put("29364", new MmsConnectionParameters("http://www.mms.t-2.net:8002", "172.20.18.137", "8080"));
+            
           }};
 
   public static MmsConnectionParameters getMmsConnectionParameters(Context context) {
