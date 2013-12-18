@@ -49,7 +49,10 @@ public class ApnDefaults {
 
             // Slovenia T-2 - Untested
             put("29364", new MmsConnectionParameters("http://www.mms.t-2.net:8002", "172.20.18.137", "8080"));
-            
+
+            // UK giffgaff -Tested
+            put("23410", new MmsConnectionParameters("http://mmsc.mediamessaging.co.uk:8002", "193.113.200.195", "8080"));
+
           }};
 
   public static MmsConnectionParameters getMmsConnectionParameters(Context context) {
