@@ -160,7 +160,7 @@ public class MessageNotifier {
     builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
-      builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
+    builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
