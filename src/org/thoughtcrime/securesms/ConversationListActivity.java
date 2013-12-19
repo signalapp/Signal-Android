@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.ArrayList;
@@ -99,6 +100,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     menu.clear();
 
     inflater.inflate(R.menu.text_secure_normal, menu);
+
+    menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
     super.onPrepareOptionsMenu(menu);
     return true;
