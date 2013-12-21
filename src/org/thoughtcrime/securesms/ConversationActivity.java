@@ -656,6 +656,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     if (this.recipients != null) {
       recipientsPanel.addRecipients(this.recipients);
+    } else {
+      InputMethodManager inputMethodManager=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+      inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
   }
 
