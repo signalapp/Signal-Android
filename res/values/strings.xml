@@ -246,8 +246,10 @@
     <string name="ApplicationMigrationService_importing_text_messages">Importing Text Messages</string>
     
     <!-- KeyCachingService -->
-    <string name="KeyCachingService_textsecure_passphrase_cached">TextSecure Passphrase Cached</string>
-    <string name="KeyCachingService_passphrase_cached">Passphrase Cached</string>
+    <string name="KeyCachingService_textsecure_passphrase_cached">Touch to open.</string>
+    <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Touch to open, or touch the lock to close.</string>
+    <string name="KeyCachingService_passphrase_cached">TextSecure is unlocked</string>
+    <string name="KeyCachingService_lock">Lock with passphrase</string>
     
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages">%d new messages</string>
@@ -547,7 +549,7 @@
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_message">New Message</string>
     <string name="text_secure_normal__menu_settings">Settings</string>
-    <string name="text_secure_normal__menu_clear_passphrase">Clear Passphrase</string>
+    <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark All Read</string>
 
     <!-- verify_keys -->
