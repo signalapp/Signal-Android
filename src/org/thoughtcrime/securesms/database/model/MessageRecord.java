@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
  */
 public abstract class MessageRecord extends DisplayRecord {
 
-  public static final int DELIVERY_STATUS_NONE     = 0;
+  public static final int DELIVERY_STATUS_NONE     = -1;
   public static final int DELIVERY_STATUS_RECEIVED = 1;
   public static final int DELIVERY_STATUS_PENDING  = 2;
   public static final int DELIVERY_STATUS_FAILED   = 3;
