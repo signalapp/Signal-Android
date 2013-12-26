@@ -11,7 +11,7 @@
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />    
     
-	<uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
+    <uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
     <uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"
@@ -83,9 +83,9 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
      <activity android:name=".MmsPreferencesActivity"
-               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-        <activity android:name=".ConversationListActivity"
+     <activity android:name=".ConversationListActivity"
               android:label="@string/app_name"
               android:launchMode="singleTask"
               android:uiOptions="splitActionBarWhenNarrow"
@@ -254,11 +254,6 @@
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
-
-       <uses-library android:name="android.test.runner" />
 </application>
-
-<instrumentation android:name="android.test.InstrumentationTestRunner"
-       android:targetPackage="org.thoughtcrime.securesms.tests" android:label="Tests for My App" />
 
 </manifest>
