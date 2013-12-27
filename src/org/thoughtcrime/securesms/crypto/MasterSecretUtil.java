@@ -232,7 +232,7 @@ public class MasterSecretUtil {
 
   private static byte[] generateSalt() throws NoSuchAlgorithmException {
     SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-    byte[] salt         = new byte[8];
+    byte[] salt         = new byte[16];
     random.nextBytes(salt);
 
     return salt;
