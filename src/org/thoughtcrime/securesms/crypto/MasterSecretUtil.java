@@ -48,9 +48,14 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class MasterSecretUtil {
 
-  public static final String UNENCRYPTED_PASSPHRASE  = "unencrypted";
-  public static final String PREFERENCES_NAME        = "SecureSMS-Preferences";
-  public static final String ASYMMETRIC_LOCAL_PUBLIC = "asymmetric_master_secret_public";
+  public static final String UNENCRYPTED_PASSPHRASE   = "unencrypted";
+  public static final String PREFERENCES_NAME         = "SecureSMS-Preferences";
+  public static final String ASYMMETRIC_LOCAL_PUBLIC  = "asymmetric_master_secret_public";
+  public static final String ASYMMETRIC_LOCAL_PRIVATE = "asymmetric_master_secret_private";
+  public static final String PASSPHRASE_INITIALIZED   = "passphrase_initialized";
+  public static final String MASTER_SECRET            = "master_secret";
+  public static final String ENCRYPTION_SALT          = "encryption_salt";
+  public static final String MAC_SALT                 = "mac_salt";
 
   public static MasterSecret changeMasterSecretPassphrase(Context context,
                                                           MasterSecret masterSecret,
@@ -81,7 +86,7 @@ public class MasterSecretUtil {
 
   public static MasterSecret getMasterSecret(Context context, String passphrase) throws InvalidPassphraseException {
     try {
-      byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret");
+      byte[] encryptedAndMacdMasterSecret = retrieve(context, MASTER_SECRET);
       byte[] encryptedMasterSecret        = verifyMac(context, encryptedAndMacdMasterSecret, passphrase);
       byte[] combinedSecrets              = decryptWithPassphrase(context, encryptedMasterSecret, passphrase);
       byte[] encryptionSecret             = getEncryptionSecret(combinedSecrets);
@@ -105,7 +110,7 @@ public class MasterSecretUtil {
 
       if (masterSecret != null) {
         MasterCipher masterCipher = new MasterCipher(masterSecret);
-        privateKey                = masterCipher.decryptKey(retrieve(context, "asymmetric_master_secret_private"));
+        privateKey                = masterCipher.decryptKey(retrieve(context, ASYMMETRIC_LOCAL_PRIVATE));
       }
 
       return new AsymmetricMasterSecret(publicKey, privateKey);
@@ -124,7 +129,7 @@ public class MasterSecretUtil {
     ECPrivateKeyParameters privateKey = (ECPrivateKeyParameters)ackp.getPrivate();
 
     save(context, ASYMMETRIC_LOCAL_PUBLIC, publicKey.serialize());
-    save(context, "asymmetric_master_secret_private", masterCipher.encryptKey(privateKey));
+    save(context, ASYMMETRIC_LOCAL_PRIVATE, masterCipher.encryptKey(privateKey));
 
     return new AsymmetricMasterSecret(publicKey, privateKey);
   }
@@ -152,15 +157,15 @@ public class MasterSecretUtil {
 
   public static boolean isPassphraseInitialized(Context context) {
     SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_NAME, 0);
-    return preferences.getBoolean("passphrase_initialized", false);
+    return preferences.getBoolean(PASSPHRASE_INITIALIZED, false);
   }
 
   private static void encryptWithPassphraseAndSave(Context context, byte[] masterSecret, String passphrase) throws GeneralSecurityException {
     byte[] encryptedMasterSecret        = encryptWithPassphrase(context, masterSecret, passphrase);
     byte[] encryptedAndMacdMasterSecret = macWithPassphrase(context, encryptedMasterSecret, passphrase);
 
-    save(context, "master_secret", encryptedAndMacdMasterSecret);
-    save(context, "passphrase_initialized", true);
+    save(context, MASTER_SECRET, encryptedAndMacdMasterSecret);
+    save(context, PASSPHRASE_INITIALIZED, true);
   }
 
   private static byte[] getEncryptionSecret(byte[] combinedSecrets) {
@@ -257,12 +262,12 @@ public class MasterSecretUtil {
     Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.ENCRYPT_MODE);
     byte[] cipherText     = cipher.doFinal(data);
 
-    save(context, "encryption_salt", encryptionSalt);
+    save(context, ENCRYPTION_SALT, encryptionSalt);
     return cipherText;
   }
 
   private static byte[] decryptWithPassphrase(Context context, byte[] data, String passphrase) throws GeneralSecurityException, IOException {
-    byte[] encryptionSalt = retrieve(context, "encryption_salt");
+    byte[] encryptionSalt = retrieve(context, ENCRYPTION_SALT);
     Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.DECRYPT_MODE);
     return cipher.doFinal(data);
   }
@@ -278,7 +283,7 @@ public class MasterSecretUtil {
   }
 
   private static byte[] verifyMac(Context context, byte[] encryptedAndMacdData, String passphrase) throws InvalidPassphraseException, GeneralSecurityException, IOException {
-    byte[] macSalt  = retrieve(context, "mac_salt");
+    byte[] macSalt  = retrieve(context, MAC_SALT);
     Mac hmac        = getMacForPassphrase(passphrase, macSalt);
 
     byte[] encryptedData = new byte[encryptedAndMacdData.length - hmac.getMacLength()];
@@ -302,7 +307,7 @@ public class MasterSecretUtil {
     System.arraycopy(data, 0, result, 0, data.length);
     System.arraycopy(mac,  0, result, data.length, mac.length);
 
-    save(context, "mac_salt", macSalt);
+    save(context, MAC_SALT, macSalt);
     return result;
   }
 }
