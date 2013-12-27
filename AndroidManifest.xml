@@ -121,6 +121,7 @@
 
     <activity android:name=".ContactSelectionActivity"
               android:label="@string/AndroidManifest__select_contacts"
+              android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".AutoInitiateActivity"
