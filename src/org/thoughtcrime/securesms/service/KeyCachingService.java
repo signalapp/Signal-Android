@@ -190,15 +190,29 @@ public class KeyCachingService extends Service {
 
   private void foregroundServiceModern() {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-    RemoteViews remoteViews   = new RemoteViews(getPackageName(), R.layout.key_caching_notification);
 
-    Intent intent = new Intent(this, KeyCachingService.class);
-    intent.setAction(PASSPHRASE_EXPIRED_EVENT);
-    PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
-    remoteViews.setOnClickPendingIntent(R.id.lock_cache_icon, pendingIntent);
+    builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
+    builder.setContentText(getString(R.string.KeyCachingService_textsecure_passphrase_cached));
+    builder.setSmallIcon(R.drawable.icon_cached);
+    builder.setWhen(0);
+    builder.setPriority(Notification.PRIORITY_LOW);
+
+    builder.addAction(R.drawable.ic_menu_lock_holo_dark, getString(R.string.KeyCachingService_lock), buildLockIntent());
+    builder.setContentIntent(buildLaunchIntent());
+
+    stopForeground(true);
+    startForeground(SERVICE_RUNNING_ID, builder.build());
+  }
+
+  private void foregroundServiceICS() {
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+    RemoteViews remoteViews            = new RemoteViews(getPackageName(), R.layout.key_caching_notification);
+
+    remoteViews.setOnClickPendingIntent(R.id.lock_cache_icon, buildLockIntent());
 
     builder.setSmallIcon(R.drawable.icon_cached);
     builder.setContent(remoteViews);
+    builder.setContentIntent(buildLaunchIntent());
 
     stopForeground(true);
     startForeground(SERVICE_RUNNING_ID, builder.build());
@@ -208,14 +222,11 @@ public class KeyCachingService extends Service {
     Notification notification  = new Notification(R.drawable.icon_cached,
                                                   getString(R.string.KeyCachingService_textsecure_passphrase_cached),
                                                   System.currentTimeMillis());
-    Intent intent              = new Intent(this, RoutingActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-    PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
     notification.setLatestEventInfo(getApplicationContext(),
                                     getString(R.string.KeyCachingService_passphrase_cached),
                                     getString(R.string.KeyCachingService_textsecure_passphrase_cached),
-                                    launchIntent);
+                                    buildLaunchIntent());
+    notification.tickerText = null;
 
     stopForeground(true);
     startForeground(SERVICE_RUNNING_ID, notification);
@@ -227,8 +238,13 @@ public class KeyCachingService extends Service {
       return;
     }
 
-    if (Build.VERSION.SDK_INT >= 11) foregroundServiceModern();
-    else                             foregroundServiceLegacy();
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+      foregroundServiceModern();
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+      foregroundServiceICS();
+    } else {
+      foregroundServiceLegacy();
+    }
   }
 
   private void broadcastNewSecret() {
@@ -246,6 +262,19 @@ public class KeyCachingService extends Service {
                             .getBoolean(ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false);
   }
 
+  private PendingIntent buildLockIntent() {
+    Intent intent = new Intent(this, KeyCachingService.class);
+    intent.setAction(PASSPHRASE_EXPIRED_EVENT);
+    PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
+    return pendingIntent;
+  }
+
+  private PendingIntent buildLaunchIntent() {
+    Intent intent              = new Intent(this, RoutingActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+    return launchIntent;
+  }
 
   @Override
   public IBinder onBind(Intent arg0) {
