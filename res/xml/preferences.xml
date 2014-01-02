@@ -72,8 +72,8 @@
   <PreferenceCategory android:title="Input Settings">
       <CheckBoxPreference android:defaultValue="false"
                           android:key="pref_enter_key"
-                          android:title="Enable enter key"
-                          android:summary="Replace the smiley key with an enter key"/>
+                          android:title="@string/preferences__enable_enter_key_title"
+                          android:summary="@string/preferences__replace_smiley_with_enter_key"/>
 
       <CheckBoxPreference android:defaultValue="false"
                           android:key="pref_enter_sends"
