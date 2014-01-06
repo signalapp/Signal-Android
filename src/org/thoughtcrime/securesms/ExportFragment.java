@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
@@ -40,12 +42,17 @@ public class ExportFragment extends SherlockFragment {
     View exportEncryptedView = layout.findViewById(R.id.export_encrypted_backup);
     View exportPlaintextView = layout.findViewById(R.id.export_plaintext_backup);
 
-    exportEncryptedView.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        handleExportEncryptedBackup();
-      }
-    });
+    if (PreferenceManager.getDefaultSharedPreferences(getActivity())
+                         .getBoolean(ApplicationPreferencesActivity.DISABLE_PASSPHRASE_PREF, false)) {
+      exportEncryptedView.setVisibility(View.GONE);
+    } else {
+      exportEncryptedView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          handleExportEncryptedBackup();
+        }
+      });
+    }
 
     exportPlaintextView.setOnClickListener(new View.OnClickListener() {
       @Override
