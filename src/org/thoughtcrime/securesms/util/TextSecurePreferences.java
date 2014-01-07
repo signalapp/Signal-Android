@@ -18,13 +18,14 @@ public class TextSecurePreferences {
   public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
 
-  private static final String RINGTONE_PREF                    = "pref_key_ringtone";
+  public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
-  private static final String LED_COLOR_PREF                   = "pref_led_color";
-  private static final String LED_BLINK_PREF                   = "pref_led_blink";
+  public  static final String LED_COLOR_PREF                   = "pref_led_color";
+  public  static final String LED_BLINK_PREF                   = "pref_led_blink";
   private static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
-  private static final String ALL_MMS_PERF                     = "pref_all_mms";
+  public  static final String ALL_MMS_PREF                     = "pref_all_mms";
+  public  static final String ALL_SMS_PREF                     = "pref_all_sms";
   private static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   private static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   private static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
@@ -175,7 +176,11 @@ public class TextSecurePreferences {
   }
 
   public static boolean isInterceptAllMmsEnabled(Context context) {
-    return getBooleanPreference(context, ALL_MMS_PERF, true);
+    return getBooleanPreference(context, ALL_MMS_PREF, true);
+  }
+
+  public static boolean isInterceptAllSmsEnabled(Context context) {
+    return getBooleanPreference(context, ALL_SMS_PREF, true);
   }
 
   public static boolean isNotificationsEnabled(Context context) {

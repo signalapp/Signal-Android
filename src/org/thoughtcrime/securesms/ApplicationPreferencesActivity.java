@@ -80,6 +80,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final String DISPLAY_CATEGORY_PREF = "pref_display_category";
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
   private static final String MMS_PREF              = "pref_mms_preferences";
+  private static final String KITKAT_DEFAULT_PREF   = "pref_set_default";
+
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -108,16 +110,16 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
     this.findPreference(MMS_PREF)
       .setOnPreferenceClickListener(new ApnPreferencesClickListener());
-    this.findPreference(LED_COLOR_PREF)
+    this.findPreference(TextSecurePreferences.LED_COLOR_PREF)
       .setOnPreferenceChangeListener(new ListSummaryListener());
-    this.findPreference(LED_BLINK_PREF)
+    this.findPreference(TextSecurePreferences.LED_BLINK_PREF)
       .setOnPreferenceChangeListener(new ListSummaryListener());
-    this.findPreference(RINGTONE_PREF)
+    this.findPreference(TextSecurePreferences.RINGTONE_PREF)
       .setOnPreferenceChangeListener(new RingtoneSummaryListener());
 
-    initializeListSummary((ListPreference) findPreference(LED_COLOR_PREF));
-    initializeListSummary((ListPreference) findPreference(LED_BLINK_PREF));
-    initializeRingtoneSummary((RingtonePreference) findPreference(RINGTONE_PREF));
+    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
+    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
+    initializeRingtoneSummary((RingtonePreference) findPreference(TextSecurePreferences.RINGTONE_PREF));
   }
 
   @Override
@@ -178,8 +180,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     Preference defaultPreference = findPreference(KITKAT_DEFAULT_PREF);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      generalCategory.removePreference(findPreference(ALL_SMS_PREF));
-      generalCategory.removePreference(findPreference(ALL_MMS_PERF));
+      generalCategory.removePreference(findPreference(TextSecurePreferences.ALL_SMS_PREF));
+      generalCategory.removePreference(findPreference(TextSecurePreferences.ALL_MMS_PREF));
 
       if (Util.isDefaultSmsProvider(this)) {
         generalCategory.removePreference(defaultPreference);

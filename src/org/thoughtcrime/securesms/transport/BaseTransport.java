@@ -5,14 +5,14 @@ import android.content.Intent;
 import android.net.Uri;
 
 import org.thoughtcrime.securesms.service.SendReceiveService;
-import org.thoughtcrime.securesms.service.SmsListener;
+import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 
 public abstract class BaseTransport {
 
   protected Intent constructSentIntent(Context context, long messageId, long type, boolean upgraded) {
     Intent pending = new Intent(SendReceiveService.SENT_SMS_ACTION,
                                 Uri.parse("custom://" + messageId + System.currentTimeMillis()),
-                                context, SmsListener.class);
+                                context, SmsDeliveryListener.class);
 
     pending.putExtra("type", type);
     pending.putExtra("message_id", messageId);
@@ -24,7 +24,7 @@ public abstract class BaseTransport {
   protected Intent constructDeliveredIntent(Context context, long messageId, long type) {
     Intent pending = new Intent(SendReceiveService.DELIVERED_SMS_ACTION,
                                 Uri.parse("custom://" + messageId + System.currentTimeMillis()),
-                                context, SmsListener.class);
+                                context, SmsDeliveryListener.class);
     pending.putExtra("type", type);
     pending.putExtra("message_id", messageId);
 

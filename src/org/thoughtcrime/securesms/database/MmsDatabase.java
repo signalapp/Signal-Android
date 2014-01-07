@@ -361,7 +361,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   {
     PduHeaders    headers       = retrieved.getPduHeaders();
     ContentValues contentValues = getContentValuesFromHeader(headers);
-    boolean       unread        = Util.isDefaultSmsProvider(context) || ((mailbox & Types.SECURE_MESSAGE_BIT) != 0);
+    boolean       unread        = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
+                                  ((mailbox & Types.SECURE_MESSAGE_BIT) != 0);
 
     if (threadId == -1 || retrieved.isGroupMessage()) {
       try {
@@ -439,7 +440,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       contentValues.put(THREAD_ID, threadId);
       contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
       contentValues.put(DATE_RECEIVED, System.currentTimeMillis() / 1000);
-      contentValues.put(READ, Util.isDefaultSmsProvider(context) ? 0 : 1);
+      contentValues.put(READ, org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ? 0 : 1);
 
       if (!contentValues.containsKey(DATE_SENT))
         contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
@@ -463,7 +464,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     notifyConversationListeners(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId);
 
-    if (Util.isDefaultSmsProvider(context)) {
+    if (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context)) {
       DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
     }
 

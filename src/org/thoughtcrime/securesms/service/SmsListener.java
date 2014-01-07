@@ -111,8 +111,7 @@ public class SmsListener extends BroadcastReceiver {
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ||
-        PreferenceManager.getDefaultSharedPreferences(context)
-                         .getBoolean(ApplicationPreferencesActivity.ALL_SMS_PREF, true))
+        TextSecurePreferences.isInterceptAllSmsEnabled(context))
     {
       return true;
     }

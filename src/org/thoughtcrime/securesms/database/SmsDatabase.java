@@ -260,7 +260,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     Recipient  recipient  = new Recipient(null, message.getSender(), null, null);
     Recipients recipients = new Recipients(recipient);
     long       threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-    boolean    unread     = Util.isDefaultSmsProvider(context) || message.isSecureMessage() || message.isKeyExchange();
+    boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
+                            message.isSecureMessage() || message.isKeyExchange();
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender());
