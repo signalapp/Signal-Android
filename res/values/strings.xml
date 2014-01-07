@@ -465,6 +465,7 @@
     </string>
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration will transmit some contact information to the server temporarily.</string>
 
     <!-- registration_problems -->
     <string name="registration_problems__some_possible_problems_include">Some possible problems
@@ -479,8 +480,8 @@
     </string>
     <string name="registration_problems__incorrect_number">Incorrect number.</string>
     <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-        Please check to make sure you entered your number correctly, and that it is formatted for
-        correctly your region.
+        Please check to make sure you entered your number correctly, and that it is formatted correctly for
+        your region.
     </string>
     <string name="registration_problems__google_voice">Google Voice.</string>
     <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
