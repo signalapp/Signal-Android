@@ -200,12 +200,17 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setEvents(MessageRecord messageRecord) {
-    setClickable(messageRecord.isKeyExchange() && !messageRecord.isOutgoing());
+    setClickable(messageRecord.isKeyExchange()           &&
+                 !messageRecord.isCorruptedKeyExchange() &&
+                 !messageRecord.isOutgoing());
 
-    if (!messageRecord.isOutgoing() && messageRecord.getRecipients().isSingleRecipient()) {
+    if (!messageRecord.isOutgoing()                       &&
+        messageRecord.getRecipients().isSingleRecipient() &&
+        !messageRecord.isSecure())
+    {
       checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-          messageRecord.getBody().getBody(),
-          messageRecord.getThreadId());
+                           messageRecord.getBody().getBody(),
+                           messageRecord.getThreadId());
     }
   }
 
