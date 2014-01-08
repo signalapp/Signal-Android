@@ -18,7 +18,7 @@
     <TextView android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:textColor="@color/black"
+        android:textColor="?conversation_text_primary_color"
         android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_gravity="center_horizontal|center_vertical" />
