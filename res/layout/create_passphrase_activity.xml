@@ -49,15 +49,29 @@
                       android:layout_height="wrap_content"
                       android:inputType="textPassword"
                       android:singleLine="true"/>
-                        
-            <Button android:id="@+id/ok_button"
-                    android:text="@string/create_passphrase_activity__continue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_marginTop="20dip"
-                    android:layout_marginBottom="20dip"/>
+
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="20dip"
+                          android:layout_marginBottom="20dip"
+                          android:layout_gravity="right"
+                          android:orientation="horizontal">
+
+                <Button android:id="@+id/skip_button"
+                        android:text="Skip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dip"
+                        android:layout_weight="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                <Button android:id="@+id/ok_button"
+                        android:text="Create"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+            </LinearLayout>
         </LinearLayout>
         
         <LinearLayout android:id="@+id/progress_layout"

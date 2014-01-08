@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -45,6 +46,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
   private EditText passphraseEdit;
   private EditText passphraseRepeatEdit;
   private Button   okButton;
+  private Button   skipButton;
 
   public PassphraseCreateActivity() { }
 
@@ -63,11 +65,19 @@ public class PassphraseCreateActivity extends PassphraseActivity {
     this.passphraseEdit       = (EditText)    findViewById(R.id.passphrase_edit);
     this.passphraseRepeatEdit = (EditText)    findViewById(R.id.passphrase_edit_repeat);
     this.okButton             = (Button)      findViewById(R.id.ok_button);
+    this.skipButton           = (Button)      findViewById(R.id.skip_button);
 
     this.okButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         verifyAndSavePassphrases();
+      }
+    });
+
+    this.skipButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        disablePassphrase();
       }
     });
   }
@@ -91,6 +101,12 @@ public class PassphraseCreateActivity extends PassphraseActivity {
     // We do this, but the edit boxes are basically impossible to clean up.
     MemoryCleaner.clean(passphraseRepeat);
     new SecretGenerator().execute(passphrase);
+  }
+
+  private void disablePassphrase() {
+    TextSecurePreferences.setPasswordDisabled(this, true);
+    new SecretGenerator().execute(MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+
   }
 
   private class SecretGenerator extends AsyncTask<String, Void, Void> {

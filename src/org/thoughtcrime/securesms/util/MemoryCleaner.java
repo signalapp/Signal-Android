@@ -66,22 +66,22 @@ public class MemoryCleaner {
   }
   
   public static void clean(String string) {
-    if (string == null)
-      return;
-    
-    try {
-      Field charArrayField = String.class.getDeclaredField("value");
-      charArrayField.setAccessible(true);
-      
-      char[] internalBuffer = (char[])charArrayField.get(string);
-      
-      Arrays.fill(internalBuffer, 'A');
-    } catch (NoSuchFieldException nsfe) {
-      Log.w("MemoryCleaner", nsfe);
-    } catch (IllegalArgumentException e) {
-      Log.w("MemoryCleaner", e);
-    } catch (IllegalAccessException e) {
-      Log.w("MemoryCleaner", e);
-    }
+//    if (string == null)
+//      return;
+//
+//    try {
+//      Field charArrayField = String.class.getDeclaredField("value");
+//      charArrayField.setAccessible(true);
+//
+//      char[] internalBuffer = (char[])charArrayField.get(string);
+//
+//      Arrays.fill(internalBuffer, 'A');
+//    } catch (NoSuchFieldException nsfe) {
+//      Log.w("MemoryCleaner", nsfe);
+//    } catch (IllegalArgumentException e) {
+//      Log.w("MemoryCleaner", e);
+//    } catch (IllegalAccessException e) {
+//      Log.w("MemoryCleaner", e);
+//    }
   }
 }
