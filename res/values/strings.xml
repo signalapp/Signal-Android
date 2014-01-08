@@ -52,8 +52,8 @@
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate Secure Session?</string>
     <string name="ConversationActivity_initiate_secure_session_with_s_question">Initiate secure session with %s?</string>
-    <string name="ConversationActivity_abort_secure_session_confirmation">Abort Secure Session Confirmation</string>
-    <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Are you sure that you want to abort this secure session?</string>
+    <string name="ConversationActivity_abort_secure_session_confirmation">End Secure Session Confirmation</string>
+    <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Are you sure that you want to end this secure session?</string>
     <string name="ConversationActivity_delete_thread_confirmation">Delete Thread Confirmation</string>
     <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Are you sure that you want to permanently delete this conversation?</string>
     <string name="ConversationActivity_add_attachment">Add attachment</string>
@@ -691,7 +691,7 @@
     <string name="conversation_secure_verified__menu_security">Security</string>
     <string name="conversation_secure_verified__menu_no_identity">No Identity Available</string>
     <string name="conversation_secure_verified__menu_verify_recipient">Verify Recipient</string>
-    <string name="conversation_secure_verified__menu_abort_secure_session">Abort Secure Session</string>
+    <string name="conversation_secure_verified__menu_abort_secure_session">End Secure Session</string>
     
     <!-- conversation -->
     <string name="conversation__menu_add_attachment">Add attachment</string>

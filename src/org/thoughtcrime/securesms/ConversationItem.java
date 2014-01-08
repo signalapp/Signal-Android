@@ -21,7 +21,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -30,7 +36,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
-import android.text.format.DateUtils;
+import org.thoughtcrime.securesms.util.DateUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +58,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -173,9 +180,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
-    if (messageRecord.isOutgoing()) {
-      setContactPhotoForUserIdentity();
-    } else {
+    if (! messageRecord.isOutgoing()) {
       setContactPhotoForRecipient(messageRecord.getIndividualRecipient());
     }
   }
@@ -190,13 +195,17 @@ public class ConversationItem extends LinearLayout {
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
 
-    if      (messageRecord.isFailed())  dateText.setText(R.string.ConversationItem_error_sending_message);
-    else if (messageRecord.isPending()) dateText.setText(R.string.ConversationItem_sending);
-    else    dateText.setText(DateUtils.getRelativeTimeSpanString(getContext(),
-                                                                 (messageRecord.isOutgoing() ?
-                                                                     messageRecord.getDateSent() :
-                                                                     messageRecord.getDateReceived()),
-                                                                 false));
+    if (messageRecord.isFailed()) {
+      dateText.setText(R.string.ConversationItem_error_sending_message);
+    } else if (messageRecord.isPending()) {
+      dateText.setText(R.string.ConversationItem_sending);
+    } else {
+      final long timestamp = (messageRecord.isOutgoing() ?
+          messageRecord.getDateSent() :
+          messageRecord.getDateReceived());
+
+      dateText.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp));
+    }
   }
 
   private void setEvents(MessageRecord messageRecord) {
@@ -317,7 +326,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
-    contactPhoto.setImageBitmap(recipient.getContactPhoto());
+    contactPhoto.setImageBitmap(BitmapUtil.getCroppedBitmap(recipient.getContactPhoto()));
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

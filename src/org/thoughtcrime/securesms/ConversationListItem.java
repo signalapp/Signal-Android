@@ -21,14 +21,11 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.format.DateUtils;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
@@ -40,6 +37,8 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Set;
@@ -105,10 +104,10 @@ public class ConversationListItem extends RelativeLayout
     this.fromView.setText(formatFrom(recipients, count, read));
     this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
                                                                 Emoji.EMOJI_SMALL),
-                             TextView.BufferType.SPANNABLE);
+                                                                TextView.BufferType.SPANNABLE);
 
     if (thread.getDate() > 0)
-      this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), thread.getDate(), false));
+      this.dateView.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), thread.getDate()));
 
     setBackground(read, batchMode);
     setContactPhoto(this.recipients.getPrimaryRecipient());
@@ -120,35 +119,24 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private void initializeContactWidgetVisibility() {
-    if (isBadgeEnabled()) {
-      contactPhotoBadge.setVisibility(View.VISIBLE);
-      contactPhotoImage.setVisibility(View.GONE);
-    } else {
-      contactPhotoBadge.setVisibility(View.GONE);
-      contactPhotoImage.setVisibility(View.VISIBLE);
-    }
+    contactPhotoImage.setVisibility(View.VISIBLE);
   }
 
   private void setContactPhoto(final Recipient recipient) {
     if (recipient == null) return;
 
-    if (isBadgeEnabled()) {
-      contactPhotoBadge.setImageBitmap(recipient.getContactPhoto());
-      contactPhotoBadge.assignContactFromPhone(recipient.getNumber(), true);
-    } else {
-      contactPhotoImage.setImageBitmap(recipient.getContactPhoto());
-      contactPhotoImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (recipient.getContactUri() != null) {
-            QuickContact.showQuickContact(context, contactPhotoImage, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
-          } else {
-            Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
-            context.startActivity(intent);
-          }
+    contactPhotoImage.setImageBitmap(BitmapUtil.getCroppedBitmap(recipient.getContactPhoto()));
+    contactPhotoImage.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (recipient.getContactUri() != null) {
+          QuickContact.showQuickContact(context, contactPhotoImage, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
+        } else {
+          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
+          context.startActivity(intent);
         }
-      });
-    }
+      }
+    });
   }
 
   private void setBackground(boolean read, boolean batch) {
@@ -169,23 +157,12 @@ public class ConversationListItem extends RelativeLayout
     drawables.recycle();
   }
 
-  private boolean isBadgeEnabled() {
-    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
-  }
-
   private CharSequence formatFrom(Recipients from, long count, boolean read) {
     int attributes[]  = new int[] {R.attr.conversation_list_item_count_color};
     TypedArray colors = context.obtainStyledAttributes(attributes);
 
     String fromString              = from.toShortString();
     SpannableStringBuilder builder = new SpannableStringBuilder(fromString);
-
-    if (count > 0) {
-      builder.append(" " + count);
-      builder.setSpan(new ForegroundColorSpan(colors.getColor(0,0)),
-                      fromString.length(), builder.length(),
-                      Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-    }
 
     if (!read) {
       builder.setSpan(new StyleSpan(Typeface.BOLD), 0, builder.length(),

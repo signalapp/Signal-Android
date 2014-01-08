@@ -9,8 +9,8 @@
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
-                android:protectionLevel="signature" />    
-    
+                android:protectionLevel="signature" />
+
 	<uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
@@ -39,14 +39,14 @@
     <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
                 android:protectionLevel="signature" />
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
-        
+
     <application android:name="org.thoughtcrime.securesms.ApplicationListener"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
                  android:theme="@style/TextSecure.LightTheme">
 
         <activity android:name=".RoutingActivity"
-                  android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"            
+                  android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
                   android:launchMode="singleTask"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
 
@@ -54,7 +54,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            
+
             <intent-filter>
                   <action android:name="android.intent.action.SENDTO"/>
                   <category android:name="android.intent.category.DEFAULT" />
@@ -63,7 +63,7 @@
                   <data android:scheme="mms" />
                   <data android:scheme="mmsto" />
             </intent-filter>
-            
+
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -71,7 +71,7 @@
                 <data android:mimeType="image/*" />
                 <data android:mimeType="text/*" />
             </intent-filter>            
-            
+
         </activity>
 
     <activity android:name=".RegistrationProblemsActivity"
@@ -95,7 +95,6 @@
         <activity android:name=".ConversationListActivity"
               android:label="@string/app_name"
               android:launchMode="singleTask"
-              android:uiOptions="splitActionBarWhenNarrow"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ConversationActivity"

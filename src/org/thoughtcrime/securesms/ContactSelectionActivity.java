@@ -25,6 +25,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -58,7 +59,8 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
     dynamicTheme.onCreate(this);
     super.onCreate(icicle);
 
-    ActionBar actionBar = this.getSupportActionBar();
+    final ActionBar actionBar = this.getSupportActionBar();
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     actionBar.setDisplayHomeAsUpEnabled(true);
 

@@ -4,11 +4,19 @@
     <attr name="conversation_list_item_background_read" format="reference"/>
     <attr name="conversation_list_item_background_unread" format="reference"/>
     <attr name="conversation_list_item_count_color" format="reference|color"/>
+    <attr name="conversation_list_item_contact_color" format="reference|color"/>
+    <attr name="conversation_list_item_subject_color" format="reference|color"/>
+
+    <attr name="conversation_sent_card_background" format="reference|color"/>
+    <attr name="conversation_sent_text_primary_color" format="reference|color"/>
+    <attr name="conversation_sent_text_secondary_color" format="reference|color"/>
+    <attr name="conversation_received_card_background" format="reference|color"/>
+    <attr name="conversation_received_text_primary_color" format="reference|color"/>
+    <attr name="conversation_received_text_secondary_color" format="reference|color"/>
+
+    <attr name="actionbar_icon" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
-    <attr name="conversation_card_background" format="reference|color"/>
-    <attr name="conversation_text_primary_color" format="reference|color"/>
-    <attr name="conversation_text_secondary_color" format="reference|color"/>
     <attr name="conversation_avatar_divet_right" format="reference"/>
     <attr name="conversation_avatar_divet_left" format="reference"/>
     <attr name="conversation_editor_background" format="reference|color"/>
@@ -23,4 +31,13 @@
     <attr name="navigation_drawer_text_color" format="color"/>
     <attr name="navigation_drawer_icons" format="reference"/>
     <attr name="navigation_drawer_shadow" format="reference"/>
+
+    <attr name="menu_new_conversation_icon" format="reference" />
+    <attr name="menu_search_icon" format="reference" />
+    <attr name="menu_call_icon" format="reference" />
+    <attr name="menu_unlock_icon" format="reference" />
+    <attr name="menu_lock_icon" format="reference" />
+    <attr name="menu_lock_icon_small" format="reference" />
+    <attr name="menu_trash_icon" format="reference" />
+    <attr name="menu_selectall_icon" format="reference" />
 </resources>

@@ -6,7 +6,6 @@ import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
 import android.support.v4.view.GravityCompat;
@@ -22,7 +21,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -31,6 +29,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -61,7 +60,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     super.onCreate(icicle);
 
     setContentView(R.layout.conversation_list_activity);
-    getSupportActionBar().setTitle("TextSecure");
+
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), "TextSecure");
 
     initializeNavigationDrawer();
     initializeSenderReceiverService();
@@ -267,16 +267,11 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   }
 
   private void initializeDefaultMessengerCheck() {
-    if (!Util.isDefaultSmsProvider(this) &&
-        !(PreferenceManager.getDefaultSharedPreferences(this)
-                           .getBoolean("pref_prompted_default_sms", false)))
-    {
-      PreferenceManager.getDefaultSharedPreferences(this).edit()
-                       .putBoolean("pref_prompted_default_sms", true).commit();
+    if (!TextSecurePreferences.hasPromptedDefaultSmsProvider(this) && !Util.isDefaultSmsProvider(this)) {
+      TextSecurePreferences.setPromptedDefaultSmsProvider(this, true);
       Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
       intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
       startActivity(intent);
     }
   }
-
 }

@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -93,6 +94,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
 
     addPreferencesFromResource(R.xml.preferences);
 

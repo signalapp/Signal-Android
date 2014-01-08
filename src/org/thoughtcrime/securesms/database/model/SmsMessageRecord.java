@@ -53,7 +53,7 @@ public class SmsMessageRecord extends MessageRecord {
   @Override
   public SpannableString getDisplayBody() {
     if (isProcessedKeyExchange()) {
-      return emphasisAdded(context.getString(R.string.ConversationItem_received_and_processed_key_exchange_message));
+      return new SpannableString("");
     } else if (isStaleKeyExchange()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_error_received_stale_key_exchange_message));
     } else if (isCorruptedKeyExchange()) {
@@ -63,7 +63,7 @@ public class SmsMessageRecord extends MessageRecord {
     } else if (isBundleKeyExchange()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process));
     } else if (isKeyExchange() && isOutgoing()) {
-      return emphasisAdded(context.getString(R.string.ConversationListAdapter_key_exchange_message));
+      return new SpannableString("");
     } else if (isKeyExchange() && !isOutgoing()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_received_key_exchange_message_click_to_process));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {

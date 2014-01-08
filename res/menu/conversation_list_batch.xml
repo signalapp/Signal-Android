@@ -3,11 +3,11 @@
 
     <item android:title="@string/conversation_list_batch__menu_delete_selected"
           android:id="@+id/menu_delete_selected"
-          android:icon="@drawable/ic_menu_trash_holo_dark"
+          android:icon="?menu_trash_icon"
           android:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation_list_batch__menu_select_all"
           android:id="@+id/menu_select_all"
-          android:icon="@drawable/ic_menu_selectall_holo_dark" />
+          android:icon="?menu_selectall_icon" />
 
 </menu>

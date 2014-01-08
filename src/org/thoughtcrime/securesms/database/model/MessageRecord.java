@@ -17,10 +17,12 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TextAppearanceSpan;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -125,7 +127,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   protected SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
-    spannable.setSpan(new ForegroundColorSpan(context.getResources().getColor(android.R.color.darker_gray)), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    spannable.setSpan(new TextAppearanceSpan(context, android.R.style.TextAppearance_Small), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     return spannable;
