@@ -72,12 +72,11 @@ public class NotificationItem {
 
     if (recipients != null) {
       intent.putExtra("recipients", recipients);
-      intent.putExtra("thread_id", threadId);
     }
 
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
-    return PendingIntent.getActivity(context, 0, intent, 0);
+    return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
 }
