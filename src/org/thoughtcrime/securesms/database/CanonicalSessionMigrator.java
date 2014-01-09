@@ -17,7 +17,10 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import org.thoughtcrime.securesms.util.SharedPreferencesCompat;
 
 import java.io.File;
 
@@ -45,7 +48,8 @@ public class CanonicalSessionMigrator {
   }
 
   public static void migrateSessions(Context context) {
-    if (context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).getBoolean("canonicalized", false))
+    final SharedPreferences prefs = context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE);
+    if (prefs.getBoolean("canonicalized", false))
       return;
 
     CanonicalAddressDatabase canonicalDb = CanonicalAddressDatabase.getInstance(context);
@@ -64,7 +68,7 @@ public class CanonicalSessionMigrator {
       }
     }
 
-    context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).edit().putBoolean("canonicalized", true).commit();
+    SharedPreferencesCompat.apply(prefs.edit().putBoolean("canonicalized", true));
   }
 
 }

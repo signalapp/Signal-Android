@@ -17,7 +17,7 @@ public class TextSecurePreferences {
   public  static final String THREAD_TRIM_LENGTH               = "pref_trim_length";
   public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
-
+  private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
@@ -166,6 +166,18 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, false);
   }
 
+  public static void setUseLocalApnsEnabled(Context context, boolean useLocal) {
+    setBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, useLocal);
+  }
+
+  public static int getLastVersionCode(Context context) {
+    return getIntegerPreference(context, LAST_VERSION_CODE_PREF, 0);
+  }
+
+  public static void setLastVersionCode(Context context, int versionCode) {
+    setIntegerPrefrence(context, LAST_VERSION_CODE_PREF, versionCode);
+  }
+
   public static String getTheme(Context context) {
     return getStringPreference(context, THEME_PREF, "light");
   }
@@ -272,7 +284,7 @@ public class TextSecurePreferences {
   }
 
   private static void setBooleanPreference(Context context, String key, boolean value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).commit();
+    SharedPreferencesCompat.apply(PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value));
   }
 
   private static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
@@ -280,7 +292,7 @@ public class TextSecurePreferences {
   }
 
   public static void setStringPreference(Context context, String key, String value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).commit();
+    SharedPreferencesCompat.apply(PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value));
   }
 
   private static String getStringPreference(Context context, String key, String defaultValue) {
@@ -292,7 +304,7 @@ public class TextSecurePreferences {
   }
 
   private static void setIntegerPrefrence(Context context, String key, int value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
+    SharedPreferencesCompat.apply(PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value));
   }
 
   private static long getLongPreference(Context context, String key, long defaultValue) {
@@ -300,8 +312,6 @@ public class TextSecurePreferences {
   }
 
   private static void setLongPreference(Context context, String key, long value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).commit();
+    SharedPreferencesCompat.apply(PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value));
   }
-
-
 }
