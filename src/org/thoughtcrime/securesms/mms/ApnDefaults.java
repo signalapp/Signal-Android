@@ -59,7 +59,7 @@ public class ApnDefaults {
             // O2 CZ - Untested
             put("23002", new MmsConnectionParameters("http://mms.o2active.cz:8002", "160.218.160.218", "8080"));
 
-            // Vodafone CZ - Untested
+            // Vodafone CZ - Tested
             put("23003", new MmsConnectionParameters("http://mms", "10.11.10.111", "80"));
 
           }};
