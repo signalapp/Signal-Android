@@ -54,12 +54,12 @@ public class ApnDefaults {
             put("23410", new MmsConnectionParameters("http://mmsc.mediamessaging.co.uk:8002", "193.113.200.195", "8080"));
 
             // T-Mobile CZ - Untested
-            put("23001", new MmsConnectionParameters("http://mms.t-mobile.cz", "010.000.000.010", "80"));
+            put("23001", new MmsConnectionParameters("http://mms.t-mobile.cz", "10.0.0.10", "80"));
 
-            // O2 CZ - Untestd
+            // O2 CZ - Untested
             put("23002", new MmsConnectionParameters("http://mms.o2active.cz:8002", "160.218.160.218", "8080"));
 
-            // Vodafone CZ - Untestd
+            // Vodafone CZ - Untested
             put("23003", new MmsConnectionParameters("http://mms", "10.11.10.111", "80"));
 
           }};
