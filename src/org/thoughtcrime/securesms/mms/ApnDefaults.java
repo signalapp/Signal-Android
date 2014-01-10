@@ -53,6 +53,15 @@ public class ApnDefaults {
             // UK giffgaff -Tested
             put("23410", new MmsConnectionParameters("http://mmsc.mediamessaging.co.uk:8002", "193.113.200.195", "8080"));
 
+            // T-Mobile CZ - Untested
+            put("23001", new MmsConnectionParameters("http://mms.t-mobile.cz", "10.0.0.10", "80"));
+
+            // O2 CZ - Untested
+            put("23002", new MmsConnectionParameters("http://mms.o2active.cz:8002", "160.218.160.218", "8080"));
+
+            // Vodafone CZ - Tested
+            put("23003", new MmsConnectionParameters("http://mms", "10.11.10.111", "80"));
+
           }};
 
   public static MmsConnectionParameters getMmsConnectionParameters(Context context) {
