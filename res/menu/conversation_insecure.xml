@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Security"
           android:id="@+id/menu_security"
-          android:icon="@drawable/ic_menu_unlock_holo_dark"
+          android:icon="?menu_unlock_icon"
           android:showAsAction="ifRoom">
           <menu>
               <item android:title="@string/conversation_insecure__menu_start_secure_session"

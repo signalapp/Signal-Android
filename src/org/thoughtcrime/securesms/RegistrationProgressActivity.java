@@ -32,6 +32,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
+import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
@@ -89,7 +90,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.getSupportActionBar().setTitle(getString(R.string.RegistrationProgressActivity_verifying_number));
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), getString(R.string.RegistrationProgressActivity_verifying_number));
     setContentView(R.layout.registration_progress_activity);
 
     initializeResources();

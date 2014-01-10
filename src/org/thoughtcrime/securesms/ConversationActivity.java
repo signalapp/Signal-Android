@@ -36,6 +36,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -78,6 +79,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -154,6 +156,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     setContentView(R.layout.conversation_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
 
     initializeReceivers();
     initializeResources();
@@ -465,7 +468,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private void handleAddAttachment() {
     if (this.isMmsEnabled) {
-      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.TextSecure_Light_Dialog));
       builder.setIcon(R.drawable.ic_dialog_attach);
       builder.setTitle(R.string.ConversationActivity_add_attachment);
       builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
@@ -508,7 +511,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     this.getSupportActionBar().setTitle(title);
 
-    if (subtitle != null)
+    if (subtitle != null && !Util.isEmpty(subtitle))
       this.getSupportActionBar().setSubtitle(PhoneNumberUtils.formatNumber(subtitle));
 
     this.invalidateOptionsMenu();
@@ -611,6 +614,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     charactersLeft      = (TextView)findViewById(R.id.space_left);
     emojiDrawer         = (EmojiDrawer)findViewById(R.id.emoji_drawer);
     emojiToggle         = (EmojiToggle)findViewById(R.id.emoji_toggle);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      emojiToggle.setVisibility(View.GONE);
+    }
 
     attachmentAdapter   = new AttachmentTypeSelectorAdapter(this);
     attachmentManager   = new AttachmentManager(this);
@@ -814,6 +821,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private void calculateCharactersRemaining() {
     int charactersSpent                               = composeText.getText().toString().length();
     CharacterCalculator.CharacterState characterState = characterCalculator.calculateCharacters(charactersSpent);
+    if (characterState.charactersRemaining <= 15 && charactersLeft.getVisibility() != View.VISIBLE) {
+      charactersLeft.setVisibility(View.VISIBLE);
+    } else if (characterState.charactersRemaining > 15 && charactersLeft.getVisibility() != View.GONE) {
+      charactersLeft.setVisibility(View.GONE);
+    }
     charactersLeft.setText(characterState.charactersRemaining + "/" + characterState.maxMessageSize + " (" + characterState.messagesSpent + ")");
   }
 

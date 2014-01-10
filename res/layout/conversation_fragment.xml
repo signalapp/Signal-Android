@@ -16,6 +16,8 @@
               android:scrollbarStyle="insideOverlay"
               android:stackFromBottom="true"
               android:fadingEdge="none"
+              android:divider="@android:color/transparent"
+              android:dividerHeight="0dp"
               android:layout_marginBottom="1dip"/>
 
 </LinearLayout>

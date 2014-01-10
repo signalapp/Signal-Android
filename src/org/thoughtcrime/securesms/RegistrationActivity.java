@@ -24,6 +24,8 @@ import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
+
+import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
@@ -55,8 +57,7 @@ public class RegistrationActivity extends SherlockActivity {
     super.onCreate(icicle);
     setContentView(R.layout.registration_activity);
 
-    ActionBar actionBar = this.getSupportActionBar();
-    actionBar.setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), getString(R.string.RegistrationActivity_connect_with_textsecure));
 
     initializeResources();
     initializeSpinner();

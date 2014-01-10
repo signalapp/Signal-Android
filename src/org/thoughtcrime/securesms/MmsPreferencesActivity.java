@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -46,6 +47,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
     super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
     initializePreferences();
 
     masterSecret = getIntent().getParcelableExtra("master_secret");

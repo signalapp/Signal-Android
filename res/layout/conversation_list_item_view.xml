@@ -9,19 +9,17 @@
                  android:layout_height="wrap_content"
                  android:layout_centerVertical="true"
                  android:layout_alignParentLeft="true"
+                 android:padding="8dp"
                  android:visibility="visible">
 
-	    <QuickContactBadge android:id="@+id/contact_photo_badge"
-	                       style="?android:attr/quickContactBadgeStyleWindowLarge"
-	                       android:visibility="gone" />
-
 	    <ImageView android:id="@+id/contact_photo_image"
-	               android:layout_width="60dp"
-	               android:layout_height="60dp"
+	               android:layout_width="50dp"
+	               android:layout_height="50dp"
 	               android:cropToPadding="true"
 	               android:scaleType="centerCrop"
 	               android:visibility="gone"
-                   android:contentDescription="Contact Photo Image"/>
+                   android:contentDescription="Contact Photo Image"
+                   android:layout_marginLeft="3dp" />
     </FrameLayout>
 
     <!--<CheckBox android:id="@+id/checkbox"-->
@@ -35,29 +33,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?attr/conversation_list_item_contact_color"
         android:singleLine="true"
-        android:layout_marginTop="6dip"
+        android:layout_marginTop="12dip"
         android:layout_marginRight="5dip"
-        android:layout_marginLeft="10dip"
+        android:layout_marginLeft="4dip"
         android:layout_marginBottom="10dip"
         android:layout_alignTop="@id/contact_photo_frame"
         android:layout_toRightOf="@id/contact_photo_frame"
         android:layout_alignWithParentIfMissing="true"
-        android:ellipsize="marquee"/>
+        android:ellipsize="marquee" />
     <!--android:layout_toLeftOf="@id/checkbox"-->
 
-
     <TextView android:id="@+id/date"
-        android:layout_marginBottom="10dip"
+        android:layout_marginTop="12dip"
         android:layout_marginLeft="5dip"
         android:paddingRight="10dip"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="13dp"
+        android:textColor="?attr/conversation_list_item_subject_color"
+        android:fontFamily="sans-serif-light"
         android:singleLine="true"
-        android:layout_alignBottom="@id/contact_photo_frame"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignTop="@id/contact_photo_frame"
+        android:layout_alignParentRight="true" />
 
     <ImageView android:id="@+id/error"
         android:layout_marginLeft="3dip"
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:src="@drawable/ic_list_alert_sms_failed"
-        android:contentDescription="Error Alert"/>
+        android:contentDescription="Error Alert" />
 
      <ImageView android:id="@+id/attachment"
         android:layout_marginLeft="3dip"
@@ -77,15 +77,17 @@
         android:layout_toLeftOf="@id/error"
         android:layout_alignBottom="@id/date"
         android:src="@drawable/ic_attachment_universal_small"
-        android:contentDescription="Attachment Indicator"/>
+        android:contentDescription="Attachment Indicator" />
 
     <TextView android:id="@+id/subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?attr/conversation_list_item_subject_color"
+        android:fontFamily="sans-serif-light"
         android:singleLine="true"
-        android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
+        android:layout_marginBottom="12dip"
+        android:layout_marginLeft="4dip"
         android:layout_alignBottom="@id/contact_photo_frame"
         android:layout_toRightOf="@id/contact_photo_frame"
         android:layout_toLeftOf="@id/date"
