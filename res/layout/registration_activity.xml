@@ -8,7 +8,6 @@
 
     <LinearLayout android:paddingRight="16dip"
                   android:paddingLeft="16dip"
-                  android:paddingTop="10dip"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:gravity="center_vertical"
@@ -72,8 +71,8 @@
 
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginTop="20dip"
-                      android:layout_marginBottom="20dip"
+                      android:layout_marginTop="16dip"
+                      android:layout_marginBottom="16dip"
                       android:layout_gravity="right"
                       android:orientation="horizontal">
 
