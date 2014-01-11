@@ -58,6 +58,10 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+     lintOptions {
+        abortOnError false
+    }
 }
 
 def Properties props = new Properties()
