@@ -10,7 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Не сте сложили парола още!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">съобщения за повикване</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Изтрий старите съобщения сега?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Сигурни ли сте, че искате да приключите всички теми за разговор от последните съобщения за% S?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Сигурни ли сте, че искате да приключите всички теми за разговор от последните съобщения за %s?</string>
   <string name="ApplicationPreferencesActivity_delete">Изтрий</string>
   <string name="ApplicationPreferencesActivity_my">Мой</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Изключи криптиране на хранилището</string>
@@ -184,7 +184,7 @@
   <string name="KeyCachingService_passphrase_cached">Паролата се запази</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Нови съобщения</string>
-  <string name="MessageNotifier_most_recent_from_s">Най-скоро от: %2$s</string>
+  <string name="MessageNotifier_most_recent_from_s">Най-скоро от: %s</string>
   <string name="MessageNotifier_encrypted_message">Криптирано съобщение...</string>
   <string name="MessageNotifier_no_subject">(Без тема)</string>
   <string name="MessageNotifier_message_delivery_failed">Изпращането на съобщението се провали</string>

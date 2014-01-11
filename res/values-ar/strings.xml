@@ -312,7 +312,6 @@
   <string name="preferences__notifications">التنبيهات</string>
   <string name="preferences__display_message_notifications_in_status_bar">عرض تنبيهات الرسائل بشريط التنبيهات</string>
   <string name="preferences__led_color">لون ضوء التنبيه LED</string>
-  <string name="preferences__change_notification_led_color">تغيير لون ضوء التنبيه LED</string>
   <string name="preferences__pref_led_blink_title">اسلوب وميض LED</string>
   <string name="preferences__change_notification_blink_pattern">تغيير اسلوب وميض تنبيهات LED</string>
   <string name="preferences__pref_led_blink_dialogtitle">اختيار اسلوب وميض LED</string>
