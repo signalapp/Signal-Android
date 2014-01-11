@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="NoAnimation.Theme.Sherlock.Light.DarkActionBar" parent="@style/Theme.Sherlock.Light.DarkActionBar">
         <item name="android:windowAnimationStyle">@null</item>        
     </style>
@@ -76,7 +76,8 @@
         <item name="android:textColor">@color/textsecure_holo_blue_light</item>
     </style>
 
-    <style name="TextSecureDialogButtonBar">
+    <style name="TextSecureDialogButtonBar"
+           tools:ignore="NewApi">
         <item name="android:background">@null</item>
         <item name="android:dividerPadding">0dp</item>
     </style>
