@@ -147,8 +147,12 @@ public class ConversationFragment extends SherlockListFragment
     builder.setCancelable(false);
 
     if (dateReceived == dateSent || message.isOutgoing()) {
-      builder.setMessage(String.format(getSherlockActivity()
-                                       .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
+      String formatString;
+        if (message.isOutgoing()) formatString = getSherlockActivity()
+                .getString(R.string.ConversationFragment_transport_s_sent_received_s);
+      else formatString = getSherlockActivity()
+                .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s);
+      builder.setMessage(String.format(formatString,
                                        sender, transport.toUpperCase(),
                                        dateFormatter.format(new Date(dateSent))));
     } else {
