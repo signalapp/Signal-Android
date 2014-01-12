@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.service;
 
+import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -185,7 +186,9 @@ public class KeyCachingService extends Service {
     }
   }
 
+  @TargetApi(16)
   private void foregroundServiceModern() {
+    // only called within condition: `if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)`
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
     builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
@@ -37,6 +38,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -266,8 +268,11 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     this.fragment.setMasterSecret(masterSecret);
   }
 
+  @TargetApi(19)
   private void initializeDefaultMessengerCheck() {
     if (!TextSecurePreferences.hasPromptedDefaultSmsProvider(this) && !Util.isDefaultSmsProvider(this)) {
+      // isDefaultSmsProvider(this) == true if we are running at API level < KITKAT, so the following
+      // code is safe for API >= 19
       TextSecurePreferences.setPromptedDefaultSmsProvider(this, true);
       Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
       intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
