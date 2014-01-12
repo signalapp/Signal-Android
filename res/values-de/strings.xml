@@ -315,7 +315,7 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wählen Sie den Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passwort ändern</string>
   <string name="preferences__change_my_passphrase">Mein Passwort ändern</string>
-  <string name="preferences__complete_key_exchanges">Schlüsselaustausch abschliessen</string>
+  <string name="preferences__complete_key_exchanges">Schlüsselaustausch abschließen</string>
   <string name="preferences__disable_passphrase">Passwort deaktivieren</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Verschlüsselung von Nachrichten und Schlüsseln auf diesem Gerät deaktivieren</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatischer Schlüsselaustausch für neue Sitzungen und bestehende Sitzungen mit demselben persönlichen Schlüssel</string>
