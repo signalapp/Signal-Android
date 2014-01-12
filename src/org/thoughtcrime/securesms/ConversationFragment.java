@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class ConversationFragment extends SherlockListFragment
@@ -138,11 +139,11 @@ public class ConversationFragment extends SherlockListFragment
   @SuppressLint("DefaultLocale")
   private void handleDisplayDetails(MessageRecord message) {
     String sender     = message.getIndividualRecipient().getNumber();
-    String transport  = message.isMms() ? "mms" : "sms";
+    String transport  = (message.isMms() ? "mms" : "sms").toUpperCase();
     long dateReceived = message.getDateReceived();
     long dateSent     = message.getDateSent();
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
+    DateFormat dateFormatter = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(android.R.drawable.ic_dialog_info);
@@ -151,12 +152,12 @@ public class ConversationFragment extends SherlockListFragment
     if (dateReceived == dateSent || message.isOutgoing()) {
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
-                                       sender, transport.toUpperCase(),
+                                       sender, transport,
                                        dateFormatter.format(new Date(dateSent))));
     } else {
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
-                                       sender, transport.toUpperCase(),
+                                       sender, transport,
                                        dateFormatter.format(new Date(dateSent)),
                                        dateFormatter.format(new Date(dateReceived))));
     }
