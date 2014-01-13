@@ -263,7 +263,8 @@
     </receiver>
 
     <receiver android:name=".service.DirectoryRefreshListener"
-              android:exported="false">
+              android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
+              android:exported="true">
         <intent-filter>
             <action android:name="org.whispersystems.whisperpush.DIRECTORY_REFRESH"/>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
