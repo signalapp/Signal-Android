@@ -4,44 +4,38 @@
         android:fillViewport="true"
         android:background="@drawable/background_pattern_repeat">
 
-    <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+    <LinearLayout android:paddingRight="16dip"
+                  android:paddingLeft="16dip"
+                  android:paddingTop="10dip"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:orientation="vertical">
 
-        <LinearLayout android:paddingRight="16dip"
-                      android:paddingLeft="16dip"
-                      android:paddingTop="10dip"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center"
-                      android:orientation="vertical">
+        <TextView style="@style/Registration.Description"
+                  android:id="@+id/description_text"
+                  android:layout_width="fill_parent"
+                  android:layout_marginBottom="16dip"
+                  android:layout_marginTop="16dip"/>
 
-            <TextView style="@style/Registration.Description"
-                      android:id="@+id/description_text"
-                      android:layout_width="fill_parent"
-                      android:layout_marginBottom="16dip"
-                      android:layout_marginTop="16dip"/>
+        <LinearLayout android:layout_height="wrap_content"
+                      android:layout_width="match_parent"
+                      android:layout_marginBottom="7dip"
+                      android:orientation="horizontal">
 
-            <LinearLayout android:layout_height="wrap_content"
-                          android:layout_width="match_parent"
-                          android:layout_marginBottom="7dip"
-                          android:orientation="horizontal">
+            <Button android:id="@+id/cancel_button"
+                    android:text="@android:string/cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
 
-                <Button android:id="@+id/cancel_button"
-                        android:text="@android:string/cancel"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-
-                <Button android:id="@+id/ok_button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/receive_key_activity__complete"/>
-            </LinearLayout>
+            <Button android:id="@+id/ok_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/receive_key_activity__complete"/>
         </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 </ScrollView>
 
 

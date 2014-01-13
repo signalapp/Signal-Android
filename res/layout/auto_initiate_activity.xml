@@ -22,23 +22,17 @@
                   android:layout_marginBottom="16dip"
                   android:gravity="right">
 
-        <TableLayout android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:stretchColumns="*">
-            <TableRow>
-		        <Button android:id="@+id/initiate_button"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:text="@string/auto_initiate_activity__initiate_exchange"
-		                android:gravity="center"/>
-		
-		        <Button android:id="@+id/cancel_button"
-		                android:text="@android:string/cancel"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:gravity="center"
-                        tools:ignore="ButtonOrder"/>
-            </TableRow>
-        </TableLayout>
+        <Button android:id="@+id/initiate_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/auto_initiate_activity__initiate_exchange"
+                android:gravity="center"/>
+
+        <Button android:id="@+id/cancel_button"
+                android:text="@android:string/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:ignore="ButtonOrder"/>
     </LinearLayout>
 </LinearLayout>

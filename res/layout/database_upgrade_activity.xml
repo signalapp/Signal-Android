@@ -6,41 +6,36 @@
             android:fillViewport="true"
             android:background="@drawable/background_pattern_repeat">
 
-    <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center" >
+    <LinearLayout android:paddingRight="16dip"
+                  android:paddingLeft="16dip"
+                  android:paddingTop="10dip"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:visibility="visible"
+                  android:orientation="vertical">
 
-        <LinearLayout android:paddingRight="16dip"
-                      android:paddingLeft="16dip"
-                      android:paddingTop="10dip"
+
+        <TextView style="@style/Registration.BigLabel"
                       android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center"
-                      android:visibility="visible"
-                      android:orientation="vertical">
+                      android:layout_marginBottom="16dip"
+                      android:layout_marginTop="16dip"
+                      android:gravity="center"
+                      android:text="@string/database_upgrade_activity__updating_database"/>
 
-                <TextView style="@style/Registration.BigLabel"
-                          android:layout_width="fill_parent"
-                          android:layout_marginBottom="16dip"
-                          android:layout_marginTop="16dip"
-                          android:gravity="center"
-                          android:text="@string/database_upgrade_activity__updating_database"/>
+        <ProgressBar android:id="@+id/indeterminate_progress"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:indeterminate="true"
+                     android:layout_gravity="center"/>
 
-                <ProgressBar android:id="@+id/indeterminate_progress"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:indeterminate="true"
-                             android:layout_gravity="center"/>
+        <ProgressBar android:id="@+id/determinate_progress"
+                     style="@android:style/Widget.ProgressBar.Horizontal"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:indeterminate="false"
+                     android:visibility="gone"
+                     android:layout_gravity="center"/>
 
-            <ProgressBar android:id="@+id/determinate_progress"
-                         style="@android:style/Widget.ProgressBar.Horizontal"
-                         android:layout_width="fill_parent"
-                         android:layout_height="wrap_content"
-                         android:indeterminate="false"
-                         android:visibility="gone"
-                         android:layout_gravity="center"/>
-
-        </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 </ScrollView>
