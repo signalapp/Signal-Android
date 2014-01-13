@@ -270,11 +270,7 @@
   <string name="preferences__manage_configured_identity_keys">Spravovat nastavené identifikační klíče</string>
   <string name="preferences__notifications">Upozornění</string>
   <string name="preferences__led_color">Barva LED</string>
-  <string name="preferences__change_notification_led_color">Změnit barvu upozorňující LED</string>
   <string name="preferences__pref_led_blink_title">Způsob blikání LED</string>
-  <string name="preferences__change_notification_blink_pattern">Změnit způsob blikání LED</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Vyber způsob blikání LED</string>
-  <string name="preferences__select_led_color">Zvolit barvu LED</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__vibrate">Vibrovat</string>
   <string name="preferences__minutes">minut</string>
@@ -329,7 +325,6 @@
   <string name="conversation_list__menu_search">Hledat</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Zabezpečení</string>
-  <string name="conversation_secure_verified__menu_verify_session">Ověřit konverzaci</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Ověřit příjemce</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Přerušit zabezpečenou konverzaci</string>
   <!--conversation-->

@@ -330,11 +330,7 @@
   <string name="preferences__notifications">התראות</string>
   <string name="preferences__display_message_notifications_in_status_bar">הצג התראות של הודעה בשורת המצב</string>
   <string name="preferences__led_color">צבע LED</string>
-  <string name="preferences__change_notification_led_color">שנה צבע LED של התראות</string>
   <string name="preferences__pref_led_blink_title">תבנית הבהוב ה- LED</string>
-  <string name="preferences__change_notification_blink_pattern">שנה את תבנית הבהוב הLED בהתראה</string>
-  <string name="preferences__pref_led_blink_dialogtitle">בחר תבנית הבהוב ה-LED</string>
-  <string name="preferences__select_led_color">בחר צבע LED</string>
   <string name="preferences__sound">קול</string>
   <string name="preferences__inthread_notifications">התראות תוך-שרשוריות</string>
   <string name="preferences__play_inthread_notifications">נגן צליל התראות כשצופים בשיחה פעילה.</string>
@@ -401,7 +397,6 @@
   <string name="conversation_list__menu_search">חפש</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">אבטחה</string>
-  <string name="conversation_secure_verified__menu_verify_session">אמת חיבור</string>
   <string name="conversation_secure_verified__menu_verify_recipient">אמת נמען</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">בטל חיבור מאובטח</string>
   <!--conversation-->

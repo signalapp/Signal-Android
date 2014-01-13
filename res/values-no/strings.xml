@@ -331,11 +331,7 @@
   <string name="preferences__notifications">Varsling</string>
   <string name="preferences__display_message_notifications_in_status_bar">Vis varsel om meldinger i status feltet</string>
   <string name="preferences__led_color">LED farge</string>
-  <string name="preferences__change_notification_led_color">Endre farge på LED varsling</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
-  <string name="preferences__change_notification_blink_pattern">Endre LED-varslingens blinkemønster</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Velg LED blinkemønster</string>
-  <string name="preferences__select_led_color">Velg LED farge</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__inthread_notifications">Varsling i aktiv tråd</string>
   <string name="preferences__play_inthread_notifications">Spill av varslingslyd ved visning av en aktiv samtaletråd. </string>
@@ -404,7 +400,6 @@
   <string name="conversation_list__menu_search">Søk</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sikkerhet</string>
-  <string name="conversation_secure_verified__menu_verify_session">Bekreft sesjon</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Bekreft mottaker</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Abryt sikker sesjon</string>
   <!--conversation-->

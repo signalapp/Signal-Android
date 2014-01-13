@@ -329,11 +329,7 @@
   <string name="preferences__notifications">Notifikationer</string>
   <string name="preferences__display_message_notifications_in_status_bar">Visa meddelande notifikationer i statusraden</string>
   <string name="preferences__led_color">LED-färg</string>
-  <string name="preferences__change_notification_led_color">Ändra LED-färg för notifikationer</string>
   <string name="preferences__pref_led_blink_title">LED-blinkmönster</string>
-  <string name="preferences__change_notification_blink_pattern">Ändra LED-blinkmönster för notifikationer</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Välj LED-blinkmönster</string>
-  <string name="preferences__select_led_color">Välj LED-färg</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__inthread_notifications">Inom-tråd notifikationer</string>
   <string name="preferences__play_inthread_notifications">Spela notifikationsljud när en aktiv konversation visas</string>
@@ -400,7 +396,6 @@
   <string name="conversation_list__menu_search">Sök</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Säkerhet</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verifiera Session</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verifiera mottagare</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Avbryt säker session</string>
   <!--conversation-->

@@ -329,11 +329,7 @@
   <string name="preferences__notifications">Уведомления</string>
   <string name="preferences__display_message_notifications_in_status_bar">Показывать уведомления о сообщениях в статусной строке</string>
   <string name="preferences__led_color">Цвет светодиода</string>
-  <string name="preferences__change_notification_led_color">Поменять цвет светодиода</string>
   <string name="preferences__pref_led_blink_title">Мигание светодиода</string>
-  <string name="preferences__change_notification_blink_pattern">Изменить тип мигания светодиода</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Выберите тип мигания</string>
-  <string name="preferences__select_led_color">Выбрать цвет светодиода</string>
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__inthread_notifications">Уведомления при разговоре</string>
   <string name="preferences__play_inthread_notifications">Проигрывать мелодию уведомления даже во время активной переписки.</string>
@@ -400,7 +396,6 @@
   <string name="conversation_list__menu_search">Поиск</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Безопасность</string>
-  <string name="conversation_secure_verified__menu_verify_session">Подтвердить сеанс</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Подтвердить получателя</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Закончить защищённый сеанс</string>
   <!--conversation-->

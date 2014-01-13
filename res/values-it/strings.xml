@@ -279,11 +279,7 @@
   <string name="preferences__notifications">Notifiche</string>
   <string name="preferences__display_message_notifications_in_status_bar">Mostra messaggio di notifica nella barra di stato</string>
   <string name="preferences__led_color">Colore del LED</string>
-  <string name="preferences__change_notification_led_color">Cambia il colore del LED di notifica</string>
   <string name="preferences__pref_led_blink_title">Impostazioni LED</string>
-  <string name="preferences__change_notification_blink_pattern">Cambia il lampeggio del LED di notifica</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Seleziona un impostazione per il LED di notifica</string>
-  <string name="preferences__select_led_color">Selezione il colore del LED</string>
   <string name="preferences__vibrate">Vibrazione</string>
   <string name="preferences__also_vibrate_when_notified">Vibra anche durante l\'arrivo di una notifica</string>
   <string name="preferences__minutes">minuti</string>
@@ -342,7 +338,6 @@
   <string name="conversation_list__menu_search">Cerca</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sicurezza</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verifica la sessione</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verifica il destinatario</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Cancella la sessione sicura</string>
   <!--conversation-->

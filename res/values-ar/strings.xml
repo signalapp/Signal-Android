@@ -313,9 +313,6 @@
   <string name="preferences__display_message_notifications_in_status_bar">عرض تنبيهات الرسائل بشريط التنبيهات</string>
   <string name="preferences__led_color">لون ضوء التنبيه LED</string>
   <string name="preferences__pref_led_blink_title">اسلوب وميض LED</string>
-  <string name="preferences__change_notification_blink_pattern">تغيير اسلوب وميض تنبيهات LED</string>
-  <string name="preferences__pref_led_blink_dialogtitle">اختيار اسلوب وميض LED</string>
-  <string name="preferences__select_led_color">اختيار لون ضوء التنبيه LED</string>
   <string name="preferences__vibrate">هزاز</string>
   <string name="preferences__also_vibrate_when_notified">شغل الهزاز عند وصول تنبيه</string>
   <string name="preferences__minutes">دقائق</string>
@@ -375,7 +372,6 @@
   <string name="conversation_list__menu_search">بحث</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">الأمن</string>
-  <string name="conversation_secure_verified__menu_verify_session">تحقق من قناة الاتصال</string>
   <string name="conversation_secure_verified__menu_verify_recipient">تحقق من مستقبل الرسالة</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">انهاء قناة التشفير</string>
   <!--conversation-->

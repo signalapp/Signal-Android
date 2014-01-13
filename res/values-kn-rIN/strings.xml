@@ -331,11 +331,7 @@
   <string name="preferences__notifications">ಸೂಚನೆಗಳು</string>
   <string name="preferences__display_message_notifications_in_status_bar">ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ ಸಂದೇಶದ ಸೂಚನೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
   <string name="preferences__led_color">ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ</string>
-  <string name="preferences__change_notification_led_color">ಸೂಚನೆಯ ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ ಬದಲಾಯಿಸಿ</string>
   <string name="preferences__pref_led_blink_title">ಎಲ್. ಇ. ಡಿ ಮಿಣುಕುವ ಮಾದರಿ</string>
-  <string name="preferences__change_notification_blink_pattern">ಸೂಚನೆ ಎಲ್. ಇ. ಡಿ ಮಿಣುಕುವ ಮಾದರಿಯನ್ನು ಬದಲಾಯಿಸಿ</string>
-  <string name="preferences__pref_led_blink_dialogtitle">ಎಲ್. ಇ. ಡಿ ಮಿಣುಕುವ ಮಾದರಿಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
-  <string name="preferences__select_led_color">ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="preferences__sound">ಶಬ್ದ</string>
   <string name="preferences__inthread_notifications">ಎಳೆಗಳಲ್ಲಿನ ಸೂಚನೆಗಳು</string>
   <string name="preferences__play_inthread_notifications">ಸಕ್ರಿಯ ಸಂಭಾಷಣೆಯನ್ನು ನೋಡುವಾಗ ಸೂಚನೆ ಶಬ್ದವನ್ನು ನುಡಿಸಿ.</string>
@@ -404,7 +400,6 @@
   <string name="conversation_list__menu_search">ಹುಡುಕಿ</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">ಸುರಕ್ಷತೆ</string>
-  <string name="conversation_secure_verified__menu_verify_session">ಸೆಷನ್ನನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="conversation_secure_verified__menu_verify_recipient">ಸ್ವೀಕೃತಿದಾರರನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">ಸುರಕ್ಷಿತ ಸೆಷನನ್ನು ಸ್ಥಗಿತಗೊಳಿಸಿ</string>
   <!--conversation-->

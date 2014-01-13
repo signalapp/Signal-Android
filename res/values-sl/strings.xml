@@ -331,11 +331,7 @@
   <string name="preferences__notifications">Obvestila</string>
   <string name="preferences__display_message_notifications_in_status_bar">Prikaži obvestilo o sporočilu v statusni vrstici</string>
   <string name="preferences__led_color">Barva LED</string>
-  <string name="preferences__change_notification_led_color">Spremeni barvo LED za obvestila</string>
   <string name="preferences__pref_led_blink_title">Vzorec utripanja LED</string>
-  <string name="preferences__change_notification_blink_pattern">Spremeni vzorec utripanja LED za obvestila</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Izveri vzorec utripanja LED</string>
-  <string name="preferences__select_led_color">Izberi barvo LED</string>
   <string name="preferences__sound">Zvok</string>
   <string name="preferences__inthread_notifications">Obvestila znotraj pogovora</string>
   <string name="preferences__play_inthread_notifications">Predvajaj zvočna obvestila znotraj pogovora.</string>
@@ -404,7 +400,6 @@
   <string name="conversation_list__menu_search">Iskanje</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Varnost</string>
-  <string name="conversation_secure_verified__menu_verify_session">Overovi sejo</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Overovi prejemnika</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Prekini varno sejo</string>
   <!--conversation-->

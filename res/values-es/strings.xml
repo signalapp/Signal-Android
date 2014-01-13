@@ -331,11 +331,7 @@
   <string name="preferences__notifications">Notificaciones</string>
   <string name="preferences__display_message_notifications_in_status_bar">Desplegar notificaciones de mensaje en la barra de estado</string>
   <string name="preferences__led_color">Color LED</string>
-  <string name="preferences__change_notification_led_color">Cambiar el color LED de la notificación</string>
   <string name="preferences__pref_led_blink_title">Patrón de parpadeo del LED</string>
-  <string name="preferences__change_notification_blink_pattern">Cambiar el patrón de parpadeo de la notificación LED</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Seleccionar un patrón e parpadeo del LED</string>
-  <string name="preferences__select_led_color">Seleccionar color LED</string>
   <string name="preferences__sound">Sonido</string>
   <string name="preferences__inthread_notifications">Notificaciones en-el-hilo</string>
   <string name="preferences__play_inthread_notifications">Reproducir sonido de notificación cuando esté viendo una conversación activa.</string>
@@ -404,7 +400,6 @@
   <string name="conversation_list__menu_search">Buscar</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Seguridad</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verificar sesión</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verificar destinatario</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Abandonar la sesión segura</string>
   <!--conversation-->

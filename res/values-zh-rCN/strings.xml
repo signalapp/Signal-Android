@@ -213,11 +213,7 @@
   <string name="preferences__notifications">通知</string>
   <string name="preferences__display_message_notifications_in_status_bar">在状态栏显示邮件通知</string>
   <string name="preferences__led_color">LED 颜色</string>
-  <string name="preferences__change_notification_led_color">更改通知 LED 颜色</string>
   <string name="preferences__pref_led_blink_title">LED 闪烁模式</string>
-  <string name="preferences__change_notification_blink_pattern">更改通知 LED 闪烁模式</string>
-  <string name="preferences__pref_led_blink_dialogtitle">选择 LED 闪烁模式</string>
-  <string name="preferences__select_led_color">选择 LED 颜色</string>
   <string name="preferences__sound">选择铃声</string>
   <string name="preferences__vibrate">振动</string>
   <string name="preferences__also_vibrate_when_notified">通知时同时振动</string>
@@ -259,7 +255,6 @@
   <string name="conversation_list__menu_search">搜索</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">安全性</string>
-  <string name="conversation_secure_verified__menu_verify_session">验证会话</string>
   <string name="conversation_secure_verified__menu_verify_recipient">验证收件人</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">中止安全会话</string>
   <!--conversation-->

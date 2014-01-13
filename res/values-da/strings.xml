@@ -323,11 +323,7 @@
   <string name="preferences__notifications">Notifikation</string>
   <string name="preferences__display_message_notifications_in_status_bar">Vis notifikation om beskeder i status feltet</string>
   <string name="preferences__led_color">LED farve</string>
-  <string name="preferences__change_notification_led_color">Ændre farve på LED advarsel</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
-  <string name="preferences__change_notification_blink_pattern">Ændre LED-notifikations blinkemønster</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Vælg LED blinkemønster</string>
-  <string name="preferences__select_led_color">Vælg LED farve</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__vibrate">Vibrér</string>
   <string name="preferences__also_vibrate_when_notified">Vibrér også ved tilbagemelding</string>
@@ -388,7 +384,6 @@
   <string name="conversation_list__menu_search">Søg</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sikkerhed</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verificer session</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verificer modtager</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Afbryd sikker session</string>
   <!--conversation-->

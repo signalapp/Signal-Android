@@ -315,11 +315,7 @@
   <string name="preferences__notifications">Notificari</string>
   <string name="preferences__display_message_notifications_in_status_bar">Afiseaza notificarile in bara de stare</string>
   <string name="preferences__led_color">Culoare LED</string>
-  <string name="preferences__change_notification_led_color">Schimba culoarea LED-ului de notificare</string>
   <string name="preferences__pref_led_blink_title">Sablon clipire LED</string>
-  <string name="preferences__change_notification_blink_pattern">Schimba sablonul de clipire a LED-ului de notificare</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Selecteaza sablonul de clipire a LED-ului</string>
-  <string name="preferences__select_led_color">Alege culoarea LED-ului</string>
   <string name="preferences__vibrate">Vibreaza</string>
   <string name="preferences__also_vibrate_when_notified">Vibreaza si cand esti notificat</string>
   <string name="preferences__minutes">minute</string>
@@ -379,7 +375,6 @@
   <string name="conversation_list__menu_search">Cauta</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Securitate</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verifica sesiunea</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verifica destinatar</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Anuleaza Sesiune Securizata</string>
   <!--conversation-->

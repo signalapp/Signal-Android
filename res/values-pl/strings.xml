@@ -331,11 +331,7 @@
   <string name="preferences__notifications">Powiadomienia</string>
   <string name="preferences__display_message_notifications_in_status_bar">Wyświetlaj powiadomienia o wiadomości na pasku </string>
   <string name="preferences__led_color">Kolor LED</string>
-  <string name="preferences__change_notification_led_color">Zmień kolor powiadomienia LED</string>
   <string name="preferences__pref_led_blink_title">Wzór powiadomień LED</string>
-  <string name="preferences__change_notification_blink_pattern">Zmień wzór powiadomień LED</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Wybierz wzór migających LED</string>
-  <string name="preferences__select_led_color">Wybierz kolor LED</string>
   <string name="preferences__sound">Dźwięk</string>
   <string name="preferences__inthread_notifications">Powiadomienia \"w rozmowie\"</string>
   <string name="preferences__play_inthread_notifications">Odtwórz dźwięk powiadomienia podczas przeglądania rozmowy.</string>
@@ -404,7 +400,6 @@
   <string name="conversation_list__menu_search">Szukaj</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Bezpieczeństwo</string>
-  <string name="conversation_secure_verified__menu_verify_session">Zweryfikuj sesję</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Zweryfikuj odbiorcę</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Przerwij bezpieczną sesję</string>
   <!--conversation-->

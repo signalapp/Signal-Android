@@ -327,11 +327,7 @@
   <string name="preferences__notifications">Ειδοποιήσεις</string>
   <string name="preferences__display_message_notifications_in_status_bar">Προβολή ειδοποιήσεων για νέα μηνύματα στη γραμμή κατάστασης</string>
   <string name="preferences__led_color">Χρώμα LED</string>
-  <string name="preferences__change_notification_led_color">Αλλαγή του χρώματος LED</string>
   <string name="preferences__pref_led_blink_title">Τρόπος Αναβοσβηνόματος του LED</string>
-  <string name="preferences__change_notification_blink_pattern">Αλλάξτε το πώς αναβοσβήνει το LED</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Επιλογή τρόπου αναβοσβηνόματος του LED</string>
-  <string name="preferences__select_led_color">Επιλέξτε Χρώμα LED</string>
   <string name="preferences__sound">Ήχος</string>
   <string name="preferences__inthread_notifications">ΕΙδοποιήσεις εντός συζητήσεων</string>
   <string name="preferences__play_inthread_notifications">Ήχος ειδοποίησης κατά τη προβολή ενεργής συζήτησης.</string>
@@ -397,7 +393,6 @@
   <string name="conversation_list__menu_search">Αναζήτηση</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Ασφάλεια</string>
-  <string name="conversation_secure_verified__menu_verify_session">Επιβεβαίωση Συζήτησης</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Επικύρωση Παραλήπτη</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Τερματισμός Ασφαλούς Συζήτησης</string>
   <!--conversation-->

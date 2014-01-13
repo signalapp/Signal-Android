@@ -193,8 +193,6 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">Textsecure စကားဝှက်</string>
   <string name="prompt_passphrase_activity__unlock">ပိတ်ထားသည်ကိုဖွင့်</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">TextSecure requires APN settings to deliver media messages via your wireless carrier.  Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
-  <string name="prompt_mms_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">To send media messages, please complete the necessary APN information below. The values for your carrier can generally be located by searching for \'&amp;lt;your carrier&amp;gt; APN\'.  You will only need to do this once.</string>
   <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (အရေးကြီး) - </string>
   <string name="prompt_mms_activity__mms_proxy_host_optional">MMSC ပရောက်ဇီ အိမ်ရှင်စက် (အရေးမကြီး) -</string>
   <string name="prompt_mms_activity__mms_proxy_port_optional">MMS ပရောက်ဇီ PORT (အရေးမကြီး)</string>
@@ -248,11 +246,7 @@
   <string name="preferences__notifications">အသိပေးချက်များ</string>
   <string name="preferences__display_message_notifications_in_status_bar">null</string>
   <string name="preferences__led_color">LED အရောင်</string>
-  <string name="preferences__change_notification_led_color">အချက်ပြ LED အရောင်ပြောင်းရန်</string>
   <string name="preferences__pref_led_blink_title">LED လင်းမည့်ပုံစံ</string>
-  <string name="preferences__change_notification_blink_pattern">အချက်ပြ LED လင်းမည့်ပုံစံကိုရွေးချယ်ပါ</string>
-  <string name="preferences__pref_led_blink_dialogtitle">LED လင်းမည့်ပုံစံရွေးချယ်ပါ</string>
-  <string name="preferences__select_led_color">LED အရောင်ရွေးချယ်ပါ</string>
   <string name="preferences__vibrate">တုန်ခါမှု</string>
   <string name="preferences__also_vibrate_when_notified">အချက်ပြစဉ်တုန်ခါပါ</string>
   <string name="preferences__minutes">မိနစ်</string>
@@ -304,7 +298,6 @@
   <string name="conversation_list__menu_search">ရှာရန်</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">လုံခြုံရေး</string>
-  <string name="conversation_secure_verified__menu_verify_session">ဆက်ရှင်အတည်ပြု</string>
   <string name="conversation_secure_verified__menu_verify_recipient">လက်ခံကိုစစ်ဆေးပါ</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">လုံခြုံရေးဆက်ရှင်ကိုရပ်ဆိုင်းပါ</string>
   <!--conversation-->

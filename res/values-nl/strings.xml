@@ -323,11 +323,7 @@
   <string name="preferences__notifications">Notificaties</string>
   <string name="preferences__display_message_notifications_in_status_bar">Toon berichtmeldingen in notificatiebalk</string>
   <string name="preferences__led_color">LED Kleur</string>
-  <string name="preferences__change_notification_led_color">Wijzig notificatie LED kleur</string>
   <string name="preferences__pref_led_blink_title">LED Knipperpatroon</string>
-  <string name="preferences__change_notification_blink_pattern">Verander notificatie LED knipperpatroon</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Selecteer LED Knipperpatroon</string>
-  <string name="preferences__select_led_color">Selecteer LED Kleur</string>
   <string name="preferences__vibrate">Trillen</string>
   <string name="preferences__also_vibrate_when_notified">Ook trillen bij notificaties</string>
   <string name="preferences__minutes">minuten</string>
@@ -387,7 +383,6 @@
   <string name="conversation_list__menu_search">Zoeken</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Veiligheid</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verifieer Sessie</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verifieer Ontvanger</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Stop Beveiligde Sessie</string>
   <!--conversation-->

@@ -331,11 +331,7 @@
   <string name="preferences__notifications">Benachrichtigungen</string>
   <string name="preferences__display_message_notifications_in_status_bar">Benachrichtigung in der Statuszeile anzeigen</string>
   <string name="preferences__led_color">LED Farbe</string>
-  <string name="preferences__change_notification_led_color">LED Farbe anpassen</string>
   <string name="preferences__pref_led_blink_title">LED Blinkmuster</string>
-  <string name="preferences__change_notification_blink_pattern">Ändern des LED Blinkmusters für Benachrichtigungen</string>
-  <string name="preferences__pref_led_blink_dialogtitle">LED Blinkmuster auswählen</string>
-  <string name="preferences__select_led_color">LED Farbe auswählen</string>
   <string name="preferences__sound">Ton</string>
   <string name="preferences__inthread_notifications">Benachrichtigungen im Thread</string>
   <string name="preferences__play_inthread_notifications">Einen Alarmton abspielen wenn Sie ein aktives Gespräch ansehen.</string>
@@ -404,7 +400,6 @@
   <string name="conversation_list__menu_search">Suchen</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sicherheit</string>
-  <string name="conversation_secure_verified__menu_verify_session">Sitzung verifizieren</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Empfänger verifizieren</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Sichere Sitzung abbrechen</string>
   <!--conversation-->

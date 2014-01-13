@@ -223,11 +223,7 @@
   <string name="preferences__notifications">Hlásenia</string>
   <string name="preferences__display_message_notifications_in_status_bar">Zobrazuj hlásenia o správach v stavovom riadku</string>
   <string name="preferences__led_color">Farba LED</string>
-  <string name="preferences__change_notification_led_color">Zmeň farbu LED hlásení</string>
   <string name="preferences__pref_led_blink_title">Vzor blikania LED</string>
-  <string name="preferences__change_notification_blink_pattern">Zmena vzoru blikania LED hlásení</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Vyberte vzor blikania LED</string>
-  <string name="preferences__select_led_color">Vyber farbu LED</string>
   <string name="preferences__sound">Vyber zvonenie</string>
   <string name="preferences__vibrate">Vybruj</string>
   <string name="preferences__also_vibrate_when_notified">Počas hlásenia tiež vibruj</string>
@@ -282,7 +278,6 @@
   <string name="conversation_list__menu_search">Hľadaj</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Bezpečnosť</string>
-  <string name="conversation_secure_verified__menu_verify_session">Over session</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Over príjemcu</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Zruš bezpečnú session</string>
   <!--conversation-->
