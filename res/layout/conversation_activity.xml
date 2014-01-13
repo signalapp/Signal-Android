@@ -53,7 +53,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="150dip"
                             android:layout_weight="1"
-                            android:contentDescription="Attachment Thumbnail"/>
+                            android:contentDescription="@string/conversation_activity__thumbnail"/>
 
                     <LinearLayout
                             android:orientation="vertical"
@@ -129,7 +129,8 @@
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
                      android:visibility="gone"
-                     android:text="160/160 (1)" />
+                     android:text="160/160 (1)"
+                     tools:ignore="HardcodedText" />
 
         </LinearLayout>
     </RelativeLayout>
