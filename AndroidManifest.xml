@@ -219,9 +219,6 @@
 
     <receiver android:name=".service.SmsDeliveryListener"
               android:exported="true">
-        <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
-        </intent-filter>
     </receiver>
 
     <receiver android:name=".service.MmsListener"
