@@ -217,9 +217,7 @@
              </intent-filter>
     </receiver>
 
-    <receiver android:name=".service.SmsDeliveryListener"
-              android:exported="true">
-    </receiver>
+    <receiver android:name=".service.SmsDeliveryListener" />
 
     <receiver android:name=".service.MmsListener"
               android:enabled="true"
@@ -245,7 +243,7 @@
 
     <receiver android:name=".notifications.MarkReadReceiver"
               android:enabled="true"
-              android:exported="true">
+              android:exported="false">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.notifications.CLEAR"/>
         </intent-filter>
@@ -262,7 +260,8 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".service.DirectoryRefreshListener">
+    <receiver android:name=".service.DirectoryRefreshListener"
+              android:exported="false">
         <intent-filter>
             <action android:name="org.whispersystems.whisperpush.DIRECTORY_REFRESH"/>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
