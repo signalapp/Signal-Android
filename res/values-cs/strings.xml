@@ -21,7 +21,7 @@
   <string name="ConversationItem_message_size_d_kb">Délka zprávy: %d KB</string>
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
   <string name="ConversationItem_error_sending_message">Chyba při odeslání zprávy</string>
-  <string name="ConversationItem_sending">Odesílám...</string>
+  <string name="ConversationItem_sending">Odesílám&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Ukládám přílohu</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Ukládám přílohu na SD kartu..</string>
   <string name="ConversationItem_save_to_sd_card">Uložit na SD kartu?</string>
@@ -50,7 +50,7 @@
   <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Příjemci skupinové konverzace</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzace</string>
-  <string name="ConversationActivity_saving_draft">Ukládám koncept...</string>
+  <string name="ConversationActivity_saving_draft">Ukládám koncept&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Chybný příjemce!</string>
   <string name="ConversationActivity_calls_not_supported">Vytáčení čísel není podporováno!</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Toto zařízení zřejmě neumí vytáčet telefonní čísla</string>
@@ -60,14 +60,14 @@
   <string name="ConversationFragment_confirm_message_delete">Potvrdit výmaz zpráv</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Opravdu chcete trvale vymazat tyto zprávy?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Předání klíčů...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Předání klíčů&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Vymazat konverace?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Opravdu chcete vymazat VŠECHNY označené konverzace?</string>
   <string name="ConversationListFragment_deleting">Mažu</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Mažu označené konverzace...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Mažu označené konverzace&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Předání klíčů...</string>
+  <string name="ConversationListItem_key_exchange_message">Předání klíčů&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportovat na SD kartu?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Tímto\nexportujete šifrované klíče, nastavení a zprávy na SD kartu.</string>
@@ -84,7 +84,7 @@
   <string name="ImportFragment_restore">Obnovení</string>
   <string name="ImportFragment_import_plaintext_backup">Importovat zálohu ve formě prostého textu?</string>
   <string name="ImportFragment_importing">Importuji</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Impor zálohy ve formě prostého textu...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Impor zálohy ve formě prostého textu&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nenalezena záloha ve formě prostého textu!</string>
   <string name="ImportFragment_error_importing_backup">Chyba při importování zálohy!</string>
   <string name="ImportFragment_import_complete">Import dokončen!</string>
@@ -131,16 +131,16 @@
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_send">Odeslat</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Chybně zašifrovaná zpráva...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Dešifruji, prosím čekejte...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Chybně zašifrovaná zpráva&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Dešifruji, prosím čekejte&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Kontaktuji MMS server...</string>
-  <string name="MmsDatabase_downloading_mms">Stahuji MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Kontaktuji MMS server&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Stahuji MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Stažení MMS se nepodařilo!</string>
-  <string name="MmsDatabase_downloading">Stahuji...</string>
+  <string name="MmsDatabase_downloading">Stahuji&#x2026;</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifruji MMS, čekejte prosím...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Chybně zašifrovaná MMS ...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifruji MMS, čekejte prosím&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Chybně zašifrovaná MMS &#x2026;</string>
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
@@ -151,7 +151,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d nových zpráv</string>
   <string name="MessageNotifier_most_recent_from_s">Poslední od: %s</string>
-  <string name="MessageNotifier_encrypted_message">Šifrovaná zpráva...</string>
+  <string name="MessageNotifier_encrypted_message">Šifrovaná zpráva&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Předmět neuveden)</string>
   <string name="MessageNotifier_message_delivery_failed">Selhalo doručení zprávy.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Selhalo doručení zprávy.</string>
@@ -159,8 +159,8 @@
   <string name="MessageNotifier_mark_all_as_read">Označit vše jako přečtené</string>
   <string name="MessageNotifier_mark_as_read">Označit jako přečtené</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Generuji...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Generuji nový identifikační\nklíč...</string>
+  <string name="ViewLocalIdentityActivity_regenerating">Generuji&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Generuji nový identifikační\nklíč&#x2026;</string>
   <string name="ViewLocalIdentityActivity_regenerated">Regenerováno!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Resetovat identifikační klíč?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nVarování! Generováním nového vlastního klíče bude váš starý klíč nevratně smazán,\na vaše dřívější kontakty obdrží varování při pokusu o aktivaci šifrované konverzace s vámi.\nOpravdu to chcete provést?</string>
@@ -206,7 +206,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Může to chvíli trvat. Prosíme o trpělivost, upozorníme Vás až bude import dokončen.</string>
   <string name="database_migration_activity__importing">IMPORTUJI</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Aktualizuji databázi...</string>
+  <string name="database_upgrade_activity__updating_database">Aktualizuji databázi&#x2026;</string>
   <string name="import_fragment__import_plaintext_backup">Importovat zálohu ve formě prostého textu</string>
   <string name="local_identity__regenerate_key">Vygenerovat klíč</string>
   <!--mms_preferences_activity-->

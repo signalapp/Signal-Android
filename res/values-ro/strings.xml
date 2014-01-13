@@ -6,7 +6,7 @@
   <string name="delete">Sterge</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Trebuie sa introduceti o parola inainte de a gestiona cheile...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Trebuie sa introduceti o parola inainte de a gestiona cheile&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ai setat inca o parola!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">mesaje per conversatie</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Sterge toate mesajele vechi acum?</string>
@@ -24,9 +24,9 @@
   <string name="ConversationItem_message_size_d_kb">Marimea mesajului: %d KB</string>
   <string name="ConversationItem_expires_s">Expira in: %s</string>
   <string name="ConversationItem_error_sending_message">Eroare de trimitere mesaj</string>
-  <string name="ConversationItem_sending">Se trimite...</string>
+  <string name="ConversationItem_sending">Se trimite&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Atasamentul se salveaza</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Atasamentul se salveaza pe SD card...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Atasamentul se salveaza pe SD card&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Salvezi pe SD Card?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Aceste date au fost stocate intr-o baza de date incriptata. Versiunea pe care o salvezi pe SD card nu va mai fi incriptata. Doresti sa continui?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">A aparut o eroare in timpul salvarii pe SD card!</string>
@@ -55,7 +55,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Grupeaza destinatarii conversatiei</string>
   <string name="ConversationActivity_group_conversation">Grupeaza conversatia</string>
   <string name="ConversationActivity_d_recipients_in_group">%d recipienti in grup</string>
-  <string name="ConversationActivity_saving_draft">Se salveaza ciorna...</string>
+  <string name="ConversationActivity_saving_draft">Se salveaza ciorna&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Destinatar invalid!</string>
   <string name="ConversationActivity_calls_not_supported">Apelurile nu sunt disponibile</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Acest dispozitiv nu pare sa ofere actiuni pentru formarea numarului de telefon</string>
@@ -66,14 +66,14 @@
   <string name="ConversationFragment_confirm_message_delete">Confirma stergere mesaj</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Esti sigur ca doresti sa stergi permanent acest mesaj?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Mesaj pentru schimb de chei...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Mesaj pentru schimb de chei&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Sterg conversatii?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Esti sigur ca doresti stergerea TUTUROR conversatiilor selectate?</string>
   <string name="ConversationListFragment_deleting">Se sterge</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Se sterg conversatiile selectate...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Se sterg conversatiile selectate&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimb de chei...</string>
+  <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimb de chei&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Export pe SD card?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Aceasta actiune va exporta cheile criptate, setarile si mesajele pe SD card.</string>
@@ -82,11 +82,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atentie, aceasta actiune va exporta continutul text al mesajelor TextSecure pe SD card.</string>
   <string name="ExportFragment_cancel">Anuleaza</string>
   <string name="ExportFragment_exporting">Se exporta</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Se exporta textul pe SD card...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Se exporta textul pe SD card&#x2026;</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Eroare, nu am putut scrie pe SD card!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Eroare in timpul scrierii pe SD card.</string>
   <string name="ExportFragment_success">Succes!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Se exporta cheile incriptate, setarile si mesajele...</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Se exporta cheile incriptate, setarile si mesajele&#x2026;</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Import baza de date cu SMS-uri?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Aceasta actiune va importa mesajele din baza de date cu SMS-uri a dispozitivului in TextSecure. Daca ai importat anterior aceste mesaje, importarea lor din nou va rezulta in mesaje duplicate.</string>
@@ -98,20 +98,20 @@
   <string name="ImportFragment_import_plaintext_backup">Importa backup text?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Aceasta actiune va importa mesajele dintr-un backup text. Daca ai importat anterior baza de date cu SMS-uri, importul repetat va duce la mesaje duplicate.</string>
   <string name="ImportFragment_importing">Se importa</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importa backup text...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importa backup text&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nu a fost gasit nci un backup text!</string>
   <string name="ImportFragment_error_importing_backup">Eroare la importul backup-ului!</string>
   <string name="ImportFragment_import_complete">Import complet!</string>
   <string name="ImportFragment_restoring">Se restaureaza</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Se restaureaza backup-ul incriptat...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Se restaureaza backup-ul incriptat&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nu a fost gasit nici un backup incriptat!</string>
   <string name="ImportFragment_restore_complete">Restaurare completa!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nu a fost gasita nici o cheie scanata!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Nu exista conectivitate pentru descarcarea MMS, va rugam sa incercati mai tarziu...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Nu exista conectivitate pentru descarcarea MMS, va rugam sa incercati mai tarziu&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">Eroare la stocarea MMS-ului!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Eroare de conectare la furnizorul MMS...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Eroare de conectare la furnizorul MMS&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mesaj multimedia</string>
   <!--PassphraseChangeActivity-->
@@ -162,18 +162,18 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Ai trimis deja o cerere pentru initializarea sesiunii catre acest destinatar, esti sigur ca doresti sa trimiti inca una? Aceasta actiune va invalida cererea deja trimisa.</string>
   <string name="KeyExchangeInitiator_send">Trimite</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Se decripteaza, te rog asteapta...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj criptat pentru o sesiune inexistenta...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Se decripteaza, te rog asteapta&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj criptat pentru o sesiune inexistenta&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Se conecteaza la serverul MMS...</string>
-  <string name="MmsDatabase_downloading_mms">Se descarca MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Se conecteaza la serverul MMS&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Se descarca MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Descarcare MMS esuata!</string>
-  <string name="MmsDatabase_downloading">Se descarca...</string>
+  <string name="MmsDatabase_downloading">Se descarca&#x2026;</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Se decripteaza MMS, te rog asteapta...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesaj MMS criptat incorect...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesaj MMS criptat pentru o sesiune inexistenta...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Se decripteaza MMS, te rog asteapta&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesaj MMS criptat incorect&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesaj MMS criptat pentru o sesiune inexistenta&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Nu pot trimite mesajul MMS in momentul de fata</string>
   <!--ApplicationMigrationService-->
@@ -185,7 +185,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d mesaje noi</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %s</string>
-  <string name="MessageNotifier_encrypted_message">Mesaj criptat...</string>
+  <string name="MessageNotifier_encrypted_message">Mesaj criptat&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Fara subiect)</string>
   <string name="MessageNotifier_message_delivery_failed">Trimiterea mesajului a esuat.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Mesajul nu a putut fi trimis.</string>
@@ -235,7 +235,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">S-ar putea sa dureze cateva momente. Va rugam sa aveti rabdare, va vom notifica cand importul este complet.</string>
   <string name="database_migration_activity__importing">SE IMPORTA</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Actualizare baza de date...</string>
+  <string name="database_upgrade_activity__updating_database">Actualizare baza de date&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Exporta backup incriptat</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Un backup incriptat a fost exportat pe SD card.</string>
   <string name="export_fragment__export_plaintext_backup">Exporta backup text</string>

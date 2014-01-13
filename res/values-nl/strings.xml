@@ -6,7 +6,7 @@
   <string name="delete">Verwijder</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">U moet uw wachtwoord hebben ingevoerd voor het beheren van sleutels...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">U moet uw wachtwoord hebben ingevoerd voor het beheren van sleutels&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">U heeft nog geen wachtwoord ingesteld!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">berichten per conversatie</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
@@ -24,9 +24,9 @@
   <string name="ConversationItem_message_size_d_kb">Berichtgrootte: %d KB</string>
   <string name="ConversationItem_expires_s">Verloopt: %s</string>
   <string name="ConversationItem_error_sending_message">Fout bij versturen bericht</string>
-  <string name="ConversationItem_sending">Versturen...</string>
+  <string name="ConversationItem_sending">Versturen&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Bijlage Opslaan</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Bijlage aan het opslaan op de SD-kaart...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Bijlage aan het opslaan op de SD-kaart&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Opslaan op SD-kaart?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Deze media is opgeslagen in een versleutelde database. De versie die u op de SD-kaart opslaat, zal niet langer versleuteld zijn. Wilt u doorgaan?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Fout tijdens het opslaan van de bijlage naar de SD-kaart!</string>
@@ -55,7 +55,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Groepsconversatie Ontvangers</string>
   <string name="ConversationActivity_group_conversation">Groepsconversatie</string>
   <string name="ConversationActivity_d_recipients_in_group">%d ontvangers in groep</string>
-  <string name="ConversationActivity_saving_draft">Concept opslaan...</string>
+  <string name="ConversationActivity_saving_draft">Concept opslaan&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
   <string name="ConversationActivity_calls_not_supported">Oproepen Niet Ondersteund</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt dial-acties niet te ondersteunen.</string>
@@ -66,14 +66,14 @@
   <string name="ConversationFragment_confirm_message_delete">Bevestig Bericht Verwijdering</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Weet u zeker dat u dit bericht permanent wilt verwijderen?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Sleuteluitwisselingsbericht...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Sleuteluitwisselingsbericht&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Conversaties verwijderen?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Weet u zeker dat u ALLE geselecteerde conversaties wilt verwijderen?</string>
   <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Geselecteerde conversaties aan het verwijderen...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Geselecteerde conversaties aan het verwijderen&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
+  <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Opslaan op SD-kaart?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dit exporteert je keys, instellingen en berichten versleuteld naar de SD-kaart</string>
@@ -82,11 +82,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Waarschuwing, dit exporteert de onversleutelde tekst van je berichten in Textsecure naar de SD-kaart.</string>
   <string name="ExportFragment_cancel">Annuleren</string>
   <string name="ExportFragment_exporting">Aan het exporteren</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Aan het exporteren naar de SD-kaart...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Aan het exporteren naar de SD-kaart&#x2026;</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Fout, SD-kaart niet beschrijfbaar!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Fout tijdens het schrijven naar de SD-kaart.</string>
   <string name="ExportFragment_success">Succesvol!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Keys, instellingen en berichten versleuteld naar de SD-kaart aan het exporteren...</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Keys, instellingen en berichten versleuteld naar de SD-kaart aan het exporteren&#x2026;</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard SMS-database van het systeem importeren naar TextSecure. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
@@ -98,20 +98,20 @@
   <string name="ImportFragment_import_plaintext_backup">Niet-versleutelde Back-up Importeren?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dit zal berichten uit een niet-versleutelde back-up importeren. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_importing">Importeren</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Niet-versleutelde back-up importeren...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Niet-versleutelde back-up importeren&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Geen niet-versleutelde back-up gevonden!</string>
   <string name="ImportFragment_error_importing_backup">Fout bij het importeren van back-up!</string>
   <string name="ImportFragment_import_complete">Importeren voltooid!</string>
   <string name="ImportFragment_restoring">Herstellen</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Versleutelde back-up herstellen...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Versleutelde back-up herstellen&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Geen versleutelde back-up gevonden!</string>
   <string name="ImportFragment_restore_complete">Herstellen voltooid!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Geen gescande sleutel gevonden!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Geen connectie beschikbaar voor MMS download, probeer later opnieuw...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Geen connectie beschikbaar voor MMS download, probeer later opnieuw&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">MMS opslaan mislukt!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Fout bij verbinden met MMS provider...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Fout bij verbinden met MMS provider&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
   <!--PassphraseChangeActivity-->
@@ -162,18 +162,18 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">U heeft reeds een sessieinititatieverzoek verstuurd naar deze ontvanger, weet u zeker dat u er nog een wilt sturen? Dit maakt het eerdere verzoek ongeldig.</string>
   <string name="KeyExchangeInitiator_send">Verstuur</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Verkeerd versleuteld bericht...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Ontsleutelen, een moment...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Bericht ontsleuteld voor niet bestaande sessie...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Verkeerd versleuteld bericht&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Ontsleutelen, een moment&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Bericht ontsleuteld voor niet bestaande sessie&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Verbinden met MMS server...</string>
-  <string name="MmsDatabase_downloading_mms">Downloaden van MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Verbinden met MMS server&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Downloaden van MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">MMS Download mislukt!</string>
-  <string name="MmsDatabase_downloading">Downloaden...</string>
+  <string name="MmsDatabase_downloading">Downloaden&#x2026;</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS ontsleutelen, een moment...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld MMS-bericht...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-bericht versleuteld voor niet bestaande sessie...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS ontsleutelen, een moment&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld MMS-bericht&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-bericht versleuteld voor niet bestaande sessie&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Momenteel niet in staat om uw MMS bericht te versturen.</string>
   <!--ApplicationMigrationService-->
@@ -185,7 +185,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nieuwe berichten</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %s</string>
-  <string name="MessageNotifier_encrypted_message">Versleuteld bericht...</string>
+  <string name="MessageNotifier_encrypted_message">Versleuteld bericht&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Geen Onderwerp)</string>
   <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
@@ -194,7 +194,7 @@
   <string name="MessageNotifier_mark_as_read">Markeer als gelezen</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Regenereren</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Identiteit regenereren\nSleutel...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Identiteit regenereren\nSleutel&#x2026;</string>
   <string name="ViewLocalIdentityActivity_regenerated">Geregenereerd!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Identiteitssleutel opnieuw instellen?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nPas op! Door uw identiteitssleutel te regenereren zal uw huidige identiteitssleutel definitief verloren gaan,\nen uw huidige contacten zullen waarschuwingen krijgen wanneer zij een nieuwe beveiligde sessie met u starten.\nWeet u zeker dat u door wilt gaan?</string>
@@ -242,7 +242,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan een moment duren. Heb geduld, we zullen u op de hoogte stellen wanneer het importeren voltooid is.</string>
   <string name="database_migration_activity__importing">AAN HET IMPORTEREN</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Database aan het updaten...</string>
+  <string name="database_upgrade_activity__updating_database">Database aan het updaten&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Exporteer Versleutelde Back-up</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Export een versleutelde back-up naar de SD-kaart.</string>
   <string name="export_fragment__export_plaintext_backup">Exporteer Niet-versleutelde Back-up</string>

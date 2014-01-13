@@ -6,7 +6,7 @@
   <string name="delete">Izbriši</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Pred upravljanjem s ključi morate vpisati svoje geslo...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Pred upravljanjem s ključi morate vpisati svoje geslo&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">sporočil na pogovor</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Izbrišem stara sporočila?</string>
@@ -24,9 +24,9 @@
   <string name="ConversationItem_message_size_d_kb">Velikost sporočila: %d KB</string>
   <string name="ConversationItem_expires_s">Preteče: %s</string>
   <string name="ConversationItem_error_sending_message">Napaka pri pošiljanju sporočila</string>
-  <string name="ConversationItem_sending">Pošiljam...</string>
+  <string name="ConversationItem_sending">Pošiljam&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Shranjevanje priponke</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Shranjujem priponko na kartico SD...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Shranjujem priponko na kartico SD&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Shranim na kartico SD?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Ta datoteka je shranjena v kriptirani zbirki. Različica, ki jo boste shranili na SD kartico ne bo več kriptirana. Želite nadaljevati?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Napaka pri shranjevanju priponke na kartico SD!</string>
@@ -56,7 +56,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Prejemniki skupinskega pogovora</string>
   <string name="ConversationActivity_group_conversation">Skupinski pogovor</string>
   <string name="ConversationActivity_d_recipients_in_group">%d prejemnikov v skupini</string>
-  <string name="ConversationActivity_saving_draft">Shranjujem osnutek...</string>
+  <string name="ConversationActivity_saving_draft">Shranjujem osnutek&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Neveljaven prejemnik!</string>
   <string name="ConversationActivity_calls_not_supported">Klici niso podprti</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Naprava ne omogoča podpore klicnim operacijam.</string>
@@ -67,14 +67,14 @@
   <string name="ConversationFragment_confirm_message_delete">Potrdi izbris sporočila</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste prepričani, da želite dokonćno izbrisati sporočilo?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Sporočilo za izmenjavo ključev&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Izbris pogovorov?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ste prepričani, da želite izbrisati VSE izbrane pogovore?</string>
   <string name="ConversationListFragment_deleting">Brisanje</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Brišem izbrane pogovore...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Brišem izbrane pogovore&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
+  <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Izvozim na kartico SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">S tem boste izvozili svoje ključe, nastavitve in sporočila na kartico SD v šifrirani obliki.</string>
@@ -83,11 +83,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Pozor, s tem boste izvozili vsebino svojih sporočil na SD kartico v nešifrirani obliki.</string>
   <string name="ExportFragment_cancel">Prekliči</string>
   <string name="ExportFragment_exporting">Izvažam</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvažam nešifrirano na kartico SD...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvažam nešifrirano na kartico SD&#x2026;</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Napaka, ne morem pisati na kartico SD!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Napaka pri zapisovanju na kartico SD.</string>
   <string name="ExportFragment_success">Uspešno opravljeno!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Izvažam ključe, nastavitve in sporočila v šifrirani obliki...</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Izvažam ključe, nastavitve in sporočila v šifrirani obliki&#x2026;</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Uvozim sistemsko zbirko SMS sporočil?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">S tem boste uvozili sporočila iz sistemske zbirke SMS v TextSecure. Če ste predhodno že uvozili sporočila iz sistemske SMS zbirke, bodo ta sporočila v aplikaciji TextSecure podvojena.</string>
@@ -99,21 +99,21 @@
   <string name="ImportFragment_import_plaintext_backup">Uvozim nešifrirano varnostno kopijo?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">S tem boste uvozili sporočila iz nešifrirane varnostne kopije v TextSecure. Če ste predhodno že uvozili sporočila iz iste varnostne kopije, bodo ta sporočila v aplikaciji TextSecure podvojena.</string>
   <string name="ImportFragment_importing">Uvažam</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Uvozi nešifrirano varnostno kopijo...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Uvozi nešifrirano varnostno kopijo&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Ne najdem nobene nešifrirane varnostne kopije!</string>
   <string name="ImportFragment_error_importing_backup">Napaka pri uvozu varnostne kopije!</string>
   <string name="ImportFragment_import_complete">Uvoz zaključen!</string>
   <string name="ImportFragment_restoring">Obnavljam</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Obnavljam šifrirano varnostno kopijo...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Obnavljam šifrirano varnostno kopijo&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ne najdem nobene šifrirane varnostne kopije!</string>
   <string name="ImportFragment_restore_complete">Obnova končana!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Noben skeniran ključ ni bil najden!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Ni povezave za prenos MMS sporočila, poskusite kasneje...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Ni povezave za prenos MMS sporočila, poskusite kasneje&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">Napaka pri shranjevanju MMS sporočila!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Napaka pri povezavi s ponudnikom MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Ne morem razbrati MMS nastavitev vašega operaterja...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Napaka pri povezavi s ponudnikom MMS&#x2026;</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Ne morem razbrati MMS nastavitev vašega operaterja&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Večpredstavno sporočilo</string>
   <!--PassphraseChangeActivity-->
@@ -164,19 +164,19 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Prejemniku ste že poslali zahtevo za inicijacijo, ste prepričani, da želite poslati še eno?    To bo razveljavilo prvo zahtevo.</string>
   <string name="KeyExchangeInitiator_send">Pošlji</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Okvarjeno šifrirano sporočilo...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Dešifriram sporočilo, počakajte...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je šifrirano za neobstoječo sejo...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Okvarjeno šifrirano sporočilo&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Dešifriram sporočilo, počakajte&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je šifrirano za neobstoječo sejo&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Povezovanje s strežnikom za MMS...</string>
-  <string name="MmsDatabase_downloading_mms">Prejemam MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Povezovanje s strežnikom za MMS&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Prejemam MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Prejem MMS sporočila neuspešen!</string>
-  <string name="MmsDatabase_downloading">Prejemam...</string>
+  <string name="MmsDatabase_downloading">Prejemam&#x2026;</string>
   <string name="MmsDatabase_mms_pending_download">Za dolpoteg klikni in spremeni MMS nastavitve.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifriranje sporočila MMS, počakajte...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Okvarjeno šifrirano sporočilo MMS...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Sporočilo MMS šifrirano za neobstoječo sejo...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifriranje sporočila MMS, počakajte&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Okvarjeno šifrirano sporočilo MMS&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Sporočilo MMS šifrirano za neobstoječo sejo&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Trenutno sporočila MMS ni mogoče poslati.</string>
   <!--ApplicationMigrationService-->
@@ -188,7 +188,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d novih sporočil</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovejše od: %s</string>
-  <string name="MessageNotifier_encrypted_message">Šifrirano sporočilo...</string>
+  <string name="MessageNotifier_encrypted_message">Šifrirano sporočilo&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Brez predmeta)</string>
   <string name="MessageNotifier_message_delivery_failed">Dostava sporočila ni uspela.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Neuspešna dostava sporočila.</string>
@@ -196,8 +196,8 @@
   <string name="MessageNotifier_mark_all_as_read">Označi vsa kot prebrana</string>
   <string name="MessageNotifier_mark_as_read">Označi kot prebrano</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Ustvarjam nov ključ...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Ustvarjam nov identifikacijski ključ...</string>
+  <string name="ViewLocalIdentityActivity_regenerating">Ustvarjam nov ključ&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Ustvarjam nov identifikacijski ključ&#x2026;</string>
   <string name="ViewLocalIdentityActivity_regenerated">Nov ključ je ustvarjen!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Ponastavim identifikacijski ključ?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">Pozor! Z generiranjem novega identifikacijskega ključa bo vaš trenutni identifikacijski ključ izgubljen, vaši stiki pa bodo pred vzpostavitvijo varne seje z vami prejeli opozorilo. Ste prepričani, da želite nadaljevati?</string>
@@ -247,7 +247,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">To utegne trajati trenutek ali dva. Bodite potrpežljivi; ko bo uvoz končan, boste o tem obveščeni.</string>
   <string name="database_migration_activity__importing">UVAŽANJE</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Posodabljam podatkovne zbirke...</string>
+  <string name="database_upgrade_activity__updating_database">Posodabljam podatkovne zbirke&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Izvoz šifrirane varnostne kopije</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Izvozi šifrirano varnostno kopijo na kartico SD.</string>
   <string name="export_fragment__export_plaintext_backup">Izvozi nešifrirano varnostno kopijo</string>

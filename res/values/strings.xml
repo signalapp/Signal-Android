@@ -7,7 +7,7 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>    
-    <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">You need to have entered your passphrase before managing keys...</string>
+    <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">You need to have entered your passphrase before managing keys&#x2026;</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
     <string name="ApplicationPreferencesActivity_messages_per_conversation">messages per conversation</string>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
@@ -21,7 +21,7 @@
         able to access them.
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_unregistering">Unregistering...</string>
+    <string name="ApplicationPreferencesActivity_unregistering">Unregistering&#x2026;</string>
     <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Unregistering for data based communication</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
 
@@ -35,9 +35,9 @@
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>
     <string name="ConversationItem_error_sending_message">Error sending message</string>
-    <string name="ConversationItem_sending">Sending...</string>
+    <string name="ConversationItem_sending">Sending&#x2026;</string>
     <string name="ConversationItem_saving_attachment">Saving Attachment</string>
-    <string name="ConversationItem_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
+    <string name="ConversationItem_saving_attachment_to_sd_card">Saving attachment to SD card&#x2026;</string>
     <string name="ConversationItem_save_to_sd_card">Save to SD Card?</string>
     <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted. Would you like to continue?</string>
     <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
@@ -68,7 +68,7 @@
     <string name="ConversationActivity_group_conversation_recipients">Group Conversation Recipients</string>
     <string name="ConversationActivity_group_conversation">Group Conversation</string>
     <string name="ConversationActivity_d_recipients_in_group">%d recipients in group</string>    
-    <string name="ConversationActivity_saving_draft">Saving draft...</string>
+    <string name="ConversationActivity_saving_draft">Saving draft&#x2026;</string>
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
     <string name="ConversationActivity_calls_not_supported">Calls Not Supported</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
@@ -81,16 +81,16 @@
 	<string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
     
     <!-- ConversationListAdapter -->
-    <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
+    <string name="ConversationListAdapter_key_exchange_message">Key exchange message&#x2026;</string>
     
     <!-- ConversationListFragment -->
     <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
     <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Are you sure you wish to delete ALL selected conversation threads?</string>
     <string name="ConversationListFragment_deleting">Deleting</string>
-    <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads...</string>
+    <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads&#x2026;</string>
     
     <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
+    <string name="ConversationListItem_key_exchange_message">Key exchange message&#x2026;</string>
 
     <!-- ExportFragment -->
     <string name="ExportFragment_export_to_sd_card">Export To SD Card?</string>
@@ -104,7 +104,7 @@
     </string>
     <string name="ExportFragment_cancel">Cancel</string>
     <string name="ExportFragment_exporting">Exporting</string>
-    <string name="ExportFragment_exporting_plaintext_to_sd_card">Exporting plaintext to SD card...
+    <string name="ExportFragment_exporting_plaintext_to_sd_card">Exporting plaintext to SD card&#x2026;
     </string>
     <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, unable to write to SD
         card!
@@ -113,7 +113,7 @@
     </string>
     <string name="ExportFragment_success">Success!</string>
     <string name="ExportFragment_exporting_keys_settings_and_messages">Exporting encrypted keys,
-        settings, and messages...
+        settings, and messages&#x2026;
     </string>
 
     <!-- ImportFragment -->
@@ -137,12 +137,12 @@
         importing again will result in duplicated messages.
     </string>
     <string name="ImportFragment_importing">Importing</string>
-    <string name="ImportFragment_import_plaintext_backup_elipse">Import plaintext backup...</string>
+    <string name="ImportFragment_import_plaintext_backup_elipse">Import plaintext backup&#x2026;</string>
     <string name="ImportFragment_no_plaintext_backup_found">No plaintext backup found!</string>
     <string name="ImportFragment_error_importing_backup">Error importing backup!</string>
     <string name="ImportFragment_import_complete">Import complete!</string>
     <string name="ImportFragment_restoring">Restoring</string>
-    <string name="ImportFragment_restoring_encrypted_backup">Restoring encrypted backup...</string>
+    <string name="ImportFragment_restoring_encrypted_backup">Restoring encrypted backup&#x2026;</string>
     <string name="ImportFragment_no_encrypted_backup_found">No encrypted backup found!</string>
     <string name="ImportFragment_restore_complete">Restore complete!</string>
 
@@ -151,10 +151,10 @@
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
 
     <!-- MmsDownloader -->
-    <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No connectivity available for MMS download, try again later...</string>
+    <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No connectivity available for MMS download, try again later&#x2026;</string>
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
-    <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>
-    <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings...</string>
+    <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider&#x2026;</string>
+    <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings&#x2026;</string>
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia Message</string>
@@ -225,9 +225,9 @@
     <string name="RegistrationProgressActivity_edit_s">Edit %s</string>
     <string name="RegistrationProgressActivity_registration_complete">Registration complete!</string>
     <string name="RegistrationProgressActivity_possible_problems">Possible problems.</string>
-    <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">You must enter the code you received first...</string>
+    <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">You must enter the code you received first&#x2026;</string>
     <string name="RegistrationProgressActivity_connecting">Connecting</string>
-    <string name="RegistrationProgressActivity_connecting_for_verification">Connecting for verification...</string>
+    <string name="RegistrationProgressActivity_connecting_for_verification">Connecting for verification&#x2026;</string>
     <string name="RegistrationProgressActivity_network_error">Network Error!</string>
     <string name="RegistrationProgressActivity_unable_to_connect">Unable to connect. Please check your network connection and try again.</string>
     <string name="RegistrationProgressActivity_verification_failed">Verification Failed!</string>
@@ -235,12 +235,12 @@
     <string name="RegistrationProgressActivity_too_many_attempts">Too many attempts</string>
     <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">You\'ve submitted an incorrect verification code too many times. Please wait a minute before trying again.</string>
     <string name="RegistrationProgressActivity_requesting_call">Requesting Call</string>
-    <string name="RegistrationProgressActivity_requesting_incoming_call">Requesting incoming verification call...</string>
+    <string name="RegistrationProgressActivity_requesting_incoming_call">Requesting incoming verification call&#x2026;</string>
     <string name="RegistrationProgressActivity_server_error">Server Error</string>
     <string name="RegistrationProgressActivity_the_server_encountered_an_error">The server encountered an error. Please try again.</string>
     <string name="RegistrationProgressActivity_too_many_requests">Too Many Requests!</string>
     <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
-    <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code...</string>
+    <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code&#x2026;</string>
 
     <!-- RegistrationService -->
     <string name="RegistrationService_registration_complete">Registration Complete</string>
@@ -296,21 +296,21 @@
     <string name="KeyExchangeInitiator_send">Send</string>
     
     <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message...</string>
-    <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait...</string>
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session...</string>
+    <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message&#x2026;</string>
+    <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait&#x2026;</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session&#x2026;</string>
 
     <!-- MmsDatabase -->
-    <string name="MmsDatabase_connecting_to_mms_server">Connecting to MMS server...</string>
-    <string name="MmsDatabase_downloading_mms">Downloading MMS...</string>
+    <string name="MmsDatabase_connecting_to_mms_server">Connecting to MMS server&#x2026;</string>
+    <string name="MmsDatabase_downloading_mms">Downloading MMS&#x2026;</string>
     <string name="MmsDatabase_mms_download_failed">MMS Download failed!</string>
-    <string name="MmsDatabase_downloading">Downloading...</string>
+    <string name="MmsDatabase_downloading">Downloading&#x2026;</string>
     <string name="MmsDatabase_mms_pending_download">Tap and configure MMS settings to continue download.</string>
 
     <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_decrypting_mms_please_wait">Decrypting MMS, please wait...</string>
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message...</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session...</string>
+    <string name="MmsMessageRecord_decrypting_mms_please_wait">Decrypting MMS, please wait&#x2026;</string>
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message&#x2026;</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session&#x2026;</string>
 
     <!-- MmsSender -->    
     <string name="MmsSender_currently_unable_to_send_your_mms_message">Currently unable to send your MMS message.</string>
@@ -328,7 +328,7 @@
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages">%d new messages</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %s</string>    
-    <string name="MessageNotifier_encrypted_message">Encrypted message...</string>
+    <string name="MessageNotifier_encrypted_message">Encrypted message&#x2026;</string>
     <string name="MessageNotifier_no_subject">(No Subject)</string>
     <string name="MessageNotifier_message_delivery_failed">Message delivery failed.</string>
     <string name="MessageNotifier_failed_to_deliver_message">Failed to deliver message.</string>
@@ -337,9 +337,9 @@
     <string name="MessageNotifier_mark_as_read">Mark as read</string>
 
     <!-- ViewLocalIdentityActivity -->
-    <string name="ViewLocalIdentityActivity_regenerating">Regenerating...</string>
+    <string name="ViewLocalIdentityActivity_regenerating">Regenerating&#x2026;</string>
     <string name="ViewLocalIdentityActivity_regenerating_identity_key">Regenerating identity
-        key...
+        key&#x2026;
     </string>
     <string name="ViewLocalIdentityActivity_regenerated">Regenerated!</string>
     <string name="ViewLocalIdentityActivity_reset_identity_key">Reset Identity Key?</string>
@@ -394,7 +394,7 @@
     <string name="conversation_fragment_cab__batch_selection_mode">Batch Selection Mode</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Loading countries...</string>
+    <string name="country_selection_fragment__loading_countries">Loading countries&#x2026;</string>
     <string name="country_selection_fragment__search">Search</string>
 
     <!-- create_passphrase_activity -->
@@ -413,7 +413,7 @@
     <string name="database_migration_activity__importing">IMPORTING</string>
 
     <!-- database_upgrade_activity -->
-    <string name="database_upgrade_activity__updating_database">Updating Database...</string>
+    <string name="database_upgrade_activity__updating_database">Updating Database&#x2026;</string>
 
     <string name="export_fragment__export_encrypted_backup">Export Encrypted Backup</string>
     <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Export an encrypted
@@ -520,11 +520,11 @@
     <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
         TextSecure will now automatically verify your number with a confirmation SMS message.
     </string>
-    <string name="registration_progress_activity__connecting">Connecting...</string>
+    <string name="registration_progress_activity__connecting">Connecting&#x2026;</string>
     <string name="registration_progress_activity__waiting_for_sms_verification">Waiting for SMS
-        verification...
+        verification&#x2026;
     </string>
-    <string name="registration_progress_activity__registering_with_server">Registering with server...</string>
+    <string name="registration_progress_activity__registering_with_server">Registering with server&#x2026;</string>
     <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">This
         could take a moment. Please be patient, we\'ll notify you when verification is complete.
     </string>
@@ -534,7 +534,7 @@
     <string name="registration_progress_activity__sms_verification_failed">SMS verification
         failed.
     </string>
-    <string name="registration_progress_activity__generating_keys">Generating keys...</string>
+    <string name="registration_progress_activity__generating_keys">Generating keys&#x2026;</string>
 
     <!-- recipients_panel -->
     <string name="recipients_panel__to">To</string>

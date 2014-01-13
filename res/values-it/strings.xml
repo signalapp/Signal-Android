@@ -6,7 +6,7 @@
   <string name="delete">Cancella</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">In questo momento: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Devi inserire la tua password prima di controllare le chiavi...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Devi inserire la tua password prima di controllare le chiavi&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">messagi per conversazione</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Elimina tutti i messagi vecchi ora?</string>
@@ -22,9 +22,9 @@
   <string name="ConversationItem_message_size_d_kb">Dimensione Messaggio: %d KB</string>
   <string name="ConversationItem_expires_s">Scadenza: %s</string>
   <string name="ConversationItem_error_sending_message">Errore durante l\'invio del messaggio</string>
-  <string name="ConversationItem_sending">Invio...</string>
+  <string name="ConversationItem_sending">Invio&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Salvataggio Allegato</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Salvataggio allegato sulla memoria SD...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Salvataggio allegato sulla memoria SD&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Salvare sulla memoria SD?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Questo media è conservato in un database criptato. La versione che verrà salvata sulla SD non sarà più cifrata. Vuoi continuare?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Errore durante il salvataggio dell\'allegato nella memoria SD!</string>
@@ -64,14 +64,14 @@
   <string name="ConversationFragment_confirm_message_delete">Conferma l\'eliminazione del messaggio</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sicuro di voler cancellare definitivamente questo messaggio?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Messaggio di scambio della chiave...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Messaggio di scambio della chiave&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Cancellare i threads?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sei sicuro di voler cancellare TUTTE le conversazioni selezionate?</string>
   <string name="ConversationListFragment_deleting">Eliminando</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Eliminazione delle conversazioni selezionate...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Eliminazione delle conversazioni selezionate&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Messaggio di scambio della chiave...</string>
+  <string name="ConversationListItem_key_exchange_message">Messaggio di scambio della chiave&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Esporta alla scheda SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Verranno\n        esportate nella scheda SD le tue chiavi crittografiche, le impostazioni ed i messaggi.\n    </string>
@@ -87,9 +87,9 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nessuna chiave scansionata trovata!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Nessuna connessione disponibile per il download del MMS, riprovare più tardi...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Nessuna connessione disponibile per il download del MMS, riprovare più tardi&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">Errore nel salvare l\'MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio Multimediale</string>
   <!--PassphraseChangeActivity-->
@@ -140,16 +140,16 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Hai giò inviata una richiesta di inizio di sessione a questo contatto, sei sicuro di volerne inviare un\'altra? Questo renderà invalida la precedente.</string>
   <string name="KeyExchangeInitiator_send">Inviata</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Cifratura messaggio errata...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Decifratura in corso...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio cifrato per una sessione non esistente...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Cifratura messaggio errata&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Decifratura in corso&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio cifrato per una sessione non esistente&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Connessione al server MMS...</string>
-  <string name="MmsDatabase_downloading_mms">Download MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Connessione al server MMS&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Download MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Download MMS fallito</string>
-  <string name="MmsDatabase_downloading">Scaricamento...</string>
+  <string name="MmsDatabase_downloading">Scaricamento&#x2026;</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Decifratura MMS in corso, attendere...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Decifratura MMS in corso, attendere&#x2026;</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Cifratura MMS invalida..</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS cifrato per una sessione non esistente</string>
   <!--MmsSender-->
@@ -163,7 +163,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nuovi messaggi</string>
   <string name="MessageNotifier_most_recent_from_s">Più recente da: %s</string>
-  <string name="MessageNotifier_encrypted_message">Messaggio cifrato...</string>
+  <string name="MessageNotifier_encrypted_message">Messaggio cifrato&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Nessun Oggetto)</string>
   <string name="MessageNotifier_message_delivery_failed">Non è riuscito l\'invio del messaggio</string>
   <string name="MessageNotifier_failed_to_deliver_message">Non è riuscito l\'invio del messaggio</string>
@@ -214,7 +214,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Potrebbe volerci un pò. Attendi per favore, verrai notificato quando l\'importazione sarà completata.</string>
   <string name="database_migration_activity__importing">COPIA</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Aggiornamento Database...</string>
+  <string name="database_upgrade_activity__updating_database">Aggiornamento Database&#x2026;</string>
   <!--mms_preferences_activity-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">PASSWORD TEXTSECURE</string>

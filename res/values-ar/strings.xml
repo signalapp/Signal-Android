@@ -22,7 +22,7 @@
   <string name="ConversationItem_message_size_d_kb">حجم الرسالة: %d كيلوبايت</string>
   <string name="ConversationItem_expires_s">تاريخ الانتهاء: %s</string>
   <string name="ConversationItem_error_sending_message">خطأ بالارسال</string>
-  <string name="ConversationItem_sending">ارسال...</string>
+  <string name="ConversationItem_sending">ارسال&#x2026;</string>
   <string name="ConversationItem_saving_attachment">حفظ الإضافة</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">حفظ الإضافة على كرت الذاكرة</string>
   <string name="ConversationItem_save_to_sd_card">حفظ على كرت الذاكرة؟</string>
@@ -80,7 +80,7 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">تحذير: هذه الخاصية تصدر مفاتيحك المشفرة و إعداداتك و رسائلك لكرت الذاكرة.</string>
   <string name="ExportFragment_cancel">الغاء</string>
   <string name="ExportFragment_exporting">تصدير</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">جاري تصدير النص الغير مشفر لكرت الذاكرة...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">جاري تصدير النص الغير مشفر لكرت الذاكرة&#x2026;</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">خطأ:غير قادر على الكتابة على كرت الذاكرة!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">خطأ أثناء الكتابة على كرت الذاكرة!</string>
   <string name="ExportFragment_success">نجحت!</string>
@@ -95,13 +95,13 @@
   <string name="ImportFragment_restore">استعادة</string>
   <string name="ImportFragment_import_plaintext_backup">استيراد النسخة الاحتياطية الغير مشفرة؟</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">هذه الخاصية ستستورد الرسائل القصيرة من النظام إلى داخل تكست سيكيور. إذا قمت بعمل هذا من قبل فسيتم تكرار رسائلك القصيرة.</string>
-  <string name="ImportFragment_importing">جاري الاستيراد...</string>
+  <string name="ImportFragment_importing">جاري الاستيراد&#x2026;</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">استيراد النسخ الاحتياطية الغير المشفرة</string>
   <string name="ImportFragment_no_plaintext_backup_found">لم يتم العثور على نسح احتياطية غير مشفرة!</string>
   <string name="ImportFragment_error_importing_backup">خطأ باستيراد النسخة الاحتياطية!</string>
   <string name="ImportFragment_import_complete">اكتمال الاستيراد!</string>
   <string name="ImportFragment_restoring">جاري الاستعادة</string>
-  <string name="ImportFragment_restoring_encrypted_backup">جاري استعادة النسخ الاحتياطية المشفرة...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">جاري استعادة النسخ الاحتياطية المشفرة&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">لم يتم العثور على النسخ الاحتياطية المشفرة</string>
   <string name="ImportFragment_restore_complete">انتهاء الاستعادة</string>
   <!--KeyScanningActivity-->
@@ -109,7 +109,7 @@
   <!--MmsDownloader-->
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">لا يوجد اتصال لرسائل الوسائط المتعددة. حاول مرة أخرى لاحقاً.</string>
   <string name="MmsDownloader_error_storing_mms">خطأ بتخزين الرسالة!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">خطأ في الاتصال مع مزود خدمة رسالة الوسائط المتعددة...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">خطأ في الاتصال مع مزود خدمة رسالة الوسائط المتعددة&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">رسالة الوسائط المتعددة</string>
   <!--PassphraseChangeActivity-->
@@ -160,22 +160,22 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">لقد قمت بارسال طلب انشاء قناة اتصال مسبقاً لجهة الاتصال هذه، هل تريد ارسال طلب آخر؟ هذه العملية ستلغي الطلب السابق.</string>
   <string name="KeyExchangeInitiator_send">ارسال</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">خطأ بالرسالة المشفرة...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">انتظر، يتم فك التشفير...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">خطأ بالرسالة المشفرة&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">انتظر، يتم فك التشفير&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server"> الاتصال مع مزود خدمة رسالة الوسائط المتعددة...</string>
-  <string name="MmsDatabase_downloading_mms">تحميل رسالة الوسائط المتعددة...</string>
+  <string name="MmsDatabase_connecting_to_mms_server"> الاتصال مع مزود خدمة رسالة الوسائط المتعددة&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">تحميل رسالة الوسائط المتعددة&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">خطأ بتحميل رسالة الوسائط المتعددة!</string>
-  <string name="MmsDatabase_downloading">تحميل...</string>
+  <string name="MmsDatabase_downloading">تحميل&#x2026;</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">انتظر، يتم فك تشفير رسالة الوسائط المتعددة...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">خطأ بالرسالة المشفرة...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">انتظر، يتم فك تشفير رسالة الوسائط المتعددة&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">خطأ بالرسالة المشفرة&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">غير قادر على ارسال الرسالة حاليا.</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد...</string>
+  <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد&#x2026;</string>
   <string name="ApplicationMigrationService_importing_text_messages">جاري استيراد الرسائل النصية</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">تم حفظ العبارة السرية مؤقتاً</string>
@@ -191,8 +191,8 @@
   <string name="MessageNotifier_mark_all_as_read">اعتبرها جميعاً رسائل مقروءة</string>
   <string name="MessageNotifier_mark_as_read">اعتبرها مقروءة</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">إعادة الانشاء...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">إعادة إنشاء مفتاح الهوية...</string>
+  <string name="ViewLocalIdentityActivity_regenerating">إعادة الانشاء&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">إعادة إنشاء مفتاح الهوية&#x2026;</string>
   <string name="ViewLocalIdentityActivity_regenerated">تم إعادة الانشاء!</string>
   <string name="ViewLocalIdentityActivity_cancel">الغاء</string>
   <!--SmsReceiver-->
@@ -239,7 +239,7 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">تحديث قواعد البيانات</string>
   <string name="export_fragment__export_encrypted_backup">استعادة النسخ الاحتياطية المشفرة</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">تصدير نسخة احتياطية غير مشفرة لكرت الذاكرة...</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">تصدير نسخة احتياطية غير مشفرة لكرت الذاكرة&#x2026;</string>
   <string name="export_fragment__export_plaintext_backup">تصدير النسخة الاحتياطية الغير مشفرة</string>
   <string name="import_fragment__import_system_sms_database">استيراد الرسائل القصيرة بالنظام</string>
   <string name="import_fragment__import_encrypted_backup">استيراد النسخ الاحتياطية المشفرة</string>

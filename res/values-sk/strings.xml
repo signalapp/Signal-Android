@@ -6,7 +6,7 @@
   <string name="delete">Zmaž</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálne: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Pred spravovaním kľúčov musíte vložiť heslo...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Pred spravovaním kľúčov musíte vložiť heslo&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">správ na konverzáciu</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Zmazať všetky staré správy?</string>
@@ -20,9 +20,9 @@
   <string name="ConversationItem_message_size_d_kb">Vwľkosť správy: %d KB</string>
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
   <string name="ConversationItem_error_sending_message">Chyba pri posielaní správy</string>
-  <string name="ConversationItem_sending">Posielam...</string>
+  <string name="ConversationItem_sending">Posielam&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Ukladám prílohu</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Ukladám prílohu na SD kartu...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Ukladám prílohu na SD kartu&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Uložiť na SD kartu?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Chyba počas ukladania na SD kartu!</string>
   <string name="ConversationItem_success_exclamation">Hotovo!</string>
@@ -50,7 +50,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Príjemcovia skupinovej správy</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzácia</string>
   <string name="ConversationActivity_d_recipients_in_group">%d príjemcov v skupine</string>
-  <string name="ConversationActivity_saving_draft">Ukladám koncept...</string>
+  <string name="ConversationActivity_saving_draft">Ukladám koncept&#x2026;</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Odosielateľ: %1$s\nTransport: %2$s\nOdoslané/Prijaté:%3$s</string>
@@ -58,14 +58,14 @@
   <string name="ConversationFragment_confirm_message_delete">Potvrď zmazanie správy</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste si istí že chcete úplne zmazať túto správu?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Správa vzájomnej výmeny kľúčov&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Zmazať vlákna?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ste si istí, že chcete zmazať VŠETKY označené vlákna konverzácií?</string>
   <string name="ConversationListFragment_deleting">Mažem</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Mažem vybrané konverzácie...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Mažem vybrané konverzácie&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
+  <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov&#x2026;</string>
   <!--ExportFragment-->
   <!--ImportFragment-->
   <!--KeyScanningActivity-->
@@ -111,18 +111,18 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Tomuto príjemcovi ste už poslali požiadavku na vytvorenie bezpečnej session. Poslanie ďalšej požiadavky zneplatní predchádzajúcu požiadavku.  Ste si istí že chcete poslať ďalšiu požiadavku?</string>
   <string name="KeyExchangeInitiator_send">Odošli</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Nesprávne kryptovaná správa...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Prosím čakaj, dekryptujem...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Správa zakryptovaná pre neexistujúcu session...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Nesprávne kryptovaná správa&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Prosím čakaj, dekryptujem&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Správa zakryptovaná pre neexistujúcu session&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Pripájam sa na MMS server...</string>
-  <string name="MmsDatabase_downloading_mms">Sťahujem MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Pripájam sa na MMS server&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Sťahujem MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Sťahovanie MMS zlyhalo!</string>
-  <string name="MmsDatabase_downloading">Sťahujem...</string>
+  <string name="MmsDatabase_downloading">Sťahujem&#x2026;</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Prosím čakaj, dekryptujem MMS...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Nesprávne kryptovaná MMS správa...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS správa zakryptovaná pre neexistujúcu session...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Prosím čakaj, dekryptujem MMS&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Nesprávne kryptovaná MMS správa&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS správa zakryptovaná pre neexistujúcu session&#x2026;</string>
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
   <!--KeyCachingService-->
@@ -131,7 +131,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) nových správ</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovšia od: %s</string>
-  <string name="MessageNotifier_encrypted_message">Kryptovaná správa...</string>
+  <string name="MessageNotifier_encrypted_message">Kryptovaná správa&#x2026;</string>
   <string name="MessageNotifier_no_subject">(bez predmetu)</string>
   <!--ViewLocalIdentityActivity-->
   <!--SmsReceiver-->

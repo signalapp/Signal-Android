@@ -6,7 +6,7 @@
   <string name="delete">Borrar</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Necesita ingresar su frase de contraseña antes de gestionar sus claves...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Necesita ingresar su frase de contraseña antes de gestionar sus claves&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡No ha elegido aún una frase de contraseña!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">mensajes por conversación</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes viejos ahora?</string>
@@ -24,7 +24,7 @@
   <string name="ConversationItem_message_size_d_kb">Tamaño del mensaje: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
   <string name="ConversationItem_error_sending_message">Error al enviar el mensaje</string>
-  <string name="ConversationItem_sending">Enviando...</string>
+  <string name="ConversationItem_sending">Enviando&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Guardando el archivo adjunto</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Guardando el archivo adjunto a la tarjeta SD</string>
   <string name="ConversationItem_save_to_sd_card">¿Guardar a la tarjeta SD?</string>
@@ -56,7 +56,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Receptores de Conversación en Grupo</string>
   <string name="ConversationActivity_group_conversation">Conversación en Grupo</string>
   <string name="ConversationActivity_d_recipients_in_group">%d receptores en grupo</string>
-  <string name="ConversationActivity_saving_draft">Guardando borrador...</string>
+  <string name="ConversationActivity_saving_draft">Guardando borrador&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Receptor inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Llamadas no soportadas</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
@@ -67,14 +67,14 @@
   <string name="ConversationFragment_confirm_message_delete">Confirmar borrado del mensaje</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">¿Está seguro que desea borrar permanentemente este mensaje?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Mensaje de intercambio de claves...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Mensaje de intercambio de claves&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">¿Borrar las conversaciones?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">¿Está seguro de que quiere borrar TODAS las conversaciones seleccionadas?</string>
   <string name="ConversationListFragment_deleting">Eliminando</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Eliminando hilos seleccionados...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Eliminando hilos seleccionados&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
+  <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">¿Exportar a tarjeta SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Esto\n        exportará sus claves cifradas, configuración y mensajes a la tarjeta SD.\n    </string>
@@ -83,11 +83,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atención, esto\n        exportará sus mensajes en claro desde TextSecure a la tarjeta SD.\n    </string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportando</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando mensajes en claro a la tarjeta SD...\n    </string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando mensajes en claro a la tarjeta SD&#x2026;\n    </string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, ¡no se puede escribir en la tarjeta SD!\n     \n    </string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Se produjo un error mientras se escribía la tarjeta SD.\n    </string>
   <string name="ExportFragment_success">¡Éxito!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportando claves cifradas,\n        configuración y mensajes...\n    </string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportando claves cifradas,\n        configuración y mensajes&#x2026;\n    </string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">¿Importar base de datos de SMS del sistema?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Esto importará\n        los mensajes desde la base de datos de SMS del sistema a TextSecure. Si la ha importado\n        anteriormente, obtendrá mensajes duplicados.\n    </string>
@@ -99,21 +99,21 @@
   <string name="ImportFragment_import_plaintext_backup">¿Importar copia de seguridad de los mensajes en claro?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Esto importará\n        los mensajes desde una copia de seguridad sin cifrar. Si ha importado anteriormente la base de datos de SMS del sistema,\n        esto producirá mensajes duplicados.\n    </string>
   <string name="ImportFragment_importing">Importando</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importando copia de seguridad de mensajes en claro...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importando copia de seguridad de mensajes en claro&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">¡No se encontró una copia de seguridad de los mensajes en claro!</string>
   <string name="ImportFragment_error_importing_backup">¡Error importando copia de seguridad!</string>
   <string name="ImportFragment_import_complete">¡Se ha importado correctamente!</string>
   <string name="ImportFragment_restoring">Restaurando</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Restaurando copia de seguridad cifrada...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Restaurando copia de seguridad cifrada&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">¡No se encontró la copia de seguridad cifrada!</string>
   <string name="ImportFragment_restore_complete">¡Restauración completada!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No hay conexiones disponibles para descargar MMS, inténtalo de nuevo más tarde...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No hay conexiones disponibles para descargar MMS, inténtalo de nuevo más tarde&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Error conectando al proveedor MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Error leyendo las configuraciones MMS (sistema de mensajería multimedia) del provedor inalámbrico...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Error conectando al proveedor MMS&#x2026;</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Error leyendo las configuraciones MMS (sistema de mensajería multimedia) del provedor inalámbrico&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensaje Multimedia</string>
   <!--PassphraseChangeActivity-->
@@ -164,19 +164,19 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Ya ha enviado una petición de inicio de sesión a este destinatario, ¿está seguro de que quiere enviar otra? Esto invalidará la primera petición. </string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado incorrecto...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Descifrando, por favor espere...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensaje cifrado para una sesión no existente...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado incorrecto&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Descifrando, por favor espere&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensaje cifrado para una sesión no existente&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Conectando con el servidor MMS...</string>
-  <string name="MmsDatabase_downloading_mms">Descargado MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Conectando con el servidor MMS&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Descargado MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Falló la descarga del MMS</string>
-  <string name="MmsDatabase_downloading">Descargando...</string>
+  <string name="MmsDatabase_downloading">Descargando&#x2026;</string>
   <string name="MmsDatabase_mms_pending_download">Pulse y configure las preferencias MMS para continuar la descarga.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Descifrando MMS, por favor espere...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Descifrando MMS, por favor espere&#x2026;</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS mal cifrado</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaje MMS cifrado para sesión no existente...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaje MMS cifrado para sesión no existente&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Actualmente es imposible enviar tu mensaje MMS.</string>
   <!--ApplicationMigrationService-->
@@ -188,7 +188,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) nuevos mensajes</string>
   <string name="MessageNotifier_most_recent_from_s">Mensaje más reciente de: %s</string>
-  <string name="MessageNotifier_encrypted_message">Mensaje cifrado...</string>
+  <string name="MessageNotifier_encrypted_message">Mensaje cifrado&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Sin Asunto)</string>
   <string name="MessageNotifier_message_delivery_failed">Entrega de mensaje fallida.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Fallo al entregar mensaje.</string>
@@ -196,8 +196,8 @@
   <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
   <string name="MessageNotifier_mark_as_read">Marcar como leídos</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Regenerando...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Regenerando clave de\n        identidad...\n    </string>
+  <string name="ViewLocalIdentityActivity_regenerating">Regenerando&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Regenerando clave de\n        identidad&#x2026;\n    </string>
   <string name="ViewLocalIdentityActivity_regenerated">¡Clave regenerada!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">¿Reinicializar la clave de identidad?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\n        Atención: Regenerando su clave de identidad, ésta se perderá de manera permanente,\n        y sus contactos recibirán alertas cuando intenten establecer nuevas sesiones seguras con usted.\n       ¿Está seguro de querer continuar?\n    </string>
@@ -247,7 +247,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Esto podría tardar un rato. Por favor, se paciente, te informaremos cuando la importación sea completada.</string>
   <string name="database_migration_activity__importing">IMPORTANDO</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Actualizando Base de Datos...</string>
+  <string name="database_upgrade_activity__updating_database">Actualizando Base de Datos&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Exportar copia de seguridad cifrada</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportar copia de seguridad\n        cifrada a la tarjeta SD.\n    </string>
   <string name="export_fragment__export_plaintext_backup">Exportar copia de seguridad de mensajes en claro</string>

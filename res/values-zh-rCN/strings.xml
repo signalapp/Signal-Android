@@ -6,7 +6,7 @@
   <string name="delete">删除</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前： %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">您需要在管理密钥之前输入密码...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">您需要在管理密钥之前输入密码&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您还未设置密码！</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">图片</string>
@@ -16,9 +16,9 @@
   <string name="ConversationItem_message_size_d_kb">邮件大小： %d KB</string>
   <string name="ConversationItem_expires_s">到期： %s</string>
   <string name="ConversationItem_error_sending_message">发送邮件时出现错误</string>
-  <string name="ConversationItem_sending">正在发送...</string>
+  <string name="ConversationItem_sending">正在发送&#x2026;</string>
   <string name="ConversationItem_saving_attachment">正在保存附件</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">正在将附件保存到 SD 卡...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">正在将附件保存到 SD 卡&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">保存到 SD 卡？</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">将附件保存到 SD 卡时出现错误！</string>
   <string name="ConversationItem_success_exclamation">成功！</string>
@@ -52,12 +52,12 @@
   <string name="ConversationFragment_confirm_message_delete">确认邮件删除</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">是否确定要永久删除此邮件？</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">密钥交换消息...</string>
+  <string name="ConversationListAdapter_key_exchange_message">密钥交换消息&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">删除线程？</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">是否确定要删除所有选定对话线程？</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">密钥交换消息...</string>
+  <string name="ConversationListItem_key_exchange_message">密钥交换消息&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">导出</string>
   <string name="ExportFragment_success">成功！</string>
@@ -106,18 +106,18 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">您已经发送会话启动请求到此收件人，是否确定要再次发送？  这将使第一个请求无效。</string>
   <string name="KeyExchangeInitiator_send">发送</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">加密消息错误...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">正在解密，请稍后...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">已为不存在的会话加密消息...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">加密消息错误&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">正在解密，请稍后&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">已为不存在的会话加密消息&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">正在连接到彩信服务器...</string>
-  <string name="MmsDatabase_downloading_mms">正在下载彩信...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">正在连接到彩信服务器&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">正在下载彩信&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">彩信下载失败！</string>
-  <string name="MmsDatabase_downloading">正在下载...</string>
+  <string name="MmsDatabase_downloading">正在下载&#x2026;</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">正在解密彩信，请稍后...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">加密彩信消息错误...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">已为不存在的会话加密彩信消息...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">正在解密彩信，请稍后&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">加密彩信消息错误&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">已为不存在的会话加密彩信消息&#x2026;</string>
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
   <!--KeyCachingService-->

@@ -6,7 +6,7 @@
   <string name="delete">מחק</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">עכשיו: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">אתה צריך להכניס את הסיסמה לפני שאתה מנהל את המפתחות...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">אתה צריך להכניס את הסיסמה לפני שאתה מנהל את המפתחות&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדיין לא הגדרת סיסמה!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">מספר הודעות לשיחה</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל ההודעות הישנות עכשיו?</string>
@@ -24,9 +24,9 @@
   <string name="ConversationItem_message_size_d_kb">גודל ההודעה: %d KB</string>
   <string name="ConversationItem_expires_s">פג: %s</string>
   <string name="ConversationItem_error_sending_message">שגיאה בשליחת ההודעה</string>
-  <string name="ConversationItem_sending">שולח...</string>
+  <string name="ConversationItem_sending">שולח&#x2026;</string>
   <string name="ConversationItem_saving_attachment">שומר קובץ מצורף</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">שומר את הקובץ המצורף בכרטיס ה-SD...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">שומר את הקובץ המצורף בכרטיס ה-SD&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">לשמור בכרטיס ה-SD?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">המדיה הזאת אוחסנה בבסיס נתונים מוצפן. הגרסה שתשמור בכרטיס ה-SD לא תהיה מוצפנת יותר. אתה בטוח שברצונך להמשיך?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">שגיאה בשמירת הקובץ המצורף בכרטיס ה-SD!</string>
@@ -56,7 +56,7 @@
   <string name="ConversationActivity_group_conversation_recipients">נמעני שיחה קבוצתית</string>
   <string name="ConversationActivity_group_conversation">שיחה קבוצתית</string>
   <string name="ConversationActivity_d_recipients_in_group">%d נמענים בקבוצה</string>
-  <string name="ConversationActivity_saving_draft">שומר טיוטה...</string>
+  <string name="ConversationActivity_saving_draft">שומר טיוטה&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">נמען שגוי!</string>
   <string name="ConversationActivity_calls_not_supported">שיחות אינן נתמכות</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">נראה כי מכשיר זה אינו תומך בפעולות חיוג.</string>
@@ -67,14 +67,14 @@
   <string name="ConversationFragment_confirm_message_delete">אשר מחיקת הודעה</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">אתה בטוח שאתה רוצה למחוק את ההודעה הזו לתמיד?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">הודעת החלפת מפתח...</string>
+  <string name="ConversationListAdapter_key_exchange_message">הודעת החלפת מפתח&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">למחוק שרשורים?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">אתה בטוח שאתה רוצה למחוק את השרשורים של כל השיחות שנבחרו?</string>
   <string name="ConversationListFragment_deleting">מוחק</string>
-  <string name="ConversationListFragment_deleting_selected_threads">מוחק שרשורים שנבחרו...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">מוחק שרשורים שנבחרו&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
+  <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">לייצא לכרטיס ה-SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">פעולה זו\nתייצא את המפתחות, ההגדרות וההודעות המוצפנות שלך לכרטיס ה-SD.\n</string>
@@ -83,11 +83,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">אזהרה, פעולה זו\nתייצא את תוכן הודעות ה-TextSecure שלך לכרטיס ה-SD ללא הצפנה.\n</string>
   <string name="ExportFragment_cancel">בטל</string>
   <string name="ExportFragment_exporting">מייצא</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">מייצא טקסט ללא הצפנה לכרטיס ה-SD...\n</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">מייצא טקסט ללא הצפנה לכרטיס ה-SD&#x2026;\n</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">שגיאה, לא ניתן לכתוב לכרטיס\nה-SD!\n</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">שגיאה בכתיבה לכרטיס ה-SD.\n</string>
   <string name="ExportFragment_success">הצליח!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">מייצא מפתחות, הגדרות\nוהודעות מוצפנות...\n</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">מייצא מפתחות, הגדרות\nוהודעות מוצפנות&#x2026;\n</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">לייבא את בסיס הנתונים של ה-SMS מהמערכת?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">פעולה זו תייבא\nהודעות מבסיס הנתונים של ה-SMS ברירת המחדל של המערכת ל-TextSecure.\n אם כבר ייבאת מבסיס נתונים זה, ייבוא מחדש יגרום להודעות כפולות.</string>
@@ -99,21 +99,21 @@
   <string name="ImportFragment_import_plaintext_backup">לייבא גיבוי לא מוצפן?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">פעולה זו תייבא\nהודעות מגיבוי לא מוצפן. אם כבר ייבאת בעבר את בסיס הנתונים\nשל ה-SMS\nשל המערכת, ייבוא מחדש יגרום להודעות כפולות.\n</string>
   <string name="ImportFragment_importing">מייבא</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">יבא גיבוי לא מוצפן...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">יבא גיבוי לא מוצפן&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">לא נמצא גיבוי לא מוצפן!</string>
   <string name="ImportFragment_error_importing_backup">שגיאה בייבוא הגיבוי!</string>
   <string name="ImportFragment_import_complete">הייבוא הסתיים!</string>
   <string name="ImportFragment_restoring">משחזר</string>
-  <string name="ImportFragment_restoring_encrypted_backup">משחזר גיבוי מוצפן...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">משחזר גיבוי מוצפן&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">לא נמצא גיבוי מוצפן!</string>
   <string name="ImportFragment_restore_complete">השחזור הסתיים!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">לא נמצא מפתח סרוק!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">אין חיבור זמין להורדת MMS, נסה שוב לאחר מכן...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">אין חיבור זמין להורדת MMS, נסה שוב לאחר מכן&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה-MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה-MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות ה-MMS של ספק השירות...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה-MMS&#x2026;</string>
+  <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות ה-MMS של ספק השירות&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">הודעת מולטימדיה</string>
   <!--PassphraseChangeActivity-->
@@ -164,19 +164,19 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">אתה כבר שלחת בקשת אתחול חיבור לנמען הזה, אתה בטוח שאתה רוצה לשלוח עוד אחד? זה יבטל את הבקשה הראשונה.</string>
   <string name="KeyExchangeInitiator_send">שלח</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת פגומה...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">מפענח, אנא המתן...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ההודעה הוצפנה לחיבור שאינו קיים...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת פגומה&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">מפענח, אנא המתן&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ההודעה הוצפנה לחיבור שאינו קיים&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">מתחבר לשרת ה-MMS...</string>
-  <string name="MmsDatabase_downloading_mms">מוריד MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">מתחבר לשרת ה-MMS&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">מוריד MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">הורדת MMS נכשלה!</string>
-  <string name="MmsDatabase_downloading">מוריד...</string>
+  <string name="MmsDatabase_downloading">מוריד&#x2026;</string>
   <string name="MmsDatabase_mms_pending_download">גע להגדרת תצורת ה-MMS ולהמשך הורדה.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">מפענח MMS, אנא המתן...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">הודעת MMS מוצפנת פגומה...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">הודעת ה-MMS הוצפנה לחיבור שלא קיים...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">מפענח MMS, אנא המתן&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">הודעת MMS מוצפנת פגומה&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">הודעת ה-MMS הוצפנה לחיבור שלא קיים&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">לא ניתן לשלוח כעת את הודעת ה-MMS שלך.</string>
   <!--ApplicationMigrationService-->
@@ -188,7 +188,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d הודעות חדשות</string>
   <string name="MessageNotifier_most_recent_from_s">האחרון מ-: %s</string>
-  <string name="MessageNotifier_encrypted_message">הודעה מוצפנת...</string>
+  <string name="MessageNotifier_encrypted_message">הודעה מוצפנת&#x2026;</string>
   <string name="MessageNotifier_no_subject">(ללא נושא)</string>
   <string name="MessageNotifier_message_delivery_failed">מסירת ההודעה נכשלה.</string>
   <string name="MessageNotifier_failed_to_deliver_message">כישלון במסירת ההודעה.</string>
@@ -196,8 +196,8 @@
   <string name="MessageNotifier_mark_all_as_read">סמן הכל כנקרא</string>
   <string name="MessageNotifier_mark_as_read">סמן כנקרא</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">מייצר מחדש...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">מייצר מפתח זהות\nמחדש...\n</string>
+  <string name="ViewLocalIdentityActivity_regenerating">מייצר מחדש&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">מייצר מפתח זהות\nמחדש&#x2026;\n</string>
   <string name="ViewLocalIdentityActivity_regenerated">יוצר מחדש!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">לאפס מפתח זהות?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nאזהרה! ייצור מחדש של מפתח הזהות יאבד את מפתח הזהות\nהעכשווי,\nואנשי הקשר הקיימים שלך יקבלו אזהרה כשהם ינסו לבצע חיבור מאובטח\nחדש איתך.\nאתה בטוח שברצונך להמשיך?\n</string>
@@ -246,7 +246,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">זה יכול לקחת כמה רגעים. סבלנות בבקשה, אנחנו נודיע לך כשהייבוא הושלם.</string>
   <string name="database_migration_activity__importing">מייבא</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">מעדכן את בסיס הנתונים...</string>
+  <string name="database_upgrade_activity__updating_database">מעדכן את בסיס הנתונים&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">יצא גיבוי מוצפן</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">יצא גיבוי\nמוצפן לכרטיס ה-SD.\n</string>
   <string name="export_fragment__export_plaintext_backup">יצא גיבוי לא מוצפן.</string>

@@ -6,7 +6,7 @@
   <string name="delete">Удалить</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Сейчас: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Для управления ключами нужно ввести парольную фразу...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Для управления ключами нужно ввести парольную фразу&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы ещё не задали парольную фразу!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">сообщений в разговоре</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Удалить все старые сообщения?</string>
@@ -24,9 +24,9 @@
   <string name="ConversationItem_message_size_d_kb">Размер сообщения: %d Kб</string>
   <string name="ConversationItem_expires_s">Истекает: %s</string>
   <string name="ConversationItem_error_sending_message">Ошибка при отправке сообщения</string>
-  <string name="ConversationItem_sending">Отправляем...</string>
+  <string name="ConversationItem_sending">Отправляем&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Сохранение вложения</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Сохраняем вложение на SD-карту...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Сохраняем вложение на SD-карту&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Сохранить на SD-карту?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Этот медиа-файл хранится в зашифрованной базе данных. Его копия, которую вы сохраните на SD-карту, не будет зашифрована. Хотите продолжить?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Ошибка при сохранении вложения на SD-карту!</string>
@@ -56,7 +56,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Получатели в конференции</string>
   <string name="ConversationActivity_group_conversation">Конференция</string>
   <string name="ConversationActivity_d_recipients_in_group">%d получателей в конференции</string>
-  <string name="ConversationActivity_saving_draft">Сохраняем черновик...</string>
+  <string name="ConversationActivity_saving_draft">Сохраняем черновик&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
   <string name="ConversationActivity_calls_not_supported">Звонки не поддерживаются</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ваше устройство, по-видимому, не поддерживает голосовые звонки.</string>
@@ -67,14 +67,14 @@
   <string name="ConversationFragment_confirm_message_delete">Подтвердите удаление сообщения</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Вы уверены, что хотите навсегда удалить это сообщение?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Сообщениe обмена ключами...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Сообщениe обмена ключами&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Удалить разговоры?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Вы уверены, что хотите удалить ВСЕ выбранные разговоры?</string>
   <string name="ConversationListFragment_deleting">Удаление</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Удаляем выбранные разговоры...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Удаляем выбранные разговоры&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Сообщениe обмена ключами...</string>
+  <string name="ConversationListItem_key_exchange_message">Сообщениe обмена ключами&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Экспортировать на SD-карту?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Вы собираетесь экспортировать на SD-карту свои зашифрованные ключи, настройки и сообщения.</string>
@@ -83,11 +83,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, вы собираетесь экспортировать на SD-карту свои сообщения в незашифрованном виде.</string>
   <string name="ExportFragment_cancel">Отмена</string>
   <string name="ExportFragment_exporting">Экспорт</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Экспортируем открытым текстом на карту памяти...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Экспортируем открытым текстом на карту памяти&#x2026;</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Ошибка, невозможно произвести запись на SD-карту!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Ошибка при записи на SD-карту.</string>
   <string name="ExportFragment_success">Успешно!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Производится экспорт зашифрованных ключей, настроек и сообщений...</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Производится экспорт зашифрованных ключей, настроек и сообщений&#x2026;</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Импортировать системную базу SMS?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Вы собираетесь импортировать SMS-сообщения из системной базы данных в TextSecure. Если вы уже это делали ранее, повторный импорт приведёт к дублированию сообщений.</string>
@@ -99,21 +99,21 @@
   <string name="ImportFragment_import_plaintext_backup">Импортировать из нешифрованной резервной копии?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Вы собираетесь импортировать сообщения из незашифрованной резервной копии. Если вы ранее уже импортировали SMS-сообщения из системной базы данных, повторный импорт приведёт к дублированию сообщений.</string>
   <string name="ImportFragment_importing">Импорт</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Импортируем из незашифрованной резервной копии...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Импортируем из незашифрованной резервной копии&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Незашифрованная резервная копия не найдена!</string>
   <string name="ImportFragment_error_importing_backup">Ошибка при импорте!</string>
   <string name="ImportFragment_import_complete">Импорт завершён.</string>
   <string name="ImportFragment_restoring">Восстановление</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Восстановление из зашифрованной резервной копии...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Восстановление из зашифрованной резервной копии&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Зашифрованная резервная копия не найдена!</string>
   <string name="ImportFragment_restore_complete">Восстановление завершено.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">При сканировании ключ не обнаружен!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Нет подключения, через которое можно скачать MMS; попробуйте позже ...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Нет подключения, через которое можно скачать MMS; попробуйте позже &#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка подключения к провайдеру MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка подключения к провайдеру MMS&#x2026;</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
   <!--PassphraseChangeActivity-->
@@ -164,19 +164,19 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Вы уже отправили этому собеседнику запрос на начало сеанса. Вы уверены, что хотите отправить ещё один? Предыдущий будет аннулирован.</string>
   <string name="KeyExchangeInitiator_send">Отправить</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Зашифрованное сообщение испорчено...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Расшифровываем...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Сообщение зашифровано для несуществующей сессии...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Зашифрованное сообщение испорчено&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Расшифровываем&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Сообщение зашифровано для несуществующей сессии&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Соединяемся с MMS-сервером...</string>
-  <string name="MmsDatabase_downloading_mms">Скачиваем MMS-сообщение...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Соединяемся с MMS-сервером&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Скачиваем MMS-сообщение&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Не удалось скачать MMS-сообщение!</string>
-  <string name="MmsDatabase_downloading">Скачиваем...</string>
+  <string name="MmsDatabase_downloading">Скачиваем&#x2026;</string>
   <string name="MmsDatabase_mms_pending_download">Чтобы продолжить скачивание, нажмите сюда и настройте MMS.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Расшифровываем MMS-сообщение...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Зашифрованное MMS-сообщение испорчено...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-сообщение зашифрованно для несуществующей сессии...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Расшифровываем MMS-сообщение&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Зашифрованное MMS-сообщение испорчено&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-сообщение зашифрованно для несуществующей сессии&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">В настоящий момент невозможно отправить MMS-сообщение.</string>
   <!--ApplicationMigrationService-->
@@ -188,7 +188,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">Новых сообщений: %d</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее — от %s</string>
-  <string name="MessageNotifier_encrypted_message">Зашифрованное сообщение...</string>
+  <string name="MessageNotifier_encrypted_message">Зашифрованное сообщение&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Без темы)</string>
   <string name="MessageNotifier_message_delivery_failed">Сбой доставки сообщения.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не удалось доставить сообщение.</string>
@@ -196,8 +196,8 @@
   <string name="MessageNotifier_mark_all_as_read">Отметить все как прочитанные</string>
   <string name="MessageNotifier_mark_as_read">Отметить как прочитанное</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Регенерация...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Генерируем новый личный ключ...</string>
+  <string name="ViewLocalIdentityActivity_regenerating">Регенерация&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Генерируем новый личный ключ&#x2026;</string>
   <string name="ViewLocalIdentityActivity_regenerated">Регенерация завершена!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Сбросить личный ключ?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nОсторожно! Если вы заново сгенерируете свой личный ключ, текущий будет утрачен навсегда, и ваши собеседники получат предупрежения при начале новых защищённых сеансов с вами. Вы уверены, что хотите продолжить?</string>
@@ -245,7 +245,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Это может занять какое-то время. Пожалуйста, наберитесь терпения, мы вам сообщим, когда импортирование завершится.</string>
   <string name="database_migration_activity__importing">ИМПОРТИРОВАНИЕ</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Обновляем базу данных...</string>
+  <string name="database_upgrade_activity__updating_database">Обновляем базу данных&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Экспорт зашифрованной резервной копии</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Экспортировать на SD-карту зашифрованную резервную копию.</string>
   <string name="export_fragment__export_plaintext_backup">Экспорт незашифрованной резервной копии.</string>
