@@ -39,6 +39,8 @@ import org.whispersystems.textsecure.util.Util;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MmsCommunication {
 
@@ -188,36 +190,59 @@ public class MmsCommunication {
   }
 
   protected static class MmsConnectionParameters {
-    private final String mmsc;
-    private final String proxy;
-    private final String port;
+    private class Apn {
+      public final String mmsc;
+      public final String proxy;
+      public final String port;
+
+      public Apn(String mmsc, String proxy, String port) {
+        this.mmsc  = mmsc;
+        this.proxy = proxy;
+        this.port  = port;
+      }
+    }
+
+    private List<Apn> apn = new ArrayList<Apn>();
+    private int index = 0;
 
     public MmsConnectionParameters(String mmsc, String proxy, String port) {
-      this.mmsc  = mmsc;
-      this.proxy = proxy;
-      this.port  = port;
+      apn.add(new Apn(mmsc, proxy, port));
+    }
+
+    public MmsConnectionParameters add(String mmsc, String proxy, String port) {
+      apn.add(new Apn(mmsc, proxy, port));
+      return this;
     }
 
     public boolean hasProxy() {
-      return !Util.isEmpty(proxy);
+      return !Util.isEmpty(apn.get(index).proxy);
     }
 
     public String getMmsc() {
-      return mmsc;
+      return apn.get(index).mmsc;
     }
 
     public String getProxy() {
       if (!hasProxy())
         return null;
 
-      return proxy;
+      return apn.get(index).proxy;
     }
 
     public int getPort() {
-      if (Util.isEmpty(port))
+      if (Util.isEmpty(apn.get(index).port))
         return 80;
 
-      return Integer.parseInt(port);
+      return Integer.parseInt(apn.get(index).port);
+    }
+
+    public boolean next() {
+      if (index+1 >= apn.size()) {
+        return false;
+      }
+
+      index++;
+      return true;
     }
   }
 

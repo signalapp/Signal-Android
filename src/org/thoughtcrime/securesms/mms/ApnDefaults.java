@@ -22,7 +22,8 @@ public class ApnDefaults {
             put("310260", new MmsConnectionParameters("http://mms.msg.eng.t-mobile.com/mms/wapenc", null, null));
 
             //AT&T - Testd
-            put("310410", new MmsConnectionParameters("http://mmsc.mobile.att.net", "proxy.mobile.att.net", "80"));
+            put("310410", (new MmsConnectionParameters("http://mmsc.cingular.com", "wireless.cingular.com", "80"))
+                                                  .add("http://mmsc.mobile.att.net", "proxy.mobile.att.net", "80"));
 
             //Verizon - Untested
             put("310004", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
@@ -256,7 +257,6 @@ public class ApnDefaults {
             put("31039", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("31040", new MmsConnectionParameters("http://mms.sprintpcs.com", "68.28.31.7", "80"));
             put("31041", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
-            put("310410", new MmsConnectionParameters("http://mmsc.mobile.att.net", "proxy.mobile.att.net", "80"));
             put("31042", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("310420", new MmsConnectionParameters("http://mms.gocbw.com:8088/mms", "216.68.79.202", "80"));
             put("31043", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));

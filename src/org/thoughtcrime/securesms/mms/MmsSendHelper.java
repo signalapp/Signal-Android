@@ -103,7 +103,14 @@ public class MmsSendHelper extends MmsCommunication {
     Log.w("MmsSender", "Sending MMS of length: " + mms.length);
     try {
       MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn, useProxyIfAvailable);
-      checkRouteToHost(context, parameters, parameters.getMmsc(), usingMmsRadio);
+      do {
+        try {
+          checkRouteToHost(context, parameters, parameters.getMmsc(), usingMmsRadio);
+        } catch (IOException e) {
+          if (parameters.next()) continue;
+          else                   throw e;
+        }
+      } while (false);
       return makePost(context, parameters, mms);
     } catch (ApnUnavailableException aue) {
       Log.w("MmsSender", aue);
