@@ -7,9 +7,6 @@ import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.util.Base64;
 
-import java.io.UnsupportedEncodingException;
-
-import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduHeaders;
@@ -20,29 +17,28 @@ public class IncomingMediaMessage {
 
   private final PduHeaders headers;
   private final PduBody    body;
+  private final String     groupId;
 
   public IncomingMediaMessage(RetrieveConf retreived) {
     this.headers = retreived.getPduHeaders();
     this.body    = retreived.getBody();
+    this.groupId = null;
   }
 
   public IncomingMediaMessage(MasterSecret masterSecret, String localNumber,
                               IncomingPushMessage message,
-                              PushMessageContent messageContent)
+                              PushMessageContent messageContent,
+                              String groupId)
   {
     this.headers = new PduHeaders();
     this.body    = new PduBody();
+    this.groupId = groupId;
 
     this.headers.setEncodedStringValue(new EncodedStringValue(message.getSource()), PduHeaders.FROM);
     this.headers.appendEncodedStringValue(new EncodedStringValue(localNumber), PduHeaders.TO);
-
-    for (String destination : message.getDestinations()) {
-      this.headers.appendEncodedStringValue(new EncodedStringValue(destination), PduHeaders.CC);
-    }
-
     this.headers.setLongInteger(message.getTimestampMillis() / 1000, PduHeaders.DATE);
 
-    if (messageContent.getBody() != null && messageContent.getBody().length() > 0) {
+    if (!org.whispersystems.textsecure.util.Util.isEmpty(messageContent.getBody())) {
       PduPart text = new PduPart();
       text.setData(Util.toIsoBytes(messageContent.getBody()));
       text.setContentType(Util.toIsoBytes("text/plain"));
@@ -77,8 +73,15 @@ public class IncomingMediaMessage {
     return body;
   }
 
+  public String getGroupId() {
+    return groupId;
+  }
+
   public boolean isGroupMessage() {
-    return !Util.isEmpty(headers.getEncodedStringValues(PduHeaders.CC));
+    return groupId != null                                           ||
+        !Util.isEmpty(headers.getEncodedStringValues(PduHeaders.CC)) ||
+        (headers.getEncodedStringValues(PduHeaders.TO) != null &&
+         headers.getEncodedStringValues(PduHeaders.TO).length > 1);
   }
 
 }

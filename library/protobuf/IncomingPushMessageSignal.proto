@@ -7,19 +7,35 @@ message IncomingPushMessageSignal {
   optional uint32 type = 1;
   optional string source = 2;
   optional string relay = 3;
-  repeated string destinations = 4;
+//  repeated string destinations = 4; // No longer supported
   optional uint64 timestamp = 5;
   optional bytes message = 6; // Contains an encrypted PushMessageContent
 }
 
 message PushMessageContent {
-  optional string body = 1;
-
   message AttachmentPointer {
     optional fixed64 id = 1;
     optional string contentType = 2;
     optional bytes key = 3;
   }
 
+  message GroupContext {
+    enum Type {
+      UNKNOWN = 0;
+      CREATE  = 1;
+      MODIFY  = 2;
+      DELIVER = 3;
+      ADD     = 4;
+      QUIT    = 5;
+    }
+    optional bytes id = 1;
+    optional Type type = 2;
+    optional string name = 3;
+    repeated string members = 4;
+    optional AttachmentPointer avatar = 5;
+  }
+
+  optional string body = 1;
   repeated AttachmentPointer attachments = 2;
+  optional GroupContext group = 3;
 }

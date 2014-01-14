@@ -179,17 +179,35 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   }
 
   private long getThreadIdFor(IncomingMediaMessage retrieved) throws RecipientFormattingException {
+    if (retrieved.getGroupId() != null) {
+      return DatabaseFactory.getThreadDatabase(context).getThreadIdForGroup(retrieved.getGroupId());
+    }
+
     try {
       PduHeaders headers = retrieved.getPduHeaders();
       Set<String> group = new HashSet<String>();
 
-      EncodedStringValue encodedFrom = headers.getEncodedStringValue(PduHeaders.FROM);
+      EncodedStringValue   encodedFrom   = headers.getEncodedStringValue(PduHeaders.FROM);
+      EncodedStringValue[] encodedCcList = headers.getEncodedStringValues(PduHeaders.CC);
+      EncodedStringValue[] encodedToList = headers.getEncodedStringValues(PduHeaders.TO);
+
       group.add(new String(encodedFrom.getTextString(), CharacterSets.MIMENAME_ISO_8859_1));
 
-      EncodedStringValue[] encodedCcList = headers.getEncodedStringValues(PduHeaders.CC);
       if (encodedCcList != null) {
         for (EncodedStringValue encodedCc : encodedCcList) {
           group.add(new String(encodedCc.getTextString(), CharacterSets.MIMENAME_ISO_8859_1));
+        }
+      }
+
+      if (encodedToList != null) {
+        String localNumber = Util.getDeviceE164Number(context);
+
+        for (EncodedStringValue encodedTo : encodedToList) {
+          String to = new String(encodedTo.getTextString(), CharacterSets.MIMENAME_ISO_8859_1);
+
+          if (!localNumber.equals(to)) {
+            group.add(to);
+          }
         }
       }
 

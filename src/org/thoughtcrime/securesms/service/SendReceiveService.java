@@ -57,6 +57,7 @@ public class SendReceiveService extends Service {
   public static final String RECEIVE_PUSH_ACTION              = "org.thoughtcrime.securesms.SendReceiveService.RECEIVE_PUSH_ACTION";
   public static final String DECRYPTED_PUSH_ACTION            = "org.thoughtcrime.securesms.SendReceiveService.DECRYPTED_PUSH_ACTION";
   public static final String DOWNLOAD_PUSH_ACTION             = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_PUSH_ACTION";
+  public static final String DOWNLOAD_AVATAR_ACTION           = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_AVATAR_ACTION";
 
   private static final int SEND_SMS              = 0;
   private static final int RECEIVE_SMS           = 1;
@@ -66,16 +67,18 @@ public class SendReceiveService extends Service {
   private static final int DOWNLOAD_MMS_PENDING  = 5;
   private static final int RECEIVE_PUSH          = 6;
   private static final int DOWNLOAD_PUSH         = 7;
+  private static final int DOWNLOAD_AVATAR       = 8;
 
   private ToastHandler toastHandler;
 
-  private SmsReceiver    smsReceiver;
-  private SmsSender      smsSender;
-  private MmsReceiver    mmsReceiver;
-  private MmsSender      mmsSender;
-  private MmsDownloader  mmsDownloader;
-  private PushReceiver   pushReceiver;
-  private PushDownloader pushDownloader;
+  private SmsReceiver      smsReceiver;
+  private SmsSender        smsSender;
+  private MmsReceiver      mmsReceiver;
+  private MmsSender        mmsSender;
+  private MmsDownloader    mmsDownloader;
+  private PushReceiver     pushReceiver;
+  private PushDownloader   pushDownloader;
+  private AvatarDownloader avatarDownloader;
 
   private MasterSecret masterSecret;
   private boolean      hasSecret;
@@ -122,6 +125,8 @@ public class SendReceiveService extends Service {
       scheduleSecretRequiredIntent(RECEIVE_PUSH, intent);
     else if (action.equals(DOWNLOAD_PUSH_ACTION))
       scheduleSecretRequiredIntent(DOWNLOAD_PUSH, intent);
+    else if (action.equals(DOWNLOAD_AVATAR_ACTION))
+      scheduleIntent(DOWNLOAD_AVATAR, intent);
     else
       Log.w("SendReceiveService", "Received intent with unknown action: " + intent.getAction());
   }
@@ -148,13 +153,14 @@ public class SendReceiveService extends Service {
   }
 
   private void initializeProcessors() {
-    smsReceiver    = new SmsReceiver(this);
-    smsSender      = new SmsSender(this, toastHandler);
-    mmsReceiver    = new MmsReceiver(this);
-    mmsSender      = new MmsSender(this, toastHandler);
-    mmsDownloader  = new MmsDownloader(this, toastHandler);
-    pushReceiver   = new PushReceiver(this);
-    pushDownloader = new PushDownloader(this);
+    smsReceiver      = new SmsReceiver(this);
+    smsSender        = new SmsSender(this, toastHandler);
+    mmsReceiver      = new MmsReceiver(this);
+    mmsSender        = new MmsSender(this, toastHandler);
+    mmsDownloader    = new MmsDownloader(this, toastHandler);
+    pushReceiver     = new PushReceiver(this);
+    pushDownloader   = new PushDownloader(this);
+    avatarDownloader = new AvatarDownloader(this);
   }
 
   private void initializeWorkQueue() {
@@ -235,14 +241,15 @@ public class SendReceiveService extends Service {
     @Override
     public void run() {
       switch (what) {
-      case RECEIVE_SMS:	  smsReceiver.process(masterSecret, intent);    return;
-      case SEND_SMS:		  smsSender.process(masterSecret, intent);      return;
-      case RECEIVE_MMS:   mmsReceiver.process(masterSecret, intent);    return;
-      case SEND_MMS:      mmsSender.process(masterSecret, intent);      return;
-      case DOWNLOAD_MMS:  mmsDownloader.process(masterSecret, intent);  return;
-      case DOWNLOAD_MMS_PENDING: mmsDownloader.process(masterSecret, intent); return;
-      case RECEIVE_PUSH:  pushReceiver.process(masterSecret, intent);   return;
-      case DOWNLOAD_PUSH: pushDownloader.process(masterSecret, intent); return;
+      case RECEIVE_SMS:	         smsReceiver.process(masterSecret, intent);      return;
+      case SEND_SMS:		         smsSender.process(masterSecret, intent);        return;
+      case RECEIVE_MMS:          mmsReceiver.process(masterSecret, intent);      return;
+      case SEND_MMS:             mmsSender.process(masterSecret, intent);        return;
+      case DOWNLOAD_MMS:         mmsDownloader.process(masterSecret, intent);    return;
+      case DOWNLOAD_MMS_PENDING: mmsDownloader.process(masterSecret, intent);    return;
+      case RECEIVE_PUSH:         pushReceiver.process(masterSecret, intent);     return;
+      case DOWNLOAD_PUSH:        pushDownloader.process(masterSecret, intent);   return;
+      case DOWNLOAD_AVATAR:      avatarDownloader.process(masterSecret, intent); return;
       }
     }
   }

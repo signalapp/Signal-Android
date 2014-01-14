@@ -25,10 +25,8 @@ import org.thoughtcrime.securesms.util.NumberUtil;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Util;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class RecipientFactory {
@@ -36,7 +34,7 @@ public class RecipientFactory {
   private static final RecipientProvider provider = new RecipientProvider();
 
   public static Recipients getRecipientsForIds(Context context, String recipientIds, boolean asynchronous) {
-    if (recipientIds == null || recipientIds.trim().length() == 0)
+    if (Util.isEmpty(recipientIds))
       return new Recipients(new LinkedList<Recipient>());
 
     List<Recipient> results   = new LinkedList<Recipient>();
@@ -79,12 +77,8 @@ public class RecipientFactory {
                                                     IncomingPushMessage message,
                                                     boolean asynchronous)
   {
-    Set<String> recipients = new HashSet<String>();
-    recipients.add(message.getSource());
-    recipients.addAll(message.getDestinations());
-
     try {
-      return getRecipientsFromString(context, Util.join(recipients, ","), asynchronous);
+      return getRecipientsFromString(context, message.getSource(), asynchronous);
     } catch (RecipientFormattingException e) {
       Log.w("RecipientFactory", e);
       return new Recipients(new Recipient("Unknown", "Unknown", null,
@@ -93,8 +87,12 @@ public class RecipientFactory {
   }
 
   private static Recipient getRecipientFromProviderId(Context context, String recipientId, boolean asynchronous) {
-    String number = DatabaseFactory.getAddressDatabase(context).getAddressFromId(recipientId);
-    return getRecipientForNumber(context, number, asynchronous);
+    if (recipientId.startsWith("g_")) {
+      return provider.getGroupRecipient(context, recipientId, asynchronous);
+    } else {
+      String number = DatabaseFactory.getAddressDatabase(context).getAddressFromId(recipientId);
+      return getRecipientForNumber(context, number, asynchronous);
+    }
   }
 
   private static boolean hasBracketedNumber(String recipient) {

@@ -122,4 +122,9 @@ public class BitmapUtil {
     return output;
   }
 
+  public static byte[] toByteArray(Bitmap bitmap) {
+    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+    return stream.toByteArray();
+  }
 }

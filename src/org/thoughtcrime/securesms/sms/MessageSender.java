@@ -116,15 +116,20 @@ public class MessageSender {
                               SendReq sendRequest, long threadId, int distributionType, boolean secure)
     throws MmsException
   {
+    Log.w("MessageSender", "Distribution type: " + distributionType);
+
     String[] recipientsArray            = recipients.toNumberStringArray(true);
     EncodedStringValue[] encodedNumbers = EncodedStringValue.encodeStrings(recipientsArray);
 
     if (recipients.isSingleRecipient()) {
+      Log.w("MessageSender", "Single recipient!?");
       sendRequest.setTo(encodedNumbers);
     } else if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
+      Log.w("MessageSender", "Broadcast...");
       sendRequest.setBcc(encodedNumbers);
-    } else if (distributionType == ThreadDatabase.DistributionTypes.CONVERSATION) {
-      sendRequest.setCc(encodedNumbers);
+    } else if (distributionType == ThreadDatabase.DistributionTypes.CONVERSATION  || distributionType == 0) {
+      Log.w("MessageSender", "Conversation...");
+      sendRequest.setTo(encodedNumbers);
     }
 
     long messageId = DatabaseFactory.getMmsDatabase(context)

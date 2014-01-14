@@ -2,6 +2,7 @@ package org.whispersystems.textsecure.util;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.telephony.TelephonyManager;
 import android.widget.EditText;
 
 import java.io.ByteArrayOutputStream;
@@ -167,6 +168,22 @@ public class Util {
     }
 
     return results;
+  }
+
+  public static String getDeviceE164Number(Context context) {
+    String localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE))
+        .getLine1Number();
+
+    if (!org.whispersystems.textsecure.util.Util.isEmpty(localNumber) &&
+        !localNumber.startsWith("+"))
+    {
+      if (localNumber.length() == 10) localNumber = "+1" + localNumber;
+      else                            localNumber = "+"  + localNumber;
+
+      return localNumber;
+    }
+
+    return null;
   }
 
   public static SecureRandom getSecureRandom() {

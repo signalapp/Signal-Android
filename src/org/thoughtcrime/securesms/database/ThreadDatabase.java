@@ -101,6 +101,17 @@ public class ThreadDatabase extends Database {
     return sb.toString();
   }
 
+  private long createThreadForGroup(String group) {
+    long date = System.currentTimeMillis();
+
+    ContentValues values = new ContentValues();
+    values.put(DATE, date - date % 1000);
+    values.put(RECIPIENT_IDS, group);
+    values.put(MESSAGE_COUNT, 0);
+
+    return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+  }
+
   private long createThreadForRecipients(String recipients, int recipientCount, int distributionType) {
     ContentValues contentValues = new ContentValues(4);
     long date                   = System.currentTimeMillis();
@@ -325,7 +336,7 @@ public class ThreadDatabase extends Database {
   }
 
   public long getThreadIdFor(Recipients recipients) {
-    return getThreadIdFor(recipients, 0);
+    return getThreadIdFor(recipients, DistributionTypes.DEFAULT);
   }
 
   public long getThreadIdFor(Recipients recipients, int distributionType) {
@@ -343,6 +354,26 @@ public class ThreadDatabase extends Database {
         return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
       else
         return createThreadForRecipients(recipientsList, recipientIds.length, distributionType);
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
+  public long getThreadIdForGroup(String groupId) {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    String where           = RECIPIENT_IDS + " = ?";
+    String[] recipientsArg = new String[] {groupId};
+    Cursor cursor          = null;
+
+    try {
+      cursor = db.query(TABLE_NAME, new String[]{ID}, where, recipientsArg, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+      } else {
+        return createThreadForGroup(groupId);
+      }
     } finally {
       if (cursor != null)
         cursor.close();

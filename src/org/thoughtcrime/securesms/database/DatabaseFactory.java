@@ -52,7 +52,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_MMS_FROM_VERSION      = 8;
   private static final int INTRODUCED_TOFU_IDENTITY_VERSION = 9;
   private static final int INTRODUCED_PUSH_DATABASE_VERSION = 10;
-  private static final int DATABASE_VERSION                 = 10;
+  private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
+  private static final int DATABASE_VERSION                 = 11;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -73,6 +74,7 @@ public class DatabaseFactory {
   private final IdentityDatabase identityDatabase;
   private final DraftDatabase draftDatabase;
   private final PushDatabase pushDatabase;
+  private final GroupDatabase groupDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -138,6 +140,10 @@ public class DatabaseFactory {
     return getInstance(context).pushDatabase;
   }
 
+  public static GroupDatabase getGroupDatabase(Context context) {
+    return getInstance(context).groupDatabase;
+  }
+
   private DatabaseFactory(Context context) {
     this.databaseHelper   = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     this.sms              = new SmsDatabase(context, databaseHelper);
@@ -151,6 +157,7 @@ public class DatabaseFactory {
     this.identityDatabase = new IdentityDatabase(context, databaseHelper);
     this.draftDatabase    = new DraftDatabase(context, databaseHelper);
     this.pushDatabase     = new PushDatabase(context, databaseHelper);
+    this.groupDatabase    = new GroupDatabase(context, databaseHelper);
   }
 
   public void reset(Context context) {
@@ -166,6 +173,8 @@ public class DatabaseFactory {
     this.mmsSmsDatabase.reset(databaseHelper);
     this.identityDatabase.reset(databaseHelper);
     this.draftDatabase.reset(databaseHelper);
+    this.pushDatabase.reset(databaseHelper);
+    this.groupDatabase.reset(databaseHelper);
     old.close();
 
     this.address.reset(context);
@@ -432,6 +441,7 @@ public class DatabaseFactory {
       db.execSQL(IdentityDatabase.CREATE_TABLE);
       db.execSQL(DraftDatabase.CREATE_TABLE);
       db.execSQL(PushDatabase.CREATE_TABLE);
+      db.execSQL(GroupDatabase.CREATE_TABLE);
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -439,6 +449,7 @@ public class DatabaseFactory {
       executeStatements(db, ThreadDatabase.CREATE_INDEXS);
       executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
       executeStatements(db, DraftDatabase.CREATE_INDEXS);
+      executeStatements(db, GroupDatabase.CREATE_INDEXS);
     }
 
     @Override
@@ -628,6 +639,11 @@ public class DatabaseFactory {
         db.execSQL("CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, destinations TEXT, body TEXT, TIMESTAMP INTEGER);");
         db.execSQL("ALTER TABLE part ADD COLUMN pending_push INTEGER;");
         db.execSQL("CREATE INDEX IF NOT EXISTS pending_push_index ON part (pending_push);");
+      }
+
+      if (oldVersion < INTRODUCED_GROUP_DATABASE_VERSION) {
+        db.execSQL("CREATE TABLE groups (_id INTEGER PRIMARY KEY, group_id TEXT, owner TEXT, title TEXT, members TEXT, avatar BLOB, avatar_id INTEGER, avatar_key BLOB, avatar_content_type TEXT, timestamp INTEGER);");
+        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON groups (GROUP_ID);");
       }
 
       db.setTransactionSuccessful();

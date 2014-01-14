@@ -29,6 +29,7 @@ public class IncomingTextMessage implements Parcelable {
   private final boolean replyPathPresent;
   private final String  pseudoSubject;
   private final long    sentTimestampMillis;
+  private final String  groupId;
 
   public IncomingTextMessage(SmsMessage message) {
     this.message              = message.getDisplayMessageBody();
@@ -38,9 +39,10 @@ public class IncomingTextMessage implements Parcelable {
     this.replyPathPresent     = message.isReplyPathPresent();
     this.pseudoSubject        = message.getPseudoSubject();
     this.sentTimestampMillis  = message.getTimestampMillis();
+    this.groupId              = null;
   }
 
-  public IncomingTextMessage(IncomingPushMessage message, String encodedBody) {
+  public IncomingTextMessage(IncomingPushMessage message, String encodedBody, String groupId) {
     this.message              = encodedBody;
     this.sender               = message.getSource();
     this.protocol             = 31337;
@@ -48,6 +50,7 @@ public class IncomingTextMessage implements Parcelable {
     this.replyPathPresent     = true;
     this.pseudoSubject        = "";
     this.sentTimestampMillis  = message.getTimestampMillis();
+    this.groupId              = groupId;
   }
 
   public IncomingTextMessage(Parcel in) {
@@ -58,6 +61,7 @@ public class IncomingTextMessage implements Parcelable {
     this.replyPathPresent     = (in.readInt() == 1);
     this.pseudoSubject        = in.readString();
     this.sentTimestampMillis  = in.readLong();
+    this.groupId              = in.readString();
   }
 
   public IncomingTextMessage(IncomingTextMessage base, String newBody) {
@@ -68,6 +72,7 @@ public class IncomingTextMessage implements Parcelable {
     this.replyPathPresent     = base.isReplyPathPresent();
     this.pseudoSubject        = base.getPseudoSubject();
     this.sentTimestampMillis  = base.getSentTimestampMillis();
+    this.groupId              = base.getGroupId();
   }
 
   public IncomingTextMessage(List<IncomingTextMessage> fragments) {
@@ -84,6 +89,7 @@ public class IncomingTextMessage implements Parcelable {
     this.replyPathPresent     = fragments.get(0).isReplyPathPresent();
     this.pseudoSubject        = fragments.get(0).getPseudoSubject();
     this.sentTimestampMillis  = fragments.get(0).getSentTimestampMillis();
+    this.groupId              = fragments.get(0).getGroupId();
   }
 
   public long getSentTimestampMillis() {
@@ -130,6 +136,10 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
+  public String getGroupId() {
+    return groupId;
+  }
+
   @Override
   public int describeContents() {
     return 0;
@@ -144,5 +154,6 @@ public class IncomingTextMessage implements Parcelable {
     out.writeInt(replyPathPresent ? 1 : 0);
     out.writeString(pseudoSubject);
     out.writeLong(sentTimestampMillis);
+    out.writeString(groupId);
   }
 }

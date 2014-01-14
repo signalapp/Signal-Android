@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -31,8 +32,12 @@ import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
+import org.whispersystems.textsecure.util.Hex;
 
 import ws.com.google.android.mms.MmsException;
+
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext.Type;
 
 public class PushReceiver {
 
@@ -67,7 +72,15 @@ public class PushReceiver {
   }
 
   private void handleMessage(MasterSecret masterSecret, Intent intent) {
+    if (intent.getExtras() == null) {
+      return;
+    }
+
     IncomingPushMessage message = intent.getExtras().getParcelable("message");
+
+    if (message == null) {
+      return;
+    }
 
     if      (message.isSecureMessage()) handleReceivedSecureMessage(masterSecret, message);
     else if (message.isPreKeyBundle())  handleReceivedPreKeyBundle(masterSecret, message);
@@ -105,7 +118,7 @@ public class PushReceiver {
       } else {
         SmsTransportDetails transportDetails = new SmsTransportDetails();
         String              encoded          = new String(transportDetails.getEncodedMessage(message.getBody()));
-        IncomingTextMessage textMessage      = new IncomingTextMessage(message, "");
+        IncomingTextMessage textMessage      = new IncomingTextMessage(message, "", null);
 
         textMessage = new IncomingPreKeyBundleMessage(textMessage, encoded);
         DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, textMessage);
@@ -133,12 +146,15 @@ public class PushReceiver {
       Log.w("PushReceiver", "Processing: " + new String(message.getBody()));
       PushMessageContent messageContent = PushMessageContent.parseFrom(message.getBody());
 
-      if (messageContent.getAttachmentsCount() > 0 || message.getDestinations().size() > 0) {
+      if (messageContent.hasGroup()) {
+        Log.w("PushReceiver", "Received push group message...");
+        handleReceivedGroupMessage(masterSecret, message, messageContent, secure);
+      } else if (messageContent.getAttachmentsCount() > 0) {
         Log.w("PushReceiver", "Received push media message...");
-        handleReceivedMediaMessage(masterSecret, message, messageContent, secure);
+        handleReceivedMediaMessage(masterSecret, message, messageContent, secure, null);
       } else {
         Log.w("PushReceiver", "Received push text message...");
-        handleReceivedTextMessage(masterSecret, message, messageContent, secure);
+        handleReceivedTextMessage(masterSecret, message, messageContent, secure, null);
       }
     } catch (InvalidProtocolBufferException e) {
       Log.w("PushReceiver", e);
@@ -146,17 +162,75 @@ public class PushReceiver {
     }
   }
 
-  private void handleReceivedMediaMessage(MasterSecret masterSecret,
+  private void handleReceivedGroupMessage(MasterSecret masterSecret,
                                           IncomingPushMessage message,
                                           PushMessageContent messageContent,
                                           boolean secure)
+  {
+    if (messageContent.getGroup().getType().equals(Type.UNKNOWN)) {
+      Log.w("PushReceiver", "Received group message of unknown type: " +
+                            messageContent.getGroup().getType().getNumber());
+      return;
+    }
+
+    if (!messageContent.getGroup().hasId()) {
+      Log.w("PushReceiver", "Received group message with no id!");
+      return;
+    }
+
+    GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
+    GroupContext  group    = messageContent.getGroup();
+    byte[]        id       = group.getId().toByteArray();
+    int           type     = group.getType().getNumber();
+
+    switch (type) {
+      case Type.CREATE_VALUE:
+        database.create(id, message.getSource(), group.getName(), group.getMembersList(), group.getAvatar(), message.getRelay());
+        break;
+      case Type.ADD_VALUE:
+        database.add(id, message.getSource(), group.getMembersList());
+        break;
+      case Type.QUIT_VALUE:
+        database.remove(id, message.getSource());
+        break;
+      case Type.MODIFY_VALUE:
+        database.update(id, message.getSource(), group.getName(), group.getAvatar());
+        break;
+      case Type.DELIVER_VALUE:
+        break;
+      case Type.UNKNOWN_VALUE:
+      default:
+        Log.w("PushReceiver", "Received group message of unknown type: " + type);
+        return;
+    }
+
+    if (group.hasAvatar()) {
+      Intent intent = new Intent(context, SendReceiveService.class);
+      intent.setAction(SendReceiveService.DOWNLOAD_AVATAR_ACTION);
+      context.startService(intent);
+    }
+
+    String groupId =  "g_" + Hex.toString(group.getId().toByteArray());
+
+    if (messageContent.getAttachmentsCount() > 0) {
+      handleReceivedMediaMessage(masterSecret, message, messageContent, secure, groupId);
+    } else if (messageContent.hasBody()) {
+      handleReceivedTextMessage(masterSecret, message, messageContent, secure, groupId);
+    }
+  }
+
+  private void handleReceivedMediaMessage(MasterSecret masterSecret,
+                                          IncomingPushMessage message,
+                                          PushMessageContent messageContent,
+                                          boolean secure, String groupId)
   {
 
     try {
       String               localNumber  = TextSecurePreferences.getLocalNumber(context);
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret, localNumber,
-                                                                   message, messageContent);
+                                                                   message, messageContent,
+                                                                   groupId);
 
       Pair<Long, Long> messageAndThreadId;
 
@@ -181,10 +255,10 @@ public class PushReceiver {
   private void handleReceivedTextMessage(MasterSecret masterSecret,
                                          IncomingPushMessage message,
                                          PushMessageContent messageContent,
-                                         boolean secure)
+                                         boolean secure, String groupId)
   {
     EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
-    IncomingTextMessage   textMessage = new IncomingTextMessage(message, "");
+    IncomingTextMessage   textMessage = new IncomingTextMessage(message, "", groupId);
 
     if (secure) {
       textMessage = new IncomingEncryptedMessage(textMessage, "");
@@ -210,7 +284,7 @@ public class PushReceiver {
                                           IncomingPushMessage message,
                                           boolean invalidVersion)
   {
-    IncomingTextMessage        corruptedMessage    = new IncomingTextMessage(message, "");
+    IncomingTextMessage        corruptedMessage    = new IncomingTextMessage(message, "", null);
     IncomingKeyExchangeMessage corruptedKeyMessage = new IncomingKeyExchangeMessage(corruptedMessage, "");
 
     if (!invalidVersion) corruptedKeyMessage.setCorrupted(true);
@@ -235,7 +309,7 @@ public class PushReceiver {
                                         IncomingPushMessage message,
                                         boolean secure)
   {
-    IncomingTextMessage placeholder = new IncomingTextMessage(message, "");
+    IncomingTextMessage placeholder = new IncomingTextMessage(message, "", null);
 
     if (secure) {
       placeholder = new IncomingEncryptedMessage(placeholder, "");
