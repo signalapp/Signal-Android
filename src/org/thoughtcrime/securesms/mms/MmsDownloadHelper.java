@@ -34,7 +34,7 @@ import ws.com.google.android.mms.pdu.RetrieveConf;
 
 public class MmsDownloadHelper extends MmsCommunication {
 
-  private static byte[] makeRequest(Context context, MmsConnectionParameters connectionParameters, String url)
+  private static byte[] makeRequest(Context context, MmsConnectionParameters.Apn connectionParameters, String url)
       throws IOException
   {
     AndroidHttpClient client = null;
@@ -78,13 +78,17 @@ public class MmsDownloadHelper extends MmsCommunication {
       throws IOException, ApnUnavailableException
   {
     MmsConnectionParameters connectionParameters = getMmsConnectionParameters(context, apn, proxyIfPossible);
+    byte[] pdu = null;
 
-    checkRouteToHost(context, connectionParameters, url, usingMmsRadio);
-
-    byte[] pdu = makeRequest(context, connectionParameters, url);
+    for (MmsConnectionParameters.Apn param : connectionParameters.get()) {
+      if (checkRouteToHost(context, param, param.getMmsc(), usingMmsRadio)) {
+        pdu = makeRequest(context, param, url);
+        if (pdu != null) break;
+      }
+    }
 
     if (pdu == null) {
-      throw new IOException("Retrieved null PDU!");
+      throw new IOException("Connection manager could not obtain route to host.");
     }
 
     RetrieveConf retrieved = (RetrieveConf)new PduParser(pdu).parse();

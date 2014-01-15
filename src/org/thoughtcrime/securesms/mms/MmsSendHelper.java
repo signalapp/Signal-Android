@@ -37,7 +37,7 @@ import ws.com.google.android.mms.pdu.SendConf;
 
 public class MmsSendHelper extends MmsCommunication {
 
-  private static byte[] makePost(Context context, MmsConnectionParameters parameters, byte[] mms)
+  private static byte[] makePost(Context context, MmsConnectionParameters.Apn parameters, byte[] mms)
       throws IOException
   {
     AndroidHttpClient client = null;
@@ -88,11 +88,6 @@ public class MmsSendHelper extends MmsCommunication {
       throws IOException
   {
     byte[] response = sendBytes(context, mms, apn, usingMmsRadio, useProxyIfAvailable);
-
-    if (response == null) {
-      throw new IOException("Got null response!");
-    }
-
     return (SendConf) new PduParser(response).parse();
   }
 
@@ -103,15 +98,13 @@ public class MmsSendHelper extends MmsCommunication {
     Log.w("MmsSender", "Sending MMS of length: " + mms.length);
     try {
       MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn, useProxyIfAvailable);
-      do {
-        try {
-          checkRouteToHost(context, parameters, parameters.getMmsc(), usingMmsRadio);
-        } catch (IOException e) {
-          if (parameters.next()) continue;
-          else                   throw e;
+      for (MmsConnectionParameters.Apn param : parameters.get()) {
+        if (checkRouteToHost(context, param, param.getMmsc(), usingMmsRadio)) {
+          byte[] response = makePost(context, param, mms);
+          if (response != null) return response;
         }
-      } while (false);
-      return makePost(context, parameters, mms);
+      }
+      throw new IOException("Connection manager could not obtain route to host.");
     } catch (ApnUnavailableException aue) {
       Log.w("MmsSender", aue);
       throw new IOException("Failed to get MMSC information...");

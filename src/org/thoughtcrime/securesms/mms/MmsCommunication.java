@@ -124,17 +124,17 @@ public class MmsCommunication {
     }
   }
 
-  protected static void checkRouteToHost(Context context, MmsConnectionParameters parameters,
+  protected static boolean checkRouteToHost(Context context, MmsConnectionParameters.Apn parameters,
                                          String url, boolean usingMmsRadio)
     throws IOException
   {
     if (parameters == null || !parameters.hasProxy())
-      checkRouteToHost(context, Uri.parse(url).getHost(), usingMmsRadio);
+      return checkRouteToHost(context, Uri.parse(url).getHost(), usingMmsRadio);
     else
-      checkRouteToHost(context, parameters.getProxy(), usingMmsRadio);
+      return checkRouteToHost(context, parameters.getProxy(), usingMmsRadio);
   }
 
-  private static void checkRouteToHost(Context context, String host, boolean usingMmsRadio)
+  private static boolean checkRouteToHost(Context context, String host, boolean usingMmsRadio)
       throws IOException
   {
     InetAddress inetAddress = InetAddress.getByName(host);
@@ -144,7 +144,7 @@ public class MmsCommunication {
         throw new IOException("RFC1918 address in non-MMS radio situation!");
       }
 
-      return;
+      return true;
     }
 
     Log.w("MmsCommunication", "Checking route to address: " + host + " , " + inetAddress.getHostAddress());
@@ -155,12 +155,12 @@ public class MmsCommunication {
       int ipAddress               = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
       ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-      if (!manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress))
-        throw new IOException("Connection manager could not obtain route to host.");
+      return manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
     }
+    return true;
   }
 
-  protected static AndroidHttpClient constructHttpClient(Context context, MmsConnectionParameters mmsConfig) {
+  protected static AndroidHttpClient constructHttpClient(Context context, MmsConnectionParameters.Apn mmsConfig) {
     AndroidHttpClient client = AndroidHttpClient.newInstance("Android-Mms/2.0", context);
     HttpParams params        = client.getParams();
     HttpProtocolParams.setContentCharset(params, "UTF-8");
@@ -190,20 +190,41 @@ public class MmsCommunication {
   }
 
   protected static class MmsConnectionParameters {
-    private class Apn {
-      public final String mmsc;
-      public final String proxy;
-      public final String port;
+    public class Apn {
+      private final String mmsc;
+      private final String proxy;
+      private final String port;
 
       public Apn(String mmsc, String proxy, String port) {
         this.mmsc  = mmsc;
         this.proxy = proxy;
         this.port  = port;
       }
+
+      public boolean hasProxy() {
+        return !Util.isEmpty(proxy);
+      }
+
+      public String getMmsc() {
+        return mmsc;
+      }
+
+      public String getProxy() {
+        if (!hasProxy())
+          return null;
+
+        return proxy;
+      }
+
+      public int getPort() {
+        if (Util.isEmpty(port))
+          return 80;
+
+        return Integer.parseInt(port);
+      }
     }
 
     private List<Apn> apn = new ArrayList<Apn>();
-    private int index = 0;
 
     public MmsConnectionParameters(String mmsc, String proxy, String port) {
       apn.add(new Apn(mmsc, proxy, port));
@@ -214,35 +235,8 @@ public class MmsCommunication {
       return this;
     }
 
-    public boolean hasProxy() {
-      return !Util.isEmpty(apn.get(index).proxy);
-    }
-
-    public String getMmsc() {
-      return apn.get(index).mmsc;
-    }
-
-    public String getProxy() {
-      if (!hasProxy())
-        return null;
-
-      return apn.get(index).proxy;
-    }
-
-    public int getPort() {
-      if (Util.isEmpty(apn.get(index).port))
-        return 80;
-
-      return Integer.parseInt(apn.get(index).port);
-    }
-
-    public boolean next() {
-      if (index+1 >= apn.size()) {
-        return false;
-      }
-
-      index++;
-      return true;
+    public List<Apn> get() {
+      return apn;
     }
   }
 
