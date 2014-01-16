@@ -88,5 +88,4 @@
 
     <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
     </style>
-
 </resources>

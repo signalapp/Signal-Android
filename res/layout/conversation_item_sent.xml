@@ -39,6 +39,7 @@
                       android:background="@drawable/conversation_item_sent_shape"
                       android:paddingRight="10dip"
                       android:paddingLeft="10dip"
+                      android:layout_marginLeft="50dp"
                       android:layout_marginRight="12dp"
                       android:orientation="vertical">
 
@@ -70,9 +71,7 @@
                 android:id="@+id/mms_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:paddingTop="7dip"
-                android:paddingBottom="7dip">
+                android:visibility="gone">
 
                 <ImageView
                         android:id="@+id/image_view"
@@ -81,7 +80,6 @@
                         android:layout_gravity="center"
                         android:scaleType="centerInside"
                         android:adjustViewBounds="true"
-                        android:background="@android:drawable/picture_frame"
                         android:visibility="gone"
                         android:contentDescription="Media Message"/>
 

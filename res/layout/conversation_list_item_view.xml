@@ -9,25 +9,21 @@
                  android:layout_height="wrap_content"
                  android:layout_centerVertical="true"
                  android:layout_alignParentLeft="true"
-                 android:padding="8dp"
+                 android:paddingTop="3dp"
+                 android:paddingBottom="3dp"
+                 android:paddingLeft="10dp"
+                 android:paddingRight="10dp"
                  android:visibility="visible">
 
 	    <ImageView android:id="@+id/contact_photo_image"
-	               android:layout_width="50dp"
-	               android:layout_height="50dp"
+	               android:layout_width="60dp"
+	               android:layout_height="60dp"
 	               android:cropToPadding="true"
 	               android:scaleType="centerCrop"
 	               android:visibility="gone"
                    android:contentDescription="Contact Photo Image"
-                   android:layout_marginLeft="3dp" />
+                   android:layout_marginLeft="0dp" />
     </FrameLayout>
-
-    <!--<CheckBox android:id="@+id/checkbox"-->
-              <!--android:layout_width="wrap_content"-->
-              <!--android:layout_height="wrap_content"-->
-              <!--android:layout_alignParentRight="true"-->
-              <!--android:layout_alignParentTop="true"-->
-              <!--android:visibility="gone" />-->
 
     <TextView android:id="@+id/from"
         android:layout_width="wrap_content"
@@ -53,7 +49,7 @@
         android:layout_width="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="13dp"
-        android:textColor="?attr/conversation_list_item_subject_color"
+        android:textColor="?attr/conversation_list_item_date_color"
         android:fontFamily="sans-serif-light"
         android:singleLine="true"
         android:layout_alignTop="@id/contact_photo_frame"

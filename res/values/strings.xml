@@ -388,7 +388,7 @@
     <string name="contact_selection_recent_activity__no_recent_calls">No recent calls.</string>
     
     <!-- conversation_activity -->
-    <string name="conversation_activity__type_message">Type message</string>
+    <string name="conversation_activity__type_message"><small>Send a message</small></string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>    
     

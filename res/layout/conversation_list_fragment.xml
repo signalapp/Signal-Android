@@ -10,6 +10,8 @@
                   android:layout_height="wrap_content"
                   android:drawSelectorOnTop="false"
                   android:scrollbarStyle="insideOverlay"
-                  android:fadingEdgeLength="16dip"/>
+                  android:fadingEdgeLength="16dip"
+                  android:divider="@drawable/conversation_list_divider_shape"
+                  android:dividerHeight="1px" />
 
 </LinearLayout>

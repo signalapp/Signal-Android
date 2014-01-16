@@ -34,7 +34,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="5dip"
                 android:background="?conversation_background">
 
             <ScrollView android:layout_width="fill_parent"
@@ -71,17 +70,12 @@
                </LinearLayout>
             </ScrollView>
 
-            <View android:background="?conversation_editor_background"
-                  android:layout_width="match_parent"
-                  android:layout_height="1dp" />
-
             <LinearLayout
                     android:id="@+id/bottom_panel"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingRight="0dp"
-                    android:paddingTop="0dp" >
+                    android:background="?conversation_sent_text_primary_color">
 
                 <org.thoughtcrime.securesms.components.EmojiToggle
                         android:id="@+id/emoji_toggle"
@@ -95,10 +89,12 @@
                         android:id="@+id/embedded_text_editor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dip"
                         android:layout_weight="1.0"
                         android:autoText="true"
                         android:capitalize="sentences"
+                        android:background="#00ffffff"
+                        android:padding="12dp"
+                        android:paddingRight="0dp"
                         android:hint="@string/conversation_activity__type_message"
                         android:imeOptions="actionSend|flagNoEnterAction"
                         android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
