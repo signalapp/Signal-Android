@@ -75,10 +75,12 @@
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
-    <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
-    <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived:%4$s</string>
-	<string name="ConversationFragment_confirm_message_delete">Confirm Message Delete</string>
+    <string name="ConversationFragment_to_s_type_s_sent_s">To: %1$s\nType: %2$s\nSent: %3$s</string>
+    <string name="ConversationFragment_from_s_type_s_sent_s_received_s">From: %1$s\nType: %2$s\nSent: %3$s\nReceived: %4$s</string>
+    <string name="ConversationFragment_confirm_message_delete">Confirm Message Delete</string>
 	<string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+    <string name="ConversationFragment_message_pending">Message is pending...</string>
+    <string name="ConversationFragment_message_failed">Message failed to send.</string>
     
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>

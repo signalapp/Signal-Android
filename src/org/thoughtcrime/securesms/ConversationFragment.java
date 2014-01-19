@@ -135,26 +135,36 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void handleDisplayDetails(MessageRecord message) {
-    String sender     = message.getIndividualRecipient().getNumber();
-    String transport  = message.isMms() ? "mms" : "sms";
+    String sender     = recipients.isSingleRecipient() ? message.getIndividualRecipient().getNumber() :
+                                                         recipients.toShortString();
+    String messageType  = message.isMms() ? "mms" : "sms";
     long dateReceived = message.getDateReceived();
     long dateSent     = message.getDateSent();
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm a");
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(android.R.drawable.ic_dialog_info);
     builder.setCancelable(false);
 
     if (dateReceived == dateSent || message.isOutgoing()) {
-      builder.setMessage(String.format(getSherlockActivity()
-                                       .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
-                                       sender, transport.toUpperCase(),
-                                       dateFormatter.format(new Date(dateSent))));
+      if(message.isPending() || message.isFailed()) {
+        String sendErrorMsg = message.isPending() ? this.getString(R.string.ConversationFragment_message_pending) :
+                                                    this.getString(R.string.ConversationFragment_message_failed);
+        builder.setMessage(String.format(getSherlockActivity()
+                                         .getString(R.string.ConversationFragment_to_s_type_s_sent_s),
+                                         sender, messageType.toUpperCase(),
+                                         sendErrorMsg));
+      } else {
+        builder.setMessage(String.format(getSherlockActivity()
+                                         .getString(R.string.ConversationFragment_to_s_type_s_sent_s),
+                                         sender, messageType.toUpperCase(),
+                                         dateFormatter.format(new Date(dateSent))));
+      }
     } else {
       builder.setMessage(String.format(getSherlockActivity()
-                                       .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
-                                       sender, transport.toUpperCase(),
+                                       .getString(R.string.ConversationFragment_from_s_type_s_sent_s_received_s),
+                                       sender, messageType.toUpperCase(),
                                        dateFormatter.format(new Date(dateSent)),
                                        dateFormatter.format(new Date(dateReceived))));
     }
