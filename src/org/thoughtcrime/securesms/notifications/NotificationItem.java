@@ -72,6 +72,7 @@ public class NotificationItem {
 
     if (recipients != null) {
       intent.putExtra("recipients", recipients);
+      intent.putExtra("thread_id", threadId);
     }
 
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
