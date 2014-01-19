@@ -26,13 +26,13 @@ import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SmsListener extends BroadcastReceiver {
 
@@ -52,7 +52,7 @@ public class SmsListener extends BroadcastReceiver {
 
     return
       message.getOriginatingAddress().length() < 7 &&
-      (messageBody.toUpperCase().startsWith("//ANDROID:") || // Sprint Visual Voicemail
+      (messageBody.toUpperCase(Locale.US).startsWith("//ANDROID:") || // Sprint Visual Voicemail
        messageBody.startsWith("//BREW:")); //BREW stands for “Binary Runtime Environment for Wireless"
   }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Ignore the IconColors issue in the given files -->
+    <issue id="IconColors">
+        <ignore path="res/drawable-hdpi-v11/icon_cached.png" />
+        <ignore path="res/drawable-xhdpi-v11/icon_cached.png" />
+    </issue>
+
+    <!-- Change the severity of hardcoded strings to "error" -->
+    <!--<issue id="HardcodedText" severity="error" />-->
+</lint>

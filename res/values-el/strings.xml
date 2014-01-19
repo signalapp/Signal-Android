@@ -6,7 +6,7 @@
   <string name="delete">Διαγραφή</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Αυτήν τη στιγμή: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Πρέπει να έχετε εισάγει τη συνθηματική φράση σας πριν διαχειριστείτε κλειδιά...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Πρέπει να έχετε εισάγει τη συνθηματική φράση σας πριν διαχειριστείτε κλειδιά&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Δεν έχετε ορίσει τη συνθηματική φράση σας!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">μηνύματα ανά συζήτηση</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Διαγραφή όλων των παλιών μηνυμάτων τώρα;</string>
@@ -24,9 +24,9 @@
   <string name="ConversationItem_message_size_d_kb">Μέγεθος μηνύματος: %d KB</string>
   <string name="ConversationItem_expires_s">Παύει να ισχύει: %s</string>
   <string name="ConversationItem_error_sending_message">Σφάλμα κατά την αποστολή μηνύματος</string>
-  <string name="ConversationItem_sending">Αποστολή...</string>
+  <string name="ConversationItem_sending">Αποστολή&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Αποθήκευση Συνημμένου</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Αποθήκευση συνημμένου σε κάρτα μνήμης...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Αποθήκευση συνημμένου σε κάρτα μνήμης&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Να Αποθηκευτεί στην Κάρτα Μνήμης;</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Αυτό το αρχείο έχει αποθηκευτεί σε μια κρυπτογραφημένη βάση δεδομένων. Το αντίγραφο που θα σωθεί στην κάρτα μνήμης σας δε θα είναι κρυπτογραφημένο. Θέλετε να συνεχίσετε;</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Σφάλμα κατά την αποθήκευση στην κάρτα μνήμης!</string>
@@ -56,7 +56,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Παραλήπτες Ομαδικής Συζήτησης</string>
   <string name="ConversationActivity_group_conversation">Ομαδική Συζήτηση</string>
   <string name="ConversationActivity_d_recipients_in_group">%d παραλήπτες στην ομάδα</string>
-  <string name="ConversationActivity_saving_draft">Σώζεται προσχέδιο...</string>
+  <string name="ConversationActivity_saving_draft">Σώζεται προσχέδιο&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Άκυρος παραλήπτης!</string>
   <string name="ConversationActivity_calls_not_supported">Δεν Υποστηρίζονται Κλήσεις</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Αυτή η συσκευή δε φαίνεται να υποστηρίζει ενέργειες κλήσης.</string>
@@ -67,14 +67,14 @@
   <string name="ConversationFragment_confirm_message_delete">Επιβεβαίωση Διαγραφής Μηνύματος</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Είστε σίγουροι πως θέλετε να διαγράψετε αυτό το μήνυμα για πάντα;</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Μήνυμα ανταλλαγής κλειδιών...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Μήνυμα ανταλλαγής κλειδιών&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Διαγραφή συζητήσεων;</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Είστε σίγουροι πως θέλετε να διαγράψετε ΟΛΕΣ τις επιλεγμένες συζητήσεις;</string>
   <string name="ConversationListFragment_deleting">Διαγραφή</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Διαγραφή επιλεγμένων συζητήσεων...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Διαγραφή επιλεγμένων συζητήσεων&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιών...</string>
+  <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιών&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Εξαγωγή Σε Κάρτα Μνήμης;</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Αυτό\n        θα εξάγει τα κρυπτογραφημένα κλειδιά, τις ρυθμίσεις και τα μηνύματά σας στη κάρτα μνήμης.\n    </string>
@@ -83,11 +83,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Προσοχή, αυτό θα\n        εξάγει τα αποκρυπτογραφημένα περιεχόμενα των μηνυμάτων σας στη κάρτα μνήμης.\n    </string>
   <string name="ExportFragment_cancel">Ακύρωση</string>
   <string name="ExportFragment_exporting">Εξαγωγή</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Εξαγωγή αποκρυπτογραφημένου κειμένου στην κάρτα μνήμης...\n</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Εξαγωγή αποκρυπτογραφημένου κειμένου στην κάρτα μνήμης&#x2026;\n</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Σφάλμα, δε μπορέσαμε να αποθηκεύσουμε\n        στην κάρτα μνήμης!\n    </string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Σφάλμα κατά την αποθήκευση στην κάρτα μνήμης.\n</string>
   <string name="ExportFragment_success">Επιτυχία!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Εξαγωγή κρυπτογραφημένων κλειδιών,\n        ρυθμίσεων και μηνυμάτων...\n    </string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Εξαγωγή κρυπτογραφημένων κλειδιών,\n        ρυθμίσεων και μηνυμάτων&#x2026;\n    </string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Να εισαγχθούν όλα τα προϋπάρχοντα SMS;</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Εισαγωγή όλων των\n        μηνυμάτων από το προκαθορισμένο αρχείο μηνυμάτων SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη εισάγει\n        το αρχείο μηνυμάτων της συσκευής σας, η επανα-εισαγωγή θα έχει ως αποτέλεσμα διπλά μηνύματα.\n    </string>
@@ -99,21 +99,21 @@
   <string name="ImportFragment_import_plaintext_backup">Εισαγωγή Μη Κρυπτογραφημένου Αντιγράφου Ασφαλείας;</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Αυτό θα εισάγει\n        μηνύματα από ένα μη κρυπτογραφημένο αντίγραφο ασφαλείας. Αν έχετε ήδη πρωτύτερα εισάγει το αρχείο μηνυμάτων SMS του συστήματος,\n        η επανα-εισαγωγή θα έχει ως αποτέλεσμα διπλά μηνύματα.\n    </string>
   <string name="ImportFragment_importing">Εισαγωγή</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Δε βρέθηκε μη κρυπτογραφημένο αντίγραφο ασφαλείας!</string>
   <string name="ImportFragment_error_importing_backup">Σφάλμα κατά την εισαγωγή αντιγράφων ασφαλείας!</string>
   <string name="ImportFragment_import_complete">Εισαγωγή ολοκληρώθηκε!</string>
   <string name="ImportFragment_restoring">Επαναφορά</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Επαναφορά κρυπτογραφημένου αντιγράφου ασφαλείας...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Επαναφορά κρυπτογραφημένου αντιγράφου ασφαλείας&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Δε βρέθηκε κρυπτογραφημένο αντίγραφο ασφαλείας!</string>
   <string name="ImportFragment_restore_complete">Επαναφορά ολοκληρώθηκε!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Δε βρέθηκε κλειδί!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Δε βρέθηκε σύνδεση για παραλαβή  MMS , δοκιμάστε αργότερα...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Δε βρέθηκε σύνδεση για παραλαβή  MMS , δοκιμάστε αργότερα&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">Σφάλμα κατά την αποθήκευση MMS! </string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Σφάλμα κατά στη σύνδεση στον πάροχο MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Σφάλμα κατά την διάβαση των ρυθμίσεων MMS του παροχέα...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Σφάλμα κατά στη σύνδεση στον πάροχο MMS&#x2026;</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Σφάλμα κατά την διάβαση των ρυθμίσεων MMS του παροχέα&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Μήνυμα Πολυμέσων</string>
   <!--PassphraseChangeActivity-->
@@ -164,19 +164,19 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Έχετε ήδη ζητήσει την έναρξη συζήτησης με αυτόν τον παραλήπτη, είστε σίγουροι πως θέλετε να στείλετε νέα αίτηση; Η πρώτη αίτηση θα ακυρωθεί.</string>
   <string name="KeyExchangeInitiator_send">Αποστολή</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Προβληματικό κρυπτογραφημένο μήνυμα...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Αποκρυπτογράφηση, παρακαλώ περιμένετε...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για ανύπαρκτη συζήτηση...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Προβληματικό κρυπτογραφημένο μήνυμα&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Αποκρυπτογράφηση, παρακαλώ περιμένετε&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για ανύπαρκτη συζήτηση&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Σύνδεση στο διακομιστή MMS...</string>
-  <string name="MmsDatabase_downloading_mms">Λήψη MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Σύνδεση στο διακομιστή MMS&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Λήψη MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Λήψη MMS απέτυχε!</string>
-  <string name="MmsDatabase_downloading">Γίνεται λήψη...</string>
+  <string name="MmsDatabase_downloading">Γίνεται λήψη&#x2026;</string>
   <string name="MmsDatabase_mms_pending_download">Πατήστε και ρυθμίσετε το MMS για να συνεχίσετε την λήψη.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Αποκρυπτογράφηση MMS, παρακαλώ περιμένετε...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Κακό κρυπτογραφημένο μήνυμα MMS...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Το μήνυμα MMS κρυπτογραφήθηκε για ανύπαρκτη συζήτηση...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Αποκρυπτογράφηση MMS, παρακαλώ περιμένετε&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Κακό κρυπτογραφημένο μήνυμα MMS&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Το μήνυμα MMS κρυπτογραφήθηκε για ανύπαρκτη συζήτηση&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Αυτή τη στιγμή δε μπορούμε να στείλουμε το μήνυμα MMS σας.</string>
   <!--ApplicationMigrationService-->
@@ -188,7 +188,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d νέα μηνύματα</string>
   <string name="MessageNotifier_most_recent_from_s">Τελευταίο μήνυμα από: %s</string>
-  <string name="MessageNotifier_encrypted_message">Κρυπτογραφημένο μήνυμα...</string>
+  <string name="MessageNotifier_encrypted_message">Κρυπτογραφημένο μήνυμα&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Χωρίς Θέμα)</string>
   <string name="MessageNotifier_message_delivery_failed">Παράδοση μηνύματος απέτυχε.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Αποτύχαμε να παραδώσουμε το μήνυμα.</string>
@@ -196,8 +196,8 @@
   <string name="MessageNotifier_mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_mark_as_read">Επισήμανση ως αναγνωσμένο</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Ανανέωση...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Ανανέωση κλειδιού\n        ταυτότητας...\n    </string>
+  <string name="ViewLocalIdentityActivity_regenerating">Ανανέωση&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Ανανέωση κλειδιού\n        ταυτότητας&#x2026;\n    </string>
   <string name="ViewLocalIdentityActivity_regenerated">Ανανεώθηκε!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Επαναφορά Κλειδιού Ταυτότητας;</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\n        Προσοχή! Με την ανανέωση του κλειδιού ταυτότητάς σας, το υπάρχον κλειδί σας θα αλλάξει,\n        και οι υπάρχουσες επαφές σας θα ειδοποιηθούν ότι το κλειδί σας έχει αλλάξει την επόμενη φορά που θα επικοινωνήσουν με σας.\n        Είστε σίγουροι πως θέλετε να συνεχίσετε;\n    </string>
@@ -245,7 +245,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Παρακαλώ περιμένετε, αυτό μπορεί να πάρει λίγη ώρα. Θα σας ειδοποιήσουμε μόλις τελειώσει η εισαγωγή.</string>
   <string name="database_migration_activity__importing">ΕΙΣΑΓΩΓΗ</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Ενημέρωση Βάσης Δεδομένων...</string>
+  <string name="database_upgrade_activity__updating_database">Ενημέρωση Βάσης Δεδομένων&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Εξαγωγή Κρυπτογραφημένου Αντιγράφου Ασφαλείας</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Εξαγωγή κρυπτογραφημένου αντιγράφου\n        ασφαλείας στην κάρτα μνήμης.\n    </string>
   <string name="export_fragment__export_plaintext_backup">Εξαγωγή Μη Κρυπτογραφημένου Αντιγράφου Ασφαλείας</string>
@@ -327,11 +327,7 @@
   <string name="preferences__notifications">Ειδοποιήσεις</string>
   <string name="preferences__display_message_notifications_in_status_bar">Προβολή ειδοποιήσεων για νέα μηνύματα στη γραμμή κατάστασης</string>
   <string name="preferences__led_color">Χρώμα LED</string>
-  <string name="preferences__change_notification_led_color">Αλλαγή του χρώματος LED</string>
   <string name="preferences__pref_led_blink_title">Τρόπος Αναβοσβηνόματος του LED</string>
-  <string name="preferences__change_notification_blink_pattern">Αλλάξτε το πώς αναβοσβήνει το LED</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Επιλογή τρόπου αναβοσβηνόματος του LED</string>
-  <string name="preferences__select_led_color">Επιλέξτε Χρώμα LED</string>
   <string name="preferences__sound">Ήχος</string>
   <string name="preferences__inthread_notifications">ΕΙδοποιήσεις εντός συζητήσεων</string>
   <string name="preferences__play_inthread_notifications">Ήχος ειδοποίησης κατά τη προβολή ενεργής συζήτησης.</string>
@@ -397,7 +393,6 @@
   <string name="conversation_list__menu_search">Αναζήτηση</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Ασφάλεια</string>
-  <string name="conversation_secure_verified__menu_verify_session">Επιβεβαίωση Συζήτησης</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Επικύρωση Παραλήπτη</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Τερματισμός Ασφαλούς Συζήτησης</string>
   <!--conversation-->

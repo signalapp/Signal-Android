@@ -11,7 +11,7 @@
                android:layout_height="wrap_content"
                android:layout_marginRight="12dip"
                android:layout_marginLeft="16dip"
-               android:contentDescription="Navigation Image"/>
+               android:contentDescription="@string/navigation_drawer_item__image"/>
 
     <TextView android:id="@+id/navigation_text"
               android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_height="wrap_content"
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="fill_parent"
   android:orientation="vertical"
   android:paddingLeft="5sp"
@@ -29,19 +30,21 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/SeekBarOnLabel"
-          android:text="On For:"
+          android:text="@string/led_pattern_dialog__on_for"
           android:paddingTop="5sp" />
         <TextView
           android:id="@+id/SeekBarOnMsLabel"
           android:layout_width="40dip"
           android:layout_height="wrap_content"
           android:text="0"
-          android:gravity="right" />
+          android:gravity="right"
+          tools:ignore="HardcodedText" />
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_margin="0dip"
-          android:text="ms" />
+          android:text="ms"
+          tools:ignore="HardcodedText" />
       </LinearLayout>
       <LinearLayout
         android:orientation="horizontal"
@@ -65,19 +68,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/SeekBarOffLabel"
-        android:text="Off For:"
+        android:text="@string/led_pattern_dialog__off_for"
         android:paddingTop="5sp" />
       <TextView
         android:id="@+id/SeekBarOffMsLabel"
         android:layout_width="40dip"
         android:layout_height="wrap_content"
         android:text="0"
-        android:gravity="right" />
+        android:gravity="right"
+        tools:ignore="HardcodedText" />
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="0dip"
-        android:text="ms" />
+        android:text="ms"
+        tools:ignore="HardcodedText" />
       </LinearLayout>
       <LinearLayout
         android:orientation="horizontal"

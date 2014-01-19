@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dip"
@@ -36,7 +37,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingRight="10dip"
-                            android:text="•" />
+                            android:text="•"
+                            tools:ignore="HardcodedText" />
 
                     <LinearLayout
                             android:layout_width="wrap_content"
@@ -66,7 +68,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingRight="10dip"
-                            android:text="•" />
+                            android:text="•"
+                            tools:ignore="HardcodedText" />
 
                     <LinearLayout
                             android:layout_width="wrap_content"
@@ -95,7 +98,8 @@
                             style="@style/Registration.Description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="•" />
+                            android:text="•"
+                            tools:ignore="HardcodedText" />
 
                     <LinearLayout
                             android:layout_width="wrap_content"

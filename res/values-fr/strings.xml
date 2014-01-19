@@ -87,7 +87,7 @@
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Impossible d’écrire sur la carte SD !</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Erreur lors de l\'écriture sur la carte SD !</string>
   <string name="ExportFragment_success">Réussite !</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportation des Clés cryptées, ⏎\nparamètres et messages ... ⏎</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportation des Clés cryptées, ⏎\nparamètres et messages &#x2026; ⏎</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importer base de données SMS du système?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Cela importera ⏎\nles messages à partir de la base de données SMS par défaut du système vers TextSecure. Si vous avez déjà ⏎\nimporté la base de données SMS du système, l\'importer à nouveau se traduira par des messages dupliqués. ⏎</string>
@@ -99,12 +99,12 @@
   <string name="ImportFragment_import_plaintext_backup">Importer la sauvegarde du contenu en clair ?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Cela importera ⏎\nles messages provenant d\'une sauvegarde en clair. Si vous avez déjà importé la base de données SMS du système, ⏎\nimporter à nouveau se traduira par des messages dupliqués. ⏎</string>
   <string name="ImportFragment_importing">Importer</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importer la sauvegarde en texte clair ...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importer la sauvegarde en texte clair &#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Aucune sauvegarde en texte clair trouvée !</string>
   <string name="ImportFragment_error_importing_backup">Erreur d\'importation de la sauvegarde!</string>
   <string name="ImportFragment_import_complete">Importation Complète !</string>
   <string name="ImportFragment_restoring">Restauration</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Restauration d\'une sauvegarde cryptée ...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Restauration d\'une sauvegarde cryptée &#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Aucune sauvegarde cryptée trouvé!</string>
   <string name="ImportFragment_restore_complete">Restauration complète !</string>
   <!--KeyScanningActivity-->
@@ -331,11 +331,7 @@
   <string name="preferences__notifications">Notifications</string>
   <string name="preferences__display_message_notifications_in_status_bar">Afficher les notifications dans la barre de statut</string>
   <string name="preferences__led_color">Couleur de la LED</string>
-  <string name="preferences__change_notification_led_color">Modifier la couleur de la LED de notification</string>
   <string name="preferences__pref_led_blink_title">Rythme de clignotement de la LED</string>
-  <string name="preferences__change_notification_blink_pattern">Modifier le rythme de clignotement de la LED de notification</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Choisir le rythme de clignotement de la LED</string>
-  <string name="preferences__select_led_color">Choisir la couleur de la LED</string>
   <string name="preferences__sound">Son</string>
   <string name="preferences__inthread_notifications">Notifications dans la discussion</string>
   <string name="preferences__play_inthread_notifications">Émettre une notification sonore lors de la lecture d’une discussion active.</string>
@@ -404,7 +400,6 @@
   <string name="conversation_list__menu_search">Chercher</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sécurité</string>
-  <string name="conversation_secure_verified__menu_verify_session">Vérifier la Session</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Vérifier le Destinataire</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Interrompre la session sécurisée</string>
   <!--conversation-->

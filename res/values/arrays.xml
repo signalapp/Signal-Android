@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <string-array name="language_entries">
+  <string-array name="language_entries" translatable="false">
       <item>@string/preferences__default</item>
       <item>English</item>
       <item>Arabic العربية</item>
@@ -30,7 +30,7 @@
       <item>Tibetan བོད་སྐད།</item>
   </string-array>
 
-  <string-array name="language_values">
+  <string-array name="language_values" translatable="false">
       <item>zz</item>
       <item>en</item>
       <item>ar</item>
@@ -119,13 +119,13 @@
     <item>contact_identity_keys</item>
   </string-array>
 
-  <string-array name="navigation_drawer_icons_light">
+  <string-array name="navigation_drawer_icons_light" translatable="false">
     <item>@drawable/import_export_light</item>
     <item>@drawable/my_identity_light</item>
     <item>@drawable/contacts_identities_light</item>
   </string-array>
 
-  <string-array name="navigation_drawer_icons_dark">
+  <string-array name="navigation_drawer_icons_dark" translatable="false">
     <item>@drawable/import_export_dark</item>
     <item>@drawable/my_identity_dark</item>
     <item>@drawable/contacts_identities_dark</item>

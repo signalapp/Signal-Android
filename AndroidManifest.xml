@@ -41,6 +41,7 @@
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
 
     <application android:name="org.thoughtcrime.securesms.ApplicationListener"
+                 android:allowBackup="true"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
                  android:theme="@style/TextSecure.LightTheme">
@@ -217,12 +218,7 @@
              </intent-filter>
     </receiver>
 
-    <receiver android:name=".service.SmsDeliveryListener"
-              android:exported="true">
-        <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
-        </intent-filter>
-    </receiver>
+    <receiver android:name=".service.SmsDeliveryListener" />
 
     <receiver android:name=".service.MmsListener"
               android:enabled="true"
@@ -248,7 +244,7 @@
 
     <receiver android:name=".notifications.MarkReadReceiver"
               android:enabled="true"
-              android:exported="true">
+              android:exported="false">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.notifications.CLEAR"/>
         </intent-filter>
@@ -256,7 +252,8 @@
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
-              android:authorities="org.thoughtcrime.provider.securesms" />
+              android:authorities="org.thoughtcrime.provider.securesms"
+              android:exported="false" />
 
     <receiver android:name=".service.RegistrationNotifier"
               android:exported="false">
@@ -265,7 +262,9 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".service.DirectoryRefreshListener">
+    <receiver android:name=".service.DirectoryRefreshListener"
+              android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
+              android:exported="true">
         <intent-filter>
             <action android:name="org.whispersystems.whisperpush.DIRECTORY_REFRESH"/>
             <action android:name="android.intent.action.BOOT_COMPLETED" />

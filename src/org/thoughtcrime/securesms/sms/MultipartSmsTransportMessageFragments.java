@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.sms;
 
+import android.annotation.SuppressLint;
+
 public class MultipartSmsTransportMessageFragments {
 
   private static final long VALID_TIME = 60 * 60 * 1000; // 1 Hour
@@ -50,8 +52,9 @@ public class MultipartSmsTransportMessageFragments {
   }
 
   @Override
+  @SuppressLint("DefaultLocale")
   public String toString() {
-    return String.format("[Size: %d, Initialized: %d, Exipired: %s, Complete: %s]",
-                         fragments.length, initializedTime, isExpired()+"", isComplete()+"");
+    return String.format("[Size: %d, Initialized: %d, Expired: %s, Complete: %s]",
+                         fragments.length, initializedTime, isExpired() + "", isComplete() + "");
   }
 }

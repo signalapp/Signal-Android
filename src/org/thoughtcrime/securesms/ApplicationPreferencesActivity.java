@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -177,6 +178,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     return false;
   }
 
+  @SuppressLint("InlinedApi")
   private void initializePlatformSpecificOptions() {
     PreferenceGroup generalCategory = (PreferenceGroup)findPreference("general_category");
     Preference defaultPreference = findPreference(KITKAT_DEFAULT_PREF);

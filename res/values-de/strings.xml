@@ -6,7 +6,7 @@
   <string name="delete">Löschen</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momentan: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Bevor Sie Schlüssel verwalten können, müssen Sie ihr Passwort eingeben...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Bevor Sie Schlüssel verwalten können, müssen Sie ihr Passwort eingeben&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sie haben noch kein Passwort festgelegt!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">Nachrichten pro Konversation</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
@@ -24,9 +24,9 @@
   <string name="ConversationItem_message_size_d_kb">Größe der Nachricht: %d KB</string>
   <string name="ConversationItem_expires_s">Läuft ab in: %s</string>
   <string name="ConversationItem_error_sending_message">Fehler beim Senden der Nachricht</string>
-  <string name="ConversationItem_sending">Wird gesendet...</string>
+  <string name="ConversationItem_sending">Wird gesendet&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Anhang speichern</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Anhang wird auf die SD-Karte gespeichert...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Anhang wird auf die SD-Karte gespeichert&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Auf der SD-Karte speichern?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Diese Datei wurde in einer verschlüsselten Datenbank gespeichert. Die Version, die Sie auf der SD Karte speichern, wird hingegen nicht mehr verschlüsselt sein. Möchten Sie trotzdem fortfahren?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs auf der SD-Karte!</string>
@@ -56,7 +56,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Teilnehmer in Gruppengespräch</string>
   <string name="ConversationActivity_group_conversation">Gruppengespräch</string>
   <string name="ConversationActivity_d_recipients_in_group">%d Teilnehmer in Gruppe</string>
-  <string name="ConversationActivity_saving_draft">Entwurf speichern...</string>
+  <string name="ConversationActivity_saving_draft">Entwurf speichern&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Ungültiger Empfänger!</string>
   <string name="ConversationActivity_calls_not_supported">Anrufe werden nicht unterstützt</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dieses Gerät scheint keine Wahlvorgänge zu unterstützen.</string>
@@ -67,14 +67,14 @@
   <string name="ConversationFragment_confirm_message_delete">Nachricht löschen bestätigen</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sind Sie sicher, dass Sie diese Nachricht unwiderruflich löschen möchten?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Schlüsselaustausch Nachricht...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Schlüsselaustausch Nachricht&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Unterhaltungen löschen?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sind Sie sicher, dass Sie alle ausgewählten Unterhaltungen löschen möchten?</string>
   <string name="ConversationListFragment_deleting">Löschen</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Lösche ausgewählte Threads...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Lösche ausgewählte Threads&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch Nachricht...</string>
+  <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch Nachricht&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Auf SD-Karte exportieren?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dies\nwird Ihre verschlüsselten Keys, Einstellungen und Nachrichten auf die SD-Karte exportieren</string>
@@ -83,11 +83,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung, dies wird\nIhre TextSecure Nachrichten im Klartext auf die SD-Karte exportieren.</string>
   <string name="ExportFragment_cancel">Abbruch</string>
   <string name="ExportFragment_exporting">Exportieren</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Im Klartext auf die SD-Karte exportieren...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Im Klartext auf die SD-Karte exportieren&#x2026;</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Fehler, es war nicht möglich auf die\nSD-Karte zu schreiben!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Fehler beim Schreiben auf die SD-Karte.</string>
   <string name="ExportFragment_success">Erfolgreich!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportiere verschlüsselte Keys,\nEinstellungen und Nachrichten...</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportiere verschlüsselte Keys,\nEinstellungen und Nachrichten&#x2026;</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Soll die SMS-Systemdatenbank importiert werden?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Es werden jetzt die SMS von der Systemdatenbank in TextSecure importiert.\nWenn Sie dies schon einmal gemacht haben, werden doppelte Nachrichten erzeugt.</string>
@@ -104,16 +104,16 @@
   <string name="ImportFragment_error_importing_backup">Fehler beim Importieren der Sicherung!</string>
   <string name="ImportFragment_import_complete">Import abgeschlossen!</string>
   <string name="ImportFragment_restoring">Wiederherstellen</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Verschlüsselte Sicherung wiederherstellen ...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Verschlüsselte Sicherung wiederherstellen &#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Keine verschlüsselte Sicherung gefunden!</string>
   <string name="ImportFragment_restore_complete">Wiederherstellung fertig!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Kein eingelesener Schlüssel gefunden!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Keine Verbindung für MMS-Download verfügbar, versuchen Sie es später noch einmal ...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Keine Verbindung für MMS-Download verfügbar, versuchen Sie es später noch einmal &#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">Fehler beim Speichern der MMSI</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Fehler beim Verbinden zum MMS Provider...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Die Einstellungen des MMS-Anbieters konnten nicht gelesen werden...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Fehler beim Verbinden zum MMS Provider&#x2026;</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Die Einstellungen des MMS-Anbieters konnten nicht gelesen werden&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedianachricht</string>
   <!--PassphraseChangeActivity-->
@@ -164,19 +164,19 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Sie haben bereits eine Sitzungsaufbau Nachricht an den Empfänger gesendet, sind Sie sicher, dass Sie eine weitere senden wollen? Dies macht die erste Nachricht ungültig.</string>
   <string name="KeyExchangeInitiator_send">Senden</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Entschlüsselung läuft, bitte warten...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Nachricht wurde für eine nicht existierende Sitzung verschlüsselt...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Entschlüsselung läuft, bitte warten&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Nachricht wurde für eine nicht existierende Sitzung verschlüsselt&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Verbindung zu MMS Server wird aufgebaut...</string>
-  <string name="MmsDatabase_downloading_mms">MMS werden heruntergeladen...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Verbindung zu MMS Server wird aufgebaut&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">MMS werden heruntergeladen&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">MMS Download fehlgeschlagen!</string>
-  <string name="MmsDatabase_downloading">Herunterladen...</string>
+  <string name="MmsDatabase_downloading">Herunterladen&#x2026;</string>
   <string name="MmsDatabase_mms_pending_download">Antippen und MMS-Einstellungen konfigurieren um den Download fortzusetzen.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS wird entschlüsselt, bitte warten...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlererhaft verschlüsselte MMS...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS wurde für eine nicht existierende Sitzung verschlüsselt...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS wird entschlüsselt, bitte warten&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlererhaft verschlüsselte MMS&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS wurde für eine nicht existierende Sitzung verschlüsselt&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Ihre MMS kann derzeit nicht gesendet werden.</string>
   <!--ApplicationMigrationService-->
@@ -188,7 +188,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d neue Nachrichten</string>
   <string name="MessageNotifier_most_recent_from_s">Letzte Nachricht von: %s</string>
-  <string name="MessageNotifier_encrypted_message">Verschlüsselte Nachricht...</string>
+  <string name="MessageNotifier_encrypted_message">Verschlüsselte Nachricht&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Kein Betreff)</string>
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nachrichtenübermittlung fehlgeschlagen.</string>
@@ -196,8 +196,8 @@
   <string name="MessageNotifier_mark_all_as_read">Alle als gelesen markieren</string>
   <string name="MessageNotifier_mark_as_read">Als gelesen markieren</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Neuerzeugung...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Schlüssel wird\nneu erzeugt...</string>
+  <string name="ViewLocalIdentityActivity_regenerating">Neuerzeugung&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Schlüssel wird\nneu erzeugt&#x2026;</string>
   <string name="ViewLocalIdentityActivity_regenerated">Schlüssel neu erzeugt!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Schlüssel zurücksetzen?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nVorsicht! Das Neuerzeugen des Schlüssels führt dazu, dass der jetzige Schlüssel permanent gelöscht wird.⏎\nSchon existierende Kontakte erhalten eine Warnung, wenn Sie neue Sitzungen mit Ihnen beginnen.⏎\nMöchten Sie dennoch fortfahren?</string>
@@ -247,7 +247,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dies kann eine Weile dauern. Bitte haben Sie etwas Geduld, Sie werden benachrichtigt, wenn der Import abgeschlossen ist.</string>
   <string name="database_migration_activity__importing">IMPORT</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert...</string>
+  <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Exportiere verschlüsselte Sicherung</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportiere eine verschlüsselte\nSicherung auf die SD-Karte.</string>
   <string name="export_fragment__export_plaintext_backup">Exportiere Klartext-Sicherung</string>
@@ -315,7 +315,7 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wählen Sie den Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passwort ändern</string>
   <string name="preferences__change_my_passphrase">Mein Passwort ändern</string>
-  <string name="preferences__complete_key_exchanges">Schlüsselaustausch abschliessen</string>
+  <string name="preferences__complete_key_exchanges">Schlüsselaustausch abschließen</string>
   <string name="preferences__disable_passphrase">Passwort deaktivieren</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Verschlüsselung von Nachrichten und Schlüsseln auf diesem Gerät deaktivieren</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatischer Schlüsselaustausch für neue Sitzungen und bestehende Sitzungen mit demselben persönlichen Schlüssel</string>
@@ -331,11 +331,7 @@
   <string name="preferences__notifications">Benachrichtigungen</string>
   <string name="preferences__display_message_notifications_in_status_bar">Benachrichtigung in der Statuszeile anzeigen</string>
   <string name="preferences__led_color">LED Farbe</string>
-  <string name="preferences__change_notification_led_color">LED Farbe anpassen</string>
   <string name="preferences__pref_led_blink_title">LED Blinkmuster</string>
-  <string name="preferences__change_notification_blink_pattern">Ändern des LED Blinkmusters für Benachrichtigungen</string>
-  <string name="preferences__pref_led_blink_dialogtitle">LED Blinkmuster auswählen</string>
-  <string name="preferences__select_led_color">LED Farbe auswählen</string>
   <string name="preferences__sound">Ton</string>
   <string name="preferences__inthread_notifications">Benachrichtigungen im Thread</string>
   <string name="preferences__play_inthread_notifications">Einen Alarmton abspielen wenn Sie ein aktives Gespräch ansehen.</string>
@@ -404,7 +400,6 @@
   <string name="conversation_list__menu_search">Suchen</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sicherheit</string>
-  <string name="conversation_secure_verified__menu_verify_session">Sitzung verifizieren</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Empfänger verifizieren</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Sichere Sitzung abbrechen</string>
   <!--conversation-->

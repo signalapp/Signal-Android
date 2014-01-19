@@ -196,8 +196,6 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">གཡག་འཕྲིན་གྱི་གསང་ཚིག </string>
   <string name="prompt_passphrase_activity__unlock">སྒོ་ཕྱེས། </string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_apn_settings_to_deliver_media_messages_via_your_wireless_carrier">ཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ལམ་བརྒྱུད་འཕྲིན་ཐུང་གཏོང་བ་ལ་གཡག་འཕྲིན་ལ་ APN སྒྲིག་བཟོ་དགོས་ཀྱི་ཡོད། ཁྱེད་ཀྱི་ལག་ཆ་དེས་གནས་ཚུལ་འདི་ཐོབ་རུང་བ་བཟོས་མི་འདུག་ཅིང་། དེ་ནི་མཚམས་ལན་རེར་སྒོ་ལྕགས་བརྒྱབ་ཡོད་པའི་ལག་ཆའི་རིགས་དང་བཀག་རྒྱ་ཅན་གྱི་བཟོ་སྒྲིག་རིགས་ལ་བདེན་པ་ཡིན། </string>
-  <string name="prompt_mms_activity__to_send_media_messages_please_complete_the_necessary_apn_information_below">བརྒྱུད་ལམ་གྱི་འཕྲིན་ཐུང་དག་གཏོང་བ་ལ་གཤམ་གྱི་ APN ཡི་གནས་ཚུལ་གལ་ཆེན་རིགས་ཚར་བ་བྱོས། \nཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ཐུང་འཁྱེར་མཁན་དེའི་ངོ་བོ་ནི་ \'&amp;lt;your carrier&amp;gt; APN\'.་བ་བརྒྱུད་གཏན་འབེབས་བྱེད་ཐུབ། ཁྱེད་ཀྱིས་འདི་ཐེངས་གཅིག་ལ་བྱས་ན་འགྲིག </string>
   <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (དགོས་ངེས་རེད།):</string>
   <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY PORT (གདམ་ཁ་ཅན།): </string>
   <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (གདམ་ཁ་ཅན):</string>
@@ -252,9 +250,6 @@
   <string name="preferences__display_message_notifications_in_status_bar">འཕྲིན་ཐུང་གི་བརྡ་ཁྱབ་དེ་རྣམ་པའི་ཚན་བྱང་གི་ནང་དུ་བཀྲམས། </string>
   <string name="preferences__led_color">LED ཡི་ཚོན་མདོག </string>
   <string name="preferences__pref_led_blink_title">LED ཡི་རྒྱན་རིས།</string>
-  <string name="preferences__change_notification_blink_pattern">LED རྒྱན་རིས་ཀྱི་བརྡ་གཏོང་བརྗེས།</string>
-  <string name="preferences__pref_led_blink_dialogtitle">LED ཡི་བཀོད་རིས་དེ་འདེམས། </string>
-  <string name="preferences__select_led_color">LED ཡི་ཚོན་མདོག་དེ་འདེམས། </string>
   <string name="preferences__vibrate"> འདར་བཅུག</string>
   <string name="preferences__also_vibrate_when_notified">བརྡ་གཏོང་སྐབས་འདར་བཅུག</string>
   <string name="preferences__minutes">སྐར་མ།</string>
@@ -306,7 +301,6 @@
   <string name="conversation_list__menu_search">འཚོལ།</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">ཉེན་སྲུང་།</string>
-  <string name="conversation_secure_verified__menu_verify_session">གླེང་མོལ་ཁུངས་སྐྱེལ་བྱོས། </string>
   <string name="conversation_secure_verified__menu_verify_recipient">འཕྲིན་ཐུང་འབྱོར་ཡུལ་དེ་ཁུངས་སྐྱེལ་བྱོས། </string>
   <string name="conversation_secure_verified__menu_abort_secure_session">བདེ་འཇགས་གླེང་མོལ་མཚམས་ཞོག </string>
   <!--conversation-->

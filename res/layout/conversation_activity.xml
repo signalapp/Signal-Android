@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -52,7 +53,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="150dip"
                             android:layout_weight="1"
-                            android:contentDescription="Attachment Thumbnail"/>
+                            android:contentDescription="@string/conversation_activity__thumbnail"/>
 
                     <LinearLayout
                             android:orientation="vertical"
@@ -105,7 +106,8 @@
                         android:maxLength="1000"
                         android:maxLines="4"
                         android:nextFocusRight="@+id/send_button"
-                        android:textColor="?conversation_editor_text_color" />
+                        android:textColor="?conversation_editor_text_color"
+                        tools:ignore="Deprecated" /><!-- ignore deprecation warnings for android:autoText and android:capitalize -->
 
                 <ImageButton
                     android:id="@+id/send_button"
@@ -127,7 +129,8 @@
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
                      android:visibility="gone"
-                     android:text="160/160 (1)" />
+                     android:text="160/160 (1)"
+                     tools:ignore="HardcodedText" />
 
         </LinearLayout>
     </RelativeLayout>

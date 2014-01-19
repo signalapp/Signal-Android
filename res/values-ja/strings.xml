@@ -323,11 +323,7 @@
   <string name="preferences__notifications">通知</string>
   <string name="preferences__display_message_notifications_in_status_bar">受信通知をステータスバーに表示</string>
   <string name="preferences__led_color">LED色</string>
-  <string name="preferences__change_notification_led_color">受信通知のLED色を変更</string>
   <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
-  <string name="preferences__change_notification_blink_pattern">通知LED点滅パターンの変更</string>
-  <string name="preferences__pref_led_blink_dialogtitle">LED点滅パターンを選択</string>
-  <string name="preferences__select_led_color">LED色を選択</string>
   <string name="preferences__vibrate">振動</string>
   <string name="preferences__also_vibrate_when_notified">通知する時に振動もする</string>
   <string name="preferences__minutes">分</string>
@@ -387,7 +383,6 @@
   <string name="conversation_list__menu_search">検索</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">セキュリティ</string>
-  <string name="conversation_secure_verified__menu_verify_session">セッションを照合</string>
   <string name="conversation_secure_verified__menu_verify_recipient">受信者を照合</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">セキュア・セッションを中止</string>
   <!--conversation-->

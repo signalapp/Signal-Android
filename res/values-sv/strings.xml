@@ -6,7 +6,7 @@
   <string name="delete">Radera</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nuvarande: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Du behöver skriva in ditt lösenord innan du hanterar nycklar...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Du behöver skriva in ditt lösenord innan du hanterar nycklar&#x2026;</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte valt ett lösenord än!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">meddelanden per konversation</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
@@ -24,9 +24,9 @@
   <string name="ConversationItem_message_size_d_kb">Meddelande storlek: %d KB</string>
   <string name="ConversationItem_expires_s">Löper ut: %s</string>
   <string name="ConversationItem_error_sending_message">Det gick inte att skicka meddelandet</string>
-  <string name="ConversationItem_sending">Skickar...</string>
+  <string name="ConversationItem_sending">Skickar&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Sparar Bilaga</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Sparar bilaga till SD kort...</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Sparar bilaga till SD kort&#x2026;</string>
   <string name="ConversationItem_save_to_sd_card">Spara till SD kort?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Denna fil har lagrats i en krypterad databas. Versionen du sparar på SD-kortet kommer inte längre vara krypterad. Vill du fortsätta?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error: Gick ej att skriva till SD kort!</string>
@@ -56,7 +56,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Mottagare för gruppkonversation</string>
   <string name="ConversationActivity_group_conversation">Gruppkonversation</string>
   <string name="ConversationActivity_d_recipients_in_group">%d mottagare i grupp</string>
-  <string name="ConversationActivity_saving_draft">Sparar utkast...</string>
+  <string name="ConversationActivity_saving_draft">Sparar utkast&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds ej</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp handlingar.</string>
@@ -67,14 +67,14 @@
   <string name="ConversationFragment_confirm_message_delete">Bekräfta radering av meddelande</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Är du säker på att du vill ta bort detta meddelande permanent?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Nyckelutbytesmeddelande...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Nyckelutbytesmeddelande&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Radera trådar?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Är du säker på att du vill radera ALLA markerade konversationstrådar?</string>
   <string name="ConversationListFragment_deleting">Raderar</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Raderar markerade trådar...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Raderar markerade trådar&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande...</string>
+  <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportera till minneskort?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Denna\nåtgärd kommer att exportera dina krypterade nycklar, inställningar och meddelanden till ditt minneskort.</string>
@@ -83,11 +83,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varning, detta kommer\nspara den okrypterad texten av din konversation till ditt minneskort.</string>
   <string name="ExportFragment_cancel">Avbryt</string>
   <string name="ExportFragment_exporting">Sparar</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Sparar okrypterad text till minneskort...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Sparar okrypterad text till minneskort&#x2026;</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Ett fel uppstod; kunde inte\nskriva data till minneskort.</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Kunde inte skriva till minneskort.</string>
   <string name="ExportFragment_success">Lyckades!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Exporterar krypterade nycklar,\ninställningar och meddelanden...</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Exporterar krypterade nycklar,\ninställningar och meddelanden&#x2026;</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importera okrypterade SMS?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Denna åtgärd importerar\nmeddelanden från telefonens originella SMS-databas till TextSecure. Om du tidigare har\nimporterat via denna metod kommer samtliga SMS bli duplicerade.</string>
@@ -99,21 +99,21 @@
   <string name="ImportFragment_import_plaintext_backup">Importera okrypterad säkerhetskopia?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Denna åtgärd kommer\natt importera meddelanden från en okrypterad säkerhetskopia. Om du tidigare har importerat\nvia denna metod kommer samtliga SMS bli duplicerade.</string>
   <string name="ImportFragment_importing">Importerar</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importera okrypterad säkerhetskopia...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importera okrypterad säkerhetskopia&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Ingen okrypterad säkerhetskopia kunde hittas!</string>
   <string name="ImportFragment_error_importing_backup">Ett fel inträffade vid importering av säkerhetskopian.</string>
   <string name="ImportFragment_import_complete">Importeringen lyckades!</string>
   <string name="ImportFragment_restoring">Återställer</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Återställer krypterad säkerhetskopia...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Återställer krypterad säkerhetskopia&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ingen krypterad säkerhetskopia kunde hittas!</string>
   <string name="ImportFragment_restore_complete">Återställningen lyckades!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannad nyckel funnen!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Ingen anslutning tillgänglig för MMS nerladdning, testa igen senare...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Ingen anslutning tillgänglig för MMS nerladdning, testa igen senare&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">Fel vid lagring av MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Fel vid anslutning till MMS leverantör...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsning av operatörens MMS inställningar...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Fel vid anslutning till MMS leverantör&#x2026;</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsning av operatörens MMS inställningar&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediameddelande</string>
   <!--PassphraseChangeActivity-->
@@ -164,19 +164,19 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har redan skickat en sessionsinitieringsbegäran till denna mottagare, är du säker på att du vill skicka en till? Detta kommer göra din första begäran ogiltig.</string>
   <string name="KeyExchangeInitiator_send">Skicka</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Dåligt krypterat meddelande...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterar, var vänlig vänta...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande krypterat för icke-existerande session...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Dåligt krypterat meddelande&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterar, var vänlig vänta&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande krypterat för icke-existerande session&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Ansluter till MMS server...</string>
-  <string name="MmsDatabase_downloading_mms">Laddar ner MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Ansluter till MMS server&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Laddar ner MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">MMS nedladdning misslyckades!</string>
-  <string name="MmsDatabase_downloading">Laddar ner...</string>
+  <string name="MmsDatabase_downloading">Laddar ner&#x2026;</string>
   <string name="MmsDatabase_mms_pending_download">Tappa och ställ in MMS inställningar för att fortsätta nedladdning.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterar MMS, var vänlig vänta...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Dåligt krypterat MMS meddelande...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS meddelande krypterat för icke-existerande session...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterar MMS, var vänlig vänta&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Dåligt krypterat MMS meddelande&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS meddelande krypterat för icke-existerande session&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Kan för tillfället inte skicka ditt MMS meddelande.</string>
   <!--ApplicationMigrationService-->
@@ -188,7 +188,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d nya meddelanden</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från: %s</string>
-  <string name="MessageNotifier_encrypted_message">Krypterat meddelande...</string>
+  <string name="MessageNotifier_encrypted_message">Krypterat meddelande&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Inget ämne)</string>
   <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kunde inte leverera meddelande.</string>
@@ -196,8 +196,8 @@
   <string name="MessageNotifier_mark_all_as_read">Markera alla som lästa</string>
   <string name="MessageNotifier_mark_as_read">Markera som läst</string>
   <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Återgenererar...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Återgenererar identitets\nnyckel...</string>
+  <string name="ViewLocalIdentityActivity_regenerating">Återgenererar&#x2026;</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Återgenererar identitets\nnyckel&#x2026;</string>
   <string name="ViewLocalIdentityActivity_regenerated">Återgenererad!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Återställ identitetsnyckel?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nVarning! Genom att återgenerera din identitetsnyckel kommer din nuvarande identitetsnyckel att permanent förloras,\noch dina existerande kontakter kommer att få varningar när de etablerar nya säkra sessioner med dig.\nÄr du säker på att du vill fortsätta?</string>
@@ -245,7 +245,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Detta kan ta en stund. Var tålmodig, vi notifierar dig när importen är klar.</string>
   <string name="database_migration_activity__importing">IMPORTERAR</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Uppdaterar databas ...</string>
+  <string name="database_upgrade_activity__updating_database">Uppdaterar databas &#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Exportera krypterad säkerhetskopia</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportera en krypterad\nsäkerhetskopia till minneskortet.</string>
   <string name="export_fragment__export_plaintext_backup">Exportera okrypterad säkerhetskopia</string>
@@ -329,11 +329,7 @@
   <string name="preferences__notifications">Notifikationer</string>
   <string name="preferences__display_message_notifications_in_status_bar">Visa meddelande notifikationer i statusraden</string>
   <string name="preferences__led_color">LED-färg</string>
-  <string name="preferences__change_notification_led_color">Ändra LED-färg för notifikationer</string>
   <string name="preferences__pref_led_blink_title">LED-blinkmönster</string>
-  <string name="preferences__change_notification_blink_pattern">Ändra LED-blinkmönster för notifikationer</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Välj LED-blinkmönster</string>
-  <string name="preferences__select_led_color">Välj LED-färg</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__inthread_notifications">Inom-tråd notifikationer</string>
   <string name="preferences__play_inthread_notifications">Spela notifikationsljud när en aktiv konversation visas</string>
@@ -400,7 +396,6 @@
   <string name="conversation_list__menu_search">Sök</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Säkerhet</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verifiera Session</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verifiera mottagare</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Avbryt säker session</string>
   <!--conversation-->

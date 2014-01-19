@@ -18,7 +18,7 @@
 	               android:cropToPadding="true"
 	               android:scaleType="centerCrop"
 	               android:visibility="gone"
-                   android:contentDescription="Contact Photo Image"
+                   android:contentDescription="@string/conversation_list_item_view__contact_img"
                    android:layout_marginLeft="3dp" />
     </FrameLayout>
 
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:src="@drawable/ic_list_alert_sms_failed"
-        android:contentDescription="Error Alert" />
+        android:contentDescription="@string/conversation_list_item_view__error" />
 
      <ImageView android:id="@+id/attachment"
         android:layout_marginLeft="3dip"
@@ -77,7 +77,7 @@
         android:layout_toLeftOf="@id/error"
         android:layout_alignBottom="@id/date"
         android:src="@drawable/ic_attachment_universal_small"
-        android:contentDescription="Attachment Indicator" />
+        android:contentDescription="@string/conversation_list_item_view__attach" />
 
     <TextView android:id="@+id/subject"
         android:layout_width="wrap_content"

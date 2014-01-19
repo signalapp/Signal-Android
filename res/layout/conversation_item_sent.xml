@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_list_alert_sms_failed"
                 android:visibility="gone"
-                android:contentDescription="Send Failed Indicator"/>
+                android:contentDescription="@string/conversation_item__send_fail_indicator"/>
         </LinearLayout>
 
         <LinearLayout android:id="@+id/conversation_item_parent"
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_menu_login"
                     android:visibility="gone"
-                    android:contentDescription="Key Exchange Indicator"/>
+                    android:contentDescription="@string/conversation_item__xch_indicator"/>
             </LinearLayout>
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -83,7 +83,7 @@
                         android:adjustViewBounds="true"
                         android:background="@android:drawable/picture_frame"
                         android:visibility="gone"
-                        android:contentDescription="Media Message"/>
+                        android:contentDescription="@string/conversation_item__msg_media"/>
 
                 <ImageButton
                     android:id="@+id/play_slideshow_button"
@@ -92,7 +92,7 @@
                     android:src="@drawable/mms_play_btn"
                     android:layout_gravity="center"
                     android:visibility="gone"
-                    android:contentDescription="Play Button"/>
+                    android:contentDescription="@string/conversation_item__play_button"/>
 
             </FrameLayout>
 
@@ -132,7 +132,7 @@
                          android:paddingRight="3dip"
                          android:src="?conversation_delivered_indicator"
                          android:visibility="gone"
-                         android:contentDescription="Delivered Indicator"/>
+                         android:contentDescription="@string/conversation_item__delivered"/>
 
 		      <TextView android:id="@+id/group_message_status"
 		                android:layout_width="wrap_content"
@@ -166,7 +166,7 @@
                     android:visibility="gone"
                     android:paddingLeft="4dp"
                     android:paddingBottom="3dp"
-                    android:contentDescription="Secure Message Indicator" />
+                    android:contentDescription="@string/conversation_item__sec_indicator" />
 
             </LinearLayout>
 

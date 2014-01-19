@@ -24,7 +24,7 @@
   <string name="ConversationItem_message_size_d_kb">Големина на съобщението: %d KB</string>
   <string name="ConversationItem_expires_s">Изтича: %s</string>
   <string name="ConversationItem_error_sending_message">Грешка при изпращане на съобщението</string>
-  <string name="ConversationItem_sending">Праща се...</string>
+  <string name="ConversationItem_sending">Праща се&#x2026;</string>
   <string name="ConversationItem_saving_attachment">Записване на приложение</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Записване на приложение на SD карта</string>
   <string name="ConversationItem_save_to_sd_card">Запази на SD карта?</string>
@@ -35,7 +35,7 @@
   <string name="ConversationItem_view_secure_media_question">Искате ли да видите сигурните данни?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Тази информация се съхранява в криптирана база данни. За съжаление, за да го видите  в момента се изисква данните да бъдат временно разшифровани и записани на диска. Сигурни ли сте, че искате да направите това?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Постъпили и обменени ключове.</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Грешка, при обмяна на ключовете...</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Грешка, при обмяна на ключовете&#x2026;</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Получени ключове. Натиснете за да продължите.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Започване на засекретен чат?</string>
@@ -55,7 +55,7 @@
   <string name="ConversationActivity_group_conversation_recipients">Група от получатели</string>
   <string name="ConversationActivity_group_conversation">Група за разговори</string>
   <string name="ConversationActivity_d_recipients_in_group">%d получатели в групата</string>
-  <string name="ConversationActivity_saving_draft">Запазване на чернова...</string>
+  <string name="ConversationActivity_saving_draft">Запазване на чернова&#x2026;</string>
   <string name="ConversationActivity_invalid_recipient">Невалиден получател!</string>
   <string name="ConversationActivity_calls_not_supported">Повикването не се поддържа</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Това устройство не поддържа повиквания.</string>
@@ -66,14 +66,14 @@
   <string name="ConversationFragment_confirm_message_delete">Потвърдете изтриване на съобщението</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Сигурни ли сте че искате да изтриете съобщението завинаги?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Обмяна на ключове...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Обмяна на ключове&#x2026;</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Да изтрия ли темата?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Сигурни ли сте, че желаете да изтриете всички избрани теми за разговор?</string>
   <string name="ConversationListFragment_deleting">Изтриване</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Изтриване на маркираните теми...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Изтриване на маркираните теми&#x2026;</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
+  <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете&#x2026;</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Експорт на SD карта?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Това⏎\nще изнесе вашите ключове, настройки и съобщения на  SD картата.⏎</string>
@@ -82,11 +82,11 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, това ще ⏎\nекспортирате в  прав текст съдържанието на вашите TextSecure съобщения на картата SD. ⏎</string>
   <string name="ExportFragment_cancel">Отказ</string>
   <string name="ExportFragment_exporting">Изнасяне</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Изнасяне в plaintext към SD карта...⏎</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Изнасяне в plaintext към SD карта&#x2026;⏎</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Грешка, не може да се запише в  SD⏎\nкартата!⏎</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Грешка при записването в SD картата.⏎</string>
   <string name="ExportFragment_success">Успех!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Изнасяне на криптираните ключове,⏎\nнастройки, и съобщения...⏎</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Изнасяне на криптираните ключове,⏎\nнастройки, и съобщения&#x2026;⏎</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Внасяне на  System SMS база от данни?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Това ще импортира ⏎\nсъобщенията от базата данни по подразбиране на системата за SMS TextSecure. Ако преди това сте ⏎\nвнесли SMS базата данни на системата, импортирайки ги отново ще доведе до дублиране на съобщения. ⏎</string>
@@ -98,20 +98,20 @@
   <string name="ImportFragment_import_plaintext_backup">Внеси Plaintext резервно копие?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Това ще импортира ⏎\nсъобщения от архив plaintext. Ако сте били внесли SMS базата данни на системата, ⏎\nако импортирате отново ще  дублирате  съобщенията. ⏎</string>
   <string name="ImportFragment_importing">Внасяне</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Внасяне plaintext архив...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Внасяне plaintext архив&#x2026;</string>
   <string name="ImportFragment_no_plaintext_backup_found">Не е намерен архив!</string>
   <string name="ImportFragment_error_importing_backup">Грешка при внасяне на архива!</string>
   <string name="ImportFragment_import_complete">Внасянето приключи!</string>
   <string name="ImportFragment_restoring">Възстановяване</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Възстановяване на криптирания архив...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Възстановяване на криптирания архив&#x2026;</string>
   <string name="ImportFragment_no_encrypted_backup_found">Не е намерен криптиран архив!</string>
   <string name="ImportFragment_restore_complete">Възстановяването приключи!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Сканиран ключ не се намери!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Няма връзка за изтегляне на MMS , опитайте отново по-късно...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Няма връзка за изтегляне на MMS , опитайте отново по-късно&#x2026;</string>
   <string name="MmsDownloader_error_storing_mms">Грешка при съхраняване на MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързване с MMS доставчика...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързване с MMS доставчика&#x2026;</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедийно съобщение</string>
   <!--PassphraseChangeActivity-->
@@ -162,18 +162,18 @@
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Вече изпрати искане за започване на сесия на този получател, сигурни ли сте, че искате да изпратите друго? Това ще обезсили първото искане.</string>
   <string name="KeyExchangeInitiator_send">Изпрати</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Лошо криптирано съобщение...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Декриптиране, моля изчакайте...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Съобщението е криптирано за несъществуваща сесия...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Лошо криптирано съобщение&#x2026;</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Декриптиране, моля изчакайте&#x2026;</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Съобщението е криптирано за несъществуваща сесия&#x2026;</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Свързване към MMS сървър...</string>
-  <string name="MmsDatabase_downloading_mms">Изтегляне на MMS...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Свързване към MMS сървър&#x2026;</string>
+  <string name="MmsDatabase_downloading_mms">Изтегляне на MMS&#x2026;</string>
   <string name="MmsDatabase_mms_download_failed">Неуспешно изтегляне на MMS!</string>
-  <string name="MmsDatabase_downloading">Изтегля се...</string>
+  <string name="MmsDatabase_downloading">Изтегля се&#x2026;</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSа се отключва, моля чакайте...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Лошо заключено MMS съобщение...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS е криптиран за несъществуваща сесия...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSа се отключва, моля чакайте&#x2026;</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Лошо заключено MMS съобщение&#x2026;</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS е криптиран за несъществуваща сесия&#x2026;</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">В момента не може да се изпрати вашия MMS</string>
   <!--ApplicationMigrationService-->
@@ -185,7 +185,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Нови съобщения</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скоро от: %s</string>
-  <string name="MessageNotifier_encrypted_message">Криптирано съобщение...</string>
+  <string name="MessageNotifier_encrypted_message">Криптирано съобщение&#x2026;</string>
   <string name="MessageNotifier_no_subject">(Без тема)</string>
   <string name="MessageNotifier_message_delivery_failed">Изпращането на съобщението се провали</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не може да се достави съобщението.</string>
@@ -235,7 +235,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Това може да отнеме малко време. Моля, бъдете търпеливи, ще Ви уведомим, когато вносът е завършен</string>
   <string name="database_migration_activity__importing">ВНАСЯНЕ</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Обновяване на базата...</string>
+  <string name="database_upgrade_activity__updating_database">Обновяване на базата&#x2026;</string>
   <string name="export_fragment__export_encrypted_backup">Изнеси криптирания архив</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Изнеси криптирания⏎\nархив към SD карта.⏎</string>
   <string name="export_fragment__export_plaintext_backup">Изнеси архив</string>
@@ -315,11 +315,7 @@
   <string name="preferences__notifications">Известия</string>
   <string name="preferences__display_message_notifications_in_status_bar">Покажи известие в лентата за състояния</string>
   <string name="preferences__led_color">LED Цвят</string>
-  <string name="preferences__change_notification_led_color">Сменете LED цвят на известията</string>
   <string name="preferences__pref_led_blink_title">LED мигащ</string>
-  <string name="preferences__change_notification_blink_pattern">Промени известяването с LED мигане</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Избери LED мигане</string>
-  <string name="preferences__select_led_color">Изберете LED цвят</string>
   <string name="preferences__vibrate">Вибрирай</string>
   <string name="preferences__also_vibrate_when_notified">Вибрирай после известявай</string>
   <string name="preferences__minutes">минути</string>
@@ -379,7 +375,6 @@
   <string name="conversation_list__menu_search">Търси</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Защита</string>
-  <string name="conversation_secure_verified__menu_verify_session">Провери Сесията</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Провери получателя</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Прекрати криптираната сесия</string>
   <!--conversation-->
