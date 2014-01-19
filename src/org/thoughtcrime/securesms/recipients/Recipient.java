@@ -24,14 +24,24 @@ import android.os.Parcelable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
+import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.push.ContactTokenDetails;
+import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.FutureTaskListener;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 
+import java.io.IOException;
 import java.util.HashSet;
 
 public class Recipient implements Parcelable, CanonicalRecipientAddress {
+
+  private final static String TAG = "Recipient";
 
   public static final Parcelable.Creator<Recipient> CREATOR = new Parcelable.Creator<Recipient>() {
     public Recipient createFromParcel(Parcel in) {
@@ -152,7 +162,31 @@ public class Recipient implements Parcelable, CanonicalRecipientAddress {
     return CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(getNumber());
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || ((Object) this).getClass() != o.getClass()) return false; // the Object casting is due to an Android Studio bug...
+
+    Recipient recipient = (Recipient) o;
+
+    if (contactUri != null ? !contactUri.equals(recipient.contactUri) : recipient.contactUri != null)
+      return false;
+    if (name != null ? !name.equals(recipient.name) : recipient.name != null) return false;
+    if (number != null ? !number.equals(recipient.number) : recipient.number != null) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = number != null ? number.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (contactUri != null ? contactUri.hashCode() : 0);
+    return result;
+  }
+
   public static interface RecipientModifiedListener {
     public void onModified(Recipient recipient);
   }
+
 }

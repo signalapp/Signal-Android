@@ -41,11 +41,16 @@ public class Directory {
                                              SUPPORTS_SMS + " INTEGER, " +
                                              TIMESTAMP    + " INTEGER);";
 
-  private static Directory instance;
+  private static final Object instanceLock = new Object();
+  private static volatile Directory instance;
 
-  public synchronized static Directory getInstance(Context context) {
+  public static Directory getInstance(Context context) {
     if (instance == null) {
-      instance = new Directory(context);
+      synchronized (instanceLock) {
+        if (instance == null) {
+          instance = new Directory(context);
+        }
+      }
     }
 
     return instance;

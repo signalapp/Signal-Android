@@ -370,7 +370,8 @@
     <!-- contact_selection_group_activity -->
     <!-- contact_selection_list_activity -->
     <string name="contact_selection_group_activity__no_contacts">No contacts.</string>
-    
+    <string name="contact_selection_group_activity__finding_contacts">Finding contacts...</string>
+
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionlistFragment_select_for">Select for</string>
     

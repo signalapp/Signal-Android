@@ -139,6 +139,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     switch (item.getItemId()) {
     case R.id.menu_new_message:      createConversation(-1, null, defaultType); return true;
+    case R.id.menu_new_group:        createGroup();                             return true;
     case R.id.menu_settings:         handleDisplaySettings();                   return true;
     case R.id.menu_clear_passphrase: handleClearPassphrase();                   return true;
     case R.id.menu_mark_all_read:    handleMarkAllRead();                       return true;
@@ -151,6 +152,11 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   @Override
   public void onCreateConversation(long threadId, Recipients recipients, int distributionType) {
     createConversation(threadId, recipients, distributionType);
+  }
+
+  private void createGroup() {
+    Intent intent = new Intent(this, GroupCreateActivity.class);
+    startActivity(intent);
   }
 
   private void createConversation(long threadId, Recipients recipients, int distributionType) {
