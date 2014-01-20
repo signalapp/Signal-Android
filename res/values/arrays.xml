@@ -130,4 +130,25 @@
     <item>@drawable/my_identity_dark</item>
     <item>@drawable/contacts_identities_dark</item>
   </string-array>
+
+  <string-array name="pref_vibration_pattern_entries">
+    <item>@string/preferences__default</item>
+    <item>@string/preferences__vibration_pattern_3_short</item>
+    <item>@string/preferences__vibration_pattern_3_long</item>
+    <item>@string/preferences__vibration_pattern_2_short_2_short</item>
+    <item>@string/preferences__vibration_pattern_2_short_2_long</item>
+    <item>@string/preferences__vibration_pattern_2_long_2_long</item>
+    <item>@string/preferences__custom</item>
+  </string-array>
+
+  <string-array name="pref_vibration_pattern_values">
+    <item>default</item>
+    <item>0,200,300,200,300,600</item>
+    <item>0,600,300,600,300,600</item>
+    <item>0,200,300,200,600,200,300,200</item>
+    <item>0,200,300,200,600,600,300,600</item>
+    <item>0,600,300,600,600,600,300,600</item>
+    <item>custom</item>
+  </string-array>
+
 </resources>

@@ -653,6 +653,23 @@
         Use the data channel for communication with other TextSecure users
     </string>
                                     
+    <!-- Vibrate Preferences -->
+    <string name="preferences__vibrate_title">Vibrate</string>
+    <string name="preferences__vibrate_on">Vibrate is on</string>
+    <string name="preferences__vibrate_off">Vibrate is off</string>
+
+    <string name="preferences__vibration_pattern_title">Vibration Pattern</string>
+    <string name="preferences__set_vibration_pattern">Set the vibration pattern</string>
+    <string name="preferences__vibration_pattern_set">Custom vibration pattern set!</string>
+    <string name="preferences__vibration_pattern_invalid">Vibration pattern is invalid</string>
+    <string name="preferences__vibration_pattern_help">Enter a custom vibration pattern, in the format:\nmillisOff, millisOn, etc.\n\nFor example:\n0,1000\n0,500,200,500,200,500</string>
+
+    <string name="preferences__vibration_pattern_3_short">3 Short</string>
+    <string name="preferences__vibration_pattern_3_long">3 Long</string>
+    <string name="preferences__vibration_pattern_2_short_2_short">2 Short, 2 Short</string>
+    <string name="preferences__vibration_pattern_2_short_2_long">2 Short, 2 Long</string>
+    <string name="preferences__vibration_pattern_2_long_2_long">2 Long, 2 Long</string>
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->

@@ -352,21 +352,54 @@ public class MessageNotifier {
     String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
     String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
     String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
-    String[] blinkPatternArray   = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
+    String vibrationPattern      = TextSecurePreferences.getNotificationVibrationPattern(context);
+    String vibrationPatternCustom  = TextSecurePreferences.getNotificationVibrationPatternCustom(context);
 
     builder.setSound(TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone));
 
     if (signal && vibrate)
-      builder.setDefaults(Notification.DEFAULT_VIBRATE);
+    {
+      if ( vibrationPattern.equals("default") ) {
+        builder.setDefaults(Notification.DEFAULT_VIBRATE);
+      }
+      else {
+        long[] vibrationPatternArray;
+        if ( vibrationPattern.equals("custom") ) {
+          vibrationPatternArray = parsePattern(vibrationPatternCustom);
+        }
+        else {
+          vibrationPatternArray = parsePattern(vibrationPattern);
+        }
+        if ( vibrationPatternArray.length > 1)
+          builder.setVibrate( vibrationPatternArray );
+      }
+    }
 
-    builder.setLights(Color.parseColor(ledColor), Integer.parseInt(blinkPatternArray[0]),
-                      Integer.parseInt(blinkPatternArray[1]));
+    long[] ledPatternArray;
+    if (ledBlinkPattern.equals("custom")) {
+      ledPatternArray = parsePattern(ledBlinkPatternCustom);
+    }
+    else {
+      ledPatternArray = parsePattern(ledBlinkPattern);
+    }
+    builder.setLights(Color.parseColor(ledColor), (int)ledPatternArray[0], (int)ledPatternArray[1] );
   }
 
-  private static String[] parseBlinkPattern(String blinkPattern, String blinkPatternCustom) {
-    if (blinkPattern.equals("custom"))
-      blinkPattern = blinkPatternCustom;
+  private static long[] parsePattern(String pattern) {
 
-    return blinkPattern.split(",");
+    if ( pattern == null || pattern.isEmpty() || pattern.equals("") || !pattern.matches("[,0-9]+") )
+    {
+      long[] retval={0,0};
+      return retval;
+    }
+
+    String [] strArray = pattern.split(",");
+
+    long[] intArray = new long[ strArray.length ];
+
+    for (int i=0; i< strArray.length; i++)
+      intArray[i] = Integer.parseInt(strArray[i]);
+
+    return intArray;
   }
 }
