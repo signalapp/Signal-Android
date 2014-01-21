@@ -343,7 +343,7 @@ public class MessageNotifier {
     return notificationState;
   }
 
-  private static void setNotificationAlarms(Context context,
+  public static void setNotificationAlarms(Context context,
                                             NotificationCompat.Builder builder,
                                             boolean signal)
   {
