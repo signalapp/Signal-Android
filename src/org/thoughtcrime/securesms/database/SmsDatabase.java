@@ -260,8 +260,11 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     Recipient  recipient  = new Recipient(null, message.getSender(), null, null);
     Recipients recipients = new Recipients(recipient);
     long       threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    boolean    spam       = DatabaseFactory.getSpamSenderDatabase(context).isSpamSender(message.getSender());
     boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
                             message.isSecureMessage() || message.isKeyExchange();
+    
+    unread = unread && !spam;
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender());
