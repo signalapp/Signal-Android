@@ -134,6 +134,7 @@ public class ConversationListFragment extends SherlockListFragment
         }
         return false;
       }
+
       @Override
       public boolean onQueryTextChange(String newText) {
         return onQueryTextSubmit(newText);
@@ -145,13 +146,14 @@ public class ConversationListFragment extends SherlockListFragment
     getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
       @Override
       public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
-        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
+        actionMode = getSherlockActivity().startActionMode(ConversationListFragment.this);
+        batchMode = true;
+
+        ConversationListAdapter adapter = (ConversationListAdapter) getListAdapter();
         adapter.initializeBatchMode(true);
         adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
         adapter.notifyDataSetChanged();
-
-        actionMode = getSherlockActivity().startActionMode(ConversationListFragment.this);
-        batchMode  = true;
+        actionMode.invalidate();
         return true;
       }
     });
@@ -159,7 +161,7 @@ public class ConversationListFragment extends SherlockListFragment
 
   private void initializeListAdapter() {
     this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
-    getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
+    getListView().setRecyclerListener((ConversationListAdapter) getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
   }
 
