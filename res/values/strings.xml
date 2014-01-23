@@ -683,6 +683,8 @@
     <!-- conversation_list_batch -->
     <string name="conversation_list_batch__menu_delete_selected">Delete Selected</string>
     <string name="conversation_list_batch__menu_select_all">Select All</string>
+    <string name="conversation_list_batch__menu_mark_selected_as_spam">Mark Selected as Spam</string>
+    <string name="conversation_list_batch__menu_no_spam">No Spam</string>
     
     <!-- conversation_list -->
     <string name="conversation_list__menu_search">Search</string>

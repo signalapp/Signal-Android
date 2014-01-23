@@ -63,12 +63,14 @@ public class ConversationListItem extends RelativeLayout
   private TextView          dateView;
   private long              count;
   private boolean           read;
+  private boolean           isSpam;
 
   private ImageView         contactPhotoImage;
   private QuickContactBadge contactPhotoBadge;
 
   private final Handler handler = new Handler();
   private int distributionType;
+
 
   public ConversationListItem(Context context) {
     super(context);
@@ -92,16 +94,19 @@ public class ConversationListItem extends RelativeLayout
     initializeContactWidgetVisibility();
   }
 
-  public void set(ThreadRecord thread, Set<Long> selectedThreads, boolean batchMode) {
+  public void set(ThreadRecord thread, Set<Long> selectedThreads, boolean batchMode, boolean isSpam) {
     this.selectedThreads  = selectedThreads;
     this.recipients       = thread.getRecipients();
     this.threadId         = thread.getThreadId();
     this.count            = thread.getCount();
     this.read             = thread.isRead();
+    this.isSpam           = isSpam;
     this.distributionType = thread.getDistributionType();
 
+    setSpamColor(isSpam);
+
     this.recipients.addListener(this);
-    this.fromView.setText(formatFrom(recipients, count, read));
+    this.fromView.setText(formatFrom(recipients, count, read, isSpam));
     this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
                                                                 Emoji.EMOJI_SMALL),
                                                                 TextView.BufferType.SPANNABLE);
@@ -157,7 +162,7 @@ public class ConversationListItem extends RelativeLayout
     drawables.recycle();
   }
 
-  private CharSequence formatFrom(Recipients from, long count, boolean read) {
+  private CharSequence formatFrom(Recipients from, long count, boolean read, boolean spam) {
     int attributes[]  = new int[] {R.attr.conversation_list_item_count_color};
     TypedArray colors = context.obtainStyledAttributes(attributes);
 
@@ -167,6 +172,11 @@ public class ConversationListItem extends RelativeLayout
     if (!read) {
       builder.setSpan(new StyleSpan(Typeface.BOLD), 0, builder.length(),
                       Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    }
+
+    if (spam) {
+      builder.setSpan(new StyleSpan(Typeface.ITALIC), 0, builder.length(),
+          Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
     colors.recycle();
@@ -190,9 +200,20 @@ public class ConversationListItem extends RelativeLayout
     handler.post(new Runnable() {
       @Override
       public void run() {
-        ConversationListItem.this.fromView.setText(formatFrom(recipients, count, read));
+        ConversationListItem.this.fromView.setText(formatFrom(recipients, count, read, isSpam));
         setContactPhoto(ConversationListItem.this.recipients.getPrimaryRecipient());
       }
     });
+  }
+
+  public void setSpamColor(boolean spam) {
+    int[] attr = { R.attr.conversation_list_item_contact_color,
+                   R.attr.conversation_list_item_spam_contact_color };
+
+    TypedArray fromColors = context.obtainStyledAttributes(attr);
+    int textColor = fromColors.getColor(spam ? 1 : 0, -1);
+    if (textColor != -1) {
+      fromView.setTextColor(textColor);
+    }
   }
 }

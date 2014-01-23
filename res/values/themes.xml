@@ -6,6 +6,7 @@
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
         <item name="conversation_list_item_count_color">#66333333</item>
         <item name="conversation_list_item_contact_color">#FF444444</item>
+        <item name="conversation_list_item_spam_contact_color">#ff727272</item>
         <item name="conversation_list_item_subject_color">#FF444444</item>
 
         <item name="actionbar_icon">@drawable/actionbar_icon_holo_light</item>
@@ -54,6 +55,7 @@
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark</item>
         <item name="conversation_list_item_count_color">#66dddddd</item>
         <item name="conversation_list_item_contact_color">#ffdddddd</item>
+        <item name="conversation_list_item_spam_contact_color">#ffbababa</item>
         <item name="conversation_list_item_subject_color">#ffdddddd</item>
 
         <item name="conversation_sent_text_primary_color">#ffeeeeee</item>

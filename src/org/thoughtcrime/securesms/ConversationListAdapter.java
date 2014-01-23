@@ -24,10 +24,12 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.CursorAdapter;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SpamSenderDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -46,6 +48,7 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
 
   private final Set<Long> batchSet = Collections.synchronizedSet(new HashSet<Long>());
   private boolean batchMode        = false;
+  private boolean batchHasSpam     = false;
 
   public ConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
     super(context, cursor);
@@ -62,19 +65,43 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
     if (masterSecret != null) {
-      ThreadDatabase.Reader reader = DatabaseFactory.getThreadDatabase(context).readerFor(cursor, masterSecret);
-      ThreadRecord record          = reader.getCurrent();
+      SpamSenderDatabase spamSenderDatabase = DatabaseFactory.getSpamSenderDatabase(context);
+      ThreadDatabase.Reader reader          = DatabaseFactory.getThreadDatabase(context).readerFor(cursor, masterSecret);
+      ThreadRecord record                   = reader.getCurrent();
+      boolean isSpam                        = spamSenderDatabase.isSpamSender(record.getRecipients().getPrimaryRecipient().getNumber());
 
-      ((ConversationListItem)view).set(record, batchSet, batchMode);
+      ((ConversationListItem)view).set(record, batchSet, batchMode, isSpam);
     }
   }
 
   public void toggleThreadInBatchSet(long threadId) {
-    if (batchSet.contains(threadId)) {
-      batchSet.remove(threadId);
-    } else {
+    boolean addToBatch = !batchSet.contains(threadId);
+    if (addToBatch) {
       batchSet.add(threadId);
+    } else {
+      batchSet.remove(threadId);
     }
+    if (addToBatch && !batchHasSpam ||
+        !addToBatch && batchHasSpam) {
+      updateBatchHasSpam();
+    }
+  }
+
+  private void updateBatchHasSpam() {
+    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    SpamSenderDatabase spamSenderDatabase = DatabaseFactory.getSpamSenderDatabase(context);
+    batchHasSpam = false;
+    for (Long threadId : batchSet) {
+      Recipients recipients = threadDatabase.getRecipientsForThreadId(threadId);
+      batchHasSpam = spamSenderDatabase.isSpamSender(recipients.getPrimaryRecipient().getNumber());
+      if (batchHasSpam) {
+        break;
+      }
+    }
+  }
+
+  public boolean batchHasSpam() {
+    return batchHasSpam;
   }
 
   public Set<Long> getBatchSelections() {
@@ -83,6 +110,7 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
 
   public void initializeBatchMode(boolean toggle) {
     this.batchMode = toggle;
+    this.batchHasSpam = false;
     unselectAllThreads();
   }
 
