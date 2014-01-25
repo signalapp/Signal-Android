@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms.crypto;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.SystemClock;
 import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
@@ -37,6 +38,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
@@ -63,6 +65,8 @@ public class MasterSecretUtil {
   private static final String ASYMMETRIC_LOCAL_PRIVATE_NIST = "asymmetric_master_secret_private";
   private static final String ASYMMETRIC_LOCAL_PUBLIC_DJB   = "asymmetric_master_secret_curve25519_public";
   private static final String ASYMMETRIC_LOCAL_PRIVATE_DJB  = "asymmetric_master_secret_curve25519_private";
+  private static final String GENERATED_ITERATION_COUNT     = "key_iterations_count";
+  private static final int DEFAULT_ITERATION_COUNT          = 99;
 
   public static MasterSecret changeMasterSecretPassphrase(Context context,
                                                           MasterSecret masterSecret,
@@ -241,12 +245,55 @@ public class MasterSecretUtil {
     editor.commit();
   }
 
+  private static void save(Context context, String key, int value) {
+    SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
+    Editor editor              = settings.edit();
+
+    editor.putInt(key, value);
+    editor.commit();
+  }
+
   private static byte[] retrieve(Context context, String key) throws IOException {
     SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
     String encodedValue        = settings.getString(key, "");
 
     if (Util.isEmpty(encodedValue)) return null;
     else                            return Base64.decode(encodedValue);
+  }
+
+  private static int getIterations(Context context, String passphrase, byte[] salt) {
+    SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
+    int iterations             = settings.getInt(GENERATED_ITERATION_COUNT, DEFAULT_ITERATION_COUNT);
+
+    if (iterations == DEFAULT_ITERATION_COUNT) {
+      iterations               = generateIterationTarget(passphrase, salt);
+      save(context, GENERATED_ITERATION_COUNT, iterations);
+    }
+
+    return iterations;
+  }
+
+  private static int generateIterationTarget(String passphrase, byte[] salt) {
+    int TARGET_ITERATION_TIME      = 500;   //ms
+    int MINIMUM_ITERATION_COUNT    = 100;   //default for low-end devices
+    int BASELINE_ITERATION_COUNT   = 10000; //baseline starting iteration count
+    SecretKeyFactory skf           = null;
+
+    long startTime                 = SystemClock.elapsedRealtime();
+    PBEKeySpec keyspec             = new PBEKeySpec(passphrase.toCharArray(), salt, BASELINE_ITERATION_COUNT);
+    try {
+      skf                          = SecretKeyFactory.getInstance("PBEWITHSHA1AND128BITAES-CBC-BC");
+      skf.generateSecret(keyspec);
+    } catch (NoSuchAlgorithmException e) {
+      //Do nothing.
+    } catch (InvalidKeySpecException e) {
+      //Do nothing.
+    }
+    long finishTime                = SystemClock.elapsedRealtime();
+    int scaledIterationTarget      = (int)(((double)BASELINE_ITERATION_COUNT / (double)(finishTime - startTime)) * TARGET_ITERATION_TIME);
+
+    if (scaledIterationTarget < MINIMUM_ITERATION_COUNT) return MINIMUM_ITERATION_COUNT;
+    return scaledIterationTarget;
   }
 
   private static byte[] generateEncryptionSecret() {
@@ -274,29 +321,30 @@ public class MasterSecretUtil {
 
   private static byte[] generateSalt() throws NoSuchAlgorithmException {
     SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-    byte[] salt         = new byte[8];
+    byte[] salt         = new byte[16];
     random.nextBytes(salt);
 
     return salt;
   }
 
-  private static SecretKey getKeyFromPassphrase(String passphrase, byte[] salt) throws GeneralSecurityException {
-    PBEKeySpec keyspec    = new PBEKeySpec(passphrase.toCharArray(), salt, 100);
+  private static SecretKey getKeyFromPassphrase(Context context, String passphrase, byte[] salt) throws GeneralSecurityException {
+    PBEKeySpec keyspec    = new PBEKeySpec(passphrase.toCharArray(), salt, getIterations(context, passphrase, salt));
     SecretKeyFactory skf  = SecretKeyFactory.getInstance("PBEWITHSHA1AND128BITAES-CBC-BC");
+
     return skf.generateSecret(keyspec);
   }
 
-  private static Cipher getCipherFromPassphrase(String passphrase, byte[] salt, int opMode) throws GeneralSecurityException {
-    SecretKey key              = getKeyFromPassphrase(passphrase, salt);
+  private static Cipher getCipherFromPassphrase(Context context, String passphrase, byte[] salt, int opMode) throws GeneralSecurityException {
+    SecretKey key              = getKeyFromPassphrase(context, passphrase, salt);
     Cipher cipher              = Cipher.getInstance(key.getAlgorithm());
-    cipher.init(opMode, key, new PBEParameterSpec(salt, 100));
+    cipher.init(opMode, key, new PBEParameterSpec(salt, getIterations(context, passphrase, salt)));
 
     return cipher;
   }
 
   private static byte[] encryptWithPassphrase(Context context, byte[] data, String passphrase) throws GeneralSecurityException {
     byte[] encryptionSalt = generateSalt();
-    Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.ENCRYPT_MODE);
+    Cipher cipher         = getCipherFromPassphrase(context, passphrase, encryptionSalt, Cipher.ENCRYPT_MODE);
     byte[] cipherText     = cipher.doFinal(data);
 
     save(context, "encryption_salt", encryptionSalt);
@@ -305,12 +353,12 @@ public class MasterSecretUtil {
 
   private static byte[] decryptWithPassphrase(Context context, byte[] data, String passphrase) throws GeneralSecurityException, IOException {
     byte[] encryptionSalt = retrieve(context, "encryption_salt");
-    Cipher cipher         = getCipherFromPassphrase(passphrase, encryptionSalt, Cipher.DECRYPT_MODE);
+    Cipher cipher         = getCipherFromPassphrase(context, passphrase, encryptionSalt, Cipher.DECRYPT_MODE);
     return cipher.doFinal(data);
   }
 
-  private static Mac getMacForPassphrase(String passphrase, byte[] salt) throws GeneralSecurityException {
-    SecretKey key              = getKeyFromPassphrase(passphrase, salt);
+  private static Mac getMacForPassphrase(Context context, String passphrase, byte[] salt) throws GeneralSecurityException {
+    SecretKey key              = getKeyFromPassphrase(context, passphrase, salt);
     byte[] pbkdf2              = key.getEncoded();
     SecretKeySpec hmacKey      = new SecretKeySpec(pbkdf2, "HmacSHA1");
     Mac hmac                   = Mac.getInstance("HmacSHA1");
@@ -321,7 +369,7 @@ public class MasterSecretUtil {
 
   private static byte[] verifyMac(Context context, byte[] encryptedAndMacdData, String passphrase) throws InvalidPassphraseException, GeneralSecurityException, IOException {
     byte[] macSalt  = retrieve(context, "mac_salt");
-    Mac hmac        = getMacForPassphrase(passphrase, macSalt);
+    Mac hmac        = getMacForPassphrase(context, passphrase, macSalt);
 
     byte[] encryptedData = new byte[encryptedAndMacdData.length - hmac.getMacLength()];
     System.arraycopy(encryptedAndMacdData, 0, encryptedData, 0, encryptedData.length);
@@ -337,7 +385,7 @@ public class MasterSecretUtil {
 
   private static byte[] macWithPassphrase(Context context, byte[] data, String passphrase) throws GeneralSecurityException {
     byte[] macSalt = generateSalt();
-    Mac hmac       = getMacForPassphrase(passphrase, macSalt);
+    Mac hmac       = getMacForPassphrase(context, passphrase, macSalt);
     byte[] mac     = hmac.doFinal(data);
     byte[] result  = new byte[data.length + mac.length];
 
