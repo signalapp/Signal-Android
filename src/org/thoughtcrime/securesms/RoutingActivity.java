@@ -44,6 +44,10 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
 
   @Override
   public void onNewMasterSecret(MasterSecret masterSecret) {
+    if (this.masterSecret != null) {
+      return;
+    }
+
     this.masterSecret = masterSecret;
 
     if (isVisible) {
