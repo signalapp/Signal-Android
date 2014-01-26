@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.TaskStackBuilder;
 
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -123,14 +125,21 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     ConversationParameters parameters = getConversationParameters();
 
     Intent intent;
+    TaskStackBuilder stack = TaskStackBuilder.create(this);
 
     if (isShareAction() || parameters.recipients != null) {
+      Intent parent = getConversationListIntent();
+      addRootActivityFlags(parent);
+      stack.addNextIntent(parent);
+
       intent = getConversationIntent(parameters);
     } else {
       intent = getConversationListIntent();
+      addRootActivityFlags(intent);
     }
 
-    startActivity(intent);
+    stack.addNextIntent(intent);
+    stack.startActivities();
     finish();
   }
 
@@ -234,6 +243,14 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
 
   private boolean isSendAction() {
     return Intent.ACTION_SENDTO.equals(getIntent().getAction());
+  }
+
+  private void addRootActivityFlags(Intent intent) {
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    }
   }
 
   private static class ConversationParameters {
