@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -44,16 +45,17 @@ import java.util.List;
 public class ConversationListActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationListFragment.ConversationSelectedListener,
                ListView.OnItemClickListener
-  {
+{
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ConversationListFragment fragment;
-  private MasterSecret masterSecret;
-  private DrawerLayout drawerLayout;
-  private ListView     drawerList;
+  private MasterSecret             masterSecret;
+  private DrawerLayout             drawerLayout;
+  private ActionBarDrawerToggle    drawerToggle;
+  private ListView                 drawerList;
 
-  @Override
+    @Override
   public void onCreate(Bundle icicle) {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
@@ -69,6 +71,12 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     initializeContactUpdatesReceiver();
 
     DirectoryRefreshListener.schedule(this);
+  }
+
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    drawerToggle.syncState();
   }
 
   @Override
@@ -164,10 +172,12 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   }
 
   private void handleNavigationDrawerToggle() {
-    if (drawerLayout.isDrawerOpen(drawerList)) {
-      drawerLayout.closeDrawer(drawerList);
-    } else {
-      drawerLayout.openDrawer(drawerList);
+    if (drawerToggle.isDrawerIndicatorEnabled()) {
+      if (drawerLayout.isDrawerOpen(drawerList)) {
+        drawerLayout.closeDrawer(drawerList);
+      } else {
+        drawerLayout.openDrawer(drawerList);
+      }
     }
   }
 
@@ -226,6 +236,11 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     iconArray.recycle();
     icons.recycle();
+
+    this.drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer,
+        R.string.ConversationListActivity_drawer_open,
+        R.string.ConversationListActivity_drawer_close);
+    drawerLayout.setDrawerListener(drawerToggle);
   }
 
   private void initializeContactUpdatesReceiver() {
@@ -273,5 +288,5 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
       intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
       startActivity(intent);
     }
+    }
   }
-}
