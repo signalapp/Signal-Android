@@ -82,7 +82,7 @@
     
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
-    
+
     <!-- ConversationListFragment -->
     <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
     <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Are you sure you wish to delete ALL selected conversation threads?</string>
@@ -686,6 +686,8 @@
     
     <!-- conversation_list -->
     <string name="conversation_list__menu_search">Search</string>
+    <string name="conversation_list__drawer_open">Open navigation drawer</string>
+    <string name="conversation_list__drawer_close">Close navigation drawer</string>
 
     <!-- conversation_secure_verified -->
     <string name="conversation_secure_verified__menu_security">Security</string>

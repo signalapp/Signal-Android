@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
@@ -8,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -51,6 +53,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   private ConversationListFragment fragment;
   private MasterSecret masterSecret;
   private DrawerLayout drawerLayout;
+  private DrawerToggle drawerToggle;
   private ListView     drawerList;
 
   @Override
@@ -69,6 +72,12 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     initializeContactUpdatesReceiver();
 
     DirectoryRefreshListener.schedule(this);
+  }
+
+  @Override
+  public void onPostCreate(Bundle bundle) {
+    super.onPostCreate(bundle);
+    drawerToggle.syncState();
   }
 
   @Override
@@ -217,6 +226,13 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     }
 
     DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+    drawerToggle = new DrawerToggle(this, drawerLayout,
+                                    R.drawable.ic_drawer,
+                                    R.string.conversation_list__drawer_open,
+                                    R.string.conversation_list__drawer_close);
+
+    drawerLayout.setDrawerListener(drawerToggle);
+
     ListView drawer           = (ListView)findViewById(R.id.left_drawer);
     SimpleAdapter adapter     = new SimpleAdapter(this, items, R.layout.navigation_drawer_item, from, to);
 
@@ -272,6 +288,33 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
       Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
       intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
       startActivity(intent);
+    }
+  }
+
+  class DrawerToggle extends ActionBarDrawerToggle {
+
+    public DrawerToggle(Activity activity, DrawerLayout drawerLayout,
+                          int drawerImageRes, int openDrawerContentDescRes,
+                          int closeDrawerContentDescRes) {
+
+      super(activity, drawerLayout, drawerImageRes,
+          openDrawerContentDescRes, closeDrawerContentDescRes);
+    }
+
+    @Override
+    public void onDrawerClosed(View drawerView) {
+
+      super.onDrawerClosed(drawerView);
+
+      invalidateOptionsMenu();
+    }
+
+    @Override
+    public void onDrawerOpened(View drawerView) {
+
+      super.onDrawerOpened(drawerView);
+
+      invalidateOptionsMenu();
     }
   }
 }
