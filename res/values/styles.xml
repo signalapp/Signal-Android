@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="NoAnimation.Theme.Sherlock.Light.DarkActionBar" parent="@style/Theme.Sherlock.Light.DarkActionBar">
-        <item name="android:windowAnimationStyle">@null</item>        
+    <style name="NoAnimation.Theme.BlackScreen" parent="@style/Theme.Sherlock.NoActionBar">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowBackground">@android:color/black</item>
     </style>
-    
+
+    <style name="NoAnimation.Theme.Sherlock.Light.DarkActionBar" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
 	<style name="transparent_progress">
 	    <item name="android:windowFrame">@null</item>
 	    <item name="android:windowBackground">@android:color/transparent</item>
