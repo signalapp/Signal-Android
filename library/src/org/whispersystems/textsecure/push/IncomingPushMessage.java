@@ -37,6 +37,7 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
 
   private int          type;
   private String       source;
+  private int          sourceDevice;
   private byte[]       message;
   private long         timestamp;
   private String       relay;
@@ -44,6 +45,7 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
   private IncomingPushMessage(IncomingPushMessage message, byte[] body) {
     this.type         = message.type;
     this.source       = message.source;
+    this.sourceDevice = message.sourceDevice;
     this.timestamp    = message.timestamp;
     this.relay        = message.relay;
     this.message      = body;
@@ -52,14 +54,16 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
   public IncomingPushMessage(IncomingPushMessageSignal signal) {
     this.type         = signal.getType();
     this.source       = signal.getSource();
+    this.sourceDevice = signal.getSourceDevice();
     this.message      = signal.getMessage().toByteArray();
     this.timestamp    = signal.getTimestamp();
     this.relay        = signal.getRelay();
   }
 
   public IncomingPushMessage(Parcel in) {
-    this.type   = in.readInt();
-    this.source = in.readString();
+    this.type         = in.readInt();
+    this.source       = in.readString();
+    this.sourceDevice = in.readInt();
 
     if (in.readInt() == 1) {
       this.relay  = in.readString();
@@ -70,11 +74,12 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
     this.timestamp = in.readLong();
   }
 
-  public IncomingPushMessage(int type, String source,
+  public IncomingPushMessage(int type, String source, int sourceDevice,
                              byte[] body, long timestamp)
   {
     this.type         = type;
     this.source       = source;
+    this.sourceDevice = sourceDevice;
     this.message      = body;
     this.timestamp    = timestamp;
   }
@@ -91,6 +96,10 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
     return source;
   }
 
+  public int getSourceDevice() {
+    return sourceDevice;
+  }
+
   public byte[] getBody() {
     return message;
   }
@@ -104,6 +113,7 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeInt(type);
     dest.writeString(source);
+    dest.writeInt(sourceDevice);
     dest.writeInt(relay == null ? 0 : 1);
     if (relay != null) {
       dest.writeString(relay);

@@ -19,6 +19,10 @@ public final class PushMessageProtos {
     boolean hasSource();
     String getSource();
     
+    // optional uint32 sourceDevice = 7;
+    boolean hasSourceDevice();
+    int getSourceDevice();
+    
     // optional string relay = 3;
     boolean hasRelay();
     String getRelay();
@@ -102,11 +106,21 @@ public final class PushMessageProtos {
       }
     }
     
+    // optional uint32 sourceDevice = 7;
+    public static final int SOURCEDEVICE_FIELD_NUMBER = 7;
+    private int sourceDevice_;
+    public boolean hasSourceDevice() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getSourceDevice() {
+      return sourceDevice_;
+    }
+    
     // optional string relay = 3;
     public static final int RELAY_FIELD_NUMBER = 3;
     private java.lang.Object relay_;
     public boolean hasRelay() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public String getRelay() {
       java.lang.Object ref = relay_;
@@ -138,7 +152,7 @@ public final class PushMessageProtos {
     public static final int TIMESTAMP_FIELD_NUMBER = 5;
     private long timestamp_;
     public boolean hasTimestamp() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public long getTimestamp() {
       return timestamp_;
@@ -148,7 +162,7 @@ public final class PushMessageProtos {
     public static final int MESSAGE_FIELD_NUMBER = 6;
     private com.google.protobuf.ByteString message_;
     public boolean hasMessage() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public com.google.protobuf.ByteString getMessage() {
       return message_;
@@ -157,6 +171,7 @@ public final class PushMessageProtos {
     private void initFields() {
       type_ = 0;
       source_ = "";
+      sourceDevice_ = 0;
       relay_ = "";
       timestamp_ = 0L;
       message_ = com.google.protobuf.ByteString.EMPTY;
@@ -179,14 +194,17 @@ public final class PushMessageProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getSourceBytes());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeBytes(3, getRelayBytes());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeUInt64(5, timestamp_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeBytes(6, message_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(7, sourceDevice_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -205,17 +223,21 @@ public final class PushMessageProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getSourceBytes());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, getRelayBytes());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(5, timestamp_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(6, message_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(7, sourceDevice_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -345,12 +367,14 @@ public final class PushMessageProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         source_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        relay_ = "";
+        sourceDevice_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
-        timestamp_ = 0L;
+        relay_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        message_ = com.google.protobuf.ByteString.EMPTY;
+        timestamp_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000010);
+        message_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -400,13 +424,17 @@ public final class PushMessageProtos {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.relay_ = relay_;
+        result.sourceDevice_ = sourceDevice_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.timestamp_ = timestamp_;
+        result.relay_ = relay_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
+        }
+        result.timestamp_ = timestamp_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
         }
         result.message_ = message_;
         result.bitField0_ = to_bitField0_;
@@ -430,6 +458,9 @@ public final class PushMessageProtos {
         }
         if (other.hasSource()) {
           setSource(other.getSource());
+        }
+        if (other.hasSourceDevice()) {
+          setSourceDevice(other.getSourceDevice());
         }
         if (other.hasRelay()) {
           setRelay(other.getRelay());
@@ -482,18 +513,23 @@ public final class PushMessageProtos {
               break;
             }
             case 26: {
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000008;
               relay_ = input.readBytes();
               break;
             }
             case 40: {
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000010;
               timestamp_ = input.readUInt64();
               break;
             }
             case 50: {
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000020;
               message_ = input.readBytes();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000004;
+              sourceDevice_ = input.readUInt32();
               break;
             }
           }
@@ -559,10 +595,31 @@ public final class PushMessageProtos {
         onChanged();
       }
       
+      // optional uint32 sourceDevice = 7;
+      private int sourceDevice_ ;
+      public boolean hasSourceDevice() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getSourceDevice() {
+        return sourceDevice_;
+      }
+      public Builder setSourceDevice(int value) {
+        bitField0_ |= 0x00000004;
+        sourceDevice_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearSourceDevice() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        sourceDevice_ = 0;
+        onChanged();
+        return this;
+      }
+      
       // optional string relay = 3;
       private java.lang.Object relay_ = "";
       public boolean hasRelay() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public String getRelay() {
         java.lang.Object ref = relay_;
@@ -578,19 +635,19 @@ public final class PushMessageProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000008;
         relay_ = value;
         onChanged();
         return this;
       }
       public Builder clearRelay() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         relay_ = getDefaultInstance().getRelay();
         onChanged();
         return this;
       }
       void setRelay(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         relay_ = value;
         onChanged();
       }
@@ -598,19 +655,19 @@ public final class PushMessageProtos {
       // optional uint64 timestamp = 5;
       private long timestamp_ ;
       public boolean hasTimestamp() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public long getTimestamp() {
         return timestamp_;
       }
       public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         timestamp_ = value;
         onChanged();
         return this;
       }
       public Builder clearTimestamp() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         timestamp_ = 0L;
         onChanged();
         return this;
@@ -619,7 +676,7 @@ public final class PushMessageProtos {
       // optional bytes message = 6;
       private com.google.protobuf.ByteString message_ = com.google.protobuf.ByteString.EMPTY;
       public boolean hasMessage() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public com.google.protobuf.ByteString getMessage() {
         return message_;
@@ -628,13 +685,13 @@ public final class PushMessageProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000020;
         message_ = value;
         onChanged();
         return this;
       }
       public Builder clearMessage() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         message_ = getDefaultInstance().getMessage();
         onChanged();
         return this;
@@ -2800,23 +2857,24 @@ public final class PushMessageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\037IncomingPushMessageSignal.proto\022\ntexts" +
-      "ecure\"l\n\031IncomingPushMessageSignal\022\014\n\004ty" +
-      "pe\030\001 \001(\r\022\016\n\006source\030\002 \001(\t\022\r\n\005relay\030\003 \001(\t\022" +
-      "\021\n\ttimestamp\030\005 \001(\004\022\017\n\007message\030\006 \001(\014\"\363\003\n\022" +
-      "PushMessageContent\022\014\n\004body\030\001 \001(\t\022E\n\013atta" +
-      "chments\030\002 \003(\01320.textsecure.PushMessageCo" +
-      "ntent.AttachmentPointer\022:\n\005group\030\003 \001(\0132+" +
-      ".textsecure.PushMessageContent.GroupCont" +
-      "ext\032A\n\021AttachmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013" +
-      "contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\032\210\002\n\014Group",
-      "Context\022\n\n\002id\030\001 \001(\014\022>\n\004type\030\002 \001(\01620.text" +
-      "secure.PushMessageContent.GroupContext.T" +
-      "ype\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\022@\n\006av" +
-      "atar\030\005 \001(\01320.textsecure.PushMessageConte" +
-      "nt.AttachmentPointer\"K\n\004Type\022\013\n\007UNKNOWN\020" +
-      "\000\022\n\n\006CREATE\020\001\022\n\n\006MODIFY\020\002\022\013\n\007DELIVER\020\003\022\007" +
-      "\n\003ADD\020\004\022\010\n\004QUIT\020\005B7\n\"org.whispersystems." +
-      "textsecure.pushB\021PushMessageProtos"
+      "ecure\"\202\001\n\031IncomingPushMessageSignal\022\014\n\004t" +
+      "ype\030\001 \001(\r\022\016\n\006source\030\002 \001(\t\022\024\n\014sourceDevic" +
+      "e\030\007 \001(\r\022\r\n\005relay\030\003 \001(\t\022\021\n\ttimestamp\030\005 \001(" +
+      "\004\022\017\n\007message\030\006 \001(\014\"\363\003\n\022PushMessageConten" +
+      "t\022\014\n\004body\030\001 \001(\t\022E\n\013attachments\030\002 \003(\01320.t" +
+      "extsecure.PushMessageContent.AttachmentP" +
+      "ointer\022:\n\005group\030\003 \001(\0132+.textsecure.PushM" +
+      "essageContent.GroupContext\032A\n\021Attachment" +
+      "Pointer\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030\002 \001(\t",
+      "\022\013\n\003key\030\003 \001(\014\032\210\002\n\014GroupContext\022\n\n\002id\030\001 \001" +
+      "(\014\022>\n\004type\030\002 \001(\01620.textsecure.PushMessag" +
+      "eContent.GroupContext.Type\022\014\n\004name\030\003 \001(\t" +
+      "\022\017\n\007members\030\004 \003(\t\022@\n\006avatar\030\005 \001(\01320.text" +
+      "secure.PushMessageContent.AttachmentPoin" +
+      "ter\"K\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006CREATE\020\001\022\n\n\006" +
+      "MODIFY\020\002\022\013\n\007DELIVER\020\003\022\007\n\003ADD\020\004\022\010\n\004QUIT\020\005" +
+      "B7\n\"org.whispersystems.textsecure.pushB\021" +
+      "PushMessageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2828,7 +2886,7 @@ public final class PushMessageProtos {
           internal_static_textsecure_IncomingPushMessageSignal_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_IncomingPushMessageSignal_descriptor,
-              new java.lang.String[] { "Type", "Source", "Relay", "Timestamp", "Message", },
+              new java.lang.String[] { "Type", "Source", "SourceDevice", "Relay", "Timestamp", "Message", },
               org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.class,
               org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.Builder.class);
           internal_static_textsecure_PushMessageContent_descriptor =

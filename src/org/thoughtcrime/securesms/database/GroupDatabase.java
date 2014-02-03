@@ -6,11 +6,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.util.Log;
 
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,7 +35,7 @@ public class GroupDatabase extends Database {
   private static final String AVATAR_ID           = "avatar_id";
   private static final String AVATAR_KEY          = "avatar_key";
   private static final String AVATAR_CONTENT_TYPE = "avatar_content_type";
-  private static final String RELAY               = "relay";
+  private static final String AVATAR_RELAY        = "avatar_relay";
   private static final String TIMESTAMP           = "timestamp";
 
   public static final String CREATE_TABLE =
@@ -42,6 +49,7 @@ public class GroupDatabase extends Database {
           AVATAR_ID + " INTEGER, " +
           AVATAR_KEY + " BLOB, " +
           AVATAR_CONTENT_TYPE + " TEXT, " +
+          AVATAR_RELAY + " TEXT, " +
           TIMESTAMP + " INTEGER);";
 
   public static final String[] CREATE_INDEXS = {
@@ -52,11 +60,28 @@ public class GroupDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public Reader getGroup(String groupId) {
+  public Reader getGroup(byte[] groupId) {
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
-                                                               new String[] {groupId}, null, null, null);
+                                                               new String[] {GroupUtil.getEncodedId(groupId)},
+                                                               null, null, null);
 
     return new Reader(cursor);
+  }
+
+  public Recipients getGroupMembers(byte[] groupId) {
+    List<String> members = getCurrentMembers(groupId);
+    List<Recipient> recipients = new LinkedList<Recipient>();
+
+    for (String member : members) {
+      try {
+        recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, true)
+                                          .getRecipientsList());
+      } catch (RecipientFormattingException e) {
+        Log.w("GroupDatabase", e);
+      }
+    }
+
+    return new Recipients(recipients);
   }
 
   public void create(byte[] groupId, String owner, String title,
@@ -64,7 +89,7 @@ public class GroupDatabase extends Database {
                      String relay)
   {
     ContentValues contentValues = new ContentValues();
-    contentValues.put(GROUP_ID, Hex.toString(groupId));
+    contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
     contentValues.put(OWNER, owner);
     contentValues.put(TITLE, title);
     contentValues.put(MEMBERS, Util.join(members, ","));
@@ -75,7 +100,7 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
     }
 
-    contentValues.put(RELAY, relay);
+    contentValues.put(AVATAR_RELAY, relay);
     contentValues.put(TIMESTAMP, System.currentTimeMillis());
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
@@ -93,14 +118,15 @@ public class GroupDatabase extends Database {
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ? AND " + OWNER + " = ?",
-                                                new String[] {Hex.toString(groupId), source});
+                                                new String[] {GroupUtil.getEncodedId(groupId), source});
   }
 
-  public void updateAvatar(String groupId, Bitmap avatar) {
+  public void updateAvatar(byte[] groupId, Bitmap avatar) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(AVATAR, BitmapUtil.toByteArray(avatar));
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?", new String[] {groupId});
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
+                                                new String[] {GroupUtil.getEncodedId(groupId)});
   }
 
 
@@ -172,7 +198,7 @@ public class GroupDatabase extends Database {
                              cursor.getLong(cursor.getColumnIndexOrThrow(AVATAR_ID)),
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_KEY)),
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_CONTENT_TYPE)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(RELAY)));
+                             cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_RELAY)));
     }
 
     public void close() {
@@ -206,8 +232,12 @@ public class GroupDatabase extends Database {
       this.relay             = relay;
     }
 
-    public String getId() {
-      return id;
+    public byte[] getId() {
+      try {
+        return GroupUtil.getDecodedId(id);
+      } catch (IOException ioe) {
+        throw new AssertionError(ioe);
+      }
     }
 
     public String getTitle() {

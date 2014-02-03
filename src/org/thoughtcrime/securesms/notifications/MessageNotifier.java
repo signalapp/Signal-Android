@@ -296,7 +296,7 @@ public class MessageNotifier {
           recipient = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
         } catch (RecipientFormattingException e) {
           Log.w("MessageNotifier", e);
-          recipient = new Recipient("Unknown", "Unknown", null, ContactPhotoFactory.getDefaultContactPhoto(context));
+          recipient = Recipient.getUnknownRecipient(context);
         }
 
         Recipients      recipients = RecipientFactory.getRecipientsFromMessage(context, message, false);

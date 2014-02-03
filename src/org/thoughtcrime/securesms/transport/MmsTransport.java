@@ -29,9 +29,12 @@ import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
@@ -153,12 +156,18 @@ public class MmsTransport {
   }
 
   private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipientString, byte[] pduBytes) {
-    TextTransport     transportDetails  = new TextTransport();
-    Recipient         recipient         = new Recipient(null, recipientString, null, null);
-    SessionCipher     sessionCipher     = SessionCipher.createFor(context, masterSecret, recipient);
-    CiphertextMessage ciphertextMessage = sessionCipher.encrypt(pduBytes);
+    try {
+      TextTransport     transportDetails  = new TextTransport();
+      Recipient         recipient         = RecipientFactory.getRecipientsFromString(context, recipientString, false).getPrimaryRecipient();
+      RecipientDevice   recipientDevice   = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
+      SessionCipher     sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
+      CiphertextMessage ciphertextMessage = sessionCipher.encrypt(pduBytes);
 
-    return transportDetails.getEncodedMessage(ciphertextMessage.serialize());
+      return transportDetails.getEncodedMessage(ciphertextMessage.serialize());
+    } catch (RecipientFormattingException e) {
+      Log.w("MmsTransport", e);
+      throw new AssertionError(e);
+    }
   }
 
   private boolean isInconsistentResponse(SendReq message, SendConf response) {

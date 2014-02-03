@@ -84,16 +84,11 @@ public class ContactSelectionRecentFragment extends SherlockListFragment
     this.getLoaderManager().initLoader(0, null, this);
   }
 
-  public Recipients getSelectedContacts() {
-    List<Recipient> recipientList = new LinkedList<Recipient>();
+  public List<ContactData> getSelectedContacts() {
+    List<ContactData> contacts = new LinkedList<ContactData>();
+    contacts.addAll(selectedContacts.values());
 
-    for (ContactData contactData : selectedContacts.values()) {
-      for (NumberData numberData : contactData.numbers) {
-        recipientList.add(new Recipient(contactData.name, numberData.number, null, null));
-      }
-    }
-
-    return new Recipients(recipientList);
+    return contacts;
   }
 
   private void addSingleNumberContact(ContactData contactData) {

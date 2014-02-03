@@ -23,15 +23,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.textsecure.storage.CanonicalRecipient;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
-import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
 
 import java.util.HashSet;
 
-public class Recipient implements Parcelable, CanonicalRecipientAddress {
+public class Recipient implements Parcelable, CanonicalRecipient {
 
   public static final Parcelable.Creator<Recipient> CREATOR = new Parcelable.Creator<Recipient>() {
     public Recipient createFromParcel(Parcel in) {
@@ -43,18 +44,21 @@ public class Recipient implements Parcelable, CanonicalRecipientAddress {
     }
   };
 
-  private final String number;
   private final HashSet<RecipientModifiedListener> listeners = new HashSet<RecipientModifiedListener>();
+
+  private final String number;
+  private final long   recipientId;
 
   private String name;
   private Bitmap contactPhoto;
   private Uri    contactUri;
 
-  public Recipient(String number, Bitmap contactPhoto,
-                   ListenableFutureTask<RecipientDetails> future)
+  Recipient(String number, Bitmap contactPhoto, long recipientId,
+            ListenableFutureTask<RecipientDetails> future)
   {
     this.number       = number;
     this.contactPhoto = contactPhoto;
+    this.recipientId  = recipientId;
 
     future.setListener(new FutureTaskListener<RecipientDetails>() {
       @Override
@@ -82,8 +86,9 @@ public class Recipient implements Parcelable, CanonicalRecipientAddress {
     });
   }
 
-  public Recipient(String name, String number, Uri contactUri, Bitmap contactPhoto) {
+  Recipient(String name, String number, long recipientId, Uri contactUri, Bitmap contactPhoto) {
     this.number       = number;
+    this.recipientId  = recipientId;
     this.contactUri   = contactUri;
     this.name         = name;
     this.contactPhoto = contactPhoto;
@@ -92,6 +97,7 @@ public class Recipient implements Parcelable, CanonicalRecipientAddress {
   public Recipient(Parcel in) {
     this.number       = in.readString();
     this.name         = in.readString();
+    this.recipientId  = in.readLong();
     this.contactUri   = (Uri)in.readParcelable(null);
     this.contactPhoto = (Bitmap)in.readParcelable(null);
   }
@@ -110,6 +116,14 @@ public class Recipient implements Parcelable, CanonicalRecipientAddress {
 
   public int describeContents() {
     return 0;
+  }
+
+  public long getRecipientId() {
+    return recipientId;
+  }
+
+  public boolean isGroupRecipient() {
+    return GroupUtil.isEncodedGroup(number);
   }
 
 //  public void updateAsynchronousContent(RecipientDetails result) {
@@ -136,6 +150,7 @@ public class Recipient implements Parcelable, CanonicalRecipientAddress {
   public synchronized void writeToParcel(Parcel dest, int flags) {
     dest.writeString(number);
     dest.writeString(name);
+    dest.writeLong(recipientId);
     dest.writeParcelable(contactUri, 0);
     dest.writeParcelable(contactPhoto, 0);
   }
@@ -148,11 +163,12 @@ public class Recipient implements Parcelable, CanonicalRecipientAddress {
     return contactPhoto;
   }
 
-  public long getCanonicalAddress(Context context) {
-    return CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(getNumber());
+  public static Recipient getUnknownRecipient(Context context) {
+    return new Recipient("Unknown", "Unknown", -1, null, ContactPhotoFactory.getDefaultContactPhoto(context));
   }
 
   public static interface RecipientModifiedListener {
     public void onModified(Recipient recipient);
   }
+
 }

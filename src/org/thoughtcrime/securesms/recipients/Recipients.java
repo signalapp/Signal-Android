@@ -21,6 +21,7 @@ import android.os.Parcelable;
 import android.util.Patterns;
 
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.NumberUtil;
 
 import java.util.ArrayList;
@@ -87,6 +88,10 @@ public class Recipients implements Parcelable {
     }
 
     return false;
+  }
+
+  public boolean isGroupRecipient() {
+    return isSingleRecipient() && GroupUtil.isEncodedGroup(recipients.get(0).getNumber());
   }
 
 //  public Recipients getSecureSessionRecipients(Context context) {

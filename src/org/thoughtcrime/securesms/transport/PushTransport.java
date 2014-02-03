@@ -23,6 +23,7 @@ import android.util.Log;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
@@ -30,22 +31,24 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.AttachmentCipher;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
+import org.whispersystems.textsecure.push.MismatchedDevices;
+import org.whispersystems.textsecure.push.MismatchedDevicesException;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
+import org.whispersystems.textsecure.push.OutgoingPushMessageList;
 import org.whispersystems.textsecure.push.PreKeyEntity;
+import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.PushAttachmentData;
 import org.whispersystems.textsecure.push.PushAttachmentPointer;
 import org.whispersystems.textsecure.push.PushBody;
-import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.RateLimitException;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.InvalidNumberException;
@@ -70,79 +73,70 @@ public class PushTransport extends BaseTransport {
 
   public void deliver(SmsMessageRecord message) throws IOException {
     try {
-      String            localNumber = TextSecurePreferences.getLocalNumber(context);
-      Recipient         recipient   = message.getIndividualRecipient();
-      long              threadId    = message.getThreadId();
-      PushServiceSocket socket      = PushServiceSocketFactory.create(context);
-      PushDestination   destination = PushDestination.create(context, localNumber,
-                                                             recipient.getNumber());
+      Recipient         recipient = message.getIndividualRecipient();
+      long              threadId  = message.getThreadId();
+      PushServiceSocket socket    = PushServiceSocketFactory.create(context);
+      byte[]            plaintext = PushMessageContent.newBuilder()
+                                                      .setBody(message.getBody().getBody())
+                                                      .build().toByteArray();
 
-      String   plaintextBody = message.getBody().getBody();
-      byte[]   plaintext     = PushMessageContent.newBuilder().setBody(plaintextBody).build().toByteArray();
-      PushBody pushBody      = getEncryptedMessage(socket, threadId, recipient, destination, plaintext);
-
-      socket.sendMessage(destination, pushBody);
+      deliver(socket, recipient, threadId, plaintext);
 
       context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType(), true));
+
     } catch (UnregisteredUserException e) {
       Log.w("PushTransport", e);
-      destroySessions(e.getAddresses());
+      //TODO We should probably remove the user from the directory?
+//      destroySessions(message.getIndividualRecipient());
       throw new IOException("Not push registered after all.");
-    } catch (RateLimitException e) {
-      Log.w("PushTransport", e);
-      throw new IOException("Rate limit exceeded.");
     } catch (InvalidNumberException e) {
       Log.w("PushTransport", e);
       throw new IOException("Badly formatted number.");
     }
   }
 
-  public void deliver(SendReq message, List<PushDestination> destinations, long threadId)
-      throws IOException
-  {
+  public void deliver(SendReq message, long threadId) throws IOException {
+    PushServiceSocket socket      = PushServiceSocketFactory.create(context);
+    byte[]            plaintext   = getPlaintextMessage(socket, message);
+    String            destination = message.getTo()[0].getString();
+
+    Recipients recipients;
+
     try {
-      PushServiceSocket socket      = PushServiceSocketFactory.create(context);
-      String            messageBody = PartParser.getMessageText(message.getBody());
-      List<PushBody>    pushBodies  = new LinkedList<PushBody>();
-
-      for (PushDestination destination : destinations) {
-        Recipients                  recipients  = RecipientFactory.getRecipientsFromString(context, destination.getNumber(), false);
-        List<PushAttachmentPointer> attachments = getPushAttachmentPointers(socket, message.getBody());
-        PushMessageContent.Builder  builder     = PushMessageContent.newBuilder();
-
-        if (messageBody != null) {
-          builder.setBody(messageBody);
-        }
-
-        for (PushAttachmentPointer attachment : attachments) {
-          PushMessageContent.AttachmentPointer.Builder attachmentBuilder =
-              PushMessageContent.AttachmentPointer.newBuilder();
-
-          attachmentBuilder.setId(attachment.getId());
-          attachmentBuilder.setContentType(attachment.getContentType());
-          attachmentBuilder.setKey(ByteString.copyFrom(attachment.getKey()));
-
-          builder.addAttachments(attachmentBuilder.build());
-        }
-
-        byte[]   plaintext = builder.build().toByteArray();
-        PushBody pushBody  = getEncryptedMessage(socket, threadId, recipients.getPrimaryRecipient(), destination, plaintext);
-
-        pushBodies.add(pushBody);
+      if (GroupUtil.isEncodedGroup(destination)) {
+        recipients = DatabaseFactory.getGroupDatabase(context)
+                                    .getGroupMembers(GroupUtil.getDecodedId(destination));
+      } else {
+        recipients = RecipientFactory.getRecipientsFromString(context, destination, false);
       }
 
-      socket.sendMessage(destinations, pushBodies);
-
-    } catch (UnregisteredUserException e) {
-      Log.w("PushTransport", e);
-      destroySessions(e.getAddresses());
-      throw new IOException("No push registered after all.");
-    } catch (RateLimitException e) {
-      Log.w("PushTransport", e);
-      throw new IOException("Rate limit exceeded.");
+      for (Recipient recipient : recipients.getRecipientsList()) {
+        deliver(socket, recipient, threadId, plaintext);
+      }
+    } catch (UnregisteredUserException uue) {
+      // TODO: We should probably remove the user from the directory?
+      throw new IOException(uue);
     } catch (RecipientFormattingException e) {
-      Log.w("PushTransport", e);
-      throw new IOException("Bad destination!");
+      throw new IOException(e);
+    } catch (InvalidNumberException e) {
+      throw new IOException(e);
+    }
+  }
+
+  private void deliver(PushServiceSocket socket, Recipient recipient, long threadId, byte[] plaintext)
+      throws IOException, InvalidNumberException
+  {
+    for (int i=0;i<3;i++) {
+      try {
+        OutgoingPushMessageList messages = getEncryptedMessages(socket, threadId,
+                                                                recipient, plaintext);
+        socket.sendMessage(messages);
+
+        return;
+      } catch (MismatchedDevicesException mde) {
+        Log.w("PushTransport", mde);
+        handleMismatchedDevices(socket, threadId, recipient, mde.getMismatchedDevices());
+      }
     }
   }
 
@@ -170,23 +164,108 @@ public class PushTransport extends BaseTransport {
     return attachments;
   }
 
-  private PushBody getEncryptedMessage(PushServiceSocket socket, long threadId, Recipient recipient,
-                                       PushDestination pushDestination, byte[] plaintext)
-      throws IOException
+  private void handleMismatchedDevices(PushServiceSocket socket, long threadId,
+                                       Recipient recipient,
+                                       MismatchedDevices mismatchedDevices)
+      throws InvalidNumberException, IOException
   {
-    if (!SessionRecordV2.hasSession(context, masterSecret, recipient)) {
-      try {
-        PreKeyEntity           preKey    = socket.getPreKey(pushDestination);
-        KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(context, masterSecret, recipient);
+    try {
+      String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
+      long   recipientId = recipient.getRecipientId();
+
+      for (int extraDeviceId : mismatchedDevices.getExtraDevices()) {
+        PushAddress address = PushAddress.create(context, recipientId, e164number, extraDeviceId);
+        SessionRecordV2.delete(context, address);
+      }
+
+      for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
+        PushAddress            address   = PushAddress.create(context, recipientId, e164number, missingDeviceId);
+        PreKeyEntity           preKey    = socket.getPreKey(address);
+        KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(context, masterSecret, address);
 
         processor.processKeyExchangeMessage(preKey, threadId);
+      }
+    } catch (InvalidKeyException e) {
+      throw new IOException(e);
+    }
+  }
+
+  private byte[] getPlaintextMessage(PushServiceSocket socket, SendReq message) throws IOException {
+    String                      messageBody = PartParser.getMessageText(message.getBody());
+    List<PushAttachmentPointer> attachments = getPushAttachmentPointers(socket, message.getBody());
+
+    PushMessageContent.Builder builder = PushMessageContent.newBuilder();
+
+    if (GroupUtil.isEncodedGroup(message.getTo()[0].getString())) {
+      PushMessageContent.GroupContext.Builder groupBuilder =
+          PushMessageContent.GroupContext.newBuilder();
+
+      groupBuilder.setType(PushMessageContent.GroupContext.Type.DELIVER);
+      groupBuilder.setId(ByteString.copyFrom(GroupUtil.getDecodedId(message.getTo()[0].getString())));
+
+      builder.setGroup(groupBuilder.build());
+    }
+
+    if (messageBody != null) {
+      builder.setBody(messageBody);
+    }
+
+    for (PushAttachmentPointer attachment : attachments) {
+      PushMessageContent.AttachmentPointer.Builder attachmentBuilder =
+          PushMessageContent.AttachmentPointer.newBuilder();
+
+      attachmentBuilder.setId(attachment.getId());
+      attachmentBuilder.setContentType(attachment.getContentType());
+      attachmentBuilder.setKey(ByteString.copyFrom(attachment.getKey()));
+
+      builder.addAttachments(attachmentBuilder.build());
+    }
+
+    return builder.build().toByteArray();
+  }
+
+  private OutgoingPushMessageList getEncryptedMessages(PushServiceSocket socket, long threadId,
+                                                       Recipient recipient, byte[] plaintext)
+      throws IOException, InvalidNumberException
+  {
+    String      e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
+    long        recipientId  = recipient.getRecipientId();
+    PushAddress masterDevice = PushAddress.create(context, recipientId, e164number, 1);
+    PushBody    masterBody   = getEncryptedMessage(socket, threadId, masterDevice, plaintext);
+
+    List<OutgoingPushMessage> messages = new LinkedList<OutgoingPushMessage>();
+    messages.add(new OutgoingPushMessage(masterDevice, masterBody));
+
+    for (int deviceId : SessionRecordV2.getSessionSubDevices(context, recipient)) {
+      PushAddress device = PushAddress.create(context, recipientId, e164number, deviceId);
+      PushBody    body   = getEncryptedMessage(socket, threadId, device, plaintext);
+
+      messages.add(new OutgoingPushMessage(device, body));
+    }
+
+    return new OutgoingPushMessageList(e164number, masterDevice.getRelay(), messages);
+  }
+
+  private PushBody getEncryptedMessage(PushServiceSocket socket, long threadId,
+                                       PushAddress pushAddress, byte[] plaintext)
+      throws IOException
+  {
+    if (!SessionRecordV2.hasSession(context, masterSecret, pushAddress)) {
+      try {
+        List<PreKeyEntity> preKeys = socket.getPreKeys(pushAddress);
+
+        for (PreKeyEntity preKey : preKeys) {
+          PushAddress            device    = PushAddress.create(context, pushAddress.getRecipientId(), pushAddress.getNumber(), preKey.getDeviceId());
+          KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(context, masterSecret, device);
+
+          processor.processKeyExchangeMessage(preKey, threadId);
+        }
       } catch (InvalidKeyException e) {
-        Log.w("PushTransport", e);
-        throw new IOException("Invalid PreKey!");
+        throw new IOException(e);
       }
     }
 
-    SessionCipher     cipher  = SessionCipher.createFor(context, masterSecret, recipient);
+    SessionCipher     cipher  = SessionCipher.createFor(context, masterSecret, pushAddress);
     CiphertextMessage message = cipher.encrypt(plaintext);
 
     if (message.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
@@ -198,15 +277,7 @@ public class PushTransport extends BaseTransport {
     }
   }
 
-  private void destroySessions(List<String> unregisteredUsers) {
-    for (String unregisteredUser : unregisteredUsers) {
-      Log.w("PushTransport", "Destroying session for: " + unregisteredUser);
-      try {
-        Recipients recipients = RecipientFactory.getRecipientsFromString(context, unregisteredUser, false);
-        SessionRecordV2.delete(context, recipients.getPrimaryRecipient());
-      } catch (RecipientFormattingException e) {
-        Log.w("PushTransport", e);
-      }
-    }
+  private void destroySessions(Recipient recipient) {
+    SessionRecordV2.deleteAll(context, recipient);
   }
 }

@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessageV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
@@ -24,6 +25,7 @@ import org.whispersystems.textsecure.crypto.ratchet.RatchetingSession;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.Medium;
@@ -37,15 +39,16 @@ import org.whispersystems.textsecure.util.Medium;
 public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
 
   private Context         context;
-  private Recipient       recipient;
+  private RecipientDevice recipientDevice;
   private MasterSecret    masterSecret;
   private SessionRecordV2 sessionRecord;
 
-  public KeyExchangeProcessorV2(Context context, MasterSecret masterSecret, Recipient recipient) {
+  public KeyExchangeProcessorV2(Context context, MasterSecret masterSecret, RecipientDevice recipientDevice)
+  {
     this.context         = context;
-    this.recipient       = recipient;
+    this.recipientDevice = recipientDevice;
     this.masterSecret    = masterSecret;
-    this.sessionRecord   = new SessionRecordV2(context, masterSecret, recipient);
+    this.sessionRecord   = new SessionRecordV2(context, masterSecret, recipientDevice);
   }
 
   public boolean isTrusted(PreKeyWhisperMessage message) {
@@ -57,7 +60,8 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
   }
 
   public boolean isTrusted(IdentityKey identityKey) {
-    return DatabaseFactory.getIdentityDatabase(context).isValidIdentity(masterSecret, recipient,
+    return DatabaseFactory.getIdentityDatabase(context).isValidIdentity(masterSecret,
+                                                                        recipientDevice.getRecipientId(),
                                                                         identityKey);
   }
 
@@ -80,7 +84,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
 
     Log.w("KeyExchangeProcessor", "Received pre-key with local key ID: " + preKeyId);
 
-    if (!PreKeyRecord.hasRecord(context, preKeyId) && Session.hasSession(context, masterSecret, recipient)) {
+    if (!PreKeyRecord.hasRecord(context, preKeyId) && SessionRecordV2.hasSession(context, masterSecret, recipientDevice)) {
       Log.w("KeyExchangeProcessor", "We've already processed the prekey part, letting bundled message fall through...");
       return;
     }
@@ -97,7 +101,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
 
     RatchetingSession.initializeSession(sessionRecord, ourBaseKey, theirBaseKey, ourEphemeralKey,
                                         theirEphemeralKey, ourIdentityKey, theirIdentityKey);
-
+    Session.clearV1SessionFor(context, recipientDevice.getRecipient());
     sessionRecord.save();
 
     if (preKeyId != Medium.MAX_VALUE) {
@@ -105,7 +109,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     }
 
     DatabaseFactory.getIdentityDatabase(context)
-                   .saveIdentity(masterSecret, recipient, theirIdentityKey);
+                   .saveIdentity(masterSecret, recipientDevice.getRecipientId(), theirIdentityKey);
   }
 
   public void processKeyExchangeMessage(PreKeyEntity message, long threadId)
@@ -129,7 +133,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     sessionRecord.save();
 
     DatabaseFactory.getIdentityDatabase(context)
-                   .saveIdentity(masterSecret, recipient, message.getIdentityKey());
+                   .saveIdentity(masterSecret, recipientDevice.getRecipientId(), message.getIdentityKey());
 
     broadcastSecurityUpdateEvent(context, threadId);
   }
@@ -140,6 +144,10 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
   {
     try {
       KeyExchangeMessageV2 message = (KeyExchangeMessageV2)_message;
+      Recipient recipient = RecipientFactory.getRecipientsForIds(context,
+                                                                 String.valueOf(recipientDevice.getRecipientId()),
+                                                                 false)
+                                            .getPrimaryRecipient();
 
       Log.w("KeyExchangeProcessorV2", "Received key exchange with sequence: " + message.getSequence());
 
@@ -197,11 +205,11 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
                                           ourIdentityKey, message.getIdentityKey());
 
       sessionRecord.setSessionVersion(message.getVersion());
-      Session.clearV1SessionFor(context, recipient);
+      Session.clearV1SessionFor(context, recipientDevice.getRecipient());
       sessionRecord.save();
 
       DatabaseFactory.getIdentityDatabase(context)
-                     .saveIdentity(masterSecret, recipient, message.getIdentityKey());
+                     .saveIdentity(masterSecret, recipientDevice.getRecipientId(), message.getIdentityKey());
 
       DecryptingQueue.scheduleRogueMessages(context, masterSecret, recipient);
 

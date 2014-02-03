@@ -32,6 +32,8 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
@@ -46,6 +48,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.crypto.protocol.WhisperMessageV2;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 
 import java.io.IOException;
 import java.util.List;
@@ -80,8 +83,9 @@ public class SmsReceiver {
     if (masterSecret != null) {
       DecryptingQueue.scheduleDecryption(context, masterSecret, messageAndThreadId.first,
                                          messageAndThreadId.second,
-                                         message.getSender(), message.getMessageBody(),
-                                         message.isSecureMessage(), message.isKeyExchange());
+                                         message.getSender(), message.getSenderDeviceId(),
+                                         message.getMessageBody(), message.isSecureMessage(),
+                                         message.isKeyExchange());
     }
 
     return messageAndThreadId;
@@ -106,8 +110,9 @@ public class SmsReceiver {
     Log.w("SmsReceiver", "Processing prekey message...");
 
     try {
-      Recipient              recipient        = new Recipient(null, message.getSender(), null, null);
-      KeyExchangeProcessorV2 processor        = new KeyExchangeProcessorV2(context, masterSecret, recipient);
+      Recipient              recipient        = RecipientFactory.getRecipientsFromString(context, message.getSender(), false).getPrimaryRecipient();
+      RecipientDevice        recipientDevice  = new RecipientDevice(recipient.getRecipientId(), message.getSenderDeviceId());
+      KeyExchangeProcessorV2 processor        = new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
       SmsTransportDetails    transportDetails = new SmsTransportDetails();
       byte[]                 rawMessage       = transportDetails.getDecodedMessage(message.getMessageBody().getBytes());
       PreKeyWhisperMessage   preKeyExchange   = new PreKeyWhisperMessage(rawMessage);
@@ -142,6 +147,9 @@ public class SmsReceiver {
     } catch (InvalidMessageException e) {
       Log.w("SmsReceiver", e);
       message.setCorrupted(true);
+    } catch (RecipientFormattingException e) {
+      Log.w("SmsReceiver", e);
+      message.setCorrupted(true);
     }
 
     return storeStandardMessage(masterSecret, message);
@@ -152,9 +160,10 @@ public class SmsReceiver {
   {
     if (masterSecret != null && TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
       try {
-        Recipient            recipient       = new Recipient(null, message.getSender(), null, null);
+        Recipient            recipient       = RecipientFactory.getRecipientsFromString(context, message.getSender(), false).getPrimaryRecipient();
+        RecipientDevice      recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSenderDeviceId());
         KeyExchangeMessage   exchangeMessage = KeyExchangeMessage.createFor(message.getMessageBody());
-        KeyExchangeProcessor processor       = KeyExchangeProcessor.createFor(context, masterSecret, recipient, exchangeMessage);
+        KeyExchangeProcessor processor       = KeyExchangeProcessor.createFor(context, masterSecret, recipientDevice, exchangeMessage);
 
         if (processor.isStale(exchangeMessage)) {
           message.setStale(true);
@@ -173,6 +182,9 @@ public class SmsReceiver {
         Log.w("SmsReceiver", e);
         message.setCorrupted(true);
       } catch (InvalidMessageException e) {
+        Log.w("SmsReceiver", e);
+        message.setCorrupted(true);
+      } catch (RecipientFormattingException e) {
         Log.w("SmsReceiver", e);
         message.setCorrupted(true);
       }

@@ -20,7 +20,7 @@ package org.whispersystems.textsecure.crypto;
 import android.content.Context;
 
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.SessionRecordV1;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 
@@ -31,13 +31,14 @@ public abstract class SessionCipher {
   public abstract CiphertextMessage encrypt(byte[] paddedMessage);
   public abstract byte[] decrypt(byte[] decodedMessage) throws InvalidMessageException;
 
-  public static SessionCipher createFor(Context context, MasterSecret masterSecret,
-                                        CanonicalRecipientAddress recipient)
+  public static SessionCipher createFor(Context context,
+                                        MasterSecret masterSecret,
+                                        RecipientDevice recipient)
   {
     if (SessionRecordV2.hasSession(context, masterSecret, recipient)) {
       return new SessionCipherV2(context, masterSecret, recipient);
-    } else if (SessionRecordV1.hasSession(context, recipient)) {
-      return new SessionCipherV1(context, masterSecret, recipient);
+    } else if (SessionRecordV1.hasSession(context, recipient.getRecipientId())) {
+      return new SessionCipherV1(context, masterSecret, recipient.getRecipient());
     } else {
       throw new AssertionError("Attempt to initialize cipher for non-existing session.");
     }

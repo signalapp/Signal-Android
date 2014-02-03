@@ -39,12 +39,14 @@ import org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Chai
 import org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingKeyExchange;
 import org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKey;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -64,33 +66,70 @@ public class SessionRecordV2 extends Record {
   private StorageProtos.SessionStructure sessionStructure =
       StorageProtos.SessionStructure.newBuilder().build();
 
-  public SessionRecordV2(Context context, MasterSecret masterSecret, CanonicalRecipientAddress recipient) {
-    this(context, masterSecret, getRecipientId(context, recipient));
+  public SessionRecordV2(Context context, MasterSecret masterSecret, RecipientDevice peer) {
+    this(context, masterSecret, peer.getRecipientId(), peer.getDeviceId());
   }
 
-  public SessionRecordV2(Context context, MasterSecret masterSecret, long recipientId) {
-    super(context, SESSIONS_DIRECTORY_V2, recipientId+"");
+  public SessionRecordV2(Context context, MasterSecret masterSecret, long recipientId, int deviceId) {
+    super(context, SESSIONS_DIRECTORY_V2, getRecordName(recipientId, deviceId));
     this.masterSecret = masterSecret;
     loadData();
   }
 
-  public static void delete(Context context, CanonicalRecipientAddress recipient) {
-    delete(context, SESSIONS_DIRECTORY_V2, getRecipientId(context, recipient) + "");
+  private static String getRecordName(long recipientId, int deviceId) {
+    return recipientId + (deviceId == RecipientDevice.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
+  }
+
+  public static List<Integer> getSessionSubDevices(Context context, CanonicalRecipient recipient) {
+    List<Integer> results  = new LinkedList<Integer>();
+    File          parent   = getParentDirectory(context, SESSIONS_DIRECTORY_V2);
+    String[]      children = parent.list();
+
+    if (children == null) return results;
+
+    for (String child : children) {
+      try {
+        String[] parts              = child.split("[.]", 2);
+        long     sessionRecipientId = Long.parseLong(parts[0]);
+
+        if (sessionRecipientId == recipient.getRecipientId() && parts.length > 1) {
+          results.add(Integer.parseInt(parts[1]));
+        }
+      } catch (NumberFormatException e) {
+        Log.w("SessionRecordV2", e);
+      }
+    }
+
+    return results;
+  }
+
+  public static void deleteAll(Context context, CanonicalRecipient recipient) {
+    List<Integer> devices = getSessionSubDevices(context, recipient);
+
+    delete(context, SESSIONS_DIRECTORY_V2, getRecordName(recipient.getRecipientId(),
+                                                         RecipientDevice.DEFAULT_DEVICE_ID));
+
+    for (int device : devices) {
+      delete(context, SESSIONS_DIRECTORY_V2, getRecordName(recipient.getRecipientId(), device));
+    }
+  }
+
+  public static void delete(Context context, RecipientDevice recipientDevice) {
+    delete(context, SESSIONS_DIRECTORY_V2, getRecordName(recipientDevice.getRecipientId(),
+                                                         recipientDevice.getDeviceId()));
   }
 
   public static boolean hasSession(Context context, MasterSecret masterSecret,
-                                   CanonicalRecipientAddress recipient)
+                                   RecipientDevice recipient)
   {
-    return hasSession(context, masterSecret, getRecipientId(context, recipient));
+    return hasSession(context, masterSecret, recipient.getRecipientId(), recipient.getDeviceId());
   }
 
-  public static boolean hasSession(Context context, MasterSecret masterSecret, long recipientId) {
-    return hasRecord(context, SESSIONS_DIRECTORY_V2, recipientId+"") &&
-        new SessionRecordV2(context, masterSecret, recipientId).hasSenderChain();
-  }
-
-  private static long getRecipientId(Context context, CanonicalRecipientAddress recipient) {
-    return recipient.getCanonicalAddress(context);
+  public static boolean hasSession(Context context, MasterSecret masterSecret,
+                                   long recipientId, int deviceId)
+  {
+    return hasRecord(context, SESSIONS_DIRECTORY_V2, getRecordName(recipientId, deviceId)) &&
+        new SessionRecordV2(context, masterSecret, recipientId, deviceId).hasSenderChain();
   }
 
   public void clear() {

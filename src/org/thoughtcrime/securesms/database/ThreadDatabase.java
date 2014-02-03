@@ -70,13 +70,11 @@ public class ThreadDatabase extends Database {
   }
 
   private long[] getRecipientIds(Recipients recipients) {
-    Set<Long> recipientSet = new HashSet<Long>();
+    Set<Long>       recipientSet  = new HashSet<Long>();
     List<Recipient> recipientList = recipients.getRecipientsList();
 
     for (Recipient recipient : recipientList) {
-      //  String number = NumberUtil.filterNumber(recipient.getNumber());
-      String number = recipient.getNumber();
-      recipientSet.add(Long.valueOf(DatabaseFactory.getAddressDatabase(context).getCanonicalAddress(number)));
+      recipientSet.add(recipient.getRecipientId());
     }
 
     long[] recipientArray = new long[recipientSet.size()];

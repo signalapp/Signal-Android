@@ -17,12 +17,14 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
@@ -32,6 +34,7 @@ import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.util.Hex;
 
 import ws.com.google.android.mms.MmsException;
@@ -106,9 +109,10 @@ public class PushReceiver {
     }
 
     try {
-      Recipient              recipient      = new Recipient(null, message.getSource(), null, null);
-      KeyExchangeProcessorV2 processor      = new KeyExchangeProcessorV2(context, masterSecret, recipient);
-      PreKeyWhisperMessage   preKeyExchange = new PreKeyWhisperMessage(message.getBody());
+      Recipient              recipient       = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
+      RecipientDevice        recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSourceDevice());
+      KeyExchangeProcessorV2 processor       = new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
+      PreKeyWhisperMessage   preKeyExchange  = new PreKeyWhisperMessage(message.getBody());
 
       if (processor.isTrusted(preKeyExchange)) {
         processor.processKeyExchangeMessage(preKeyExchange);
@@ -135,6 +139,9 @@ public class PushReceiver {
     } catch (InvalidMessageException e) {
       Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
+    } catch (RecipientFormattingException e) {
+      Log.w("PushReceiver", e);
+      handleReceivedCorruptedKey(masterSecret, message, false);
     }
   }
 
@@ -151,10 +158,10 @@ public class PushReceiver {
         handleReceivedGroupMessage(masterSecret, message, messageContent, secure);
       } else if (messageContent.getAttachmentsCount() > 0) {
         Log.w("PushReceiver", "Received push media message...");
-        handleReceivedMediaMessage(masterSecret, message, messageContent, secure, null);
+        handleReceivedMediaMessage(masterSecret, message, messageContent, secure);
       } else {
         Log.w("PushReceiver", "Received push text message...");
-        handleReceivedTextMessage(masterSecret, message, messageContent, secure, null);
+        handleReceivedTextMessage(masterSecret, message, messageContent, secure);
       }
     } catch (InvalidProtocolBufferException e) {
       Log.w("PushReceiver", e);
@@ -207,30 +214,28 @@ public class PushReceiver {
     if (group.hasAvatar()) {
       Intent intent = new Intent(context, SendReceiveService.class);
       intent.setAction(SendReceiveService.DOWNLOAD_AVATAR_ACTION);
+      intent.putExtra("group_id", group.getId().toByteArray());
       context.startService(intent);
     }
 
-    String groupId =  "g_" + Hex.toString(group.getId().toByteArray());
-
     if (messageContent.getAttachmentsCount() > 0) {
-      handleReceivedMediaMessage(masterSecret, message, messageContent, secure, groupId);
+      handleReceivedMediaMessage(masterSecret, message, messageContent, secure);
     } else if (messageContent.hasBody()) {
-      handleReceivedTextMessage(masterSecret, message, messageContent, secure, groupId);
+      handleReceivedTextMessage(masterSecret, message, messageContent, secure);
     }
   }
 
   private void handleReceivedMediaMessage(MasterSecret masterSecret,
                                           IncomingPushMessage message,
                                           PushMessageContent messageContent,
-                                          boolean secure, String groupId)
+                                          boolean secure)
   {
 
     try {
       String               localNumber  = TextSecurePreferences.getLocalNumber(context);
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret, localNumber,
-                                                                   message, messageContent,
-                                                                   groupId);
+                                                                   message, messageContent);
 
       Pair<Long, Long> messageAndThreadId;
 
@@ -255,9 +260,10 @@ public class PushReceiver {
   private void handleReceivedTextMessage(MasterSecret masterSecret,
                                          IncomingPushMessage message,
                                          PushMessageContent messageContent,
-                                         boolean secure, String groupId)
+                                         boolean secure)
   {
     EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
+    String                groupId     = messageContent.hasGroup() ? GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray()) : null;
     IncomingTextMessage   textMessage = new IncomingTextMessage(message, "", groupId);
 
     if (secure) {

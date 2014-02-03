@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.RecipientsAdapter;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -67,6 +68,14 @@ public class RecipientsPanel extends RelativeLayout {
   public void addRecipient(String name, String number) {
     if (name != null) recipientsText.append(name + "< " + number + ">, ");
     else              recipientsText.append(number + ", ");
+  }
+
+  public void addContacts(List<ContactAccessor.ContactData> contacts) {
+    for (ContactAccessor.ContactData contact : contacts) {
+      for (ContactAccessor.NumberData number : contact.numbers) {
+        addRecipient(contact.name, number.number);
+      }
+    }
   }
 
   public void addRecipients(Recipients recipients) {

@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
@@ -45,6 +46,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 
 import java.io.IOException;
 
@@ -62,6 +64,7 @@ public class ReceiveKeyActivity extends Activity {
   private Button cancelButton;
 
   private Recipient recipient;
+  private int       recipientDeviceId;
   private long      threadId;
   private long      messageId;
 
@@ -126,12 +129,14 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private boolean isTrusted(KeyExchangeMessage message, PreKeyWhisperMessage messageBundle) {
+    RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), recipientDeviceId);
+
     if (message != null) {
       KeyExchangeProcessor processor = KeyExchangeProcessor.createFor(this, masterSecret,
-                                                                      recipient, message);
+                                                                      recipientDevice, message);
       return processor.isTrusted(message);
     } else if (messageBundle != null) {
-      KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(this, masterSecret, recipient);
+      KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(this, masterSecret, recipientDevice);
       return processor.isTrusted(messageBundle);
     }
 
@@ -162,6 +167,7 @@ public class ReceiveKeyActivity extends Activity {
     this.confirmButton        = (Button)   findViewById(R.id.ok_button);
     this.cancelButton         = (Button)   findViewById(R.id.cancel_button);
     this.recipient            = getIntent().getParcelableExtra("recipient");
+    this.recipientDeviceId    = getIntent().getIntExtra("recipient_device_id", -1);
     this.threadId             = getIntent().getLongExtra("thread_id", -1);
     this.messageId            = getIntent().getLongExtra("message_id", -1);
     this.masterSecret         = getIntent().getParcelableExtra("master_secret");
@@ -190,7 +196,8 @@ public class ReceiveKeyActivity extends Activity {
         protected Void doInBackground(Void... params) {
           if (keyExchangeMessage != null) {
             try {
-              KeyExchangeProcessor processor = KeyExchangeProcessor.createFor(ReceiveKeyActivity.this, masterSecret, recipient, keyExchangeMessage);
+              RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), recipientDeviceId);
+              KeyExchangeProcessor processor = KeyExchangeProcessor.createFor(ReceiveKeyActivity.this, masterSecret, recipientDevice, keyExchangeMessage);
               processor.processKeyExchangeMessage(keyExchangeMessage, threadId);
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
                              .markAsProcessedKeyExchange(messageId);
@@ -201,8 +208,9 @@ public class ReceiveKeyActivity extends Activity {
             }
           } else if (keyExchangeMessageBundle != null) {
             try {
+              RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), recipientDeviceId);
               KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(ReceiveKeyActivity.this,
-                                                                            masterSecret, recipient);
+                                                                            masterSecret, recipientDevice);
               processor.processKeyExchangeMessage(keyExchangeMessageBundle);
 
               CiphertextMessage bundledMessage     = keyExchangeMessageBundle.getWhisperMessage();
@@ -213,8 +221,8 @@ public class ReceiveKeyActivity extends Activity {
                              .updateBundleMessageBody(masterSecret, messageId, messageBody);
 
               DecryptingQueue.scheduleDecryption(ReceiveKeyActivity.this, masterSecret, messageId,
-                                                 threadId, recipient.getNumber(), messageBody,
-                                                 true, false);
+                                                 threadId, recipient.getNumber(), recipientDeviceId,
+                                                 messageBody, true, false);
             } catch (InvalidKeyIdException e) {
               Log.w("ReceiveKeyActivity", e);
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)

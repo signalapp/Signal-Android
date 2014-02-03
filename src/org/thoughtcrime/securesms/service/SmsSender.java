@@ -46,11 +46,11 @@ public class SmsSender {
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
-    if (intent.getAction().equals(SendReceiveService.SEND_SMS_ACTION)) {
+    if (SendReceiveService.SEND_SMS_ACTION.equals(intent.getAction())) {
       handleSendMessage(masterSecret, intent);
-    } else if (intent.getAction().equals(SendReceiveService.SENT_SMS_ACTION)) {
+    } else if (SendReceiveService.SENT_SMS_ACTION.equals(intent.getAction())) {
       handleSentMessage(intent);
-    } else if (intent.getAction().equals(SendReceiveService.DELIVERED_SMS_ACTION)) {
+    } else if (SendReceiveService.DELIVERED_SMS_ACTION.equals(intent.getAction())) {
       handleDeliveredMessage(intent);
     }
   }

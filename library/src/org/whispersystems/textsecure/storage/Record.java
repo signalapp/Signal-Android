@@ -69,13 +69,19 @@ public abstract class Record {
   }
 
   private static File getAddressFile(Context context, String directory, String address) {
+    File parent = getParentDirectory(context, directory);
+
+    return new File(parent, address);
+  }
+
+  protected static File getParentDirectory(Context context, String directory) {
     File parent = new File(context.getFilesDir(), directory);
 
     if (!parent.exists()) {
       parent.mkdirs();
     }
 
-    return new File(parent, address);
+    return parent;
   }
 
   protected byte[] readBlob(FileInputStream in) throws IOException {

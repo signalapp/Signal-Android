@@ -20,6 +20,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
@@ -51,7 +52,8 @@ public class RecipientFactory {
   }
 
   private static Recipient getRecipientForNumber(Context context, String number, boolean asynchronous) {
-    return provider.getRecipient(context, number, asynchronous);
+    long recipientId = CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(number);
+    return provider.getRecipient(context, recipientId, asynchronous);
   }
 
   public static Recipients getRecipientsFromString(Context context, String rawText, boolean asynchronous)
@@ -81,17 +83,16 @@ public class RecipientFactory {
       return getRecipientsFromString(context, message.getSource(), asynchronous);
     } catch (RecipientFormattingException e) {
       Log.w("RecipientFactory", e);
-      return new Recipients(new Recipient("Unknown", "Unknown", null,
-                                          ContactPhotoFactory.getDefaultContactPhoto(context)));
+      return new Recipients(Recipient.getUnknownRecipient(context));
     }
   }
 
   private static Recipient getRecipientFromProviderId(Context context, String recipientId, boolean asynchronous) {
-    if (recipientId.startsWith("g_")) {
-      return provider.getGroupRecipient(context, recipientId, asynchronous);
-    } else {
-      String number = DatabaseFactory.getAddressDatabase(context).getAddressFromId(recipientId);
-      return getRecipientForNumber(context, number, asynchronous);
+    try {
+      return provider.getRecipient(context, Long.parseLong(recipientId), asynchronous);
+    } catch (NumberFormatException e) {
+      Log.w("RecipientFactory", e);
+      return Recipient.getUnknownRecipient(context);
     }
   }
 
@@ -126,7 +127,7 @@ public class RecipientFactory {
     if (hasBracketedNumber(recipient))
       return getRecipientForNumber(context, parseBracketedNumber(recipient), asynchronous);
 
-    if (NumberUtil.isValidSmsOrEmail(recipient))
+    if (NumberUtil.isValidSmsOrEmailOrGroup(recipient))
       return getRecipientForNumber(context, recipient, asynchronous);
 
     throw new RecipientFormattingException("Recipient: " + recipient + " is badly formatted.");

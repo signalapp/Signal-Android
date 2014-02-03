@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -96,16 +97,11 @@ public class ContactSelectionListFragment extends SherlockListFragment
   }
 
 
-  public Recipients getSelectedContacts() {
-    List<Recipient> recipientList = new LinkedList<Recipient>();
+  public List<ContactData> getSelectedContacts() {
+    List<ContactData> contacts = new LinkedList<ContactData>();
+    contacts.addAll(selectedContacts.values());
 
-    for (ContactData contactData : selectedContacts.values()) {
-      for (NumberData numberData : contactData.numbers) {
-        recipientList.add(new Recipient(contactData.name, numberData.number, null, null));
-      }
-    }
-
-    return new Recipients(recipientList);
+    return contacts;
   }
 
 

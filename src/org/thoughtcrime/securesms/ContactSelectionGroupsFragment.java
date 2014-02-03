@@ -84,23 +84,17 @@ public class ContactSelectionGroupsFragment extends SherlockListFragment
     this.getListView().setFocusable(true);
   }
 
-  public Recipients getSelectedContacts(Context context) {
-    List<Recipient> recipientList = new LinkedList<Recipient>();
+  public List<ContactData> getSelectedContacts(Context context) {
+    List<ContactData> contacts = new LinkedList<ContactData>();
 
     for (GroupData groupData : selectedGroups.values()) {
       List<ContactData> contactDataList = ContactAccessor.getInstance()
-          .getGroupMembership(context, groupData.id);
+                                                         .getGroupMembership(context, groupData.id);
 
-      Log.w("GroupSelectionListActivity", "Got contacts in group: " + contactDataList.size());
-
-      for (ContactData contactData : contactDataList) {
-        for (NumberData numberData : contactData.numbers) {
-          recipientList.add(new Recipient(contactData.name, numberData.number, null, null));
-        }
-      }
+      contacts.addAll(contactDataList);
     }
 
-    return new Recipients(recipientList);
+    return contacts;
   }
 
   private void addGroup(GroupData groupData) {

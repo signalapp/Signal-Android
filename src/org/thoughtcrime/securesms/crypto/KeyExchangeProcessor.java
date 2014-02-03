@@ -21,8 +21,10 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 
 public abstract class KeyExchangeProcessor {
 
@@ -34,9 +36,13 @@ public abstract class KeyExchangeProcessor {
       throws InvalidMessageException;
 
   public static KeyExchangeProcessor createFor(Context context, MasterSecret masterSecret,
-                                               Recipient recipient, KeyExchangeMessage message)
+                                               RecipientDevice recipientDevice,
+                                               KeyExchangeMessage message)
   {
-    if (message.isLegacy()) return new KeyExchangeProcessorV1(context, masterSecret, recipient);
-    else                    return new KeyExchangeProcessorV2(context, masterSecret, recipient);
+    if (message.isLegacy()) {
+      return new KeyExchangeProcessorV1(context, masterSecret, recipientDevice.getRecipient());
+    } else {
+      return new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
+    }
   }
 }

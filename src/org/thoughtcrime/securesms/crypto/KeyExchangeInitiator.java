@@ -31,6 +31,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 
 import java.security.NoSuchAlgorithmException;
@@ -70,8 +71,9 @@ public class KeyExchangeInitiator {
                                                             identityKey.getPublicKey());
 
     OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, message.serialize());
+    RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
-    SessionRecordV2 sessionRecordV2 = new SessionRecordV2(context, masterSecret, recipient);
+    SessionRecordV2 sessionRecordV2 = new SessionRecordV2(context, masterSecret, recipientDevice);
     sessionRecordV2.setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
     sessionRecordV2.save();
 
@@ -81,8 +83,9 @@ public class KeyExchangeInitiator {
   private static boolean hasInitiatedSession(Context context, MasterSecret masterSecret,
                                              Recipient recipient)
   {
+    RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
     return
-        new SessionRecordV2(context, masterSecret, recipient)
+        new SessionRecordV2(context, masterSecret, recipientDevice)
             .hasPendingKeyExchange();
   }
 

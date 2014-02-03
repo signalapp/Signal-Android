@@ -1,7 +1,6 @@
 package org.whispersystems.textsecure.crypto;
 
 import android.content.Context;
-import android.util.Log;
 import android.util.Pair;
 
 import org.whispersystems.textsecure.crypto.ecc.Curve;
@@ -13,7 +12,7 @@ import org.whispersystems.textsecure.crypto.protocol.WhisperMessageV2;
 import org.whispersystems.textsecure.crypto.ratchet.ChainKey;
 import org.whispersystems.textsecure.crypto.ratchet.MessageKeys;
 import org.whispersystems.textsecure.crypto.ratchet.RootKey;
-import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.Conversions;
 
@@ -29,13 +28,13 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class SessionCipherV2 extends SessionCipher {
 
-  private final Context                   context;
-  private final MasterSecret              masterSecret;
-  private final CanonicalRecipientAddress recipient;
+  private final Context         context;
+  private final MasterSecret    masterSecret;
+  private final RecipientDevice recipient;
 
   public SessionCipherV2(Context context,
                          MasterSecret masterSecret,
-                         CanonicalRecipientAddress recipient)
+                         RecipientDevice recipient)
   {
     this.context          = context;
     this.masterSecret     = masterSecret;

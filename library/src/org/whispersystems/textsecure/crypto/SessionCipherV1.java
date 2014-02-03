@@ -9,7 +9,8 @@ import org.whispersystems.textsecure.crypto.kdf.DerivedSecrets;
 import org.whispersystems.textsecure.crypto.kdf.NKDF;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.WhisperMessageV1;
-import org.whispersystems.textsecure.storage.CanonicalRecipientAddress;
+import org.whispersystems.textsecure.storage.CanonicalRecipient;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.storage.RemoteKeyRecord;
@@ -29,16 +30,17 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class SessionCipherV1 extends SessionCipher {
 
-  private final Context                   context;
-  private final MasterSecret              masterSecret;
-  private final CanonicalRecipientAddress recipient;
+  private final Context            context;
+  private final MasterSecret       masterSecret;
+  private final CanonicalRecipient recipient;
 
-  public SessionCipherV1(Context context, MasterSecret masterSecret,
-                         CanonicalRecipientAddress recipient)
+  public SessionCipherV1(Context context,
+                         MasterSecret masterSecret,
+                         CanonicalRecipient recipient)
   {
-    this.context          = context;
-    this.masterSecret     = masterSecret;
-    this.recipient        = recipient;
+    this.context      = context;
+    this.masterSecret = masterSecret;
+    this.recipient    = recipient;
   }
 
   public CiphertextMessage encrypt(byte[] paddedMessageBody) {
@@ -219,7 +221,7 @@ public class SessionCipherV1 extends SessionCipher {
   }
 
   private KeyRecords getKeyRecords(Context context, MasterSecret masterSecret,
-                                   CanonicalRecipientAddress recipient)
+                                   CanonicalRecipient recipient)
   {
     LocalKeyRecord  localKeyRecord  = new LocalKeyRecord(context, masterSecret, recipient);
     RemoteKeyRecord remoteKeyRecord = new RemoteKeyRecord(context, recipient);

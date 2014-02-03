@@ -21,23 +21,17 @@ import org.whispersystems.textsecure.util.Base64;
 public class OutgoingPushMessage implements PushMessage {
 
   private int    type;
-  private String destination;
+  private int    destinationDeviceId;
   private String body;
-  private String relay;
 
-  public OutgoingPushMessage(String destination, byte[] body, int type) {
-    this(null, destination, body, type);
+  public OutgoingPushMessage(PushAddress address, PushBody body) {
+    this.type                = body.getType();
+    this.destinationDeviceId = address.getDeviceId();
+    this.body                = Base64.encodeBytes(body.getBody());
   }
 
-  public OutgoingPushMessage(String relay, String destination, byte[] body, int type) {
-    this.relay       = relay;
-    this.destination = destination;
-    this.body        = Base64.encodeBytes(body);
-    this.type        = type;
-  }
-
-  public String getDestination() {
-    return destination;
+  public int getDestinationDeviceId() {
+    return destinationDeviceId;
   }
 
   public String getBody() {
@@ -46,9 +40,5 @@ public class OutgoingPushMessage implements PushMessage {
 
   public int getType() {
     return type;
-  }
-
-  public String getRelay() {
-    return relay;
   }
 }

@@ -46,7 +46,9 @@ import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 
@@ -78,11 +80,12 @@ public class DecryptingQueue {
   }
 
   public static void scheduleDecryption(Context context, MasterSecret masterSecret,
-                                        long messageId, long threadId, String originator,
+                                        long messageId, long threadId, String originator, int deviceId,
                                         String body, boolean isSecureMessage, boolean isKeyExchange)
   {
     DecryptionWorkItem runnable = new DecryptionWorkItem(context, masterSecret, messageId, threadId,
-                                                         originator, body, isSecureMessage, isKeyExchange);
+                                                         originator, deviceId, body,
+                                                         isSecureMessage, isKeyExchange);
     executor.execute(runnable);
   }
 
@@ -161,11 +164,13 @@ public class DecryptingQueue {
     long threadId           = record.getThreadId();
     String body             = record.getBody().getBody();
     String originator       = record.getIndividualRecipient().getNumber();
+    int originatorDeviceId  = record.getRecipientDeviceId();
     boolean isSecureMessage = record.isSecure();
     boolean isKeyExchange   = record.isKeyExchange();
 
     scheduleDecryption(context, masterSecret, messageId,  threadId,
-                       originator, body, isSecureMessage, isKeyExchange);
+                       originator, originatorDeviceId, body,
+                       isSecureMessage, isKeyExchange);
   }
 
   private static class PushDecryptionWorkItem implements Runnable {
@@ -186,15 +191,16 @@ public class DecryptingQueue {
 
     public void run() {
       try {
-        Recipients recipients = RecipientFactory.getRecipientsFromString(context, message.getSource(), false);
-        Recipient  recipient  = recipients.getPrimaryRecipient();
+        Recipients      recipients      = RecipientFactory.getRecipientsFromString(context, message.getSource(), false);
+        Recipient       recipient       = recipients.getPrimaryRecipient();
+        RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSourceDevice());
 
-        if (!Session.hasSession(context, masterSecret, recipient)) {
+        if (!SessionRecordV2.hasSession(context, masterSecret, recipientDevice)) {
           sendResult(PushReceiver.RESULT_NO_SESSION);
           return;
         }
 
-        SessionCipher sessionCipher = SessionCipher.createFor(context, masterSecret, recipient);
+        SessionCipher sessionCipher = SessionCipher.createFor(context, masterSecret, recipientDevice);
         byte[]        plaintextBody = sessionCipher.decrypt(message.getBody());
 
         message = message.withBody(plaintextBody);
@@ -251,10 +257,11 @@ public class DecryptingQueue {
       MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
 
       try {
-        String     messageFrom        = pdu.getFrom().getString();
-        Recipients recipients         = RecipientFactory.getRecipientsFromString(context, messageFrom, false);
-        Recipient  recipient          = recipients.getPrimaryRecipient();
-        byte[]     ciphertextPduBytes = getEncryptedData();
+        String          messageFrom        = pdu.getFrom().getString();
+        Recipients      recipients         = RecipientFactory.getRecipientsFromString(context, messageFrom, false);
+        Recipient       recipient          = recipients.getPrimaryRecipient();
+        RecipientDevice recipientDevice    = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
+        byte[]          ciphertextPduBytes = getEncryptedData();
 
         if (ciphertextPduBytes == null) {
           Log.w("DecryptingQueue", "No encoded PNG data found on parts.");
@@ -272,7 +279,7 @@ public class DecryptingQueue {
 
         Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
         TextTransport transportDetails  = new TextTransport();
-        SessionCipher sessionCipher     = SessionCipher.createFor(context, masterSecret, recipient);
+        SessionCipher sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
         byte[]        decodedCiphertext = transportDetails.getDecodedMessage(ciphertextPduBytes);
 
         try {
@@ -322,11 +329,13 @@ public class DecryptingQueue {
     private final MasterSecret masterSecret;
     private final String       body;
     private final String       originator;
+    private final int          deviceId;
     private final boolean      isSecureMessage;
     private final boolean      isKeyExchange;
 
     public DecryptionWorkItem(Context context, MasterSecret masterSecret, long messageId, long threadId,
-                              String originator, String body, boolean isSecureMessage, boolean isKeyExchange)
+                              String originator, int deviceId, String body, boolean isSecureMessage,
+                              boolean isKeyExchange)
     {
       this.context         = context;
       this.messageId       = messageId;
@@ -334,6 +343,7 @@ public class DecryptingQueue {
       this.masterSecret    = masterSecret;
       this.body            = body;
       this.originator      = originator;
+      this.deviceId        = deviceId;
       this.isSecureMessage = isSecureMessage;
       this.isKeyExchange   = isKeyExchange;
     }
@@ -343,8 +353,9 @@ public class DecryptingQueue {
       String plaintextBody;
 
       try {
-        Recipients recipients = RecipientFactory.getRecipientsFromString(context, originator, false);
-        Recipient  recipient  = recipients.getPrimaryRecipient();
+        Recipients      recipients      = RecipientFactory.getRecipientsFromString(context, originator, false);
+        Recipient       recipient       = recipients.getPrimaryRecipient();
+        RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), deviceId);
 
         if (!Session.hasSession(context, masterSecret, recipient)) {
           database.markAsNoSession(messageId);
@@ -352,7 +363,7 @@ public class DecryptingQueue {
         }
 
         SmsTransportDetails transportDetails  = new SmsTransportDetails();
-        SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipient);
+        SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
         byte[]              decodedCiphertext = transportDetails.getDecodedMessage(body.getBytes());
         byte[]              paddedPlaintext   = sessionCipher.decrypt(decodedCiphertext);
 
@@ -401,9 +412,10 @@ public class DecryptingQueue {
     private void handleKeyExchangeProcessing(String plaintxtBody) {
       if (TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
         try {
-          Recipient            recipient = new Recipient(null, originator, null, null);
-          KeyExchangeMessage   message   = KeyExchangeMessage.createFor(plaintxtBody);
-          KeyExchangeProcessor processor = KeyExchangeProcessor.createFor(context, masterSecret, recipient, message);
+          Recipient            recipient       = RecipientFactory.getRecipientsFromString(context, originator, false).getPrimaryRecipient();
+          RecipientDevice      recipientDevice = new RecipientDevice(recipient.getRecipientId(), deviceId);
+          KeyExchangeMessage   message         = KeyExchangeMessage.createFor(plaintxtBody);
+          KeyExchangeProcessor processor       = KeyExchangeProcessor.createFor(context, masterSecret, recipientDevice, message);
 
           if (processor.isStale(message)) {
             DatabaseFactory.getEncryptingSmsDatabase(context).markAsStaleKeyExchange(messageId);
@@ -418,6 +430,9 @@ public class DecryptingQueue {
           Log.w("DecryptingQueue", e);
           DatabaseFactory.getEncryptingSmsDatabase(context).markAsCorruptKeyExchange(messageId);
         } catch (InvalidMessageException e) {
+          Log.w("DecryptingQueue", e);
+          DatabaseFactory.getEncryptingSmsDatabase(context).markAsCorruptKeyExchange(messageId);
+        } catch (RecipientFormattingException e) {
           Log.w("DecryptingQueue", e);
           DatabaseFactory.getEncryptingSmsDatabase(context).markAsCorruptKeyExchange(messageId);
         }

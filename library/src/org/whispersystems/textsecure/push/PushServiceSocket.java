@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonParseException;
+import com.google.thoughtcrimegson.JsonSyntaxException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -42,13 +43,14 @@ public class PushServiceSocket {
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
   private static final String PREKEY_PATH               = "/v1/keys/%s";
+  private static final String PREKEY_DEVICE_PATH        = "/v1/keys/%s/%s";
 
   private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
   private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
-  private static final String MESSAGE_PATH              = "/v1/messages/";
+  private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
-  private static final boolean ENFORCE_SSL = true;
+  private static final boolean ENFORCE_SSL = false;
 
   private final Context context;
   private final String serviceUrl;
@@ -86,44 +88,14 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void sendMessage(PushDestination recipient, PushBody pushBody)
+  public void sendMessage(OutgoingPushMessageList bundle)
       throws IOException
   {
-    OutgoingPushMessage message = new OutgoingPushMessage(recipient.getRelay(),
-                                                          recipient.getNumber(),
-                                                          pushBody.getBody(),
-                                                          pushBody.getType());
-
-    sendMessage(new OutgoingPushMessageList(message));
-  }
-
-  public void sendMessage(List<PushDestination> recipients, List<PushBody> bodies)
-      throws IOException
-  {
-    List<OutgoingPushMessage> messages = new LinkedList<OutgoingPushMessage>();
-
-    Iterator<PushDestination> recipientsIterator = recipients.iterator();
-    Iterator<PushBody>        bodiesIterator     = bodies.iterator();
-
-    while (recipientsIterator.hasNext()) {
-      PushDestination recipient = recipientsIterator.next();
-      PushBody        body      = bodiesIterator.next();
-
-      messages.add(new OutgoingPushMessage(recipient.getRelay(), recipient.getNumber(),
-                                           body.getBody(), body.getType()));
+    try {
+      makeRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", new Gson().toJson(bundle));
+    } catch (NotFoundException nfe) {
+      throw new UnregisteredUserException(nfe);
     }
-
-    sendMessage(new OutgoingPushMessageList(messages));
-  }
-
-  private void sendMessage(OutgoingPushMessageList messages)
-      throws IOException
-  {
-    String              responseText = makeRequest(MESSAGE_PATH, "POST", new Gson().toJson(messages));
-    PushMessageResponse response     = new Gson().fromJson(responseText, PushMessageResponse.class);
-
-    if (response.getFailure().size() != 0)
-      throw new UnregisteredUserException(response.getFailure());
   }
 
   public void registerPreKeys(IdentityKey identityKey,
@@ -150,20 +122,46 @@ public class PushServiceSocket {
                 PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
   }
 
-  public PreKeyEntity getPreKey(PushDestination destination) throws IOException {
+  public List<PreKeyEntity> getPreKeys(PushAddress destination) throws IOException {
     try {
-      String path = String.format(PREKEY_PATH, destination.getNumber());
+      String deviceId = String.valueOf(destination.getDeviceId());
+
+      if (deviceId.equals("1"))
+        deviceId = "*";
+
+      String path = String.format(PREKEY_DEVICE_PATH, destination.getNumber(), deviceId);
 
       if (!Util.isEmpty(destination.getRelay())) {
         path = path + "?relay=" + destination.getRelay();
       }
 
       String responseText = makeRequest(path, "GET", null);
-      Log.w("PushServiceSocket", "Got prekey: " + responseText);
-      return PreKeyEntity.fromJson(responseText);
+      PreKeyList response = PreKeyList.fromJson(responseText);
+
+      return response.getKeys();
     } catch (JsonParseException e) {
-      Log.w("PushServiceSocket", e);
-      throw new IOException("Bad prekey");
+      throw new IOException(e);
+    }
+  }
+
+  public PreKeyEntity getPreKey(PushAddress destination) throws IOException {
+    try {
+      String path = String.format(PREKEY_DEVICE_PATH, destination.getNumber(),
+                                  String.valueOf(destination.getDeviceId()));
+
+      if (!Util.isEmpty(destination.getRelay())) {
+        path = path + "?relay=" + destination.getRelay();
+      }
+
+      String     responseText = makeRequest(path, "GET", null);
+      PreKeyList response     = PreKeyList.fromJson(responseText);
+
+      if (response.getKeys() == null || response.getKeys().size() < 1)
+        throw new IOException("Empty prekey list");
+
+      return response.getKeys().get(0);
+    } catch (JsonParseException e) {
+      throw new IOException(e);
     }
   }
 
@@ -307,15 +305,23 @@ public class PushServiceSocket {
     }
 
     if (connection.getResponseCode() == 413) {
+      connection.disconnect();
       throw new RateLimitException("Rate limit exceeded: " + connection.getResponseCode());
     }
 
     if (connection.getResponseCode() == 401 || connection.getResponseCode() == 403) {
+      connection.disconnect();
       throw new AuthorizationFailedException("Authorization failed!");
     }
 
     if (connection.getResponseCode() == 404) {
+      connection.disconnect();
       throw new NotFoundException("Not found");
+    }
+
+    if (connection.getResponseCode() == 409) {
+      String response = Util.readFully(connection.getErrorStream());
+      throw new MismatchedDevicesException(new Gson().fromJson(response, MismatchedDevices.class));
     }
 
     if (connection.getResponseCode() != 200 && connection.getResponseCode() != 204) {

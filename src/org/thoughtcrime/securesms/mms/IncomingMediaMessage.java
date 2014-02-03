@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.mms;
 
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.Hex;
 
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.PduBody;
@@ -27,12 +29,16 @@ public class IncomingMediaMessage {
 
   public IncomingMediaMessage(MasterSecret masterSecret, String localNumber,
                               IncomingPushMessage message,
-                              PushMessageContent messageContent,
-                              String groupId)
+                              PushMessageContent messageContent)
   {
     this.headers = new PduHeaders();
     this.body    = new PduBody();
-    this.groupId = groupId;
+
+    if (messageContent.hasGroup()) {
+      this.groupId = GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray());
+    } else {
+      this.groupId = null;
+    }
 
     this.headers.setEncodedStringValue(new EncodedStringValue(message.getSource()), PduHeaders.FROM);
     this.headers.appendEncodedStringValue(new EncodedStringValue(localNumber), PduHeaders.TO);

@@ -63,8 +63,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
   public  static final String SERVICE_CENTER     = "service_center";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " integer PRIMARY KEY, "                +
-    THREAD_ID + " INTEGER, " + ADDRESS + " TEXT, " + PERSON + " INTEGER, " + DATE_RECEIVED  + " INTEGER, " +
-    DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
+    THREAD_ID + " INTEGER, " + ADDRESS + " TEXT, " + ADDRESS_DEVICE_ID + " INTEGER DEFAULT 1, " + PERSON + " INTEGER, " +
+    DATE_RECEIVED  + " INTEGER, " + DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
     STATUS + " INTEGER DEFAULT -1," + TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " +
     SUBJECT + " TEXT, " + BODY + " TEXT, " + SERVICE_CENTER + " TEXT);";
 
@@ -76,7 +76,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
   };
 
   private static final String[] MESSAGE_PROJECTION = new String[] {
-      ID, THREAD_ID, ADDRESS, PERSON,
+      ID, THREAD_ID, ADDRESS, ADDRESS_DEVICE_ID, PERSON,
       DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
       DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
       PROTOCOL, READ, STATUS, TYPE,
@@ -257,19 +257,39 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       type |= Types.ENCRYPTION_REMOTE_BIT;
     }
 
-    Recipient  recipient  = new Recipient(null, message.getSender(), null, null);
-    Recipients recipients = new Recipients(recipient);
-    String     groupId    = message.getGroupId();
+    Recipients recipients;
+
+    try {
+      recipients = RecipientFactory.getRecipientsFromString(context, message.getSender(), true);
+    } catch (RecipientFormattingException e) {
+      Log.w("SmsDatabase", e);
+      recipients = new Recipients(Recipient.getUnknownRecipient(context));
+    }
+
+    Recipients groupRecipients;
+
+    try {
+      if (message.getGroupId() == null) {
+        groupRecipients = null;
+      } else {
+        groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
+      }
+    } catch (RecipientFormattingException e) {
+      Log.w("SmsDatabase", e);
+      groupRecipients = null;
+    }
+
     boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
                             message.isSecureMessage() || message.isKeyExchange();
 
     long       threadId;
 
-    if (groupId == null) threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-    else                 threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdForGroup(groupId);
+    if (groupRecipients == null) threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    else                         threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender());
+    values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(PROTOCOL, message.getProtocol());
@@ -468,6 +488,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     public SmsMessageRecord getCurrent() {
       long messageId          = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
       String address          = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
+      int addressDeviceId     = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS_DEVICE_ID));
       long type               = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
       long dateReceived       = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_RECEIVED));
       long dateSent           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_SENT));
@@ -478,6 +499,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
 
       return  new SmsMessageRecord(context, messageId, body, recipients,
                                    recipients.getPrimaryRecipient(),
+                                   addressDeviceId,
                                    dateSent, dateReceived, type,
                                    threadId, status);
     }
@@ -487,15 +509,13 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
         Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false);
 
         if (recipients == null || recipients.isEmpty()) {
-          return new Recipients(new Recipient("Unknown", "Unknown", null,
-                                              ContactPhotoFactory.getDefaultContactPhoto(context)));
+          return new Recipients(Recipient.getUnknownRecipient(context));
         }
 
         return recipients;
       } catch (RecipientFormattingException e) {
         Log.w("EncryptingSmsDatabase", e);
-        return new Recipients(new Recipient("Unknown", "Unknown", null,
-                                            ContactPhotoFactory.getDefaultContactPhoto(context)));
+        return new Recipients(Recipient.getUnknownRecipient(context));
       }
     }
 

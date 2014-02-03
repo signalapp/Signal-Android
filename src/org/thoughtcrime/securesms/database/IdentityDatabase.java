@@ -67,12 +67,10 @@ public class IdentityDatabase extends Database {
   }
 
   public boolean isValidIdentity(MasterSecret masterSecret,
-                                 Recipient recipient,
+                                 long recipientId,
                                  IdentityKey theirIdentity)
   {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
-    String number             = recipient.getNumber();
-    long recipientId          = DatabaseFactory.getAddressDatabase(context).getCanonicalAddress(number);
     MasterCipher masterCipher = new MasterCipher(masterSecret);
     Cursor cursor             = null;
 
@@ -114,11 +112,9 @@ public class IdentityDatabase extends Database {
     }
   }
 
-  public void saveIdentity(MasterSecret masterSecret, Recipient recipient, IdentityKey identityKey)
+  public void saveIdentity(MasterSecret masterSecret, long recipientId, IdentityKey identityKey)
   {
     SQLiteDatabase database   = databaseHelper.getWritableDatabase();
-    String number             = recipient.getNumber();
-    long recipientId          = DatabaseFactory.getAddressDatabase(context).getCanonicalAddress(number);
     MasterCipher masterCipher = new MasterCipher(masterSecret);
     String identityKeyString  = Base64.encodeBytes(identityKey.serialize());
     String macString          = Base64.encodeBytes(masterCipher.getMacFor(recipientId +

@@ -347,6 +347,7 @@ public class ConversationItem extends LinearLayout {
   private void handleKeyExchangeClicked() {
     Intent intent = new Intent(context, ReceiveKeyActivity.class);
     intent.putExtra("recipient", messageRecord.getIndividualRecipient());
+    intent.putExtra("recipient_device_id", messageRecord.getRecipientDeviceId());
     intent.putExtra("body", messageRecord.getBody().getBody());
     intent.putExtra("thread_id", messageRecord.getThreadId());
     intent.putExtra("message_id", messageRecord.getId());

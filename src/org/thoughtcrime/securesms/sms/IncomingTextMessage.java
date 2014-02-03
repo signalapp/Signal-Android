@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
 import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class IncomingTextMessage implements Parcelable {
 
   private final String  message;
   private final String  sender;
+  private final int     senderDeviceId;
   private final int     protocol;
   private final String  serviceCenterAddress;
   private final boolean replyPathPresent;
@@ -34,6 +36,7 @@ public class IncomingTextMessage implements Parcelable {
   public IncomingTextMessage(SmsMessage message) {
     this.message              = message.getDisplayMessageBody();
     this.sender               = message.getDisplayOriginatingAddress();
+    this.senderDeviceId       = RecipientDevice.DEFAULT_DEVICE_ID;
     this.protocol             = message.getProtocolIdentifier();
     this.serviceCenterAddress = message.getServiceCenterAddress();
     this.replyPathPresent     = message.isReplyPathPresent();
@@ -45,6 +48,7 @@ public class IncomingTextMessage implements Parcelable {
   public IncomingTextMessage(IncomingPushMessage message, String encodedBody, String groupId) {
     this.message              = encodedBody;
     this.sender               = message.getSource();
+    this.senderDeviceId       = message.getSourceDevice();
     this.protocol             = 31337;
     this.serviceCenterAddress = "GCM";
     this.replyPathPresent     = true;
@@ -56,6 +60,7 @@ public class IncomingTextMessage implements Parcelable {
   public IncomingTextMessage(Parcel in) {
     this.message              = in.readString();
     this.sender               = in.readString();
+    this.senderDeviceId       = in.readInt();
     this.protocol             = in.readInt();
     this.serviceCenterAddress = in.readString();
     this.replyPathPresent     = (in.readInt() == 1);
@@ -67,6 +72,7 @@ public class IncomingTextMessage implements Parcelable {
   public IncomingTextMessage(IncomingTextMessage base, String newBody) {
     this.message              = newBody;
     this.sender               = base.getSender();
+    this.senderDeviceId       = base.getSenderDeviceId();
     this.protocol             = base.getProtocol();
     this.serviceCenterAddress = base.getServiceCenterAddress();
     this.replyPathPresent     = base.isReplyPathPresent();
@@ -84,6 +90,7 @@ public class IncomingTextMessage implements Parcelable {
 
     this.message              = body.toString();
     this.sender               = fragments.get(0).getSender();
+    this.senderDeviceId       = fragments.get(0).getSenderDeviceId();
     this.protocol             = fragments.get(0).getProtocol();
     this.serviceCenterAddress = fragments.get(0).getServiceCenterAddress();
     this.replyPathPresent     = fragments.get(0).isReplyPathPresent();
@@ -110,6 +117,10 @@ public class IncomingTextMessage implements Parcelable {
 
   public String getSender() {
     return sender;
+  }
+
+  public int getSenderDeviceId() {
+    return senderDeviceId;
   }
 
   public int getProtocol() {
@@ -149,6 +160,7 @@ public class IncomingTextMessage implements Parcelable {
   public void writeToParcel(Parcel out, int flags) {
     out.writeString(message);
     out.writeString(sender);
+    out.writeInt(senderDeviceId);
     out.writeInt(protocol);
     out.writeString(serviceCenterAddress);
     out.writeInt(replyPathPresent ? 1 : 0);

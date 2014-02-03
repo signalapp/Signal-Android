@@ -212,10 +212,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     switch (reqCode) {
     case PICK_CONTACT:
-      Recipients recipients = data.getParcelableExtra("recipients");
+      List<ContactData> contacts = data.getParcelableArrayListExtra("contacts");
 
-      if (recipients != null)
-        recipientsPanel.addRecipients(recipients);
+      if (contacts != null)
+        recipientsPanel.addContacts(contacts);
 
       break;
     case PICK_IMAGE:
@@ -912,7 +912,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, attachmentManager.getSlideDeck(), body,
                                                   distributionType, isEncryptedConversation && !forcePlaintext);
-      } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient()) {
+      } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
         allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
                                                   threadId, new SlideDeck(), body, distributionType,
                                                   isEncryptedConversation && !forcePlaintext);

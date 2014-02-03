@@ -109,6 +109,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     READ + " INTEGER DEFAULT 0, " + MESSAGE_ID + " TEXT, " + SUBJECT + " TEXT, "                +
     SUBJECT_CHARSET + " INTEGER, " + BODY + " TEXT, " + PART_COUNT + " INTEGER, "               +
     CONTENT_TYPE + " TEXT, " + CONTENT_LOCATION + " TEXT, " + ADDRESS + " TEXT, "               +
+    ADDRESS_DEVICE_ID + " INTEGER, "                                                            +
     EXPIRY + " INTEGER, " + MESSAGE_CLASS + " TEXT, " + MESSAGE_TYPE + " INTEGER, "             +
     MMS_VERSION + " INTEGER, " + MESSAGE_SIZE + " INTEGER, " + PRIORITY + " INTEGER, "          +
     READ_REPORT + " INTEGER, " + REPORT_ALLOWED + " INTEGER, " + RESPONSE_STATUS + " INTEGER, " +
@@ -131,7 +132,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       CONTENT_LOCATION, EXPIRY, MESSAGE_CLASS, MESSAGE_TYPE, MMS_VERSION,
       MESSAGE_SIZE, PRIORITY, REPORT_ALLOWED, STATUS, TRANSACTION_ID, RETRIEVE_STATUS,
       RETRIEVE_TEXT, RETRIEVE_TEXT_CS, READ_STATUS, CONTENT_CLASS, RESPONSE_TEXT,
-      DELIVERY_TIME, DELIVERY_REPORT, BODY, PART_COUNT, ADDRESS
+      DELIVERY_TIME, DELIVERY_REPORT, BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID
   };
 
   public static final ExecutorService slideResolver = org.thoughtcrime.securesms.util.Util.newSingleThreadedLifoExecutor();
@@ -788,6 +789,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long threadId              = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
       long mailbox               = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
       String address             = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
+      int addressDeviceId        = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
       Recipients recipients      = getRecipientsFor(address);
 
       String contentLocation     = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.CONTENT_LOCATION));
@@ -807,8 +809,9 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
 
       return new NotificationMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
-                                              dateSent, dateReceived, threadId, contentLocationBytes,
-                                              messageSize, expiry, status, transactionIdBytes, mailbox);
+                                              addressDeviceId, dateSent, dateReceived, threadId,
+                                              contentLocationBytes, messageSize, expiry, status,
+                                              transactionIdBytes, mailbox);
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
@@ -818,6 +821,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long box                = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
       long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
       String address          = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
+      int addressDeviceId     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
       DisplayRecord.Body body = getBody(cursor);
       int partCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       Recipients recipients   = getRecipientsFor(address);
@@ -825,29 +829,26 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       ListenableFutureTask<SlideDeck> slideDeck = getSlideDeck(masterSecret, id);
 
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
-                                       dateSent, dateReceived, threadId, body,
+                                       addressDeviceId, dateSent, dateReceived, threadId, body,
                                        slideDeck, partCount, box);
     }
 
     private Recipients getRecipientsFor(String address) {
       try {
         if (Util.isEmpty(address) || address.equals("insert-address-token")) {
-          return new Recipients(new Recipient("Unknown", "Unknown", null,
-                                              ContactPhotoFactory.getDefaultContactPhoto(context)));
+          return new Recipients(Recipient.getUnknownRecipient(context));
         }
 
         Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, false);
 
         if (recipients == null || recipients.isEmpty()) {
-          return new Recipients(new Recipient("Unknown", "Unknown", null,
-                                              ContactPhotoFactory.getDefaultContactPhoto(context)));
+          return new Recipients(Recipient.getUnknownRecipient(context));
         }
 
         return recipients;
       } catch (RecipientFormattingException e) {
         Log.w("MmsDatabase", e);
-        return new Recipients(new Recipient("Unknown", "Unknown", null,
-                                            ContactPhotoFactory.getDefaultContactPhoto(context)));
+        return new Recipients(Recipient.getUnknownRecipient(context));
       }
     }
 

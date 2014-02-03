@@ -19,14 +19,9 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -34,6 +29,14 @@ import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+
+import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.DynamicTheme;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
 /**
  * Activity container for selecting a list of contacts.  Provides a tab frame for
@@ -51,8 +54,6 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
   private ContactSelectionListFragment contactsFragment;
   private ContactSelectionGroupsFragment groupsFragment;
   private ContactSelectionRecentFragment recentFragment;
-
-  private Recipients recipients;
 
   @Override
   protected void onCreate(Bundle icicle) {
@@ -97,12 +98,12 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
   }
 
   private void handleSelectionFinished() {
-    recipients = contactsFragment.getSelectedContacts();
-    recipients.append(recentFragment.getSelectedContacts());
-    recipients.append(groupsFragment.getSelectedContacts(this));
+    List<ContactData> contacts = contactsFragment.getSelectedContacts();
+    contacts.addAll(recentFragment.getSelectedContacts());
+    contacts.addAll(groupsFragment.getSelectedContacts(this));
 
     Intent resultIntent = getIntent();
-    resultIntent.putExtra("recipients", this.recipients);
+    resultIntent.putParcelableArrayListExtra("contacts", new ArrayList<ContactData>(contacts));
 
     setResult(RESULT_OK, resultIntent);
 

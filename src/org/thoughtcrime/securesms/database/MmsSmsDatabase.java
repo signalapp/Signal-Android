@@ -42,7 +42,7 @@ public class MmsSmsDatabase extends Database {
   public Cursor getConversation(long threadId) {
     String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
                               MmsSmsColumns.THREAD_ID,
-                              SmsDatabase.ADDRESS, SmsDatabase.SUBJECT,
+                              SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
@@ -64,7 +64,7 @@ public class MmsSmsDatabase extends Database {
   public Cursor getConversationSnippet(long threadId) {
     String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
                               MmsSmsColumns.THREAD_ID,
-                              SmsDatabase.ADDRESS, SmsDatabase.SUBJECT,
+                              SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
@@ -81,7 +81,7 @@ public class MmsSmsDatabase extends Database {
 
   public Cursor getUnread() {
     String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.READ, SmsDatabase.TYPE,
-                              SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, MmsSmsColumns.THREAD_ID,
+                              SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.STATUS,
                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -108,7 +108,7 @@ public class MmsSmsDatabase extends Database {
     String[] mmsProjection = {MmsDatabase.DATE_SENT + " * 1000 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsDatabase.DATE_RECEIVED + " * 1000 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsSmsColumns.ID, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
-                              SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
+                              SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
@@ -117,7 +117,7 @@ public class MmsSmsDatabase extends Database {
     String[] smsProjection = {SmsDatabase.DATE_SENT + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsSmsColumns.ID, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
-                              SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
+                              SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
@@ -139,6 +139,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
     mmsColumnsPresent.add(MmsSmsColumns.BODY);
     mmsColumnsPresent.add(MmsSmsColumns.ADDRESS);
+    mmsColumnsPresent.add(MmsSmsColumns.ADDRESS_DEVICE_ID);
     mmsColumnsPresent.add(MmsDatabase.MESSAGE_TYPE);
     mmsColumnsPresent.add(MmsDatabase.MESSAGE_BOX);
     mmsColumnsPresent.add(MmsDatabase.DATE_SENT);
@@ -154,6 +155,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(MmsSmsColumns.ID);
     smsColumnsPresent.add(MmsSmsColumns.BODY);
     smsColumnsPresent.add(MmsSmsColumns.ADDRESS);
+    smsColumnsPresent.add(MmsSmsColumns.ADDRESS_DEVICE_ID);
     smsColumnsPresent.add(MmsSmsColumns.READ);
     smsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
     smsColumnsPresent.add(SmsDatabase.TYPE);

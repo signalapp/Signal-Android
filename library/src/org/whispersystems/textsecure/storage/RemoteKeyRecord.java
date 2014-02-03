@@ -43,22 +43,22 @@ public class RemoteKeyRecord extends Record {
   private PublicKey remoteKeyCurrent;
   private PublicKey remoteKeyLast;
 
-  public RemoteKeyRecord(Context context, CanonicalRecipientAddress recipient) {
-    super(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
+  public RemoteKeyRecord(Context context, CanonicalRecipient recipient) {
+    super(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
     loadData();
   }
 
-  public static void delete(Context context, CanonicalRecipientAddress recipient) {
-    delete(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
+  public static void delete(Context context, CanonicalRecipient recipient) {
+    delete(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
   }
 
-  public static boolean hasRecord(Context context, CanonicalRecipientAddress recipient) {
-    Log.w("LocalKeyRecord", "Checking: " + getFileNameForRecipient(context, recipient));
-    return hasRecord(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
+  public static boolean hasRecord(Context context, CanonicalRecipient recipient) {
+    Log.w("LocalKeyRecord", "Checking: " + getFileNameForRecipient(recipient));
+    return hasRecord(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
   }
 
-  private static String getFileNameForRecipient(Context context, CanonicalRecipientAddress recipient) {
-    return recipient.getCanonicalAddress(context) + "-remote";
+  private static String getFileNameForRecipient(CanonicalRecipient recipient) {
+    return recipient.getRecipientId() + "-remote";
   }
 
   public void updateCurrentRemoteKey(PublicKey remoteKey) {

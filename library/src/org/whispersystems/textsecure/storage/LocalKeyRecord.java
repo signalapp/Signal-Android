@@ -43,24 +43,24 @@ public class LocalKeyRecord extends Record {
   private final MasterCipher masterCipher;
   private final MasterSecret masterSecret;
 
-  public LocalKeyRecord(Context context, MasterSecret masterSecret, CanonicalRecipientAddress recipient) {
-    super(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
+  public LocalKeyRecord(Context context, MasterSecret masterSecret, CanonicalRecipient recipient) {
+    super(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
     this.masterSecret = masterSecret;
     this.masterCipher = new MasterCipher(masterSecret);
     loadData();
   }
 
-  public static boolean hasRecord(Context context, CanonicalRecipientAddress recipient) {
-    Log.w("LocalKeyRecord", "Checking: " + getFileNameForRecipient(context, recipient));
-    return Record.hasRecord(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
+  public static boolean hasRecord(Context context, CanonicalRecipient recipient) {
+    Log.w("LocalKeyRecord", "Checking: " + getFileNameForRecipient(recipient));
+    return Record.hasRecord(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
   }
 
-  public static void delete(Context context, CanonicalRecipientAddress recipient) {
-    Record.delete(context, SESSIONS_DIRECTORY, getFileNameForRecipient(context, recipient));
+  public static void delete(Context context, CanonicalRecipient recipient) {
+    Record.delete(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
   }
 
-  private static String getFileNameForRecipient(Context context, CanonicalRecipientAddress recipient) {
-    return recipient.getCanonicalAddress(context) + "-local";
+  private static String getFileNameForRecipient(CanonicalRecipient recipient) {
+    return recipient.getRecipientId() + "-local";
   }
 
   public void advanceKeyIfNecessary(int keyId) {

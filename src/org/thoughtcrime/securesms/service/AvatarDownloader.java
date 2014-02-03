@@ -33,7 +33,7 @@ public class AvatarDownloader {
       if (!SendReceiveService.DOWNLOAD_AVATAR_ACTION.equals(intent.getAction()))
         return;
 
-      String               groupId  = intent.getStringExtra("group_id");
+      byte[]               groupId  = intent.getByteArrayExtra("group_id");
       GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
       GroupDatabase.Reader reader   = database.getGroup(groupId);
 

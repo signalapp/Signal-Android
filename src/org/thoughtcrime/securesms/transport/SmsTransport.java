@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 
 import java.util.ArrayList;
 
@@ -160,9 +161,10 @@ public class SmsTransport extends BaseTransport {
                                                    OutgoingTextMessage message)
   {
     Recipient           recipient         = message.getRecipients().getPrimaryRecipient();
+    RecipientDevice     recipientDevice   = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
     String              body              = message.getMessageBody();
     SmsTransportDetails transportDetails  = new SmsTransportDetails();
-    SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipient);
+    SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
     byte[]              paddedPlaintext   = transportDetails.getPaddedMessageBody(body.getBytes());
     CiphertextMessage   ciphertextMessage = sessionCipher.encrypt(paddedPlaintext);
     String              encodedCiphertext = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));

@@ -6,6 +6,7 @@ option java_outer_classname = "PushMessageProtos";
 message IncomingPushMessageSignal {
   optional uint32 type = 1;
   optional string source = 2;
+  optional uint32 sourceDevice = 7;
   optional string relay = 3;
 //  repeated string destinations = 4; // No longer supported
   optional uint64 timestamp = 5;

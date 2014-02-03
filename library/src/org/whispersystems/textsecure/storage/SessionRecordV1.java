@@ -37,8 +37,8 @@ public class SessionRecordV1 extends Record {
 
   private final MasterSecret masterSecret;
 
-  public SessionRecordV1(Context context, MasterSecret masterSecret, CanonicalRecipientAddress recipient) {
-    this(context, masterSecret, getRecipientId(context, recipient));
+  public SessionRecordV1(Context context, MasterSecret masterSecret, CanonicalRecipient recipient) {
+    this(context, masterSecret, recipient.getRecipientId());
   }
 
   public SessionRecordV1(Context context, MasterSecret masterSecret, long recipientId) {
@@ -48,21 +48,17 @@ public class SessionRecordV1 extends Record {
     loadData();
   }
 
-  public static void delete(Context context, CanonicalRecipientAddress recipient) {
-    delete(context, SESSIONS_DIRECTORY, getRecipientId(context, recipient) + "");
+  public static void delete(Context context, CanonicalRecipient recipient) {
+    delete(context, SESSIONS_DIRECTORY, recipient.getRecipientId() + "");
   }
 
-  public static boolean hasSession(Context context, CanonicalRecipientAddress recipient) {
-    return hasSession(context, getRecipientId(context, recipient));
+  public static boolean hasSession(Context context, CanonicalRecipient recipient) {
+    return hasSession(context, recipient.getRecipientId());
   }
 
   public static boolean hasSession(Context context, long recipientId) {
     Log.w("SessionRecordV1", "Checking: " + recipientId);
     return hasRecord(context, SESSIONS_DIRECTORY, recipientId+"");
-  }
-
-  private static long getRecipientId(Context context, CanonicalRecipientAddress recipient) {
-    return recipient.getCanonicalAddress(context);
   }
 
   public void setSessionKey(SessionKey sessionKeyRecord) {

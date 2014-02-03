@@ -23,21 +23,18 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushDestination;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
-import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.SendReq;
 
 public class UniversalTransport {
@@ -85,60 +82,56 @@ public class UniversalTransport {
   public MmsSendResult deliver(SendReq mediaMessage, long threadId)
       throws UndeliverableMessageException
   {
+    if (Util.isEmpty(mediaMessage.getTo())) {
+      throw new UndeliverableMessageException("No destination specified");
+    }
+
     if (!TextSecurePreferences.isPushRegistered(context)) {
       return mmsTransport.deliver(mediaMessage);
     }
 
-    try {
-      List<PushDestination> destinations = getMediaDestinations(mediaMessage);
+    if (isMultipleRecipients(mediaMessage)) {
+      return mmsTransport.deliver(mediaMessage);
+    }
 
-      if (isPushTransport(destinations)) {
-        try {
-          Log.w("UniversalTransport", "Delivering media message with GCM...");
-          pushTransport.deliver(mediaMessage, destinations, threadId);
-          return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
-        } catch (IOException ioe) {
-          Log.w("UniversalTransport", ioe);
-          return mmsTransport.deliver(mediaMessage);
-        }
-      } else {
-        Log.w("UniversalTransport", "Delivering media message with MMS...");
+    if (isPushTransport(mediaMessage.getTo()[0].getString())) {
+      try {
+        Log.w("UniversalTransport", "Delivering media message with GCM...");
+        pushTransport.deliver(mediaMessage, threadId);
+        return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
+      } catch (IOException ioe) {
+        Log.w("UniversalTransport", ioe);
         return mmsTransport.deliver(mediaMessage);
       }
-    } catch (InvalidNumberException e) {
-      Log.w("UniversalTransport", e);
+    } else {
+      Log.w("UniversalTransport", "Delivering media message with MMS...");
       return mmsTransport.deliver(mediaMessage);
     }
   }
 
-  private List<PushDestination> getMediaDestinations(SendReq mediaMessage)
-      throws InvalidNumberException
-  {
-    String                      localNumber  = TextSecurePreferences.getLocalNumber(context);
-    LinkedList<PushDestination> destinations = new LinkedList<PushDestination>();
+  public boolean isMultipleRecipients(SendReq mediaMessage) {
+    int recipientCount = 0;
 
     if (mediaMessage.getTo() != null) {
-      for (EncodedStringValue to : mediaMessage.getTo()) {
-        destinations.add(PushDestination.create(context, localNumber, to.getString()));
-      }
+      recipientCount += mediaMessage.getTo().length;
     }
 
     if (mediaMessage.getCc() != null) {
-      for (EncodedStringValue cc : mediaMessage.getCc()) {
-        destinations.add(PushDestination.create(context, localNumber, cc.getString()));
-      }
+      recipientCount += mediaMessage.getCc().length;
     }
 
     if (mediaMessage.getBcc() != null) {
-      for (EncodedStringValue bcc : mediaMessage.getBcc()) {
-        destinations.add(PushDestination.create(context, localNumber, bcc.getString()));
-      }
+      recipientCount += mediaMessage.getBcc().length;
     }
 
-    return destinations;
+    return recipientCount > 1;
   }
 
   private boolean isPushTransport(String destination) {
+    if (GroupUtil.isEncodedGroup(destination)) {
+      return true;
+    }
+
     Directory directory = Directory.getInstance(context);
 
     try {
@@ -162,15 +155,5 @@ public class UniversalTransport {
         return false;
       }
     }
-  }
-
-  private boolean isPushTransport(List<PushDestination> destinations) {
-    for (PushDestination destination : destinations) {
-      if (!isPushTransport(destination.getNumber())) {
-        return false;
-      }
-    }
-
-    return true;
   }
 }

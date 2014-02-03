@@ -5,18 +5,27 @@ import java.util.List;
 
 public class OutgoingPushMessageList {
 
+  private String destination;
+
+  private String relay;
+
   private List<OutgoingPushMessage> messages;
 
-  public OutgoingPushMessageList(OutgoingPushMessage message) {
-    this.messages = new LinkedList<OutgoingPushMessage>();
-    this.messages.add(message);
+  public OutgoingPushMessageList(String destination, String relay, List<OutgoingPushMessage> messages) {
+    this.destination = destination;
+    this.relay       = relay;
+    this.messages    = messages;
   }
 
-  public OutgoingPushMessageList(List<OutgoingPushMessage> messages) {
-    this.messages = messages;
+  public String getDestination() {
+    return destination;
   }
 
   public List<OutgoingPushMessage> getMessages() {
     return messages;
+  }
+
+  public String getRelay() {
+    return relay;
   }
 }

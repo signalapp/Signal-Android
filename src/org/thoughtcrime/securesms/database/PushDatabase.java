@@ -18,11 +18,12 @@ public class PushDatabase extends Database {
   public  static final String ID           = "_id";
   public  static final String TYPE         = "type";
   public  static final String SOURCE       = "source";
+  public  static final String DEVICE_ID    = "device_id";
   public  static final String BODY         = "body";
   public  static final String TIMESTAMP    = "timestamp";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
-      TYPE + " INTEGER, " + SOURCE + " TEXT, " + BODY + " TEXT, " + TIMESTAMP + " INTEGER);";
+      TYPE + " INTEGER, " + SOURCE + " TEXT, " + DEVICE_ID + " INTEGER, " + BODY + " TEXT, " + TIMESTAMP + " INTEGER);";
 
   public PushDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -64,10 +65,11 @@ public class PushDatabase extends Database {
 
         int          type         = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
         String       source       = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE));
+        int          deviceId     = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID));
         byte[]       body         = Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(BODY)));
         long         timestamp    = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
 
-        return new IncomingPushMessage(type, source, body, timestamp);
+        return new IncomingPushMessage(type, source, deviceId, body, timestamp);
       } catch (IOException e) {
         throw new AssertionError(e);
       }

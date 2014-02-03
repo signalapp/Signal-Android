@@ -45,18 +45,20 @@ public abstract class MessageRecord extends DisplayRecord {
   public static final int DELIVERY_STATUS_FAILED   = 3;
 
   private final Recipient individualRecipient;
-  private final long id;
-  private final int deliveryStatus;
+  private final int       recipientDeviceId;
+  private final long      id;
+  private final int       deliveryStatus;
 
-  public MessageRecord(Context context, long id, Body body, Recipients recipients,
-                       Recipient individualRecipient,
-                       long dateSent, long dateReceived,
-                       long threadId, int deliveryStatus,
-                       long type)
+  MessageRecord(Context context, long id, Body body, Recipients recipients,
+                Recipient individualRecipient, int recipientDeviceId,
+                long dateSent, long dateReceived,
+                long threadId, int deliveryStatus,
+                long type)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, type);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
+    this.recipientDeviceId   = recipientDeviceId;
     this.deliveryStatus      = deliveryStatus;
   }
 
@@ -119,6 +121,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public Recipient getIndividualRecipient() {
     return individualRecipient;
+  }
+
+  public int getRecipientDeviceId() {
+    return recipientDeviceId;
   }
 
   public long getType() {

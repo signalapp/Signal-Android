@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessageV1;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
@@ -16,6 +17,7 @@ import org.whispersystems.textsecure.crypto.KeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
+import org.whispersystems.textsecure.storage.CanonicalRecipient;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
 import org.whispersystems.textsecure.storage.RemoteKeyRecord;
 import org.whispersystems.textsecure.storage.SessionRecordV1;
@@ -32,17 +34,17 @@ import java.security.SecureRandom;
 
 public class KeyExchangeProcessorV1 extends KeyExchangeProcessor {
 
-  private Context         context;
-  private Recipient       recipient;
-  private MasterSecret    masterSecret;
-  private LocalKeyRecord  localKeyRecord;
-  private RemoteKeyRecord remoteKeyRecord;
-  private SessionRecordV1 sessionRecord;
+  private Context            context;
+  private CanonicalRecipient recipient;
+  private MasterSecret       masterSecret;
+  private LocalKeyRecord     localKeyRecord;
+  private RemoteKeyRecord    remoteKeyRecord;
+  private SessionRecordV1    sessionRecord;
 
-  public KeyExchangeProcessorV1(Context context, MasterSecret masterSecret, Recipient recipient) {
-    this.context         = context;
-    this.recipient       = recipient;
-    this.masterSecret    = masterSecret;
+  public KeyExchangeProcessorV1(Context context, MasterSecret masterSecret, CanonicalRecipient recipient) {
+    this.context      = context;
+    this.recipient    = recipient;
+    this.masterSecret = masterSecret;
 
     this.remoteKeyRecord = new RemoteKeyRecord(context, recipient);
     this.localKeyRecord  = new LocalKeyRecord(context, masterSecret, recipient);
@@ -55,7 +57,8 @@ public class KeyExchangeProcessorV1 extends KeyExchangeProcessor {
   }
 
   public boolean isTrusted(IdentityKey identityKey) {
-    return DatabaseFactory.getIdentityDatabase(context).isValidIdentity(masterSecret, recipient,
+    return DatabaseFactory.getIdentityDatabase(context).isValidIdentity(masterSecret,
+                                                                        recipient.getRecipientId(),
                                                                         identityKey);
   }
 
@@ -80,8 +83,13 @@ public class KeyExchangeProcessorV1 extends KeyExchangeProcessor {
 
   @Override
   public void processKeyExchangeMessage(KeyExchangeMessage _message, long threadId) {
-    KeyExchangeMessageV1 message = (KeyExchangeMessageV1)_message;
-    int initiateKeyId = Conversions.lowBitsToMedium(message.getRemoteKey().getId());
+    KeyExchangeMessageV1 message       = (KeyExchangeMessageV1) _message;
+    int                  initiateKeyId = Conversions.lowBitsToMedium(message.getRemoteKey().getId());
+
+    Recipient recipient = RecipientFactory.getRecipientsForIds(context,
+                                                               this.recipient.getRecipientId()+"",
+                                                               true).getPrimaryRecipient();
+
     message.getRemoteKey().setId(initiateKeyId);
 
     if (needsResponseFromUs()) {
@@ -113,7 +121,7 @@ public class KeyExchangeProcessorV1 extends KeyExchangeProcessor {
 
     if (message.hasIdentityKey()) {
       DatabaseFactory.getIdentityDatabase(context)
-                     .saveIdentity(masterSecret, recipient, message.getIdentityKey());
+                     .saveIdentity(masterSecret, recipient.getRecipientId(), message.getIdentityKey());
     }
 
     DecryptingQueue.scheduleRogueMessages(context, masterSecret, recipient);
@@ -130,7 +138,7 @@ public class KeyExchangeProcessorV1 extends KeyExchangeProcessor {
 
   public LocalKeyRecord initializeRecordFor(Context context,
                                             MasterSecret masterSecret,
-                                            Recipient recipient)
+                                            CanonicalRecipient recipient)
   {
     Log.w("KeyExchangeProcessorV1", "Initializing local key pairs...");
     try {

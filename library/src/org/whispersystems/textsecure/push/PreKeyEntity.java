@@ -8,6 +8,7 @@ import com.google.thoughtcrimegson.JsonParseException;
 import com.google.thoughtcrimegson.JsonPrimitive;
 import com.google.thoughtcrimegson.JsonSerializationContext;
 import com.google.thoughtcrimegson.JsonSerializer;
+import com.google.thoughtcrimegson.annotations.Expose;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
@@ -20,6 +21,9 @@ import java.lang.reflect.Type;
 
 public class PreKeyEntity {
 
+  @Expose(serialize = false)
+  private int         deviceId;
+
   private int         keyId;
   private ECPublicKey publicKey;
   private IdentityKey identityKey;
@@ -28,6 +32,10 @@ public class PreKeyEntity {
     this.keyId       = keyId;
     this.publicKey   = publicKey;
     this.identityKey = identityKey;
+  }
+
+  public int getDeviceId() {
+    return deviceId;
   }
 
   public int getKeyId() {
