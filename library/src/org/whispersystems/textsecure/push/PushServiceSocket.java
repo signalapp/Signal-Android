@@ -50,7 +50,7 @@ public class PushServiceSocket {
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
-  private static final boolean ENFORCE_SSL = false;
+  private static final boolean ENFORCE_SSL = true;
 
   private final Context context;
   private final String serviceUrl;

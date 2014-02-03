@@ -33,6 +33,7 @@
     <attr name="navigation_drawer_shadow" format="reference"/>
 
     <attr name="menu_new_conversation_icon" format="reference" />
+    <attr name="menu_new_group_icon" format="reference" />
     <attr name="menu_search_icon" format="reference" />
     <attr name="menu_call_icon" format="reference" />
     <attr name="menu_unlock_icon" format="reference" />

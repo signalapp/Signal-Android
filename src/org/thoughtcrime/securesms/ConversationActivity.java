@@ -659,7 +659,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
   }
 
-
   private void initializeReceivers() {
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override

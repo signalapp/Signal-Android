@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="CREATE"
+          android:id="@+id/menu_create_group"
+          android:icon="@drawable/ic_menu_accept_holo_light"
+          android:showAsAction="always|withText"/>
+
+</menu>

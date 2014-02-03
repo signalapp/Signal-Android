@@ -34,6 +34,8 @@ import java.util.HashSet;
 
 public class Recipient implements Parcelable, CanonicalRecipient {
 
+  private final static String TAG = "Recipient";
+
   public static final Parcelable.Creator<Recipient> CREATOR = new Parcelable.Creator<Recipient>() {
     public Recipient createFromParcel(Parcel in) {
       return new Recipient(in);
@@ -165,6 +167,21 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
   public static Recipient getUnknownRecipient(Context context) {
     return new Recipient("Unknown", "Unknown", -1, null, ContactPhotoFactory.getDefaultContactPhoto(context));
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || !(o instanceof Recipient)) return false;
+
+    Recipient that = (Recipient) o;
+
+    return this.recipientId == that.recipientId;
+  }
+
+  @Override
+  public int hashCode() {
+    return 31 + (int)this.recipientId;
   }
 
   public static interface RecipientModifiedListener {

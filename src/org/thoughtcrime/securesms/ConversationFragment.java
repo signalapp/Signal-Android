@@ -140,6 +140,7 @@ public class ConversationFragment extends SherlockListFragment
     long dateReceived = message.getDateReceived();
     long dateSent     = message.getDateSent();
 
+
     SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);

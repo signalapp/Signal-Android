@@ -101,6 +101,10 @@
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".GroupCreateActivity"
+              android:windowSoftInputMode="stateVisible"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".DatabaseMigrationActivity"
               android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
               android:launchMode="singleTask"
@@ -126,6 +130,12 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ContactSelectionActivity"
+              android:label="@string/AndroidManifest__select_contacts"
+              android:windowSoftInputMode="stateHidden"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+
+    <activity android:name=".PushContactSelectionActivity"
               android:label="@string/AndroidManifest__select_contacts"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>

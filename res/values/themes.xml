@@ -27,6 +27,7 @@
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_light</item>
+        <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_light</item>
         <item name="menu_search_icon">@drawable/ic_menu_search_holo_light</item>
         <item name="menu_call_icon">@drawable/ic_menu_call_holo_light</item>
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_light</item>
@@ -75,6 +76,7 @@
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_light</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_dark</item>
+        <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_dark</item>
         <item name="menu_search_icon">@drawable/ic_menu_search_holo_dark</item>
         <item name="menu_call_icon">@drawable/ic_menu_call_holo_dark</item>
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_dark</item>
