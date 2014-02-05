@@ -400,6 +400,8 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ausgewählte löschen</string>
   <string name="conversation_list_batch__menu_select_all">Alle auswählen</string>
+  <string name="conversation_list_batch__menu_mark_selected_as_spam">Ausgewählte Nummern als Spam markieren</string>
+  <string name="conversation_list_batch__menu_no_spam">Kein Spam</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Suchen</string>
   <!--conversation_secure_verified-->
@@ -429,5 +431,5 @@
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verifiziert</string>
-  <!--EOF-->
+    <!--EOF-->
 </resources>

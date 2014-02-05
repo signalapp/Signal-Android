@@ -33,18 +33,20 @@ import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipients;
-
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
+
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SpamSenderDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.Set;
 
@@ -57,8 +59,9 @@ public class ConversationListFragment extends SherlockListFragment
   private MasterSecret masterSecret;
   private ActionMode actionMode;
 
-  private String queryFilter = "";
-  private boolean batchMode  = false;
+  private String queryFilter      = "";
+  private boolean batchMode       = false;
+  private boolean allSelectedSpam = false;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -108,6 +111,7 @@ public class ConversationListFragment extends SherlockListFragment
         ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
         adapter.toggleThreadInBatchSet(headerView.getThreadId());
         adapter.notifyDataSetChanged();
+        actionMode.invalidate();
       }
     }
   }
@@ -130,6 +134,7 @@ public class ConversationListFragment extends SherlockListFragment
         }
         return false;
       }
+
       @Override
       public boolean onQueryTextChange(String newText) {
         return onQueryTextSubmit(newText);
@@ -141,14 +146,14 @@ public class ConversationListFragment extends SherlockListFragment
     getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
       @Override
       public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
-        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
         actionMode = getSherlockActivity().startActionMode(ConversationListFragment.this);
-        batchMode  = true;
+        batchMode = true;
 
+        ConversationListAdapter adapter = (ConversationListAdapter) getListAdapter();
         adapter.initializeBatchMode(true);
         adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
         adapter.notifyDataSetChanged();
-
+        actionMode.invalidate();
         return true;
       }
     });
@@ -156,7 +161,7 @@ public class ConversationListFragment extends SherlockListFragment
 
   private void initializeListAdapter() {
     this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
-    getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
+    getListView().setRecyclerListener((ConversationListAdapter) getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
   }
 
@@ -218,6 +223,84 @@ public class ConversationListFragment extends SherlockListFragment
     ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
   }
 
+  private void handleMarkSelectedAsSpam() {
+    final Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
+            .getBatchSelections();
+
+    if (!selectedConversations.isEmpty()) {
+      new AsyncTask<Void, Void, Void>() {
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+          ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getActivity());
+          SpamSenderDatabase spamSenderDatabase = DatabaseFactory.getSpamSenderDatabase(getActivity());
+          for (Long selectedId : selectedConversations) {
+            Recipients recipients = threadDatabase.getRecipientsForThreadId(selectedId);
+            String spamNumber = recipients.getPrimaryRecipient().getNumber();
+            if (!spamSenderDatabase.isSpamSender(spamNumber)) {
+              spamSenderDatabase.saveSpamSender(spamNumber);
+            }
+            threadDatabase.setRead(selectedId);
+          }
+          MessageNotifier.updateNotification(getActivity(), masterSecret);
+          return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+          if (actionMode != null) {
+            actionMode.finish();
+            actionMode = null;
+            batchMode  = false;
+          }
+        }
+      }.execute();
+    }
+  }
+
+
+  private void handleClearSelectedAsSpam() {
+    final Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
+        .getBatchSelections();
+
+    if (!selectedConversations.isEmpty()) {
+      new AsyncTask<Void, Void, Void>() {
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+          ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getActivity());
+          SpamSenderDatabase spamSenderDatabase = DatabaseFactory.getSpamSenderDatabase(getActivity());
+          for (Long selectedId : selectedConversations) {
+            Recipients recipients = threadDatabase.getRecipientsForThreadId(selectedId);
+            String spamNumber = recipients.getPrimaryRecipient().getNumber();
+            if (spamSenderDatabase.isSpamSender(spamNumber)) {
+              spamSenderDatabase.deleteSpamSender(spamNumber);
+            }
+          }
+          return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+          if (actionMode != null) {
+            actionMode.finish();
+            actionMode = null;
+            batchMode  = false;
+          }
+        }
+      }.execute();
+    }
+  }
+
+
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
     listener.onCreateConversation(threadId, recipients, distributionType);
   }
@@ -256,14 +339,29 @@ public class ConversationListFragment extends SherlockListFragment
 
   @Override
   public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-    return false;
+    ConversationListAdapter adapter = (ConversationListAdapter) getListAdapter();
+    boolean containsSpam = adapter.batchHasSpam();
+
+    MenuItem markSpamItem = menu.findItem(R.id.menu_mark_selected_spam);
+    MenuItem noSpamItem = menu.findItem(R.id.menu_no_spam);
+
+    if (containsSpam) {
+      markSpamItem.setVisible(false);
+      noSpamItem.setVisible(true);
+    } else {
+      markSpamItem.setVisible(true);
+      noSpamItem.setVisible(false);
+    }
+    return true;
   }
 
   @Override
   public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
     switch (item.getItemId()) {
-    case R.id.menu_select_all:      handleSelectAllThreads(); return true;
-    case R.id.menu_delete_selected: handleDeleteAllSelected(); return true;
+    case R.id.menu_select_all:          handleSelectAllThreads(); return true;
+    case R.id.menu_delete_selected:     handleDeleteAllSelected(); return true;
+    case R.id.menu_mark_selected_spam:  handleMarkSelectedAsSpam(); return true;
+    case R.id.menu_no_spam:             handleClearSelectedAsSpam(); return true;
     }
 
     return false;

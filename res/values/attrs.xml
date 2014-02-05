@@ -5,6 +5,7 @@
     <attr name="conversation_list_item_background_unread" format="reference"/>
     <attr name="conversation_list_item_count_color" format="reference|color"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>
+    <attr name="conversation_list_item_spam_contact_color" format="reference|color"/>
     <attr name="conversation_list_item_subject_color" format="reference|color"/>
 
     <attr name="conversation_sent_card_background" format="reference|color"/>

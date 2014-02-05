@@ -22,24 +22,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
+import ws.com.google.android.mms.ContentType;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
-import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
@@ -52,7 +50,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_MMS_FROM_VERSION      = 8;
   private static final int INTRODUCED_TOFU_IDENTITY_VERSION = 9;
   private static final int INTRODUCED_PUSH_DATABASE_VERSION = 10;
-  private static final int DATABASE_VERSION                 = 10;
+  private static final int INTRODUCED_SPAM_FILTER_VERSION   = 11;
+  private static final int DATABASE_VERSION                 = 11;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -71,6 +70,7 @@ public class DatabaseFactory {
   private final MmsAddressDatabase mmsAddress;
   private final MmsSmsDatabase mmsSmsDatabase;
   private final IdentityDatabase identityDatabase;
+  private final SpamSenderDatabase spamSenderDatabase;
   private final DraftDatabase draftDatabase;
   private final PushDatabase pushDatabase;
 
@@ -130,6 +130,10 @@ public class DatabaseFactory {
     return getInstance(context).identityDatabase;
   }
 
+  public static SpamSenderDatabase getSpamSenderDatabase(Context context) {
+    return getInstance(context).spamSenderDatabase;
+  }
+
   public static DraftDatabase getDraftDatabase(Context context) {
     return getInstance(context).draftDatabase;
   }
@@ -139,18 +143,19 @@ public class DatabaseFactory {
   }
 
   private DatabaseFactory(Context context) {
-    this.databaseHelper   = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-    this.sms              = new SmsDatabase(context, databaseHelper);
-    this.encryptingSms    = new EncryptingSmsDatabase(context, databaseHelper);
-    this.mms              = new MmsDatabase(context, databaseHelper);
-    this.part             = new PartDatabase(context, databaseHelper);
-    this.thread           = new ThreadDatabase(context, databaseHelper);
-    this.address          = CanonicalAddressDatabase.getInstance(context);
-    this.mmsAddress       = new MmsAddressDatabase(context, databaseHelper);
-    this.mmsSmsDatabase   = new MmsSmsDatabase(context, databaseHelper);
-    this.identityDatabase = new IdentityDatabase(context, databaseHelper);
-    this.draftDatabase    = new DraftDatabase(context, databaseHelper);
-    this.pushDatabase     = new PushDatabase(context, databaseHelper);
+    this.databaseHelper     = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    this.sms                = new SmsDatabase(context, databaseHelper);
+    this.encryptingSms      = new EncryptingSmsDatabase(context, databaseHelper);
+    this.mms                = new MmsDatabase(context, databaseHelper);
+    this.part               = new PartDatabase(context, databaseHelper);
+    this.thread             = new ThreadDatabase(context, databaseHelper);
+    this.address            = CanonicalAddressDatabase.getInstance(context);
+    this.mmsAddress         = new MmsAddressDatabase(context, databaseHelper);
+    this.mmsSmsDatabase     = new MmsSmsDatabase(context, databaseHelper);
+    this.identityDatabase   = new IdentityDatabase(context, databaseHelper);
+    this.spamSenderDatabase = new SpamSenderDatabase(context, databaseHelper);
+    this.draftDatabase      = new DraftDatabase(context, databaseHelper);
+    this.pushDatabase       = new PushDatabase(context, databaseHelper);
   }
 
   public void reset(Context context) {
@@ -165,6 +170,7 @@ public class DatabaseFactory {
     this.mmsAddress.reset(databaseHelper);
     this.mmsSmsDatabase.reset(databaseHelper);
     this.identityDatabase.reset(databaseHelper);
+    this.spamSenderDatabase.reset(databaseHelper);
     this.draftDatabase.reset(databaseHelper);
     old.close();
 
@@ -430,6 +436,7 @@ public class DatabaseFactory {
       db.execSQL(ThreadDatabase.CREATE_TABLE);
       db.execSQL(MmsAddressDatabase.CREATE_TABLE);
       db.execSQL(IdentityDatabase.CREATE_TABLE);
+      db.execSQL(SpamSenderDatabase.CREATE_TABLE);
       db.execSQL(DraftDatabase.CREATE_TABLE);
       db.execSQL(PushDatabase.CREATE_TABLE);
 
@@ -438,6 +445,7 @@ public class DatabaseFactory {
       executeStatements(db, PartDatabase.CREATE_INDEXS);
       executeStatements(db, ThreadDatabase.CREATE_INDEXS);
       executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
+      executeStatements(db, SpamSenderDatabase.CREATE_INDEXS);
       executeStatements(db, DraftDatabase.CREATE_INDEXS);
     }
 
@@ -628,6 +636,11 @@ public class DatabaseFactory {
         db.execSQL("CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, destinations TEXT, body TEXT, TIMESTAMP INTEGER);");
         db.execSQL("ALTER TABLE part ADD COLUMN pending_push INTEGER;");
         db.execSQL("CREATE INDEX IF NOT EXISTS pending_push_index ON part (pending_push);");
+      }
+
+      if (oldVersion < INTRODUCED_SPAM_FILTER_VERSION) {
+        db.execSQL(SpamSenderDatabase.CREATE_TABLE);
+        executeStatements(db, SpamSenderDatabase.CREATE_INDEXS);
       }
 
       db.setTransactionSuccessful();

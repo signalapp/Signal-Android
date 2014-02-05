@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.SpamSenderDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -189,12 +190,15 @@ public class SmsReceiver {
   }
 
   private void handleReceiveMessage(MasterSecret masterSecret, Intent intent) {
-    List<IncomingTextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
-    IncomingTextMessage       message      = assembleMessageFragments(messagesList);
+    List<IncomingTextMessage> messagesList       = intent.getExtras().getParcelableArrayList("text_messages");
+    IncomingTextMessage       message            = assembleMessageFragments(messagesList);
+    SpamSenderDatabase        spamNumberDatabase = DatabaseFactory.getSpamSenderDatabase(context);
 
     if (message != null) {
-      Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);      
+      if (!spamNumberDatabase.isSpamSender(message.getSender())) {
+	  MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      }
     }
   }
 

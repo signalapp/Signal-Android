@@ -10,4 +10,12 @@
           android:id="@+id/menu_select_all"
           android:icon="?menu_selectall_icon" />
 
+    <item android:title="@string/conversation_list_batch__menu_mark_selected_as_spam"
+          android:id="@+id/menu_mark_selected_spam"
+          android:showAsAction="withText|ifRoom" />
+
+    <item android:title="@string/conversation_list_batch__menu_no_spam"
+          android:id="@+id/menu_no_spam"
+          android:showAsAction="withText|ifRoom" />
+
 </menu>
