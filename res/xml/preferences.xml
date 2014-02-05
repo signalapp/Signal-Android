@@ -70,7 +70,14 @@
                             android:defaultValue="true"
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
-        
+
+        <org.thoughtcrime.securesms.preferences.VibrationPatternListPreference
+                            android:key="pref_key_vibration_pattern"
+                            android:defaultValue="default"
+                            android:title="@string/preferences__vibration_pattern_title"
+                            android:dependency="pref_key_vibrate"
+                            android:entries="@array/pref_vibration_pattern_entries"
+                            android:entryValues="@array/pref_vibration_pattern_values" />
         
   </PreferenceCategory>
 
