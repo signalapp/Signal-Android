@@ -2,20 +2,18 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
+import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -28,7 +26,6 @@ import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -37,12 +34,17 @@ import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
 public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActivity {
 
+  private final static String TAG = "GroupCreateActivity";
+
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private static final int PICK_CONTACT = 1;
-  private static final int SELECT_PHOTO = 100;
-  private ListView lv;
+  private static final int PICK_AVATAR  = 2;
+
+  private ListView            lv;
+  private PushRecipientsPanel recipientsPanel;
+  private ImageView           avatar;
 
   private Set<Recipient> selectedContacts;
 
@@ -69,7 +71,35 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   private void initializeResources() {
     lv = (ListView) findViewById(R.id.selected_contacts_list);
     lv.setAdapter(new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<Recipient>()));
-    (findViewById(R.id.add_people_button)).setOnClickListener(new AddRecipientButtonListener());
+
+    recipientsPanel = (PushRecipientsPanel) findViewById(R.id.recipients);
+    recipientsPanel.setPanelChangeListener(new PushRecipientsPanel.RecipientsPanelChangedListener() {
+      @Override
+      public void onRecipientsPanelUpdate(Recipients recipients) {
+        Log.i(TAG, "onRecipientsPanelUpdate received.");
+        if (recipients != null) {
+          selectedContacts.addAll(recipients.getRecipientsList());
+          syncAdapterWithSelectedContacts();
+        }
+      }
+    });
+    (findViewById(R.id.contacts_button)).setOnClickListener(new AddRecipientButtonListener());
+
+    avatar = (ImageView) findViewById(R.id.avatar);
+    avatar.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT, null);
+        photoPickerIntent.setType("image/*");
+        photoPickerIntent.putExtra("crop", "true");
+        photoPickerIntent.putExtra("aspectX", 1);
+        photoPickerIntent.putExtra("aspectY", 1);
+        photoPickerIntent.putExtra("outputX", 256);
+        photoPickerIntent.putExtra("outputY", 256);
+        photoPickerIntent.putExtra("return-data", "true");
+        startActivityForResult(photoPickerIntent, PICK_AVATAR);
+      }
+    });
   }
 
   @Override
@@ -103,6 +133,16 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     return false;
   }
 
+  private void syncAdapterWithSelectedContacts() {
+    SelectedRecipientsAdapter adapter = (SelectedRecipientsAdapter)lv.getAdapter();
+    adapter.clear();
+    for (Recipient contact : selectedContacts) {
+      adapter.add(contact);
+      Log.i("GroupCreateActivity", "Adding " + contact.getName() + "/" + contact.getNumber());
+    }
+    adapter.notifyDataSetChanged();
+  }
+
   @Override
   public void onActivityResult(int reqCode, int resultCode, Intent data) {
     Log.w("ComposeMessageActivity", "onActivityResult called: " + resultCode + " , " + data);
@@ -114,10 +154,13 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     switch (reqCode) {
       case PICK_CONTACT:
         List<ContactData> selected = data.getParcelableArrayListExtra("contacts");
+        for (ContactData cdata : selected) {
+          Log.i("PushContactSelect", "selected report: " + cdata.name);
+        }
         for (ContactData contact : selected) {
           for (ContactAccessor.NumberData numberData : contact.numbers) {
             try {
-              Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, true)
+              Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, false)
                                                     .getPrimaryRecipient();
 
               if (!selectedContacts.contains(recipient)) {
@@ -128,28 +171,14 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
             }
           }
         }
-
-        SelectedRecipientsAdapter adapter = (SelectedRecipientsAdapter)lv.getAdapter();
-        adapter.clear();
-        Iterator<Recipient> selectedContactsIter = selectedContacts.iterator();
-        while (selectedContactsIter.hasNext()) {
-          adapter.add(selectedContactsIter.next());
-        }
+        syncAdapterWithSelectedContacts();
         break;
-      case SELECT_PHOTO:
-        if(resultCode == RESULT_OK){
-          Uri selectedImage = data.getData();
-          String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-          Cursor cursor = getContentResolver().query(
-              selectedImage, filePathColumn, null, null, null);
-          cursor.moveToFirst();
-
-          int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-          String filePath = cursor.getString(columnIndex);
-          cursor.close();
-
-          Bitmap selectedBitmap = BitmapFactory.decodeFile(filePath);
+      case PICK_AVATAR:
+        if(resultCode == RESULT_OK) {
+          Bitmap avatarBmp = data.getParcelableExtra("data");
+          avatar.setImageBitmap(avatarBmp);
+          //Uri selectedImage = data.getData();
+          //avatar.setImageURI(selectedImage);
           break;
         }
     }

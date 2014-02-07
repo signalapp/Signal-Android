@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.push.ContactNumberDetails;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
@@ -68,9 +69,9 @@ public class GcmIntentService extends GCMBaseIntentService {
 
       if (!isActiveNumber(context, message.getSource())) {
         Directory           directory           = Directory.getInstance(context);
-        String              contactToken        = directory.getToken(message.getSource());
-        ContactTokenDetails contactTokenDetails = new ContactTokenDetails(contactToken, message.getRelay());
-        directory.setToken(contactTokenDetails, true);
+        String              contactNumber        = message.getSource();
+        ContactNumberDetails contactNumberDetails = new ContactNumberDetails(contactNumber, message.getRelay());
+        directory.setNumber(contactNumberDetails, true);
       }
 
       Intent service = new Intent(context, SendReceiveService.class);

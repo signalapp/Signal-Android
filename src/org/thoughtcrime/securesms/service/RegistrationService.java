@@ -17,13 +17,12 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.gcm.GcmIntentService;
 import org.thoughtcrime.securesms.gcm.GcmRegistrationTimeoutException;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
@@ -286,15 +285,7 @@ public class RegistrationService extends Service {
     String gcmRegistrationId = waitForGcmRegistrationId();
     socket.registerGcmId(gcmRegistrationId);
 
-    Set<String>               contactTokens = Directory.getInstance(this).getPushEligibleContactTokens(number);
-    List<ContactTokenDetails> activeTokens  = socket.retrieveDirectory(contactTokens);
-
-    if (activeTokens != null) {
-      for (ContactTokenDetails activeToken : activeTokens) {
-        contactTokens.remove(activeToken.getToken());
-      }
-      Directory.getInstance(this).setTokens(activeTokens, contactTokens);
-    }
+    DirectoryHelper.refreshDirectory(this, socket, number);
 
     DirectoryRefreshListener.schedule(this);
   }

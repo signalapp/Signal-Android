@@ -21,6 +21,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.database.MergeCursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -42,11 +44,7 @@ import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
-import org.thoughtcrime.securesms.contacts.PushFilterCursorWrapper;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -104,7 +102,6 @@ public class PushContactSelectionListFragment extends SherlockListFragment
 
     return selected;
   }
-
 
   private void handleUnselectAll() {
     selectedContacts.clear();
@@ -188,19 +185,35 @@ public class PushContactSelectionListFragment extends SherlockListFragment
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-      PushFilterCursorWrapper wrappedCursor = (PushFilterCursorWrapper) cursor;
-      boolean isPushUser = wrappedCursor.getPushCount() > wrappedCursor.getPosition();
+      boolean isPushUser;
+      try {
+        isPushUser = (cursor.getInt(cursor.getColumnIndexOrThrow(ContactAccessor.PUSH_COLUMN)) > 0);
+      } catch (IllegalArgumentException iae) {
+        isPushUser = false;
+      }
       ContactData contactData = ContactAccessor.getInstance().getContactData(context, cursor);
-      ((ContactItemView)view).set(contactData, isPushUser);
+      PushContactData pushContactData = new PushContactData(contactData, isPushUser);
+      ((ContactItemView)view).set(pushContactData);
+    }
+  }
+
+  private class PushContactData {
+    private final ContactData contactData;
+    private final boolean     pushSupport;
+    public PushContactData(ContactData contactData, boolean pushSupport) {
+      this.contactData = contactData;
+      this.pushSupport = pushSupport;
     }
   }
 
   private class ContactItemView extends RelativeLayout {
     private ContactData contactData;
+    private boolean     pushSupport;
     private CheckBox    checkBox;
     private TextView    name;
     private TextView    number;
     private TextView    label;
+    private View        pushLabel;
 
     public ContactItemView(Context context) {
       super(context);
@@ -211,6 +224,7 @@ public class PushContactSelectionListFragment extends SherlockListFragment
       this.number = (TextView) findViewById(R.id.number);
       this.label = (TextView) findViewById(R.id.label);
       this.checkBox = (CheckBox) findViewById(R.id.check_box);
+      this.pushLabel = findViewById(R.id.push_support_label);
     }
 
     public void selected() {
@@ -225,17 +239,18 @@ public class PushContactSelectionListFragment extends SherlockListFragment
       }
     }
 
-    public void set(ContactData contactData, boolean isPushUser) {
-      this.contactData = contactData;
+    public void set(PushContactData pushContactData) {
+      this.contactData = pushContactData.contactData;
+      this.pushSupport = pushContactData.pushSupport;
 
-      if (!isPushUser) {
+      if (!pushSupport) {
         this.name.setTextColor(0xa0000000);
         this.number.setTextColor(0xa0000000);
-        this.checkBox.setVisibility(View.GONE);
+        this.pushLabel.setBackgroundColor(0x99000000);
       } else {
         this.name.setTextColor(0xff000000);
         this.number.setTextColor(0xff000000);
-        this.checkBox.setVisibility(View.VISIBLE);
+        this.pushLabel.setBackgroundColor(0xff64a926);
       }
 
       if (selectedContacts.containsKey(contactData.id))
@@ -322,7 +337,8 @@ public class PushContactSelectionListFragment extends SherlockListFragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    ((CursorAdapter) getListAdapter()).changeCursor(new PushFilterCursorWrapper(cursor, getActivity()));
+    Cursor pushCursor = ContactAccessor.getInstance().getCursorForContactsWithPush(getActivity());
+    ((CursorAdapter) getListAdapter()).changeCursor(new MergeCursor(new Cursor[]{pushCursor,cursor}));
   }
 
   @Override

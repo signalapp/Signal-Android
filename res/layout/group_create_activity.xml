@@ -6,36 +6,32 @@
               android:layout_height="match_parent"
               android:padding="20dp">
 
-    <EditText
-        android:id="@+id/group_name"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:hint="Group name"
-        android:layout_marginBottom="20dp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/icon"/>
         <EditText
             android:id="@+id/group_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Add people"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:hint="Group name"
+            android:layout_gravity="center_vertical" />
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/add_people_button"
-            android:background="#00ffffff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="15dp"
-            android:src="@drawable/ic_action_add_person"
-            android:layout_alignParentRight="true" />
 
-    </RelativeLayout>
+    <org.thoughtcrime.securesms.components.PushRecipientsPanel
+        android:id="@+id/recipients"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
     <ListView
         android:id="@+id/selected_contacts_list"

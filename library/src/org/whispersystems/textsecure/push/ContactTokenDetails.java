@@ -2,40 +2,24 @@ package org.whispersystems.textsecure.push;
 
 import com.google.thoughtcrimegson.Gson;
 
-public class ContactTokenDetails {
+public class ContactTokenDetails extends ContactDetails {
 
   private String  token;
-  private String  relay;
-  private boolean supportsSms;
 
-  public ContactTokenDetails() {}
+  public ContactTokenDetails() { super(); }
 
   public ContactTokenDetails(String token) {
+    super();
     this.token = token;
   }
 
   public ContactTokenDetails(String token, String relay) {
+    super(relay);
     this.token = token;
-    this.relay = relay;
   }
 
   public String getToken() {
     return token;
   }
 
-  public String getRelay() {
-    return relay;
-  }
-
-  public void setRelay(String relay) {
-    this.relay = relay;
-  }
-
-  public boolean isSupportsSms() {
-    return supportsSms;
-  }
-
-  public String toString() {
-    return new Gson().toJson(this);
-  }
 }

@@ -29,8 +29,10 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.push.ContactNumberDetails;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.util.DirectoryUtil;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -138,18 +140,13 @@ public class UniversalTransport {
       return directory.isActiveNumber(destination);
     } catch (NotInDirectoryException e) {
       try {
-        PushServiceSocket   socket         = PushServiceSocketFactory.create(context);
-        String              contactToken   = directory.getToken(destination);
-        ContactTokenDetails registeredUser = socket.getContactTokenDetails(contactToken);
+        PushServiceSocket    socket          = PushServiceSocketFactory.create(context);
+        ContactTokenDetails  registeredUser  = socket.getContactTokenDetails(DirectoryUtil.getDirectoryServerToken(destination));
+        boolean              registeredFound = !(registeredUser == null);
+        ContactNumberDetails numberDetails   = new ContactNumberDetails(destination, registeredUser == null ? null : registeredUser.getRelay());
 
-        if (registeredUser == null) {
-          registeredUser = new ContactTokenDetails(contactToken);
-          directory.setToken(registeredUser, false);
-          return false;
-        } else {
-          directory.setToken(registeredUser, true);
-          return true;
-        }
+        directory.setNumber(numberDetails, registeredFound);
+        return registeredFound;
       } catch (IOException e1) {
         Log.w("UniversalTransport", e1);
         return false;

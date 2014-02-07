@@ -23,16 +23,9 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import android.util.Log;
-import android.widget.EditText;
 import android.os.Build;
 import android.provider.Telephony;
 
-import org.thoughtcrime.securesms.mms.MmsRadio;
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
@@ -40,7 +33,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -156,31 +148,6 @@ public class Util {
       (context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context)));
   }
 
-  public static boolean isPushTransport(Context context, String destination) {
-    Directory directory = Directory.getInstance(context);
-
-    try {
-      return directory.isActiveNumber(destination);
-    } catch (NotInDirectoryException e) {
-      try {
-        PushServiceSocket socket         = PushServiceSocketFactory.create(context);
-        String              contactToken   = directory.getToken(destination);
-        ContactTokenDetails registeredUser = socket.getContactTokenDetails(contactToken);
-
-        if (registeredUser == null) {
-          registeredUser = new ContactTokenDetails(contactToken);
-          directory.setToken(registeredUser, false);
-          return false;
-        } else {
-          directory.setToken(registeredUser, true);
-          return true;
-        }
-      } catch (IOException e1) {
-        Log.w("UniversalTransport", e1);
-        return false;
-      }
-    }
-  }
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {
   //    return BitmapFactory.decodeStream(src);
   ////  BitmapFactory.Options options = new BitmapFactory.Options();

@@ -7,39 +7,41 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.push.ContactNumberDetails;
+import org.whispersystems.textsecure.util.DirectoryUtil;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Directory {
 
+  private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
+  private static final int DATABASE_VERSION = 2;
+
   private static final String DATABASE_NAME    = "whisper_directory.db";
-  private static final int    DATABASE_VERSION = 1;
 
   private static final String TABLE_NAME   = "directory";
   private static final String ID           = "_id";
-  private static final String TOKEN        = "token";
+  private static final String NUMBER       = "number";
   private static final String REGISTERED   = "registered";
   private static final String RELAY        = "relay";
   private static final String SUPPORTS_SMS = "supports_sms";
   private static final String TIMESTAMP    = "timestamp";
   private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID + " INTEGER PRIMARY KEY, " +
-                                             TOKEN        + " TEXT UNIQUE, " +
-                                             REGISTERED   + " INTEGER, " +
-                                             RELAY        + " TEXT, " +
-                                             SUPPORTS_SMS + " INTEGER, " +
-                                             TIMESTAMP    + " INTEGER);";
+      NUMBER + " TEXT UNIQUE, " +
+      REGISTERED + " INTEGER, " +
+      RELAY + " TEXT, " +
+      SUPPORTS_SMS + " INTEGER, " +
+      TIMESTAMP + " INTEGER);";
 
   private static final Object instanceLock = new Object();
   private static volatile Directory instance;
@@ -60,7 +62,7 @@ public class Directory {
   private final Context        context;
 
   private Directory(Context context) {
-    this.context        = context;
+    this.context = context;
     this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
@@ -69,14 +71,13 @@ public class Directory {
       return false;
     }
 
-    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         token  = getToken(e164number);
-    Cursor         cursor = null;
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor = null;
 
     try {
       cursor = db.query(TABLE_NAME,
-                        new String[] {REGISTERED}, TOKEN + " = ?",
-                        new String[] {token}, null, null, null);
+          new String[]{REGISTERED}, NUMBER + " = ?",
+          new String[] {e164number}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0) == 1;
@@ -91,12 +92,11 @@ public class Directory {
   }
 
   public String getRelay(String e164number) {
-    String         token    = getToken(e164number);
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, null, TOKEN + " = ?", new String[]{token}, null, null, null);
+      cursor = database.query(TABLE_NAME, null, NUMBER + " = ?", new String[]{e164number}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getString(cursor.getColumnIndexOrThrow(RELAY));
@@ -109,10 +109,10 @@ public class Directory {
     }
   }
 
-  public void setToken(ContactTokenDetails token, boolean active) {
+  public void setNumber(ContactNumberDetails token, boolean active) {
     SQLiteDatabase db     = databaseHelper.getWritableDatabase();
     ContentValues  values = new ContentValues();
-    values.put(TOKEN, token.getToken());
+    values.put(NUMBER, token.getNumber());
     values.put(RELAY, token.getRelay());
     values.put(REGISTERED, active ? 1 : 0);
     values.put(SUPPORTS_SMS, token.isSupportsSms() ? 1 : 0);
@@ -120,16 +120,16 @@ public class Directory {
     db.replace(TABLE_NAME, null, values);
   }
 
-  public void setTokens(List<ContactTokenDetails> activeTokens, Collection<String> inactiveTokens) {
+  public void setNumbers(List<ContactNumberDetails> activeTokens, Collection<String> inactiveTokens) {
     long timestamp    = System.currentTimeMillis();
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.beginTransaction();
 
     try {
-      for (ContactTokenDetails token : activeTokens) {
+      for (ContactNumberDetails token : activeTokens) {
         Log.w("Directory", "Adding active token: " + token);
         ContentValues values = new ContentValues();
-        values.put(TOKEN, token.getToken());
+        values.put(NUMBER, token.getNumber());
         values.put(REGISTERED, 1);
         values.put(TIMESTAMP, timestamp);
         values.put(RELAY, token.getRelay());
@@ -139,7 +139,7 @@ public class Directory {
 
       for (String token : inactiveTokens) {
         ContentValues values = new ContentValues();
-        values.put(TOKEN, token);
+        values.put(NUMBER, token);
         values.put(REGISTERED, 0);
         values.put(TIMESTAMP, timestamp);
         db.replace(TABLE_NAME, null, values);
@@ -151,21 +151,20 @@ public class Directory {
     }
   }
 
-  public Set<String> getPushEligibleContactTokens(String localNumber) {
-    Uri         uri     = Phone.CONTENT_URI;
-    Set<String> results = new HashSet<String>();
-    Cursor      cursor  = null;
+  public Set<String> getPushEligibleContactNumbers(String localNumber) {
+    final Uri         uri     = Phone.CONTENT_URI;
+    final Set<String> results = new HashSet<String>();
+          Cursor      cursor  = null;
 
     try {
       cursor = context.getContentResolver().query(uri, new String[] {Phone.NUMBER}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        String rawNumber = cursor.getString(0);
-
+        final String rawNumber = cursor.getString(0);
         if (rawNumber != null) {
           try {
-            String e164Number = PhoneNumberFormatter.formatNumber(rawNumber, localNumber);
-            results.add(getToken(e164Number));
+            final String e164Number = PhoneNumberFormatter.formatNumber(rawNumber, localNumber);
+            results.add(e164Number);
           } catch (InvalidNumberException e) {
             Log.w("Directory", "Invalid number: " + rawNumber);
           }
@@ -175,11 +174,14 @@ public class Directory {
       if (cursor != null)
         cursor.close();
 
-      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {TOKEN},
-                                                          null, null, null, null, null);
+      final SQLiteDatabase readableDb = databaseHelper.getReadableDatabase();
+      if (readableDb != null) {
+        cursor = readableDb.query(TABLE_NAME, new String[]{NUMBER},
+            null, null, null, null, null);
 
-      while (cursor != null && cursor.moveToNext()) {
-        results.add(cursor.getString(0));
+        while (cursor != null && cursor.moveToNext()) {
+          results.add(cursor.getString(0));
+        }
       }
 
       return results;
@@ -189,13 +191,20 @@ public class Directory {
     }
   }
 
-  public String getToken(String e164number) {
+  public List<String> getActiveNumbers() {
+    final List<String> results = new ArrayList<String>();
+    Cursor cursor = null;
     try {
-      MessageDigest digest = MessageDigest.getInstance("SHA1");
-      byte[]        token  = Util.trim(digest.digest(e164number.getBytes()), 10);
-      return Base64.encodeBytesWithoutPadding(token);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
+      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[]{NUMBER},
+          REGISTERED + " = 1", null, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(cursor.getString(0));
+      }
+      return results;
+    } finally {
+      if (cursor != null)
+        cursor.close();
     }
   }
 
@@ -215,7 +224,10 @@ public class Directory {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+      if (oldVersion < INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER) {
+        db.execSQL("DROP TABLE directory;");
+        onCreate(db);
+      }
     }
   }
 

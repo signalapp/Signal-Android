@@ -3,8 +3,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:paddingLeft="14dip"
     android:paddingRight="25dip">
+
+    <View android:id="@+id/push_support_label"
+          android:layout_height="fill_parent"
+          android:layout_width="3dip"
+          android:layout_alignParentLeft="true"
+          android:background="#ff64a926"
+          android:visibility="visible"
+          />
 
     <TextView android:id="@+id/label"
         android:layout_width="wrap_content"
@@ -13,6 +20,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dip"
         android:layout_marginTop="-8dip"
+        android:layout_marginLeft="14dip"
         android:singleLine="true"
         android:ellipsize="marquee"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -26,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dip"
         android:layout_marginTop="-8dip"
+        android:layout_marginLeft="14dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:singleLine="true"
@@ -41,6 +50,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="1dip"
+        android:layout_marginLeft="14dip"
 	    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         android:singleLine="true"
         android:ellipsize="marquee"
