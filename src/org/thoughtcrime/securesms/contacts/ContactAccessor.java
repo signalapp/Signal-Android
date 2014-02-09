@@ -368,7 +368,9 @@ public class ContactAccessor {
       ContentResolver mContentResolver)
   {
     final String SORT_ORDER = Contacts.TIMES_CONTACTED + " DESC," +
-                              Contacts.DISPLAY_NAME + "," + Phone.TYPE;
+                              Contacts.DISPLAY_NAME + "," +
+                              Contacts.Data.IS_SUPER_PRIMARY + " DESC," +
+                              Phone.TYPE;
 
     final String[] PROJECTION_PHONE = {
         Phone._ID,                  // 0
