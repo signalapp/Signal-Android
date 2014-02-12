@@ -116,6 +116,9 @@
         settings, and messages...
     </string>
 
+    <!-- GroupCreateActivity -->
+    <string name="GroupCreateActivity_actionbar_title">New Group</string>
+
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import System SMS Database?</string>
     <string name="ImportFragment_this_will_import_messages_from_the_system">This will import

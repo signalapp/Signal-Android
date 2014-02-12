@@ -25,9 +25,9 @@ import java.util.Set;
 public class Directory {
 
   private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
-  private static final int DATABASE_VERSION = 2;
 
   private static final String DATABASE_NAME    = "whisper_directory.db";
+  private static final int    DATABASE_VERSION = 2;
 
   private static final String TABLE_NAME   = "directory";
   private static final String ID           = "_id";
@@ -37,11 +37,11 @@ public class Directory {
   private static final String SUPPORTS_SMS = "supports_sms";
   private static final String TIMESTAMP    = "timestamp";
   private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID + " INTEGER PRIMARY KEY, " +
-      NUMBER + " TEXT UNIQUE, " +
-      REGISTERED + " INTEGER, " +
-      RELAY + " TEXT, " +
-      SUPPORTS_SMS + " INTEGER, " +
-      TIMESTAMP + " INTEGER);";
+                              NUMBER       + " TEXT UNIQUE, " +
+                              REGISTERED   + " INTEGER, " +
+                              RELAY        + " TEXT, " +
+                              SUPPORTS_SMS + " INTEGER, " +
+                              TIMESTAMP    + " INTEGER);";
 
   private static final Object instanceLock = new Object();
   private static volatile Directory instance;
@@ -226,7 +226,12 @@ public class Directory {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
       if (oldVersion < INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER) {
         db.execSQL("DROP TABLE directory;");
-        onCreate(db);
+        db.execSQL("CREATE TABLE directory ( _id INTEGER PRIMARY KEY, " +
+                   "number TEXT UNIQUE, " +
+                   "registered INTEGER, " +
+                   "relay TEXT, " +
+                   "supports_sms INTEGER, " +
+                   "timestamp INTEGER);");
       }
     }
   }

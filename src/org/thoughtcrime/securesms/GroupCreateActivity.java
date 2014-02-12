@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -39,9 +42,12 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
+  private String defaultTitle;
+
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
 
+  private EditText            groupName;
   private ListView            lv;
   private PushRecipientsPanel recipientsPanel;
   private ImageView           avatar;
@@ -52,11 +58,12 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   public void onCreate(Bundle state) {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+    defaultTitle = getString(R.string.GroupCreateActivity_actionbar_title);
     super.onCreate(state);
 
     setContentView(R.layout.group_create_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), "New Group");
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), defaultTitle);
 
     selectedContacts = new HashSet<Recipient>();
     initializeResources();
@@ -69,6 +76,21 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private void initializeResources() {
+    groupName = (EditText) findViewById(R.id.group_name);
+    groupName.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) { }
+      @Override
+      public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) { }
+      @Override
+      public void afterTextChanged(Editable editable) {
+        if (editable.length() > 0)
+          getSupportActionBar().setTitle(editable);
+        else
+          getSupportActionBar().setTitle(defaultTitle);
+      }
+    });
+
     lv = (ListView) findViewById(R.id.selected_contacts_list);
     lv.setAdapter(new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<Recipient>()));
 
