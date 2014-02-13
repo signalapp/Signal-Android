@@ -54,7 +54,7 @@
                 android:fontFamily="sans-serif-light"
                 android:padding="8dp"
                 android:textSize="16dp"
-                android:text="You have selected a contact that doesn't support TextSecure groups, so this group will be MMS." />
+                android:text="@string/GroupCreateActivity_contacts_dont_support_push" />
 
             </RelativeLayout>
     </RelativeLayout>

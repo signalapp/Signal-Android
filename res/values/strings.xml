@@ -119,6 +119,9 @@
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New Group</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS Group</string>
+    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected contacts that
+        don\'t support TextSecure groups, so this will be an unencrypted MMS group.
+    </string>
 
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import System SMS Database?</string>
