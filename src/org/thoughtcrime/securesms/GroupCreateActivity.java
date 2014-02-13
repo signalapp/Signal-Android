@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -204,8 +206,35 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
       case android.R.id.home:
+        finish();
+        return true;
       case R.id.menu_create_group:
-        finish(); // TODO not this
+        findViewById(R.id.group_details_layout).setVisibility(View.GONE);
+        findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
+        ((TextView)findViewById(R.id.creating_group_text)).setText("Creating " + groupName.getText().toString() + "...");
+        new AsyncTask<Void,Void,Void>() {
+
+          @Override
+          protected Void doInBackground(Void... voids) {
+            try {
+              Thread.sleep(5000); // todo network things
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+            }
+            return null;
+          }
+
+          @Override
+          protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            finish();
+          }
+
+          @Override
+          protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+          }
+        }.execute();
         return true;
     }
 

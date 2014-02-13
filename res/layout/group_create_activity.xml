@@ -12,6 +12,7 @@
         android:layout_marginBottom="20dp">
 
         <LinearLayout
+            android:id="@+id/group_details_layout"
             android:layout_width="fill_parent"
             android:layout_height="106dp"
             android:orientation="horizontal"
@@ -35,6 +36,34 @@
                 android:hint="Group name"
                 android:layout_gravity="center_vertical" />
             </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/creating_group_layout"
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="106dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="18dp">
+
+            <ProgressBar
+                android:id="@+id/creating_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:indeterminate="true"
+                style="@android:style/Widget.ProgressBar.Large" />
+
+            <TextView
+                android:id="@+id/creating_group_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/push_disabled"
