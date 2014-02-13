@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -34,6 +35,7 @@ import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -58,6 +60,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   private PushRecipientsPanel recipientsPanel;
   private ImageView           avatar;
 
+  private Bitmap avatarBmp;
+
   private Set<Recipient> selectedContacts;
 
   @Override
@@ -80,7 +84,11 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     dynamicTheme.onResume(this);
   }
 
-  private void disableWhisperGroupUI() {
+  private boolean whisperGroupUiEnabled() {
+    return groupName.isEnabled() && avatar.isEnabled();
+  }
+
+  private void disableWhisperGroupUi() {
     View pushDisabled = findViewById(R.id.push_disabled);
     pushDisabled.setVisibility(View.VISIBLE);
     avatar.setEnabled(false);
@@ -88,7 +96,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
   }
 
-  private void enableWhisperGroupUI() {
+  private void enableWhisperGroupUi() {
     findViewById(R.id.push_disabled).setVisibility(View.GONE);
     avatar.setEnabled(true);
     groupName.setEnabled(true);
@@ -114,7 +122,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private void addSelectedContact(Recipient contact) {
     selectedContacts.add(contact);
-    if (!isActiveInDirectory(this, contact)) disableWhisperGroupUI();
+    if (!isActiveInDirectory(this, contact)) disableWhisperGroupUi();
   }
 
   private void addAllSelectedContacts(Collection<Recipient> contacts) {
@@ -131,7 +139,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         if (!isActiveInDirectory(this, recipient))
           return;
       }
-      enableWhisperGroupUI();
+      enableWhisperGroupUi();
     }
   }
 
@@ -209,32 +217,58 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         finish();
         return true;
       case R.id.menu_create_group:
-        findViewById(R.id.group_details_layout).setVisibility(View.GONE);
-        findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
-        ((TextView)findViewById(R.id.creating_group_text)).setText("Creating " + groupName.getText().toString() + "...");
-        new AsyncTask<Void,Void,Void>() {
+        if (whisperGroupUiEnabled()) {
+          findViewById(R.id.group_details_layout).setVisibility(View.GONE);
+          findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
+          findViewById(R.id.menu_create_group).setVisibility(View.GONE);
+          ((TextView)findViewById(R.id.creating_group_text)).setText("Creating " + groupName.getText().toString() + "...");
+          new AsyncTask<Void,Void,Void>() {
 
-          @Override
-          protected Void doInBackground(Void... voids) {
-            try {
-              Thread.sleep(5000); // todo network things
-            } catch (InterruptedException e) {
-              Thread.currentThread().interrupt();
+            @Override
+            protected Void doInBackground(Void... voids) {
+              byte[] byteArray = null;
+              if (avatarBmp != null) {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byteArray = stream.toByteArray();
+              }
+              handleCreatePushGroup(groupName.getText().toString(), byteArray, selectedContacts);
+              return null;
             }
-            return null;
-          }
 
-          @Override
-          protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            finish();
-          }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+              super.onPostExecute(aVoid);
+              finish();
+            }
 
-          @Override
-          protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-          }
-        }.execute();
+            @Override
+            protected void onProgressUpdate(Void... values) {
+              super.onProgressUpdate(values);
+            }
+          }.execute();
+        } else {
+          new AsyncTask<Void,Void,Void>() {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+              handleCreateMmsGroup(selectedContacts);
+              return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+              super.onPostExecute(aVoid);
+              finish();
+            }
+
+            @Override
+            protected void onProgressUpdate(Void... values) {
+              super.onProgressUpdate(values);
+            }
+          }.execute();
+          finish();
+        }
         return true;
     }
 
@@ -279,7 +313,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         break;
       case PICK_AVATAR:
         if(resultCode == RESULT_OK) {
-          Bitmap avatarBmp = data.getParcelableExtra("data");
+          avatarBmp = data.getParcelableExtra("data");
           avatar.setImageBitmap(avatarBmp);
           //Uri selectedImage = data.getData();
           //avatar.setImageURI(selectedImage);
@@ -294,5 +328,13 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       Intent intent = new Intent(GroupCreateActivity.this, PushContactSelectionActivity.class);
       startActivityForResult(intent, PICK_CONTACT);
     }
+  }
+
+  private void handleCreatePushGroup(String groupName, byte[] avatar, Set<Recipient> members) {
+    //todo
+  }
+
+  private void handleCreateMmsGroup(Set<Recipient> members) {
+    //todo
   }
 }

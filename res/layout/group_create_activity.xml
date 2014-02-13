@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:indeterminate="true"
-                style="@android:style/Widget.ProgressBar.Large" />
+                style="@android:style/Widget.ProgressBar" />
 
             <TextView
                 android:id="@+id/creating_group_text"
