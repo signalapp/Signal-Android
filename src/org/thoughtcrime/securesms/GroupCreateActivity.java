@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.InvalidNumberException;
@@ -49,6 +50,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private final static String TAG = "GroupCreateActivity";
 
+  public static final String MASTER_SECRET_EXTRA = "master_secret";
+
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -60,7 +63,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   private PushRecipientsPanel recipientsPanel;
   private ImageView           avatar;
 
-  private Bitmap avatarBmp;
+  private MasterSecret masterSecret;
+  private Bitmap       avatarBmp;
 
   private Set<Recipient> selectedContacts;
 
@@ -114,7 +118,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       }
     } catch (NotInDirectoryException e) {
       return false;
-    } catch (InvalidNumberException e ) {
+    } catch (InvalidNumberException e) {
       return false;
     }
     return true;
@@ -144,6 +148,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private void initializeResources() {
+    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     groupName = (EditText) findViewById(R.id.group_name);
     groupName.addTextChangedListener(new TextWatcher() {
       @Override

@@ -156,6 +156,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
   private void createGroup() {
     Intent intent = new Intent(this, GroupCreateActivity.class);
+    intent.putExtra("master_secret", masterSecret);
     startActivity(intent);
   }
 
