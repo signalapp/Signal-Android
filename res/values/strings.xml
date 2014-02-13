@@ -118,6 +118,7 @@
 
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New Group</string>
+    <string name="GroupCreateActivity_actionbar_mms_title">New MMS Group</string>
 
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import System SMS Database?</string>

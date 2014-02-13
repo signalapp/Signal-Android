@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -26,8 +27,13 @@ import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,8 +47,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
-  private String defaultTitle;
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
@@ -58,12 +62,11 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   public void onCreate(Bundle state) {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    defaultTitle = getString(R.string.GroupCreateActivity_actionbar_title);
     super.onCreate(state);
 
     setContentView(R.layout.group_create_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), defaultTitle);
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), R.string.GroupCreateActivity_actionbar_title);
 
     selectedContacts = new HashSet<Recipient>();
     initializeResources();
@@ -73,6 +76,61 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+  }
+
+  private void disableWhisperGroupUI() {
+    View pushDisabled = findViewById(R.id.push_disabled);
+    pushDisabled.setVisibility(View.VISIBLE);
+    avatar.setEnabled(false);
+    groupName.setEnabled(false);
+    getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
+  }
+
+  private void enableWhisperGroupUI() {
+    findViewById(R.id.push_disabled).setVisibility(View.GONE);
+    avatar.setEnabled(true);
+    groupName.setEnabled(true);
+    final CharSequence groupNameText = groupName.getText();
+    if (groupNameText.length() > 0)
+      getSupportActionBar().setTitle(groupNameText);
+    else
+      getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
+  }
+
+  private static boolean isActiveInDirectory(Context context, Recipient recipient) {
+    try {
+      if (!Directory.getInstance(context).isActiveNumber(Util.canonicalizeNumber(context, recipient.getNumber()))) {
+        return false;
+      }
+    } catch (NotInDirectoryException e) {
+      return false;
+    } catch (InvalidNumberException e ) {
+      return false;
+    }
+    return true;
+  }
+
+  private void addSelectedContact(Recipient contact) {
+    selectedContacts.add(contact);
+    if (!isActiveInDirectory(this, contact)) disableWhisperGroupUI();
+  }
+
+  private void addAllSelectedContacts(Collection<Recipient> contacts) {
+    for (Recipient contact : contacts) {
+      addSelectedContact(contact);
+    }
+  }
+
+  private void removeSelectedContact(Recipient contact) {
+    Log.i(TAG, "remoevSelectedContact: " + contact.getName() + "/" + contact.getNumber());
+    selectedContacts.remove(contact);
+    if (!isActiveInDirectory(this, contact)) {
+      for (Recipient recipient : selectedContacts) {
+        if (!isActiveInDirectory(this, recipient))
+          return;
+      }
+      enableWhisperGroupUI();
+    }
   }
 
   private void initializeResources() {
@@ -87,12 +145,19 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         if (editable.length() > 0)
           getSupportActionBar().setTitle(editable);
         else
-          getSupportActionBar().setTitle(defaultTitle);
+          getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
       }
     });
 
     lv = (ListView) findViewById(R.id.selected_contacts_list);
-    lv.setAdapter(new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<Recipient>()));
+    SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<Recipient>());
+    adapter.setOnRecipientDeletedListener(new SelectedRecipientsAdapter.OnRecipientDeletedListener() {
+      @Override
+      public void onRecipientDeleted(Recipient recipient) {
+        removeSelectedContact(recipient);
+      }
+    });
+    lv.setAdapter(adapter);
 
     recipientsPanel = (PushRecipientsPanel) findViewById(R.id.recipients);
     recipientsPanel.setPanelChangeListener(new PushRecipientsPanel.RecipientsPanelChangedListener() {
@@ -100,7 +165,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       public void onRecipientsPanelUpdate(Recipients recipients) {
         Log.i(TAG, "onRecipientsPanelUpdate received.");
         if (recipients != null) {
-          selectedContacts.addAll(recipients.getRecipientsList());
+          addAllSelectedContacts(recipients.getRecipientsList());
           syncAdapterWithSelectedContacts();
         }
       }
@@ -116,8 +181,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         photoPickerIntent.putExtra("crop", "true");
         photoPickerIntent.putExtra("aspectX", 1);
         photoPickerIntent.putExtra("aspectY", 1);
-        photoPickerIntent.putExtra("outputX", 256);
-        photoPickerIntent.putExtra("outputY", 256);
+        photoPickerIntent.putExtra("outputX", 210);
+        photoPickerIntent.putExtra("outputY", 210);
         photoPickerIntent.putExtra("return-data", "true");
         startActivityForResult(photoPickerIntent, PICK_AVATAR);
       }
@@ -132,14 +197,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     inflater.inflate(R.menu.group_create, menu);
     super.onPrepareOptionsMenu(menu);
     return true;
-  }
-
-  private List<String> selectedContactsAsIdArray() {
-    final List<String> ids = new ArrayList<String>();
-    for (Recipient recipient : selectedContacts) {
-      ids.add(String.valueOf(recipient.getRecipientId()));
-    }
-    return ids;
   }
 
   @Override
@@ -160,7 +217,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     adapter.clear();
     for (Recipient contact : selectedContacts) {
       adapter.add(contact);
-      Log.i("GroupCreateActivity", "Adding " + contact.getName() + "/" + contact.getNumber());
     }
     adapter.notifyDataSetChanged();
   }
@@ -176,9 +232,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     switch (reqCode) {
       case PICK_CONTACT:
         List<ContactData> selected = data.getParcelableArrayListExtra("contacts");
-        for (ContactData cdata : selected) {
-          Log.i("PushContactSelect", "selected report: " + cdata.name);
-        }
         for (ContactData contact : selected) {
           for (ContactAccessor.NumberData numberData : contact.numbers) {
             try {
@@ -186,7 +239,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
                                                     .getPrimaryRecipient();
 
               if (!selectedContacts.contains(recipient)) {
-                selectedContacts.add(recipient);
+                addSelectedContact(recipient);
               }
             } catch (RecipientFormattingException e) {
               Log.w("GroupCreateActivity", e);

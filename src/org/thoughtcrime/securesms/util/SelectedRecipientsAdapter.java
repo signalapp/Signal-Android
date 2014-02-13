@@ -17,6 +17,7 @@ import java.util.List;
 public class SelectedRecipientsAdapter extends ArrayAdapter<Recipient> {
 
   private ArrayList<Recipient> recipients;
+  private OnRecipientDeletedListener onRecipientDeletedListener;
 
   public SelectedRecipientsAdapter(Context context, int textViewResourceId) {
     super(context, textViewResourceId);
@@ -59,6 +60,9 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<Recipient> {
         delete.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
+            if (onRecipientDeletedListener != null) {
+              onRecipientDeletedListener.onRecipientDeleted(recipients.get(position));
+            }
             recipients.remove(position);
             SelectedRecipientsAdapter.this.notifyDataSetChanged();
           }
@@ -67,6 +71,13 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<Recipient> {
     }
 
     return v;
+  }
 
+  public void setOnRecipientDeletedListener(OnRecipientDeletedListener listener) {
+    onRecipientDeletedListener = listener;
+  }
+
+  public interface OnRecipientDeletedListener {
+    public void onRecipientDeleted(Recipient recipient);
   }
 }

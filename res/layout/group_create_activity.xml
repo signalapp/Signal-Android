@@ -3,30 +3,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:padding="20dp">
+              android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="20dp" >
+        android:layout_marginBottom="20dp">
 
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/icon"/>
-        <EditText
-            android:id="@+id/group_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="Group name"
-            android:layout_gravity="center_vertical" />
-        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="106dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="18dp">
 
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/icon"/>
+
+            <EditText
+                android:id="@+id/group_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:hint="Group name"
+                android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/push_disabled"
+            android:layout_width="fill_parent"
+            android:layout_height="106dp"
+            android:background="#dd555555"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="15dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#ff444444"
+                android:textColor="#ffeeeeee"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+                android:textSize="16dp"
+                android:text="You have selected a contact that doesn't support TextSecure groups, so this group will be MMS." />
+
+            </RelativeLayout>
+    </RelativeLayout>
 
     <org.thoughtcrime.securesms.components.PushRecipientsPanel
         android:id="@+id/recipients"

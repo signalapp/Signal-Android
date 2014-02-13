@@ -9,6 +9,12 @@ import com.actionbarsherlock.app.ActionBar;
 import org.thoughtcrime.securesms.R;
 
 public class ActionBarUtil {
+
+  public static void initializeDefaultActionBar(final Context c, final ActionBar actionBar, final int title_resid) {
+    actionBar.setTitle(title_resid);
+    initializeDefaultActionBar(c, actionBar);
+  }
+
   public static void initializeDefaultActionBar(final Context c, final ActionBar actionBar, final String title) {
     actionBar.setTitle(title);
     initializeDefaultActionBar(c, actionBar);
