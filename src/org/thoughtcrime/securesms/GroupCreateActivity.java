@@ -267,7 +267,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
               super.onProgressUpdate(values);
             }
           }.execute();
-          finish();
         }
         return true;
     }
