@@ -111,7 +111,7 @@ public class MmsCommunication {
       Log.w("MmsCommunication", sqe);
       return getLocalMmsConnectionParameters(context);
     } catch (SecurityException se) {
-      Log.w("MmsCommunication", se);
+      Log.i("MmsCommunication", "Couldn't write APN settings, expected. msg: " + se.getMessage());
       return getLocalMmsConnectionParameters(context);
     } catch (IllegalArgumentException iae) {
       Log.w("MmsCommunication", iae);

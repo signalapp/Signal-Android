@@ -134,6 +134,10 @@
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".SingleContactSelectionActivity"
+              android:label="@string/AndroidManifest__select_contact"
+              android:windowSoftInputMode="stateHidden"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PushContactSelectionActivity"
               android:label="@string/AndroidManifest__select_contacts"

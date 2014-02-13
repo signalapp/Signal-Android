@@ -79,14 +79,6 @@ public class PushRecipientsPanel extends RelativeLayout {
     else recipientsText.append(number + ", ");
   }
 
-  public void addContacts(List<ContactAccessor.ContactData> contacts) {
-    for (ContactAccessor.ContactData contact : contacts) {
-      for (ContactAccessor.NumberData number : contact.numbers) {
-        addRecipient(contact.name, number.number);
-      }
-    }
-  }
-
   public void addRecipients(Recipients recipients) {
     List<Recipient> recipientList = recipients.getRecipientsList();
     Iterator<Recipient> iterator = recipientList.iterator();
@@ -130,8 +122,8 @@ public class PushRecipientsPanel extends RelativeLayout {
   }
 
   private void initRecipientsEditor() {
-    Recipients recipients = null;
-    recipientsText        = (RecipientsEditor)findViewById(R.id.recipients_text);
+    Recipients recipients;
+    recipientsText = (RecipientsEditor)findViewById(R.id.recipients_text);
 
     try {
       recipients = getRecipients();

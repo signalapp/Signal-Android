@@ -102,6 +102,7 @@ public class ContactAccessor {
       try {
         if (lookupCursor != null && lookupCursor.moveToFirst()) {
           cursor.addRow(new Object[]{lookupCursor.getLong(0), lookupCursor.getString(1), 1});
+          Log.w("poop", "Adding matrix row for " + lookupCursor.getLong(0) + " : " + lookupCursor.getString(1));
         }
       } finally {
         if (lookupCursor != null)

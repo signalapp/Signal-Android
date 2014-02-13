@@ -171,7 +171,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       @Override
       public void afterTextChanged(Editable editable) {
         if (editable.length() > 0)
-          getSupportActionBar().setTitle(editable);
+          getSupportActionBar().setTitle(getString(R.string.GroupCreateActivity_actionbar_title) + ": " + editable.toString());
         else
           getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
       }

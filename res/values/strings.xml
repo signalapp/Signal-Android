@@ -118,10 +118,9 @@
 
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New Group</string>
+    <string name="GroupCreateActivity_group_name_hint">Group Name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS Group</string>
-    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected contacts that
-        don\'t support TextSecure groups, so this will be an unencrypted MMS group.
-    </string>
+    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support TextSecure groups, so this group will be MMS.</string>
 
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import System SMS Database?</string>
@@ -377,7 +376,10 @@
     <!-- contact_selection_group_activity -->
     <!-- contact_selection_list_activity -->
     <string name="contact_selection_group_activity__no_contacts">No contacts.</string>
-    <string name="contact_selection_group_activity__finding_contacts">Finding contacts...</string>
+    <string name="contact_selection_group_activity__finding_contacts">Finding contacts&#8230;</string>
+
+    <!-- single_contact_selection_activity -->
+    <string name="single_contact_selection_group_activity__filter">Type a name to filter&#8230;</string>
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionlistFragment_select_for">Select for</string>
@@ -569,6 +571,7 @@
     <string name="AndroidManifest__create_passphrase">Create Passphrase</string>
     <string name="AndroidManifest__enter_passphrase">Enter Passphrase</string>
     <string name="AndroidManifest__select_contacts">Select Contacts</string>
+    <string name="AndroidManifest__select_contact">Select Contact</string>
     <string name="AndroidManifest__textsecure_detected">TextSecure Detected</string>
     <string name="AndroidManifest__public_identity_key">Public Identity Key</string>
     <string name="AndroidManifest__change_passphrase">Change Passphrase</string>

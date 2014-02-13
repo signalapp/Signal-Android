@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -167,13 +166,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   @Override
   protected void onStart() {
     super.onStart();
-
-    if (!isExistingConversation())
-      initializeRecipientsInput();
   }
 
   @Override
   protected void onResume() {
+    if (recipients == null || recipients.isEmpty())
+      initializeRecipientsInput();
+
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
@@ -207,28 +206,30 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     Log.w("ComposeMessageActivity", "onActivityResult called: " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
-    if (data == null || resultCode != Activity.RESULT_OK)
-      return;
-
     switch (reqCode) {
     case PICK_CONTACT:
-      List<ContactData> contacts = data.getParcelableArrayListExtra("contacts");
-
-      if (contacts != null)
-        recipientsPanel.addContacts(contacts);
-
+      if (resultCode == RESULT_OK) {
+        List<ContactData> contacts = data.getParcelableArrayListExtra("contacts");
+        if (contacts != null) {
+          recipientsPanel.addContacts(contacts);
+          this.recipients = getRecipients();
+        }
+      } else {
+        Log.w("ConversationActivity", "gonna have a bad time.");
+        finish();
+      }
       break;
     case PICK_IMAGE:
-      addAttachmentImage(data.getData());
+      if (data != null && resultCode == RESULT_OK) addAttachmentImage(data.getData());
       break;
     case PICK_VIDEO:
-      addAttachmentVideo(data.getData());
+      if (data != null && resultCode == RESULT_OK) addAttachmentVideo(data.getData());
       break;
     case PICK_AUDIO:
-      addAttachmentAudio(data.getData());
+      if (data != null && resultCode == RESULT_OK) addAttachmentAudio(data.getData());
       break;
     case PICK_CONTACT_INFO:
-      addContactInfo(data.getData());
+      if (data != null && resultCode == RESULT_OK) addContactInfo(data.getData());
       break;
     }
   }
@@ -649,16 +650,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeRecipientsInput() {
-    recipientsPanel.setVisibility(View.VISIBLE);
-
-    if (this.recipients != null) {
-      recipientsPanel.addRecipients(this.recipients);
-    } else {
-      InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-      input.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
-    }
+    Intent intent = new Intent(ConversationActivity.this, SingleContactSelectionActivity.class);
+    startActivityForResult(intent, PICK_CONTACT);
   }
-
   private void initializeReceivers() {
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
@@ -846,7 +840,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       if (isExistingConversation()) return this.recipients;
       else                          return recipientsPanel.getRecipients();
     } catch (RecipientFormattingException rfe) {
-      Log.w("ConversationActivity", rfe);
+      Log.d("ConversationActivity", "Empty list of recipients retrieved from RecipientsPanel.");
       return null;
     }
   }
