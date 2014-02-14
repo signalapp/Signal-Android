@@ -18,6 +18,8 @@ import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -122,13 +124,16 @@ public class GroupDatabase extends Database {
   }
 
   public void updateAvatar(byte[] groupId, Bitmap avatar) {
+    updateAvatar(groupId, BitmapUtil.toByteArray(avatar));
+  }
+
+  public void updateAvatar(byte[] groupId, byte[] avatar) {
     ContentValues contentValues = new ContentValues();
-    contentValues.put(AVATAR, BitmapUtil.toByteArray(avatar));
+    contentValues.put(AVATAR, avatar);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
   }
-
 
   public void add(byte[] id, String source, List<String> members) {
     List<String> currentMembers = getCurrentMembers(id);
@@ -174,6 +179,16 @@ public class GroupDatabase extends Database {
     } finally {
       if (cursor != null)
         cursor.close();
+    }
+  }
+
+  public byte[] allocateGroupId() {
+    try {
+      byte[] groupId = new byte[16];
+      SecureRandom.getInstance("SHA1PRNG").nextBytes(groupId);
+      return groupId;
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
     }
   }
 

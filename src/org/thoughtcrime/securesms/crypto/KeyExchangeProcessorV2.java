@@ -135,7 +135,9 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     DatabaseFactory.getIdentityDatabase(context)
                    .saveIdentity(masterSecret, recipientDevice.getRecipientId(), message.getIdentityKey());
 
-    broadcastSecurityUpdateEvent(context, threadId);
+    if (threadId != -1) {
+      broadcastSecurityUpdateEvent(context, threadId);
+    }
   }
 
   @Override

@@ -123,6 +123,45 @@ public class PushTransport extends BaseTransport {
     }
   }
 
+  public List<Recipient> deliver(List<Recipient> recipients,
+                                 PushMessageContent.GroupContext groupAction)
+      throws IOException
+  {
+    PushServiceSocket socket    = PushServiceSocketFactory.create(context);
+    byte[]            plaintext = PushMessageContent.newBuilder()
+                                                    .setGroup(groupAction)
+                                                    .build().toByteArray();
+    List<Recipient> failures = new LinkedList<Recipient>();
+
+    for (Recipient recipient : recipients) {
+      try {
+        deliver(socket, recipient, -1, plaintext);
+      } catch (UnregisteredUserException e) {
+        Log.w("PushTransport", e);
+        failures.add(recipient);
+      } catch (InvalidNumberException e) {
+        Log.w("PushTransport", e);
+        failures.add(recipient);
+      } catch (IOException e) {
+        Log.w("PushTransport", e);
+        failures.add(recipient);
+      }
+    }
+
+    if (failures.size() == recipients.size()) {
+      throw new IOException("Total failure.");
+    }
+
+    return failures;
+  }
+
+  public PushAttachmentPointer createAttachment(String contentType, byte[] data)
+      throws IOException
+  {
+    PushServiceSocket socket = PushServiceSocketFactory.create(context);
+    return getPushAttachmentPointer(socket, contentType, data);
+  }
+
   private void deliver(PushServiceSocket socket, Recipient recipient, long threadId, byte[] plaintext)
       throws IOException, InvalidNumberException
   {
@@ -151,17 +190,24 @@ public class PushTransport extends BaseTransport {
           ContentType.isAudioType(contentType) ||
           ContentType.isVideoType(contentType))
       {
-        AttachmentCipher   cipher               = new AttachmentCipher();
-        byte[]             key                  = cipher.getCombinedKeyMaterial();
-        byte[]             ciphertextAttachment = cipher.encrypt(body.getPart(i).getData());
-        PushAttachmentData attachmentData       = new PushAttachmentData(contentType, ciphertextAttachment);
-        long               attachmentId         = socket.sendAttachment(attachmentData);
-
-        attachments.add(new PushAttachmentPointer(contentType, attachmentId, key));
+        attachments.add(getPushAttachmentPointer(socket, contentType, body.getPart(i).getData()));
       }
     }
 
     return attachments;
+  }
+
+  private PushAttachmentPointer getPushAttachmentPointer(PushServiceSocket socket,
+                                                         String contentType, byte[] data)
+      throws IOException
+  {
+    AttachmentCipher   cipher               = new AttachmentCipher();
+    byte[]             key                  = cipher.getCombinedKeyMaterial();
+    byte[]             ciphertextAttachment = cipher.encrypt(data);
+    PushAttachmentData attachmentData       = new PushAttachmentData(contentType, ciphertextAttachment);
+    long               attachmentId         = socket.sendAttachment(attachmentData);
+
+    return new PushAttachmentPointer(contentType, attachmentId, key);
   }
 
   private void handleMismatchedDevices(PushServiceSocket socket, long threadId,

@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,31 +19,43 @@ import android.widget.TextView;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.transport.PushTransport;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.push.PushAttachmentPointer;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 
 public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActivity {
@@ -237,7 +249,15 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
                 avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byteArray = stream.toByteArray();
               }
-              handleCreatePushGroup(groupName.getText().toString(), byteArray, selectedContacts);
+              try {
+                handleCreatePushGroup(groupName.getText().toString(), byteArray, selectedContacts);
+              } catch (IOException e) {
+                // TODO Jake's gonna fill this in.
+                Log.w("GroupCreateActivity", e);
+              } catch (InvalidNumberException e) {
+                // TODO jake's gonna fill this in.
+                Log.w("GroupCreateActivity", e);
+              }
               return null;
             }
 
@@ -334,11 +354,62 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
   }
 
-  private void handleCreatePushGroup(String groupName, byte[] avatar, Set<Recipient> members) {
-    //todo
+  private Pair<Long, List<Recipient>> handleCreatePushGroup(String groupName,
+                                                            byte[] avatar,
+                                                            Set<Recipient> members)
+      throws IOException, InvalidNumberException
+  {
+    List<String>      memberE164Numbers = getE164Numbers(members);
+    PushTransport     transport         = new PushTransport(this, masterSecret);
+    GroupDatabase     groupDatabase     = DatabaseFactory.getGroupDatabase(this);
+    ThreadDatabase    threadDatabase    = DatabaseFactory.getThreadDatabase(this);
+    byte[]            groupId           = groupDatabase.allocateGroupId();
+    AttachmentPointer avatarPointer     = null;
+
+    GroupContext.Builder builder = GroupContext.newBuilder()
+                                               .setId(ByteString.copyFrom(groupId))
+                                               .setType(GroupContext.Type.CREATE)
+                                               .setName(groupName)
+                                               .addAllMembers(memberE164Numbers);
+
+    if (avatar != null) {
+      PushAttachmentPointer pointer = transport.createAttachment("image/png", avatar);
+      avatarPointer = AttachmentPointer.newBuilder()
+                                       .setKey(ByteString.copyFrom(pointer.getKey()))
+                                       .setContentType(pointer.getContentType())
+                                       .setId(pointer.getId()).build();
+      builder.setAvatar(avatarPointer);
+    }
+
+    List<Recipient> failures = transport.deliver(new LinkedList<Recipient>(members), builder.build());
+    groupDatabase.create(groupId, TextSecurePreferences.getLocalNumber(this), groupName,
+                         memberE164Numbers, avatarPointer, null);
+
+    if (avatar != null) {
+      groupDatabase.updateAvatar(groupId, avatar);
+    }
+
+    long threadId = threadDatabase.getThreadIdForGroup(GroupUtil.getEncodedId(groupId));
+
+    return new Pair<Long, List<Recipient>>(threadId, failures);
   }
 
-  private void handleCreateMmsGroup(Set<Recipient> members) {
-    //todo
+  private long handleCreateMmsGroup(Set<Recipient> members) {
+    Recipients recipients = new Recipients(new LinkedList<Recipient>(members));
+    return DatabaseFactory.getThreadDatabase(this)
+                          .getThreadIdFor(recipients,
+                                          ThreadDatabase.DistributionTypes.CONVERSATION);
+  }
+
+  private List<String> getE164Numbers(Set<Recipient> recipients)
+      throws InvalidNumberException
+  {
+    List<String> results = new LinkedList<String>();
+
+    for (Recipient recipient : recipients) {
+      results.add(Util.canonicalizeNumber(this, recipient.getNumber()));
+    }
+
+    return results;
   }
 }
