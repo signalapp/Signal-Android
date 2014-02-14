@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.recipients;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.util.Patterns;
 
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -145,7 +146,10 @@ public class Recipients implements Parcelable {
     while (iterator.hasNext()) {
       String number = iterator.next().getNumber();
 
-      if (scrub && number != null && !Patterns.EMAIL_ADDRESS.matcher(number).matches()) {
+      if (scrub && number != null &&
+          !Patterns.EMAIL_ADDRESS.matcher(number).matches() &&
+          !GroupUtil.isEncodedGroup(number))
+      {
         number = number.replaceAll("[^0-9+]", "");
       }
 

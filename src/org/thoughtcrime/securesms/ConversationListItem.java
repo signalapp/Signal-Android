@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
@@ -102,9 +103,14 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
-    this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
-                                                                Emoji.EMOJI_SMALL),
-                                                                TextView.BufferType.SPANNABLE);
+
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+      this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
+                                                                  Emoji.EMOJI_SMALL),
+                               TextView.BufferType.SPANNABLE);
+    } else {
+      this.subjectView.setText(thread.getDisplayBody());
+    }
 
     if (thread.getDate() > 0)
       this.dateView.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), thread.getDate()));

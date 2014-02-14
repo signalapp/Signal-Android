@@ -108,6 +108,10 @@ public class Recipient implements Parcelable, CanonicalRecipient {
     return this.contactUri;
   }
 
+  public synchronized void setContactPhoto(Bitmap bitmap) {
+    this.contactPhoto = bitmap;
+  }
+
   public synchronized String getName() {
     return this.name;
   }
@@ -147,6 +151,18 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
   public synchronized void removeListener(RecipientModifiedListener listener) {
     listeners.remove(listener);
+  }
+
+  public void notifyListeners() {
+    HashSet<RecipientModifiedListener> localListeners;
+
+    synchronized (this) {
+      localListeners = (HashSet<RecipientModifiedListener>)listeners.clone();
+    }
+
+    for (RecipientModifiedListener listener : localListeners) {
+      listener.onModified(this);
+    }
   }
 
   public synchronized void writeToParcel(Parcel dest, int flags) {

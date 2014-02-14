@@ -20,11 +20,15 @@ public class IncomingMediaMessage {
   private final PduHeaders headers;
   private final PduBody    body;
   private final String     groupId;
+  private final int        groupAction;
+  private final String     groupActionArguments;
 
   public IncomingMediaMessage(RetrieveConf retreived) {
-    this.headers = retreived.getPduHeaders();
-    this.body    = retreived.getBody();
-    this.groupId = null;
+    this.headers              = retreived.getPduHeaders();
+    this.body                 = retreived.getBody();
+    this.groupId              = null;
+    this.groupAction          = -1;
+    this.groupActionArguments = null;
   }
 
   public IncomingMediaMessage(MasterSecret masterSecret, String localNumber,
@@ -35,9 +39,13 @@ public class IncomingMediaMessage {
     this.body    = new PduBody();
 
     if (messageContent.hasGroup()) {
-      this.groupId = GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray());
+      this.groupId              = GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray());
+      this.groupAction          = messageContent.getGroup().getType().getNumber();
+      this.groupActionArguments = GroupUtil.getActionArgument(messageContent.getGroup());
     } else {
-      this.groupId = null;
+      this.groupId              = null;
+      this.groupAction          = -1;
+      this.groupActionArguments = null;
     }
 
     this.headers.setEncodedStringValue(new EncodedStringValue(message.getSource()), PduHeaders.FROM);
@@ -90,4 +98,11 @@ public class IncomingMediaMessage {
          headers.getEncodedStringValues(PduHeaders.TO).length > 1);
   }
 
+  public int getGroupAction() {
+    return groupAction;
+  }
+
+  public String getGroupActionArguments() {
+    return groupActionArguments;
+  }
 }

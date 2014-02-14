@@ -26,7 +26,6 @@ import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -66,7 +65,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     THREAD_ID + " INTEGER, " + ADDRESS + " TEXT, " + ADDRESS_DEVICE_ID + " INTEGER DEFAULT 1, " + PERSON + " INTEGER, " +
     DATE_RECEIVED  + " INTEGER, " + DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
     STATUS + " INTEGER DEFAULT -1," + TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " +
-    SUBJECT + " TEXT, " + BODY + " TEXT, " + SERVICE_CENTER + " TEXT);";
+    SUBJECT + " TEXT, " + BODY + " TEXT, " + SERVICE_CENTER + " TEXT, " +
+    GROUP_ACTION + " INTEGER DEFAULT -1, " + GROUP_ACTION_ARGUMENTS + " TEXT);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -80,7 +80,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
       DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
       PROTOCOL, READ, STATUS, TYPE,
-      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER
+      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, GROUP_ACTION, GROUP_ACTION_ARGUMENTS
   };
 
   public SmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
@@ -303,6 +303,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     values.put(BODY, message.getMessageBody());
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
+    values.put(GROUP_ACTION, message.getGroupAction());
+    values.put(GROUP_ACTION_ARGUMENTS, message.getGroupActionArgument());
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long messageId    = db.insert(TABLE_NAME, null, values);
@@ -338,6 +340,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       contentValues.put(DATE_SENT, date);
       contentValues.put(READ, 1);
       contentValues.put(TYPE, type);
+      contentValues.put(GROUP_ACTION, message.getGroupAction());
+      contentValues.put(GROUP_ACTION_ARGUMENTS, message.getGroupActionArguments());
 
       SQLiteDatabase db = databaseHelper.getWritableDatabase();
       messageIds.add(db.insert(TABLE_NAME, ADDRESS, contentValues));
@@ -494,6 +498,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       long dateSent           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_SENT));
       long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
       int status              = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
+      int groupAction         = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.GROUP_ACTION));
+      String groupActionArgs  = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.GROUP_ACTION_ARGUMENTS));
       Recipients recipients   = getRecipientsFor(address);
       DisplayRecord.Body body = getBody(cursor);
 
@@ -501,7 +507,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
                                    recipients.getPrimaryRecipient(),
                                    addressDeviceId,
                                    dateSent, dateReceived, type,
-                                   threadId, status);
+                                   threadId, status, groupAction, groupActionArgs);
     }
 
     private Recipients getRecipientsFor(String address) {

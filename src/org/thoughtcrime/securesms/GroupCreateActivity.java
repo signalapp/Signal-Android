@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.transport.PushTransport;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -366,6 +367,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     byte[]            groupId           = groupDatabase.allocateGroupId();
     AttachmentPointer avatarPointer     = null;
 
+    memberE164Numbers.add(TextSecurePreferences.getLocalNumber(this));
+
     GroupContext.Builder builder = GroupContext.newBuilder()
                                                .setId(ByteString.copyFrom(groupId))
                                                .setType(GroupContext.Type.CREATE)
@@ -389,9 +392,23 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       groupDatabase.updateAvatar(groupId, avatar);
     }
 
-    long threadId = threadDatabase.getThreadIdForGroup(GroupUtil.getEncodedId(groupId));
+    try {
+      String              groupRecipientId = GroupUtil.getEncodedId(groupId);
+      Recipient           groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false).getPrimaryRecipient();
+      OutgoingTextMessage outgoing         = new OutgoingTextMessage(groupRecipient, GroupContext.Type.ADD_VALUE, org.whispersystems.textsecure.util.Util.join(memberE164Numbers, ","));
+      long                threadId         = threadDatabase.getThreadIdFor(new Recipients(groupRecipient));
+      List<Long>          messageIds       = DatabaseFactory.getEncryptingSmsDatabase(this)
+                                                            .insertMessageOutbox(masterSecret, threadId, outgoing);
 
-    return new Pair<Long, List<Recipient>>(threadId, failures);
+      for (long messageId : messageIds) {
+        DatabaseFactory.getEncryptingSmsDatabase(this).markAsSent(messageId);
+      }
+
+
+      return new Pair<Long, List<Recipient>>(threadId, failures);
+    } catch (RecipientFormattingException e) {
+      throw new AssertionError(e);
+    }
   }
 
   private long handleCreateMmsGroup(Set<Recipient> members) {

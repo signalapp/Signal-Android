@@ -36,22 +36,26 @@ public abstract class DisplayRecord {
   protected final long type;
 
   private final Recipients recipients;
-  private final long dateSent;
-  private final long dateReceived;
-  private final long threadId;
-  private final Body body;
-//  private final String body;
+  private final long       dateSent;
+  private final long       dateReceived;
+  private final long       threadId;
+  private final Body       body;
+  private final int        groupAction;
+  private final String     groupActionArguments;
 
   public DisplayRecord(Context context, Body body, Recipients recipients, long dateSent,
-                       long dateReceived, long threadId, long type)
+                       long dateReceived, long threadId, long type, int groupAction,
+                       String groupActionArguments)
   {
-    this.context      = context.getApplicationContext();
-    this.threadId     = threadId;
-    this.recipients   = recipients;
-    this.dateSent     = dateSent;
-    this.dateReceived = dateReceived;
-    this.type         = type;
-    this.body         = body;
+    this.context              = context.getApplicationContext();
+    this.threadId             = threadId;
+    this.recipients           = recipients;
+    this.dateSent             = dateSent;
+    this.dateReceived         = dateReceived;
+    this.type                 = type;
+    this.body                 = body;
+    this.groupAction          = groupAction;
+    this.groupActionArguments = groupActionArguments;
   }
 
   public Body getBody() {
@@ -78,6 +82,14 @@ public abstract class DisplayRecord {
 
   public boolean isKeyExchange() {
     return SmsDatabase.Types.isKeyExchangeType(type);
+  }
+
+  public int getGroupAction() {
+    return groupAction;
+  }
+
+  public String getGroupActionArguments() {
+    return groupActionArguments;
   }
 
   public static class Body {

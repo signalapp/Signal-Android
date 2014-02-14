@@ -53,9 +53,9 @@ public abstract class MessageRecord extends DisplayRecord {
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived,
                 long threadId, int deliveryStatus,
-                long type)
+                long type, int groupAction, String groupActionArguments)
   {
-    super(context, body, recipients, dateSent, dateReceived, threadId, type);
+    super(context, body, recipients, dateSent, dateReceived, threadId, type, groupAction, groupActionArguments);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;

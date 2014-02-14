@@ -4,10 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 
 import java.util.List;
+
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 public class IncomingTextMessage implements Parcelable {
 
@@ -32,6 +35,8 @@ public class IncomingTextMessage implements Parcelable {
   private final String  pseudoSubject;
   private final long    sentTimestampMillis;
   private final String  groupId;
+  private final int     groupAction;
+  private final String  groupActionArgument;
 
   public IncomingTextMessage(SmsMessage message) {
     this.message              = message.getDisplayMessageBody();
@@ -43,9 +48,11 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = message.getPseudoSubject();
     this.sentTimestampMillis  = message.getTimestampMillis();
     this.groupId              = null;
+    this.groupAction          = -1;
+    this.groupActionArgument  = null;
   }
 
-  public IncomingTextMessage(IncomingPushMessage message, String encodedBody, String groupId) {
+  public IncomingTextMessage(IncomingPushMessage message, String encodedBody, GroupContext group) {
     this.message              = encodedBody;
     this.sender               = message.getSource();
     this.senderDeviceId       = message.getSourceDevice();
@@ -54,7 +61,16 @@ public class IncomingTextMessage implements Parcelable {
     this.replyPathPresent     = true;
     this.pseudoSubject        = "";
     this.sentTimestampMillis  = message.getTimestampMillis();
-    this.groupId              = groupId;
+
+    if (group != null) {
+      this.groupId             = GroupUtil.getEncodedId(group.getId().toByteArray());
+      this.groupAction         = group.getType().getNumber();
+      this.groupActionArgument = GroupUtil.getActionArgument(group);
+    } else {
+      this.groupId             = null;
+      this.groupAction         = -1;
+      this.groupActionArgument = null;
+    }
   }
 
   public IncomingTextMessage(Parcel in) {
@@ -67,6 +83,8 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = in.readString();
     this.sentTimestampMillis  = in.readLong();
     this.groupId              = in.readString();
+    this.groupAction          = in.readInt();
+    this.groupActionArgument  = in.readString();
   }
 
   public IncomingTextMessage(IncomingTextMessage base, String newBody) {
@@ -79,6 +97,8 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = base.getPseudoSubject();
     this.sentTimestampMillis  = base.getSentTimestampMillis();
     this.groupId              = base.getGroupId();
+    this.groupAction          = base.getGroupAction();
+    this.groupActionArgument  = base.getGroupActionArgument();
   }
 
   public IncomingTextMessage(List<IncomingTextMessage> fragments) {
@@ -97,6 +117,8 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = fragments.get(0).getPseudoSubject();
     this.sentTimestampMillis  = fragments.get(0).getSentTimestampMillis();
     this.groupId              = fragments.get(0).getGroupId();
+    this.groupAction          = fragments.get(0).getGroupAction();
+    this.groupActionArgument  = fragments.get(0).getGroupActionArgument();
   }
 
   public long getSentTimestampMillis() {
@@ -151,6 +173,14 @@ public class IncomingTextMessage implements Parcelable {
     return groupId;
   }
 
+  public int getGroupAction() {
+    return groupAction;
+  }
+
+  public String getGroupActionArgument() {
+    return groupActionArgument;
+  }
+
   @Override
   public int describeContents() {
     return 0;
@@ -167,5 +197,7 @@ public class IncomingTextMessage implements Parcelable {
     out.writeString(pseudoSubject);
     out.writeLong(sentTimestampMillis);
     out.writeString(groupId);
+    out.writeInt(groupAction);
+    out.writeString(groupActionArgument);
   }
 }

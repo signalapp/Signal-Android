@@ -833,11 +833,12 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private boolean isSingleConversation() {
-    return getRecipients() != null && getRecipients().isSingleRecipient();
+    return getRecipients() != null && getRecipients().isSingleRecipient() && !getRecipients().isGroupRecipient();
   }
 
   private boolean isGroupConversation() {
-    return getRecipients() != null && !getRecipients().isSingleRecipient();
+    return getRecipients() != null &&
+        (!getRecipients().isSingleRecipient() || getRecipients().isGroupRecipient());
   }
 
   private Recipients getRecipients() {

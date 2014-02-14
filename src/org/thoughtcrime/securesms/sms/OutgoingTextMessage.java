@@ -7,20 +7,33 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public class OutgoingTextMessage {
 
   private final Recipients recipients;
-  private       String     message;
+  private final String     message;
+  private final int        groupAction;
+  private final String     groupActionArguments;
 
   public OutgoingTextMessage(Recipient recipient, String message) {
     this(new Recipients(recipient), message);
   }
 
   public OutgoingTextMessage(Recipients recipients, String message) {
-    this.recipients = recipients;
-    this.message    = message;
+    this.recipients           = recipients;
+    this.message              = message;
+    this.groupAction          = -1;
+    this.groupActionArguments = null;
+  }
+
+  public OutgoingTextMessage(Recipient recipient, int groupAction, String groupActionArguments) {
+    this.recipients           = new Recipients(recipient);
+    this.groupAction          = groupAction;
+    this.groupActionArguments = groupActionArguments;
+    this.message              = "";
   }
 
   protected OutgoingTextMessage(OutgoingTextMessage base, String body) {
-    this.recipients     = base.getRecipients();
-    this.message        = body;
+    this.recipients           = base.getRecipients();
+    this.groupAction          = base.getGroupAction();
+    this.groupActionArguments = base.getGroupActionArguments();
+    this.message              = body;
   }
 
   public String getMessageBody() {
@@ -55,5 +68,13 @@ public class OutgoingTextMessage {
 
   public OutgoingTextMessage withBody(String body) {
     return new OutgoingTextMessage(this, body);
+  }
+
+  public int getGroupAction() {
+    return groupAction;
+  }
+
+  public String getGroupActionArguments() {
+    return groupActionArguments;
   }
 }

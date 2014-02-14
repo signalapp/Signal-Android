@@ -10,7 +10,8 @@ public interface MmsSmsColumns {
   public static final String BODY                     = "body";
   public static final String ADDRESS                  = "address";
   public static final String ADDRESS_DEVICE_ID        = "address_device_id";
-
+  public static final String GROUP_ACTION             = "group_action";
+  public static final String GROUP_ACTION_ARGUMENTS   = "group_action_arguments";
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;

@@ -24,7 +24,10 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.util.Util;
+
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
  * The message record model which represents thread heading messages.
@@ -41,9 +44,9 @@ public class ThreadRecord extends DisplayRecord {
 
   public ThreadRecord(Context context, Body body, Recipients recipients, long date,
                       long count, boolean read, long threadId, long snippetType,
-                      int distributionType)
+                      int distributionType, int groupAction, String groupActionArg)
   {
-    super(context, body, recipients, date, date, threadId, snippetType);
+    super(context, body, recipients, date, date, threadId, snippetType, groupAction, groupActionArg);
     this.context          = context.getApplicationContext();
     this.count            = count;
     this.read             = read;
@@ -54,6 +57,14 @@ public class ThreadRecord extends DisplayRecord {
   public SpannableString getDisplayBody() {
     if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
+    } else if (getGroupAction() == GroupContext.Type.ADD_VALUE ||
+               getGroupAction() == GroupContext.Type.CREATE_VALUE)
+    {
+      return emphasisAdded("Added " + getGroupActionArguments());
+    } else if (getGroupAction() == GroupContext.Type.QUIT_VALUE) {
+      return emphasisAdded(getRecipients().toShortString() + " left the group.");
+    } else if (getGroupAction() == GroupContext.Type.MODIFY_VALUE) {
+      return emphasisAdded(getRecipients().toShortString() + " modified the group.");
     } else if (isKeyExchange()) {
       return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {

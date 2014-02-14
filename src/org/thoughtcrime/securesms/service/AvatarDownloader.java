@@ -9,8 +9,12 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -55,7 +59,16 @@ public class AvatarDownloader {
 
         database.updateAvatar(groupId, avatar);
 
-        avatar.recycle();
+        try {
+          Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
+                                                     .getPrimaryRecipient();
+          groupRecipient.setContactPhoto(avatar);
+          groupRecipient.notifyListeners();
+        } catch (RecipientFormattingException e) {
+          Log.w("AvatarDownloader", e);
+        }
+
+//        avatar.recycle();
         attachment.delete();
       }
     } catch (IOException e) {

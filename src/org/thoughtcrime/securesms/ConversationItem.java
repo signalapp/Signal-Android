@@ -31,6 +31,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -60,6 +61,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
@@ -68,6 +70,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -175,8 +179,25 @@ public class ConversationItem extends LinearLayout {
   /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
-    bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
-        TextView.BufferType.SPANNABLE);
+    switch (messageRecord.getGroupAction()) {
+      case GroupContext.Type.QUIT_VALUE:
+        bodyText.setText(messageRecord.getIndividualRecipient().toShortString() + " has left the group.");
+        return;
+      case GroupContext.Type.ADD_VALUE:
+      case GroupContext.Type.CREATE_VALUE:
+        bodyText.setText(messageRecord.getGroupActionArguments() + " have joined the group.");
+        return;
+      case GroupContext.Type.MODIFY_VALUE:
+        bodyText.setText(messageRecord.getIndividualRecipient() + " has updated the group.");
+        return;
+    }
+
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+      bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
+                       TextView.BufferType.SPANNABLE);
+    } else {
+      bodyText.setText(messageRecord.getDisplayBody());
+    }
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {

@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
@@ -35,7 +34,6 @@ import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.util.Hex;
 
 import ws.com.google.android.mms.MmsException;
 
@@ -220,7 +218,7 @@ public class PushReceiver {
 
     if (messageContent.getAttachmentsCount() > 0) {
       handleReceivedMediaMessage(masterSecret, message, messageContent, secure);
-    } else if (messageContent.hasBody()) {
+    } else {
       handleReceivedTextMessage(masterSecret, message, messageContent, secure);
     }
   }
@@ -263,8 +261,7 @@ public class PushReceiver {
                                          boolean secure)
   {
     EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
-    String                groupId     = messageContent.hasGroup() ? GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray()) : null;
-    IncomingTextMessage   textMessage = new IncomingTextMessage(message, "", groupId);
+    IncomingTextMessage   textMessage = new IncomingTextMessage(message, "", messageContent.getGroup());
 
     if (secure) {
       textMessage = new IncomingEncryptedMessage(textMessage, "");

@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 
@@ -90,11 +91,20 @@ public class GroupDatabase extends Database {
                      List<String> members, AttachmentPointer avatar,
                      String relay)
   {
+    List<String> filteredMembers = new LinkedList<String>();
+    String       localNumber     = TextSecurePreferences.getLocalNumber(context);
+
+    for (String member : members) {
+      if (!member.equals(localNumber)) {
+        filteredMembers.add(member);
+      }
+    }
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
     contentValues.put(OWNER, owner);
     contentValues.put(TITLE, title);
-    contentValues.put(MEMBERS, Util.join(members, ","));
+    contentValues.put(MEMBERS, Util.join(filteredMembers, ","));
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
@@ -147,7 +157,7 @@ public class GroupDatabase extends Database {
         contents.put(MEMBERS, Util.join(concatenatedMembers, ","));
 
         databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
-                                                    new String[] {Hex.toString(id)});
+                                                    new String[] {GroupUtil.getEncodedId(id)});
       }
     }
   }
@@ -160,7 +170,7 @@ public class GroupDatabase extends Database {
     contents.put(MEMBERS, Util.join(currentMembers, ","));
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
-                                                new String[]{Hex.toString(id)});
+                                                new String[]{GroupUtil.getEncodedId(id)});
   }
 
   private List<String> getCurrentMembers(byte[] id) {
@@ -168,7 +178,8 @@ public class GroupDatabase extends Database {
 
     try {
       cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {MEMBERS},
-                                                          GROUP_ID + " = ?", new String[] {Hex.toString(id)},
+                                                          GROUP_ID + " = ?",
+                                                          new String[] {GroupUtil.getEncodedId(id)},
                                                           null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
