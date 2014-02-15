@@ -77,7 +77,7 @@ public class GroupDatabase extends Database {
 
     for (String member : members) {
       try {
-        recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, true)
+        recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, false)
                                           .getRecipientsList());
       } catch (RecipientFormattingException e) {
         Log.w("GroupDatabase", e);

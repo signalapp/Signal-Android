@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -84,6 +85,7 @@ import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
@@ -427,19 +429,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void handleDisplayGroupRecipients() {
-    List<String> recipientStrings = new LinkedList<String>();
-
-    for (Recipient recipient : getRecipients().getRecipientsList()) {
-      recipientStrings.add(recipient.toShortString());
-    }
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.ConversationActivity_group_conversation_recipients);
-    builder.setIcon(R.drawable.ic_menu_groups_holo_dark);
-    builder.setCancelable(true);
-    builder.setItems(recipientStrings.toArray(new String[]{}), null);
-    builder.setPositiveButton(android.R.string.ok, null);
-    builder.show();
+    new GroupMembersDialog(this, getRecipients()).display();
   }
 
   private void handleDeleteThread() {
