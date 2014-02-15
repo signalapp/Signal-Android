@@ -52,7 +52,7 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
   }
 
   public IncomingPushMessage(IncomingPushMessageSignal signal) {
-    this.type         = signal.getType();
+    this.type         = signal.getType().getNumber();
     this.source       = signal.getSource();
     this.sourceDevice = signal.getSourceDevice();
     this.message      = signal.getMessage().toByteArray();
@@ -132,10 +132,10 @@ public class IncomingPushMessage implements PushMessage, Parcelable {
   }
 
   public boolean isSecureMessage() {
-    return getType() == PushMessage.TYPE_MESSAGE_CIPHERTEXT;
+    return getType() == IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE;
   }
 
   public boolean isPreKeyBundle() {
-    return getType() == PushMessage.TYPE_MESSAGE_PREKEY_BUNDLE;
+    return getType() == IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE;
   }
 }

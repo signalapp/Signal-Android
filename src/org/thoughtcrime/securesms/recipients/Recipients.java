@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.recipients;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 import android.util.Patterns;
 
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
