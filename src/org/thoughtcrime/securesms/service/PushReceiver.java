@@ -148,7 +148,6 @@ public class PushReceiver {
                                      boolean secure)
   {
     try {
-      Log.w("PushReceiver", "Processing: " + new String(message.getBody()));
       PushMessageContent messageContent = PushMessageContent.parseFrom(message.getBody());
 
       if (messageContent.hasGroup()) {
@@ -261,7 +260,9 @@ public class PushReceiver {
                                          boolean secure)
   {
     EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
-    IncomingTextMessage   textMessage = new IncomingTextMessage(message, "", messageContent.getGroup());
+    IncomingTextMessage   textMessage = new IncomingTextMessage(message, "",
+                                                                messageContent.hasGroup() ?
+                                                                    messageContent.getGroup() : null);
 
     if (secure) {
       textMessage = new IncomingEncryptedMessage(textMessage, "");
