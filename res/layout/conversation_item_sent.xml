@@ -20,8 +20,8 @@
                       android:layout_height="match_parent"
                       android:orientation="vertical"
                       android:gravity="right"
-                      android:layout_alignParentRight="true"
-                      android:visibility="gone">
+                      android:layout_marginLeft="6dp"
+                      android:layout_alignParentLeft="true">
 
             <ImageView
                 android:id="@+id/sms_failed_indicator"
