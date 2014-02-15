@@ -1,103 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.ConversationItem
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/conversation_item"
+<org.thoughtcrime.securesms.ConversationItem android:id="@+id/conversation_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:paddingRight="10dip"
-    android:orientation="horizontal"
-    android:background="?conversation_background">
+    android:orientation="vertical"
+    android:background="?conversation_background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:id="@+id/group_message_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif-light"
+        android:textSize="13sp"
+        android:textColor="?attr/conversation_group_member_name"
+        android:visibility="gone" />
 
     <RelativeLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:layout_marginTop="6dp"
-                  android:layout_marginLeft="10dp"
-                  android:layout_marginBottom="6dp"
-                  android:layout_marginRight="0dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="0dp"
+        android:orientation="horizontal">
 
-        <ImageView  xmlns:android="http://schemas.android.com/apk/res/android"
-               android:id="@+id/contact_photo"
-               android:layout_alignParentLeft="true"
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:cropToPadding="true"
-               android:scaleType="centerCrop"
-               android:layout_marginRight="10dp"
-            />
-
-        <View
-            android:id="@+id/triangle_tick"
-            android:background="@drawable/conversation_item_received_triangle_shape"
+        <ImageView android:id="@+id/contact_photo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentLeft="true"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop" />
+        <View android:id="@+id/triangle_tick"
             android:layout_width="12dp"
             android:layout_height="15dp"
             android:layout_marginTop="12dp"
             android:layout_alignRight="@id/contact_photo"
-            />
+            android:background="@drawable/conversation_item_received_triangle_shape" />
 
         <LinearLayout android:id="@+id/conversation_item_parent"
-                      android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
-                      android:layout_toRightOf="@id/triangle_tick"
-                      android:background="@drawable/conversation_item_received_shape"
-                      android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/triangle_tick"
+            android:background="@drawable/conversation_item_received_shape"
+            android:orientation="vertical">
 
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:paddingTop="5dip"
-                          android:paddingLeft="10dp"
-                          android:paddingRight="10dp">
-
-                <ImageView
-                    android:id="@+id/key_exchange_indicator"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dip"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:orientation="horizontal">
+                <ImageView android:id="@+id/key_exchange_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_menu_login"
-                    android:visibility="gone"
-                    android:contentDescription="Key Exchange Indicator"/>
-
+                    android:contentDescription="Key Exchange Indicator"
+                    android:visibility="gone" />
                 <TextView android:id="@+id/conversation_item_body"
-                    android:autoLink="all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:linksClickable="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?conversation_received_text_primary_color"
-                    android:textSize="16sp" />
-
+                    android:textSize="16sp"
+                    android:autoLink="all"
+                    android:linksClickable="true" />
             </LinearLayout>
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/mms_view"
+            <FrameLayout android:id="@+id/mms_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/image_view"
+                <ImageView android:id="@+id/image_view"
                     android:layout_width="230dip"
                     android:layout_height="174dip"
                     android:layout_gravity="center"
                     android:scaleType="centerInside"
                     android:adjustViewBounds="true"
-                    android:visibility="gone"
-                    android:contentDescription="Message Media"/>
-
-                <ImageButton
-                    android:id="@+id/play_slideshow_button"
+                    android:contentDescription="Message Media"
+                    android:visibility="gone" />
+                <ImageButton android:id="@+id/play_slideshow_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/mms_play_btn"
                     android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:contentDescription="Play Button"/>
-
+                    android:src="@drawable/mms_play_btn"
+                    android:contentDescription="Play Button"
+                    android:visibility="gone" />
             </FrameLayout>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/mms_download_controls"
+            <LinearLayout android:id="@+id/mms_download_controls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -120,75 +114,61 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="match_parent"
-                          android:orientation="horizontal"
-                          android:gravity="left"
-                          android:paddingTop="2dip"
-                          android:paddingLeft="8dp"
-                          android:paddingRight="5dp"
-                          android:paddingBottom="5dp" >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="2dip"
+                android:paddingLeft="8dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:orientation="horizontal"
+                android:gravity="left">
 
-              <ImageView android:id="@+id/delivered_indicator"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:paddingRight="3dip"
-                         android:src="?conversation_delivered_indicator"
-                         android:visibility="gone"
-                         android:contentDescription="Delivered Indicator"/>
-
-		      <TextView android:id="@+id/group_message_status"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:linksClickable="false"
-		                android:textAppearance="?android:attr/textAppearanceSmall"
-		                android:layout_gravity="left"
-		                android:textColor="?conversation_received_text_secondary_color"
-		                android:visibility="gone"
-		                android:layout_marginRight="8dip"
-		                android:paddingTop="1dip"/>
+                <ImageView android:id="@+id/delivered_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dip"
+                    android:src="?conversation_delivered_indicator"
+                    android:contentDescription="Delivered Indicator"
+                    android:visibility="gone" />
 
                 <ImageView android:id="@+id/sms_secure_indicator"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:src="?menu_lock_icon_small"
-                           android:layout_gravity="center_vertical"
-                           android:visibility="gone"
-                           android:paddingRight="4dp"
-                           android:paddingTop="2dp"
-                           android:contentDescription="Secure Message Indicator"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:src="?menu_lock_icon_small"
+                    android:contentDescription="Secure Message Indicator"
+                    android:visibility="gone" />
 
-		      <TextView android:id="@+id/conversation_item_date"
-		                android:autoLink="all"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:linksClickable="false"
-		                android:textAppearance="?android:attr/textAppearanceSmall"
-		                android:layout_gravity="left"
-		                android:textColor="?conversation_received_text_secondary_color"
-                        android:fontFamily="sans-serif-light"
-		                android:paddingTop="1dip" />
-
+                <TextView android:id="@+id/conversation_item_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:paddingTop="1dip"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="?conversation_received_text_secondary_color"
+                    android:fontFamily="sans-serif-light"
+                    android:autoLink="all"
+                    android:linksClickable="false" />
 		    </LinearLayout>
         </LinearLayout>
 
-       <LinearLayout android:id="@+id/indicators_parent"
-                      android:layout_width="wrap_content"
-                      android:layout_height="fill_parent"
-                      android:orientation="vertical"
-                      android:layout_alignParentRight="true"
-                      android:gravity="center_vertical"
-                      android:background="?conversation_background">
+        <LinearLayout android:id="@+id/indicators_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:background="?conversation_background">
 
-
-
-            <ImageView
-                android:id="@+id/sms_failed_indicator"
+            <ImageView android:id="@+id/sms_failed_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_list_alert_sms_failed"
-                android:visibility="gone"
-                android:contentDescription="Send Failed Indicator"/>
+                android:contentDescription="Send Failed Indicator"
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>

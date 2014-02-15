@@ -21,13 +21,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -48,8 +42,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.webkit.MimeTypeMap;
 
-import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -61,7 +53,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Emoji;
-import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
@@ -338,12 +329,6 @@ public class ConversationItem extends LinearLayout {
 
       context.startActivity(intent);
     }
-  }
-
-  private void setContactPhotoForUserIdentity() {
-    Uri uri = ContactIdentityManager.getInstance(context).getSelfIdentityUri();
-    contactPhoto.setImageBitmap(ContactPhotoFactory.getLocalUserContactPhoto(context, uri));
-    contactPhoto.setVisibility(View.VISIBLE);
   }
 
   private void setContactPhotoForRecipient(final Recipient recipient) {

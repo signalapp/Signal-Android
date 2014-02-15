@@ -11,6 +11,7 @@
 
         <item name="actionbar_icon">@drawable/actionbar_icon_holo_light</item>
 
+        <item name="conversation_group_member_name">#99000000</item>
         <item name="conversation_sent_text_primary_color">#ffeeeeee</item>
         <item name="conversation_sent_text_secondary_color">#44000000</item>
         <item name="conversation_received_text_primary_color">#ff111111</item>
@@ -29,6 +30,7 @@
 
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_light</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_light</item>
+        <item name="menu_group_icon">@drawable/ic_menu_groups_holo_light</item>
         <item name="menu_search_icon">@drawable/ic_menu_search_holo_light</item>
         <item name="menu_call_icon">@drawable/ic_menu_call_holo_light</item>
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_light</item>
@@ -36,6 +38,7 @@
         <item name="menu_lock_icon_small">@drawable/ic_menu_lock_small_holo_light</item>
         <item name="menu_trash_icon">@drawable/ic_menu_trash_holo_light</item>
         <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_light</item>
+        <item name="menu_split_icon">@drawable/ic_menu_split_holo_light</item>
 
     </style>
 
@@ -59,6 +62,7 @@
         <item name="conversation_list_item_subject_color">#ffdddddd</item>
         <item name="conversation_list_item_date_color">#ffdddddd</item>
 
+        <item name="conversation_group_member_name">#99ffffff</item>
         <item name="conversation_sent_text_primary_color">#ffeeeeee</item>
         <item name="conversation_sent_text_secondary_color">#44000000</item>
         <item name="conversation_received_text_primary_color">#ff111111</item>
@@ -79,12 +83,14 @@
 
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_dark</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_dark</item>
+        <item name="menu_group_icon">@drawable/ic_menu_groups_holo_dark</item>
         <item name="menu_search_icon">@drawable/ic_menu_search_holo_dark</item>
         <item name="menu_call_icon">@drawable/ic_menu_call_holo_dark</item>
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_dark</item>
         <item name="menu_lock_icon">@drawable/ic_menu_lock_holo_dark</item>
         <item name="menu_trash_icon">@drawable/ic_menu_trash_holo_dark</item>
         <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_dark</item>
+        <item name="menu_split_icon">@drawable/ic_menu_split_holo_dark</item>
     </style>
 
     <style name="TextSecure.DarkTheme.NavigationDrawer"

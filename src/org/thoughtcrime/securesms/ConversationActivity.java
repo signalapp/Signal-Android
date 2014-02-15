@@ -435,7 +435,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.ConversationActivity_group_conversation_recipients);
-    builder.setIcon(R.drawable.ic_groups_holo_dark);
+    builder.setIcon(R.drawable.ic_menu_groups_holo_dark);
     builder.setCancelable(true);
     builder.setItems(recipientStrings.toArray(new String[]{}), null);
     builder.setPositiveButton(android.R.string.ok, null);

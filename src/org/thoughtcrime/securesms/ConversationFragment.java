@@ -188,7 +188,7 @@ public class ConversationFragment extends SherlockListFragment
     if (this.recipients != null && this.threadId != -1) {
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
                                                   new FailedIconClickHandler(),
-                                                  !this.recipients.isSingleRecipient()));
+                                                  (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient()));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }

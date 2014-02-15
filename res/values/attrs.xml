@@ -9,6 +9,7 @@
     <attr name="conversation_list_item_date_color" format="reference|color"/>
 
     <attr name="conversation_sent_card_background" format="reference|color"/>
+    <attr name="conversation_group_member_name" format="reference|color"/>
     <attr name="conversation_sent_text_primary_color" format="reference|color"/>
     <attr name="conversation_sent_text_secondary_color" format="reference|color"/>
     <attr name="conversation_received_card_background" format="reference|color"/>
@@ -42,4 +43,6 @@
     <attr name="menu_lock_icon_small" format="reference" />
     <attr name="menu_trash_icon" format="reference" />
     <attr name="menu_selectall_icon" format="reference" />
+    <attr name="menu_group_icon" format="reference" />
+    <attr name="menu_split_icon" format="reference" />
 </resources>
