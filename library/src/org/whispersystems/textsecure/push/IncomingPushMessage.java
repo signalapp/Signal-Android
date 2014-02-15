@@ -21,7 +21,7 @@ import android.os.Parcelable;
 
 import org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
 
-public class IncomingPushMessage implements PushMessage, Parcelable {
+public class IncomingPushMessage implements Parcelable {
 
   public static final Parcelable.Creator<IncomingPushMessage> CREATOR = new Parcelable.Creator<IncomingPushMessage>() {
     @Override

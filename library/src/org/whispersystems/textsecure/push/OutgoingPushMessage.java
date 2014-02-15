@@ -18,7 +18,7 @@ package org.whispersystems.textsecure.push;
 
 import org.whispersystems.textsecure.util.Base64;
 
-public class OutgoingPushMessage implements PushMessage {
+public class OutgoingPushMessage {
 
   private int    type;
   private int    destinationDeviceId;

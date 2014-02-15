@@ -61,6 +61,8 @@ import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.SendReq;
 
+import static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
+
 public class PushTransport extends BaseTransport {
 
   private final Context      context;
@@ -315,9 +317,9 @@ public class PushTransport extends BaseTransport {
     CiphertextMessage message = cipher.encrypt(plaintext);
 
     if (message.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
-      return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_PREKEY_BUNDLE, message.serialize());
+      return new PushBody(IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE, message.serialize());
     } else if (message.getType() == CiphertextMessage.CURRENT_WHISPER_TYPE) {
-      return new PushBody(OutgoingPushMessage.TYPE_MESSAGE_CIPHERTEXT, message.serialize());
+      return new PushBody(IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE, message.serialize());
     } else {
       throw new AssertionError("Unknown ciphertext type: " + message.getType());
     }
