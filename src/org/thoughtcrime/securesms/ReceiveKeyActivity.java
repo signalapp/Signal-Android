@@ -47,6 +47,7 @@ import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 
@@ -71,6 +72,7 @@ public class ReceiveKeyActivity extends Activity {
   private MasterSecret         masterSecret;
   private PreKeyWhisperMessage keyExchangeMessageBundle;
   private KeyExchangeMessage   keyExchangeMessage;
+  private IdentityKey          identityUpdateMessage;
 
   @Override
   protected void onCreate(Bundle state) {
@@ -99,8 +101,11 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private void initializeText() {
-    if (isTrusted(keyExchangeMessage, keyExchangeMessageBundle)) initializeTrustedText();
-    else                                                         initializeUntrustedText();
+    if (isTrusted(keyExchangeMessage, keyExchangeMessageBundle, identityUpdateMessage)) {
+      initializeTrustedText();
+    } else {
+      initializeUntrustedText();
+    }
   }
 
   private void initializeTrustedText() {
@@ -113,12 +118,16 @@ public class ReceiveKeyActivity extends Activity {
     spannableString.setSpan(new ClickableSpan() {
       @Override
       public void onClick(View widget) {
+        IdentityKey remoteIdentity;
+
+        if      (identityUpdateMessage != null)    remoteIdentity = identityUpdateMessage;
+        else if (keyExchangeMessageBundle != null) remoteIdentity = keyExchangeMessageBundle.getIdentityKey();
+        else                                       remoteIdentity = keyExchangeMessage.getIdentityKey();
+
         Intent intent = new Intent(ReceiveKeyActivity.this, VerifyIdentityActivity.class);
         intent.putExtra("recipient", recipient);
         intent.putExtra("master_secret", masterSecret);
-        intent.putExtra("remote_identity",
-                        keyExchangeMessage == null ?
-                            keyExchangeMessageBundle.getIdentityKey() : keyExchangeMessage.getIdentityKey());
+        intent.putExtra("remote_identity", remoteIdentity);
         startActivity(intent);
       }
     }, getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different).length() +1,
@@ -128,7 +137,7 @@ public class ReceiveKeyActivity extends Activity {
     descriptionText.setMovementMethod(LinkMovementMethod.getInstance());
   }
 
-  private boolean isTrusted(KeyExchangeMessage message, PreKeyWhisperMessage messageBundle) {
+  private boolean isTrusted(KeyExchangeMessage message, PreKeyWhisperMessage messageBundle, IdentityKey identityUpdateMessage) {
     RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), recipientDeviceId);
 
     if (message != null) {
@@ -138,6 +147,9 @@ public class ReceiveKeyActivity extends Activity {
     } else if (messageBundle != null) {
       KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(this, masterSecret, recipientDevice);
       return processor.isTrusted(messageBundle);
+    } else if (identityUpdateMessage != null) {
+      KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(this, masterSecret, recipientDevice);
+      return processor.isTrusted(identityUpdateMessage);
     }
 
     return false;
@@ -154,6 +166,8 @@ public class ReceiveKeyActivity extends Activity {
         byte[]              body             = transportDetails.getDecodedMessage(messageBody.getBytes());
 
         this.keyExchangeMessageBundle = new PreKeyWhisperMessage(body);
+      } else if (getIntent().getBooleanExtra("is_identity_update", false)) {
+        this.identityUpdateMessage = new IdentityKey(Base64.decodeWithoutPadding(messageBody), 0);
       } else {
         this.keyExchangeMessage = KeyExchangeMessage.createFor(messageBody);
       }
@@ -232,6 +246,11 @@ public class ReceiveKeyActivity extends Activity {
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
                              .markAsCorruptKeyExchange(messageId);
             }
+          } else if (identityUpdateMessage != null) {
+            DatabaseFactory.getIdentityDatabase(ReceiveKeyActivity.this)
+                           .saveIdentity(masterSecret, recipient.getRecipientId(), identityUpdateMessage);
+
+            DatabaseFactory.getSmsDatabase(ReceiveKeyActivity.this).markAsProcessedKeyExchange(messageId);
           }
 
 

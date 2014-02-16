@@ -111,6 +111,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isBundleKeyExchange(type);
   }
 
+  public boolean isIdentityUpdate() {
+    return SmsDatabase.Types.isIdentityUpdate(type);
+  }
+
   public boolean isCorruptedKeyExchange() {
     return SmsDatabase.Types.isCorruptedKeyExchange(type);
   }

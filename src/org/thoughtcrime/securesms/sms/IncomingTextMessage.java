@@ -4,11 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 
 import java.util.List;
+
+import ws.com.google.android.mms.pdu.SendReq;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
@@ -121,6 +124,34 @@ public class IncomingTextMessage implements Parcelable {
     this.groupActionArgument  = fragments.get(0).getGroupActionArgument();
   }
 
+  public IncomingTextMessage(SendReq record) {
+    this.message              = "";
+    this.sender               = record.getTo()[0].getString();
+    this.senderDeviceId       = RecipientDevice.DEFAULT_DEVICE_ID;
+    this.protocol             = 31338;
+    this.serviceCenterAddress = "Outgoing";
+    this.replyPathPresent     = true;
+    this.pseudoSubject        = "";
+    this.sentTimestampMillis  = System.currentTimeMillis();
+    this.groupId              = null;
+    this.groupAction          = -1;
+    this.groupActionArgument  = null;
+  }
+
+  public IncomingTextMessage(SmsMessageRecord record) {
+    this.message              = record.getBody().getBody();
+    this.sender               = record.getIndividualRecipient().getNumber();
+    this.senderDeviceId       = RecipientDevice.DEFAULT_DEVICE_ID;
+    this.protocol             = 31338;
+    this.serviceCenterAddress = "Outgoing";
+    this.replyPathPresent     = true;
+    this.pseudoSubject        = "";
+    this.sentTimestampMillis  = System.currentTimeMillis();
+    this.groupId              = null;
+    this.groupAction          = -1;
+    this.groupActionArgument  = null;
+  }
+
   public long getSentTimestampMillis() {
     return sentTimestampMillis;
   }
@@ -166,6 +197,10 @@ public class IncomingTextMessage implements Parcelable {
   }
 
   public boolean isPreKeyBundle() {
+    return false;
+  }
+
+  public boolean isIdentityUpdate() {
     return false;
   }
 

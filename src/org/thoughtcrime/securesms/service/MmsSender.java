@@ -30,10 +30,14 @@ import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
+import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
+import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.util.Base64;
 
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
@@ -87,6 +91,11 @@ public class MmsSender {
           database.markAsSentFailed(message.getDatabaseMessageId());
           Recipients recipients = threads.getRecipientsForThreadId(threadId);
           MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+        } catch (UntrustedIdentityException uie) {
+          IncomingTextMessage           base                  = new IncomingTextMessage(message);
+          IncomingIdentityUpdateMessage identityUpdateMessage = new IncomingIdentityUpdateMessage(base, Base64.encodeBytesWithoutPadding(uie.getIdentityKey().serialize()));
+          DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
+          database.markAsSentFailed(messageId);
         } catch (RetryLaterException e) {
           Log.w("MmsSender", e);
           database.markAsOutbox(message.getDatabaseMessageId());

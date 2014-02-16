@@ -73,7 +73,9 @@ public class PushTransport extends BaseTransport {
     this.masterSecret = masterSecret;
   }
 
-  public void deliver(SmsMessageRecord message) throws IOException {
+  public void deliver(SmsMessageRecord message)
+      throws IOException, UntrustedIdentityException
+  {
     try {
       Recipient         recipient = message.getIndividualRecipient();
       long              threadId  = message.getThreadId();
@@ -97,7 +99,9 @@ public class PushTransport extends BaseTransport {
     }
   }
 
-  public void deliver(SendReq message, long threadId) throws IOException {
+  public void deliver(SendReq message, long threadId)
+      throws IOException, UntrustedIdentityException
+  {
     PushServiceSocket socket      = PushServiceSocketFactory.create(context);
     byte[]            plaintext   = getPlaintextMessage(socket, message);
     String            destination = message.getTo()[0].getString();
@@ -147,6 +151,9 @@ public class PushTransport extends BaseTransport {
       } catch (IOException e) {
         Log.w("PushTransport", e);
         failures.add(recipient);
+      } catch (UntrustedIdentityException e) {
+        Log.w("PushTransport", e);
+        failures.add(recipient);
       }
     }
 
@@ -165,7 +172,7 @@ public class PushTransport extends BaseTransport {
   }
 
   private void deliver(PushServiceSocket socket, Recipient recipient, long threadId, byte[] plaintext)
-      throws IOException, InvalidNumberException
+      throws IOException, InvalidNumberException, UntrustedIdentityException
   {
     for (int i=0;i<3;i++) {
       try {
@@ -274,7 +281,7 @@ public class PushTransport extends BaseTransport {
 
   private OutgoingPushMessageList getEncryptedMessages(PushServiceSocket socket, long threadId,
                                                        Recipient recipient, byte[] plaintext)
-      throws IOException, InvalidNumberException
+      throws IOException, InvalidNumberException, UntrustedIdentityException
   {
     String      e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
     long        recipientId  = recipient.getRecipientId();
@@ -296,7 +303,7 @@ public class PushTransport extends BaseTransport {
 
   private PushBody getEncryptedMessage(PushServiceSocket socket, long threadId,
                                        PushAddress pushAddress, byte[] plaintext)
-      throws IOException
+      throws IOException, UntrustedIdentityException
   {
     if (!SessionRecordV2.hasSession(context, masterSecret, pushAddress)) {
       try {
@@ -306,7 +313,11 @@ public class PushTransport extends BaseTransport {
           PushAddress            device    = PushAddress.create(context, pushAddress.getRecipientId(), pushAddress.getNumber(), preKey.getDeviceId());
           KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(context, masterSecret, device);
 
-          processor.processKeyExchangeMessage(preKey, threadId);
+          if (processor.isTrusted(preKey)) {
+            processor.processKeyExchangeMessage(preKey, threadId);
+          } else {
+            throw new UntrustedIdentityException("Untrusted identity key!", preKey.getIdentityKey());
+          }
         }
       } catch (InvalidKeyException e) {
         throw new IOException(e);

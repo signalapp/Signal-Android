@@ -264,6 +264,7 @@
     <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
         Received message with unknown identity key. Click to process and display.
     </string>
+    <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
 
 
     <!-- VerifyIdentityActivity -->

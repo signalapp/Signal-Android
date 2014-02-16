@@ -30,9 +30,13 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
+import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
+import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.util.Base64;
 
 public class SmsSender {
 
@@ -71,12 +75,21 @@ public class SmsSender {
       else                 reader = database.getOutgoingMessages(masterSecret);
 
       while (reader != null && (record = reader.getNext()) != null) {
-        database.markAsSending(record.getId());
-        transport.deliver(record);
+        try {
+          database.markAsSending(record.getId());
+
+          transport.deliver(record);
+        } catch (UntrustedIdentityException e) {
+          Log.w("SmsSender", e);
+          IncomingTextMessage           base                  = new IncomingTextMessage(record);
+          IncomingIdentityUpdateMessage identityUpdateMessage = new IncomingIdentityUpdateMessage(base, Base64.encodeBytesWithoutPadding(e.getIdentityKey().serialize()));
+          DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
+          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
+        } catch (UndeliverableMessageException ude) {
+          Log.w("SmsSender", ude);
+          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
+        }
       }
-    } catch (UndeliverableMessageException ude) {
-      Log.w("SmsSender", ude);
-      DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
     } finally {
       if (reader != null)
         reader.close();

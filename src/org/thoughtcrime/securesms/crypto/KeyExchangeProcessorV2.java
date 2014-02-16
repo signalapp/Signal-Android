@@ -55,6 +55,10 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     return isTrusted(message.getIdentityKey());
   }
 
+  public boolean isTrusted(PreKeyEntity entity) {
+    return isTrusted(entity.getIdentityKey());
+  }
+
   public boolean isTrusted(KeyExchangeMessage message) {
     return message.hasIdentityKey() && isTrusted(message.getIdentityKey());
   }
