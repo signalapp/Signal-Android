@@ -3,21 +3,48 @@ package org.thoughtcrime.securesms.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
-import org.thoughtcrime.securesms.mms.MmsRadio;
+public class SystemStateListener {
 
-public class SystemStateListener extends BroadcastReceiver {
+  private final TelephonyListener    telephonyListener    = new TelephonyListener();
+  private final ConnectivityListener connectivityListener = new ConnectivityListener();
+  private final Context              context;
+  private final TelephonyManager     telephonyManager;
+  private final ConnectivityManager  connectivityManager;
 
-  public  static final String ACTION_SERVICE_STATE       = "android.intent.action.SERVICE_STATE";
-  private static final String ACTION_CONNECTIVITY_CHANGE = "android.net.conn.CONNECTIVITY_CHANGE";
+  public SystemStateListener(Context context) {
+    this.context             = context.getApplicationContext();
+    this.telephonyManager    = (TelephonyManager)    context.getSystemService(Context.TELEPHONY_SERVICE);
+    this.connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+  }
 
-  private static final SystemStateListener instance = new SystemStateListener();
+  public void registerForConnectivityChange() {
+    unregisterForConnectivityChange();
 
-  public static SystemStateListener getInstance() {
-    return instance;
+    telephonyManager.listen(telephonyListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+    context.registerReceiver(connectivityListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+  }
+
+  public void unregisterForConnectivityChange() {
+    telephonyManager.listen(telephonyListener, 0);
+
+    try {
+      context.unregisterReceiver(connectivityListener);
+    } catch (IllegalArgumentException iae) {
+      Log.w("SystemStateListener", iae);
+    }
+  }
+
+  public boolean isConnected() {
+    return
+        connectivityManager.getActiveNetworkInfo() != null &&
+            connectivityManager.getActiveNetworkInfo().isConnected();
   }
 
   private void sendSmsOutbox(Context context) {
@@ -32,34 +59,27 @@ public class SystemStateListener extends BroadcastReceiver {
     context.startService(mmsSenderIntent);
   }
 
-  private void handleRadioServiceStateChange(Context context, Intent intent) {
-    int state = intent.getIntExtra("state", -31337);
-
-    if (state == ServiceState.STATE_IN_SERVICE) {
-      sendSmsOutbox(context);
+  private class TelephonyListener extends PhoneStateListener {
+    @Override
+    public void onServiceStateChanged(ServiceState state) {
+      if (state.getState() == ServiceState.STATE_IN_SERVICE) {
+        sendSmsOutbox(context);
+        sendMmsOutbox(context);
+      }
     }
   }
 
-  private void handleDataServiceStateChange(Context context, Intent intent) {
-    ConnectivityManager connectivityManager
-      = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-    NetworkInfo networkInfo = connectivityManager.getNetworkInfo(MmsRadio.TYPE_MOBILE_MMS);
-
-    if (networkInfo != null  && networkInfo.isAvailable()) {
-      sendMmsOutbox(context);
+  private class ConnectivityListener extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      if (intent != null && ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+        if (connectivityManager.getActiveNetworkInfo() != null &&
+            connectivityManager.getActiveNetworkInfo().isConnected())
+        {
+          sendSmsOutbox(context);
+          sendMmsOutbox(context);
+        }
+      }
     }
   }
-
-  @Override
-  public void onReceive(Context context, Intent intent) {
-    if (intent == null) return;
-
-    if (intent.getAction().equals(ACTION_SERVICE_STATE)) {
-      handleRadioServiceStateChange(context, intent);
-    } else if (intent.getAction().equals(ACTION_CONNECTIVITY_CHANGE)) {
-      handleDataServiceStateChange(context, intent);
-    }
-  }
-
 }

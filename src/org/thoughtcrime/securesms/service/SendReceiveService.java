@@ -29,9 +29,9 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CanonicalSessionMigrator;
 import org.thoughtcrime.securesms.util.WorkerThread;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -69,7 +69,8 @@ public class SendReceiveService extends Service {
   private static final int DOWNLOAD_PUSH         = 7;
   private static final int DOWNLOAD_AVATAR       = 8;
 
-  private ToastHandler toastHandler;
+  private ToastHandler        toastHandler;
+  private SystemStateListener systemStateListener;
 
   private SmsReceiver      smsReceiver;
   private SmsSender        smsSender;
@@ -149,14 +150,15 @@ public class SendReceiveService extends Service {
   }
 
   private void initializeHandlers() {
-    toastHandler = new ToastHandler();
+    systemStateListener = new SystemStateListener(this);
+    toastHandler        = new ToastHandler();
   }
 
   private void initializeProcessors() {
     smsReceiver      = new SmsReceiver(this);
-    smsSender        = new SmsSender(this, toastHandler);
+    smsSender        = new SmsSender(this, systemStateListener, toastHandler);
     mmsReceiver      = new MmsReceiver(this);
-    mmsSender        = new MmsSender(this, toastHandler);
+    mmsSender        = new MmsSender(this, systemStateListener, toastHandler);
     mmsDownloader    = new MmsDownloader(this, toastHandler);
     pushReceiver     = new PushReceiver(this);
     pushDownloader   = new PushDownloader(this);

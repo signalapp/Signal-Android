@@ -19,13 +19,11 @@ package org.thoughtcrime.securesms.service;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -34,15 +32,18 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 public class SmsSender {
 
-  private final Context context;
-  private final ToastHandler toastHandler;
+  private final Context             context;
+  private final SystemStateListener systemStateListener;
+  private final ToastHandler        toastHandler;
 
-  public SmsSender(Context context, ToastHandler toastHandler) {
-    this.context      = context;
-    this.toastHandler = toastHandler;
+  public SmsSender(Context context, SystemStateListener systemStateListener, ToastHandler toastHandler) {
+    this.context             = context;
+    this.systemStateListener = systemStateListener;
+    this.toastHandler        = toastHandler;
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
@@ -127,18 +128,10 @@ public class SmsSender {
   }
 
   private void registerForRadioChanges() {
-    unregisterForRadioChanges();
-
-    IntentFilter intentFilter = new IntentFilter();
-    intentFilter.addAction(SystemStateListener.ACTION_SERVICE_STATE);
-    context.registerReceiver(SystemStateListener.getInstance(), intentFilter);
+    systemStateListener.registerForConnectivityChange();
   }
 
   private void unregisterForRadioChanges() {
-    try {
-      context.unregisterReceiver(SystemStateListener.getInstance());
-    } catch (IllegalArgumentException iae) {
-      Log.w("SmsSender", iae);
-    }
+    systemStateListener.unregisterForConnectivityChange();
   }
 }

@@ -16,11 +16,13 @@
  */
 package org.thoughtcrime.securesms.service;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.util.Pair;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -28,6 +30,7 @@ import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
+import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -37,10 +40,14 @@ import ws.com.google.android.mms.pdu.SendReq;
 
 public class MmsSender {
 
-  private final Context context;
+  private final Context             context;
+  private final SystemStateListener systemStateListener;
+  private final ToastHandler        toastHandler;
 
-  public MmsSender(Context context, ToastHandler toastHandler) {
-    this.context = context;
+  public MmsSender(Context context, SystemStateListener systemStateListener, ToastHandler toastHandler) {
+    this.context             = context;
+    this.systemStateListener = systemStateListener;
+    this.toastHandler        = toastHandler;
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
@@ -73,11 +80,23 @@ public class MmsSender {
           
           database.markAsSent(message.getDatabaseMessageId(), result.getMessageId(),
                               result.getResponseStatus());
+
+          systemStateListener.unregisterForConnectivityChange();
         } catch (UndeliverableMessageException e) {
           Log.w("MmsSender", e);
           database.markAsSentFailed(message.getDatabaseMessageId());
           Recipients recipients = threads.getRecipientsForThreadId(threadId);
           MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+        } catch (RetryLaterException e) {
+          Log.w("MmsSender", e);
+          database.markAsOutbox(message.getDatabaseMessageId());
+
+          if (systemStateListener.isConnected()) scheduleQuickRetryAlarm();
+          else                                   systemStateListener.registerForConnectivityChange();
+
+          toastHandler
+              .obtainMessage(0, context.getString(R.string.SmsReceiver_currently_unable_to_send_your_sms_message))
+              .sendToTarget();
         }
       }
     } catch (MmsException e) {
@@ -85,5 +104,14 @@ public class MmsSender {
       if (messageId != -1)
         database.markAsSentFailed(messageId);
     }
+  }
+
+  private void scheduleQuickRetryAlarm() {
+    ((AlarmManager)context.getSystemService(Context.ALARM_SERVICE))
+        .set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (30 * 1000),
+             PendingIntent.getService(context, 0,
+                                      new Intent(SendReceiveService.SEND_MMS_ACTION,
+                                                 null, context, SendReceiveService.class),
+                                      PendingIntent.FLAG_UPDATE_CURRENT));
   }
 }

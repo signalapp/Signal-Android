@@ -92,7 +92,7 @@
      <activity android:name=".MmsPreferencesActivity"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-        <activity android:name=".ConversationListActivity"
+    <activity android:name=".ConversationListActivity"
               android:label="@string/app_name"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -250,14 +250,6 @@
                  <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER"/>
                  <data android:mimeType="application/vnd.wap.mms-message" />
              </intent-filter>
-    </receiver>
-    
-    <receiver android:name=".service.SystemStateListener"
-              android:enabled="true"
-              android:exported="true">
-              <intent-filter>
-                  <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-              </intent-filter>              
     </receiver>
 
     <receiver android:name=".notifications.MarkReadReceiver"

@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.transport;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
@@ -82,7 +83,7 @@ public class UniversalTransport {
   }
 
   public MmsSendResult deliver(SendReq mediaMessage, long threadId)
-      throws UndeliverableMessageException
+      throws UndeliverableMessageException, RetryLaterException
   {
     if (Util.isEmpty(mediaMessage.getTo())) {
       throw new UndeliverableMessageException("No destination specified");
@@ -103,7 +104,11 @@ public class UniversalTransport {
         return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
       } catch (IOException ioe) {
         Log.w("UniversalTransport", ioe);
-        return mmsTransport.deliver(mediaMessage);
+        if (!GroupUtil.isEncodedGroup(mediaMessage.getTo()[0].getString())) {
+          return mmsTransport.deliver(mediaMessage);
+        } else {
+          throw new RetryLaterException();
+        }
       }
     } else {
       Log.w("UniversalTransport", "Delivering media message with MMS...");

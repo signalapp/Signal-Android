@@ -247,6 +247,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
                " WHERE " + ID + " = ?", new String[] {id + ""});
   }
 
+  public void markAsOutbox(long messageId) {
+    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_OUTBOX_TYPE);
+    notifyConversationListeners(getThreadIdForMessage(messageId));
+  }
+
   public void markAsSending(long messageId) {
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE);
     notifyConversationListeners(getThreadIdForMessage(messageId));
@@ -324,8 +329,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       selection     = ID_WHERE;
       selectionArgs = new String[]{messageId + ""};
     } else {
-      selection     = MESSAGE_BOX + " & " + Types.BASE_TYPE_MASK + " = ?";
-      selectionArgs = new String[]{Types.BASE_OUTBOX_TYPE + ""};
+      selection     = MESSAGE_BOX + " & " + Types.BASE_TYPE_MASK + " = " + Types.BASE_OUTBOX_TYPE;
+      selectionArgs = null;
     }
 
     try {
