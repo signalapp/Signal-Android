@@ -82,7 +82,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
   private void initializeDialog(View view) {
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setIcon(android.R.drawable.ic_dialog_info);
-    builder.setTitle("Set Custom LED Blink Pattern");
+    builder.setTitle(R.string.preferences__set_custom_led_pattern);
     builder.setView(view);
     builder.setOnCancelListener(new CustomDialogCancelListener());
     builder.setNegativeButton(android.R.string.cancel, new CustomDialogCancelListener());
@@ -154,7 +154,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
       dialogInProgress = false;
 
       TextSecurePreferences.setNotificationLedPatternCustom(context, pattern);
-      Toast.makeText(context, "Custom LED blink pattern set!", Toast.LENGTH_LONG).show();
+      Toast.makeText(context, R.string.preferences__custom_led_pattern_set, Toast.LENGTH_LONG).show();
     }
 
   }

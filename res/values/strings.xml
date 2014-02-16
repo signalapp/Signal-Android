@@ -606,6 +606,8 @@
     <string name="preferences__display_message_notifications_in_status_bar">Display message notifications in status bar</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
+    <string name="preferences__set_custom_led_pattern">Set Custom LED Pattern</string>
+    <string name="preferences__custom_led_pattern_set">Custom LED pattern set!</string>
     <string name="preferences__sound">Sound</string>
     <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__inthread_notifications">In-thread notifications</string>
