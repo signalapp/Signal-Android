@@ -552,8 +552,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
                                         R.attr.conversation_send_secure_button};
     TypedArray drawables    = obtainStyledAttributes(attributes);
 
-    if (isSingleConversation() &&
-        Session.hasSession(this, masterSecret, getRecipients().getPrimaryRecipient()))
+    if ((getRecipients() != null && getRecipients().isGroupRecipient()) ||
+        (isSingleConversation() && Session.hasSession(this, masterSecret, getRecipients().getPrimaryRecipient())))
     {
       sendButton.setImageDrawable(drawables.getDrawable(1));
       this.isEncryptedConversation     = true;
@@ -643,6 +643,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     Intent intent = new Intent(ConversationActivity.this, SingleContactSelectionActivity.class);
     startActivityForResult(intent, PICK_CONTACT);
   }
+
   private void initializeReceivers() {
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
