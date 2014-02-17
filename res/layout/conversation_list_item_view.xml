@@ -37,6 +37,7 @@
         android:layout_marginBottom="10dip"
         android:layout_alignTop="@id/contact_photo_frame"
         android:layout_toRightOf="@id/contact_photo_frame"
+        android:layout_alignParentRight="true"
         android:layout_alignWithParentIfMissing="true"
         android:ellipsize="marquee" />
     <!--android:layout_toLeftOf="@id/checkbox"-->
@@ -53,7 +54,6 @@
         android:fontFamily="sans-serif-light"
         android:singleLine="true"
         android:layout_alignTop="@id/contact_photo_frame"
-        android:layout_toRightOf="@id/from"
         android:layout_alignParentRight="true" />
 
     <ImageView android:id="@+id/error"
