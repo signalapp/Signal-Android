@@ -189,7 +189,7 @@ public class PushTransport extends BaseTransport {
   private void handleMismatchedDevices(PushServiceSocket socket, long threadId,
                                        Recipient recipient,
                                        MismatchedDevices mismatchedDevices)
-      throws InvalidNumberException, IOException
+      throws InvalidNumberException, IOException, UntrustedIdentityException
   {
     try {
       String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
@@ -205,7 +205,11 @@ public class PushTransport extends BaseTransport {
         PreKeyEntity           preKey    = socket.getPreKey(address);
         KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(context, masterSecret, address);
 
-        processor.processKeyExchangeMessage(preKey, threadId);
+        if (processor.isTrusted(preKey)) {
+          processor.processKeyExchangeMessage(preKey, threadId);
+        } else {
+          throw new UntrustedIdentityException("Untrusted identity key!", e164number, preKey.getIdentityKey());
+        }
       }
     } catch (InvalidKeyException e) {
       throw new IOException(e);
