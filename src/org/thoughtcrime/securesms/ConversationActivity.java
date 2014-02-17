@@ -93,7 +93,6 @@ import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -171,8 +170,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   @Override
   protected void onResume() {
-    if (recipients == null || recipients.isEmpty())
-      initializeRecipientsInput();
+    initializeRecipientsInput();
 
     super.onResume();
     dynamicTheme.onResume(this);
@@ -207,18 +205,24 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     Log.w("ComposeMessageActivity", "onActivityResult called: " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
+    if (data == null || resultCode != RESULT_OK) return;
     switch (reqCode) {
+    case PICK_CONTACT:
+      Recipients recipients = data.getParcelableExtra("recipients");
+      if (recipients != null)
+      recipientsPanel.addRecipients(recipients);
+      break;
     case PICK_IMAGE:
-      if (data != null && resultCode == RESULT_OK) addAttachmentImage(data.getData());
+      addAttachmentImage(data.getData());
       break;
     case PICK_VIDEO:
-      if (data != null && resultCode == RESULT_OK) addAttachmentVideo(data.getData());
+      addAttachmentVideo(data.getData());
       break;
     case PICK_AUDIO:
-      if (data != null && resultCode == RESULT_OK) addAttachmentAudio(data.getData());
+      addAttachmentAudio(data.getData());
       break;
     case PICK_CONTACT_INFO:
-      if (data != null && resultCode == RESULT_OK) addContactInfo(data.getData());
+      addContactInfo(data.getData());
       break;
     }
   }
@@ -580,11 +584,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeResources() {
+    recipientsPanel     = (RecipientsPanel)findViewById(R.id.recipients);
     recipients          = getIntent().getParcelableExtra(RECIPIENTS_EXTRA);
     threadId            = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     distributionType    = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA,
                                                   ThreadDatabase.DistributionTypes.DEFAULT);
-    recipientsPanel     = (RecipientsPanel)findViewById(R.id.recipients);
     addContactButton    = (ImageButton)findViewById(R.id.contacts_button);
     sendButton          = (ImageButton)findViewById(R.id.send_button);
     composeText         = (EditText)findViewById(R.id.embedded_text_editor);
@@ -627,8 +631,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeRecipientsInput() {
-    Intent intent = new Intent(ConversationActivity.this, SingleContactSelectionActivity.class);
-    startActivityForResult(intent, PICK_CONTACT);
+    if (recipients == null || recipients.isEmpty())
+      recipientsPanel.setVisibility(View.VISIBLE);
+    else if (recipients != null) {
+      recipientsPanel.addRecipients(this.recipients);
+    } else {
+      InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+      input.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+    }
   }
 
   private void initializeReceivers() {
@@ -846,7 +856,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }.execute(threadId);
   }
 
-  private void sendComplete(Recipients recipients, long threadId) {
+  private void sendComplete(Recipients recipients, long threadId, boolean refreshFragment) {
     attachmentManager.clear();
     recipientsPanel.disable();
     composeText.setText("");
@@ -854,7 +864,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     this.recipients = recipients;
     this.threadId   = threadId;
 
-    if (this.recipientsPanel.getVisibility() == View.VISIBLE) {
+    if (refreshFragment) {
       ConversationFragment fragment
         = (ConversationFragment)this.getSupportFragmentManager()
           .findFragmentById(R.id.fragment_content);
@@ -901,7 +911,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
                                                message, threadId);
       }
-      sendComplete(recipients, allocatedThreadId);
+      sendComplete(recipients, allocatedThreadId, allocatedThreadId != this.threadId);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
                      R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
