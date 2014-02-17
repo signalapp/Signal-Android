@@ -68,7 +68,7 @@ public class IncomingTextMessage implements Parcelable {
     if (group != null) {
       this.groupId             = GroupUtil.getEncodedId(group.getId().toByteArray());
       this.groupAction         = group.getType().getNumber();
-      this.groupActionArgument = GroupUtil.getActionArgument(group);
+      this.groupActionArgument = GroupUtil.serializeArguments(group);
     } else {
       this.groupId             = null;
       this.groupAction         = -1;
@@ -150,6 +150,22 @@ public class IncomingTextMessage implements Parcelable {
     this.groupId              = null;
     this.groupAction          = -1;
     this.groupActionArgument  = null;
+  }
+
+  protected IncomingTextMessage(String sender, String groupId,
+                                int groupAction, String groupActionArgument)
+  {
+    this.message              = "";
+    this.sender               = sender;
+    this.senderDeviceId       = RecipientDevice.DEFAULT_DEVICE_ID;
+    this.protocol             = 31338;
+    this.serviceCenterAddress = "Outgoing";
+    this.replyPathPresent     = true;
+    this.pseudoSubject        = "";
+    this.sentTimestampMillis  = System.currentTimeMillis();
+    this.groupId              = groupId;
+    this.groupAction          = groupAction;
+    this.groupActionArgument  = groupActionArgument;
   }
 
   public long getSentTimestampMillis() {
@@ -234,5 +250,9 @@ public class IncomingTextMessage implements Parcelable {
     out.writeString(groupId);
     out.writeInt(groupAction);
     out.writeString(groupActionArgument);
+  }
+
+  public static IncomingTextMessage createForLeavingGroup(String groupId, String user) {
+    return new IncomingTextMessage(user, groupId, GroupContext.Type.QUIT_VALUE, null);
   }
 }

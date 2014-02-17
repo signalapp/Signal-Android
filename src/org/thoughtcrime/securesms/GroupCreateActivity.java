@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,8 +29,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.transport.PushTransport;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -42,7 +40,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.PushAttachmentPointer;
+import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.ByteArrayOutputStream;
@@ -54,8 +52,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import ws.com.google.android.mms.MmsException;
+
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 
@@ -355,59 +354,32 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
   }
 
-  private Pair<Long, List<Recipient>> handleCreatePushGroup(String groupName,
-                                                            byte[] avatar,
-                                                            Set<Recipient> members)
+  private long handleCreatePushGroup(String groupName,
+                                     byte[] avatar,
+                                     Set<Recipient> members)
       throws IOException, InvalidNumberException
   {
-    List<String>      memberE164Numbers = getE164Numbers(members);
-    PushTransport     transport         = new PushTransport(this, masterSecret);
-    GroupDatabase     groupDatabase     = DatabaseFactory.getGroupDatabase(this);
-    ThreadDatabase    threadDatabase    = DatabaseFactory.getThreadDatabase(this);
-    byte[]            groupId           = groupDatabase.allocateGroupId();
-    AttachmentPointer avatarPointer     = null;
-
-    memberE164Numbers.add(TextSecurePreferences.getLocalNumber(this));
-
-    GroupContext.Builder builder = GroupContext.newBuilder()
-                                               .setId(ByteString.copyFrom(groupId))
-                                               .setType(GroupContext.Type.CREATE)
-                                               .setName(groupName)
-                                               .addAllMembers(memberE164Numbers);
-
-    if (avatar != null) {
-      PushAttachmentPointer pointer = transport.createAttachment("image/png", avatar);
-      avatarPointer = AttachmentPointer.newBuilder()
-                                       .setKey(ByteString.copyFrom(pointer.getKey()))
-                                       .setContentType(pointer.getContentType())
-                                       .setId(pointer.getId()).build();
-      builder.setAvatar(avatarPointer);
-    }
-
-    List<Recipient> failures = transport.deliver(new LinkedList<Recipient>(members), builder.build());
-    groupDatabase.create(groupId, TextSecurePreferences.getLocalNumber(this), groupName,
-                         memberE164Numbers, avatarPointer, null);
-
-    if (avatar != null) {
-      groupDatabase.updateAvatar(groupId, avatar);
-    }
-
     try {
-      String              groupRecipientId = GroupUtil.getEncodedId(groupId);
-      Recipient           groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false).getPrimaryRecipient();
-      OutgoingTextMessage outgoing         = new OutgoingTextMessage(groupRecipient, GroupContext.Type.ADD_VALUE, org.whispersystems.textsecure.util.Util.join(memberE164Numbers, ","));
-      long                threadId         = threadDatabase.getThreadIdFor(new Recipients(groupRecipient));
-      List<Long>          messageIds       = DatabaseFactory.getEncryptingSmsDatabase(this)
-                                                            .insertMessageOutbox(masterSecret, threadId, outgoing);
+      GroupDatabase  groupDatabase     = DatabaseFactory.getGroupDatabase(this);
+      List<String>   memberE164Numbers = getE164Numbers(members);
+      byte[]         groupId           = groupDatabase.allocateGroupId();
+      String         groupRecipientId  = GroupUtil.getEncodedId(groupId);
 
-      for (long messageId : messageIds) {
-        DatabaseFactory.getEncryptingSmsDatabase(this).markAsSent(messageId);
-      }
+      String groupActionArguments = GroupUtil.serializeArguments(groupId, groupName, memberE164Numbers);
 
+      groupDatabase.create(groupId, TextSecurePreferences.getLocalNumber(this), groupName,
+                           memberE164Numbers, null, null);
+      groupDatabase.updateAvatar(groupId, avatar);
 
-      return new Pair<Long, List<Recipient>>(threadId, failures);
+      Recipients groupRecipient = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
+
+      return MessageSender.sendGroupAction(this, masterSecret, groupRecipient, -1,
+                                           GroupContext.Type.CREATE_VALUE,
+                                           groupActionArguments, avatar);
     } catch (RecipientFormattingException e) {
-      throw new AssertionError(e);
+      throw new IOException(e);
+    } catch (MmsException e) {
+      throw new IOException(e);
     }
   }
 

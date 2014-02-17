@@ -25,6 +25,8 @@ public class SendReq extends MultimediaMessagePdu {
     private static final String TAG = "SendReq";
     private long databaseMessageId;
     private long messageBox;
+    private int  groupAction;
+    private String groupActionArguments;
     
     public SendReq() {
         super();
@@ -90,11 +92,15 @@ public class SendReq extends MultimediaMessagePdu {
         super(headers, body);
     }
 
-    public SendReq(PduHeaders headers, PduBody body, long messageId, long messageBox) {
+    public SendReq(PduHeaders headers, PduBody body, long messageId, long messageBox,
+                   int groupAction, String groupActionArguments)
+    {
         super(headers, body);
-        this.databaseMessageId = messageId;
-        this.messageBox        = messageBox;
-    }
+        this.databaseMessageId    = messageId;
+        this.messageBox           = messageBox;
+        this.groupAction          = groupAction;
+        this.groupActionArguments = groupActionArguments;
+  }
     
     public long getDatabaseMessageBox() {
     	return this.messageBox;
@@ -102,6 +108,22 @@ public class SendReq extends MultimediaMessagePdu {
     
     public long getDatabaseMessageId() {
     	return databaseMessageId;
+    }
+
+    public int getGroupAction() {
+      return this.groupAction;
+    }
+
+    public String getGroupActionArguments() {
+      return this.groupActionArguments;
+    }
+
+    public void setGroupAction(int groupAction) {
+      this.groupAction = groupAction;
+    }
+
+    public void setGroupActionArguments(String groupActionArguments) {
+      this.groupActionArguments = groupActionArguments;
     }
     
     /**

@@ -132,7 +132,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       CONTENT_LOCATION, EXPIRY, MESSAGE_CLASS, MESSAGE_TYPE, MMS_VERSION,
       MESSAGE_SIZE, PRIORITY, REPORT_ALLOWED, STATUS, TRANSACTION_ID, RETRIEVE_STATUS,
       RETRIEVE_TEXT, RETRIEVE_TEXT_CS, READ_STATUS, CONTENT_CLASS, RESPONSE_TEXT,
-      DELIVERY_TIME, DELIVERY_REPORT, BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID
+      DELIVERY_TIME, DELIVERY_REPORT, BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID,
+      GROUP_ACTION, GROUP_ACTION_ARGUMENTS
   };
 
   public static final ExecutorService slideResolver = org.thoughtcrime.securesms.util.Util.newSingleThreadedLifoExecutor();
@@ -343,10 +344,13 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       int i = 0;
 
       while (cursor.moveToNext()) {
-        messageId          = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-        long outboxType    = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
-        String messageText  = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
-        PduHeaders headers  = getHeadersFromCursor(cursor);
+        messageId = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+
+        long       outboxType           = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
+        String     messageText          = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
+        int        groupAction          = cursor.getInt(cursor.getColumnIndexOrThrow(GROUP_ACTION));
+        String     groupActionArguments = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ACTION_ARGUMENTS));
+        PduHeaders headers              = getHeadersFromCursor(cursor);
         addr.getAddressesForId(messageId, headers);
 
         PduBody body = getPartsAsBody(partDatabase.getParts(messageId, true));
@@ -361,7 +365,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
           Log.w("MmsDatabase", e);
         }
 
-        requests[i++] = new SendReq(headers, body, messageId, outboxType);
+        requests[i++] = new SendReq(headers, body, messageId, outboxType, groupAction, groupActionArguments);
       }
 
       return requests;
@@ -514,6 +518,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(READ, 1);
     contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
+    contentValues.put(GROUP_ACTION, sendRequest.getGroupAction());
+    contentValues.put(GROUP_ACTION_ARGUMENTS, sendRequest.getGroupActionArguments());
     contentValues.remove(ADDRESS);
 
     long messageId = insertMediaMessage(masterSecret, sendRequest.getPduHeaders(),

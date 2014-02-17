@@ -41,7 +41,7 @@ public class IncomingMediaMessage {
     if (messageContent.hasGroup()) {
       this.groupId              = GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray());
       this.groupAction          = messageContent.getGroup().getType().getNumber();
-      this.groupActionArguments = GroupUtil.getActionArgument(messageContent.getGroup());
+      this.groupActionArguments = GroupUtil.serializeArguments(messageContent.getGroup());
     } else {
       this.groupId              = null;
       this.groupAction          = -1;

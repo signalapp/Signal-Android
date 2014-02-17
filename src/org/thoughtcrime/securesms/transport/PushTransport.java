@@ -51,6 +51,7 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -62,6 +63,8 @@ import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.SendReq;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 public class PushTransport extends BaseTransport {
 
@@ -100,7 +103,7 @@ public class PushTransport extends BaseTransport {
   }
 
   public void deliver(SendReq message, long threadId)
-      throws IOException, UntrustedIdentityException
+      throws IOException, RecipientFormattingException, InvalidNumberException, EncapsulatedExceptions
   {
     PushServiceSocket socket      = PushServiceSocketFactory.create(context);
     byte[]            plaintext   = getPlaintextMessage(socket, message);
@@ -108,67 +111,31 @@ public class PushTransport extends BaseTransport {
 
     Recipients recipients;
 
-    try {
-      if (GroupUtil.isEncodedGroup(destination)) {
-        recipients = DatabaseFactory.getGroupDatabase(context)
-                                    .getGroupMembers(GroupUtil.getDecodedId(destination));
-      } else {
-        recipients = RecipientFactory.getRecipientsFromString(context, destination, false);
-      }
-
-      for (Recipient recipient : recipients.getRecipientsList()) {
-        deliver(socket, recipient, threadId, plaintext);
-      }
-    } catch (UnregisteredUserException uue) {
-      // TODO: We should probably remove the user from the directory?
-      throw new IOException(uue);
-    } catch (RecipientFormattingException e) {
-      throw new IOException(e);
-    } catch (InvalidNumberException e) {
-      throw new IOException(e);
+    if (GroupUtil.isEncodedGroup(destination)) {
+      recipients = DatabaseFactory.getGroupDatabase(context)
+                                  .getGroupMembers(GroupUtil.getDecodedId(destination));
+    } else {
+      recipients = RecipientFactory.getRecipientsFromString(context, destination, false);
     }
-  }
 
-  public List<Recipient> deliver(List<Recipient> recipients,
-                                 PushMessageContent.GroupContext groupAction)
-      throws IOException
-  {
-    PushServiceSocket socket    = PushServiceSocketFactory.create(context);
-    byte[]            plaintext = PushMessageContent.newBuilder()
-                                                    .setGroup(groupAction)
-                                                    .build().toByteArray();
-    List<Recipient> failures = new LinkedList<Recipient>();
+    List<UntrustedIdentityException> untrustedIdentities = new LinkedList<UntrustedIdentityException>();
+    List<UnregisteredUserException>  unregisteredUsers   = new LinkedList<UnregisteredUserException>();
 
-    for (Recipient recipient : recipients) {
+    for (Recipient recipient : recipients.getRecipientsList()) {
       try {
-        deliver(socket, recipient, -1, plaintext);
-      } catch (UnregisteredUserException e) {
-        Log.w("PushTransport", e);
-        failures.add(recipient);
-      } catch (InvalidNumberException e) {
-        Log.w("PushTransport", e);
-        failures.add(recipient);
-      } catch (IOException e) {
-        Log.w("PushTransport", e);
-        failures.add(recipient);
+        deliver(socket, recipient, threadId, plaintext);
       } catch (UntrustedIdentityException e) {
         Log.w("PushTransport", e);
-        failures.add(recipient);
+        untrustedIdentities.add(e);
+      } catch (UnregisteredUserException e) {
+        Log.w("PushTransport", e);
+        unregisteredUsers.add(e);
       }
     }
 
-    if (failures.size() == recipients.size()) {
-      throw new IOException("Total failure.");
+    if (!untrustedIdentities.isEmpty() || !unregisteredUsers.isEmpty()) {
+      throw new EncapsulatedExceptions(untrustedIdentities, unregisteredUsers);
     }
-
-    return failures;
-  }
-
-  public PushAttachmentPointer createAttachment(String contentType, byte[] data)
-      throws IOException
-  {
-    PushServiceSocket socket = PushServiceSocketFactory.create(context);
-    return getPushAttachmentPointer(socket, contentType, data);
   }
 
   private void deliver(PushServiceSocket socket, Recipient recipient, long threadId, byte[] plaintext)
@@ -252,11 +219,40 @@ public class PushTransport extends BaseTransport {
     PushMessageContent.Builder builder = PushMessageContent.newBuilder();
 
     if (GroupUtil.isEncodedGroup(message.getTo()[0].getString())) {
-      PushMessageContent.GroupContext.Builder groupBuilder =
-          PushMessageContent.GroupContext.newBuilder();
+      byte[]               groupId      = GroupUtil.getDecodedId(message.getTo()[0].getString());
+      GroupContext.Builder groupBuilder = GroupContext.newBuilder();
 
-      groupBuilder.setType(PushMessageContent.GroupContext.Type.DELIVER);
-      groupBuilder.setId(ByteString.copyFrom(GroupUtil.getDecodedId(message.getTo()[0].getString())));
+      groupBuilder.setId(ByteString.copyFrom(groupId));
+
+      switch (message.getGroupAction()) {
+        case GroupContext.Type.ADD_VALUE:    groupBuilder.setType(GroupContext.Type.ADD);     break;
+        case GroupContext.Type.CREATE_VALUE: groupBuilder.setType(GroupContext.Type.CREATE);  break;
+        case GroupContext.Type.QUIT_VALUE:   groupBuilder.setType(GroupContext.Type.QUIT);    break;
+        default:                             groupBuilder.setType(GroupContext.Type.DELIVER); break;
+      }
+
+      if (message.getGroupAction() == GroupContext.Type.ADD_VALUE ||
+          message.getGroupAction() == GroupContext.Type.CREATE_VALUE)
+      {
+        GroupContext serialized = GroupContext.parseFrom(Base64.decode(message.getGroupActionArguments()));
+        groupBuilder.addAllMembers(serialized.getMembersList());
+
+        if (serialized.hasName()) {
+          groupBuilder.setName(serialized.getName());
+        }
+      }
+
+      if (message.getGroupAction() == GroupContext.Type.CREATE_VALUE && !attachments.isEmpty()) {
+        Log.w("PushTransport", "Adding avatar...");
+        groupBuilder.setAvatar(AttachmentPointer.newBuilder()
+                                                .setId(attachments.get(0).getId())
+                                                .setContentType(attachments.get(0).getContentType())
+                                                .setKey(ByteString.copyFrom(attachments.get(0).getKey()))
+                                                .build());
+        attachments.remove(0);
+      } else {
+        Log.w("PushTransport", "Not adding avatar: " + message.getGroupAction() + " , " + attachments.isEmpty());
+      }
 
       builder.setGroup(groupBuilder.build());
     }
@@ -266,8 +262,8 @@ public class PushTransport extends BaseTransport {
     }
 
     for (PushAttachmentPointer attachment : attachments) {
-      PushMessageContent.AttachmentPointer.Builder attachmentBuilder =
-          PushMessageContent.AttachmentPointer.newBuilder();
+      AttachmentPointer.Builder attachmentBuilder =
+          AttachmentPointer.newBuilder();
 
       attachmentBuilder.setId(attachment.getId());
       attachmentBuilder.setContentType(attachment.getContentType());
@@ -316,7 +312,7 @@ public class PushTransport extends BaseTransport {
           if (processor.isTrusted(preKey)) {
             processor.processKeyExchangeMessage(preKey, threadId);
           } else {
-            throw new UntrustedIdentityException("Untrusted identity key!", preKey.getIdentityKey());
+            throw new UntrustedIdentityException("Untrusted identity key!", pushAddress.getNumber(), preKey.getIdentityKey());
           }
         }
       } catch (InvalidKeyException e) {

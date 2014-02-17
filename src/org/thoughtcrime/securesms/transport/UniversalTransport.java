@@ -19,10 +19,14 @@ package org.thoughtcrime.securesms.transport;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -31,7 +35,11 @@ import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactNumberDetails;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
+import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.UnregisteredUserException;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.util.DirectoryUtil;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
@@ -39,15 +47,19 @@ import java.io.IOException;
 
 import ws.com.google.android.mms.pdu.SendReq;
 
+import static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
+
 public class UniversalTransport {
 
   private final Context       context;
+  private final MasterSecret  masterSecret;
   private final PushTransport pushTransport;
   private final SmsTransport  smsTransport;
   private final MmsTransport  mmsTransport;
 
   public UniversalTransport(Context context, MasterSecret masterSecret) {
     this.context       = context;
+    this.masterSecret  = masterSecret;
     this.pushTransport = new PushTransport(context, masterSecret);
     this.smsTransport  = new SmsTransport(context, masterSecret);
     this.mmsTransport  = new MmsTransport(context, masterSecret);
@@ -90,6 +102,10 @@ public class UniversalTransport {
       throw new UndeliverableMessageException("No destination specified");
     }
 
+    if (GroupUtil.isEncodedGroup(mediaMessage.getTo()[0].getString())) {
+      return deliverGroupMessage(mediaMessage, threadId);
+    }
+
     if (!TextSecurePreferences.isPushRegistered(context)) {
       return mmsTransport.deliver(mediaMessage);
     }
@@ -98,33 +114,76 @@ public class UniversalTransport {
       return mmsTransport.deliver(mediaMessage);
     }
 
-    String destination;
-
     try {
-      destination = Util.canonicalizeNumber(context, mediaMessage.getTo()[0].getString());
+      String destination = Util.canonicalizeNumber(context, mediaMessage.getTo()[0].getString());
+
+      if (isPushTransport(destination)) {
+        try {
+          Log.w("UniversalTransport", "Delivering media message with GCM...");
+          pushTransport.deliver(mediaMessage, threadId);
+          return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
+        } catch (IOException ioe) {
+          Log.w("UniversalTransport", ioe);
+          return mmsTransport.deliver(mediaMessage);
+        } catch (RecipientFormattingException e) {
+          Log.w("UniversalTransport", e);
+          return mmsTransport.deliver(mediaMessage);
+        } catch (EncapsulatedExceptions ee) {
+          Log.w("UniversalTransport", ee);
+          if (!ee.getUnregisteredUserExceptions().isEmpty()) {
+            return mmsTransport.deliver(mediaMessage);
+          } else {
+            throw new UntrustedIdentityException(ee.getUntrustedIdentityExceptions().get(0));
+          }
+        }
+      } else {
+        Log.w("UniversalTransport", "Delivering media message with MMS...");
+        return mmsTransport.deliver(mediaMessage);
+      }
     } catch (InvalidNumberException ine) {
       Log.w("UniversalTransport", ine);
       return mmsTransport.deliver(mediaMessage);
     }
+  }
 
-    if (isPushTransport(destination)) {
+  private MmsSendResult deliverGroupMessage(SendReq mediaMessage, long threadId)
+      throws RetryLaterException, UndeliverableMessageException
+  {
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      throw new UndeliverableMessageException("Not push registered!");
+    }
+
+    try {
+      pushTransport.deliver(mediaMessage, threadId);
+      return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
+    } catch (IOException e) {
+      Log.w("UniversalTransport", e);
+      throw new RetryLaterException(e);
+    } catch (RecipientFormattingException e) {
+      throw new UndeliverableMessageException(e);
+    } catch (InvalidNumberException e) {
+      throw new UndeliverableMessageException(e);
+    } catch (EncapsulatedExceptions ee) {
+      Log.w("UniversalTransport", ee);
       try {
-        Log.w("UniversalTransport", "Delivering media message with GCM...");
-        pushTransport.deliver(mediaMessage, threadId);
+        for (UnregisteredUserException unregistered : ee.getUnregisteredUserExceptions()) {
+          IncomingTextMessage quitMessage = IncomingTextMessage.createForLeavingGroup(mediaMessage.getTo()[0].getString(), unregistered.getE164Number());
+          DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, quitMessage);
+          DatabaseFactory.getGroupDatabase(context).remove(GroupUtil.getDecodedId(mediaMessage.getTo()[0].getString()), unregistered.getE164Number());
+        }
+
+        for (UntrustedIdentityException untrusted : ee.getUntrustedIdentityExceptions()) {
+          IncomingIdentityUpdateMessage identityMessage = IncomingIdentityUpdateMessage.createFor(untrusted.getE164Number(), untrusted.getIdentityKey(), mediaMessage.getTo()[0].getString());
+          DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityMessage);
+        }
+
         return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
       } catch (IOException ioe) {
-        Log.w("UniversalTransport", ioe);
-        if (!GroupUtil.isEncodedGroup(destination)) {
-          return mmsTransport.deliver(mediaMessage);
-        } else {
-          throw new RetryLaterException();
-        }
+        throw new AssertionError(ioe);
       }
-    } else {
-      Log.w("UniversalTransport", "Delivering media message with MMS...");
-      return mmsTransport.deliver(mediaMessage);
     }
   }
+
 
   public boolean isMultipleRecipients(SendReq mediaMessage) {
     int recipientCount = 0;

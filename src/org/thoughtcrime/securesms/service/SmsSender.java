@@ -81,8 +81,7 @@ public class SmsSender {
           transport.deliver(record);
         } catch (UntrustedIdentityException e) {
           Log.w("SmsSender", e);
-          IncomingTextMessage           base                  = new IncomingTextMessage(record);
-          IncomingIdentityUpdateMessage identityUpdateMessage = new IncomingIdentityUpdateMessage(base, Base64.encodeBytesWithoutPadding(e.getIdentityKey().serialize()));
+          IncomingIdentityUpdateMessage identityUpdateMessage = IncomingIdentityUpdateMessage.createFor(e.getE164Number(), e.getIdentityKey());
           DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
           DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
         } catch (UndeliverableMessageException ude) {

@@ -20,12 +20,16 @@ import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.util.Util;
+
+import java.util.List;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
@@ -55,12 +59,13 @@ public class ThreadRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody() {
+    // TODO jake is going to fill these in
     if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
     } else if (getGroupAction() == GroupContext.Type.ADD_VALUE ||
                getGroupAction() == GroupContext.Type.CREATE_VALUE)
     {
-      return emphasisAdded("Added " + getGroupActionArguments());
+      return emphasisAdded(Util.join(GroupUtil.getSerializedArgumentMembers(getGroupActionArguments()), ", ") + " have joined the group");
     } else if (getGroupAction() == GroupContext.Type.QUIT_VALUE) {
       return emphasisAdded(getRecipients().toShortString() + " left the group.");
     } else if (getGroupAction() == GroupContext.Type.MODIFY_VALUE) {

@@ -34,6 +34,7 @@ import android.provider.ContactsContract.QuickContact;
 import org.thoughtcrime.securesms.util.DateUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,6 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.webkit.MimeTypeMap;
 
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -53,14 +55,17 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
@@ -172,13 +177,14 @@ public class ConversationItem extends LinearLayout {
   /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
+    // TODO jake is going to fill these in
     switch (messageRecord.getGroupAction()) {
       case GroupContext.Type.QUIT_VALUE:
         bodyText.setText(messageRecord.getIndividualRecipient().toShortString() + " has left the group.");
         return;
       case GroupContext.Type.ADD_VALUE:
       case GroupContext.Type.CREATE_VALUE:
-        bodyText.setText(messageRecord.getGroupActionArguments() + " have joined the group.");
+        bodyText.setText(Util.join(GroupUtil.getSerializedArgumentMembers(messageRecord.getGroupActionArguments()), ", ") + " have joined the group.");
         return;
       case GroupContext.Type.MODIFY_VALUE:
         bodyText.setText(messageRecord.getIndividualRecipient() + " has updated the group.");

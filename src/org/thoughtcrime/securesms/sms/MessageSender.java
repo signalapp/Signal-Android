@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -34,9 +35,42 @@ import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.PduBody;
+import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendReq;
 
 public class MessageSender {
+
+  public static long sendGroupAction(Context context, MasterSecret masterSecret, Recipients recipients,
+                                     long threadId, int groupAction, String groupActionArguments, byte[] avatar)
+      throws MmsException
+  {
+    if (threadId == -1) {
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    }
+
+    PduBody body = new PduBody();
+
+    if (avatar != null) {
+      PduPart part = new PduPart();
+      part.setData(avatar);
+      part.setContentType(ContentType.IMAGE_PNG.getBytes());
+      part.setContentId((System.currentTimeMillis()+"").getBytes());
+      part.setName(("Image" + System.currentTimeMillis()).getBytes());
+      body.addPart(part);
+    }
+
+    SendReq sendRequest = new SendReq();
+    sendRequest.setDate(System.currentTimeMillis() / 1000L);
+    sendRequest.setBody(body);
+    sendRequest.setContentType(ContentType.MULTIPART_MIXED.getBytes());
+    sendRequest.setGroupAction(groupAction);
+    sendRequest.setGroupActionArguments(groupActionArguments);
+
+    sendMms(context, recipients, masterSecret, sendRequest, threadId,
+            ThreadDatabase.DistributionTypes.CONVERSATION, true);
+
+    return threadId;
+  }
 
   public static long sendMms(Context context, MasterSecret masterSecret, Recipients recipients,
                              long threadId, SlideDeck slideDeck, String message, int distributionType,

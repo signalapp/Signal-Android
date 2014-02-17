@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonParseException;
-import com.google.thoughtcrimegson.JsonSyntaxException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -27,7 +26,6 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -94,7 +92,7 @@ public class PushServiceSocket {
     try {
       makeRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", new Gson().toJson(bundle));
     } catch (NotFoundException nfe) {
-      throw new UnregisteredUserException(nfe);
+      throw new UnregisteredUserException(bundle.getDestination(), nfe);
     }
   }
 

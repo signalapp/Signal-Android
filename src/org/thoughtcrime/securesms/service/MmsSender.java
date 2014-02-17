@@ -92,8 +92,7 @@ public class MmsSender {
           Recipients recipients = threads.getRecipientsForThreadId(threadId);
           MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
         } catch (UntrustedIdentityException uie) {
-          IncomingTextMessage           base                  = new IncomingTextMessage(message);
-          IncomingIdentityUpdateMessage identityUpdateMessage = new IncomingIdentityUpdateMessage(base, Base64.encodeBytesWithoutPadding(uie.getIdentityKey().serialize()));
+          IncomingIdentityUpdateMessage identityUpdateMessage = IncomingIdentityUpdateMessage.createFor(message.getTo()[0].getString(), uie.getIdentityKey());
           DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
           database.markAsSentFailed(messageId);
         } catch (RetryLaterException e) {

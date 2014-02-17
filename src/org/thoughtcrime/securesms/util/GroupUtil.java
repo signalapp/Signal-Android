@@ -1,8 +1,16 @@
 package org.thoughtcrime.securesms.util;
 
+import android.util.Log;
+import android.util.Pair;
+
+import com.google.protobuf.ByteString;
+
+import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
@@ -26,15 +34,29 @@ public class GroupUtil {
     return groupId.startsWith(ENCODED_GROUP_PREFIX);
   }
 
-  public static String getActionArgument(GroupContext group) {
-    if (group.getType().equals(GroupContext.Type.CREATE) ||
-        group.getType().equals(GroupContext.Type.ADD))
-    {
-      return org.whispersystems.textsecure.util.Util.join(group.getMembersList(), ",");
-    } else if (group.getType().equals(GroupContext.Type.MODIFY)) {
-      return group.getName();
+  public static String serializeArguments(byte[] id, String name, List<String> members) {
+    return Base64.encodeBytes(GroupContext.newBuilder()
+                                          .setId(ByteString.copyFrom(id))
+                                          .setName(name)
+                                          .addAllMembers(members)
+                                          .build().toByteArray());
+  }
+
+  public static String serializeArguments(GroupContext context) {
+    return Base64.encodeBytes(context.toByteArray());
+  }
+
+  public static List<String> getSerializedArgumentMembers(String serialized) {
+    if (serialized == null) {
+      return new LinkedList<String>();
     }
 
-    return null;
+    try {
+      GroupContext context = GroupContext.parseFrom(Base64.decode(serialized));
+      return context.getMembersList();
+    } catch (IOException e) {
+      Log.w("GroupUtil", e);
+      return new LinkedList<String>();
+    }
   }
 }
