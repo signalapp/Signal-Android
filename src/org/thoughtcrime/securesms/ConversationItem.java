@@ -121,7 +121,7 @@ public class ConversationItem extends LinearLayout {
     this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
     this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
     this.keyImage            = (ImageView)findViewById(R.id.key_exchange_indicator);
-    this.mmsContainer        = (View)     findViewById(R.id.mms_view);
+    this.mmsContainer        =            findViewById(R.id.mms_view);
     this.mmsThumbnail        = (ImageView)findViewById(R.id.image_view);
     this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
@@ -129,8 +129,8 @@ public class ConversationItem extends LinearLayout {
     this.deliveredImage      = (ImageView)findViewById(R.id.delivered_indicator);
 
     setOnClickListener(clickListener);
-    this.failedImage.setOnClickListener(failedIconClickListener);
-    this.mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
+    if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
+    if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
   }
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
@@ -142,10 +142,12 @@ public class ConversationItem extends LinearLayout {
     this.groupThread       = groupThread;
 
     setBodyText(messageRecord);
-    setStatusIcons(messageRecord);
-    setContactPhoto(messageRecord);
-    setGroupMessageStatus(messageRecord);
-    setEvents(messageRecord);
+    if (messageRecord.getGroupAction() < 1) {
+      setStatusIcons(messageRecord);
+      setContactPhoto(messageRecord);
+      setGroupMessageStatus(messageRecord);
+      setEvents(messageRecord);
+    }
 
     if (messageRecord instanceof NotificationMmsMessageRecord) {
       setNotificationMmsAttributes((NotificationMmsMessageRecord)messageRecord);

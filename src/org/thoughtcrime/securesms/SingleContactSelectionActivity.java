@@ -17,27 +17,18 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.CursorAdapter;
-import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.FilterQueryProvider;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.components.SingleRecipientPanel;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
@@ -76,31 +67,20 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
       }
     });
 
-
-    EditText filter = (EditText)findViewById(R.id.filter);
-    filter.addTextChangedListener(new TextWatcher() {
+    SingleRecipientPanel recipientsPanel = (SingleRecipientPanel) findViewById(R.id.recipients);
+    recipientsPanel.setPanelChangeListener(new SingleRecipientPanel.RecipientsPanelChangedListener() {
       @Override
-      public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-      }
-
-      @Override
-      public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-      }
-
-      @Override
-      public void afterTextChanged(Editable editable) {
-        final CursorAdapter adapter = (CursorAdapter)listFragment.getListView().getAdapter();
-        Log.i(TAG, "new text change: " + editable);
-        Filter filter = adapter.getFilter();
-
-        if (filter != null) { filter.filter(editable.toString()); adapter.notifyDataSetChanged(); }
-        else                { Log.w(TAG, "filter was null, bad time."); }
-
-
+      public void onRecipientsPanelUpdate(Recipients recipients) {
+        Log.i(TAG, "onRecipientsPanelUpdate received.");
+        if (recipients != null) {
+          Intent resultIntent = getIntent();
+          resultIntent.putExtra("recipients", recipients);
+          setResult(RESULT_OK, resultIntent);
+          finish();
+        }
       }
     });
+
   }
 
   @Override

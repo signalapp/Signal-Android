@@ -22,35 +22,25 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.MergeCursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.CursorAdapter;
-import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Activity for selecting a list of contacts.  Displayed inside
@@ -110,18 +100,6 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
 
   private void initializeCursor() {
     final ContactSelectionListAdapter listAdapter = new ContactSelectionListAdapter(getActivity(), null);
-    listAdapter.setFilterQueryProvider(new FilterQueryProvider() {
-      @Override
-      public Cursor runQuery(CharSequence charSequence) {
-        final Uri uri          = ContactsContract.Contacts.CONTENT_URI;
-        final String selection = ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1" +
-                                 " AND " + ContactsContract.Contacts.DISPLAY_NAME + " like ?";
-
-        final Cursor filteredCursor = getActivity().getContentResolver().query(uri, null, selection, new String[]{"%"+charSequence.toString()+"%"},
-            ContactsContract.Contacts.DISPLAY_NAME + " ASC");
-        return filteredCursor;
-      }
-    });
     setListAdapter(listAdapter);
     this.getLoaderManager().initLoader(0, null, this);
   }
@@ -200,7 +178,7 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
       this.contactData = pushContactData.contactData;
       this.pushSupport = pushContactData.pushSupport;
 
-      /*if (!pushSupport) {
+      if (!pushSupport) {
         this.name.setTextColor(0xa0000000);
         this.number.setTextColor(0xa0000000);
         this.pushLabel.setBackgroundColor(0x99000000);
@@ -208,7 +186,7 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
         this.name.setTextColor(0xff000000);
         this.number.setTextColor(0xff000000);
         this.pushLabel.setBackgroundColor(0xff64a926);
-      }*/
+      }
 
       this.name.setText(contactData.name);
 
@@ -284,7 +262,8 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    ((CursorAdapter) getListAdapter()).changeCursor(cursor);
+    Cursor pushCursor = ContactAccessor.getInstance().getCursorForContactsWithPush(getActivity());
+    ((CursorAdapter) getListAdapter()).changeCursor(new MergeCursor(new Cursor[]{pushCursor,cursor}));
   }
 
   @Override

@@ -5,6 +5,14 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:paddingRight="25dip">
 
+    <View android:id="@+id/push_support_label"
+          android:layout_height="fill_parent"
+          android:layout_width="3dip"
+          android:layout_alignParentLeft="true"
+          android:background="#ff64a926"
+          android:visibility="visible"
+        />
+
     <TextView android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -117,7 +117,6 @@ public class RecipientsEditor extends MultiAutoCompleteTextView {
         int len = getText().length();
 
         return end == len;
-
     }
 
     public int getRecipientCount() {
@@ -196,19 +195,19 @@ public class RecipientsEditor extends MultiAutoCompleteTextView {
     }*/
 
     public static CharSequence contactToToken(Recipient c) {
-    	String name       = c.getName();
-    	String number     = c.getNumber();
-        SpannableString s = new SpannableString(RecipientsFormatter.formatNameAndNumber(name, number));
-        int len           = s.length();
+      String name       = c.getName();
+      String number     = c.getNumber();
+      SpannableString s = new SpannableString(RecipientsFormatter.formatNameAndNumber(name, number));
+      int len           = s.length();
 
-        if (len == 0) {
-            return s;
-        }
+      if (len == 0) {
+        return s;
+      }
 
-        s.setSpan(new Annotation("number", c.getNumber()), 0, len,
+      s.setSpan(new Annotation("number", c.getNumber()), 0, len,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        return s;
+      return s;
     }
 
     public void populate(Recipients list) {
@@ -228,7 +227,6 @@ public class RecipientsEditor extends MultiAutoCompleteTextView {
     private int pointToPosition(int x, int y) {
         x -= getCompoundPaddingLeft();
         y -= getExtendedPaddingTop();
-
 
         x += getScrollX();
         y += getScrollY();

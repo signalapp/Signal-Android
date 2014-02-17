@@ -20,13 +20,10 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -37,11 +34,9 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Panel component combining both an editable field with a button for
@@ -49,8 +44,8 @@ import java.util.Set;
  *
  * @author Moxie Marlinspike
  */
-public class PushRecipientsPanel extends RelativeLayout {
-  private final String                         TAG = "PushRecipientsPanel";
+public class SingleRecipientPanel extends RelativeLayout {
+  private final String                         TAG = "SingleRecipientsPanel";
   private       RecipientsPanelChangedListener panelChangeListener;
 
   private RecipientsEditor recipientsText;
@@ -58,22 +53,23 @@ public class PushRecipientsPanel extends RelativeLayout {
 
   private static final int RECIPIENTS_MAX_LENGTH = 312;
 
-  public PushRecipientsPanel(Context context) {
+  public SingleRecipientPanel(Context context) {
     super(context);
     initialize();
   }
 
-  public PushRecipientsPanel(Context context, AttributeSet attrs) {
+  public SingleRecipientPanel(Context context, AttributeSet attrs) {
     super(context, attrs);
     initialize();
   }
 
-  public PushRecipientsPanel(Context context, AttributeSet attrs, int defStyle) {
+  public SingleRecipientPanel(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     initialize();
   }
 
   public void addRecipient(String name, String number) {
+    Log.i(TAG, "addRecipient for " + name + "/" + number);
     if (name != null) recipientsText.append(name + "< " + number + ">, ");
     else recipientsText.append(number + ", ");
   }
@@ -85,6 +81,14 @@ public class PushRecipientsPanel extends RelativeLayout {
     while (iterator.hasNext()) {
       Recipient recipient = iterator.next();
       addRecipient(recipient.getName(), recipient.getNumber());
+    }
+  }
+
+  public void addContacts(List<ContactAccessor.ContactData> contacts) {
+    for (ContactAccessor.ContactData contact : contacts) {
+      for (ContactAccessor.NumberData number : contact.numbers) {
+        addRecipient(contact.name, number.number);
+      }
     }
   }
 
@@ -109,12 +113,7 @@ public class PushRecipientsPanel extends RelativeLayout {
 
   private void initialize() {
     LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    inflater.inflate(R.layout.push_recipients_panel, this, true);
-
-    View imageButton = findViewById(R.id.contacts_button);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-      ((MarginLayoutParams) imageButton.getLayoutParams()).topMargin = 0;
+    inflater.inflate(R.layout.single_recipient_panel, this, true);
 
     panel = findViewById(R.id.recipients_panel);
     initRecipientsEditor();
@@ -149,7 +148,7 @@ public class PushRecipientsPanel extends RelativeLayout {
     });
   }
 
-  private class FocusChangedListener implements View.OnFocusChangeListener {
+  private class FocusChangedListener implements OnFocusChangeListener {
     public void onFocusChange(View v, boolean hasFocus) {
       if (!hasFocus && (panelChangeListener != null)) {
         try {

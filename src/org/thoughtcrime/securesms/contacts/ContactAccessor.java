@@ -102,7 +102,6 @@ public class ContactAccessor {
       try {
         if (lookupCursor != null && lookupCursor.moveToFirst()) {
           cursor.addRow(new Object[]{lookupCursor.getLong(0), lookupCursor.getString(1), 1});
-          Log.w("poop", "Adding matrix row for " + lookupCursor.getLong(0) + " : " + lookupCursor.getString(1));
         }
       } finally {
         if (lookupCursor != null)
@@ -414,14 +413,13 @@ public class ContactAccessor {
 
       if (RecipientsAdapter.usefulAsDigits(cons)) {
         phone = PhoneNumberUtils.convertKeypadLettersToDigits(cons);
-        if (phone.equals(cons)) {
+        if (phone.equals(cons) && !PhoneNumberUtils.isWellFormedSmsAddress(phone)) {
           phone = "";
         } else {
           phone = phone.trim();
         }
       }
     }
-
     Uri uri = Uri.withAppendedPath(Phone.CONTENT_FILTER_URI, Uri.encode(cons));
     String selection = String.format("%s=%s OR %s=%s OR %s=%s",
                                      Phone.TYPE,

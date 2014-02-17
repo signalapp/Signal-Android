@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -85,7 +84,6 @@ import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
@@ -95,6 +93,7 @@ import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -211,10 +210,16 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     switch (reqCode) {
     case PICK_CONTACT:
       if (resultCode == RESULT_OK) {
-        List<ContactData> contacts = data.getParcelableArrayListExtra("contacts");
-        if (contacts != null) {
-          recipientsPanel.addContacts(contacts);
+        Recipients recipients = data.getParcelableExtra("recipients");
+        if (recipients != null) {
+          recipientsPanel.addRecipients(recipients);
           this.recipients = getRecipients();
+        } else {
+          ArrayList<ContactData> contacts = data.getParcelableArrayListExtra("contacts");
+          if (contacts != null) {
+            recipientsPanel.addContacts(contacts);
+            this.recipients = getRecipients();
+          }
         }
       } else {
         Log.w("ConversationActivity", "gonna have a bad time.");

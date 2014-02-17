@@ -51,6 +51,10 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
       Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
 
+  public static final int MESSAGE_TYPE_OUTGOING = 0;
+  public static final int MESSAGE_TYPE_INCOMING = 1;
+  public static final int MESSAGE_TYPE_GROUP_ACTION = 2;
+
   private final Handler failedIconClickHandler;
   private final Context context;
   private final MasterSecret masterSecret;
@@ -85,8 +89,18 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
     int type = getItemViewType(cursor);
 
-    if (type == 0) view = inflater.inflate(R.layout.conversation_item_sent, parent, false);
-    else           view = inflater.inflate(R.layout.conversation_item_received, parent, false);
+    switch (type) {
+      case ConversationAdapter.MESSAGE_TYPE_OUTGOING:
+        view = inflater.inflate(R.layout.conversation_item_sent, parent, false);
+        break;
+      case ConversationAdapter.MESSAGE_TYPE_INCOMING:
+        view = inflater.inflate(R.layout.conversation_item_received, parent, false);
+        break;
+      case ConversationAdapter.MESSAGE_TYPE_GROUP_ACTION:
+        view = inflater.inflate(R.layout.conversation_item_activity, parent, false);
+        break;
+      default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
+    }
 
     bindView(view, context, cursor);
     return view;
@@ -94,7 +108,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
   @Override
   public int getViewTypeCount() {
-    return 2;
+    return 3;
   }
 
   @Override
@@ -107,9 +121,9 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
-
-    if (messageRecord.isOutgoing()) return 0;
-    else                            return 1;
+    if (messageRecord.getGroupAction() > 0) return MESSAGE_TYPE_GROUP_ACTION;
+    if (messageRecord.isOutgoing())         return MESSAGE_TYPE_OUTGOING;
+    else                                    return MESSAGE_TYPE_INCOMING;
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
