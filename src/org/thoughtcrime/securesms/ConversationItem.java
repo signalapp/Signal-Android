@@ -147,17 +147,18 @@ public class ConversationItem extends LinearLayout {
     this.groupThread       = groupThread;
 
     setBodyText(messageRecord);
+
     if (messageRecord.getGroupAction() < 1) {
       setStatusIcons(messageRecord);
       setContactPhoto(messageRecord);
       setGroupMessageStatus(messageRecord);
       setEvents(messageRecord);
-    }
 
-    if (messageRecord instanceof NotificationMmsMessageRecord) {
-      setNotificationMmsAttributes((NotificationMmsMessageRecord)messageRecord);
-    } else if (messageRecord instanceof MediaMmsMessageRecord) {
-      setMediaMmsAttributes((MediaMmsMessageRecord)messageRecord);
+      if (messageRecord instanceof NotificationMmsMessageRecord) {
+        setNotificationMmsAttributes((NotificationMmsMessageRecord)messageRecord);
+      } else if (messageRecord instanceof MediaMmsMessageRecord) {
+        setMediaMmsAttributes((MediaMmsMessageRecord)messageRecord);
+      }
     }
   }
 
