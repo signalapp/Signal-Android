@@ -121,6 +121,9 @@
     <string name="GroupCreateActivity_group_name_hint">Group Name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS Group</string>
     <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support TextSecure groups, so this group will be MMS.</string>
+    <string name="GroupCreateActivity_contacts_mms_exception">An unexpected error happened that has made group creation fail.</string>
+    <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
+    <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
 
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import System SMS Database?</string>
