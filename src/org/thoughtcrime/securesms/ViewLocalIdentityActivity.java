@@ -65,7 +65,7 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-      case R.id.menu_regenerate_key: promptToRegenerateIdentityKey(); return true;
+//      case R.id.menu_regenerate_key: promptToRegenerateIdentityKey(); return true;
       case android.R.id.home:        finish();                        return true;
     }
 
