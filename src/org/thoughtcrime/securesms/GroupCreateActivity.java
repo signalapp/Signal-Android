@@ -357,13 +357,14 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   private long handleCreatePushGroup(String groupName,
                                      byte[] avatar,
                                      Set<Recipient> members)
-      throws IOException, InvalidNumberException
+      throws InvalidNumberException, MmsException
   {
+    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
+    byte[]        groupId       = groupDatabase.allocateGroupId();
+
     try {
-      GroupDatabase  groupDatabase     = DatabaseFactory.getGroupDatabase(this);
-      List<String>   memberE164Numbers = getE164Numbers(members);
-      byte[]         groupId           = groupDatabase.allocateGroupId();
-      String         groupRecipientId  = GroupUtil.getEncodedId(groupId);
+      List<String> memberE164Numbers = getE164Numbers(members);
+      String       groupRecipientId  = GroupUtil.getEncodedId(groupId);
 
       String groupActionArguments = GroupUtil.serializeArguments(groupId, groupName, memberE164Numbers);
 
@@ -377,9 +378,11 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
                                            GroupContext.Type.CREATE_VALUE,
                                            groupActionArguments, avatar);
     } catch (RecipientFormattingException e) {
-      throw new IOException(e);
+      throw new AssertionError(e);
     } catch (MmsException e) {
-      throw new IOException(e);
+      Log.w("GroupCreateActivity", e);
+      groupDatabase.remove(groupId, TextSecurePreferences.getLocalNumber(this));
+      throw new MmsException(e);
     }
   }
 
