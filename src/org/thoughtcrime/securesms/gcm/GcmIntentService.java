@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 
-import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
@@ -14,7 +13,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.ContactNumberDetails;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
@@ -69,9 +67,10 @@ public class GcmIntentService extends GCMBaseIntentService {
 
       if (!isActiveNumber(context, message.getSource())) {
         Directory           directory           = Directory.getInstance(context);
-        String              contactNumber        = message.getSource();
-        ContactNumberDetails contactNumberDetails = new ContactNumberDetails(contactNumber, message.getRelay());
-        directory.setNumber(contactNumberDetails, true);
+        ContactTokenDetails contactTokenDetails = new ContactTokenDetails();
+        contactTokenDetails.setNumber(message.getSource());
+
+        directory.setNumber(contactTokenDetails, true);
       }
 
       Intent service = new Intent(context, SendReceiveService.class);

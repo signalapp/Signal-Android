@@ -71,8 +71,10 @@ public class PushServiceSocket {
     makeRequest(String.format(path, localNumber), "GET", null);
   }
 
-  public void verifyAccount(String verificationCode, String signalingKey) throws IOException {
-    SignalingKey signalingKeyEntity = new SignalingKey(signalingKey);
+  public void verifyAccount(String verificationCode, String signalingKey, boolean supportsSms)
+      throws IOException
+  {
+    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, supportsSms);
     makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode),
                 "PUT", new Gson().toJson(signalingKeyEntity));
   }

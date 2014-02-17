@@ -501,7 +501,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
         protected Integer doInBackground(Void... params) {
           try {
             PushServiceSocket socket = PushServiceSocketFactory.create(context, e164number, password);
-            socket.verifyAccount(code, signalingKey);
+            socket.verifyAccount(code, signalingKey, true);
             return SUCCESS;
           } catch (RateLimitException e) {
             Log.w("RegistrationProgressActivity", e);

@@ -7,11 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.whispersystems.textsecure.push.ContactNumberDetails;
-import org.whispersystems.textsecure.util.DirectoryUtil;
+import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class Directory {
@@ -66,6 +63,25 @@ public class Directory {
     this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
+  public boolean isSmsFallbackSupported(String e164number) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor = null;
+
+    try {
+      cursor = db.query(TABLE_NAME, new String[] {SUPPORTS_SMS}, NUMBER + " = ?",
+                        new String[]{e164number}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0) == 1;
+      } else {
+        return false;
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
   public boolean isActiveNumber(String e164number) throws NotInDirectoryException {
     if (e164number == null || e164number.length() == 0) {
       return false;
@@ -109,7 +125,7 @@ public class Directory {
     }
   }
 
-  public void setNumber(ContactNumberDetails token, boolean active) {
+  public void setNumber(ContactTokenDetails token, boolean active) {
     SQLiteDatabase db     = databaseHelper.getWritableDatabase();
     ContentValues  values = new ContentValues();
     values.put(NUMBER, token.getNumber());
@@ -120,13 +136,13 @@ public class Directory {
     db.replace(TABLE_NAME, null, values);
   }
 
-  public void setNumbers(List<ContactNumberDetails> activeTokens, Collection<String> inactiveTokens) {
+  public void setNumbers(List<ContactTokenDetails> activeTokens, Collection<String> inactiveTokens) {
     long timestamp    = System.currentTimeMillis();
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.beginTransaction();
 
     try {
-      for (ContactNumberDetails token : activeTokens) {
+      for (ContactTokenDetails token : activeTokens) {
         Log.w("Directory", "Adding active token: " + token);
         ContentValues values = new ContentValues();
         values.put(NUMBER, token.getNumber());

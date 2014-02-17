@@ -24,7 +24,15 @@ public class SystemStateListener {
     this.connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
   }
 
+  public void registerForRadioChange() {
+    Log.w("SystemStateListener", "Registering for radio changes...");
+    unregisterForConnectivityChange();
+
+    telephonyManager.listen(telephonyListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+  }
+
   public void registerForConnectivityChange() {
+    Log.w("SystemStateListener", "Registering for any connectivity changes...");
     unregisterForConnectivityChange();
 
     telephonyManager.listen(telephonyListener, PhoneStateListener.LISTEN_SERVICE_STATE);
@@ -63,6 +71,7 @@ public class SystemStateListener {
     @Override
     public void onServiceStateChanged(ServiceState state) {
       if (state.getState() == ServiceState.STATE_IN_SERVICE) {
+        Log.w("SystemStateListener", "In service, sending sms/mms outboxes...");
         sendSmsOutbox(context);
         sendMmsOutbox(context);
       }
@@ -76,6 +85,7 @@ public class SystemStateListener {
         if (connectivityManager.getActiveNetworkInfo() != null &&
             connectivityManager.getActiveNetworkInfo().isConnected())
         {
+          Log.w("SystemStateListener", "Got connectivity action: " + intent.toString());
           sendSmsOutbox(context);
           sendMmsOutbox(context);
         }

@@ -2,24 +2,32 @@ package org.whispersystems.textsecure.push;
 
 import com.google.thoughtcrimegson.Gson;
 
-public class ContactTokenDetails extends ContactDetails {
+public class ContactTokenDetails {
 
   private String  token;
+  private String  relay;
+  private String  number;
+  private boolean supportsSms;
 
-  public ContactTokenDetails() { super(); }
-
-  public ContactTokenDetails(String token) {
-    super();
-    this.token = token;
-  }
-
-  public ContactTokenDetails(String token, String relay) {
-    super(relay);
-    this.token = token;
-  }
+  public ContactTokenDetails() {}
 
   public String getToken() {
     return token;
   }
 
+  public String getRelay() {
+    return relay;
+  }
+
+  public boolean isSupportsSms() {
+    return supportsSms;
+  }
+
+  public void setNumber(String number) {
+    this.number = number;
+  }
+
+  public String getNumber() {
+    return number;
+  }
 }

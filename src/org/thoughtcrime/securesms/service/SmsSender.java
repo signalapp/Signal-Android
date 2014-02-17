@@ -17,6 +17,8 @@
 package org.thoughtcrime.securesms.service;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
@@ -31,12 +33,11 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Base64;
 
 public class SmsSender {
 
@@ -87,6 +88,10 @@ public class SmsSender {
         } catch (UndeliverableMessageException ude) {
           Log.w("SmsSender", ude);
           DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
+        } catch (RetryLaterException rle) {
+          Log.w("SmsSender", rle);
+          if (systemStateListener.isConnected()) scheduleQuickRetryAlarm();
+          else                                   systemStateListener.registerForConnectivityChange();
         }
       }
     } finally {
@@ -140,10 +145,20 @@ public class SmsSender {
   }
 
   private void registerForRadioChanges() {
-    systemStateListener.registerForConnectivityChange();
+    if (systemStateListener.isConnected()) systemStateListener.registerForRadioChange();
+    else                                   systemStateListener.registerForConnectivityChange();
   }
 
   private void unregisterForRadioChanges() {
     systemStateListener.unregisterForConnectivityChange();
+  }
+
+  private void scheduleQuickRetryAlarm() {
+    ((AlarmManager)context.getSystemService(Context.ALARM_SERVICE))
+        .set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (30 * 1000),
+             PendingIntent.getService(context, 0,
+                                      new Intent(SendReceiveService.SEND_SMS_ACTION,
+                                                 null, context, SendReceiveService.class),
+                                      PendingIntent.FLAG_UPDATE_CURRENT));
   }
 }

@@ -242,7 +242,7 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      socket.verifyAccount(challenge, signalingKey);
+      socket.verifyAccount(challenge, signalingKey, true);
 
       handleCommonRegistration(masterSecret, socket, number);
       markAsVerified(number, password, signalingKey);

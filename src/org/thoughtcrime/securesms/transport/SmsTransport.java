@@ -24,8 +24,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.SendReceiveService;
-import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.OutgoingPrekeyBundleMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;

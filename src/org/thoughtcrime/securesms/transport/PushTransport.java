@@ -91,11 +91,6 @@ public class PushTransport extends BaseTransport {
 
       context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType(), true));
 
-    } catch (UnregisteredUserException e) {
-      Log.w("PushTransport", e);
-      //TODO We should probably remove the user from the directory?
-//      destroySessions(message.getIndividualRecipient());
-      throw new IOException("Not push registered after all.");
     } catch (InvalidNumberException e) {
       Log.w("PushTransport", e);
       throw new IOException("Badly formatted number.");

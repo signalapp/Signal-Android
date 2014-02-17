@@ -33,21 +33,15 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.ContactNumberDetails;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
-import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.util.DirectoryUtil;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
 
 import ws.com.google.android.mms.pdu.SendReq;
-
-import static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
 
 public class UniversalTransport {
 
@@ -66,7 +60,7 @@ public class UniversalTransport {
   }
 
   public void deliver(SmsMessageRecord message)
-      throws UndeliverableMessageException, UntrustedIdentityException
+      throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException
   {
     if (!TextSecurePreferences.isPushRegistered(context)) {
       smsTransport.deliver(message);
@@ -78,12 +72,19 @@ public class UniversalTransport {
       String number       = Util.canonicalizeNumber(context, recipient.getNumber());
 
       if (isPushTransport(number)) {
+        boolean isSmsFallbackSupported = isSmsFallbackSupported(number);
+
         try {
           Log.w("UniversalTransport", "Delivering with GCM...");
           pushTransport.deliver(message);
+        } catch (UnregisteredUserException uue) {
+          Log.w("UnviersalTransport", uue);
+          if (isSmsFallbackSupported) smsTransport.deliver(message);
+          else                        throw new UndeliverableMessageException(uue);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
-          smsTransport.deliver(message);
+          if (isSmsFallbackSupported) smsTransport.deliver(message);
+          else                        throw new RetryLaterException(ioe);
         }
       } else {
         Log.w("UniversalTransport", "Delivering with SMS...");
@@ -118,20 +119,25 @@ public class UniversalTransport {
       String destination = Util.canonicalizeNumber(context, mediaMessage.getTo()[0].getString());
 
       if (isPushTransport(destination)) {
+        boolean isSmsFallbackSupported = isSmsFallbackSupported(destination);
+
         try {
           Log.w("UniversalTransport", "Delivering media message with GCM...");
           pushTransport.deliver(mediaMessage, threadId);
           return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
-          return mmsTransport.deliver(mediaMessage);
+          if (isSmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
+          else                        throw new RetryLaterException(ioe);
         } catch (RecipientFormattingException e) {
           Log.w("UniversalTransport", e);
-          return mmsTransport.deliver(mediaMessage);
+          if (isSmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
+          else                        throw new UndeliverableMessageException(e);
         } catch (EncapsulatedExceptions ee) {
           Log.w("UniversalTransport", ee);
           if (!ee.getUnregisteredUserExceptions().isEmpty()) {
-            return mmsTransport.deliver(mediaMessage);
+            if (isSmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
+            else                        throw new UndeliverableMessageException(ee);
           } else {
             throw new UntrustedIdentityException(ee.getUntrustedIdentityExceptions().get(0));
           }
@@ -203,6 +209,15 @@ public class UniversalTransport {
     return recipientCount > 1;
   }
 
+  private boolean isSmsFallbackSupported(String destination) {
+    if (GroupUtil.isEncodedGroup(destination)) {
+      return false;
+    }
+
+    Directory directory = Directory.getInstance(context);
+    return directory.isSmsFallbackSupported(destination);
+  }
+
   private boolean isPushTransport(String destination) {
     if (GroupUtil.isEncodedGroup(destination)) {
       return true;
@@ -215,12 +230,19 @@ public class UniversalTransport {
     } catch (NotInDirectoryException e) {
       try {
         PushServiceSocket    socket          = PushServiceSocketFactory.create(context);
-        ContactTokenDetails  registeredUser  = socket.getContactTokenDetails(DirectoryUtil.getDirectoryServerToken(destination));
-        boolean              registeredFound = !(registeredUser == null);
-        ContactNumberDetails numberDetails   = new ContactNumberDetails(destination, registeredUser == null ? null : registeredUser.getRelay());
+        String contactToken = DirectoryUtil.getDirectoryServerToken(destination);
+        ContactTokenDetails  registeredUser  = socket.getContactTokenDetails(contactToken);
 
-        directory.setNumber(numberDetails, registeredFound);
-        return registeredFound;
+        if (registeredUser == null) {
+          registeredUser = new ContactTokenDetails();
+          registeredUser.setNumber(destination);
+          directory.setNumber(registeredUser, false);
+          return false;
+        } else {
+          registeredUser.setNumber(destination);
+          directory.setNumber(registeredUser, true);
+          return true;
+        }
       } catch (IOException e1) {
         Log.w("UniversalTransport", e1);
         return false;

@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.push.ContactNumberDetails;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.DirectoryUtil;
@@ -24,20 +24,19 @@ public class DirectoryHelper {
   }
 
   public static void refreshDirectory(final Context context, final PushServiceSocket socket, final String localNumber) {
-    final Directory         directory = Directory.getInstance(context);
+    Directory                 directory              = Directory.getInstance(context);
+    Set<String>               eligibleContactNumbers = directory.getPushEligibleContactNumbers(localNumber);
+    Map<String, String>       tokenMap               = DirectoryUtil.getDirectoryServerTokenMap(eligibleContactNumbers);
+    List<ContactTokenDetails> activeTokens           = socket.retrieveDirectory(tokenMap.keySet());
 
-    final Set<String> eligibleContactNumbers = directory.getPushEligibleContactNumbers(localNumber);
-
-    final Map<String, String>        tokenMap      = DirectoryUtil.getDirectoryServerTokenMap(eligibleContactNumbers);
-    final List<ContactTokenDetails>  activeTokens  = socket.retrieveDirectory(tokenMap.keySet());
 
     if (activeTokens != null) {
-      final List<ContactNumberDetails> activeNumbers = ContactNumberDetails.fromContactTokenDetailsList(activeTokens, tokenMap);
       for (ContactTokenDetails activeToken : activeTokens) {
         eligibleContactNumbers.remove(tokenMap.get(activeToken.getToken()));
+        activeToken.setNumber(tokenMap.get(activeToken.getToken()));
       }
 
-      directory.setNumbers(activeNumbers, eligibleContactNumbers);
+      directory.setNumbers(activeTokens, eligibleContactNumbers);
     }
   }
 }
