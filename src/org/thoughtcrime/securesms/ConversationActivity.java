@@ -208,24 +208,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     super.onActivityResult(reqCode, resultCode, data);
 
     switch (reqCode) {
-    case PICK_CONTACT:
-      if (resultCode == RESULT_OK) {
-        Recipients recipients = data.getParcelableExtra("recipients");
-        if (recipients != null) {
-          recipientsPanel.addRecipients(recipients);
-          this.recipients = getRecipients();
-        } else {
-          ArrayList<ContactData> contacts = data.getParcelableArrayListExtra("contacts");
-          if (contacts != null) {
-            recipientsPanel.addContacts(contacts);
-            this.recipients = getRecipients();
-          }
-        }
-      } else {
-        Log.w("ConversationActivity", "gonna have a bad time.");
-        finish();
-      }
-      break;
     case PICK_IMAGE:
       if (data != null && resultCode == RESULT_OK) addAttachmentImage(data.getData());
       break;
@@ -598,11 +580,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeResources() {
-    recipientsPanel     = (RecipientsPanel)findViewById(R.id.recipients);
     recipients          = getIntent().getParcelableExtra(RECIPIENTS_EXTRA);
     threadId            = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     distributionType    = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA,
                                                   ThreadDatabase.DistributionTypes.DEFAULT);
+    recipientsPanel     = (RecipientsPanel)findViewById(R.id.recipients);
     addContactButton    = (ImageButton)findViewById(R.id.contacts_button);
     sendButton          = (ImageButton)findViewById(R.id.send_button);
     composeText         = (EditText)findViewById(R.id.embedded_text_editor);

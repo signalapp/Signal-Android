@@ -103,8 +103,12 @@ public class SingleRecipientPanel extends RelativeLayout {
   }
 
   public void disable() {
-    recipientsText.setText("");
+    clear();
     panel.setVisibility(View.GONE);
+  }
+
+  public void clear() {
+    recipientsText.setText("");
   }
 
   public void setPanelChangeListener(RecipientsPanelChangedListener panelChangeListener) {

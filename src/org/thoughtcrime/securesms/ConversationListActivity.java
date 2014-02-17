@@ -138,12 +138,12 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     int defaultType = ThreadDatabase.DistributionTypes.DEFAULT;
 
     switch (item.getItemId()) {
-    case R.id.menu_new_message:      createConversation(-1, null, defaultType); return true;
-    case R.id.menu_new_group:        createGroup();                             return true;
-    case R.id.menu_settings:         handleDisplaySettings();                   return true;
-    case R.id.menu_clear_passphrase: handleClearPassphrase();                   return true;
-    case R.id.menu_mark_all_read:    handleMarkAllRead();                       return true;
-    case android.R.id.home:          handleNavigationDrawerToggle();            return true;
+    case R.id.menu_new_message:      openSingleContactSelection();   return true;
+    case R.id.menu_new_group:        createGroup();                  return true;
+    case R.id.menu_settings:         handleDisplaySettings();        return true;
+    case R.id.menu_clear_passphrase: handleClearPassphrase();        return true;
+    case R.id.menu_mark_all_read:    handleMarkAllRead();            return true;
+    case android.R.id.home:          handleNavigationDrawerToggle(); return true;
     }
 
     return false;
@@ -157,6 +157,12 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   private void createGroup() {
     Intent intent = new Intent(this, GroupCreateActivity.class);
     intent.putExtra("master_secret", masterSecret);
+    startActivity(intent);
+  }
+
+  private void openSingleContactSelection() {
+    Intent intent = new Intent(this, SingleContactSelectionActivity.class);
+    intent.putExtra(SingleContactSelectionActivity.MASTER_SECRET_EXTRA, masterSecret);
     startActivity(intent);
   }
 

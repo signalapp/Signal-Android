@@ -19,14 +19,19 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.components.SingleRecipientPanel;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.ArrayList;
 
@@ -41,9 +46,11 @@ import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
  *
  */
 public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFragmentActivity {
-  private final String       TAG          = "SingleContactSelectionActivity";
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private final static String TAG                 = "SingleContactSelectionActivity";
+  public final static  String MASTER_SECRET_EXTRA = "master_secret";
 
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private MasterSecret masterSecret;
   @Override
   protected void onCreate(Bundle icicle) {
     dynamicTheme.onCreate(this);
@@ -54,33 +61,51 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
     actionBar.setDisplayHomeAsUpEnabled(true);
 
     setContentView(R.layout.single_contact_selection_activity);
+    initializeResources();
+  }
+
+  private void initializeResources() {
+    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
+    final SingleRecipientPanel recipientsPanel = (SingleRecipientPanel) findViewById(R.id.recipients);
+
     final SingleContactSelectionListFragment listFragment = (SingleContactSelectionListFragment)getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
     listFragment.setOnContactSelectedListener(new SingleContactSelectionListFragment.OnContactSelectedListener() {
       @Override
       public void onContactSelected(ContactData contactData) {
-        Intent resultIntent = getIntent();
         ArrayList<ContactData> contactList = new ArrayList<ContactData>();
         contactList.add(contactData);
-        resultIntent.putParcelableArrayListExtra("contacts", contactList);
-        setResult(RESULT_OK, resultIntent);
-        finish();
-      }
-    });
 
-    SingleRecipientPanel recipientsPanel = (SingleRecipientPanel) findViewById(R.id.recipients);
-    recipientsPanel.setPanelChangeListener(new SingleRecipientPanel.RecipientsPanelChangedListener() {
-      @Override
-      public void onRecipientsPanelUpdate(Recipients recipients) {
-        Log.i(TAG, "onRecipientsPanelUpdate received.");
-        if (recipients != null) {
-          Intent resultIntent = getIntent();
-          resultIntent.putExtra("recipients", recipients);
-          setResult(RESULT_OK, resultIntent);
-          finish();
+        recipientsPanel.setVisibility(View.INVISIBLE);
+        recipientsPanel.addContacts(contactList);
+        try {
+          openNewConversation(recipientsPanel.getRecipients());
+        } catch (RecipientFormattingException rfe) {
+          recipientsPanel.clear();
+          recipientsPanel.setVisibility(View.VISIBLE);
         }
       }
     });
 
+    recipientsPanel.setPanelChangeListener(new SingleRecipientPanel.RecipientsPanelChangedListener() {
+      @Override
+      public void onRecipientsPanelUpdate(Recipients recipients) {
+        Log.i(TAG, "onRecipientsPanelUpdate received.");
+        openNewConversation(recipients);
+      }
+    });
+  }
+
+  private void openNewConversation(Recipients recipients) {
+    if (recipients != null) {
+      Intent intent = new Intent(SingleContactSelectionActivity.this, ConversationActivity.class);
+      intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients);
+      intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
+      long existingThread = DatabaseFactory.getThreadDatabase(SingleContactSelectionActivity.this).getThreadIdIfExistsFor(recipients);
+      intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
+      intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+      startActivity(intent);
+      finish();
+    }
   }
 
   @Override
