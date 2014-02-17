@@ -251,10 +251,10 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
               }
               try {
                 handleCreatePushGroup(groupName.getText().toString(), byteArray, selectedContacts);
-              } catch (IOException e) {
-                // TODO Jake's gonna fill this in.
-                Log.w("GroupCreateActivity", e);
               } catch (InvalidNumberException e) {
+                // TODO jake's gonna fill this in.
+                Log.w("GroupCreateActivity", e);
+              } catch (MmsException e) {
                 // TODO jake's gonna fill this in.
                 Log.w("GroupCreateActivity", e);
               }
