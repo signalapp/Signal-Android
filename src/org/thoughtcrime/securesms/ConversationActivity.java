@@ -108,6 +108,7 @@ import ws.com.google.android.mms.MmsException;
 public class ConversationActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationFragment.ConversationFragmentListener
 {
+  private static final String TAG = "ConversationActivity";
 
   public static final String RECIPIENTS_EXTRA        = "recipients";
   public static final String THREAD_ID_EXTRA         = "thread_id";
@@ -117,31 +118,31 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   public static final String DRAFT_AUDIO_EXTRA       = "draft_audio";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
 
-  private static final int PICK_CONTACT          = 1;
-  private static final int PICK_IMAGE            = 2;
-  private static final int PICK_VIDEO            = 3;
-  private static final int PICK_AUDIO            = 4;
-  private static final int PICK_CONTACT_INFO     = 5;
+  private static final int PICK_CONTACT      = 1;
+  private static final int PICK_IMAGE        = 2;
+  private static final int PICK_VIDEO        = 3;
+  private static final int PICK_AUDIO        = 4;
+  private static final int PICK_CONTACT_INFO = 5;
 
-  private MasterSecret masterSecret;
+  private MasterSecret    masterSecret;
   private RecipientsPanel recipientsPanel;
-  private EditText composeText;
-  private ImageButton addContactButton;
-  private ImageButton sendButton;
-  private TextView charactersLeft;
+  private EditText        composeText;
+  private ImageButton     addContactButton;
+  private ImageButton     sendButton;
+  private TextView        charactersLeft;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
-  private AttachmentManager attachmentManager;
-  private BroadcastReceiver securityUpdateReceiver;
-  private EmojiDrawer emojiDrawer;
-  private EmojiToggle emojiToggle;
+  private AttachmentManager             attachmentManager;
+  private BroadcastReceiver             securityUpdateReceiver;
+  private EmojiDrawer                   emojiDrawer;
+  private EmojiToggle                   emojiToggle;
 
   private Recipients recipients;
-  private long threadId;
-  private int distributionType;
-  private boolean isEncryptedConversation;
-  private boolean isAuthenticatedConversation;
-  private boolean isMmsEnabled = true;
+  private long       threadId;
+  private int        distributionType;
+  private boolean    isEncryptedConversation;
+  private boolean    isAuthenticatedConversation;
+  private boolean    isMmsEnabled = true;
 
   private CharacterCalculator characterCalculator = new CharacterCalculator();
   private DynamicTheme        dynamicTheme        = new DynamicTheme();
@@ -210,7 +211,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case PICK_CONTACT:
       Recipients recipients = data.getParcelableExtra("recipients");
       if (recipients != null)
-      recipientsPanel.addRecipients(recipients);
+        recipientsPanel.addRecipients(recipients);
       break;
     case PICK_IMAGE:
       addAttachmentImage(data.getData());
@@ -232,8 +233,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     MenuInflater inflater = this.getSupportMenuInflater();
     menu.clear();
 
-    if (isSingleConversation() && isEncryptedConversation)
-    {
+    if (isSingleConversation() && isEncryptedConversation) {
       if (isAuthenticatedConversation) {
         inflater.inflate(R.menu.conversation_secure_identity, menu);
       } else {
@@ -248,11 +248,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     } else if (isGroupConversation()) {
       inflater.inflate(R.menu.conversation_group_options, menu);
 
-      if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST)
-      {
-        menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
-      } else {
-        menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
+      if (!isPushGroupConversation()) {
+        inflater.inflate(R.menu.conversation_mms_group_options, menu);
+        if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
+          menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
+        } else {
+          menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
+        }
       }
     }
 
@@ -282,7 +284,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   @Override
-  public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+  public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
     if (isEncryptedConversation) {
       android.view.MenuInflater inflater = getMenuInflater();
       inflater.inflate(R.menu.conversation_button_context, menu);
@@ -412,7 +414,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
                               Uri.parse("tel:" + recipient.getNumber()));
       startActivity(dialIntent);
     } catch (ActivityNotFoundException anfe) {
-      Log.w("ConversationActivity", anfe);
+      Log.w(TAG, anfe);
       Util.showAlertDialog(this,
                            getString(R.string.ConversationActivity_calls_not_supported),
                            getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
@@ -483,9 +485,17 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         subtitle = getRecipients().getPrimaryRecipient().getNumber();
       }
     } else if (isGroupConversation()) {
-      title    = getString(R.string.ConversationActivity_group_conversation);
-      subtitle = String.format(getString(R.string.ConversationActivity_d_recipients_in_group),
-                               getRecipients().getRecipientsList().size());
+      if (isPushGroupConversation()) {
+        Log.i(TAG, "name: " + getRecipients().getPrimaryRecipient().getName() + ", number: " + getRecipients().getPrimaryRecipient().getNumber() + ", avatar?: " + (getRecipients().getPrimaryRecipient().getContactPhoto() != null));
+        title = getRecipients().getPrimaryRecipient().getName();
+      }
+      else {
+        title = getString(R.string.ConversationActivity_group_conversation);
+      }
+      int size = getRecipients().getRecipientsList().size();
+      subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
+                             : String.format(getString(R.string.ConversationActivity_d_recipients_in_group),
+                                             getRecipients().getRecipientsList().size());
     } else {
       title    = getString(R.string.ConversationActivity_compose_message);
       subtitle = "";
@@ -680,12 +690,12 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     try {
       attachmentManager.setImage(imageUri);
     } catch (IOException e) {
-      Log.w("ConversationActivity", e);
+      Log.w(TAG, e);
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
     } catch (BitmapDecodingException e) {
-      Log.w("ConversationActivity", e);
+      Log.w(TAG, e);
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
@@ -823,12 +833,16 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         (!getRecipients().isSingleRecipient() || getRecipients().isGroupRecipient());
   }
 
+  private boolean isPushGroupConversation() {
+    return getRecipients().isGroupRecipient();
+  }
+
   private Recipients getRecipients() {
     try {
       if (isExistingConversation()) return this.recipients;
       else                          return recipientsPanel.getRecipients();
     } catch (RecipientFormattingException rfe) {
-      Log.d("ConversationActivity", "Empty list of recipients retrieved from RecipientsPanel.");
+      Log.d(TAG, "Empty list of recipients retrieved from RecipientsPanel.");
       return null;
     }
   }
@@ -907,7 +921,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
           message = new OutgoingTextMessage(recipients, body);
         }
 
-        Log.w("ConversationActivity", "Sending message...");
+        Log.w(TAG, "Sending message...");
         allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
                                                message, threadId);
       }
@@ -916,13 +930,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       Toast.makeText(ConversationActivity.this,
                      R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
                      Toast.LENGTH_LONG).show();
-      Log.w("ConversationActivity", ex);
+      Log.w(TAG, ex);
     } catch (InvalidMessageException ex) {
       Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
                      Toast.LENGTH_SHORT).show();
-      Log.w("ConversationActivity", ex);
+      Log.w(TAG, ex);
     } catch (MmsException e) {
-      Log.w("ComposeMessageActivity", e);
+      Log.w(TAG, e);
     }
   }
 

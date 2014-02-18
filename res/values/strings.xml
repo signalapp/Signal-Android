@@ -67,7 +67,8 @@
     <string name="ConversationActivity_forward_message_prefix">FWD</string>
     <string name="ConversationActivity_group_conversation_recipients">Group Conversation Recipients</string>
     <string name="ConversationActivity_group_conversation">Group Conversation</string>
-    <string name="ConversationActivity_d_recipients_in_group">%d recipients in group</string>    
+    <string name="ConversationActivity_d_recipients_in_group">%d members</string>
+    <string name="ConversationActivity_d_recipients_in_group_singular">1 member</string>
     <string name="ConversationActivity_saving_draft">Saving draft...</string>
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
     <string name="ConversationActivity_calls_not_supported">Calls Not Supported</string>

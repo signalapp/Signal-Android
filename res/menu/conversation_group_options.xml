@@ -6,17 +6,4 @@
           android:icon="?menu_group_icon"
           android:showAsAction="ifRoom" />
 
-    <item android:title="@string/conversation_group_options__delivery"
-          android:id="@+id/menu_group_delivery"
-          android:icon="?menu_split_icon"
-          android:showAsAction="ifRoom" >
-
-        <menu>
-            <group android:id="@+id/distribution_group"
-                   android:checkableBehavior="single">
-                <item android:id="@+id/menu_distribution_conversation" android:title="@string/conversation_group_options__conversation" android:checked="true" />
-                <item android:id="@+id/menu_distribution_broadcast" android:title="@string/conversation_group_options__broadcast" />
-            </group>
-        </menu>
-    </item>
 </menu>

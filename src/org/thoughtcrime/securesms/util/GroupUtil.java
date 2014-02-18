@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
 import android.util.Log;
-import android.util.Pair;
 
 import com.google.protobuf.ByteString;
 
