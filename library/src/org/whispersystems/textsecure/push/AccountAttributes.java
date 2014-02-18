@@ -2,12 +2,14 @@ package org.whispersystems.textsecure.push;
 
 public class AccountAttributes {
 
-  private String signalingKey;
+  private String  signalingKey;
   private boolean supportsSms;
+  private int     registrationId;
 
-  public AccountAttributes(String signalingKey, boolean supportsSms) {
-    this.signalingKey = signalingKey;
-    this.supportsSms  = supportsSms;
+  public AccountAttributes(String signalingKey, boolean supportsSms, int registrationId) {
+    this.signalingKey   = signalingKey;
+    this.supportsSms    = supportsSms;
+    this.registrationId = registrationId;
   }
 
   public AccountAttributes() {}
@@ -18,5 +20,9 @@ public class AccountAttributes {
 
   public boolean isSupportsSms() {
     return supportsSms;
+  }
+
+  public int getRegistrationId() {
+    return registrationId;
   }
 }

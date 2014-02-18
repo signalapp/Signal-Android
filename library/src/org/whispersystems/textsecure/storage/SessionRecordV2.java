@@ -497,6 +497,26 @@ public class SessionRecordV2 extends Record {
                                                  .build();
   }
 
+  public void setRemoteRegistrationId(int registrationId) {
+    this.sessionStructure = this.sessionStructure.toBuilder()
+                                                 .setRemoteRegistrationId(registrationId)
+                                                 .build();
+  }
+
+  public int getRemoteRegistrationId() {
+    return this.sessionStructure.getRemoteRegistrationId();
+  }
+
+  public void setLocalRegistrationId(int registrationId) {
+    this.sessionStructure = this.sessionStructure.toBuilder()
+                                                 .setLocalRegistrationId(registrationId)
+                                                 .build();
+  }
+
+  public int getLocalRegistrationId() {
+    return this.sessionStructure.getLocalRegistrationId();
+  }
+
   public void save() {
     synchronized (FILE_LOCK) {
       try {

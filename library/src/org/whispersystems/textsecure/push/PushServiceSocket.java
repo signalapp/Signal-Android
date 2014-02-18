@@ -71,10 +71,11 @@ public class PushServiceSocket {
     makeRequest(String.format(path, localNumber), "GET", null);
   }
 
-  public void verifyAccount(String verificationCode, String signalingKey, boolean supportsSms)
+  public void verifyAccount(String verificationCode, String signalingKey,
+                            boolean supportsSms, int registrationId)
       throws IOException
   {
-    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, supportsSms);
+    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, supportsSms, registrationId);
     makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode),
                 "PUT", new Gson().toJson(signalingKeyEntity));
   }
@@ -322,6 +323,11 @@ public class PushServiceSocket {
     if (connection.getResponseCode() == 409) {
       String response = Util.readFully(connection.getErrorStream());
       throw new MismatchedDevicesException(new Gson().fromJson(response, MismatchedDevices.class));
+    }
+
+    if (connection.getResponseCode() == 410) {
+      String response = Util.readFully(connection.getErrorStream());
+      throw new StaleDevicesException(new Gson().fromJson(response, StaleDevices.class));
     }
 
     if (connection.getResponseCode() != 200 && connection.getResponseCode() != 204) {

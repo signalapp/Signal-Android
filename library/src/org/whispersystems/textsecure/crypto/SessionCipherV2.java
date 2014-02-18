@@ -36,9 +36,9 @@ public class SessionCipherV2 extends SessionCipher {
                          MasterSecret masterSecret,
                          RecipientDevice recipient)
   {
-    this.context          = context;
-    this.masterSecret     = masterSecret;
-    this.recipient        = recipient;
+    this.context      = context;
+    this.masterSecret = masterSecret;
+    this.recipient    = recipient;
   }
 
   @Override
@@ -56,8 +56,11 @@ public class SessionCipherV2 extends SessionCipher {
                                                                  previousCounter, ciphertextBody);
 
       if (sessionRecord.hasPendingPreKey()) {
-        Pair<Integer, ECPublicKey> pendingPreKey = sessionRecord.getPendingPreKey();
-        ciphertextMessage = new PreKeyWhisperMessage(pendingPreKey.first, pendingPreKey.second,
+        Pair<Integer, ECPublicKey> pendingPreKey       = sessionRecord.getPendingPreKey();
+        int                        localRegistrationId = sessionRecord.getLocalRegistrationId();
+
+        ciphertextMessage = new PreKeyWhisperMessage(localRegistrationId, pendingPreKey.first,
+                                                     pendingPreKey.second,
                                                      sessionRecord.getLocalIdentityKey(),
                                                      (WhisperMessageV2) ciphertextMessage);
       }
@@ -88,6 +91,14 @@ public class SessionCipherV2 extends SessionCipher {
       sessionRecord.save();
 
       return plaintext;
+    }
+  }
+
+  @Override
+  public int getRemoteRegistrationId() {
+    synchronized (SESSION_LOCK) {
+      SessionRecordV2 sessionRecord = getSessionRecord();
+      return sessionRecord.getRemoteRegistrationId();
     }
   }
 

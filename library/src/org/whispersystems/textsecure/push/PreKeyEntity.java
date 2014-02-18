@@ -27,11 +27,13 @@ public class PreKeyEntity {
   private int         keyId;
   private ECPublicKey publicKey;
   private IdentityKey identityKey;
+  private int         registrationId;
 
   public PreKeyEntity(int keyId, ECPublicKey publicKey, IdentityKey identityKey) {
-    this.keyId       = keyId;
-    this.publicKey   = publicKey;
-    this.identityKey = identityKey;
+    this.keyId          = keyId;
+    this.publicKey      = publicKey;
+    this.identityKey    = identityKey;
+    this.registrationId = registrationId;
   }
 
   public int getDeviceId() {
@@ -50,6 +52,10 @@ public class PreKeyEntity {
     return identityKey;
   }
 
+  public int getRegistrationId() {
+    return registrationId;
+  }
+
   public static String toJson(PreKeyEntity entity) {
     return getBuilder().create().toJson(entity);
   }
@@ -65,6 +71,7 @@ public class PreKeyEntity {
 
     return builder;
   }
+
 
   private static class ECPublicKeyJsonAdapter
       implements JsonSerializer<ECPublicKey>, JsonDeserializer<ECPublicKey>

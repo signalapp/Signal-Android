@@ -82,6 +82,11 @@ public class SessionCipherV1 extends SessionCipher {
     }
   }
 
+  @Override
+  public int getRemoteRegistrationId() {
+    return 0;
+  }
+
   private SessionCipherContext getEncryptionContext() {
     try {
       KeyRecords records        = getKeyRecords(context, masterSecret, recipient);

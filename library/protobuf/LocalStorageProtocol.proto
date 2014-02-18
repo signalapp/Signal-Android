@@ -51,6 +51,9 @@ message SessionStructure {
 
   optional PendingKeyExchange pendingKeyExchange = 8;
   optional PendingPreKey      pendingPreKey      = 9;
+
+  optional uint32 remoteRegistrationId = 10;
+  optional uint32 localRegistrationId  = 11;
 }
 
 message PreKeyRecordStructure {

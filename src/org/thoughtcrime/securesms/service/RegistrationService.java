@@ -227,6 +227,12 @@ public class RegistrationService extends Service {
 
     String       number       = intent.getStringExtra("e164number");
     MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
+    int          registrationId = TextSecurePreferences.getLocalRegistrationId(this);
+
+    if (registrationId == 0) {
+      registrationId = Util.generateRegistrationId();
+      TextSecurePreferences.setLocalRegistrationId(this, registrationId);
+    }
 
     try {
       String password     = Util.getSecret(18);
@@ -236,13 +242,14 @@ public class RegistrationService extends Service {
       initializeGcmRegistrationListener();
       initializePreKeyGenerator(masterSecret);
 
+
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
       PushServiceSocket socket = PushServiceSocketFactory.create(this, number, password);
       socket.createAccount(false);
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      socket.verifyAccount(challenge, signalingKey, true);
+      socket.verifyAccount(challenge, signalingKey, true, registrationId);
 
       handleCommonRegistration(masterSecret, socket, number);
       markAsVerified(number, password, signalingKey);

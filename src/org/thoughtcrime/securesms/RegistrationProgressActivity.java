@@ -33,6 +33,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.RateLimitException;
@@ -501,7 +502,8 @@ public class RegistrationProgressActivity extends SherlockActivity {
         protected Integer doInBackground(Void... params) {
           try {
             PushServiceSocket socket = PushServiceSocketFactory.create(context, e164number, password);
-            socket.verifyAccount(code, signalingKey, true);
+            int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
+            socket.verifyAccount(code, signalingKey, true, registrationId);
             return SUCCESS;
           } catch (RateLimitException e) {
             Log.w("RegistrationProgressActivity", e);

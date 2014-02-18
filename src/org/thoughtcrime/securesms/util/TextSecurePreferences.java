@@ -43,6 +43,16 @@ public class TextSecurePreferences {
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
 
+  private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
+
+  public static int getLocalRegistrationId(Context context) {
+    return getIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, 0);
+  }
+
+  public static void setLocalRegistrationId(Context context, int registrationId) {
+    setIntegerPrefrence(context, LOCAL_REGISTRATION_ID_PREF, registrationId);
+  }
+
   public static boolean isInThreadNotifications(Context context) {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
   }

@@ -22,12 +22,14 @@ public class OutgoingPushMessage {
 
   private int    type;
   private int    destinationDeviceId;
+  private int    destinationRegistrationId;
   private String body;
 
   public OutgoingPushMessage(PushAddress address, PushBody body) {
-    this.type                = body.getType();
-    this.destinationDeviceId = address.getDeviceId();
-    this.body                = Base64.encodeBytes(body.getBody());
+    this.type                      = body.getType();
+    this.destinationDeviceId       = address.getDeviceId();
+    this.destinationRegistrationId = body.getRemoteRegistrationId();
+    this.body                      = Base64.encodeBytes(body.getBody());
   }
 
   public int getDestinationDeviceId() {
@@ -40,5 +42,9 @@ public class OutgoingPushMessage {
 
   public int getType() {
     return type;
+  }
+
+  public int getDestinationRegistrationId() {
+    return destinationRegistrationId;
   }
 }

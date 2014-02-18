@@ -30,6 +30,7 @@ public abstract class SessionCipher {
 
   public abstract CiphertextMessage encrypt(byte[] paddedMessage);
   public abstract byte[] decrypt(byte[] decodedMessage) throws InvalidMessageException;
+  public abstract int getRemoteRegistrationId();
 
   public static SessionCipher createFor(Context context,
                                         MasterSecret masterSecret,

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.whispersystems.textsecure.directory.Directory;

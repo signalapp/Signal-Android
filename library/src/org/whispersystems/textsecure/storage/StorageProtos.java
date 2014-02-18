@@ -55,6 +55,14 @@ public final class StorageProtos {
     boolean hasPendingPreKey();
     org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKey getPendingPreKey();
     org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKeyOrBuilder getPendingPreKeyOrBuilder();
+    
+    // optional uint32 remoteRegistrationId = 10;
+    boolean hasRemoteRegistrationId();
+    int getRemoteRegistrationId();
+    
+    // optional uint32 localRegistrationId = 11;
+    boolean hasLocalRegistrationId();
+    int getLocalRegistrationId();
   }
   public static final class SessionStructure extends
       com.google.protobuf.GeneratedMessage
@@ -2964,6 +2972,26 @@ public final class StorageProtos {
       return pendingPreKey_;
     }
     
+    // optional uint32 remoteRegistrationId = 10;
+    public static final int REMOTEREGISTRATIONID_FIELD_NUMBER = 10;
+    private int remoteRegistrationId_;
+    public boolean hasRemoteRegistrationId() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public int getRemoteRegistrationId() {
+      return remoteRegistrationId_;
+    }
+    
+    // optional uint32 localRegistrationId = 11;
+    public static final int LOCALREGISTRATIONID_FIELD_NUMBER = 11;
+    private int localRegistrationId_;
+    public boolean hasLocalRegistrationId() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    public int getLocalRegistrationId() {
+      return localRegistrationId_;
+    }
+    
     private void initFields() {
       sessionVersion_ = 0;
       localIdentityPublic_ = com.google.protobuf.ByteString.EMPTY;
@@ -2974,6 +3002,8 @@ public final class StorageProtos {
       receiverChains_ = java.util.Collections.emptyList();
       pendingKeyExchange_ = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingKeyExchange.getDefaultInstance();
       pendingPreKey_ = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKey.getDefaultInstance();
+      remoteRegistrationId_ = 0;
+      localRegistrationId_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3013,6 +3043,12 @@ public final class StorageProtos {
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeMessage(9, pendingPreKey_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeUInt32(10, remoteRegistrationId_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeUInt32(11, localRegistrationId_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -3058,6 +3094,14 @@ public final class StorageProtos {
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, pendingPreKey_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(10, remoteRegistrationId_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(11, localRegistrationId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3221,6 +3265,10 @@ public final class StorageProtos {
           pendingPreKeyBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000100);
+        remoteRegistrationId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        localRegistrationId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000400);
         return this;
       }
       
@@ -3312,6 +3360,14 @@ public final class StorageProtos {
         } else {
           result.pendingPreKey_ = pendingPreKeyBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.remoteRegistrationId_ = remoteRegistrationId_;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.localRegistrationId_ = localRegistrationId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3377,6 +3433,12 @@ public final class StorageProtos {
         }
         if (other.hasPendingPreKey()) {
           mergePendingPreKey(other.getPendingPreKey());
+        }
+        if (other.hasRemoteRegistrationId()) {
+          setRemoteRegistrationId(other.getRemoteRegistrationId());
+        }
+        if (other.hasLocalRegistrationId()) {
+          setLocalRegistrationId(other.getLocalRegistrationId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3465,6 +3527,16 @@ public final class StorageProtos {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setPendingPreKey(subBuilder.buildPartial());
+              break;
+            }
+            case 80: {
+              bitField0_ |= 0x00000200;
+              remoteRegistrationId_ = input.readUInt32();
+              break;
+            }
+            case 88: {
+              bitField0_ |= 0x00000400;
+              localRegistrationId_ = input.readUInt32();
               break;
             }
           }
@@ -4043,6 +4115,48 @@ public final class StorageProtos {
         return pendingPreKeyBuilder_;
       }
       
+      // optional uint32 remoteRegistrationId = 10;
+      private int remoteRegistrationId_ ;
+      public boolean hasRemoteRegistrationId() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      public int getRemoteRegistrationId() {
+        return remoteRegistrationId_;
+      }
+      public Builder setRemoteRegistrationId(int value) {
+        bitField0_ |= 0x00000200;
+        remoteRegistrationId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearRemoteRegistrationId() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        remoteRegistrationId_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional uint32 localRegistrationId = 11;
+      private int localRegistrationId_ ;
+      public boolean hasLocalRegistrationId() {
+        return ((bitField0_ & 0x00000400) == 0x00000400);
+      }
+      public int getLocalRegistrationId() {
+        return localRegistrationId_;
+      }
+      public Builder setLocalRegistrationId(int value) {
+        bitField0_ |= 0x00000400;
+        localRegistrationId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLocalRegistrationId() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        localRegistrationId_ = 0;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:textsecure.SessionStructure)
     }
     
@@ -4557,7 +4671,7 @@ public final class StorageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\032LocalStorageProtocol.proto\022\ntextsecure" +
-      "\"\312\007\n\020SessionStructure\022\026\n\016sessionVersion\030" +
+      "\"\205\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
       "\001 \001(\r\022\033\n\023localIdentityPublic\030\002 \001(\014\022\034\n\024re" +
       "moteIdentityPublic\030\003 \001(\014\022\017\n\007rootKey\030\004 \001(" +
       "\014\022\027\n\017previousCounter\030\005 \001(\r\0227\n\013senderChai" +
@@ -4567,24 +4681,26 @@ public final class StorageProtos {
       "hange\030\010 \001(\0132/.textsecure.SessionStructur" +
       "e.PendingKeyExchange\022A\n\rpendingPreKey\030\t ",
       "\001(\0132*.textsecure.SessionStructure.Pendin" +
-      "gPreKey\032\253\002\n\005Chain\022\027\n\017senderEphemeral\030\001 \001" +
-      "(\014\022\036\n\026senderEphemeralPrivate\030\002 \001(\014\022=\n\010ch" +
-      "ainKey\030\003 \001(\0132+.textsecure.SessionStructu" +
-      "re.Chain.ChainKey\022B\n\013messageKeys\030\004 \003(\0132-" +
-      ".textsecure.SessionStructure.Chain.Messa" +
-      "geKey\032&\n\010ChainKey\022\r\n\005index\030\001 \001(\r\022\013\n\003key\030" +
-      "\002 \001(\014\032>\n\nMessageKey\022\r\n\005index\030\001 \001(\r\022\021\n\tci" +
-      "pherKey\030\002 \001(\014\022\016\n\006macKey\030\003 \001(\014\032\321\001\n\022Pendin" +
-      "gKeyExchange\022\020\n\010sequence\030\001 \001(\r\022\024\n\014localB",
-      "aseKey\030\002 \001(\014\022\033\n\023localBaseKeyPrivate\030\003 \001(" +
-      "\014\022\031\n\021localEphemeralKey\030\004 \001(\014\022 \n\030localEph" +
-      "emeralKeyPrivate\030\005 \001(\014\022\030\n\020localIdentityK" +
-      "ey\030\007 \001(\014\022\037\n\027localIdentityKeyPrivate\030\010 \001(" +
-      "\014\0322\n\rPendingPreKey\022\020\n\010preKeyId\030\001 \001(\r\022\017\n\007" +
-      "baseKey\030\002 \001(\014\"J\n\025PreKeyRecordStructure\022\n" +
-      "\n\002id\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivate" +
-      "Key\030\003 \001(\014B6\n%org.whispersystems.textsecu" +
-      "re.storageB\rStorageProtos"
+      "gPreKey\022\034\n\024remoteRegistrationId\030\n \001(\r\022\033\n" +
+      "\023localRegistrationId\030\013 \001(\r\032\253\002\n\005Chain\022\027\n\017" +
+      "senderEphemeral\030\001 \001(\014\022\036\n\026senderEphemeral" +
+      "Private\030\002 \001(\014\022=\n\010chainKey\030\003 \001(\0132+.textse" +
+      "cure.SessionStructure.Chain.ChainKey\022B\n\013" +
+      "messageKeys\030\004 \003(\0132-.textsecure.SessionSt" +
+      "ructure.Chain.MessageKey\032&\n\010ChainKey\022\r\n\005" +
+      "index\030\001 \001(\r\022\013\n\003key\030\002 \001(\014\032>\n\nMessageKey\022\r" +
+      "\n\005index\030\001 \001(\r\022\021\n\tcipherKey\030\002 \001(\014\022\016\n\006macK",
+      "ey\030\003 \001(\014\032\321\001\n\022PendingKeyExchange\022\020\n\010seque" +
+      "nce\030\001 \001(\r\022\024\n\014localBaseKey\030\002 \001(\014\022\033\n\023local" +
+      "BaseKeyPrivate\030\003 \001(\014\022\031\n\021localEphemeralKe" +
+      "y\030\004 \001(\014\022 \n\030localEphemeralKeyPrivate\030\005 \001(" +
+      "\014\022\030\n\020localIdentityKey\030\007 \001(\014\022\037\n\027localIden" +
+      "tityKeyPrivate\030\010 \001(\014\0322\n\rPendingPreKey\022\020\n" +
+      "\010preKeyId\030\001 \001(\r\022\017\n\007baseKey\030\002 \001(\014\"J\n\025PreK" +
+      "eyRecordStructure\022\n\n\002id\030\001 \001(\r\022\021\n\tpublicK" +
+      "ey\030\002 \001(\014\022\022\n\nprivateKey\030\003 \001(\014B6\n%org.whis" +
+      "persystems.textsecure.storageB\rStoragePr",
+      "otos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4596,7 +4712,7 @@ public final class StorageProtos {
           internal_static_textsecure_SessionStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_descriptor,
-              new java.lang.String[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", },
+              new java.lang.String[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", "RemoteRegistrationId", "LocalRegistrationId", },
               org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.class,
               org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder.class);
           internal_static_textsecure_SessionStructure_Chain_descriptor =

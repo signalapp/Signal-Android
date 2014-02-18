@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
@@ -106,6 +107,8 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     RatchetingSession.initializeSession(sessionRecord, ourBaseKey, theirBaseKey, ourEphemeralKey,
                                         theirEphemeralKey, ourIdentityKey, theirIdentityKey);
     Session.clearV1SessionFor(context, recipientDevice.getRecipient());
+    sessionRecord.setLocalRegistrationId(TextSecurePreferences.getLocalRegistrationId(context));
+    sessionRecord.setRemoteRegistrationId(message.getRegistrationId());
     sessionRecord.save();
 
     if (preKeyId != Medium.MAX_VALUE) {
@@ -134,6 +137,8 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
                                         theirEphemeralKey, ourIdentityKey, theirIdentityKey);
 
     sessionRecord.setPendingPreKey(message.getKeyId(), ourBaseKey.getPublicKey());
+    sessionRecord.setLocalRegistrationId(TextSecurePreferences.getLocalRegistrationId(context));
+    sessionRecord.setRemoteRegistrationId(message.getRegistrationId());
     sessionRecord.save();
 
     DatabaseFactory.getIdentityDatabase(context)

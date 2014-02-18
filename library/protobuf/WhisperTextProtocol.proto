@@ -11,6 +11,7 @@ message WhisperMessage {
 }
 
 message PreKeyWhisperMessage {
+  optional uint32 registrationId = 5;
   optional uint32 preKeyId    = 1;
   optional bytes  baseKey     = 2;
   optional bytes  identityKey = 3;

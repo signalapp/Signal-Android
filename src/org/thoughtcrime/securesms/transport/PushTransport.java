@@ -49,6 +49,8 @@ import org.whispersystems.textsecure.push.PushAttachmentPointer;
 import org.whispersystems.textsecure.push.PushBody;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.StaleDevices;
+import org.whispersystems.textsecure.push.StaleDevicesException;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.Base64;
@@ -146,6 +148,9 @@ public class PushTransport extends BaseTransport {
       } catch (MismatchedDevicesException mde) {
         Log.w("PushTransport", mde);
         handleMismatchedDevices(socket, threadId, recipient, mde.getMismatchedDevices());
+      } catch (StaleDevicesException ste) {
+        Log.w("PushTransport", ste);
+        handleStaleDevices(recipient, ste.getStaleDevices());
       }
     }
   }
@@ -207,6 +212,22 @@ public class PushTransport extends BaseTransport {
         }
       }
     } catch (InvalidKeyException e) {
+      throw new IOException(e);
+    }
+  }
+
+  private void handleStaleDevices(Recipient recipient, StaleDevices staleDevices)
+      throws IOException
+  {
+    try {
+      long   recipientId = recipient.getRecipientId();
+      String e164number  = Util.canonicalizeNumber(context, recipient.getNumber());
+
+      for (int staleDeviceId : staleDevices.getStaleDevices()) {
+        PushAddress address = PushAddress.create(context, recipientId, e164number, staleDeviceId);
+        SessionRecordV2.delete(context, address);
+      }
+    } catch (InvalidNumberException e) {
       throw new IOException(e);
     }
   }
@@ -321,11 +342,12 @@ public class PushTransport extends BaseTransport {
 
     SessionCipher     cipher  = SessionCipher.createFor(context, masterSecret, pushAddress);
     CiphertextMessage message = cipher.encrypt(plaintext);
+    int remoteRegistrationId  = cipher.getRemoteRegistrationId();
 
     if (message.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
-      return new PushBody(IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE, message.serialize());
+      return new PushBody(IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE, remoteRegistrationId, message.serialize());
     } else if (message.getType() == CiphertextMessage.CURRENT_WHISPER_TYPE) {
-      return new PushBody(IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE, message.serialize());
+      return new PushBody(IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE, remoteRegistrationId, message.serialize());
     } else {
       throw new AssertionError("Unknown ciphertext type: " + message.getType());
     }
