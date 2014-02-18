@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -43,6 +47,8 @@ import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -64,6 +70,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+
+  private static final String TEMP_PHOTO_FILE = "__tmp_group_create_avatar_photo.png";
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
@@ -96,15 +104,20 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
+    if (!TextSecurePreferences.isPushRegistered(this)) {
+      disableWhisperGroupUi(R.string.GroupCreateActivity_you_dont_support_push);
+    }
   }
 
   private boolean whisperGroupUiEnabled() {
     return groupName.isEnabled() && avatar.isEnabled();
   }
 
-  private void disableWhisperGroupUi() {
+  private void disableWhisperGroupUi(int reasonResId) {
     View pushDisabled = findViewById(R.id.push_disabled);
     pushDisabled.setVisibility(View.VISIBLE);
+    ((TextView)findViewById(R.id.push_disabled_reason)).setText(reasonResId);
     avatar.setEnabled(false);
     groupName.setEnabled(false);
     getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
@@ -136,7 +149,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private void addSelectedContact(Recipient contact) {
     selectedContacts.add(contact);
-    if (!isActiveInDirectory(this, contact)) disableWhisperGroupUi();
+    if (!isActiveInDirectory(this, contact)) disableWhisperGroupUi(R.string.GroupCreateActivity_contacts_dont_support_push);
   }
 
   private void addAllSelectedContacts(Collection<Recipient> contacts) {
@@ -146,7 +159,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private void removeSelectedContact(Recipient contact) {
-    Log.i(TAG, "remoevSelectedContact: " + contact.getName() + "/" + contact.getNumber());
     selectedContacts.remove(contact);
     if (!isActiveInDirectory(this, contact)) {
       for (Recipient recipient : selectedContacts) {
@@ -208,10 +220,31 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         photoPickerIntent.putExtra("aspectY", 1);
         photoPickerIntent.putExtra("outputX", 210);
         photoPickerIntent.putExtra("outputY", 210);
-        photoPickerIntent.putExtra("return-data", "true");
+        photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
+        photoPickerIntent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
         startActivityForResult(photoPickerIntent, PICK_AVATAR);
       }
     });
+  }
+
+  private Uri getTempUri() {
+    return Uri.fromFile(getTempFile());
+  }
+
+  private File getTempFile() {
+    if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+
+      File f = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE);
+      try {
+        f.createNewFile();
+      } catch (IOException e) {
+        Log.e(TAG, "Error creating new temp file.", e);
+        Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_file_io_exception, Toast.LENGTH_SHORT).show();
+      }
+      return f;
+    } else {
+      return null;
+    }
   }
 
   @Override
@@ -304,10 +337,12 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         break;
       case PICK_AVATAR:
         if(resultCode == RESULT_OK) {
-          avatarBmp = data.getParcelableExtra("data");
-          avatar.setImageBitmap(avatarBmp);
-          //Uri selectedImage = data.getData();
-          //avatar.setImageURI(selectedImage);
+          Bundle extras = data.getExtras();
+          if (extras != null) {
+            File tempFile = getTempFile();
+            avatarBmp = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
+            avatar.setImageBitmap(avatarBmp);
+          }
           break;
         }
     }

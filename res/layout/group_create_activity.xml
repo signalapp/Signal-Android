@@ -71,7 +71,7 @@
             android:background="#aa000000"
             android:visibility="gone">
 
-            <TextView
+            <TextView android:id="@+id/push_disabled_reason"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
