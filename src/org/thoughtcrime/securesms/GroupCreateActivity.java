@@ -1,9 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -21,7 +19,6 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -46,7 +43,6 @@ import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -245,88 +241,29 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private void handleGroupCreate() {
     if (selectedContacts.size() < 1) {
-      Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_no_members, Toast.LENGTH_SHORT);
+      Log.i(TAG, getString(R.string.GroupCreateActivity_contacts_no_members));
+      Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_no_members, Toast.LENGTH_SHORT).show();
       return;
     }
     if (whisperGroupUiEnabled()) {
-      findViewById(R.id.group_details_layout).setVisibility(View.GONE);
-      findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
-      findViewById(R.id.menu_create_group).setVisibility(View.GONE);
-      ((TextView)findViewById(R.id.creating_group_text)).setText("Creating " + groupName.getText().toString() + "...");
-      new AsyncTask<Void,Void,Long>() {
-        private long RES_BAD_NUMBER = -2;
-        private long RES_MMS_EXCEPTION = -3;
-
-        @Override
-        protected Long doInBackground(Void... voids) {
-          byte[] byteArray = null;
-          if (avatarBmp != null) {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byteArray = stream.toByteArray();
-          }
-          try {
-            return Long.valueOf(handleCreatePushGroup(groupName.getText().toString(), byteArray, selectedContacts));
-          } catch (MmsException e) {
-            Log.w("GroupCreateActivity", e);
-            return Long.valueOf(RES_MMS_EXCEPTION);
-          } catch (InvalidNumberException e) {
-            Log.w("GroupCreateActivity", e);
-            return Long.valueOf(RES_BAD_NUMBER);
-          }
-        }
-
-        @Override
-        protected void onPostExecute(Long resultThread) {
-          super.onPostExecute(resultThread);
-          if (resultThread > -1) {
-            Intent intent = new Intent(GroupCreateActivity.this, ConversationActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
-            intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, resultThread.longValue());
-            intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
-
-            ArrayList<Recipient> selectedContactsList = new ArrayList<Recipient>(selectedContacts.size());
-            for (Recipient recipient : selectedContacts) {
-              selectedContactsList.add(recipient);
-            }
-            intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, new Recipients(selectedContactsList));
-            startActivity(intent);
-            GroupCreateActivity.this.finish();
-          } else if (resultThread == RES_BAD_NUMBER) {
-            Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_invalid_number, Toast.LENGTH_LONG).show();
-          } else if (resultThread == RES_MMS_EXCEPTION) {
-            Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_mms_exception, Toast.LENGTH_LONG).show();
-            finish();
-          }
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-          super.onProgressUpdate(values);
-        }
-      }.execute();
+      enableWhisperGroupCreatingUi();
+      new CreateWhisperGroupAsyncTask().execute();
     } else {
-      new AsyncTask<Void,Void,Void>() {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-          handleCreateMmsGroup(selectedContacts);
-          return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-          super.onPostExecute(aVoid);
-          finish();
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-          super.onProgressUpdate(values);
-        }
-      }.execute();
+      new CreateMmsGroupAsyncTask().execute();
     }
+  }
+
+  private void enableWhisperGroupCreatingUi() {
+    findViewById(R.id.group_details_layout).setVisibility(View.GONE);
+    findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
+    findViewById(R.id.menu_create_group).setVisibility(View.GONE);
+    ((TextView)findViewById(R.id.creating_group_text)).setText("Creating " + groupName.getText().toString() + "...");
+  }
+
+  private void disableWhisperGroupCreatingUi() {
+    findViewById(R.id.group_details_layout).setVisibility(View.VISIBLE);
+    findViewById(R.id.creating_group_layout).setVisibility(View.GONE);
+    findViewById(R.id.menu_create_group).setVisibility(View.VISIBLE);
   }
 
   private void syncAdapterWithSelectedContacts() {
@@ -433,5 +370,79 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
 
     return results;
+  }
+
+  private class CreateMmsGroupAsyncTask extends AsyncTask<Void,Void,Void> {
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+      handleCreateMmsGroup(selectedContacts);
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+      super.onPostExecute(aVoid);
+      finish();
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+      super.onProgressUpdate(values);
+    }
+  }
+
+  private class CreateWhisperGroupAsyncTask extends AsyncTask<Void,Void,Long> {
+    private long RES_BAD_NUMBER = -2;
+    private long RES_MMS_EXCEPTION = -3;
+
+    @Override
+    protected Long doInBackground(Void... voids) {
+      byte[] byteArray = null;
+      if (avatarBmp != null) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byteArray = stream.toByteArray();
+      }
+      try {
+        return Long.valueOf(handleCreatePushGroup(groupName.getText().toString(), byteArray, selectedContacts));
+      } catch (MmsException e) {
+        Log.w("GroupCreateActivity", e);
+        return Long.valueOf(RES_MMS_EXCEPTION);
+      } catch (InvalidNumberException e) {
+        Log.w("GroupCreateActivity", e);
+        return Long.valueOf(RES_BAD_NUMBER);
+      }
+    }
+
+    @Override
+    protected void onPostExecute(Long resultThread) {
+      super.onPostExecute(resultThread);
+      if (resultThread > -1) {
+        Intent intent = new Intent(GroupCreateActivity.this, ConversationActivity.class);
+        intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
+        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, resultThread.longValue());
+        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+
+        ArrayList<Recipient> selectedContactsList = new ArrayList<Recipient>(selectedContacts.size());
+        for (Recipient recipient : selectedContacts) {
+          selectedContactsList.add(recipient);
+        }
+        intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, new Recipients(selectedContactsList));
+        startActivity(intent);
+        finish();
+      } else if (resultThread == RES_BAD_NUMBER) {
+        Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_invalid_number, Toast.LENGTH_LONG).show();
+        disableWhisperGroupCreatingUi();
+      } else if (resultThread == RES_MMS_EXCEPTION) {
+        Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_mms_exception, Toast.LENGTH_LONG).show();
+        finish();
+      }
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+      super.onProgressUpdate(values);
+    }
   }
 }
