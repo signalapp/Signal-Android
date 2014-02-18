@@ -8,23 +8,20 @@
 
     <LinearLayout android:paddingRight="16dip"
                   android:paddingLeft="16dip"
-                  android:paddingTop="10dip"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
-                  android:layout_gravity="center"
-                  android:gravity="center"
+                  android:gravity="center_vertical"
                   android:orientation="vertical">
 
         <TextView style="@style/Registration.Description"
                   android:layout_width="fill_parent"
-                  android:layout_marginBottom="16dip"
+                  android:layout_marginBottom="8dip"
                   android:layout_marginTop="16dip"
                   android:text="@string/registration_activity__textsecure_can_use_the_data_channel_to_avoid_sms_charges_when_communicating_with_other_textsecure_users"/>
 
         <TextView style="@style/Registration.Description"
                   android:layout_width="fill_parent"
                   android:layout_marginBottom="16dip"
-                  android:layout_marginTop="16dip"
                   android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
 
         <TextView style="@style/Registration.Label"
@@ -73,8 +70,8 @@
 
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginTop="20dip"
-                      android:layout_marginBottom="20dip"
+                      android:layout_marginTop="16dip"
+                      android:layout_marginBottom="16dip"
                       android:layout_gravity="right"
                       android:orientation="horizontal">
 
