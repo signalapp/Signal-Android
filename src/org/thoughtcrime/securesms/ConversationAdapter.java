@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.CursorAdapter;
 
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -32,6 +33,7 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.util.LRUCache;
+import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;
@@ -121,7 +123,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
-    if (messageRecord.getGroupAction() > 0) return MESSAGE_TYPE_GROUP_ACTION;
+    if (GroupUtil.isMetaGroupAction(messageRecord.getGroupAction())) return MESSAGE_TYPE_GROUP_ACTION;
     if (messageRecord.isOutgoing())         return MESSAGE_TYPE_OUTGOING;
     else                                    return MESSAGE_TYPE_INCOMING;
   }

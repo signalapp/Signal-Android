@@ -148,7 +148,7 @@ public class ConversationItem extends LinearLayout {
 
     setBodyText(messageRecord);
 
-    if (messageRecord.getGroupAction() < 1) {
+    if (!GroupUtil.isMetaGroupAction(messageRecord.getGroupAction())) {
       setStatusIcons(messageRecord);
       setContactPhoto(messageRecord);
       setGroupMessageStatus(messageRecord);

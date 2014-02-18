@@ -33,6 +33,11 @@ public class GroupUtil {
     return groupId.startsWith(ENCODED_GROUP_PREFIX);
   }
 
+  public static boolean isMetaGroupAction(int groupAction) {
+    return groupAction > 0
+        && groupAction != GroupContext.Type.DELIVER_VALUE;
+  }
+
   public static String serializeArguments(byte[] id, String name, List<String> members) {
     return Base64.encodeBytes(GroupContext.newBuilder()
                                           .setId(ByteString.copyFrom(id))
