@@ -238,6 +238,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       File f = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE);
       try {
         f.createNewFile();
+        f.deleteOnExit();
       } catch (IOException e) {
         Log.e(TAG, "Error creating new temp file.", e);
         Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_file_io_exception, Toast.LENGTH_SHORT).show();
@@ -338,13 +339,13 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         break;
       case PICK_AVATAR:
         if(resultCode == RESULT_OK) {
-          Bundle extras = data.getExtras();
-          if (extras != null) {
-            File tempFile = getTempFile();
-            avatarBmp = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
-            avatar.setImageBitmap(avatarBmp);
-          }
+          File tempFile = getTempFile();
+          avatarBmp = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
+          if (avatarBmp != null) avatar.setImageBitmap(avatarBmp);
+          tempFile.delete();
           break;
+        } else {
+          Log.i(TAG, "Avatar selection result was not RESULT_OK.");
         }
     }
   }
