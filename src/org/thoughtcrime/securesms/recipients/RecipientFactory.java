@@ -51,7 +51,7 @@ public class RecipientFactory {
     return new Recipients(results);
   }
 
-  public static Recipient getRecipientForNumber(Context context, String number, boolean asynchronous) {
+  private static Recipient getRecipientForNumber(Context context, String number, boolean asynchronous) {
     long recipientId = CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(number);
     return provider.getRecipient(context, recipientId, asynchronous);
   }

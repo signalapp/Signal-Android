@@ -94,16 +94,18 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
 
   private Recipients contactDataToRecipients(ContactData contactData) {
     if (contactData == null || contactData.numbers == null) return null;
-    List<Recipient> recipients = new ArrayList<Recipient>();
+    Recipients recipients = new Recipients(new ArrayList<Recipient>());
     for (ContactAccessor.NumberData numberData : contactData.numbers) {
       if (NumberUtil.isValidSmsOrEmailOrGroup(numberData.number)) {
-        Recipient recipient = RecipientFactory.getRecipientForNumber(SingleContactSelectionActivity.this,
-            numberData.number,
-            false);
-        recipients.add(recipient);
+        try {
+          Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(SingleContactSelectionActivity.this,
+              numberData.number,
+              false);
+          recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
+        } catch (RecipientFormattingException rfe) { }
       }
     }
-    return new Recipients(recipients);
+    return recipients;
   }
 
   private void openNewConversation(Recipients recipients) {
