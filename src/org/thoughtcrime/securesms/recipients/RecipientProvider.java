@@ -66,16 +66,19 @@ public class RecipientProvider {
 
     Recipient recipient;
     RecipientDetails details;
-
     String number = CanonicalAddressDatabase.getInstance(context).getAddressFromId(String.valueOf(recipientId));
+    final boolean isGroupRecipient = GroupUtil.isEncodedGroup(number);
 
-    if (GroupUtil.isEncodedGroup(number)) details = getGroupRecipientDetails(context, number);
-    else                                  details = getRecipientDetails(context, number);
+    if (isGroupRecipient) details = getGroupRecipientDetails(context, number);
+    else                  details = getRecipientDetails(context, number);
 
     if (details != null) {
       recipient = new Recipient(details.name, number, recipientId, details.contactUri, details.avatar);
     } else {
-      recipient = new Recipient(null, number, recipientId, null, ContactPhotoFactory.getDefaultContactPhoto(context));
+      final Bitmap defaultPhoto = isGroupRecipient
+                                    ? ContactPhotoFactory.getDefaultGroupPhoto(context)
+                                    : ContactPhotoFactory.getDefaultContactPhoto(context);
+      recipient = new Recipient(null, number, recipientId, null, defaultPhoto);
     }
 
     recipientCache.put(recipientId, recipient);
@@ -86,12 +89,13 @@ public class RecipientProvider {
     Log.w("RecipientProvider", "Cache miss [ASYNC]!");
 
     final String number = CanonicalAddressDatabase.getInstance(context).getAddressFromId(String.valueOf(recipientId));
+    final boolean isGroupRecipient = GroupUtil.isEncodedGroup(number);
 
     Callable<RecipientDetails> task = new Callable<RecipientDetails>() {
       @Override
       public RecipientDetails call() throws Exception {
-        if (GroupUtil.isEncodedGroup(number)) return getGroupRecipientDetails(context, number);
-        else                                  return getRecipientDetails(context, number);
+        if (isGroupRecipient) return getGroupRecipientDetails(context, number);
+        else                  return getRecipientDetails(context, number);
       }
     };
 
@@ -99,7 +103,10 @@ public class RecipientProvider {
 
     asyncRecipientResolver.submit(future);
 
-    Recipient recipient = new Recipient(number, ContactPhotoFactory.getDefaultContactPhoto(context), recipientId, future);
+    final Bitmap defaultPhoto = isGroupRecipient
+        ? ContactPhotoFactory.getDefaultGroupPhoto(context)
+        : ContactPhotoFactory.getDefaultContactPhoto(context);
+    Recipient recipient = new Recipient(number, defaultPhoto, recipientId, future);
     recipientCache.put(recipientId, recipient);
 
     return recipient;

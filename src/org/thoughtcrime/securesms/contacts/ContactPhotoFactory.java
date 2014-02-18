@@ -38,6 +38,15 @@ public class ContactPhotoFactory {
     }
   }
 
+  public static Bitmap getDefaultGroupPhoto(Context context) {
+    synchronized (defaultPhotoLock) {
+      if (defaultContactPhoto == null)
+        defaultContactPhoto =  BitmapFactory.decodeResource(context.getResources(),
+                                                            R.drawable.ic_contact_picture);
+      return defaultContactPhoto;
+    }
+  }
+
   public static Bitmap getLocalUserContactPhoto(Context context, Uri uri) {
     if (uri == null) return getDefaultContactPhoto(context);
 

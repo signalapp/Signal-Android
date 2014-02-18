@@ -24,6 +24,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -32,6 +35,7 @@ import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -57,6 +61,7 @@ import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.RecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -80,6 +85,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -486,8 +492,12 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       }
     } else if (isGroupConversation()) {
       if (isPushGroupConversation()) {
-        Log.i(TAG, "name: " + getRecipients().getPrimaryRecipient().getName() + ", number: " + getRecipients().getPrimaryRecipient().getNumber() + ", avatar?: " + (getRecipients().getPrimaryRecipient().getContactPhoto() != null));
-        title = getRecipients().getPrimaryRecipient().getName();
+        final String groupName = getRecipients().getPrimaryRecipient().getName();
+        title = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
+        final Bitmap avatar = getRecipients().getPrimaryRecipient().getContactPhoto();
+        if (avatar != null) {
+          getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCroppedBitmap(avatar)));
+        }
       }
       else {
         title = getString(R.string.ConversationActivity_group_conversation);

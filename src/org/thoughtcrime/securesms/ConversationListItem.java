@@ -27,6 +27,7 @@ import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
@@ -66,7 +67,6 @@ public class ConversationListItem extends RelativeLayout
   private boolean           read;
 
   private ImageView         contactPhotoImage;
-  private QuickContactBadge contactPhotoBadge;
 
   private final Handler handler = new Handler();
   private int distributionType;
@@ -87,7 +87,6 @@ public class ConversationListItem extends RelativeLayout
     this.fromView          = (TextView) findViewById(R.id.from);
     this.dateView          = (TextView) findViewById(R.id.date);
 
-    this.contactPhotoBadge = (QuickContactBadge) findViewById(R.id.contact_photo_badge);
     this.contactPhotoImage = (ImageView) findViewById(R.id.contact_photo_image);
 
     initializeContactWidgetVisibility();
@@ -167,13 +166,29 @@ public class ConversationListItem extends RelativeLayout
     int attributes[]  = new int[] {R.attr.conversation_list_item_count_color};
     TypedArray colors = context.obtainStyledAttributes(attributes);
 
-    String fromString              = from.toShortString();
+    final String fromString;
+    final boolean isUnnamedGroup = from.isGroupRecipient() && TextUtils.isEmpty(from.getPrimaryRecipient().getName());
+    if (isUnnamedGroup) {
+      fromString = context.getString(R.string.ConversationActivity_unnamed_group);
+    } else {
+      fromString = from.toShortString();
+    }
     SpannableStringBuilder builder = new SpannableStringBuilder(fromString);
 
-    if (!read) {
-      builder.setSpan(new StyleSpan(Typeface.BOLD), 0, builder.length(),
-                      Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+
+    final int typeface;
+    if (isUnnamedGroup) {
+      if (!read) typeface = Typeface.BOLD_ITALIC;
+      else       typeface = Typeface.ITALIC;
+    } else if (!read) {
+      typeface = Typeface.BOLD;
+    } else {
+      typeface = Typeface.NORMAL;
     }
+
+    builder.setSpan(new StyleSpan(typeface), 0, builder.length(),
+                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+
 
     colors.recycle();
     return builder;
