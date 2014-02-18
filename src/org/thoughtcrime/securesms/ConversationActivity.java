@@ -631,9 +631,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeRecipientsInput() {
-    if (recipients == null || recipients.isEmpty())
+    if (recipients == null || recipients.isEmpty()) {
       recipientsPanel.setVisibility(View.VISIBLE);
-    else if (recipients != null) {
+    } else if (recipients != null) {
       recipientsPanel.addRecipients(this.recipients);
     } else {
       InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);

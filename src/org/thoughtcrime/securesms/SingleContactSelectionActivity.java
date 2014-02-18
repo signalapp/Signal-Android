@@ -25,15 +25,20 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.components.SingleRecipientPanel;
+import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.NumberUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
@@ -72,27 +77,33 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
     listFragment.setOnContactSelectedListener(new SingleContactSelectionListFragment.OnContactSelectedListener() {
       @Override
       public void onContactSelected(ContactData contactData) {
-        ArrayList<ContactData> contactList = new ArrayList<ContactData>();
-        contactList.add(contactData);
-
-        recipientsPanel.setVisibility(View.INVISIBLE);
-        recipientsPanel.addContacts(contactList);
-        try {
-          openNewConversation(recipientsPanel.getRecipients());
-        } catch (RecipientFormattingException rfe) {
-          recipientsPanel.clear();
-          recipientsPanel.setVisibility(View.VISIBLE);
-        }
+        Log.i(TAG, "Choosing contact from list.");
+        Recipients recipients = contactDataToRecipients(contactData);
+        openNewConversation(recipients);
       }
     });
 
     recipientsPanel.setPanelChangeListener(new SingleRecipientPanel.RecipientsPanelChangedListener() {
       @Override
       public void onRecipientsPanelUpdate(Recipients recipients) {
-        Log.i(TAG, "onRecipientsPanelUpdate received.");
+        Log.i(TAG, "Choosing contact from autocompletion.");
         openNewConversation(recipients);
       }
     });
+  }
+
+  private Recipients contactDataToRecipients(ContactData contactData) {
+    if (contactData == null || contactData.numbers == null) return null;
+    List<Recipient> recipients = new ArrayList<Recipient>();
+    for (ContactAccessor.NumberData numberData : contactData.numbers) {
+      if (NumberUtil.isValidSmsOrEmailOrGroup(numberData.number)) {
+        Recipient recipient = RecipientFactory.getRecipientForNumber(SingleContactSelectionActivity.this,
+            numberData.number,
+            false);
+        recipients.add(recipient);
+      }
+    }
+    return new Recipients(recipients);
   }
 
   private void openNewConversation(Recipients recipients) {
