@@ -5,11 +5,11 @@
           android:icon="?attr/menu_new_conversation_icon"
           android:showAsAction="always" />
 
-    <item android:title="New Group"
+    <item android:title="@string/GroupCreateActivity_actionbar_title"
           android:id="@+id/menu_new_group"
-          android:icon="?attr/menu_new_group_icon" />
+          android:icon="@android:drawable/ic_menu_add" />
 
-    <item android:title="@string/text_secure_normal__menu_clear_passphrase"
+    <item android:title="@string/text_secure_normal__menu_new_group"
           android:id="@+id/menu_clear_passphrase"
           android:icon="@android:drawable/ic_menu_close_clear_cancel" />
 

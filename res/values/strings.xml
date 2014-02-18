@@ -731,6 +731,7 @@
     
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_message">New Message</string>
+    <string name="text_secure_normal__menu_new_group">New Group</string>
     <string name="text_secure_normal__menu_settings">Settings</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark All Read</string>
