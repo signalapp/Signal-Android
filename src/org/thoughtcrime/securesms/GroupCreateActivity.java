@@ -407,18 +407,33 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     return results;
   }
 
-  private class CreateMmsGroupAsyncTask extends AsyncTask<Void,Void,Void> {
+  private class CreateMmsGroupAsyncTask extends AsyncTask<Void,Void,Long> {
 
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected Long doInBackground(Void... voids) {
       handleCreateMmsGroup(selectedContacts);
       return null;
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
-      super.onPostExecute(aVoid);
-      finish();
+    protected void onPostExecute(Long resultThread) {
+      if (resultThread > -1) {
+        Intent intent = new Intent(GroupCreateActivity.this, ConversationActivity.class);
+        intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
+        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, resultThread.longValue());
+        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+
+        ArrayList<Recipient> selectedContactsList = new ArrayList<Recipient>(selectedContacts.size());
+        for (Recipient recipient : selectedContacts) {
+          selectedContactsList.add(recipient);
+        }
+        intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, new Recipients(selectedContactsList));
+        startActivity(intent);
+        finish();
+      } else {
+        Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_mms_exception, Toast.LENGTH_LONG).show();
+        finish();
+      }
     }
 
     @Override
@@ -433,20 +448,21 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
     @Override
     protected Long doInBackground(Void... voids) {
-      byte[] byteArray = null;
+      byte[] avatarBytes = null;
       if (avatarBmp != null) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byteArray = stream.toByteArray();
+        avatarBytes = stream.toByteArray();
       }
+      final String name = (groupName.getText() != null) ? groupName.getText().toString() : null;
       try {
-        return Long.valueOf(handleCreatePushGroup(groupName.getText().toString(), byteArray, selectedContacts));
+        return handleCreatePushGroup(name, avatarBytes, selectedContacts);
       } catch (MmsException e) {
         Log.w("GroupCreateActivity", e);
-        return Long.valueOf(RES_MMS_EXCEPTION);
+        return RES_MMS_EXCEPTION;
       } catch (InvalidNumberException e) {
         Log.w("GroupCreateActivity", e);
-        return Long.valueOf(RES_BAD_NUMBER);
+        return RES_BAD_NUMBER;
       }
     }
 
