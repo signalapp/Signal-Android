@@ -102,7 +102,9 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
               numberData.number,
               false);
           recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
-        } catch (RecipientFormattingException rfe) { }
+        } catch (RecipientFormattingException rfe) {
+          Log.w(TAG, "Caught RecipientFormattingException when trying to convert a selected number to a Recipient.", rfe);
+        }
       }
     }
     return recipients;

@@ -50,7 +50,7 @@ import java.util.Set;
  * @author Moxie Marlinspike
  */
 public class PushRecipientsPanel extends RelativeLayout {
-  private final String                         TAG = "PushRecipientsPanel";
+  private final String                         TAG = PushRecipientsPanel.class.getSimpleName();
   private       RecipientsPanelChangedListener panelChangeListener;
 
   private RecipientsEditor recipientsText;

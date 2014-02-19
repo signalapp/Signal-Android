@@ -103,11 +103,11 @@ public class DecryptingPartInputStream extends FileInputStream {
     try {	
       int flourish = cipher.doFinal(buffer, offset);
       //			mac.update(buffer, offset, flourish);
-			
+
       byte[] ourMac   = mac.doFinal();
       byte[] theirMac = new byte[mac.getMacLength()];
       readFully(theirMac);
-			
+
       if (!Arrays.equals(ourMac, theirMac))
         throw new IOException("MAC doesn't match! Potential tampering?");
 			
@@ -175,7 +175,7 @@ public class DecryptingPartInputStream extends FileInputStream {
       return readLength;
     } catch (ShortBufferException e) {
       throw new AssertionError(e);
-    }		
+    }
   }
 	
   private Mac initializeMac(SecretKeySpec key) throws NoSuchAlgorithmException, InvalidKeyException {
@@ -214,6 +214,4 @@ public class DecryptingPartInputStream extends FileInputStream {
       else                		       return;
     }		
   }
-	
-
 }

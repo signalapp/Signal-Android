@@ -114,7 +114,7 @@ import ws.com.google.android.mms.MmsException;
 public class ConversationActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationFragment.ConversationFragmentListener
 {
-  private static final String TAG = "ConversationActivity";
+  private static final String TAG = ConversationActivity.class.getSimpleName();
 
   public static final String RECIPIENTS_EXTRA        = "recipients";
   public static final String THREAD_ID_EXTRA         = "thread_id";
@@ -498,8 +498,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         if (avatar != null) {
           getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCroppedBitmap(avatar)));
         }
-      }
-      else {
+      } else {
         title = getString(R.string.ConversationActivity_group_conversation);
       }
       int size = getRecipients().getRecipientsList().size();

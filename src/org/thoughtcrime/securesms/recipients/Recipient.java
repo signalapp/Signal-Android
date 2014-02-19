@@ -34,7 +34,7 @@ import java.util.HashSet;
 
 public class Recipient implements Parcelable, CanonicalRecipient {
 
-  private final static String TAG = "Recipient";
+  private final static String TAG = Recipient.class.getSimpleName();
 
   public static final Parcelable.Creator<Recipient> CREATOR = new Parcelable.Creator<Recipient>() {
     public Recipient createFromParcel(Parcel in) {

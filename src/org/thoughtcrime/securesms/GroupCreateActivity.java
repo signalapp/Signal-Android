@@ -65,7 +65,7 @@ import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageCo
 
 public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActivity {
 
-  private final static String TAG = "GroupCreateActivity";
+  private final static String TAG = GroupCreateActivity.class.getSimpleName();
 
   public static final String MASTER_SECRET_EXTRA = "master_secret";
 

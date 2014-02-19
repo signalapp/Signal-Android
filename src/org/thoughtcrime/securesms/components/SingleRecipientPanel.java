@@ -45,7 +45,7 @@ import java.util.List;
  * @author Moxie Marlinspike
  */
 public class SingleRecipientPanel extends RelativeLayout {
-  private final String                         TAG = "SingleRecipientsPanel";
+  private final String                         TAG = SingleRecipientPanel.class.getSimpleName();
   private       RecipientsPanelChangedListener panelChangeListener;
 
   private RecipientsEditor recipientsText;

@@ -54,7 +54,8 @@ import java.util.HashMap;
 public class SingleContactSelectionListFragment extends SherlockListFragment
     implements LoaderManager.LoaderCallbacks<Cursor>
 {
-  private final String TAG = "SingleContactSelectionListFragment";
+  private final String TAG = SingleContactSelectionListFragment.class.getSimpleName();
+
   private final HashMap<Long, ContactData> selectedContacts = new HashMap<Long, ContactData>();
   private static LayoutInflater li;
   private OnContactSelectedListener onContactSelectedListener;
