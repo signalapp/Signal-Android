@@ -34,7 +34,6 @@ import android.provider.ContactsContract.QuickContact;
 import org.thoughtcrime.securesms.util.DateUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -55,7 +54,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Emoji;
-import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 import org.whispersystems.textsecure.util.Util;
@@ -65,7 +63,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
@@ -178,17 +175,19 @@ public class ConversationItem extends LinearLayout {
   /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
-    // TODO jake is going to fill these in
     switch (messageRecord.getGroupAction()) {
       case GroupContext.Type.QUIT_VALUE:
-        bodyText.setText(messageRecord.getIndividualRecipient().toShortString() + " has left the group.");
+        bodyText.setText(context.getString(R.string.ConversationItem_group_action_left,
+                                           messageRecord.getIndividualRecipient().toShortString()));
         return;
       case GroupContext.Type.ADD_VALUE:
       case GroupContext.Type.CREATE_VALUE:
-        bodyText.setText(Util.join(GroupUtil.getSerializedArgumentMembers(messageRecord.getGroupActionArguments()), ", ") + " have joined the group.");
+        bodyText.setText(context.getString(R.string.ConversationItem_group_action_joined,
+                                           Util.join(GroupUtil.getSerializedArgumentMembers(messageRecord.getGroupActionArguments()), ", ")));
         return;
       case GroupContext.Type.MODIFY_VALUE:
-        bodyText.setText(messageRecord.getIndividualRecipient() + " has updated the group.");
+        bodyText.setText(context.getString(R.string.ConversationItem_group_action_modify,
+                                           messageRecord.getIndividualRecipient()));
         return;
     }
 
@@ -254,11 +253,9 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setNotificationMmsAttributes(NotificationMmsMessageRecord messageRecord) {
-    String messageSize = String.format(getContext()
-                                       .getString(R.string.ConversationItem_message_size_d_kb),
+    String messageSize = String.format(context.getString(R.string.ConversationItem_message_size_d_kb),
                                        messageRecord.getMessageSize());
-    String expires     = String.format(getContext()
-                                       .getString(R.string.ConversationItem_expires_s),
+    String expires     = String.format(context.getString(R.string.ConversationItem_expires_s),
                                        DateUtils.getRelativeTimeSpanString(getContext(),
                                                                            messageRecord.getExpiration(),
                                                                            false));
@@ -341,7 +338,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
-    contactPhoto.setImageBitmap(BitmapUtil.getCroppedBitmap(recipient.getContactPhoto()));
+    contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

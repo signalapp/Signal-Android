@@ -32,7 +32,6 @@ import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -130,7 +129,7 @@ public class ConversationListItem extends RelativeLayout
   private void setContactPhoto(final Recipient recipient) {
     if (recipient == null) return;
 
-    contactPhotoImage.setImageBitmap(BitmapUtil.getCroppedBitmap(recipient.getContactPhoto()));
+    contactPhotoImage.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
     contactPhotoImage.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

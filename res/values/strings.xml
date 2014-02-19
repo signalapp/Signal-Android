@@ -48,7 +48,10 @@
     <string name="ConversationItem_received_and_processed_key_exchange_message">Received and processed key exchange message.</string>
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
     <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process.</string>
-    
+    <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
+    <string name="ConversationItem_group_action_joined">%1$s have joined the group.</string>
+    <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
+
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate Secure Session?</string>
     <string name="ConversationActivity_initiate_secure_session_with_s_question">Initiate secure session with %s?</string>
@@ -128,6 +131,9 @@
     <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
     <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
     <string name="GroupCreateActivity_file_io_exception">File I/O error, couldn\'t create a temporary image file.</string>
+    <string name="GroupCreateActivity_avatar_content_description">Group Avatar</string>
+    <string name="GroupCreateActivity_menu_create_title">Create Group</string>
+    <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
 
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import System SMS Database?</string>

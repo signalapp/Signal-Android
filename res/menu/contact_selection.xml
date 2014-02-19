@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/contact_selection__menu_finished"
           android:id="@+id/menu_selection_finished"
-          android:icon="@drawable/ic_menu_done_holo_dark"
+          android:icon="?menu_accept_icon"
           android:showAsAction="ifRoom"
           />
 

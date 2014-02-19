@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -61,7 +60,6 @@ import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.RecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -496,7 +494,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         title = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
         final Bitmap avatar = getRecipients().getPrimaryRecipient().getContactPhoto();
         if (avatar != null) {
-          getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCroppedBitmap(avatar)));
+          getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCircleCroppedBitmap(avatar)));
         }
       } else {
         title = getString(R.string.ConversationActivity_group_conversation);

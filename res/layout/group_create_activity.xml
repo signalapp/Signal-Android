@@ -20,12 +20,13 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <ImageView android:id="@+id/avatar"
+            <org.thoughtcrime.securesms.components.ImageDivet android:id="@+id/avatar"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                position="bottom_right"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/thin_border"
-                android:src="@drawable/icon"/>
+                android:src="@drawable/icon"
+                android:contentDescription="@string/GroupCreateActivity_avatar_content_description" />
 
             <EditText android:id="@+id/group_name"
                 android:layout_width="match_parent"

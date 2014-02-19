@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:gravity="center|center_vertical"
         android:layout_marginTop="15dp"
-        android:text="@string/contact_selection_group_activity__no_contacts"
+        android:text="@string/contact_selection_group_activity__finding_contacts"
         android:textSize="20sp" />
 
 </LinearLayout>

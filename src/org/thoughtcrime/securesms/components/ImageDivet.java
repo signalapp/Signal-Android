@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.R;
 
 public class ImageDivet extends ImageView {
   private static final float CORNER_OFFSET = 12F;
-  private static final String[] POSITIONS  = new String[] {"left", "right"};
+  private static final String[] POSITIONS  = new String[] {"bottom_right"};
 
   private Drawable drawable;
 
@@ -46,16 +46,12 @@ public class ImageDivet extends ImageView {
   }
 
   private void setDrawable() {
-    int attributes[]     = new int[] {R.attr.conversation_avatar_divet_left,
-                                      R.attr.conversation_avatar_divet_right};
+    int attributes[]     = new int[] {R.attr.lower_right_divet};
 
     TypedArray drawables = getContext().obtainStyledAttributes(attributes);
 
     switch (position) {
     case 0:
-      drawable = drawables.getDrawable(1);
-      break;
-    case 1:
       drawable = drawables.getDrawable(0);
       break;
     }
@@ -98,26 +94,16 @@ public class ImageDivet extends ImageView {
   }
 
   private void computeBounds(Canvas c) {
-    final int left = 0;
-    final int top = 0;
     final int right = getWidth();
-
-    final int cornerOffset = (int) getCloseOffset();
+    final int bottom = getHeight();
 
     switch (position) {
-    case 1:
-      drawable.setBounds(
-          right - drawableIntrinsicWidth,
-          top + cornerOffset,
-          right,
-          top + cornerOffset + drawableIntrinsicHeight);
-          break;
     case 0:
      drawable.setBounds(
-         left,
-         top + cornerOffset,
-         left + drawableIntrinsicWidth,
-         top + cornerOffset + drawableIntrinsicHeight);
+         right - drawableIntrinsicWidth,
+         bottom - drawableIntrinsicHeight,
+         right,
+         bottom);
      break;
     }
   }

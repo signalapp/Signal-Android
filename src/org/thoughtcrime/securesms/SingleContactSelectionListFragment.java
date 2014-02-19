@@ -265,6 +265,7 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
     Cursor pushCursor = ContactAccessor.getInstance().getCursorForContactsWithPush(getActivity());
     ((CursorAdapter) getListAdapter()).changeCursor(new MergeCursor(new Cursor[]{pushCursor,cursor}));
+    ((TextView)getView().findViewById(android.R.id.empty)).setText(R.string.contact_selection_group_activity__no_contacts);
   }
 
   @Override

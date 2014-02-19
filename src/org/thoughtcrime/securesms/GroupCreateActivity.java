@@ -17,7 +17,9 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -67,20 +70,23 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private final static String TAG = GroupCreateActivity.class.getSimpleName();
 
+
   public static final String MASTER_SECRET_EXTRA = "master_secret";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private static final String TEMP_PHOTO_FILE = "__tmp_group_create_avatar_photo.png";
+  private static final String TEMP_PHOTO_FILE = "__tmp_group_create_avatar_photo.tmp";
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
+  public static final int AVATAR_SIZE = 210;
 
   private EditText            groupName;
   private ListView            lv;
   private PushRecipientsPanel recipientsPanel;
   private ImageView           avatar;
+  private TextView            creatingText;
 
   private MasterSecret masterSecret;
   private Bitmap       avatarBmp;
@@ -172,7 +178,13 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private void initializeResources() {
     masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-    groupName = (EditText) findViewById(R.id.group_name);
+
+    lv              = (ListView)            findViewById(R.id.selected_contacts_list);
+    avatar          = (ImageView)           findViewById(R.id.avatar);
+    groupName       = (EditText)            findViewById(R.id.group_name);
+    creatingText    = (TextView)            findViewById(R.id.creating_group_text);
+    recipientsPanel = (PushRecipientsPanel) findViewById(R.id.recipients);
+
     groupName.addTextChangedListener(new TextWatcher() {
       @Override
       public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) { }
@@ -187,7 +199,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       }
     });
 
-    lv = (ListView) findViewById(R.id.selected_contacts_list);
     SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<Recipient>());
     adapter.setOnRecipientDeletedListener(new SelectedRecipientsAdapter.OnRecipientDeletedListener() {
       @Override
@@ -197,7 +208,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     });
     lv.setAdapter(adapter);
 
-    recipientsPanel = (PushRecipientsPanel) findViewById(R.id.recipients);
     recipientsPanel.setPanelChangeListener(new PushRecipientsPanel.RecipientsPanelChangedListener() {
       @Override
       public void onRecipientsPanelUpdate(Recipients recipients) {
@@ -210,7 +220,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     });
     (findViewById(R.id.contacts_button)).setOnClickListener(new AddRecipientButtonListener());
 
-    avatar = (ImageView) findViewById(R.id.avatar);
     avatar.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -219,8 +228,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         photoPickerIntent.putExtra("crop", "true");
         photoPickerIntent.putExtra("aspectX", 1);
         photoPickerIntent.putExtra("aspectY", 1);
-        photoPickerIntent.putExtra("outputX", 210);
-        photoPickerIntent.putExtra("outputY", 210);
+        photoPickerIntent.putExtra("outputX", AVATAR_SIZE);
+        photoPickerIntent.putExtra("outputY", AVATAR_SIZE);
         photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
         photoPickerIntent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
         startActivityForResult(photoPickerIntent, PICK_AVATAR);
@@ -292,7 +301,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     findViewById(R.id.group_details_layout).setVisibility(View.GONE);
     findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
     findViewById(R.id.menu_create_group).setVisibility(View.GONE);
-    ((TextView)findViewById(R.id.creating_group_text)).setText("Creating " + groupName.getText().toString() + "...");
+    if (groupName.getText() != null)
+      creatingText.setText(getString(R.string.GroupCreateActivity_creating_group, groupName.getText().toString()));
   }
 
   private void disableWhisperGroupCreatingUi() {
@@ -312,7 +322,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   @Override
   public void onActivityResult(int reqCode, int resultCode, Intent data) {
-    Log.w("ComposeMessageActivity", "onActivityResult called: " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
     if (data == null || resultCode != Activity.RESULT_OK)
@@ -331,7 +340,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
                 addSelectedContact(recipient);
               }
             } catch (RecipientFormattingException e) {
-              Log.w("GroupCreateActivity", e);
+              Log.w(TAG, e);
             }
           }
         }
@@ -339,10 +348,9 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         break;
       case PICK_AVATAR:
         if(resultCode == RESULT_OK) {
-          File tempFile = getTempFile();
-          avatarBmp = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
-          if (avatarBmp != null) avatar.setImageBitmap(avatarBmp);
-          tempFile.delete();
+
+          new DecodeCropAndSetAsyncTask().execute();
+
           break;
         } else {
           Log.i(TAG, "Avatar selection result was not RESULT_OK.");
@@ -384,7 +392,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     } catch (RecipientFormattingException e) {
       throw new AssertionError(e);
     } catch (MmsException e) {
-      Log.w("GroupCreateActivity", e);
+      Log.w(TAG, e);
       groupDatabase.remove(groupId, TextSecurePreferences.getLocalNumber(this));
       throw new MmsException(e);
     }
@@ -407,6 +415,22 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
 
     return results;
+  }
+
+  private class DecodeCropAndSetAsyncTask extends AsyncTask<Void,Void,Bitmap> {
+
+    @Override
+    protected Bitmap doInBackground(Void... voids) {
+      File tempFile = getTempFile();
+      avatarBmp = BitmapUtil.getCircleCroppedBitmap(BitmapFactory.decodeFile(tempFile.getAbsolutePath()));
+      tempFile.delete();
+      return avatarBmp;
+    }
+
+    @Override
+    protected void onPostExecute(Bitmap result) {
+      if (avatarBmp != null) avatar.setImageBitmap(avatarBmp);
+    }
   }
 
   private class CreateMmsGroupAsyncTask extends AsyncTask<Void,Void,Long> {
@@ -460,10 +484,10 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       try {
         return handleCreatePushGroup(name, avatarBytes, selectedContacts);
       } catch (MmsException e) {
-        Log.w("GroupCreateActivity", e);
+        Log.w(TAG, e);
         return new Pair<Long,Recipients>(RES_MMS_EXCEPTION, null);
       } catch (InvalidNumberException e) {
-        Log.w("GroupCreateActivity", e);
+        Log.w(TAG, e);
         return new Pair<Long,Recipients>(RES_BAD_NUMBER, null);
       }
     }

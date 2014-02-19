@@ -11,6 +11,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -66,7 +67,7 @@ public class BitmapUtil {
     options.inSampleSize       = scaler;
     options.inJustDecodeBounds = false;
 
-    Bitmap roughThumbnail  = BitmapFactory.decodeStream(data, null, options);
+    Bitmap roughThumbnail  = BitmapFactory.decodeStream(new BufferedInputStream(data), null, options);
 
     if (roughThumbnail == null) {
       throw new BitmapDecodingException("Decoded stream was null.");
@@ -103,7 +104,7 @@ public class BitmapUtil {
     return options;
   }
 
-  public static Bitmap getCroppedBitmap(Bitmap bitmap) {
+  public static Bitmap getCircleCroppedBitmap(Bitmap bitmap) {
     Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
         bitmap.getHeight(), Bitmap.Config.ARGB_8888);
     Canvas canvas = new Canvas(output);

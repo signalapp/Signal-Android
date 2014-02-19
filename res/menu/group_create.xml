@@ -2,9 +2,9 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="CREATE"
+    <item android:title="@string/GroupCreateActivity_menu_create_title"
           android:id="@+id/menu_create_group"
-          android:icon="@drawable/ic_menu_accept_holo_light"
+          android:icon="?menu_accept_icon"
           android:showAsAction="always|withText"/>
 
 </menu>
