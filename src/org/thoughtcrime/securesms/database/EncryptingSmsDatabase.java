@@ -73,7 +73,7 @@ public class EncryptingSmsDatabase extends SmsDatabase {
   {
     long type = Types.BASE_INBOX_TYPE;
 
-    if (!message.isSecureMessage()) {
+    if (!message.isSecureMessage() && !message.isEndSession()) {
       type |= Types.ENCRYPTION_SYMMETRIC_BIT;
       message = message.withMessageBody(getEncryptedBody(masterSecret, message.getMessageBody()));
     }

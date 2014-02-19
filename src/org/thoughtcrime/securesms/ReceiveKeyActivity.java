@@ -236,7 +236,7 @@ public class ReceiveKeyActivity extends Activity {
 
               DecryptingQueue.scheduleDecryption(ReceiveKeyActivity.this, masterSecret, messageId,
                                                  threadId, recipient.getNumber(), recipientDeviceId,
-                                                 messageBody, true, false);
+                                                 messageBody, true, false, false);
             } catch (InvalidKeyIdException e) {
               Log.w("ReceiveKeyActivity", e);
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)

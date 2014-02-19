@@ -84,6 +84,10 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isKeyExchangeType(type);
   }
 
+  public boolean isEndSession() {
+    return SmsDatabase.Types.isEndSessionType(type);
+  }
+
   public int getGroupAction() {
     return groupAction;
   }

@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
+import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -93,7 +94,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -368,9 +371,23 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       @Override
       public void onClick(DialogInterface dialog, int which) {
         if (isSingleConversation()) {
-          Session.abortSessionFor(ConversationActivity.this, getRecipients().getPrimaryRecipient());
-          initializeSecurity();
-          initializeTitleBar();
+          ConversationActivity self      = ConversationActivity.this;
+          Recipient            recipient = getRecipients().getPrimaryRecipient();
+
+          if (SessionRecordV2.hasSession(self, masterSecret,
+                                         recipient.getRecipientId(),
+                                         RecipientDevice.DEFAULT_DEVICE_ID))
+          {
+            OutgoingEndSessionMessage endSessionMessage =
+                new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipients(), "TERMINATE"));
+
+            long allocatedThreadId = MessageSender.send(self, masterSecret,
+                                                        endSessionMessage, threadId);
+
+            sendComplete(recipients, allocatedThreadId, allocatedThreadId != self.threadId);
+          } else {
+            Session.abortSessionFor(self, recipient);
+          }
         }
       }
     });

@@ -10,7 +10,6 @@ message IncomingPushMessageSignal {
     KEY_EXCHANGE  = 2;
     PREKEY_BUNDLE = 3;
     PLAINTEXT     = 4;
-    ADVISORY      = 5;
   }
   optional Type   type         = 1;
   optional string source       = 2;
@@ -23,9 +22,9 @@ message IncomingPushMessageSignal {
 
 message PushMessageContent {
   message AttachmentPointer {
-    optional fixed64 id = 1;
-    optional string contentType = 2;
-    optional bytes key = 3;
+    optional fixed64 id          = 1;
+    optional string  contentType = 2;
+    optional bytes   key         = 3;
   }
 
   message GroupContext {
@@ -37,14 +36,19 @@ message PushMessageContent {
       ADD     = 4;
       QUIT    = 5;
     }
-    optional bytes id = 1;
-    optional Type type = 2;
-    optional string name = 3;
-    repeated string members = 4;
-    optional AttachmentPointer avatar = 5;
+    optional bytes             id      = 1;
+    optional Type              type    = 2;
+    optional string            name    = 3;
+    repeated string            members = 4;
+    optional AttachmentPointer avatar  = 5;
   }
 
-  optional string body = 1;
+  enum Flags {
+    END_SESSION = 1;
+  }
+
+  optional string            body        = 1;
   repeated AttachmentPointer attachments = 2;
-  optional GroupContext group = 3;
+  optional GroupContext      group       = 3;
+  optional uint32            flags       = 4;
 }

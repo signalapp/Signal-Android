@@ -22,6 +22,7 @@ import android.util.Log;
 
 import com.google.protobuf.ByteString;
 
+import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -85,11 +86,14 @@ public class PushTransport extends BaseTransport {
       Recipient         recipient = message.getIndividualRecipient();
       long              threadId  = message.getThreadId();
       PushServiceSocket socket    = PushServiceSocketFactory.create(context);
-      byte[]            plaintext = PushMessageContent.newBuilder()
-                                                      .setBody(message.getBody().getBody())
-                                                      .build().toByteArray();
+      byte[]            plaintext = getPlaintextMessage(message);
 
       deliver(socket, recipient, threadId, plaintext);
+
+      if (message.isEndSession()) {
+        SessionRecordV2.deleteAll(context, recipient);
+        KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, threadId);
+      }
 
       context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType(), true));
 
@@ -295,6 +299,17 @@ public class PushTransport extends BaseTransport {
     return builder.build().toByteArray();
   }
 
+  private byte[] getPlaintextMessage(SmsMessageRecord record) {
+    PushMessageContent.Builder builder = PushMessageContent.newBuilder()
+                                                           .setBody(record.getBody().getBody());
+
+    if (record.isEndSession()) {
+      builder.setFlags(PushMessageContent.Flags.END_SESSION_VALUE);
+    }
+
+    return builder.build().toByteArray();
+  }
+
   private OutgoingPushMessageList getEncryptedMessages(PushServiceSocket socket, long threadId,
                                                        Recipient recipient, byte[] plaintext)
       throws IOException, InvalidNumberException, UntrustedIdentityException
@@ -351,9 +366,5 @@ public class PushTransport extends BaseTransport {
     } else {
       throw new AssertionError("Unknown ciphertext type: " + message.getType());
     }
-  }
-
-  private void destroySessions(Recipient recipient) {
-    SessionRecordV2.deleteAll(context, recipient);
   }
 }

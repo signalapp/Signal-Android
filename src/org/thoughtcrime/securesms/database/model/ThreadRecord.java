@@ -78,6 +78,9 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
     } else if (!getBody().isPlaintext()) {
       return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
+    } else if (SmsDatabase.Types.isEndSessionType(type)) {
+      // TODO jake is going to fix this up
+      return emphasisAdded("Session closed!");
     } else {
       if (Util.isEmpty(getBody().getBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));

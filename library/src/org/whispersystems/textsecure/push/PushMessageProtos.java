@@ -70,7 +70,6 @@ public final class PushMessageProtos {
       KEY_EXCHANGE(2, 2),
       PREKEY_BUNDLE(3, 3),
       PLAINTEXT(4, 4),
-      ADVISORY(5, 5),
       ;
       
       public static final int UNKNOWN_VALUE = 0;
@@ -78,7 +77,6 @@ public final class PushMessageProtos {
       public static final int KEY_EXCHANGE_VALUE = 2;
       public static final int PREKEY_BUNDLE_VALUE = 3;
       public static final int PLAINTEXT_VALUE = 4;
-      public static final int ADVISORY_VALUE = 5;
       
       
       public final int getNumber() { return value; }
@@ -90,7 +88,6 @@ public final class PushMessageProtos {
           case 2: return KEY_EXCHANGE;
           case 3: return PREKEY_BUNDLE;
           case 4: return PLAINTEXT;
-          case 5: return ADVISORY;
           default: return null;
         }
       }
@@ -121,7 +118,7 @@ public final class PushMessageProtos {
       }
       
       private static final Type[] VALUES = {
-        UNKNOWN, CIPHERTEXT, KEY_EXCHANGE, PREKEY_BUNDLE, PLAINTEXT, ADVISORY, 
+        UNKNOWN, CIPHERTEXT, KEY_EXCHANGE, PREKEY_BUNDLE, PLAINTEXT, 
       };
       
       public static Type valueOf(
@@ -819,6 +816,10 @@ public final class PushMessageProtos {
     boolean hasGroup();
     org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext getGroup();
     org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContextOrBuilder getGroupOrBuilder();
+    
+    // optional uint32 flags = 4;
+    boolean hasFlags();
+    int getFlags();
   }
   public static final class PushMessageContent extends
       com.google.protobuf.GeneratedMessage
@@ -846,6 +847,72 @@ public final class PushMessageProtos {
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.whispersystems.textsecure.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_fieldAccessorTable;
+    }
+    
+    public enum Flags
+        implements com.google.protobuf.ProtocolMessageEnum {
+      END_SESSION(0, 1),
+      ;
+      
+      public static final int END_SESSION_VALUE = 1;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static Flags valueOf(int value) {
+        switch (value) {
+          case 1: return END_SESSION;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<Flags>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<Flags>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Flags>() {
+              public Flags findValueByNumber(int number) {
+                return Flags.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final Flags[] VALUES = {
+        END_SESSION, 
+      };
+      
+      public static Flags valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private Flags(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:textsecure.PushMessageContent.Flags)
     }
     
     public interface AttachmentPointerOrBuilder
@@ -2243,10 +2310,21 @@ public final class PushMessageProtos {
       return group_;
     }
     
+    // optional uint32 flags = 4;
+    public static final int FLAGS_FIELD_NUMBER = 4;
+    private int flags_;
+    public boolean hasFlags() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getFlags() {
+      return flags_;
+    }
+    
     private void initFields() {
       body_ = "";
       attachments_ = java.util.Collections.emptyList();
       group_ = org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext.getDefaultInstance();
+      flags_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2269,6 +2347,9 @@ public final class PushMessageProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeMessage(3, group_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(4, flags_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -2289,6 +2370,10 @@ public final class PushMessageProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, group_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, flags_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2430,6 +2515,8 @@ public final class PushMessageProtos {
           groupBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
+        flags_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -2489,6 +2576,10 @@ public final class PushMessageProtos {
         } else {
           result.group_ = groupBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.flags_ = flags_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2536,6 +2627,9 @@ public final class PushMessageProtos {
         }
         if (other.hasGroup()) {
           mergeGroup(other.getGroup());
+        }
+        if (other.hasFlags()) {
+          setFlags(other.getFlags());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2586,6 +2680,11 @@ public final class PushMessageProtos {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setGroup(subBuilder.buildPartial());
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              flags_ = input.readUInt32();
               break;
             }
           }
@@ -2906,6 +3005,27 @@ public final class PushMessageProtos {
         return groupBuilder_;
       }
       
+      // optional uint32 flags = 4;
+      private int flags_ ;
+      public boolean hasFlags() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public int getFlags() {
+        return flags_;
+      }
+      public Builder setFlags(int value) {
+        bitField0_ |= 0x00000008;
+        flags_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFlags() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        flags_ = 0;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:textsecure.PushMessageContent)
     }
     
@@ -2947,28 +3067,28 @@ public final class PushMessageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\037IncomingPushMessageSignal.proto\022\ntexts" +
-      "ecure\"\225\002\n\031IncomingPushMessageSignal\0228\n\004t" +
+      "ecure\"\207\002\n\031IncomingPushMessageSignal\0228\n\004t" +
       "ype\030\001 \001(\0162*.textsecure.IncomingPushMessa" +
       "geSignal.Type\022\016\n\006source\030\002 \001(\t\022\024\n\014sourceD" +
       "evice\030\007 \001(\r\022\r\n\005relay\030\003 \001(\t\022\021\n\ttimestamp\030" +
-      "\005 \001(\004\022\017\n\007message\030\006 \001(\014\"e\n\004Type\022\013\n\007UNKNOW" +
+      "\005 \001(\004\022\017\n\007message\030\006 \001(\014\"W\n\004Type\022\013\n\007UNKNOW" +
       "N\020\000\022\016\n\nCIPHERTEXT\020\001\022\020\n\014KEY_EXCHANGE\020\002\022\021\n" +
-      "\rPREKEY_BUNDLE\020\003\022\r\n\tPLAINTEXT\020\004\022\014\n\010ADVIS" +
-      "ORY\020\005\"\363\003\n\022PushMessageContent\022\014\n\004body\030\001 \001" +
-      "(\t\022E\n\013attachments\030\002 \003(\01320.textsecure.Pus",
-      "hMessageContent.AttachmentPointer\022:\n\005gro" +
-      "up\030\003 \001(\0132+.textsecure.PushMessageContent" +
-      ".GroupContext\032A\n\021AttachmentPointer\022\n\n\002id" +
-      "\030\001 \001(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014" +
-      "\032\210\002\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022>\n\004type\030\002 " +
-      "\001(\01620.textsecure.PushMessageContent.Grou" +
-      "pContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004" +
-      " \003(\t\022@\n\006avatar\030\005 \001(\01320.textsecure.PushMe" +
-      "ssageContent.AttachmentPointer\"K\n\004Type\022\013" +
-      "\n\007UNKNOWN\020\000\022\n\n\006CREATE\020\001\022\n\n\006MODIFY\020\002\022\013\n\007D",
-      "ELIVER\020\003\022\007\n\003ADD\020\004\022\010\n\004QUIT\020\005B7\n\"org.whisp" +
-      "ersystems.textsecure.pushB\021PushMessagePr" +
-      "otos"
+      "\rPREKEY_BUNDLE\020\003\022\r\n\tPLAINTEXT\020\004\"\234\004\n\022Push" +
+      "MessageContent\022\014\n\004body\030\001 \001(\t\022E\n\013attachme" +
+      "nts\030\002 \003(\01320.textsecure.PushMessageConten",
+      "t.AttachmentPointer\022:\n\005group\030\003 \001(\0132+.tex" +
+      "tsecure.PushMessageContent.GroupContext\022" +
+      "\r\n\005flags\030\004 \001(\r\032A\n\021AttachmentPointer\022\n\n\002i" +
+      "d\030\001 \001(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(" +
+      "\014\032\210\002\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022>\n\004type\030\002" +
+      " \001(\01620.textsecure.PushMessageContent.Gro" +
+      "upContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030" +
+      "\004 \003(\t\022@\n\006avatar\030\005 \001(\01320.textsecure.PushM" +
+      "essageContent.AttachmentPointer\"K\n\004Type\022" +
+      "\013\n\007UNKNOWN\020\000\022\n\n\006CREATE\020\001\022\n\n\006MODIFY\020\002\022\013\n\007",
+      "DELIVER\020\003\022\007\n\003ADD\020\004\022\010\n\004QUIT\020\005\"\030\n\005Flags\022\017\n" +
+      "\013END_SESSION\020\001B7\n\"org.whispersystems.tex" +
+      "tsecure.pushB\021PushMessageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2988,7 +3108,7 @@ public final class PushMessageProtos {
           internal_static_textsecure_PushMessageContent_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PushMessageContent_descriptor,
-              new java.lang.String[] { "Body", "Attachments", "Group", },
+              new java.lang.String[] { "Body", "Attachments", "Group", "Flags", },
               org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.class,
               org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.Builder.class);
           internal_static_textsecure_PushMessageContent_AttachmentPointer_descriptor =

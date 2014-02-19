@@ -256,6 +256,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.ENCRYPTION_REMOTE_BIT;
+    } else if (message.isEndSession()) {
+      type |= Types.END_SESSION_BIT;
+      type |= Types.SECURE_MESSAGE_BIT;
+      type |= Types.ENCRYPTION_REMOTE_BIT;
     }
 
     Recipients recipients;
@@ -328,6 +332,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
   protected List<Long> insertMessageOutbox(long threadId, OutgoingTextMessage message, long type) {
     if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
     else if (message.isSecureMessage()) type |= Types.SECURE_MESSAGE_BIT;
+    else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
 
     long date             = System.currentTimeMillis();
     List<Long> messageIds = new LinkedList<Long>();

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
@@ -9,7 +8,6 @@ import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessageV1;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.whispersystems.textsecure.crypto.IdentityKey;
@@ -127,13 +125,6 @@ public class KeyExchangeProcessorV1 extends KeyExchangeProcessor {
     DecryptingQueue.scheduleRogueMessages(context, masterSecret, recipient);
 
     broadcastSecurityUpdateEvent(context, threadId);
-  }
-
-  private static void broadcastSecurityUpdateEvent(Context context, long threadId) {
-    Intent intent = new Intent(SECURITY_UPDATE_EVENT);
-    intent.putExtra("thread_id", threadId);
-    intent.setPackage(context.getPackageName());
-    context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
   }
 
   public LocalKeyRecord initializeRecordFor(Context context,

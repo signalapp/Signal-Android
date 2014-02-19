@@ -21,13 +21,16 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -38,6 +41,7 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.Session;
 
 public class SmsSender {
 
@@ -109,10 +113,22 @@ public class SmsSender {
     Log.w("SMSReceiverService", "Running sent callback: " + messageId);
 
     if (result == Activity.RESULT_OK) {
-      DatabaseFactory.getSmsDatabase(context).markAsSent(messageId);
+      SmsDatabase        database = DatabaseFactory.getSmsDatabase(context);
+      Cursor             cursor   = database.getMessage(messageId);
+      SmsDatabase.Reader reader   = database.readerFor(cursor);
+
+      database.markAsSent(messageId);
 
       if (upgraded) {
-        DatabaseFactory.getSmsDatabase(context).markAsSecure(messageId);
+        database.markAsSecure(messageId);
+      }
+
+      SmsMessageRecord record = reader.getNext();
+
+      if (record != null && record.isEndSession()) {
+        Log.w("SmsSender", "Ending session...");
+        Session.abortSessionFor(context, record.getIndividualRecipient());
+        KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, record.getThreadId());
       }
 
       unregisterForRadioChanges();
@@ -161,4 +177,5 @@ public class SmsSender {
                                                  null, context, SendReceiveService.class),
                                       PendingIntent.FLAG_UPDATE_CURRENT));
   }
+
 }

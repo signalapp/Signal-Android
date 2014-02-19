@@ -39,6 +39,7 @@ public interface MmsSmsColumns {
 
     // Secure Message Information
     protected static final long SECURE_MESSAGE_BIT = 0x800000;
+    protected static final long END_SESSION_BIT    = 0x400000;
 
     // Encrypted Storage Information
     protected static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -73,6 +74,10 @@ public interface MmsSmsColumns {
 
     public static boolean isSecureType(long type) {
       return (type & SECURE_MESSAGE_BIT) != 0;
+    }
+
+    public static boolean isEndSessionType(long type) {
+      return (type & END_SESSION_BIT) != 0;
     }
 
     public static boolean isKeyExchangeType(long type) {

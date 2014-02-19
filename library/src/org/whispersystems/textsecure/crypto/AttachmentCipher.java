@@ -31,6 +31,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.util.Arrays;
 
 /**
@@ -117,6 +118,8 @@ public class AttachmentCipher {
     } catch (IllegalBlockSizeException e) {
       throw new AssertionError(e);
     } catch (BadPaddingException e) {
+      throw new InvalidMessageException(e);
+    } catch (ParseException e) {
       throw new InvalidMessageException(e);
     }
   }

@@ -68,7 +68,8 @@ public class SmsReceiver {
 
     if (WirePrefix.isEncryptedMessage(message.getMessageBody()) ||
         WirePrefix.isKeyExchange(message.getMessageBody())      ||
-        WirePrefix.isPreKeyBundle(message.getMessageBody()))
+        WirePrefix.isPreKeyBundle(message.getMessageBody())     ||
+        WirePrefix.isEndSession(message.getMessageBody()))
     {
       return multipartMessageHandler.processPotentialMultipartMessage(message);
     } else {
@@ -85,7 +86,7 @@ public class SmsReceiver {
                                          messageAndThreadId.second,
                                          message.getSender(), message.getSenderDeviceId(),
                                          message.getMessageBody(), message.isSecureMessage(),
-                                         message.isKeyExchange());
+                                         message.isKeyExchange(), message.isEndSession());
     }
 
     return messageAndThreadId;
@@ -197,10 +198,13 @@ public class SmsReceiver {
     if      (message.isSecureMessage()) return storeSecureMessage(masterSecret, message);
     else if (message.isPreKeyBundle())  return storePreKeyWhisperMessage(masterSecret, (IncomingPreKeyBundleMessage) message);
     else if (message.isKeyExchange())   return storeKeyExchangeMessage(masterSecret, (IncomingKeyExchangeMessage) message);
+    else if (message.isEndSession())    return storeSecureMessage(masterSecret, message);
     else                                return storeStandardMessage(masterSecret, message);
   }
 
   private void handleReceiveMessage(MasterSecret masterSecret, Intent intent) {
+    if (intent.getExtras() == null) return;
+
     List<IncomingTextMessage> messagesList = intent.getExtras().getParcelableArrayList("text_messages");
     IncomingTextMessage       message      = assembleMessageFragments(messagesList);
 

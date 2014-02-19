@@ -15,6 +15,7 @@ import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.util.Arrays;
 
 import javax.crypto.Mac;
@@ -38,7 +39,7 @@ public class WhisperMessageV2 implements CiphertextMessage {
       byte[]   mac          = messageParts[2];
 
       if (Conversions.highBitsToInt(version) != CURRENT_VERSION) {
-        throw new InvalidMessageException("Unknown version: " + Conversions.lowBitsToInt(version));
+        throw new InvalidMessageException("Unknown version: " + Conversions.highBitsToInt(version));
       }
 
       WhisperMessage whisperMessage = WhisperMessage.parseFrom(message);
@@ -58,6 +59,8 @@ public class WhisperMessageV2 implements CiphertextMessage {
     } catch (InvalidProtocolBufferException e) {
       throw new InvalidMessageException(e);
     } catch (InvalidKeyException e) {
+      throw new InvalidMessageException(e);
+    } catch (ParseException e) {
       throw new InvalidMessageException(e);
     }
   }

@@ -51,6 +51,10 @@ public abstract class WirePrefix {
     return verifyPrefix("?TSP", message);
   }
 
+  public static boolean isEndSession(String message) {
+    return verifyPrefix("?TSE", message);
+  }
+
   public static String calculateKeyExchangePrefix(String message) {
     return calculatePrefix(("?TSK" + message).getBytes(), PREFIX_BYTES);
   }
@@ -61,6 +65,10 @@ public abstract class WirePrefix {
 
   public static String calculatePreKeyBundlePrefix(String message) {
     return calculatePrefix(("?TSP" + message).getBytes(), PREFIX_BYTES);
+  }
+
+  public static String calculateEndSessionPrefix(String message) {
+    return calculatePrefix(("?TSE" + message).getBytes(), PREFIX_BYTES);
   }
 
   private static boolean verifyPrefix(String prefixType, String message) {

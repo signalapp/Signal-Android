@@ -216,6 +216,10 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
+  public boolean isEndSession() {
+    return false;
+  }
+
   public boolean isIdentityUpdate() {
     return false;
   }

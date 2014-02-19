@@ -18,10 +18,12 @@
 package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
+import android.content.Intent;
 
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
@@ -45,4 +47,12 @@ public abstract class KeyExchangeProcessor {
       return new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
     }
   }
+
+  public static void broadcastSecurityUpdateEvent(Context context, long threadId) {
+    Intent intent = new Intent(SECURITY_UPDATE_EVENT);
+    intent.putExtra("thread_id", threadId);
+    intent.setPackage(context.getPackageName());
+    context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
+  }
+
 }

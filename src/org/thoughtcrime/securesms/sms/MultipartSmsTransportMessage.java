@@ -2,12 +2,14 @@ package org.thoughtcrime.securesms.sms;
 
 import android.util.Log;
 
+import org.thoughtcrime.securesms.protocol.EndSessionWirePrefix;
 import org.thoughtcrime.securesms.protocol.KeyExchangeWirePrefix;
 import org.thoughtcrime.securesms.protocol.PrekeyBundleWirePrefix;
 import org.thoughtcrime.securesms.protocol.SecureMessageWirePrefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Conversions;
+import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,9 +23,10 @@ public class MultipartSmsTransportMessage {
   public static final int MULTI_MESSAGE_MULTIPART_OVERHEAD       = 3;
   public static final int FIRST_MULTI_MESSAGE_MULTIPART_OVERHEAD = 2;
 
-  public static final int WIRETYPE_SECURE = 1;
-  public static final int WIRETYPE_KEY    = 2;
-  public static final int WIRETYPE_PREKEY = 3;
+  public static final int WIRETYPE_SECURE      = 1;
+  public static final int WIRETYPE_KEY         = 2;
+  public static final int WIRETYPE_PREKEY      = 3;
+  public static final int WIRETYPE_END_SESSION = 4;
 
   private static final int VERSION_OFFSET    = 0;
   private static final int MULTIPART_OFFSET  = 1;
@@ -39,6 +42,7 @@ public class MultipartSmsTransportMessage {
 
     if      (WirePrefix.isEncryptedMessage(message.getMessageBody())) wireType = WIRETYPE_SECURE;
     else if (WirePrefix.isPreKeyBundle(message.getMessageBody()))     wireType = WIRETYPE_PREKEY;
+    else if (WirePrefix.isEndSession(message.getMessageBody()))       wireType = WIRETYPE_END_SESSION;
     else                                                              wireType = WIRETYPE_KEY;
 
     Log.w(TAG, "Decoded message with version: " + getCurrentVersion());
@@ -158,6 +162,7 @@ public class MultipartSmsTransportMessage {
 
       if      (message.isKeyExchange())  prefix = new KeyExchangeWirePrefix();
       else if (message.isPreKeyBundle()) prefix = new PrekeyBundleWirePrefix();
+      else if (message.isEndSession())   prefix = new EndSessionWirePrefix();
       else                               prefix = new SecureMessageWirePrefix();
 
       if (count == 1) return getSingleEncoded(decoded, prefix);

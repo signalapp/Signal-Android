@@ -81,11 +81,12 @@ public class DecryptingQueue {
 
   public static void scheduleDecryption(Context context, MasterSecret masterSecret,
                                         long messageId, long threadId, String originator, int deviceId,
-                                        String body, boolean isSecureMessage, boolean isKeyExchange)
+                                        String body, boolean isSecureMessage, boolean isKeyExchange,
+                                        boolean isEndSession)
   {
     DecryptionWorkItem runnable = new DecryptionWorkItem(context, masterSecret, messageId, threadId,
                                                          originator, deviceId, body,
-                                                         isSecureMessage, isKeyExchange);
+                                                         isSecureMessage, isKeyExchange, isEndSession);
     executor.execute(runnable);
   }
 
@@ -167,10 +168,11 @@ public class DecryptingQueue {
     int originatorDeviceId  = record.getRecipientDeviceId();
     boolean isSecureMessage = record.isSecure();
     boolean isKeyExchange   = record.isKeyExchange();
+    boolean isEndSession    = record.isEndSession();
 
     scheduleDecryption(context, masterSecret, messageId,  threadId,
                        originator, originatorDeviceId, body,
-                       isSecureMessage, isKeyExchange);
+                       isSecureMessage, isKeyExchange, isEndSession);
   }
 
   private static class PushDecryptionWorkItem implements Runnable {
@@ -332,10 +334,11 @@ public class DecryptingQueue {
     private final int          deviceId;
     private final boolean      isSecureMessage;
     private final boolean      isKeyExchange;
+    private final boolean      isEndSession;
 
     public DecryptionWorkItem(Context context, MasterSecret masterSecret, long messageId, long threadId,
                               String originator, int deviceId, String body, boolean isSecureMessage,
-                              boolean isKeyExchange)
+                              boolean isKeyExchange, boolean isEndSession)
     {
       this.context         = context;
       this.messageId       = messageId;
@@ -346,6 +349,7 @@ public class DecryptingQueue {
       this.deviceId        = deviceId;
       this.isSecureMessage = isSecureMessage;
       this.isKeyExchange   = isKeyExchange;
+      this.isEndSession    = isEndSession;
     }
 
     private void handleRemoteAsymmetricEncrypt() {
@@ -368,6 +372,13 @@ public class DecryptingQueue {
         byte[]              paddedPlaintext   = sessionCipher.decrypt(decodedCiphertext);
 
         plaintextBody = new String(transportDetails.getStrippedPaddingMessageBody(paddedPlaintext));
+
+        if (isEndSession &&
+            "TERMINATE".equals(plaintextBody) &&
+            SessionRecordV2.hasSession(context, masterSecret, recipientDevice))
+        {
+          Session.abortSessionFor(context, recipient);
+        }
       } catch (InvalidMessageException e) {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptFailed(messageId);
@@ -441,7 +452,7 @@ public class DecryptingQueue {
 
     @Override
     public void run() {
-      if (isSecureMessage) {
+      if (isSecureMessage || isEndSession) {
         handleRemoteAsymmetricEncrypt();
       } else {
         handleLocalAsymmetricEncrypt();

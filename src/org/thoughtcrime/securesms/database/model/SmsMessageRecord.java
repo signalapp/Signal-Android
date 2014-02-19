@@ -79,6 +79,9 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
     } else if (!getBody().isPlaintext()) {
       return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
+    } else if (SmsDatabase.Types.isEndSessionType(type)) {
+      // TODO jake is going to fix this up
+      return new SpannableString("Session closed!");
     } else if (isOutgoing() && Tag.isTagged(getBody().getBody())) {
       return new SpannableString(Tag.stripTag(getBody().getBody()));
     } else {

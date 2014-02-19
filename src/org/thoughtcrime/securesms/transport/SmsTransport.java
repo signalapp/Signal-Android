@@ -33,6 +33,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.util.Hex;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class SmsTransport extends BaseTransport {
   }
 
   public void deliver(SmsMessageRecord message) throws UndeliverableMessageException {
-    if (message.isSecure() || message.isKeyExchange()) {
+    if (message.isSecure() || message.isKeyExchange() || message.isEndSession()) {
       deliverSecureMessage(message);
     } else {
       deliverPlaintextMessage(message);
@@ -58,7 +59,7 @@ public class SmsTransport extends BaseTransport {
     MultipartSmsMessageHandler multipartMessageHandler = new MultipartSmsMessageHandler();
     OutgoingTextMessage transportMessage               = OutgoingTextMessage.from(message);
 
-    if (message.isSecure()) {
+    if (message.isSecure() || message.isEndSession()) {
       transportMessage = getAsymmetricEncrypt(masterSecret, transportMessage);
     }
 

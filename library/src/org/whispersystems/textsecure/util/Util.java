@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,7 +46,15 @@ public class Util {
     return parts;
   }
 
-  public static byte[][] split(byte[] input, int firstLength, int secondLength, int thirdLength) {
+  public static byte[][] split(byte[] input, int firstLength, int secondLength, int thirdLength)
+      throws ParseException
+  {
+    if (input == null || firstLength < 0 || secondLength < 0 || thirdLength < 0 ||
+        input.length < firstLength + secondLength + thirdLength)
+    {
+      throw new ParseException("Input too small: " + (input == null ? null : Hex.toString(input)), 0);
+    }
+
     byte[][] parts = new byte[3][];
 
     parts[0] = new byte[firstLength];

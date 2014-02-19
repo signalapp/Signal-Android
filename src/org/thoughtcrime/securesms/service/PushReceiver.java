@@ -8,6 +8,7 @@ import android.util.Pair;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
+import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
+import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -34,6 +36,7 @@ import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.storage.Session;
 
 import ws.com.google.android.mms.MmsException;
 
@@ -150,7 +153,10 @@ public class PushReceiver {
     try {
       PushMessageContent messageContent = PushMessageContent.parseFrom(message.getBody());
 
-      if (messageContent.hasGroup()) {
+      if (secure && (messageContent.getFlags() & PushMessageContent.Flags.END_SESSION_VALUE) != 0) {
+        Log.w("PushReceiver", "Received end session message...");
+        handleEndSessionMessage(masterSecret, message, messageContent);
+      } else if (messageContent.hasGroup()) {
         Log.w("PushReceiver", "Received push group message...");
         handleReceivedGroupMessage(masterSecret, message, messageContent, secure);
       } else if (messageContent.getAttachmentsCount() > 0) {
@@ -219,6 +225,27 @@ public class PushReceiver {
       handleReceivedMediaMessage(masterSecret, message, messageContent, secure);
     } else {
       handleReceivedTextMessage(masterSecret, message, messageContent, secure);
+    }
+  }
+
+  private void handleEndSessionMessage(MasterSecret masterSecret,
+                                       IncomingPushMessage message,
+                                       PushMessageContent messageContent)
+  {
+    try {
+      Recipient                 recipient                 = RecipientFactory.getRecipientsFromString(context, message.getSource(), true).getPrimaryRecipient();
+      IncomingTextMessage       incomingTextMessage       = new IncomingTextMessage(message, "", null);
+      IncomingEndSessionMessage incomingEndSessionMessage = new IncomingEndSessionMessage(incomingTextMessage);
+
+      EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
+
+      Pair<Long, Long> messageAndThreadId = database.insertMessageInbox(masterSecret, incomingEndSessionMessage);
+      database.updateMessageBody(masterSecret, messageAndThreadId.first, messageContent.getBody());
+
+      Session.abortSessionFor(context, recipient);
+      KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, messageAndThreadId.second);
+    } catch (RecipientFormattingException e) {
+      Log.w("PushReceiver", e);
     }
   }
 

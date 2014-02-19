@@ -71,6 +71,8 @@ public class MultipartSmsMessageHandler {
       return new IncomingKeyExchangeMessage(message.getBaseMessage(), strippedMessage);
     } else if (message.getWireType() == MultipartSmsTransportMessage.WIRETYPE_PREKEY) {
       return new IncomingPreKeyBundleMessage(message.getBaseMessage(), strippedMessage);
+    } else if (message.getWireType() == MultipartSmsTransportMessage.WIRETYPE_END_SESSION) {
+      return new IncomingEndSessionMessage(message.getBaseMessage(), strippedMessage);
     } else {
       return new IncomingEncryptedMessage(message.getBaseMessage(), strippedMessage);
     }

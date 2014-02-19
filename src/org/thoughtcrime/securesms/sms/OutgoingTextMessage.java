@@ -52,6 +52,10 @@ public class OutgoingTextMessage {
     return false;
   }
 
+  public boolean isEndSession() {
+    return false;
+  }
+
   public boolean isPreKeyBundle() {
     return false;
   }
@@ -61,6 +65,8 @@ public class OutgoingTextMessage {
       return new OutgoingEncryptedMessage(record.getIndividualRecipient(), record.getBody().getBody());
     } else if (record.isKeyExchange()) {
       return new OutgoingKeyExchangeMessage(record.getIndividualRecipient(), record.getBody().getBody());
+    } else if (record.isEndSession()) {
+      return new OutgoingEndSessionMessage(new OutgoingTextMessage(record.getIndividualRecipient(), record.getBody().getBody()));
     } else {
       return new OutgoingTextMessage(record.getIndividualRecipient(), record.getBody().getBody());
     }
