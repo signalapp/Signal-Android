@@ -36,7 +36,7 @@
                       android:layout_width="wrap_content"
                       android:layout_height="match_parent"
                       android:layout_alignParentRight="true"
-                      android:background="@drawable/conversation_item_sent_shape"
+                      android:background="?conversation_item_sent_background"
                       android:paddingRight="10dip"
                       android:paddingLeft="10dip"
                       android:layout_marginLeft="50dp"
@@ -171,7 +171,7 @@
         </LinearLayout>
 
         <View
-            android:background="@drawable/conversation_item_sent_triangle_shape"
+            android:background="?conversation_item_sent_triangle_background"
             android:layout_width="12dp"
             android:layout_height="15dp"
             android:layout_marginTop="12dp"

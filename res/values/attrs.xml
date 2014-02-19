@@ -7,6 +7,7 @@
     <attr name="conversation_list_item_contact_color" format="reference|color"/>
     <attr name="conversation_list_item_subject_color" format="reference|color"/>
     <attr name="conversation_list_item_date_color" format="reference|color"/>
+    <attr name="conversation_list_item_divider" format="reference"/>
 
     <attr name="conversation_sent_card_background" format="reference|color"/>
     <attr name="conversation_group_member_name" format="reference|color"/>
@@ -27,6 +28,11 @@
     <attr name="conversation_delivered_indicator" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
+
+    <attr name="conversation_item_received_background" format="reference" />
+    <attr name="conversation_item_received_triangle_background" format="reference" />
+    <attr name="conversation_item_sent_background" format="reference" />
+    <attr name="conversation_item_sent_triangle_background" format="reference" />
 
     <attr name="navigation_drawer_background" format="reference|color"/>
     <attr name="navigation_drawer_text_color" format="color"/>

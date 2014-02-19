@@ -30,6 +30,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -54,6 +55,7 @@ import java.util.Set;
 public class ConversationListItem extends RelativeLayout
                                   implements Recipient.RecipientModifiedListener
 {
+  private final static String TAG = ConversationListItem.class.getSimpleName();
 
   private Context           context;
   private Set<Long>         selectedThreads;
@@ -130,17 +132,21 @@ public class ConversationListItem extends RelativeLayout
     if (recipient == null) return;
 
     contactPhotoImage.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
-    contactPhotoImage.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (recipient.getContactUri() != null) {
-          QuickContact.showQuickContact(context, contactPhotoImage, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
-        } else {
-          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
-          context.startActivity(intent);
+    if (!recipient.isGroupRecipient()) {
+      contactPhotoImage.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (recipient.getContactUri() != null) {
+            QuickContact.showQuickContact(context, contactPhotoImage, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
+          } else {
+            Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
+            context.startActivity(intent);
+          }
         }
-      }
-    });
+      });
+    } else {
+      contactPhotoImage.setOnClickListener(null);
+    }
   }
 
   private void setBackground(boolean read, boolean batch) {

@@ -75,7 +75,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="?conversation_sent_text_primary_color">
+                    android:background="?conversation_editor_background">
 
                 <org.thoughtcrime.securesms.components.EmojiToggle
                         android:id="@+id/emoji_toggle"

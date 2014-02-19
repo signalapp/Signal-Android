@@ -13,4 +13,8 @@
 
     <color name="card_background_active">#9933b5e5</color>
 
+    <color name="conversation_item_sent_background_dark">#ff284e0a</color>
+    <color name="conversation_item_sent_background_light">#ff64a926</color>
+    <color name="conversation_item_received_background_dark">#ff284e0a</color>
+    <color name="conversation_item_received_background_light">#ff284e0a</color>
 </resources>

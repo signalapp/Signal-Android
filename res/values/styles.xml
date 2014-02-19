@@ -9,6 +9,20 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <!-- the theme applied to the application or activity -->
+    <style name="TextSecure.Dark"
+           parent="@style/Theme.Sherlock">
+        <item name="android:actionBarStyle">@style/TextSecure.DarkActionBar</item>
+        <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="TextSecure.DarkActionBar"
+           parent="@style/Widget.Sherlock.ActionBar">
+        <item name="android:background">#ff111111</item>
+        <item name="background">#ff111111</item>
+    </style>
+
 	<style name="transparent_progress">
 	    <item name="android:windowFrame">@null</item>
 	    <item name="android:windowBackground">@android:color/transparent</item>

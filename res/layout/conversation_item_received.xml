@@ -38,13 +38,13 @@
             android:layout_height="15dp"
             android:layout_marginTop="12dp"
             android:layout_alignRight="@id/contact_photo"
-            android:background="@drawable/conversation_item_received_triangle_shape" />
+            android:background="?conversation_item_received_triangle_background" />
 
         <LinearLayout android:id="@+id/conversation_item_parent"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/triangle_tick"
-            android:background="@drawable/conversation_item_received_shape"
+            android:background="?conversation_item_received_background"
             android:orientation="vertical">
 
             <LinearLayout
