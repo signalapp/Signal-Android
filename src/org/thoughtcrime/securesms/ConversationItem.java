@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
@@ -134,6 +135,8 @@ public class ConversationItem extends LinearLayout {
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
                   Handler failedIconHandler, boolean groupThread)
   {
+
+
     this.messageRecord     = messageRecord;
     this.masterSecret      = masterSecret;
     this.failedIconHandler = failedIconHandler;
@@ -549,4 +552,24 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
+  private void handleAbortSecureSession() {
+    if (!messageRecord.isSecure()) return;
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    builder.setTitle(R.string.ConversationActivity_abort_secure_session_confirmation);
+    builder.setIcon(android.R.drawable.ic_dialog_alert);
+    builder.setCancelable(true);
+    builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question);
+    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        if (messageRecord.getRecipients().isSingleRecipient()) {
+          Recipient            recipient = messageRecord.getRecipients().getPrimaryRecipient();
+          Session.abortSessionFor(context, recipient);
+        }
+      }
+    });
+    builder.setNegativeButton(R.string.no, null);
+    builder.show();
+  }
 }
