@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
@@ -28,12 +30,14 @@ import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.RecipientProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -49,6 +53,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -70,8 +75,9 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private final static String TAG = GroupCreateActivity.class.getSimpleName();
 
-
-  public static final String MASTER_SECRET_EXTRA = "master_secret";
+  public static final String GROUP_RECIPIENT_EXTRA = "group_recipient";
+  public static final String GROUP_THREAD_EXTRA = "group_thread";
+  public static final String MASTER_SECRET_EXTRA    = "master_secret";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -80,17 +86,24 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
-  public static final int AVATAR_SIZE = 210;
+  public static final  int AVATAR_SIZE  = 210;
 
   private EditText            groupName;
   private ListView            lv;
   private PushRecipientsPanel recipientsPanel;
   private ImageView           avatar;
   private TextView            creatingText;
+  private ProgressDialog      pd;
+
+  private Recipients     groupRecipient    = null;
+  private long           groupThread       = -1;
+  private byte[]         groupId           = null;
+  private Set<Recipient> existingContacts  = null;
+  private String         existingTitle     = null;
+  private Bitmap         existingAvatarBmp = null;
 
   private MasterSecret masterSecret;
   private Bitmap       avatarBmp;
-
   private Set<Recipient> selectedContacts;
 
   @Override
@@ -124,10 +137,9 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   private void disableWhisperGroupUi(int reasonResId) {
     View pushDisabled = findViewById(R.id.push_disabled);
     pushDisabled.setVisibility(View.VISIBLE);
-    ((TextView)findViewById(R.id.push_disabled_reason)).setText(reasonResId);
+    ((TextView) findViewById(R.id.push_disabled_reason)).setText(reasonResId);
     avatar.setEnabled(false);
     groupName.setEnabled(false);
-    getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
   }
 
   private void enableWhisperGroupUi() {
@@ -135,7 +147,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     avatar.setEnabled(true);
     groupName.setEnabled(true);
     final CharSequence groupNameText = groupName.getText();
-    if (groupNameText.length() > 0)
+    if (groupNameText != null && groupNameText.length() > 0)
       getSupportActionBar().setTitle(groupNameText);
     else
       getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
@@ -155,8 +167,12 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private void addSelectedContact(Recipient contact) {
-    selectedContacts.add(contact);
-    if (!isActiveInDirectory(this, contact)) disableWhisperGroupUi(R.string.GroupCreateActivity_contacts_dont_support_push);
+    if (!selectedContacts.contains(contact) && (existingContacts == null || !existingContacts.contains(contact)))
+      selectedContacts.add(contact);
+    if (!isActiveInDirectory(this, contact)) {
+      disableWhisperGroupUi(R.string.GroupCreateActivity_contacts_dont_support_push);
+      getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
+    }
   }
 
   private void addAllSelectedContacts(Collection<Recipient> contacts) {
@@ -177,6 +193,23 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private void initializeResources() {
+    groupRecipient = getIntent().getParcelableExtra(GROUP_RECIPIENT_EXTRA);
+    groupThread = getIntent().getLongExtra(GROUP_THREAD_EXTRA, -1);
+    if (groupRecipient != null) {
+      final String encodedGroupId = groupRecipient.getPrimaryRecipient().getNumber();
+      if (encodedGroupId != null) {
+        try {
+          groupId = GroupUtil.getDecodedId(encodedGroupId);
+        } catch (IOException ioe) {
+          Log.w(TAG, "Couldn't decode the encoded groupId passed in via intent", ioe);
+          groupId = null;
+        }
+        if (groupId != null) {
+          new FillExistingGroupInfoAsyncTask().execute();
+        }
+      }
+    }
+
     masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
 
     lv              = (ListView)            findViewById(R.id.selected_contacts_list);
@@ -192,14 +225,18 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) { }
       @Override
       public void afterTextChanged(Editable editable) {
-        if (editable.length() > 0)
-          getSupportActionBar().setTitle(getString(R.string.GroupCreateActivity_actionbar_title) + ": " + editable.toString());
-        else
+        if (editable.length() > 0) {
+          final int prefixResId = (groupId != null)
+                                  ? R.string.GroupCreateActivity_actionbar_update_title
+                                  : R.string.GroupCreateActivity_actionbar_title;
+          getSupportActionBar().setTitle(getString(prefixResId) + ": " + editable.toString());
+        } else {
           getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
+        }
       }
     });
 
-    SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<Recipient>());
+    SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<SelectedRecipientsAdapter.RecipientWrapper>());
     adapter.setOnRecipientDeletedListener(new SelectedRecipientsAdapter.OnRecipientDeletedListener() {
       @Override
       public void onRecipientDeleted(Recipient recipient) {
@@ -235,6 +272,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         startActivityForResult(photoPickerIntent, PICK_AVATAR);
       }
     });
+
+    ((RecipientsEditor)findViewById(R.id.recipients_text)).setHint(R.string.recipients_panel__add_member);
   }
 
   private Uri getTempUri() {
@@ -276,7 +315,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         finish();
         return true;
       case R.id.menu_create_group:
-        handleGroupCreate();
+        if (groupId == null) handleGroupCreate();
+        else                 handleGroupUpdate();
         return true;
     }
 
@@ -297,6 +337,75 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
   }
 
+  private static List<String> recipientsToNormalizedStrings(Collection<Recipient> recipients, String localNumber) {
+    final List<String> e164numbers = new ArrayList<String>(recipients.size());
+    for (Recipient contact : recipients) {
+      try {
+        e164numbers.add(PhoneNumberFormatter.formatNumber(contact.getNumber(), localNumber));
+      } catch (InvalidNumberException ine) {
+        Log.w(TAG, "Failed to format number for added group member.", ine);
+      }
+    }
+    return e164numbers;
+  }
+
+  private void handleGroupUpdate() {
+    Log.i(TAG, "Updating group info.");
+    GroupDatabase db = DatabaseFactory.getGroupDatabase(this);
+    final String localNumber = TextSecurePreferences.getLocalNumber(this);
+    List<String> e164numbers = recipientsToNormalizedStrings(selectedContacts, localNumber);
+    if (selectedContacts.size() > 0) {
+      db.add(groupId, localNumber, e164numbers);
+      GroupContext context = GroupContext.newBuilder()
+                                         .setId(ByteString.copyFrom(groupId))
+                                         .setType(GroupContext.Type.ADD)
+                                         .addAllMembers(e164numbers)
+                                         .build();
+      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, null);
+      try {
+        MessageSender.send(this, masterSecret, outgoingMessage, groupThread);
+      } catch (MmsException me) {
+        Log.w(TAG, "MmsException encountered when trying to add members to group.", me);
+      }
+    }
+
+    GroupContext.Builder builder = GroupContext.newBuilder()
+                                       .setId(ByteString.copyFrom(groupId))
+                                       .setType(GroupContext.Type.MODIFY);
+    boolean shouldSendUpdate = false;
+    final String title = groupName.getText().toString();
+    if (existingTitle == null || (groupName.getText() != null && !existingTitle.equals(title))) {
+      builder.setName(title);
+      db.updateTitle(groupId, title);
+      shouldSendUpdate = true;
+    }
+    byte[] avatarBytes = null;
+    if (existingAvatarBmp == null || !existingAvatarBmp.equals(avatarBmp)) {
+      if (avatarBmp != null) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        avatarBytes = stream.toByteArray();
+      }
+      db.updateAvatar(groupId, avatarBytes);
+      shouldSendUpdate = true;
+    }
+
+    if (shouldSendUpdate) {
+      GroupContext context = builder.build();
+      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatarBytes);
+      try {
+        MessageSender.send(this, masterSecret, outgoingMessage, groupThread);
+      } catch (MmsException me) {
+        Log.w(TAG, "MmsException encountered when trying to add members to group.", me);
+      }
+    }
+
+    RecipientFactory.clearCache(groupRecipient.getPrimaryRecipient());
+
+    setResult(RESULT_OK, getIntent());
+    finish();
+  }
+
   private void enableWhisperGroupCreatingUi() {
     findViewById(R.id.group_details_layout).setVisibility(View.GONE);
     findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
@@ -315,7 +424,12 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     SelectedRecipientsAdapter adapter = (SelectedRecipientsAdapter)lv.getAdapter();
     adapter.clear();
     for (Recipient contact : selectedContacts) {
-      adapter.add(contact);
+      adapter.add(new SelectedRecipientsAdapter.RecipientWrapper(contact, true));
+    }
+    if (existingContacts != null) {
+      for (Recipient contact : existingContacts) {
+        adapter.add(new SelectedRecipientsAdapter.RecipientWrapper(contact, false));
+      }
     }
     adapter.notifyDataSetChanged();
   }
@@ -336,7 +450,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
               Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, false)
                                                     .getPrimaryRecipient();
 
-              if (!selectedContacts.contains(recipient)) {
+              if (!selectedContacts.contains(recipient)
+                  && (existingContacts == null || !existingContacts.contains(recipient))) {
                 addSelectedContact(recipient);
               }
             } catch (RecipientFormattingException e) {
@@ -347,14 +462,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         syncAdapterWithSelectedContacts();
         break;
       case PICK_AVATAR:
-        if(resultCode == RESULT_OK) {
-
           new DecodeCropAndSetAsyncTask().execute();
-
           break;
-        } else {
-          Log.i(TAG, "Avatar selection result was not RESULT_OK.");
-        }
     }
   }
 
@@ -411,6 +520,14 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
                                           ThreadDatabase.DistributionTypes.CONVERSATION);
   }
 
+  private static <T> ArrayList<T> setToArrayList(Set<T> set) {
+    ArrayList<T> arrayList = new ArrayList<T>(set.size());
+    for (T item : set) {
+      arrayList.add(item);
+    }
+    return arrayList;
+  }
+
   private List<String> getE164Numbers(Set<Recipient> recipients)
       throws InvalidNumberException
   {
@@ -455,10 +572,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, resultThread.longValue());
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
 
-        ArrayList<Recipient> selectedContactsList = new ArrayList<Recipient>(selectedContacts.size());
-        for (Recipient recipient : selectedContacts) {
-          selectedContactsList.add(recipient);
-        }
+        ArrayList<Recipient> selectedContactsList = setToArrayList(selectedContacts);
         intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, new Recipients(selectedContactsList));
         startActivity(intent);
         finish();
@@ -523,6 +637,60 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     @Override
     protected void onProgressUpdate(Void... values) {
       super.onProgressUpdate(values);
+    }
+  }
+
+  private class FillExistingGroupInfoAsyncTask extends AsyncTask<Void,Void,Boolean> {
+
+    @Override
+    protected void onPreExecute() {
+      pd = new ProgressDialog(GroupCreateActivity.this);
+      pd.setTitle("Loading group details...");
+      pd.setMessage("Please wait.");
+      pd.setCancelable(false);
+      pd.setIndeterminate(true);
+      pd.show();
+    }
+
+    @Override
+    protected Boolean doInBackground(Void... voids) {
+      final GroupDatabase db = DatabaseFactory.getGroupDatabase(GroupCreateActivity.this);
+      final Recipients recipients = db.getGroupMembers(groupId);
+      if (recipients != null) {
+        final List<Recipient> recipientList = recipients.getRecipientsList();
+        if (recipientList != null) {
+          if (existingContacts == null)
+            existingContacts = new HashSet<Recipient>(recipientList.size());
+          existingContacts.addAll(recipientList);
+        }
+      }
+      final GroupDatabase.Reader groupReader = db.getGroup(groupId);
+      GroupDatabase.GroupRecord group = groupReader.getNext();
+      if (group != null) {
+        existingTitle = group.getTitle();
+        final byte[] existingAvatar = group.getAvatar();
+        if (existingAvatar != null) {
+          existingAvatarBmp = BitmapUtil.getCircleCroppedBitmap(
+              BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length));
+        }
+        return (group.getOwner() != null && group.getOwner().equals(TextSecurePreferences.getLocalNumber(GroupCreateActivity.this)));
+      }
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(Boolean isOwner) {
+      super.onPostExecute(isOwner);
+
+      if (pd != null) pd.dismiss();
+      if (existingTitle != null) groupName.setText(existingTitle);
+      if (existingAvatarBmp != null) avatar.setImageBitmap(existingAvatarBmp);
+      if (existingContacts != null) syncAdapterWithSelectedContacts();
+      if (!isOwner) {
+        disableWhisperGroupUi(R.string.GroupCreateActivity_you_dont_own_this_group);
+        getSupportActionBar().setTitle(getString(R.string.GroupCreateActivity_actionbar_update_title)
+                                       + (TextUtils.isEmpty(existingTitle) ? "" : ": " + existingTitle));
+      }
     }
   }
 }

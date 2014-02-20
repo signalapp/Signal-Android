@@ -7,10 +7,6 @@
           <menu>
               <item android:title="@string/conversation_secure_verified__menu_verify_recipient"
                     android:id="@+id/menu_verify_recipient"/>
-
-              <item android:title="@string/conversation_secure_verified__menu_abort_secure_session"
-                    android:id="@+id/menu_abort_session"/>
-
           </menu>
     </item>
 </menu>

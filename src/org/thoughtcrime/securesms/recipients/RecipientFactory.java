@@ -138,4 +138,9 @@ public class RecipientFactory {
     provider.clearCache();
   }
 
+  public static void clearCache(Recipient recipient) {
+    ContactPhotoFactory.clearCache(recipient);
+    provider.clearCache(recipient);
+  }
+
 }

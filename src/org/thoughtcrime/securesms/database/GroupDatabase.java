@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.util.Log;
@@ -21,6 +22,8 @@ import org.whispersystems.textsecure.util.Util;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -138,6 +141,13 @@ public class GroupDatabase extends Database {
                                                 new String[] {GroupUtil.getEncodedId(groupId), source});
   }
 
+  public void updateTitle(byte[] groupId, String title) {
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(TITLE, title);
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
+                                                new String[] {GroupUtil.getEncodedId(groupId)});
+  }
+
   public void updateAvatar(byte[] groupId, Bitmap avatar) {
     updateAvatar(groupId, BitmapUtil.toByteArray(avatar));
   }
@@ -198,6 +208,28 @@ public class GroupDatabase extends Database {
     }
   }
 
+  public String getOwner(byte[] id) {
+    Cursor cursor = null;
+
+    try {
+      SQLiteDatabase readableDatabase = databaseHelper.getReadableDatabase();
+      if (readableDatabase == null)
+        return null;
+
+      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {OWNER},
+                                                          GROUP_ID  + " = ?",
+                                                          new String[] {GroupUtil.getEncodedId(id)},
+                                                          null, null, null);
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getString(cursor.getColumnIndexOrThrow(OWNER));
+      }
+      return null;
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
   public byte[] allocateGroupId() {
     try {
       byte[] groupId = new byte[16];
@@ -224,6 +256,7 @@ public class GroupDatabase extends Database {
 
       return new GroupRecord(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)),
                              cursor.getString(cursor.getColumnIndexOrThrow(TITLE)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(OWNER)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)),
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR)),
                              cursor.getLong(cursor.getColumnIndexOrThrow(AVATAR_ID)),
@@ -242,6 +275,7 @@ public class GroupDatabase extends Database {
 
     private final String       id;
     private final String       title;
+    private final String       owner;
     private final List<String> members;
     private final byte[]       avatar;
     private final long         avatarId;
@@ -249,12 +283,13 @@ public class GroupDatabase extends Database {
     private final String       avatarContentType;
     private final String       relay;
 
-    public GroupRecord(String id, String title, String members, byte[] avatar,
+    public GroupRecord(String id, String title, String owner, String members, byte[] avatar,
                        long avatarId, byte[] avatarKey, String avatarContentType,
                        String relay)
     {
       this.id                = id;
       this.title             = title;
+      this.owner             = owner;
       this.members           = Util.split(members, ",");
       this.avatar            = avatar;
       this.avatarId          = avatarId;
@@ -273,6 +308,10 @@ public class GroupDatabase extends Database {
 
     public String getTitle() {
       return title;
+    }
+
+    public String getOwner() {
+      return owner;
     }
 
     public List<String> getMembers() {

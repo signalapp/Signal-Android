@@ -5,9 +5,9 @@
           android:icon="?menu_lock_icon"
           android:showAsAction="ifRoom">
           <menu>
-              <item android:title="@string/conversation_secure_verified__menu_no_identity"
-                    android:enabled="false"
-                    android:id="@+id/menu_no_identity" />
+              <item android:title="@string/conversation_secure_verified__menu_abort_secure_session"
+                    android:id="@+id/menu_abort_session"/>
+
           </menu>
     </item>
 </menu>

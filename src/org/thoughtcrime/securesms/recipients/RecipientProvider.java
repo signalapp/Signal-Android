@@ -116,6 +116,11 @@ public class RecipientProvider {
     recipientCache.clear();
   }
 
+  public void clearCache(Recipient recipient) {
+    if (recipientCache.containsKey(recipient.getRecipientId()))
+      recipientCache.remove(recipient.getRecipientId());
+  }
+
   private RecipientDetails getRecipientDetails(Context context, String number) {
     Uri uri       = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
     Cursor cursor = context.getContentResolver().query(uri, CALLER_ID_PROJECTION,

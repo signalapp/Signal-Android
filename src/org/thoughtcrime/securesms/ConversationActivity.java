@@ -75,6 +75,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -132,6 +133,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private static final int PICK_VIDEO        = 3;
   private static final int PICK_AUDIO        = 4;
   private static final int PICK_CONTACT_INFO = 5;
+  private static final int GROUP_EDIT        = 6;
 
   private MasterSecret    masterSecret;
   private RecipientsPanel recipientsPanel;
@@ -234,6 +236,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case PICK_CONTACT_INFO:
       addContactInfo(data.getData());
       break;
+    case GROUP_EDIT:
+      this.recipients = RecipientFactory.getRecipientsForIds(this, String.valueOf(getRecipients().getPrimaryRecipient().getRecipientId()), false);
+      initializeTitleBar();
+      break;
     }
   }
 
@@ -242,13 +248,18 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     MenuInflater inflater = this.getSupportMenuInflater();
     menu.clear();
 
+    boolean pushRegistered = TextSecurePreferences.isPushRegistered(this);
+
     if (isSingleConversation() && isEncryptedConversation) {
       if (isAuthenticatedConversation) {
         inflater.inflate(R.menu.conversation_secure_identity, menu);
       } else {
         inflater.inflate(R.menu.conversation_secure_no_identity, menu);
       }
-    } else if (isSingleConversation()) {
+      if (!pushRegistered) {
+        inflater.inflate(R.menu.conversation_secure_sms, menu);
+      }
+    } else if (isSingleConversation() && !pushRegistered) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
@@ -264,6 +275,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
         }
+      } else {
+        inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
     }
 
@@ -286,10 +299,23 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
+    case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
+    case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
 
     return false;
+  }
+
+  private void handleLeavePushGroup() {
+    Toast.makeText(getApplicationContext(), "not yet implemented", Toast.LENGTH_SHORT).show();
+  }
+
+  private void handleEditPushGroup() {
+    Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
+    intent.putExtra(GroupCreateActivity.MASTER_SECRET_EXTRA, masterSecret);
+    intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients);
+    startActivityForResult(intent, GROUP_EDIT);
   }
 
   @Override

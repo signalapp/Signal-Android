@@ -12,18 +12,17 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class SelectedRecipientsAdapter extends ArrayAdapter<Recipient> {
+public class SelectedRecipientsAdapter extends ArrayAdapter<SelectedRecipientsAdapter.RecipientWrapper> {
 
-  private ArrayList<Recipient> recipients;
+  private ArrayList<RecipientWrapper> recipients;
   private OnRecipientDeletedListener onRecipientDeletedListener;
 
   public SelectedRecipientsAdapter(Context context, int textViewResourceId) {
     super(context, textViewResourceId);
   }
 
-  public SelectedRecipientsAdapter(Context context, int resource, ArrayList<Recipient> recipients) {
+  public SelectedRecipientsAdapter(Context context, int resource, ArrayList<RecipientWrapper> recipients) {
     super(context, resource, recipients);
     this.recipients = recipients;
   }
@@ -41,7 +40,9 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<Recipient> {
 
     }
 
-    Recipient p = getItem(position);
+    final RecipientWrapper rw = getItem(position);
+    final Recipient p = rw.getRecipient();
+    final boolean modifiable = rw.isModifiable();
 
     if (p != null) {
 
@@ -53,20 +54,25 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<Recipient> {
         name.setText(p.getName());
       }
       if (phone != null) {
-
         phone.setText(p.getNumber());
       }
       if (delete != null) {
-        delete.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            if (onRecipientDeletedListener != null) {
-              onRecipientDeletedListener.onRecipientDeleted(recipients.get(position));
+        if (modifiable) {
+          delete.setVisibility(View.VISIBLE);
+          delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              if (onRecipientDeletedListener != null) {
+                onRecipientDeletedListener.onRecipientDeleted(recipients.get(position).getRecipient());
+              }
+              recipients.remove(position);
+              SelectedRecipientsAdapter.this.notifyDataSetChanged();
             }
-            recipients.remove(position);
-            SelectedRecipientsAdapter.this.notifyDataSetChanged();
-          }
-        });
+          });
+        } else {
+          delete.setVisibility(View.INVISIBLE);
+          delete.setOnClickListener(null);
+        }
       }
     }
 
@@ -79,5 +85,23 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<Recipient> {
 
   public interface OnRecipientDeletedListener {
     public void onRecipientDeleted(Recipient recipient);
+  }
+
+  public static class RecipientWrapper {
+    private final Recipient recipient;
+    private final boolean modifiable;
+
+    public RecipientWrapper(final Recipient recipient, final boolean modifiable) {
+      this.recipient = recipient;
+      this.modifiable = modifiable;
+    }
+
+    public Recipient getRecipient() {
+      return recipient;
+    }
+
+    public boolean isModifiable() {
+      return modifiable;
+    }
   }
 }
