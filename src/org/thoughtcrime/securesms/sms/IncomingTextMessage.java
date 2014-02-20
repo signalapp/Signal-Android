@@ -61,7 +61,7 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = "";
     this.sentTimestampMillis  = message.getTimestampMillis();
 
-    if (group.hasId()) {
+    if (group != null && group.hasId()) {
       this.groupId = GroupUtil.getEncodedId(group.getId().toByteArray());
     } else {
       this.groupId = null;
