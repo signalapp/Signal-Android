@@ -40,7 +40,7 @@ public class DatabaseUpgradeActivity extends Activity {
   public static final int NO_MORE_KEY_EXCHANGE_PREFIX_VERSION = 46;
   public static final int MMS_BODY_VERSION                    = 46;
   public static final int TOFU_IDENTITIES_VERSION             = 50;
-  public static final int CURVE25519_VERSION                  = 58;
+  public static final int CURVE25519_VERSION                  = 63;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
