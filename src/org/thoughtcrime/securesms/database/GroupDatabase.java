@@ -72,7 +72,7 @@ public class GroupDatabase extends Database {
   }
 
   public Recipients getGroupMembers(byte[] groupId) {
-    List<String> members = getCurrentMembers(groupId);
+    List<String>    members    = getCurrentMembers(groupId);
     List<Recipient> recipients = new LinkedList<Recipient>();
 
     for (String member : members) {
@@ -94,11 +94,16 @@ public class GroupDatabase extends Database {
     List<String> filteredMembers = new LinkedList<String>();
     String       localNumber     = TextSecurePreferences.getLocalNumber(context);
 
+    if (!localNumber.equals(owner)) {
+      filteredMembers.add(owner);
+    }
+
     for (String member : members) {
       if (!member.equals(localNumber)) {
         filteredMembers.add(member);
       }
     }
+
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));

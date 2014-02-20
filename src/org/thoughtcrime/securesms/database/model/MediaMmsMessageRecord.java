@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.text.SpannableString;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -44,12 +45,10 @@ public class MediaMmsMessageRecord extends MessageRecord {
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, long threadId, Body body,
                                ListenableFutureTask<SlideDeck> slideDeck,
-                               int partCount, long mailbox, int groupAction,
-                               String groupActionArguments)
+                               int partCount, long mailbox)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, mailbox,
-          groupAction, groupActionArguments);
+          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, mailbox);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;

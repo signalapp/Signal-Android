@@ -647,12 +647,6 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE push ADD COLUMN device_id INTEGER DEFAULT 1;");
         db.execSQL("ALTER TABLE sms ADD COLUMN address_device_id INTEGER DEFAULT 1;");
         db.execSQL("ALTER TABLE mms ADD COLUMN address_device_id INTEGER DEFAULT 1;");
-        db.execSQL("ALTER TABLE sms ADD COLUMN group_action INTEGER DEFAULT -1;");
-        db.execSQL("ALTER TABLE sms ADD COLUMN group_action_arguments TEXT;");
-        db.execSQL("ALTER TABLE mms ADD COLuMN group_action INTEGER DEFAULT -1;");
-        db.execSQL("ALTER TABLE mms ADD COLUMN group_action_arguments TEXT;");
-        db.execSQL("ALTER TABLE thread ADD COLUMN group_action INTEGER DEFAULT -1;");
-        db.execSQL("ALTER TABLE thread ADD COLUMN group_action_arguments TEXT;");
       }
 
       db.setTransactionSuccessful();

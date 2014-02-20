@@ -17,15 +17,14 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -37,6 +36,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -367,8 +367,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private Pair<Long, Recipients> handleCreatePushGroup(String groupName,
-                                     byte[] avatar,
-                                     Set<Recipient> members)
+                                                       byte[] avatar,
+                                                       Set<Recipient> members)
       throws InvalidNumberException, MmsException
   {
     GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
@@ -378,17 +378,23 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       List<String> memberE164Numbers = getE164Numbers(members);
       String       groupRecipientId  = GroupUtil.getEncodedId(groupId);
 
-      String groupActionArguments = GroupUtil.serializeArguments(groupId, groupName, memberE164Numbers);
-
       groupDatabase.create(groupId, TextSecurePreferences.getLocalNumber(this), groupName,
                            memberE164Numbers, null, null);
       groupDatabase.updateAvatar(groupId, avatar);
 
       Recipients groupRecipient = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
 
-      return new Pair<Long, Recipients>(MessageSender.sendGroupAction(this, masterSecret, groupRecipient, -1,
-                                           GroupContext.Type.CREATE_VALUE,
-                                           groupActionArguments, avatar), groupRecipient);
+      GroupContext context = GroupContext.newBuilder()
+                                         .setId(ByteString.copyFrom(groupId))
+                                         .setType(GroupContext.Type.CREATE)
+                                         .setName(groupName)
+                                         .addAllMembers(memberE164Numbers)
+                                         .build();
+
+      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
+      long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1);
+
+      return new Pair<Long, Recipients>(threadId, groupRecipient);
     } catch (RecipientFormattingException e) {
       throw new AssertionError(e);
     } catch (MmsException e) {

@@ -25,6 +25,7 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
@@ -243,39 +244,30 @@ public class PushTransport extends BaseTransport {
     PushMessageContent.Builder builder = PushMessageContent.newBuilder();
 
     if (GroupUtil.isEncodedGroup(message.getTo()[0].getString())) {
-      byte[]               groupId      = GroupUtil.getDecodedId(message.getTo()[0].getString());
       GroupContext.Builder groupBuilder = GroupContext.newBuilder();
+      byte[]               groupId      = GroupUtil.getDecodedId(message.getTo()[0].getString());
 
       groupBuilder.setId(ByteString.copyFrom(groupId));
+      groupBuilder.setType(GroupContext.Type.DELIVER);
 
-      switch (message.getGroupAction()) {
-        case GroupContext.Type.ADD_VALUE:    groupBuilder.setType(GroupContext.Type.ADD);     break;
-        case GroupContext.Type.CREATE_VALUE: groupBuilder.setType(GroupContext.Type.CREATE);  break;
-        case GroupContext.Type.QUIT_VALUE:   groupBuilder.setType(GroupContext.Type.QUIT);    break;
-        default:                             groupBuilder.setType(GroupContext.Type.DELIVER); break;
-      }
-
-      if (message.getGroupAction() == GroupContext.Type.ADD_VALUE ||
-          message.getGroupAction() == GroupContext.Type.CREATE_VALUE)
+      if (MmsSmsColumns.Types.isGroupAdd(message.getDatabaseMessageBox()) ||
+          MmsSmsColumns.Types.isGroupModify(message.getDatabaseMessageBox()) ||
+          MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()))
       {
-        GroupContext serialized = GroupContext.parseFrom(Base64.decode(message.getGroupActionArguments()));
-        groupBuilder.addAllMembers(serialized.getMembersList());
+        if (messageBody != null && messageBody.trim().length() > 0) {
+          groupBuilder = GroupContext.parseFrom(Base64.decode(messageBody)).toBuilder();
+          messageBody  = null;
 
-        if (serialized.hasName()) {
-          groupBuilder.setName(serialized.getName());
+          if (attachments != null && !attachments.isEmpty()) {
+            groupBuilder.setAvatar(AttachmentPointer.newBuilder()
+                                                    .setId(attachments.get(0).getId())
+                                                    .setContentType(attachments.get(0).getContentType())
+                                                    .setKey(ByteString.copyFrom(attachments.get(0).getKey()))
+                                                    .build());
+
+            attachments.remove(0);
+          }
         }
-      }
-
-      if (message.getGroupAction() == GroupContext.Type.CREATE_VALUE && !attachments.isEmpty()) {
-        Log.w("PushTransport", "Adding avatar...");
-        groupBuilder.setAvatar(AttachmentPointer.newBuilder()
-                                                .setId(attachments.get(0).getId())
-                                                .setContentType(attachments.get(0).getContentType())
-                                                .setKey(ByteString.copyFrom(attachments.get(0).getKey()))
-                                                .build());
-        attachments.remove(0);
-      } else {
-        Log.w("PushTransport", "Not adding avatar: " + message.getGroupAction() + " , " + attachments.isEmpty());
       }
 
       builder.setGroup(groupBuilder.build());

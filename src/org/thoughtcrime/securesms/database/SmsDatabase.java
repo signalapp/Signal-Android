@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -65,8 +66,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     THREAD_ID + " INTEGER, " + ADDRESS + " TEXT, " + ADDRESS_DEVICE_ID + " INTEGER DEFAULT 1, " + PERSON + " INTEGER, " +
     DATE_RECEIVED  + " INTEGER, " + DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
     STATUS + " INTEGER DEFAULT -1," + TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " +
-    SUBJECT + " TEXT, " + BODY + " TEXT, " + SERVICE_CENTER + " TEXT, " +
-    GROUP_ACTION + " INTEGER DEFAULT -1, " + GROUP_ACTION_ARGUMENTS + " TEXT);";
+    SUBJECT + " TEXT, " + BODY + " TEXT, " + SERVICE_CENTER + " TEXT);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -80,7 +80,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
       DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
       PROTOCOL, READ, STATUS, TYPE,
-      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, GROUP_ACTION, GROUP_ACTION_ARGUMENTS
+      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER
   };
 
   public SmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
@@ -256,9 +256,14 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.ENCRYPTION_REMOTE_BIT;
-    } else if (message.isEndSession()) {
-      type |= Types.END_SESSION_BIT;
+    } else if (message.isGroup()) {
       type |= Types.SECURE_MESSAGE_BIT;
+      if      (((IncomingGroupMessage)message).isAdd())    type |= Types.GROUP_ADD_MEMBERS_BIT;
+      else if (((IncomingGroupMessage)message).isQuit())   type |= Types.GROUP_QUIT_BIT;
+      else if (((IncomingGroupMessage)message).isModify()) type |= Types.GROUP_MODIFY_BIT;
+    } else if (message.isEndSession()) {
+      type |= Types.SECURE_MESSAGE_BIT;
+      type |= Types.END_SESSION_BIT;
       type |= Types.ENCRYPTION_REMOTE_BIT;
     }
 
@@ -308,8 +313,6 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     values.put(BODY, message.getMessageBody());
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
-    values.put(GROUP_ACTION, message.getGroupAction());
-    values.put(GROUP_ACTION_ARGUMENTS, message.getGroupActionArgument());
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long messageId    = db.insert(TABLE_NAME, null, values);
@@ -346,8 +349,6 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       contentValues.put(DATE_SENT, date);
       contentValues.put(READ, 1);
       contentValues.put(TYPE, type);
-      contentValues.put(GROUP_ACTION, message.getGroupAction());
-      contentValues.put(GROUP_ACTION_ARGUMENTS, message.getGroupActionArguments());
 
       SQLiteDatabase db = databaseHelper.getWritableDatabase();
       messageIds.add(db.insert(TABLE_NAME, ADDRESS, contentValues));
@@ -504,8 +505,6 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       long dateSent           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_SENT));
       long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
       int status              = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
-      int groupAction         = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.GROUP_ACTION));
-      String groupActionArgs  = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.GROUP_ACTION_ARGUMENTS));
       Recipients recipients   = getRecipientsFor(address);
       DisplayRecord.Body body = getBody(cursor);
 
@@ -513,7 +512,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
                                    recipients.getPrimaryRecipient(),
                                    addressDeviceId,
                                    dateSent, dateReceived, type,
-                                   threadId, status, groupAction, groupActionArgs);
+                                   threadId, status);
     }
 
     private Recipients getRecipientsFor(String address) {

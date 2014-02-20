@@ -10,8 +10,6 @@ public interface MmsSmsColumns {
   public static final String BODY                     = "body";
   public static final String ADDRESS                  = "address";
   public static final String ADDRESS_DEVICE_ID        = "address_device_id";
-  public static final String GROUP_ACTION             = "group_action";
-  public static final String GROUP_ACTION_ARGUMENTS   = "group_action_arguments";
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;
@@ -40,6 +38,11 @@ public interface MmsSmsColumns {
     // Secure Message Information
     protected static final long SECURE_MESSAGE_BIT = 0x800000;
     protected static final long END_SESSION_BIT    = 0x400000;
+
+    // Group Message Information
+    protected static final long GROUP_ADD_MEMBERS_BIT = 0x10000;
+    protected static final long GROUP_QUIT_BIT        = 0x20000;
+    protected static final long GROUP_MODIFY_BIT      = 0x40000;
 
     // Encrypted Storage Information
     protected static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -106,6 +109,18 @@ public interface MmsSmsColumns {
 
     public static boolean isIdentityUpdate(long type) {
       return (type & KEY_EXCHANGE_IDENTITY_UPDATE_BIT) != 0;
+    }
+
+    public static boolean isGroupAdd(long type) {
+      return (type & GROUP_ADD_MEMBERS_BIT) != 0;
+    }
+
+    public static boolean isGroupModify(long type) {
+      return (type & GROUP_MODIFY_BIT) != 0;
+    }
+
+    public static boolean isGroupQuit(long type) {
+      return (type & GROUP_QUIT_BIT) != 0;
     }
 
     public static boolean isSymmetricEncryption(long type) {

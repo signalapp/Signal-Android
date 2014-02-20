@@ -31,19 +31,16 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
-import org.thoughtcrime.securesms.util.DateUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.webkit.MimeTypeMap;
 
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -53,18 +50,17 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -145,7 +141,7 @@ public class ConversationItem extends LinearLayout {
 
     setBodyText(messageRecord);
 
-    if (!GroupUtil.isMetaGroupAction(messageRecord.getGroupAction())) {
+    if (!messageRecord.isGroupAction()) {
       setStatusIcons(messageRecord);
       setContactPhoto(messageRecord);
       setGroupMessageStatus(messageRecord);
@@ -175,22 +171,6 @@ public class ConversationItem extends LinearLayout {
   /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
-    switch (messageRecord.getGroupAction()) {
-      case GroupContext.Type.QUIT_VALUE:
-        bodyText.setText(context.getString(R.string.ConversationItem_group_action_left,
-                                           messageRecord.getIndividualRecipient().toShortString()));
-        return;
-      case GroupContext.Type.ADD_VALUE:
-      case GroupContext.Type.CREATE_VALUE:
-        bodyText.setText(context.getString(R.string.ConversationItem_group_action_joined,
-                                           Util.join(GroupUtil.getSerializedArgumentMembers(messageRecord.getGroupActionArguments()), ", ")));
-        return;
-      case GroupContext.Type.MODIFY_VALUE:
-        bodyText.setText(context.getString(R.string.ConversationItem_group_action_modify,
-                                           messageRecord.getIndividualRecipient()));
-        return;
-    }
-
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
       bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
                        TextView.BufferType.SPANNABLE);

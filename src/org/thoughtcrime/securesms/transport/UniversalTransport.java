@@ -25,8 +25,8 @@ import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -173,7 +173,7 @@ public class UniversalTransport {
       Log.w("UniversalTransport", ee);
       try {
         for (UnregisteredUserException unregistered : ee.getUnregisteredUserExceptions()) {
-          IncomingTextMessage quitMessage = IncomingTextMessage.createForLeavingGroup(mediaMessage.getTo()[0].getString(), unregistered.getE164Number());
+          IncomingGroupMessage quitMessage = IncomingGroupMessage.createForQuit(mediaMessage.getTo()[0].getString(), unregistered.getE164Number());
           DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, quitMessage);
           DatabaseFactory.getGroupDatabase(context).remove(GroupUtil.getDecodedId(mediaMessage.getTo()[0].getString()), unregistered.getE164Number());
         }

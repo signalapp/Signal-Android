@@ -49,8 +49,7 @@ public class MmsSmsDatabase extends Database {
                               SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
-                              MmsDatabase.STATUS, MmsSmsColumns.GROUP_ACTION,
-                              MmsSmsColumns.GROUP_ACTION_ARGUMENTS, TRANSPORT};
+                              MmsDatabase.STATUS, TRANSPORT};
 
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
 
@@ -72,8 +71,7 @@ public class MmsSmsDatabase extends Database {
                               SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
-                              MmsDatabase.STATUS, MmsSmsColumns.GROUP_ACTION,
-                              MmsSmsColumns.GROUP_ACTION_ARGUMENTS, TRANSPORT};
+                              MmsDatabase.STATUS, TRANSPORT};
 
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId;
@@ -91,8 +89,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
-                              MmsDatabase.STATUS, MmsSmsColumns.GROUP_ACTION,
-                              MmsSmsColumns.GROUP_ACTION_ARGUMENTS, TRANSPORT};
+                              MmsDatabase.STATUS, TRANSPORT};
 
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
     String selection       = MmsSmsColumns.READ + " = 0";
@@ -115,7 +112,6 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
-                              MmsSmsColumns.GROUP_ACTION, MmsSmsColumns.GROUP_ACTION_ARGUMENTS,
                               TRANSPORT};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
@@ -125,7 +121,6 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
-                              MmsSmsColumns.GROUP_ACTION, MmsSmsColumns.GROUP_ACTION_ARGUMENTS,
                               TRANSPORT};
 
 
@@ -154,8 +149,6 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.TRANSACTION_ID);
     mmsColumnsPresent.add(MmsDatabase.MESSAGE_SIZE);
     mmsColumnsPresent.add(MmsDatabase.EXPIRY);
-    mmsColumnsPresent.add(MmsSmsColumns.GROUP_ACTION);
-    mmsColumnsPresent.add(MmsSmsColumns.GROUP_ACTION_ARGUMENTS);
     mmsColumnsPresent.add(MmsDatabase.STATUS);
 
     Set<String> smsColumnsPresent = new HashSet<String>();
@@ -169,8 +162,6 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.SUBJECT);
     smsColumnsPresent.add(SmsDatabase.DATE_SENT);
     smsColumnsPresent.add(SmsDatabase.DATE_RECEIVED);
-    smsColumnsPresent.add(MmsSmsColumns.GROUP_ACTION);
-    smsColumnsPresent.add(MmsSmsColumns.GROUP_ACTION_ARGUMENTS);
     smsColumnsPresent.add(SmsDatabase.STATUS);
 
     String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 2, MMS_TRANSPORT, selection, null, null, null);
@@ -225,7 +216,7 @@ public class MmsSmsDatabase extends Database {
     public MessageRecord getCurrent() {
       String type = cursor.getString(cursor.getColumnIndexOrThrow(TRANSPORT));
 
-      if (type.equals(MmsSmsDatabase.MMS_TRANSPORT)) {
+      if (MmsSmsDatabase.MMS_TRANSPORT.equals(type)) {
         return mmsReader.getCurrent();
       } else {
         return smsReader.getCurrent();

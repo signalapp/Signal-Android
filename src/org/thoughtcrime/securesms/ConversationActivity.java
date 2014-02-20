@@ -81,6 +81,8 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -922,20 +924,26 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       if (recipients == null)
         throw new RecipientFormattingException("Badly formatted");
 
-      String body             = getMessage();
+      String body = getMessage();
       long allocatedThreadId;
 
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
         return;
-      } else if (attachmentManager.isAttachmentPresent()) {
-        allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
-                                                  threadId, attachmentManager.getSlideDeck(), body,
-                                                  distributionType, isEncryptedConversation && !forcePlaintext);
-      } else if (recipients.isEmailRecipient() || !recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
-        allocatedThreadId = MessageSender.sendMms(ConversationActivity.this, masterSecret, recipients,
-                                                  threadId, new SlideDeck(), body, distributionType,
-                                                  isEncryptedConversation && !forcePlaintext);
+      } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
+        SlideDeck slideDeck;
+
+        if (attachmentManager.isAttachmentPresent()) slideDeck = attachmentManager.getSlideDeck();
+        else                                         slideDeck = new SlideDeck();
+
+        OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(this, recipients, slideDeck,
+                                                                        body, distributionType);
+
+        if (isEncryptedConversation && !forcePlaintext) {
+          outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
+        }
+
+        allocatedThreadId = MessageSender.send(this, masterSecret, outgoingMessage, threadId);
       } else {
         OutgoingTextMessage message;
 
@@ -949,6 +957,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
                                                message, threadId);
       }
+
       sendComplete(recipients, allocatedThreadId, allocatedThreadId != this.threadId);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,

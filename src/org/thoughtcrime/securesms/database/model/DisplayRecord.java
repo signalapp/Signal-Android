@@ -40,12 +40,9 @@ public abstract class DisplayRecord {
   private final long       dateReceived;
   private final long       threadId;
   private final Body       body;
-  private final int        groupAction;
-  private final String     groupActionArguments;
 
   public DisplayRecord(Context context, Body body, Recipients recipients, long dateSent,
-                       long dateReceived, long threadId, long type, int groupAction,
-                       String groupActionArguments)
+                       long dateReceived, long threadId, long type)
   {
     this.context              = context.getApplicationContext();
     this.threadId             = threadId;
@@ -54,8 +51,6 @@ public abstract class DisplayRecord {
     this.dateReceived         = dateReceived;
     this.type                 = type;
     this.body                 = body;
-    this.groupAction          = groupAction;
-    this.groupActionArguments = groupActionArguments;
   }
 
   public Body getBody() {
@@ -88,12 +83,20 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isEndSessionType(type);
   }
 
-  public int getGroupAction() {
-    return groupAction;
+  public boolean isGroupAdd() {
+    return SmsDatabase.Types.isGroupAdd(type);
   }
 
-  public String getGroupActionArguments() {
-    return groupActionArguments;
+  public boolean isGroupModify() {
+    return SmsDatabase.Types.isGroupModify(type);
+  }
+
+  public boolean isGroupQuit() {
+    return SmsDatabase.Types.isGroupQuit(type);
+  }
+
+  public boolean isGroupAction() {
+    return isGroupAdd() || isGroupModify() || isGroupQuit();
   }
 
   public static class Body {

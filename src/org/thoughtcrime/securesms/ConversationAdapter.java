@@ -123,8 +123,9 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
-    if (GroupUtil.isMetaGroupAction(messageRecord.getGroupAction())) return MESSAGE_TYPE_GROUP_ACTION;
-    if (messageRecord.isOutgoing())         return MESSAGE_TYPE_OUTGOING;
+
+    if      (messageRecord.isGroupAction()) return MESSAGE_TYPE_GROUP_ACTION;
+    else if (messageRecord.isOutgoing())    return MESSAGE_TYPE_OUTGOING;
     else                                    return MESSAGE_TYPE_INCOMING;
   }
 

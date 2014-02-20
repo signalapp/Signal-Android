@@ -44,11 +44,10 @@ public class NotificationMmsMessageRecord extends MessageRecord {
                                       Recipient individualRecipient, int recipientDeviceId,
                                       long dateSent, long dateReceived, long threadId,
                                       byte[] contentLocation, long messageSize, long expiry,
-                                      int status, byte[] transactionId, long mailbox,
-                                      int groupAction, String groupActionArguments)
+                                      int status, byte[] transactionId, long mailbox)
   {
     super(context, id, new Body("", true), recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, mailbox, groupAction, groupActionArguments);
+          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, mailbox);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

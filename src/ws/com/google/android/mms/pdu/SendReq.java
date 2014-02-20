@@ -25,9 +25,7 @@ public class SendReq extends MultimediaMessagePdu {
     private static final String TAG = "SendReq";
     private long databaseMessageId;
     private long messageBox;
-    private int  groupAction;
-    private String groupActionArguments;
-    
+
     public SendReq() {
         super();
 
@@ -92,14 +90,11 @@ public class SendReq extends MultimediaMessagePdu {
         super(headers, body);
     }
 
-    public SendReq(PduHeaders headers, PduBody body, long messageId, long messageBox,
-                   int groupAction, String groupActionArguments)
+    public SendReq(PduHeaders headers, PduBody body, long messageId, long messageBox)
     {
         super(headers, body);
         this.databaseMessageId    = messageId;
         this.messageBox           = messageBox;
-        this.groupAction          = groupAction;
-        this.groupActionArguments = groupActionArguments;
   }
     
     public long getDatabaseMessageBox() {
@@ -110,22 +105,6 @@ public class SendReq extends MultimediaMessagePdu {
     	return databaseMessageId;
     }
 
-    public int getGroupAction() {
-      return this.groupAction;
-    }
-
-    public String getGroupActionArguments() {
-      return this.groupActionArguments;
-    }
-
-    public void setGroupAction(int groupAction) {
-      this.groupAction = groupAction;
-    }
-
-    public void setGroupActionArguments(String groupActionArguments) {
-      this.groupActionArguments = groupActionArguments;
-    }
-    
     /**
      * Get Bcc value.
      *

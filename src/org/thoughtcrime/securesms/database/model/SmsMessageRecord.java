@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.textsecure.util.Util;
 
 /**
  * The message record model which represents standard SMS messages.
@@ -41,12 +43,10 @@ public class SmsMessageRecord extends MessageRecord {
                           int recipientDeviceId,
                           long dateSent, long dateReceived,
                           long type, long threadId,
-                          int status, int groupAction,
-                          String groupActionArguments)
+                          int status)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, getGenericDeliveryStatus(status), type,
-          groupAction, groupActionArguments);
+          dateSent, dateReceived, threadId, getGenericDeliveryStatus(status), type);
   }
 
   public long getType() {

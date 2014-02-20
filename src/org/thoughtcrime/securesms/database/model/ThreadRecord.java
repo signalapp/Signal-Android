@@ -20,18 +20,12 @@ import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.util.Util;
-
-import java.util.List;
-
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
  * The message record model which represents thread heading messages.
@@ -48,9 +42,9 @@ public class ThreadRecord extends DisplayRecord {
 
   public ThreadRecord(Context context, Body body, Recipients recipients, long date,
                       long count, boolean read, long threadId, long snippetType,
-                      int distributionType, int groupAction, String groupActionArg)
+                      int distributionType)
   {
-    super(context, body, recipients, date, date, threadId, snippetType, groupAction, groupActionArg);
+    super(context, body, recipients, date, date, threadId, snippetType);
     this.context          = context.getApplicationContext();
     this.count            = count;
     this.read             = read;
@@ -62,13 +56,11 @@ public class ThreadRecord extends DisplayRecord {
     // TODO jake is going to fill these in
     if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
-    } else if (getGroupAction() == GroupContext.Type.ADD_VALUE ||
-               getGroupAction() == GroupContext.Type.CREATE_VALUE)
-    {
-      return emphasisAdded(Util.join(GroupUtil.getSerializedArgumentMembers(getGroupActionArguments()), ", ") + " have joined the group");
-    } else if (getGroupAction() == GroupContext.Type.QUIT_VALUE) {
+    } else if (isGroupAdd()) {
+      return emphasisAdded(Util.join(GroupUtil.getSerializedArgumentMembers(getBody().getBody()), ", ") + " have joined the group");
+    } else if (isGroupQuit()) {
       return emphasisAdded(getRecipients().toShortString() + " left the group.");
-    } else if (getGroupAction() == GroupContext.Type.MODIFY_VALUE) {
+    } else if (isGroupModify()) {
       return emphasisAdded(getRecipients().toShortString() + " modified the group.");
     } else if (isKeyExchange()) {
       return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));

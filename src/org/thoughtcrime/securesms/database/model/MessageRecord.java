@@ -24,10 +24,13 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TextAppearanceSpan;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.textsecure.util.Util;
 
 /**
  * The base class for message record models that are displayed in
@@ -52,10 +55,9 @@ public abstract class MessageRecord extends DisplayRecord {
   MessageRecord(Context context, long id, Body body, Recipients recipients,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived,
-                long threadId, int deliveryStatus,
-                long type, int groupAction, String groupActionArguments)
+                long threadId, int deliveryStatus, long type)
   {
-    super(context, body, recipients, dateSent, dateReceived, threadId, type, groupAction, groupActionArguments);
+    super(context, body, recipients, dateSent, dateReceived, threadId, type);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;
@@ -84,6 +86,14 @@ public abstract class MessageRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody() {
+    if (isGroupAdd()) {
+      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_joined, Util.join(GroupUtil.getSerializedArgumentMembers(getBody().getBody()), ", ")));
+    } else if (isGroupQuit()) {
+      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
+    } else if (isGroupModify()) {
+      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_modify, getIndividualRecipient().toShortString()));
+    }
+
     return new SpannableString(getBody().getBody());
   }
 

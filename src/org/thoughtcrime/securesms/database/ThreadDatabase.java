@@ -53,15 +53,12 @@ public class ThreadDatabase extends Database {
   private static final String ERROR           = "error";
   private static final String HAS_ATTACHMENT  = "has_attachment";
   public  static final String SNIPPET_TYPE    = "snippet_type";
-  private static final String GROUP_ACTION    = "group_action";
-  private static final String GROUP_ACTION_ARG = "group_action_arguments";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                             +
     DATE + " INTEGER DEFAULT 0, " + MESSAGE_COUNT + " INTEGER DEFAULT 0, "                         +
     RECIPIENT_IDS + " TEXT, " + SNIPPET + " TEXT, " + SNIPPET_CHARSET + " INTEGER DEFAULT 0, "     +
     READ + " INTEGER DEFAULT 1, " + TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, " +
-    SNIPPET_TYPE + " INTEGER DEFAULT 0, " + GROUP_ACTION + " INTEGER DEFAULT -1, " +
-    GROUP_ACTION_ARG + " TEXT, " + HAS_ATTACHMENT + " INTEGER DEFAULT 0);";
+    SNIPPET_TYPE + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_IDS + ");",
@@ -117,16 +114,13 @@ public class ThreadDatabase extends Database {
     return db.insert(TABLE_NAME, null, contentValues);
   }
 
-  private void updateThread(long threadId, long count, String body, long date, long type,
-                            int groupAction, String groupActionArguments)
+  private void updateThread(long threadId, long count, String body, long date, long type)
   {
     ContentValues contentValues = new ContentValues(3);
     contentValues.put(DATE, date - date % 1000);
     contentValues.put(MESSAGE_COUNT, count);
     contentValues.put(SNIPPET, body);
     contentValues.put(SNIPPET_TYPE, type);
-    contentValues.put(GROUP_ACTION, groupAction);
-    contentValues.put(GROUP_ACTION_ARG, groupActionArguments);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
@@ -389,8 +383,7 @@ public class ThreadDatabase extends Database {
       MessageRecord record = null;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, record.getBody().getBody(), record.getDateReceived(),
-                     record.getType(), record.getGroupAction(), record.getGroupActionArguments());
+        updateThread(threadId, count, record.getBody().getBody(), record.getDateReceived(), record.getType());
       } else {
         deleteThread(threadId);
       }
@@ -446,12 +439,9 @@ public class ThreadDatabase extends Database {
       long read               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
       long type               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
       int distributionType    = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
-      int groupAction         = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.GROUP_ACTION));
-      String groupActionArg   = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.GROUP_ACTION_ARG));
 
       return new ThreadRecord(context, body, recipients, date, count,
-                              read == 1, threadId, type, distributionType,
-                              groupAction, groupActionArg);
+                              read == 1, threadId, type, distributionType);
     }
 
     private DisplayRecord.Body getPlaintextBody(Cursor cursor) {

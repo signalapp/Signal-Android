@@ -24,7 +24,7 @@ public class IncomingIdentityUpdateMessage extends IncomingKeyExchangeMessage {
   }
 
   public static IncomingIdentityUpdateMessage createFor(String sender, IdentityKey identityKey, String groupId) {
-    IncomingTextMessage base = new IncomingTextMessage(sender, groupId, -1, null);
+    IncomingTextMessage base = new IncomingTextMessage(sender, groupId);
     return new IncomingIdentityUpdateMessage(base, Base64.encodeBytesWithoutPadding(identityKey.serialize()));
   }
 }

@@ -26,7 +26,8 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -57,6 +58,7 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 
+import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.CharacterSets;
@@ -116,7 +118,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     STATUS + " INTEGER, " + TRANSACTION_ID + " TEXT, " + RETRIEVE_STATUS + " INTEGER, "         +
     RETRIEVE_TEXT + " TEXT, " + RETRIEVE_TEXT_CS + " INTEGER, " + READ_STATUS + " INTEGER, "    +
     CONTENT_CLASS + " INTEGER, " + RESPONSE_TEXT + " TEXT, " + DELIVERY_TIME + " INTEGER, "     +
-    DELIVERY_REPORT + " INTEGER, " + GROUP_ACTION + " INTEGER DEFAULT -1, " + GROUP_ACTION_ARGUMENTS + " TEXT);";
+    DELIVERY_REPORT + " INTEGER);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -133,7 +135,6 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       MESSAGE_SIZE, PRIORITY, REPORT_ALLOWED, STATUS, TRANSACTION_ID, RETRIEVE_STATUS,
       RETRIEVE_TEXT, RETRIEVE_TEXT_CS, READ_STATUS, CONTENT_CLASS, RESPONSE_TEXT,
       DELIVERY_TIME, DELIVERY_REPORT, BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID,
-      GROUP_ACTION, GROUP_ACTION_ARGUMENTS
   };
 
   public static final ExecutorService slideResolver = org.thoughtcrime.securesms.util.Util.newSingleThreadedLifoExecutor();
@@ -346,11 +347,9 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       while (cursor.moveToNext()) {
         messageId = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
 
-        long       outboxType           = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
-        String     messageText          = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
-        int        groupAction          = cursor.getInt(cursor.getColumnIndexOrThrow(GROUP_ACTION));
-        String     groupActionArguments = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ACTION_ARGUMENTS));
-        PduHeaders headers              = getHeadersFromCursor(cursor);
+        long       outboxType  = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
+        String     messageText = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
+        PduHeaders headers     = getHeadersFromCursor(cursor);
         addr.getAddressesForId(messageId, headers);
 
         PduBody body = getPartsAsBody(partDatabase.getParts(messageId, true));
@@ -365,7 +364,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
           Log.w("MmsDatabase", e);
         }
 
-        requests[i++] = new SendReq(headers, body, messageId, outboxType, groupAction, groupActionArguments);
+        requests[i++] = new SendReq(headers, body, messageId, outboxType);
       }
 
       return requests;
@@ -409,8 +408,6 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
     contentValues.put(DATE_RECEIVED, System.currentTimeMillis() / 1000);
     contentValues.put(READ, unread ? 0 : 1);
-    contentValues.put(GROUP_ACTION, retrieved.getGroupAction());
-    contentValues.put(GROUP_ACTION_ARGUMENTS, retrieved.getGroupActionArguments());
 
     if (!contentValues.containsKey(DATE_SENT)) {
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
@@ -502,24 +499,46 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     Trimmer.trimThread(context, threadId);
   }
 
-  public long insertMessageOutbox(MasterSecret masterSecret, SendReq sendRequest,
-                                  long threadId, boolean isSecure)
+  public long insertMessageOutbox(MasterSecret masterSecret, OutgoingMediaMessage message, long threadId)
       throws MmsException
   {
-    long type                   = Types.BASE_OUTBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT;
-    PduHeaders headers          = sendRequest.getPduHeaders();
-    ContentValues contentValues = getContentValuesFromHeader(headers);
+    long type = Types.BASE_OUTBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT;
 
-    if (isSecure) {
+    if (message.isSecure()) {
       type |= Types.SECURE_MESSAGE_BIT;
     }
+
+    if (message.isGroup()) {
+      if      (((OutgoingGroupMediaMessage)message).isGroupAdd())    type |= Types.GROUP_ADD_MEMBERS_BIT;
+      else if (((OutgoingGroupMediaMessage)message).isGroupQuit())   type |= Types.GROUP_QUIT_BIT;
+      else if (((OutgoingGroupMediaMessage)message).isGroupModify()) type |= Types.GROUP_MODIFY_BIT;
+    }
+
+    SendReq sendRequest = new SendReq();
+    sendRequest.setDate(System.currentTimeMillis() / 1000L);
+    sendRequest.setBody(message.getPduBody());
+    sendRequest.setContentType(ContentType.MULTIPART_MIXED.getBytes());
+
+    String[]             recipientsArray = message.getRecipients().toNumberStringArray(true);
+    EncodedStringValue[] encodedNumbers  = EncodedStringValue.encodeStrings(recipientsArray);
+
+    if (message.getRecipients().isSingleRecipient()) {
+      sendRequest.setTo(encodedNumbers);
+    } else if (message.getDistributionType() == ThreadDatabase.DistributionTypes.BROADCAST) {
+      sendRequest.setBcc(encodedNumbers);
+    } else if (message.getDistributionType() == ThreadDatabase.DistributionTypes.CONVERSATION  ||
+               message.getDistributionType() == 0)
+    {
+      sendRequest.setTo(encodedNumbers);
+    }
+
+    PduHeaders    headers       = sendRequest.getPduHeaders();
+    ContentValues contentValues = getContentValuesFromHeader(headers);
 
     contentValues.put(MESSAGE_BOX, type);
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(READ, 1);
     contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
-    contentValues.put(GROUP_ACTION, sendRequest.getGroupAction());
-    contentValues.put(GROUP_ACTION_ARGUMENTS, sendRequest.getGroupActionArguments());
     contentValues.remove(ADDRESS);
 
     long messageId = insertMediaMessage(masterSecret, sendRequest.getPduHeaders(),
@@ -811,8 +830,6 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long messageSize           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_SIZE));
       long expiry                = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRY));
       int status                 = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.STATUS));
-      int groupAction            = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.GROUP_ACTION));
-      String groupActionArgs     = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.GROUP_ACTION_ARGUMENTS));
 
       byte[]contentLocationBytes = null;
       byte[]transactionIdBytes   = null;
@@ -827,7 +844,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       return new NotificationMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                               addressDeviceId, dateSent, dateReceived, threadId,
                                               contentLocationBytes, messageSize, expiry, status,
-                                              transactionIdBytes, mailbox, groupAction, groupActionArgs);
+                                              transactionIdBytes, mailbox);
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
@@ -838,8 +855,6 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
       String address          = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
       int addressDeviceId     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
-      int groupAction         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.GROUP_ACTION));
-      String groupActionArgs  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.GROUP_ACTION_ARGUMENTS));
       DisplayRecord.Body body = getBody(cursor);
       int partCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       Recipients recipients   = getRecipientsFor(address);
@@ -848,7 +863,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                        addressDeviceId, dateSent, dateReceived, threadId, body,
-                                       slideDeck, partCount, box, groupAction, groupActionArgs);
+                                       slideDeck, partCount, box);
     }
 
     private Recipients getRecipientsFor(String address) {
