@@ -20,14 +20,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.provider.Telephony;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.pdu.GenericPdu;
 import ws.com.google.android.mms.pdu.NotificationInd;
@@ -52,7 +50,8 @@ public class MmsListener extends BroadcastReceiver {
       return false;
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ||
+    if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
+         TextSecurePreferences.isSmsFallbackEnabled(context)) ||
         TextSecurePreferences.isInterceptAllMmsEnabled(context))
     {
       return true;

@@ -110,7 +110,8 @@ public class SmsListener extends BroadcastReceiver {
       return false;
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ||
+    if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
+         TextSecurePreferences.isSmsFallbackEnabled(context)) ||
         TextSecurePreferences.isInterceptAllSmsEnabled(context))
     {
       return true;
@@ -120,8 +121,7 @@ public class SmsListener extends BroadcastReceiver {
   }
 
   private boolean isChallenge(Context context, Intent intent) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    String messageBody            = getSmsMessageBodyFromIntent(intent);
+    String messageBody = getSmsMessageBodyFromIntent(intent);
 
     if (messageBody == null)
       return false;

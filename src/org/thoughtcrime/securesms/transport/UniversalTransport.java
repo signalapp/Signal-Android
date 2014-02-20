@@ -214,6 +214,12 @@ public class UniversalTransport {
       return false;
     }
 
+    if (TextSecurePreferences.isPushRegistered(context) &&
+        !TextSecurePreferences.isSmsFallbackEnabled(context))
+    {
+      return false;
+    }
+
     Directory directory = Directory.getInstance(context);
     return directory.isSmsFallbackSupported(destination);
   }

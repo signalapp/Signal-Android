@@ -44,6 +44,11 @@ public class TextSecurePreferences {
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
+  public  static final String ALLOW_SMS_FALLBACK_PREF          = "pref_allow_sms_traffic_out";
+
+  public static boolean isSmsFallbackEnabled(Context context) {
+    return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
+  }
 
   public static int getLocalRegistrationId(Context context) {
     return getIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, 0);
@@ -175,7 +180,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
-    return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
+    return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, true);
   }
 
   public static boolean hasPromptedPushRegistration(Context context) {

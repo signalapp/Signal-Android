@@ -48,6 +48,12 @@ public class SmsTransport extends BaseTransport {
   }
 
   public void deliver(SmsMessageRecord message) throws UndeliverableMessageException {
+    if (TextSecurePreferences.isPushRegistered(context) &&
+        !TextSecurePreferences.isSmsFallbackEnabled(context))
+    {
+      throw new UndeliverableMessageException("SMS Transport is not enabled!");
+    }
+
     if (message.isSecure() || message.isKeyExchange() || message.isEndSession()) {
       deliverSecureMessage(message);
     } else {

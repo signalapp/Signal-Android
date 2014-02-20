@@ -100,6 +100,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     initializeIdentitySelection();
     initializePlatformSpecificOptions();
+    initializeSmsFallbackOption();
     initializePushMessagingToggle();
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
@@ -178,8 +179,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   }
 
   private void initializePlatformSpecificOptions() {
-    PreferenceGroup generalCategory = (PreferenceGroup)findPreference("general_category");
-    Preference defaultPreference = findPreference(KITKAT_DEFAULT_PREF);
+    PreferenceGroup    generalCategory    = (PreferenceGroup) findPreference("general_category");
+    Preference         defaultPreference  = findPreference(KITKAT_DEFAULT_PREF);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       generalCategory.removePreference(findPreference(TextSecurePreferences.ALL_SMS_PREF));
@@ -195,6 +196,29 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       }
     } else {
       generalCategory.removePreference(defaultPreference);
+    }
+  }
+
+  private void initializeSmsFallbackOption() {
+    CheckBoxPreference allowSmsPreference =
+        (CheckBoxPreference) findPreference(TextSecurePreferences.ALLOW_SMS_FALLBACK_PREF);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      if (Util.isDefaultSmsProvider(this) || !TextSecurePreferences.isPushRegistered(this)) {
+        allowSmsPreference.setEnabled(false);
+        allowSmsPreference.setChecked(true);
+      } else {
+        allowSmsPreference.setEnabled(true);
+      }
+    } else {
+      if (TextSecurePreferences.isInterceptAllMmsEnabled(this) ||
+          TextSecurePreferences.isInterceptAllSmsEnabled(this))
+      {
+        allowSmsPreference.setEnabled(false);
+        allowSmsPreference.setChecked(true);
+      } else {
+        allowSmsPreference.setEnabled(true);
+      }
     }
   }
 
@@ -268,6 +292,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       dynamicTheme.onResume(this);
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
       dynamicLanguage.onResume(this);
+    } else if (key.equals(TextSecurePreferences.ALL_MMS_PREF) ||
+               key.equals(TextSecurePreferences.ALL_SMS_PREF))
+    {
+      initializeSmsFallbackOption();
     }
   }
 

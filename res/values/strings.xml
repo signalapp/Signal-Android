@@ -678,6 +678,8 @@
     <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
         Use the data channel for communication with other TextSecure users
     </string>
+    <string name="preferences__allow_sms_fallback">Allow SMS Fallback</string>
+    <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
                                     
     <!-- **************************************** -->
     <!-- menus -->
