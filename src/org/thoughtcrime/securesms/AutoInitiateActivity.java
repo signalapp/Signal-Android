@@ -26,12 +26,15 @@ import android.view.View;
 import android.widget.Button;
 
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.LocalKeyRecord;
+import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.RemoteKeyRecord;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.whispersystems.textsecure.storage.SessionRecordV2;
 
 /**
  * Activity which prompts the user to initiate a secure
@@ -100,8 +103,9 @@ public class AutoInitiateActivity extends Activity {
                  Recipient recipient, String message, long threadId)
   {
     return
-        Tag.isTagged(message)                &&
-        isThreadQualified(context, threadId) &&
+        Tag.isTagged(message)                           &&
+        TextSecurePreferences.isPushRegistered(context) &&
+        isThreadQualified(context, threadId)            &&
         isExchangeQualified(context, masterSecret, recipient);
   }
 
@@ -113,6 +117,7 @@ public class AutoInitiateActivity extends Activity {
   private static boolean isExchangeQualified(Context context, MasterSecret masterSecret, Recipient recipient) {
     return
       (new RemoteKeyRecord(context,recipient).getCurrentRemoteKey() == null) &&
-      (new LocalKeyRecord(context, masterSecret, recipient).getCurrentKeyPair() == null);
+      (new LocalKeyRecord(context, masterSecret, recipient).getCurrentKeyPair() == null) &&
+      !SessionRecordV2.hasSession(context, masterSecret, recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
   }
 }
