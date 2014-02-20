@@ -389,6 +389,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
             sendComplete(recipients, allocatedThreadId, allocatedThreadId != self.threadId);
           } else {
             Session.abortSessionFor(self, recipient);
+            initializeSecurity();
+            initializeTitleBar();
           }
         }
       }
