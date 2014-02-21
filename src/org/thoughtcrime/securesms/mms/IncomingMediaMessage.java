@@ -20,15 +20,11 @@ public class IncomingMediaMessage {
   private final PduHeaders headers;
   private final PduBody    body;
   private final String     groupId;
-  private final int        groupAction;
-  private final String     groupActionArguments;
 
   public IncomingMediaMessage(RetrieveConf retreived) {
-    this.headers              = retreived.getPduHeaders();
-    this.body                 = retreived.getBody();
-    this.groupId              = null;
-    this.groupAction          = -1;
-    this.groupActionArguments = null;
+    this.headers = retreived.getPduHeaders();
+    this.body    = retreived.getBody();
+    this.groupId = null;
   }
 
   public IncomingMediaMessage(MasterSecret masterSecret, String localNumber,
@@ -39,18 +35,15 @@ public class IncomingMediaMessage {
     this.body    = new PduBody();
 
     if (messageContent.hasGroup()) {
-      this.groupId              = GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray());
-      this.groupAction          = messageContent.getGroup().getType().getNumber();
-      this.groupActionArguments = GroupUtil.serializeArguments(messageContent.getGroup());
+      this.groupId = GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray());
     } else {
-      this.groupId              = null;
-      this.groupAction          = -1;
-      this.groupActionArguments = null;
+      this.groupId = null;
     }
 
     this.headers.setEncodedStringValue(new EncodedStringValue(message.getSource()), PduHeaders.FROM);
     this.headers.appendEncodedStringValue(new EncodedStringValue(localNumber), PduHeaders.TO);
     this.headers.setLongInteger(message.getTimestampMillis() / 1000, PduHeaders.DATE);
+
 
     if (!org.whispersystems.textsecure.util.Util.isEmpty(messageContent.getBody())) {
       PduPart text = new PduPart();
@@ -96,13 +89,5 @@ public class IncomingMediaMessage {
         !Util.isEmpty(headers.getEncodedStringValues(PduHeaders.CC)) ||
         (headers.getEncodedStringValues(PduHeaders.TO) != null &&
          headers.getEncodedStringValues(PduHeaders.TO).length > 1);
-  }
-
-  public int getGroupAction() {
-    return groupAction;
-  }
-
-  public String getGroupActionArguments() {
-    return groupActionArguments;
   }
 }
