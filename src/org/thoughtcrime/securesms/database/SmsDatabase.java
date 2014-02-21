@@ -174,6 +174,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     updateTypeBitmask(id, 0, Types.SECURE_MESSAGE_BIT);
   }
 
+  public void markAsPush(long id) {
+    updateTypeBitmask(id, 0, Types.PUSH_MESSAGE_BIT);
+  }
+
   public void markAsDecryptFailed(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
   }
@@ -266,6 +270,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       type |= Types.END_SESSION_BIT;
       type |= Types.ENCRYPTION_REMOTE_BIT;
     }
+
+    if (message.isPush()) type |= Types.PUSH_MESSAGE_BIT;
 
     Recipients recipients;
 
@@ -470,7 +476,6 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     public static final int STATUS_COMPLETE  = 0;
     public static final int STATUS_PENDING   = 0x20;
     public static final int STATUS_FAILED    = 0x40;
-    public static final int STATUS_SENT_PUSH = 0x8000;
   }
 
   public Reader readerFor(Cursor cursor) {

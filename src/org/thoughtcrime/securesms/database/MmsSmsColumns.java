@@ -38,6 +38,7 @@ public interface MmsSmsColumns {
     // Secure Message Information
     protected static final long SECURE_MESSAGE_BIT = 0x800000;
     protected static final long END_SESSION_BIT    = 0x400000;
+    protected static final long PUSH_MESSAGE_BIT   = 0x200000;
 
     // Group Message Information
     protected static final long GROUP_ADD_MEMBERS_BIT = 0x10000;
@@ -77,6 +78,10 @@ public interface MmsSmsColumns {
 
     public static boolean isSecureType(long type) {
       return (type & SECURE_MESSAGE_BIT) != 0;
+    }
+
+    public static boolean isPushType(long type) {
+      return (type & PUSH_MESSAGE_BIT) != 0;
     }
 
     public static boolean isEndSessionType(long type) {

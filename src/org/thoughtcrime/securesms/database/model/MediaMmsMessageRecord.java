@@ -45,10 +45,10 @@ public class MediaMmsMessageRecord extends MessageRecord {
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, long threadId, Body body,
                                ListenableFutureTask<SlideDeck> slideDeck,
-                               int partCount, int deliveryStatus, long mailbox)
+                               int partCount, long mailbox)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, getGenericDeliveryStatus(deliveryStatus), mailbox);
+          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, mailbox);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;
@@ -81,9 +81,5 @@ public class MediaMmsMessageRecord extends MessageRecord {
     }
 
     return super.getDisplayBody();
-  }
-
-  private static int getGenericDeliveryStatus(int status) {
-    return status == SmsDatabase.Status.STATUS_SENT_PUSH ? DELVIERY_STATUS_PUSH : DELIVERY_STATUS_NONE;
   }
 }

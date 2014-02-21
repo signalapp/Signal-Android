@@ -20,11 +20,13 @@ public class IncomingMediaMessage {
   private final PduHeaders headers;
   private final PduBody    body;
   private final String     groupId;
+  private final boolean    push;
 
   public IncomingMediaMessage(RetrieveConf retreived) {
     this.headers = retreived.getPduHeaders();
     this.body    = retreived.getBody();
     this.groupId = null;
+    this.push    = false;
   }
 
   public IncomingMediaMessage(MasterSecret masterSecret, String localNumber,
@@ -33,6 +35,7 @@ public class IncomingMediaMessage {
   {
     this.headers = new PduHeaders();
     this.body    = new PduBody();
+    this.push    = true;
 
     if (messageContent.hasGroup()) {
       this.groupId = GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray());
@@ -82,6 +85,10 @@ public class IncomingMediaMessage {
 
   public String getGroupId() {
     return groupId;
+  }
+
+  public boolean isPushMessage() {
+    return push;
   }
 
   public boolean isGroupMessage() {

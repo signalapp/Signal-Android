@@ -4,14 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 
 import java.util.List;
-
-import ws.com.google.android.mms.pdu.SendReq;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
@@ -38,6 +35,7 @@ public class IncomingTextMessage implements Parcelable {
   private final String  pseudoSubject;
   private final long    sentTimestampMillis;
   private final String  groupId;
+  private final boolean push;
 
   public IncomingTextMessage(SmsMessage message) {
     this.message              = message.getDisplayMessageBody();
@@ -49,6 +47,7 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = message.getPseudoSubject();
     this.sentTimestampMillis  = message.getTimestampMillis();
     this.groupId              = null;
+    this.push                 = false;
   }
 
   public IncomingTextMessage(IncomingPushMessage message, String encodedBody, GroupContext group) {
@@ -60,6 +59,7 @@ public class IncomingTextMessage implements Parcelable {
     this.replyPathPresent     = true;
     this.pseudoSubject        = "";
     this.sentTimestampMillis  = message.getTimestampMillis();
+    this.push                 = true;
 
     if (group != null && group.hasId()) {
       this.groupId = GroupUtil.getEncodedId(group.getId().toByteArray());
@@ -78,6 +78,7 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = in.readString();
     this.sentTimestampMillis  = in.readLong();
     this.groupId              = in.readString();
+    this.push                 = (in.readInt() == 1);
   }
 
   public IncomingTextMessage(IncomingTextMessage base, String newBody) {
@@ -90,6 +91,7 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = base.getPseudoSubject();
     this.sentTimestampMillis  = base.getSentTimestampMillis();
     this.groupId              = base.getGroupId();
+    this.push                 = base.isPush();
   }
 
   public IncomingTextMessage(List<IncomingTextMessage> fragments) {
@@ -108,30 +110,7 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = fragments.get(0).getPseudoSubject();
     this.sentTimestampMillis  = fragments.get(0).getSentTimestampMillis();
     this.groupId              = fragments.get(0).getGroupId();
-  }
-
-  public IncomingTextMessage(SendReq record) {
-    this.message              = "";
-    this.sender               = record.getTo()[0].getString();
-    this.senderDeviceId       = RecipientDevice.DEFAULT_DEVICE_ID;
-    this.protocol             = 31338;
-    this.serviceCenterAddress = "Outgoing";
-    this.replyPathPresent     = true;
-    this.pseudoSubject        = "";
-    this.sentTimestampMillis  = System.currentTimeMillis();
-    this.groupId              = null;
-  }
-
-  public IncomingTextMessage(SmsMessageRecord record) {
-    this.message              = record.getBody().getBody();
-    this.sender               = record.getIndividualRecipient().getNumber();
-    this.senderDeviceId       = RecipientDevice.DEFAULT_DEVICE_ID;
-    this.protocol             = 31338;
-    this.serviceCenterAddress = "Outgoing";
-    this.replyPathPresent     = true;
-    this.pseudoSubject        = "";
-    this.sentTimestampMillis  = System.currentTimeMillis();
-    this.groupId              = null;
+    this.push                 = fragments.get(0).isPush();
   }
 
   protected IncomingTextMessage(String sender, String groupId)
@@ -145,6 +124,7 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject        = "";
     this.sentTimestampMillis  = System.currentTimeMillis();
     this.groupId              = groupId;
+    this.push                 = true;
   }
 
   public long getSentTimestampMillis() {
@@ -203,6 +183,10 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
+  public boolean isPush() {
+    return push;
+  }
+
   public String getGroupId() {
     return groupId;
   }
@@ -227,5 +211,6 @@ public class IncomingTextMessage implements Parcelable {
     out.writeString(pseudoSubject);
     out.writeLong(sentTimestampMillis);
     out.writeString(groupId);
+    out.writeInt(push ? 1 : 0);
   }
 }

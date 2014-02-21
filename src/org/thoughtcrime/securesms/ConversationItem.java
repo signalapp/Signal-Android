@@ -175,7 +175,7 @@ public class ConversationItem extends LinearLayout {
 
   private void setBodyText(MessageRecord messageRecord) {
     // TODO jake is going to fix this up
-    if (messageRecord.isPushSent()) {
+    if (messageRecord.isPush() && messageRecord.isOutgoing()) {
       bodyText.setText("PUSH   "  + messageRecord.getDisplayBody());
       return;
     }

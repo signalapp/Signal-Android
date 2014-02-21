@@ -79,8 +79,7 @@ public class MmsSender {
           MmsSendResult result = transport.deliver(message, threadId);
 
           if (result.isUpgradedSecure()) database.markAsSecure(message.getDatabaseMessageId());
-          if (result.isPush())           database.markDeliveryStatus(message.getDatabaseMessageId(),
-                                                                     Status.STATUS_SENT_PUSH);
+          if (result.isPush())           database.markAsPush(message.getDatabaseMessageId());
           
           database.markAsSent(message.getDatabaseMessageId(), result.getMessageId(),
                               result.getResponseStatus());

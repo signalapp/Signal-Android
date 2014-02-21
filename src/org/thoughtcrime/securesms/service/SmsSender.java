@@ -121,7 +121,7 @@ public class SmsSender {
       database.markAsSent(messageId);
 
       if (upgraded) database.markAsSecure(messageId);
-      if (push)     database.markStatus(messageId, SmsDatabase.Status.STATUS_SENT_PUSH);
+      if (push)     database.markAsPush(messageId);
 
       SmsMessageRecord record = reader.getNext();
 

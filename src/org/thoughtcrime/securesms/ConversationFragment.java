@@ -136,9 +136,14 @@ public class ConversationFragment extends SherlockListFragment
 
   private void handleDisplayDetails(MessageRecord message) {
     String sender     = message.getIndividualRecipient().getNumber();
-    String transport  = message.isMms() ? "mms" : "sms";
     long dateReceived = message.getDateReceived();
     long dateSent     = message.getDateSent();
+
+    String transport;
+
+    if      (message.isPush()) transport = "push";
+    else if (message.isMms())  transport = "mms";
+    else                       transport = "sms";
 
 
     SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
