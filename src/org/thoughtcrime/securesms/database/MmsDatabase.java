@@ -28,6 +28,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -203,13 +204,18 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
         }
       }
 
-      if (encodedToList != null) {
+      if (encodedToList != null && (encodedToList.length > 1 || group.size() > 1)) {
         String localNumber = Util.getDeviceE164Number(context);
+
+        if (localNumber == null) {
+          localNumber = TextSecurePreferences.getLocalNumber(context);
+        }
 
         for (EncodedStringValue encodedTo : encodedToList) {
           String to = new String(encodedTo.getTextString(), CharacterSets.MIMENAME_ISO_8859_1);
 
-          if (!localNumber.equals(to)) {
+          /// TODO format numbers before comparing.
+          if (localNumber == null || !localNumber.equals(to)) {
             group.add(to);
           }
         }
