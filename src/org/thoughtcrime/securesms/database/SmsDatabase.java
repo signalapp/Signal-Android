@@ -467,9 +467,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
 
   public static class Status {
     public static final int STATUS_NONE     = -1;
-    public static final int STATUS_COMPLETE = 0;
-    public static final int STATUS_PENDING  = 32;
-    public static final int STATUS_FAILED   = 64;
+    public static final int STATUS_COMPLETE  = 0;
+    public static final int STATUS_PENDING   = 0x20;
+    public static final int STATUS_FAILED    = 0x40;
+    public static final int STATUS_SENT_PUSH = 0x8000;
   }
 
   public Reader readerFor(Cursor cursor) {

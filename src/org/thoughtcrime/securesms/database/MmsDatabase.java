@@ -284,6 +284,15 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
+  public void markDeliveryStatus(long messageId, int status) {
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(STATUS, status);
+
+    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
+    notifyConversationListeners(getThreadIdForMessage(messageId));
+  }
+
   public void markAsNoSession(long messageId, long threadId) {
     updateMailboxBitmask(messageId, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
     notifyConversationListeners(threadId);
@@ -855,6 +864,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
       String address          = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
       int addressDeviceId     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
+      int status              = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.STATUS));
       DisplayRecord.Body body = getBody(cursor);
       int partCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       Recipients recipients   = getRecipientsFor(address);
@@ -863,7 +873,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                        addressDeviceId, dateSent, dateReceived, threadId, body,
-                                       slideDeck, partCount, box);
+                                       slideDeck, partCount, status, box);
     }
 
     private Recipients getRecipientsFor(String address) {

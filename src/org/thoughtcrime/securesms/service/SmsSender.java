@@ -108,6 +108,7 @@ public class SmsSender {
     long    messageId = intent.getLongExtra("message_id", -1);
     int     result    = intent.getIntExtra("ResultCode", -31337);
     boolean upgraded  = intent.getBooleanExtra("upgraded", false);
+    boolean push      = intent.getBooleanExtra("push", false);
 
     Log.w("SMSReceiverService", "Intent resultcode: " + result);
     Log.w("SMSReceiverService", "Running sent callback: " + messageId);
@@ -119,9 +120,8 @@ public class SmsSender {
 
       database.markAsSent(messageId);
 
-      if (upgraded) {
-        database.markAsSecure(messageId);
-      }
+      if (upgraded) database.markAsSecure(messageId);
+      if (push)     database.markStatus(messageId, SmsDatabase.Status.STATUS_SENT_PUSH);
 
       SmsMessageRecord record = reader.getNext();
 

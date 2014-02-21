@@ -17,10 +17,8 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TextAppearanceSpan;
 
@@ -46,6 +44,7 @@ public abstract class MessageRecord extends DisplayRecord {
   public static final int DELIVERY_STATUS_RECEIVED = 1;
   public static final int DELIVERY_STATUS_PENDING  = 2;
   public static final int DELIVERY_STATUS_FAILED   = 3;
+  public static final int DELVIERY_STATUS_PUSH     = 4;
 
   private final Recipient individualRecipient;
   private final int       recipientDeviceId;
@@ -107,6 +106,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isDelivered() {
     return getDeliveryStatus() == DELIVERY_STATUS_RECEIVED;
+  }
+
+  public boolean isPushSent() {
+    return getDeliveryStatus() == DELVIERY_STATUS_PUSH;
   }
 
   public boolean isStaleKeyExchange() {

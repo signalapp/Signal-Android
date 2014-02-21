@@ -212,7 +212,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       }
     } else {
       if (TextSecurePreferences.isInterceptAllMmsEnabled(this) ||
-          TextSecurePreferences.isInterceptAllSmsEnabled(this))
+          TextSecurePreferences.isInterceptAllSmsEnabled(this) ||
+          !TextSecurePreferences.isPushRegistered(this))
       {
         allowSmsPreference.setEnabled(false);
         allowSmsPreference.setChecked(true);
@@ -293,7 +294,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
       dynamicLanguage.onResume(this);
     } else if (key.equals(TextSecurePreferences.ALL_MMS_PREF) ||
-               key.equals(TextSecurePreferences.ALL_SMS_PREF))
+               key.equals(TextSecurePreferences.ALL_SMS_PREF) ||
+               key.equals(TextSecurePreferences.REGISTERED_GCM_PREF))
     {
       initializeSmsFallbackOption();
     }

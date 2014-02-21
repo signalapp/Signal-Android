@@ -96,7 +96,7 @@ public class PushTransport extends BaseTransport {
         KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, threadId);
       }
 
-      context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType(), true));
+      context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType(), true, true));
 
     } catch (InvalidNumberException e) {
       Log.w("PushTransport", e);

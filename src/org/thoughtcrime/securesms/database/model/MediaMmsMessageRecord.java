@@ -18,10 +18,10 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.text.SpannableString;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -45,10 +45,10 @@ public class MediaMmsMessageRecord extends MessageRecord {
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, long threadId, Body body,
                                ListenableFutureTask<SlideDeck> slideDeck,
-                               int partCount, long mailbox)
+                               int partCount, int deliveryStatus, long mailbox)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, mailbox);
+          dateSent, dateReceived, threadId, getGenericDeliveryStatus(deliveryStatus), mailbox);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;
@@ -81,5 +81,9 @@ public class MediaMmsMessageRecord extends MessageRecord {
     }
 
     return super.getDisplayBody();
+  }
+
+  private static int getGenericDeliveryStatus(int status) {
+    return status == SmsDatabase.Status.STATUS_SENT_PUSH ? DELVIERY_STATUS_PUSH : DELIVERY_STATUS_NONE;
   }
 }

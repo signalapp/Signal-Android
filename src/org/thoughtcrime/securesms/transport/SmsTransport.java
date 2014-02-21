@@ -139,7 +139,7 @@ public class SmsTransport extends BaseTransport {
 
     for (String ignored : messages) {
       sentIntents.add(PendingIntent.getBroadcast(context, 0,
-                                                 constructSentIntent(context, messageId, type, secure),
+                                                 constructSentIntent(context, messageId, type, secure, false),
                                                  0));
     }
 

@@ -174,6 +174,12 @@ public class ConversationItem extends LinearLayout {
   /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
+    // TODO jake is going to fix this up
+    if (messageRecord.isPushSent()) {
+      bodyText.setText("PUSH   "  + messageRecord.getDisplayBody());
+      return;
+    }
+
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
       bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
                        TextView.BufferType.SPANNABLE);

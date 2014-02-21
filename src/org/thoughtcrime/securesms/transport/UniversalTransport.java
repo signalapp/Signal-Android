@@ -124,7 +124,7 @@ public class UniversalTransport {
         try {
           Log.w("UniversalTransport", "Delivering media message with GCM...");
           pushTransport.deliver(mediaMessage, threadId);
-          return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
+          return new MmsSendResult("push".getBytes("UTF-8"), 0, true, true);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
           if (isSmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
@@ -161,7 +161,7 @@ public class UniversalTransport {
 
     try {
       pushTransport.deliver(mediaMessage, threadId);
-      return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
+      return new MmsSendResult("push".getBytes("UTF-8"), 0, true, true);
     } catch (IOException e) {
       Log.w("UniversalTransport", e);
       throw new RetryLaterException(e);
@@ -183,7 +183,7 @@ public class UniversalTransport {
           DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityMessage);
         }
 
-        return new MmsSendResult("push".getBytes("UTF-8"), 0, true);
+        return new MmsSendResult("push".getBytes("UTF-8"), 0, true, true);
       } catch (IOException ioe) {
         throw new AssertionError(ioe);
       }

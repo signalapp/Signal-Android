@@ -31,16 +31,16 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Base64;
 
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
+
+import static org.thoughtcrime.securesms.database.SmsDatabase.Status;
 
 public class MmsSender {
 
@@ -78,9 +78,9 @@ public class MmsSender {
           database.markAsSending(message.getDatabaseMessageId());
           MmsSendResult result = transport.deliver(message, threadId);
 
-          if (result.isUpgradedSecure()) {
-            database.markAsSecure(message.getDatabaseMessageId());
-          }
+          if (result.isUpgradedSecure()) database.markAsSecure(message.getDatabaseMessageId());
+          if (result.isPush())           database.markDeliveryStatus(message.getDatabaseMessageId(),
+                                                                     Status.STATUS_SENT_PUSH);
           
           database.markAsSent(message.getDatabaseMessageId(), result.getMessageId(),
                               result.getResponseStatus());

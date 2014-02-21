@@ -97,6 +97,8 @@ public class SmsMessageRecord extends MessageRecord {
   private static int getGenericDeliveryStatus(int status) {
     if (status == SmsDatabase.Status.STATUS_NONE) {
       return MessageRecord.DELIVERY_STATUS_NONE;
+    } else if (status >= SmsDatabase.Status.STATUS_SENT_PUSH) {
+      return MessageRecord.DELVIERY_STATUS_PUSH;
     } else if (status >= SmsDatabase.Status.STATUS_FAILED) {
       return MessageRecord.DELIVERY_STATUS_FAILED;
     } else if (status >= SmsDatabase.Status.STATUS_PENDING) {
