@@ -36,6 +36,7 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.util.Base64;
 
 import ws.com.google.android.mms.MmsException;
 
@@ -121,12 +122,11 @@ public class PushReceiver {
         IncomingPushMessage bundledMessage = message.withBody(preKeyExchange.getWhisperMessage().serialize());
         handleReceivedSecureMessage(masterSecret, bundledMessage);
       } else {
-        SmsTransportDetails transportDetails = new SmsTransportDetails();
-        String              encoded          = new String(transportDetails.getEncodedMessage(message.getBody()));
-        IncomingTextMessage textMessage      = new IncomingTextMessage(message, "", null);
+        String                      encoded       = Base64.encodeBytes(message.getBody());
+        IncomingTextMessage         textMessage   = new IncomingTextMessage(message, encoded, null);
+        IncomingPreKeyBundleMessage bundleMessage = new IncomingPreKeyBundleMessage(textMessage, encoded);
 
-        textMessage = new IncomingPreKeyBundleMessage(textMessage, encoded);
-        DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, textMessage);
+        DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, bundleMessage);
       }
     } catch (InvalidKeyException e) {
       Log.w("PushReceiver", e);

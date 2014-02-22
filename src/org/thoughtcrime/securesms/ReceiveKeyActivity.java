@@ -36,8 +36,10 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
@@ -45,11 +47,15 @@ import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
+import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
+
+import static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.Type;
 
 /**
  * Activity for displaying sent/received session keys.
@@ -162,8 +168,14 @@ public class ReceiveKeyActivity extends Activity {
       String messageBody = getIntent().getStringExtra("body");
 
       if (getIntent().getBooleanExtra("is_bundle", false)) {
-        SmsTransportDetails transportDetails = new SmsTransportDetails();
-        byte[]              body             = transportDetails.getDecodedMessage(messageBody.getBytes());
+        boolean isPush = getIntent().getBooleanExtra("is_push", false);
+        byte[] body;
+
+        if (isPush) {
+          body = Base64.decode(messageBody.getBytes());
+        } else {
+          body = new SmsTransportDetails().getDecodedMessage(messageBody.getBytes());
+        }
 
         this.keyExchangeMessageBundle = new PreKeyWhisperMessage(body);
       } else if (getIntent().getBooleanExtra("is_identity_update", false)) {
@@ -227,21 +239,39 @@ public class ReceiveKeyActivity extends Activity {
                                                                             masterSecret, recipientDevice);
               processor.processKeyExchangeMessage(keyExchangeMessageBundle);
 
-              CiphertextMessage bundledMessage     = keyExchangeMessageBundle.getWhisperMessage();
-              SmsTransportDetails transportDetails = new SmsTransportDetails();
-              String              messageBody      = new String(transportDetails.getEncodedMessage(bundledMessage.serialize()));
+              CiphertextMessage bundledMessage = keyExchangeMessageBundle.getWhisperMessage();
 
-              DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
-                             .updateBundleMessageBody(masterSecret, messageId, messageBody);
+              if (getIntent().getBooleanExtra("is_push", false)) {
+                String source = Util.canonicalizeNumber(ReceiveKeyActivity.this, recipient.getNumber());
+                IncomingPushMessage incoming = new IncomingPushMessage(Type.CIPHERTEXT_VALUE, source, recipientDeviceId, bundledMessage.serialize(), System.currentTimeMillis());
 
-              DecryptingQueue.scheduleDecryption(ReceiveKeyActivity.this, masterSecret, messageId,
-                                                 threadId, recipient.getNumber(), recipientDeviceId,
-                                                 messageBody, true, false, false);
+                DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
+                               .markAsProcessedKeyExchange(messageId);
+
+                Intent intent = new Intent(ReceiveKeyActivity.this, SendReceiveService.class);
+                intent.setAction(SendReceiveService.RECEIVE_PUSH_ACTION);
+                intent.putExtra("message", incoming);
+                startService(intent);
+              } else {
+                SmsTransportDetails transportDetails = new SmsTransportDetails();
+                String              messageBody      = new String(transportDetails.getEncodedMessage(bundledMessage.serialize()));
+
+                DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
+                               .updateBundleMessageBody(masterSecret, messageId, messageBody);
+
+                DecryptingQueue.scheduleDecryption(ReceiveKeyActivity.this, masterSecret, messageId,
+                                                   threadId, recipient.getNumber(), recipientDeviceId,
+                                                   messageBody, true, false, false);
+              }
             } catch (InvalidKeyIdException e) {
               Log.w("ReceiveKeyActivity", e);
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
                              .markAsCorruptKeyExchange(messageId);
             } catch (InvalidKeyException e) {
+              Log.w("ReceiveKeyActivity", e);
+              DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
+                             .markAsCorruptKeyExchange(messageId);
+            } catch (InvalidNumberException e) {
               Log.w("ReceiveKeyActivity", e);
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
                              .markAsCorruptKeyExchange(messageId);

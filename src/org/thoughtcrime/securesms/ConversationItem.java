@@ -354,6 +354,7 @@ public class ConversationItem extends LinearLayout {
     intent.putExtra("message_id", messageRecord.getId());
     intent.putExtra("is_bundle", messageRecord.isBundleKeyExchange());
     intent.putExtra("is_identity_update", messageRecord.isIdentityUpdate());
+    intent.putExtra("is_push", messageRecord.isPush());
     intent.putExtra("master_secret", masterSecret);
     intent.putExtra("sent", messageRecord.isOutgoing());
     context.startActivity(intent);
