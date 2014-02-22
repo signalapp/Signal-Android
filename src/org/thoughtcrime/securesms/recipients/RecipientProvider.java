@@ -144,23 +144,17 @@ public class RecipientProvider {
 
   private RecipientDetails getGroupRecipientDetails(Context context, String groupId) {
     try {
-      GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(context)
-                                                   .getGroup(GroupUtil.getDecodedId(groupId));
+      GroupDatabase.GroupRecord record  = DatabaseFactory.getGroupDatabase(context)
+                                                         .getGroup(GroupUtil.getDecodedId(groupId));
 
-      GroupDatabase.GroupRecord record;
+      if (record != null) {
+        byte[] avatarBytes = record.getAvatar();
+        Bitmap avatar;
 
-      try {
-        if ((record = reader.getNext()) != null) {
-          byte[] avatarBytes = record.getAvatar();
-          Bitmap avatar;
+        if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultContactPhoto(context);
+        else                     avatar = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
 
-          if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultContactPhoto(context);
-          else                     avatar = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
-
-          return new RecipientDetails(record.getTitle(), null, avatar);
-        }
-      } finally {
-        reader.close();
+        return new RecipientDetails(record.getTitle(), null, avatar);
       }
 
       return null;

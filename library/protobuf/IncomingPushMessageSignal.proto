@@ -30,11 +30,9 @@ message PushMessageContent {
   message GroupContext {
     enum Type {
       UNKNOWN = 0;
-      CREATE  = 1;
-      MODIFY  = 2;
-      DELIVER = 3;
-      ADD     = 4;
-      QUIT    = 5;
+      UPDATE  = 1;
+      DELIVER = 2;
+      QUIT    = 3;
     }
     optional bytes             id      = 1;
     optional Type              type    = 2;

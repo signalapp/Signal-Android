@@ -83,12 +83,8 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isEndSessionType(type);
   }
 
-  public boolean isGroupAdd() {
-    return SmsDatabase.Types.isGroupAdd(type);
-  }
-
-  public boolean isGroupModify() {
-    return SmsDatabase.Types.isGroupModify(type);
+  public boolean isGroupUpdate() {
+    return SmsDatabase.Types.isGroupUpdate(type);
   }
 
   public boolean isGroupQuit() {
@@ -96,7 +92,7 @@ public abstract class DisplayRecord {
   }
 
   public boolean isGroupAction() {
-    return isGroupAdd() || isGroupModify() || isGroupQuit();
+    return isGroupUpdate() || isGroupQuit();
   }
 
   public static class Body {

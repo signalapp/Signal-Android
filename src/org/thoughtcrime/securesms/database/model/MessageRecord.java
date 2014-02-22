@@ -84,12 +84,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody() {
-    if (isGroupAdd()) {
-      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_joined, Util.join(GroupUtil.getSerializedArgumentMembers(getBody().getBody()), ", ")));
+    if (isGroupUpdate()) {
+      return emphasisAdded(GroupUtil.getDescription(getBody().getBody()));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
-    } else if (isGroupModify()) {
-      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_modify, getIndividualRecipient().toShortString()));
     }
 
     return new SpannableString(getBody().getBody());

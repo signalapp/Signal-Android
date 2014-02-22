@@ -532,9 +532,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
 
     if (message.isGroup()) {
-      if      (((OutgoingGroupMediaMessage)message).isGroupAdd())    type |= Types.GROUP_ADD_MEMBERS_BIT;
+      if      (((OutgoingGroupMediaMessage)message).isGroupUpdate()) type |= Types.GROUP_UPDATE_BIT;
       else if (((OutgoingGroupMediaMessage)message).isGroupQuit())   type |= Types.GROUP_QUIT_BIT;
-      else if (((OutgoingGroupMediaMessage)message).isGroupModify()) type |= Types.GROUP_MODIFY_BIT;
     }
 
     SendReq sendRequest = new SendReq();

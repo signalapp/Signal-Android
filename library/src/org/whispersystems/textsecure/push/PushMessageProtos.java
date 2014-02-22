@@ -1463,19 +1463,15 @@ public final class PushMessageProtos {
       public enum Type
           implements com.google.protobuf.ProtocolMessageEnum {
         UNKNOWN(0, 0),
-        CREATE(1, 1),
-        MODIFY(2, 2),
-        DELIVER(3, 3),
-        ADD(4, 4),
-        QUIT(5, 5),
+        UPDATE(1, 1),
+        DELIVER(2, 2),
+        QUIT(3, 3),
         ;
         
         public static final int UNKNOWN_VALUE = 0;
-        public static final int CREATE_VALUE = 1;
-        public static final int MODIFY_VALUE = 2;
-        public static final int DELIVER_VALUE = 3;
-        public static final int ADD_VALUE = 4;
-        public static final int QUIT_VALUE = 5;
+        public static final int UPDATE_VALUE = 1;
+        public static final int DELIVER_VALUE = 2;
+        public static final int QUIT_VALUE = 3;
         
         
         public final int getNumber() { return value; }
@@ -1483,11 +1479,9 @@ public final class PushMessageProtos {
         public static Type valueOf(int value) {
           switch (value) {
             case 0: return UNKNOWN;
-            case 1: return CREATE;
-            case 2: return MODIFY;
-            case 3: return DELIVER;
-            case 4: return ADD;
-            case 5: return QUIT;
+            case 1: return UPDATE;
+            case 2: return DELIVER;
+            case 3: return QUIT;
             default: return null;
           }
         }
@@ -1518,7 +1512,7 @@ public final class PushMessageProtos {
         }
         
         private static final Type[] VALUES = {
-          UNKNOWN, CREATE, MODIFY, DELIVER, ADD, QUIT, 
+          UNKNOWN, UPDATE, DELIVER, QUIT, 
         };
         
         public static Type valueOf(
@@ -3073,22 +3067,22 @@ public final class PushMessageProtos {
       "evice\030\007 \001(\r\022\r\n\005relay\030\003 \001(\t\022\021\n\ttimestamp\030" +
       "\005 \001(\004\022\017\n\007message\030\006 \001(\014\"W\n\004Type\022\013\n\007UNKNOW" +
       "N\020\000\022\016\n\nCIPHERTEXT\020\001\022\020\n\014KEY_EXCHANGE\020\002\022\021\n" +
-      "\rPREKEY_BUNDLE\020\003\022\r\n\tPLAINTEXT\020\004\"\234\004\n\022Push" +
+      "\rPREKEY_BUNDLE\020\003\022\r\n\tPLAINTEXT\020\004\"\207\004\n\022Push" +
       "MessageContent\022\014\n\004body\030\001 \001(\t\022E\n\013attachme" +
       "nts\030\002 \003(\01320.textsecure.PushMessageConten",
       "t.AttachmentPointer\022:\n\005group\030\003 \001(\0132+.tex" +
       "tsecure.PushMessageContent.GroupContext\022" +
       "\r\n\005flags\030\004 \001(\r\032A\n\021AttachmentPointer\022\n\n\002i" +
       "d\030\001 \001(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(" +
-      "\014\032\210\002\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022>\n\004type\030\002" +
+      "\014\032\363\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022>\n\004type\030\002" +
       " \001(\01620.textsecure.PushMessageContent.Gro" +
       "upContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030" +
       "\004 \003(\t\022@\n\006avatar\030\005 \001(\01320.textsecure.PushM" +
-      "essageContent.AttachmentPointer\"K\n\004Type\022" +
-      "\013\n\007UNKNOWN\020\000\022\n\n\006CREATE\020\001\022\n\n\006MODIFY\020\002\022\013\n\007",
-      "DELIVER\020\003\022\007\n\003ADD\020\004\022\010\n\004QUIT\020\005\"\030\n\005Flags\022\017\n" +
-      "\013END_SESSION\020\001B7\n\"org.whispersystems.tex" +
-      "tsecure.pushB\021PushMessageProtos"
+      "essageContent.AttachmentPointer\"6\n\004Type\022" +
+      "\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n",
+      "\004QUIT\020\003\"\030\n\005Flags\022\017\n\013END_SESSION\020\001B7\n\"org" +
+      ".whispersystems.textsecure.pushB\021PushMes" +
+      "sageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

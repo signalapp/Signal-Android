@@ -37,19 +37,17 @@ public class AvatarDownloader {
       if (!SendReceiveService.DOWNLOAD_AVATAR_ACTION.equals(intent.getAction()))
         return;
 
-      byte[]               groupId  = intent.getByteArrayExtra("group_id");
-      GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
-      GroupDatabase.Reader reader   = database.getGroup(groupId);
+      byte[]                    groupId  = intent.getByteArrayExtra("group_id");
+      GroupDatabase             database = DatabaseFactory.getGroupDatabase(context);
+      GroupDatabase.GroupRecord record   = database.getGroup(groupId);
 
-      GroupDatabase.GroupRecord record;
-
-      while ((record = reader.getNext()) != null) {
+      if (record != null) {
         long        avatarId           = record.getAvatarId();
         byte[]      key                = record.getAvatarKey();
         String      relay              = record.getRelay();
 
         if (avatarId == -1 || key == null) {
-          continue;
+          return;
         }
 
         File        attachment         = downloadAttachment(relay, avatarId);

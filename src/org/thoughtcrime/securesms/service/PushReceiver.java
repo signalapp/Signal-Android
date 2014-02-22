@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -22,7 +21,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -38,11 +36,9 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
-import org.whispersystems.textsecure.util.Base64;
 
 import ws.com.google.android.mms.MmsException;
 
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext.Type;
 
 public class PushReceiver {
@@ -51,10 +47,12 @@ public class PushReceiver {
   public static final int RESULT_NO_SESSION     = 1;
   public static final int RESULT_DECRYPT_FAILED = 2;
 
-  private final Context context;
+  private final Context       context;
+  private final GroupReceiver groupReceiver;
 
   public PushReceiver(Context context) {
-    this.context = context.getApplicationContext();
+    this.context       = context.getApplicationContext();
+    this.groupReceiver = new GroupReceiver(context);
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
@@ -160,7 +158,7 @@ public class PushReceiver {
         handleEndSessionMessage(masterSecret, message, messageContent);
       } else if (messageContent.hasGroup() && messageContent.getGroup().getType().getNumber() != Type.DELIVER_VALUE) {
         Log.w("PushReceiver", "Received push group message...");
-        handleReceivedGroupMessage(masterSecret, message, messageContent, secure);
+        groupReceiver.process(masterSecret, message, messageContent, secure);
       } else if (messageContent.getAttachmentsCount() > 0) {
         Log.w("PushReceiver", "Received push media message...");
         handleReceivedMediaMessage(masterSecret, message, messageContent, secure);
@@ -172,57 +170,6 @@ public class PushReceiver {
       Log.w("PushReceiver", e);
       handleReceivedCorruptedMessage(masterSecret, message, secure);
     }
-  }
-
-  private void handleReceivedGroupMessage(MasterSecret masterSecret,
-                                          IncomingPushMessage message,
-                                          PushMessageContent messageContent,
-                                          boolean secure)
-  {
-    if (!messageContent.getGroup().hasId()) {
-      Log.w("PushReceiver", "Received group message with no id!");
-      return;
-    }
-
-    if (!secure) {
-      Log.w("PushReceiver", "Received insecure group push action!");
-      return;
-    }
-
-    GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    GroupContext  group    = messageContent.getGroup();
-    byte[]        id       = group.getId().toByteArray();
-    int           type     = group.getType().getNumber();
-
-    if (type == Type.CREATE_VALUE) {
-      database.create(id, message.getSource(), group.getName(), group.getMembersList(), group.getAvatar(), message.getRelay());
-    } else if (type == Type.ADD_VALUE) {
-      database.add(id, message.getSource(), group.getMembersList());
-    } else if (type == Type.QUIT_VALUE) {
-      database.remove(id, message.getSource());
-    } else if (type == Type.MODIFY_VALUE) {
-      database.update(id, message.getSource(), group.getName(), group.getAvatar());
-    } else if (type == Type.UNKNOWN_VALUE) {
-      Log.w("PushReceiver", "Receied group message from unknown type: " + type);
-      return;
-    }
-
-    if (group.hasAvatar()) {
-      Intent intent = new Intent(context, SendReceiveService.class);
-      intent.setAction(SendReceiveService.DOWNLOAD_AVATAR_ACTION);
-      intent.putExtra("group_id", group.getId().toByteArray());
-      context.startService(intent);
-    }
-
-    EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(context);
-    String                body         = Base64.encodeBytes(group.toByteArray());
-    IncomingTextMessage   incoming     = new IncomingTextMessage(message, body, group);
-    IncomingGroupMessage  groupMessage = new IncomingGroupMessage(incoming, group, body);
-
-    Pair<Long, Long> messageAndThreadId = smsDatabase.insertMessageInbox(masterSecret, groupMessage);
-    smsDatabase.updateMessageBody(masterSecret, messageAndThreadId.first, body);
-
-    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
   private void handleEndSessionMessage(MasterSecret masterSecret,

@@ -250,8 +250,7 @@ public class PushTransport extends BaseTransport {
       groupBuilder.setId(ByteString.copyFrom(groupId));
       groupBuilder.setType(GroupContext.Type.DELIVER);
 
-      if (MmsSmsColumns.Types.isGroupAdd(message.getDatabaseMessageBox()) ||
-          MmsSmsColumns.Types.isGroupModify(message.getDatabaseMessageBox()) ||
+      if (MmsSmsColumns.Types.isGroupUpdate(message.getDatabaseMessageBox()) ||
           MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()))
       {
         if (messageBody != null && messageBody.trim().length() > 0) {

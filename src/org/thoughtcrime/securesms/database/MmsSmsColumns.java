@@ -41,9 +41,8 @@ public interface MmsSmsColumns {
     protected static final long PUSH_MESSAGE_BIT   = 0x200000;
 
     // Group Message Information
-    protected static final long GROUP_ADD_MEMBERS_BIT = 0x10000;
-    protected static final long GROUP_QUIT_BIT        = 0x20000;
-    protected static final long GROUP_MODIFY_BIT      = 0x40000;
+    protected static final long GROUP_UPDATE_BIT = 0x10000;
+    protected static final long GROUP_QUIT_BIT   = 0x20000;
 
     // Encrypted Storage Information
     protected static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -116,12 +115,8 @@ public interface MmsSmsColumns {
       return (type & KEY_EXCHANGE_IDENTITY_UPDATE_BIT) != 0;
     }
 
-    public static boolean isGroupAdd(long type) {
-      return (type & GROUP_ADD_MEMBERS_BIT) != 0;
-    }
-
-    public static boolean isGroupModify(long type) {
-      return (type & GROUP_MODIFY_BIT) != 0;
+    public static boolean isGroupUpdate(long type) {
+      return (type & GROUP_UPDATE_BIT) != 0;
     }
 
     public static boolean isGroupQuit(long type) {

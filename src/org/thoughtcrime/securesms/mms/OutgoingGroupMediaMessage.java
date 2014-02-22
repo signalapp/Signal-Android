@@ -37,17 +37,11 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     return true;
   }
 
-  public boolean isGroupAdd() {
-    return
-        group.getType().getNumber() == GroupContext.Type.ADD_VALUE ||
-        group.getType().getNumber() == GroupContext.Type.CREATE_VALUE;
+  public boolean isGroupUpdate() {
+    return group.getType().getNumber() == GroupContext.Type.UPDATE_VALUE;
   }
 
   public boolean isGroupQuit() {
     return group.getType().getNumber() == GroupContext.Type.QUIT_VALUE;
-  }
-
-  public boolean isGroupModify() {
-    return group.getType().getNumber() == GroupContext.Type.MODIFY_VALUE;
   }
 }

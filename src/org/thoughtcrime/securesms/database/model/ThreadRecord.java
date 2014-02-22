@@ -56,12 +56,10 @@ public class ThreadRecord extends DisplayRecord {
     // TODO jake is going to fill these in
     if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
-    } else if (isGroupAdd()) {
-      return emphasisAdded(Util.join(GroupUtil.getSerializedArgumentMembers(getBody().getBody()), ", ") + " have joined the group");
+    } else if (isGroupUpdate()) {
+      return emphasisAdded(GroupUtil.getDescription(getBody().getBody()));
     } else if (isGroupQuit()) {
       return emphasisAdded(getRecipients().toShortString() + " left the group.");
-    } else if (isGroupModify()) {
-      return emphasisAdded(getRecipients().toShortString() + " modified the group.");
     } else if (isKeyExchange()) {
       return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {

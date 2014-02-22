@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.util.Log;
 
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
@@ -33,34 +34,32 @@ public class GroupUtil {
     return groupId.startsWith(ENCODED_GROUP_PREFIX);
   }
 
-  public static boolean isMetaGroupAction(int groupAction) {
-    return groupAction > 0
-        && groupAction != GroupContext.Type.DELIVER_VALUE;
-  }
-
-  public static String serializeArguments(byte[] id, String name, List<String> members) {
-    return Base64.encodeBytes(GroupContext.newBuilder()
-                                          .setId(ByteString.copyFrom(id))
-                                          .setName(name)
-                                          .addAllMembers(members)
-                                          .build().toByteArray());
-  }
-
-  public static String serializeArguments(GroupContext context) {
-    return Base64.encodeBytes(context.toByteArray());
-  }
-
-  public static List<String> getSerializedArgumentMembers(String serialized) {
-    if (serialized == null) {
-      return new LinkedList<String>();
+  public static String getDescription(String encodedGroup) {
+    if (encodedGroup == null) {
+      return "Group updated.";
     }
 
     try {
-      GroupContext context = GroupContext.parseFrom(Base64.decode(serialized));
-      return context.getMembersList();
+      String       description = "";
+      GroupContext context = GroupContext.parseFrom(Base64.decode(encodedGroup));
+      List<String> members = context.getMembersList();
+      String       title   = context.getName();
+
+      if (!members.isEmpty()) {
+        description += org.whispersystems.textsecure.util.Util.join(members, ", ") + " joined the group.";
+      }
+
+      if (title != null && !title.trim().isEmpty()) {
+        description += " Updated title to '" + title + "'.";
+      }
+
+      return description;
+    } catch (InvalidProtocolBufferException e) {
+      Log.w("GroupUtil", e);
+      return "Group updated.";
     } catch (IOException e) {
       Log.w("GroupUtil", e);
-      return new LinkedList<String>();
+      return "Group updated.";
     }
   }
 }

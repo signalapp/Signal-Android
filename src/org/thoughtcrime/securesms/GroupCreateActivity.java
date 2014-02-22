@@ -337,6 +337,11 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
   }
 
+  private void handleGroupUpdate() {
+    Log.w("GroupCreateActivity", "Creating...");
+    new UpdateWhisperGroupAsyncTask().execute();
+  }
+
   private static List<String> recipientsToNormalizedStrings(Collection<Recipient> recipients, String localNumber) {
     final List<String> e164numbers = new ArrayList<String>(recipients.size());
     for (Recipient contact : recipients) {
@@ -347,63 +352,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       }
     }
     return e164numbers;
-  }
-
-  private void handleGroupUpdate() {
-    Log.i(TAG, "Updating group info.");
-    GroupDatabase db = DatabaseFactory.getGroupDatabase(this);
-    final String localNumber = TextSecurePreferences.getLocalNumber(this);
-    List<String> e164numbers = recipientsToNormalizedStrings(selectedContacts, localNumber);
-    if (selectedContacts.size() > 0) {
-      db.add(groupId, localNumber, e164numbers);
-      GroupContext context = GroupContext.newBuilder()
-                                         .setId(ByteString.copyFrom(groupId))
-                                         .setType(GroupContext.Type.ADD)
-                                         .addAllMembers(e164numbers)
-                                         .build();
-      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, null);
-      try {
-        MessageSender.send(this, masterSecret, outgoingMessage, groupThread);
-      } catch (MmsException me) {
-        Log.w(TAG, "MmsException encountered when trying to add members to group.", me);
-      }
-    }
-
-    GroupContext.Builder builder = GroupContext.newBuilder()
-                                       .setId(ByteString.copyFrom(groupId))
-                                       .setType(GroupContext.Type.MODIFY);
-    boolean shouldSendUpdate = false;
-    final String title = groupName.getText().toString();
-    if (existingTitle == null || (groupName.getText() != null && !existingTitle.equals(title))) {
-      builder.setName(title);
-      db.updateTitle(groupId, title);
-      shouldSendUpdate = true;
-    }
-    byte[] avatarBytes = null;
-    if (existingAvatarBmp == null || !existingAvatarBmp.equals(avatarBmp)) {
-      if (avatarBmp != null) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        avatarBytes = stream.toByteArray();
-      }
-      db.updateAvatar(groupId, avatarBytes);
-      shouldSendUpdate = true;
-    }
-
-    if (shouldSendUpdate) {
-      GroupContext context = builder.build();
-      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatarBytes);
-      try {
-        MessageSender.send(this, masterSecret, outgoingMessage, groupThread);
-      } catch (MmsException me) {
-        Log.w(TAG, "MmsException encountered when trying to add members to group.", me);
-      }
-    }
-
-    RecipientFactory.clearCache(groupRecipient.getPrimaryRecipient());
-
-    setResult(RESULT_OK, getIntent());
-    finish();
   }
 
   private void enableWhisperGroupCreatingUi() {
@@ -475,29 +423,56 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
   }
 
-  private Pair<Long, Recipients> handleCreatePushGroup(String groupName,
-                                                       byte[] avatar,
+  private Pair<Long, Recipients> handleCreatePushGroup(String groupName, byte[] avatar,
                                                        Set<Recipient> members)
       throws InvalidNumberException, MmsException
   {
-    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
-    byte[]        groupId       = groupDatabase.allocateGroupId();
+    GroupDatabase groupDatabase     = DatabaseFactory.getGroupDatabase(this);
+    byte[]        groupId           = groupDatabase.allocateGroupId();
+    List<String>  memberE164Numbers = getE164Numbers(members);
+
+    groupDatabase.create(groupId, TextSecurePreferences.getLocalNumber(this), groupName,
+                         memberE164Numbers, null, null);
+    groupDatabase.updateAvatar(groupId, avatar);
+
+    return handlePushOperation(groupId, groupName, avatar, memberE164Numbers);
+  }
+
+  private Pair<Long, Recipients> handleUpdatePushGroup(byte[] groupId, String groupName,
+                                                       byte[] avatar, Set<Recipient> members)
+      throws InvalidNumberException, MmsException
+  {
+    GroupDatabase groupDatabase     = DatabaseFactory.getGroupDatabase(this);
+    List<String>  memberE164Numbers = getE164Numbers(members);
+
+    GroupDatabase.GroupRecord record     = groupDatabase.getGroup(groupId);
+    Set<String>               newMembers = new HashSet<String>(memberE164Numbers);
+    newMembers.removeAll(record.getMembers());
+
+    groupDatabase.add(groupId, TextSecurePreferences.getLocalNumber(this),
+                      new LinkedList<String>(newMembers));
+
+    groupDatabase.updateTitle(groupId, groupName);
+    groupDatabase.updateAvatar(groupId, avatar);
+
+
+    return handlePushOperation(groupId, groupName, avatar, memberE164Numbers);
+  }
+
+  private Pair<Long, Recipients> handlePushOperation(byte[] groupId, String groupName, byte[] avatar,
+                                                     List<String> e164numbers)
+      throws MmsException, InvalidNumberException
+  {
 
     try {
-      List<String> memberE164Numbers = getE164Numbers(members);
-      String       groupRecipientId  = GroupUtil.getEncodedId(groupId);
-
-      groupDatabase.create(groupId, TextSecurePreferences.getLocalNumber(this), groupName,
-                           memberE164Numbers, null, null);
-      groupDatabase.updateAvatar(groupId, avatar);
-
-      Recipients groupRecipient = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
+      String     groupRecipientId = GroupUtil.getEncodedId(groupId);
+      Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
 
       GroupContext context = GroupContext.newBuilder()
                                          .setId(ByteString.copyFrom(groupId))
-                                         .setType(GroupContext.Type.CREATE)
+                                         .setType(GroupContext.Type.UPDATE)
                                          .setName(groupName)
-                                         .addAllMembers(memberE164Numbers)
+                                         .addAllMembers(e164numbers)
                                          .build();
 
       OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
@@ -508,7 +483,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       throw new AssertionError(e);
     } catch (MmsException e) {
       Log.w(TAG, e);
-      groupDatabase.remove(groupId, TextSecurePreferences.getLocalNumber(this));
       throw new MmsException(e);
     }
   }
@@ -588,6 +562,30 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
   }
 
+  private class UpdateWhisperGroupAsyncTask extends AsyncTask<Void,Void,Pair<Long,Recipients>> {
+    private long RES_BAD_NUMBER = -2;
+    private long RES_MMS_EXCEPTION = -3;
+    @Override
+    protected Pair<Long, Recipients> doInBackground(Void... params) {
+      byte[] avatarBytes = null;
+      if (avatarBmp != null) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        avatarBytes = stream.toByteArray();
+      }
+      final String name = (groupName.getText() != null) ? groupName.getText().toString() : null;
+      try {
+        return handleUpdatePushGroup(groupId, name, avatarBytes, selectedContacts);
+      } catch (MmsException e) {
+        Log.w(TAG, e);
+        return new Pair<Long,Recipients>(RES_MMS_EXCEPTION, null);
+      } catch (InvalidNumberException e) {
+        Log.w(TAG, e);
+        return new Pair<Long,Recipients>(RES_BAD_NUMBER, null);
+      }
+    }
+  }
+
   private class CreateWhisperGroupAsyncTask extends AsyncTask<Void,Void,Pair<Long,Recipients>> {
     private long RES_BAD_NUMBER = -2;
     private long RES_MMS_EXCEPTION = -3;
@@ -664,8 +662,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
           existingContacts.addAll(recipientList);
         }
       }
-      final GroupDatabase.Reader groupReader = db.getGroup(groupId);
-      GroupDatabase.GroupRecord group = groupReader.getNext();
+      GroupDatabase.GroupRecord group = db.getGroup(groupId);
       if (group != null) {
         existingTitle = group.getTitle();
         final byte[] existingAvatar = group.getAvatar();

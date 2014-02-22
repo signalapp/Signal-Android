@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.sms;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.textsecure.push.PushMessageProtos;
 
 import java.io.IOException;
 
@@ -28,18 +27,12 @@ public class IncomingGroupMessage extends IncomingTextMessage {
     return true;
   }
 
-  public boolean isAdd() {
-    return
-        groupContext.getType().getNumber() == GroupContext.Type.ADD_VALUE ||
-        groupContext.getType().getNumber() == GroupContext.Type.CREATE_VALUE;
+  public boolean isUpdate() {
+    return groupContext.getType().getNumber() == GroupContext.Type.UPDATE_VALUE;
   }
 
   public boolean isQuit() {
     return groupContext.getType().getNumber() == GroupContext.Type.QUIT_VALUE;
-  }
-
-  public boolean isModify() {
-    return groupContext.getType().getNumber() == GroupContext.Type.MODIFY_VALUE;
   }
 
   public static IncomingGroupMessage createForQuit(String groupId, String user) throws IOException {

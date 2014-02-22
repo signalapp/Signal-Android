@@ -262,9 +262,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       type |= Types.ENCRYPTION_REMOTE_BIT;
     } else if (message.isGroup()) {
       type |= Types.SECURE_MESSAGE_BIT;
-      if      (((IncomingGroupMessage)message).isAdd())    type |= Types.GROUP_ADD_MEMBERS_BIT;
+      if      (((IncomingGroupMessage)message).isUpdate()) type |= Types.GROUP_UPDATE_BIT;
       else if (((IncomingGroupMessage)message).isQuit())   type |= Types.GROUP_QUIT_BIT;
-      else if (((IncomingGroupMessage)message).isModify()) type |= Types.GROUP_MODIFY_BIT;
     } else if (message.isEndSession()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.END_SESSION_BIT;

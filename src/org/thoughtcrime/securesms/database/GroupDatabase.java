@@ -66,12 +66,16 @@ public class GroupDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public Reader getGroup(byte[] groupId) {
+  public GroupRecord getGroup(byte[] groupId) {
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
                                                                new String[] {GroupUtil.getEncodedId(groupId)},
                                                                null, null, null);
 
-    return new Reader(cursor);
+    Reader      reader = new Reader(cursor);
+    GroupRecord record = reader.getNext();
+
+    reader.close();
+    return record;
   }
 
   public Recipients getGroupMembers(byte[] groupId) {
@@ -106,7 +110,6 @@ public class GroupDatabase extends Database {
         filteredMembers.add(member);
       }
     }
-
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
