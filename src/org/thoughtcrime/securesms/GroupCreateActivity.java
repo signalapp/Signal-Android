@@ -670,7 +670,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
           existingAvatarBmp = BitmapUtil.getCircleCroppedBitmap(
               BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length));
         }
-        return (group.getOwner() != null && group.getOwner().equals(TextSecurePreferences.getLocalNumber(GroupCreateActivity.this)));
+        return true;
       }
       return null;
     }

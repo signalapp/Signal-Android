@@ -642,7 +642,7 @@ public class DatabaseFactory {
       }
 
       if (oldVersion < INTRODUCED_GROUP_DATABASE_VERSION) {
-        db.execSQL("CREATE TABLE groups (_id INTEGER PRIMARY KEY, group_id TEXT, owner TEXT, title TEXT, members TEXT, avatar BLOB, avatar_id INTEGER, avatar_key BLOB, avatar_content_type TEXT, avatar_relay TEXT, timestamp INTEGER, active INTEGER DEFAULT 1);");
+        db.execSQL("CREATE TABLE groups (_id INTEGER PRIMARY KEY, group_id TEXT, title TEXT, members TEXT, avatar BLOB, avatar_id INTEGER, avatar_key BLOB, avatar_content_type TEXT, avatar_relay TEXT, timestamp INTEGER, active INTEGER DEFAULT 1);");
         db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON groups (GROUP_ID);");
         db.execSQL("ALTER TABLE push ADD COLUMN device_id INTEGER DEFAULT 1;");
         db.execSQL("ALTER TABLE sms ADD COLUMN address_device_id INTEGER DEFAULT 1;");

@@ -31,7 +31,6 @@ public class GroupDatabase extends Database {
   private static final String TABLE_NAME          = "groups";
   private static final String ID                  = "_id";
   private static final String GROUP_ID            = "group_id";
-  private static final String OWNER               = "owner";
   private static final String TITLE               = "title";
   private static final String MEMBERS             = "members";
   private static final String AVATAR              = "avatar";
@@ -46,7 +45,6 @@ public class GroupDatabase extends Database {
       "CREATE TABLE " + TABLE_NAME +
           " (" + ID + " INTEGER PRIMARY KEY, " +
           GROUP_ID + " TEXT, " +
-          OWNER + " TEXT, " +
           TITLE + " TEXT, " +
           MEMBERS + " TEXT, " +
           AVATAR + " BLOB, " +
@@ -112,7 +110,6 @@ public class GroupDatabase extends Database {
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
-    contentValues.put(OWNER, owner);
     contentValues.put(TITLE, title);
     contentValues.put(MEMBERS, Util.join(filteredMembers, ","));
 
@@ -129,7 +126,7 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
   }
 
-  public void update(byte[] groupId, String source, String title, AttachmentPointer avatar) {
+  public void update(byte[] groupId, String title, AttachmentPointer avatar) {
     ContentValues contentValues = new ContentValues();
     if (title != null)  contentValues.put(TITLE, title);
 
@@ -140,8 +137,8 @@ public class GroupDatabase extends Database {
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
-                                                GROUP_ID + " = ? AND " + OWNER + " = ?",
-                                                new String[] {GroupUtil.getEncodedId(groupId), source});
+                                                GROUP_ID + " = ?",
+                                                new String[] {GroupUtil.getEncodedId(groupId)});
   }
 
   public void updateTitle(byte[] groupId, String title) {
@@ -224,27 +221,6 @@ public class GroupDatabase extends Database {
     database.update(TABLE_NAME, values, GROUP_ID + " = ?", new String[] {GroupUtil.getEncodedId(id)});
   }
 
-  public String getOwner(byte[] id) {
-    Cursor cursor = null;
-
-    try {
-      SQLiteDatabase readableDatabase = databaseHelper.getReadableDatabase();
-      if (readableDatabase == null)
-        return null;
-
-      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {OWNER},
-                                                          GROUP_ID  + " = ?",
-                                                          new String[] {GroupUtil.getEncodedId(id)},
-                                                          null, null, null);
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getString(cursor.getColumnIndexOrThrow(OWNER));
-      }
-      return null;
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-  }
 
   public byte[] allocateGroupId() {
     try {
@@ -272,7 +248,6 @@ public class GroupDatabase extends Database {
 
       return new GroupRecord(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)),
                              cursor.getString(cursor.getColumnIndexOrThrow(TITLE)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(OWNER)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)),
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR)),
                              cursor.getLong(cursor.getColumnIndexOrThrow(AVATAR_ID)),
@@ -292,7 +267,6 @@ public class GroupDatabase extends Database {
 
     private final String       id;
     private final String       title;
-    private final String       owner;
     private final List<String> members;
     private final byte[]       avatar;
     private final long         avatarId;
@@ -301,13 +275,12 @@ public class GroupDatabase extends Database {
     private final String       relay;
     private final boolean      active;
 
-    public GroupRecord(String id, String title, String owner, String members, byte[] avatar,
+    public GroupRecord(String id, String title, String members, byte[] avatar,
                        long avatarId, byte[] avatarKey, String avatarContentType,
                        String relay, boolean active)
     {
       this.id                = id;
       this.title             = title;
-      this.owner             = owner;
       this.members           = Util.split(members, ",");
       this.avatar            = avatar;
       this.avatarId          = avatarId;
@@ -327,10 +300,6 @@ public class GroupDatabase extends Database {
 
     public String getTitle() {
       return title;
-    }
-
-    public String getOwner() {
-      return owner;
     }
 
     public List<String> getMembers() {

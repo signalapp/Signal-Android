@@ -284,7 +284,7 @@
     </string>
     <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
     <string name="SmsMessageRecord_secure_session_ended">Secure session ended.</string>
-    
+
     <!-- ThreadRecord -->
     <string name="ThreadRecord_left_the_group">Left the group...</string>
     <string name="TheadRecord_secure_session_ended">Secure session ended.</string>

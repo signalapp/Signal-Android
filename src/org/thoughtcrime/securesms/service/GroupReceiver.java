@@ -110,7 +110,7 @@ public class GroupReceiver {
     }
 
     if (group.hasName() || group.hasAvatar()) {
-      database.update(id, message.getSource(), group.getName(), group.getAvatar());
+      database.update(id, group.getName(), group.getAvatar());
     }
 
     if (group.hasName() && group.getName() != null && group.getName().equals(groupRecord.getTitle())) {
