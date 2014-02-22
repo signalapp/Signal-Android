@@ -53,13 +53,12 @@ public class ThreadRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody() {
-    // TODO jake is going to fill these in
     if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
     } else if (isGroupUpdate()) {
       return emphasisAdded(GroupUtil.getDescription(getBody().getBody()));
     } else if (isGroupQuit()) {
-      return emphasisAdded("Someone left the group.");
+      return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));
     } else if (isKeyExchange()) {
       return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {
@@ -69,8 +68,7 @@ public class ThreadRecord extends DisplayRecord {
     } else if (!getBody().isPlaintext()) {
       return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
     } else if (SmsDatabase.Types.isEndSessionType(type)) {
-      // TODO jake is going to fix this up
-      return emphasisAdded("Session closed!");
+      return emphasisAdded(context.getString(R.string.TheadRecord_secure_session_ended));
     } else {
       if (Util.isEmpty(getBody().getBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));
