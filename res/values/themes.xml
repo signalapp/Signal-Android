@@ -99,6 +99,7 @@
         <item name="menu_call_icon">@drawable/ic_menu_call_holo_dark</item>
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_dark</item>
         <item name="menu_lock_icon">@drawable/ic_menu_lock_holo_dark</item>
+        <item name="menu_lock_icon_small">@drawable/ic_menu_lock_small_holo_dark</item>
         <item name="menu_trash_icon">@drawable/ic_menu_trash_holo_dark</item>
         <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_dark</item>
         <item name="menu_split_icon">@drawable/ic_menu_split_holo_dark</item>
