@@ -17,7 +17,7 @@
                   android:layout_width="fill_parent"
                   android:layout_marginBottom="8dip"
                   android:layout_marginTop="16dip"
-                  android:text="@string/registration_activity__textsecure_can_use_the_data_channel_to_avoid_sms_charges_when_communicating_with_other_textsecure_users"/>
+                  android:text="@string/registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users"/>
 
         <TextView style="@style/Registration.Description"
                   android:layout_width="fill_parent"

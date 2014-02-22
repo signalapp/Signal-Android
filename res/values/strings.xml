@@ -488,8 +488,8 @@
     <string name="receive_key_activity__complete">Complete</string>
 
     <!-- registration_activity -->
-    <string name="registration_activity__textsecure_can_use_the_data_channel_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        TextSecure can use the data channel to avoid SMS charges when communicating with other
+    <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+        TextSecure can use instant messages to increase privacy and avoid SMS charges when communicating with other
         TextSecure users. To enable this feature, please verify your country code and phone number.
     </string>
     <string name="registration_activity__your_country">YOUR COUNTRY</string>
@@ -683,9 +683,9 @@
     <string name="preferences__language">Language</string>
     <string name="preferences__make_default_sms_app">Set as default SMS app</string>
     <string name="preferences__make_textsecure_the_default_sms_mms_app">Make TextSecure the default SMS/MMS application for your system.</string>
-    <string name="preferences__use_data_channel">Use data channel</string>
+    <string name="preferences__use_data_channel">Push messages</string>
     <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-        Use the data channel for communication with other TextSecure users
+        Increase privacy and avoid SMS fees by using the data channel for communication with other TextSecure users
     </string>
     <string name="preferences__allow_sms_fallback">Allow SMS Fallback</string>
     <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
