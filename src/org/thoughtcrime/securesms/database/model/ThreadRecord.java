@@ -59,7 +59,7 @@ public class ThreadRecord extends DisplayRecord {
     } else if (isGroupUpdate()) {
       return emphasisAdded(GroupUtil.getDescription(getBody().getBody()));
     } else if (isGroupQuit()) {
-      return emphasisAdded(getRecipients().toShortString() + " left the group.");
+      return emphasisAdded("Someone left the group.");
     } else if (isKeyExchange()) {
       return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {

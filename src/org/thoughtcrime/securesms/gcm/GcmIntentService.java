@@ -61,6 +61,11 @@ public class GcmIntentService extends GCMBaseIntentService {
       if (Util.isEmpty(data))
         return;
 
+      if (!TextSecurePreferences.isPushRegistered(context)) {
+        Log.w("GcmIntentService", "Not push registered!");
+        return;
+      }
+
       String                       sessionKey       = TextSecurePreferences.getSignalingKey(context);
       IncomingEncryptedPushMessage encryptedMessage = new IncomingEncryptedPushMessage(data, sessionKey);
       IncomingPushMessage          message          = encryptedMessage.getIncomingPushMessage();

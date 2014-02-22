@@ -54,6 +54,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
@@ -65,11 +66,13 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.MmsSendHelper;
+import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -92,14 +95,19 @@ import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -107,6 +115,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ws.com.google.android.mms.MmsException;
+
+import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -190,6 +201,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     initializeSecurity();
     initializeTitleBar();
+    initializeEnabledCheck();
     initializeMmsEnabledCheck();
     initializeIme();
     calculateCharactersRemaining();
@@ -275,7 +287,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
         }
-      } else {
+      } else if (isActiveGroup()) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
     }
@@ -305,17 +317,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
 
     return false;
-  }
-
-  private void handleLeavePushGroup() {
-    Toast.makeText(getApplicationContext(), "not yet implemented", Toast.LENGTH_SHORT).show();
-  }
-
-  private void handleEditPushGroup() {
-    Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
-    intent.putExtra(GroupCreateActivity.MASTER_SECRET_EXTRA, masterSecret);
-    intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients);
-    startActivityForResult(intent, GROUP_EDIT);
   }
 
   @Override
@@ -425,6 +426,57 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     builder.show();
   }
 
+  private void handleLeavePushGroup() {
+    if (getRecipients() == null) {
+      Toast.makeText(this, getString(R.string.ConversationActivity_invalid_recipient),
+                     Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(getString(R.string.ConversationActivity_leave_group));
+    builder.setIcon(android.R.drawable.ic_dialog_info);
+    builder.setCancelable(true);
+    builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
+    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        try {
+          Context self    = ConversationActivity.this;
+          byte[]  groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
+          DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
+
+          GroupContext context = GroupContext.newBuilder()
+                                             .setId(ByteString.copyFrom(groupId))
+                                             .setType(GroupContext.Type.QUIT)
+                                             .build();
+
+          OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, getRecipients(),
+                                                                                    context, null);
+          MessageSender.send(self, masterSecret, outgoingMessage, threadId);
+          initializeEnabledCheck();
+        } catch (IOException e) {
+          Log.w(TAG, e);
+          Toast.makeText(ConversationActivity.this, "Error leaving group....", Toast.LENGTH_LONG);
+        } catch (MmsException e) {
+          Log.w(TAG, e);
+          Toast.makeText(ConversationActivity.this, "Error leaving group...", Toast.LENGTH_LONG);
+        }
+      }
+    });
+
+    builder.setNegativeButton(R.string.no, null);
+    builder.show();
+  }
+
+  private void handleEditPushGroup() {
+    Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
+    intent.putExtra(GroupCreateActivity.MASTER_SECRET_EXTRA, masterSecret);
+    intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients);
+    startActivityForResult(intent, GROUP_EDIT);
+  }
+
+
   private void handleDistributionBroadcastEnabled(MenuItem item) {
     distributionType = ThreadDatabase.DistributionTypes.BROADCAST;
     item.setChecked(true);
@@ -502,7 +554,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void handleAddAttachment() {
-    if (this.isMmsEnabled) {
+    if (this.isMmsEnabled || isPushDestination()) {
       AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.TextSecure_Light_Dialog));
       builder.setIcon(R.drawable.ic_dialog_attach);
       builder.setTitle(R.string.ConversationActivity_add_attachment);
@@ -575,6 +627,12 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     if (draftText == null && draftImage == null && draftAudio == null) {
       initializeDraftFromDatabase();
     }
+  }
+
+  private void initializeEnabledCheck() {
+    boolean enabled = !(isGroupConversation() && !isActiveGroup());
+    composeText.setEnabled(enabled);
+    sendButton.setEnabled(enabled);
   }
 
   private void initializeDraftFromDatabase() {
@@ -882,6 +940,20 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     return getRecipients() != null && getRecipients().isSingleRecipient() && !getRecipients().isGroupRecipient();
   }
 
+  private boolean isActiveGroup() {
+    if (!isGroupConversation()) return false;
+
+    try {
+      byte[]      groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
+      GroupRecord record  = DatabaseFactory.getGroupDatabase(this).getGroup(groupId);
+
+      return record.isActive();
+    } catch (IOException e) {
+      Log.w("ConversationActivity", e);
+      return false;
+    }
+  }
+
   private boolean isGroupConversation() {
     return getRecipients() != null &&
         (!getRecipients().isSingleRecipient() || getRecipients().isGroupRecipient());
@@ -889,6 +961,27 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private boolean isPushGroupConversation() {
     return getRecipients().isGroupRecipient();
+  }
+
+  private boolean isPushDestination() {
+    try {
+      if (!TextSecurePreferences.isPushRegistered(this))
+        return false;
+
+      if (isPushGroupConversation())
+        return true;
+
+      String number     = getRecipients().getPrimaryRecipient().getNumber();
+      String e164number = org.thoughtcrime.securesms.util.Util.canonicalizeNumber(this, number);
+
+      return Directory.getInstance(this).isActiveNumber(e164number);
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+      return false;
+    } catch (NotInDirectoryException e) {
+      Log.w(TAG, e);
+      return false;
+    }
   }
 
   private Recipients getRecipients() {

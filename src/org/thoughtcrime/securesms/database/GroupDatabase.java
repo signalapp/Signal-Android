@@ -16,14 +16,11 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,6 +40,7 @@ public class GroupDatabase extends Database {
   private static final String AVATAR_CONTENT_TYPE = "avatar_content_type";
   private static final String AVATAR_RELAY        = "avatar_relay";
   private static final String TIMESTAMP           = "timestamp";
+  private static final String ACTIVE              = "active";
 
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
@@ -56,7 +54,8 @@ public class GroupDatabase extends Database {
           AVATAR_KEY + " BLOB, " +
           AVATAR_CONTENT_TYPE + " TEXT, " +
           AVATAR_RELAY + " TEXT, " +
-          TIMESTAMP + " INTEGER);";
+          TIMESTAMP + " INTEGER, " +
+          ACTIVE + " INTEGER DEFAULT 1);";
 
   public static final String[] CREATE_INDEXS = {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
@@ -125,6 +124,7 @@ public class GroupDatabase extends Database {
 
     contentValues.put(AVATAR_RELAY, relay);
     contentValues.put(TIMESTAMP, System.currentTimeMillis());
+    contentValues.put(ACTIVE, 1);
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
   }
@@ -173,6 +173,7 @@ public class GroupDatabase extends Database {
 
         ContentValues contents = new ContentValues();
         contents.put(MEMBERS, Util.join(concatenatedMembers, ","));
+        contents.put(ACTIVE, 1);
 
         databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                     new String[] {GroupUtil.getEncodedId(id)});
@@ -209,6 +210,18 @@ public class GroupDatabase extends Database {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public boolean isActive(byte[] id) {
+    GroupRecord record = getGroup(id);
+    return record != null && record.isActive();
+  }
+
+  public void setActive(byte[] id, boolean active) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    ContentValues  values   = new ContentValues();
+    values.put(ACTIVE, active ? 1 : 0);
+    database.update(TABLE_NAME, values, GROUP_ID + " = ?", new String[] {GroupUtil.getEncodedId(id)});
   }
 
   public String getOwner(byte[] id) {
@@ -265,7 +278,8 @@ public class GroupDatabase extends Database {
                              cursor.getLong(cursor.getColumnIndexOrThrow(AVATAR_ID)),
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_KEY)),
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_CONTENT_TYPE)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_RELAY)));
+                             cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_RELAY)),
+                             cursor.getInt(cursor.getColumnIndexOrThrow(ACTIVE)) == 1);
     }
 
     public void close() {
@@ -285,10 +299,11 @@ public class GroupDatabase extends Database {
     private final byte[]       avatarKey;
     private final String       avatarContentType;
     private final String       relay;
+    private final boolean      active;
 
     public GroupRecord(String id, String title, String owner, String members, byte[] avatar,
                        long avatarId, byte[] avatarKey, String avatarContentType,
-                       String relay)
+                       String relay, boolean active)
     {
       this.id                = id;
       this.title             = title;
@@ -299,6 +314,7 @@ public class GroupDatabase extends Database {
       this.avatarKey         = avatarKey;
       this.avatarContentType = avatarContentType;
       this.relay             = relay;
+      this.active            = active;
     }
 
     public byte[] getId() {
@@ -339,6 +355,10 @@ public class GroupDatabase extends Database {
 
     public String getRelay() {
       return relay;
+    }
+
+    public boolean isActive() {
+      return active;
     }
   }
 }

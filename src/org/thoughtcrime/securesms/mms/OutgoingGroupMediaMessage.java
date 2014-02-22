@@ -24,12 +24,14 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 
     this.group = group;
 
-    PduPart part = new PduPart();
-    part.setData(avatar);
-    part.setContentType(ContentType.IMAGE_PNG.getBytes());
-    part.setContentId((System.currentTimeMillis()+"").getBytes());
-    part.setName(("Image" + System.currentTimeMillis()).getBytes());
-    body.addPart(part);
+    if (avatar != null) {
+      PduPart part = new PduPart();
+      part.setData(avatar);
+      part.setContentType(ContentType.IMAGE_PNG.getBytes());
+      part.setContentId((System.currentTimeMillis()+"").getBytes());
+      part.setName(("Image" + System.currentTimeMillis()).getBytes());
+      body.addPart(part);
+    }
   }
 
   @Override

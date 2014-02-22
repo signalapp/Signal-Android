@@ -41,9 +41,9 @@ public class GroupUtil {
 
     try {
       String       description = "";
-      GroupContext context = GroupContext.parseFrom(Base64.decode(encodedGroup));
-      List<String> members = context.getMembersList();
-      String       title   = context.getName();
+      GroupContext context     = GroupContext.parseFrom(Base64.decode(encodedGroup));
+      List<String> members     = context.getMembersList();
+      String       title       = context.getName();
 
       if (!members.isEmpty()) {
         description += org.whispersystems.textsecure.util.Util.join(members, ", ") + " joined the group.";

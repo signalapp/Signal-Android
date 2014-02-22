@@ -33,6 +33,7 @@ public class PushDatabase extends Database {
     ContentValues values = new ContentValues();
     values.put(TYPE, message.getType());
     values.put(SOURCE, message.getSource());
+    values.put(DEVICE_ID, message.getSourceDevice());
     values.put(BODY, Base64.encodeBytes(message.getBody()));
     values.put(TIMESTAMP, message.getTimestampMillis());
 

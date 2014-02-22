@@ -86,6 +86,8 @@ public abstract class MessageRecord extends DisplayRecord {
   public SpannableString getDisplayBody() {
     if (isGroupUpdate()) {
       return emphasisAdded(GroupUtil.getDescription(getBody().getBody()));
+    } else if (isGroupQuit() && isOutgoing()) {
+      return emphasisAdded("You have left the group.");
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
     }
