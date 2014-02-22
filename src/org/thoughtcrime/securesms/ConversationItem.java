@@ -21,13 +21,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -36,20 +30,21 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
-import org.thoughtcrime.securesms.util.DateUtils;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -59,7 +54,9 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
@@ -79,6 +76,7 @@ import java.io.OutputStream;
 
 public class ConversationItem extends LinearLayout {
 
+  private static final String SPACE = " ";
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
   private MasterSecret  masterSecret;
@@ -175,8 +173,29 @@ public class ConversationItem extends LinearLayout {
   /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
-    bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
-        TextView.BufferType.SPANNABLE);
+      SpannableString displayBody = prependSenderNameToDisplayBody(messageRecord);
+      bodyText.setText(Emoji.getInstance(context).emojify(displayBody, Emoji.EMOJI_LARGE),
+              TextView.BufferType.SPANNABLE);
+  }
+
+  private SpannableString prependSenderNameToDisplayBody(MessageRecord messageRecord) {
+      String name = "";
+      if(messageRecord.isOutgoing()){
+         name =  context.getString(R.string.ConversationItem_label_me);
+      }
+      else{
+         name = messageRecord.getIndividualRecipient().getName() == null ?
+                messageRecord.getIndividualRecipient().getNumber() : messageRecord.getIndividualRecipient().getName();
+      }
+
+      SpannableString displayBody = new SpannableString(name +
+              context.getString(R.string.grammar_colon) +
+              SPACE +
+              messageRecord.getDisplayBody());
+
+      displayBody.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, name.length() + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+      return displayBody;
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
