@@ -367,6 +367,13 @@ public class ContactAccessor {
       this.numbers = new LinkedList<NumberData>();
     }
 
+    public ContactData(long id, String name, List<NumberData> numbers) {
+      this.id      = id;
+      this.name    = name;
+      this.numbers = numbers;
+    }
+
+
     public ContactData(Parcel in) {
       id      = in.readLong();
       name    = in.readString();

@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
 
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -93,8 +94,8 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ContactSelectionlistFragment_select_for + " " + contactData.name);
-    builder.setMultiChoiceItems(options, null, new DiscriminatorClickedListener(contactData));
-    builder.setPositiveButton(android.R.string.ok, new DiscriminatorFinishedListener(contactData, textView));
+    builder.setSingleChoiceItems(options, -1, new DiscriminatorClickedListener(contactData));
+    //builder.setPositiveButton(android.R.string.ok, new DiscriminatorFinishedListener(contactData, textView));
     builder.setOnCancelListener(new DiscriminatorFinishedListener(contactData, textView));
     builder.show();
   }
@@ -212,47 +213,26 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
     }
 
     public void onClick(DialogInterface dialog, int which) {
-      ContactData selected = selectedContacts.get(contactData.id);
-
-      if (selected.numbers.size() == 0) {
-        selectedContacts.remove(selected.id);
-      }
-
-      if (textView == null)
-        ((CursorAdapter) getListView().getAdapter()).notifyDataSetChanged();
+      // ignore
     }
 
     public void onCancel(DialogInterface dialog) {
-      onClick(dialog, 0);
+      dialog.dismiss();
     }
   }
 
-  private class DiscriminatorClickedListener implements DialogInterface.OnMultiChoiceClickListener {
+  private class DiscriminatorClickedListener implements DialogInterface.OnClickListener {
     private final ContactData contactData;
 
     public DiscriminatorClickedListener(ContactData contactData) {
       this.contactData = contactData;
     }
 
-    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-      Log.w(TAG, "Got checked: " + isChecked);
-
-      ContactData existing = selectedContacts.get(contactData.id);
-
-      if (existing == null) {
-        Log.w(TAG, "No existing contact data, creating...");
-
-        if (!isChecked)
-          throw new AssertionError("We shouldn't be unchecking data that doesn't exist.");
-
-        existing = new ContactData(contactData.id, contactData.name);
-        selectedContacts.put(existing.id, existing);
-      }
-
-      NumberData selectedData = contactData.numbers.get(which);
-
-      if (!isChecked) existing.numbers.remove(selectedData);
-      else existing.numbers.add(selectedData);
+    public void onClick(DialogInterface dialog, int which) {
+      ContactData singlePhoneContact = new ContactData(contactData.id,
+                                                       contactData.name,
+                                                       Collections.singletonList(contactData.numbers.get(which)));
+      addSingleNumberContact(singlePhoneContact);
     }
   }
 
