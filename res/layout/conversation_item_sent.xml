@@ -170,7 +170,7 @@
 
         </LinearLayout>
 
-        <View
+        <View android:id="@+id/triangle_tick"
             android:background="?conversation_item_sent_triangle_background"
             android:layout_width="12dp"
             android:layout_height="15dp"

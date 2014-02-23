@@ -21,6 +21,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
@@ -72,6 +73,7 @@ import java.io.OutputStream;
  */
 
 public class ConversationItem extends LinearLayout {
+  private final static String TAG = ConversationItem.class.getSimpleName();
 
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
@@ -171,19 +173,37 @@ public class ConversationItem extends LinearLayout {
     this.failedIconHandler = failedIconHandler;
   }
 
+  public static void setViewBackgroundWithoutResettingPadding(final View v, final int backgroundResId) {
+    final int paddingBottom = v.getPaddingBottom();
+    final int paddingLeft   = v.getPaddingLeft();
+    final int paddingRight  = v.getPaddingRight();
+    final int paddingTop    = v.getPaddingTop();
+    v.setBackgroundResource(backgroundResId);
+    v.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+  }
+
   /// MessageRecord Attribute Parsers
 
   private void setBodyText(MessageRecord messageRecord) {
-    // TODO jake is going to fix this up
-    if (messageRecord.isPush() && messageRecord.isOutgoing()) {
-      bodyText.setText("PUSH   "  + messageRecord.getDisplayBody());
-      return;
-    }
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
       bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
                        TextView.BufferType.SPANNABLE);
     } else {
+      if (messageRecord.isPush() && messageRecord.isOutgoing()) {
+        LinearLayout conversationParent = (LinearLayout)findViewById(R.id.conversation_item_parent);
+        if (conversationParent != null) {
+          int        attributes[] = new int[]{R.attr.conversation_item_sent_push_background,
+              R.attr.conversation_item_sent_push_triangle_background};
+          TypedArray drawables  = context.obtainStyledAttributes(attributes);
+
+          if (drawables != null) {
+            setViewBackgroundWithoutResettingPadding(conversationParent, drawables.getResourceId(0, -1));
+            setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), drawables.getResourceId(1, -1));
+            drawables.recycle();
+          }
+        }
+      }
       bodyText.setText(messageRecord.getDisplayBody());
     }
   }

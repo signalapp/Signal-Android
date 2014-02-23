@@ -33,6 +33,8 @@
     <attr name="conversation_item_received_triangle_background" format="reference" />
     <attr name="conversation_item_sent_background" format="reference" />
     <attr name="conversation_item_sent_triangle_background" format="reference" />
+    <attr name="conversation_item_sent_push_background" format="reference" />
+    <attr name="conversation_item_sent_push_triangle_background" format="reference" />
 
     <attr name="navigation_drawer_background" format="reference|color"/>
     <attr name="navigation_drawer_text_color" format="color"/>

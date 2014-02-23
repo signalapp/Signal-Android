@@ -32,6 +32,8 @@
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape</item>
         <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape</item>
         <item name="conversation_item_sent_triangle_background">@drawable/conversation_item_sent_triangle_shape</item>
+        <item name="conversation_item_sent_push_background">@drawable/conversation_item_sent_push_shape</item>
+        <item name="conversation_item_sent_push_triangle_background">@drawable/conversation_item_sent_push_triangle_shape</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_light</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_light</item>
@@ -79,6 +81,8 @@
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape_dark</item>
         <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape_dark</item>
         <item name="conversation_item_sent_triangle_background">@drawable/conversation_item_sent_triangle_shape_dark</item>
+        <item name="conversation_item_sent_push_background">@drawable/conversation_item_sent_push_shape_dark</item>
+        <item name="conversation_item_sent_push_triangle_background">@drawable/conversation_item_sent_push_triangle_shape_dark</item>
 
         <item name="actionbar_icon">@drawable/actionbar_icon_holo_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
