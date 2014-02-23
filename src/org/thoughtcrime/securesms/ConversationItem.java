@@ -21,13 +21,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -36,20 +30,18 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
-import org.thoughtcrime.securesms.util.DateUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -59,7 +51,9 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
@@ -204,7 +198,7 @@ public class ConversationItem extends LinearLayout {
           messageRecord.getDateSent() :
           messageRecord.getDateReceived());
 
-      dateText.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp));
+      dateText.setText(DateUtils.getPreferenceBasedTimeDateString(getContext(), timestamp));
     }
   }
 

@@ -42,6 +42,11 @@ public class TextSecurePreferences {
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
+  private static final String RETAIN_MESSAGE_TIME_PREF         = "pref_retain_message_time";
+
+  public static boolean isRetainMessageTime(Context context) {
+    return getBooleanPreference(context, RETAIN_MESSAGE_TIME_PREF, false);
+  }
 
   public static boolean isInThreadNotifications(Context context) {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);

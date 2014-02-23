@@ -107,7 +107,7 @@ public class ConversationListItem extends RelativeLayout
                                                                 TextView.BufferType.SPANNABLE);
 
     if (thread.getDate() > 0)
-      this.dateView.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), thread.getDate()));
+      this.dateView.setText(DateUtils.getSmartTimeSpanString(getContext(), thread.getDate()));
 
     setBackground(read, batchMode);
     setContactPhoto(this.recipients.getPrimaryRecipient());

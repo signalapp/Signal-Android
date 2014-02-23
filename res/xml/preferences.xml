@@ -123,9 +123,14 @@
 
   <PreferenceCategory android:title="@string/preferences__display_settings" android:key="pref_display_category">
 
-    <Preference         android:key="pref_choose_identity"
-                          android:title="@string/preferences__choose_identity"
-                           android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
+    <Preference android:key="pref_choose_identity"
+                android:title="@string/preferences__choose_identity"
+                android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
+
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_retain_message_time"
+                        android:summary="@string/preferences__display_time_on_older_messages"
+                        android:title="@string/preferences__retain_message_time" />
 
   </PreferenceCategory>
 
