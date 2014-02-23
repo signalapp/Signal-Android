@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -32,9 +33,11 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Panel component combining both an editable field with a button for
@@ -79,12 +82,23 @@ public class RecipientsPanel extends RelativeLayout {
   }
 
   public void addRecipients(Recipients recipients) {
+    Set<Recipient> panelRecipients;
+
+    try {
+      panelRecipients = new HashSet<Recipient>(getRecipients().getRecipientsList());
+    } catch (RecipientFormattingException e) {
+      Log.w("RecipientsPanel", e);
+      panelRecipients = new HashSet<Recipient>();
+    }
+
     List<Recipient> recipientList = recipients.getRecipientsList();
     Iterator<Recipient> iterator  = recipientList.iterator();
 
     while (iterator.hasNext()) {
       Recipient recipient = iterator.next();
-      addRecipient(recipient.getName(), recipient.getNumber());
+      if (!panelRecipients.contains(recipient)) {
+        addRecipient(recipient.getName(), recipient.getNumber());
+      }
     }
   }
 
