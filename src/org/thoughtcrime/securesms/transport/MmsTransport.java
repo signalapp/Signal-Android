@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
@@ -62,6 +63,12 @@ public class MmsTransport {
   }
 
   public MmsSendResult deliver(SendReq message) throws UndeliverableMessageException {
+    if (TextSecurePreferences.isPushRegistered(context) &&
+        !TextSecurePreferences.isSmsFallbackEnabled(context))
+    {
+      throw new UndeliverableMessageException("MMS Transport is not enabled!");
+    }
+
     try {
       if (isCdmaDevice()) {
         Log.w("MmsTransport", "Sending MMS directly without radio change...");
