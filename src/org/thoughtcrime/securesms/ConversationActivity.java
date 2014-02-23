@@ -630,7 +630,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeEnabledCheck() {
-    boolean enabled = !(isGroupConversation() && !isActiveGroup());
+    boolean enabled = !(isPushGroupConversation() && !isActiveGroup());
     composeText.setEnabled(enabled);
     sendButton.setEnabled(enabled);
   }
