@@ -142,6 +142,8 @@ public class PushServiceSocket {
       return response.getKeys();
     } catch (JsonParseException e) {
       throw new IOException(e);
+    } catch (NotFoundException nfe) {
+      throw new UnregisteredUserException(destination.getNumber(), nfe);
     }
   }
 
@@ -163,6 +165,8 @@ public class PushServiceSocket {
       return response.getKeys().get(0);
     } catch (JsonParseException e) {
       throw new IOException(e);
+    } catch (NotFoundException nfe) {
+      throw new UnregisteredUserException(destination.getNumber(), nfe);
     }
   }
 

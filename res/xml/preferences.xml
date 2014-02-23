@@ -173,5 +173,9 @@
 
         <Preference android:key="pref_mms_preferences"
                     android:title="@string/preferences__advanced_mms_access_point_names"/>
+
+        <Preference android:key="pref_update_directory"
+                    android:title="@string/preferences__refresh_push_directory"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

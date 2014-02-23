@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -82,7 +83,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
   private static final String MMS_PREF              = "pref_mms_preferences";
   private static final String KITKAT_DEFAULT_PREF   = "pref_set_default";
-
+  private static final String UPDATE_DIRECTORY_PREF = "pref_update_directory";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -119,6 +120,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
       .setOnPreferenceChangeListener(new RingtoneSummaryListener());
+    this.findPreference(UPDATE_DIRECTORY_PREF)
+        .setOnPreferenceClickListener(new DirectoryUpdateListener());
 
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
@@ -524,6 +527,46 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           preference.setSummary(tone.getTitle(ApplicationPreferencesActivity.this));
         }
       }
+
+      return true;
+    }
+  }
+
+  private class DirectoryUpdateListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      final Context context = ApplicationPreferencesActivity.this;
+
+      if (!TextSecurePreferences.isPushRegistered(context)) {
+        Toast.makeText(context,
+                       getString(R.string.ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service),
+                       Toast.LENGTH_LONG).show();
+        return true;
+      }
+
+      new AsyncTask<Void, Void, Void>() {
+        private ProgressDialog progress;
+
+        @Override
+        protected void onPreExecute() {
+          progress = ProgressDialog.show(context,
+                                         getString(R.string.ApplicationPreferencesActivity_updating_directory),
+                                         getString(R.string.ApplicationPreferencesActivity_updating_push_directory),
+                                         true);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+          DirectoryHelper.refreshDirectory(context);
+          return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+          if (progress != null)
+            progress.dismiss();
+        }
+      }.execute();
 
       return true;
     }

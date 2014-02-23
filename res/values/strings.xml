@@ -24,6 +24,9 @@
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering...</string>
     <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Unregistering for data based communication</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
+    <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
+    <string name="ApplicationPreferencesActivity_updating_directory">Updating directory</string>
+    <string name="ApplicationPreferencesActivity_updating_push_directory">Updating push directory...</string>
 
     <!-- AttachmentTypeSelectorAdapter -->
 
@@ -689,7 +692,8 @@
     </string>
     <string name="preferences__allow_sms_fallback">Allow SMS Fallback</string>
     <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
-                                    
+    <string name="preferences__refresh_push_directory">Refresh Push Directory</string>
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->
