@@ -534,8 +534,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
     @Override
     protected Long doInBackground(Void... voids) {
-      handleCreateMmsGroup(selectedContacts);
-      return null;
+      return handleCreateMmsGroup(selectedContacts);
     }
 
     @Override
