@@ -100,7 +100,7 @@ public class UniversalTransport {
       throws UndeliverableMessageException, RetryLaterException, UntrustedIdentityException
   {
     if (Util.isEmpty(mediaMessage.getTo())) {
-      throw new UndeliverableMessageException("No destination specified");
+      return mmsTransport.deliver(mediaMessage);
     }
 
     if (GroupUtil.isEncodedGroup(mediaMessage.getTo()[0].getString())) {
