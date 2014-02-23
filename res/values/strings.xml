@@ -431,7 +431,7 @@
     <string name="country_selection_fragment__search">Search</string>
 
     <!-- create_passphrase_activity -->
-    <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Please choose a passphrase that will be used to locally encrypt your data.\n\nThis should be a strong passphrase.</string>
+    <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Please choose a passphrase if you would like to locally encrypt your data.</string>
     <string name="create_passphrase_activity__passphrase">PASSPHRASE:</string>
     <string name="create_passphrase_activity__repeat">REPEAT:</string>
     <string name="create_passphrase_activity__continue">Continue</string>
