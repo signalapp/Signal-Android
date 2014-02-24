@@ -103,7 +103,6 @@ import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
@@ -226,7 +225,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   @Override
   public void onActivityResult(int reqCode, int resultCode, Intent data) {
-    Log.w("ComposeMessageActivity", "onActivityResult called: " + resultCode + " , " + data);
+    Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
     if (data == null || resultCode != RESULT_OK) return;
@@ -249,7 +248,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       addContactInfo(data.getData());
       break;
     case GROUP_EDIT:
-      this.recipients = RecipientFactory.getRecipientsForIds(this, String.valueOf(getRecipients().getPrimaryRecipient().getRecipientId()), false);
+      this.recipients = data.getParcelableExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA);
       initializeTitleBar();
       break;
     }
@@ -947,7 +946,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       byte[]      groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
       GroupRecord record  = DatabaseFactory.getGroupDatabase(this).getGroup(groupId);
 
-      return record.isActive();
+      return record != null && record.isActive();
     } catch (IOException e) {
       Log.w("ConversationActivity", e);
       return false;

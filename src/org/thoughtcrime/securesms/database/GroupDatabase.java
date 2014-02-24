@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -27,6 +28,7 @@ import java.util.List;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 
 public class GroupDatabase extends Database {
+  private static final String TAG = GroupDatabase.class.getSimpleName();
 
   private static final String TABLE_NAME          = "groups";
   private static final String ID                  = "_id";
@@ -128,7 +130,7 @@ public class GroupDatabase extends Database {
 
   public void update(byte[] groupId, String title, AttachmentPointer avatar) {
     ContentValues contentValues = new ContentValues();
-    if (title != null)  contentValues.put(TITLE, title);
+    if (title != null) contentValues.put(TITLE, title);
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
@@ -139,6 +141,8 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
+
+    if (title != null) updateGroupRecipientTitle(groupId, title);
   }
 
   public void updateTitle(byte[] groupId, String title) {
@@ -146,13 +150,21 @@ public class GroupDatabase extends Database {
     contentValues.put(TITLE, title);
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
+
+    if (title != null) updateGroupRecipientTitle(groupId, title);
   }
 
   public void updateAvatar(byte[] groupId, Bitmap avatar) {
-    updateAvatar(groupId, BitmapUtil.toByteArray(avatar));
+    updateAvatarInDatabase(groupId, BitmapUtil.toByteArray(avatar));
+    updateGroupRecipientAvatar(groupId, avatar);
   }
 
   public void updateAvatar(byte[] groupId, byte[] avatar) {
+    updateAvatarInDatabase(groupId, avatar);
+    updateGroupRecipientAvatar(groupId, BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
+  }
+
+  private void updateAvatarInDatabase(byte[] groupId, byte[] avatar) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(AVATAR, avatar);
 
@@ -330,4 +342,28 @@ public class GroupDatabase extends Database {
       return active;
     }
   }
+
+  private Recipient getGroupRecipient(byte[] groupId) {
+    try {
+      return RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
+                             .getPrimaryRecipient();
+    } catch (RecipientFormattingException e) {
+      Log.w(TAG, e);
+      return null;
+    }
+  }
+
+  private void updateGroupRecipientTitle(byte[] groupId, String title) {
+    Recipient groupRecipient = getGroupRecipient(groupId);
+    Log.i(TAG, "updating group recipient title for recipient " + System.identityHashCode(groupRecipient));
+    if (groupRecipient != null) groupRecipient.setName(title);
+    else                        Log.w(TAG, "Couldn't update group title because recipient couldn't be found.");
+  }
+
+  private void updateGroupRecipientAvatar(byte[] groupId, Bitmap photo) {
+    Recipient groupRecipient = getGroupRecipient(groupId);
+    if (groupRecipient != null) groupRecipient.setContactPhoto(photo);
+    else                        Log.w(TAG, "Couldn't update group title because recipient couldn't be found.");
+  }
+
 }

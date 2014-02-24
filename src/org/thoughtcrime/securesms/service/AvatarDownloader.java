@@ -61,7 +61,6 @@ public class AvatarDownloader {
           Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
                                                      .getPrimaryRecipient();
           groupRecipient.setContactPhoto(avatar);
-          groupRecipient.notifyListeners();
         } catch (RecipientFormattingException e) {
           Log.w("AvatarDownloader", e);
         }

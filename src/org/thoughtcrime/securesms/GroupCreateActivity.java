@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.RecipientProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -581,6 +580,26 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       } catch (InvalidNumberException e) {
         Log.w(TAG, e);
         return new Pair<Long,Recipients>(RES_BAD_NUMBER, null);
+      }
+    }
+
+    @Override
+    protected void onPostExecute(Pair<Long, Recipients> groupInfo) {
+      final long threadId = groupInfo.first;
+      final Recipients recipients = groupInfo.second;
+      if (threadId > -1) {
+        Intent intent = getIntent();
+        intent.putExtra(GROUP_THREAD_EXTRA, threadId);
+        intent.putExtra(GROUP_RECIPIENT_EXTRA, recipients);
+        setResult(RESULT_OK, intent);
+        finish();
+      } else if (threadId == RES_BAD_NUMBER) {
+        Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_invalid_number, Toast.LENGTH_LONG).show();
+        disableWhisperGroupCreatingUi();
+      } else if (threadId == RES_MMS_EXCEPTION) {
+        Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_mms_exception, Toast.LENGTH_LONG).show();
+        setResult(RESULT_CANCELED);
+        finish();
       }
     }
   }
