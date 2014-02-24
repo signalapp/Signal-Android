@@ -338,7 +338,7 @@ public class SessionRecordV2 extends Record {
       return null;
     }
 
-    List<Chain.MessageKey>     messageKeyList     = chain.getMessageKeysList();
+    List<Chain.MessageKey>     messageKeyList     = new LinkedList<Chain.MessageKey>(chain.getMessageKeysList());
     Iterator<Chain.MessageKey> messageKeyIterator = messageKeyList.iterator();
     MessageKeys                result             = null;
 
