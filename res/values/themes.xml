@@ -19,6 +19,11 @@
         <item name="conversation_received_text_primary_color">#ff111111</item>
         <item name="conversation_received_text_secondary_color">#33000000</item>
 
+        <item name="contact_selection_push_user">#ff000000</item>
+        <item name="contact_selection_lay_user">#a0000000</item>
+        <item name="contact_selection_push_label">#ff64a926</item>
+        <item name="contact_selection_lay_label">#99000000</item>
+
         <item name="conversation_background">#ffdddddd</item>
         <item name="conversation_editor_background">#eeeeee</item>
         <item name="conversation_editor_text_color">@color/edit_text_light_theme</item>
@@ -76,6 +81,11 @@
         <item name="conversation_sent_text_secondary_color">#44eeeeee</item>
         <item name="conversation_received_text_primary_color">#ffeeeeee</item>
         <item name="conversation_received_text_secondary_color">#44eeeeee</item>
+
+        <item name="contact_selection_push_user">#ffdddddd</item>
+        <item name="contact_selection_lay_user">#ffcccccc</item>
+        <item name="contact_selection_push_label">#ff64a926</item>
+        <item name="contact_selection_lay_label">#11ffffff</item>
 
         <item name="conversation_item_received_background">@drawable/conversation_item_received_shape_dark</item>
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape_dark</item>

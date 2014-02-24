@@ -36,6 +36,11 @@
     <attr name="conversation_item_sent_push_background" format="reference" />
     <attr name="conversation_item_sent_push_triangle_background" format="reference" />
 
+    <attr name="contact_selection_push_user" format="reference|color" />
+    <attr name="contact_selection_lay_user" format="reference|color" />
+    <attr name="contact_selection_push_label" format="reference|color" />
+    <attr name="contact_selection_lay_label" format="reference|color" />
+
     <attr name="navigation_drawer_background" format="reference|color"/>
     <attr name="navigation_drawer_text_color" format="color"/>
     <attr name="navigation_drawer_icons" format="reference"/>

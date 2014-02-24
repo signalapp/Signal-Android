@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.os.AsyncTask;
@@ -61,9 +62,15 @@ import java.util.List;
 public class PushContactSelectionListFragment extends SherlockListFragment
     implements LoaderManager.LoaderCallbacks<Cursor>
 {
+  private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.contact_selection_push_user,
+                                                   R.attr.contact_selection_lay_user,
+                                                   R.attr.contact_selection_push_label,
+                                                   R.attr.contact_selection_lay_label};
 
   private final HashMap<Long, ContactData> selectedContacts = new HashMap<Long, ContactData>();
   private static LayoutInflater li;
+  private        TypedArray     drawables;
+
 
   @Override
   public void onActivityCreated(Bundle icicle) {
@@ -88,8 +95,12 @@ public class PushContactSelectionListFragment extends SherlockListFragment
   public boolean onOptionsItemSelected(MenuItem item) {
 
     switch (item.getItemId()) {
-    case R.id.menu_select_all:   handleSelectAll();   return true;
-    case R.id.menu_unselect_all: handleUnselectAll(); return true;
+    case R.id.menu_select_all:
+      handleSelectAll();
+      return true;
+    case R.id.menu_unselect_all:
+      handleUnselectAll();
+      return true;
     }
 
     super.onOptionsItemSelected(item);
@@ -105,7 +116,7 @@ public class PushContactSelectionListFragment extends SherlockListFragment
 
   private void handleUnselectAll() {
     selectedContacts.clear();
-    ((CursorAdapter)getListView().getAdapter()).notifyDataSetChanged();
+    ((CursorAdapter) getListView().getAdapter()).notifyDataSetChanged();
   }
 
   private void handleSelectAll() {
@@ -119,16 +130,16 @@ public class PushContactSelectionListFragment extends SherlockListFragment
       while (cursor != null && cursor.moveToNext()) {
         ContactData contactData = ContactAccessor.getInstance().getContactData(getActivity(), cursor);
 
-        if      (contactData.numbers.isEmpty())   continue;
+        if (contactData.numbers.isEmpty()) continue;
         else if (contactData.numbers.size() == 1) addSingleNumberContact(contactData);
-        else                                      addMultipleNumberContact(contactData, null, null);
+        else addMultipleNumberContact(contactData, null, null);
       }
     } finally {
       if (cursor != null)
         cursor.close();
     }
 
-    ((CursorAdapter)getListView().getAdapter()).notifyDataSetChanged();
+    ((CursorAdapter) getListView().getAdapter()).notifyDataSetChanged();
   }
 
   private void addSingleNumberContact(ContactData contactData) {
@@ -162,6 +173,7 @@ public class PushContactSelectionListFragment extends SherlockListFragment
 
   private void initializeResources() {
     this.getListView().setFocusable(true);
+    this.drawables = getActivity().obtainStyledAttributes(STYLE_ATTRIBUTES);
   }
 
   @Override
@@ -244,13 +256,13 @@ public class PushContactSelectionListFragment extends SherlockListFragment
       this.pushSupport = pushContactData.pushSupport;
 
       if (!pushSupport) {
-        this.name.setTextColor(0xa0000000);
-        this.number.setTextColor(0xa0000000);
-        this.pushLabel.setBackgroundColor(0x99000000);
+        this.name.setTextColor(drawables.getColor(1, 0xff000000));
+        this.number.setTextColor(drawables.getColor(1, 0xff000000));
+        this.pushLabel.setBackgroundColor(drawables.getColor(3, 0x99000000));
       } else {
-        this.name.setTextColor(0xff000000);
-        this.number.setTextColor(0xff000000);
-        this.pushLabel.setBackgroundColor(0xff64a926);
+        this.name.setTextColor(drawables.getColor(0, 0xa0000000));
+        this.number.setTextColor(drawables.getColor(0, 0xa0000000));
+        this.pushLabel.setBackgroundColor(drawables.getColor(2, 0xff64a926));
       }
 
       if (selectedContacts.containsKey(contactData.id))
