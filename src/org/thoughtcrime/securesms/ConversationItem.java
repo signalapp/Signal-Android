@@ -75,14 +75,20 @@ import java.io.OutputStream;
 public class ConversationItem extends LinearLayout {
   private final static String TAG = ConversationItem.class.getSimpleName();
 
+  private final int    STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
+                                                      R.attr.conversation_item_sent_push_triangle_background,
+                                                      R.attr.conversation_item_sent_background,
+                                                      R.attr.conversation_item_sent_triangle_background};
+
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
   private MasterSecret  masterSecret;
   private boolean       groupThread;
 
-  private  TextView bodyText;
-  private  TextView dateText;
-  private  TextView groupStatusText;
+  private  View      conversationParent;
+  private  TextView  bodyText;
+  private  TextView  dateText;
+  private  TextView  groupStatusText;
   private  ImageView secureImage;
   private  ImageView failedImage;
   private  ImageView keyImage;
@@ -94,6 +100,7 @@ public class ConversationItem extends LinearLayout {
   private  Button    mmsDownloadButton;
   private  TextView  mmsDownloadingLabel;
   private  ListenableFutureTask<SlideDeck> slideDeck;
+  private  TypedArray backgroundDrawables;
 
   private final FailedIconClickListener failedIconClickListener         = new FailedIconClickListener();
   private final MmsDownloadClickListener mmsDownloadClickListener       = new MmsDownloadClickListener();
@@ -128,6 +135,8 @@ public class ConversationItem extends LinearLayout {
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
     this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
     this.deliveredImage      = (ImageView)findViewById(R.id.delivered_indicator);
+    this.conversationParent  = (View)     findViewById(R.id.conversation_item_parent);
+    this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
 
     setOnClickListener(clickListener);
     if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
@@ -186,18 +195,13 @@ public class ConversationItem extends LinearLayout {
 
   private void setBodyText(MessageRecord messageRecord) {
 
-    if (messageRecord.isPush() && messageRecord.isOutgoing()) {
-      LinearLayout conversationParent = (LinearLayout)findViewById(R.id.conversation_item_parent);
-      if (conversationParent != null) {
-        int        attributes[] = new int[]{R.attr.conversation_item_sent_push_background,
-            R.attr.conversation_item_sent_push_triangle_background};
-        TypedArray drawables  = context.obtainStyledAttributes(attributes);
-
-        if (drawables != null) {
-          setViewBackgroundWithoutResettingPadding(conversationParent, drawables.getResourceId(0, -1));
-          setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), drawables.getResourceId(1, -1));
-          drawables.recycle();
-        }
+    if (conversationParent != null && backgroundDrawables != null) {
+      if (messageRecord.isPush() && messageRecord.isOutgoing()) {
+        setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(0, -1));
+        setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), backgroundDrawables.getResourceId(1, -1));
+      } else if (messageRecord.isOutgoing()) {
+        setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(2, -1));
+        setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), backgroundDrawables.getResourceId(3, -1));
       }
     }
 
