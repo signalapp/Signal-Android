@@ -448,8 +448,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
                       new LinkedList<String>(newMembers));
 
     groupDatabase.updateTitle(groupId, groupName);
-    groupDatabase.updateAvatar(groupId, avatar);
-
+    if (avatar != null) groupDatabase.updateAvatar(groupId, avatar);
 
     return handlePushOperation(groupId, groupName, avatar, memberE164Numbers);
   }
