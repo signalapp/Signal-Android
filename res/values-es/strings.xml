@@ -499,7 +499,7 @@
   <string name="preferences__make_default_sms_app">Establecer como la aplicación SMS predeterminada</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Hace de TextSecure la aplicación SMS/MMS predeterminada para su sistema.</string>
   <string name="preferences__use_data_channel">Mensajes activos (\'push\')</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nIncremente la privacidad y evite tarifas SMS al usar el canal de datos para la comunicación con otros ususarios de TextSecure\n</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nIncremente la privacidad y evite tarifas SMS al usar el canal de datos para la comunicación con otros usuarios de TextSecure\n</string>
   <string name="preferences__allow_sms_fallback">Permitir recurrir al SMS</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Envía y recibe mensajes SMS cuando la actualización activa (\'push\') no está disponible</string>
   <!--****************************************-->
