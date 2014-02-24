@@ -161,7 +161,8 @@ public class GroupDatabase extends Database {
 
   public void updateAvatar(byte[] groupId, byte[] avatar) {
     updateAvatarInDatabase(groupId, avatar);
-    updateGroupRecipientAvatar(groupId, BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
+    Bitmap bitmap = (avatar == null ? null : BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
+      updateGroupRecipientAvatar(groupId, bitmap);
   }
 
   private void updateAvatarInDatabase(byte[] groupId, byte[] avatar) {

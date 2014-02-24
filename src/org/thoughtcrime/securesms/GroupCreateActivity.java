@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -81,7 +80,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private static final String TEMP_PHOTO_FILE = "__tmp_group_create_avatar_photo.tmp";
+  private File pendingFile = null;
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
@@ -266,7 +265,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         photoPickerIntent.putExtra("aspectY", 1);
         photoPickerIntent.putExtra("outputX", AVATAR_SIZE);
         photoPickerIntent.putExtra("outputY", AVATAR_SIZE);
-        photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
+        photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getAvatarTempUri());
         photoPickerIntent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
         startActivityForResult(photoPickerIntent, PICK_AVATAR);
       }
@@ -275,23 +274,20 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     ((RecipientsEditor)findViewById(R.id.recipients_text)).setHint(R.string.recipients_panel__add_member);
   }
 
-  private Uri getTempUri() {
-    return Uri.fromFile(getTempFile());
+  private Uri getAvatarTempUri() {
+    return Uri.fromFile(createAvatarTempFile());
   }
 
-  private File getTempFile() {
-    if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-
-      File f = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE);
-      try {
-        f.createNewFile();
-        f.deleteOnExit();
-      } catch (IOException e) {
-        Log.e(TAG, "Error creating new temp file.", e);
-        Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_file_io_exception, Toast.LENGTH_SHORT).show();
-      }
+  private File createAvatarTempFile() {
+    try {
+      File f = File.createTempFile("avatar", ".tmp", getFilesDir());
+      pendingFile = f;
+      f.setWritable(true, false);
+      f.deleteOnExit();
       return f;
-    } else {
+    } catch (IOException ioe) {
+      Log.e(TAG, "Error creating new temp file.", ioe);
+      Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_file_io_exception, Toast.LENGTH_SHORT).show();
       return null;
     }
   }
@@ -517,9 +513,11 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
     @Override
     protected Bitmap doInBackground(Void... voids) {
-      File tempFile = getTempFile();
-      avatarBmp = BitmapUtil.getCircleCroppedBitmap(BitmapFactory.decodeFile(tempFile.getAbsolutePath()));
-      tempFile.delete();
+      if (pendingFile != null) {
+        avatarBmp = BitmapUtil.getCircleCroppedBitmap(BitmapFactory.decodeFile(pendingFile.getAbsolutePath()));
+        pendingFile.delete();
+        pendingFile = null;
+      }
       return avatarBmp;
     }
 
