@@ -793,13 +793,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         if (recipients != null) {
           String ids = recipients.toIdString();
           Log.w("ConversationActivity", "Looking up new recipients...");
-          recipients = RecipientFactory.getRecipientsForIds(context, ids, true);
-          recipients.addListener(new RecipientModifiedListener() {
-            @Override
-            public void onModified(Recipient recipient) {
-              initializeTitleBar();
-            }
-          });
+          recipients = RecipientFactory.getRecipientsForIds(context, ids, false);
+          initializeTitleBar();
         }
       }
     };
