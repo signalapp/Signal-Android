@@ -524,6 +524,11 @@
         TextSecure will not work with Google Voice numbers.
     </string>
 
+    <string name="registration_problems__privacy_guard">CyanogenMod PrivacyGuard.</string>
+    <string name="registration_problems__textsecure_will_not_work_with_privacy_guard">
+        Privacy Guard prevents TextSecure to receive your text messages and will cause validation to fail.
+    </string>
+
     <!-- registration_progress_activity -->
     <string name="registration_progress_activity__voice_verification">Voice Verification</string>
     <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
