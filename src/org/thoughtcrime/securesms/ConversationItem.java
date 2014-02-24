@@ -186,24 +186,25 @@ public class ConversationItem extends LinearLayout {
 
   private void setBodyText(MessageRecord messageRecord) {
 
+    if (messageRecord.isPush() && messageRecord.isOutgoing()) {
+      LinearLayout conversationParent = (LinearLayout)findViewById(R.id.conversation_item_parent);
+      if (conversationParent != null) {
+        int        attributes[] = new int[]{R.attr.conversation_item_sent_push_background,
+            R.attr.conversation_item_sent_push_triangle_background};
+        TypedArray drawables  = context.obtainStyledAttributes(attributes);
+
+        if (drawables != null) {
+          setViewBackgroundWithoutResettingPadding(conversationParent, drawables.getResourceId(0, -1));
+          setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), drawables.getResourceId(1, -1));
+          drawables.recycle();
+        }
+      }
+    }
+
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
       bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
                        TextView.BufferType.SPANNABLE);
     } else {
-      if (messageRecord.isPush() && messageRecord.isOutgoing()) {
-        LinearLayout conversationParent = (LinearLayout)findViewById(R.id.conversation_item_parent);
-        if (conversationParent != null) {
-          int        attributes[] = new int[]{R.attr.conversation_item_sent_push_background,
-              R.attr.conversation_item_sent_push_triangle_background};
-          TypedArray drawables  = context.obtainStyledAttributes(attributes);
-
-          if (drawables != null) {
-            setViewBackgroundWithoutResettingPadding(conversationParent, drawables.getResourceId(0, -1));
-            setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), drawables.getResourceId(1, -1));
-            drawables.recycle();
-          }
-        }
-      }
       bodyText.setText(messageRecord.getDisplayBody());
     }
   }
