@@ -33,15 +33,11 @@
   <string name="ConversationItem_success_exclamation">成功しました。</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">SDカードに書き込めません。</string>
   <string name="ConversationItem_view_secure_media_question">暗号化されたファイルを表示しますか？</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">このファイルは暗号化されたデータベースに保存されています。外部コンテンツのビューアで見るには、データを一時的に復号し、ディスクに書き込まなければなりません。この作業を実行してもいいですか？</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">鍵交換のメッセージを受信、処理しました。</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">エラー、古い鍵交換のメッセージを受信してしまいました。</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">鍵交換のメッセージを受信しました。クリックして処理してください。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%sさんとセキュア・セッションを開始しますか？</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">セキュア・セッションの確認を中止</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">セキュア・セッションを中止してもいいですか？</string>
   <string name="ConversationActivity_delete_thread_confirmation">スレッド削除の確認</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">この会話を完全に削除してもよろしいですか？</string>
   <string name="ConversationActivity_add_attachment">添付</string>
@@ -54,7 +50,6 @@
   <string name="ConversationActivity_forward_message_prefix">転送：</string>
   <string name="ConversationActivity_group_conversation_recipients">グループ通信の受信者</string>
   <string name="ConversationActivity_group_conversation">グループ通信</string>
-  <string name="ConversationActivity_d_recipients_in_group">グループの受信者は%d人です</string>
   <string name="ConversationActivity_saving_draft">下書き保存中…</string>
   <string name="ConversationActivity_invalid_recipient">受信先が無効です。</string>
   <string name="ConversationActivity_calls_not_supported">通話不可</string>
@@ -87,6 +82,7 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">SDカードに書き込む途中でエラーが発生しました。</string>
   <string name="ExportFragment_success">成功しました。</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">暗号化されたキー、設定及びメッセージをエクスポート中…</string>
+  <!--GroupCreateActivity-->
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">携帯端末のSMSデータベースをインポートしますか？</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">これで、携帯端末の既定SMSデータベースにあるメッセージがTextSecureにインポートされます。以前にこの作業を行ったことがあれば、メッセージが重複する場合があります。</string>
@@ -96,7 +92,6 @@
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
   <string name="ImportFragment_restore">復元</string>
   <string name="ImportFragment_import_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルをインポートしますか？</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前にこの作業を行ったことがあれば、メッセージが重複する場合があります。</string>
   <string name="ImportFragment_importing">インポート中…</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">非暗号テキストのバックアップ・ファイルをインポート中…</string>
   <string name="ImportFragment_no_plaintext_backup_found">非暗号テキストのバックアップ・ファイルが見つかりませんでした。</string>
@@ -130,6 +125,13 @@
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">この\n鍵交換の電子署名は、以前この連絡先から受信したものと違っています。\n誰かがあなたの通信を傍受しようとしているか、もしくは\n単にこの連絡先がTextSecureを再インストールしたため、認証キーが新しくなった可能性があります。</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">この連絡先を\n照合することが推奨されています。</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">この\n鍵交換の電子署名は信用されていますが、「自動で鍵交換を完了する」設定は\n無効になっています。</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_continue">続行</string>
+  <!--RegistrationProblemsActivity-->
+  <!--RegistrationProgressActivity-->
+  <!--RegistrationService-->
+  <!--SmsMessageRecord-->
+  <!--ThreadRecord-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">受信者は認証キーがありません。</string>
@@ -180,8 +182,6 @@
   <string name="ApplicationMigrationService_import_in_progress">インポート中</string>
   <string name="ApplicationMigrationService_importing_text_messages">テキストメッセージをインポート中</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">TextSecureパスワードがキャッシュされています</string>
-  <string name="KeyCachingService_passphrase_cached">パスワードがキャッシュされています</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d 新しいメッセージ</string>
   <string name="MessageNotifier_most_recent_from_s">最新の送信者： %s</string>
@@ -202,6 +202,7 @@
   <string name="ViewLocalIdentityActivity_continue">続行</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">現在、このSMSは送信できません。サービスが利用可能になると、すぐに送信されます。</string>
+  <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">TextSecure暗号化セッションをサポートする人からメッセージが来ています。セキュア・セッションを開始しますか？</string>
   <string name="auto_initiate_activity__initiate_exchange">交換開始</string>
@@ -212,12 +213,12 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">連絡先はありません。</string>
+  <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">選択</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">最近の通話はありません。</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message">メッセージを入力</string>
   <string name="conversation_activity__send">送信</string>
   <string name="conversation_activity__remove">削除</string>
   <!--conversation_item_sent-->
@@ -228,8 +229,9 @@
   <string name="conversation_item_received__downloading">ダウンロード中</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">一括選択モード</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__search">検索</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">あなたのデータをローカルで暗号化するためのパスワードを選んでください。\n\n安全性の高いパスワードにしてください。</string>
   <string name="create_passphrase_activity__passphrase">パスワード：</string>
   <string name="create_passphrase_activity__repeat">再入力：</string>
   <string name="create_passphrase_activity__continue">続行</string>
@@ -264,6 +266,9 @@
   <string name="prompt_mms_activity__mms_proxy_port_optional">MMSプロキシ・ポート (自由選択)</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完了</string>
+  <!--registration_activity-->
+  <!--registration_problems-->
+  <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to">宛先</string>
   <!--review_identities-->
@@ -322,12 +327,6 @@
   <string name="preferences__manage_configured_identity_keys">設定済みの認証キーを管理</string>
   <string name="preferences__notifications">通知</string>
   <string name="preferences__display_message_notifications_in_status_bar">受信通知をステータスバーに表示</string>
-  <string name="preferences__led_color">LED色</string>
-  <string name="preferences__change_notification_led_color">受信通知のLED色を変更</string>
-  <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
-  <string name="preferences__change_notification_blink_pattern">通知LED点滅パターンの変更</string>
-  <string name="preferences__pref_led_blink_dialogtitle">LED点滅パターンを選択</string>
-  <string name="preferences__select_led_color">LED色を選択</string>
   <string name="preferences__vibrate">振動</string>
   <string name="preferences__also_vibrate_when_notified">通知する時に振動もする</string>
   <string name="preferences__minutes">分</string>
@@ -347,8 +346,8 @@
   <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
   <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
   <string name="preferences__mms_proxy_port_optional">MMSプロキシ・ポート（選択自由）</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
   <string name="preferences__sms_delivery_reports">SMS配信報告</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">会話スレッドが一定の長さを超えると、古いメッセージが自動的に削除されます</string>
   <string name="preferences__delete_old_messages">古いメッセージの削除</string>
   <string name="preferences__storage">ストレージ</string>
@@ -387,9 +386,7 @@
   <string name="conversation_list__menu_search">検索</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">セキュリティ</string>
-  <string name="conversation_secure_verified__menu_verify_session">セッションを照合</string>
   <string name="conversation_secure_verified__menu_verify_recipient">受信者を照合</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">セキュア・セッションを中止</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付</string>
   <string name="conversation__menu_delete_thread">スレッドを削除</string>
@@ -407,7 +404,6 @@
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">新規メッセージ</string>
   <string name="text_secure_normal__menu_settings">設定</string>
-  <string name="text_secure_normal__menu_clear_passphrase">パスワード消去</string>
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">確認済み</string>

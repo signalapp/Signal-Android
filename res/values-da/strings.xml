@@ -33,15 +33,11 @@
   <string name="ConversationItem_success_exclamation">Fuldført!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til SD-kort!</string>
   <string name="ConversationItem_view_secure_media_question">Vis sikret data?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Data er gemt i en krypteret database. For at se dem i et eksternt program kræves det, at disse midlertidigt dekrypteres og gemmes ukrypteret. Vil du fortsætte?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Udvekslingsnøgle er modtaget og behandlet.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fejl! Modtog en gammel udvekslingsnøgle.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Udvekslingsnøgle er modtaget. Klik for at fortsætte</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Opret en sikker session?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Opret en sikker session med %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Bekræft! Afbryd sikker session</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Vil du afbryde den sikre session?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Bekræft! Slet tråd</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Vil du slette denne samtale permanent?</string>
   <string name="ConversationActivity_add_attachment">Vedhæft fil.</string>
@@ -54,7 +50,6 @@
   <string name="ConversationActivity_forward_message_prefix">Videresend beskeden</string>
   <string name="ConversationActivity_group_conversation_recipients">Modtagere i gruppen</string>
   <string name="ConversationActivity_group_conversation">Gruppe beskeder</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d modtagere i gruppen</string>
   <string name="ConversationActivity_saving_draft">Gemmer kladde...</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig modtager!</string>
   <string name="ConversationActivity_calls_not_supported">Opkald er ikke understøttet</string>
@@ -87,6 +82,7 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">Fejl! Kunne ikke skrive til SD-kort!</string>
   <string name="ExportFragment_success">Fuldført!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Eksporterer krypterede nøgler, indstillinger og beskeder...</string>
+  <!--GroupCreateActivity-->
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importer systemets SMS database?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra systemets standard SMS database til TextSecure.</string>
@@ -96,7 +92,6 @@
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nGenoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indstillinger og beskeder. Du vil miste de informationer i TextSecure som ikke findes i din backup.</string>
   <string name="ImportFragment_restore">Genopret</string>
   <string name="ImportFragment_import_plaintext_backup">Importer klartekst backup?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dette vil importere beskeder fra en klartekst backup.</string>
   <string name="ImportFragment_importing">Importerer</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importerer klartekst backup...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Der blev ikke fundet en klartekst backup!</string>
@@ -130,6 +125,13 @@
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne udvekslingsnøgle er ikke ens med den som du tidligere modtog fra denne\nkontakt. Det kan enten betyde, at der er nogle som prøver på at kompromitterer din kommunikation eller\nat din kontakt har installeret TextSecure på ny og dermed fået en ny udvekslingsnøgle.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verificere\ndenne kontakt.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen på denne udvekslingsnøgle er til at stole på, men du har deaktiveret indstillingen\n\'fuldfør udvekslingsnøgler automatisk\'.</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_continue">Fortsæt</string>
+  <!--RegistrationProblemsActivity-->
+  <!--RegistrationProgressActivity-->
+  <!--RegistrationService-->
+  <!--SmsMessageRecord-->
+  <!--ThreadRecord-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Modtageren har ingen ID-nøgle.</string>
@@ -180,8 +182,6 @@
   <string name="ApplicationMigrationService_import_in_progress">Henter...</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer SMS beskeder</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">TextSecure kodeord er gemt</string>
-  <string name="KeyCachingService_passphrase_cached">Kodeord er gemt</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nye beskeder</string>
   <string name="MessageNotifier_most_recent_from_s">Sidst modtaget fra: %s</string>
@@ -202,6 +202,7 @@
   <string name="ViewLocalIdentityActivity_continue">Fortsæt</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Det er ikke muligt at sende en SMS besked nu. Den vil blive sendt når tjenesten bliver tilgængelig igen.</string>
+  <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har modtaget en besked fra en som understøtter TextSecure krypterede sessioner. Ønsker du at initiere en sikker session?</string>
   <string name="auto_initiate_activity__initiate_exchange">Start nøgleudveksling</string>
@@ -212,12 +213,12 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter.</string>
+  <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vælg</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nye samtaler.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message">Skriv besked</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slet</string>
   <!--conversation_item_sent-->
@@ -228,8 +229,9 @@
   <string name="conversation_item_received__downloading">Henter</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch-valg</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__search">Søg</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Vælg et kodeord som skal bruges til kryptering af dine lokale data. Det bør være et svært kodeord.</string>
   <string name="create_passphrase_activity__passphrase">Kodeord:</string>
   <string name="create_passphrase_activity__repeat">Gentag:</string>
   <string name="create_passphrase_activity__continue">Fortsæt</string>
@@ -264,6 +266,9 @@
   <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (IKKE PÅKRÆVET):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Udført</string>
+  <!--registration_activity-->
+  <!--registration_problems-->
+  <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to">Til</string>
   <!--review_identities-->
@@ -322,12 +327,6 @@
   <string name="preferences__manage_configured_identity_keys">Administrer konfigurerede ID-nøgler</string>
   <string name="preferences__notifications">Notifikation</string>
   <string name="preferences__display_message_notifications_in_status_bar">Vis notifikation om beskeder i status feltet</string>
-  <string name="preferences__led_color">LED farve</string>
-  <string name="preferences__change_notification_led_color">Ændre farve på LED advarsel</string>
-  <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
-  <string name="preferences__change_notification_blink_pattern">Ændre LED-notifikations blinkemønster</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Vælg LED blinkemønster</string>
-  <string name="preferences__select_led_color">Vælg LED farve</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__vibrate">Vibrér</string>
   <string name="preferences__also_vibrate_when_notified">Vibrér også ved tilbagemelding</string>
@@ -348,8 +347,8 @@
   <string name="preferences__mmsc_url_required">MMSC URL (påkrævet)</string>
   <string name="preferences__mms_proxy_host_optional">MMS proxy host (valgfrit)</string>
   <string name="preferences__mms_proxy_port_optional">MMS proxy port (valgfrit)</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bed om en leveringsrapport for hver SMS-besked du sender</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapport for SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bed om en leveringsrapport for hver SMS-besked du sender</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Slet gamle beskeder automatisk når en besked tråd overskrider en specificeret størrelse</string>
   <string name="preferences__delete_old_messages">Slet gamle beskeder</string>
   <string name="preferences__storage">Lager</string>
@@ -388,9 +387,7 @@
   <string name="conversation_list__menu_search">Søg</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sikkerhed</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verificer session</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verificer modtager</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Afbryd sikker session</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
   <string name="conversation__menu_delete_thread">Slet tråd</string>
@@ -408,7 +405,6 @@
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Ny Besked</string>
   <string name="text_secure_normal__menu_settings">Indstillinger</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Slet kodeord</string>
   <string name="text_secure_normal__mark_all_as_read">Marker alle som læst</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekræftet</string>

@@ -31,18 +31,16 @@
   <string name="ConversationItem_success_exclamation">Completato!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Impossibile scrivere nella memoria SD!</string>
   <string name="ConversationItem_view_secure_media_question">Vuoi vedere il file multimediale?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Questo file multimediale è salvato in un database cifrato. Sfortunatamente, per vederlo con un programma esterno è necessario che il file venga decifrato e riscritto su disco. Vuoi procedere?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Contrattazione della chiave ricevuta e completata.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Errore, ricevuto messaggio per la contrattazione della chiave scaduto.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Ricevuto messaggio per la contrattazione della chiave, cliccare per procedere</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Ricevuto messaggio per lo scambio della chiave, cliccare per procedere</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniziare una sessione sicura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniziare una sessione sicura con %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Terminare la sessione sicura?</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Sei sicuro di voler terminare questa sessione sicura?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confermi di voler cancellare il thread?</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Sei sicuro di voler cancellare permanentemente questa conversazione?</string>
   <string name="ConversationActivity_add_attachment">Aggiungi allegato</string>
+  <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
   <string name="ConversationActivity_compose_message">Scrivi un messaggio</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Attenzione, c\'è stato un errore nell\'inviare il tuo allegato.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Attenzione, il video selezionato supera la grandezza massima consentita.</string>
@@ -52,7 +50,6 @@
   <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Conversazione di Gruppo Destinatari</string>
   <string name="ConversationActivity_group_conversation">Conversazione di Gruppo</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d destinatari in gruppo</string>
   <string name="ConversationActivity_saving_draft">Salvataggio in corso</string>
   <string name="ConversationActivity_invalid_recipient">Destinatario invalido!</string>
   <string name="ConversationActivity_calls_not_supported">Chiamate non supportate</string>
@@ -80,16 +77,32 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Attenzione, verranno\n        esportati i contenuti dei tuoi messaggi TextSecure in formato plaintext nella scheda SD.\n    </string>
   <string name="ExportFragment_cancel">Cancella</string>
   <string name="ExportFragment_exporting">In esportazione</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Esporta il testo in formato PlainText nella scheda SD?</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Errore, impossibile scrivere \nnella scheda SD!</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Errore durante la scrittura su scheda SD.</string>
   <string name="ExportFragment_success">Completato!</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Esporta le chiavi crittografiche,\nle impostazioni ed i messaggi...</string>
+  <!--GroupCreateActivity-->
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Importare gli SMS dal Database di sistema?</string>
   <string name="ImportFragment_import">Importa</string>
   <string name="ImportFragment_cancel">Cancella</string>
+  <string name="ImportFragment_restore_encrypted_backup">Ripristinare il Backup crittato?</string>
+  <string name="ImportFragment_restore">Ripristina</string>
+  <string name="ImportFragment_importing">Importazione</string>
+  <string name="ImportFragment_error_importing_backup">Errore durante l\'importazione del backup!</string>
+  <string name="ImportFragment_import_complete">Importazione terminata!</string>
+  <string name="ImportFragment_restoring">Ripristino</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Ripristino backup crittato...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Nessun backup crittato trovato!</string>
+  <string name="ImportFragment_restore_complete">Ripristino completato!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nessuna chiave scansionata trovata!</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Nessuna connessione disponibile per il download del MMS, riprovare più tardi...</string>
   <string name="MmsDownloader_error_storing_mms">Errore nel salvare l\'MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Errore durante la lettura delle impostazioni MMS</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio Multimediale</string>
   <!--PassphraseChangeActivity-->
@@ -108,6 +121,13 @@
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La\nfirma su questo scambio di chiavi è differente di quella ricevuta precedentemente. Questo potrebbe significare che qualcuno stà cercando di intercettare la tua comunicazione\no\nche il contatto ha reinstallato TextSecure e ora ha una nuova chiave.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Dovresti verificare\nquesto contatto.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">La\nfirma di questa chiave è fidata, ma al momento hai lo scambio automatico della chiave disabilitato.</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_continue">Continua</string>
+  <!--RegistrationProblemsActivity-->
+  <!--RegistrationProgressActivity-->
+  <!--RegistrationService-->
+  <!--SmsMessageRecord-->
+  <!--ThreadRecord-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Il destinatario non ha una chiave di identità.</string>
@@ -158,8 +178,6 @@
   <string name="ApplicationMigrationService_import_in_progress">Importazione in corso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importazione dei messaggi di testo</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Password di TextSecure salvata in cache</string>
-  <string name="KeyCachingService_passphrase_cached">Password salvata in cache</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nuovi messaggi</string>
   <string name="MessageNotifier_most_recent_from_s">Più recente da: %s</string>
@@ -167,13 +185,17 @@
   <string name="MessageNotifier_no_subject">(Nessun Oggetto)</string>
   <string name="MessageNotifier_message_delivery_failed">Non è riuscito l\'invio del messaggio</string>
   <string name="MessageNotifier_failed_to_deliver_message">Non è riuscito l\'invio del messaggio</string>
-  <string name="MessageNotifier_error_delivering_message">C\'e stato un errore durante l\'invio del messagio</string>
-  <string name="MessageNotifier_mark_all_as_read">Segna tutti come gia\' letto</string>
-  <string name="MessageNotifier_mark_as_read">Segna come gia\' letto</string>
+  <string name="MessageNotifier_error_delivering_message">C\'è stato un errore durante l\'invio del messagio</string>
+  <string name="MessageNotifier_mark_all_as_read">Segna tutto come già letto</string>
+  <string name="MessageNotifier_mark_as_read">Segna come già letto</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">Rigenerazione...</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Reimpostare la chiave d\'identità?</string>
   <string name="ViewLocalIdentityActivity_cancel">Cancella</string>
+  <string name="ViewLocalIdentityActivity_continue">Continua</string>
   <!--SmsReceiver-->
-  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">In questo momento non e\' possibile inviare il tuo messagio SMS. Sara\' inviato quando la communicazione e\' disponibile</string>
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">In questo momento non è possibile inviare il tuo messagio SMS. Sarà inviato quando la comunicazione è disponibile</string>
+  <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Hai ricevuto un messaggio da qualcuno che supporta una sessione cifrata di TextSecure. Vuoi iniziare una sessione sicura?</string>
   <string name="auto_initiate_activity__initiate_exchange">Inizio scambio delle chiavi</string>
@@ -184,12 +206,12 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nessun contatto.</string>
+  <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleziona per</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Nessuna chiamata recente.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message">Inserisci il messaggio</string>
   <string name="conversation_activity__send">Invia</string>
   <string name="conversation_activity__remove">Elimina</string>
   <!--conversation_item_sent-->
@@ -200,8 +222,9 @@
   <string name="conversation_item_received__downloading">Caricamento in corso</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__search">Cerca</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Scegli una password che verrà usata per cifrata i tuoi dati localmente. Attenzione a scegliere una password robusta.</string>
   <string name="create_passphrase_activity__passphrase">Password:</string>
   <string name="create_passphrase_activity__repeat">Ripeti:</string>
   <string name="create_passphrase_activity__continue">Continua</string>
@@ -211,11 +234,16 @@
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Il database di default non verrà modificat o alterato in nessun modo.</string>
   <string name="database_migration_activity__skip">Salta</string>
   <string name="database_migration_activity__import">Importa</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Potrebbe volerci un pò. Attendi per favore, verrai notificato quando l\'importazione sarà completata.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Potrebbe volerci un po\'. Attendi per favore, verrai notificato quando l\'importazione sarà completata.</string>
   <string name="database_migration_activity__importing">COPIA</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aggiornamento Database...</string>
+  <string name="export_fragment__export_encrypted_backup">Esporta il backup crittato</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Esporta un backup\ncrittato sulla scheda SD</string>
+  <string name="import_fragment__import_encrypted_backup">Importa backup crittato</string>
+  <string name="local_identity__regenerate_key">Rigenera chiave</string>
   <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">Impostazioni manuali degli MMS sono necessarie per il tuo telefono.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">PASSWORD TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>
@@ -225,6 +253,9 @@
   <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PORTA PROXY ( OPZIONALE )</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completato</string>
+  <!--registration_activity-->
+  <!--registration_problems-->
+  <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to">A</string>
   <!--review_identities-->
@@ -252,6 +283,9 @@
   <string name="AndroidManifest__manage_identity_keys">Controlla le chiavi di identità</string>
   <string name="AndroidManifest__complete_key_exchange">Completa lo scambio della chiave</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">Importa/Esporta</string>
+  <string name="arrays__my_identity_key">La mia chiave d\'identità</string>
+  <string name="arrays__contact_keys">Chiavi dei contatti</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generale</string>
   <string name="preferences__pref_all_sms_title">Utilizza per tutti gli SMS</string>
@@ -266,6 +300,7 @@
   <string name="preferences__change_passphrase">Cambia passphrase</string>
   <string name="preferences__change_my_passphrase">Cambia la mia password</string>
   <string name="preferences__complete_key_exchanges">Scambio di chiavi completato</string>
+  <string name="preferences__disable_passphrase">Disabilita passphrase</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completa lo scambio della chiave automaticamente per le nuove sessione con la stessa chiave di identità</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Dimentica la password dalla cache dopo un intervallo di tempo</string>
   <string name="preferences__timeout_passphrase">Tempo per dimenticare la password</string>
@@ -279,11 +314,9 @@
   <string name="preferences__notifications">Notifiche</string>
   <string name="preferences__display_message_notifications_in_status_bar">Mostra messaggio di notifica nella barra di stato</string>
   <string name="preferences__led_color">Colore del LED</string>
-  <string name="preferences__change_notification_led_color">Cambia il colore del LED di notifica</string>
   <string name="preferences__pref_led_blink_title">Impostazioni LED</string>
-  <string name="preferences__change_notification_blink_pattern">Cambia il lampeggio del LED di notifica</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Seleziona un impostazione per il LED di notifica</string>
-  <string name="preferences__select_led_color">Selezione il colore del LED</string>
+  <string name="preferences__sound">Suono</string>
+  <string name="preferences__change_notification_sound">Cambia il suono di notifica</string>
   <string name="preferences__vibrate">Vibrazione</string>
   <string name="preferences__also_vibrate_when_notified">Vibra anche durante l\'arrivo di una notifica</string>
   <string name="preferences__minutes">minuti</string>
@@ -300,11 +333,14 @@
   <string name="preferences__custom">Personalizzato</string>
   <string name="preferences__advanced">Avanzate</string>
   <string name="preferences__passphrase">Passphrase</string>
+  <string name="preferences__advanced_mms_access_point_names">Impostazioni MMS.</string>
+  <string name="preferences__enable_manual_mms">Abilita MMS manuali.</string>
+  <string name="preferences__override_system_mms_settings">Sovrascrivi le impostazioni MMS di sistema con le seguenti informazioni</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Richiesto)</string>
   <string name="preferences__mms_proxy_host_optional">MMS - Indirizzo Proxy ( Opzionale )</string>
   <string name="preferences__mms_proxy_port_optional">MMS - Porta Proxy ( Opzionale )</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Richiedi un rapporto di consegna per ogni SMS inviato</string>
   <string name="preferences__sms_delivery_reports">Rapporti di consegna SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Richiedi un rapporto di consegna per ogni SMS inviato</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Elimina automaticamente i messaggi più vecchi quando un thread di conversazione supera una lunghezza determinata.</string>
   <string name="preferences__delete_old_messages">Elimina i messagi vecchi</string>
   <string name="preferences__storage">Stoccaggio</string>
@@ -315,7 +351,10 @@
   <string name="preferences__dark_theme">Tema Scuro</string>
   <string name="preferences__appearance">Aspetto</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__default">Predefinito</string>
   <string name="preferences__language">Lingua</string>
+  <string name="preferences__make_default_sms_app">Imposta come applicazione SMS predefinita.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Rendi TextSecure l\'applicazione predefinita per SMS/MMS.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -333,6 +372,7 @@
   <string name="conversation_context__menu_copy_text">Copia testo</string>
   <string name="conversation_context__menu_delete_message">Cancella messaggio</string>
   <string name="conversation_context__menu_forward_message">Inoltra messaggio</string>
+  <string name="conversation_context__menu_resend_message">Rinvia il messaggio</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Inizia una sessione sicura</string>
   <!--conversation_list_batch-->
@@ -342,9 +382,7 @@
   <string name="conversation_list__menu_search">Cerca</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sicurezza</string>
-  <string name="conversation_secure_verified__menu_verify_session">Verifica la sessione</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verifica il destinatario</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Cancella la sessione sicura</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Aggiungi allegato</string>
   <string name="conversation__menu_delete_thread">Cancella conversazione</string>
@@ -362,8 +400,7 @@
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nuovo messaggio</string>
   <string name="text_secure_normal__menu_settings">Impostazioni</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Cancella password</string>
-  <string name="text_secure_normal__mark_all_as_read">Segna come gia\' letto</string>
+  <string name="text_secure_normal__mark_all_as_read">Segna come già letto</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificato</string>
   <!--EOF-->

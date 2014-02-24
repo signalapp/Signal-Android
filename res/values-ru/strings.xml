@@ -10,12 +10,15 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы ещё не задали парольную фразу!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">сообщений в разговоре</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Удалить все старые сообщения?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Вы уверены что хотите немедленно обрезать все разговоры до %s последних сообщений?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Вы уверены, что хотите обрезать все разговоры до %s последних сообщений, удалив более старые?</string>
   <string name="ApplicationPreferencesActivity_delete">Удалить</string>
   <string name="ApplicationPreferencesActivity_my">Мой</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Отключить шифрование базы?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nВнимание, вы собираетесь отключить шифрование базы данных, в которой хранятся все ваши сообщения и ключи. При переписке шифрование продолжит работать, однако любой, кто имеет физический доступ к вашему устройству, сможет прочитать ваши сообщения.</string>
   <string name="ApplicationPreferencesActivity_disable">Отключить</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Отменяем регистрацию для обмена сообщениями по каналу данных</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Изображение</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
@@ -33,10 +36,10 @@
   <string name="ConversationItem_success_exclamation">Успешно!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Невозможно произвести запись на SD-карту!</string>
   <string name="ConversationItem_view_secure_media_question">Просмотреть защищенный медиа-файл?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Этот медиа-файл хранится в зашифрованной базе данных. Из-за технических ограничений для того, чтобы просмотреть его через стороннее приложение, необходимо его временно расшифровать и записать на диск. Вы уверены, что хотите это сделать?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Этот медиа-файл хранится в зашифрованной базе данных. Чтобы просмотреть его через стороннее приложение, необходимо будет его временно расшифровать и записать на диск. Вы уверены, что хотите это сделать?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Получено и обработано сообщение обмена ключами.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Ошибка: получено устаревшее сообщение обмена ключами.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Получено сообщение обмена ключами; нажмите, чтобы его обработать.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Получено сообщение обмена ключами. Нажмите, чтобы его обработать.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Начать защищённый сеанс?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Начать защищённый сеанс связи с %s?</string>
@@ -55,15 +58,18 @@
   <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Получатели в конференции</string>
   <string name="ConversationActivity_group_conversation">Конференция</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d получателей в конференции</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d участников</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 участник</string>
   <string name="ConversationActivity_saving_draft">Сохраняем черновик...</string>
   <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
   <string name="ConversationActivity_calls_not_supported">Звонки не поддерживаются</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ваше устройство, по-видимому, не поддерживает голосовые звонки.</string>
+  <string name="ConversationActivity_leave_group">Покинуть группу?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы уверены, что хотите покинуть эту группу?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Подробности</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Отправитель: %1$s\nТип связи: %2$s\nОтправлено/Получено: %3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Отправитель: %1$s⏎\nТип связи: %2$s⏎\nОтправлено: %3$s⏎\nПолучено: %4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Отправитель: %1$s\nТип связи: %2$s\nОтправлено: %3$s\nПолучено: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Подтвердите удаление сообщения</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Вы уверены, что хотите навсегда удалить это сообщение?</string>
   <!--ConversationListAdapter-->
@@ -88,6 +94,20 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">Ошибка при записи на SD-карту.</string>
   <string name="ExportFragment_success">Успешно!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Производится экспорт зашифрованных ключей, настроек и сообщений...</string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Новая группа</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Обновить группу</string>
+  <string name="GroupCreateActivity_group_name_hint">Название группы</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает группы TextSecure. Для группы будет использоваться MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Вы не зарегистрированны для использования канала передачи данных. Группы отключены.</string>
+  <string name="GroupCreateActivity_you_dont_own_this_group">Вы не владелец этой группы и не можете менять название или изображение.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Непредвиденная ошибка не позволила создать группу.</string>
+  <string name="GroupCreateActivity_contacts_no_members">Нужен как минимум один участник в группе!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Один из учасников имеет неправильный номер. Пожалуйста, исправьте или удалите контакт и попробуйте снова.</string>
+  <string name="GroupCreateActivity_file_io_exception">Ошибка ввода/вывода. Невозможно создать временный файл.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Аватар группы</string>
+  <string name="GroupCreateActivity_menu_create_title">Создать группу</string>
+  <string name="GroupCreateActivity_creating_group">Создаётся %1$s…</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Импортировать системную базу SMS?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Вы собираетесь импортировать SMS-сообщения из системной базы данных в TextSecure. Если вы уже это делали ранее, повторный импорт приведёт к дублированию сообщений.</string>
@@ -96,11 +116,11 @@
   <string name="ImportFragment_restore_encrypted_backup">Восстановить из зашфированной резервной копии?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nВосстановление из зашифрованной резервной копии полностью заменит существующие ключи, настройки и сообщения. Вы потеряете всю информацию, которая сейчас содержится в TextSecure, но не в резервной копии.</string>
   <string name="ImportFragment_restore">Восстановить</string>
-  <string name="ImportFragment_import_plaintext_backup">Импортировать из нешифрованной резервной копии?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Вы собираетесь импортировать сообщения из незашифрованной резервной копии. Если вы ранее уже импортировали SMS-сообщения из системной базы данных, повторный импорт приведёт к дублированию сообщений.</string>
+  <string name="ImportFragment_import_plaintext_backup">Импортировать из простой резервной копии?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Вы собираетесь импортировать сообщения из простой резервной копии. Если вы ранее уже импортировали сообщения из этой копии, повторный импорт приведёт к их дублированию.</string>
   <string name="ImportFragment_importing">Импорт</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Импортируем из незашифрованной резервной копии...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">Незашифрованная резервная копия не найдена!</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Импортируем из простой резервной копии...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Простая резервная копия не найдена!</string>
   <string name="ImportFragment_error_importing_backup">Ошибка при импорте!</string>
   <string name="ImportFragment_import_complete">Импорт завершён.</string>
   <string name="ImportFragment_restoring">Восстановление</string>
@@ -110,7 +130,7 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">При сканировании ключ не обнаружен!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Нет подключения, через которое можно скачать MMS; попробуйте позже ...</string>
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Нет подключения, через которое можно скачать MMS. Попробуйте позже...</string>
   <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка подключения к провайдеру MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS...</string>
@@ -121,7 +141,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
   <!--PassphraseCreateActivity-->
   <string name="PassphraseCreateActivity_passphrases_dont_match">Парольные фразы не совпадают!</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Необходимо указать пароль</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Необходимо ввести парольную фразу</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неверная парольная фраза!</string>
   <!--PromptMmsActivity-->
@@ -132,6 +152,55 @@
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпись, полученная сейчас при обмене ключами, отличается от той, которой собеседник подписывался ранее. Это может означать, что кто-то пытается перехватить вашу переписку или что ваш собеседник переустановил TextSecure, и теперь у него новый личный ключ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Возможно, вы захотите перепроверить этого собеседника.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Подпись в этом обмене ключами является доверенной, но вы отключили в настройках автоматическое выполнение обменов.</string>
+  <string name="ReceiveKeyActivity_processing">Обработка</string>
+  <string name="ReceiveKeyActivity_processing_key_exchange">Обрабатываем обмен ключами...</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_textsecure">Подключение к TextSecure</string>
+  <string name="RegistrationActivity_select_your_country">Выберите страну</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Необходимо указать код страны</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Необходимо указать номер телефона</string>
+  <string name="RegistrationActivity_invalid_number">Неверный номер</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Указанный вами \nномер телефона (%s) неверен.</string>
+  <string name="RegistrationActivity_unsupported">Устройство не поддерживается</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">К сожалению, на вашем устройстве невозможен обмен сообщениями по каналу данных. На устройствах с Android версии ниже 4.0 должен быть зарегистрирован аккаунт Google. На устройствах с Android 4.0 аккаунт Google необязателен, но должно иметься приложение «Play Маркет».</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nСейчас мы проверим, что с этим устройством связан следующий номер телефона:\n\n%s\n\n\nНомер указан верно или вы хотите его изменить?\n</string>
+  <string name="RegistrationActivity_continue">Продолжить</string>
+  <string name="RegistrationActivity_edit">Изменить</string>
+  <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">Возможные проблемы</string>
+  <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">Проверка номера</string>
+  <string name="RegistrationProgressActivity_edit_s">Изменить %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">Регистрация завершена!</string>
+  <string name="RegistrationProgressActivity_possible_problems">Возможные проблемы.</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Сначала введите полученный вами код...</string>
+  <string name="RegistrationProgressActivity_connecting">Соединение</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Соединяемся для проверки...</string>
+  <string name="RegistrationProgressActivity_network_error">Ошибка сети!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Невозможно соединиться. Проверьте, есть ли подключение к интернету и попробуйте снова.</string>
+  <string name="RegistrationProgressActivity_verification_failed">Проверка не удалась!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Код подтверждения, введённый вами, неверен. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">Слишком много попыток</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Вы слишком много раз вводили неверный код подтверждения. Подождите минуту перед следующей попыткой.</string>
+  <string name="RegistrationProgressActivity_requesting_call">Запрос звонка</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Запрашиваем входящий звонок для подтверждения...</string>
+  <string name="RegistrationProgressActivity_server_error">Ошибка сервера</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">На сервере возникла ошибка. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Слишком много запросов!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Вы недавно уже запрашивали голосовой звонок. Запросить ещё один вы сможете через 20 минут.</string>
+  <string name="RegistrationProgressActivity_verifying_voice_code">Проверяем голосовой код...</string>
+  <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">Регистрация завершена</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Регистрация в TextSecure успешно завершена.</string>
+  <string name="RegistrationService_registration_error">Ошибка регистрации</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">При регистрации в TextSecure возникла ошибка.</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Получено повреждённое\nсообщение обмена ключами!\n</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nПолучено сообщение обмена ключами для неверной версии протокола.\n</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nПолучено сообщение с неизвестным личным ключом. Нажмите, чтобы обработать и показать его.</string>
+  <string name="SmsMessageRecord_secure_session_ended">Защищённый сеанс завершён.</string>
+  <!--ThreadRecord-->
+  <string name="TheadRecord_secure_session_ended">Защищённый сеанс завершён.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У получателя нет личного ключа.</string>
@@ -183,8 +252,10 @@
   <string name="ApplicationMigrationService_import_in_progress">Идёт импорт</string>
   <string name="ApplicationMigrationService_importing_text_messages">Импортируем текстовые сообщения</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Парольная фраза TextSecure кэширована.</string>
-  <string name="KeyCachingService_passphrase_cached">Парольная фраза кэширована</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached">Нажмите, чтобы открыть.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Нажмите, чтобы открыть. Чтобы закрыть, нажмите на замок.</string>
+  <string name="KeyCachingService_passphrase_cached">TextSecure разблокирован</string>
+  <string name="KeyCachingService_lock">Заблокировать парольной фразой</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">Новых сообщений: %d</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее — от %s</string>
@@ -200,11 +271,13 @@
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Генерируем новый личный ключ...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Регенерация завершена!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Сбросить личный ключ?</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nОсторожно! Если вы заново сгенерируете свой личный ключ, текущий будет утрачен навсегда, и ваши собеседники получат предупрежения при начале новых защищённых сеансов с вами. Вы уверены, что хотите продолжить?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nОсторожно! Если вы заново сгенерируете свой личный ключ, текущий будет утрачен навсегда, и ваши собеседники получат предупреждения при начале новых защищённых сеансов с вами. Вы уверены, что хотите продолжить?</string>
   <string name="ViewLocalIdentityActivity_cancel">Отмена</string>
   <string name="ViewLocalIdentityActivity_continue">Продолжить</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Сейчас невозможно отправить ваше SMS-сообщение. Оно будет отправлено, когда связь восстановится.</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Извините, TextSecure пока не поддерживает быстрые ответы.</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Вы получили сообщение от собеседника, поддерживающего зашифрованное общение при помощи TextSecure. Хотите начать защищённый сеанс?</string>
   <string name="auto_initiate_activity__initiate_exchange">Начать обмен</string>
@@ -215,12 +288,14 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нет контактов.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Поиск контактов…</string>
+  <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Выбрать для</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Нет недавних звонков.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message">Наберите сообщение</string>
+  <string name="conversation_activity__type_message"><small>Послать сообщение</small></string>
   <string name="conversation_activity__send">Отправить</string>
   <string name="conversation_activity__remove">Удалить</string>
   <!--conversation_item_sent-->
@@ -231,15 +306,17 @@
   <string name="conversation_item_received__downloading">Скачивание</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Выбрать несколько</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Загружаем страны...</string>
+  <string name="country_selection_fragment__search">Поиск</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Пожалуйста, выберите парольную фразу, которая будет использоваться для локального шифрования ваших данных.⏎\n⏎\nОна должна быть надёжной.</string>
   <string name="create_passphrase_activity__passphrase">ПАРОЛЬНАЯ ФРАЗА:</string>
   <string name="create_passphrase_activity__repeat">ПОВТОРИТЕ:</string>
   <string name="create_passphrase_activity__continue">Продолжить</string>
-  <string name="create_passphrase_activity__generating_secrets">СОЗДАЕМ СЕКРЕТЫ </string>
+  <string name="create_passphrase_activity__generating_secrets">СОЗДАЁМ СЕКРЕТЫ </string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Вы хотите импортировать хранящиеся у вас сейчас текстовые сообщения в зашифрованную базу данных TextSecure?</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cистемная база данных затронута не будет.</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Хотите ли вы импортировать имеющиеся текстовые сообщения в зашифрованную базу данных TextSecure?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cистемная база данных изменена не будет.</string>
   <string name="database_migration_activity__skip">Пропустить</string>
   <string name="database_migration_activity__import">Импортировать</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Это может занять какое-то время. Пожалуйста, наберитесь терпения, мы вам сообщим, когда импортирование завершится.</string>
@@ -248,15 +325,15 @@
   <string name="database_upgrade_activity__updating_database">Обновляем базу данных...</string>
   <string name="export_fragment__export_encrypted_backup">Экспорт зашифрованной резервной копии</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Экспортировать на SD-карту зашифрованную резервную копию.</string>
-  <string name="export_fragment__export_plaintext_backup">Экспорт незашифрованной резервной копии.</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nЭкспортировать на SD-карту незашифрованную резервную копию, совместимую с приложением «SMSBackup And Restore».</string>
+  <string name="export_fragment__export_plaintext_backup">Экспорт простой резервной копии</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nЭкспортировать на SD-карту простую резервную копию, совместимую с приложением «SMSBackup And Restore».</string>
   <string name="import_fragment__import_system_sms_database">Импорт системной базы SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Импортировать базу данных из SMS-приложения, которое используется сейчас по умолчанию.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Импортировать сообщения из базы данных SMS-приложения, которое используется сейчас по умолчанию.</string>
   <string name="import_fragment__import_encrypted_backup">Импорт зашифрованной резервной копии</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nВосстановить из ранее экспортированной зашифрованной резервной копии TextSecure</string>
-  <string name="import_fragment__import_plaintext_backup">Импорт незашифрованной резервной копии</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nИмпортировать из незашифрованной резервной копии. Совместимо с приложением «SMSBackup And Restore».</string>
-  <string name="local_identity__regenerate_key">Повторно сгенерировать ключ</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nВосстановить из ранее экспортированной зашифрованной резервной копии TextSecure.</string>
+  <string name="import_fragment__import_plaintext_backup">Импорт простой резервной копии</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nИмпортировать из простой резервной копии. Совместимо с приложением «SMSBackup And Restore».</string>
+  <string name="local_identity__regenerate_key">Заново сгенерировать ключ</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
   <!--prompt_passphrase_activity-->
@@ -270,8 +347,44 @@
   <string name="prompt_mms_activity__mms_proxy_port_optional">ПОРТ ПРОКСИ ДЛЯ MMS (НЕОБЯЗАТЕЛЬНО):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Выполнить</string>
+  <!--registration_activity-->
+  <string name="registration_activity__your_country">ВАША СТРАНА</string>
+  <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШЕЙ СТРАНЫ\nИ НОМЕР ТЕЛЕФОНА</string>
+  <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
+  <string name="registration_activity__register">Зарегистрироваться</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Для регистрации на сервер будет временно передана некоторая контактная информация.</string>
+  <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
+  <string name="registration_problems__sms_interceptors">Перехватчики SMS-сообщений.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nНекоторые SMS-приложения сторонних разработчиков (например, Handcent или GoSMS) ведут себя неправильно и перехватывают все входящие SMS-сообщения. Проверьте, не получали ли вы сообщение, начинающееся со слов «Your TextSecure verification code». Если да, то вам необходимо настроить ваше SMS-приложение так, чтобы оно пропускало сообщения дальше. </string>
+  <string name="registration_problems__incorrect_number">Неверный номер.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nПожалуйста, убедитесь, правильно ли вы указали свой номер и соответствует ли его формат\nвашему региону.\n</string>
+  <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure не работает с номерами Google Voice.</string>
+  <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">Голосовая проверка</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nДля проверки вашего номера TextSecure также может вам позвонить. Нажмите «Позвонить мне», дождитесь звонка и введите ниже шесть цифр, которые вы услышите.</string>
+  <string name="registration_progress_activity__verify">Проверить</string>
+  <string name="registration_progress_activity__call_me">Позвонить мне</string>
+  <string name="registration_progress_activity__edit_number">Изменить номер</string>
+  <string name="registration_progress_activity__connectivity_error">Ошибка связи.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\nTextSecure не смог соединиться с push-сервисом.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Возможные \nпричины:\n</string>
+  <string name="registration_progress_activity__no_network_connectivity">Нет соединения \nс интернетом.\n</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Для использования этой функции TextSecure необходимо подключение к интернету. Убедитесь, что ваше устройство подключено к 3G или Wi-Fi.</string>
+  <string name="registration_progress_activity__restrictive_firewall">Ограничения брандмауэра.\n</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">\nЕсли вы подключены по Wi-Fi, возможно, в сети имеется брандмауэр, который блокирует доступ к серверу TextSecure. Попробуйте воспользоваться другой беспроводной сетью либо мобильным интернетом.\n</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nСейчас TextSecure автоматически проверит ваш номер телефона при помощи SMS-сообщения.\n</string>
+  <string name="registration_progress_activity__connecting">Соединяемся...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Ожидаем\nSMS-подтверждения...\n</string>
+  <string name="registration_progress_activity__registering_with_server">Регистрируемся на сервере...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Это может занять некоторое время. Пожалуйста, подождите. Мы сообщим вам, когда процесс подтверждения будет завершен.\n</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nИстекло время ожидания SMS-сообщения для подтверждения вашего номера.\n</string>
+  <string name="registration_progress_activity__sms_verification_failed">Подтверждение\nпо SMS не удалось.\n</string>
+  <string name="registration_progress_activity__generating_keys">Генерируем ключи...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Кому</string>
+  <string name="recipients_panel__add_member">Добавить участника</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">В вашей базе доверенных собеседников нет ни одного личного ключа.</string>
   <!--verify_identity_activity-->
@@ -286,9 +399,10 @@
   <string name="verify_keys_activity__they_read_this">Собеседник читает это:</string>
   <string name="verify_keys_activity__you_read_this">Вы читаете это:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Создать парольную фразу</string>
-  <string name="AndroidManifest__enter_passphrase">Ввести парольную фразу</string>
+  <string name="AndroidManifest__create_passphrase">Создание парольной фразы</string>
+  <string name="AndroidManifest__enter_passphrase">Введите парольную фразу</string>
   <string name="AndroidManifest__select_contacts">Выбрать контакты</string>
+  <string name="AndroidManifest__select_contact">Выбрать контакт</string>
   <string name="AndroidManifest__textsecure_detected">Обнаружено TextSecure</string>
   <string name="AndroidManifest__public_identity_key">Открытый личный ключ</string>
   <string name="AndroidManifest__change_passphrase">Изменить парольную фразу</string>
@@ -297,7 +411,7 @@
   <string name="AndroidManifest__manage_identity_keys">Управление личными ключами</string>
   <string name="AndroidManifest__complete_key_exchange">Выполнить обмен ключами</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Импорт / Экспорт</string>
+  <string name="arrays__import_export">Импорт и экспорт</string>
   <string name="arrays__my_identity_key">Мой личный ключ</string>
   <string name="arrays__contact_keys">Ключи контактов</string>
   <!--preferences.xml-->
@@ -306,8 +420,10 @@
   <string name="preferences__pref_all_mms_title">Использовать для всех MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Использовать TextSecure для просмотра и хранения всех входящих текстовых сообщений</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать TextSecure для просмотра и хранения всех входящих мультимедийных сообщений</string>
+  <string name="preferences__enable_enter_key_title">Включить клавишу «Ввод»</string>
+  <string name="preferences__replace_smiley_with_enter_key">Заменить клавишу смайликов на «Ввод»</string>
   <string name="preferences__pref_enter_sends_title">Отправка по «Enter»</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Сообщения будут отправляться при нажатии клавиши «Ввод»</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Сообщения будут отправляться при нажатии клавиши «Enter»</string>
   <string name="preferences__display_settings">Настройки отображения</string>
   <string name="preferences__choose_identity">Выбрать личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
@@ -316,7 +432,7 @@
   <string name="preferences__complete_key_exchanges">Выполнять обмены ключами</string>
   <string name="preferences__disable_passphrase">Отключить парольную фразу</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Отключить шифрование при хранении сообщений и ключей</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Автоматически выполнять обмен ключами в новых сеансах, а также в существующих сеансах с тем же личным ключом</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Автоматически выполнять обмен ключами в новых сеансах, а также в существующих сеансах с не изменившимся личным ключом</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Стирать из памяти парольную фразу через некоторое время</string>
   <string name="preferences__timeout_passphrase">Забывать парольную фразу</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Выберите срок хранения парольной фразы</string>
@@ -329,14 +445,11 @@
   <string name="preferences__notifications">Уведомления</string>
   <string name="preferences__display_message_notifications_in_status_bar">Показывать уведомления о сообщениях в статусной строке</string>
   <string name="preferences__led_color">Цвет светодиода</string>
-  <string name="preferences__change_notification_led_color">Поменять цвет светодиода</string>
   <string name="preferences__pref_led_blink_title">Мигание светодиода</string>
-  <string name="preferences__change_notification_blink_pattern">Изменить тип мигания светодиода</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Выберите тип мигания</string>
-  <string name="preferences__select_led_color">Выбрать цвет светодиода</string>
   <string name="preferences__sound">Мелодия</string>
+  <string name="preferences__change_notification_sound">Изменить мелодию уведомления</string>
   <string name="preferences__inthread_notifications">Уведомления при разговоре</string>
-  <string name="preferences__play_inthread_notifications">Проигрывать мелодию уведомления даже во время активной переписки.</string>
+  <string name="preferences__play_inthread_notifications">Проигрывать мелодию уведомления даже во время активной переписки</string>
   <string name="preferences__vibrate">Вибрация</string>
   <string name="preferences__also_vibrate_when_notified">Вибрировать при уведомлении</string>
   <string name="preferences__minutes">мин.</string>
@@ -350,29 +463,31 @@
   <string name="preferences__fast">Быстро</string>
   <string name="preferences__normal">Средне</string>
   <string name="preferences__slow">Медленно</string>
-  <string name="preferences__custom">Настроить</string>
+  <string name="preferences__custom">Настроить...</string>
   <string name="preferences__advanced">Расширенные</string>
   <string name="preferences__passphrase">Парольная фраза</string>
   <string name="preferences__advanced_mms_access_point_names">Настройки MMS</string>
   <string name="preferences__enable_manual_mms">Настроить MMS вручную</string>
-  <string name="preferences__override_system_mms_settings">Использовать указанную ниже информацию вместо системных настроек MMS.</string>
+  <string name="preferences__override_system_mms_settings">Использовать вместо системных настроек MMS указанную ниже информацию.</string>
   <string name="preferences__mmsc_url_required">Адрес MMS-центра (обязательно)</string>
   <string name="preferences__mms_proxy_host_optional">Адрес прокси для MMS (необязательно)</string>
   <string name="preferences__mms_proxy_port_optional">Порт прокси для MMS (необязательно)</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запрашивать отчёт о доставке каждого отправленного вами SMS-сообщения</string>
   <string name="preferences__sms_delivery_reports">Отчеты о доставке SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запрашивать отчёт о доставке каждого отправленного SMS-сообщения</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Автоматически удалять старые сообщения, когда длина разговора превышает заданную</string>
   <string name="preferences__delete_old_messages">Удалить старые сообщения</string>
   <string name="preferences__storage">Память</string>
   <string name="preferences__conversation_length_limit">Ограничение длины разговора</string>
   <string name="preferences__trim_all_threads_now">Обрезать все разговоры</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Просмотреть все разговоры и привести их длину в соответствие с заданной</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Привести длину всех разговоров в соответствие с заданной</string>
   <string name="preferences__light_theme">Светлая тема</string>
   <string name="preferences__dark_theme">Тёмная тема</string>
   <string name="preferences__appearance">Внешний вид</string>
   <string name="preferences__theme">Тема</string>
   <string name="preferences__default">По умолчанию</string>
   <string name="preferences__language">Язык (language)</string>
+  <string name="preferences__make_default_sms_app">SMS-приложение по умолчанию</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Сделать TextSecure приложением по умолчанию для SMS и MMS.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -398,13 +513,17 @@
   <string name="conversation_list_batch__menu_select_all">Выбрать всё</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Поиск</string>
+  <string name="conversation_list__drawer_open">Открыть панель навигации</string>
+  <string name="conversation_list__drawer_close">Закрыть панель навигации</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Безопасность</string>
-  <string name="conversation_secure_verified__menu_verify_session">Подтвердить сеанс</string>
+  <string name="conversation_secure_verified__menu_no_identity">Личность недоступна</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Подтвердить получателя</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Закончить защищённый сеанс</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Завершить защищённый сеанс</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Добавить вложение</string>
+  <string name="conversation__menu_update_group">Обновить группу</string>
+  <string name="conversation__menu_leave_group">Покинуть группу</string>
   <string name="conversation__menu_add_contact_info">Добавить контакт</string>
   <string name="conversation__menu_delete_thread">Удалить разговор</string>
   <!--conversation_group_options-->
@@ -420,8 +539,9 @@
   <string name="text_secure_locked__menu_unlock">Открыть</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Новое сообщение</string>
+  <string name="text_secure_normal__menu_new_group">Новая группа</string>
   <string name="text_secure_normal__menu_settings">Настройки</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Стереть парольную фразу</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Заблокировать</string>
   <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Подтверждено</string>
