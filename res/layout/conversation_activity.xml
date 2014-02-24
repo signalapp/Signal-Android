@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/send_button_background"
+                    android:background="@drawable/touch_highlight_background"
                     android:contentDescription="@string/conversation_activity__send"
                     android:nextFocusLeft="@+id/embedded_text_editor"
                     android:padding="12dp"
