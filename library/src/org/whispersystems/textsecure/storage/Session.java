@@ -5,6 +5,7 @@ import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 
 /**
  * Helper class for generating key pairs and calculating ECDH agreements.
@@ -84,8 +85,7 @@ public class Session {
                                    recipient.getRecipientId(),
                                    RecipientDevice.DEFAULT_DEVICE_ID))
     {
-      return new SessionRecordV2(context, masterSecret, recipient.getRecipientId(),
-                                 RecipientDevice.DEFAULT_DEVICE_ID).getSessionVersion();
+      return CiphertextMessage.CURRENT_VERSION;
     } else if (SessionRecordV1.hasSession(context, recipient)) {
       return new SessionRecordV1(context, masterSecret, recipient).getSessionVersion();
     }
