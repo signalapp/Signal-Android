@@ -71,7 +71,7 @@ public class GroupReceiver {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     byte[]        id       = group.getId().toByteArray();
 
-    database.create(id, message.getSource(), group.getName(), group.getMembersList(),
+    database.create(id, group.getName(), group.getMembersList(),
                     group.getAvatar(), message.getRelay());
 
     storeMessage(masterSecret, message, group);
@@ -98,7 +98,7 @@ public class GroupReceiver {
     if (addedMembers.size() > 0) {
       Set<String> unionMembers = new HashSet<String>(recordMembers);
       unionMembers.addAll(messageMembers);
-      database.add(id, message.getSource(), new LinkedList<String>(unionMembers));
+      database.updateMembers(id, new LinkedList<String>(unionMembers));
 
       group = group.toBuilder().clearMembers().addAllMembers(addedMembers).build();
     } else {

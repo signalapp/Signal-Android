@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -24,10 +25,14 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 
 public class GroupDatabase extends Database {
+
+  public static final String DATABASE_UPDATE_ACTION = "org.thoughtcrime.securesms.database.GroupDatabase.UPDATE";
+
   private static final String TAG = GroupDatabase.class.getSimpleName();
 
   private static final String TABLE_NAME          = "groups";
@@ -77,11 +82,15 @@ public class GroupDatabase extends Database {
     return record;
   }
 
-  public Recipients getGroupMembers(byte[] groupId) {
-    List<String>    members    = getCurrentMembers(groupId);
-    List<Recipient> recipients = new LinkedList<Recipient>();
+  public Recipients getGroupMembers(byte[] groupId, boolean includeSelf) {
+    String          localNumber = TextSecurePreferences.getLocalNumber(context);
+    List<String>    members     = getCurrentMembers(groupId);
+    List<Recipient> recipients  = new LinkedList<Recipient>();
 
     for (String member : members) {
+      if (!includeSelf && member.equals(localNumber))
+        continue;
+
       try {
         recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, false)
                                           .getRecipientsList());
@@ -93,27 +102,13 @@ public class GroupDatabase extends Database {
     return new Recipients(recipients);
   }
 
-  public void create(byte[] groupId, String owner, String title,
-                     List<String> members, AttachmentPointer avatar,
-                     String relay)
+  public void create(byte[] groupId, String title, List<String> members,
+                     AttachmentPointer avatar, String relay)
   {
-    List<String> filteredMembers = new LinkedList<String>();
-    String       localNumber     = TextSecurePreferences.getLocalNumber(context);
-
-    if (!localNumber.equals(owner)) {
-      filteredMembers.add(owner);
-    }
-
-    for (String member : members) {
-      if (!member.equals(localNumber)) {
-        filteredMembers.add(member);
-      }
-    }
-
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
     contentValues.put(TITLE, title);
-    contentValues.put(MEMBERS, Util.join(filteredMembers, ","));
+    contentValues.put(MEMBERS, Util.join(members, ","));
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
@@ -142,7 +137,8 @@ public class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    if (title != null) updateGroupRecipientTitle(groupId, title);
+    RecipientFactory.clearCache();
+    notifyDatabaseListeners();
   }
 
   public void updateTitle(byte[] groupId, String title) {
@@ -151,43 +147,32 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    if (title != null) updateGroupRecipientTitle(groupId, title);
+    RecipientFactory.clearCache();
+    notifyDatabaseListeners();
   }
 
   public void updateAvatar(byte[] groupId, Bitmap avatar) {
-    updateAvatarInDatabase(groupId, BitmapUtil.toByteArray(avatar));
-    updateGroupRecipientAvatar(groupId, avatar);
+    updateAvatar(groupId, BitmapUtil.toByteArray(avatar));
   }
 
   public void updateAvatar(byte[] groupId, byte[] avatar) {
-    updateAvatarInDatabase(groupId, avatar);
-    updateGroupRecipientAvatar(groupId, BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
-  }
-
-  private void updateAvatarInDatabase(byte[] groupId, byte[] avatar) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(AVATAR, avatar);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
+
+    RecipientFactory.clearCache();
+    notifyDatabaseListeners();
   }
 
-  public void add(byte[] id, String source, List<String> members) {
-    List<String> currentMembers = getCurrentMembers(id);
+  public void updateMembers(byte[] id, List<String> members) {
+    ContentValues contents = new ContentValues();
+    contents.put(MEMBERS, Util.join(members, ","));
+    contents.put(ACTIVE, 1);
 
-    for (String currentMember : currentMembers) {
-      if (currentMember.equals(source)) {
-        List<String> concatenatedMembers = new LinkedList<String>(currentMembers);
-        concatenatedMembers.addAll(members);
-
-        ContentValues contents = new ContentValues();
-        contents.put(MEMBERS, Util.join(concatenatedMembers, ","));
-        contents.put(ACTIVE, 1);
-
-        databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
-                                                    new String[] {GroupUtil.getEncodedId(id)});
-      }
-    }
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
+                                                new String[] {GroupUtil.getEncodedId(id)});
   }
 
   public void remove(byte[] id, String source) {
@@ -198,7 +183,7 @@ public class GroupDatabase extends Database {
     contents.put(MEMBERS, Util.join(currentMembers, ","));
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
-                                                new String[]{GroupUtil.getEncodedId(id)});
+                                                new String[] {GroupUtil.getEncodedId(id)});
   }
 
   private List<String> getCurrentMembers(byte[] id) {
@@ -244,6 +229,10 @@ public class GroupDatabase extends Database {
     }
   }
 
+  private void notifyDatabaseListeners() {
+    Intent intent = new Intent(DATABASE_UPDATE_ACTION);
+    context.sendBroadcast(intent);
+  }
 
   public static class Reader {
 
@@ -342,28 +331,4 @@ public class GroupDatabase extends Database {
       return active;
     }
   }
-
-  private Recipient getGroupRecipient(byte[] groupId) {
-    try {
-      return RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
-                             .getPrimaryRecipient();
-    } catch (RecipientFormattingException e) {
-      Log.w(TAG, e);
-      return null;
-    }
-  }
-
-  private void updateGroupRecipientTitle(byte[] groupId, String title) {
-    Recipient groupRecipient = getGroupRecipient(groupId);
-    Log.i(TAG, "updating group recipient title for recipient " + System.identityHashCode(groupRecipient));
-    if (groupRecipient != null) groupRecipient.setName(title);
-    else                        Log.w(TAG, "Couldn't update group title because recipient couldn't be found.");
-  }
-
-  private void updateGroupRecipientAvatar(byte[] groupId, Bitmap photo) {
-    Recipient groupRecipient = getGroupRecipient(groupId);
-    if (groupRecipient != null) groupRecipient.setContactPhoto(photo);
-    else                        Log.w(TAG, "Couldn't update group title because recipient couldn't be found.");
-  }
-
 }

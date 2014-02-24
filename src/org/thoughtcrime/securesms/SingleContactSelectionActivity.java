@@ -113,7 +113,7 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
   private void openNewConversation(Recipients recipients) {
     if (recipients != null) {
       Intent intent = new Intent(SingleContactSelectionActivity.this, ConversationActivity.class);
-      intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients);
+      intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.toIdString());
       intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
       long existingThread = DatabaseFactory.getThreadDatabase(SingleContactSelectionActivity.this).getThreadIdIfExistsFor(recipients);
       intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);

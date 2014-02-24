@@ -37,7 +37,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
     try {
       String groupId = recipients.getPrimaryRecipient().getNumber();
       return DatabaseFactory.getGroupDatabase(context)
-                            .getGroupMembers(GroupUtil.getDecodedId(groupId));
+                            .getGroupMembers(GroupUtil.getDecodedId(groupId), true);
     } catch (IOException e) {
       Log.w("ConverstionActivity", e);
       return new Recipients(new LinkedList<Recipient>());

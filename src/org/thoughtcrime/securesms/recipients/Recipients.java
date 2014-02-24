@@ -23,6 +23,7 @@ import android.util.Patterns;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.NumberUtil;
+import org.whispersystems.textsecure.util.Util;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -135,6 +136,16 @@ public class Recipients implements Parcelable {
 
   public List<Recipient> getRecipientsList() {
     return this.recipients;
+  }
+
+  public String toIdString() {
+    List<String> ids = new LinkedList<String>();
+
+    for (Recipient recipient : recipients) {
+      ids.add(String.valueOf(recipient.getRecipientId()));
+    }
+
+    return Util.join(ids, " ");
   }
 
   public String[] toNumberStringArray(boolean scrub) {

@@ -73,6 +73,8 @@ import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -85,8 +87,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -116,6 +116,7 @@ import java.util.List;
 import ws.com.google.android.mms.MmsException;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
@@ -155,6 +156,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
   private BroadcastReceiver             securityUpdateReceiver;
+  private BroadcastReceiver             groupUpdateReceiver;
   private EmojiDrawer                   emojiDrawer;
   private EmojiToggle                   emojiToggle;
 
@@ -218,6 +220,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   @Override
   protected void onDestroy() {
     unregisterReceiver(securityUpdateReceiver);
+    unregisterReceiver(groupUpdateReceiver);
     saveDraft();
     MemoryCleaner.clean(masterSecret);
     super.onDestroy();
@@ -456,10 +459,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
           initializeEnabledCheck();
         } catch (IOException e) {
           Log.w(TAG, e);
-          Toast.makeText(ConversationActivity.this, "Error leaving group....", Toast.LENGTH_LONG);
+          Toast.makeText(ConversationActivity.this, "Error leaving group....", Toast.LENGTH_LONG).show();
         } catch (MmsException e) {
           Log.w(TAG, e);
-          Toast.makeText(ConversationActivity.this, "Error leaving group...", Toast.LENGTH_LONG);
+          Toast.makeText(ConversationActivity.this, "Error leaving group...", Toast.LENGTH_LONG).show();
         }
       }
     });
@@ -706,7 +709,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private void initializeResources() {
     recipientsPanel     = (RecipientsPanel)findViewById(R.id.recipients);
-    recipients          = getIntent().getParcelableExtra(RECIPIENTS_EXTRA);
+    recipients          = RecipientFactory.getRecipientsForIds(this, getIntent().getStringExtra(RECIPIENTS_EXTRA), true);
     threadId            = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     distributionType    = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA,
                                                   ThreadDatabase.DistributionTypes.DEFAULT);
@@ -738,6 +741,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     composeText.setOnClickListener(composeKeyPressedListener);
     emojiDrawer.setComposeEditText(composeText);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
+
+    recipients.addListener(new RecipientModifiedListener() {
+      @Override
+      public void onModified(Recipient recipient) {
+        initializeTitleBar();
+      }
+    });
 
     registerForContextMenu(sendButton);
 
@@ -777,9 +787,30 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       }
     };
 
+    groupUpdateReceiver = new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        Log.w("ConversationActivity", "Group update received...");
+        if (recipients != null) {
+          String ids = recipients.toIdString();
+          Log.w("ConversationActivity", "Looking up new recipients...");
+          recipients = RecipientFactory.getRecipientsForIds(context, ids, true);
+          recipients.addListener(new RecipientModifiedListener() {
+            @Override
+            public void onModified(Recipient recipient) {
+              initializeTitleBar();
+            }
+          });
+        }
+      }
+    };
+
     registerReceiver(securityUpdateReceiver,
                      new IntentFilter(KeyExchangeProcessor.SECURITY_UPDATE_EVENT),
                      KeyCachingService.KEY_PERMISSION, null);
+
+    registerReceiver(groupUpdateReceiver,
+                     new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
   }
 
 
@@ -959,12 +990,15 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private boolean isPushGroupConversation() {
-    return getRecipients().isGroupRecipient();
+    return getRecipients() != null && getRecipients().isGroupRecipient();
   }
 
   private boolean isPushDestination() {
     try {
       if (!TextSecurePreferences.isPushRegistered(this))
+        return false;
+
+      if (getRecipients() == null)
         return false;
 
       if (isPushGroupConversation())

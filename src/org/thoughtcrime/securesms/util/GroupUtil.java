@@ -50,7 +50,7 @@ public class GroupUtil {
       }
 
       if (title != null && !title.trim().isEmpty()) {
-        description += " Updated title to '" + title + "'.";
+        description += " Title is now '" + title + "'.";
       }
 
       return description;

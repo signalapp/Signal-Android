@@ -34,12 +34,12 @@ import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -341,18 +341,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     new UpdateWhisperGroupAsyncTask().execute();
   }
 
-  private static List<String> recipientsToNormalizedStrings(Collection<Recipient> recipients, String localNumber) {
-    final List<String> e164numbers = new ArrayList<String>(recipients.size());
-    for (Recipient contact : recipients) {
-      try {
-        e164numbers.add(PhoneNumberFormatter.formatNumber(contact.getNumber(), localNumber));
-      } catch (InvalidNumberException ine) {
-        Log.w(TAG, "Failed to format number for added group member.", ine);
-      }
-    }
-    return e164numbers;
-  }
-
   private void enableWhisperGroupCreatingUi() {
     findViewById(R.id.group_details_layout).setVisibility(View.GONE);
     findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
@@ -428,10 +416,11 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   {
     GroupDatabase groupDatabase     = DatabaseFactory.getGroupDatabase(this);
     byte[]        groupId           = groupDatabase.allocateGroupId();
-    List<String>  memberE164Numbers = getE164Numbers(members);
+    Set<String>   memberE164Numbers = getE164Numbers(members);
 
-    groupDatabase.create(groupId, TextSecurePreferences.getLocalNumber(this), groupName,
-                         memberE164Numbers, null, null);
+    memberE164Numbers.add(TextSecurePreferences.getLocalNumber(this));
+
+    groupDatabase.create(groupId, groupName, new LinkedList<String>(memberE164Numbers), null, null);
     groupDatabase.updateAvatar(groupId, avatar);
 
     return handlePushOperation(groupId, groupName, avatar, memberE164Numbers);
@@ -442,24 +431,21 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       throws InvalidNumberException, MmsException
   {
     GroupDatabase groupDatabase     = DatabaseFactory.getGroupDatabase(this);
-    List<String>  memberE164Numbers = getE164Numbers(members);
+    Set<String>  memberE164Numbers = getE164Numbers(members);
+    memberE164Numbers.add(TextSecurePreferences.getLocalNumber(this));
 
-    GroupDatabase.GroupRecord record     = groupDatabase.getGroup(groupId);
-    Set<String>               newMembers = new HashSet<String>(memberE164Numbers);
-    newMembers.removeAll(record.getMembers());
+    for (String number : memberE164Numbers)
+      Log.w(TAG, "Updating: " + number);
 
-    groupDatabase.add(groupId, TextSecurePreferences.getLocalNumber(this),
-                      new LinkedList<String>(newMembers));
-
+    groupDatabase.updateMembers(groupId, new LinkedList<String>(memberE164Numbers));
     groupDatabase.updateTitle(groupId, groupName);
     groupDatabase.updateAvatar(groupId, avatar);
-
 
     return handlePushOperation(groupId, groupName, avatar, memberE164Numbers);
   }
 
   private Pair<Long, Recipients> handlePushOperation(byte[] groupId, String groupName, byte[] avatar,
-                                                     List<String> e164numbers)
+                                                     Set<String> e164numbers)
       throws MmsException, InvalidNumberException
   {
 
@@ -501,10 +487,10 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     return arrayList;
   }
 
-  private List<String> getE164Numbers(Set<Recipient> recipients)
+  private Set<String> getE164Numbers(Set<Recipient> recipients)
       throws InvalidNumberException
   {
-    List<String> results = new LinkedList<String>();
+    Set<String> results = new HashSet<String>();
 
     for (Recipient recipient : recipients) {
       results.add(Util.canonicalizeNumber(this, recipient.getNumber()));
@@ -545,7 +531,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
 
         ArrayList<Recipient> selectedContactsList = setToArrayList(selectedContacts);
-        intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, new Recipients(selectedContactsList));
+        intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, new Recipients(selectedContactsList).toIdString());
         startActivity(intent);
         finish();
       } else {
@@ -573,7 +559,9 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       }
       final String name = (groupName.getText() != null) ? groupName.getText().toString() : null;
       try {
-        return handleUpdatePushGroup(groupId, name, avatarBytes, selectedContacts);
+        Set<Recipient> unionContacts = new HashSet<Recipient>(selectedContacts);
+        unionContacts.addAll(existingContacts);
+        return handleUpdatePushGroup(groupId, name, avatarBytes, unionContacts);
       } catch (MmsException e) {
         Log.w(TAG, e);
         return new Pair<Long,Recipients>(RES_MMS_EXCEPTION, null);
@@ -638,7 +626,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
-        intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients);
+        intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.toIdString());
         startActivity(intent);
         finish();
       } else if (threadId == RES_BAD_NUMBER) {
@@ -671,7 +659,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     @Override
     protected Boolean doInBackground(Void... voids) {
       final GroupDatabase db = DatabaseFactory.getGroupDatabase(GroupCreateActivity.this);
-      final Recipients recipients = db.getGroupMembers(groupId);
+      final Recipients recipients = db.getGroupMembers(groupId, false);
       if (recipients != null) {
         final List<Recipient> recipientList = recipients.getRecipientsList();
         if (recipientList != null) {
