@@ -599,11 +599,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         }
       } else {
         title = getString(R.string.ConversationActivity_group_conversation);
+        int size = getRecipients().getRecipientsList().size();
+        subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
+            : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
       }
-      int size = getRecipients().getRecipientsList().size();
-      subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
-                             : String.format(getString(R.string.ConversationActivity_d_recipients_in_group),
-                                             getRecipients().getRecipientsList().size());
     } else {
       title    = getString(R.string.ConversationActivity_compose_message);
       subtitle = "";
