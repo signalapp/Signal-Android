@@ -20,6 +20,7 @@ import android.widget.CursorAdapter;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
@@ -183,9 +184,11 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void initializeResources() {
+    String recipientIds = this.getActivity().getIntent().getStringExtra("recipients");
+
     this.masterSecret = (MasterSecret)this.getActivity().getIntent()
                           .getParcelableExtra("master_secret");
-    this.recipients   = this.getActivity().getIntent().getParcelableExtra("recipients");
+    this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), recipientIds, true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }
 

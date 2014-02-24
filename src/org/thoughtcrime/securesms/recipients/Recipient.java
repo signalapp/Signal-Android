@@ -110,6 +110,12 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
   public synchronized void setContactPhoto(Bitmap bitmap) {
     this.contactPhoto = bitmap;
+    notifyListeners();
+  }
+
+  public synchronized void setName(String name) {
+    this.name = name;
+    notifyListeners();
   }
 
   public synchronized String getName() {
@@ -203,5 +209,4 @@ public class Recipient implements Parcelable, CanonicalRecipient {
   public static interface RecipientModifiedListener {
     public void onModified(Recipient recipient);
   }
-
 }

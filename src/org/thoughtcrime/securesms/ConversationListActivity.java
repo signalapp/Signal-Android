@@ -177,7 +177,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
   private void createConversation(long threadId, Recipients recipients, int distributionType) {
     Intent intent = new Intent(this, ConversationActivity.class);
-    intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients);
+    intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.toIdString());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);

@@ -13,9 +13,15 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ste prepričani, da želite izbrisati vse stare pogovore, razen najnovejših?</string>
   <string name="ApplicationPreferencesActivity_delete">Izbriši</string>
   <string name="ApplicationPreferencesActivity_my">Moj</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Onemogoči šifriranje pomnilnika</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Onemogočim šifriranje pomnilnika?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nPozor, s tem boste onemogočili šifriranje sporočil in ključev v pomnilniku naprave. Vaše šifrirane komunikacije bodo še vedno varne, toda vsakdo s fizičnim dostopom do vaše naprave bo lahko dostopal do njih.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Deregistracija...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Deregistracija kumunikacije preko podatkovne povezave</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Niste prijavljeni v potisno storitev...</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Posodabljanje seznama</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Posodabljam potisni seznam...</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -28,20 +34,24 @@
   <string name="ConversationItem_saving_attachment">Shranjevanje priponke</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Shranjujem priponko na kartico SD...</string>
   <string name="ConversationItem_save_to_sd_card">Shranim na kartico SD?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Ta datoteka je shranjena v kriptirani zbirki. Različica, ki jo boste shranili na SD kartico ne bo več kriptirana. Želite nadaljevati?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Datoteka, ki jo želite odpreti, je shranjena v šifrirani zbirki. Različica, ki jo boste shranili na kartico SD ne bo več šifrirana. Želite nadaljevati?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Napaka pri shranjevanju priponke na kartico SD!</string>
   <string name="ConversationItem_success_exclamation">Izvršeno!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Onemogočeno pisanje na kartico SD!</string>
   <string name="ConversationItem_view_secure_media_question">Želite pogledati zavarovano datoteko?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Ta datoteka je shranjena v šifrirani podatkovni zbirki. Če jo boste odprli z zunanjim pregledovalnikom, bo začasno dešifrirana in shranjena na disk? Ste prepričani, da želite to storiti?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Ta datoteka je shranjena v kriptirani zbirki. Pregledovanje z zunanjim pregledovalnikom zaenkrat žal zahteva, da bo začasno dešifrirana in shranjena na disk. Ste prepričani, da želite to storiti?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Sporočilo za izmenjavo ključev je prejeto in obdelano.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Napaka, prejeto zastarelo sporočilo za izmenjavo ključev.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Prejeto sporočilo za izmenjavo ključev, kliknite za obdelavo.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Prejeto sporočilo za izmenjavo ključev. Za obdelavo kliknite.</string>
+  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Med varno sejo je bilo prejeto nekriptirano SMS sporočilo. Če pošiljatelj nima odprte varne seje, vaših sporočil ne bo mogel prebrati. Kliknite za prekinitev varne seje.</string>
+  <string name="ConversationItem_group_action_left">Oseba %1$s je zapustila skupino.</string>
+  <string name="ConversationItem_group_action_joined">Oseba %1$s se je pridružila skupini.</string>
+  <string name="ConversationItem_group_action_modify">Oseba %1$s je posodobila skupino.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Začnem varno sejo?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Začnem varno sejo z %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Potrditev prekinitve varne seje</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Ste prepričani, da želite prekiniti trenutno varno sejo?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Potrditev za končanje varnostne seje</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Ste prepričani, da želite končati varno sejo?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potrditev brisanja pogovora</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Ste prepričani, da želite trajno izbrisati pogovor?</string>
   <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
@@ -55,11 +65,15 @@
   <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Prejemniki skupinskega pogovora</string>
   <string name="ConversationActivity_group_conversation">Skupinski pogovor</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d prejemnikov v skupini</string>
+  <string name="ConversationActivity_unnamed_group">Neimenovana skupina</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d članov</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 član</string>
   <string name="ConversationActivity_saving_draft">Shranjujem osnutek...</string>
   <string name="ConversationActivity_invalid_recipient">Neveljaven prejemnik!</string>
   <string name="ConversationActivity_calls_not_supported">Klici niso podprti</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Naprava ne omogoča podpore klicnim operacijam.</string>
+  <string name="ConversationActivity_leave_group">Želite zapustiti skupino?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste prepričani, da res želite zapustiti to skupino?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti sporočila</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Pošiljatelj: %1$s\nPrenos: %2$s\nPoslano/Prejeto:%3$s</string>
@@ -83,30 +97,45 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Pozor, s tem boste izvozili vsebino svojih sporočil na SD kartico v nešifrirani obliki.</string>
   <string name="ExportFragment_cancel">Prekliči</string>
   <string name="ExportFragment_exporting">Izvažam</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvažam nešifrirano na kartico SD...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvažam na kartico SD nešifrirano...</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Napaka, ne morem pisati na kartico SD!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Napaka pri zapisovanju na kartico SD.</string>
   <string name="ExportFragment_success">Uspešno opravljeno!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Izvažam ključe, nastavitve in sporočila v šifrirani obliki...</string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Nova skupina</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Posodobi skupino</string>
+  <string name="GroupCreateActivity_group_name_hint">Ime skupine</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Nova MMS skupina</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Izbrali ste stik, ki ne podpira skupin TextSecure, zato bo ta skupina MMS skupina.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Ker niste prijavljeni za uporabo podatkovnega kanala, so skupine TextSecure onemogočene.</string>
+  <string name="GroupCreateActivity_you_dont_own_this_group">Ker niste upravljalec te skupine, ne morete spreminjati naslova ali slike.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Prišlo je do nepričakovane napake, zato skupina ni bila ustvarjena.</string>
+  <string name="GroupCreateActivity_contacts_no_members">V skupini mora biti vsaj ena oseba!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">En izmed članov skupine ima nepravilno zapisano številko. Popravite napako ali odstranite stik iz skupine in poskusite znova.</string>
+  <string name="GroupCreateActivity_file_io_exception">Napaka I/O, ne morem ustvariti začasne slikovne datoteke.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Avatar skupine</string>
+  <string name="GroupCreateActivity_menu_create_title">Ustvari skupino</string>
+  <string name="GroupCreateActivity_creating_group">Ustvarjam %1$s…</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Uvozim sistemsko zbirko SMS sporočil?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">S tem boste uvozili sporočila iz sistemske zbirke SMS v TextSecure. Če ste predhodno že uvozili sporočila iz sistemske SMS zbirke, bodo ta sporočila v aplikaciji TextSecure podvojena.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">S tem boste uvozili sporočila iz sistemske zbirke SMS v aplikacijo TextSecure. Če ste predhodno že uvozili sporočila iz sistemske zbirke SMS, bodo ta sporočila v aplikaciji TextSecure podvojena.</string>
   <string name="ImportFragment_import">Uvozi</string>
   <string name="ImportFragment_cancel">Prekliči</string>
   <string name="ImportFragment_restore_encrypted_backup">Obnovim iz šifirane varnostne kopije?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nObnova šifrirane varnostne kopije bo nadomestila vaše obstoječe ključe, nastavitve in sporočila. Izgubili boste vse kar se nahaja v trenutni podatkovni zbirki TextSecure, ne pa tudi v varnostni kopiji.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nObnova iz šifrirane varnostne kopije bo nadomestila vaše obstoječe ključe, nastavitve in sporočila. Izgubili boste vse kar se nahaja v trenutni podatkovni zbirki aplikacije TextSecure, ne pa tudi vsebine varnostne kopije.</string>
   <string name="ImportFragment_restore">Obnovi</string>
-  <string name="ImportFragment_import_plaintext_backup">Uvozim nešifrirano varnostno kopijo?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">S tem boste uvozili sporočila iz nešifrirane varnostne kopije v TextSecure. Če ste predhodno že uvozili sporočila iz iste varnostne kopije, bodo ta sporočila v aplikaciji TextSecure podvojena.</string>
+  <string name="ImportFragment_import_plaintext_backup">Uvozim iz nešifrirane varnostne kopije?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">S tem boste uvozili sporočila iz nešifrirane varnostne kopije. Če ste predhodno že uvozili sporočila iz iste varnostne kopije, bodo ta sporočila podvojena.</string>
   <string name="ImportFragment_importing">Uvažam</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Uvozi nešifrirano varnostno kopijo...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Uvozi iz nešifrirane varnostne kopije...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Ne najdem nobene nešifrirane varnostne kopije!</string>
-  <string name="ImportFragment_error_importing_backup">Napaka pri uvozu varnostne kopije!</string>
-  <string name="ImportFragment_import_complete">Uvoz zaključen!</string>
+  <string name="ImportFragment_error_importing_backup">Napaka pri uvozu iz varnostne kopije!</string>
+  <string name="ImportFragment_import_complete">Uvoz dokončan!</string>
   <string name="ImportFragment_restoring">Obnavljam</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Obnavljam šifrirano varnostno kopijo...</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Obnavljam iz šifrirane varnostne kopije...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ne najdem nobene šifrirane varnostne kopije!</string>
-  <string name="ImportFragment_restore_complete">Obnova končana!</string>
+  <string name="ImportFragment_restore_complete">Obnova dokončana!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Noben skeniran ključ ni bil najden!</string>
   <!--MmsDownloader-->
@@ -127,11 +156,62 @@
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Navesti morate MMSC URL vašega operaterja.</string>
   <string name="PromptMmsActivity_mms_settings_updated">Nastavitve MMS posodobljene</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vnešeno lahko kadarkoli popravite v nastavitvah TextSecure.</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vnešeno lahko kadarkoli popravite v nastavitvah aplikacije TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis pri izmenjavi ključev se razlikuje od tistih pri predhodno izmenjanih ključih s to osebo. To lahko pomeni, da nekdo prestreza komunikacijo, ali pa, da je oseba ponovno namestila TextSecure in ima zdaj nov identifikacijski ključ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Morda bi želeli preveriti ta stik.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Podpis pri tej izmenjavi je zaupanja vreden, vendar imate izklopljeno možnost \'Samodejno dokončaj izmenjavo ključev\'.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Podpis pri tej izmenjavi je vreden zaupanja, vendar imate izklopljeno možnost \'Samodejno dokončaj izmenjavo ključev\'.</string>
+  <string name="ReceiveKeyActivity_processing">Obdelujem</string>
+  <string name="ReceiveKeyActivity_processing_key_exchange">Izmenjava ključev poteka...</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_textsecure">Povezava s TextSecure</string>
+  <string name="RegistrationActivity_select_your_country">Izberite svojo državo</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Navesti morate mednarodno kodo svoje države</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Navesti morate svojo telefonsko številko</string>
+  <string name="RegistrationActivity_invalid_number">Napačna številka</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Številka, ki ste jo navedli (%s) je neveljavna.</string>
+  <string name="RegistrationActivity_unsupported">Nepodprto</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Vaša naprava žal ne podpira podatkovnega sporočanja. Naprave z Androidom različice starejše od 4.0 morajo imeti registriran Googlov račun. Naprave z Androidom različice 4.0 ali več ne potrebujejo računa Google, vendar morajo imeti nameščeno aplikacijo Play Store.</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nPreverili bomo, če je spodnja številka povezana s to napravo:\n\n%s\n\n\nJe ta številka prava, ali jo želite pred nadaljevanjem postopka spremeniti?</string>
+  <string name="RegistrationActivity_continue">Nadaljuj</string>
+  <string name="RegistrationActivity_edit">Urejanje</string>
+  <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">Možne težave</string>
+  <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">Preverjam številko</string>
+  <string name="RegistrationProgressActivity_edit_s">Uredi %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">Registracija je končana!</string>
+  <string name="RegistrationProgressActivity_possible_problems">Možne težave.</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Najprej morate vnesti kodo, ki ste jo prejeli...</string>
+  <string name="RegistrationProgressActivity_connecting">Povezujem</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Povezujem za verifikacijo...</string>
+  <string name="RegistrationProgressActivity_network_error">Napaka v omrežju!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Ne morem se povezati. Preverite svojo internetno povezavo in poskusite znova.</string>
+  <string name="RegistrationProgressActivity_verification_failed">Verifikacija ni uspela!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Koda za verifikacijo, ki ste jo vnesli, je napačna. Poskusite znova.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">Preveč poskusov</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Prevečkrat ste vnesli napačno kodo za verifikacijo. Za ponoven poskus počakajte minuto.</string>
+  <string name="RegistrationProgressActivity_requesting_call">Zahtevam klic</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Zahtevam dohodni klic za verifikacijo...</string>
+  <string name="RegistrationProgressActivity_server_error">Napaka strežnika</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Strežnik je naletel na težavo. Poskusite znova.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Preveč zahtevkov!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Pred kratkim ste že zahtevali glasovni klic. Naslednjič lahko poskusite čez 20 minut.</string>
+  <string name="RegistrationProgressActivity_verifying_voice_code">Preverjam glasovno kodo...</string>
+  <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">Registracija je zaključena</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Registracija TextSecure je uspešno zaključena.</string>
+  <string name="RegistrationService_registration_error">Napaka pri registraciji</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pri registraciji TextSecure je prišlo do težav.</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Prejeto poškodovano\nsporočilo za izmenjavo ključev!</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nPrejeto sporočilo za izmenjavo ključev za napačno različico protokola.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nPrejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo in prikaz.</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Prejet je bil nadgrajen identifikacijski ključ neznanega stika. Tapnite za potrditev istovetnosti.</string>
+  <string name="SmsMessageRecord_secure_session_ended">Varna seja je zaključena.</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Zapustili ste skupino...</string>
+  <string name="TheadRecord_secure_session_ended">Varna seja je zaključena.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nimate identifikacijskega ključa.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Prejemnik nima identifikacijskega ključa.</string>
@@ -172,7 +252,7 @@
   <string name="MmsDatabase_downloading_mms">Prejemam MMS...</string>
   <string name="MmsDatabase_mms_download_failed">Prejem MMS sporočila neuspešen!</string>
   <string name="MmsDatabase_downloading">Prejemam...</string>
-  <string name="MmsDatabase_mms_pending_download">Za dolpoteg klikni in spremeni MMS nastavitve.</string>
+  <string name="MmsDatabase_mms_pending_download">Za dolpoteg klikni in spremeni nastavitve MMS.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifriranje sporočila MMS, počakajte...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Okvarjeno šifrirano sporočilo MMS...</string>
@@ -183,8 +263,10 @@
   <string name="ApplicationMigrationService_import_in_progress">Uvoz v teku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Uvažanje kratkih sporočil</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Geslo TextSecure zajeto</string>
-  <string name="KeyCachingService_passphrase_cached">Geslo zajeto</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached">Odpri z dotikom.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Odpri z dotikom ali zapri z dotikom ključavnice.</string>
+  <string name="KeyCachingService_passphrase_cached">TextSecure je odklenjen</string>
+  <string name="KeyCachingService_lock">Zakleni z geslom</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d novih sporočil</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovejše od: %s</string>
@@ -217,12 +299,15 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ni stikov.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Iščem stike...</string>
+  <!--single_contact_selection_activity-->
+  <string name="single_contact_selection_group_activity__filter">Vnesite ime za filtriranje...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Izberi za</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ni zadnjih klicev.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message">Vpiši sporočilo</string>
+  <string name="conversation_activity__type_message"><small>Pošlji sporočilo</small></string>
   <string name="conversation_activity__send">Pošlji</string>
   <string name="conversation_activity__remove">Odstrani</string>
   <!--conversation_item_sent-->
@@ -233,8 +318,11 @@
   <string name="conversation_item_received__downloading">Prenašam</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Paketni način izbire</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Pripravljam države...</string>
+  <string name="country_selection_fragment__search">Iskanje</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Nastavite geslo, s katerim bodo šifrirani vaši podatki v okviru aplikacije.\n\nGeslo naj bo močno.</string>
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Izberite geslo, če želite šifrirati podatke lokalno na napravi.</string>
   <string name="create_passphrase_activity__passphrase">Geslo:</string>
   <string name="create_passphrase_activity__repeat">Ponovi:</string>
   <string name="create_passphrase_activity__continue">Nadaljuj</string>
@@ -248,40 +336,77 @@
   <string name="database_migration_activity__importing">UVAŽANJE</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Posodabljam podatkovne zbirke...</string>
-  <string name="export_fragment__export_encrypted_backup">Izvoz šifrirane varnostne kopije</string>
+  <string name="export_fragment__export_encrypted_backup">Izvozi šifrirano varnostno kopijo</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Izvozi šifrirano varnostno kopijo na kartico SD.</string>
   <string name="export_fragment__export_plaintext_backup">Izvozi nešifrirano varnostno kopijo</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nIzvozi nešifrirano varnostno kopijo združljivo s sistemskimi varnostnimi kopijami SMS na kartico SD.</string>
   <string name="import_fragment__import_system_sms_database">Uvozi sistemsko zbirko SMS sporočil</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Uvozi podatke iz sistemsko privzete SMS aplikacije.</string>
-  <string name="import_fragment__import_encrypted_backup">Uvozi šifrirano varnostno kopijo</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nObnovi predhodno izvoženo šifrirano varnostno kopijo Text Secure.</string>
-  <string name="import_fragment__import_plaintext_backup">Uvozi nešifrirano varnostno kopijo</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nUvozi nešifrirano datoteko z varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami SMS.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Uvozi zbirko sporočil iz sistemsko privzete aplikacije SMS.</string>
+  <string name="import_fragment__import_encrypted_backup">Uvozi iz šifrirane varnostne kopije</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nObnovi podatke iz predhodno izvožene šifrirane varnostne kopije TextSecure.</string>
+  <string name="import_fragment__import_plaintext_backup">Uvozi iz nešifrirane varnostne kopije</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nUvozi iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami SMS.</string>
   <string name="local_identity__regenerate_key">Ustvari nov ključ</string>
   <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Za vaš telefon je potrebna ročna nastavitev MMS.</string>
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">Za vaš telefon je potreben ročen vnos nastavitev MMS.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">GESLO TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Odkleni</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Za pošiljanje multimedijskih in skupinskih sporočil potrebuje TextSecure nastavitve MMS vašega mobilnega operaterja. Potrebnih podatkov ni moč pridobiti iz vaše naprave, kar je značilno za zaklenjene naprave in druge omejene konfiguracije. </string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Za pošiljanje multimedijskih in skupinskih sporočil potrebuje aplikacija TextSecure nastavitve MMS vašega mobilnega operaterja. Teh podatkov ni moč pridobiti iz vaše naprave, kar je značilno za zaklenjene naprave in druge omejene konfiguracije. </string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Za pošiljanje multimedijskih in skupinskih sporočil kliknite \'OK\' in vnesite potrebne podatke. Nastavitve MMS za vašo napravo najdete pod \'APN operaterja\'. Podatke morate vnesti samo enkrat.</string>
   <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (ZAHTEVANO):</string>
   <string name="prompt_mms_activity__mms_proxy_host_optional">GOSTITELJ POSRED. STREŽNIKA MMS (IZBIRNO):</string>
   <string name="prompt_mms_activity__mms_proxy_port_optional">VRATA POSRED. STREŽNIKA MMS (IZBIRNO):</string>
   <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Končano</string>
+  <string name="receive_key_activity__complete">Dokončaj</string>
+  <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nZa večjo zasebnost in v izogib stroškom SMS sporočil lahko TextSecure pri komunikaciji z drugimi uporabniki aplikacije\nuporablja potisna sporočila. Za aktivacijo te funkcije preverite kodo vaše države in telefonsko številko.</string>
+  <string name="registration_activity__your_country">VAŠA DRŽAVA</string>
+  <string name="registration_activity__your_country_code_and_phone_number">KODA DRŽAVE IN VAŠA\nTELEFONSKA ŠTEVILKA</string>
+  <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
+  <string name="registration_activity__register">Registriraj</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Med registracijo bo nekaj podatkov o stikih začasno posredovano na strežnik.</string>
+  <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">Nekatere možni razlogi\nza težave:</string>
+  <string name="registration_problems__sms_interceptors">Prestrezniki SMS.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nNekatere zunanje aplikacije SMS, kot npr. Handcent ali GoSMS, ravnajo napačno in\nprestrezajo vsa dohodna sporočila SMS. Preverite, če ste nanje prejeli sporočilo SMS, ki se\nzačne z \'Your TextSecure verification code:\'. V tem primeru morate nastaviti takšno SMS\naplikacijo, da bo sporočila SMS spustila naprej.</string>
+  <string name="registration_problems__incorrect_number">Napačna številka.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nPreverite, če ste pravilno vnesli svojo telefonsko številko in če je koda vaše regije/države prava.</string>
+  <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure ne bo deloval s telefonskimi številkami Google Voice.</string>
+  <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">Glasovna preverba</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nZa preverbo vaše telefonske številke vas TextSecure lahko tudi pokliče. Kliknite \'Pokliči me\'\nin spodaj vnesite šetmestno kodo, ki jo boste zaslišali.</string>
+  <string name="registration_progress_activity__verify">Preveri</string>
+  <string name="registration_progress_activity__call_me">Pokliči me</string>
+  <string name="registration_progress_activity__edit_number">Uredi številko</string>
+  <string name="registration_progress_activity__connectivity_error">Napaka v povezavi.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\nTextSecure se ni mogel povezati s potisno storitvijo.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Nekateri možni razlogi\nza težave:</string>
+  <string name="registration_progress_activity__no_network_connectivity">Ni povezave\nz omrežjem.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Za uporabo te storitve mora biti vaša naprava povezana z omrežjem. Preverite, če je naprava\npovezana v omrežje preko 3G ali Wifi.</string>
+  <string name="registration_progress_activity__restrictive_firewall">Omejujoč požarni zid.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">\nČe uporabljate povezavo Wifi, lahko dostop do strežnika TextSecure onemogoča\npožarni zid. Poskusite z drugim Wifi omrežjem ali z mobilnim omrežjem.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nTextSecure bo avtomatsko preveril vašo telefonsko številko s potrditvenim sporočilom SMS.</string>
+  <string name="registration_progress_activity__connecting">Povezujem...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Čakam na SMS\npotrditev...</string>
+  <string name="registration_progress_activity__registering_with_server">Registracija s strežnikom...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">To utegne trajati trenutek ali dva. Ko bo registracija končana, boste obveščeni.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nČakanje aplikacije TextSecure na potrditveni SMS je bilo neuspešno.</string>
+  <string name="registration_progress_activity__sms_verification_failed">Potrditev SMS ni\nbila uspešna.</string>
+  <string name="registration_progress_activity__generating_keys">Ustvarjam ključe...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Za</string>
+  <string name="recipients_panel__add_member">Dodaj člana</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Trenutno nimate identifikacijskih ključev v zbirki zaupanja vrednih.</string>
   <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Identiteta stika (prebere on):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Vaša identiteta (preberete vi):</string>
+  <string name="verify_identity_activity__their_identity_they_read">Istovetnost stika (prebere on):</string>
+  <string name="verify_identity_activity__your_identity_you_read">Vaša istovetnost (preberete vi):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Ime identitete:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Uvožena identiteta:\\n</string>
+  <string name="verify_import_identity_activity__identity_name_n">Istovetnost stika:\\n</string>
+  <string name="verify_import_identity_activity__imported_identity_n">Uvožen identifikacijski ključ:\\n</string>
   <string name="verify_import_identity_activity__verified">Preverjeno!</string>
   <string name="verify_import_identity_activity__compare">Primerjaj</string>
   <!--verify_keys_activity-->
@@ -291,27 +416,30 @@
   <string name="AndroidManifest__create_passphrase">Ustvari geslo</string>
   <string name="AndroidManifest__enter_passphrase">Vpiši geslo</string>
   <string name="AndroidManifest__select_contacts">Izberi stike</string>
+  <string name="AndroidManifest__select_contact">Izberi stik</string>
   <string name="AndroidManifest__textsecure_detected">Aplikacija TextSecure zaznana</string>
   <string name="AndroidManifest__public_identity_key">Javni identifikacijski ključ</string>
   <string name="AndroidManifest__change_passphrase">Zamenjaj geslo</string>
   <string name="AndroidManifest__verify_session">Overovi sejo</string>
-  <string name="AndroidManifest__verify_identity">Overovi identiteto</string>
+  <string name="AndroidManifest__verify_identity">Preveri istovetnost</string>
   <string name="AndroidManifest__manage_identity_keys">Upravljanje identifikacijskih ključev</string>
   <string name="AndroidManifest__complete_key_exchange">Dokončaj izmenjavo ključev</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
   <string name="arrays__my_identity_key">Moj ID ključ</string>
-  <string name="arrays__contact_keys">Ključi stikov</string>
+  <string name="arrays__contact_keys">ID ključi stikov</string>
   <!--preferences.xml-->
   <string name="preferences__general">Splošno</string>
   <string name="preferences__pref_all_sms_title">Uporabljaj za vsa SMS sporočila</string>
   <string name="preferences__pref_all_mms_title">Uporabljaj za vsa MMS sporočila</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Uporabi TextSecure za ogled in shranjevanje vseh dohodnih SMS sporočil</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabi TextSecure za ogled in shranjevanje vseh dohodnih MMS sporočil</string>
+  <string name="preferences__enable_enter_key_title">Vklopi tipko \'pošlji\'</string>
+  <string name="preferences__replace_smiley_with_enter_key">Zamenjaj tipko \'smeško\' s tipko \'pošlji\'</string>
   <string name="preferences__pref_enter_sends_title">Tipka Naprej (Enter) pošlje</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">S pritiskom na tipko Naprej (Enter) bo sporočilo poslano</string>
   <string name="preferences__display_settings">Nastavitve prikaza</string>
-  <string name="preferences__choose_identity">Izberi identiteto</string>
+  <string name="preferences__choose_identity">Izberi identifikacijski ključ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>
   <string name="preferences__change_my_passphrase">Zamenjaj geslo</string>
@@ -331,12 +459,9 @@
   <string name="preferences__notifications">Obvestila</string>
   <string name="preferences__display_message_notifications_in_status_bar">Prikaži obvestilo o sporočilu v statusni vrstici</string>
   <string name="preferences__led_color">Barva LED</string>
-  <string name="preferences__change_notification_led_color">Spremeni barvo LED za obvestila</string>
   <string name="preferences__pref_led_blink_title">Vzorec utripanja LED</string>
-  <string name="preferences__change_notification_blink_pattern">Spremeni vzorec utripanja LED za obvestila</string>
-  <string name="preferences__pref_led_blink_dialogtitle">Izveri vzorec utripanja LED</string>
-  <string name="preferences__select_led_color">Izberi barvo LED</string>
   <string name="preferences__sound">Zvok</string>
+  <string name="preferences__change_notification_sound">Spremeni zvok za obvestila</string>
   <string name="preferences__inthread_notifications">Obvestila znotraj pogovora</string>
   <string name="preferences__play_inthread_notifications">Predvajaj zvočna obvestila znotraj pogovora.</string>
   <string name="preferences__vibrate">Vibriranje</string>
@@ -357,12 +482,12 @@
   <string name="preferences__passphrase">Geslo</string>
   <string name="preferences__advanced_mms_access_point_names">Nastavitve MMS</string>
   <string name="preferences__enable_manual_mms">Omogoči ročno nastavitev MMS</string>
-  <string name="preferences__override_system_mms_settings">Uveljevi spodnje podatke preko sistemskih MMS nastavitev.</string>
+  <string name="preferences__override_system_mms_settings">Uveljevi spodnje nastavitve preko sistemskih MMS nastavitev.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (zahtevano)</string>
   <string name="preferences__mms_proxy_host_optional">Posredniški strežnik za MMS (opcijsko)</string>
   <string name="preferences__mms_proxy_port_optional">Vrata posredniškega strežnika za MMS (opcijsko)</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zahtevaj potrdilo o dostavi za vsako poslano sporočilo SMS</string>
   <string name="preferences__sms_delivery_reports">Potrdila o dostavi SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zahtevaj potrdilo o dostavi za vsako poslano sporočilo SMS</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Samodejno izbriši stara sporočila, ko pogovor preseže določeno dolžino</string>
   <string name="preferences__delete_old_messages">Izbriši stara sporočila</string>
   <string name="preferences__storage">Shranjevanje</string>
@@ -377,6 +502,11 @@
   <string name="preferences__language">Jezik</string>
   <string name="preferences__make_default_sms_app">Nastavi za privzeto aplikacijo SMS</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Nastavi TextSecure za privzeto aplikacijo SMS/MMS na napravi.</string>
+  <string name="preferences__use_data_channel">Potisna sporočila</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nPovečajte svojo zasebnost in izognite se stroškom SMS sporočil z uporabo podatkovnega kanala pri komunikaciji z drugimi uporabniki TectSecure</string>
+  <string name="preferences__allow_sms_fallback">Dovoli prehod na SMS</string>
+  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Kadar podatkovna povezava ni na voljo, pošiljaj in prejemaj SMS sporočila</string>
+  <string name="preferences__refresh_push_directory">Osveži potisni seznam</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -402,13 +532,17 @@
   <string name="conversation_list_batch__menu_select_all">Izberi vse</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Iskanje</string>
+  <string name="conversation_list__drawer_open">Odpri navigacijski poteznik</string>
+  <string name="conversation_list__drawer_close">Zapri navigacijski poteznik</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Varnost</string>
-  <string name="conversation_secure_verified__menu_verify_session">Overovi sejo</string>
+  <string name="conversation_secure_verified__menu_no_identity">Identifikacijski ključ ni na voljo</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Overovi prejemnika</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Prekini varno sejo</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Končaj varno sejo</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Dodaj priponko</string>
+  <string name="conversation__menu_update_group">Posodobi skupino</string>
+  <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_add_contact_info">Dodaj podatke o stiku</string>
   <string name="conversation__menu_delete_thread">Izbriši pogovor</string>
   <!--conversation_group_options-->
@@ -424,8 +558,9 @@
   <string name="text_secure_locked__menu_unlock">Odkleni</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Novo sporočilo</string>
+  <string name="text_secure_normal__menu_new_group">Nova skupina</string>
   <string name="text_secure_normal__menu_settings">Nastavitve</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Počisti geslo</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Zakleni</string>
   <string name="text_secure_normal__mark_all_as_read">Označi vsa kot prebrana</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Overjeno</string>

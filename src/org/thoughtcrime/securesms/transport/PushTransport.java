@@ -115,7 +115,7 @@ public class PushTransport extends BaseTransport {
 
     if (GroupUtil.isEncodedGroup(destination)) {
       recipients = DatabaseFactory.getGroupDatabase(context)
-                                  .getGroupMembers(GroupUtil.getDecodedId(destination));
+                                  .getGroupMembers(GroupUtil.getDecodedId(destination), false);
     } else {
       recipients = RecipientFactory.getRecipientsFromString(context, destination, false);
     }
