@@ -241,7 +241,7 @@
   <string name="ViewIdentityActivity_identity_fingerprint">Fingerabdruck</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz vorhandener Anfragen initiieren?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Sie haben bereits eine Sitzungsaufbau Nachricht an den Empfänger gesendet, sind Sie sicher, dass Sie eine weitere senden wollen? Dies macht die erste Nachricht ungültig.</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Sie haben bereits eine Sitzungsaufbaunachricht an den Empfänger gesendet, sind Sie sicher, dass Sie eine weitere senden wollen? Dies macht die erste Nachricht ungültig.</string>
   <string name="KeyExchangeInitiator_send">Senden</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht...</string>
@@ -263,7 +263,7 @@
   <string name="ApplicationMigrationService_import_in_progress">Import läuft</string>
   <string name="ApplicationMigrationService_importing_text_messages">NachrichtenImport</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Berühren um zu öffnen.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached">Berühren, um zu öffnen.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Berühren um zu öffnen oder Schloss berühren um zu schließen.</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure ist entsperrt</string>
   <string name="KeyCachingService_lock">Mit Passphrase sperren</string>
