@@ -114,6 +114,7 @@ public class EncryptingPartOutputStream extends FileOutputStream {
     Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
     cipher.init(Cipher.ENCRYPT_MODE, key);
 
+    // Cipher automatically generates a random IV for us.
     byte[] ivBytes = cipher.getIV();		
     mac.update(ivBytes);
     super.write(ivBytes, 0, ivBytes.length);
