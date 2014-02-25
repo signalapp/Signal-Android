@@ -56,8 +56,8 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo parece não suportar acções de marcação</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remetente: %1$s⏎ Transporte: %2$s⏎ Enviadas/Recebidas:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Transmissor: %1$s\nTransporte: %2$s\nEnviado: %3$s\nRecebido:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remetente: %1$s⏎ Transporte: %2$s⏎ Enviadas/Recebidas: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Transmissor: %1$s\nTransporte: %2$s\nEnviado: %3$s\nRecebido: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirme apagar a mensagem</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Tem a certeza que pretende apagar permanentemente esta mensagem?</string>
   <!--ConversationListAdapter-->
