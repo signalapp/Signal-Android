@@ -392,7 +392,7 @@
   <string name="registration_progress_activity__connecting">Verbinde...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Warte auf SMS\nÜberprüfung...</string>
   <string name="registration_progress_activity__registering_with_server">Registriere am Server...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dies\nkann einen Moment dauern. Bitte seinen Sie geduldig, wir benachrichtigen Sie, wenn die Überprüfung abgeschlossen ist.</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dies\nkann einen Moment dauern. Bitte seien Sie geduldig, wir benachrichtigen Sie, wenn die Überprüfung abgeschlossen ist.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nDie Überprüfung der SMS Bestätigung hat zu lange gedauert.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS Überprüfung\nfehlgeschlagen.</string>
   <string name="registration_progress_activity__generating_keys">Erzeuge Schlüssel...</string>
