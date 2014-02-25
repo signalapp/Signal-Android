@@ -83,6 +83,7 @@ import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.RecipientIsSelfException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -1077,19 +1078,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         Recipient             localRecipient;
         String                myPhoneNumber;
 
-        myPhoneNumber = getMyPhoneNumber();
+        myPhoneNumber = Util.getDeviceE164Number(this);
         allRecipients = recipients.getRecipientsList();
         for (Iterator<Recipient> it = allRecipients.iterator(); it.hasNext();)
         {
             localRecipient = it.next();
             if (myPhoneNumber.contains(localRecipient.getNumber()))
-            {
-                if (1 > allRecipients.size())
-                    allRecipients.remove(localRecipient);
-                else
-                    throw new RecipientFormattingException("Badly formatted");
-                recipients = new Recipients(allRecipients);
-            }
+                throw new RecipientIsSelfException("Not Supported");
+
         }
 
 
@@ -1131,6 +1127,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       }
 
       sendComplete(recipients, allocatedThreadId, allocatedThreadId != this.threadId);
+    } catch (RecipientIsSelfException ex){
+        Toast.makeText(ConversationActivity.this,
+                R.string.ConversationActivity_recipient_is_self,
+                Toast.LENGTH_LONG).show();
+        Log.w(TAG, ex);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
                      R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
@@ -1249,14 +1250,5 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   public void setComposeText(String text) {
     this.composeText.setText(text);
   }
-
-  private String getMyPhoneNumber(){
-      String            phoneNumber;
-      TelephonyManager  telemgr;
-
-      telemgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-      phoneNumber = telemgr.getLine1Number();
-      return phoneNumber;
-    }
 
 }
