@@ -77,7 +77,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">邮件详细信息</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">发件人： %1$s\n传输： %2$s\n已发送/接收：%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">发送者: %1$s\n传输: %2$s\n已发送: %3$s\n已接收:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">发送者: %1$s\n传输: %2$s\n已发送: %3$s\n已接收: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">确认邮件删除</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">是否确定要永久删除此邮件？</string>
   <!--ConversationListAdapter-->
