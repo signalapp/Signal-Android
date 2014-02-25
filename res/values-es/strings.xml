@@ -73,8 +73,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">¿Está seguro de que quiere dejar este grupo?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remitente: %1$s\nTransporte: %2$s\nEnviado/Recibido:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Emisor: %1$s⏎ Transporte: %2$s⏎ Enviado: %3$s⏎ Recibido:%4$s\n</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remitente: %1$s\nTransporte: %2$s\nEnviado/Recibido: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Emisor: %1$s⏎ Transporte: %2$s⏎ Enviado: %3$s⏎ Recibido: %4$s\n</string>
   <string name="ConversationFragment_confirm_message_delete">Confirmar borrado del mensaje</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">¿Está seguro que desea borrar permanentemente este mensaje?</string>
   <!--ConversationListAdapter-->
