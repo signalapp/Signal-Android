@@ -64,7 +64,7 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Toto zařízení zřejmě neumí vytáčet telefonní čísla</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti zprávy</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Odesilatel: %1$s\nPřenos: %2$s\nOdesláno/Obdrženo:%3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Odesilatel: %1$s\nPřenos: %2$s\nOdesláno/Obdrženo: %3$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odesílatel: %1$s\nTyp zprávy: %2$s\nOdesláno: %3$s\nPřijato: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrdit výmaz zpráv</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Opravdu chcete trvale vymazat tyto zprávy?</string>
