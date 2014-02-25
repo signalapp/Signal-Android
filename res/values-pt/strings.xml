@@ -5,16 +5,16 @@
   <string name="no">Não</string>
   <string name="delete">Apagar</string>
   <!--ApplicationPreferencesActivity-->
-  <string name="ApplicationPreferencesActivity_currently_s">Correntemente: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Necessita de inserir a frase-chave antes de gerir chaves...</string>
+  <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">É necessário inserir a frase-chave antes de gerir chaves...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">Mensagens por conversa</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Deletar todas mensagens antigas agora?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Apagar todas mensagens antigas agora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
-  <string name="ApplicationPreferencesActivity_delete">Deletar</string>
+  <string name="ApplicationPreferencesActivity_delete">Apagar</string>
   <string name="ApplicationPreferencesActivity_my">O meu</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Desactivar cifra de armazenamento?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nAtenção, isto desativa a encriptação de armazenamento para todas as mensagens e chaves.\nAs suas sessões continuam encriptadas, mas qualquer pessoa com acesso físico ao dispositivo\nterá acesso ás mensagens e chaves.</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nAtenção, isto desativa a encriptação de armazenamento para todas as mensagens e chaves.\nAs suas sessões continuam encriptadas, mas qualquer pessoa com acesso físico ao dispositivo\nterá acesso às mensagens e chaves.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
@@ -33,8 +33,8 @@
   <string name="ConversationItem_success_exclamation">Sucesso!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Não é possível escrever no cartão SD!</string>
   <string name="ConversationItem_view_secure_media_question">Ver ficheiro seguro?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">Mensagem de intercâmbio de chaves recebida e processada.</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Erro, foi recebida uma mensagem de intercâmbio de chaves desactualizada.</string>
+  <string name="ConversationItem_received_and_processed_key_exchange_message">Mensagem de troca de chaves recebida e processada.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Erro, foi recebida uma mensagem de troca de chaves desactualizada.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniciar sessão segura com %s?</string>
@@ -61,14 +61,14 @@
   <string name="ConversationFragment_confirm_message_delete">Confirme apagar a mensagem</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Tem a certeza que pretende apagar permanentemente esta mensagem?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Mensagem de troca de chaves...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Apagar conversas?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Tem a certeza que pretende apagar TODAS as conversas seleccionadas?</string>
   <string name="ConversationListFragment_deleting">A apagar</string>
   <string name="ConversationListFragment_deleting_selected_threads">A apagar conversas seleccionadas...</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
+  <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves...</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportar para cartão SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">As suas\nchaves de segurança, configurações e mensagens serão exportadas para o cartão SD.\n</string>
@@ -77,7 +77,7 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atenção, esta operação\nirá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão SD.\n</string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportar</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">A exportar texto simples para cartão SD</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">A exportar texto não cifrado para cartão SD</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Erro, não é possível escrever para o\ncartão SD!\n</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Erro ao escrever para o cartão SD.\n</string>
   <string name="ExportFragment_success">Sucesso!</string>
@@ -89,12 +89,12 @@
   <string name="ImportFragment_import">Importar</string>
   <string name="ImportFragment_cancel">Cancelar</string>
   <string name="ImportFragment_restore_encrypted_backup">Restaurar cópia de segurança cifrada?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nRestaurar um backup cifrado irá substituir totalmente as suas chaves, definições e msangens.\nIrá perder todas as informações na sua instalação atual do TextSecure, mas não do seu backup.\n</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nRestaurar um backup cifrado substituirá totalmente as suas chaves, definições e mensagens.\nIrá perder todas as informações na sua instalação atual do TextSecure, mas não do seu backup.\n</string>
   <string name="ImportFragment_restore">Restaurar</string>
   <string name="ImportFragment_import_plaintext_backup">Importar cópia de segurança em texto simples?</string>
   <string name="ImportFragment_importing">A importar</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">A importar cópia de segurança em texto simples</string>
-  <string name="ImportFragment_no_plaintext_backup_found">Não foi encontrada uma cópia de segurança em texto simples!</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">A importar cópia de segurança não cifrada</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Não foi encontrada uma cópia de segurança não cifrada!</string>
   <string name="ImportFragment_error_importing_backup">Erro a importar cópia de segurança!</string>
   <string name="ImportFragment_import_complete">Importação completa!</string>
   <string name="ImportFragment_restoring">A restaurar</string>
@@ -102,7 +102,7 @@
   <string name="ImportFragment_no_encrypted_backup_found">Não foi encontrada uma cópia de segurança cifrada!</string>
   <string name="ImportFragment_restore_complete">Restauro completo!</string>
   <!--KeyScanningActivity-->
-  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Não foi encontrada nenhuma chave lida!</string>
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Não foi encontrada nenhuma chave!</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Não existe conectividade disponível para transferir MMS, tente mais tarde...</string>
   <string name="MmsDownloader_error_storing_mms">Erro a armazenar MMS!</string>
@@ -122,9 +122,9 @@
   <string name="PromptMmsActivity_mms_settings_updated">Configuração MMS Actualizada</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Pode modificar estes valores a partir do menu de configuração TextSecure em qualquer altura.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A\nassinatura deste intercâmbio de chaves é diferente da previamente recebida deste contacto.\nIsto pode significar que alguém está a tentar interceptar esta comunicação ou simplesmente\nque este contacto reinstalou TextSecure e tem agora uma nova chave de identidade.\n</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contracto.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">A assinatura deste intercâmbio de chaves é confiada, mas tem a configuração \"completar automaticamente intercâmbio de chaves\" desactivada.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A\nassinatura desta troca de chaves é diferente da previamente recebida deste contacto.\nIsto pode significar que alguém está a tentar interceptar esta comunicação ou simplesmente\nque este contacto reinstalou TextSecure e tem agora uma nova chave de identidade.\n</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contacto.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">A assinatura desta troca de chaves é confiada, mas tem a configuração \"completar automaticamente troca de chaves\" desactivada.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">Continuar</string>
   <!--RegistrationProblemsActivity-->
@@ -151,7 +151,7 @@
   <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">A chave está correcta. É igualmente necessário que o destinatário valide a sua impressão digital.</string>
   <string name="VerifyKeysActivity_verified_exclamation">Verificado!</string>
   <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Você não tem uma chave de identidade.</string>
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>
   <string name="ViewIdentityActivity_scan_to_compare">Leia o código QR para comparar</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">Apresente o código QR para comparar</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">AVISO, a chave lida NÃO coincide.</string>
@@ -170,7 +170,7 @@
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">A ligar ao servidor de MMS...</string>
   <string name="MmsDatabase_downloading_mms">A transferir MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">Transferência de MMS falhou!</string>
+  <string name="MmsDatabase_mms_download_failed">A transferência de MMS falhou!</string>
   <string name="MmsDatabase_downloading">A transferir...</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">A decifrar MMS, por favor, aguarde...</string>
@@ -180,16 +180,16 @@
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Presentemente não é possível enviar a sua mensagem MMS</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
-  <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
+  <string name="ApplicationMigrationService_importing_text_messages">A importar mensagens de texto</string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) novas mensagens</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %s</string>
   <string name="MessageNotifier_encrypted_message">Mensagem cifrada...</string>
   <string name="MessageNotifier_no_subject">(Sem Assunto)</string>
-  <string name="MessageNotifier_message_delivery_failed">A remessa de mensagem falhou.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Falhou a remessa de mensagem.</string>
-  <string name="MessageNotifier_error_delivering_message">Erro a remeter a mensagem.</string>
+  <string name="MessageNotifier_message_delivery_failed">O envio de mensagem falhou.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Falhou o envio de mensagem.</string>
+  <string name="MessageNotifier_error_delivering_message">Erro a enviar a mensagem.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
   <string name="MessageNotifier_mark_as_read">Marcar como lidas</string>
   <!--ViewLocalIdentityActivity-->
@@ -197,7 +197,7 @@
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Recriando chave\nde identidade</string>
   <string name="ViewLocalIdentityActivity_regenerated">Gerado!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Redefinir chave de identidade?</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nAtenção! Ao criar uma chave de identidade nova, a sua chave de identidade actual será\nremovida permanentemente, e os seus contactos receberão avisos quando estabelecer novas\nsessões seguras consigo. Tem a certeza que pretende continuar?\n</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nAtenção! Ao criar uma chave de identidade nova, a sua chave de identidade actual será\nremovida permanentemente, e os seus contactos receberão avisos quando estabelecerem novas\nsessões seguras consigo. Tem a certeza que pretende continuar?\n</string>
   <string name="ViewLocalIdentityActivity_cancel">Cancelar</string>
   <string name="ViewLocalIdentityActivity_continue">Continuar</string>
   <!--SmsReceiver-->
@@ -205,7 +205,7 @@
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Recebeu uma mensagem de alguém que suporta sessões cifradas TextSecure. Deseja iniciar uma sessão segura?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Iniciar Intercâmbio</string>
+  <string name="auto_initiate_activity__initiate_exchange">Iniciar Troca</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
@@ -237,7 +237,7 @@
   <string name="create_passphrase_activity__continue">Continuar</string>
   <string name="create_passphrase_activity__generating_secrets">A GERAR SEGREDOS</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Deseja importar as suas mensages de texto para a base de dados TextSecure cifrada?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Deseja importar as suas mensagens de texto para a base de dados TextSecure cifrada?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados de sistema não será modificada ou alterada de nenhuma forma.</string>
   <string name="database_migration_activity__skip">Saltar</string>
   <string name="database_migration_activity__import">Importar</string>
@@ -248,13 +248,13 @@
   <string name="export_fragment__export_encrypted_backup">A exportar cópia de segurança cifrada</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportar um backup\ncifrado para o cartão SD.\n</string>
   <string name="export_fragment__export_plaintext_backup">Exportar Backup Simples</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nExportar um backup em texto simples compatível com \'SMSBackup e Restaurar\' para o cartão SD.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nExportar um backup não cifrado compatível com \'SMSBackup e Restaurar\' para o cartão SD.</string>
   <string name="import_fragment__import_system_sms_database">Importar a base de dados SMS do sistema?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar a base de dados\nda aplicação predefinida do sistema.\n</string>
   <string name="import_fragment__import_encrypted_backup">Importar cópia de segurança cifrada</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nRestaurar uma cópia de segurança cifrada TextSecure exportada.\n</string>
-  <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nImportar uma cópia de segurança de texto simples. Compatível com \'SMSBackup e Restaurar\'</string>
+  <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança não cifrada</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nImportar uma cópia de segurança não cifrada. Compatível com \'SMSBackup e Restaurar\'</string>
   <string name="local_identity__regenerate_key">Criar chave nova</string>
   <!--mms_preferences_activity-->
   <!--prompt_passphrase_activity-->
@@ -287,14 +287,14 @@
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Criar frase-chave</string>
   <string name="AndroidManifest__enter_passphrase">Introduzir frase-chave</string>
-  <string name="AndroidManifest__select_contacts">Seleccionar Contactos</string>
+  <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure detectado</string>
   <string name="AndroidManifest__public_identity_key">Chave de identidade pública</string>
   <string name="AndroidManifest__change_passphrase">Mudar frase-chave</string>
   <string name="AndroidManifest__verify_session">Verificar sessão</string>
   <string name="AndroidManifest__verify_identity">Verificar identidade</string>
   <string name="AndroidManifest__manage_identity_keys">Gerir chaves de identidade</string>
-  <string name="AndroidManifest__complete_key_exchange">Completar Intercâmbio de Chaves</string>
+  <string name="AndroidManifest__complete_key_exchange">Completar Troca de Chaves</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__my_identity_key">A minha chave de identidade</string>
@@ -315,7 +315,7 @@
   <string name="preferences__complete_key_exchanges">Completar troca de chaves</string>
   <string name="preferences__disable_passphrase">Desabilitar frase-chave</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Desativar encriptação local para as mensagens e chaves</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automaticamente intercâmbios de chaves para novas sessões ou para sessões existentes com a mesma chave de identidade</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automaticamente trocas de chaves para novas sessões ou para sessões existentes com a mesma chave de identidade</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Esquecer a frase-chave após algum intervalo</string>
   <string name="preferences__timeout_passphrase">Expirar frase-chave</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar tempo de expiração da frase-chave</string>
@@ -351,8 +351,8 @@
   <string name="preferences__mms_proxy_port_optional">Porta do Proxy MMS (Opcional)</string>
   <string name="preferences__sms_delivery_reports">Avisos de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pedir um aviso de entrega para cada SMS enviado</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automaticamente deletar mensagens mais antigas quando uma conversa exceder o tamanho especificado</string>
-  <string name="preferences__delete_old_messages">Deletar mensagens antigas</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Apagar automaticamente mensagens mais antigas quando uma conversa exceder o tamanho especificado</string>
+  <string name="preferences__delete_old_messages">Apagar mensagens antigas</string>
   <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
   <string name="preferences__trim_all_threads_now">Apagar todas conversas agora</string>
