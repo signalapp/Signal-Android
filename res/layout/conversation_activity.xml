@@ -82,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/emoji_toggle_background"
+                        android:background="@drawable/touch_highlight_background"
                         android:padding="10dp"/>
 
                 <EditText
