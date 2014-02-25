@@ -73,7 +73,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Czy na pewno chcesz opuścić grupę?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Nadawca: %1$s\nTyp wiadomości: %2$s\nWysłano/Odebrano:%3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Nadawca: %1$s\nTyp wiadomości: %2$s\nWysłano/Odebrano: %3$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Wysyłający: %1$s\nTransport: %2$s\nWysłanych: %3$s\nOtrzymanych: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potwierdź kasowanie wiadomości</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Czy na pewno chcesz permanentnie skasować tą wiadomość?</string>
