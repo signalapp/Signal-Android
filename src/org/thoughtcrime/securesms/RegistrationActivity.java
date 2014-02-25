@@ -99,10 +99,10 @@ public class RegistrationActivity extends SherlockActivity {
     this.countrySpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
     this.countrySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     
-    String simCountryIso = telephonyManager.getSimCountryIso();
+    String simCountryIso = telephonyManager.getSimCountryIso().toUpperCase();
     
     if (simCountryIso != null)
-      setCountryCodeAndName(PhoneNumberFormatter.getRegionDisplayName(simCountryIso), PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso));
+      setCountryCodeAndName(PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso), PhoneNumberFormatter.getRegionDisplayName(simCountryIso));
     else
       setCountryDisplay(getString(R.string.RegistrationActivity_select_your_country));
 
