@@ -57,8 +57,8 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Acest dispozitiv nu pare sa ofere actiuni pentru formarea numarului de telefon</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Expeditor: %1$s⏎\nTransport: %2$s⏎\nTrimis/Primit:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Expeditor: %1$s\nTransport: %2$s\nTrimis: %3$s\nPrimit:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Expeditor: %1$s⏎\nTransport: %2$s⏎\nTrimis/Primit: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Expeditor: %1$s\nTransport: %2$s\nTrimis: %3$s\nPrimit: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirma stergere mesaj</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Esti sigur ca doresti sa stergi permanent acest mesaj?</string>
   <!--ConversationListAdapter-->
