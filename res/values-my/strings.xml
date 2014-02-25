@@ -48,8 +48,8 @@
   <string name="ConversationActivity_saving_draft">အကြမ်းသိမ်း...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">ပို့သူ: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ပို့သူ: %1$s\nTransport: %2$s\nSent: %3$s\nReceived:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">ပို့သူ: %1$s\nTransport: %2$s\nSent/Received: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ပို့သူ: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">စာတိုဖျက်ခြင်းကိုအတည်ပြု</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">စာတိုကို အပြီးဖျက်ပစ်မည်မှာ သေချာလား</string>
   <!--ConversationListAdapter-->
