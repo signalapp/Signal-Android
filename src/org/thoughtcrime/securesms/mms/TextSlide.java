@@ -85,7 +85,7 @@ public class TextSlide extends Slide {
         throw new AssertionError("Part data should not be zero!");
             
     } catch (UnsupportedEncodingException e) {
-      Log.w("TextSlide", "ISO_8859_1 must be supported!", e);
+      Log.w("TextSlide", "UTF_8 must be supported!", e);
       part.setData("Unsupported character set!".getBytes());
     }
 
