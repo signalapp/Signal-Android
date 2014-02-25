@@ -107,13 +107,7 @@ public class RegistrationActivity extends SherlockActivity {
   }
 
   private void initializeNumber() {
-    String localNumber = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE))
-                         .getLine1Number();
-
-    if (!Util.isEmpty(localNumber) && !localNumber.startsWith("+")) {
-      if (localNumber.length() == 10) localNumber = "+1" + localNumber;
-      else                            localNumber = "+"  + localNumber;
-    }
+    String localNumber = org.whispersystems.textsecure.util.Util.getDeviceE164Number(this);
 
     try {
       if (!Util.isEmpty(localNumber)) {
