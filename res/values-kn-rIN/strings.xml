@@ -64,8 +64,8 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನದಲ್ಲಿ ಡಯಲ್ ಕ್ರಮಗಳ ಬೆಂಬಲ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">ಸಂದೇಶದ ವಿವರಗಳು</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">ಕಳುಹಿಸುವವರು: %1$s⏎\nರವಾನೆ: %2$s⏎\nಕಳುಹಿಸಲಾಗಿದೆ / ಸ್ವೀಕರಿಸಲಾಗಿದೆ:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ಕಳುಹಿಸುವವನು: %1$s⏎\nರವಾನೆ: %2$s⏎\nಕಳುಹಿಸಲಾಗಿದೆ: %3$s⏎\nಸ್ವೀಕರಿಸಿದ್ದೇವೆ:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">ಕಳುಹಿಸುವವರು: %1$s⏎\nರವಾನೆ: %2$s⏎\nಕಳುಹಿಸಲಾಗಿದೆ / ಸ್ವೀಕರಿಸಲಾಗಿದೆ: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ಕಳುಹಿಸುವವನು: %1$s⏎\nರವಾನೆ: %2$s⏎\nಕಳುಹಿಸಲಾಗಿದೆ: %3$s⏎\nಸ್ವೀಕರಿಸಿದ್ದೇವೆ: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">ಸಂದೇಶವನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತದೆ, ಖಚಿತಪಡಿಸಿ</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">ಶಾಶ್ವತವಾಗಿ ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <!--ConversationListAdapter-->
