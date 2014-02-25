@@ -26,7 +26,7 @@
 
         <item name="conversation_background">#ffdddddd</item>
         <item name="conversation_editor_background">#eeeeee</item>
-        <item name="conversation_editor_text_color">@color/edit_text_light_theme</item>
+        <item name="conversation_editor_text_color">#ff111111</item>
         <item name="conversation_send_button">@drawable/ic_send_holo_light</item>
         <item name="conversation_send_secure_button">@drawable/ic_send_encrypted_holo_light</item>
         <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_light</item>
@@ -99,7 +99,7 @@
 
         <item name="conversation_background">@color/black</item>
         <item name="conversation_editor_background">#ff222222</item>
-        <item name="conversation_editor_text_color">@color/edit_text_dark_theme</item>
+        <item name="conversation_editor_text_color">#ffeeeeee</item>
         <item name="conversation_send_button">@drawable/ic_send_holo_dark</item>
         <item name="conversation_send_secure_button">@drawable/ic_send_holo_dark_encrypted</item>
         <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_dark</item>
