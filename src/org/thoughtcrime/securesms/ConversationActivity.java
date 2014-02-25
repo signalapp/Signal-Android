@@ -32,6 +32,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -110,6 +111,7 @@ import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -878,6 +880,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
   }
 
+
   private void selectContactInfo(ContactData contactData) {
     final CharSequence[] numbers = new CharSequence[contactData.numbers.size()];
     final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
@@ -1013,6 +1016,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private Recipients getRecipients() {
     try {
+
       if (isExistingConversation()) return this.recipients;
       else                          return recipientsPanel.getRecipients();
     } catch (RecipientFormattingException rfe) {
@@ -1068,6 +1072,26 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private void sendMessage(boolean forcePlaintext) {
     try {
       Recipients recipients   = getRecipients();
+
+        List<Recipient>       allRecipients;
+        Recipient             localRecipient;
+        String                myPhoneNumber;
+
+        myPhoneNumber = getMyPhoneNumber();
+        allRecipients = recipients.getRecipientsList();
+        for (Iterator<Recipient> it = allRecipients.iterator(); it.hasNext();)
+        {
+            localRecipient = it.next();
+            if (myPhoneNumber.contains(localRecipient.getNumber()))
+            {
+                if (1 > allRecipients.size())
+                    allRecipients.remove(localRecipient);
+                else
+                    throw new RecipientFormattingException("Badly formatted");
+                recipients = new Recipients(allRecipients);
+            }
+        }
+
 
       if (recipients == null)
         throw new RecipientFormattingException("Badly formatted");
@@ -1225,5 +1249,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   public void setComposeText(String text) {
     this.composeText.setText(text);
   }
+
+  private String getMyPhoneNumber(){
+      String            phoneNumber;
+      TelephonyManager  telemgr;
+
+      telemgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+      phoneNumber = telemgr.getLine1Number();
+      return phoneNumber;
+    }
 
 }
