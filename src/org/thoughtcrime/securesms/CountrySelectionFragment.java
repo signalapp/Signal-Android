@@ -16,6 +16,7 @@ import android.widget.SimpleAdapter;
 import com.actionbarsherlock.app.SherlockListFragment;
 
 import org.thoughtcrime.securesms.database.loaders.CountryListLoader;
+import org.thoughtcrime.securesms.util.TextWatcherAfterTextChanged;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -80,21 +81,13 @@ public class CountrySelectionFragment extends SherlockListFragment implements Lo
     public void countrySelected(String countryName, int countryCode);
   }
 
-  private class FilterWatcher implements TextWatcher {
+  private class FilterWatcher extends TextWatcherAfterTextChanged {
 
     @Override
     public void afterTextChanged(Editable s) {
       if (getListAdapter() != null) {
         ((SimpleAdapter)getListAdapter()).getFilter().filter(s.toString());
       }
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
     }
   }
 }
