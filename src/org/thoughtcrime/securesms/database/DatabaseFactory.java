@@ -53,7 +53,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_TOFU_IDENTITY_VERSION = 9;
   private static final int INTRODUCED_PUSH_DATABASE_VERSION = 10;
   private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
-  private static final int DATABASE_VERSION                 = 11;
+  private static final int INTRODUCED_PUSH_FIX_VERSION       = 12;
+  private static final int DATABASE_VERSION                  = 12;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -647,6 +648,15 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE push ADD COLUMN device_id INTEGER DEFAULT 1;");
         db.execSQL("ALTER TABLE sms ADD COLUMN address_device_id INTEGER DEFAULT 1;");
         db.execSQL("ALTER TABLE mms ADD COLUMN address_device_id INTEGER DEFAULT 1;");
+      }
+
+      if (oldVersion < INTRODUCED_PUSH_FIX_VERSION) {
+        db.execSQL("CREATE TEMPORARY table push_backup (_id INTEGER PRIMARY KEY, type INTEGER, source, TEXT, destinations TEXT, body TEXT, timestamp INTEGER, device_id INTEGER DEFAULT 1);");
+        db.execSQL("INSERT INTO push_backup(_id, type, source, body, timestamp, device_id) SELECT _id, type, source, body, timestamp, device_id FROM push;");
+        db.execSQL("DROP TABLE push");
+        db.execSQL("CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, body TEXT, timestamp INTEGER, device_id INTEGER DEFAULT 1);");
+        db.execSQL("INSERT INTO push (_id, type, source, body, timestamp, device_id) SELECT _id, type, source, body, timestamp, device_id FROM push_backup;");
+        db.execSQL("DROP TABLE push_backup;");
       }
 
       db.setTransactionSuccessful();
