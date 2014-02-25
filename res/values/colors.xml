@@ -12,7 +12,6 @@
     <color name="textsecure_holo_blue_light">#ff33b5e5</color>
 
     <color name="touch_highlight">#400099cc</color>
-    <color name="card_background_active">#9933b5e5</color>
 
     <color name="conversation_item_sent_background_dark">#ff284e0a</color>
     <color name="conversation_item_sent_background_light">#ff64a926</color>
