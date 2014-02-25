@@ -19,7 +19,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Abmeldung...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Melde mich von Kommunikation über die Datenverbindung ab</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden zum Server!</string>
-  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Sie sind nicht beim Push Dienst regestriert...</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Sie sind nicht beim Push Dienst registriert...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Aktualisiere Verzeichnis</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Aktualisiere Push Verzeichnis...</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -40,10 +40,10 @@
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Es kann nicht auf die SD-Karte geschrieben werden!</string>
   <string name="ConversationItem_view_secure_media_question">Sichere Datei anzeigen?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Diese Datei wurde in einer verschlüsselten Datenbank gespeichert. Damit die Datei mit einem anderen Anzeigeprogramm geöffnet werden kann, muss die Datei zuvor entschlüsselt und vorübergehend im Speicher abgelegt werden. Sind Sie sicher, dass Sie fortfahren wollen?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">Schlüsselaustausch Nachricht empfangen und verarbeitet.</string>
+  <string name="ConversationItem_received_and_processed_key_exchange_message">Schlüsselaustausch-Nachricht empfangen und verarbeitet.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fehler: Es wurde eine abgelaufene Schlüsselaustausch-Nachricht empfangen.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Nachricht zum Schlüssel-Austausch empfangen, drücken um fort zu fahren.</string>
-  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Sie haben eine unverschlüsselte SMS während einer sicheren Sitzung empfangen. Wenn Ihr Gegenüber keine Verschlüsselung mehr aktiviert hat, wird Ihr nächste Nachricht von ihm nicht lesbar sein. Drücken um sichere Session zu beenden. </string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Nachricht zum Schlüssel-Austausch empfangen, drücken um fortzufahren.</string>
+  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Sie haben eine unverschlüsselte SMS während einer sicheren Sitzung empfangen. Wenn Ihr Gegenüber keine Verschlüsselung mehr aktiviert hat, wird Ihre nächste Nachricht von ihm nicht lesbar sein. Drücken um sichere Session zu beenden. </string>
   <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
   <string name="ConversationItem_group_action_joined">%1$s sind der Gruppe beigetreten.</string>
   <string name="ConversationItem_group_action_modify">%1$s hat die Gruppe aktualisiert.</string>
@@ -81,14 +81,14 @@
   <string name="ConversationFragment_confirm_message_delete">Nachricht löschen bestätigen</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sind Sie sicher, dass Sie diese Nachricht unwiderruflich löschen möchten?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Schlüsselaustausch Nachricht...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Schlüsselaustausch-Nachricht...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Unterhaltungen löschen?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sind Sie sicher, dass Sie alle ausgewählten Unterhaltungen löschen möchten?</string>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Lösche ausgewählte Threads...</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch Nachricht...</string>
+  <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch-Nachricht...</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Auf SD-Karte exportieren?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dies\nwird Ihre verschlüsselten Keys, Einstellungen und Nachrichten auf die SD-Karte exportieren</string>
@@ -112,7 +112,7 @@
   <string name="GroupCreateActivity_you_dont_own_this_group">Die sind nicht der Besitzer dieser Gruppe, deshalb können Sie den Titel oder das Bild nicht bearbeiten.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ein unerwarteter Fehler ist aufgetreten der das Erstellen der Gruppe verhindert hat.</string>
   <string name="GroupCreateActivity_contacts_no_members">Sie brauchen mindestens eine Person in Ihrer Gruppe.</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Eines der Mitglieder Ihrer Gruppe hat eine Nummer die nicht richtig gelesen werden kann. Bitte beheben oder Kontakt entfernen und erneut versuchen.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Eines der Mitglieder Ihrer Gruppe hat eine Nummer, die nicht richtig gelesen werden kann. Bitte beheben oder Kontakt entfernen und erneut versuchen.</string>
   <string name="GroupCreateActivity_file_io_exception">Daten E/A Fehler, konnte temporäre Bild-Datei nicht erzeugen. </string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppen-Avatar</string>
   <string name="GroupCreateActivity_menu_create_title">Gruppe erstellen</string>
@@ -206,7 +206,7 @@
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Fehlerhafte Schlüsselaustausch-Nachricht \nempfangen!\n</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nEs wurde eine Schlüsselaustausch-Nachricht für eine ungültige Protokoll-Version empfangen.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nNachricht mit unbekanntem Schlüssel empfangen. Klicken um fort zu fahren und ihn an zu zeigen.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nNachricht mit unbekanntem Schlüssel empfangen. Klicken um fortzufahren und ihn anzuzeigen.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Veränderte, aber unbekannte Identitäts-Information empfangen. Tippen um Identität zu bestätigen.</string>
   <string name="SmsMessageRecord_secure_session_ended">Sichere Sitzung beendet.</string>
   <!--ThreadRecord-->
@@ -371,7 +371,7 @@
   <string name="registration_problems__some_possible_problems_include">Einige mögliche Probleme\nbeinhalten:</string>
   <string name="registration_problems__sms_interceptors">Apps, die SMS abfangen.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nManche SMS Apps von Drittanbietern, wie z.B. Handcent oder GoSMS, verhalten sich falsch und\nfangen alle eingehenden SMS ab. Überprüfen Sie, ob Sie eine Textnachricht empfangen haben,\ndie mit \"Ihr TextSecure Bestätigungs-Code:\" beginnt. Sollte dies der Fall sein, müssen sie Ihre \nDrittanbieter-App so einstellen, dass sie alle SMS durch lässt.</string>
-  <string name="registration_problems__incorrect_number">Flasche Nummer.</string>
+  <string name="registration_problems__incorrect_number">Falsche Nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nBitte überprüfen Sie die eingegebene Nummer und dass Sie für Ihre Region das\nrichtige Format hat.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure funktioniert nicht mit Google Voice Rufnummern.</string>
@@ -398,7 +398,7 @@
   <string name="registration_progress_activity__generating_keys">Erzeuge Schlüssel...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">An</string>
-  <string name="recipients_panel__add_member">Mitglied hinzu fügen</string>
+  <string name="recipients_panel__add_member">Mitglied hinzufügen</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Sie haben momentan keine Schlüssel denen Sie vertrauen in Ihrer Datenbank.</string>
   <!--verify_identity_activity-->
@@ -504,7 +504,7 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">TextSecure als standard SMS/MMS App einrichten.</string>
   <string name="preferences__use_data_channel">Push Benachrichtigungen</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nMehr Privatsphäre und keine SMS-Kosten durch das Nutzen der Datenverbindung zur Kommunikation mit anderen TextSecure Nutzern.</string>
-  <string name="preferences__allow_sms_fallback">Erlaube Rückgriff auf  SMS</string>
+  <string name="preferences__allow_sms_fallback">Erlaube Rückgriff auf SMS</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Sende und empfange SMS Nachrichten wenn der Datenkanal nicht verfügbar ist.</string>
   <string name="preferences__refresh_push_directory">Aktualisiere Push Verzeichnis</string>
   <!--****************************************-->
