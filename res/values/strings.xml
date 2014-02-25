@@ -38,7 +38,6 @@
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>
     <string name="ConversationItem_error_sending_message">Error sending message</string>
-    <string name="ConversationItem_sending">Sending...</string>
     <string name="ConversationItem_saving_attachment">Saving attachment</string>
     <string name="ConversationItem_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
     <string name="ConversationItem_save_to_sd_card">Save to SD card?</string>
@@ -86,7 +85,7 @@
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
-    <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
+    <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSent/Received: %2$s</string>
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived:%4$s</string>
     <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
     <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
@@ -322,6 +321,7 @@
     <string name="ViewIdentityActivity_not_verified_exclamation">NOT verified!</string>
     <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">The scanned key matches!</string>
     <string name="ViewIdentityActivity_verified_exclamation">Verified!</string>
+    <string name="ViewIdentityActivity_my_identity_fingerprint">My identity fingerprint</string>
     <string name="ViewIdentityActivity_identity_fingerprint">Identity fingerprint</string>
 
     <!-- KeyExchangeInitiator -->
@@ -419,6 +419,11 @@
     <string name="conversation_activity__type_message"><small>Send a message</small></string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
+
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Media message</string>
+    <string name="conversation_item__play_button_description">Play button</string>
+    <string name="conversation_item__secure_message_description">Secure message indicator</string>
 
     <!-- conversation_item_sent -->
     <string name="conversation_item_sent__download">Download</string>
@@ -608,6 +613,7 @@
     <string name="verify_keys_activity__you_read_this">You read this:</string>
 
     <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__log_submit">Submit debug logs</string>
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>
     <string name="AndroidManifest__enter_passphrase">Enter passphrase</string>
     <string name="AndroidManifest__select_contacts">Select contacts</string>
@@ -720,9 +726,14 @@
     <!-- contact_selection_list -->
     <string name="contact_selection_list__menu_select_all">Select all</string>
     <string name="contact_selection_list__menu_unselect_all">Unselect all</string>
+    <string name="contact_selection_list__header_textsecure_users">TEXTSECURE USERS</string>
+    <string name="contact_selection_list__header_other">ALL CONTACTS</string>
 
     <!-- contact_selection -->
     <string name="contact_selection__menu_finished">Finished</string>
+
+    <!-- refreshing push directory from menu -->
+    <string name="push_directory__menu_refresh">Refresh contact list</string>
 
     <!-- conversation_button_context -->
     <string name="conversation_button_context__menu_send_unencrypted">Send unencrypted</string>
