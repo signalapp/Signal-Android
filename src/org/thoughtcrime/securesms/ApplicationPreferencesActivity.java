@@ -210,8 +210,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       if (Util.isDefaultSmsProvider(this) || !TextSecurePreferences.isPushRegistered(this)) {
         allowSmsPreference.setEnabled(false);
         allowSmsPreference.setChecked(true);
+        allowSmsPreference.setSummary(R.string.preferences__allow_sms_fallback_disabled_reason);
       } else {
         allowSmsPreference.setEnabled(true);
+        allowSmsPreference.setSummary(R.string.preferences__send_and_receive_sms_messages_when_push_is_not_available);
       }
     } else {
       if (TextSecurePreferences.isInterceptAllMmsEnabled(this) ||
@@ -220,8 +222,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       {
         allowSmsPreference.setEnabled(false);
         allowSmsPreference.setChecked(true);
+        allowSmsPreference.setSummary(R.string.preferences__allow_sms_fallback_disabled_reason);
       } else {
         allowSmsPreference.setEnabled(true);
+        allowSmsPreference.setSummary(R.string.preferences__send_and_receive_sms_messages_when_push_is_not_available);
       }
     }
   }
