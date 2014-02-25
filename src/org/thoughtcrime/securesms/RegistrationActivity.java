@@ -26,6 +26,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.TextWatcherAfterTextChanged;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
@@ -49,6 +50,7 @@ public class RegistrationActivity extends SherlockActivity {
   private TextView             number;
   private Button               createButton;
   private Button               skipButton;
+  private TelephonyManager     telephonyManager;
 
   private MasterSecret masterSecret;
 
@@ -59,6 +61,8 @@ public class RegistrationActivity extends SherlockActivity {
 
     ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), getString(R.string.RegistrationActivity_connect_with_textsecure));
 
+    telephonyManager = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE));
+    
     initializeResources();
     initializeSpinner();
     initializeNumber();
@@ -67,10 +71,14 @@ public class RegistrationActivity extends SherlockActivity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == PICK_COUNTRY && resultCode == RESULT_OK && data != null) {
-      this.countryCode.setText(data.getIntExtra("country_code", 1)+"");
-      setCountryDisplay(data.getStringExtra("country_name"));
-      setCountryFormatter(data.getIntExtra("country_code", 1));
+      setCountryCodeAndName(data.getIntExtra("country_code", 1), data.getStringExtra("country_name"));
     }
+  }
+
+  private void setCountryCodeAndName(int countryCode, String countryName) {
+    this.countryCode.setText(countryCode + "");
+    setCountryDisplay(countryName);
+    setCountryFormatter(countryCode);
   }
 
   private void initializeResources() {
@@ -90,8 +98,13 @@ public class RegistrationActivity extends SherlockActivity {
   private void initializeSpinner() {
     this.countrySpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
     this.countrySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-    setCountryDisplay(getString(R.string.RegistrationActivity_select_your_country));
+    
+    String simCountryIso = telephonyManager.getSimCountryIso();
+    
+    if (simCountryIso != null)
+      setCountryCodeAndName(PhoneNumberFormatter.getRegionDisplayName(simCountryIso), PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso));
+    else
+      setCountryDisplay(getString(R.string.RegistrationActivity_select_your_country));
 
     this.countrySpinner.setAdapter(this.countrySpinnerAdapter);
     this.countrySpinner.setOnTouchListener(new View.OnTouchListener() {
@@ -107,8 +120,7 @@ public class RegistrationActivity extends SherlockActivity {
   }
 
   private void initializeNumber() {
-    String localNumber = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE))
-                         .getLine1Number();
+    String localNumber = telephonyManager.getLine1Number();
 
     if (!Util.isEmpty(localNumber) && !localNumber.startsWith("+")) {
       if (localNumber.length() == 10) localNumber = "+1" + localNumber;
@@ -206,7 +218,7 @@ public class RegistrationActivity extends SherlockActivity {
     }
   }
 
-  private class CountryCodeChangedListener implements TextWatcher {
+  private class CountryCodeChangedListener extends TextWatcherAfterTextChanged {
     @Override
     public void afterTextChanged(Editable s) {
       if (Util.isEmpty(s)) {
@@ -225,17 +237,9 @@ public class RegistrationActivity extends SherlockActivity {
         number.requestFocus();
       }
     }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-    }
   }
 
-  private class NumberChangedListener implements TextWatcher {
+  private class NumberChangedListener extends TextWatcherAfterTextChanged {
 
     @Override
     public void afterTextChanged(Editable s) {
@@ -257,15 +261,6 @@ public class RegistrationActivity extends SherlockActivity {
       if (!s.toString().equals(formattedNumber)) {
         s.replace(0, s.length(), formattedNumber);
       }
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
     }
   }
 
