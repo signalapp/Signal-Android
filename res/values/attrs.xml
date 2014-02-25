@@ -58,4 +58,10 @@
     <attr name="menu_group_icon" format="reference" />
     <attr name="menu_split_icon" format="reference" />
     <attr name="menu_accept_icon" format="reference" />
+
+    <declare-styleable name="ForegroundImageView">
+        <attr name="android:foreground" />
+        <attr name="android:foregroundInsidePadding" />
+        <attr name="android:foregroundGravity" />
+    </declare-styleable>
 </resources>
