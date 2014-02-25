@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.service;
 
+import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -185,6 +186,7 @@ public class KeyCachingService extends Service {
     }
   }
 
+  @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
   private void foregroundServiceModern() {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
@@ -192,7 +194,7 @@ public class KeyCachingService extends Service {
     builder.setContentText(getString(R.string.KeyCachingService_textsecure_passphrase_cached));
     builder.setSmallIcon(R.drawable.icon_cached);
     builder.setWhen(0);
-    builder.setPriority(Notification.PRIORITY_LOW);
+    builder.setPriority(Notification.PRIORITY_MIN);
 
     builder.addAction(R.drawable.ic_menu_lock_holo_dark, getString(R.string.KeyCachingService_lock), buildLockIntent());
     builder.setContentIntent(buildLaunchIntent());
