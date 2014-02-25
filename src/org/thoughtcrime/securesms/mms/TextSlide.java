@@ -79,8 +79,8 @@ public class TextSlide extends Slide {
     PduPart part = new PduPart();
 
     try {
-      part.setData(message.getBytes(CharacterSets.MIMENAME_ISO_8859_1));
-            
+      part.setData(message.getBytes(CharacterSets.MIMENAME_UTF_8));
+
       if (part.getData().length == 0)
         throw new AssertionError("Part data should not be zero!");
             
@@ -88,8 +88,8 @@ public class TextSlide extends Slide {
       Log.w("TextSlide", "ISO_8859_1 must be supported!", e);
       part.setData("Unsupported character set!".getBytes());
     }
-        
-    part.setCharset(CharacterSets.ISO_8859_1);
+
+    part.setCharset(CharacterSets.UTF_8);
     part.setContentType(ContentType.TEXT_PLAIN.getBytes());
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Text"+System.currentTimeMillis()).getBytes());
