@@ -275,7 +275,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     Recipients recipients;
 
     try {
-      recipients = RecipientFactory.getRecipientsFromString(context, message.getSender(), true);
+      recipients = RecipientFactory.getRecipientsFromString(context, message.getSender(), true, false);
     } catch (RecipientFormattingException e) {
       Log.w("SmsDatabase", e);
       recipients = new Recipients(Recipient.getUnknownRecipient(context));
@@ -287,7 +287,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       if (message.getGroupId() == null) {
         groupRecipients = null;
       } else {
-        groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
+        groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true, false);
       }
     } catch (RecipientFormattingException e) {
       Log.w("SmsDatabase", e);
@@ -522,7 +522,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
 
     private Recipients getRecipientsFor(String address) {
       try {
-        Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false);
+        Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false, false);
 
         if (recipients == null || recipients.isEmpty()) {
           return new Recipients(Recipient.getUnknownRecipient(context));
