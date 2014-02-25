@@ -23,12 +23,11 @@ dependencies {
     compile 'com.madgag:sc-light-jdk15on:1.47.0.2'
     compile 'com.googlecode.libphonenumber:libphonenumber:5.3'
     compile 'org.whispersystems:gson:2.2.4'
-    compile fileTree(dir: 'libs', include: 'armeabi.jar')
 }
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.0'
+    buildToolsVersion '19.0.2'
 
     android {
         sourceSets {
@@ -36,10 +35,11 @@ android {
                 manifest.srcFile 'AndroidManifest.xml'
                 java.srcDirs = ['src']
                 resources.srcDirs = ['src']
-                aild.srcDirs = ['src']
+                aidl.srcDirs = ['src']
                 renderscript.srcDirs = ['src']
                 res.srcDirs = ['res']
                 assets.srcDirs = ['assets']
+                jniLibs.srcDirs = ['libs']
             }
         }
     }
