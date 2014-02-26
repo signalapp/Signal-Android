@@ -84,6 +84,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final String MMS_PREF              = "pref_mms_preferences";
   private static final String KITKAT_DEFAULT_PREF   = "pref_set_default";
   private static final String UPDATE_DIRECTORY_PREF = "pref_update_directory";
+  private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -122,6 +123,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setOnPreferenceChangeListener(new RingtoneSummaryListener());
     this.findPreference(UPDATE_DIRECTORY_PREF)
         .setOnPreferenceClickListener(new DirectoryUpdateListener());
+    this.findPreference(SUBMIT_DEBUG_LOG_PREF)
+        .setOnPreferenceClickListener(new SubmitDebugLogListener());
 
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
@@ -572,6 +575,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         }
       }.execute();
 
+      return true;
+    }
+  }
+
+  private class SubmitDebugLogListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      final Intent intent = new Intent(ApplicationPreferencesActivity.this, LogSubmitActivity.class);
+      startActivity(intent);
       return true;
     }
   }

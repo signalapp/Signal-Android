@@ -713,6 +713,8 @@
     <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is currently your default SMS app. Please set another default SMS app first to change this preference.</string>
     <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
     <string name="preferences__refresh_push_directory">Refresh Push Directory</string>
+    <string name="preferences__submit_debug_log">Submit debug log</string>
+
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -783,7 +785,6 @@
     <string name="text_secure_normal__menu_settings">Settings</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark All Read</string>
-    <string name="text_secure_normal__submit_debug_log">Submit debug log</string>
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>

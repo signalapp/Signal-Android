@@ -177,5 +177,8 @@
         <Preference android:key="pref_update_directory"
                     android:title="@string/preferences__refresh_push_directory"/>
 
+        <Preference android:key="pref_submit_debug_logs"
+                    android:title="@string/preferences__submit_debug_log"/>
+
     </PreferenceCategory>
 </PreferenceScreen>
