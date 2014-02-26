@@ -27,7 +27,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.VersionTracker;
@@ -66,6 +68,8 @@ public class DatabaseUpgradeActivity extends Activity {
           .execute(VersionTracker.getLastSeenVersion(this));
     } else {
       VersionTracker.updateLastSeenVersion(this);
+      DecryptingQueue.schedulePendingDecrypts(DatabaseUpgradeActivity.this, masterSecret);
+      MessageNotifier.updateNotification(DatabaseUpgradeActivity.this, masterSecret);
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();
     }
@@ -149,6 +153,9 @@ public class DatabaseUpgradeActivity extends Activity {
     @Override
     protected void onPostExecute(Void result) {
       VersionTracker.updateLastSeenVersion(DatabaseUpgradeActivity.this);
+      DecryptingQueue.schedulePendingDecrypts(DatabaseUpgradeActivity.this, masterSecret);
+      MessageNotifier.updateNotification(DatabaseUpgradeActivity.this, masterSecret);
+
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();
     }
