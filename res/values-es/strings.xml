@@ -19,6 +19,9 @@
   <string name="ApplicationPreferencesActivity_unregistering">Cancelando registro...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Cancelando registro para comunicación basada en datos</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Error conectando al servidor!</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">No está registrado con el servicio de mensajería activa...,</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Actualizando directorio</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Actualizando directorio de mensajería activa...</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografía</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -36,10 +39,10 @@
   <string name="ConversationItem_success_exclamation">¡Éxito!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">No es posible escribir en la tarjeta SD</string>
   <string name="ConversationItem_view_secure_media_question">¿Ver archivos de medios seguros?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este audiovisual ha sido guardado en una base de datos cifrada. Desafortunadamente, para verlo con un visor de contenido externo se requiere que los datos sean descifrados temporalmente y escritos al disco. ¿Está seguro de que desea hacer esto?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este archivo ha sido guardado en una base de datos cifrada. Desafortunadamente, para verlo con un visor de contenido externo se requiere que los datos sean descifrados temporalmente y escritos al disco. ¿Está seguro de que desea hacer esto?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Mensaje de intercambio de claves recibido y procesado.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Error, recibió un mensaje de intercambio de claves expirado.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Ha recibido un mensaje de intercambio de claves, haga clic para proceder</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Ha recibido un mensaje de intercambio de claves, haga clic para proceder.</string>
   <string name="ConversationItem_received_plaintext_message_click_to_terminate">Se recibió un SMS en texto simple mientra tiene abierta una sesión segura. Si sus interlocutores no tienen una sesión abierta, los mensajes que envíe aparecerán como texto distorsionado. Haga clic para terminar la sesión segura.</string>
   <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
   <string name="ConversationItem_group_action_joined">%1$s se ha unido al grupo.</string>
@@ -319,6 +322,7 @@
   <string name="country_selection_fragment__loading_countries">Cargando países...</string>
   <string name="country_selection_fragment__search">Buscar</string>
   <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Por favor elija una frase clave si desea cifrar localmente sus datos.</string>
   <string name="create_passphrase_activity__passphrase">Frase de contraseña:</string>
   <string name="create_passphrase_activity__repeat">Repetir:</string>
   <string name="create_passphrase_activity__continue">Continuar</string>
@@ -431,7 +435,7 @@
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Usar TextSecure para ver y guardar todos los mensajes de texto entrantes</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Usar TextSecure para ver y guardar todos los mensajes multimedia entrantes</string>
   <string name="preferences__enable_enter_key_title">Habilitar tecla Intro</string>
-  <string name="preferences__replace_smiley_with_enter_key">Reemplazar tecla de emoticono con una tecla Intro</string>
+  <string name="preferences__replace_smiley_with_enter_key">Reemplazar tecla de emoticón con una tecla Intro</string>
   <string name="preferences__pref_enter_sends_title">Envío con la tecla de entrada</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Presionar la tecla de entrada enviará sus mensajes de texto</string>
   <string name="preferences__display_settings">Mostrar preferencias</string>
@@ -499,9 +503,10 @@
   <string name="preferences__make_default_sms_app">Establecer como la aplicación SMS predeterminada</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Hace de TextSecure la aplicación SMS/MMS predeterminada para su sistema.</string>
   <string name="preferences__use_data_channel">Mensajes activos (\'push\')</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nIncremente la privacidad y evite tarifas SMS al usar el canal de datos para la comunicación con otros ususarios de TextSecure\n</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nIncremente la privacidad y evite tarifas SMS al usar el canal de datos para la comunicación con otros usuarios de TextSecure\n</string>
   <string name="preferences__allow_sms_fallback">Permitir recurrir al SMS</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Envía y recibe mensajes SMS cuando la actualización activa (\'push\') no está disponible</string>
+  <string name="preferences__refresh_push_directory">Refrescar directorio de mensajería activa</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -6,7 +6,7 @@
   <string name="delete">Sterge</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Trebuie sa introduceti o parola inainte de a gestiona cheile...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Trebuie sa introduceti parola inainte de putea sa gestionati cheile...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ai setat inca o parola!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">mesaje per conversatie</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Sterge toate mesajele vechi acum?</string>
@@ -16,6 +16,12 @@
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Dezactiveaza stocarea incriptata?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">Atentie, acesta actiune va dezactiva stocarea incriptata a tuturor mesajelor si cheilor. Sesiunile actuale incriptate vor continua sa functioneze, dar oricine care are acces la dispozitiv va putea sa le acceseze.</string>
   <string name="ApplicationPreferencesActivity_disable">Dezactiveaza</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Anulare inregistrarii se afla in desfasurare...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Anulare inregistrarii comunicatiilor de date</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Nu sunteti inregistrat cu serviciul \"push\"</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Actualizare director</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Actualizare director de tip \"push\"...</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -33,11 +39,19 @@
   <string name="ConversationItem_success_exclamation">Succes!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Nu pot scrie pe SD Card!</string>
   <string name="ConversationItem_view_secure_media_question">Afisez datele securizate?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Aceste date au fost salvate intr-o baza de date criptata. Din pacate, pentru a putea vizualiza datele cu ajutorul unui viewer de date extern, este necesar ca datele sa fie temporar decripate si salvate pe disc. Esti sigur ca doresti acest lucru?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Mesajul pentru schimbul de chei a fost primit si procesat.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Eroare, mesajul pentru schimbul de chei este vechi.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Am receptionat un mesaj \"schimb de cheie\", tastati pentru a il procesa.</string>
+  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Ati primit un SMS in text clar in timp ce aveti o sesiune securizata deschisa. In cazul in care ei nu au o sesiune deschisa, mesajele trimise vor aparea ca text deformat. Click pentru a termina sesiunea securizata.</string>
+  <string name="ConversationItem_group_action_left">%1$s a iesit din group.</string>
+  <string name="ConversationItem_group_action_joined">%1$s a/au intrat in group.</string>
+  <string name="ConversationItem_group_action_modify">%1$s a actualizat grupul.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initializez Sesiune Securizata?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initializez Sesiune Securizata cu %s?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Se confirma terminarea sesiunii securizate</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Sunteti sigur ca doriti terminarea sesiunii securizate ?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confirma stergerea conversatiei</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Esti sigur ca doresti sa stergi permanent aceasta conversatie?</string>
   <string name="ConversationActivity_add_attachment">Adauga atasament</string>
@@ -51,10 +65,15 @@
   <string name="ConversationActivity_forward_message_prefix">TMT</string>
   <string name="ConversationActivity_group_conversation_recipients">Grupeaza destinatarii conversatiei</string>
   <string name="ConversationActivity_group_conversation">Grupeaza conversatia</string>
+  <string name="ConversationActivity_unnamed_group">Grup nedenumit</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d membrii</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 membru</string>
   <string name="ConversationActivity_saving_draft">Se salveaza ciorna...</string>
   <string name="ConversationActivity_invalid_recipient">Destinatar invalid!</string>
   <string name="ConversationActivity_calls_not_supported">Apelurile nu sunt disponibile</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Acest dispozitiv nu pare sa ofere actiuni pentru formarea numarului de telefon</string>
+  <string name="ConversationActivity_leave_group">Doriti sa parasiti grupul?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteti sigur ca doriti sa parasiti acest grup?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Expeditor: %1$s⏎\nTransport: %2$s⏎\nTrimis/Primit:%3$s</string>
@@ -84,6 +103,20 @@
   <string name="ExportFragment_success">Succes!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Se exporta cheile incriptate, setarile si mesajele...</string>
   <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Grup nou</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Actualizare grup</string>
+  <string name="GroupCreateActivity_group_name_hint">Numele Grupului</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS nou</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Ati selectat un contact care nu accepta grupuri de tip TextSecure, prin urmare acest grup va fi de tip MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Nu v-ati inregistrat in prealabil pentru folosirea canalului de date, prin urmare grupurile TextSecure sunt dezactivate.</string>
+  <string name="GroupCreateActivity_you_dont_own_this_group">Nu sunteti detinatorul acestui grup, prin urmare nu puteti sa ii editati titlul sau imaginea.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">A aparut o eroare neprevazuta care dus la imposibilitatea crearii grupului.</string>
+  <string name="GroupCreateActivity_contacts_no_members">Este nevoie de cel putin o persoana in grupul dvs.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Unul dintre membrii grupului dvs. are un numar de telefon ce nu poate fi citit corect. Va rugam sa remediati problema sau sa eliminati acel contact si sa incercati din nou.</string>
+  <string name="GroupCreateActivity_file_io_exception">Eroare I/O in fisier, nu s-a putut crea un fisier temporar de imagine.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Avatar de grup</string>
+  <string name="GroupCreateActivity_menu_create_title">Creare grup </string>
+  <string name="GroupCreateActivity_creating_group">Se creează %1$s…</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Import baza de date cu SMS-uri?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Aceasta actiune va importa mesajele din baza de date cu SMS-uri a dispozitivului in TextSecure. Daca ai importat anterior aceste mesaje, importarea lor din nou va rezulta in mesaje duplicate.</string>
@@ -93,6 +126,7 @@
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Restaurarea unui backup incriptat va inlocui complet cheile existente, setarile si mesajele. Vei pierde toate informatiile curente din TextSecure, dar nu cele din backup.</string>
   <string name="ImportFragment_restore">Restaureaza</string>
   <string name="ImportFragment_import_plaintext_backup">Importa backup text?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Aceasta actiune va importa mesajele din rezerva necriptata. Daca ati importata aceasta rezerva precedent, importarea curenta va crea mesaje duplicate. </string>
   <string name="ImportFragment_importing">Se importa</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importa backup text...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nu a fost gasit nci un backup text!</string>
@@ -108,6 +142,7 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Nu exista conectivitate pentru descarcarea MMS, va rugam sa incercati mai tarziu...</string>
   <string name="MmsDownloader_error_storing_mms">Eroare la stocarea MMS-ului!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Eroare de conectare la furnizorul MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Eroare la citirea setarilor MMS ale operatorului wireless...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mesaj multimedia</string>
   <!--PassphraseChangeActivity-->
@@ -126,13 +161,57 @@
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Semnatura digitala din acest schimb de chei este diferita fata de ce ai primit anterior de la aceasta persoana. Asta poate insemna ca cineva incearca sa intercepteze comunicatia sau ca aceasta persoana a reinstalat TextSecure si acum are o noua cheie de identitate.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Probabil ca doresti sa verifici aceasta persoana.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Semnatura din acest schimb de chei este de incredere, dar optiunea \"incheie automat schimburile de chei\" este dezactivata.</string>
+  <string name="ReceiveKeyActivity_processing">Procesare</string>
+  <string name="ReceiveKeyActivity_processing_key_exchange">Se proceseaza schimbul de chei...</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_textsecure">Conectare prin TextSecure</string>
+  <string name="RegistrationActivity_select_your_country">Alegeti tara Dumneavostra</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie sa specificati\ncodul dvs de tara</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Trebuie sa specificati\nnumarul dvs de telefon</string>
+  <string name="RegistrationActivity_invalid_number">Numar incorect</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numarul de telefon\nfurnizat (%s) nu este valabil.</string>
+  <string name="RegistrationActivity_unsupported">Neacceptat</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Ne pare rau,\ndar acest dispozitiv nu este acceptat pentru mesageria de date. Dispozitivele care rulează versiuni de Android mai vechi\ndecat versiunea 4.0 trebuie sa aiba un cont Google inregistrat. Dispozitivele care ruleaza Android versiunea 4.0 sau mai nou\nnu necesita un cont Google, dar trebuie sa aiba instalata aplicatia Play Store.</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nVom verifica acum daca numarul de telefon de mai jos este asociat cu acest aparat:\n\n%s\n\nEste acest numar de telefon corect, sau doriti sa il editati inainte de a continua?</string>
   <string name="RegistrationActivity_continue">Continuă</string>
+  <string name="RegistrationActivity_edit">Editeaza</string>
   <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">Probleme posibile</string>
   <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">Verificarea numarului</string>
+  <string name="RegistrationProgressActivity_edit_s">Editeaza %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">Inregistrarea este completa!</string>
+  <string name="RegistrationProgressActivity_possible_problems">Probleme posibile.</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Trebuie sa introduceti codul primit anterior...</string>
+  <string name="RegistrationProgressActivity_connecting">Se contecteaza</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Conectare pentru verificare...</string>
+  <string name="RegistrationProgressActivity_network_error">Eroare de retea!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Conexiunea nu poate fi realizata. Va rugam sa verificati conexiunea la retea si sa incercati din nou.</string>
+  <string name="RegistrationProgressActivity_verification_failed">Verificarea a esuat!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Codul de verificare care l-ati introdus este gresit. Va rugam sa incercati din nou.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">Prea multe incercari</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Ati introdus codul de verificare gresit de prea multe ori. Va rugam sa asteptati un minut inainte de a incerca din nou.</string>
+  <string name="RegistrationProgressActivity_requesting_call">Solicitare apel</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Solicitare de verificare a apelului primit...</string>
+  <string name="RegistrationProgressActivity_server_error">Eroare de server</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Serverul a intampinat o eroare. Va rugam sa incercati din nou.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Prea multe cereri!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ati solicitat deja recent un apel vocal. Veti putea solicita un altul dupa 20 de minute.</string>
+  <string name="RegistrationProgressActivity_verifying_voice_code">Verificarea codului de voce</string>
   <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">Inregistrare completa</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Inregistrarea TextSecure a fost finalizata cu succes.</string>
+  <string name="RegistrationService_registration_error">Eroare de inregistrare</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Inregistrarea TextSecure a intampinat o problema.</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Primit mesajul conform caruia\nschimbul de chei este corupt </string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nPrimit mesajul conform caruia schimbul de chei a avut loc pentru o versiune de protocol invalida.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nPrimit mesaj trimis cu o cheie de identitate necunoscuta. Faceti click pentru a-l procesa si afisa.</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">S-au primit infomatii de identitate actualizate dar necunoscute. Apasati pentru a valida identitatea.</string>
+  <string name="SmsMessageRecord_secure_session_ended">Sesiune securizata terminata.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">A iesit din group...</string>
+  <string name="TheadRecord_secure_session_ended">Sesiune securizata terminata.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nu ai o cheie de identitate.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Destinatarul nu are o cheie de identitate.</string>
@@ -173,6 +252,7 @@
   <string name="MmsDatabase_downloading_mms">Se descarca MMS...</string>
   <string name="MmsDatabase_mms_download_failed">Descarcare MMS esuata!</string>
   <string name="MmsDatabase_downloading">Se descarca...</string>
+  <string name="MmsDatabase_mms_pending_download">Atingeti si configurati setarile MMS pentru a continua descarcarea.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Se decripteaza MMS, te rog asteapta...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesaj MMS criptat incorect...</string>
@@ -183,6 +263,10 @@
   <string name="ApplicationMigrationService_import_in_progress">Import in progres</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mesajele text sunt importate</string>
   <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">Tasteaza pentru a deschide.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Tasteaza pentru a deschide, sau tasteaza lacata pentru a inchide.</string>
+  <string name="KeyCachingService_passphrase_cached">TextSecure e descuiat/deblocat.</string>
+  <string name="KeyCachingService_lock">Blocare acces cu parola</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d mesaje noi</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %s</string>
@@ -198,11 +282,13 @@
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Se regenerează cheia\nde identitate...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Regenerată!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Resetare cheie de identitate?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nAtentie! Prin regenerarea cheii tale de identitate, actuala cheie de identitate va fi pierduta definitiv iar persoanele din lista ta de contacte vor primi o notificare la momentul initierii unei noi sesiuni sigure cu tine. Esti sigur ca vrei sa continui?</string>
   <string name="ViewLocalIdentityActivity_cancel">Anulează</string>
   <string name="ViewLocalIdentityActivity_continue">Continuă</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Mesajul SMS nu poate fi trimis in acest moment. Va fi trimis de indata ce serviciul devine disponibil.</string>
   <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ne pare rau, functia Raspuns Rapid nu este momentan implementata in TextSecure!</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Ai primit un mesaj de la un device care suporta sesiuni criptate TextSecure. Doresti sa initiezi o sesiune securizata?</string>
   <string name="auto_initiate_activity__initiate_exchange">Initializeaza schimb de chei.</string>
@@ -213,12 +299,15 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nu exista contacte.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Cautare contacte...</string>
   <!--single_contact_selection_activity-->
+  <string name="single_contact_selection_group_activity__filter">Tastati un nume pentru a filtra...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecteaza pentru</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Nu exista apeluri recente.</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message"><small>Trimite un mesaj</small></string>
   <string name="conversation_activity__send">Trimite</string>
   <string name="conversation_activity__remove">Sterge</string>
   <!--conversation_item_sent-->
@@ -230,8 +319,10 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mod selectie multipla</string>
   <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Incarcarea tarilor...</string>
   <string name="country_selection_fragment__search">Cauta</string>
   <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Va rugam sa alegeti o parola daca doriti sa criptati local datele.</string>
   <string name="create_passphrase_activity__passphrase">PAROLA:</string>
   <string name="create_passphrase_activity__repeat">REPETA:</string>
   <string name="create_passphrase_activity__continue">Continua</string>
@@ -262,16 +353,52 @@
   <string name="prompt_passphrase_activity__textsecure_passphrase">PAROLA TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Deblocheaza</string>
   <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure are nevoie de setari APN pentru a trimite mesaje multimedia prin operatorul wireless. Acest aparat nu ofera informatiile necesare, lucru care se poate intampla uneori pentru dispozitive blocate sau alte configuratii restrictive.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pentru a putea trimite mesaje multimedia cat si mesaje intr-un grup, apasati \'OK\' si completati setarile solicitate. Setarile MMS pentru operatorul dvs. pot fi gasite cautand dupa \'operatorul tau APN\'. Aceasta operatiune este necesara o singura data.</string>
   <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (Necesar):</string>
   <string name="prompt_mms_activity__mms_proxy_host_optional">Host proxy MMS (Optional):</string>
   <string name="prompt_mms_activity__mms_proxy_port_optional">Port proxy MMS (Optional):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Complet</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure poate utiliza mesageria instant pentru a proteja intimitatea si pentru a evita costurile asociate cu SMS-urile atunci cand comunică\ncu alti utilizatorii TextSecure. Pentru a activa aceasta optiune, va rugam sa verificati codul de tara si numărul de telefon.</string>
+  <string name="registration_activity__your_country">TARA DVS.</string>
+  <string name="registration_activity__your_country_code_and_phone_number">CODUL TARII DVS. SI \nNUMARUL DE TELEFON</string>
+  <string name="registration_activity__phone_number">NUMARUL DE TELEFON</string>
+  <string name="registration_activity__register">Inregistrare</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Operatiunea de inregistrare va transmite unele informatii de contact catre serverul temporar.</string>
   <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">Unele probleme posibile\nsunt:</string>
+  <string name="registration_problems__sms_interceptors">Interceptori SMS.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nExista alte aplicatii de mesagerie text, cum ar fi Handcent sau GoSMS, care se comporta sub standard si\nintercepteaza toate mesajele SMS primite. Verificati daca ati primit un mesaj de tip text \ncare incepe cu \"Codul dvs. de verificare TextSecure:\", caz in care va trebui sa configurati\ncealalta aplicatie de mesagerie se permita trecerea mesajelor text mai departe catre TextSecure.</string>
+  <string name="registration_problems__incorrect_number">Numar incorect.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nVa rugam sa va asigurati ca ati introdus corect numarul dvs. de telefon si ca acesta este formatat corect pentru\nregiunea dumneavoastra.</string>
+  <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure nu functioneaza cu numere Google Voice.</string>
   <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">Verificare pe baza de apel vocal</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nTextSecure poate de asemenea sa va apeleze telefonic pentru a verifica numărul dvs.\nApasati \"Suna-ma\" si introduceti in casuta de mai jos codul din sase cifre pe care il veti auzi</string>
+  <string name="registration_progress_activity__verify">Verifica</string>
+  <string name="registration_progress_activity__call_me">Suna-ma</string>
+  <string name="registration_progress_activity__edit_number">Editeaza numar</string>
+  <string name="registration_progress_activity__connectivity_error">Eroare de conectivitate</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\nTextSecure nu a putut sa se conecteze la serviciul de push</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Probleme posibile\nsunt:</string>
+  <string name="registration_progress_activity__no_network_connectivity">Nu exista conexiune la retea</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Dispozitivul Dvs.\nare nevoie de conectiune cu reteaua pentru a utiliza aceasta functie TextSecure. Va rugam\nsa va incredintati ca dispozitivul e conectat la 3G sau WiFi</string>
+  <string name="registration_progress_activity__restrictive_firewall">Firewall restrictiv.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">\nDaca sunteti conectat prin wifi, este posibil ca firewall-ul sa blocheze accesul la\nserverul TextSecure. Incercati sa va conectati la o altă retea wifi sau la una date mobile.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nTextSecure va verifica acum automat numarul de telefon prin trimiterea unui mesaj SMS de confirmare.</string>
+  <string name="registration_progress_activity__connecting">Se conecteaza...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Asteptarea verificarii\nprin SMS</string>
+  <string name="registration_progress_activity__registering_with_server">Se inregistreaza cu serverul...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">S-ar putea sa dureze cateva momente.\nVa rugam sa aveti rabdare, va vom notifica cand, va vom notifica cand finiseaza verificarea .</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nOperatiunea initiata de TextSecure a expirat in timpul asteptării primirii mesajului SMS de verificare.</string>
+  <string name="registration_progress_activity__sms_verification_failed">Verificarea prin SMS a esuat.</string>
+  <string name="registration_progress_activity__generating_keys">Generarea cheilor...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Catre</string>
+  <string name="recipients_panel__add_member">Adaugare membru</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">In acest moment nu ai nici o cheie de identitate in baza ta de date.</string>
   <!--verify_identity_activity-->
@@ -289,6 +416,7 @@
   <string name="AndroidManifest__create_passphrase">Creeaza parola</string>
   <string name="AndroidManifest__enter_passphrase">Introdu parola</string>
   <string name="AndroidManifest__select_contacts">Selecteaza contacte</string>
+  <string name="AndroidManifest__select_contact">Selecteaza contact</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure detectat</string>
   <string name="AndroidManifest__public_identity_key">Cheia publica de identitate</string>
   <string name="AndroidManifest__change_passphrase">Schimba parola</string>
@@ -306,6 +434,8 @@
   <string name="preferences__pref_all_mms_title">Foloseste pentru toate MMS-urile</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Foloseste TextSecure pentru vizualizarea si salvarea tuturor mesajelor text primite</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Foloseste TextSecure pentru vizualizarea si salvarea tuturor mesajelor multimedia primite</string>
+  <string name="preferences__enable_enter_key_title">Activeaza tasta Enter</string>
+  <string name="preferences__replace_smiley_with_enter_key">Inlocuiti tasta smiley cu o tasta enter</string>
   <string name="preferences__pref_enter_sends_title">Enter trimite</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apasarea tastei enter va trimite mesajele text</string>
   <string name="preferences__display_settings">Afiseaza setarile</string>
@@ -332,6 +462,8 @@
   <string name="preferences__pref_led_blink_title">Tipar de clipire LED</string>
   <string name="preferences__sound">Sunet</string>
   <string name="preferences__change_notification_sound">Schimbă sunetul de notificare</string>
+  <string name="preferences__inthread_notifications">Notificari in conversatie</string>
+  <string name="preferences__play_inthread_notifications">Redare sunet de notificare in timp ce vizualizati o conversatie activa.</string>
   <string name="preferences__vibrate">Vibreaza</string>
   <string name="preferences__also_vibrate_when_notified">Vibreaza si cand esti notificat</string>
   <string name="preferences__minutes">minute</string>
@@ -370,6 +502,11 @@
   <string name="preferences__language">Limba</string>
   <string name="preferences__make_default_sms_app">Setează ca aplicație implicită SMS</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Alege TextSecure ca aplicație SMS/MMS implicită pentru sistemul tău.</string>
+  <string name="preferences__use_data_channel">Impingere mesaje</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nSporeste protectia intimitatii si evita costurile asociate cu SMS-urile folosind comunicarea prin canal de date cu alti utilizatori de TextSecure.</string>
+  <string name="preferences__allow_sms_fallback">Permiteti revenirea la SMS ca solutie de rezerva </string>
+  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Trimite si primeste mesaje SMS atunci cand serviciul push nu este disponibil</string>
+  <string name="preferences__refresh_push_directory">Reimprospatare director de tip \"push\"...</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -395,11 +532,17 @@
   <string name="conversation_list_batch__menu_select_all">Selecteaza tot</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cauta</string>
+  <string name="conversation_list__drawer_open">Deschide sertar de navigare</string>
+  <string name="conversation_list__drawer_close">Inchide sertar de navigare</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Securitate</string>
+  <string name="conversation_secure_verified__menu_no_identity">Nu exista identitate disponibila</string>
   <string name="conversation_secure_verified__menu_verify_recipient">Verifica destinatar</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Incheie Sesiune Securizata</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adauga atasament</string>
+  <string name="conversation__menu_update_group">Actualizare grup</string>
+  <string name="conversation__menu_leave_group">Paraseste grup</string>
   <string name="conversation__menu_add_contact_info">Adaugă informații de contact</string>
   <string name="conversation__menu_delete_thread">Sterge conversatie</string>
   <!--conversation_group_options-->
@@ -415,7 +558,9 @@
   <string name="text_secure_locked__menu_unlock">Deblocheaza</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Mesaj nou</string>
+  <string name="text_secure_normal__menu_new_group">Grup nou</string>
   <string name="text_secure_normal__menu_settings">Setari</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Blocare</string>
   <string name="text_secure_normal__mark_all_as_read">Marcheaza tot ca citit</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificat</string>

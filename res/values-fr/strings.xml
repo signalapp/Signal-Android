@@ -27,7 +27,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Vidéo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">Taille du message : %d KB</string>
+  <string name="ConversationItem_message_size_d_kb">Taille du message : %d ko</string>
   <string name="ConversationItem_expires_s">Expiration : %s</string>
   <string name="ConversationItem_error_sending_message">Erreur d’envoi du message</string>
   <string name="ConversationItem_sending">Envoi…</string>
@@ -110,9 +110,9 @@
   <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui ne supporte pas les groupes TextSecure, ce groupe sera donc converti en groupe MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Vous n\'êtes pas enregistré pour utiliser la transmission de données, les groupes TextSecure sont donc désactivés.</string>
   <string name="GroupCreateActivity_you_dont_own_this_group">Vous n’êtes pas le propriétaire de ce groupe, et ne pouvez donc pas modifier son titre ou son image.</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">Une erreur inattendue s\'est produite qui a empêché la création du groupe.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Une erreur inattendue s\'est produite et a empêché la création du groupe.</string>
   <string name="GroupCreateActivity_contacts_no_members">Il vous faut au moins une personne dans votre groupe !</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Un des membres de votre groupe a un numéro illisible. Veuillez réparer ou enlever ce contact et essayer à nouveau.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Un des membres de votre groupe a un numéro illisible. Veuillez corriger ou enlever ce contact et essayer à nouveau.</string>
   <string name="GroupCreateActivity_file_io_exception">Erreur de fichier I/O, impossible de créer un fichier image temporaire.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar du groupe</string>
   <string name="GroupCreateActivity_menu_create_title">Nouveau groupe</string>
@@ -265,8 +265,8 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Touchez pour ouvrir.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Touchez pour ouvrir, ou touchez le cadenas pour fermer.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure est dévérouillé</string>
-  <string name="KeyCachingService_lock">Vérouiller avec la phrase de passe</string>
+  <string name="KeyCachingService_passphrase_cached">TextSecure est déverrouillé</string>
+  <string name="KeyCachingService_lock">Verrouiller avec la phrase de passe</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nouveaux messages</string>
   <string name="MessageNotifier_most_recent_from_s">Dernier de : %s</string>
@@ -505,7 +505,7 @@
   <string name="preferences__use_data_channel">Pousser les messages</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nAugmenter la discrétion et éviter les frais de SMS en utilisant le canal de données pour les communications avec d’autres utilisateurs de TextSecure</string>
   <string name="preferences__allow_sms_fallback">Autoriser solution de repli SMS</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Envoyer et recevoir des SMS quand les données ne sont pas disponible</string>
+  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Envoyer et recevoir des SMS quand push n\'est pas disponible</string>
   <string name="preferences__refresh_push_directory">Actualiser le Répertoire de Push</string>
   <!--****************************************-->
   <!--menus-->
@@ -560,7 +560,7 @@
   <string name="text_secure_normal__menu_new_message">Nouveau Message</string>
   <string name="text_secure_normal__menu_new_group">Nouveau groupe</string>
   <string name="text_secure_normal__menu_settings">Paramètres</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Vérouiller</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Verrouiller</string>
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme Lu</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Vérifié</string>

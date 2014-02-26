@@ -19,6 +19,9 @@
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Avregistrerering av data som bærer av meldinger</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til meldingstjener!</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Du er ikke registrert som bruker av push tjenesten...</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Oppdaterer katalog</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Oppdaterer push katalogen...</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -69,6 +72,8 @@
   <string name="ConversationActivity_invalid_recipient">Ugyldig mottaker!</string>
   <string name="ConversationActivity_calls_not_supported">Anrop er ikke støttet</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne enheten ser ikke ut til å kunne initiere anrop.</string>
+  <string name="ConversationActivity_leave_group">Forlat gruppen?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du ønsker å forlate gruppen?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt:%3$s</string>
@@ -203,7 +208,10 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nMottatt nøkkelutvekslingsmelding for feil protokollversjon.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nMottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Mottok oppdatert men ukjent identitetsinformasjon. Trykk for å validere identiteten.</string>
+  <string name="SmsMessageRecord_secure_session_ended">Sikker sesjon avsluttet.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Forlot gruppen...</string>
+  <string name="TheadRecord_secure_session_ended">Sikker sesjon avsluttet.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
@@ -314,6 +322,7 @@
   <string name="country_selection_fragment__loading_countries">Laster land...</string>
   <string name="country_selection_fragment__search">Søk</string>
   <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Velg et passord om du ønsker å kryptere meldinger lokalt.</string>
   <string name="create_passphrase_activity__passphrase">Passord:</string>
   <string name="create_passphrase_activity__repeat">Repeter:</string>
   <string name="create_passphrase_activity__continue">Gå videre</string>
@@ -352,6 +361,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Complete</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure can benytte lynmeldinger for å øke personvernet og unngå SMS kostnader ved kommunikasjon med andre TextSecure brukere. For å aktivere denne funksjonen, vær vennlig å verifisere telefonnummeret og landskoden din.</string>
   <string name="registration_activity__your_country">LANDET DITT</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDSKODE OG\nTELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
@@ -492,8 +502,11 @@
   <string name="preferences__language">Språk</string>
   <string name="preferences__make_default_sms_app">Sett som standard SMS applikasjon</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">La TextSecure være enhetens standard SMS/MMS applikasjon.</string>
+  <string name="preferences__use_data_channel">Push meldinger</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nØk personvernet og unngå SMS kostnader ved å benytte data kanalen når du kommuniserer med andre TextSecure brukere.</string>
   <string name="preferences__allow_sms_fallback">Tillat SMS fallback</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send og motta SMS meldinger når push tjenesten ikke er tilgjengelig</string>
+  <string name="preferences__refresh_push_directory">Oppdater push katalog</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

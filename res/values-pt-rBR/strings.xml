@@ -19,6 +19,9 @@
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrando...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Descadastrando-se da comunicação de dados</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Você não está cadastrado no serviço push...</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Atualizando diretório</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Atualizando diretório push...</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -69,6 +72,8 @@
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Chamadas não suportadas</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este aparelho parece não suportar ações de chamada.</string>
+  <string name="ConversationActivity_leave_group">Sair do grupo?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remetente: %1$s⏎ Transporte: %2$s⏎ Enviadas/Recebidas:%3$s</string>
@@ -203,7 +208,10 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\n        Mensagem de troca de chaves recebida para uma versão de protocolo inválida.\n    </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\n        Mensagem recebida com chave de identidade desconhecida. Clique para processar e exibir.\n    </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Foi recebida atualização mas com informação de identidade desconhecida. Clique para validar a identidade.</string>
+  <string name="SmsMessageRecord_secure_session_ended">Sessão segura terminada.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Saiu do grupo...</string>
+  <string name="TheadRecord_secure_session_ended">Sessão segura terminada.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Destinatário não tem chave de identidade.</string>
@@ -314,6 +322,7 @@
   <string name="country_selection_fragment__loading_countries">Carregando países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
   <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Favor escolher uma frase-chave se gostaria de criptografar localmente seus dados.</string>
   <string name="create_passphrase_activity__passphrase">Frase-chave:</string>
   <string name="create_passphrase_activity__repeat">Repetir:</string>
   <string name="create_passphrase_activity__continue">Continuar</string>
@@ -352,6 +361,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Concluído</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\n        O TextSecure pode usar mensagens instantâneas para aumentar a privacidade e evitar cobranças SMS ao comunicar-se\n        com outros usuários TextSecure. Para habilitar esta funcionalidade, favor verificar seu código de país e número telefônico.\n    </string>
   <string name="registration_activity__your_country">SEU PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">SEU CÓDIGO DE PAÍS E\n        NÚMERO TELEFÔNICO\n    </string>
   <string name="registration_activity__phone_number">NÚMERO TELEFÔNICO</string>
@@ -423,7 +433,7 @@
   <string name="preferences__pref_all_sms_title">Utilizar para todas as SMS</string>
   <string name="preferences__pref_all_mms_title">Utilizar para todas as MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilizar TextSecure para visualizar e armazenar todas as mensagens de texto recebidas</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar TextSecure para visualizar e armazenar todas as mensagens multimédia recebidas</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar TextSecure para visualizar e armazenar todas as mensagens multimídia recebidas</string>
   <string name="preferences__enable_enter_key_title">Habilitar tecla Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Troca a tecla smiley por uma tecla enter</string>
   <string name="preferences__pref_enter_sends_title">Tecla de enter envia</string>
@@ -492,8 +502,11 @@
   <string name="preferences__language">Idioma</string>
   <string name="preferences__make_default_sms_app">Definir como app SMS padrão</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Tornar o TextSecure o aplicativo SMS/MMS padrão do sistema.</string>
+  <string name="preferences__use_data_channel">Mensagens push</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\n        Aumente a privacidade e evite cobranças SMS usando o canal de dados para comunicação com outros usuários TextSecure\n    </string>
   <string name="preferences__allow_sms_fallback">Permitir SMS como segunda opção</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Enviar e receber mensagens SMS quando envio não estiver disponível</string>
+  <string name="preferences__refresh_push_directory">Atualizar diretório push</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
