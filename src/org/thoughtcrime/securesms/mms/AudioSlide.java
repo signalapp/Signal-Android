@@ -67,11 +67,12 @@ public class AudioSlide extends Slide {
       cursor = context.getContentResolver().query(uri, new String[]{Audio.Media.MIME_TYPE}, null, null, null);
 			
       if (cursor != null && cursor.moveToFirst())
-	part.setContentType(cursor.getString(0).getBytes());
+        part.setContentType(cursor.getString(0).getBytes());
       else
-	throw new IOException("Unable to query content type.");
+        throw new IOException("Unable to query content type.");
     } finally {
-      cursor.close();
+      if (cursor != null)
+        cursor.close();
     } 
 
     part.setDataUri(uri);
