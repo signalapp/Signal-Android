@@ -56,8 +56,8 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Това устройство не поддържа повиквания.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Информация за съобщението</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Изпращане: %1$s⏎\nТранспорт: %2$s⏎\nИзпратени/Получени:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Изпращач: %1$s⏎\nТранспорт: %2$s⏎\nИзпратено: %3$s⏎\nПолучено:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Изпращане: %1$s⏎\nТранспорт: %2$s⏎\nИзпратени/Получени: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Изпращач: %1$s⏎\nТранспорт: %2$s⏎\nИзпратено: %3$s⏎\nПолучено: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Потвърдете изтриване на съобщението</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Сигурни ли сте че искате да изтриете съобщението завинаги?</string>
   <!--ConversationListAdapter-->

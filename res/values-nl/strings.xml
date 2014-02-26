@@ -66,8 +66,8 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt dial-acties niet te ondersteunen.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd/Ontvangen:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nMedium: %2$s\nVerzonden: %3$s\nOntvangen:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd/Ontvangen: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nMedium: %2$s\nVerzonden: %3$s\nOntvangen: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bevestig Bericht Verwijdering</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Weet u zeker dat u dit bericht permanent wilt verwijderen?</string>
   <!--ConversationListAdapter-->

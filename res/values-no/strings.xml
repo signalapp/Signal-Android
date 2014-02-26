@@ -71,8 +71,8 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne enheten ser ikke ut til å kunne initiere anrop.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsender: %1$s⏎ Transport: %2$s⏎ Sendt: %3$s⏎ Mottatt:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsender: %1$s⏎ Transport: %2$s⏎ Sendt: %3$s⏎ Mottatt: %4s</string>
   <string name="ConversationFragment_confirm_message_delete">Bekreft sletting av melding</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker å slette denne meldingen?</string>
   <!--ConversationListAdapter-->

@@ -63,8 +63,8 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Αυτή η συσκευή δε φαίνεται να υποστηρίζει ενέργειες κλήσης.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Αποστολέας: %1$s\nΜέσο μεταφοράς: %2$s\nΑπεστάλη/Παραλήφθηκε:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Αποστολέας: %1$s\nΜέσο μεταφοράς: %2$s\nΑπεστάλησαν: %3$s\nΠαραλήφθηκαν:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Αποστολέας: %1$s\nΜέσο μεταφοράς: %2$s\nΑπεστάλη/Παραλήφθηκε: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Αποστολέας: %1$s\nΜέσο μεταφοράς: %2$s\nΑπεστάλησαν: %3$s\nΠαραλήφθηκαν: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Επιβεβαίωση Διαγραφής Μηνύματος</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Είστε σίγουροι πως θέλετε να διαγράψετε αυτό το μήνυμα για πάντα;</string>
   <!--ConversationListAdapter-->

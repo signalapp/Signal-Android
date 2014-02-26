@@ -56,8 +56,8 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末は、ダイヤル機能に対応していないようです。</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">送信者: %1$s\n通信: %2$s\n送信/受信:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n通信: %2$s\n送信: %3$s\n受信:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">送信者: %1$s\n通信: %2$s\n送信/受信: %3$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n通信: %2$s\n送信: %3$s\n受信: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">メッセージ削除の確認</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">このメッセージを完全に削除してもよろしいですか？</string>
   <!--ConversationListAdapter-->
