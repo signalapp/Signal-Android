@@ -304,7 +304,7 @@ public class MessageNotifier {
         SpannableString body       = new SpannableString(context.getString(R.string.MessageNotifier_encrypted_message));
         body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        notificationState.addNotification(new NotificationItem(recipient, recipients, threadId, body, null));
+        notificationState.addNotification(new NotificationItem(recipient, recipients, null, threadId, body, null));
       }
     } finally {
       if (reader != null)
@@ -324,11 +324,16 @@ public class MessageNotifier {
     else                      reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor, masterSecret);
 
     while ((record = reader.getNext()) != null) {
-      Recipient recipient   = record.getIndividualRecipient();
-      Recipients recipients = record.getRecipients();
-      long         threadId = record.getThreadId();
-      SpannableString body  = record.getDisplayBody();
-      Uri          image    = null;
+      Recipient       recipient        = record.getIndividualRecipient();
+      Recipients      recipients       = record.getRecipients();
+      long            threadId         = record.getThreadId();
+      SpannableString body             = record.getDisplayBody();
+      Uri             image            = null;
+      Recipients      threadRecipients = null;
+
+      if (threadId != -1) {
+        threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
+      }
 
       // XXXX This is so fucked up.  FIX ME!
       if (body.toString().equals(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait))) {
@@ -336,7 +341,7 @@ public class MessageNotifier {
         body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
 
-      notificationState.addNotification(new NotificationItem(recipient, recipients, threadId, body, image));
+      notificationState.addNotification(new NotificationItem(recipient, recipients, threadRecipients, threadId, body, image));
     }
 
     reader.close();
