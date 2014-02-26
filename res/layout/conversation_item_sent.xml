@@ -145,7 +145,7 @@
 		                android:paddingTop="1dip"/>
 
 		      <TextView android:id="@+id/conversation_item_date"
-		                android:autoLink="all"
+		                android:autoLink="none"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:linksClickable="false"
