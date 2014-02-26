@@ -180,7 +180,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
-    return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, true);
+    return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
   }
 
   public static boolean hasPromptedPushRegistration(Context context) {

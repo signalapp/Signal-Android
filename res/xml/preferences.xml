@@ -16,11 +16,6 @@
                     android:title="@string/preferences__make_default_sms_app"
                     android:summary="@string/preferences__make_textsecure_the_default_sms_mms_app" />
 
-        <!--<CheckBoxPreference android:defaultValue="false"-->
-                            <!--android:key="pref_delivery_report_sms"-->
-                            <!--android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"-->
-                            <!--android:title="@string/preferences__sms_delivery_reports" />-->
-
         <CheckBoxPreference android:defaultValue="false"
                             android:key="pref_toggle_push_messaging"
                             android:title="@string/preferences__use_data_channel"
@@ -32,6 +27,11 @@
                             android:title="@string/preferences__allow_sms_fallback"
                             android:summary="@string/preferences__send_and_receive_sms_messages_when_push_is_not_available"/>
 
+        <CheckBoxPreference android:defaultValue="false"
+                            android:key="pref_delivery_report_sms"
+                            android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
+                            android:title="@string/preferences__sms_delivery_reports" />
+        
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences__notifications">
         <CheckBoxPreference android:key="pref_key_enable_notifications"
