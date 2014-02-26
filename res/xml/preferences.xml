@@ -31,7 +31,7 @@
                             android:key="pref_delivery_report_sms"
                             android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
                             android:title="@string/preferences__sms_delivery_reports" />
-        
+
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences__notifications">
         <CheckBoxPreference android:key="pref_key_enable_notifications"
@@ -54,7 +54,6 @@
                           android:entries="@array/pref_led_blink_pattern_entries"
                           android:entryValues="@array/pref_led_blink_pattern_values" />
 
-
         <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
                             android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_ringtone"
@@ -76,8 +75,7 @@
                             android:defaultValue="true"
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
-        
-        
+
   </PreferenceCategory>
 
   <PreferenceCategory android:title="Input Settings">
@@ -119,13 +117,13 @@
                         android:title="@string/preferences__conversation_length_limit"
                         android:inputType="number"
                         android:dependency="pref_trim_threads" />
-    
+
     <Preference android:key="pref_trim_now"
                 android:title="@string/preferences__trim_all_threads_now"
                 android:summary="@string/preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits"
                 android:dependency="pref_trim_threads" />
 
-   </PreferenceCategory>  
+   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__display_settings" android:key="pref_display_category">
 
@@ -162,7 +160,6 @@
                android:dependency="pref_timeout_passphrase"
                android:dialogTitle="@string/preferences__pref_timeout_interval_dialogtitle" />
 
-
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/preferences__advanced">
@@ -170,6 +167,11 @@
                            android:key="pref_auto_complete_key_exchange"
                            android:title="@string/preferences__complete_key_exchanges"
                            android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
+
+       <CheckBoxPreference android:defaultValue="true"
+                           android:key="pref_screen_security"
+                           android:title="@string/preferences__screen_security"
+                           android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots" />
 
         <Preference android:key="pref_mms_preferences"
                     android:title="@string/preferences__advanced_mms_access_point_names"/>

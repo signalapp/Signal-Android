@@ -270,7 +270,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       } else {
         inflater.inflate(R.menu.conversation_secure_no_identity, menu);
       }
-      
+
       inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
     } else if (isSingleConversation() && !pushRegistered) {
       inflater.inflate(R.menu.conversation_insecure, menu);
@@ -476,7 +476,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients);
     startActivityForResult(intent, GROUP_EDIT);
   }
-
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
     distributionType = ThreadDatabase.DistributionTypes.BROADCAST;
@@ -749,7 +748,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     registerForContextMenu(sendButton);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && TextSecurePreferences.isScreenSecurityEnabled(this)) {
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
     }
 
@@ -805,7 +804,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     registerReceiver(groupUpdateReceiver,
                      new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
   }
-
 
   //////// Helper Methods
 
