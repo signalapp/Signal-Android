@@ -21,6 +21,8 @@ import android.widget.CursorAdapter;
 import com.actionbarsherlock.app.SherlockListFragment;
 
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
@@ -197,7 +199,8 @@ public class ConversationFragment extends SherlockListFragment
     if (this.recipients != null && this.threadId != -1) {
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
                                                   new FailedIconClickHandler(),
-                                                  (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient()));
+                                                  (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
+                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients.getPrimaryRecipient())));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }

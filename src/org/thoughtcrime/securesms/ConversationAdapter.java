@@ -61,16 +61,18 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   private final Context context;
   private final MasterSecret masterSecret;
   private final boolean groupThread;
+  private final boolean pushDestination;
   private final LayoutInflater inflater;
 
   public ConversationAdapter(Context context, MasterSecret masterSecret,
-                             Handler failedIconClickHandler, boolean groupThread)
+                             Handler failedIconClickHandler, boolean groupThread, boolean pushDestination)
   {
     super(context, null);
     this.context                = context;
     this.masterSecret           = masterSecret;
     this.failedIconClickHandler = failedIconClickHandler;
     this.groupThread            = groupThread;
+    this.pushDestination        = pushDestination;
     this.inflater               = (LayoutInflater)context
                                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
@@ -82,7 +84,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    item.set(masterSecret, messageRecord, failedIconClickHandler, groupThread);
+    item.set(masterSecret, messageRecord, failedIconClickHandler, groupThread, pushDestination);
   }
 
   @Override

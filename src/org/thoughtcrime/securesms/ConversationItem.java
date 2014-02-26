@@ -25,6 +25,8 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -55,6 +57,8 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -79,12 +83,26 @@ public class ConversationItem extends LinearLayout {
   private final int    STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
                                                       R.attr.conversation_item_sent_push_triangle_background,
                                                       R.attr.conversation_item_sent_background,
-                                                      R.attr.conversation_item_sent_triangle_background};
+                                                      R.attr.conversation_item_sent_triangle_background,
+                                                      R.attr.conversation_item_sent_pending_background,
+                                                      R.attr.conversation_item_sent_pending_triangle_background,
+                                                      R.attr.conversation_item_sent_push_pending_background,
+                                                      R.attr.conversation_item_sent_push_pending_triangle_background};
+
+  private final static int SENT_PUSH = 0;
+  private final static int SENT_PUSH_TRIANGLE = 1;
+  private final static int SENT_SMS = 2;
+  private final static int SENT_SMS_TRIANGLE = 3;
+  private final static int SENT_SMS_PENDING = 4;
+  private final static int SENT_SMS_PENDING_TRIANGLE = 5;
+  private final static int SENT_PUSH_PENDING = 6;
+  private final static int SENT_PUSH_PENDING_TRIANGLE = 7;
 
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
   private MasterSecret  masterSecret;
   private boolean       groupThread;
+  private boolean       pushDestination;
 
   private  View      conversationParent;
   private  TextView  bodyText;
@@ -145,15 +163,16 @@ public class ConversationItem extends LinearLayout {
   }
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
-                  Handler failedIconHandler, boolean groupThread)
+                  Handler failedIconHandler, boolean groupThread, boolean pushDestination)
   {
-
 
     this.messageRecord     = messageRecord;
     this.masterSecret      = masterSecret;
     this.failedIconHandler = failedIconHandler;
     this.groupThread       = groupThread;
+    this.pushDestination   = pushDestination;
 
+    setBackgroundDrawables(messageRecord);
     setBodyText(messageRecord);
 
     if (!messageRecord.isGroupAction()) {
@@ -194,17 +213,31 @@ public class ConversationItem extends LinearLayout {
 
   /// MessageRecord Attribute Parsers
 
-  private void setBodyText(MessageRecord messageRecord) {
-
+  private void setBackgroundDrawables(MessageRecord messageRecord) {
     if (conversationParent != null && backgroundDrawables != null) {
-      if (messageRecord.isPush() && messageRecord.isOutgoing()) {
-        setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(0, -1));
-        setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), backgroundDrawables.getResourceId(1, -1));
-      } else if (messageRecord.isOutgoing()) {
-        setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(2, -1));
-        setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), backgroundDrawables.getResourceId(3, -1));
+      if (messageRecord.isOutgoing()) {
+        final int background;
+        final int triangleBackground;
+        if (messageRecord.isPending() && pushDestination) {
+          background = SENT_PUSH_PENDING;
+          triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
+        } else if (messageRecord.isPending()) {
+          background = SENT_SMS_PENDING;
+          triangleBackground = SENT_SMS_PENDING_TRIANGLE;
+        } else if (messageRecord.isPush()) {
+          background = SENT_PUSH;
+          triangleBackground = SENT_PUSH_TRIANGLE;
+        } else {
+          background = SENT_SMS;
+          triangleBackground = SENT_SMS_TRIANGLE;
+        }
+        setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
+        setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), backgroundDrawables.getResourceId(triangleBackground, -1));
       }
     }
+  }
+
+  private void setBodyText(MessageRecord messageRecord) {
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
       bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
@@ -233,7 +266,7 @@ public class ConversationItem extends LinearLayout {
     if (messageRecord.isFailed()) {
       dateText.setText(R.string.ConversationItem_error_sending_message);
     } else if (messageRecord.isPending()) {
-      dateText.setText(R.string.ConversationItem_sending);
+      dateText.setText(" ··· ");
     } else {
       final long timestamp = (messageRecord.isOutgoing() ?
           messageRecord.getDateSent() :
