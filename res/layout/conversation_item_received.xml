@@ -150,7 +150,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?conversation_received_text_secondary_color"
                     android:fontFamily="sans-serif-light"
-                    android:autoLink="all"
+                    android:autoLink="none"
                     android:linksClickable="false" />
 		    </LinearLayout>
         </LinearLayout>
