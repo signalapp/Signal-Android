@@ -40,8 +40,6 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
 
-import static org.thoughtcrime.securesms.database.SmsDatabase.Status;
-
 public class MmsSender {
 
   private final Context             context;

@@ -94,6 +94,7 @@ public class SmsSender {
           DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
         } catch (RetryLaterException rle) {
           Log.w("SmsSender", rle);
+          DatabaseFactory.getSmsDatabase(context).markAsOutbox(messageId);
           if (systemStateListener.isConnected()) scheduleQuickRetryAlarm();
           else                                   systemStateListener.registerForConnectivityChange();
         }
