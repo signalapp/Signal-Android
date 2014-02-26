@@ -56,6 +56,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:gravity="right"
                     android:textColor="?conversation_sent_text_primary_color"
+                    android:textColorLink="?conversation_sent_text_primary_color"
                     android:textSize="16sp" />
 
                 <ImageView
