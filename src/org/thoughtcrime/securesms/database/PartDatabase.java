@@ -22,6 +22,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
@@ -408,7 +409,10 @@ public class PartDatabase extends Database {
       cursor = database.query(TABLE_NAME, new String[] {DATA}, MMS_ID + " = ?", new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        new File(cursor.getString(0)).delete();
+        String data = cursor.getString(0);
+        if (!TextUtils.isEmpty(data)) {
+          new File(cursor.getString(0)).delete();
+        }
       }
     } finally {
       if (cursor != null)
