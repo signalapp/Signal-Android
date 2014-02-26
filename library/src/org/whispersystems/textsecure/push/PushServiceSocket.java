@@ -207,7 +207,7 @@ public class PushServiceSocket {
 
   public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens) {
     try {
-      ContactTokenList        contactTokenList = new ContactTokenList(new LinkedList(contactTokens));
+      ContactTokenList        contactTokenList = new ContactTokenList(new LinkedList<String>(contactTokens));
       String                  response         = makeRequest(DIRECTORY_TOKENS_PATH, "PUT", new Gson().toJson(contactTokenList));
       ContactTokenDetailsList activeTokens     = new Gson().fromJson(response, ContactTokenDetailsList.class);
 
@@ -332,6 +332,10 @@ public class PushServiceSocket {
     if (connection.getResponseCode() == 410) {
       String response = Util.readFully(connection.getErrorStream());
       throw new StaleDevicesException(new Gson().fromJson(response, StaleDevices.class));
+    }
+
+    if (connection.getResponseCode() == 417) {
+      throw new ExpectationFailedException();
     }
 
     if (connection.getResponseCode() != 200 && connection.getResponseCode() != 204) {

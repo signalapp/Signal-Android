@@ -23,13 +23,13 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
+import org.whispersystems.textsecure.push.ExpectationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -89,9 +89,9 @@ public class RegistrationService extends Service {
       executor.execute(new Runnable() {
         @Override
         public void run() {
-          if      (intent.getAction().equals(REGISTER_NUMBER_ACTION)) handleSmsRegistrationIntent(intent);
-          else if (intent.getAction().equals(VOICE_REQUESTED_ACTION)) handleVoiceRequestedIntent(intent);
-          else if (intent.getAction().equals(VOICE_REGISTER_ACTION))  handleVoiceRegistrationIntent(intent);
+          if      (REGISTER_NUMBER_ACTION.equals(intent.getAction())) handleSmsRegistrationIntent(intent);
+          else if (VOICE_REQUESTED_ACTION.equals(intent.getAction())) handleVoiceRequestedIntent(intent);
+          else if (VOICE_REGISTER_ACTION.equals(intent.getAction()))  handleVoiceRegistrationIntent(intent);
         }
       });
     }
@@ -256,6 +256,10 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
       broadcastComplete(true);
+    } catch (ExpectationFailedException efe) {
+      Log.w("RegistrationService", efe);
+      setState(new RegistrationState(RegistrationState.STATE_MULTI_REGISTERED, number));
+      broadcastComplete(false);
     } catch (UnsupportedOperationException uoe) {
       Log.w("RegistrationService", uoe);
       setState(new RegistrationState(RegistrationState.STATE_GCM_UNSUPPORTED, number));
@@ -433,6 +437,8 @@ public class RegistrationService extends Service {
 
     public static final int STATE_VOICE_REQUESTED      = 12;
     public static final int STATE_GENERATING_KEYS      = 13;
+
+    public static final int STATE_MULTI_REGISTERED     = 14;
 
     public final int    state;
     public final String number;

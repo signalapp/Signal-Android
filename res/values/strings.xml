@@ -268,6 +268,8 @@
     <string name="RegistrationProgressActivity_too_many_requests">Too Many Requests!</string>
     <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
     <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code...</string>
+    <string name="RegistrationProgressActivity_registration_conflict">Registration conflict</string>
+    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different TextSecure server (CyanogenMod?). You must unregistering there before registering here.</string>
 
     <!-- RegistrationService -->
     <string name="RegistrationService_registration_complete">Registration Complete</string>
@@ -771,7 +773,6 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
-
     <!-- EOF -->
 
 </resources>
