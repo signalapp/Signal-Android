@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -24,7 +25,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -44,6 +51,31 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     setContentView(R.layout.prompt_passphrase_activity);
     initializeResources();
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    MenuInflater inflater = this.getSupportMenuInflater();
+    menu.clear();
+
+    inflater.inflate(R.menu.log_submit, menu);
+    super.onPrepareOptionsMenu(menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    super.onOptionsItemSelected(item);
+    switch (item.getItemId()) {
+    case R.id.menu_submit_debug_logs: handleLogSubmit(); return true;
+    }
+
+    return false;
+  }
+
+  private void handleLogSubmit() {
+    Intent intent = new Intent(this, LogSubmitActivity.class);
+    startActivity(intent);
   }
 
   private void initializeResources() {

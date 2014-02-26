@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:id="@+id/log_submit_confirmation"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/log_submit_activity__confirmation"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
+
+    <ScrollView android:id="@+id/log_preview_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="2">
+        <EditText android:id="@+id/log_preview"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  style="?android:attr/textViewStyle"
+                  android:padding="10dp"
+                  android:background="@null"
+                  android:fontFamily="monospace"
+                  android:hint=""
+                  android:inputType="textImeMultiLine|textNoSuggestions|textMultiLine"
+                  android:textSize="10sp" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button android:id="@+id/cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_submit_activity__button_cancel"
+                android:layout_weight="1"/>
+        <Button android:id="@+id/ok"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_submit_activity__button_ok"
+                android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>
