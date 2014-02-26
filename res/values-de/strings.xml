@@ -51,7 +51,7 @@
   <string name="ConversationActivity_initiate_secure_session_question">Soll eine sichere Sitzung aufgebaut werden?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Eine sichere Sitzung mit %s aufbauen?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Sichere Sitzung beenden bestätigen</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Wollen sie die sichere Sitzung wirklich beenden?</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Wollen Sie die sichere Sitzung wirklich beenden?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Bestätigung zum Löschen des Threads</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Sind Sie sicher, dass Sie diese Konversation unwiderruflich löschen möchten?</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
@@ -81,14 +81,14 @@
   <string name="ConversationFragment_confirm_message_delete">Nachricht löschen bestätigen</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sind Sie sicher, dass Sie diese Nachricht unwiderruflich löschen möchten?</string>
   <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Schlüsselaustausch Nachricht...</string>
+  <string name="ConversationListAdapter_key_exchange_message">Schlüsselaustausch-Nachricht...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Unterhaltungen löschen?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sind Sie sicher, dass Sie alle ausgewählten Unterhaltungen löschen möchten?</string>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Lösche ausgewählte Threads...</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch Nachricht...</string>
+  <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch-Nachricht...</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Auf SD-Karte exportieren?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dies\nwird Ihre verschlüsselten Keys, Einstellungen und Nachrichten auf die SD-Karte exportieren</string>
@@ -171,8 +171,8 @@
   <string name="RegistrationActivity_invalid_number">Ungültige Nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die Nummer, die Sie\nangegeben haben (%s) ist ungültig.</string>
   <string name="RegistrationActivity_unsupported">Nicht unterstützt</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Entschuldigung,\ndieses Geräte unterstützt keine Nachrichten über den Datenkanal. Geräte die mit Android vor Version 4.0 laufen,\nmüssen einen Google Account eingerichtet haben. Geräte die mit Android 4.0 und neuer laufen\nbenötigen keinen Google Account, müssen aber die Play Store App installiert haben.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nEs wird jetzt überprüft ob die folgende Nummer zu diesem Geräte gehört:\n\n%s\n\n\nIst diese Nummer richtig oder wollen Sie sie bearbeiten bevor es weiter geht?</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Entschuldigung,\ndieses Geräte unterstützt keine Nachrichten über den Datenkanal. Geräte, die mit Android vor Version 4.0 laufen,\nmüssen einen Google Account eingerichtet haben. Geräte, die mit Android 4.0 und neuer laufen\nbenötigen keinen Google Account, müssen aber die Play Store App installiert haben.</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nEs wird jetzt überprüft ob die folgende Nummer zu diesem Gerät gehört:\n\n%s\n\n\nIst diese Nummer richtig oder wollen Sie sie bearbeiten bevor es weiter geht?</string>
   <string name="RegistrationActivity_continue">Fortsetzen</string>
   <string name="RegistrationActivity_edit">Bearbeiten</string>
   <!--RegistrationProblemsActivity-->
@@ -190,7 +190,7 @@
   <string name="RegistrationProgressActivity_verification_failed">Überprüfung fehlgeschlagen!</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der Code, den Sie eingegeben haben, ist falsch. Bitte versuchen Sie es erneut.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Zu viele Versuche</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Sie haben zu viel falsche Codes eingegeben. Bitte warten Sie eine Minute und versuchen es dann erneut.</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Sie haben zu viele falsche Codes eingegeben. Bitte warten Sie eine Minute und versuchen es dann erneut.</string>
   <string name="RegistrationProgressActivity_requesting_call">Fordere Anruf an</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Fordere Bestätigungs-Anruf an...</string>
   <string name="RegistrationProgressActivity_server_error">Server Fehler</string>
@@ -241,7 +241,7 @@
   <string name="ViewIdentityActivity_identity_fingerprint">Fingerabdruck</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz vorhandener Anfragen initiieren?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Sie haben bereits eine Sitzungsaufbau Nachricht an den Empfänger gesendet, sind Sie sicher, dass Sie eine weitere senden wollen? Dies macht die erste Nachricht ungültig.</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Sie haben bereits eine Sitzungsaufbau Nachricht an den Empfänger gesendet. Sind Sie sicher, dass Sie eine weitere senden wollen? Dies macht die erste Nachricht ungültig.</string>
   <string name="KeyExchangeInitiator_send">Senden</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht...</string>
@@ -370,7 +370,7 @@
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Einige mögliche Probleme\nbeinhalten:</string>
   <string name="registration_problems__sms_interceptors">Apps, die SMS abfangen.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nManche SMS Apps von Drittanbietern, wie z.B. Handcent oder GoSMS, verhalten sich falsch und\nfangen alle eingehenden SMS ab. Überprüfen Sie, ob Sie eine Textnachricht empfangen haben,\ndie mit \"Ihr TextSecure Bestätigungs-Code:\" beginnt. Sollte dies der Fall sein, müssen sie Ihre \nDrittanbieter-App so einstellen, dass sie alle SMS durch lässt.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nManche SMS Apps von Drittanbietern, wie z.B. Handcent oder GoSMS, verhalten sich falsch und\nfangen alle eingehenden SMS ab. Überprüfen Sie, ob Sie eine Textnachricht empfangen haben,\ndie mit \"Ihr TextSecure Bestätigungs-Code:\" beginnt. Sollte dies der Fall sein, müssen Sie Ihre \nDrittanbieter-App so einstellen, dass sie alle SMS durch lässt.</string>
   <string name="registration_problems__incorrect_number">Falsche Nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nBitte überprüfen Sie die eingegebene Nummer und dass Sie für Ihre Region das\nrichtige Format hat.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
