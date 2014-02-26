@@ -270,9 +270,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       } else {
         inflater.inflate(R.menu.conversation_secure_no_identity, menu);
       }
-      if (!pushRegistered) {
-        inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
-      }
+      
+      inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
     } else if (isSingleConversation() && !pushRegistered) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
