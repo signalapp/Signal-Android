@@ -109,7 +109,7 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Neue MMS Gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Sie haben einen Kontakt ausgewählt, der TextSecure Gruppen nicht unterstützt, deshalb wird dies eine MMS Gruppe sein.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Sie sind nicht für Nachrichten über den Datenkanal registriert, TextSecure Gruppen sind deshalb deaktiviert. </string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Die sind nicht der Besitzer dieser Gruppe, deshalb können Sie den Titel oder das Bild nicht bearbeiten.</string>
+  <string name="GroupCreateActivity_you_dont_own_this_group">Sie sind nicht der Besitzer dieser Gruppe, deshalb können Sie den Titel oder das Bild nicht bearbeiten.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ein unerwarteter Fehler ist aufgetreten der das Erstellen der Gruppe verhindert hat.</string>
   <string name="GroupCreateActivity_contacts_no_members">Sie brauchen mindestens eine Person in Ihrer Gruppe.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Eines der Mitglieder Ihrer Gruppe hat eine Nummer die nicht richtig gelesen werden kann. Bitte beheben oder Kontakt entfernen und erneut versuchen.</string>
