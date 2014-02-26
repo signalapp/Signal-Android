@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -35,7 +36,6 @@ public class EmojiDrawer extends FrameLayout {
   private GridView      emojiGrid;
   private GridView      recentEmojiGrid;
   private ViewPager     pager;
-  private PagerTabStrip pagerTabStrip;
 
   public EmojiDrawer(Context context) {
     super(context);
@@ -70,8 +70,7 @@ public class EmojiDrawer extends FrameLayout {
 
   private void initializeResources() {
     LayoutInflater inflater    = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    this.pager                 = (ViewPager    )  findViewById(R.id.emoji_pager    );
-    this.pagerTabStrip         = (PagerTabStrip)  findViewById(R.id.emoji_tab_strip);
+    this.pager                 = (ViewPager    )  findViewById(R.id.emoji_pager);
     this.emojiGridLayout       = (FrameLayout  )  inflater.inflate(R.layout.emoji_grid_layout, null);
     this.recentEmojiGridLayout = (FrameLayout  )  inflater.inflate(R.layout.emoji_grid_layout, null);
     this.emojiGrid             = (GridView     )  emojiGridLayout.findViewById(R.id.emoji);
@@ -128,9 +127,11 @@ public class EmojiDrawer extends FrameLayout {
   private class EmojiGridAdapter extends BaseAdapter {
 
     private final int type;
+    private final int emojiSize;
 
     public EmojiGridAdapter(int type) {
       this.type = type;
+      emojiSize = (int) getResources().getDimension(R.dimen.emoji_drawer_size);
     }
 
     @Override
@@ -162,6 +163,7 @@ public class EmojiDrawer extends FrameLayout {
         return convertView;
       } else {
         ImageView imageView = new ImageView(getContext());
+        imageView.setLayoutParams(new AbsListView.LayoutParams(emojiSize, emojiSize));
         imageView.setImageDrawable(drawable);
         return imageView;
       }

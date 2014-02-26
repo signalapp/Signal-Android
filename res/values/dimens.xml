@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="emoji_size">64dip</dimen>
+    <dimen name="emoji_drawer_size">40dip</dimen>
     <dimen name="conversation_item_corner_radius">3dp</dimen>
     <dimen name="conversation_item_drop_shadow_dist">2dp</dimen>
 </resources>

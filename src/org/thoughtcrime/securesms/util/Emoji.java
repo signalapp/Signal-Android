@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
@@ -45,12 +46,14 @@ public class Emoji {
 
   private static final Pattern EMOJI_RANGE = Pattern.compile("[\ud83d\ude01-\ud83d\ude4f]");
   public  static final double  EMOJI_LARGE = 1;
-  public  static final double  EMOJI_SMALL = 0.7;
+  public  static final double  EMOJI_SMALL = 0.75;
+  public  static final int     EMOJI_LARGE_SIZE = 22;
 
   private final Context               context;
   private final String[]              emojiAssets;
   private final Set<String>           emojiAssetsSet;
   private final BitmapFactory.Options bitmapOptions;
+  private final int                   bigDrawSize;
 
   private Emoji(Context context) {
     this.context        = context.getApplicationContext();
@@ -58,7 +61,13 @@ public class Emoji {
     this.emojiAssetsSet = new HashSet<String>();
     this.bitmapOptions  = initializeBitmapOptions();
 
+    this.bigDrawSize = scale(EMOJI_LARGE_SIZE);
+
     Collections.addAll(this.emojiAssetsSet, emojiAssets);
+  }
+
+  private int scale(float value) {
+    return (int)(context.getResources().getDisplayMetrics().density * value);
   }
 
   public int getEmojiAssetCount() {
@@ -91,8 +100,8 @@ public class Emoji {
 
         if (emojiAssetsSet.contains(resource)) {
           Drawable drawable = getEmojiDrawable(resource);
-          drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth()*size),
-                             (int)(drawable.getIntrinsicHeight()*size));
+          drawable.setBounds(0, 0, (int)(bigDrawSize*size),
+                             (int)(bigDrawSize*size));
 
           ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
           text.setSpan(imageSpan, matches.start(), matches.end(),
@@ -129,7 +138,7 @@ public class Emoji {
       Bitmap bitmap = BitmapFactory.decodeStream(context.getAssets().open("emoji" + File.separator + assetName),
                                                  null, bitmapOptions);
 
-      bitmap = Bitmap.createScaledBitmap(bitmap, 40, 40, true);
+      bitmap = Bitmap.createScaledBitmap(bitmap, 64, 64, true);
 
       return  new BitmapDrawable(context.getResources(), bitmap);
     } catch (IOException e) {
@@ -150,8 +159,8 @@ public class Emoji {
     BitmapFactory.Options options = new BitmapFactory.Options();
 
     options.inScaled           = true;
-//    options.inDensity          = 64;
-    options.inTargetDensity    = context.getResources().getDimensionPixelSize(R.dimen.emoji_size);
+    options.inDensity          = DisplayMetrics.DENSITY_MEDIUM;
+    options.inTargetDensity    = context.getResources().getDisplayMetrics().densityDpi;
     options.inSampleSize       = 1;
     options.inJustDecodeBounds = false;
 
