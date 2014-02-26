@@ -441,7 +441,19 @@
     <string name="create_passphrase_activity__repeat">REPEAT:</string>
     <string name="create_passphrase_activity__continue">Continue</string>
     <string name="create_passphrase_activity__generating_secrets">GENERATING SECRETS</string>
-    
+
+    <!-- log_submit_activity -->
+    <string name="log_submit_activity__confirmation">This log will be posted publicly online for TextSecure contributors to view. Feel free to examine or edit the logs below before hitting submit.</string>
+    <string name="log_submit_activity__button_cancel">Don\'t submit</string>
+    <string name="log_submit_activity__button_ok">Submit</string>
+    <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
+    <string name="log_submit_activity__log_submit_success_title">Success!</string>
+    <string name="log_submit_activity__log_got_it">Got it</string>
+    <string name="log_submit_activity__your_pastebin_url">Please copy this URL and add it to your issue (long press to put in clipboard):\n\n<b>%1$s</b></string>
+    <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
+    <string name="log_submit_activity__loading_logcat">Loading logcat&#8230;</string>
+    <string name="log_submit_activity__thanks">Thanks for your help!</string>
+
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">The default system database will not be modified or altered in any way.</string>
@@ -608,6 +620,7 @@
     <string name="AndroidManifest__verify_identity">Verify Identity</string>
     <string name="AndroidManifest__manage_identity_keys">Manage Identity Keys</string>
     <string name="AndroidManifest__complete_key_exchange">Complete Key Exchange</string>
+    <string name="AndroidManifest__log_submit">Submit Debug Logs</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / Export</string>
@@ -770,6 +783,7 @@
     <string name="text_secure_normal__menu_settings">Settings</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark All Read</string>
+    <string name="text_secure_normal__submit_debug_log">Submit debug log</string>
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>

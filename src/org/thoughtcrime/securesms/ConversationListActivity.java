@@ -109,6 +109,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     menu.clear();
 
     inflater.inflate(R.menu.text_secure_normal, menu);
+    inflater.inflate(R.menu.log_submit, menu);
 
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
@@ -147,12 +148,13 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     int defaultType = ThreadDatabase.DistributionTypes.DEFAULT;
 
     switch (item.getItemId()) {
-    case R.id.menu_new_message:      openSingleContactSelection();   return true;
-    case R.id.menu_new_group:        createGroup();                  return true;
-    case R.id.menu_settings:         handleDisplaySettings();        return true;
-    case R.id.menu_clear_passphrase: handleClearPassphrase();        return true;
-    case R.id.menu_mark_all_read:    handleMarkAllRead();            return true;
-    case android.R.id.home:          handleNavigationDrawerToggle(); return true;
+    case R.id.menu_new_message:       openSingleContactSelection();   return true;
+    case R.id.menu_new_group:         createGroup();                  return true;
+    case R.id.menu_settings:          handleDisplaySettings();        return true;
+    case R.id.menu_clear_passphrase:  handleClearPassphrase();        return true;
+    case R.id.menu_mark_all_read:     handleMarkAllRead();            return true;
+    case R.id.menu_submit_debug_logs: handleLogSubmit();              return true;
+    case android.R.id.home:           handleNavigationDrawerToggle(); return true;
     }
 
     return false;
@@ -182,6 +184,11 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 
+    startActivity(intent);
+  }
+
+  private void handleLogSubmit() {
+    Intent intent = new Intent(this, LogSubmitActivity.class);
     startActivity(intent);
   }
 
