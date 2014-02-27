@@ -136,7 +136,6 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void handleDisplayDetails(MessageRecord message) {
-    String sender     = message.getIndividualRecipient().getNumber();
     long dateReceived = message.getDateReceived();
     long dateSent     = message.getDateSent();
 
@@ -156,12 +155,13 @@ public class ConversationFragment extends SherlockListFragment
     if (dateReceived == dateSent || message.isOutgoing()) {
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
-                                       sender, transport.toUpperCase(),
+                                       transport.toUpperCase(),
                                        dateFormatter.format(new Date(dateSent))));
     } else {
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
-                                       sender, transport.toUpperCase(),
+                                       message.getIndividualRecipient().getNumber(),
+                                       transport.toUpperCase(),
                                        dateFormatter.format(new Date(dateSent)),
                                        dateFormatter.format(new Date(dateReceived))));
     }
