@@ -18,6 +18,7 @@
         <item name="conversation_sent_text_secondary_color">#44000000</item>
         <item name="conversation_received_text_primary_color">#ff111111</item>
         <item name="conversation_received_text_secondary_color">#33000000</item>
+        <item name="conversation_item_background_selected">@drawable/list_selected_holo_light</item>
 
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
@@ -81,6 +82,7 @@
         <item name="conversation_sent_text_secondary_color">#44eeeeee</item>
         <item name="conversation_received_text_primary_color">#ffeeeeee</item>
         <item name="conversation_received_text_secondary_color">#44eeeeee</item>
+        <item name="conversation_item_background_selected">@drawable/list_selected_holo_dark</item>
 
         <item name="contact_selection_push_user">#ffdddddd</item>
         <item name="contact_selection_lay_user">#ffcccccc</item>

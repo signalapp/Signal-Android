@@ -101,6 +101,14 @@ public abstract class MessageRecord extends DisplayRecord {
     return id;
   }
 
+  public String getTypedId() {
+    return constructTypedId(getId(), isMms() ? "mms" : "sms");
+  };
+
+  public static String constructTypedId(long messageId, String transport) {
+    return (transport.equals("mms") ? "mms" : "") + "-" + messageId;
+  }
+
   public int getDeliveryStatus() {
     return deliveryStatus;
   }

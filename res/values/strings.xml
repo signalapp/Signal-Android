@@ -90,6 +90,10 @@
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived:%4$s</string>
 	<string name="ConversationFragment_confirm_message_delete">Confirm Message Delete</string>
 	<string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+    <string name="ConversationFragment_delete_messages_question">Delete messages?</string>
+    <string name="ConversationFragment_are_you_sure_you_wish_to_delete_all_selected_messages">Are you sure that you wish to permanently delete ALL selected messages?</string>
+    <string name="ConversationFragment_deleting">Deleting</string>
+    <string name="ConversationFragment_deleting_selected_messages">Deleting selected messages...</string>
     
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
@@ -724,6 +728,11 @@
     <string name="conversation_context__menu_delete_message">Delete message</string>
     <string name="conversation_context__menu_forward_message">Forward message</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
+    <string name="conversation_context__menu_select_message">Select message</string>
+    
+    <!-- conversation_batch -->
+    <string name="conversation_batch__menu_delete_selected">Delete Selected</string>
+    <string name="conversation_batch__menu_select_all">Select All</string>
     
     <!-- conversation_insecure -->
     <string name="conversation_insecure__menu_start_secure_session">Start Secure Session</string>

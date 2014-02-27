@@ -12,6 +12,9 @@
     <item android:title="@string/conversation_context__menu_forward_message"
           android:id="@+id/menu_context_forward" />
 
+    <item android:title="@string/conversation_context__menu_select_message"
+          android:id="@+id/menu_context_select" />
+
     <item android:title="@string/conversation_context__menu_resend_message"
           android:id="@+id/menu_context_resend"
           android:visible="false" />

@@ -16,6 +16,7 @@
     <attr name="conversation_received_card_background" format="reference|color"/>
     <attr name="conversation_received_text_primary_color" format="reference|color"/>
     <attr name="conversation_received_text_secondary_color" format="reference|color"/>
+    <attr name="conversation_item_background_selected" format="reference"/>
 
     <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
