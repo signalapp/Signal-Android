@@ -324,57 +324,57 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     private static final int NETWORK_ERROR = 1;
 
     private class DisablePushMessagesTask extends AsyncTask<Void, Void, Integer> {
-          private ProgressDialog dialog;
-          private final Preference preference;
+      private ProgressDialog dialog;
+      private final Preference preference;
 
-          public DisablePushMessagesTask(final Preference preference) {
-            this.preference = preference;
-          }
+      public DisablePushMessagesTask(final Preference preference) {
+        this.preference = preference;
+      }
 
-          @Override
-          protected void onPreExecute() {
-            dialog = ProgressDialog.show(ApplicationPreferencesActivity.this,
-                                         getString(R.string.ApplicationPreferencesActivity_unregistering),
-                                         getString(R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication),
-                                         true, false);
-          }
+      @Override
+      protected void onPreExecute() {
+        dialog = ProgressDialog.show(ApplicationPreferencesActivity.this,
+                                     getString(R.string.ApplicationPreferencesActivity_unregistering),
+                                     getString(R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication),
+                                     true, false);
+      }
 
-          @Override
-          protected void onPostExecute(Integer result) {
-            if (dialog != null)
-              dialog.dismiss();
+      @Override
+      protected void onPostExecute(Integer result) {
+        if (dialog != null)
+          dialog.dismiss();
 
-            switch (result) {
-              case NETWORK_ERROR:
-                Toast.makeText(ApplicationPreferencesActivity.this,
-                               getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
-                               Toast.LENGTH_LONG).show();
-                break;
-              case SUCCESS:
-                ((CheckBoxPreference)preference).setChecked(false);
-                TextSecurePreferences.setPushRegistered(ApplicationPreferencesActivity.this, false);
-                break;
-            }
-          }
-
-          @Override
-          protected Integer doInBackground(Void... params) {
-            try {
-              Context           context = ApplicationPreferencesActivity.this;
-              PushServiceSocket socket  = PushServiceSocketFactory.create(context);
-
-              socket.unregisterGcmId();
-              GCMRegistrar.unregister(context);
-              return SUCCESS;
-            } catch (AuthorizationFailedException afe) {
-              Log.w("ApplicationPreferencesActivity", afe);
-              return SUCCESS;
-            } catch (IOException ioe) {
-              Log.w("ApplicationPreferencesActivity", ioe);
-              return NETWORK_ERROR;
-            }
-          }
+        switch (result) {
+          case NETWORK_ERROR:
+            Toast.makeText(ApplicationPreferencesActivity.this,
+                           getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
+                           Toast.LENGTH_LONG).show();
+            break;
+          case SUCCESS:
+            ((CheckBoxPreference)preference).setChecked(false);
+            TextSecurePreferences.setPushRegistered(ApplicationPreferencesActivity.this, false);
+            break;
         }
+      }
+
+      @Override
+      protected Integer doInBackground(Void... params) {
+        try {
+          Context           context = ApplicationPreferencesActivity.this;
+          PushServiceSocket socket  = PushServiceSocketFactory.create(context);
+
+          socket.unregisterGcmId();
+          GCMRegistrar.unregister(context);
+          return SUCCESS;
+        } catch (AuthorizationFailedException afe) {
+          Log.w("ApplicationPreferencesActivity", afe);
+          return SUCCESS;
+        } catch (IOException ioe) {
+          Log.w("ApplicationPreferencesActivity", ioe);
+          return NETWORK_ERROR;
+        }
+      }
+    }
 
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
