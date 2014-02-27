@@ -237,6 +237,11 @@ public class KeyCachingService extends Service {
       return;
     }
 
+    if (TextSecurePreferences.isUnlockedNotificationDisabled(this)) {
+      //Don't do anything, notification is disabled in preferences
+      return;
+    }
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
       foregroundServiceModern();
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {

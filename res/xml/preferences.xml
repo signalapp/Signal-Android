@@ -148,6 +148,12 @@
                            android:summary="@string/preferences__disable_local_encryption_of_messages_and_keys"
                            android:disableDependentsState="true"/>
 
+       <CheckBoxPreference android:key="pref_disable_unlocked_notification"
+           android:defaultValue="false"
+           android:title="@string/preferences__disable_unlock_notification"
+           android:summary="@string/preferences__disable_unlock_notification_if_unlocked"
+           android:dependency="pref_disable_passphrase"/>
+
        <CheckBoxPreference android:defaultValue="false"
                            android:key="pref_timeout_passphrase"
                            android:title="@string/preferences__timeout_passphrase"
@@ -161,7 +167,6 @@
                android:summary="@string/preferences__the_amount_of_time_to_wait_before_forgetting_passphrase"
                android:dependency="pref_timeout_passphrase"
                android:dialogTitle="@string/preferences__pref_timeout_interval_dialogtitle" />
-
 
     </PreferenceCategory>
 
