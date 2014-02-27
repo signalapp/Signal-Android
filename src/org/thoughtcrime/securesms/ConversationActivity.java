@@ -881,7 +881,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
   }
 
-
   private void selectContactInfo(ContactData contactData) {
     final CharSequence[] numbers = new CharSequence[contactData.numbers.size()];
     final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
@@ -1017,7 +1016,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private Recipients getRecipients() {
     try {
-
       if (isExistingConversation()) return this.recipients;
       else                          return recipientsPanel.getRecipients();
     } catch (RecipientFormattingException rfe) {
