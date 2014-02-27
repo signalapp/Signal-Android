@@ -324,56 +324,74 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     private static final int SUCCESS       = 0;
     private static final int NETWORK_ERROR = 1;
 
+    private class DisablePushMessagesTask extends AsyncTask<Void, Void, Integer> {
+      private ProgressDialog dialog;
+      private final Preference preference;
+
+      public DisablePushMessagesTask(final Preference preference) {
+        this.preference = preference;
+      }
+
+      @Override
+      protected void onPreExecute() {
+        dialog = ProgressDialog.show(ApplicationPreferencesActivity.this,
+                                     getString(R.string.ApplicationPreferencesActivity_unregistering),
+                                     getString(R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication),
+                                     true, false);
+      }
+
+      @Override
+      protected void onPostExecute(Integer result) {
+        if (dialog != null)
+          dialog.dismiss();
+
+        switch (result) {
+          case NETWORK_ERROR:
+            Toast.makeText(ApplicationPreferencesActivity.this,
+                           getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
+                           Toast.LENGTH_LONG).show();
+            break;
+          case SUCCESS:
+            ((CheckBoxPreference)preference).setChecked(false);
+            TextSecurePreferences.setPushRegistered(ApplicationPreferencesActivity.this, false);
+            break;
+        }
+      }
+
+      @Override
+      protected Integer doInBackground(Void... params) {
+        try {
+          Context           context = ApplicationPreferencesActivity.this;
+          PushServiceSocket socket  = PushServiceSocketFactory.create(context);
+
+          socket.unregisterGcmId();
+          GCMRegistrar.unregister(context);
+          return SUCCESS;
+        } catch (AuthorizationFailedException afe) {
+          Log.w("ApplicationPreferencesActivity", afe);
+          return SUCCESS;
+        } catch (IOException ioe) {
+          Log.w("ApplicationPreferencesActivity", ioe);
+          return NETWORK_ERROR;
+        }
+      }
+    }
+
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
-        new AsyncTask<Void, Void, Integer>() {
-          private ProgressDialog dialog;
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
+        builder.setIcon(android.R.drawable.ic_dialog_info);
+        builder.setTitle(getString(R.string.ApplicationPreferencesActivity_disable_push_messages));
+        builder.setMessage(getString(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages));
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
           @Override
-          protected void onPreExecute() {
-            dialog = ProgressDialog.show(ApplicationPreferencesActivity.this,
-                                         getString(R.string.ApplicationPreferencesActivity_unregistering),
-                                         getString(R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication),
-                                         true, false);
+          public void onClick(DialogInterface dialog, int which) {
+            new DisablePushMessagesTask(preference).execute();
           }
-
-          @Override
-          protected void onPostExecute(Integer result) {
-            if (dialog != null)
-              dialog.dismiss();
-
-            switch (result) {
-              case NETWORK_ERROR:
-                Toast.makeText(ApplicationPreferencesActivity.this,
-                               getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
-                               Toast.LENGTH_LONG).show();
-                break;
-              case SUCCESS:
-                ((CheckBoxPreference)preference).setChecked(false);
-                TextSecurePreferences.setPushRegistered(ApplicationPreferencesActivity.this, false);
-                break;
-            }
-          }
-
-          @Override
-          protected Integer doInBackground(Void... params) {
-            try {
-              Context           context = ApplicationPreferencesActivity.this;
-              PushServiceSocket socket  = PushServiceSocketFactory.create(context);
-
-              socket.unregisterGcmId();
-              GCMRegistrar.unregister(context);
-              return SUCCESS;
-            } catch (AuthorizationFailedException afe) {
-              Log.w("ApplicationPreferencesActivity", afe);
-              return SUCCESS;
-            } catch (IOException ioe) {
-              Log.w("ApplicationPreferencesActivity", ioe);
-              return NETWORK_ERROR;
-            }
-          }
-        }.execute();
+        });
+        builder.show();
       } else {
         Intent intent = new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class);
         intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
