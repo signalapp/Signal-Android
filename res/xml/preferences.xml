@@ -148,10 +148,10 @@
                            android:summary="@string/preferences__disable_local_encryption_of_messages_and_keys"
                            android:disableDependentsState="true"/>
 
-       <CheckBoxPreference android:key="pref_enable_unlocked_notification"
-           android:defaultValue="true"
-           android:title="@string/preferences__enable_unlocked_notification"
-           android:summary="@string/preferences__enable_notification_if_passphrase_is_set"
+       <CheckBoxPreference android:key="pref_disable_unlocked_notification"
+           android:defaultValue="false"
+           android:title="@string/preferences__disable_unlock_notification"
+           android:summary="@string/preferences__disable_unlock_notification_if_unlocked"
            android:dependency="pref_disable_passphrase"/>
 
        <CheckBoxPreference android:defaultValue="false"

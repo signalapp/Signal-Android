@@ -237,8 +237,8 @@ public class KeyCachingService extends Service {
       return;
     }
 
-    if (!TextSecurePreferences.isUnlockedNotificationEnabled(this)) {
-      //stopForeground(true);
+    if (TextSecurePreferences.isUnlockedNotificationDisabled(this)) {
+      //Don't do anything, notification is disabled in preferences
       return;
     }
 
