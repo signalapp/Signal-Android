@@ -323,11 +323,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     private static final int SUCCESS       = 0;
     private static final int NETWORK_ERROR = 1;
 
-    @Override
-    public boolean onPreferenceChange(final Preference preference, Object newValue) {
-      if (((CheckBoxPreference)preference).isChecked()) {
-        new AsyncTask<Void, Void, Integer>() {
+    private class DisablePushMessagesTask extends AsyncTask<Void, Void, Integer> {
           private ProgressDialog dialog;
+          private final Preference preference;
+
+          public DisablePushMessagesTask(final Preference preference) {
+            this.preference = preference;
+          }
 
           @Override
           protected void onPreExecute() {
@@ -372,7 +374,23 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
               return NETWORK_ERROR;
             }
           }
-        }.execute();
+        }
+
+    @Override
+    public boolean onPreferenceChange(final Preference preference, Object newValue) {
+      if (((CheckBoxPreference)preference).isChecked()) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
+        builder.setIcon(android.R.drawable.ic_dialog_info);
+        builder.setTitle(getString(R.string.ApplicationPreferencesActivity_disable_push_messages));
+        builder.setMessage(getString(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages));
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            new DisablePushMessagesTask(preference).execute();
+          }
+        });
+        builder.show();
       } else {
         Intent intent = new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class);
         intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
