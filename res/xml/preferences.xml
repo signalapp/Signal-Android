@@ -165,7 +165,8 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/preferences__advanced">
+    <PreferenceScreen android:key="preferences__advanced"
+                      android:title="@string/preferences__advanced">
        <CheckBoxPreference android:defaultValue="true"
                            android:key="pref_auto_complete_key_exchange"
                            android:title="@string/preferences__complete_key_exchanges"
@@ -180,5 +181,5 @@
         <Preference android:key="pref_submit_debug_logs"
                     android:title="@string/preferences__submit_debug_log"/>
 
-    </PreferenceCategory>
+    </PreferenceScreen>
 </PreferenceScreen>
