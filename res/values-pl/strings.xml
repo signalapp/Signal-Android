@@ -470,6 +470,7 @@
   <string name="preferences__orange">Pomarańczowy</string>
   <string name="preferences__cyan">Cyan</string>
   <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Biały</string>
   <string name="preferences__fast">Szybko</string>
   <string name="preferences__normal">Normalnie</string>
   <string name="preferences__slow">Powoli</string>

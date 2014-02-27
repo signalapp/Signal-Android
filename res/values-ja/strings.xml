@@ -337,6 +337,7 @@
   <string name="preferences__orange">オレンジ</string>
   <string name="preferences__cyan">水色</string>
   <string name="preferences__magenta">赤紫</string>
+  <string name="preferences__white">白</string>
   <string name="preferences__fast">速い</string>
   <string name="preferences__normal">普通</string>
   <string name="preferences__slow">遅い</string>

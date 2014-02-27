@@ -474,6 +474,7 @@
   <string name="preferences__orange">橙色</string>
   <string name="preferences__cyan">青色</string>
   <string name="preferences__magenta">洋红色</string>
+  <string name="preferences__white">白色</string>
   <string name="preferences__fast">快速</string>
   <string name="preferences__normal">正常</string>
   <string name="preferences__slow">缓慢</string>

@@ -330,6 +330,7 @@
   <string name="preferences__orange">Оранжево</string>
   <string name="preferences__cyan">Синьо-зелен</string>
   <string name="preferences__magenta">Ярко червено-розово</string>
+  <string name="preferences__white">Бял цвят</string>
   <string name="preferences__fast">Бърз</string>
   <string name="preferences__normal">Нормален</string>
   <string name="preferences__slow">Бавен</string>

@@ -263,6 +263,7 @@
   <string name="preferences__orange">လိမ္မော်</string>
   <string name="preferences__cyan">ခရမ်း</string>
   <string name="preferences__magenta">ခရမ်းရင့်</string>
+  <string name="preferences__white">အဖြူရောင် ၊</string>
   <string name="preferences__fast">အမြန်</string>
   <string name="preferences__normal">ပုံမှန်</string>
   <string name="preferences__slow">အနှေး</string>

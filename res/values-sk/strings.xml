@@ -311,6 +311,7 @@
   <string name="preferences__orange">Oranžová</string>
   <string name="preferences__cyan">Azúrová (cyan)</string>
   <string name="preferences__magenta">Purpurová (magenta)</string>
+  <string name="preferences__white">Biela</string>
   <string name="preferences__fast">Rýchlo</string>
   <string name="preferences__normal">Normálne</string>
   <string name="preferences__slow">Pomaly</string>

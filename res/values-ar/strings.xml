@@ -337,6 +337,7 @@
   <string name="preferences__orange">برتقالي</string>
   <string name="preferences__cyan">سماوي</string>
   <string name="preferences__magenta">وردي</string>
+  <string name="preferences__white">أبيض</string>
   <string name="preferences__fast">سريع</string>
   <string name="preferences__normal">طبيعي</string>
   <string name="preferences__slow">بطىء</string>
