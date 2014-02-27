@@ -237,6 +237,11 @@ public class KeyCachingService extends Service {
       return;
     }
 
+    if (!TextSecurePreferences.isUnlockedNotificationEnabled(this)) {
+      //stopForeground(true);
+      return;
+    }
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
       foregroundServiceModern();
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {

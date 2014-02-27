@@ -9,6 +9,7 @@ public class TextSecurePreferences {
   public  static final String IDENTITY_PREF                    = "pref_choose_identity";
   public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
   public  static final String DISABLE_PASSPHRASE_PREF          = "pref_disable_passphrase";
+  public  static final String ENABLE_UNLOCKED_NOTIFICATION     = "pref_enable_unlocked_notification"
   public  static final String THEME_PREF                       = "pref_theme";
   public  static final String LANGUAGE_PREF                    = "pref_language";
   public  static final String MMSC_HOST_PREF                   = "pref_apn_mmsc_host";
@@ -108,6 +109,14 @@ public class TextSecurePreferences {
 
   public static void setPasswordDisabled(Context context, boolean disabled) {
     setBooleanPreference(context, DISABLE_PASSPHRASE_PREF, disabled);
+  }
+
+  public static boolean isUnlockedNotificationEnabled(Context context) {
+    return getBooleanPreference(context, ENABLE_UNLOCKED_NOTIFICATION, true);
+  }
+
+  public static boolean setUnlockedNotificationEnabled(Context context, boolean state) {
+    setBooleanPreference(context, ENABLE_UNLOCKED_NOTIFICATION, state);
   }
 
   public static String getMmscUrl(Context context) {
