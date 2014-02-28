@@ -38,6 +38,7 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.provider.Telephony;
 import android.text.TextUtils;
 import android.util.Log;
@@ -101,7 +102,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     addPreferencesFromResource(R.xml.preferences);
 
     initializeIdentitySelection();
-    initializePlatformSpecificOptions();
     initializeSmsFallbackOption();
     initializePushMessagingToggle();
 
@@ -142,6 +142,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+
+    initializePlatformSpecificOptions();
   }
 
   @Override
@@ -187,21 +189,26 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private void initializePlatformSpecificOptions() {
     PreferenceGroup    generalCategory    = (PreferenceGroup) findPreference("general_category");
     Preference         defaultPreference  = findPreference(KITKAT_DEFAULT_PREF);
+    Preference         allSmsPreference   = findPreference(TextSecurePreferences.ALL_SMS_PREF);
+    Preference         allMmsPreference   = findPreference(TextSecurePreferences.ALL_MMS_PREF);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      generalCategory.removePreference(findPreference(TextSecurePreferences.ALL_SMS_PREF));
-      generalCategory.removePreference(findPreference(TextSecurePreferences.ALL_MMS_PREF));
+      if (allSmsPreference != null) generalCategory.removePreference(allSmsPreference);
+      if (allMmsPreference != null) generalCategory.removePreference(allMmsPreference);
 
       if (Util.isDefaultSmsProvider(this)) {
-        generalCategory.removePreference(defaultPreference);
+        defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+        defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
+        defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
       } else {
         Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
         intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
-
         defaultPreference.setIntent(intent);
+        defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
+        defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app));
       }
     } else {
-      generalCategory.removePreference(defaultPreference);
+      if (defaultPreference != null) generalCategory.removePreference(defaultPreference);
     }
   }
 

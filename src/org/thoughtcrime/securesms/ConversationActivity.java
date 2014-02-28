@@ -166,6 +166,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private boolean    isEncryptedConversation;
   private boolean    isAuthenticatedConversation;
   private boolean    isMmsEnabled = true;
+  private boolean    isCharactersLeftViewEnabled;
 
   private CharacterCalculator characterCalculator = new CharacterCalculator();
   private DynamicTheme        dynamicTheme        = new DynamicTheme();
@@ -205,6 +206,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
     initializeIme();
+    initializeCharactersLeftViewEnabledCheck();
     calculateCharactersRemaining();
 
     MessageNotifier.setVisibleThread(threadId);
@@ -270,7 +272,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       } else {
         inflater.inflate(R.menu.conversation_secure_no_identity, menu);
       }
-      
+
       inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
     } else if (isSingleConversation() && !pushRegistered) {
       inflater.inflate(R.menu.conversation_insecure, menu);
@@ -477,7 +479,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     startActivityForResult(intent, GROUP_EDIT);
   }
 
-
   private void handleDistributionBroadcastEnabled(MenuItem item) {
     distributionType = ThreadDatabase.DistributionTypes.BROADCAST;
     item.setChecked(true);
@@ -635,6 +636,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     sendButton.setEnabled(enabled);
   }
 
+  private void initializeCharactersLeftViewEnabledCheck() {
+    isCharactersLeftViewEnabled = !(isPushGroupConversation() ||
+        (TextSecurePreferences.isPushRegistered(this) && !TextSecurePreferences.isSmsFallbackEnabled(this)));
+  }
+
   private void initializeDraftFromDatabase() {
     new AsyncTask<Void, Void, List<Draft>>() {
       @Override
@@ -749,7 +755,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     registerForContextMenu(sendButton);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && TextSecurePreferences.isScreenSecurityEnabled(this)) {
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
     }
 
@@ -805,7 +811,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     registerReceiver(groupUpdateReceiver,
                      new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
   }
-
 
   //////// Helper Methods
 
@@ -947,7 +952,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private void calculateCharactersRemaining() {
     int charactersSpent                               = composeText.getText().toString().length();
     CharacterCalculator.CharacterState characterState = characterCalculator.calculateCharacters(charactersSpent);
-    if (characterState.charactersRemaining <= 15 && charactersLeft.getVisibility() != View.VISIBLE) {
+    if (characterState.charactersRemaining <= 15 && charactersLeft.getVisibility() != View.VISIBLE && isCharactersLeftViewEnabled) {
       charactersLeft.setVisibility(View.VISIBLE);
     } else if (characterState.charactersRemaining > 15 && charactersLeft.getVisibility() != View.GONE) {
       charactersLeft.setVisibility(View.GONE);

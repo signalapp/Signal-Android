@@ -19,25 +19,23 @@ package org.thoughtcrime.securesms.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Build;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
+import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 
 public class SmsListener extends BroadcastReceiver {
 
-  private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
-  private static final String SMS_DELIVERED_ACTION = "android.provider.Telephony.SMS_DELIVER";
+  private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
+  private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -103,6 +101,9 @@ public class SmsListener extends BroadcastReceiver {
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
 
+    if (isChallenge(context, intent))
+      return false;
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
         SMS_RECEIVED_ACTION.equals(intent.getAction()) &&
         Util.isDefaultSmsProvider(context))
@@ -110,8 +111,7 @@ public class SmsListener extends BroadcastReceiver {
       return false;
     }
 
-    if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
-         TextSecurePreferences.isSmsFallbackEnabled(context)) ||
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
         TextSecurePreferences.isInterceptAllSmsEnabled(context))
     {
       return true;
@@ -154,9 +154,8 @@ public class SmsListener extends BroadcastReceiver {
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
-    } else if ((intent.getAction().equals(SMS_RECEIVED_ACTION) || 
-                intent.getAction().equals(SMS_DELIVERED_ACTION)) &&
-                isRelevant(context, intent))
+    } else if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
+               (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
     {
       Intent receivedIntent = new Intent(context, SendReceiveService.class);
       receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
