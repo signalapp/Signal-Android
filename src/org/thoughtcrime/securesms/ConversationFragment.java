@@ -184,9 +184,9 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void handleForwardMessage(MessageRecord message) {
-    Intent composeIntent = new Intent(getActivity(), ConversationActivity.class);
-    composeIntent.putExtra("forwarded_message", message.getDisplayBody().toString());
-    composeIntent.putExtra("master_secret", masterSecret);
+    Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
+    composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
+    composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
     startActivity(composeIntent);
   }
 

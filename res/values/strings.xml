@@ -84,13 +84,12 @@
     <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sorry, the selected audio exceeds message size restrictions.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Recipient is not a valid SMS or email address!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message is empty!</string>
-    <string name="ConversationActivity_forward_message_prefix">FWD</string>
     <string name="ConversationActivity_group_conversation_recipients">Group Conversation Recipients</string>
     <string name="ConversationActivity_group_conversation">Group Conversation</string>
     <string name="ConversationActivity_unnamed_group">Unnamed Group</string>
     <string name="ConversationActivity_d_recipients_in_group">%d members</string>
     <string name="ConversationActivity_d_recipients_in_group_singular">1 member</string>
-    <string name="ConversationActivity_saving_draft">Saving draft...</string>
+    <string name="ConversationActivity_saved_draft">Saved draft</string>
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
     <string name="ConversationActivity_calls_not_supported">Calls Not Supported</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
@@ -115,6 +114,9 @@
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
+
+    <!-- ShareActivity -->
+    <string name="ShareActivity_share_with">Share with</string>
 
     <!-- ExportFragment -->
     <string name="ExportFragment_export_to_sd_card">Export To SD Card?</string>
