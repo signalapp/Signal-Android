@@ -52,7 +52,7 @@
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Eine sichere Sitzung mit %s aufbauen?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Sichere Sitzung beenden bestätigen</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Wollen sie die sichere Sitzung wirklich beenden?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Bestätigung zum Löschen des Threads</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Bestätigung zum Löschen der Konversation</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Sind Sie sicher, dass Sie diese Konversation unwiderruflich löschen möchten?</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinformation auswählen</string>
@@ -83,10 +83,10 @@
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Schlüsselaustausch Nachricht...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Unterhaltungen löschen?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sind Sie sicher, dass Sie alle ausgewählten Unterhaltungen löschen möchten?</string>
+  <string name="ConversationListFragment_delete_threads_question">Konversationen löschen?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sind Sie sicher, dass Sie alle ausgewählten Konversationen löschen möchten?</string>
   <string name="ConversationListFragment_deleting">Löschen</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Lösche ausgewählte Threads...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Lösche ausgewählte Konversationen...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch Nachricht...</string>
   <!--ExportFragment-->
