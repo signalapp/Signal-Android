@@ -281,8 +281,8 @@ public class PushReceiver {
   }
 
   private Pair<Long, Long> insertMessagePlaceholder(MasterSecret masterSecret,
-                                        IncomingPushMessage message,
-                                        boolean secure)
+                                                    IncomingPushMessage message,
+                                                    boolean secure)
   {
     IncomingTextMessage placeholder = new IncomingTextMessage(message, "", null);
 

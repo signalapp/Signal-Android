@@ -9,9 +9,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
-import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
-import org.thoughtcrime.securesms.service.DirectoryRefreshService;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
@@ -24,18 +21,27 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   private static final int STATE_UPGRADE_DATABASE         = 5;
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 6;
 
-  private MasterSecret masterSecret = null;
-  private boolean      isVisible    = false;
+  private MasterSecret masterSecret   = null;
+  private boolean      isVisible      = false;
+  private boolean      canceledResult = false;
+  private boolean      newIntent      = false;
 
   @Override
   public void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     setIntent(intent);
+    this.newIntent = true;
   }
 
   @Override
   public void onResume() {
-    this.isVisible = true;
+    if (this.canceledResult && !this.newIntent) {
+      finish();
+    }
+
+    this.newIntent      = false;
+    this.canceledResult = false;
+    this.isVisible      = true;
     super.onResume();
   }
 
@@ -65,8 +71,9 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    if (resultCode == RESULT_CANCELED)
-      finish();
+    if (resultCode == RESULT_CANCELED) {
+      canceledResult = true;
+    }
   }
 
   private void routeApplicationState() {

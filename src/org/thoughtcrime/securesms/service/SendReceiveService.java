@@ -29,7 +29,10 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.CanonicalSessionMigrator;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WorkerThread;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
@@ -185,6 +188,7 @@ public class SendReceiveService extends Service {
     registerReceiver(clearKeyReceiver, clearKeyFilter, KeyCachingService.KEY_PERMISSION, null);
 
     Intent bindIntent   = new Intent(this, KeyCachingService.class);
+    startService(bindIntent);
     bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
   }
 
@@ -242,6 +246,12 @@ public class SendReceiveService extends Service {
 
     @Override
     public void run() {
+      MasterSecret masterSecret = SendReceiveService.this.masterSecret;
+
+      if (masterSecret == null && TextSecurePreferences.isPasswordDisabled(SendReceiveService.this)) {
+        masterSecret = getPlaceholderSecret();
+      }
+
       switch (what) {
       case RECEIVE_SMS:	         smsReceiver.process(masterSecret, intent);      return;
       case SEND_SMS:		         smsSender.process(masterSecret, intent);        return;
@@ -252,6 +262,16 @@ public class SendReceiveService extends Service {
       case RECEIVE_PUSH:         pushReceiver.process(masterSecret, intent);     return;
       case DOWNLOAD_PUSH:        pushDownloader.process(masterSecret, intent);   return;
       case DOWNLOAD_AVATAR:      avatarDownloader.process(masterSecret, intent); return;
+      }
+    }
+
+    private MasterSecret getPlaceholderSecret() {
+      try {
+        return MasterSecretUtil.getMasterSecret(SendReceiveService.this,
+                                                MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+      } catch (InvalidPassphraseException e) {
+        Log.w("SendReceiveService", e);
+        return null;
       }
     }
   }
