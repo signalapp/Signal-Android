@@ -50,8 +50,7 @@ public class MmsListener extends BroadcastReceiver {
       return false;
     }
 
-    if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
-         TextSecurePreferences.isSmsFallbackEnabled(context)) ||
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
         TextSecurePreferences.isInterceptAllMmsEnabled(context))
     {
       return true;
@@ -76,7 +75,10 @@ public class MmsListener extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
     Log.w("MmsListener", "Got MMS broadcast..." + intent.getAction());
 
-    if (isRelevant(context, intent)) {
+    if (Telephony.Sms.Intents.WAP_PUSH_DELIVER_ACTION.equals(intent.getAction()) ||
+        (Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION.equals(intent.getAction()) &&
+         isRelevant(context, intent)))
+    {
       Log.w("MmsListener", "Relevant!");
       intent.setAction(SendReceiveService.RECEIVE_MMS_ACTION);
       intent.putExtra("ResultCode", this.getResultCode());

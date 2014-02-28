@@ -27,6 +27,10 @@
     <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
     <string name="ApplicationPreferencesActivity_updating_directory">Updating directory</string>
     <string name="ApplicationPreferencesActivity_updating_push_directory">Updating push directory...</string>
+    <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
+    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
+    <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabled</string>
+    <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Touch to make TextSecure your default SMS app</string>
 
     <!-- AttachmentTypeSelectorAdapter -->
 
