@@ -34,6 +34,10 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
@@ -207,6 +211,26 @@
         </intent-filter>
     </service>
 
+    <service
+            android:name="org.thoughtcrime.securesms.util.DirectorySyncAuthenticatorService">
+        <intent-filter>
+            <action android:name="android.accounts.AccountAuthenticator"/>
+        </intent-filter>
+        <meta-data
+            android:name="android.accounts.AccountAuthenticator"
+            android:resource="@xml/authenticator" />
+    </service>
+
+    <service
+            android:name="org.thoughtcrime.securesms.util.DirectorySyncService"
+            android:exported="true"
+            android:process=":sync">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter"
+                    android:resource="@xml/syncadapter" />
+    </service>
 
 <!--	<receiver android:name=".service.BootListener" -->
 <!-- 			  android:enabled="true" -->
@@ -269,7 +293,13 @@
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
 
-    <receiver android:name=".service.RegistrationNotifier"
+    <provider android:name="org.thoughtcrime.securesms.util.DirectorySyncContentProvider"
+              android:authorities="org.thoughtcrime.provider.directorysync"
+              android:exported="false"
+              android:syncable="true"/>
+
+
+        <receiver android:name=".service.RegistrationNotifier"
               android:exported="false">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
