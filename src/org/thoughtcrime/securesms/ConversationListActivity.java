@@ -81,7 +81,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
       setIntent(intent);
   }
 
-      @Override
+  @Override
   public void onPostCreate(Bundle bundle) {
     super.onPostCreate(bundle);
     drawerToggle.syncState();
