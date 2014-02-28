@@ -340,7 +340,6 @@
   <string name="preferences__orange">Laranja</string>
   <string name="preferences__cyan">Cíano</string>
   <string name="preferences__magenta">Magenta</string>
-  <string name="preferences__white">Branco</string>
   <string name="preferences__fast">Rápido</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lento</string>

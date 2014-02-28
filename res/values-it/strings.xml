@@ -327,7 +327,6 @@
   <string name="preferences__orange">Arancione</string>
   <string name="preferences__cyan">Azzurro</string>
   <string name="preferences__magenta">Magenta</string>
-  <string name="preferences__white">Bianco</string>
   <string name="preferences__fast">Veloce</string>
   <string name="preferences__normal">Normale</string>
   <string name="preferences__slow">Lento</string>
