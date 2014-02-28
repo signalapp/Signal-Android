@@ -141,6 +141,7 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
     intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
     intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
     return intent;
   }
