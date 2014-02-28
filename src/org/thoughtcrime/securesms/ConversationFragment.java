@@ -155,7 +155,7 @@ public class ConversationFragment extends SherlockListFragment
     if (dateReceived == dateSent || message.isOutgoing()) {
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
-                                       transport.toUpperCase(),
+                                       "", transport.toUpperCase(),
                                        dateFormatter.format(new Date(dateSent))));
     } else {
       builder.setMessage(String.format(getSherlockActivity()
