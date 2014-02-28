@@ -63,6 +63,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Set;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -109,6 +110,8 @@ public class ConversationItem extends LinearLayout {
   private final Handler handler                                         = new Handler();
   private final Context context;
 
+  private Set<String> selectedItems;
+
   public ConversationItem(Context context) {
     super(context);
     this.context = context;
@@ -144,7 +147,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
-                  Handler failedIconHandler, boolean groupThread)
+                  Handler failedIconHandler, boolean groupThread, Set<String> selectedItems, boolean batchMode)
   {
 
 
@@ -152,6 +155,7 @@ public class ConversationItem extends LinearLayout {
     this.masterSecret      = masterSecret;
     this.failedIconHandler = failedIconHandler;
     this.groupThread       = groupThread;
+    this.selectedItems     = selectedItems;
 
     setBodyText(messageRecord);
 
@@ -167,6 +171,8 @@ public class ConversationItem extends LinearLayout {
         setMediaMmsAttributes((MediaMmsMessageRecord)messageRecord);
       }
     }
+
+    setBackground(batchMode);
   }
 
   public void unbind() {
@@ -603,5 +609,20 @@ public class ConversationItem extends LinearLayout {
     });
     builder.setNegativeButton(R.string.no, null);
     builder.show();
+  }
+
+  private void setBackground(boolean batch) {
+    int[]      attributes = new int[]{R.attr.conversation_item_background_selected,
+                                      R.attr.conversation_background};
+
+    TypedArray drawables  = context.obtainStyledAttributes(attributes);
+
+    if (batch && selectedItems.contains(messageRecord.getTypedId())) {
+      setBackgroundDrawable(drawables.getDrawable(0));
+    } else {
+      setBackgroundDrawable(drawables.getDrawable(1));
+    }
+
+    drawables.recycle();
   }
 }

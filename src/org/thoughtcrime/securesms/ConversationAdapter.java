@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.CursorAdapter;
 
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -37,7 +38,9 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.G
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
@@ -63,8 +66,13 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   private final boolean groupThread;
   private final LayoutInflater inflater;
 
+  private final Set<String> batchSet = Collections.synchronizedSet(new HashSet<String>());
+  private boolean batchMode        = false;
+
+  private long threadId;
+
   public ConversationAdapter(Context context, MasterSecret masterSecret,
-                             Handler failedIconClickHandler, boolean groupThread)
+                             Handler failedIconClickHandler, boolean groupThread, long threadId)
   {
     super(context, null);
     this.context                = context;
@@ -73,6 +81,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     this.groupThread            = groupThread;
     this.inflater               = (LayoutInflater)context
                                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.threadId               = threadId;
   }
 
   @Override
@@ -82,7 +91,46 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    item.set(masterSecret, messageRecord, failedIconClickHandler, groupThread);
+    item.set(masterSecret, messageRecord, failedIconClickHandler, groupThread, batchSet, batchMode);
+  }
+
+  public void toggleMessageInBatchSet(String typedMessageId) {
+    if (batchSet.contains(typedMessageId)) {
+      batchSet.remove(typedMessageId);
+    } else {
+      batchSet.add(typedMessageId);
+    }
+  }
+
+  public Set<String> getBatchSelections() { return batchSet; }
+
+  public void initializeBatchMode(boolean toggle) {
+    this.batchMode = toggle;
+    unselectAllMessages();
+  }
+
+  public void unselectAllMessages() {
+    this.batchSet.clear();
+    this.notifyDataSetChanged();
+  }
+
+  public void selectAllMessages() {
+    Cursor cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId);
+
+    try {
+      while (cursor != null && cursor.moveToNext()) {
+        long messageId = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
+        String transport = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+
+        String typedId = MessageRecord.constructTypedId(messageId, transport);
+        this.batchSet.add(typedId);
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    this.notifyDataSetChanged();
   }
 
   @Override

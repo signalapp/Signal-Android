@@ -2,24 +2,32 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.ActionMode;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -30,9 +38,10 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Set;
 
 public class ConversationFragment extends SherlockListFragment
-  implements LoaderManager.LoaderCallbacks<Cursor>
+  implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
 {
 
   private ConversationFragmentListener listener;
@@ -40,6 +49,9 @@ public class ConversationFragment extends SherlockListFragment
   private MasterSecret masterSecret;
   private Recipients   recipients;
   private long         threadId;
+
+  private ActionMode actionMode;
+  private boolean batchMode  = false;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -78,6 +90,7 @@ public class ConversationFragment extends SherlockListFragment
     case R.id.menu_context_details:        handleDisplayDetails(messageRecord);  return true;
     case R.id.menu_context_forward:        handleForwardMessage(messageRecord);  return true;
     case R.id.menu_context_resend:         handleResendMessage(messageRecord);   return true;
+    case R.id.menu_context_select:         handleSelectMessage(messageRecord);   return true;
     }
 
     return false;
@@ -183,6 +196,16 @@ public class ConversationFragment extends SherlockListFragment
     MessageSender.resend(activity, messageId, message.isMms());
   }
 
+  private void handleSelectMessage(MessageRecord message) {
+    ConversationAdapter adapter = (ConversationAdapter)getListAdapter();
+    actionMode = getSherlockActivity().startActionMode(ConversationFragment.this);
+    batchMode  = true;
+
+    adapter.initializeBatchMode(true);
+    adapter.toggleMessageInBatchSet(message.getTypedId());
+    adapter.notifyDataSetChanged();
+  }
+
   private void initializeResources() {
     String recipientIds = this.getActivity().getIntent().getStringExtra("recipients");
 
@@ -196,7 +219,8 @@ public class ConversationFragment extends SherlockListFragment
     if (this.recipients != null && this.threadId != -1) {
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
                                                   new FailedIconClickHandler(),
-                                                  (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient()));
+                                                  (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
+                                                  this.threadId));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }
@@ -215,6 +239,118 @@ public class ConversationFragment extends SherlockListFragment
   @Override
   public void onLoaderReset(Loader<Cursor> arg0) {
     ((CursorAdapter)getListAdapter()).changeCursor(null);
+  }
+
+  @Override
+  public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+    MenuInflater inflater = getSherlockActivity().getSupportMenuInflater();
+    inflater.inflate(R.menu.conversation_batch, menu);
+
+    LayoutInflater layoutInflater = getSherlockActivity().getLayoutInflater();
+    View actionModeView = layoutInflater.inflate(R.layout.conversation_fragment_cab, null);
+
+    mode.setCustomView(actionModeView);
+
+    return true;
+  }
+
+  @Override
+  public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+    return false;
+  }
+
+  @Override
+  public boolean onActionItemClicked(ActionMode mode, com.actionbarsherlock.view.MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.menu_select_all:      handleSelectAllItems(); return true;
+      case R.id.menu_delete_selected: handleDeleteAllSelected(); return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public void onDestroyActionMode(ActionMode mode) {
+    ((ConversationAdapter)getListAdapter()).initializeBatchMode(false);
+    actionMode = null;
+    batchMode  = false;
+
+  }
+
+  @Override
+  public void onListItemClick(ListView l, View v, int position, long id) {
+    if (v instanceof ConversationItem) {
+      ConversationItem itemView = (ConversationItem) v;
+      Log.w("ConversationFragment", "Batch mode: " + batchMode);
+      if (batchMode) {
+        ConversationAdapter adapter = (ConversationAdapter)getListAdapter();
+        adapter.toggleMessageInBatchSet(itemView.getMessageRecord().getTypedId());
+        adapter.notifyDataSetChanged();
+      }
+    }
+  }
+
+  private void handleDeleteAllSelected() {
+    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+    alert.setIcon(android.R.drawable.ic_dialog_alert);
+    alert.setTitle(R.string.ConversationFragment_delete_messages_question);
+    alert.setMessage(R.string.ConversationFragment_are_you_sure_you_wish_to_delete_all_selected_messages);
+    alert.setCancelable(true);
+
+    alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        final Set<String> selectedItems = ((ConversationAdapter)getListAdapter())
+                .getBatchSelections();
+
+        if (!selectedItems.isEmpty()) {
+          new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog dialog;
+
+            @Override
+            protected void onPreExecute() {
+              dialog = ProgressDialog.show(getActivity(),
+                      getSherlockActivity().getString(R.string.ConversationFragment_deleting),
+                      getSherlockActivity().getString(R.string.ConversationFragment_deleting_selected_messages),
+                      true, false);
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+              for (String typedMessageId: selectedItems) {
+                long messageId = Long.parseLong(typedMessageId.substring(typedMessageId.indexOf('-') + 1));
+
+                if (typedMessageId.contains("mms")) {
+                  DatabaseFactory.getMmsDatabase(getActivity()).delete(messageId);
+                } else {
+                  DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageId);
+                }
+              }
+
+              MessageNotifier.updateNotification(getActivity(), masterSecret);
+              return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+              dialog.dismiss();
+              if (actionMode != null) {
+                actionMode.finish();
+                actionMode = null;
+                batchMode  = false;
+              }
+            }
+          }.execute();
+        }
+      }
+    });
+
+    alert.setNegativeButton(android.R.string.cancel, null);
+    alert.show();
+  }
+
+  private void handleSelectAllItems() {
+    ((ConversationAdapter)this.getListAdapter()).selectAllMessages();
   }
 
   private class FailedIconClickHandler extends Handler {
