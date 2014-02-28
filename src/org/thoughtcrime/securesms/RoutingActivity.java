@@ -148,9 +148,12 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   private Intent getConversationListIntent(ConversationParameters parameters) {
     Intent intent = new Intent(this, ConversationListActivity.class);
     intent.putExtra("master_secret", masterSecret);
-    intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
-    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
-    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
+
+    if (parameters != null) {
+      intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
+      intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
+      intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
+    }
 
     return intent;
   }
