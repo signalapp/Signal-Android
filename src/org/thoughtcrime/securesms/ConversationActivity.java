@@ -235,8 +235,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     switch (reqCode) {
     case PICK_CONTACT:
       Recipients recipients = data.getParcelableExtra("recipients");
-      if (recipients != null)
+      List<ContactData> contacts = data.getParcelableArrayListExtra("contacts");
+      if(recipients != null)
         recipientsPanel.addRecipients(recipients);
+      else if(contacts != null)
+        recipientsPanel.addContacts(contacts);
       break;
     case PICK_IMAGE:
       addAttachmentImage(data.getData());
