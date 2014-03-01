@@ -11,6 +11,10 @@
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />
 
+    <permission android:name="org.thoughtcrime.securesms.ACCESS_PUSHCONTACTS"
+                android:label="Access to the Push Contacts"
+                android:protectionLevel="signature"/>
+
 	<uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
@@ -281,6 +285,12 @@
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
+
+
+    <provider android:name="org.thoughtcrime.securesms.contacts.PushContactProvider"
+              android:permission="org.thoughtcrime.securesms.ACCESS_PUSHCONTACTS"
+              android:authorities="org.thoughtcrime.provider.pushcontact"
+              android:exported="false"/>
 
     <receiver android:name=".service.RegistrationNotifier"
               android:exported="false">

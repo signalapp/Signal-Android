@@ -61,6 +61,11 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
                                                       R.attr.contact_selection_lay_user,
                                                       R.attr.contact_selection_push_label,
                                                       R.attr.contact_selection_lay_label};
+  private Cursor contactsCursor = null;
+  private Cursor pushContactsCursor = null;
+
+  private static final int LOAD_PUSHCONTACTS = 1;
+  private static final int LOAD_CONTACTS = 2;
 
   private static LayoutInflater            li;
   private        OnContactSelectedListener onContactSelectedListener;
@@ -112,7 +117,7 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
   private void initializeCursor() {
     final ContactSelectionListAdapter listAdapter = new ContactSelectionListAdapter(getActivity(), null);
     setListAdapter(listAdapter);
-    this.getLoaderManager().initLoader(0, null, this);
+    this.getLoaderManager().initLoader(LOAD_PUSHCONTACTS, null, this);
   }
 
   private void initializeResources() {
@@ -247,15 +252,53 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return ContactAccessor.getInstance().getCursorLoaderForContactsWithNumbers(getActivity());
+  public Loader<Cursor> onCreateLoader(int id, Bundle arg1) {
+    switch (id) {
+      case LOAD_CONTACTS:
+        return ContactAccessor.getInstance().getCursorLoaderForContactsWithNumbers(getActivity());
+      case LOAD_PUSHCONTACTS:
+        return ContactAccessor.getInstance().getCursorLoaderForContactsWithPush(getActivity());
+      default:
+        throw new IllegalArgumentException("Unknown Loader");
+    }
+  }
+
+  private void populateList() {
+    if (this.contactsCursor != null) {
+      ((CursorAdapter) getListAdapter()).changeCursor(new MergeCursor(new Cursor[]{this.pushContactsCursor, this.contactsCursor}));
+    } else {
+      ((CursorAdapter) getListAdapter()).changeCursor(this.pushContactsCursor);
+    }
+
+    ((TextView)getView().findViewById(android.R.id.empty)).setText(R.string.contact_selection_group_activity__no_contacts);
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    Cursor pushCursor = ContactAccessor.getInstance().getCursorForContactsWithPush(getActivity());
-    ((CursorAdapter) getListAdapter()).changeCursor(new MergeCursor(new Cursor[]{pushCursor,cursor}));
-    ((TextView)getView().findViewById(android.R.id.empty)).setText(R.string.contact_selection_group_activity__no_contacts);
+  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+    switch (loader.getId()) {
+      case LOAD_CONTACTS:
+        this.contactsCursor = cursor;
+        break;
+      case LOAD_PUSHCONTACTS:
+        this.pushContactsCursor = cursor;
+        break;
+      default:
+        throw new IllegalArgumentException("Unknown Loader");
+    }
+
+    // Check what is left to load
+    if (this.pushContactsCursor == null) {
+      this.getLoaderManager().initLoader(LOAD_PUSHCONTACTS, null, this);
+      return;
+    }
+
+    if (this.contactsCursor == null) {
+      this.getLoaderManager().initLoader(LOAD_CONTACTS, null, this);
+      return;
+    }
+
+    // Nothing more to load, show it!
+    this.populateList();
   }
 
   @Override

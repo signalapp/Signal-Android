@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -75,6 +76,12 @@ public class ContactAccessor {
 
     return new CursorLoader(context, uri, null, selection, null,
                             ContactsContract.Contacts.DISPLAY_NAME + " ASC");
+  }
+
+  public CursorLoader getCursorLoaderForContactsWithPush(Context context) {
+    return new CursorLoader(context,
+            PushContactProvider.PushContactContract.PUSHCONTACT_URI,
+            null, null, null, null);
   }
 
   public CursorLoader getCursorLoaderForContactGroups(Context context) {
