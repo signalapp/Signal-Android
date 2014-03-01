@@ -634,25 +634,25 @@
     <string name="preferences__pref_all_mms_title">Use for all MMS</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for viewing and storing all incoming multimedia messages</string>
-    <string name="preferences__enable_enter_key_title">Enable Enter key</string>
+    <string name="preferences__enable_enter_key_title">Enable Enter Key</string>
     <string name="preferences__replace_smiley_with_enter_key">Replace the smiley key with an enter key</string>
-    <string name="preferences__pref_enter_sends_title">Enter sends</string>
+    <string name="preferences__pref_enter_sends_title">Enter Sends</string>
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the enter key will send text messages</string>
     <string name="preferences__display_settings">Display Settings</string>
     <string name="preferences__choose_identity">Choose Identity</string>
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
-    <string name="preferences__change_passphrase">Change passphrase</string>
-    <string name="preferences__change_my_passphrase">Change my passphrase</string>
-    <string name="preferences__complete_key_exchanges">Complete key exchanges</string>
-    <string name="preferences__disable_passphrase">Disable passphrase</string>
+    <string name="preferences__change_passphrase">Change Passphrase</string>
+    <string name="preferences__change_my_passphrase">Change the passphrase for unlocking TextSecure</string>
+    <string name="preferences__complete_key_exchanges">Complete Key Exchanges</string>
+    <string name="preferences__disable_passphrase">Disable Passphrase</string>
     <string name="preferences__disable_local_encryption_of_messages_and_keys">Disable local encryption of messages and keys</string>
-    <string name="preferences__screen_security">Screen security</string>
+    <string name="preferences__screen_security">Screen Security</string>
     <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatically complete key exchanges for new sessions or for existing sessions with the same identity key</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Disable screen security to allow screen shots</string>
     <string name="preferences__forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
-    <string name="preferences__timeout_passphrase">Timeout passphrase</string>
+    <string name="preferences__timeout_passphrase">Timeout Passphrase</string>
     <string name="preferences__pref_timeout_interval_dialogtitle">Select Passphrase Timeout</string>
-    <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
+    <string name="preferences__pref_timeout_interval_title">Timeout Interval</string>
     <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">The amount of time to wait before forgetting passphrase from memory</string>
     <string name="preferences__identity_key_settings">Identity keys</string>
     <string name="preferences__view_my_identity_key">View my identity key</string>
@@ -660,15 +660,15 @@
     <string name="preferences__manage_configured_identity_keys">Manage configured identity keys</string>
     <string name="preferences__notifications">Notifications</string>
     <string name="preferences__display_message_notifications_in_status_bar">Display message notifications in status bar</string>
-    <string name="preferences__led_color">LED color</string>
-    <string name="preferences__pref_led_blink_title">LED blink pattern</string>
+    <string name="preferences__led_color">LED Color</string>
+    <string name="preferences__pref_led_blink_title">LED Blink Pattern</string>
     <string name="preferences__pref_led_blink_custom_pattern_title">Set custom LED Blink Pattern</string>
     <string name="preferences__pref_led_blink_custom_pattern_on_for">On For:</string>
     <string name="preferences__pref_led_blink_custom_pattern_off_for">Off For:</string>
     <string name="preferences__pref_led_blink_custom_pattern_set">Custom LED blink pattern set!</string>
     <string name="preferences__sound">Sound</string>
     <string name="preferences__change_notification_sound">Change notification sound</string>
-    <string name="preferences__inthread_notifications">In-thread notifications</string>
+    <string name="preferences__inthread_notifications">In-thread Notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation.</string>
     <string name="preferences__vibrate">Vibrate</string>
     <string name="preferences__also_vibrate_when_notified">Also vibrate when notified</string>
@@ -692,13 +692,13 @@
     <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
     <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
     <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>
-    <string name="preferences__sms_delivery_reports">SMS delivery reports</string>
+    <string name="preferences__sms_delivery_reports">SMS Delivery Reports</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
     <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automatically delete older messages once a conversation thread exceeds a specified length</string>
-    <string name="preferences__delete_old_messages">Delete old messages</string>
+    <string name="preferences__delete_old_messages">Delete Old Messages</string>
     <string name="preferences__storage">Storage</string>
-    <string name="preferences__conversation_length_limit">Conversation length limit</string>
-    <string name="preferences__trim_all_threads_now">Trim all threads now</string>
+    <string name="preferences__conversation_length_limit">Conversation Length Limit</string>
+    <string name="preferences__trim_all_threads_now">Trim All Threads Now</string>
     <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Scan through all conversation threads and enforce conversation length limits</string>
     <string name="preferences__light_theme">Light Theme</string>
     <string name="preferences__dark_theme">Dark Theme</string>
@@ -708,7 +708,7 @@
     <string name="preferences__language">Language</string>
     <string name="preferences__make_default_sms_app">Set as default SMS app</string>
     <string name="preferences__make_textsecure_the_default_sms_mms_app">Make TextSecure the default SMS/MMS application for your system.</string>
-    <string name="preferences__use_data_channel">Push messages</string>
+    <string name="preferences__use_data_channel">Push Messages</string>
     <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
         Increase privacy and avoid SMS fees by using the data channel for communication with other TextSecure users
     </string>
@@ -716,7 +716,7 @@
     <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is currently your default SMS app. Please set another default SMS app first to change this preference.</string>
     <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
     <string name="preferences__refresh_push_directory">Refresh Push Directory</string>
-    <string name="preferences__submit_debug_log">Submit debug log</string>
+    <string name="preferences__submit_debug_log">Submit Debug Logs</string>
 
     <!-- **************************************** -->
     <!-- menus -->
