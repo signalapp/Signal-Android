@@ -107,4 +107,13 @@
 
     <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
     </style>
+
+    <style name="TextSecureDialogPrimaryText">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextSecureDialogSecondaryText">
+        <item name="android:textColor">#ff999999</item>
+    </style>
+
 </resources>

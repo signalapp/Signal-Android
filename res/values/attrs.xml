@@ -37,6 +37,7 @@
     <attr name="conversation_item_sent_pending_triangle_background" format="reference" />
     <attr name="conversation_item_sent_push_background" format="reference" />
     <attr name="conversation_item_sent_push_triangle_background" format="reference" />
+    <attr name="conversation_item_sent_indicator_text_background" format="reference" />
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
     <attr name="conversation_item_sent_push_pending_background" format="reference" />

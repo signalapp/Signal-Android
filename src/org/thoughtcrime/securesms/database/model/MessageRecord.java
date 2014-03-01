@@ -113,12 +113,20 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isPushType(type);
   }
 
+  public boolean isForcedSms() {
+    return SmsDatabase.Types.isForcedSms(type);
+  }
+
   public boolean isStaleKeyExchange() {
     return SmsDatabase.Types.isStaleKeyExchange(type);
   }
 
   public boolean isProcessedKeyExchange() {
     return SmsDatabase.Types.isProcessedKeyExchange(type);
+  }
+
+  public boolean isPendingFallbackApproval() {
+    return SmsDatabase.Types.isPendingApprovalType(type);
   }
 
   public boolean isBundleKeyExchange() {

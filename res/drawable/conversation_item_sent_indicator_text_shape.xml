@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape  android:shape="rectangle">
+            <solid android:color="#09000000" />
+            <corners android:radius="@dimen/conversation_item_corner_radius" />
+        </shape>
+    </item>
+
+    <item android:bottom="@dimen/conversation_item_drop_shadow_dist">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/conversation_item_received_background_light" />
+            <corners android:bottomLeftRadius="@dimen/conversation_item_corner_radius" android:bottomRightRadius="@dimen/conversation_item_corner_radius" />
+        </shape>
+    </item>
+
+</layer-list>

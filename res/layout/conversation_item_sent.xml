@@ -18,9 +18,10 @@
                       android:layout_width="wrap_content"
                       android:layout_height="match_parent"
                       android:orientation="vertical"
-                      android:gravity="right"
+                      android:gravity="left|center_vertical"
                       android:layout_marginLeft="6dp"
-                      android:layout_alignParentLeft="true">
+                      android:layout_alignParentLeft="true"
+                      android:layout_centerVertical="true">
 
             <ImageView
                 android:id="@+id/sms_failed_indicator"
@@ -29,6 +30,15 @@
                 android:src="@drawable/ic_list_alert_sms_failed"
                 android:visibility="gone"
                 android:contentDescription="Send Failed Indicator"/>
+
+            <ImageView
+                android:id="@+id/pending_approval_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_dialog_info_holo_light"
+                android:visibility="gone"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="Pending Approval"/>
         </LinearLayout>
 
         <LinearLayout android:id="@+id/conversation_item_parent"
@@ -189,6 +199,23 @@
                android:padding="0dip"
                android:scaleType="centerCrop"
                android:visibility="gone" />
+
+        <TextView android:id="@+id/indicator_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/conversation_item_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="5dip"
+            android:paddingLeft="5dip"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-2dp"
+            android:textSize="12sp"
+            android:textColor="?conversation_sent_text_secondary_color"
+            android:background="?conversation_item_sent_indicator_text_background"
+            android:visibility="gone" />
 
     </RelativeLayout>
 </org.thoughtcrime.securesms.ConversationItem>

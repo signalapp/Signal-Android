@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
+import org.thoughtcrime.securesms.transport.UserInterventionRequiredException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import ws.com.google.android.mms.MmsException;
@@ -78,11 +79,16 @@ public class MmsSender {
 
           if (result.isUpgradedSecure()) database.markAsSecure(message.getDatabaseMessageId());
           if (result.isPush())           database.markAsPush(message.getDatabaseMessageId());
-          
+
           database.markAsSent(message.getDatabaseMessageId(), result.getMessageId(),
                               result.getResponseStatus());
 
           systemStateListener.unregisterForConnectivityChange();
+        } catch (UserInterventionRequiredException uire) {
+          Log.w("MmsSender", uire);
+          database.markAsPendingApproval(message.getDatabaseMessageId());
+          Recipients recipients = threads.getRecipientsForThreadId(threadId);
+          MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
         } catch (UndeliverableMessageException e) {
           Log.w("MmsSender", e);
           database.markAsSentFailed(message.getDatabaseMessageId());
