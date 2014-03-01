@@ -43,7 +43,7 @@ public class ContactPhotoFactory {
     synchronized (defaultPhotoLock) {
       if (defaultContactPhoto == null)
         defaultContactPhoto =  BitmapFactory.decodeResource(context.getResources(),
-                                                            R.drawable.ic_contact_picture);
+                                                            R.drawable.ic_group_photo);
       return defaultContactPhoto;
     }
   }
