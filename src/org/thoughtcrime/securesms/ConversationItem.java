@@ -32,6 +32,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
+import android.text.style.URLSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -101,6 +102,8 @@ public class ConversationItem extends LinearLayout {
   private  TextView  mmsDownloadingLabel;
   private  ListenableFutureTask<SlideDeck> slideDeck;
   private  TypedArray backgroundDrawables;
+
+  private URLSpan[] urlSpans;
 
   private final FailedIconClickListener failedIconClickListener         = new FailedIconClickListener();
   private final MmsDownloadClickListener mmsDownloadClickListener       = new MmsDownloadClickListener();
@@ -210,6 +213,16 @@ public class ConversationItem extends LinearLayout {
                        TextView.BufferType.SPANNABLE);
     } else {
       bodyText.setText(messageRecord.getDisplayBody());
+    }
+
+    urlSpans = bodyText.getUrls();
+  }
+
+  protected void onUrlSpansClick() {
+    if (urlSpans != null) {
+      for (URLSpan urlSpan : urlSpans) {
+        urlSpan.onClick(this);
+      }
     }
   }
 

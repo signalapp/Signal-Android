@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 
 import com.actionbarsherlock.app.SherlockListFragment;
@@ -199,6 +200,14 @@ public class ConversationFragment extends SherlockListFragment
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient()));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
+
+      getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+          ConversationItem item = (ConversationItem) view;
+          item.onUrlSpansClick();
+        }
+      });
     }
   }
 

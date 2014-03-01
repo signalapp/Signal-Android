@@ -52,7 +52,7 @@
                     android:autoLink="all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:linksClickable="true"
+                    android:linksClickable="false"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:gravity="right"
                     android:textColor="?conversation_sent_text_primary_color"
