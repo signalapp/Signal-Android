@@ -10,7 +10,7 @@ TextSecure is a replacement for the standard text messaging application, allowin
 
 Current BitHub Payment For Commit:
 =================
-[![Current Price](https://bithub.herokuapp.com/v1/status/payment/commit)](https://whispersystems.org/blog/bithub/)
+[![Current Price](https://bithub.herokuapp.com/v1/status/payment/commit/)](https://whispersystems.org/blog/bithub/)
 
 
 Bug tracker
