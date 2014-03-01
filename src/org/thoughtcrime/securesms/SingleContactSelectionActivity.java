@@ -83,6 +83,7 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
     final SingleRecipientPanel recipientsPanel = (SingleRecipientPanel) findViewById(R.id.recipients);
 
     final SingleContactSelectionListFragment listFragment = (SingleContactSelectionListFragment)getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
+
     listFragment.setOnContactSelectedListener(new SingleContactSelectionListFragment.OnContactSelectedListener() {
       @Override
       public void onContactSelected(ContactData contactData) {

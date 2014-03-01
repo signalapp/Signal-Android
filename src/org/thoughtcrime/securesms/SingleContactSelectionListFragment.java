@@ -40,6 +40,7 @@ import com.actionbarsherlock.app.SherlockListFragment;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -293,8 +294,10 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
     }
 
     if (this.contactsCursor == null) {
-      this.getLoaderManager().initLoader(LOAD_CONTACTS, null, this);
-      return;
+      if (TextSecurePreferences.isDisplayNonPushContactsEnabled(getActivity())) {
+        this.getLoaderManager().initLoader(LOAD_CONTACTS, null, this);
+        return;
+      }
     }
 
     // Nothing more to load, show it!
