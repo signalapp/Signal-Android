@@ -103,8 +103,6 @@ public class ConversationItem extends LinearLayout {
   private  ListenableFutureTask<SlideDeck> slideDeck;
   private  TypedArray backgroundDrawables;
 
-  private URLSpan[] urlSpans;
-
   private final FailedIconClickListener failedIconClickListener         = new FailedIconClickListener();
   private final MmsDownloadClickListener mmsDownloadClickListener       = new MmsDownloadClickListener();
   private final MmsPreferencesClickListener mmsPreferencesClickListener = new MmsPreferencesClickListener();
@@ -214,11 +212,10 @@ public class ConversationItem extends LinearLayout {
     } else {
       bodyText.setText(messageRecord.getDisplayBody());
     }
-
-    urlSpans = bodyText.getUrls();
   }
 
   protected void onUrlSpansClick() {
+    URLSpan[] urlSpans = bodyText.getUrls();
     if (urlSpans != null) {
       for (URLSpan urlSpan : urlSpans) {
         urlSpan.onClick(this);
