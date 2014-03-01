@@ -443,6 +443,9 @@
     <string name="create_passphrase_activity__repeat">REPEAT:</string>
     <string name="create_passphrase_activity__continue">Continue</string>
     <string name="create_passphrase_activity__generating_secrets">GENERATING SECRETS</string>
+    <string name="create_passphrase_activity__skip">Skip</string>
+    <string name="create_passphrase_activity__create">Create</string>
+
 
     <!-- log_submit_activity -->
     <string name="log_submit_activity__confirmation">This log will be posted publicly online for TextSecure contributors to view. Feel free to examine or edit the logs below before hitting submit.</string>
@@ -517,6 +520,7 @@
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
     <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration will transmit some contact information to the server temporarily.</string>
+    <string name="registration_activity__skip">Skip</string>
 
     <!-- registration_problems -->
     <string name="registration_problems__some_possible_problems_include">Some possible problems
