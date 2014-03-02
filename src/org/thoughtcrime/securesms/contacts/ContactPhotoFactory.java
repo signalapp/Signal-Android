@@ -18,9 +18,12 @@ import java.util.Map;
 
 public class ContactPhotoFactory {
 
-  private static final Object defaultPhotoLock = new Object();
+  private static final Object defaultPhotoLock      = new Object();
+  private static final Object defaultGroupPhotoLock = new Object();
 
   private static Bitmap defaultContactPhoto;
+  private static Bitmap defaultGroupContactPhoto;
+
   private static final Map<Uri,Bitmap> localUserContactPhotoCache =
       Collections.synchronizedMap(new LRUCache<Uri,Bitmap>(2));
 
@@ -40,11 +43,11 @@ public class ContactPhotoFactory {
   }
 
   public static Bitmap getDefaultGroupPhoto(Context context) {
-    synchronized (defaultPhotoLock) {
-      if (defaultContactPhoto == null)
-        defaultContactPhoto =  BitmapFactory.decodeResource(context.getResources(),
-                                                            R.drawable.ic_group_photo);
-      return defaultContactPhoto;
+    synchronized (defaultGroupPhotoLock) {
+      if (defaultGroupContactPhoto == null)
+        defaultGroupContactPhoto =  BitmapFactory.decodeResource(context.getResources(),
+                                                                 R.drawable.ic_group_photo);
+      return defaultGroupContactPhoto;
     }
   }
 

@@ -151,7 +151,7 @@ public class RecipientProvider {
         byte[] avatarBytes = record.getAvatar();
         Bitmap avatar;
 
-        if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultContactPhoto(context);
+        if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
         else                     avatar = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
 
         return new RecipientDetails(record.getTitle(), null, avatar);
