@@ -12,6 +12,10 @@ Current BitHub Payment For Commit:
 =================
 [![Current Price](https://bithub.herokuapp.com/v1/status/payment/commit/)](https://whispersystems.org/blog/bithub/)
 
+Building and contributing code
+==============================
+
+Instructions on how to build TextSecure, as well as on how to setup an IDE to modify it can be found in the "BUILDING.md" file.
 
 Bug tracker
 -----------
