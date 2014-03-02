@@ -26,7 +26,15 @@ public class PlaintextBackupImporter {
   {
     Log.w("PlaintextBackupImporter", "Importing plaintext...");
     verifyExternalStorageForPlaintextImport();
-    importPlaintext(context, masterSecret);
+    importPlaintext(context, masterSecret, false);
+  }
+
+  public static void checkPlaintextBackupOnSd(Context context, MasterSecret masterSecret)
+      throws NoExternalStorageException, IOException
+  {
+    Log.w("PlaintextBackupImporter", "Checking plaintext...");
+    verifyExternalStorageForPlaintextImport();
+    importPlaintext(context, masterSecret, true);
   }
 
   private static void verifyExternalStorageForPlaintextImport() throws NoExternalStorageException {
@@ -40,10 +48,10 @@ public class PlaintextBackupImporter {
     return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
   }
 
-  private static void importPlaintext(Context context, MasterSecret masterSecret)
+  private static void importPlaintext(Context context, MasterSecret masterSecret, boolean dryRun)
       throws IOException
   {
-    Log.w("PlaintextBackupImporter", "importPlaintext()");
+    Log.w("PlaintextBackupImporter", "importPlaintext() - dryRun: " + dryRun);
     SmsDatabase    db          = DatabaseFactory.getSmsDatabase(context);
     SQLiteDatabase transaction = db.beginTransaction();
 
@@ -76,8 +84,10 @@ public class PlaintextBackupImporter {
           addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
           addStringToStatement(statement, 12, item.getServiceCenter());
           addLongToStatement(statement, 13, threadId);
-          modifiedThreads.add(threadId);
-          statement.execute();
+          if (!dryRun) {
+            modifiedThreads.add(threadId);
+            statement.execute();
+          }
         } catch (RecipientFormattingException rfe) {
           Log.w("PlaintextBackupImporter", rfe);
         }
