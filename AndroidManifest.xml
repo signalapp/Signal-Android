@@ -289,6 +289,15 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".util.PackageUpgradeReceiver" >
+      <intent-filter>
+        <action android:name="android.intent.action.PACKAGE_REPLACED" />
+        <data android:scheme="package" android:path="org.thoughtcrime.securesms" />
+    </intent-filter>
+
+    </receiver>
+
+        
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
