@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -94,7 +95,14 @@ public class AttachmentManager {
   }
 
   private static void selectMediaType(Activity activity, String type, int requestCode) {
-    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    final Intent intent;
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+    } else {
+      intent = new Intent(Intent.ACTION_GET_CONTENT);
+    }
+
     intent.setType(type);
     activity.startActivityForResult(intent, requestCode);
   }
