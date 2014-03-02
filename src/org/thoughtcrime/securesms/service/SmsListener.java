@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SmsListener extends BroadcastReceiver {
 
@@ -50,7 +51,7 @@ public class SmsListener extends BroadcastReceiver {
 
     return
       message.getOriginatingAddress().length() < 7 &&
-      (messageBody.toUpperCase().startsWith("//ANDROID:") || // Sprint Visual Voicemail
+      (messageBody.toUpperCase(Locale.US).startsWith("//ANDROID:") || // Sprint Visual Voicemail
        messageBody.startsWith("//BREW:")); //BREW stands for “Binary Runtime Environment for Wireless"
   }
 

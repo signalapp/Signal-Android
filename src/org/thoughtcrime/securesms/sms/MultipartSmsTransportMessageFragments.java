@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.sms;
 
+import java.util.Locale;
+
 public class MultipartSmsTransportMessageFragments {
 
   private static final long VALID_TIME = 60 * 60 * 1000; // 1 Hour
@@ -51,7 +53,7 @@ public class MultipartSmsTransportMessageFragments {
 
   @Override
   public String toString() {
-    return String.format("[Size: %d, Initialized: %d, Exipired: %s, Complete: %s]",
+    return String.format(Locale.getDefault(),"[Size: %d, Initialized: %d, Exipired: %s, Complete: %s]",
                          fragments.length, initializedTime, isExpired()+"", isComplete()+"");
   }
 }

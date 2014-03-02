@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class ConversationFragment extends SherlockListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
@@ -155,13 +156,13 @@ public class ConversationFragment extends SherlockListFragment
     if (dateReceived == dateSent || message.isOutgoing()) {
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_received_s),
-                                       transport.toUpperCase(),
+                                       transport.toUpperCase(Locale.getDefault()),
                                        dateFormatter.format(new Date(dateSent))));
     } else {
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
                                        message.getIndividualRecipient().getNumber(),
-                                       transport.toUpperCase(),
+                                       transport.toUpperCase(Locale.getDefault()),
                                        dateFormatter.format(new Date(dateSent)),
                                        dateFormatter.format(new Date(dateReceived))));
     }
