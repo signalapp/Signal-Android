@@ -21,12 +21,15 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
@@ -166,8 +169,18 @@ public class MessageNotifier {
     NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
     Recipient recipient                 = notifications.get(0).getIndividualRecipient();
 
+    Bitmap avatar;
+    if (Build.VERSION.SDK_INT >= 11) {
+      Resources res  = context.getResources();
+      int destWidth  = res.getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
+      int destHeight = res.getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
+      avatar = Bitmap.createScaledBitmap(recipient.getContactPhoto(), destWidth, destHeight, true);
+    } else {
+      avatar = recipient.getContactPhoto();
+    }
+
     builder.setSmallIcon(R.drawable.icon_notification);
-    builder.setLargeIcon(recipient.getContactPhoto());
+    builder.setLargeIcon(avatar);
     builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
