@@ -26,7 +26,9 @@
         android:layout_marginRight="0dp"
         android:orientation="horizontal">
 
-        <ImageView android:id="@+id/contact_photo"
+        <org.thoughtcrime.securesms.components.ForegroundImageView
+            android:id="@+id/contact_photo"
+            android:foreground="@drawable/contact_photo_background"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"

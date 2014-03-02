@@ -107,6 +107,11 @@ public class ConversationListFragment extends SherlockListFragment
       } else {
         ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
         adapter.toggleThreadInBatchSet(headerView.getThreadId());
+
+        if (adapter.getBatchSelections().size() == 0) {
+          actionMode.finish();
+        }
+
         adapter.notifyDataSetChanged();
       }
     }

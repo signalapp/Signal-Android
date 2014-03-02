@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="card_background_active">#99bebebe</color>
+    <color name="touch_highlight">#10000000</color>
 </resources>

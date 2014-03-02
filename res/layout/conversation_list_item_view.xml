@@ -15,14 +15,16 @@
                  android:paddingRight="10dp"
                  android:visibility="visible">
 
-	    <ImageView android:id="@+id/contact_photo_image"
-	               android:layout_width="60dp"
-	               android:layout_height="60dp"
-	               android:cropToPadding="true"
-	               android:scaleType="centerCrop"
-	               android:visibility="gone"
-                   android:contentDescription="Contact Photo Image"
-                   android:layout_marginLeft="0dp" />
+        <org.thoughtcrime.securesms.components.ForegroundImageView
+            android:id="@+id/contact_photo_image"
+            android:foreground="@drawable/contact_photo_background"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:contentDescription="Contact Photo Image"
+            android:layout_marginLeft="0dp" />
     </FrameLayout>
 
     <TextView android:id="@+id/from"
