@@ -15,7 +15,10 @@ Building TextSecure
 
 The following steps should help you (re)build TextSecure from the command line.
 
-1. Checkout the source somewhere on your filesystem with "git clone https://github.com/WhisperSystems/TextSecure.git"
+1. Checkout the source somewhere on your filesystem with 
+
+    git clone https://github.com/WhisperSystems/TextSecure.git
+
 2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed somewhere on your system.
 3. Ensure the "Android Support Repository" is installed from the Android SDK manager.
 4. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.
