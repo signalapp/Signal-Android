@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.FutureTaskListener;
@@ -462,7 +463,7 @@ public class ConversationItem extends LinearLayout {
     public boolean onLongClick(View v) {
       AlertDialog.Builder builder = new AlertDialog.Builder(context);
       builder.setTitle(R.string.ConversationItem_save_to_sd_card);
-      builder.setIcon(android.R.drawable.ic_dialog_alert);
+      builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
       builder.setCancelable(true);
       builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning);
       builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -524,7 +525,7 @@ public class ConversationItem extends LinearLayout {
     public void onClick(View v) {
       AlertDialog.Builder builder = new AlertDialog.Builder(context);
       builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-      builder.setIcon(android.R.drawable.ic_dialog_alert);
+      builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
       builder.setCancelable(true);
       builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
       builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -589,7 +590,7 @@ public class ConversationItem extends LinearLayout {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(R.string.ConversationActivity_abort_secure_session_confirmation);
-    builder.setIcon(android.R.drawable.ic_dialog_alert);
+    builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
     builder.setCancelable(true);
     builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {

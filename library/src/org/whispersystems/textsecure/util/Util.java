@@ -1,6 +1,5 @@
 package org.whispersystems.textsecure.util;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.widget.EditText;
@@ -88,14 +87,6 @@ public class Util {
     return value == null || value.length() == 0;
   }
 
-  public static void showAlertDialog(Context context, String title, String message) {
-    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-    dialog.setTitle(title);
-    dialog.setMessage(message);
-    dialog.setIcon(android.R.drawable.ic_dialog_alert);
-    dialog.setPositiveButton(android.R.string.ok, null);
-    dialog.show();
-  }
 
   public static int generateRegistrationId() {
     try {

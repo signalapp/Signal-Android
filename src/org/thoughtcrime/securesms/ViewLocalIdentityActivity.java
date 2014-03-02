@@ -28,6 +28,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
@@ -74,7 +75,7 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
 
   private void promptToRegenerateIdentityKey() {
     AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-    dialog.setIcon(android.R.drawable.ic_dialog_alert);
+    dialog.setIcon(Dialogs.resolveIcon(this, R.attr.dialog_alert_icon));
     dialog.setTitle(getString(R.string.ViewLocalIdentityActivity_reset_identity_key));
     dialog.setMessage(getString(R.string.ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings));
     dialog.setNegativeButton(getString(R.string.ViewLocalIdentityActivity_cancel), null);

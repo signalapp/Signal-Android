@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.Dialogs;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -116,7 +117,7 @@ public class ConversationFragment extends SherlockListFragment
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_confirm_message_delete);
-    builder.setIcon(android.R.drawable.ic_dialog_alert);
+    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
     builder.setCancelable(true);
     builder.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message);
 
@@ -149,7 +150,7 @@ public class ConversationFragment extends SherlockListFragment
     SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
-    builder.setIcon(android.R.drawable.ic_dialog_info);
+    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
     builder.setCancelable(false);
 
     if (dateReceived == dateSent || message.isOutgoing()) {

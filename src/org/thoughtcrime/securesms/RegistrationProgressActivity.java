@@ -33,6 +33,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.ExpectationFailedException;
@@ -317,7 +318,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
 
   private void handleMultiRegistrationError(RegistrationState state) {
     handleVerificationTimeout(state);
-    Util.showAlertDialog(this,                         getString(R.string.RegistrationProgressActivity_registration_conflict),
+    Dialogs.showAlertDialog(this,                         getString(R.string.RegistrationProgressActivity_registration_conflict),
                          getString(R.string.RegistrationProgressActivity_this_number_is_already_registered_on_a_different));
   }
 
@@ -493,19 +494,19 @@ public class RegistrationProgressActivity extends SherlockActivity {
               startService(intent);
               break;
             case NETWORK_ERROR:
-              Util.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_network_error),
+              Dialogs.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_network_error),
                                    getString(R.string.RegistrationProgressActivity_unable_to_connect));
               break;
             case VERIFICATION_ERROR:
-              Util.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_verification_failed),
+              Dialogs.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_verification_failed),
                                    getString(R.string.RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect));
               break;
             case RATE_LIMIT_ERROR:
-              Util.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_too_many_attempts),
+              Dialogs.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_too_many_attempts),
                                    getString(R.string.RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times));
               break;
             case MULTI_REGISTRATION_ERROR:
-              Util.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_registration_conflict),
+              Dialogs.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_registration_conflict),
                                    getString(R.string.RegistrationProgressActivity_this_number_is_already_registered_on_a_different));
               break;
           }
@@ -585,17 +586,17 @@ public class RegistrationProgressActivity extends SherlockActivity {
               }, 15000);
               break;
             case NETWORK_ERROR:
-              Util.showAlertDialog(context,
+              Dialogs.showAlertDialog(context,
                                    getString(R.string.RegistrationProgressActivity_network_error),
                                    getString(R.string.RegistrationProgressActivity_unable_to_connect));
               break;
             case CREATE_ERROR:
-              Util.showAlertDialog(context,
+              Dialogs.showAlertDialog(context,
                                    getString(R.string.RegistrationProgressActivity_server_error),
                                    getString(R.string.RegistrationProgressActivity_the_server_encountered_an_error));
               break;
             case RATE_LIMIT_EXCEEDED:
-              Util.showAlertDialog(context,
+              Dialogs.showAlertDialog(context,
                                    getString(R.string.RegistrationProgressActivity_too_many_requests),
                                    getString(R.string.RegistrationProgressActivity_youve_already_requested_a_voice_call));
               break;

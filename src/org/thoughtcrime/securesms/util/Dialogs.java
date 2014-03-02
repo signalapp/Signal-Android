@@ -18,15 +18,32 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.TypedValue;
+
+import org.thoughtcrime.securesms.R;
 
 public class Dialogs {
+  public static void showAlertDialog(Context context, String title, String message) {
+    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setIcon(resolveIcon(context, R.attr.dialog_alert_icon));
+    dialog.setPositiveButton(android.R.string.ok, null);
+    dialog.show();
+  }
+  public static void showInfoDialog(Context context, String title, String message) {
+    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setIcon(resolveIcon(context, R.attr.dialog_info_icon));
+    dialog.setPositiveButton(android.R.string.ok, null);
+    dialog.show();
+  }
 
-  public static void displayAlert(Context context, String title, String message, int icon) {
-    AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-    alertDialog.setTitle(title);
-    alertDialog.setMessage(message);
-    alertDialog.setIcon(icon);
-    alertDialog.setPositiveButton(android.R.string.ok, null);
-    alertDialog.show();
+  public static Drawable resolveIcon(Context c, int iconAttr) {
+    TypedValue out = new TypedValue();
+    c.getTheme().resolveAttribute(iconAttr, out, true);
+    return c.getResources().getDrawable(out.resourceId);
   }
 }

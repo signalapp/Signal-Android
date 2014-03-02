@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessageV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
@@ -44,7 +45,7 @@ public class KeyExchangeInitiator {
       AlertDialog.Builder dialog = new AlertDialog.Builder(context);
       dialog.setTitle(R.string.KeyExchangeInitiator_initiate_despite_existing_request_question);
       dialog.setMessage(R.string.KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure);
-      dialog.setIcon(android.R.drawable.ic_dialog_alert);
+      dialog.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
       dialog.setCancelable(true);
       dialog.setPositiveButton(R.string.KeyExchangeInitiator_send, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {

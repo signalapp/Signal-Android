@@ -92,6 +92,7 @@ import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
@@ -377,7 +378,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     String recipientName        = (recipient.getName() == null ? recipient.getNumber() : recipient.getName());
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.ConversationActivity_initiate_secure_session_question);
-    builder.setIcon(android.R.drawable.ic_dialog_info);
+    builder.setIcon(Dialogs.resolveIcon(this, R.attr.dialog_info_icon));
     builder.setCancelable(true);
     builder.setMessage(String.format(getString(R.string.ConversationActivity_initiate_secure_session_with_s_question),
                        recipientName));
@@ -396,7 +397,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private void handleAbortSecureSession() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.ConversationActivity_abort_secure_session_confirmation);
-    builder.setIcon(android.R.drawable.ic_dialog_alert);
+    builder.setIcon(Dialogs.resolveIcon(this, R.attr.dialog_alert_icon));
     builder.setCancelable(true);
     builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -438,7 +439,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(getString(R.string.ConversationActivity_leave_group));
-    builder.setIcon(android.R.drawable.ic_dialog_info);
+    builder.setIcon(Dialogs.resolveIcon(this, R.attr.dialog_info_icon));
     builder.setCancelable(true);
     builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -520,7 +521,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       startActivity(dialIntent);
     } catch (ActivityNotFoundException anfe) {
       Log.w(TAG, anfe);
-      Util.showAlertDialog(this,
+      Dialogs.showAlertDialog(this,
                            getString(R.string.ConversationActivity_calls_not_supported),
                            getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
     }
@@ -533,7 +534,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private void handleDeleteThread() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.ConversationActivity_delete_thread_confirmation);
-    builder.setIcon(android.R.drawable.ic_dialog_alert);
+    builder.setIcon(Dialogs.resolveIcon(this, R.attr.dialog_alert_icon));
     builder.setCancelable(true);
     builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {

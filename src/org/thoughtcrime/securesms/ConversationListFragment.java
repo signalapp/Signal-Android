@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Dialogs;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.view.ActionMode;
@@ -167,7 +168,7 @@ public class ConversationListFragment extends SherlockListFragment
 
   private void handleDeleteAllSelected() {
     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-    alert.setIcon(android.R.drawable.ic_dialog_alert);
+    alert.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
     alert.setTitle(R.string.ConversationListFragment_delete_threads_question);
     alert.setMessage(R.string.ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads);
     alert.setCancelable(true);

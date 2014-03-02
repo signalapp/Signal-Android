@@ -28,6 +28,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 
@@ -166,7 +167,7 @@ public class RegistrationActivity extends SherlockActivity {
       final String e164number = getConfiguredE164Number();
 
       if (!PhoneNumberFormatter.isValidNumber(e164number)) {
-        Util.showAlertDialog(self,
+        Dialogs.showAlertDialog(self,
                              getString(R.string.RegistrationActivity_invalid_number),
                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid),
                                            e164number));
@@ -176,7 +177,7 @@ public class RegistrationActivity extends SherlockActivity {
       try {
         GCMRegistrar.checkDevice(self);
       } catch (UnsupportedOperationException uoe) {
-        Util.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
+        Dialogs.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
                              getString(R.string.RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging));
         return;
       }

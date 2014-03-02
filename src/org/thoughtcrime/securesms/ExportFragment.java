@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
@@ -59,7 +60,7 @@ public class ExportFragment extends SherlockFragment {
 
   private void handleExportEncryptedBackup() {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setIcon(android.R.drawable.ic_dialog_info);
+    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
     builder.setTitle(getActivity().getString(R.string.ExportFragment_export_to_sd_card));
     builder.setMessage(getActivity().getString(R.string.ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages));
     builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
@@ -74,7 +75,7 @@ public class ExportFragment extends SherlockFragment {
 
   private void handleExportPlaintextBackup() {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setIcon(android.R.drawable.ic_dialog_alert);
+    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
     builder.setTitle(getActivity().getString(R.string.ExportFragment_export_plaintext_to_sd_card));
     builder.setMessage(getActivity().getString(R.string.ExportFragment_warning_this_will_export_the_plaintext_contents));
     builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {

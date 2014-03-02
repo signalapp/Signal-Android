@@ -88,9 +88,9 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
       String data = scanResult.getContents();
 
       if (data.equals(Base64.encodeBytes(getIdentityKeyToCompare().serialize()))) {
-        Dialogs.displayAlert(this, getVerifiedTitle(), getVerifiedMessage(), android.R.drawable.ic_dialog_info);
+        Dialogs.showInfoDialog(this, getVerifiedTitle(), getVerifiedMessage());
       } else {
-        Dialogs.displayAlert(this, getNotVerifiedTitle(), getNotVerifiedMessage(), android.R.drawable.ic_dialog_alert);
+        Dialogs.showAlertDialog(this, getNotVerifiedTitle(), getNotVerifiedMessage());
       }
     } else {
       Toast.makeText(this, R.string.KeyScanningActivity_no_scanned_key_found_exclamation,
