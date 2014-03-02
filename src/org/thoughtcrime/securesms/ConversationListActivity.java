@@ -1,9 +1,6 @@
 package org.thoughtcrime.securesms;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
@@ -34,6 +31,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.util.AccountUtil;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -59,13 +57,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   private DrawerToggle drawerToggle;
   private ListView     drawerList;
 
-  // Data needed to add the Android Account needed for the SyncAdapter refreshing the directory
-  public static final String DIRECTORYSYNC_AUTHORITY = "org.thoughtcrime.securesms.providers.directorysync";
-  public static final String DIRECTORYSYNC_ACCOUNT_TYPE = "directory.securesms.thoughtcrime.org";
-  public static final String DIRECTORYSYNC_ACCOUNT = "Directory";
-  Account directorySyncAccount;
-
-
   @Override
   public void onCreate(Bundle icicle) {
     dynamicTheme.onCreate(this);
@@ -83,29 +74,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     DirectoryRefreshListener.schedule(this);
 
-    // Create the account needed for the SyncAdapter
-    directorySyncAccount = CreateDirectorySyncAccount(this);
-            DIRECTORYSYNC_INTERVAL);
+    AccountUtil.ensureAccountExists(this);
   }
-
-  public static Account CreateDirectorySyncAccount(Context context) {
-      // Create the account type and default account
-      Account newAccount = new Account(DIRECTORYSYNC_ACCOUNT, DIRECTORYSYNC_ACCOUNT_TYPE);
-      AccountManager accountManager = (AccountManager) context.getSystemService(ACCOUNT_SERVICE);
-      /*
-       * Add the account and account type, no password or user data
-       * If successful, return the Account object, otherwise report an error.
-       */
-      if (accountManager.addAccountExplicitly(newAccount, null, null)) {
-          context.getContentResolver().setIsSyncable(newAccount, DIRECTORYSYNC_AUTHORITY, 1);
-        } else {
-          // TODO error handling
-          Log.e("", "Could not create sync account");
-        }
-
-      return newAccount;
-    }
-
 
   @Override
   public void onPostCreate(Bundle bundle) {

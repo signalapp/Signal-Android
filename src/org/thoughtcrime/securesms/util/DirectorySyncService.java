@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.IBinder;
 
 /**
- * Created by tinloaf on 28.02.14.
+ * The service to run the directory sync in.
+ * 
+ * @author Lukas Barth
  */
 public class DirectorySyncService extends Service {
     private static DirectorySyncAdapter adapter = null;
@@ -15,7 +17,7 @@ public class DirectorySyncService extends Service {
     public void onCreate() {
         synchronized (DirectorySyncService.sAdapterLock) {
             if (DirectorySyncService.adapter == null) {
-                DirectorySyncService.adapter = new DirectorySyncAdapter(getApplicationContext(), true);
+                DirectorySyncService.adapter = DirectorySyncAdapter.getInstance(getApplicationContext());
             }
         }
     }

@@ -8,33 +8,45 @@ import android.content.SyncResult;
 import android.os.Bundle;
 
 /**
- * Created by Lukas Barth on 28.02.14.
+ * A SyncAdapter in charge of refreshing the directory of push-enabled contacts
+ *
+ * @author Lukas Barth
  */
 public class DirectorySyncAdapter extends AbstractThreadedSyncAdapter {
-    private Context ctx;
+  private Context context;
 
-    public DirectorySyncAdapter(Context context, boolean autoInitialize) {
-        super(context, autoInitialize);
+  private static DirectorySyncAdapter instance = null;
 
-        this.ctx = context;
+  private DirectorySyncAdapter(Context context, boolean autoInitialize) {
+    super(context, autoInitialize);
+
+    this.context = context;
+  }
+
+  private DirectorySyncAdapter(
+          Context context,
+          boolean autoInitialize,
+          boolean allowParallelSyncs) {
+    super(context, autoInitialize);
+
+    this.context = context;
+  }
+
+  public static DirectorySyncAdapter getInstance(Context context) {
+    if (DirectorySyncAdapter.instance == null) {
+      DirectorySyncAdapter.instance = new DirectorySyncAdapter(context, true);
     }
 
-    public DirectorySyncAdapter(
-            Context context,
-            boolean autoInitialize,
-            boolean allowParallelSyncs) {
-        super(context, autoInitialize); // No parallel stuff. Min. API level is 9
+    return DirectorySyncAdapter.instance;
+  }
 
-        this.ctx = context;
-    }
+  public void onPerformSync(
+          Account account,
+          Bundle extras,
+          String authority,
+          ContentProviderClient provider,
+          SyncResult syncResult) {
 
-     public void onPerformSync(
-            Account account,
-            Bundle extras,
-            String authority,
-            ContentProviderClient provider,
-            SyncResult syncResult) {
-
-        DirectoryHelper.refreshDirectory(this.ctx);
-     }
+    DirectoryHelper.refreshDirectory(this.context);
+  }
 }
