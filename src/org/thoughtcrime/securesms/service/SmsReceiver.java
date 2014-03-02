@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
@@ -93,6 +94,10 @@ public class SmsReceiver {
   }
 
   private Pair<Long, Long> storeStandardMessage(MasterSecret masterSecret, IncomingTextMessage message) {
+    if (!Util.isDefaultSmsProvider(context)) {
+        return null;
+    }
+
     EncryptingSmsDatabase encryptingDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
     SmsDatabase           plaintextDatabase  = DatabaseFactory.getSmsDatabase(context);
 
@@ -210,6 +215,9 @@ public class SmsReceiver {
 
     if (message != null) {
       Pair<Long, Long> messageAndThreadId = storeMessage(masterSecret, message);
+      if (messageAndThreadId == null) {
+        return;
+      }
       MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     }
   }
