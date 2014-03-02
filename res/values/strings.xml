@@ -331,6 +331,7 @@
     <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">The scanned key matches!</string>
     <string name="ViewIdentityActivity_verified_exclamation">Verified!</string>
     <string name="ViewIdentityActivity_identity_fingerprint">Identity Fingerprint</string>
+    <string name="ViewIdentityActivity_my_identity_fingerprint">My Identity Fingerprint</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate Despite Existing Request?</string>

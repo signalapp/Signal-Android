@@ -46,8 +46,7 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
     this.masterSecret = getIntent().getParcelableExtra("master_secret");
 
     getIntent().putExtra("identity_key", IdentityKeyUtil.getIdentityKey(this, Curve.DJB_TYPE));
-    getIntent().putExtra("title", getString(R.string.ApplicationPreferencesActivity_my) + " " +
-        getString(R.string.ViewIdentityActivity_identity_fingerprint));
+    getIntent().putExtra("title", getString(R.string.ViewIdentityActivity_my_identity_fingerprint));
     super.onCreate(bundle);
   }
 
