@@ -381,7 +381,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
         AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
-        builder.setIcon(android.R.drawable.ic_dialog_info);
+        builder.setIcon(Dialogs.resolveIcon(ApplicationPreferencesActivity.this, R.attr.dialog_info_icon));
         builder.setTitle(getString(R.string.ApplicationPreferencesActivity_disable_push_messages));
         builder.setMessage(getString(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages));
         builder.setNegativeButton(android.R.string.cancel, null);
