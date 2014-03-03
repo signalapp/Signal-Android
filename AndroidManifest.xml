@@ -70,6 +70,7 @@
                 <data android:mimeType="audio/*" />
                 <data android:mimeType="image/*" />
                 <data android:mimeType="text/*" />
+                <data android:mimeType="video/*" />
             </intent-filter>            
 
         </activity>
