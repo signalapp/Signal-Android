@@ -54,6 +54,7 @@
         <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_light</item>
         <item name="menu_split_icon">@drawable/ic_menu_split_holo_light</item>
         <item name="menu_accept_icon">@drawable/ic_menu_accept_holo_light</item>
+        <item name="menu_refresh_directory">@drawable/ic_menu_refresh_holo_light</item>
 
     </style>
 
@@ -122,6 +123,7 @@
         <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_dark</item>
         <item name="menu_split_icon">@drawable/ic_menu_split_holo_dark</item>
         <item name="menu_accept_icon">@drawable/ic_menu_accept_holo_dark</item>
+        <item name="menu_refresh_directory">@drawable/ic_menu_refresh_holo_dark</item>
     </style>
 
     <style name="TextSecure.DarkTheme.NavigationDrawer"

@@ -416,6 +416,9 @@
 
     <!-- single_contact_selection_activity -->
     <string name="single_contact_selection_group_activity__filter">Type a name to filter&#8230;</string>
+    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
+    <string name="SingleContactSelectionActivity_updating_directory">Updating directory</string>
+    <string name="SingleContactSelectionActivity_updating_push_directory">Updating push directory...</string>
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionlistFragment_select_for">Select for</string>
@@ -739,6 +742,9 @@
 
     <!-- contact_selection -->
     <string name="contact_selection__menu_finished">Finished</string>
+
+    <!-- refreshing push directory from menu -->
+    <string name="push_directory__menu_refresh">Refresh Contact List</string>
 
     <!-- conversation_button_context -->
     <string name="conversation_button_context__menu_send_unencrypted">Send unencrypted</string>

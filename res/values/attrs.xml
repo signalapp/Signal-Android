@@ -60,6 +60,7 @@
     <attr name="menu_group_icon" format="reference" />
     <attr name="menu_split_icon" format="reference" />
     <attr name="menu_accept_icon" format="reference" />
+    <attr name="menu_refresh_directory" format="reference" />
 
     <declare-styleable name="ForegroundImageView">
         <attr name="android:foreground" />

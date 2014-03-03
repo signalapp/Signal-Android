@@ -16,12 +16,19 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.components.SingleRecipientPanel;
@@ -33,8 +40,10 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.NumberUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.ArrayList;
@@ -124,6 +133,18 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
   }
 
   @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    MenuInflater inflater = this.getSupportMenuInflater();
+    menu.clear();
+
+    if (TextSecurePreferences.isPushRegistered(this)) {
+      inflater.inflate(R.menu.push_directory, menu);
+    }
+
+    return true;
+  }
+
+  @Override
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
@@ -132,13 +153,49 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
+    case R.id.menu_refresh_directory:
+      handleDirectoryRefresh();
+      return true;
     case android.R.id.home:
       setResult(RESULT_CANCELED);
       finish();
       return true;
     }
 
-    return false;
+    return super.onOptionsItemSelected(item);
   }
 
+  private void handleDirectoryRefresh() {
+    if (!TextSecurePreferences.isPushRegistered(SingleContactSelectionActivity.this)) {
+      Toast.makeText(getApplicationContext(),
+              getString(R.string.SingleContactSelectionActivity_you_are_not_registered_with_the_push_service),
+              Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    new AsyncTask<Void, Void, Void>() {
+      private ProgressDialog progress;
+
+      @Override
+      protected void onPreExecute() {
+        progress = ProgressDialog.show(SingleContactSelectionActivity.this,
+                getString(R.string.SingleContactSelectionActivity_updating_directory),
+                getString(R.string.SingleContactSelectionActivity_updating_push_directory),
+                true);
+      }
+
+      @Override
+      protected Void doInBackground(Void... params) {
+        DirectoryHelper.refreshDirectory(getApplicationContext());
+        return null;
+      }
+
+      @Override
+      protected void onPostExecute(Void result) {
+        if (progress != null)
+          progress.dismiss();
+      }
+    }.execute();
+
+  }
 }
