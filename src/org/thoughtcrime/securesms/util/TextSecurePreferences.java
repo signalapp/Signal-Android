@@ -29,7 +29,7 @@ public class TextSecurePreferences {
   private static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   private static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   private static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
-  private static final String SCREEN_SECURITY_PREF             = "pref_screen_security";
+  public  static final String SCREEN_SECURITY_PREF             = "pref_screen_security";
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
@@ -135,8 +135,8 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, AUTO_KEY_EXCHANGE_PREF, true);
   }
 
-  public static boolean isScreenSecurityEnabled(Context context) {
-    return getBooleanPreference(context, SCREEN_SECURITY_PREF, true);
+  public static boolean isScreenSecurityDisabled(Context context) {
+    return getBooleanPreference(context, SCREEN_SECURITY_PREF, false);
   }
 
   public static boolean isUseLocalApnsEnabled(Context context) {
