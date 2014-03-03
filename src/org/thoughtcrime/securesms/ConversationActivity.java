@@ -137,6 +137,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   public static final String DRAFT_TEXT_EXTRA        = "draft_text";
   public static final String DRAFT_IMAGE_EXTRA       = "draft_image";
   public static final String DRAFT_AUDIO_EXTRA       = "draft_audio";
+  public static final String DRAFT_VIDEO_EXTRA       = "draft_video";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
 
   private static final int PICK_CONTACT      = 1;
@@ -619,12 +620,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     String draftText  = getIntent().getStringExtra(DRAFT_TEXT_EXTRA);
     Uri    draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
     Uri    draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
+    Uri    draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
 
     if (draftText != null)  composeText.setText(draftText);
     if (draftImage != null) addAttachmentImage(draftImage);
     if (draftAudio != null) addAttachmentAudio(draftAudio);
+    if (draftVideo != null) addAttachmentVideo(draftVideo);
 
-    if (draftText == null && draftImage == null && draftAudio == null) {
+    if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
       initializeDraftFromDatabase();
     }
   }
