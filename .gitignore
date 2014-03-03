@@ -19,3 +19,4 @@ build
 signing.properties
 library/lib/
 library/obj/
+res/values-*/strings.xml
