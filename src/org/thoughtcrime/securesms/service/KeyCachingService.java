@@ -33,6 +33,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
+import org.thoughtcrime.securesms.DummyActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
@@ -131,6 +132,17 @@ public class KeyCachingService extends Service {
     super.onDestroy();
     Log.w("KeyCachingService", "KCS Is Being Destroyed!");
     handleClearKey();
+  }
+
+  /**
+   * Workaround for Android bug:
+   * https://code.google.com/p/android/issues/detail?id=53313
+   */
+  @Override
+  public void onTaskRemoved(Intent rootIntent) {
+    Intent intent = new Intent(this, DummyActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
   }
 
   private void handleActivityStarted() {
