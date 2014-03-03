@@ -16,13 +16,7 @@
  */
 package org.thoughtcrime.securesms.service;
 
-import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -33,12 +27,7 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.CanonicalSessionMigrator;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.WorkerThread;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Services that handles sending/receiving of SMS/MMS.
@@ -46,7 +35,7 @@ import java.util.List;
  * @author Moxie Marlinspike
  */
 
-public class SendReceiveService extends Service {
+public class SendReceiveService extends MasterSecretTaskService {
 
   public static final String SEND_SMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SEND_SMS_ACTION";
   public static final String SENT_SMS_ACTION                  = "org.thoughtcrime.securesms.SendReceiveService.SENT_SMS_ACTION";
@@ -84,21 +73,13 @@ public class SendReceiveService extends Service {
   private PushDownloader   pushDownloader;
   private AvatarDownloader avatarDownloader;
 
-  private MasterSecret masterSecret;
-  private boolean      hasSecret;
-
-  private NewKeyReceiver newKeyReceiver;
-  private ClearKeyReceiver clearKeyReceiver;
-  private List<Runnable> workQueue;
-  private List<Runnable> pendingSecretList;
-
   @Override
   public void onCreate() {
+    super.onCreate();
+
     initializeHandlers();
     initializeProcessors();
     initializeAddressCanonicalization();
-    initializeWorkQueue();
-    initializeMasterSecret();
   }
 
   @Override
@@ -140,18 +121,6 @@ public class SendReceiveService extends Service {
     return null;
   }
 
-  @Override
-  public void onDestroy() {
-    Log.w("SendReceiveService", "onDestroy()...");
-    super.onDestroy();
-
-    if (newKeyReceiver != null)
-      unregisterReceiver(newKeyReceiver);
-
-    if (clearKeyReceiver != null)
-      unregisterReceiver(clearKeyReceiver);
-  }
-
   private void initializeHandlers() {
     systemStateListener = new SystemStateListener(this);
     toastHandler        = new ToastHandler();
@@ -168,74 +137,21 @@ public class SendReceiveService extends Service {
     avatarDownloader = new AvatarDownloader(this);
   }
 
-  private void initializeWorkQueue() {
-    pendingSecretList = new LinkedList<Runnable>();
-    workQueue         = new LinkedList<Runnable>();
-
-    Thread workerThread = new WorkerThread(workQueue, "SendReceveService-WorkerThread");
-    workerThread.start();
-  }
-
-  private void initializeMasterSecret() {
-    hasSecret           = false;
-    newKeyReceiver      = new NewKeyReceiver();
-    clearKeyReceiver    = new ClearKeyReceiver();
-
-    IntentFilter newKeyFilter = new IntentFilter(KeyCachingService.NEW_KEY_EVENT);
-    registerReceiver(newKeyReceiver, newKeyFilter, KeyCachingService.KEY_PERMISSION, null);
-
-    IntentFilter clearKeyFilter = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
-    registerReceiver(clearKeyReceiver, clearKeyFilter, KeyCachingService.KEY_PERMISSION, null);
-
-    Intent bindIntent   = new Intent(this, KeyCachingService.class);
-    startService(bindIntent);
-    bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
-  }
-
-  private void initializeWithMasterSecret(MasterSecret masterSecret) {
-    Log.w("SendReceiveService", "SendReceive service got master secret.");
-
-    if (masterSecret != null) {
-      synchronized (workQueue) {
-        this.masterSecret = masterSecret;
-        this.hasSecret    = true;
-
-        Iterator<Runnable> iterator = pendingSecretList.iterator();
-        while (iterator.hasNext())
-          workQueue.add(iterator.next());
-
-        workQueue.notifyAll();
-      }
-    }
-  }
-
   private void initializeAddressCanonicalization() {
     CanonicalSessionMigrator.migrateSessions(this);
   }
 
   private void scheduleIntent(int what, Intent intent) {
-    Runnable work = new SendReceiveWorkItem(intent, what);
-
-    synchronized (workQueue) {
-      workQueue.add(work);
-      workQueue.notifyAll();
-    }
+      SendReceiveWorkItem sendReceiveWorkItem = new SendReceiveWorkItem(intent, what);
+      scheduleSecretOptionalWork(sendReceiveWorkItem);
   }
 
-  private void scheduleSecretRequiredIntent(int what, Intent intent) {
-    Runnable work = new SendReceiveWorkItem(intent, what);
-
-    synchronized (workQueue) {
-      if (hasSecret) {
-        workQueue.add(work);
-        workQueue.notifyAll();
-      } else {
-        pendingSecretList.add(work);
-      }
-    }
+    private void scheduleSecretRequiredIntent(int what, Intent intent) {
+        SendReceiveWorkItem work = new SendReceiveWorkItem(intent, what);
+        scheduleSecretRequiredWork(work);
   }
 
-  private class SendReceiveWorkItem implements Runnable {
+  private class SendReceiveWorkItem implements MasterSecretTask {
     private final Intent intent;
     private final int what;
 
@@ -245,16 +161,14 @@ public class SendReceiveService extends Service {
     }
 
     @Override
-    public void run() {
-      MasterSecret masterSecret = SendReceiveService.this.masterSecret;
-
+    public void call(MasterSecret masterSecret) {
       if (masterSecret == null && TextSecurePreferences.isPasswordDisabled(SendReceiveService.this)) {
         masterSecret = getPlaceholderSecret();
       }
 
       switch (what) {
       case RECEIVE_SMS:	         smsReceiver.process(masterSecret, intent);      return;
-      case SEND_SMS:		         smsSender.process(masterSecret, intent);        return;
+      case SEND_SMS:		     smsSender.process(masterSecret, intent);        return;
       case RECEIVE_MMS:          mmsReceiver.process(masterSecret, intent);      return;
       case SEND_MMS:             mmsSender.process(masterSecret, intent);        return;
       case DOWNLOAD_MMS:         mmsDownloader.process(masterSecret, intent);    return;
@@ -263,17 +177,20 @@ public class SendReceiveService extends Service {
       case DOWNLOAD_PUSH:        pushDownloader.process(masterSecret, intent);   return;
       case DOWNLOAD_AVATAR:      avatarDownloader.process(masterSecret, intent); return;
       }
+      return;
     }
 
     private MasterSecret getPlaceholderSecret() {
       try {
         return MasterSecretUtil.getMasterSecret(SendReceiveService.this,
-                                                MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+                MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
       } catch (InvalidPassphraseException e) {
         Log.w("SendReceiveService", e);
         return null;
       }
     }
+
+
   }
 
   public class ToastHandler extends Handler {
@@ -287,70 +204,4 @@ public class SendReceiveService extends Service {
       Toast.makeText(SendReceiveService.this, (String)message.obj, Toast.LENGTH_LONG).show();
     }
   }
-
-  private ServiceConnection serviceConnection = new ServiceConnection() {
-      @Override
-      public void onServiceConnected(ComponentName className, IBinder service) {
-        KeyCachingService keyCachingService  = ((KeyCachingService.KeyCachingBinder)service).getService();
-        MasterSecret masterSecret            = keyCachingService.getMasterSecret();
-
-        initializeWithMasterSecret(masterSecret);
-
-        SendReceiveService.this.unbindService(this);
-      }
-
-      @Override
-      public void onServiceDisconnected(ComponentName name) {}
-    };
-
-  private class NewKeyReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      Log.w("SendReceiveService", "Got a MasterSecret broadcast...");
-      initializeWithMasterSecret((MasterSecret)intent.getParcelableExtra("master_secret"));
-    }
-  }
-
-  /**
-   * This class receives broadcast notifications to clear the MasterSecret.
-   *
-   * We don't want to clear it immediately, since there are potentially jobs
-   * in the work queue which require the master secret.  Instead, we reset a
-   * flag so that new incoming jobs will be evaluated as if no mastersecret is
-   * present.
-   *
-   * Then, we add a job to the end of the queue which actually clears the masterSecret
-   * value.  That way all jobs before this moment will be processed correctly, and all
-   * jobs after this moment will be evaluated as if no mastersecret is present (and potentially
-   * held).
-   *
-   * When we go to actually clear the mastersecret, we ensure that the flag is still false.
-   * This allows a new mastersecret broadcast to come in correctly without us clobbering it.
-   *
-   */
-  private class ClearKeyReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      Log.w("SendReceiveService", "Got a clear mastersecret broadcast...");
-
-      synchronized (workQueue) {
-        SendReceiveService.this.hasSecret = false;
-        workQueue.add(new Runnable() {
-          @Override
-          public void run() {
-            Log.w("SendReceiveService", "Running clear key work item...");
-
-            synchronized (workQueue) {
-              if (!SendReceiveService.this.hasSecret) {
-                Log.w("SendReceiveService", "Actually clearing key...");
-                SendReceiveService.this.masterSecret = null;
-              }
-            }
-          }
-        });
-
-        workQueue.notifyAll();
-      }
-    }
-  };
 }
