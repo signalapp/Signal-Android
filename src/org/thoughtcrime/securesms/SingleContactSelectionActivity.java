@@ -192,6 +192,8 @@ public class SingleContactSelectionActivity extends PassphraseRequiredSherlockFr
 
       @Override
       protected void onPostExecute(Void result) {
+        final SingleContactSelectionListFragment listFragment = (SingleContactSelectionListFragment)getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
+        listFragment.update();
         if (progress != null)
           progress.dismiss();
       }

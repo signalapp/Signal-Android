@@ -89,6 +89,10 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
     }
   }
 
+  public void update() {
+    this.getLoaderManager().restartLoader(0, null, this);
+  }
+
   private void addMultipleNumberContact(ContactData contactData, TextView textView) {
     String[] options = new String[contactData.numbers.size()];
     int i = 0;
