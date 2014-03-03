@@ -607,6 +607,11 @@
     <!-- review_identities -->
     <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don\'t currently have any identity keys in your trust database.</string>
 
+    <!-- review identity activity -->
+    <string name="ViewIdentity__menu_delete_identity">Delete Identity</string>
+    <string name="ViewIdentity__alert_end_session_first">End Session First</string>
+    <string name="ViewIdentity__alert_please_end_your_session_first">Please first end your secure session with this contact from the conversation with this contact.</string>
+
     <!-- verify_identity_activity -->
     <string name="verify_identity_activity__their_identity_they_read">Their identity (they read):</string>
     <string name="verify_identity_activity__your_identity_you_read">Your identity (you read):</string>

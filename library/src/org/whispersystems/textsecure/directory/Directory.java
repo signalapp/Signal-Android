@@ -82,6 +82,16 @@ public class Directory {
     }
   }
 
+  public boolean delete(String e164number) {
+    if (e164number == null || e164number.length() == 0) {
+      return false;
+    }
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    return (db.delete(TABLE_NAME, NUMBER + " = ?", new String[] {e164number}) == 1);
+  }
+
   public boolean isActiveNumber(String e164number) throws NotInDirectoryException {
     if (e164number == null || e164number.length() == 0) {
       return false;

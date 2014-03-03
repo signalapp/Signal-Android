@@ -16,10 +16,24 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.directory.Directory;
+import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 
 /**
  * Activity for displaying an identity key.
@@ -28,8 +42,10 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
  */
 public class ViewIdentityActivity extends KeyScanningActivity {
 
-  private TextView    identityFingerprint;
-  private IdentityKey identityKey;
+  private TextView      identityFingerprint;
+  private IdentityKey   identityKey;
+  private Recipient     recipient;
+  private MasterSecret  masterSecret;
 
   @Override
   public void onCreate(Bundle state) {
@@ -38,6 +54,20 @@ public class ViewIdentityActivity extends KeyScanningActivity {
     setContentView(R.layout.view_identity_activity);
 
     initialize();
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+    menu.clear();
+
+    MenuInflater inflater = this.getSupportMenuInflater();
+
+    if (this.recipient != null) {
+      inflater.inflate(R.menu.review_identity, menu);
+    }
+
+    return true;
   }
 
   protected void initialize() {
@@ -56,11 +86,73 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   private void initializeResources() {
     this.identityKey         = (IdentityKey)getIntent().getParcelableExtra("identity_key");
     this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
-    String title             = getIntent().getStringExtra("title");
+
+    if (getIntent().hasExtra("recipient")) {
+      this.recipient = getIntent().getParcelableExtra("recipient");
+    } else {
+      this.recipient = null;
+    }
+
+    if (getIntent().hasExtra("master_secret")) {
+      this.masterSecret = getIntent().getParcelableExtra("master_secret");
+    } else {
+      this.masterSecret = null;
+    }
+
+    String title = null;
+    if (getIntent().hasExtra("title")) {
+      title = getIntent().getStringExtra("title");
+    } else if (this.recipient != null) {
+      title = recipient.toShortString() +  " " +
+            getString(R.string.ViewIdentityActivity_identity_fingerprint);
+    }
 
     if (title != null) {
       getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
     }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    switch (item.getItemId()) {
+      case R.id.menu_delete_identity:
+        handleDeleteIdentity();
+        break;
+    }
+
+    return false;
+  }
+
+  private void showEndSessionFirstAlert() {
+    new AlertDialog.Builder(this)
+            .setTitle(R.string.ViewIdentity__alert_end_session_first)
+            .setMessage(R.string.ViewIdentity__alert_please_end_your_session_first)
+            .setIcon(R.drawable.ic_dialog_alert_holo_light)
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int which) {  }
+            })
+            .show();
+  }
+
+  private void handleDeleteIdentity() {
+    if (Session.hasSession(this, this.masterSecret, this.recipient)) {
+      showEndSessionFirstAlert();
+      return;
+    }
+
+    Log.i("ViewIdentityAcitivty", "Deleting identity");
+    DatabaseFactory.getIdentityDatabase(this).deleteByRecipient(this.recipient.getRecipientId());
+    try {
+      Log.i("ViewIdentityActivity", "Deleting from directory");
+      String e164number = Util.canonicalizeNumber(this, this.recipient.getNumber());
+      Directory.getInstance(this).delete(this.recipient.getNumber());
+    } catch (InvalidNumberException e) {
+      Log.w("ViewIdentityActivity", "Could not delete from directory");
+      Log.w("ViewIdentityActivity", e);
+    }
+    finish();
   }
 
   @Override
