@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/push_directory__menu_refresh"
+          android:id="@+id/menu_refresh_directory"
+          android:icon="?menu_refresh_directory"
+          android:showAsAction="ifRoom"
+        />
+</menu>
