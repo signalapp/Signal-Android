@@ -54,8 +54,7 @@
                           android:entries="@array/pref_led_blink_pattern_entries"
                           android:entryValues="@array/pref_led_blink_pattern_values" />
 
-        <RingtonePreference android:layout="?android:attr/preferenceLayoutChild"
-                            android:dependency="pref_key_enable_notifications"
+        <RingtonePreference android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_ringtone"
                             android:title="@string/preferences__sound"
                             android:summary="@string/preferences__change_notification_sound"
@@ -63,14 +62,12 @@
                             android:defaultValue="content://settings/system/notification_sound" />
 
         <CheckBoxPreference android:key="pref_key_inthread_notifications"
-            				android:title="@string/preferences__inthread_notifications"
-							android:summary="@string/preferences__play_inthread_notifications"
-							android:layout="?android:attr/preferenceLayoutChild"
-							android:dependency="pref_key_enable_notifications"
-							android:defaultValue="true" />
-
-        <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
+                            android:title="@string/preferences__inthread_notifications"
+                            android:summary="@string/preferences__play_inthread_notifications"
                             android:dependency="pref_key_enable_notifications"
+                            android:defaultValue="true" />
+
+        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_vibrate"
                             android:defaultValue="true"
                             android:title="@string/preferences__vibrate"
@@ -127,9 +124,9 @@
 
   <PreferenceCategory android:title="@string/preferences__display_settings" android:key="pref_display_category">
 
-    <Preference         android:key="pref_choose_identity"
-                          android:title="@string/preferences__choose_identity"
-                           android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
+    <Preference android:key="pref_choose_identity"
+                android:title="@string/preferences__choose_identity"
+                android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
 
   </PreferenceCategory>
 
