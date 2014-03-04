@@ -119,10 +119,9 @@ public class SmsSender {
       Cursor             cursor   = database.getMessage(messageId);
       SmsDatabase.Reader reader   = database.readerFor(cursor);
 
-      database.markAsSent(messageId);
-
-      if (upgraded) database.markAsSecure(messageId);
       if (push)     database.markAsPush(messageId);
+      if (upgraded) database.markAsSecure(messageId);
+      database.markAsSent(messageId);
 
       SmsMessageRecord record = reader.getNext();
 

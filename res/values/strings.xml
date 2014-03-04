@@ -47,7 +47,6 @@
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>
     <string name="ConversationItem_error_sending_message">Error sending message</string>
-    <string name="ConversationItem_sending">Sending...</string>
     <string name="ConversationItem_saving_attachment">Saving Attachment</string>
     <string name="ConversationItem_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
     <string name="ConversationItem_save_to_sd_card">Save to SD Card?</string>
