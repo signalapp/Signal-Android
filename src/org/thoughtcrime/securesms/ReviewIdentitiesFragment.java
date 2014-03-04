@@ -43,6 +43,9 @@ public class ReviewIdentitiesFragment extends SherlockListFragment
     viewIntent.putExtra("identity_key", ((IdentityKeyView)view).getIdentityKey());
     viewIntent.putExtra("title", ((IdentityKeyView)view).getRecipient().toShortString() + " " +
                                  getString(R.string.ViewIdentityActivity_identity_fingerprint));
+    viewIntent.putExtra("master_secret", this.masterSecret);
+    viewIntent.putExtra("recipient", ((IdentityKeyView)view).getRecipient());
+
     startActivity(viewIntent);
   }
 
@@ -81,7 +84,7 @@ public class ReviewIdentitiesFragment extends SherlockListFragment
       IdentityDatabase.Reader reader = DatabaseFactory.getIdentityDatabase(context)
                                                       .readerFor(masterSecret, cursor);
 
-      ((IdentityKeyView)view).set(reader.getCurrent());
+      ((IdentityKeyView)view).set(reader.getCurrent(), masterSecret, context);
     }
 
     @Override

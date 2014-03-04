@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -26,10 +27,12 @@ import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 /**
  * List item view for displaying user identity keys.
@@ -74,7 +77,14 @@ public class IdentityKeyView extends RelativeLayout
     }
   }
 
-  public void set(IdentityDatabase.Identity identity) {
+  private boolean isVerified(MasterSecret masterSecret, Context context) {
+    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+
+    return identityDatabase.isIdentityVerified(masterSecret, this.getRecipient().getRecipientId(),
+            identityKey);
+  }
+
+  public void set(IdentityDatabase.Identity identity, MasterSecret masterSecret, Context context) {
     this.recipients  = identity.getRecipients();
     this.identityKey = identity.getIdentityKey();
 
@@ -82,6 +92,11 @@ public class IdentityKeyView extends RelativeLayout
 
     identityName.setText(recipients.toShortString());
     fingerprint.setText(identity.getIdentityKey().getFingerprint());
+
+    if (this.isVerified(masterSecret, context)) {
+      identityName.setTextColor(Color.rgb(0x09, 0xb5, 0x00));
+      fingerprint.setTextColor(Color.rgb(0x09, 0xb5, 0x00));
+    }
 
     contactBadge.setImageBitmap(recipients.getPrimaryRecipient().getContactPhoto());
     contactBadge.assignContactFromPhone(recipients.getPrimaryRecipient().getNumber(), true);

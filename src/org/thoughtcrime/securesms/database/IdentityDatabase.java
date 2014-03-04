@@ -45,12 +45,16 @@ public class IdentityDatabase extends Database {
   public  static final String RECIPIENT     = "recipient";
   public  static final String IDENTITY_KEY  = "key";
   public  static final String MAC           = "mac";
+  public  static final String VERIFIED      = "verified";
+
+  public  static final String VERIFICATION_TAG = "||verified";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
       " (" + ID + " INTEGER PRIMARY KEY, " +
       RECIPIENT + " INTEGER UNIQUE, " +
       IDENTITY_KEY + " TEXT, " +
-      MAC + " TEXT);";
+      MAC + " TEXT, " +
+      VERIFIED + "TEXT);";
 
   public IdentityDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -110,6 +114,64 @@ public class IdentityDatabase extends Database {
         cursor.close();
       }
     }
+  }
+
+  public boolean isIdentityVerified(MasterSecret masterSecret, long recipientId, IdentityKey identityKey) {
+    SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    MasterCipher masterCipher = new MasterCipher(masterSecret);
+    Cursor cursor             = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, null, RECIPIENT + " = ?",
+              new String[] {recipientId+""}, null, null,null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        String serializedIdentity = Base64.encodeBytes(identityKey.serialize());
+        String verified           = cursor.getString(cursor.getColumnIndexOrThrow(VERIFIED));
+
+        if ((verified == null) || (verified.length() == 0)) {
+          return false;
+        }
+
+        if (!masterCipher.verifyMacFor(recipientId + serializedIdentity + VERIFICATION_TAG, Base64.decode(verified))) {
+          Log.w("IdentityDatabase", "Verified MAC failed");
+          return false;
+        }
+
+        return true;
+      } else {
+        return false;
+      }
+    } catch (IOException e) {
+      Log.w("IdentityDatabase", e);
+      return false;
+    } finally {
+      if (cursor != null) {
+        cursor.close();
+      }
+    }
+  }
+
+  public void setIdentityUnverified(MasterSecret masterSecret, long recipientId, IdentityKey identityKey) {
+    SQLiteDatabase database   = databaseHelper.getWritableDatabase();
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(VERIFIED, "");
+
+    database.update(TABLE_NAME, contentValues, RECIPIENT + " = ?", new String[]{Long.toString(recipientId)});
+  }
+
+  public void setIdentityVerified(MasterSecret masterSecret, long recipientId, IdentityKey identityKey) {
+    SQLiteDatabase database   = databaseHelper.getWritableDatabase();
+    MasterCipher masterCipher = new MasterCipher(masterSecret);
+    String identityKeyString  = Base64.encodeBytes(identityKey.serialize());
+    String macString          = Base64.encodeBytes(masterCipher.getMacFor(recipientId +
+            identityKeyString + VERIFICATION_TAG));
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(VERIFIED, macString);
+
+    database.update(TABLE_NAME, contentValues, RECIPIENT + " = ?", new String[]{Long.toString(recipientId)});
   }
 
   public void saveIdentity(MasterSecret masterSecret, long recipientId, IdentityKey identityKey)
