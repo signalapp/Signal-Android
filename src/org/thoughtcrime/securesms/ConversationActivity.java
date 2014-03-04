@@ -312,7 +312,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_start_secure_session:      handleStartSecureSession();                        return true;
     case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
-    case R.id.menu_verify_recipient:          handleVerifyRecipient();                           return true;
+    case R.id.menu_verify_identity:           handleVerifyIdentity();                            return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
@@ -361,7 +361,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     finish();
   }
 
-  private void handleVerifyRecipient() {
+  private void handleVerifyIdentity() {
     Intent verifyIdentityIntent = new Intent(this, VerifyIdentityActivity.class);
     verifyIdentityIntent.putExtra("recipient", getRecipients().getPrimaryRecipient());
     verifyIdentityIntent.putExtra("master_secret", masterSecret);

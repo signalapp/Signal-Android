@@ -773,7 +773,7 @@
     <!-- conversation_secure_verified -->
     <string name="conversation_secure_verified__menu_security">Security</string>
     <string name="conversation_secure_verified__menu_no_identity">No Identity Available</string>
-    <string name="conversation_secure_verified__menu_verify_recipient">Verify Recipient</string>
+    <string name="conversation_secure_verified__menu_verify_identity">Verify Identity</string>
     <string name="conversation_secure_verified__menu_abort_secure_session">End Secure Session</string>
 
     <!-- conversation -->
