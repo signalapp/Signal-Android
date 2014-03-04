@@ -64,6 +64,22 @@ android {
     }
 }
 
+task fetchSubmodules << {
+    exec {
+        commandLine 'git', 'submodule', 'update', '--init'
+    }
+}
+
+task updateTranslations(dependsOn: fetchSubmodules) << {
+    exec {
+        commandLine 'transifex-client/tx', 'pull', '--all'
+    }
+}
+
+android.applicationVariants.all { variant ->
+    variant.mergeResources.dependsOn updateTranslations
+}
+
 def Properties props = new Properties()
 def propFile = new File('signing.properties')
 
