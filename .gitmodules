@@ -1,0 +1,3 @@
+[submodule "transifex-client"]
+	path = transifex-client
+	url = http://code.transifex.com/transifex-client
