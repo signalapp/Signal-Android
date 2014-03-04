@@ -130,6 +130,13 @@ public class IdentityDatabase extends Database {
     context.getContentResolver().notifyChange(CHANGE_URI, null);
   }
 
+  public void deleteByRecipient(long recipientId) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    database.delete(TABLE_NAME, RECIPIENT + " = ?", new String[] {recipientId+""});
+
+    context.getContentResolver().notifyChange(CHANGE_URI, null);
+  }
+
   public void deleteIdentity(long id) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, ID_WHERE, new String[] {id+""});
