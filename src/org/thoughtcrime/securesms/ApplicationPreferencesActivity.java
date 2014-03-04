@@ -286,9 +286,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private void initializeListSummary(ListPreference pref) {
     pref.setSummary(pref.getEntry());
-    if (pref.getKey().equals(TextSecurePreferences.LED_BLINK_PREF)) {
-      pref.setEnabled(TextSecurePreferences.isLedNotificationEnabled(this));
-    }
   }
 
   private void initializeRingtoneSummary(RingtonePreference pref) {
@@ -543,17 +540,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           break;
         }
       }
-      asList.setSummary(asList.getEntries()[index]);
 
-      if (preference.getKey().equals(TextSecurePreferences.LED_COLOR_PREF)) {
-        if (value.equals("none")) {
-          TextSecurePreferences.setLedNotificationEnabled(ApplicationPreferencesActivity.this, false);
-          findPreference(TextSecurePreferences.LED_BLINK_PREF).setEnabled(false);
-        } else {
-          TextSecurePreferences.setLedNotificationEnabled(ApplicationPreferencesActivity.this, true);
-          findPreference(TextSecurePreferences.LED_BLINK_PREF).setEnabled(true);
-        }
-      }
+      asList.setSummary(asList.getEntries()[index]);
       return true;
     }
   }
