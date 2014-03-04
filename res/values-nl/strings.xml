@@ -76,8 +76,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet u zeker dat u deze groep wil verlaten?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd/Ontvangen:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nMedium: %2$s\nVerzonden: %3$s\nOntvangen:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bevestig Bericht Verwijdering</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Weet u zeker dat u dit bericht permanent wilt verwijderen?</string>
   <!--ConversationListAdapter-->
@@ -327,6 +325,9 @@
   <string name="create_passphrase_activity__repeat">Herhaal:</string>
   <string name="create_passphrase_activity__continue">Doorgaan</string>
   <string name="create_passphrase_activity__generating_secrets">GEHEIMEN AAN HET GENEREREN</string>
+  <string name="create_passphrase_activity__skip">Overslaan</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">Succesvol!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wilt u uw huidige tekstberichtendatabase importeren naar de versleutelde database van TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabase zal niet gewijzigd of aangepast worden op enigerlei wijze.</string>
@@ -367,6 +368,7 @@
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
   <string name="registration_activity__register">Registreren</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registratie zal wat contactinformatie tijdelijk met de server delen.</string>
+  <string name="registration_activity__skip">Overslaan</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mogelijke problemen\nzijn:</string>
   <string name="registration_problems__sms_interceptors">SMS onderscheppers</string>
@@ -504,7 +506,6 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Stel TextSecure in als standaard SMS/MMS-applicatie voor uw systeem.</string>
   <string name="preferences__use_data_channel">Pushberichten</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nVerbeter de privacy en vermijd SMS-kosten door het datakanaal te gebruiken om te communiceren met andere TextSecure gebruikers</string>
-  <string name="preferences__allow_sms_fallback">Sta SMS-fallback toe</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Verstuur en ontvang SMS-berichten wanneer push niet beschikbaar is.</string>
   <string name="preferences__refresh_push_directory">Ververs pushcontacten</string>
   <!--****************************************-->

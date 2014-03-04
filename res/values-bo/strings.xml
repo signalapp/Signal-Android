@@ -48,8 +48,6 @@
   <string name="ConversationActivity_saving_draft">ཟིན་བྲིས་ཉར་ཚགས་བྱེད་བཞིན་ཡོད།</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">འཕྲིན་ཐུང་གི་ཞིབ་ཆ།</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">གཏོང་མཁན།:%1$s  དབོར་བ།:%2$s བཏང་ཚར། འབྱོར།:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">གཏོང་མཁན: %1$s⏎ སྐྱེལ་འདྲེན: %2$s⏎ བཏང་ཚར: %3$s⏎ འབྱོར་ཚར:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">འཕྲིན་ཐུང་གསུབ་པ་ངེས་བརྟན་བཟོས། </string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
   <!--ConversationListAdapter-->
@@ -192,6 +190,9 @@
   <string name="create_passphrase_activity__repeat">བསྐྱར་དུ་སྤེལ། :</string>
   <string name="create_passphrase_activity__continue">མུ་མཐུད། </string>
   <string name="create_passphrase_activity__generating_secrets">གསང་བ་སྐྱེད་སྒྲུབ་བྱོས། </string>
+  <string name="create_passphrase_activity__skip">བསྐྱུར། </string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">ལེགས་འགྲུབ། </string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ཁྱེད་ཀྱིས་ད་ཡོད་འཕྲིན་ཐུང་ཡི་གེ་དེ་གཡག་འཕྲིན་གསང་སྡོམ་མཛོད་ཀྱི་ཁོངས་སུ་བཅུག་འདོད་འདུག་གམ། </string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">གཏན་འཇགས་མཛོད་ཀྱི་མ་ལག་དེར་ཕྱོགས་གང་ཅིའི་ཐད་ནས་འགྱུར་བ་གཏོང་ཐུབ་གི་མ་རེད། </string>
@@ -210,6 +211,7 @@
   <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (གདམ་ཁ་ཅན):</string>
   <!--receive_key_activity-->
   <!--registration_activity-->
+  <string name="registration_activity__skip">བསྐྱུར། </string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->

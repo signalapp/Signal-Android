@@ -18,10 +18,16 @@
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Cancelando registro...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Cancelando registro para comunicación basada en datos</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">¿Deshabilitar mensajes activos?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nEsto deshabilitará los mensajes activos (\'push\') desregistrándole del servidor \nNecesitará volver a registrar su número de teléfono para usar los mensajes activos de nuevo en el futuro.\n    </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Error conectando al servidor!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">No está registrado con el servicio de mensajería activa...,</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Actualizando directorio</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Actualizando directorio de mensajería activa...</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS activados</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS desactivados</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pulse para que TextSecure sea su aplicación de SMS predeterminada</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografía</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -76,8 +82,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">¿Está seguro de que quiere dejar este grupo?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Remitente: %1$s\nTransporte: %2$s\nEnviado/Recibido:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Emisor: %1$s⏎ Transporte: %2$s⏎ Enviado: %3$s⏎ Recibido:%4$s\n</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Transporte: %1$s\nEnviado/Recibido: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Emisor: %1$s\nTransporte: %2$s\nEnviado: %3$s\nRecibido:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirmar borrado del mensaje</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">¿Está seguro que desea borrar permanentemente este mensaje?</string>
   <!--ConversationListAdapter-->
@@ -198,6 +204,8 @@
   <string name="RegistrationProgressActivity_too_many_requests">¡Demasiadas solicitudes!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Usted ya ha solicitado recientemente una llamada de voz. Puede pedir otra en 20 minutos.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Verificando código de voz...</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Confilicto al registrarse</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número ya está registrado en un servidor TextSecure diferente (¿CyanogenMod?). Debe desregistrarse allí antes de registrarse aquí.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Proceso de registro completado</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">El proceso de registro de TextSecure ha finalizado con éxito.</string>
@@ -239,6 +247,7 @@
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">¡La clave escaneada coincide!</string>
   <string name="ViewIdentityActivity_verified_exclamation">¡Verificado!</string>
   <string name="ViewIdentityActivity_identity_fingerprint">Huella de Identidad</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Mi huella algorítmica de identificación</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la petición existente?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Ya ha enviado una petición de inicio de sesión a este destinatario, ¿está seguro de que quiere enviar otra? Esto invalidará la primera petición. </string>
@@ -327,6 +336,19 @@
   <string name="create_passphrase_activity__repeat">Repetir:</string>
   <string name="create_passphrase_activity__continue">Continuar</string>
   <string name="create_passphrase_activity__generating_secrets">GENERANDO SECRETOS</string>
+  <string name="create_passphrase_activity__skip">Saltar</string>
+  <string name="create_passphrase_activity__create">Crear</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__confirmation">Este registro de actividades (\'log\') será publicado en línea para que los contribuidores de TextSecure lo vean. Tenga la libertad de examinar o editar los registros de actividades antes de pulsar enviar.</string>
+  <string name="log_submit_activity__button_cancel">No enviar</string>
+  <string name="log_submit_activity__button_ok">Enviar</string>
+  <string name="log_submit_activity__log_fetch_failed">No pudieron tomarse los registros de actividad (logs) de su dispositivo. Aún puede usar ADB (Android debug bridge) para obtener los registros de depuración en su lugar.</string>
+  <string name="log_submit_activity__log_submit_success_title">¡Completado!</string>
+  <string name="log_submit_activity__log_got_it">Lo tengo</string>
+  <string name="log_submit_activity__your_pastebin_url">Por favor copie esta URL y añádala a su informe (mantenga pulsado para llevarla al portapapeles):\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__copied_to_clipboard">Copiado al portapapeles</string>
+  <string name="log_submit_activity__loading_logcat">Cargando registro...</string>
+  <string name="log_submit_activity__thanks">¡Gracias por su ayuda!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">¿Te gustaría importar los mensajes de texto existentes en la base de datos cifrada de TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de datos de sistema por defecto no será modificada o alterada de ningún modo.</string>
@@ -367,6 +389,7 @@
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
   <string name="registration_activity__register">Registro</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">El registro transmitirá temporalmente cierta información de contacto al servidor.</string>
+  <string name="registration_activity__skip">Saltar</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Algunos posibles problemas\nincluyen:\n</string>
   <string name="registration_problems__sms_interceptors">Interceptadores de SMS.</string>
@@ -382,7 +405,7 @@
   <string name="registration_progress_activity__call_me">Llamarme</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>
   <string name="registration_progress_activity__connectivity_error">Fallo de conectividad.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\n        TextSecure no pudo conectar al servicio push (de actualización en vivo).\n    </string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\n        TextSecure no se pudo conectar al servicio push (de actualización en vivo).\n    </string>
   <string name="registration_progress_activity__some_possible_problems_include">Algunos problemas\n        posibles incluyen:\n    </string>
   <string name="registration_progress_activity__no_network_connectivity">Sin conectividad\n        a la red.\n    </string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Su\n        dispositivo precisa conectividad a la red para usar esta característica de TextSecure. Asegúrese\n        de que está conectado a 3G o wifi.\n    </string>
@@ -424,6 +447,7 @@
   <string name="AndroidManifest__verify_identity">Verificar identidad</string>
   <string name="AndroidManifest__manage_identity_keys">Gestionar claves de identidad</string>
   <string name="AndroidManifest__complete_key_exchange">Completar el intercambio de claves</string>
+  <string name="AndroidManifest__log_submit">Enviar registros de depuración</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__my_identity_key">Mi clave de identidad</string>
@@ -446,7 +470,9 @@
   <string name="preferences__complete_key_exchanges">Completar intercambio de claves</string>
   <string name="preferences__disable_passphrase">Desactivar la frase de contraseña</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Desactivar el cifrado local de los mensajes y claves</string>
+  <string name="preferences__screen_security">Seguridad de la pantalla</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automáticamente los intercambios de clave para nuevas sesiones o para sesiones existentes con la misma clave de identidad</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Deshabilitar seguridad de la pantalla para permitir capturas de pantalla</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Olvidar la frase de contraseña de la memoria después de un intervalo de tiempo</string>
   <string name="preferences__timeout_passphrase">Expirar la frase de contraseña</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar la expiración de la frase de contraseña</string>
@@ -460,6 +486,10 @@
   <string name="preferences__display_message_notifications_in_status_bar">Desplegar notificaciones de mensaje en la barra de estado</string>
   <string name="preferences__led_color">Color del LED</string>
   <string name="preferences__pref_led_blink_title">Patrón de parpadeo del LED</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Configure un patrón personalizado de parpadeo de LED</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Encendido durante:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Apagado durante:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">¡Se ha establecido el patrón de parpadeo personalizado de LED!</string>
   <string name="preferences__sound">Sonido</string>
   <string name="preferences__change_notification_sound">Cambiar sonido de notificación</string>
   <string name="preferences__inthread_notifications">Notificaciones en-el-hilo</string>
@@ -474,6 +504,7 @@
   <string name="preferences__orange">Naranja</string>
   <string name="preferences__cyan">Turquesa</string>
   <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Blanco</string>
   <string name="preferences__fast">Rápido</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Despacio</string>
@@ -504,9 +535,11 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Hace de TextSecure la aplicación SMS/MMS predeterminada para su sistema.</string>
   <string name="preferences__use_data_channel">Mensajes activos (\'push\')</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nIncremente la privacidad y evite tarifas SMS al usar el canal de datos para la comunicación con otros usuarios de TextSecure\n</string>
-  <string name="preferences__allow_sms_fallback">Permitir recurrir al SMS</string>
+  <string name="preferences__allow_sms_fallback">Recurrir al SMS en caso de fallo</string>
+  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure es actualmente su aplicación SMS por defecto. Por favor configure primero otra aplicación SMS por defecto antes de cambiar esta preferencia.</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Envía y recibe mensajes SMS cuando la actualización activa (\'push\') no está disponible</string>
   <string name="preferences__refresh_push_directory">Refrescar directorio de mensajería activa</string>
+  <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

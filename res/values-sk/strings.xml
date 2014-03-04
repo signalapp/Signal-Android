@@ -53,8 +53,6 @@
   <string name="ConversationActivity_calls_not_supported">Hovory nie sú podporované</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Odosielateľ: %1$s\nTransport: %2$s\nOdoslané/Prijaté:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nOdoslané: %3$s\nPrijaté:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrď zmazanie správy</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste si istí že chcete úplne zmazať túto správu?</string>
   <!--ConversationListAdapter-->
@@ -102,7 +100,9 @@
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nenašiel som scannovaný kľúč!</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba pri ukladaní MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba spojenia s poskytovateľom MMS...</string>
   <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimediálna správa MMS</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
@@ -220,6 +220,9 @@
   <string name="create_passphrase_activity__passphrase">Heslo:</string>
   <string name="create_passphrase_activity__repeat">Zopakujte:</string>
   <string name="create_passphrase_activity__continue">Pokračovať</string>
+  <string name="create_passphrase_activity__skip">Preskoč</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">Úspech!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať Vaše existujúce textové správy do kryptovanej databázy TextSecure? </string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Predvolená systémová databáza nebude modifikovaná alebo nahradenáv žiadnom prípade.</string>
@@ -246,6 +249,7 @@
   <!--prompt_mms_activity-->
   <!--receive_key_activity-->
   <!--registration_activity-->
+  <string name="registration_activity__skip">Preskoč</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->

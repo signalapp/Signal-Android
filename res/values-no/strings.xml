@@ -18,10 +18,16 @@
   <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Avregistrerering av data som bærer av meldinger</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Deaktiver push meldinger?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nDette vil deaktivere push meldinger ved å avregistrere deg fra tjenesten.\nDu må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte push meldinger i fremtiden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til meldingstjener!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Du er ikke registrert som bruker av push tjenesten...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Oppdaterer katalog</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Oppdaterer push katalogen...</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktivert</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Klikk for å endre standard SMS applikasjon</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktivert</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Klikk for å la TextSecure være din standard SMS applikasjon</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -76,8 +82,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du ønsker å forlate gruppen?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s⏎ Transport: %2$s⏎ Sendt/Mottatt:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsender: %1$s⏎ Transport: %2$s⏎ Sendt: %3$s⏎ Mottatt:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsender: %1$s\nTransport: %2$s\nSendt: %3$s\nMottatt:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bekreft sletting av melding</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker å slette denne meldingen?</string>
   <!--ConversationListAdapter-->
@@ -198,6 +204,8 @@
   <string name="RegistrationProgressActivity_too_many_requests">For mange forespørsler!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har allerede forespurt et voice anrop. Du kan be om et til om 20 minutter.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Verifiserer voice kode...</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Registreringskonflikt</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dette nummeret er allerede registrert hos en annen TextSecure tjeneste (CyanogenMod?). Du må først avregistrere deg der før du kan registrere her.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering fullført</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure registreringen er fullført.</string>
@@ -239,6 +247,7 @@
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøkkelen stemmer overens!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Bekreftet!</string>
   <string name="ViewIdentityActivity_identity_fingerprint">Identitetens fingeravtrykk</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Mitt ID-fingeravtrykk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har allerede sendt en forespørsel om å initiere en sesjon til denne mottakeren. Er du sikker på at du vil sende en til? Dette vil ugyldiggjøre tidligere forespørsel.</string>
@@ -327,6 +336,19 @@
   <string name="create_passphrase_activity__repeat">Repeter:</string>
   <string name="create_passphrase_activity__continue">Gå videre</string>
   <string name="create_passphrase_activity__generating_secrets">GENERER NØKLER</string>
+  <string name="create_passphrase_activity__skip">Hopp over</string>
+  <string name="create_passphrase_activity__create">Opprett</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__confirmation">Denne loggen vil bli lagt ut offentlig på nettet slik at TextSecure bidragsytere kan lese den. Om du ønsker, undersøk eller rediger loggene før du trykker send.</string>
+  <string name="log_submit_activity__button_cancel">Ikke send</string>
+  <string name="log_submit_activity__button_ok">Send</string>
+  <string name="log_submit_activity__log_fetch_failed">Kunne ikke hente loggene fra din enhet. Du kan fremdeles benytte ADB for å hente debug logger.</string>
+  <string name="log_submit_activity__log_submit_success_title">Suksess!</string>
+  <string name="log_submit_activity__log_got_it">Ok</string>
+  <string name="log_submit_activity__your_pastebin_url">Vær vennlig å kopiere denne URL\'en og legg den til saken din (trykk og hold for å legge den til utklippstavle):\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__copied_to_clipboard">Kopiert til utklippstavle</string>
+  <string name="log_submit_activity__loading_logcat">Laster logcat...</string>
+  <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du å importere dine eksisterende meldinger til TextSecures krypterte database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabasen vil ikke på noen måte bli endret.</string>
@@ -367,6 +389,7 @@
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrer</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registreringsprosessen vil sende noe midlertidig kontaktinformasjon til serveren.</string>
+  <string name="registration_activity__skip">Hopp over</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_problems__sms_interceptors">SMS blokkerere.</string>
@@ -424,6 +447,7 @@
   <string name="AndroidManifest__verify_identity">Bekreft identitet</string>
   <string name="AndroidManifest__manage_identity_keys">Administrer ID-nøkler</string>
   <string name="AndroidManifest__complete_key_exchange">Fullfør nøkkelutveksling</string>
+  <string name="AndroidManifest__log_submit">Send debug logger</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / eksporter</string>
   <string name="arrays__my_identity_key">Min ID-nøkkel</string>
@@ -441,17 +465,19 @@
   <string name="preferences__display_settings">Innstillinger for visning</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg din kontakt fra kontaktlisten.</string>
-  <string name="preferences__change_passphrase">Endre passord</string>
-  <string name="preferences__change_my_passphrase">Endre mitt passord</string>
+  <string name="preferences__change_passphrase">Passordbytte</string>
+  <string name="preferences__change_my_passphrase">Velg et nytt passord</string>
   <string name="preferences__complete_key_exchanges">Fullfør nøkkelutvekslinger</string>
   <string name="preferences__disable_passphrase">Deaktiver passord</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Deaktiver lokal kryptering av meldinger og nøkler</string>
+  <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisk fullføre nøkkelutvekslinger for nye sesjoner eller sesjoner med samme ID-nøkkel</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Deaktiver skjermsikkerhet for å tillate skjermbilder</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern passord fra minnet etter et gitt intervall</string>
   <string name="preferences__timeout_passphrase">Passordtimeout</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Velg passord timeout</string>
   <string name="preferences__pref_timeout_interval_title">Timeoutintervall</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hvor lang tid det skal gå før passordet slettes fra minnet</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Tiden det skal gå før passordet slettes fra minnet på enheten</string>
   <string name="preferences__identity_key_settings">ID-nøkler</string>
   <string name="preferences__view_my_identity_key">Vis min ID-nøkkel</string>
   <string name="preferences__manage_identity_keys">Administrer ID-nøkler</string>
@@ -460,12 +486,16 @@
   <string name="preferences__display_message_notifications_in_status_bar">Vis varsel om meldinger i status feltet</string>
   <string name="preferences__led_color">LED farge</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Angi tilpasset LED blinkemønster</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">På for:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Av for:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Tilpasset LED blinkemønster satt!</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__change_notification_sound">Endre lyd på meldingsvarsling</string>
   <string name="preferences__inthread_notifications">Varsling i aktiv tråd</string>
   <string name="preferences__play_inthread_notifications">Spill av varslingslyd ved visning av en aktiv samtaletråd. </string>
-  <string name="preferences__vibrate">Vibrasjon</string>
-  <string name="preferences__also_vibrate_when_notified">Også vibrere ved varsling</string>
+  <string name="preferences__vibrate">Vibrere</string>
+  <string name="preferences__also_vibrate_when_notified">Vibrer ved varsling</string>
   <string name="preferences__minutes">minutter</string>
   <string name="preferences__hours">timer</string>
   <string name="preferences__green">Grønn</string>
@@ -474,6 +504,7 @@
   <string name="preferences__orange">Orange</string>
   <string name="preferences__cyan">Turkis</string>
   <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Hvit</string>
   <string name="preferences__fast">Hurtig</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Sakte</string>
@@ -488,12 +519,12 @@
   <string name="preferences__mms_proxy_port_optional">MMS proxy port (valgfritt)</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapport for SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om en leveringsrapport for hver SMS-melding du sender</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Slett eldre meldinger automatisk når en samtale tråd overskrider en spesifisert lengde</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Slett eldre meldinger automatisk når en samtaletråd overskrider en spesifisert lengde</string>
   <string name="preferences__delete_old_messages">Slett gamle meldinger</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Grense på samtalelengde</string>
   <string name="preferences__trim_all_threads_now">Trimme alle samtaletråder nå</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skanne gjennom alle samtaletrådene og håndheve grensen på samtalelengde </string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Gjennomgå alle samtaletrådene og håndhev grensen på samtalelengde </string>
   <string name="preferences__light_theme">Lyst tema</string>
   <string name="preferences__dark_theme">Mørkt tema</string>
   <string name="preferences__appearance">Utseende</string>
@@ -504,9 +535,11 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">La TextSecure være enhetens standard SMS/MMS applikasjon.</string>
   <string name="preferences__use_data_channel">Push meldinger</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nØk personvernet og unngå SMS kostnader ved å benytte data kanalen når du kommuniserer med andre TextSecure brukere.</string>
-  <string name="preferences__allow_sms_fallback">Tillat SMS fallback</string>
+  <string name="preferences__allow_sms_fallback">SMS fallback</string>
+  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure er for tiden din standard SMS applikasjon. Vær vennlig og sett en annen default SMS applikasjon først for å endre denne preferansen.</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send og motta SMS meldinger når push tjenesten ikke er tilgjengelig</string>
   <string name="preferences__refresh_push_directory">Oppdater push katalog</string>
+  <string name="preferences__submit_debug_log">Send debug logg</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

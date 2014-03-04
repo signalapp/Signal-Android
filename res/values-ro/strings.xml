@@ -76,8 +76,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteti sigur ca doriti sa parasiti acest grup?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Expeditor: %1$s⏎\nTransport: %2$s⏎\nTrimis/Primit:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Expeditor: %1$s\nTransport: %2$s\nTrimis: %3$s\nPrimit:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirma stergere mesaj</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Esti sigur ca doresti sa stergi permanent acest mesaj?</string>
   <!--ConversationListAdapter-->
@@ -327,6 +325,9 @@
   <string name="create_passphrase_activity__repeat">REPETA:</string>
   <string name="create_passphrase_activity__continue">Continua</string>
   <string name="create_passphrase_activity__generating_secrets">SE GENEREAZA CHEILE SECRETE</string>
+  <string name="create_passphrase_activity__skip">Treci peste</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">Succes!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doresti sa importi mesajele text existente in baza de date incriptata a lui TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza de date a sistemului nu va fi modificata in nici un fel.</string>
@@ -367,6 +368,7 @@
   <string name="registration_activity__phone_number">NUMARUL DE TELEFON</string>
   <string name="registration_activity__register">Inregistrare</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Operatiunea de inregistrare va transmite unele informatii de contact catre serverul temporar.</string>
+  <string name="registration_activity__skip">Treci peste</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Unele probleme posibile\nsunt:</string>
   <string name="registration_problems__sms_interceptors">Interceptori SMS.</string>
@@ -504,7 +506,6 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Alege TextSecure ca aplicație SMS/MMS implicită pentru sistemul tău.</string>
   <string name="preferences__use_data_channel">Impingere mesaje</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nSporeste protectia intimitatii si evita costurile asociate cu SMS-urile folosind comunicarea prin canal de date cu alti utilizatori de TextSecure.</string>
-  <string name="preferences__allow_sms_fallback">Permiteti revenirea la SMS ca solutie de rezerva </string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Trimite si primeste mesaje SMS atunci cand serviciul push nu este disponibil</string>
   <string name="preferences__refresh_push_directory">Reimprospatare director de tip \"push\"...</string>
   <!--****************************************-->

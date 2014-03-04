@@ -1,0 +1,499 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">TextSecure</string>
+  <string name="yes">Evet</string>
+  <string name="no">Hayır</string>
+  <string name="delete">Sil</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Anahtarları yönetmeden önce parola girmiş olmanız gerekiyor...</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hala bir parola belirlemişsiniz!</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">Konuşma başına mesaj</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Tüm eski mesajlar silinsin mi?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tüm konuşmaları anında %s konuşmaya indirmek istediğinizden emin misiniz?</string>
+  <string name="ApplicationPreferencesActivity_delete">Sil</string>
+  <string name="ApplicationPreferencesActivity_my">Benim</string>
+  <string name="ApplicationPreferencesActivity_disable">Devredışı</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Sunucu bağlantı hatası!</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Dizin güncelleniyor</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Varsayılan SMS uygulamanızı değiştirmek için dokunun</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Devredışı</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">TextSecure\'u varsayılan SMS uygulamanız yapmak için dokunun</string>
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Resim</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Görüntü</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Ses</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">Mesaj boyutu: %d KB</string>
+  <string name="ConversationItem_expires_s">Ömrü: %s</string>
+  <string name="ConversationItem_error_sending_message">Mesaj gönderilirken hata</string>
+  <string name="ConversationItem_sending">Gönderiliyor...</string>
+  <string name="ConversationItem_saving_attachment">Ek kaydediliyor</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Ek SD karta kaydediliyor...</string>
+  <string name="ConversationItem_save_to_sd_card">SD karta kaydet?</string>
+  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Ek SD karta kaydedilirken hata!</string>
+  <string name="ConversationItem_success_exclamation">Başarılı!</string>
+  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">SD karta yazım başarısız!</string>
+  <string name="ConversationItem_view_secure_media_question">Güvenli içeriği görüntüle?</string>
+  <string name="ConversationItem_received_and_processed_key_exchange_message">Anahtar takas mesajı alındı ve işlendi.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Hata, bozuk anahtar takas mesajı alındı.</string>
+  <string name="ConversationItem_group_action_left">%1$s gruptan ayrıldı.</string>
+  <string name="ConversationItem_group_action_joined">%1$s gruba katıldı.</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">Güvenli oturum başlat?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">%s ile güvenli oturum başlat?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Güvenli Oturumu Bitirme Onayı</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Bu güvenli oturumu sonlandırmak istediğinizden emin misiniz?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Başlık Silme Onayı</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Bu konuşmayı kalıcı olarak silmek istediğinizden emin misiniz?</string>
+  <string name="ConversationActivity_add_attachment">Ek ekle</string>
+  <string name="ConversationActivity_compose_message">Mesaj Yaz</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ekiniz gönderilirken bir hata oluştu.</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Seçilen video mesaj boyutu sınırlamalarını aşıyor.</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Seçilen ses mesaj boyutu sınırlamalarını aşıyor.</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Alıcı geçerli bir SMS veya e-posta adresi değil!</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">Mesaj boş!</string>
+  <string name="ConversationActivity_forward_message_prefix">FWD</string>
+  <string name="ConversationActivity_group_conversation_recipients">Grup Sohbeti Katılımcıları</string>
+  <string name="ConversationActivity_group_conversation">Grup Sohbeti</string>
+  <string name="ConversationActivity_unnamed_group">İsimsiz Grup</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d üye</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 üye</string>
+  <string name="ConversationActivity_saving_draft">Taslak kaydediliyor...</string>
+  <string name="ConversationActivity_invalid_recipient">Geçersiz alıcı!</string>
+  <string name="ConversationActivity_leave_group">Gruptan ayrıl?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bu gruptan ayrılmak istediğinize emin misiniz?</string>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">Mesaj detayları</string>
+  <string name="ConversationFragment_confirm_message_delete">Mesaj Silinmesini Onayla</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Bu mesajın geri dönülemez şekilde silinmesini istediğinizden emin misiniz?</string>
+  <!--ConversationListAdapter-->
+  <string name="ConversationListAdapter_key_exchange_message">Anahtar takas mesajı...</string>
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_delete_threads_question">Başlıkları sil?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Seçili bütün konuşmaları silmek istediğinizden emin misiniz?</string>
+  <string name="ConversationListFragment_deleting">Siliniyor</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Seçilmiş başlıklar siliniyor...</string>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Anahtar takas mesajı...</string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">SD karta kaydet?</string>
+  <string name="ExportFragment_export">Dışarı Aktar</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">SD karta şifresiz metin olarak kaydet?</string>
+  <string name="ExportFragment_cancel">İptal</string>
+  <string name="ExportFragment_exporting">Dışarı aktarılıyor</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">SD karta şifresiz metin olarak kaydediliyor...\n    </string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Hata, unable to write to SD\n        card!\n    </string>
+  <string name="ExportFragment_success">Başarılı!</string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Yeni Grup</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Grubu güncelle</string>
+  <string name="GroupCreateActivity_group_name_hint">Grup İsmi</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Yeni MMS Grubu</string>
+  <string name="GroupCreateActivity_contacts_no_members">Grubunuzda en az bir kişi olmalıdır.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Grup Resmi</string>
+  <string name="GroupCreateActivity_menu_create_title">Grup Yarat</string>
+  <string name="GroupCreateActivity_creating_group">%1$s yaratılıyor…</string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Sistem SMS veritabanı içe aktarılsın mı?</string>
+  <string name="ImportFragment_import">İçe Aktar</string>
+  <string name="ImportFragment_cancel">İptal</string>
+  <string name="ImportFragment_restore_encrypted_backup">Şifrelenmiş yedek yeniden yüklensin mi?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nBir şifrelenmiş yedeğin yeniden yüklenmesi, mevcut tüm anahtarlarınızın, tercihlerinizin ve\nmesajlarınızın tamamen yedekteki ile değiştirilmesi ile sonuçlanır. Mevcut TextSecure\nkurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolur. </string>
+  <string name="ImportFragment_restore">Yeniden yükle</string>
+  <string name="ImportFragment_import_plaintext_backup">Şifresiz Metin Yedeği Dışa Aktarılsın mı?</string>
+  <string name="ImportFragment_importing">İçe aktarma sürüyor</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Şifresiz metin yedeğinden içe aktar</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Şifresiz metin yedeği bulunamadı!</string>
+  <string name="ImportFragment_error_importing_backup">Yedek içe aktarımında hata!</string>
+  <string name="ImportFragment_import_complete">İçe aktarma tamamlandı!</string>
+  <string name="ImportFragment_restoring">Yeniden yükleniyor</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Şifrelenmiş yedek yeniden yükleniyor...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Şifrelenmiş yedek bulunamadı!</string>
+  <string name="ImportFragment_restore_complete">Yeniden yükleme tamamlandı!</string>
+  <!--KeyScanningActivity-->
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Taralı anahtar bulunamadı!</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_storing_mms">MMS depolama hatası!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">MMS sağlayıcısına bağlanma hatası...</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimedya Mesaj</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Şifreler eşleşmiyor!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Yanlış eski şifre!</string>
+  <!--PassphraseCreateActivity-->
+  <string name="PassphraseCreateActivity_passphrases_dont_match">Parolalar uyuşmuyor.</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Bir şifre belirlemelisiniz</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Yanlış şifre!</string>
+  <!--PromptMmsActivity-->
+  <!--ReceiveKeyActivity-->
+  <string name="ReceiveKeyActivity_processing">İşleniyor</string>
+  <string name="ReceiveKeyActivity_processing_key_exchange">Anahtar takası işleniyor...</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_textsecure">TextSecure ile Bağlan</string>
+  <string name="RegistrationActivity_select_your_country">Ülkenizi Seçin</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu\n        girmelisiniz\n    </string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Telefon numaranızı\n        girmelisiniz\n    </string>
+  <string name="RegistrationActivity_invalid_number">Geçersiz numara</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Girdiğiniz numara\n        (%s) geçersiz.\n    </string>
+  <string name="RegistrationActivity_unsupported">Desteklenmiyor</string>
+  <string name="RegistrationActivity_continue">Devam Et</string>
+  <string name="RegistrationActivity_edit">Düzenle</string>
+  <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">Muhtemel Sorunlar</string>
+  <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">Numara doğrulanıyor</string>
+  <string name="RegistrationProgressActivity_edit_s">Düzenle %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">Kayıt tamamlandı!</string>
+  <string name="RegistrationProgressActivity_possible_problems">Muhtemel sorunlar.</string>
+  <string name="RegistrationProgressActivity_connecting">Bağlanılıyor</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Doğrulama için bağlanılıyor...</string>
+  <string name="RegistrationProgressActivity_network_error">Ağ Hatası!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Bağlanılamadı. Lütfen ağ bağlantınızı kontrol edin ve tekrar deneyin.</string>
+  <string name="RegistrationProgressActivity_verification_failed">Doğrulama Başarısız!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Gönderdiğiniz doğrulama kodu yanlış. Lütfen tekrar deneyin.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">Çok fazla deneme</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Çok fazla geçersiz doğrulama kodu girdiniz. Lütfen tekrar denemeden önce bir dakika bekleyin.</string>
+  <string name="RegistrationProgressActivity_requesting_call">Çağrı İsteniyor</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Doğrulama çağrısı isteniyor...</string>
+  <string name="RegistrationProgressActivity_server_error">Sunucu Hatası</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Sunucu hatası. Lütfen tekrar deneyin.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Çok Fazla İstek!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Zaten bir çağrı istediniz. Tekrar isteyebilmek için 20 dakika beklemelisiniz.</string>
+  <string name="RegistrationProgressActivity_verifying_voice_code">Ses kodu doğrulanıyor...</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Kayıt çakışması</string>
+  <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">Kayıt Tamamlandı</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure kaydı başarıyla tamamlandı.</string>
+  <string name="RegistrationService_registration_error">Kayıt Hatas</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure kaydı bir sorunla karşılaştı.</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_secure_session_ended">Güvenli oturum sona erdi.</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Gruptan ayrıldı...</string>
+  <string name="TheadRecord_secure_session_ended">Güvenli oturum sona erdi.</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Kimlik anahtarınız yok.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Alıcının kimlik anahtarı yok.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Alıcının kimlik anahtarı yok!</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Karşılaştırmak için anahtarını tarayın</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">Anahtarımı tarat</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UYARI, taranan anahtar EŞLEŞMİYOR! Parmak izi metnini dikkatlice inceleyin.</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">Doğrulanmadı!</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Onun anahtarı doğru. Anahtarınızı onunla da doğrulamanız gerekiyor.</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">Doğrulandı!</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Kimlik anahtarınız yok!</string>
+  <!--VerifyKeysActivity-->
+  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Parmak izimi tarat</string>
+  <string name="VerifyKeysActivity_scan_their_fingerprint">Onun parmak izini tara</string>
+  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">UYARI, taranan anahtar EŞLEŞMİYOR! Parmak izi metnini dikkatlice inceleyin.</string>
+  <string name="VerifyKeysActivity_not_verified_exclamation">Doğrulanmadı!</string>
+  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Onun anahtarı doğru. Parmak izinizi onun da taraması gerekiyor.</string>
+  <string name="VerifyKeysActivity_verified_exclamation">Doğrulandı!</string>
+  <!--ViewIdentityActivity-->
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Kimlik anahtarınız yok.</string>
+  <string name="ViewIdentityActivity_scan_to_compare">Karşılaştırmak için tarayın</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">Karşılaştırmak için taratın</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">UYARI, taranan anahtar EŞLEŞMİYOR!</string>
+  <string name="ViewIdentityActivity_not_verified_exclamation">Doğrulanmadı!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Taranan anahtar eşleşiyor!</string>
+  <string name="ViewIdentityActivity_verified_exclamation">Doğrulandı!</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">Kimlik Parmakizi</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Varolan isteğe rağmen başlat?</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Bu alıcıya zaten bir oturum açma isteği gönderdiniz, bir tane daha göndermek istediğinize emin misiniz? Bu ilk isteği geçersiz kılacaktır.</string>
+  <string name="KeyExchangeInitiator_send">Gönder</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Bozuk şifrelenmiş mesaj...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Şifre çözülüyor, bekleyin...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj var olmayan oturum için şifrelendi...</string>
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">MMS sunucusuna bağlanılıyor...</string>
+  <string name="MmsDatabase_downloading_mms">MMS indiriliyor...</string>
+  <string name="MmsDatabase_mms_download_failed">MMS İndirme başarısız!</string>
+  <string name="MmsDatabase_downloading">İndiriliyor...</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS şifresi çözülüyor, bekleyin...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Bozuk şifrelenmiş MMS mesajı...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS mesajı var olmayan oturum için şifrelendi...</string>
+  <!--MmsSender-->
+  <string name="MmsSender_currently_unable_to_send_your_mms_message">MMS mesajınız şu anda gönderilemiyor.</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">İçe aktarma sürüyor</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Mesajlar İçe Aktarılıyor</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">Açmak için dokunun.</string>
+  <string name="KeyCachingService_lock">Parola ile kilitle</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages">%d yeni mesaj</string>
+  <string name="MessageNotifier_most_recent_from_s">En yeni mesaj: %s</string>
+  <string name="MessageNotifier_encrypted_message">Şifrelenmiş mesaj...</string>
+  <string name="MessageNotifier_no_subject">(Konusuz)</string>
+  <string name="MessageNotifier_message_delivery_failed">Mesaj iletimi başarısız.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Mesaj iletimi başarısız oldu.</string>
+  <string name="MessageNotifier_error_delivering_message">Hata mesaj iletimi</string>
+  <string name="MessageNotifier_mark_all_as_read">Tümünü okundu işaretle</string>
+  <string name="MessageNotifier_mark_as_read">Okundu işaretle</string>
+  <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_cancel">İptal</string>
+  <string name="ViewLocalIdentityActivity_continue">Devam Et</string>
+  <!--SmsReceiver-->
+  <!--QuickResponseService-->
+  <!--auto_initiate_activity-->
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">TextSecure şifreli oturumları destekleyen birinden bir mesaj aldınız. Güvenli bir oturum açmak ister misiniz?</string>
+  <string name="auto_initiate_activity__initiate_exchange">Takas Başlat</string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">ESKİ PAROLA:</string>
+  <string name="change_passphrase_activity__new_passphrase">YENİ PAROLA:</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">YENİ PAROLA TEKRAR:</string>
+  <!--contact_selection_group_activity-->
+  <!--contact_selection_list_activity-->
+  <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Kişiler bulunuyor...</string>
+  <!--single_contact_selection_activity-->
+  <string name="single_contact_selection_group_activity__filter">Filtrelemek için bir isim yazınız...</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">Seç</string>
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">Yakın zamanda arama yok.</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message"><small>Mesaj gönder</small></string>
+  <string name="conversation_activity__send">Gönder</string>
+  <string name="conversation_activity__remove">Kaldır</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">İndir</string>
+  <string name="conversation_item_sent__downloading">İndiriliyor</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">İndir</string>
+  <string name="conversation_item_received__downloading">İndiriliyor</string>
+  <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">Toplu Seçim</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Ülkeler yükleniyor...</string>
+  <string name="country_selection_fragment__search">Ara</string>
+  <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Eğer yerel verilerinizi şifrelemek isterseniz lütfen bir parola belirleyin.</string>
+  <string name="create_passphrase_activity__passphrase">PAROLA:</string>
+  <string name="create_passphrase_activity__repeat">TEKRAR:</string>
+  <string name="create_passphrase_activity__continue">Devam Et</string>
+  <string name="create_passphrase_activity__skip">Atla</string>
+  <string name="create_passphrase_activity__create">Yarat</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__confirmation">Bu log TextSecure geliştiricilerinin görebilmesi için açık olarak gönderilecek. Göndermeden önce inceleyip düzenleyebilirsiniz.</string>
+  <string name="log_submit_activity__button_cancel">Gönderme</string>
+  <string name="log_submit_activity__button_ok">Gönder</string>
+  <string name="log_submit_activity__log_fetch_failed">Cihazınızdaki loglara erişilemedi. Hata ayıklama loglarını almak için ADB kullanabilirsiniz.</string>
+  <string name="log_submit_activity__log_submit_success_title">Başarılı!</string>
+  <string name="log_submit_activity__log_got_it">Anladım</string>
+  <string name="log_submit_activity__copied_to_clipboard">Panoya kopyalandı</string>
+  <string name="log_submit_activity__loading_logcat">logcat yükleniyor…</string>
+  <string name="log_submit_activity__thanks">Yardımınız için teşekkürler!</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Var olan mesajlarınızı, TextSecure şifreli veritabanına aktarmak ister misiniz?</string>
+  <string name="database_migration_activity__skip">Atla</string>
+  <string name="database_migration_activity__import">İçeri Aktar</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Bu biraz zaman alabilir. Lütfen bekleyiniz. İçe aktarım tamamlandığında bilgilendirileceksiniz.</string>
+  <string name="database_migration_activity__importing">İÇE AKTARILIYOR</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Veritabanı Güncelleniyor...</string>
+  <string name="export_fragment__export_encrypted_backup">Şifrelenmiş yedeği dışa aktar</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Şifrelenmiş bir yedeği\n        SD karta kaydet.\n    </string>
+  <string name="export_fragment__export_plaintext_backup">Şifresiz Metin Kaydet</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n\'SMSBackup And Restore\' ile uyumlu şifrelenmemiş metin yedeğini SD karta kaydet.  </string>
+  <string name="import_fragment__import_system_sms_database">Sistem SMS veritabanı içe aktarımı</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Öntanımlı sistem mesaj uygulamasından\nveritabanı içe aktarımı</string>
+  <string name="import_fragment__import_encrypted_backup">Şifrelenmiş yedeği içe aktar</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nDaha önce dışa aktarılmış bir şifrelenmiş TextSecure yedeğini yeniden yükle. </string>
+  <string name="import_fragment__import_plaintext_backup">Şifresiz metin yedeğinden içe aktar</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\n\'SMSBackup And Restore\' ile uyumlu bir şifrelenmemiş metin yedeğini içe aktar.</string>
+  <!--mms_preferences_activity-->
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PAROLASI</string>
+  <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>
+  <!--prompt_mms_activity-->
+  <!--receive_key_activity-->
+  <string name="receive_key_activity__complete">Tamamlandı</string>
+  <!--registration_activity-->
+  <string name="registration_activity__your_country">ÜLKENİZ</string>
+  <string name="registration_activity__your_country_code_and_phone_number">ÜLKE KODUNUZ VE\n        TELEFON NUMARANIZ\n    </string>
+  <string name="registration_activity__phone_number">TELEFON NUMARASI</string>
+  <string name="registration_activity__register">Kayıt ol</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Kayıt işlemi geçici olarak kişi bilgisini sunucuya gönderecek.</string>
+  <string name="registration_activity__skip">Atla</string>
+  <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">Muhtemel sorunlar\n        içinde:\n    </string>
+  <string name="registration_problems__incorrect_number">Geçersiz numara</string>
+  <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\n        TextSecure Google Voice numaraları ile çalışmaz.\n    </string>
+  <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">Ses Doğrulama</string>
+  <string name="registration_progress_activity__verify">Doğrulama</string>
+  <string name="registration_progress_activity__call_me">Beni Ara</string>
+  <string name="registration_progress_activity__edit_number">Numarayı düzenle</string>
+  <string name="registration_progress_activity__connectivity_error">Bağlantı hatası.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\n        TextSecure push servisine bağlanamadı.\n    </string>
+  <string name="registration_progress_activity__no_network_connectivity">Ağ bağlantısı\n        yok.\n    </string>
+  <string name="registration_progress_activity__connecting">Bağlanılıyor...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">SMS doğrulama\n        için bekleniliyor...\n    </string>
+  <string name="registration_progress_activity__registering_with_server">Sunucuya kaydolunuyor...</string>
+  <string name="registration_progress_activity__generating_keys">Anahtarlar üretiliyor...</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to">Alıcı</string>
+  <string name="recipients_panel__add_member">Üye ekle</string>
+  <!--review_identities-->
+  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Güven veritabanınızda şu an herhangi bir kimlik anahtarı bulunmamaktadır.</string>
+  <!--verify_identity_activity-->
+  <string name="verify_identity_activity__their_identity_they_read">Onların kimliği (onların okuduğu):</string>
+  <string name="verify_identity_activity__your_identity_you_read">Sizin kimliğiniz (sizin okuduğunuz):</string>
+  <!--verify_import_identity_activity-->
+  <string name="verify_import_identity_activity__identity_name_n">Kimlik adı:\\n</string>
+  <string name="verify_import_identity_activity__imported_identity_n">İçe aktarılan kimlik:\\n</string>
+  <string name="verify_import_identity_activity__verified">Doğrulandı!</string>
+  <string name="verify_import_identity_activity__compare">Karşılaştır</string>
+  <!--verify_keys_activity-->
+  <string name="verify_keys_activity__they_read_this">Onların okuduğu:</string>
+  <string name="verify_keys_activity__you_read_this">Sizin okuduğunuz:</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">Parola Oluşturma</string>
+  <string name="AndroidManifest__enter_passphrase">Parola Gir</string>
+  <string name="AndroidManifest__select_contacts">Kişi Seç</string>
+  <string name="AndroidManifest__select_contact">Kişi Seç</string>
+  <string name="AndroidManifest__textsecure_detected">TextSecure Tespit Edildi</string>
+  <string name="AndroidManifest__public_identity_key">Genel Kimlik Anahtarı</string>
+  <string name="AndroidManifest__change_passphrase">Parola Değiştir</string>
+  <string name="AndroidManifest__verify_session">Oturum Doğrula</string>
+  <string name="AndroidManifest__verify_identity">Kimlik Doğrula</string>
+  <string name="AndroidManifest__manage_identity_keys">Kimlik Anahtarları Doğrula</string>
+  <string name="AndroidManifest__complete_key_exchange">Anahtar Takası Tamamla</string>
+  <string name="AndroidManifest__log_submit">Hata ayıklama kayıtlarını gönder</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">İçeri / Dışarı Aktar</string>
+  <string name="arrays__my_identity_key">Kimlik Anahtarım</string>
+  <!--preferences.xml-->
+  <string name="preferences__general">Genel</string>
+  <string name="preferences__pref_all_sms_title">Tüm SMS\'ler için kullan</string>
+  <string name="preferences__pref_all_mms_title">Tüm MMS\'ler için kullan</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gelen tüm mesajların gösterimi ve saklanması için TextSecure kullan</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm medya mesajların gösterimi ve saklanması için TextSecure kullan</string>
+  <string name="preferences__pref_enter_sends_title">Enter gönderir</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşu metin mesajları göndersin</string>
+  <string name="preferences__display_settings">Görüntüleme Ayarları</string>
+  <string name="preferences__choose_identity">Kimlik Seç</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
+  <string name="preferences__change_passphrase">Parola Değiştir</string>
+  <string name="preferences__change_my_passphrase">Parolamı değiştir</string>
+  <string name="preferences__complete_key_exchanges">Anahtar takası tamamla</string>
+  <string name="preferences__disable_passphrase">Parola devredışı bırak</string>
+  <string name="preferences__screen_security">Ekran güvenliği</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Yeni veya aynı kimlik anahtarına sahip oturumlar için otomatik olarak anahtar takası gerçekleştir</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Ekran görüntüsü alınmasına izin vermek için ekran güvenliğini devre dışı bırak</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Hafızadaki parolayı bir süre sonra unut</string>
+  <string name="preferences__timeout_passphrase">Parola zaman aşımı</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">Parola Zaman Aşımı Seçiniz</string>
+  <string name="preferences__pref_timeout_interval_title">Zaman aşımı aralığı</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hafızadaki parolanın unutulması için geçmesi gereken zaman miktarı</string>
+  <string name="preferences__identity_key_settings">kimlik anahtarları</string>
+  <string name="preferences__view_my_identity_key">Kimlik anahtarımı gör</string>
+  <string name="preferences__manage_identity_keys">Kimlik anahtarını yönet</string>
+  <string name="preferences__manage_configured_identity_keys">Ayarlanmış kimlik anahtarlarını yönet</string>
+  <string name="preferences__notifications">Bildirimler</string>
+  <string name="preferences__display_message_notifications_in_status_bar">Durum çubuğunda mesaj bildirimlerini göster</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Özel LED yanıp sönme hızı belirle</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Özel LED yanıp sönme hızı belirlendi!</string>
+  <string name="preferences__sound">Zil Sesi</string>
+  <string name="preferences__change_notification_sound">Bildirim sesini değiştir</string>
+  <string name="preferences__vibrate">Titreş</string>
+  <string name="preferences__also_vibrate_when_notified">Bildirimde de titreş</string>
+  <string name="preferences__minutes">dakika</string>
+  <string name="preferences__hours">saat</string>
+  <string name="preferences__green">Yeşil</string>
+  <string name="preferences__red">Kırmızı</string>
+  <string name="preferences__blue">Mavi</string>
+  <string name="preferences__orange">Turuncu</string>
+  <string name="preferences__cyan">Cam Göbeği</string>
+  <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Beyaz</string>
+  <string name="preferences__fast">Hızl</string>
+  <string name="preferences__normal">Normal</string>
+  <string name="preferences__slow">Yavaş</string>
+  <string name="preferences__custom">Özel</string>
+  <string name="preferences__advanced">Gelişmiş</string>
+  <string name="preferences__passphrase">Parola</string>
+  <string name="preferences__advanced_mms_access_point_names">MMS Tercihleri</string>
+  <string name="preferences__mmsc_url_required">MMSC URL (Gerekli)</string>
+  <string name="preferences__mms_proxy_host_optional">MMS Proxy Sunucusu (İsteğe Bağlı)</string>
+  <string name="preferences__mms_proxy_port_optional">MMS Proxy Bağlantı Noktası (İsteğe Bağlı)</string>
+  <string name="preferences__sms_delivery_reports">SMS iletim raporları</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Gönderdiğiniz her SMS için iletim raporu iste</string>
+  <string name="preferences__delete_old_messages">Eski mesajları sil</string>
+  <string name="preferences__storage">Depolama</string>
+  <string name="preferences__conversation_length_limit">Sohbet uzunluk sınırı</string>
+  <string name="preferences__trim_all_threads_now">Tüm başlıkları kırp</string>
+  <string name="preferences__light_theme">Açık Renk Tema</string>
+  <string name="preferences__dark_theme">Koyu Renk Tema</string>
+  <string name="preferences__appearance">Görünüm</string>
+  <string name="preferences__theme">Tema</string>
+  <string name="preferences__default">Varsayılan</string>
+  <string name="preferences__language">Dil</string>
+  <string name="preferences__make_default_sms_app">Varsayılan SMS uygulaması olarak ayarla</string>
+  <string name="preferences__use_data_channel">Push mesajlar</string>
+  <string name="preferences__submit_debug_log">Hata ayıklama kaydı gönder</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">Tümünü Seç</string>
+  <string name="contact_selection_list__menu_unselect_all">Tüm seçimleri kaldır</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">Tamamlanmış</string>
+  <!--conversation_button_context-->
+  <string name="conversation_button_context__menu_send_unencrypted">Şifrelenmemiş gönder</string>
+  <!--conversation_callable-->
+  <string name="conversation_callable__menu_call">Arama</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">Mesaj detayları</string>
+  <string name="conversation_context__menu_copy_text">Metin kopyala</string>
+  <string name="conversation_context__menu_delete_message">Mesaj sil</string>
+  <string name="conversation_context__menu_forward_message">Mesaj yönlendir</string>
+  <string name="conversation_context__menu_resend_message">Mesajı tekrar gönder</string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__menu_start_secure_session">Güvenli oturum başlat</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">Seçilmişleri sil</string>
+  <string name="conversation_list_batch__menu_select_all">Tümünü Seç</string>
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">Ara</string>
+  <string name="conversation_list__drawer_open">Menüyü aç</string>
+  <string name="conversation_list__drawer_close">Menüyü kapat</string>
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_security">Güvenlik</string>
+  <string name="conversation_secure_verified__menu_no_identity">Kimlik Yok</string>
+  <string name="conversation_secure_verified__menu_verify_recipient">Alıcı Doğrula</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Güvenli Oturumu Bitir</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">Ek ekle</string>
+  <string name="conversation__menu_update_group">Grubu güncelle</string>
+  <string name="conversation__menu_leave_group">Gruptan ayrıl</string>
+  <string name="conversation__menu_delete_thread">Başlığı sil</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Katılımcı listesi</string>
+  <string name="conversation_group_options__delivery">Teslim</string>
+  <string name="conversation_group_options__conversation">Sohbet</string>
+  <string name="conversation_group_options__broadcast">Yayın</string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">Karşılaştır</string>
+  <string name="key_scanning__menu_get_scanned_to_compare">Karşılaştırmak için taratın</string>
+  <string name="key_scanning__menu_scan_to_compare">Karşılaştırmak için tarayın</string>
+  <!--text_secure_locked-->
+  <string name="text_secure_locked__menu_unlock">Kilidi aç</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">Yeni Mesaj</string>
+  <string name="text_secure_normal__menu_new_group">Yeni Grup</string>
+  <string name="text_secure_normal__menu_settings">Ayarlar</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Kilitle</string>
+  <string name="text_secure_normal__mark_all_as_read">Tümünü Okundu İşaretle</string>
+  <!--verify_keys-->
+  <string name="verify_keys__menu_verified">Doğrulandı</string>
+  <!--EOF-->
+</resources>
