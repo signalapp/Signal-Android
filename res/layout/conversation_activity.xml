@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="?conversation_background"
     android:orientation="vertical">
 
     <org.thoughtcrime.securesms.components.RecipientsPanel
@@ -17,7 +18,6 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="?conversation_background"
             android:gravity="bottom">
 
         <fragment
@@ -33,8 +33,7 @@
                 android:id="@id/bottom_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="?conversation_background">
+                android:orientation="vertical">
 
             <ScrollView android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
