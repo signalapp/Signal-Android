@@ -45,10 +45,15 @@ public class TextSecurePreferences {
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
+  private static final String FORCE_PUSH_SERVICE               = "pref_force_push_service";
   public  static final String ALLOW_SMS_FALLBACK_PREF          = "pref_allow_sms_traffic_out";
 
   public static boolean isSmsFallbackEnabled(Context context) {
     return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
+  }
+
+  public static boolean isPushServiceForced(Context context) {
+    return getBooleanPreference(context, FORCE_PUSH_SERVICE, false);
   }
 
   public static int getLocalRegistrationId(Context context) {

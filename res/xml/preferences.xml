@@ -28,6 +28,12 @@
                             android:summary="@string/preferences__send_and_receive_sms_messages_when_push_is_not_available"/>
 
         <CheckBoxPreference android:defaultValue="false"
+            android:enabled="true"
+            android:key="pref_force_push_service"
+            android:title="@string/preferences__force_push_service"
+            android:summary="@string/preferences__force_push_service_if_recipient_supports_push"/>
+
+        <CheckBoxPreference android:defaultValue="false"
                             android:key="pref_delivery_report_sms"
                             android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
                             android:title="@string/preferences__sms_delivery_reports" />

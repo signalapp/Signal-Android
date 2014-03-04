@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.transport;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -71,19 +72,22 @@ public class UniversalTransport {
       Recipient recipient = message.getIndividualRecipient();
       String number       = Util.canonicalizeNumber(context, recipient.getNumber());
 
+        // TODO: Hier entsprechend abfragen, ob push prefered ist bzw. ob die Nachricht über SMS geforced werden soll
+      // In isPushTransport reinschauen, ob da die Verbindung gecheckt wird....
       if (isPushTransport(number) && !message.isKeyExchange()) {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(number);
+        boolean isForcePushEnabled = TextSecurePreferences.isPushServiceForced(context);
 
         try {
           Log.w("UniversalTransport", "Delivering with GCM...");
           pushTransport.deliver(message);
         } catch (UnregisteredUserException uue) {
-          Log.w("UnviersalTransport", uue);
+          Log.w("UniversalTransport", uue);
           if (isSmsFallbackSupported) smsTransport.deliver(message);
           else                        throw new UndeliverableMessageException(uue);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
-          if (isSmsFallbackSupported) smsTransport.deliver(message);
+          if (isSmsFallbackSupported && !isForcePushEnabled) smsTransport.deliver(message);
           else                        throw new RetryLaterException(ioe);
         }
       } else {
@@ -118,6 +122,7 @@ public class UniversalTransport {
     try {
       String destination = Util.canonicalizeNumber(context, mediaMessage.getTo()[0].getString());
 
+      // TODO @Manuel: Hier auch auf Force Push prüfen? Schauen, wann das hier tatsächlich ausgeführt wird
       if (isPushTransport(destination)) {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(destination);
 
