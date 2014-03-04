@@ -2,6 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:0.8.+'
     }
@@ -53,13 +54,14 @@ android {
     signingConfigs {
         release
     }
+
     buildTypes {
         release {
             signingConfig signingConfigs.release
         }
     }
 
-     lintOptions {
+    lintOptions {
         abortOnError false
     }
 }
@@ -83,7 +85,7 @@ android.applicationVariants.all { variant ->
 def Properties props = new Properties()
 def propFile = new File('signing.properties')
 
-if (propFile.canRead()){
+if (propFile.canRead()) {
     props.load(new FileInputStream(propFile))
 
     if (props !=null &&
@@ -100,7 +102,7 @@ if (propFile.canRead()){
         println 'signing.properties found but some entries are missing'
         android.buildTypes.release.signingConfig = null
     }
-}else {
+} else {
     println 'signing.properties not found'
     android.buildTypes.release.signingConfig = null
 }
