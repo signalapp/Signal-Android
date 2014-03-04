@@ -135,8 +135,8 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, AUTO_KEY_EXCHANGE_PREF, true);
   }
 
-  public static boolean isScreenSecurityDisabled(Context context) {
-    return getBooleanPreference(context, SCREEN_SECURITY_PREF, false);
+  public static boolean isScreenSecurityEnabled(Context context) {
+    return getBooleanPreference(context, SCREEN_SECURITY_PREF, true);
   }
 
   public static boolean isUseLocalApnsEnabled(Context context) {
