@@ -82,7 +82,7 @@
     <item>@string/preferences__cyan</item>
     <item>@string/preferences__magenta</item>
     <item>@string/preferences__white</item>
-    <item>@string/preferences__black</item>
+    <item>@string/preferences__none</item>
   </string-array>
   
 
