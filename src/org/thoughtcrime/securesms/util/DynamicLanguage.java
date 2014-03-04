@@ -42,6 +42,7 @@ public class DynamicLanguage {
       configuration.locale = selectedLocale;
       activity.getResources().updateConfiguration(configuration,
                                                   activity.getResources().getDisplayMetrics());
+      Locale.setDefault(selectedLocale);
     }
   }
 
