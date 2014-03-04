@@ -354,6 +354,7 @@ public class MessageNotifier {
   {
     String ringtone              = TextSecurePreferences.getNotificationRingtone(context);
     boolean vibrate              = TextSecurePreferences.isNotificationVibrateEnabled(context);
+    boolean ledEnabled           = TextSecurePreferences.isLedNotificationEnabled(context);
     String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
     String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
     String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
@@ -364,8 +365,10 @@ public class MessageNotifier {
     if (signal && vibrate)
       builder.setDefaults(Notification.DEFAULT_VIBRATE);
 
-    builder.setLights(Color.parseColor(ledColor), Integer.parseInt(blinkPatternArray[0]),
-                      Integer.parseInt(blinkPatternArray[1]));
+    if (ledEnabled) {
+      builder.setLights(Color.parseColor(ledColor), Integer.parseInt(blinkPatternArray[0]),
+              Integer.parseInt(blinkPatternArray[1]));
+    }
   }
 
   private static String[] parseBlinkPattern(String blinkPattern, String blinkPatternCustom) {

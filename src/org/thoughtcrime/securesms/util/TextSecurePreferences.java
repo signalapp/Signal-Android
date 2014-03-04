@@ -21,6 +21,7 @@ public class TextSecurePreferences {
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
+  public  static final String LED_ENABLED_PREF                 = "pref_led_enabled";
   public  static final String LED_COLOR_PREF                   = "pref_led_color";
   public  static final String LED_BLINK_PREF                   = "pref_led_blink";
   private static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
@@ -214,6 +215,14 @@ public class TextSecurePreferences {
 
   public static boolean isNotificationsEnabled(Context context) {
     return getBooleanPreference(context, NOTIFICATION_PREF, true);
+  }
+
+  public static boolean isLedNotificationEnabled(Context context) {
+    return getBooleanPreference(context, LED_ENABLED_PREF, true);
+  }
+
+  public static void setLedNotificationEnabled(Context context, boolean value) {
+    setBooleanPreference(context, LED_ENABLED_PREF, value);
   }
 
   public static String getNotificationRingtone(Context context) {
