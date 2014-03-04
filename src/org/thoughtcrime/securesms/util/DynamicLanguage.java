@@ -12,6 +12,11 @@ public class DynamicLanguage {
   private static final String DEFAULT = "zz";
 
   private Locale currentLocale;
+  private static final Locale systemLocale;
+
+  static {
+      systemLocale = Locale.getDefault();
+  }
 
   public void onCreate(Activity activity) {
     currentLocale = getSelectedLocale(activity);
@@ -53,7 +58,7 @@ public class DynamicLanguage {
   private static Locale getSelectedLocale(Activity activity) {
     String language = TextSecurePreferences.getLanguage(activity);
 
-    if (language.equals(DEFAULT)) return Locale.getDefault();
+    if (language.equals(DEFAULT)) return systemLocale;
     else                          return new Locale(language);
   }
 
