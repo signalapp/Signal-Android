@@ -22,7 +22,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
@@ -388,14 +390,15 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
-    contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
+    Bitmap contactPhotoBitmap = recipient.getContactPhoto();
 
     if ((groupThread) &&
             (recipient.getContactPhoto().equals(ContactPhotoFactory.getDefaultContactPhoto(this.context))))   {
-      contactPhoto.setColorFilter(RecipientColoringUtil.getColorForRecipient(recipient, this.context));
-    } else {
-      contactPhoto.setColorFilter(0);
+      contactPhotoBitmap = RecipientColoringUtil.colorBitmapForRecipient(contactPhotoBitmap,
+              recipient, context);
     }
+
+    contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(contactPhotoBitmap));
 
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override

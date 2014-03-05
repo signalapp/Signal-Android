@@ -133,25 +133,4 @@
     <item>@drawable/contacts_identities_dark</item>
   </string-array>
 
-  <array name="contact_tinting_colors">
-    <item>#60FF0000</item>
-    <item>#6000FF00</item>
-    <item>#600000FF</item>
-    <item>#60FFFF00</item>
-    <item>#60FF00FF</item>
-    <item>#6000FFFF</item>
-    <item>#60FFFFFF</item>
-
-    <item>#607FFF00</item>
-    <item>#607F00FF</item>
-    <item>#60007FFF</item>
-
-    <item>#60FF7F00</item>
-    <item>#60FF007F</item>
-    <item>#6000FF7F</item>
-
-    <item>#607FFFFF</item>
-    <item>#60FF7FFF</item>
-    <item>#60FFFF7F</item>
-  </array>
 </resources>
