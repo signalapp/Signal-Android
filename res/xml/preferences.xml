@@ -159,7 +159,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/preferences__advanced">
+    <PreferenceCategory android:key="advanced_category" android:title="@string/preferences__advanced">
        <CheckBoxPreference android:defaultValue="true"
                            android:key="pref_auto_complete_key_exchange"
                            android:title="@string/preferences__complete_key_exchanges"
@@ -168,7 +168,7 @@
        <CheckBoxPreference android:defaultValue="true"
                            android:key="pref_screen_security"
                            android:title="@string/preferences__screen_security"
-                           android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots" />
+                           android:summary="@string/preferences__enable_screen_security_to_prevent_other_apps_from_screen_capture" />
 
         <Preference android:key="pref_mms_preferences"
                     android:title="@string/preferences__advanced_mms_access_point_names"/>

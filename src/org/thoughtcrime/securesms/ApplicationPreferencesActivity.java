@@ -123,9 +123,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
       .setOnPreferenceChangeListener(new RingtoneSummaryListener());
     this.findPreference(UPDATE_DIRECTORY_PREF)
-        .setOnPreferenceClickListener(new DirectoryUpdateListener());
+      .setOnPreferenceClickListener(new DirectoryUpdateListener());
     this.findPreference(SUBMIT_DEBUG_LOG_PREF)
-        .setOnPreferenceClickListener(new SubmitDebugLogListener());
+      .setOnPreferenceClickListener(new SubmitDebugLogListener());
 
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
@@ -188,10 +188,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   }
 
   private void initializePlatformSpecificOptions() {
-    PreferenceGroup    generalCategory    = (PreferenceGroup) findPreference("general_category");
-    Preference         defaultPreference  = findPreference(KITKAT_DEFAULT_PREF);
-    Preference         allSmsPreference   = findPreference(TextSecurePreferences.ALL_SMS_PREF);
-    Preference         allMmsPreference   = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    PreferenceGroup    generalCategory            = (PreferenceGroup) findPreference("general_category");
+    PreferenceGroup    advancedCategory           = (PreferenceGroup) findPreference("advanced_category");
+    Preference         defaultPreference          = findPreference(KITKAT_DEFAULT_PREF);
+    Preference         allSmsPreference           = findPreference(TextSecurePreferences.ALL_SMS_PREF);
+    Preference         allMmsPreference           = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    Preference         screenSecurityPreference   = findPreference(TextSecurePreferences.SCREEN_SECURITY_PREF);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       if (allSmsPreference != null) generalCategory.removePreference(allSmsPreference);
@@ -210,6 +212,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       }
     } else {
       if (defaultPreference != null) generalCategory.removePreference(defaultPreference);
+    }
+
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+        if (screenSecurityPreference != null) {
+            //screenSecurityPreference.setEnabled(false);
+            advancedCategory.removePreference(screenSecurityPreference);
+        }
     }
   }
 
