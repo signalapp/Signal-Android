@@ -44,6 +44,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -56,6 +57,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.RecipientColoringUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
@@ -387,6 +389,13 @@ public class ConversationItem extends LinearLayout {
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
     contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
+
+    if (groupThread) {
+      if (recipient.getContactPhoto().equals(ContactPhotoFactory.getDefaultContactPhoto(this.context))) {
+        contactPhoto.setColorFilter(RecipientColoringUtil.getColorForRecipient(recipient, this.context));
+      }
+    }
+
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

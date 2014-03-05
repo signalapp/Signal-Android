@@ -23,6 +23,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.actionbarsherlock.R;
+
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -51,9 +53,9 @@ public class Recipient implements Parcelable, CanonicalRecipient {
   private final String number;
   private final long   recipientId;
 
-  private String name;
-  private Bitmap contactPhoto;
-  private Uri    contactUri;
+  private String  name;
+  private Bitmap  contactPhoto;
+  private Uri     contactUri;
 
   Recipient(String number, Bitmap contactPhoto, long recipientId,
             ListenableFutureTask<RecipientDetails> future)
