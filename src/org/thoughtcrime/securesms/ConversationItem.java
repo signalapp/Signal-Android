@@ -390,10 +390,11 @@ public class ConversationItem extends LinearLayout {
   private void setContactPhotoForRecipient(final Recipient recipient) {
     contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
 
-    if (groupThread) {
-      if (recipient.getContactPhoto().equals(ContactPhotoFactory.getDefaultContactPhoto(this.context))) {
-        contactPhoto.setColorFilter(RecipientColoringUtil.getColorForRecipient(recipient, this.context));
-      }
+    if ((groupThread) &&
+            (recipient.getContactPhoto().equals(ContactPhotoFactory.getDefaultContactPhoto(this.context))))   {
+      contactPhoto.setColorFilter(RecipientColoringUtil.getColorForRecipient(recipient, this.context));
+    } else {
+      contactPhoto.setColorFilter(0);
     }
 
     contactPhoto.setOnClickListener(new View.OnClickListener() {

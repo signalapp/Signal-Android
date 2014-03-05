@@ -21,6 +21,9 @@ public class RecipientColoringUtil {
     TypedArray colorArray = res.obtainTypedArray(R.array.contact_tinting_colors);
     int index = Math.abs((int)(nameHash % colorArray.length()));
 
-    return colorArray.getColor(index, 0);
+    int colorForRecipient = colorArray.getColor(index, 0);
+    colorArray.recycle();
+
+    return colorForRecipient;
   }
 }
