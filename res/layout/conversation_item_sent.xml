@@ -4,8 +4,7 @@
     android:id="@+id/conversation_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="?conversation_background">
+    android:orientation="horizontal">
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"

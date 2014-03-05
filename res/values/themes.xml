@@ -145,6 +145,16 @@
         <item name="navigation_drawer_shadow">@drawable/drawer_shadow_dark</item>
     </style>
 
+    <style name="TextSecure.LightTheme.ConversationActivity"
+           parent="@style/TextSecure.LightTheme">
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="TextSecure.DarkTheme.ConversationActivity"
+           parent="@style/TextSecure.DarkTheme">
+        <item name="android:windowBackground">@null</item>
+    </style>
+
     <style name="TextSecure.Light.Dialog"
            parent="@android:style/Theme.Dialog"
            tools:ignore="NewApi">
