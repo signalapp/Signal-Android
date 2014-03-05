@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+	These strings are the source of the TextSecure Google Play Store description.
+	https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&hl=en
+
+	The sparse numbering of the string variables allows inserting additional lines
+	later without the need to renumber existing strings.
+
+	How these strings are translated:
+	see https://github.com/WhisperSystems/TextSecure/wiki/Translation-workflow
+
+-->
+
+<resources>
+
+	<string name="PlaystoreDescription_para_0100">TextSecure Private Messenger</string>
+	<string name="PlaystoreDescription_para_0200">TextSecure is a messaging app that allows you to take back your privacy while easily communicating with friends.</string>
+
+	<string name="PlaystoreDescription_para_0300">Using TextSecure, you can communicate instantly while avoiding SMS fees, create groups so that you can chat in real time with all your friends at once, and share media or attachments all with complete privacy. The server never has access to any of your communication and never stores any of your data.</string>
+
+	<string name="PlaystoreDescription_para_0400">* Private. TextSecure uses an advanced end to end encryption protocol that provides privacy for every message every time.</string>
+	<string name="PlaystoreDescription_para_0500">* Open Source. TextSecure is Free and Open Source, enabling anyone to verify its security by auditing the code. TextSecure is the only private messenger that uses open source peer-reviewed cryptographic protocols to keep your messages safe.</string>
+	<string name="PlaystoreDescription_para_0600">* Group Chat. TextSecure allows you to create encrypted groups so you can have private conversations with all your friends at once. Not only are the messages encrypted, but the TextSecure server never has access to any group metadata such as the membership list, group title, or group icon.</string>
+	<string name="PlaystoreDescription_para_0700">* Fast. The TextSecure protocol is designed to operate in the most constrained environment possible. Using TextSecure, messages are instantly delivered to friends.</string>
+
+	<string name="PlaystoreDescription_para_0800">Please file any bugs, issues, or feature requests at:</string>
+	<string name="PlaystoreDescription_para_0900">https://github.com/whispersystems/textsecure/issues</string>
+
+	<string name="PlaystoreDescription_para_1000">More details:</string>
+	<string name="PlaystoreDescription_para_1100">http://www.whispersystems.org/#encrypted_texts</string>
+
+	<!-- EOF -->
+
+</resources>
