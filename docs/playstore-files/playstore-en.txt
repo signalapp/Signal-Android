@@ -1,0 +1,14 @@
+﻿TextSecure is a messaging app that allows you to take back your privacy while easily communicating with friends.
+
+Using TextSecure, you can communicate instantly while avoiding SMS fees, create groups so that you can chat in real time with all your friends at once, and share media or attachments all with complete privacy. The server never has access to any of your communication and never stores any of your data.
+
+* Private. TextSecure uses an advanced end to end encryption protocol that provides privacy for every message every time.
+* Open Source. TextSecure is Free and Open Source, enabling anyone to verify its security by auditing the code. TextSecure is the only private messenger that uses open source peer-reviewed cryptographic protocols to keep your messages safe.
+* Group Chat. TextSecure allows you to create encrypted groups so you can have private conversations with all your friends at once. Not only are the messages encrypted, but the TextSecure server never has access to any group metadata such as the membership list, group title, or group icon.
+* Fast. The TextSecure protocol is designed to operate in the most constrained environment possible. Using TextSecure, messages are instantly delivered to friends.
+
+Please file any bugs, issues, or feature requests at:
+https://github.com/whispersystems/textsecure/issues
+
+More details:
+http://www.whispersystems.org/#encrypted_texts

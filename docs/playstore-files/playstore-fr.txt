@@ -1,0 +1,13 @@
+﻿TextSecure est une application de messagerie qui vous permet de vous réapproprier votre vie privée tout en communiquant facilement avec vos amis.
+
+Avec TextSecure, vous pouvez communiquer instantanément tout en évitant les frais de SMS, créer des groupes pour discuter en temps réel avec tous vos amis à la fois, et partager des pièces jointes, photos ou autres en toute confidentialité. Le serveur n'a jamais accès à vos communications et n'enregistre aucune donnée vous concernant.
+
+* Confidentialité. TextSecure utilise un protocole avancé de chiffrement bout-à-bout qui garantit  la confidentialité de tous vos messages, à tout moment.
+* Open Source. TextSecure est Libre et Open Source, ce qui permet à n'importe qui de vérifier sa sécurité en auditant le code. TextSecure est le seul service de messagerie privé qui utilise un protocole cryptographique open source revu par les pairs pour garder vos messages sûrs.
+* Groupes de discussion. TextSecure vous permet de créer des groupes chiffrés pour que vous puissiez avoir des conversations privées avec tous vos amis à la fois. Non seulement vos messages sonnt chiffrés, mais le serveur TextSecure n'a jamais accès aux metadonnées des groupes comme par exemple la liste des membres, le titre, ou l'icône du groupe.
+* Rapide. Le protocole TextSecure est conçu pour fonctionner dans les environnements les plus restreints. En utilisant TextSecure, vos messages sont instantanément délivrés à vos amis.
+
+S'il vous plaît signalez tous les bugs, problèmes ou demandes d'améliorations sur :
+https://github.com/whispersystems/textsecure/issues
+Plus de détails :
+http://www.whispersystems.org/#encrypted_texts

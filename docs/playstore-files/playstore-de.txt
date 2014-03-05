@@ -1,0 +1,14 @@
+﻿TextSecure ist ein Ende-zu-Ende verschlüsselnder Instant-Messenger-Dienst für Ihre private vertrauliche Kommunikation unter Freunden.
+
+Mit TextSecure können Sie ohne SMS-Gebühren mit einzelnen Teilnehmern kommunizieren, oder auch Gruppen bilden, mit denen Sie in Echtzeit chatten können, und Mediendateien und Anhänge vertraulich übermitteln. Der Server hat keine Möglichkeit, Ihre Kommunikationsinhalte zu lesen und speichert keine Inhaltsdaten.
+
+* Vertraulichkeit. TextSecure benutzt ein modernes Ende-zu-Ende Verschlüsselungsprotokol für alle Ihre Nachrichten, zu jeder Zeit.
+* Open Source. TextSecure ist kostenlos, Open Source, und erlaubt dadurch die Kontrolle seiner Programmkodesicherheit. TextSecure ist das einzige Messenger-Programm, das open-source peer-reviewed kryptographische Protokolle zur Sicherung Ihrer Nachrichten benutzt.
+* Gruppen-Chat. TextSecure erlaubt Ihnen, verschlüsselte Gruppen anzulegen, und dadurch vertrauliche Chats unter den Gruppenmitgliedern zu führen. Es werden dabei nicht nur die Nachrichten verschlüsselt, sondern der TextSecure-Server hat auch keinerlei Kenntnis von Metadaten der Gruppe wie Mitgliedernamen, Gruppenname, Gruppenicon.
+* Es ist schnell. Das TextSecure-Protokol wurde entwickelt, um auch unter eingeschränkten Bedingungen gut zu funktionieren. Ihren Nachrichten werden sofort an Ihre Freunde übermittelt.
+
+Fehlermeldungen, Probleme und Verbesserungsvorschläge:
+https://github.com/whispersystems/textsecure/issues
+
+Weitere Informationen über Textsecure:
+http://www.whispersystems.org/#encrypted_texts
