@@ -80,7 +80,7 @@ public class IdentityKeyView extends RelativeLayout
   private boolean isVerified(MasterSecret masterSecret, Context context) {
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
 
-    return identityDatabase.isIdentityVerified(masterSecret, this.getRecipient().getRecipientId(),
+    return identityDatabase.isIdentityVerified(masterSecret, this.getRecipient(),
             identityKey);
   }
 

@@ -27,12 +27,15 @@ import android.util.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 
@@ -47,7 +50,7 @@ public class IdentityDatabase extends Database {
   public  static final String MAC           = "mac";
   public  static final String VERIFIED      = "verified";
 
-  public  static final String VERIFICATION_TAG = "||verified";
+  public  static final String VERIFICATION_TAG = "verified||";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
       " (" + ID + " INTEGER PRIMARY KEY, " +
@@ -116,7 +119,11 @@ public class IdentityDatabase extends Database {
     }
   }
 
-  public boolean isIdentityVerified(MasterSecret masterSecret, long recipientId, IdentityKey identityKey) {
+  public boolean isIdentityVerified(MasterSecret masterSecret,
+                                    long recipientId,
+                                    String i164Number,
+                                    String contactName,
+                                    IdentityKey identityKey) {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
     MasterCipher masterCipher = new MasterCipher(masterSecret);
     Cursor cursor             = null;
@@ -133,7 +140,9 @@ public class IdentityDatabase extends Database {
           return false;
         }
 
-        if (!masterCipher.verifyMacFor(recipientId + serializedIdentity + VERIFICATION_TAG, Base64.decode(verified))) {
+        String stringToVerify = VERIFICATION_TAG + recipientId + serializedIdentity + "||" + i164Number + "||" + contactName;
+
+        if (!masterCipher.verifyMacFor(stringToVerify, Base64.decode(verified))) {
           Log.w("IdentityDatabase", "Verified MAC failed");
           return false;
         }
@@ -152,6 +161,24 @@ public class IdentityDatabase extends Database {
     }
   }
 
+  public boolean isIdentityVerified(MasterSecret masterSecret,
+                                    Recipient recipient,
+                                    IdentityKey identityKey) {
+    long recipientId = recipient.getRecipientId();
+    String e164Number = null;
+    String contactName = recipient.getName();
+
+    try {
+      e164Number = PhoneNumberFormatter.formatNumber(recipient.getNumber(),
+              TextSecurePreferences.getLocalNumber(context));
+    } catch (InvalidNumberException e) {
+      Log.e("IdentityDatabase", e.toString());
+      throw new IllegalStateException("Trying to verify invalid number");
+    }
+
+    return isIdentityVerified(masterSecret, recipientId, e164Number, contactName, identityKey);
+  }
+
   public void setIdentityUnverified(MasterSecret masterSecret, long recipientId, IdentityKey identityKey) {
     SQLiteDatabase database   = databaseHelper.getWritableDatabase();
 
@@ -161,17 +188,41 @@ public class IdentityDatabase extends Database {
     database.update(TABLE_NAME, contentValues, RECIPIENT + " = ?", new String[]{Long.toString(recipientId)});
   }
 
-  public void setIdentityVerified(MasterSecret masterSecret, long recipientId, IdentityKey identityKey) {
+  public void setIdentityVerified(MasterSecret masterSecret,
+                                  long recipientId,
+                                  String i164Number,
+                                  String contactName,
+                                  IdentityKey identityKey) {
     SQLiteDatabase database   = databaseHelper.getWritableDatabase();
     MasterCipher masterCipher = new MasterCipher(masterSecret);
     String identityKeyString  = Base64.encodeBytes(identityKey.serialize());
-    String macString          = Base64.encodeBytes(masterCipher.getMacFor(recipientId +
-            identityKeyString + VERIFICATION_TAG));
+    String verifyString       = VERIFICATION_TAG + recipientId + identityKeyString + "||" + i164Number + "||"
+                                + contactName;
+
+    String macString          = Base64.encodeBytes(masterCipher.getMacFor(verifyString));
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(VERIFIED, macString);
 
     database.update(TABLE_NAME, contentValues, RECIPIENT + " = ?", new String[]{Long.toString(recipientId)});
+  }
+
+  public void setIdentityVerified(MasterSecret masterSecret,
+                                  Recipient recipient,
+                                  IdentityKey identityKey) {
+    long recipientId = recipient.getRecipientId();
+    String e164Number = null;
+    String contactName = recipient.getName();
+
+    try {
+       e164Number = PhoneNumberFormatter.formatNumber(recipient.getNumber(),
+              TextSecurePreferences.getLocalNumber(context));
+    } catch (InvalidNumberException e) {
+      Log.e("IdentityDatabase", e.toString());
+      throw new IllegalStateException("Trying to verify invalid number");
+    }
+
+    setIdentityVerified(masterSecret, recipientId, e164Number, contactName, identityKey);
   }
 
   public void saveIdentity(MasterSecret masterSecret, long recipientId, IdentityKey identityKey)

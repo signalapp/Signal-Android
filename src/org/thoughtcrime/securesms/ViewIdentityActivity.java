@@ -36,7 +36,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   private TextView      identityVerification;
   private IdentityKey   identityKey;
   private MasterSecret  masterSecret;
-  private Long          recipientId;
+  private Recipient     recipient;
 
   @Override
   public void onCreate(Bundle state) {
@@ -54,7 +54,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   private boolean isFriendVerified() {
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(this);
-    return identityDatabase.isIdentityVerified(this.masterSecret, this.recipientId,
+    return identityDatabase.isIdentityVerified(this.masterSecret, this.recipient,
             identityKey);
   }
 
@@ -64,7 +64,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
     } else {
       identityFingerprint.setText(identityKey.getFingerprint());
 
-      if ((this.masterSecret != null) && (this.recipientId != null)) {
+      if ((this.masterSecret != null) && (this.recipient != null)) {
         if (this.isFriendVerified()) {
           identityVerification.setText(R.string.ViewIdentityActivity_key_was_verified);
         } else {
@@ -81,9 +81,9 @@ public class ViewIdentityActivity extends KeyScanningActivity {
     String title              = getIntent().getStringExtra("title");
 
     if (getIntent().hasExtra("recipient")) {
-      this.recipientId = ((Recipient)getIntent().getParcelableExtra("recipient")).getRecipientId();
+      this.recipient = ((Recipient)getIntent().getParcelableExtra("recipient"));
     } else {
-      this.recipientId = null;
+      this.recipient = null;
     }
 
     if (getIntent().hasExtra("master_secret")) {
@@ -143,7 +143,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   }
 
   @Override
-  protected Long getRecipientId() {
-    return this.recipientId;
+  protected Recipient getRecipient() {
+    return this.recipient;
   }
 }

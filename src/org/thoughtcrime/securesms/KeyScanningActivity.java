@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SerializableKey;
@@ -69,7 +70,7 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
     menu.findItem(R.id.menu_scan).setTitle(getScanString());
     menu.findItem(R.id.menu_get_scanned).setTitle(getDisplayString());
 
-    if (this.getRecipientId() == null) {
+    if (this.getRecipient() == null) {
       menu.findItem(R.id.menu_revoke_verification).setEnabled(false);
     } else {
       menu.findItem(R.id.menu_revoke_verification).setEnabled(true);
@@ -79,12 +80,12 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
   }
 
   private void handleRevokeVerification() {
-    if ((this.getRecipientId() == null) || (this.getMasterSecret() == null)) {
+    if ((this.getRecipient() == null) || (this.getMasterSecret() == null)) {
       return;
     }
 
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(this);
-    identityDatabase.setIdentityUnverified(this.getMasterSecret(), this.getRecipientId(),
+    identityDatabase.setIdentityUnverified(this.getMasterSecret(), this.getRecipient().getRecipientId(),
             (IdentityKey)this.getIdentityKeyToCompare());
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -107,7 +108,7 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
   }
 
   private void markKeyVerified() {
-    if (getRecipientId() == null) {
+    if (getRecipient() == null) {
       return;
     }
 
@@ -116,10 +117,9 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
     }
 
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(this);
-    long recipientId = getRecipientId();
     MasterSecret masterSecret = getMasterSecret();
 
-    identityDatabase.setIdentityVerified(masterSecret, recipientId, (IdentityKey)getIdentityKeyToCompare());
+    identityDatabase.setIdentityVerified(masterSecret, getRecipient(), (IdentityKey) getIdentityKeyToCompare());
   }
 
   @Override
@@ -157,7 +157,7 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
 
   protected abstract SerializableKey getIdentityKeyToCompare();
   protected abstract SerializableKey getIdentityKeyToDisplay();
-  protected abstract Long getRecipientId();
+  protected abstract Recipient getRecipient();
   protected abstract MasterSecret getMasterSecret();
 
   protected abstract String getVerifiedTitle();

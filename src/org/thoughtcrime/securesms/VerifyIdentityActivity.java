@@ -100,7 +100,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     }
 
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(this);
-    return identityDatabase.isIdentityVerified(this.masterSecret, this.recipient.getRecipientId(),
+    return identityDatabase.isIdentityVerified(this.masterSecret, this.recipient,
             identityKey);
   }
 
@@ -118,9 +118,9 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       remoteIdentityFingerprint.setText(identityKey.getFingerprint());
 
       if (isFriendVerified(identityKey)) {
-        remoteIdentityVerified.setText(R.string.VerifyIdentityActivity_key_has_been_verified);
+        remoteIdentityVerified.setText(R.string.VerifyIdentityActivity_key_was_verified);
       } else {
-        remoteIdentityVerified.setText(R.string.VerifyIdentityActivity_key_has_not_been_verified);
+        remoteIdentityVerified.setText(R.string.VerifyIdentityActivity_key_was_not_verified);
       }
     }
   }
@@ -211,12 +211,8 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   @Override
-  protected Long getRecipientId() {
-    if (this.recipient != null) {
-      return this.recipient.getRecipientId();
-    }
-
-    return null;
+  protected Recipient getRecipient() {
+    return this.recipient;
   }
 
   @Override
