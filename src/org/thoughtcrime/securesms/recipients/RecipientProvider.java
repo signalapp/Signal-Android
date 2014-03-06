@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -103,10 +104,17 @@ public class RecipientProvider {
 
     asyncRecipientResolver.submit(future);
 
-    final Bitmap defaultPhoto = isGroupRecipient
-        ? ContactPhotoFactory.getDefaultGroupPhoto(context)
-        : ContactPhotoFactory.getDefaultContactPhoto(context);
-    Recipient recipient = new Recipient(number, defaultPhoto, recipientId, future);
+    Bitmap contactPhoto;
+    Bitmap contactPhotoCropped;
+
+    if (isGroupRecipient) {
+      contactPhoto = ContactPhotoFactory.getDefaultGroupPhoto(context);
+      contactPhotoCropped = ContactPhotoFactory.getDefaultGroupPhotoCropped(context);
+    } else {
+      contactPhoto = ContactPhotoFactory.getDefaultContactPhoto(context);
+      contactPhotoCropped = ContactPhotoFactory.getDefaultContactPhotoCropped(context);
+    }
+    Recipient recipient = new Recipient(number, contactPhoto, contactPhotoCropped, recipientId, future);
     recipientCache.put(recipientId, recipient);
 
     return recipient;
@@ -132,7 +140,8 @@ public class RecipientProvider {
         Bitmap contactPhoto = ContactPhotoFactory.getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
                                                                                                 cursor.getLong(2)+""));
 
-        return new RecipientDetails(cursor.getString(0), contactUri, contactPhoto);
+        return new RecipientDetails(cursor.getString(0), contactUri, contactPhoto,
+                              BitmapUtil.getCircleCroppedBitmap(contactPhoto));
       }
     } finally {
       if (cursor != null)
@@ -154,7 +163,7 @@ public class RecipientProvider {
         if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
         else                     avatar = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
 
-        return new RecipientDetails(record.getTitle(), null, avatar);
+        return new RecipientDetails(record.getTitle(), null, avatar, BitmapUtil.getCircleCroppedBitmap(avatar));
       }
 
       return null;
@@ -167,12 +176,14 @@ public class RecipientProvider {
   public static class RecipientDetails {
     public final String name;
     public final Bitmap avatar;
+    public final Bitmap croppedAvatar;
     public final Uri contactUri;
 
-    public RecipientDetails(String name, Uri contactUri, Bitmap avatar) {
-      this.name       = name;
-      this.avatar     = avatar;
-      this.contactUri = contactUri;
+    public RecipientDetails(String name, Uri contactUri, Bitmap avatar, Bitmap croppedAvatar) {
+      this.name           = name;
+      this.avatar         = avatar;
+      this.croppedAvatar  = croppedAvatar;
+      this.contactUri     = contactUri;
     }
   }
 

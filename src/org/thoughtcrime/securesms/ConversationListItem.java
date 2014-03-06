@@ -30,7 +30,6 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -39,7 +38,6 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 
@@ -131,7 +129,8 @@ public class ConversationListItem extends RelativeLayout
   private void setContactPhoto(final Recipient recipient) {
     if (recipient == null) return;
 
-    contactPhotoImage.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
+    contactPhotoImage.setImageBitmap(recipient.getCircleCroppedContactPhoto());
+
     if (!recipient.isGroupRecipient()) {
       contactPhotoImage.setOnClickListener(new View.OnClickListener() {
         @Override
