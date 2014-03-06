@@ -100,8 +100,8 @@ public class Recipient implements Parcelable, CanonicalRecipient {
     this.number       = in.readString();
     this.name         = in.readString();
     this.recipientId  = in.readLong();
-    this.contactUri   = (Uri)in.readParcelable(null);
-    this.contactPhoto = (Bitmap)in.readParcelable(null);
+    this.contactUri   = in.readParcelable(null);
+    this.contactPhoto = in.readParcelable(null);
   }
 
   public synchronized Uri getContactUri() {
