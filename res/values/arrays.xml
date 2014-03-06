@@ -94,7 +94,7 @@
     <item>cyan</item>
     <item>magenta</item>
     <item>white</item>
-    <item>black</item>
+    <item>none</item>
   </string-array>
   
   <string-array name="pref_led_blink_pattern_entries">
