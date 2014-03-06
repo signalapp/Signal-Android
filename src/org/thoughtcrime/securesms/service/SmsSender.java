@@ -81,7 +81,6 @@ public class SmsSender {
 
       while (reader != null && (record = reader.getNext()) != null) {
         try {
-          messageId = record.getId();
           database.markAsSending(record.getId());
 
           transport.deliver(record);
