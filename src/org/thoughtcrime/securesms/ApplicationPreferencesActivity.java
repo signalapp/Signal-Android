@@ -42,6 +42,7 @@ import android.provider.Settings;
 import android.provider.Telephony;
 import android.text.TextUtils;
 import android.util.Log;
+import android.annotation.TargetApi;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
@@ -187,6 +188,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     return false;
   }
 
+  @TargetApi(19)
   private void initializePlatformSpecificOptions() {
     PreferenceGroup    generalCategory    = (PreferenceGroup) findPreference("general_category");
     Preference         defaultPreference  = findPreference(KITKAT_DEFAULT_PREF);

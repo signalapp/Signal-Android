@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -295,6 +296,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     this.fragment.setMasterSecret(masterSecret);
   }
 
+  @TargetApi(19)
   private void initializeDefaultMessengerCheck() {
     if (!TextSecurePreferences.hasPromptedDefaultSmsProvider(this) && !Util.isDefaultSmsProvider(this)) {
       TextSecurePreferences.setPromptedDefaultSmsProvider(this, true);
