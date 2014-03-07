@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
@@ -114,7 +115,11 @@ public class MmsSendHelper extends MmsCommunication {
   public static boolean hasNecessaryApnDetails(Context context) {
     try {
       ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-      String apn = connectivityManager.getNetworkInfo(MmsRadio.TYPE_MOBILE_MMS).getExtraInfo();
+      NetworkInfo ni = connectivityManager.getNetworkInfo(MmsRadio.TYPE_MOBILE_MMS);
+      if(ni == null) {
+          throw new ApnUnavailableException("No NetworkInfo found at hasNecessaryApnDetails...");
+      }
+      String apn = ni.getExtraInfo();
 
       MmsCommunication.getMmsConnectionParameters(context, apn, true);
       return true;
