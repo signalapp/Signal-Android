@@ -22,7 +22,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
@@ -44,6 +46,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -56,6 +59,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.RecipientColoringUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
@@ -386,7 +390,16 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
-    contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
+    Bitmap contactPhotoBitmap = recipient.getContactPhoto();
+
+    if ((groupThread) &&
+            (recipient.getContactPhoto().equals(ContactPhotoFactory.getDefaultContactPhoto(this.context))))   {
+      contactPhotoBitmap = RecipientColoringUtil.colorBitmapForRecipient(contactPhotoBitmap,
+              recipient, context);
+    }
+
+    contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(contactPhotoBitmap));
+
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
