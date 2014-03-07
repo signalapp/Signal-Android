@@ -153,7 +153,7 @@ public class ConversationFragment extends SherlockListFragment
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
-    builder.setCancelable(false);
+    builder.setCancelable(true);
 
     if (dateReceived == dateSent || message.isOutgoing()) {
       builder.setMessage(String.format(getSherlockActivity()
