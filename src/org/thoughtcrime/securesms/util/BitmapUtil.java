@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -13,7 +14,6 @@ import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -94,6 +94,12 @@ public class BitmapUtil {
     } else {
       return roughThumbnail;
     }
+  }
+
+  public static Bitmap createRotatedBitmap(Bitmap bitmap, float rotateBy) {
+    Matrix matrix = new Matrix();
+    matrix.postRotate(rotateBy);
+    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
   }
 
   private static BitmapFactory.Options getImageDimensions(InputStream inputStream) {
