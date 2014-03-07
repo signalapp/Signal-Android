@@ -88,13 +88,13 @@ public class SmsSender {
           Log.w("SmsSender", e);
           IncomingIdentityUpdateMessage identityUpdateMessage = IncomingIdentityUpdateMessage.createFor(e.getE164Number(), e.getIdentityKey());
           DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
-          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
+          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
         } catch (UndeliverableMessageException ude) {
           Log.w("SmsSender", ude);
-          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
+          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
         } catch (RetryLaterException rle) {
           Log.w("SmsSender", rle);
-          DatabaseFactory.getSmsDatabase(context).markAsOutbox(messageId);
+          DatabaseFactory.getSmsDatabase(context).markAsOutbox(record.getId());
           if (systemStateListener.isConnected()) scheduleQuickRetryAlarm();
           else                                   systemStateListener.registerForConnectivityChange();
         }
