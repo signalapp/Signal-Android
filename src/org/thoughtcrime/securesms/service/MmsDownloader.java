@@ -61,9 +61,9 @@ public class MmsDownloader {
   }
 
   public void process(MasterSecret masterSecret, Intent intent) {
-    if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_ACTION)) {
+    if (SendReceiveService.DOWNLOAD_MMS_ACTION.equals(intent.getAction())) {
       handleDownloadMms(masterSecret, intent);
-    } else if (intent.getAction().equals(SendReceiveService.DOWNLOAD_MMS_PENDING_APN_ACTION)) {
+    } else if (SendReceiveService.DOWNLOAD_MMS_PENDING_APN_ACTION.equals(intent.getAction())) {
       handleMmsPendingApnDownloads(masterSecret);
     }
   }
