@@ -364,8 +364,10 @@ public class MessageNotifier {
     if (signal && vibrate)
       builder.setDefaults(Notification.DEFAULT_VIBRATE);
 
-    builder.setLights(Color.parseColor(ledColor), Integer.parseInt(blinkPatternArray[0]),
+    if (!ledColor.equals("none")) {
+      builder.setLights(Color.parseColor(ledColor), Integer.parseInt(blinkPatternArray[0]),
                       Integer.parseInt(blinkPatternArray[1]));
+    }
   }
 
   private static String[] parseBlinkPattern(String blinkPattern, String blinkPatternCustom) {
