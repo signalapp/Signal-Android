@@ -29,7 +29,10 @@ public class BitmapUtil {
   {
     InputStream measure = context.getContentResolver().openInputStream(uri);
     InputStream data    = context.getContentResolver().openInputStream(uri);
-    Bitmap bitmap       = createScaledBitmap(measure, data, maxWidth, maxHeight);
+    Bitmap scaledBitmap = createScaledBitmap(measure, data, maxWidth, maxHeight);
+    float rotateBy      = ImageUtil.getImageOrientation(context, uri);
+    Bitmap bitmap       = BitmapUtil.createRotatedBitmap(scaledBitmap, rotateBy);
+    scaledBitmap.recycle();
     int quality         = MAX_COMPRESSION_QUALITY;
     int attempts        = 0;
 
