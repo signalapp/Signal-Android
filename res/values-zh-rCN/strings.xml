@@ -18,10 +18,16 @@
   <string name="ApplicationPreferencesActivity_disable">禁用</string>
   <string name="ApplicationPreferencesActivity_unregistering">未注册...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">基于数据通信的注册未能完成</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">禁用消息推送？</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\n如果您未在服务器上注册，这将会禁用信息推送。\n您需要重新注册您的手机号码才能启用信息推送。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">在连接到服务器时遇到错误！</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">您尚未注册推送服务…</string>
   <string name="ApplicationPreferencesActivity_updating_directory">正在更新目录</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">正在更新推送目录…</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">已开启短信</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击来改变默认的短信应用</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">已禁用短信</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">点击来将TextSecure设定为默认的短信应用</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">图片</string>
   <string name="AttachmentTypeSelectorAdapter_video">视频</string>
@@ -76,8 +82,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">您确定想要离开此群组？</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">邮件详细信息</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">发件人： %1$s\n传输： %2$s\n已发送/接收：%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">发送者: %1$s\n传输: %2$s\n已发送: %3$s\n已接收:%4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">传输总数: %1$s\n发送/接收: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">发送者: %1$s\n传输: %2$s\n已发送: %3$s\n已接收: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">确认邮件删除</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">是否确定要永久删除此邮件？</string>
   <!--ConversationListAdapter-->
@@ -198,6 +204,8 @@
   <string name="RegistrationProgressActivity_too_many_requests">太多请求！</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">您已经请求了一个语音呼叫，您可能需要等待20分钟后才能再次请求。</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">正在验证语音代码...</string>
+  <string name="RegistrationProgressActivity_registration_conflict">注册冲突</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">这个号码已经在另一个不同的TextSecure服务器上注册过了(CyanogenMod?)。您必须先注销它，然后才能在此处注册。</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">注册成功</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">已经成功完成TextSecure的注册过程。</string>
@@ -239,6 +247,7 @@
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">扫描的密钥匹配！</string>
   <string name="ViewIdentityActivity_verified_exclamation">已验证！</string>
   <string name="ViewIdentityActivity_identity_fingerprint">身份指纹</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">我的身份指纹</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">启动 Despite Existing Request？</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">您已经发送会话启动请求到此收件人，是否确定要再次发送？  这将使第一个请求无效。</string>
@@ -327,6 +336,19 @@
   <string name="create_passphrase_activity__repeat">重复：</string>
   <string name="create_passphrase_activity__continue">继续</string>
   <string name="create_passphrase_activity__generating_secrets">正在生成密钥</string>
+  <string name="create_passphrase_activity__skip">略过</string>
+  <string name="create_passphrase_activity__create">创建</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__confirmation">此日志将会公开的张贴在互联网上以供TextSecure的参与者查看。在您提交前您可以自由的编辑日志的内容。</string>
+  <string name="log_submit_activity__button_cancel">不要提交</string>
+  <string name="log_submit_activity__button_ok">提交</string>
+  <string name="log_submit_activity__log_fetch_failed">无法获取您设备上的日志，不过您仍然可以以ADB方式来获得您的调试日志。</string>
+  <string name="log_submit_activity__log_submit_success_title">成功！</string>
+  <string name="log_submit_activity__log_got_it">收到</string>
+  <string name="log_submit_activity__your_pastebin_url">请复制这个网址并且附加在您所回报的问题末尾(长按以便复制到剪切板)：\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__copied_to_clipboard">已复制到剪切板</string>
+  <string name="log_submit_activity__loading_logcat">载入logcat中…</string>
+  <string name="log_submit_activity__thanks">感谢您的帮助！</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您希望将目前已经存在的短信导入至TextSecure的加密数据库吗？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">默认的系统数据库将不会被改变。</string>
@@ -367,6 +389,7 @@
   <string name="registration_activity__phone_number">电话号码</string>
   <string name="registration_activity__register">注册人</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">注册过程将会发送一些临时性的联系信息到服务器。</string>
+  <string name="registration_activity__skip">略过</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">可能有一些问题\n包括：</string>
   <string name="registration_problems__sms_interceptors">短信拦截。</string>
@@ -424,6 +447,7 @@
   <string name="AndroidManifest__verify_identity">验证身份</string>
   <string name="AndroidManifest__manage_identity_keys">管理身份密钥</string>
   <string name="AndroidManifest__complete_key_exchange">完成密钥交换</string>
+  <string name="AndroidManifest__log_submit">提交调试日志</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
   <string name="arrays__my_identity_key">我的身份密钥</string>
@@ -446,7 +470,9 @@
   <string name="preferences__complete_key_exchanges">完成密钥交换</string>
   <string name="preferences__disable_passphrase">禁用密码</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">禁用本地信息加密和密钥</string>
+  <string name="preferences__screen_security">屏幕安全性</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">使用同一身份密钥自动完成新会话或现有会话的密钥交换</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">禁用屏幕安全性以便允许截图</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">在一段时间后忘记内存中的密码</string>
   <string name="preferences__timeout_passphrase">超时密码</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">选择密码超时</string>
@@ -460,6 +486,10 @@
   <string name="preferences__display_message_notifications_in_status_bar">在状态栏显示邮件通知</string>
   <string name="preferences__led_color">LED指示灯颜色</string>
   <string name="preferences__pref_led_blink_title">LED指示灯闪烁规律</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">设置自定义LED闪烁模式</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">下列情况开启：</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">下列情况关闭：</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">自定义LED闪烁模式已设定！</string>
   <string name="preferences__sound">声音</string>
   <string name="preferences__change_notification_sound">改变提示音</string>
   <string name="preferences__inthread_notifications">在线程通知</string>
@@ -474,6 +504,7 @@
   <string name="preferences__orange">橙色</string>
   <string name="preferences__cyan">青色</string>
   <string name="preferences__magenta">洋红色</string>
+  <string name="preferences__white">白色</string>
   <string name="preferences__fast">快速</string>
   <string name="preferences__normal">正常</string>
   <string name="preferences__slow">缓慢</string>
@@ -504,9 +535,11 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">将TextSecure设置为默认的短信／彩信应用程序。</string>
   <string name="preferences__use_data_channel">推送信息</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\n与其他TextSecure用户通信所使用的私密保护和免短信费基于数据通道</string>
-  <string name="preferences__allow_sms_fallback">允许失败时以短信方式发送</string>
+  <string name="preferences__allow_sms_fallback">备用短信服务</string>
+  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure目前是您默认的短信应用，如果您想要改变这个设置，请设定另一个短信应用为默认值后再来修改此选项。</string>
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">当推送不可用时，以短信方式发送和接收信息。</string>
   <string name="preferences__refresh_push_directory">刷新推送目录</string>
+  <string name="preferences__submit_debug_log">提交调试日志</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

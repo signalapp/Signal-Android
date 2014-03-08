@@ -12,24 +12,23 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
 import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -144,16 +143,16 @@ public class ConversationFragment extends SherlockListFragment
 
     String transport;
 
-    if      (message.isPush()) transport = "push";
-    else if (message.isMms())  transport = "mms";
-    else                       transport = "sms";
-
+    if      (message.isPending()) transport = "pending";
+    else if (message.isPush())    transport = "push";
+    else if (message.isMms())     transport = "mms";
+    else                          transport = "sms";
 
     SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
-    builder.setCancelable(false);
+    builder.setCancelable(true);
 
     if (dateReceived == dateSent || message.isOutgoing()) {
       builder.setMessage(String.format(getSherlockActivity()

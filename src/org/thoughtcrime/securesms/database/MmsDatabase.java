@@ -22,8 +22,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Pair;
+
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -205,7 +208,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       }
 
       if (encodedToList != null && (encodedToList.length > 1 || group.size() > 1)) {
-        String localNumber = Util.getDeviceE164Number(context);
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String           localNumber      = telephonyManager.getLine1Number();
 
         if (localNumber == null) {
           localNumber = TextSecurePreferences.getLocalNumber(context);
@@ -214,8 +218,14 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
         for (EncodedStringValue encodedTo : encodedToList) {
           String to = new String(encodedTo.getTextString(), CharacterSets.MIMENAME_ISO_8859_1);
 
-          /// TODO format numbers before comparing.
-          if (localNumber == null || !localNumber.equals(to)) {
+          PhoneNumberUtil.MatchType match;
+
+          if (localNumber == null) match = PhoneNumberUtil.MatchType.NO_MATCH;
+          else                     match = PhoneNumberUtil.getInstance().isNumberMatch(localNumber, to);
+
+          if (match == PhoneNumberUtil.MatchType.NO_MATCH ||
+              match == PhoneNumberUtil.MatchType.NOT_A_NUMBER)
+          {
             group.add(to);
           }
         }

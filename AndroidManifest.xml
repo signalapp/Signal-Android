@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="66"
-      android:versionName="2.0.3">
+      android:versionCode="67"
+      android:versionName="2.0.4">
 
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19"/>
 
@@ -69,7 +69,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="audio/*" />
                 <data android:mimeType="image/*" />
-                <data android:mimeType="text/*" />
+                <data android:mimeType="text/plain" />
                 <data android:mimeType="video/*" />
             </intent-filter>            
 

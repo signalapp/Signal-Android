@@ -31,7 +31,7 @@
   <string name="ConversationItem_expires_s">Löper ut: %s</string>
   <string name="ConversationItem_error_sending_message">Det gick inte att skicka meddelandet</string>
   <string name="ConversationItem_sending">Skickar...</string>
-  <string name="ConversationItem_saving_attachment">Sparar Bilaga</string>
+  <string name="ConversationItem_saving_attachment">Sparar bilaga</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Sparar bilaga till SD kort...</string>
   <string name="ConversationItem_save_to_sd_card">Spara till SD kort?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Denna fil har lagrats i en krypterad databas. Versionen du sparar på SD-kortet kommer inte längre vara krypterad. Vill du fortsätta?</string>
@@ -75,8 +75,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna den här gruppen?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelande detaljer</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Avsändare: %1$s\nTransport: %2$s\nSkickat/Mottaget: %3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsändare: %1$s\nTransport: %2$s\nSkickat: %3$s\nMottaget: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bekräfta radering av meddelande</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Är du säker på att du vill ta bort detta meddelande permanent?</string>
   <!--ConversationListAdapter-->
@@ -323,6 +321,9 @@
   <string name="create_passphrase_activity__repeat">UPPREPA:</string>
   <string name="create_passphrase_activity__continue">Fortsätt</string>
   <string name="create_passphrase_activity__generating_secrets">GENERERAR HEMLIGHETER</string>
+  <string name="create_passphrase_activity__skip">Hoppa över</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">Lyckades!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera existerande text meddelanden till TextSecure\'s krypterade databas?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den vanliga systemdatabasen kommer inte modifieras eller röras på något sätt.</string>
@@ -363,6 +364,7 @@
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrera</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering kommer att temporärt överföra viss kontaktinformation till servern.</string>
+  <string name="registration_activity__skip">Hoppa över</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Några möjliga orsaker:</string>
   <string name="registration_problems__sms_interceptors">SMS-uppsnappare.</string>

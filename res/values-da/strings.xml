@@ -56,8 +56,6 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Din enhed understøtter ikke initieret opkald.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Besked detaljer</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s\nTransport: %2$s\nSendt/Modtaget: %3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSendt: %3$s\nModtaget: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bekræft sletning af besked</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker at slette denne besked?</string>
   <!--ConversationListAdapter-->
@@ -126,9 +124,21 @@
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verificere\ndenne kontakt.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen på denne udvekslingsnøgle er til at stole på, men du har deaktiveret indstillingen\n\'fuldfør udvekslingsnøgler automatisk\'.</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_select_your_country">Vælg dit land</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din\nlandekode</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du skal skrive dit\ntelefonnummer</string>
+  <string name="RegistrationActivity_invalid_number">Ikke gyldigt nummer</string>
   <string name="RegistrationActivity_continue">Fortsæt</string>
+  <string name="RegistrationActivity_edit">Rediger</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">Godkender nummer</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Kunne ikke skabe forbindelse. Venligst tjek din netværks forbindelse og prøv igen.</string>
+  <string name="RegistrationProgressActivity_verification_failed">Godkendelse fejlet!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Den godkendelses kode du indtastet er forkert. Prøv igen.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">For mange forsøg</string>
+  <string name="RegistrationProgressActivity_server_error">Server fejl</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Serveren stødte på en fejl. Prøv igen.</string>
   <!--RegistrationService-->
   <!--SmsMessageRecord-->
   <!--ThreadRecord-->
@@ -182,6 +192,8 @@
   <string name="ApplicationMigrationService_import_in_progress">Henter...</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer SMS beskeder</string>
   <!--KeyCachingService-->
+  <string name="KeyCachingService_passphrase_cached">TextSecure er låst op</string>
+  <string name="KeyCachingService_lock">Lås med kode</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nye beskeder</string>
   <string name="MessageNotifier_most_recent_from_s">Sidst modtaget fra: %s</string>
@@ -230,12 +242,16 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch-valg</string>
   <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Indlæser lande...</string>
   <string name="country_selection_fragment__search">Søg</string>
   <!--create_passphrase_activity-->
   <string name="create_passphrase_activity__passphrase">Kodeord:</string>
   <string name="create_passphrase_activity__repeat">Gentag:</string>
   <string name="create_passphrase_activity__continue">Fortsæt</string>
   <string name="create_passphrase_activity__generating_secrets">GENERERER NØGLER</string>
+  <string name="create_passphrase_activity__skip">Spring over</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">Fuldført!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du at importere dine eksisterende beskeder til TextSecures krypterede database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabase vil ikke blive ændret.</string>
@@ -267,8 +283,17 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Udført</string>
   <!--registration_activity-->
+  <string name="registration_activity__your_country">DIT LAND</string>
+  <string name="registration_activity__your_country_code_and_phone_number">DIT LANDE KODE OG\nTELEFONNUMMER</string>
+  <string name="registration_activity__phone_number">TELEFONNUMMER</string>
+  <string name="registration_activity__register">Register</string>
+  <string name="registration_activity__skip">Spring over</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
+  <string name="registration_progress_activity__verify">Godkend</string>
+  <string name="registration_progress_activity__call_me">Ring til mig</string>
+  <string name="registration_progress_activity__edit_number">Rediger nummer</string>
+  <string name="registration_progress_activity__connectivity_error">Forbindelse fejl.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Til</string>
   <!--review_identities-->
@@ -405,6 +430,7 @@
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Ny Besked</string>
   <string name="text_secure_normal__menu_settings">Indstillinger</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Marker alle som læst</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekræftet</string>

@@ -19,6 +19,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Отменяем регистрацию для обмена сообщениями по каналу данных</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Вы не зарегистрированы для использования push...</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Изображение</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
@@ -40,6 +41,9 @@
   <string name="ConversationItem_received_and_processed_key_exchange_message">Получено и обработано сообщение обмена ключами.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Ошибка: получено устаревшее сообщение обмена ключами.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Получено сообщение обмена ключами. Нажмите, чтобы его обработать.</string>
+  <string name="ConversationItem_group_action_left">%1$s покинул группу.</string>
+  <string name="ConversationItem_group_action_joined">%1$s присоединился к группе.</string>
+  <string name="ConversationItem_group_action_modify">%1$s обновил группу.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Начать защищённый сеанс?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Начать защищённый сеанс связи с %s?</string>
@@ -58,6 +62,7 @@
   <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Получатели в конференции</string>
   <string name="ConversationActivity_group_conversation">Конференция</string>
+  <string name="ConversationActivity_unnamed_group">Группа без названия</string>
   <string name="ConversationActivity_d_recipients_in_group">%d участников</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 участник</string>
   <string name="ConversationActivity_saving_draft">Сохраняем черновик...</string>
@@ -68,8 +73,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы уверены, что хотите покинуть эту группу?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Подробности</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Отправитель: %1$s\nТип связи: %2$s\nОтправлено/Получено: %3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Отправитель: %1$s\nТип связи: %2$s\nОтправлено: %3$s\nПолучено: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Подтвердите удаление сообщения</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Вы уверены, что хотите навсегда удалить это сообщение?</string>
   <!--ConversationListAdapter-->
@@ -98,6 +101,7 @@
   <string name="GroupCreateActivity_actionbar_title">Новая группа</string>
   <string name="GroupCreateActivity_actionbar_update_title">Обновить группу</string>
   <string name="GroupCreateActivity_group_name_hint">Название группы</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS группа</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает группы TextSecure. Для группы будет использоваться MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Вы не зарегистрированны для использования канала передачи данных. Группы отключены.</string>
   <string name="GroupCreateActivity_you_dont_own_this_group">Вы не владелец этой группы и не можете менять название или изображение.</string>
@@ -189,6 +193,8 @@
   <string name="RegistrationProgressActivity_too_many_requests">Слишком много запросов!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Вы недавно уже запрашивали голосовой звонок. Запросить ещё один вы сможете через 20 минут.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Проверяем голосовой код...</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Конфликт регистрации</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере TextSecure (CyanogenMod?). Вам нужно удалить регистрацию там, что бы зарегистрироваться здесь.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Регистрация завершена</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Регистрация в TextSecure успешно завершена.</string>
@@ -314,6 +320,9 @@
   <string name="create_passphrase_activity__repeat">ПОВТОРИТЕ:</string>
   <string name="create_passphrase_activity__continue">Продолжить</string>
   <string name="create_passphrase_activity__generating_secrets">СОЗДАЁМ СЕКРЕТЫ </string>
+  <string name="create_passphrase_activity__skip">Пропустить</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">Успешно!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Хотите ли вы импортировать имеющиеся текстовые сообщения в зашифрованную базу данных TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cистемная база данных изменена не будет.</string>
@@ -348,11 +357,13 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Выполнить</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure может использовать передачу коротких сообщений для повышения безопасности и снижения расходов на SMS при общении с другими пользователями TextSecure. Для включения этой возможности, пожалуйста, укажите код страны и номер телефона.</string>
   <string name="registration_activity__your_country">ВАША СТРАНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШЕЙ СТРАНЫ\nИ НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__register">Зарегистрироваться</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Для регистрации на сервер будет временно передана некоторая контактная информация.</string>
+  <string name="registration_activity__skip">Пропустить</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
   <string name="registration_problems__sms_interceptors">Перехватчики SMS-сообщений.</string>
@@ -488,6 +499,8 @@
   <string name="preferences__language">Язык (language)</string>
   <string name="preferences__make_default_sms_app">SMS-приложение по умолчанию</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Сделать TextSecure приложением по умолчанию для SMS и MMS.</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nПовысить безопасность и снизить расходы на SMS, используя передачу данных при общении с другими пользователями TextSecure</string>
+  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Отправлять и принимать SMS когда сервис push не доступен</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

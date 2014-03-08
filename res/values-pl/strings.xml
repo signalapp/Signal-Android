@@ -19,6 +19,13 @@
   <string name="ApplicationPreferencesActivity_unregistering">Wyrejestrowywanie...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Wyrejestrowanie dla transmisji danych</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Błąd połączenia z serwerem!</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Nie jesteś zarejestrowany w usłudze push...</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Aktualizowanie katalogu</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Aktualizowanie katalogu pchnięcia</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Włączony</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotknij aby zmienić swoją domyślną aplikację SMS</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Wyłączony</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotknij aby TextSecure była Twoją domyślną aplikacją SMS</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Zdjęcie</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -73,8 +80,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Czy na pewno chcesz opuścić grupę?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Nadawca: %1$s\nTyp wiadomości: %2$s\nWysłano/Odebrano:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Wysyłający: %1$s\nTransport: %2$s\nWysłanych: %3$s\nOtrzymanych: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potwierdź kasowanie wiadomości</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Czy na pewno chcesz permanentnie skasować tą wiadomość?</string>
   <!--ConversationListAdapter-->
@@ -195,6 +200,8 @@
   <string name="RegistrationProgressActivity_too_many_requests">Zbyt wiele zapytań!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Właśnie zażądałeś połączenie głosowego. Możesz ponownie żądać innego połączenia w ciągu 20 minut.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Weryfikacja kodu głosowego...</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Konflikt rejestracji</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ten numer jest już zarejestrowany na innym serwerze TextSecure (CyanogenMod?). Musisz się najpierw wyrejestrować stamtąd zanim zarejestrujesz się tutaj.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Rejestracja zakończona</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Rejestracja TextSecure została pomyślnie zakończona.</string>
@@ -319,10 +326,23 @@
   <string name="country_selection_fragment__loading_countries">Wczytywanie krajów...</string>
   <string name="country_selection_fragment__search">Szukaj</string>
   <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Proszę wybierz hasło które będzie użyte do lokalnego szyfrowania Twoich danych.</string>
   <string name="create_passphrase_activity__passphrase">HASŁO:</string>
   <string name="create_passphrase_activity__repeat">POWTÓRZ</string>
   <string name="create_passphrase_activity__continue">Kontynuuj</string>
   <string name="create_passphrase_activity__generating_secrets">GENEROWANIE KLUCZY</string>
+  <string name="create_passphrase_activity__skip">Pomiń</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__confirmation">Ten log będzie opublikowany publicznie na internecie dla osób wnoszących wkład w TextSecure. Zapraszam do badania lub edytowania poniższych logów przed wysłaniem.</string>
+  <string name="log_submit_activity__button_cancel">Nie wysyłaj</string>
+  <string name="log_submit_activity__button_ok">Wyślij</string>
+  <string name="log_submit_activity__log_fetch_failed">Nie udało się zdobyć logów z Twojego urządzenia. W dalszym ciągu możesz użyć ADB aby zdobyć logi debugowania wzamian.</string>
+  <string name="log_submit_activity__log_submit_success_title">Sukces!</string>
+  <string name="log_submit_activity__log_got_it">Rozumiem</string>
+  <string name="log_submit_activity__your_pastebin_url">Skopiuj ten adres URL i dodaj go do Twojego wydania (naciśnij długo, aby umieścić w schowku):\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__copied_to_clipboard">Skopiowane do schowka </string>
+  <string name="log_submit_activity__loading_logcat">Ładowanie logcat...</string>
+  <string name="log_submit_activity__thanks">Dziękujemy za twoją pomoc!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Czy chcesz zaimportować swoje wiadomości do zaszyfrowanej bazy danych TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Domyślna baza danych z wiadomościami nie zostanie zmodyfikowana ani zastąpiona.</string>
@@ -363,6 +383,7 @@
   <string name="registration_activity__phone_number">NUMER TELEFONU</string>
   <string name="registration_activity__register">Rejestracja</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Podczas rejestracji, niektóre informacje o kontakcie zostaną przesłane tymczasowo na serwer.</string>
+  <string name="registration_activity__skip">Pomiń</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Niektóre możliwe problemy:</string>
   <string name="registration_problems__sms_interceptors">Przechwytywanie SMS.</string>
@@ -420,6 +441,7 @@
   <string name="AndroidManifest__verify_identity">Zweryfikuj tożsamość</string>
   <string name="AndroidManifest__manage_identity_keys">Zarządzaj kluczami tożsamości</string>
   <string name="AndroidManifest__complete_key_exchange">Ukończono wymianę kluczy</string>
+  <string name="AndroidManifest__log_submit">Wyślij logi debugowania</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / Eksport</string>
   <string name="arrays__my_identity_key">Mój klucz tożsamości</string>
@@ -442,7 +464,9 @@
   <string name="preferences__complete_key_exchanges">Wymiana kluczy</string>
   <string name="preferences__disable_passphrase">Wyłącz lokalne szyfrowanie</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Wyłącz szyfrowanie wiadomości i kluczy przechowywanych w urządzeniu</string>
+  <string name="preferences__screen_security">Ochrona ekranu</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatycznie wymień klucze dla nowej sesji albo użyj tego samego klucza tożsamości dla istniejącej sesji</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Wyłącz ochronę ekranu aby pozwolić na rzuty ekranu</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Zapomnij hasło z pamięci systemu po pewnym czasie</string>
   <string name="preferences__timeout_passphrase">Limit czasu dla hasła</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Wybierz czas do automatycznego wylogowania</string>
@@ -456,6 +480,10 @@
   <string name="preferences__display_message_notifications_in_status_bar">Wyświetlaj powiadomienia o wiadomości na pasku </string>
   <string name="preferences__led_color">Kolor LED</string>
   <string name="preferences__pref_led_blink_title">Wzór powiadomień LED</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Ustaw częstotliwość LED</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Włączone dla:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Wyłączone dla:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Ustawiono niestandardowy wzór migających świateł LED!</string>
   <string name="preferences__sound">Dźwięk</string>
   <string name="preferences__change_notification_sound">Zmień dźwięk powiadomienia</string>
   <string name="preferences__inthread_notifications">Powiadomienia \"w rozmowie\"</string>
@@ -500,8 +528,11 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Ustaw TextSecure jako domyślną aplikację SMS/MMS.</string>
   <string name="preferences__use_data_channel">Czat</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nZwiększ swoją prywatność i uniknij opłat za SMS używając transmisji danych do komunikacji z innymi użytkownikami TextSecure.</string>
-  <string name="preferences__allow_sms_fallback">Pozwól na SMS Fallback</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Wysyłaj i otrzymuj wiadomości SMS kiedy pchnięcie nie jest dostępne.</string>
+  <string name="preferences__allow_sms_fallback">SMS Fallback</string>
+  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure obecnie jest Twoją domyślną aplikacją SMS. Aby to zmienić proszę ustaw inną aplikację SMS na pierwszym miejscu we właściwościach.</string>
+  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Wysyłaj i otrzymuj wiadomości SMS kiedy technologia push nie jest dostępna.</string>
+  <string name="preferences__refresh_push_directory">Odśwież katalogu pchnięcia</string>
+  <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -58,8 +58,6 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">נראה כי מכשיר זה אינו תומך בפעולות חיוג.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי הודעה</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">שולח: %1$s\nתעבורה: %2$s\nנשלח/התקבל: %3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">שולח: %1$s\nתעבורה: %2$s\nנשלח: %3$s\nהתקבל: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">אשר מחיקת הודעה</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">אתה בטוח שאתה רוצה למחוק את ההודעה הזו לתמיד?</string>
   <!--ConversationListAdapter-->
@@ -240,6 +238,9 @@
   <string name="create_passphrase_activity__repeat">חזור:</string>
   <string name="create_passphrase_activity__continue">המשך</string>
   <string name="create_passphrase_activity__generating_secrets">מייצר סודות</string>
+  <string name="create_passphrase_activity__skip">דלג</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">הצליח!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">אתה רוצה לייבא את הודעות הטקסט הקיימות שלך לבסיס הנתונים המוצפן של TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">בסיס הנתונים ברירת המחדל של המערכת לא ישתנה בשום אופן.</string>
@@ -274,6 +275,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">השלם</string>
   <!--registration_activity-->
+  <string name="registration_activity__skip">דלג</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->

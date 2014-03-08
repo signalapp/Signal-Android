@@ -57,8 +57,6 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">هذا الجهاز لا يدعم خاصية الاتصال.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">المرسل: %1$s\nالاتصال: %2$s\nارسال/استقبال: %3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">المرسل: %1$s\nالارسال: %2$s\nتم ارسال: %3$s\nتم استقبال:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">تأكيد حذف الرسالة</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">هل أنت متأكد من حذف هذه الرسالة نهائياً؟</string>
   <!--ConversationListAdapter-->
@@ -237,6 +235,9 @@
   <string name="create_passphrase_activity__repeat">تكرار:</string>
   <string name="create_passphrase_activity__continue">متابعة</string>
   <string name="create_passphrase_activity__generating_secrets">جاري إنشاء الأسرار</string>
+  <string name="create_passphrase_activity__skip">تجاهل</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">نجحت!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">هل تود استيراد الرسائل النصية إلى قواعد بيانات تكست سيكيور المشفرة؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>
@@ -265,6 +266,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">انتهاء</string>
   <!--registration_activity-->
+  <string name="registration_activity__skip">تجاهل</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->

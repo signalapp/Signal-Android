@@ -56,8 +56,6 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Това устройство не поддържа повиквания.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Информация за съобщението</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Изпращане: %1$s⏎\nТранспорт: %2$s⏎\nИзпратени/Получени:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Изпращач: %1$s⏎\nТранспорт: %2$s⏎\nИзпратено: %3$s⏎\nПолучено:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Потвърдете изтриване на съобщението</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Сигурни ли сте че искате да изтриете съобщението завинаги?</string>
   <!--ConversationListAdapter-->
@@ -230,6 +228,9 @@
   <string name="create_passphrase_activity__repeat">ПОВТОРИ: </string>
   <string name="create_passphrase_activity__continue">Продължи</string>
   <string name="create_passphrase_activity__generating_secrets">ГЕНЕРИРАНЕ НА ТАЙНИ</string>
+  <string name="create_passphrase_activity__skip">Пропусни</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">Успех!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Искате ли да импортирате съществуващи текстови съобщения в криптирана база данни на TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Базата данни на системата  няма да се  променени по някакъв начин.</string>
@@ -260,6 +261,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Завършен</string>
   <!--registration_activity-->
+  <string name="registration_activity__skip">Пропусни</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->

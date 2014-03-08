@@ -48,8 +48,6 @@
   <string name="ConversationActivity_saving_draft">အကြမ်းသိမ်း...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">ပို့သူ: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ပို့သူ: %1$s\nTransport: %2$s\nSent: %3$s\nReceived:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">စာတိုဖျက်ခြင်းကိုအတည်ပြု</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">စာတိုကို အပြီးဖျက်ပစ်မည်မှာ သေချာလား</string>
   <!--ConversationListAdapter-->
@@ -62,6 +60,7 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ကီးပြောင်းလဲခြင်းစာတို...</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_success">အောင်မြင်!</string>
   <!--GroupCreateActivity-->
   <!--ImportFragment-->
   <!--KeyScanningActivity-->
@@ -185,6 +184,9 @@
   <string name="create_passphrase_activity__repeat">နောက်တစ်ကြိမ်:</string>
   <string name="create_passphrase_activity__continue">ရှေ့ဆက်</string>
   <string name="create_passphrase_activity__generating_secrets">လျှို့ဝှက်ချက်များကို ဖန်တီးနေ</string>
+  <string name="create_passphrase_activity__skip">ကျော်</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_submit_success_title">အောင်မြင်!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">အသင်၏ ရှိရင်းစွဲ စာသားများကို Textsecure၏ ဝှက်သိမ်းထားသော ဒေတာဘေ့စ်ထဲသို့ တင်သွင်းမည်လား။</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">စနစ်ပိုင်းဆိုင်ရာ နဂိုဒေတာဘေ့စ်ကို ပြောင်းလဲမည် မဟုတ်ပါ</string>
@@ -203,6 +205,7 @@
   <string name="prompt_mms_activity__mms_proxy_port_optional">MMS ပရောက်ဇီ PORT (အရေးမကြီး)</string>
   <!--receive_key_activity-->
   <!--registration_activity-->
+  <string name="registration_activity__skip">ကျော်</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
