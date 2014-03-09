@@ -54,6 +54,7 @@ public class Recipient implements Parcelable {
 
   private Bitmap contactPhoto;
   private Bitmap circleCroppedContactPhoto;
+  private Bitmap generatedAvatar;
 
   private Uri    contactUri;
 
@@ -64,6 +65,7 @@ public class Recipient implements Parcelable {
     this.circleCroppedContactPhoto  = circleCroppedContactPhoto;
     this.contactPhoto               = contactPhoto;
     this.recipientId                = recipientId;
+    this.generatedAvatar            = null;
 
     future.addListener(new FutureTaskListener<RecipientDetails>() {
       @Override
@@ -185,6 +187,13 @@ public class Recipient implements Parcelable {
 
   public synchronized Bitmap getCircleCroppedContactPhoto() {
     return this.circleCroppedContactPhoto;
+  }
+
+  public synchronized Bitmap getGeneratedAvatar(Context context) {
+    if (this.generatedAvatar == null)
+      this.generatedAvatar = AvatarGenerator.generateFor(context, this);
+
+    return this.generatedAvatar;
   }
 
   public static Recipient getUnknownRecipient(Context context) {

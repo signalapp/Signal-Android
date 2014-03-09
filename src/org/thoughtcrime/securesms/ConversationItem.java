@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -40,6 +41,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -405,7 +407,15 @@ public class ConversationItem extends LinearLayout {
   private void setContactPhotoForRecipient(final Recipient recipient) {
     if (contactPhoto == null) return;
 
-    contactPhoto.setImageBitmap(recipient.getCircleCroppedContactPhoto());
+    Bitmap contactPhotoBitmap;
+
+    if ((recipient.getContactPhoto() == ContactPhotoFactory.getDefaultContactPhoto(context)) && (groupThread)) {
+      contactPhotoBitmap = recipient.getGeneratedAvatar(context);
+    } else {
+      contactPhotoBitmap = recipient.getCircleCroppedContactPhoto();
+    }
+
+    contactPhoto.setImageBitmap(contactPhotoBitmap);
 
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override
