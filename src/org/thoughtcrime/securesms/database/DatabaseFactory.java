@@ -659,8 +659,6 @@ public class DatabaseFactory {
         db.execSQL("DROP TABLE push_backup;");
       }
 
-      // TODO @Manuel: Hier ein Upgrade der DB einfügen, damit ein Feld für die Übertragung da ist, wenn gewünscht....
-
       db.setTransactionSuccessful();
       db.endTransaction();
     }

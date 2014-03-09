@@ -82,6 +82,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return MmsSmsColumns.Types.isSecureType(type);
   }
 
+  public boolean isSmsForced() {
+    return MmsSmsColumns.Types.isSmsType(type);
+  }
+
   @Override
   public SpannableString getDisplayBody() {
     if (isGroupUpdate() && isOutgoing()) {
@@ -111,6 +115,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isPush() {
     return SmsDatabase.Types.isPushType(type);
+  }
+
+  public boolean isSms() {
+    return SmsDatabase.Types.isSmsType(type);
   }
 
   public boolean isStaleKeyExchange() {

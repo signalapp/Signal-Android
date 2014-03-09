@@ -63,7 +63,7 @@ public class UniversalTransport {
   public void deliver(SmsMessageRecord message)
       throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException
   {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!TextSecurePreferences.isPushRegistered(context) || message.isSmsForced()) {
       smsTransport.deliver(message);
       return;
     }
@@ -72,8 +72,6 @@ public class UniversalTransport {
       Recipient recipient = message.getIndividualRecipient();
       String number       = Util.canonicalizeNumber(context, recipient.getNumber());
 
-        // TODO: Hier entsprechend abfragen, ob push prefered ist bzw. ob die Nachricht über SMS geforced werden soll
-      // In isPushTransport reinschauen, ob da die Verbindung gecheckt wird....
       if (isPushTransport(number) && !message.isKeyExchange()) {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(number);
         boolean isForcePushEnabled = TextSecurePreferences.isPushServiceForced(context);
@@ -122,7 +120,6 @@ public class UniversalTransport {
     try {
       String destination = Util.canonicalizeNumber(context, mediaMessage.getTo()[0].getString());
 
-      // TODO @Manuel: Hier auch auf Force Push prüfen? Schauen, wann das hier tatsächlich ausgeführt wird
       if (isPushTransport(destination)) {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(destination);
 
