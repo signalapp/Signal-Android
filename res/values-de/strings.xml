@@ -540,6 +540,9 @@
   <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Sende und empfange SMS-Nachrichten, wenn der Datenkanal nicht verfügbar ist</string>
   <string name="preferences__refresh_push_directory">Push-Verzeichnis aktualisieren</string>
   <string name="preferences__submit_debug_log">Fehlerprotokoll übermitteln</string>
+  <string name="preferences__force_push_service">Bevorzuge Push Dienst</string>
+  <string name="preferences__force_push_service_if_recipient_supports_push">Wenn der Empfänger den Push Dienst aktiviert hat, werden Nachrichten immer über diesen Dienst übermittelt.</string>
+
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

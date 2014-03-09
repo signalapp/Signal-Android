@@ -113,6 +113,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isPushType(type);
   }
 
+  public boolean isSms() {
+    return SmsDatabase.Types.isSmsType(type);
+  }
+
   public boolean isStaleKeyExchange() {
     return SmsDatabase.Types.isStaleKeyExchange(type);
   }

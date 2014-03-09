@@ -731,6 +731,8 @@
     <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
     <string name="preferences__refresh_push_directory">Refresh Push Directory</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
+    <string name="preferences__force_push_service">Force Push Service</string>
+    <string name="preferences__force_push_service_if_recipient_supports_push">Use always the push service if recipient has enabled the service</string>
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -748,6 +750,7 @@
 
     <!-- conversation_button_context -->
     <string name="conversation_button_context__menu_send_unencrypted">Send unencrypted</string>
+    <string name="conversation_button_context__menu_send_sms">Send SMS</string>
 
     <!-- conversation_callable -->
     <string name="conversation_callable__menu_call">Call</string>

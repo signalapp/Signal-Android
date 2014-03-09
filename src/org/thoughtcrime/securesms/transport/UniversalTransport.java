@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.transport;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -62,7 +63,7 @@ public class UniversalTransport {
   public void deliver(SmsMessageRecord message)
       throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException
   {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!TextSecurePreferences.isPushRegistered(context) || message.isSms()) {
       smsTransport.deliver(message);
       return;
     }
@@ -73,17 +74,18 @@ public class UniversalTransport {
 
       if (isPushTransport(number) && !message.isKeyExchange()) {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(number);
+        boolean isForcePushEnabled = TextSecurePreferences.isPushServiceForced(context);
 
         try {
           Log.w("UniversalTransport", "Delivering with GCM...");
           pushTransport.deliver(message);
         } catch (UnregisteredUserException uue) {
-          Log.w("UnviersalTransport", uue);
+          Log.w("UniversalTransport", uue);
           if (isSmsFallbackSupported) smsTransport.deliver(message);
           else                        throw new UndeliverableMessageException(uue);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
-          if (isSmsFallbackSupported) smsTransport.deliver(message);
+          if (isSmsFallbackSupported && !isForcePushEnabled) smsTransport.deliver(message);
           else                        throw new RetryLaterException(ioe);
         }
       } else {

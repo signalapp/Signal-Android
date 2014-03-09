@@ -101,7 +101,7 @@ public class KeyExchangeProcessorV1 extends KeyExchangeProcessor {
       OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, ourMessage.serialize());
       Log.w("KeyExchangeProcessorV1", "Responding with key exchange message fingerprint: " + ourMessage.getRemoteKey().getFingerprint());
       Log.w("KeyExchangeProcessorV1", "Which has a local key record fingerprint: " + localKeyRecord.getCurrentKeyPair().getPublicKey().getFingerprint());
-      MessageSender.send(context, masterSecret, textMessage, threadId);
+      MessageSender.send(context, masterSecret, textMessage, threadId, false);
     }
 
     remoteKeyRecord.setCurrentRemoteKey(message.getRemoteKey());

@@ -335,7 +335,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   @Override
   public boolean onContextItemSelected(android.view.MenuItem item) {
     switch (item.getItemId()) {
-    case R.id.menu_context_send_unencrypted: sendMessage(true); return true;
+    case R.id.menu_context_send_unencrypted: sendMessage(true, false); return true;
+    case R.id.menu_context_send_sms:         sendMessage(false, true); return true;
     }
 
     return false;
@@ -416,7 +417,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
                 new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipients(), "TERMINATE"));
 
             long allocatedThreadId = MessageSender.send(self, masterSecret,
-                                                        endSessionMessage, threadId);
+                                                        endSessionMessage, threadId, false);
 
             sendComplete(recipients, allocatedThreadId, allocatedThreadId != self.threadId);
           } else {
@@ -1073,7 +1074,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
   }
 
-  private void sendMessage(boolean forcePlaintext) {
+  private void sendMessage(boolean forcePlaintext, boolean forceSms) {
     try {
       Recipients recipients   = getRecipients();
 
@@ -1111,7 +1112,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
         Log.w(TAG, "Sending message...");
         allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
-                                               message, threadId);
+                                               message, threadId, forceSms);
       }
 
       sendComplete(recipients, allocatedThreadId, allocatedThreadId != this.threadId);
@@ -1173,7 +1174,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
-      sendMessage(false);
+      sendMessage(false, false);
     }
 
     @Override
