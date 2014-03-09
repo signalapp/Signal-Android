@@ -82,10 +82,6 @@ public abstract class MessageRecord extends DisplayRecord {
     return MmsSmsColumns.Types.isSecureType(type);
   }
 
-  public boolean isSmsForced() {
-    return MmsSmsColumns.Types.isSmsType(type);
-  }
-
   @Override
   public SpannableString getDisplayBody() {
     if (isGroupUpdate() && isOutgoing()) {

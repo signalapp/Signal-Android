@@ -63,7 +63,7 @@ public class UniversalTransport {
   public void deliver(SmsMessageRecord message)
       throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException
   {
-    if (!TextSecurePreferences.isPushRegistered(context) || message.isSmsForced()) {
+    if (!TextSecurePreferences.isPushRegistered(context) || message.isSms()) {
       smsTransport.deliver(message);
       return;
     }
