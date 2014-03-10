@@ -26,11 +26,14 @@ import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
@@ -40,12 +43,14 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -110,6 +115,7 @@ import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.Util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -147,6 +153,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private static final int PICK_AUDIO        = 4;
   private static final int PICK_CONTACT_INFO = 5;
   private static final int GROUP_EDIT        = 6;
+  private static final int TAKE_IMAGE        = 7;
 
   private MasterSecret    masterSecret;
   private RecipientsPanel recipientsPanel;
@@ -235,7 +242,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
-    if (data == null || resultCode != RESULT_OK) return;
+    if ((data == null && reqCode != TAKE_IMAGE) || (reqCode == TAKE_IMAGE && mLastPhoto == null) || resultCode != RESULT_OK) return;
     switch (reqCode) {
     case PICK_CONTACT:
       Recipients recipients = data.getParcelableExtra("recipients");
@@ -244,6 +251,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       break;
     case PICK_IMAGE:
       addAttachmentImage(data.getData());
+      break;
+    case TAKE_IMAGE:
+      addAttachmentImage(mLastPhoto);
       break;
     case PICK_VIDEO:
       addAttachmentVideo(data.getData());
@@ -259,6 +269,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       initializeTitleBar();
       break;
     }
+
   }
 
   @Override
@@ -817,7 +828,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   //////// Helper Methods
-
+  Uri mLastPhoto;
   private void addAttachment(int type) {
     Log.w("ComposeMessageActivity", "Selected: " + type);
     switch (type) {
@@ -827,9 +838,52 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       AttachmentManager.selectVideo(this, PICK_VIDEO); break;
     case AttachmentTypeSelectorAdapter.ADD_SOUND:
       AttachmentManager.selectAudio(this, PICK_AUDIO); break;
+    case AttachmentTypeSelectorAdapter.TAKE_PICTURE:
+      showAttachmentWarning(type); break;
+    case AttachmentTypeSelectorAdapter.RECORD_VIDEO:
+      showAttachmentWarning(type); break;
+    case AttachmentTypeSelectorAdapter.RECORD_SOUND:
+      showAttachmentWarning(type);; break;
     }
   }
 
+  private void makeAttachment(int type){
+    switch(type) {
+    case AttachmentTypeSelectorAdapter.TAKE_PICTURE:
+      mLastPhoto = AttachmentManager.takeImage(this, TAKE_IMAGE); break;
+    case AttachmentTypeSelectorAdapter.RECORD_VIDEO:
+      AttachmentManager.takeVideo(this, PICK_VIDEO); break;
+    case AttachmentTypeSelectorAdapter.RECORD_SOUND:
+      AttachmentManager.takeAudio(this, PICK_AUDIO); break;
+    }
+  }
+
+  private void showAttachmentWarning(final int type){
+      if(TextSecurePreferences.isMediaWarningDismissed(this)){
+          makeAttachment(type);
+      }else {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.ConversationItem_save_to_sd_card);
+        builder.setIcon(Dialogs.resolveIcon(this, R.attr.dialog_alert_icon));
+        builder.setCancelable(true);
+        builder.setMessage(R.string.ConversationItem_store_unencrypted_warning);
+
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        View eulaLayout = layoutInflater.inflate(R.layout.prefence_dialog_dismiss, null);
+        builder.setView(eulaLayout);
+        final Context context = this;
+        final CheckBox dismissCheckbox = (CheckBox) eulaLayout.findViewById(R.id.pref_dismiss_dialog);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+              if(dismissCheckbox != null)
+                  TextSecurePreferences.setDismissMediaWarning(context, dismissCheckbox.isChecked());
+              makeAttachment(type);
+          }
+        });
+        builder.setNegativeButton(R.string.no, null);
+        builder.show();
+      }
+  }
   private void addAttachmentImage(Uri imageUri) {
     try {
       attachmentManager.setImage(imageUri);

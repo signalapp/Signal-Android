@@ -40,8 +40,11 @@
     <!-- AttachmentTypeSelectorAdapter -->
 
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
+    <string name="AttachmentTypeSelectorAdapter_capture_picture">Capture Picture</string>
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
+    <string name="AttachmentTypeSelectorAdapter_capture_video">Capture Video</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+    <string name="AttachmentTypeSelectorAdapter_record_audio">Record Audio</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
@@ -51,6 +54,7 @@
     <string name="ConversationItem_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
     <string name="ConversationItem_save_to_sd_card">Save to SD Card?</string>
     <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted. Would you like to continue?</string>
+    <string name="ConversationItem_store_unencrypted_warning">Capturing media stores this file unencrypted on the SD card.  Would you like to continue?</string>
     <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
     <string name="ConversationItem_success_exclamation">Success!</string>
     <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Unable to write to SD Card!</string>
@@ -730,6 +734,7 @@
     <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
     <string name="preferences__refresh_push_directory">Refresh Push Directory</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
+    <string name="preferences_dismiss_dialog">Ok, don\'t show again!</string>
 
     <!-- **************************************** -->
     <!-- menus -->
