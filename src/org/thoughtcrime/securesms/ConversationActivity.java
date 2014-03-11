@@ -713,6 +713,12 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     } else {
       composeText.setInputType(composeText.getInputType() | (InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE));
     }
+    if (TextSecurePreferences.isEnterSendsEnabled(this)) {
+      composeText.setInputType(composeText.getInputType() & (~InputType.TYPE_TEXT_FLAG_MULTI_LINE));
+      composeText.setHorizontallyScrolling(false);
+      composeText.setMaxLines(4);
+      composeText.setImeOptions(EditorInfo.IME_ACTION_SEND);
+    }
   }
 
   private void initializeResources() {
@@ -1180,7 +1186,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
       if (actionId == EditorInfo.IME_ACTION_SEND) {
         sendButton.performClick();
-        composeText.clearFocus();
         return true;
       }
       return false;
