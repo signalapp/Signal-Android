@@ -177,4 +177,12 @@
                     android:title="@string/preferences__submit_debug_log"/>
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences__about_application">
+
+        <Preference android:key="pref_about_application"
+                    android:title="@string/preferences__version"
+                    android:summary="@string/preferences__version_number_string"/>
+
+    </PreferenceCategory>
 </PreferenceScreen>
