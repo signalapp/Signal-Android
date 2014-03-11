@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
+import android.text.TextUtils;
 
 import java.util.Locale;
 
@@ -19,7 +20,7 @@ public class DynamicLanguage {
   }
 
   public void onResume(Activity activity) {
-    if (!currentLocale.getLanguage().equalsIgnoreCase(getSelectedLocale(activity).getLanguage())) {
+    if (!currentLocale.equals(getSelectedLocale(activity))) {
       Intent intent = activity.getIntent();
       intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
@@ -38,7 +39,7 @@ public class DynamicLanguage {
   private static void setActivityLocale(Activity activity, Locale selectedLocale) {
     Configuration configuration = activity.getResources().getConfiguration();
 
-    if (!configuration.locale.getLanguage().equalsIgnoreCase(selectedLocale.getLanguage())) {
+    if (!configuration.locale.equals(selectedLocale)) {
       configuration.locale = selectedLocale;
       activity.getResources().updateConfiguration(configuration,
                                                   activity.getResources().getDisplayMetrics());
@@ -50,10 +51,15 @@ public class DynamicLanguage {
   }
 
   private static Locale getSelectedLocale(Activity activity) {
-    String language = TextSecurePreferences.getLanguage(activity);
+    String language[] = TextUtils.split(TextSecurePreferences.getLanguage(activity), "_");
 
-    if (language.equals(DEFAULT)) return Locale.getDefault();
-    else                          return new Locale(language);
+    if (language[0].equals(DEFAULT)) {
+      return Locale.getDefault();
+    } else if (language.length == 2) {
+      return new Locale(language[0], language[1]);
+    } else {
+      return new Locale(language[0]);
+    }
   }
 
   private static final class OverridePendingTransition {
