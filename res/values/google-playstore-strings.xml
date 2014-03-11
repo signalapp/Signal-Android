@@ -3,7 +3,7 @@
 <!--
 
 	These strings are the source of the TextSecure Google Play Store description.
-	https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&hl=de
+	https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&hl=en
 
 	The sparse numbering of the string variables allows inserting additional lines
 	later without the need to renumber existing strings.
@@ -15,7 +15,7 @@
 
 <resources>
 
-	<string name="PlaystoreDescription_para_0100">TextSecure</string>
+	<string name="PlaystoreDescription_para_0100">TextSecure Private Messenger</string>
 	<string name="PlaystoreDescription_para_0200">TextSecure is a messaging app that allows you to take back your privacy while easily communicating with friends.</string>
 
 	<string name="PlaystoreDescription_para_0300">Using TextSecure, you can communicate instantly while avoiding SMS fees, create groups so that you can chat in real time with all your friends at once, and share media or attachments all with complete privacy. The server never has access to any of your communication and never stores any of your data.</string>
