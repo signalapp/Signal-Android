@@ -2,27 +2,40 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.CursorAdapter;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
+import org.whispersystems.textsecure.util.FutureTaskListener;
+import org.whispersystems.textsecure.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -30,6 +43,11 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -69,17 +87,22 @@ public class ConversationFragment extends SherlockListFragment
       MenuItem resend = menu.findItem(R.id.menu_context_resend);
       resend.setVisible(true);
     }
+
+    if (messageRecord instanceof MediaMmsMessageRecord) {
+      inflater.inflate(R.menu.conversation_context_image, menu);
+    }
   }
 
   @Override
   public boolean onContextItemSelected(android.view.MenuItem item) {
-    MessageRecord messageRecord = getMessageRecord();
+    final MessageRecord messageRecord = getMessageRecord();
     switch(item.getItemId()) {
     case R.id.menu_context_copy:           handleCopyMessage(messageRecord);     return true;
     case R.id.menu_context_delete_message: handleDeleteMessage(messageRecord);   return true;
     case R.id.menu_context_details:        handleDisplayDetails(messageRecord);  return true;
     case R.id.menu_context_forward:        handleForwardMessage(messageRecord);  return true;
     case R.id.menu_context_resend:         handleResendMessage(messageRecord);   return true;
+    case R.id.menu_context_save_image:     handleSaveImage(messageRecord);       return true;
     }
 
     return false;
@@ -185,6 +208,22 @@ public class ConversationFragment extends SherlockListFragment
     MessageSender.resend(activity, messageId, message.isMms());
   }
 
+  private void handleSaveImage(final MessageRecord message) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    builder.setTitle(R.string.ConversationFragment_save_to_sd_card);
+    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
+    builder.setCancelable(true);
+    builder.setMessage(R.string.ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning);
+    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        ThumbnailSaveListener savelistener = new ThumbnailSaveListener((MediaMmsMessageRecord)message);
+        savelistener.saveToSdCard();
+      }
+    });
+    builder.setNegativeButton(R.string.no, null);
+    builder.show();
+  }
+
   private void initializeResources() {
     String recipientIds = this.getActivity().getIntent().getStringExtra("recipients");
 
@@ -231,6 +270,135 @@ public class ConversationFragment extends SherlockListFragment
 
   public interface ConversationFragmentListener {
     public void setComposeText(String text);
+  }
+
+
+  private class ThumbnailSaveListener extends Handler implements Runnable, FutureTaskListener<SlideDeck>, MediaScannerConnection.MediaScannerConnectionClient {
+    private static final int SUCCESS              = 0;
+    private static final int FAILURE              = 1;
+    private static final int WRITE_ACCESS_FAILURE = 2;
+
+    private Slide slide;
+    private ProgressDialog progressDialog;
+    private MediaScannerConnection mediaScannerConnection;
+    private File mediaFile;
+    private Context context;
+
+    public ThumbnailSaveListener(final MediaMmsMessageRecord message) {
+      this.context = getActivity();
+
+      ListenableFutureTask<SlideDeck> slideDeck = message.getSlideDeck();
+      slideDeck.setListener(this);
+    }
+
+    @Override
+    public void onSuccess(final SlideDeck result) {
+      if (result == null)
+        return;
+
+      for (Slide slide : result.getSlides()) {
+        if (slide.hasImage()) {
+          // that's our slide
+          this.slide = slide;
+        }
+      }
+    }
+
+    @Override
+    public void onFailure(Throwable error) {}
+
+    public void run() {
+      if (!Environment.getExternalStorageDirectory().canWrite()) {
+        this.obtainMessage(WRITE_ACCESS_FAILURE).sendToTarget();
+        return;
+      }
+
+      try {
+        mediaFile                 = constructOutputFile();
+        InputStream inputStream   = slide.getPartDataInputStream();
+        OutputStream outputStream = new FileOutputStream(mediaFile);
+
+        byte[] buffer = new byte[4096];
+        int read;
+
+        while ((read = inputStream.read(buffer)) != -1) {
+          outputStream.write(buffer, 0, read);
+        }
+
+        outputStream.close();
+        inputStream.close();
+
+        mediaScannerConnection = new MediaScannerConnection(context, this);
+        mediaScannerConnection.connect();
+      } catch (IOException ioe) {
+        Log.w("ConversationFragment", ioe);
+        this.obtainMessage(FAILURE).sendToTarget();
+      }
+    }
+
+    private File constructOutputFile() throws IOException {
+      File sdCard = Environment.getExternalStorageDirectory();
+      File outputDirectory;
+
+      if (slide == null) {
+        throw new IOException();
+      }
+
+      if (slide.hasVideo())
+        outputDirectory = new File(sdCard.getAbsoluteFile() + File.separator + "Movies");
+      else if (slide.hasAudio())
+        outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Music");
+      else
+        outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Pictures");
+      outputDirectory.mkdirs();
+
+      MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+      String extension = mimeTypeMap.getExtensionFromMimeType(slide.getContentType());
+      if (extension == null)
+          extension = "attach";
+
+      return File.createTempFile("textsecure", "." + extension, outputDirectory);
+    }
+
+    public void saveToSdCard() {
+      progressDialog = new ProgressDialog(context);
+      progressDialog.setTitle(context.getString(R.string.ConversationFragment_saving_attachment));
+      progressDialog.setMessage(context.getString(R.string.ConversationFragment_saving_attachment_to_sd_card));
+      progressDialog.setCancelable(false);
+      progressDialog.setIndeterminate(true);
+      progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      progressDialog.show();
+      new Thread(this).start();
+    }
+
+    @Override
+    public void handleMessage(Message message) {
+      switch (message.what) {
+      case FAILURE:
+        Toast.makeText(context, R.string.ConversationFragment_error_while_saving_attachment_to_sd_card,
+                       Toast.LENGTH_LONG).show();
+        break;
+      case SUCCESS:
+        Toast.makeText(context, R.string.ConversationFragment_success_exclamation,
+                       Toast.LENGTH_LONG).show();
+        break;
+      case WRITE_ACCESS_FAILURE:
+        Toast.makeText(context, R.string.ConversationFragment_unable_to_write_to_sd_card_exclamation,
+                       Toast.LENGTH_LONG).show();
+        break;
+      }
+
+      progressDialog.dismiss();
+    }
+
+    public void onMediaScannerConnected() {
+      mediaScannerConnection.scanFile(mediaFile.getAbsolutePath(), slide.getContentType());
+    }
+
+    public void onScanCompleted(String path, Uri uri) {
+      mediaScannerConnection.disconnect();
+      this.obtainMessage(SUCCESS).sendToTarget();
+    }
   }
 
 }
