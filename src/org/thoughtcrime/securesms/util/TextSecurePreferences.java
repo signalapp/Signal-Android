@@ -19,7 +19,8 @@ public class TextSecurePreferences {
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
 
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
-  private static final String VIBRATE_PREF                     = "pref_key_vibrate";
+  public  static final String VIBRATE_PREF                     = "pref_vibrate";
+  private static final String VIBRATE_PATTERN_PREF_CUSTOM      = "pref_vibrate_pattern_custom";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
   public  static final String LED_COLOR_PREF                   = "pref_led_color";
   public  static final String LED_BLINK_PREF                   = "pref_led_blink";
@@ -243,8 +244,16 @@ public class TextSecurePreferences {
     return getStringPreference(context, RINGTONE_PREF, null);
   }
 
-  public static boolean isNotificationVibrateEnabled(Context context) {
-    return getBooleanPreference(context, VIBRATE_PREF, true);
+  public static String getNotificationVibrate(Context context) {
+    return getStringPreference(context, VIBRATE_PREF, "default");
+  }
+
+  public static String getNotificationVibratePatternCustom(Context context) {
+    return getStringPreference(context, VIBRATE_PATTERN_PREF_CUSTOM, "0,500,100,500");
+  }
+
+  public static void setNotificationVibratePatternCustom(Context context, String pattern) {
+    setStringPreference(context, VIBRATE_PATTERN_PREF_CUSTOM, pattern);
   }
 
   public static String getNotificationLedColor(Context context) {

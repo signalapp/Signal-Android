@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -353,7 +354,8 @@ public class MessageNotifier {
                                             boolean signal)
   {
     String ringtone              = TextSecurePreferences.getNotificationRingtone(context);
-    boolean vibrate              = TextSecurePreferences.isNotificationVibrateEnabled(context);
+    String vibrate               = TextSecurePreferences.getNotificationVibrate(context);
+    String vibratePatternCustom  = TextSecurePreferences.getNotificationVibratePatternCustom(context);
     String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
     String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
     String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
@@ -361,8 +363,10 @@ public class MessageNotifier {
 
     builder.setSound(TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone));
 
-    if (signal && vibrate) {
-      builder.setDefaults(Notification.DEFAULT_VIBRATE);
+    if (signal && !vibrate.equals("disabled")) {
+      if (vibrate.equals("default")) builder.setDefaults(Notification.DEFAULT_VIBRATE);
+      else if (vibrate.equals("custom")) builder.setVibrate(parseVibratePattern(vibratePatternCustom));
+      else builder.setVibrate(parseVibratePattern(vibrate));
     }
 
     if (!ledColor.equals("none")) {
@@ -370,6 +374,17 @@ public class MessageNotifier {
                         Integer.parseInt(blinkPatternArray[0]),
                         Integer.parseInt(blinkPatternArray[1]));
     }
+  }
+
+  public static long[] parseVibratePattern(String VibratePattern) {
+    String[] vibratePatternCustomArrayString = VibratePattern.split(",");
+    long[] vibratePatternCustomArray         = new long[vibratePatternCustomArrayString.length];
+
+    for (int i = 0; i < vibratePatternCustomArrayString.length; i++) {
+      vibratePatternCustomArray[i] = Long.parseLong(vibratePatternCustomArrayString[i].trim());
+    }
+
+    return vibratePatternCustomArray;
   }
 
   private static String[] parseBlinkPattern(String blinkPattern, String blinkPatternCustom) {

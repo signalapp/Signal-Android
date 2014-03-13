@@ -64,11 +64,13 @@
                             android:dependency="pref_key_enable_notifications"
                             android:defaultValue="true" />
 
-        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
-                            android:key="pref_key_vibrate"
-                            android:defaultValue="true"
-                            android:title="@string/preferences__vibrate"
-                            android:summary="@string/preferences__also_vibrate_when_notified" />
+        <org.thoughtcrime.securesms.preferences.VibratePatternListPreference
+            android:key="pref_vibrate"
+            android:defaultValue="default"
+            android:title="@string/preferences__pref_vibrate_title"
+            android:dependency="pref_key_enable_notifications"
+            android:entries="@array/pref_vibrate_entries"
+            android:entryValues="@array/pref_vibrate_values" />
 
   </PreferenceCategory>
 
