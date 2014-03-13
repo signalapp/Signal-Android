@@ -78,6 +78,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
 
+  //Constants
   private static final int PICK_IDENTITY_CONTACT        = 1;
   private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
 
