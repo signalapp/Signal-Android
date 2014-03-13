@@ -20,6 +20,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,7 +29,9 @@ import android.widget.ImageView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 public class AttachmentManager {
 
@@ -89,6 +93,18 @@ public class AttachmentManager {
     selectMediaType(activity, "image/*", requestCode);
   }
 
+  public static Uri takeImage(Activity activity, int requestCode) {
+      return startPhotoTaker(activity, requestCode);
+  }
+
+  public static void takeVideo(Activity activity, int requestCode) {
+      startVideoTaker(activity, requestCode);
+  }
+
+  public static void takeAudio(Activity activity, int requestCode) {
+    startAudioTaker(activity, requestCode);
+  }
+
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, "audio/*", requestCode);
   }
@@ -97,6 +113,28 @@ public class AttachmentManager {
     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.setType(type);
     activity.startActivityForResult(intent, requestCode);
+  }
+
+  private static Uri startPhotoTaker(Activity activity,  int requestCode) {
+      Uri mLastPhoto = null;
+      // create Intent to take a picture and return control to the calling application
+      Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+      File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "ts_" + new Date().getTime() + ".jpg");
+      mLastPhoto = Uri.fromFile(photo);
+      intent.putExtra(MediaStore.EXTRA_OUTPUT,
+              mLastPhoto);
+      activity.startActivityForResult(intent, requestCode);
+    return mLastPhoto;
+  }
+
+  private static void startVideoTaker(Activity activity, int requestCode) {
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        activity.startActivityForResult(intent, requestCode);
+  }
+
+  private static void startAudioTaker(Activity activity, int requestCode) {
+        Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+        activity.startActivityForResult(intent, requestCode);
   }
 
   private class RemoveButtonListener implements View.OnClickListener {

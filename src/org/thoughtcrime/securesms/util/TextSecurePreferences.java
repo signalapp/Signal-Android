@@ -47,8 +47,18 @@ public class TextSecurePreferences {
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
   public  static final String ALLOW_SMS_FALLBACK_PREF          = "pref_allow_sms_traffic_out";
 
+  public static final String DISMISS_MEDIA_WARNING             = "pref_dismiss_media_warning";
+
   public static boolean isSmsFallbackEnabled(Context context) {
     return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
+  }
+
+  public static boolean isMediaWarningDismissed(Context context){
+    return getBooleanPreference(context, DISMISS_MEDIA_WARNING, false);
+  }
+
+  public static void setDismissMediaWarning(Context context, boolean dismiss){
+      setBooleanPreference(context, DISMISS_MEDIA_WARNING, dismiss);
   }
 
   public static int getLocalRegistrationId(Context context) {

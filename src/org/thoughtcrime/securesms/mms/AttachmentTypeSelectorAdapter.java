@@ -33,11 +33,11 @@ import java.util.List;
 public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSelectorAdapter.IconListItem> {
 
 	public static final int ADD_IMAGE     = 1;
-//	public static final int TAKE_PICTURE  = 2;
+	public static final int TAKE_PICTURE  = 2;
 	public static final int ADD_VIDEO     = 3;
-//	public static final int	RECORD_VIDEO  = 4;
+	public static final int	RECORD_VIDEO  = 4;
 	public static final int	ADD_SOUND	  = 5;
-//	public static final int	RECORD_SOUND  = 6;
+	public static final int	RECORD_SOUND  = 6;
 
 	private final Context context;
 
@@ -76,13 +76,16 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 	  List<IconListItem> data = new ArrayList<IconListItem>(7);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_picture),
 	          R.drawable.ic_attach_picture_holo_light, ADD_IMAGE);
-//        addItem(data, "Capture picture", R.drawable.ic_launcher_camera, TAKE_PICTURE);
+      addItem(data,context.getString(R.string.AttachmentTypeSelectorAdapter_capture_picture),
+              R.drawable.ic_attach_capture_picture_holo_light, TAKE_PICTURE);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video),
 	          R.drawable.ic_attach_video_holo_light, ADD_VIDEO);
-//        addItem(data, "Capture video", R.drawable.ic_launcher_camera_record, RECORD_VIDEO);
+        addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_capture_video),
+                R.drawable.ic_attach_capture_video_holo_light, RECORD_VIDEO);
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio),
 	          R.drawable.ic_attach_audio_holo_light, ADD_SOUND);
-//        addItem(data, "Record audio", R.drawable.ic_launcher_record_audio, RECORD_SOUND);
+        addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_record_audio),
+                R.drawable.ic_attach_capture_audio_holo_light, RECORD_SOUND);
 
 	  return data;
 	}
