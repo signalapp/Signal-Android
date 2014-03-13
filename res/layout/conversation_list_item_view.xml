@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationListItem
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     <FrameLayout android:id="@+id/contact_photo_frame"
@@ -27,69 +27,67 @@
             android:layout_marginLeft="0dp" />
     </FrameLayout>
 
-    <TextView android:id="@+id/from"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="?attr/conversation_list_item_contact_color"
-        android:singleLine="true"
-        android:layout_marginTop="12dip"
-        android:layout_marginRight="5dip"
+        android:layout_marginTop="4dip"
         android:layout_marginLeft="4dip"
-        android:layout_marginBottom="10dip"
-        android:layout_alignTop="@id/contact_photo_frame"
+        android:layout_marginRight="8dip"
+        android:layout_marginBottom="4dip"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@id/contact_photo_frame"
-        android:layout_alignParentRight="true"
-        android:layout_alignWithParentIfMissing="true"
-        android:ellipsize="marquee" />
-    <!--android:layout_toLeftOf="@id/checkbox"-->
+        android:orientation="vertical">
 
-    <TextView android:id="@+id/date"
-        android:layout_marginTop="12dip"
-        android:layout_marginLeft="5dip"
-        android:paddingRight="10dip"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="13dp"
-        android:textColor="?attr/conversation_list_item_date_color"
-        android:fontFamily="sans-serif-light"
-        android:singleLine="true"
-        android:layout_alignTop="@id/contact_photo_frame"
-        android:layout_alignParentRight="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:gravity="bottom">
 
-    <ImageView android:id="@+id/error"
-        android:layout_marginLeft="3dip"
-        android:visibility="invisible"
-        android:layout_toLeftOf="@id/date"
-        android:layout_alignBottom="@id/date"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@drawable/ic_list_alert_sms_failed"
-        android:contentDescription="Error Alert" />
+            <TextView android:id="@+id/from"
+                      android:layout_weight="1"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:textColor="?attr/conversation_list_item_contact_color"
+                      android:singleLine="true"
+                      android:ellipsize="marquee" />
 
-     <ImageView android:id="@+id/attachment"
-        android:layout_marginLeft="3dip"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_toLeftOf="@id/error"
-        android:layout_alignBottom="@id/date"
-        android:src="@drawable/ic_attachment_universal_small"
-        android:contentDescription="Attachment Indicator" />
+            <ImageView android:id="@+id/attachment"
+                       android:layout_marginLeft="3dip"
+                       android:layout_height="match_parent"
+                       android:layout_width="20sp"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_attachment_universal_small"
+                       android:contentDescription="Attachment Indicator" />
 
-    <TextView android:id="@+id/subject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?attr/conversation_list_item_subject_color"
-        android:fontFamily="sans-serif-light"
-        android:singleLine="true"
-        android:layout_marginBottom="12dip"
-        android:layout_marginLeft="4dip"
-        android:layout_alignBottom="@id/contact_photo_frame"
-        android:layout_toRightOf="@id/contact_photo_frame"
-        android:layout_toLeftOf="@id/date"
-        android:ellipsize="end" />
+            <ImageView android:id="@+id/error"
+                       android:layout_marginLeft="3dip"
+                       android:layout_height="match_parent"
+                       android:layout_width="20sp"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_list_alert_sms_failed"
+                       android:contentDescription="Error Alert" />
 
+            <TextView android:id="@+id/date"
+                      android:layout_marginLeft="3dip"
+                      android:layout_height="wrap_content"
+                      android:layout_width="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:textColor="?attr/conversation_list_item_date_color"
+                      android:fontFamily="sans-serif-light"
+                      android:singleLine="true" />
+            </LinearLayout>
+
+        <TextView android:id="@+id/subject"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:textColor="?attr/conversation_list_item_subject_color"
+                  android:fontFamily="sans-serif-light"
+                  android:singleLine="true"
+                  android:ellipsize="end" />
+
+    </LinearLayout>
 </org.thoughtcrime.securesms.ConversationListItem>
