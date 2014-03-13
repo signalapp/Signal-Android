@@ -201,20 +201,31 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
       group.add(new String(encodedFrom.getTextString(), CharacterSets.MIMENAME_ISO_8859_1));
 
+      TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+      String           localNumber      = telephonyManager.getLine1Number();
+
+      if (localNumber == null) {
+          localNumber = TextSecurePreferences.getLocalNumber(context);
+      }
+
       if (encodedCcList != null) {
         for (EncodedStringValue encodedCc : encodedCcList) {
-          group.add(new String(encodedCc.getTextString(), CharacterSets.MIMENAME_ISO_8859_1));
+          String cc = new String(encodedCc.getTextString(), CharacterSets.MIMENAME_ISO_8859_1);
+
+          PhoneNumberUtil.MatchType match;
+
+          if (localNumber == null) match = PhoneNumberUtil.MatchType.NO_MATCH;
+          else                     match = PhoneNumberUtil.getInstance().isNumberMatch(localNumber, cc);
+
+          if (match == PhoneNumberUtil.MatchType.NO_MATCH ||
+              match == PhoneNumberUtil.MatchType.NOT_A_NUMBER)
+          {
+              group.add(cc);
+          }
         }
       }
 
       if (encodedToList != null && (encodedToList.length > 1 || group.size() > 1)) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String           localNumber      = telephonyManager.getLine1Number();
-
-        if (localNumber == null) {
-          localNumber = TextSecurePreferences.getLocalNumber(context);
-        }
-
         for (EncodedStringValue encodedTo : encodedToList) {
           String to = new String(encodedTo.getTextString(), CharacterSets.MIMENAME_ISO_8859_1);
 
