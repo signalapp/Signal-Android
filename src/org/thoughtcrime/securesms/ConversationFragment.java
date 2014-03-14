@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.internal.widget.IcsAdapterView;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
@@ -32,9 +34,10 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class ConversationFragment extends SherlockListFragment
-  implements LoaderManager.LoaderCallbacks<Cursor>
+  implements LoaderManager.LoaderCallbacks<List<MessageRecord>>
 {
 
   private ConversationFragmentListener listener;
@@ -64,7 +67,8 @@ public class ConversationFragment extends SherlockListFragment
 
     inflater.inflate(R.menu.conversation_context, menu);
 
-    MessageRecord messageRecord = getMessageRecord();
+    MessageRecord messageRecord = ((ConversationItem)v).getMessageRecord();
+
     if (messageRecord.isFailed()) {
       MenuItem resend = menu.findItem(R.id.menu_context_resend);
       resend.setVisible(true);
@@ -73,7 +77,11 @@ public class ConversationFragment extends SherlockListFragment
 
   @Override
   public boolean onContextItemSelected(android.view.MenuItem item) {
-    MessageRecord messageRecord = getMessageRecord();
+    IcsAdapterView.AdapterContextMenuInfo info = (IcsAdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+    View view = info.targetView;
+
+    MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();
+
     switch(item.getItemId()) {
     case R.id.menu_context_copy:           handleCopyMessage(messageRecord);     return true;
     case R.id.menu_context_delete_message: handleDeleteMessage(messageRecord);   return true;
@@ -89,12 +97,6 @@ public class ConversationFragment extends SherlockListFragment
   public void onAttach(Activity activity) {
     super.onAttach(activity);
     this.listener = (ConversationFragmentListener)activity;
-  }
-
-  private MessageRecord getMessageRecord() {
-    Cursor cursor                     = ((CursorAdapter)getListAdapter()).getCursor();
-    ConversationItem conversationItem = (ConversationItem)(((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
-    return conversationItem.getMessageRecord();
   }
 
   public void reload(Recipients recipients, long threadId) {
@@ -206,18 +208,17 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationLoader(getActivity(), threadId);
+  public Loader<List<MessageRecord>> onCreateLoader(int arg0, Bundle arg1) {
+    return new ConversationLoader(getActivity(), threadId, masterSecret);
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+  public void onLoadFinished(Loader<List<MessageRecord>> loader, List<MessageRecord> messageRecords) {
+    ((ConversationAdapter)getListAdapter()).appendMessages(messageRecords);
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> arg0) {
-    ((CursorAdapter)getListAdapter()).changeCursor(null);
+  public void onLoaderReset(Loader<List<MessageRecord>> arg0) {
   }
 
   private class FailedIconClickHandler extends Handler {
