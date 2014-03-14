@@ -17,7 +17,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.internal.widget.IcsAdapterView;
@@ -67,7 +69,9 @@ public class ConversationFragment extends SherlockListFragment
 
     inflater.inflate(R.menu.conversation_context, menu);
 
-    MessageRecord messageRecord = ((ConversationItem)v).getMessageRecord();
+    ConversationItem selectedItem = (ConversationItem)((AdapterView.AdapterContextMenuInfo)menuInfo).targetView;
+
+    MessageRecord messageRecord = selectedItem.getMessageRecord();
 
     if (messageRecord.isFailed()) {
       MenuItem resend = menu.findItem(R.id.menu_context_resend);
@@ -77,7 +81,7 @@ public class ConversationFragment extends SherlockListFragment
 
   @Override
   public boolean onContextItemSelected(android.view.MenuItem item) {
-    IcsAdapterView.AdapterContextMenuInfo info = (IcsAdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
     View view = info.targetView;
 
     MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();

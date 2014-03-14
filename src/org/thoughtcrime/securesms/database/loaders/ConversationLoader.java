@@ -14,6 +14,11 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This loads conversation items into a list of MessageRecords in a background thread
+ *
+ * @author Lukas Barth
+ */
 public class ConversationLoader extends AsyncTaskLoader<List<MessageRecord>> {
 
   private final Context context;
