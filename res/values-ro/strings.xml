@@ -30,7 +30,6 @@
   <string name="ConversationItem_message_size_d_kb">Marimea mesajului: %d KB</string>
   <string name="ConversationItem_expires_s">Expira in: %s</string>
   <string name="ConversationItem_error_sending_message">Eroare de trimitere mesaj</string>
-  <string name="ConversationItem_sending">Se trimite...</string>
   <string name="ConversationItem_saving_attachment">Atasamentul se salveaza</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Atasamentul se salveaza pe SD card...</string>
   <string name="ConversationItem_save_to_sd_card">Salvezi pe SD Card?</string>
@@ -300,6 +299,9 @@
   <string name="contact_selection_group_activity__finding_contacts">Cautare contacte...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Tastati un nume pentru a filtra...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Nu sunteti inregistrat cu serviciul \"push\"</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Actualizare director</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Actualizare director de tip \"push\"...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecteaza pentru</string>
   <!--contact_selection_recent_activity-->
@@ -432,8 +434,6 @@
   <string name="arrays__contact_keys">Chei de contact</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
-  <string name="preferences__pref_all_sms_title">Foloseste pentru toate SMS-urile</string>
-  <string name="preferences__pref_all_mms_title">Foloseste pentru toate MMS-urile</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Foloseste TextSecure pentru vizualizarea si salvarea tuturor mesajelor text primite</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Foloseste TextSecure pentru vizualizarea si salvarea tuturor mesajelor multimedia primite</string>
   <string name="preferences__enable_enter_key_title">Activeaza tasta Enter</string>
@@ -506,7 +506,6 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Alege TextSecure ca aplicație SMS/MMS implicită pentru sistemul tău.</string>
   <string name="preferences__use_data_channel">Impingere mesaje</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nSporeste protectia intimitatii si evita costurile asociate cu SMS-urile folosind comunicarea prin canal de date cu alti utilizatori de TextSecure.</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Trimite si primeste mesaje SMS atunci cand serviciul push nu este disponibil</string>
   <string name="preferences__refresh_push_directory">Reimprospatare director de tip \"push\"...</string>
   <!--****************************************-->
   <!--menus-->
@@ -516,6 +515,7 @@
   <string name="contact_selection_list__menu_unselect_all">Deselecteaza tot</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Terminat</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Trimite necriptat</string>
   <!--conversation_callable-->
@@ -538,7 +538,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Securitate</string>
   <string name="conversation_secure_verified__menu_no_identity">Nu exista identitate disponibila</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Verifica destinatar</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verifica identitatea</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Incheie Sesiune Securizata</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adauga atasament</string>

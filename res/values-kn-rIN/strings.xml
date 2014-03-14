@@ -27,7 +27,6 @@
   <string name="ConversationItem_message_size_d_kb">ಸಂದೇಶದ ಗಾತ್ರ: %d ಕೆ.ಬಿ</string>
   <string name="ConversationItem_expires_s">ಮುಕ್ತಾಯದ ಅವಧಿ: %s</string>
   <string name="ConversationItem_error_sending_message">ಸಂದೇಶ ಕಳುಹಿಸುವಾಗ ದೋಷವಾಗಿದೆ</string>
-  <string name="ConversationItem_sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="ConversationItem_saving_attachment">ಲಗತ್ತು ಉಳಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">ಎಸ್.ಡಿ ಕಾರ್ಡಿಗೆ ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="ConversationItem_save_to_sd_card">ಎಸ್. ಡಿ ಕಾರ್ಡಿಗೆ ಉಳಿಸಲೆ?</string>
@@ -395,8 +394,6 @@
   <string name="arrays__contact_keys">ಸಂಪರ್ಕದ ಕೀಲಿಗಳು</string>
   <!--preferences.xml-->
   <string name="preferences__general">ಸಾಮಾನ್ಯ</string>
-  <string name="preferences__pref_all_sms_title">ಎಲ್ಲಾ ಎಸ್. ಎಮ್. ಎಸ್ ಗಳಿಗೆ ಬಳಸಿ</string>
-  <string name="preferences__pref_all_mms_title">ಎಲ್ಲಾ ಎಮ್. ಎಮ್. ಎಸ್ ಗಳಿಗೆ ಬಳಸಿ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">ಎಲ್ಲಾ ಒಳಬರುವ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಮತ್ತು ಸಂಗ್ರಹಿಸಲು ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಸಿ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">ಎಲ್ಲಾ ಒಳಬರುವ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಮತ್ತು ಸಂಗ್ರಹಿಸಲು ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಸಿ</string>
   <string name="preferences__enable_enter_key_title">ಎಂಟರ್ ಕೀಲಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
@@ -475,6 +472,7 @@
   <string name="contact_selection_list__menu_unselect_all">ಎಲ್ಲದರ ಆಯ್ಕೆರದ್ದುಮಾಡು</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">ಮುಗಿದಿದೆ</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">ಗೂಢಲಿಪಿಕರಿಸದನ್ನು ಕಳಿಸಿ</string>
   <!--conversation_callable-->
@@ -495,7 +493,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">ಸುರಕ್ಷತೆ</string>
   <string name="conversation_secure_verified__menu_no_identity">ಯಾವುದೇ ಗುರುತು ಲಭ್ಯವಿಲ್ಲ</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">ಸ್ವೀಕೃತಿದಾರರನ್ನು ಪರಿಶೀಲಿಸಿ</string>
+  <string name="conversation_secure_verified__menu_verify_identity">ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಕೊನೆಗೊಳಿಸು</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>

@@ -17,16 +17,16 @@
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nAdvarsel! Dette vil deaktivere kryptert lagring av alle meldinger og nøkler. Dine krypterte sesjoner vil fortsette å fungere, men alle med fysisk tilgang til enheten din vil kunne få tilgang til dem.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Avregistrerering av data som bærer av meldinger</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Avregistrerering av data basert melding</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Deaktiver push meldinger?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nDette vil deaktivere push meldinger ved å avregistrere deg fra tjenesten.\nDu må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte push meldinger i fremtiden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til meldingstjener!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Du er ikke registrert som bruker av push tjenesten...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Oppdaterer katalog</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Oppdaterer push katalogen...</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktivert</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Innkommende SMS aktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Klikk for å endre standard SMS applikasjon</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktivert</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Innkommende SMS deaktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Klikk for å la TextSecure være din standard SMS applikasjon</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
@@ -36,7 +36,6 @@
   <string name="ConversationItem_message_size_d_kb">Meldingsstørrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Utløper: %s</string>
   <string name="ConversationItem_error_sending_message">Kunne ikke sende melding</string>
-  <string name="ConversationItem_sending">Sender...</string>
   <string name="ConversationItem_saving_attachment">Lagrer vedlegg</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Lagrer vedlegg til SD-kort...</string>
   <string name="ConversationItem_save_to_sd_card">Lagre til SD-kort?</string>
@@ -53,6 +52,8 @@
   <string name="ConversationItem_group_action_left">%1$s har forlatt gruppen.</string>
   <string name="ConversationItem_group_action_joined">%1$s har sluttet seg til gruppen.</string>
   <string name="ConversationItem_group_action_modify">%1$s har oppdatert gruppen.</string>
+  <string name="ConversationItem_click_to_approve">Klikk for \"SMS fallback\"</string>
+  <string name="ConversationItem_click_to_approve_dialog_title">Benytte SMS som alternativ?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Starte sikker sesjon?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Starte sikker sesjon med %s?</string>
@@ -82,7 +83,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du ønsker å forlate gruppen?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsender: %1$s\nTransport: %2$s\nSendt: %3$s\nMottatt:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bekreft sletting av melding</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker å slette denne meldingen?</string>
@@ -311,6 +312,9 @@
   <string name="contact_selection_group_activity__finding_contacts">Finner kontakter...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Tast et navn for å filtrere...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Du er ikke registrert som bruker av push tjenesten...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Oppdaterer katalog</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Oppdaterer push katalogen...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Velg for</string>
   <!--contact_selection_recent_activity-->
@@ -388,11 +392,11 @@
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDSKODE OG\nTELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrer</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registreringsprosessen vil sende noe midlertidig kontaktinformasjon til serveren.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering vil overføre hashet kontaktinformasjon til serveren midlertidig.</string>
   <string name="registration_activity__skip">Hopp over</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mulige problemer:</string>
-  <string name="registration_problems__sms_interceptors">SMS blokkerere.</string>
+  <string name="registration_problems__sms_interceptors">SMS avlyttere.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nNoen tredjeparts meldingsklienter, som Handcent eller GoSMS, oppfører seg dårlig og kaprer alle innkommende SMS meldinger. Sjekk for å se om du har mottatt en tekstmelding som starter med \'Your TextSecure verification code:\'. Om så er tilfelle må du konfigurere din tredjeparts meldingsklient til å slippe igjennom tekstmeldinger.</string>
   <string name="registration_problems__incorrect_number">Feil nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nSjekk at du har tastet inn telefonnummeret ditt riktig, og at det er riktig formattert for din region.</string>
@@ -454,8 +458,9 @@
   <string name="arrays__contact_keys">Kontaktnøkler</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
-  <string name="preferences__pref_all_sms_title">Benytt for all SMS</string>
-  <string name="preferences__pref_all_mms_title">Benytt for all MMS</string>
+  <string name="preferences__push_sms_category">Push og SMS</string>
+  <string name="preferences__pref_all_sms_title">Motta alle SMS</string>
+  <string name="preferences__pref_all_mms_title">Motta alle MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Benytt TextSecure for å lese og lagre alle innkommende SMS meldinger.</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Benytt TextSecure for å lese og lagre alle innkommende MMS meldinger.</string>
   <string name="preferences__enable_enter_key_title">Aktiver \"Enter\" tasten</string>
@@ -505,6 +510,7 @@
   <string name="preferences__cyan">Turkis</string>
   <string name="preferences__magenta">Magenta</string>
   <string name="preferences__white">Hvit</string>
+  <string name="preferences__none">Ingen</string>
   <string name="preferences__fast">Hurtig</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Sakte</string>
@@ -535,11 +541,16 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">La TextSecure være enhetens standard SMS/MMS applikasjon.</string>
   <string name="preferences__use_data_channel">Push meldinger</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nØk personvernet og unngå SMS kostnader ved å benytte data kanalen når du kommuniserer med andre TextSecure brukere.</string>
-  <string name="preferences__allow_sms_fallback">SMS fallback</string>
+  <string name="preferences__allow_sms_fallback">Tillat utgående SMS til</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure er for tiden din standard SMS applikasjon. Vær vennlig og sett en annen default SMS applikasjon først for å endre denne preferansen.</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send og motta SMS meldinger når push tjenesten ikke er tilgjengelig</string>
   <string name="preferences__refresh_push_directory">Oppdater push katalog</string>
   <string name="preferences__submit_debug_log">Send debug logg</string>
+  <string name="preferences__sms_outgoing_push_users">TextSecure brukere</string>
+  <string name="preferences__sms_fallback_push_users_ask">(spør først)</string>
+  <string name="preferences__sms_outgoing_push_users_description">Send sikker SMS dersom dataforbindelsen er utilgjengelig</string>
+  <string name="preferences__sms_fallback_ask_fallback">Spør før SMS benyttes til å sende</string>
+  <string name="preferences__sms_fallback_non_push_users">Brukere uten TextSecure</string>
+  <string name="preferences__sms_fallback_nobody">Ingen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -548,6 +559,8 @@
   <string name="contact_selection_list__menu_unselect_all">Avmarker alt</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Avslutt</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Oppdater kontaktliste</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Send ukryptert</string>
   <!--conversation_callable-->
@@ -570,7 +583,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sikkerhet</string>
   <string name="conversation_secure_verified__menu_no_identity">Ingen identitet tilgjenglig</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Bekreft mottaker</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Bekreft identitet</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Avslutt sikker sesjon</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>

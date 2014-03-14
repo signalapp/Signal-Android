@@ -18,10 +18,14 @@
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afmelden...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Afmelden voor datagebaseerde communicatie.</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Push berichten uitzetten?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nDit zal push berichten uitzetten door uw registratie bij de server ongedaan te maken.\nU zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">U bent niet geregistreerd bij de push service...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Contactpersonen updaten</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Pushcontactpersonen updaten...</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Raak aan om uw standaard SMS applicatie te veranderen</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Raak aan om TextSecure uw standaard SMS applicatie te maken</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -29,16 +33,15 @@
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Berichtgrootte: %d KB</string>
   <string name="ConversationItem_expires_s">Verloopt: %s</string>
-  <string name="ConversationItem_error_sending_message">Fout bij versturen bericht</string>
-  <string name="ConversationItem_sending">Versturen...</string>
-  <string name="ConversationItem_saving_attachment">Bijlage Opslaan</string>
+  <string name="ConversationItem_error_sending_message">Fout bij versturen van bericht</string>
+  <string name="ConversationItem_saving_attachment">Bijlage aan het opslaan</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Bijlage aan het opslaan op de SD-kaart...</string>
   <string name="ConversationItem_save_to_sd_card">Opslaan op SD-kaart?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Deze media is opgeslagen in een versleutelde database. De versie die u op de SD-kaart opslaat, zal niet langer versleuteld zijn. Wilt u doorgaan?</string>
   <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Fout tijdens het opslaan van de bijlage naar de SD-kaart!</string>
   <string name="ConversationItem_success_exclamation">Succesvol!</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">SD-kaart niet beschrijfbaar!</string>
-  <string name="ConversationItem_view_secure_media_question">Bekijk veilige media?</string>
+  <string name="ConversationItem_view_secure_media_question">Bekijk beveiligde media?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Deze media is opgeslagen in een versleutelde database. Om het weer te geven, zal het tijdelijk moeten worden ontsleuteld en naar het opslaggeheugen worden weggeschreven. Weet u zeker dat u dit wil doen?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Sleuteluitwisselingsbericht ontvangen en verwerkt.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fout, verouderd steuteluitwisselingsbericht ontvangen.</string>
@@ -48,8 +51,8 @@
   <string name="ConversationItem_group_action_joined">%1$s is toegetreden tot de groep.</string>
   <string name="ConversationItem_group_action_modify">%1$s heeft de groep bijgewerkt.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Initieer veilige sessie?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Initieer veilige sessie met %s?</string>
+  <string name="ConversationActivity_initiate_secure_session_question">Initieer Beveiligde Sessie?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">Initieer beveiligde sessie met %s?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Bevestiging Beëindigen Beveiligde Sessie</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Weet u zeker dat u deze beveiligde sessie wilt beëindigen?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Conversatiebevestiging verwijderen</string>
@@ -76,6 +79,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet u zeker dat u deze groep wil verlaten?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Zender: %1$s\nOverdracht: %2$s\nVerzonden: %3$s\nOntvangen: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bevestig Bericht Verwijdering</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Weet u zeker dat u dit bericht permanent wilt verwijderen?</string>
   <!--ConversationListAdapter-->
@@ -196,6 +201,8 @@
   <string name="RegistrationProgressActivity_too_many_requests">Te Veel Verzoeken!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">U heeft al een spraakgesprek aangevraagd. U kunt dit opnieuw doen na 20 minuten.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Gesproken code controleren...</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Registratie conflict</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dit nummer bestaat al op een andere TextSecure server (CyanogenMod?). U dient uw registratie ongedaan te maken voordat u hier registreert.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registratie Voltooid</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Registratie bij TextSecure is succesvol afgerond.</string>
@@ -237,6 +244,7 @@
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">De gescande sleutel komt overeen!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Geverifieerd!</string>
   <string name="ViewIdentityActivity_identity_fingerprint">Identiteitsvingerafdruk</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Mijn Identificatie Vingerafdruk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiëren ondanks bestaand verzoek?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">U heeft reeds een sessieinititatieverzoek verstuurd naar deze ontvanger, weet u zeker dat u er nog een wilt sturen? Dit maakt het eerdere verzoek ongeldig.</string>
@@ -280,7 +288,7 @@
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Identiteit regenereren\nSleutel...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Geregenereerd!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Identiteitssleutel opnieuw instellen?</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nPas op! Door uw identiteitssleutel te regenereren zal uw huidige identiteitssleutel definitief verloren gaan,\nen uw huidige contacten zullen waarschuwingen krijgen wanneer zij een nieuwe beveiligde sessie met u starten.\nWeet u zeker dat u door wilt gaan?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nPas op! Door uw identiteitssleutel opnieuw te genereren zal uw huidige identiteitssleutel definitief verloren gaan,\nen uw huidige contacten zullen waarschuwingen krijgen wanneer zij een nieuwe beveiligde sessie met u starten.\nWeet u zeker dat u door wilt gaan?</string>
   <string name="ViewLocalIdentityActivity_cancel">Annuleren</string>
   <string name="ViewLocalIdentityActivity_continue">Doorgaan</string>
   <!--SmsReceiver-->
@@ -300,6 +308,9 @@
   <string name="contact_selection_group_activity__finding_contacts">Contacten zoeken...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Type een naam om te zoeken...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">U bent niet geregistreerd bij de push service...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Contactpersonen updaten</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Pushcontactpersonen updaten...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecteer voor</string>
   <!--contact_selection_recent_activity-->
@@ -326,8 +337,18 @@
   <string name="create_passphrase_activity__continue">Doorgaan</string>
   <string name="create_passphrase_activity__generating_secrets">GEHEIMEN AAN HET GENEREREN</string>
   <string name="create_passphrase_activity__skip">Overslaan</string>
+  <string name="create_passphrase_activity__create">Maak</string>
   <!--log_submit_activity-->
+  <string name="log_submit_activity__confirmation">Deze log zal publiekelijk online gepost worden om door de TextSecure bijdragers bekeken te worden. U kunt de log bekijken of veranderen voor u deze indient.</string>
+  <string name="log_submit_activity__button_cancel">Dien niet in</string>
+  <string name="log_submit_activity__button_ok">Dien in</string>
+  <string name="log_submit_activity__log_fetch_failed">Kan geen logs van uw apparaat verzamelen. U kan nog steeds ADB gebruiken om debug logs te verzamelen.</string>
   <string name="log_submit_activity__log_submit_success_title">Succesvol!</string>
+  <string name="log_submit_activity__log_got_it">Ontvangen</string>
+  <string name="log_submit_activity__your_pastebin_url">Kopieer deze link en voeg deze toe aan uw probleem (lang indrukken om te kopieren naar klembord)\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__copied_to_clipboard">Gekopieerd naar klembord</string>
+  <string name="log_submit_activity__loading_logcat">Logcat laden...</string>
+  <string name="log_submit_activity__thanks">Bedankt voor uw hulp!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wilt u uw huidige tekstberichtendatabase importeren naar de versleutelde database van TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabase zal niet gewijzigd of aangepast worden op enigerlei wijze.</string>
@@ -426,14 +447,13 @@
   <string name="AndroidManifest__verify_identity">Identiteit Verifiëren</string>
   <string name="AndroidManifest__manage_identity_keys">Identiteitssleutels Beheren</string>
   <string name="AndroidManifest__complete_key_exchange">Sleuteluitwisseling Voltooien</string>
+  <string name="AndroidManifest__log_submit">Debug Logs indienen</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeer / Exporteer</string>
   <string name="arrays__my_identity_key">Mijn Identiteitssleutel</string>
   <string name="arrays__contact_keys">Sleutels van Contacten</string>
   <!--preferences.xml-->
   <string name="preferences__general">Algemeen</string>
-  <string name="preferences__pref_all_sms_title">Gebruik voor alle SMS</string>
-  <string name="preferences__pref_all_mms_title">Gebruik voor alle MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gebruik TextSecure voor het bekijken en opslaan van alle inkomende tekstberichten</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gebruik TextSecure voor het bekijken en opslaan van alle inkomende multimediaberichten</string>
   <string name="preferences__enable_enter_key_title">Activeer Enter-toets</string>
@@ -448,7 +468,9 @@
   <string name="preferences__complete_key_exchanges">Voltooi sleuteluitwisselingen</string>
   <string name="preferences__disable_passphrase">Wachtwoord uitschakelen</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Lokale versleuteling van berichten en sleutels uitschakelen</string>
+  <string name="preferences__screen_security">Scherm veiligheid</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisch sleuteluitwisselingen voltooien voor nieuwe sessies of voor bestaande sessies met dezelfde identiteitssleutel</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Zet scherm veiligheid uit om screenshots mogelijk te maken</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Vergeet het wachtwoord uit het geheugen na een bepaalde tijd</string>
   <string name="preferences__timeout_passphrase">Time-out wachtwoord</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Selecteer Wachtwoord Time-out</string>
@@ -462,6 +484,10 @@
   <string name="preferences__display_message_notifications_in_status_bar">Toon berichtmeldingen in notificatiebalk</string>
   <string name="preferences__led_color">LED-kleur</string>
   <string name="preferences__pref_led_blink_title">LED-knipperpatroon</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Stel aangepaste LED knipper patroon in</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Aan voor:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Uit voor:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Aangepast LED knipper patroon ingesteld.</string>
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__change_notification_sound">Verander notificatiegeluid</string>
   <string name="preferences__inthread_notifications">Notificatie binnen een conversatie</string>
@@ -476,6 +502,8 @@
   <string name="preferences__orange">Oranje</string>
   <string name="preferences__cyan">Cyaan</string>
   <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Wit</string>
+  <string name="preferences__none">Niets</string>
   <string name="preferences__fast">Snel</string>
   <string name="preferences__normal">Normaal</string>
   <string name="preferences__slow">Langzaam</string>
@@ -506,8 +534,9 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Stel TextSecure in als standaard SMS/MMS-applicatie voor uw systeem.</string>
   <string name="preferences__use_data_channel">Pushberichten</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nVerbeter de privacy en vermijd SMS-kosten door het datakanaal te gebruiken om te communiceren met andere TextSecure gebruikers</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Verstuur en ontvang SMS-berichten wanneer push niet beschikbaar is.</string>
+  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is momenteel uw standaard SMS applicatie. Selecteer alstublieft een andere SMS applicatie om deze voorkeur te veranderen.</string>
   <string name="preferences__refresh_push_directory">Ververs pushcontacten</string>
+  <string name="preferences__submit_debug_log">Dien debug log in</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -516,12 +545,14 @@
   <string name="contact_selection_list__menu_unselect_all">Alles Deselecteren</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Voltooid</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Ververs Contacten Lijst</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Verstuur onversleuteld</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Bel</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Bericht details</string>
+  <string name="conversation_context__menu_message_details">Berichtdetails</string>
   <string name="conversation_context__menu_copy_text">Tekst kopiëren</string>
   <string name="conversation_context__menu_delete_message">Bericht verwijderen</string>
   <string name="conversation_context__menu_forward_message">Bericht doorsturen</string>
@@ -536,12 +567,12 @@
   <string name="conversation_list__drawer_open">Open navigatiepaneel</string>
   <string name="conversation_list__drawer_close">Sluit navigatiepaneel</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Veiligheid</string>
+  <string name="conversation_secure_verified__menu_security">Beveiliging</string>
   <string name="conversation_secure_verified__menu_no_identity">Geen Identiteit Beschikbaar</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Verifieer Ontvanger</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Identiteit Verifiëren</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Beëindig Beveiligde Sessie</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Voeg bijlage toe</string>
+  <string name="conversation__menu_add_attachment">Bijlage toevoegen</string>
   <string name="conversation__menu_update_group">Groep Bijwerken</string>
   <string name="conversation__menu_leave_group">Groep Verlaten</string>
   <string name="conversation__menu_add_contact_info">Voeg contactinformatie toe</string>
@@ -552,7 +583,7 @@
   <string name="conversation_group_options__conversation">Conversatie</string>
   <string name="conversation_group_options__broadcast">Uitzenden</string>
   <!--key_scanning-->
-  <string name="key_scanning__menu_compare">Vergelijken</string>
+  <string name="key_scanning__menu_compare">Vergelijk</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Wordt gescand om te vergelijken</string>
   <string name="key_scanning__menu_scan_to_compare">Scan om te vergelijken</string>
   <!--text_secure_locked-->

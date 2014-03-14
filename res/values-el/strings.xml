@@ -30,7 +30,6 @@
   <string name="ConversationItem_message_size_d_kb">Μέγεθος μηνύματος: %d KB</string>
   <string name="ConversationItem_expires_s">Παύει να ισχύει: %s</string>
   <string name="ConversationItem_error_sending_message">Σφάλμα κατά την αποστολή μηνύματος</string>
-  <string name="ConversationItem_sending">Αποστολή...</string>
   <string name="ConversationItem_saving_attachment">Αποθήκευση Συνημμένου</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Αποθηκεύεται το συνημμένο στην κάρτα μνήμης...</string>
   <string name="ConversationItem_save_to_sd_card">Να Αποθηκευτεί στην Κάρτα Μνήμης;</string>
@@ -301,6 +300,9 @@
   <string name="contact_selection_group_activity__finding_contacts">Εύρεση επαφών...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Πληκτρολογήστε όνομα για φιλτράρισμα...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Δεν είστε εγγεγραμμένος για ειδοποιήσεις push...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Ενημέρωση καταλόγου</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Ενημέρωση καταλόγου push...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Επιλογή για</string>
   <!--contact_selection_recent_activity-->
@@ -438,8 +440,6 @@
   <string name="arrays__contact_keys">Κλειδιά Επαφών</string>
   <!--preferences.xml-->
   <string name="preferences__general">Γενικά</string>
-  <string name="preferences__pref_all_sms_title">Χρήση για όλα τα SMS</string>
-  <string name="preferences__pref_all_mms_title">Χρήση για όλα τα MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Χρήση TextSecure για προβολή και αποθήκευση όλων των μηνυμάτων SMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Χρήση TextSecure για προβολή και αποθήκευση όλων των μηνυμάτων MMS</string>
   <string name="preferences__enable_enter_key_title">Ενεργοποίηση πλήκτρου Enter</string>
@@ -515,7 +515,6 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Το TextSecure να είναι η προεπιλεγμένη εφαρμογή για SMS/MMS.</string>
   <string name="preferences__use_data_channel">ΕΙδοποιήσεις Push</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nΑυξήστε την ανωνυμία και αποφύγετε το κόστος του SMS χρησιμοποιώντας το κανάλι δεδομένων για επικοινωνία με τους άλλους χρήστες του TextSecure.</string>
-  <string name="preferences__allow_sms_fallback">Εναλλακτικό SMS</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">Το TextSecure είναι η προεπιλεγμένη εφαρμογή για SMS. Παρακαλώ επιλέξτε μια άλλη προεπιλεγμένη εφαρμογή για SMS για να αλλάξετε αυτή την προτίμηση.</string>
   <string name="preferences__submit_debug_log">Αποστολή αρχείων καταγραφής αποσφαλμάτωσης</string>
   <!--****************************************-->
@@ -526,6 +525,7 @@
   <string name="contact_selection_list__menu_unselect_all">Εκκαθάριση Όλων</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Ολοκληρώθηκε</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Αποστολή χωρίς κρυπτογράφηση</string>
   <!--conversation_callable-->
@@ -548,7 +548,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Ασφάλεια</string>
   <string name="conversation_secure_verified__menu_no_identity">Δεν υπάρχει διαθέσιμη ταυτότητα</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Επικύρωση Παραλήπτη</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Επιβεβαίωση Ταυτότητας</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Τελείωμα Ασφαλούς Συζήτησης</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>

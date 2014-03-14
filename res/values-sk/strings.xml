@@ -23,7 +23,6 @@
   <string name="ConversationItem_message_size_d_kb">Vwľkosť správy: %d KB</string>
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
   <string name="ConversationItem_error_sending_message">Chyba pri posielaní správy</string>
-  <string name="ConversationItem_sending">Posielam...</string>
   <string name="ConversationItem_saving_attachment">Ukladám prílohu</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Ukladám prílohu na SD kartu...</string>
   <string name="ConversationItem_save_to_sd_card">Uložiť na SD kartu?</string>
@@ -282,8 +281,6 @@
   <string name="arrays__import_export">Import / Export</string>
   <!--preferences.xml-->
   <string name="preferences__general">Všeobecné</string>
-  <string name="preferences__pref_all_sms_title">Použi pre všetky SMS</string>
-  <string name="preferences__pref_all_mms_title">Použi pre všetky MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použi TextSecure na zobrazenie a uloženie všetkých prichádzajúcich správ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Použi TextSecure na zobrazenie a uloženie všetkých prichádzajúcich miltimediálnych správ</string>
   <string name="preferences__pref_enter_sends_title">Enter odošle</string>
@@ -344,6 +341,7 @@
   <string name="contact_selection_list__menu_unselect_all">Odznač všetko</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Hotovo</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Pošli nekryptované</string>
   <!--conversation_callable-->
@@ -362,7 +360,7 @@
   <string name="conversation_list__menu_search">Hľadaj</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Bezpečnosť</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Over príjemcu</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verifikuj totožnosť</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pridaj prílohu</string>
   <string name="conversation__menu_delete_thread">Zmaž vlákno</string>

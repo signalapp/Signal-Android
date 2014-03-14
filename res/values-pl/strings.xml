@@ -18,13 +18,13 @@
   <string name="ApplicationPreferencesActivity_disable">Wyłącz</string>
   <string name="ApplicationPreferencesActivity_unregistering">Wyrejestrowywanie...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Wyrejestrowanie dla transmisji danych</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Wyłączyć wiadomości push?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nTo wyłączy wiadomości push poprzez wyrejestrowanie Ciebie z serwera.\nBędziesz musiał ponownie się zarejestrować swój numer, aby w przyszłości ponownie używać wiadmości push.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Błąd połączenia z serwerem!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Nie jesteś zarejestrowany w usłudze push...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Aktualizowanie katalogu</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Aktualizowanie katalogu pchnięcia</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Włączony</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotknij aby zmienić swoją domyślną aplikację SMS</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Wyłączony</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotknij aby TextSecure była Twoją domyślną aplikacją SMS</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Zdjęcie</string>
@@ -34,7 +34,6 @@
   <string name="ConversationItem_message_size_d_kb">Rozmiar wiadomości: %d KB </string>
   <string name="ConversationItem_expires_s">Wygasa: %s</string>
   <string name="ConversationItem_error_sending_message">Błąd przy wysyłaniu wiadomości</string>
-  <string name="ConversationItem_sending">Wysyłanie...</string>
   <string name="ConversationItem_saving_attachment">Zapisuje załącznik</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Zapisuje załącznik na kartę SD...</string>
   <string name="ConversationItem_save_to_sd_card">Zapisać na kartę SD?</string>
@@ -80,6 +79,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Czy na pewno chcesz opuścić grupę?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nWysłano/Otrzymano: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Nadawca: %1$s\nTransport: %2$s\nWysłanych: %3$s\nOtrzymanych: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potwierdź kasowanie wiadomości</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Czy na pewno chcesz permanentnie skasować tą wiadomość?</string>
   <!--ConversationListAdapter-->
@@ -243,6 +244,7 @@
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Zeskanowane klucze zgadzają się!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Zweryfikowano!</string>
   <string name="ViewIdentityActivity_identity_fingerprint">Odcisk Klucza</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Mój Odcisk Tożsamości</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Rozpocznij pomimo istniejącego żądania?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Już wysłałeś żądanie o rozpoczęcie inicjacji do tego odbiorcy, czy na pewno chcesz wysłać jeszcze jedno żądanie? Spowoduje to utratę pierwszego żądania.</string>
@@ -306,6 +308,9 @@
   <string name="contact_selection_group_activity__finding_contacts">Szukanie kontaktów...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Wpisz imię aby przefiltrować...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Nie jesteś zarejestrowany w usłudze push...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Aktualizowanie katalogu</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Aktualizowanie katalogu pchnięcia</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Wybierz dla</string>
   <!--contact_selection_recent_activity-->
@@ -332,6 +337,7 @@
   <string name="create_passphrase_activity__continue">Kontynuuj</string>
   <string name="create_passphrase_activity__generating_secrets">GENEROWANIE KLUCZY</string>
   <string name="create_passphrase_activity__skip">Pomiń</string>
+  <string name="create_passphrase_activity__create">Utwórz</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__confirmation">Ten log będzie opublikowany publicznie na internecie dla osób wnoszących wkład w TextSecure. Zapraszam do badania lub edytowania poniższych logów przed wysłaniem.</string>
   <string name="log_submit_activity__button_cancel">Nie wysyłaj</string>
@@ -448,8 +454,6 @@
   <string name="arrays__contact_keys">Klucze Kontaktów</string>
   <!--preferences.xml-->
   <string name="preferences__general">Ogólne</string>
-  <string name="preferences__pref_all_sms_title">Wykorzystaj dla wszystkich SMS</string>
-  <string name="preferences__pref_all_mms_title">Wykorzystaj dla wszystkich MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Użyj TextSecure do przeglądania i przechowywania wszystkich wiadomości tekstowych.</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Użyj TextSecure do przeglądania i przechowywania wszystkich wiadomości multimedialnych</string>
   <string name="preferences__enable_enter_key_title">Włącz klawisz Enter</string>
@@ -498,6 +502,8 @@
   <string name="preferences__orange">Pomarańczowy</string>
   <string name="preferences__cyan">Cyan</string>
   <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Biały</string>
+  <string name="preferences__none">Brak</string>
   <string name="preferences__fast">Szybko</string>
   <string name="preferences__normal">Normalnie</string>
   <string name="preferences__slow">Powoli</string>
@@ -528,9 +534,7 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Ustaw TextSecure jako domyślną aplikację SMS/MMS.</string>
   <string name="preferences__use_data_channel">Czat</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nZwiększ swoją prywatność i uniknij opłat za SMS używając transmisji danych do komunikacji z innymi użytkownikami TextSecure.</string>
-  <string name="preferences__allow_sms_fallback">SMS Fallback</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure obecnie jest Twoją domyślną aplikacją SMS. Aby to zmienić proszę ustaw inną aplikację SMS na pierwszym miejscu we właściwościach.</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Wysyłaj i otrzymuj wiadomości SMS kiedy technologia push nie jest dostępna.</string>
   <string name="preferences__refresh_push_directory">Odśwież katalogu pchnięcia</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
   <!--****************************************-->
@@ -541,6 +545,8 @@
   <string name="contact_selection_list__menu_unselect_all">Anuluj wybór wszystkiego</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Zakończono</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Odśwież listę kontaktów</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Wyślij nieszyfrowane</string>
   <!--conversation_callable-->
@@ -563,7 +569,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Bezpieczeństwo</string>
   <string name="conversation_secure_verified__menu_no_identity">Brak dostępnych tożsamości</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Zweryfikuj odbiorcę</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Zweryfikuj tożsamość</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Zakończ Bezpieczną Sesję</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Dodaj załącznik</string>

@@ -20,7 +20,6 @@
   <string name="ConversationItem_message_size_d_kb">འཕྲིན་ཐུང་ཆེ་ཆུང་།%d KB</string>
   <string name="ConversationItem_expires_s">དུས་ཚོད་རྫོགས།%s</string>
   <string name="ConversationItem_error_sending_message">གཏོང་བཞིན་པའི་འཕྲིན་ཐུང་དེར་ནོར་འཁྲུལ་ཞིག་འདུག </string>
-  <string name="ConversationItem_sending">གཏོང་བཞིན་ཡོད། </string>
   <string name="ConversationItem_saving_attachment">ཟུར་སྣོན་ཉར་ཚགས་བྱེད་བཞིན་ཡོད།</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་(SD Card) ནང་ཟུར་སྣོན་ཉར་ཚགས་བྱེད་བཞིན་ཡོད།</string>
   <string name="ConversationItem_save_to_sd_card">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་(SD Card) ནང་ཉར་ཚགས་བྱེད་རྒྱུ་ཡིན་ནམ།</string>
@@ -242,8 +241,6 @@
   <string name="AndroidManifest__complete_key_exchange">ལྡེ་མིག་བརྗེ་ལེན་ཚར་བ་བྱོས། </string>
   <!--arrays.xml-->
   <!--preferences.xml-->
-  <string name="preferences__pref_all_sms_title">འཕྲིན་ཐུང་SMSཚང་མའི་ཆེད་དུ་བེད་སྤྱོད་ཐོངས།</string>
-  <string name="preferences__pref_all_mms_title"> སྣ་མང་འཕྲིན་ཐུང་ཚང་མའི་ཆེད་དུ་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">ནང་ཡོང་འཕྲིན་ཐུང་ཚང་མར་བལྟ་བ་དང་ཉར་བ་ལ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">ནང་ཡོང་སྣ་མང་འཕྲིན་ཐུང་རིགས་ལ་ཉར་ཚགས་དང་ཞིབ་ལྟའི་ཆེད་དུ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__pref_enter_sends_title">གཏོང་བ་ནང་འཇུག་བྱོས། </string>
@@ -298,6 +295,7 @@
   <string name="contact_selection_list__menu_unselect_all">ཆ་ཚང་མ་འདེམས། </string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">མཇུག་རྫོགས་སོ།</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">གསང་སྡོམ་མ་བྱས་བའི་འཕྲིན་ཐུང་བསྐུར།</string>
   <!--conversation_callable-->
@@ -316,7 +314,7 @@
   <string name="conversation_list__menu_search">འཚོལ།</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">ཉེན་སྲུང་།</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">འཕྲིན་ཐུང་འབྱོར་ཡུལ་དེ་ཁུངས་སྐྱེལ་བྱོས། </string>
+  <string name="conversation_secure_verified__menu_verify_identity">ངོས་འཛིན་ཁུངས་སྐྱེལ་བྱོས། </string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ཟུར་སྣོན་ཞོག </string>
   <string name="conversation__menu_delete_thread">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ།</string>

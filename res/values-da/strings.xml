@@ -24,7 +24,6 @@
   <string name="ConversationItem_message_size_d_kb">Besked størrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Udløber: %s</string>
   <string name="ConversationItem_error_sending_message">Kunne ikke sende besked</string>
-  <string name="ConversationItem_sending">Sender...</string>
   <string name="ConversationItem_saving_attachment">Gemmer vedhæftning</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Gemmer vedhæftning til SD-kort...</string>
   <string name="ConversationItem_save_to_sd_card">Gem på SD-kort?</string>
@@ -41,6 +40,7 @@
   <string name="ConversationActivity_delete_thread_confirmation">Bekræft! Slet tråd</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Vil du slette denne samtale permanent?</string>
   <string name="ConversationActivity_add_attachment">Vedhæft fil.</string>
+  <string name="ConversationActivity_select_contact_info">Vælg kontakt information</string>
   <string name="ConversationActivity_compose_message">Opret besked</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, der opstod en fejl ved vedhæftning af fil.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Beklager, den valgte video overskrider grænsen på beskedstørrelsen</string>
@@ -50,10 +50,14 @@
   <string name="ConversationActivity_forward_message_prefix">Videresend beskeden</string>
   <string name="ConversationActivity_group_conversation_recipients">Modtagere i gruppen</string>
   <string name="ConversationActivity_group_conversation">Gruppe beskeder</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d modtagere</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 medlem</string>
   <string name="ConversationActivity_saving_draft">Gemmer kladde...</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig modtager!</string>
   <string name="ConversationActivity_calls_not_supported">Opkald er ikke understøttet</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Din enhed understøtter ikke initieret opkald.</string>
+  <string name="ConversationActivity_leave_group">Forlad gruppe?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker at du vil forlade denne gruppe?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Besked detaljer</string>
   <string name="ConversationFragment_confirm_message_delete">Bekræft sletning af besked</string>
@@ -81,6 +85,14 @@
   <string name="ExportFragment_success">Fuldført!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Eksporterer krypterede nøgler, indstillinger og beskeder...</string>
   <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Ny Gruppe</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Opdater Gruppe</string>
+  <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS Gruppe</string>
+  <string name="GroupCreateActivity_you_dont_own_this_group">Du er ikke ejer af denne gruppe, så du kan ikke ændre titlen eller billedet.</string>
+  <string name="GroupCreateActivity_contacts_no_members">Der skal være mindst én person i gruppen!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">En af medlemmerne i gruppen har et nummer der ikke kan læses. Ret nummeret eller slet kontakten, og prøv igen.</string>
+  <string name="GroupCreateActivity_menu_create_title">Opret Gruppe</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importer systemets SMS database?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra systemets standard SMS database til TextSecure.</string>
@@ -131,17 +143,30 @@
   <string name="RegistrationActivity_continue">Fortsæt</string>
   <string name="RegistrationActivity_edit">Rediger</string>
   <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">Mulige Problemer</string>
   <!--RegistrationProgressActivity-->
   <string name="RegistrationProgressActivity_verifying_number">Godkender nummer</string>
+  <string name="RegistrationProgressActivity_edit_s">Rediger %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">Registrering fuldført!</string>
+  <string name="RegistrationProgressActivity_possible_problems">Mulige problemer.</string>
+  <string name="RegistrationProgressActivity_connecting">Forbinder</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Forbinder for godkendelse...</string>
+  <string name="RegistrationProgressActivity_network_error">Netværksfejl!</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Kunne ikke skabe forbindelse. Venligst tjek din netværks forbindelse og prøv igen.</string>
   <string name="RegistrationProgressActivity_verification_failed">Godkendelse fejlet!</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Den godkendelses kode du indtastet er forkert. Prøv igen.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">For mange forsøg</string>
   <string name="RegistrationProgressActivity_server_error">Server fejl</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Serveren stødte på en fejl. Prøv igen.</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Registrerings-konflikt</string>
   <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">Registrering Fuldført</string>
+  <string name="RegistrationService_registration_error">Registreringsfejl</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_secure_session_ended">Sikker session afsluttet.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Forlod gruppen...</string>
+  <string name="TheadRecord_secure_session_ended">Sikker session afsluttet.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Modtageren har ingen ID-nøgle.</string>
@@ -169,6 +194,7 @@
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøgle stemmer overens!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Bekræftet!</string>
   <string name="ViewIdentityActivity_identity_fingerprint">Identitet - fingeraftryk</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Mit Identitets-fingeraftryk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">initialiser til trods for eksisterende forespørgsel?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har allerede sendt en forespørgsel om at initialisere en session til denne modtager. Er du sikker på at du vil sende en til? Dette vil gøre en tidligere forespørgsel ugyldig.</string>
@@ -225,12 +251,14 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Finder kontakter...</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vælg</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nye samtaler.</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message"><small>Send en besked</small></string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slet</string>
   <!--conversation_item_sent-->
@@ -250,8 +278,10 @@
   <string name="create_passphrase_activity__continue">Fortsæt</string>
   <string name="create_passphrase_activity__generating_secrets">GENERERER NØGLER</string>
   <string name="create_passphrase_activity__skip">Spring over</string>
+  <string name="create_passphrase_activity__create">Opret</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_submit_success_title">Fuldført!</string>
+  <string name="log_submit_activity__log_got_it">Finno</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du at importere dine eksisterende beskeder til TextSecures krypterede database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabase vil ikke blive ændret.</string>
@@ -289,13 +319,20 @@
   <string name="registration_activity__register">Register</string>
   <string name="registration_activity__skip">Spring over</string>
   <!--registration_problems-->
+  <string name="registration_problems__incorrect_number">Forkert nummer.</string>
+  <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure virker ikke med Google Voice numre.\n</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__verify">Godkend</string>
   <string name="registration_progress_activity__call_me">Ring til mig</string>
   <string name="registration_progress_activity__edit_number">Rediger nummer</string>
   <string name="registration_progress_activity__connectivity_error">Forbindelse fejl.</string>
+  <string name="registration_progress_activity__connecting">Forbinder...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Venter på SMS\ngodkendelse...\n</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS godkendelse\nfejlede.\n</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Til</string>
+  <string name="recipients_panel__add_member">Tilføj medlem</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Du har ingen ID-nøgler i din sikret database.</string>
   <!--verify_identity_activity-->
@@ -313,6 +350,7 @@
   <string name="AndroidManifest__create_passphrase">Opret kodeord</string>
   <string name="AndroidManifest__enter_passphrase">Indtast kodeord</string>
   <string name="AndroidManifest__select_contacts">Vælg kontakter</string>
+  <string name="AndroidManifest__select_contact">Vælg kontakt</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure Detekteret</string>
   <string name="AndroidManifest__public_identity_key">Offentlig Identitets Nøgle</string>
   <string name="AndroidManifest__change_passphrase">Skift kodeord</string>
@@ -326,8 +364,6 @@
   <string name="arrays__contact_keys">Kontaktnøgler</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
-  <string name="preferences__pref_all_sms_title">Benyt til alle SMS</string>
-  <string name="preferences__pref_all_mms_title">Benyt til alle MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Benyt TextSecure til at læse og gemme alle indkommende SMS beskeder.</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Benyt TextSecure til at læse og gemme alle indkommende MMS beskeder.</string>
   <string name="preferences__pref_enter_sends_title">\"Enter\" sender</string>
@@ -352,7 +388,10 @@
   <string name="preferences__manage_configured_identity_keys">Administrer konfigurerede ID-nøgler</string>
   <string name="preferences__notifications">Notifikation</string>
   <string name="preferences__display_message_notifications_in_status_bar">Vis notifikation om beskeder i status feltet</string>
+  <string name="preferences__led_color">LED farve</string>
+  <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
   <string name="preferences__sound">Lyd</string>
+  <string name="preferences__change_notification_sound">Ændre notifikations-lyd</string>
   <string name="preferences__vibrate">Vibrér</string>
   <string name="preferences__also_vibrate_when_notified">Vibrér også ved tilbagemelding</string>
   <string name="preferences__minutes">Minutter</string>
@@ -363,6 +402,8 @@
   <string name="preferences__orange">Orange</string>
   <string name="preferences__cyan">Cyan</string>
   <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Hvid</string>
+  <string name="preferences__none">Ingen</string>
   <string name="preferences__fast">Hurtig</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Langsom</string>
@@ -394,6 +435,8 @@
   <string name="contact_selection_list__menu_unselect_all">Fjern markering</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Afslut</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Opdater Kontakt Liste</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Send ukrypteret</string>
   <!--conversation_callable-->
@@ -403,6 +446,7 @@
   <string name="conversation_context__menu_copy_text">Kopier tekst</string>
   <string name="conversation_context__menu_delete_message">Slet besked</string>
   <string name="conversation_context__menu_forward_message">Videresend besked</string>
+  <string name="conversation_context__menu_resend_message">Send besked igen</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Sikker session</string>
   <!--conversation_list_batch-->
@@ -412,9 +456,12 @@
   <string name="conversation_list__menu_search">Søg</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sikkerhed</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Verificer modtager</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verificer identitet</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
+  <string name="conversation__menu_update_group">Opdater Gruppe</string>
+  <string name="conversation__menu_leave_group">Forlad Gruppe</string>
+  <string name="conversation__menu_add_contact_info">Tilføj kontakt information</string>
   <string name="conversation__menu_delete_thread">Slet tråd</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Modtager liste</string>
@@ -429,6 +476,7 @@
   <string name="text_secure_locked__menu_unlock">Åben</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Ny Besked</string>
+  <string name="text_secure_normal__menu_new_group">Ny Gruppe</string>
   <string name="text_secure_normal__menu_settings">Indstillinger</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Marker alle som læst</string>

@@ -24,7 +24,6 @@
   <string name="ConversationItem_message_size_d_kb">גודל ההודעה: %d KB</string>
   <string name="ConversationItem_expires_s">פג: %s</string>
   <string name="ConversationItem_error_sending_message">שגיאה בשליחת ההודעה</string>
-  <string name="ConversationItem_sending">שולח...</string>
   <string name="ConversationItem_saving_attachment">שומר קובץ מצורף</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">שומר את הקובץ המצורף בכרטיס ה-SD...</string>
   <string name="ConversationItem_save_to_sd_card">לשמור בכרטיס ה-SD?</string>
@@ -310,8 +309,6 @@
   <string name="arrays__contact_keys">מפתחות אנשי קשר</string>
   <!--preferences.xml-->
   <string name="preferences__general">כללי</string>
-  <string name="preferences__pref_all_sms_title">עשה שימוש לכל ה-SMS</string>
-  <string name="preferences__pref_all_mms_title">השתמש לכל ה-MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות הטקסט</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות המולטימדיה</string>
   <string name="preferences__pref_enter_sends_title">\"אנטר\" שולח</string>
@@ -385,6 +382,7 @@
   <string name="contact_selection_list__menu_unselect_all">נקה הכל</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">הושלם</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">שלח לא מוצפן</string>
   <!--conversation_callable-->
@@ -404,7 +402,7 @@
   <string name="conversation_list__menu_search">חפש</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">אבטחה</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">אמת נמען</string>
+  <string name="conversation_secure_verified__menu_verify_identity">אמת זהות</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">צרף קובץ</string>
   <string name="conversation__menu_add_contact_info">הוסף מידע לאיש הקשר</string>

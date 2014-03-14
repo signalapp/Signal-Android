@@ -6,8 +6,8 @@
   <string name="delete">Radera</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nuvarande: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Du behöver skriva in ditt lösenord innan du hanterar nycklar...</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte valt ett lösenord än!</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Du måste ange ditt lösenord innan du hanterar nycklar ...</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte angivit ett lösenord än!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">meddelanden per konversation</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Är du säker på att du omeddelbart vill trimma alla konversationstrådar till de %s senaste meddelandena?</string>
@@ -27,38 +27,37 @@
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ljud</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">Meddelande storlek: %d KB</string>
-  <string name="ConversationItem_expires_s">Löper ut: %s</string>
+  <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
+  <string name="ConversationItem_expires_s">Går ut: %s</string>
   <string name="ConversationItem_error_sending_message">Det gick inte att skicka meddelandet</string>
-  <string name="ConversationItem_sending">Skickar...</string>
   <string name="ConversationItem_saving_attachment">Sparar bilaga</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Sparar bilaga till SD kort...</string>
-  <string name="ConversationItem_save_to_sd_card">Spara till SD kort?</string>
+  <string name="ConversationItem_saving_attachment_to_sd_card">Sparar bilaga till minneskort ...</string>
+  <string name="ConversationItem_save_to_sd_card">Spara till minneskort?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Denna fil har lagrats i en krypterad databas. Versionen du sparar på SD-kortet kommer inte längre vara krypterad. Vill du fortsätta?</string>
-  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error: Gick ej att skriva till SD kort!</string>
-  <string name="ConversationItem_success_exclamation">Framgång!</string>
-  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Kan ej skriva till SD Kort!</string>
-  <string name="ConversationItem_view_secure_media_question">Visa säker media?</string>
+  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Ett fel uppstod vid sparandet av bilagan till minneskortet!</string>
+  <string name="ConversationItem_success_exclamation">Klart!</string>
+  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Kan inte skriva till minneskortet!</string>
+  <string name="ConversationItem_view_secure_media_question">Visa skyddad fil?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denna mediefil har lagrats krypterat. För att öppna den i en en extern visare måste den tillfälligt dekrypteras och skrivas till disk. Är du säker på att du vill göra detta?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">Tog emot och bearbetade nyckelutbytesmeddelande.</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Fel, tog emot gammalt nyckeutbytesmeddelande.</string>
+  <string name="ConversationItem_received_and_processed_key_exchange_message">Tog emot och bearbetade meddelande för nyckelutbyte.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Ett fel uppstod. Mottog ett gammalt meddelande för nyckelutbyte.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Tog emot nyckelutbytesmeddelande, tryck för att behandla.</string>
   <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
   <string name="ConversationItem_group_action_joined">%1$s har anslutit till gruppen.</string>
   <string name="ConversationItem_group_action_modify">%1$s har uppdaterat gruppen.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Initiera säker session?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Initiera säker session med %s?</string>
+  <string name="ConversationActivity_initiate_secure_session_question">Upprätta en säker förbindelse?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">Upprätta en säker förbindelse med %s?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Bekräfta avslutning av säker session</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Är du säker på att du vill avsluta denna säkra session?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Radera tråd bekräftelse</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Bekräfta radering av tråd</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Är du säker att du vill permanent radera denna konversation?</string>
   <string name="ConversationActivity_add_attachment">Bifoga fil</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
-  <string name="ConversationActivity_compose_message">Skriv Meddelande</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ursäkta, det blev ett fel med att bifoga din fil.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr är den valda video för stor.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Tyvär är det valda ljudet för stort.</string>
+  <string name="ConversationActivity_compose_message">Skriv ditt meddelande</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Tyvärr uppstod det ett fel vid bifogning av din fil.</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr överskrider den valda videon storleksbegränsningen för meddelanden.</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Tyvärr överskrider den valda ljudfilen storleksbegränsningen för meddelanden.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagare är inte en giltig SMS eller email adress!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meddelandet är tomt!</string>
   <string name="ConversationActivity_forward_message_prefix">FWD</string>
@@ -296,6 +295,9 @@
   <string name="contact_selection_group_activity__finding_contacts">Hittar kontakter...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Skriv ett namn för att filtrera...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Du är inte registrerad i push-tjänsten...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Uppdaterar katalogen</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Uppdaterar push-katalogen...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Välj för</string>
   <!--contact_selection_recent_activity-->
@@ -428,8 +430,6 @@
   <string name="arrays__contact_keys">Kontaktnycklar</string>
   <!--preferences.xml-->
   <string name="preferences__general">Allmänt</string>
-  <string name="preferences__pref_all_sms_title">Använd för alla SMS</string>
-  <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Använd TextSecure för att läsa och lagra alla inkommande text meddelanden</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Använd TextSecure för att se och lagra alla inkommande multimedia meddelanden</string>
   <string name="preferences__enable_enter_key_title">Aktivera returtagenten</string>
@@ -502,7 +502,6 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Gör TextSecure till standardapp för SMS/MMS på din enhet.</string>
   <string name="preferences__use_data_channel">Push-meddelanden</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nÖka din integritet och undvik SMS-kostnader genom att använda mobil data för att kommunicera med andra TextSecure-användare</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Skicka och ta emot SMS meddelanden när push inte är tillgängligt</string>
   <string name="preferences__refresh_push_directory">Uppdatera Push-katalog</string>
   <!--****************************************-->
   <!--menus-->
@@ -512,6 +511,7 @@
   <string name="contact_selection_list__menu_unselect_all">Avmarkera alla</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Färdig</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Skicka okrypterad</string>
   <!--conversation_callable-->
@@ -532,7 +532,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Säkerhet</string>
   <string name="conversation_secure_verified__menu_no_identity">Ingen identitet tillgänglig</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Verifiera mottagare</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verifiera identitet</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Avsluta säker session</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Bifoga fil</string>

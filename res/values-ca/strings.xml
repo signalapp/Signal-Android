@@ -24,9 +24,7 @@
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">No estàs registrat al servei push...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Actualitzant directori</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Actualitzant el Directori Push...</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Habilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deshabilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Toca per fer TextSecure la teva app d\'SMS predeterminada</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografia</string>
@@ -36,7 +34,6 @@
   <string name="ConversationItem_message_size_d_kb">Mida del missatge: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
   <string name="ConversationItem_error_sending_message">Error enviant el missatge</string>
-  <string name="ConversationItem_sending">Enviant...</string>
   <string name="ConversationItem_saving_attachment">Desant Adjunt</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Desant l\'adjunt a la targeta SD...</string>
   <string name="ConversationItem_save_to_sd_card">Desar a la targeta SD?</string>
@@ -82,7 +79,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Estàs segur que vols deixar aquest grup?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalls del missatge</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Transport: %1$s\nEnviat/Rebut:%2$s</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nEnviat/Rebut:%2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Remitent: %1$s\nTransport: %2$s\nEnviat: %3$s\nRebut:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirma l\'esborrat del missatge</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Estàs segur que vols esborrar permanentment aquest missatge?</string>
@@ -311,6 +308,9 @@
   <string name="contact_selection_group_activity__finding_contacts">Buscant contactes…</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Escriu un nom per filtrar...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">No estàs registrat al servei push...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Actualitzant directori</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Actualitzant el Directori Push...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecciona per</string>
   <!--contact_selection_recent_activity-->
@@ -454,8 +454,6 @@
   <string name="arrays__contact_keys">Claus de contactes</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
-  <string name="preferences__pref_all_sms_title">Utilitza per tots els SMS</string>
-  <string name="preferences__pref_all_mms_title">Utilitza per tots els MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges de text entrants</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges multimèdia entrants</string>
   <string name="preferences__enable_enter_key_title">Habilita la tecla Enter</string>
@@ -535,9 +533,7 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Fes TextSecure l\'aplicació d\'SMS/MMS predeterminada del teu sistema.</string>
   <string name="preferences__use_data_channel">Missatges Push</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nAugmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades per comunicar-se amb altres usuaris de TextSecure</string>
-  <string name="preferences__allow_sms_fallback">SMS Alternatiu</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure és actualment la teva app d\'SMS predeterminada. Si us plau estableix una altra app d\'SMS abans de canviar aquesta preferència.</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Envia i rep missatges SMS quan push no estigui disponible</string>
   <string name="preferences__refresh_push_directory">Actualitza el Directori Push</string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
   <!--****************************************-->
@@ -548,6 +544,7 @@
   <string name="contact_selection_list__menu_unselect_all">Deselecciona tot</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Finalitzat</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Envia desencriptat</string>
   <!--conversation_callable-->
@@ -570,7 +567,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Seguretat</string>
   <string name="conversation_secure_verified__menu_no_identity">No hi ha una identitat disponible</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Verifica destinatari</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verifica identitat</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Finalitza sessió segura</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Afegeix un adjunt</string>

@@ -16,6 +16,7 @@
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">端末内保存データの暗号化を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！\n通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
+  <string name="ApplicationPreferencesActivity_unregistering">登録破棄中…</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
@@ -25,7 +26,6 @@
   <string name="ConversationItem_message_size_d_kb">メッセージのサイズ： %d KB</string>
   <string name="ConversationItem_expires_s">有効期限： %s</string>
   <string name="ConversationItem_error_sending_message">メッセージが送信できませんでした。</string>
-  <string name="ConversationItem_sending">送信中…</string>
   <string name="ConversationItem_saving_attachment">添付ファイルを保存</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">SDカードに添付ファイルを保存中…</string>
   <string name="ConversationItem_save_to_sd_card">SDカードに保存しますか？</string>
@@ -34,8 +34,10 @@
   <string name="ConversationItem_success_exclamation">成功しました。</string>
   <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">SDカードに書き込めません。</string>
   <string name="ConversationItem_view_secure_media_question">暗号化されたファイルを表示しますか？</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">このファイルは暗号化されたデータベースに保存されています。外部コンテンツのビューアで見るには、データを一時的に復号し、ディスクに書き込まなければなりません。この作業を実行してもいいですか？</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">鍵交換のメッセージを受信、処理しました。</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">エラー、古い鍵交換のメッセージを受信してしまいました。</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">鍵交換のメッセージを受信しました。クリックして実行してください。</string>
   <string name="ConversationItem_group_action_modify">%1$sがグループを更新しました。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
@@ -53,7 +55,7 @@
   <string name="ConversationActivity_forward_message_prefix">転送：</string>
   <string name="ConversationActivity_group_conversation_recipients">グループ通信の受信者</string>
   <string name="ConversationActivity_group_conversation">グループ通信</string>
-  <string name="ConversationActivity_unnamed_group">無題グループ</string>
+  <string name="ConversationActivity_unnamed_group">グループ名なし</string>
   <string name="ConversationActivity_d_recipients_in_group">参加者%d人</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">参加者1人</string>
   <string name="ConversationActivity_saving_draft">下書き保存中…</string>
@@ -102,6 +104,7 @@
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
   <string name="ImportFragment_restore">復元</string>
   <string name="ImportFragment_import_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルをインポートしますか？</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前に同じバックアップ・ファイルをインポートしたことがある場合、メッセージが重複することになります。</string>
   <string name="ImportFragment_importing">インポート中…</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">非暗号テキストのバックアップ・ファイルをインポート中…</string>
   <string name="ImportFragment_no_plaintext_backup_found">非暗号テキストのバックアップ・ファイルが見つかりませんでした。</string>
@@ -138,9 +141,13 @@
   <string name="ReceiveKeyActivity_processing">処理中</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">鍵交換を処理中...</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_textsecure">TextSecureで接続</string>
   <string name="RegistrationActivity_select_your_country">国を選択</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力して下さい</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">電話番号を入力して下さい</string>
+  <string name="RegistrationActivity_invalid_number">無効な番号</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">指定された番号(%s)はお使いできません。</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">申し訳ありませんが、\nお使いの端末ではデータ送信ができません。4.0より古いバージョンのアンドロイドをお使いの場合、グーグルアカウントに登録する必要があります。4.0または4.0より新しいバージョンをお使いの場合、グーグルアカウントへの登録は必要ありませんが、Google Play ストア アプリをインストールする必要があります。</string>
   <string name="RegistrationActivity_continue">続行</string>
   <string name="RegistrationActivity_edit">編集</string>
   <!--RegistrationProblemsActivity-->
@@ -148,7 +155,7 @@
   <string name="RegistrationProgressActivity_verifying_number">番号を確認中...</string>
   <string name="RegistrationProgressActivity_edit_s">%sを編集</string>
   <string name="RegistrationProgressActivity_registration_complete">登録完了！</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">先ずはもらったコードを入力して下さい</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">まず、もらったコードを入力して下さい</string>
   <string name="RegistrationProgressActivity_connecting">接続中</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">確認するために接続中...</string>
   <!--RegistrationService-->
@@ -198,6 +205,7 @@
   <string name="MmsDatabase_downloading_mms">MMSをダウンロード中…</string>
   <string name="MmsDatabase_mms_download_failed">MMSのダウンロードに失敗しました！</string>
   <string name="MmsDatabase_downloading">ダウンロード中…</string>
+  <string name="MmsDatabase_mms_pending_download">ダウンロードを続行するのに、MMS設定を行って下さい。</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSを復号しています。お待ち下さい…</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">MMSメッセージが正しく暗号化されていません…</string>
@@ -208,6 +216,8 @@
   <string name="ApplicationMigrationService_import_in_progress">インポート中</string>
   <string name="ApplicationMigrationService_importing_text_messages">テキストメッセージをインポート中</string>
   <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">タッチして開く</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">タッチして開く、またはロックをタッチして閉じる</string>
   <string name="KeyCachingService_lock">パスワードでロックする</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d 新しいメッセージ</string>
@@ -225,11 +235,12 @@
   <string name="ViewLocalIdentityActivity_regenerated">再生成完了！</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">アイデンティティー鍵をリセットしますか？</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\n警告!アイデンティティー鍵を再生成することで、現在の鍵は失われ、\n既存の連絡先はあなたと暗号化されたセッションを開始するときに警告を受けることになります。\n続行しますか？</string>
-  <string name="ViewLocalIdentityActivity_cancel">取り消し</string>
+  <string name="ViewLocalIdentityActivity_cancel">中止</string>
   <string name="ViewLocalIdentityActivity_continue">続行</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">現在、このSMSは送信できません。サービスが利用可能になると、すぐに送信されます。</string>
   <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">申し訳ありませんが、クイック返信はTextSecureではまだできません！</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">TextSecure暗号化セッションをサポートする人からメッセージが来ています。セキュア・セッションを開始しますか？</string>
   <string name="auto_initiate_activity__initiate_exchange">交換開始</string>
@@ -283,20 +294,23 @@
   <string name="export_fragment__export_plaintext_backup">非暗号テキストのバックアップ・ファイルをエクスポート</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
   <string name="import_fragment__import_system_sms_database">端末内のSMSデータベースをインポート</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">端末の既定のメッセンジャー・アプリから\nデータベースをインポート</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">端末既定のメッセンジャー・アプリから\nデータベースをインポート</string>
   <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップ・ファイルをインポート</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n前回エクスポートした暗号化されたTextSecureバックアップ・ファイルを復元</string>
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\n暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
   <string name="local_identity__regenerate_key">鍵を再生成する</string>
   <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">この端末は、ご自分でMMS設定をする必要があります。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TextSecureパスワード</string>
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecureでは、無線通信事業者からファイル付きメッセージを配信するのに、APN設定が必要です。お使いの携帯端末では、この設定のための情報が取得できません。ロックされた端末であるか、その他の制限設定があるとこのような状況が生じます。</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ファイル付き及びグループ・メッセージを配信するのに、OKをクリックして設定を完了してください。お使いの通信事業者への設定値は通常、\"通信事業者APN”で検索すると設定できます。この作業の実行は一度だけでいいです。</string>
   <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (必須):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">MMSプロキシ・ホスト (自由選択):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">MMSプロキシ・ポート (自由選択)</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMSプロキシ・ホスト (オプション):</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">MMSプロキシ・ポート (オプション)</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完了</string>
   <!--registration_activity-->
@@ -348,10 +362,10 @@
   <string name="arrays__contact_keys">連絡先のキー</string>
   <!--preferences.xml-->
   <string name="preferences__general">一般設定</string>
-  <string name="preferences__pref_all_sms_title">すべてのSMSに使用</string>
-  <string name="preferences__pref_all_mms_title">すべてのMMSに使用</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキストメッセージ）の表示、及び保存にTextSecureを使用します</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）の表示、及び保存にTextSecureを使用します</string>
+  <string name="preferences__enable_enter_key_title">エンターキーを使えるようにする</string>
+  <string name="preferences__replace_smiley_with_enter_key">顔文字ボタンをエンターキーにする</string>
   <string name="preferences__pref_enter_sends_title">Enterキーで送信</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enterキーを押すとテキストメッセージが送信されます</string>
   <string name="preferences__display_settings">表示設定</string>
@@ -376,11 +390,11 @@
   <string name="preferences__display_message_notifications_in_status_bar">受信通知をステータスバーに表示</string>
   <string name="preferences__led_color">LED色</string>
   <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">自作のLED点滅パターンを設定する</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">オリジナルのLED点滅パターンを設定する</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">点灯時間:</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">消灯時間:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">自作のLED点滅パターンが設定しました！</string>
-  <string name="preferences__sound">音響</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">オリジナルのLED点滅パターンが設定されました！</string>
+  <string name="preferences__sound">着信音</string>
   <string name="preferences__change_notification_sound">通知音を変更</string>
   <string name="preferences__inthread_notifications">スレッド内通知</string>
   <string name="preferences__vibrate">振動</string>
@@ -417,6 +431,8 @@
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__default">初期設定の言語</string>
   <string name="preferences__language">言語</string>
+  <string name="preferences__make_default_sms_app">標準のSMSアプリに設定する</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">お使いの端末で、TextSecureをSMS／MMSの標準アプリにする</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -425,6 +441,7 @@
   <string name="contact_selection_list__menu_unselect_all">すべて選択解除</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">終了</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">暗号化しないで送信</string>
   <!--conversation_callable-->
@@ -444,7 +461,7 @@
   <string name="conversation_list__menu_search">検索</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">セキュリティ</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">受信者を照合</string>
+  <string name="conversation_secure_verified__menu_verify_identity">IDを照合</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付</string>
   <string name="conversation__menu_update_group">グループを更新</string>
@@ -465,7 +482,7 @@
   <string name="text_secure_normal__menu_new_message">新規メッセージ</string>
   <string name="text_secure_normal__menu_new_group">新規グループ</string>
   <string name="text_secure_normal__menu_settings">設定</string>
-  <string name="text_secure_normal__menu_clear_passphrase">ロックする</string>
+  <string name="text_secure_normal__menu_clear_passphrase">ロック</string>
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">確認済み</string>

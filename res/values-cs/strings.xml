@@ -27,7 +27,6 @@
   <string name="ConversationItem_message_size_d_kb">Délka zprávy: %d KB</string>
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
   <string name="ConversationItem_error_sending_message">Chyba při odeslání zprávy</string>
-  <string name="ConversationItem_sending">Odesílám...</string>
   <string name="ConversationItem_saving_attachment">Ukládám přílohu</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Ukládám přílohu na SD kartu..</string>
   <string name="ConversationItem_save_to_sd_card">Uložit na SD kartu?</string>
@@ -436,8 +435,6 @@
   <string name="arrays__contact_keys">Klíče kontaktů</string>
   <!--preferences.xml-->
   <string name="preferences__general">Obecné</string>
-  <string name="preferences__pref_all_sms_title">Použít pro všechny SMS</string>
-  <string name="preferences__pref_all_mms_title">Použít pro všechny MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Používat TextSecure k prohlížení a uchování všech SMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Používat TextSecure k prohlížení a uchování všech MMS</string>
   <string name="preferences__enable_enter_key_title">Používat Enter</string>
@@ -521,6 +518,7 @@
   <string name="contact_selection_list__menu_unselect_all">Odznačit vše</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Dokončeno</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Odeslat nezašifrovaně</string>
   <!--conversation_callable-->
@@ -543,7 +541,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Zabezpečení</string>
   <string name="conversation_secure_verified__menu_no_identity">Není dostupná žádná identita</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Ověřit příjemce</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Ověření identity</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Ukončit zabezpečenou relaci</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Přidat přílohu</string>

@@ -15,6 +15,7 @@
   <string name="ApplicationPreferencesActivity_my">أنا</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">ايقاف تشفير التخزين؟</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
+  <string name="ApplicationPreferencesActivity_unregistering">جاري إلغاء التسجيل...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال مع مزود الخدمة...</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">صورة</string>
@@ -24,7 +25,6 @@
   <string name="ConversationItem_message_size_d_kb">حجم الرسالة: %d كيلوبايت</string>
   <string name="ConversationItem_expires_s">تاريخ الانتهاء: %s</string>
   <string name="ConversationItem_error_sending_message">خطأ بالارسال</string>
-  <string name="ConversationItem_sending">ارسال...</string>
   <string name="ConversationItem_saving_attachment">حفظ الإضافة</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">حفظ الإضافة على كرت الذاكرة</string>
   <string name="ConversationItem_save_to_sd_card">حفظ على كرت الذاكرة؟</string>
@@ -35,9 +35,14 @@
   <string name="ConversationItem_view_secure_media_question">عرض الوسائط المشفرة؟</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">تم استقبال و معالجة رسالة تبادل المفاتيح</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">خطأ، تم استقبال رسالة تبادل مفاتيح غير صالحة</string>
+  <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
+  <string name="ConversationItem_group_action_joined">%1$s دخَل الفريق.</string>
+  <string name="ConversationItem_group_action_modify">%1$s حَدث الفريق.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">هل أفتح قناة تشفير؟</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">فتح قناة تشفير مع %s ؟</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">تأكيد انهاء قناة التشفير</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">هل انت متأكد من ان تريد انهاء قناة التشفير؟</string>
   <string name="ConversationActivity_delete_thread_confirmation">تأكيد حذف المحادثة</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">هل تريد حقاَ حذف هذه المحادثة نهائياً؟</string>
   <string name="ConversationActivity_add_attachment">إضافات</string>
@@ -51,10 +56,15 @@
   <string name="ConversationActivity_forward_message_prefix">إعادة إرسال</string>
   <string name="ConversationActivity_group_conversation_recipients">مستقبلي رسائل المحادثة الجماعية</string>
   <string name="ConversationActivity_group_conversation">محادثة جماعية</string>
+  <string name="ConversationActivity_unnamed_group">مجموعة لا اسم لها</string>
+  <string name="ConversationActivity_d_recipients_in_group">أعضاء %d </string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">عضو 1</string>
   <string name="ConversationActivity_saving_draft">حفظ مسودة</string>
   <string name="ConversationActivity_invalid_recipient">جهة اتصال غير صحيحة!</string>
   <string name="ConversationActivity_calls_not_supported">خاصية الاتصال غير متوفرة</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">هذا الجهاز لا يدعم خاصية الاتصال.</string>
+  <string name="ConversationActivity_leave_group">اترك المجموعة؟</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">هل أنت متأكد من ترك المجموعة؟</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_confirm_message_delete">تأكيد حذف الرسالة</string>
@@ -82,6 +92,13 @@
   <string name="ExportFragment_success">نجحت!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">جاري تصدير مفاتيحك المشفرة و إعداداتك و رسائلك</string>
   <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
+  <string name="GroupCreateActivity_actionbar_update_title">حدث المجموعة</string>
+  <string name="GroupCreateActivity_group_name_hint">اسم المجموعة</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">مجموعة MMS جديدة</string>
+  <string name="GroupCreateActivity_avatar_content_description">الصورة الرمزية للمجموعة</string>
+  <string name="GroupCreateActivity_menu_create_title">إنشاء مجموعة</string>
+  <string name="GroupCreateActivity_creating_group">انشاء %1$s…</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">استيراد الرسائل القصيرة بالنظام؟</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">هذه الخاصية ستستورد الرسائل القصيرة من النظام إلى داخل تكست سيكيور. إذا قمت بعمل هذا من قبل فسيتم تكرار رسائلك القصيرة.</string>
@@ -126,12 +143,39 @@
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">التوقيع لجهة الاتصال هذه معتمد لديك، لكنك قمت بتعطيل خاصية اكمال تبادل المفاتيح اوتوماتيكياً</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">يجب عليك تحديد\nرقم الهاتف الخاص بك</string>
+  <string name="RegistrationActivity_invalid_number">رقم غير صالح</string>
+  <string name="RegistrationActivity_unsupported">غير مسنود </string>
   <string name="RegistrationActivity_continue">متابعة</string>
+  <string name="RegistrationActivity_edit">تحرير</string>
   <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">مشاكل ممكنة.</string>
   <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">جاري التحقٌق من الرقم</string>
+  <string name="RegistrationProgressActivity_edit_s">تعديل %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">اكتمال التسجيل!</string>
+  <string name="RegistrationProgressActivity_possible_problems">مشاكل ممكنة.</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">يجب عليك إدخال الرمز الذي تلقيته اولاً...</string>
+  <string name="RegistrationProgressActivity_connecting">جاري الاتصال</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">جاري الإتصال للتحقٌق...</string>
+  <string name="RegistrationProgressActivity_network_error">خطأ في الشبكة!</string>
+  <string name="RegistrationProgressActivity_verification_failed">فشل التحقٌق!</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">محاولات كثيرة</string>
+  <string name="RegistrationProgressActivity_requesting_call">جاري طلب الاتصال</string>
+  <string name="RegistrationProgressActivity_server_error">خطأ في الخادم</string>
+  <string name="RegistrationProgressActivity_too_many_requests">طلبات كثيرة!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">لقد طلبت مؤخرا بآجراء مكالمة صوتية. يمكنك طلب مكالمة آخرى في 20 دقيقة. </string>
+  <string name="RegistrationProgressActivity_verifying_voice_code">التحقق من رمز الصوت...</string>
+  <string name="RegistrationProgressActivity_registration_conflict">تعارض في التسجيل</string>
   <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">اكتمال التسجيل</string>
+  <string name="RegistrationService_registration_error">تسجيل خاطئ</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_secure_session_ended">قناة التشفير انتهت.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">ترك الفريق...</string>
+  <string name="TheadRecord_secure_session_ended">قناة التشفير انتهت.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">لا يوجد لديك مفتاح هوية!</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">لا يوجد لدى الطرف الاخر مفتاح هوية!</string>
@@ -182,6 +226,9 @@
   <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد...</string>
   <string name="ApplicationMigrationService_importing_text_messages">جاري استيراد الرسائل النصية</string>
   <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">المس للفتح</string>
+  <string name="KeyCachingService_passphrase_cached">انفتح تكست سيكيور </string>
+  <string name="KeyCachingService_lock">أقفل بعبارة سرية</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) رسائل جديدة</string>
   <string name="MessageNotifier_most_recent_from_s">آخر رسالة من: %s</string>
@@ -212,12 +259,14 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">لا توجد جهات اتصال.</string>
+  <string name="contact_selection_group_activity__finding_contacts">جاري العثورعلى جهات إتصال...</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">اختيار من أجل</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">لا توجد مكالمات حديثة.</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message"><small>ارسل رسالة</small></string>
   <string name="conversation_activity__send">ارسال</string>
   <string name="conversation_activity__remove">إزالة</string>
   <!--conversation_item_sent-->
@@ -229,6 +278,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع الدفعات</string>
   <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">جاري تحميل البلدان...</string>
   <string name="country_selection_fragment__search">بحث</string>
   <!--create_passphrase_activity-->
   <string name="create_passphrase_activity__passphrase">العبارة السرية:</string>
@@ -236,8 +286,13 @@
   <string name="create_passphrase_activity__continue">متابعة</string>
   <string name="create_passphrase_activity__generating_secrets">جاري إنشاء الأسرار</string>
   <string name="create_passphrase_activity__skip">تجاهل</string>
+  <string name="create_passphrase_activity__create">إنشاء</string>
   <!--log_submit_activity-->
+  <string name="log_submit_activity__button_cancel">لا تقدم</string>
+  <string name="log_submit_activity__button_ok">قدَم</string>
   <string name="log_submit_activity__log_submit_success_title">نجحت!</string>
+  <string name="log_submit_activity__copied_to_clipboard">نسخ إلى الحافظة</string>
+  <string name="log_submit_activity__thanks">شكرا لمساعدتك!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">هل تود استيراد الرسائل النصية إلى قواعد بيانات تكست سيكيور المشفرة؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>
@@ -266,11 +321,32 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">انتهاء</string>
   <!--registration_activity-->
+  <string name="registration_activity__your_country">بلدك</string>
+  <string name="registration_activity__phone_number">رقم الهاتف</string>
+  <string name="registration_activity__register">سجل</string>
   <string name="registration_activity__skip">تجاهل</string>
   <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">بعض المشاكل المحتملة\nوتشمل:</string>
+  <string name="registration_problems__sms_interceptors">رسائل نصية قصيرة</string>
+  <string name="registration_problems__incorrect_number"> رقم غير صحيح.</string>
+  <string name="registration_problems__google_voice">.Google Voice</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure لن يعمل مع أرقام Google Voice</string>
   <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">التحقق الصوتي </string>
+  <string name="registration_progress_activity__verify">تحقق</string>
+  <string name="registration_progress_activity__call_me">اتصل بي</string>
+  <string name="registration_progress_activity__edit_number">تعديل الرقم</string>
+  <string name="registration_progress_activity__connectivity_error">خطأ في الاتصال</string>
+  <string name="registration_progress_activity__some_possible_problems_include">بعض المشاكل \nالمحتملة وتشمل:</string>
+  <string name="registration_progress_activity__no_network_connectivity">لا يوجد شبكة\nتوصيل.</string>
+  <string name="registration_progress_activity__restrictive_firewall">جدار حماية مقيَد.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nسيتم الآن التحقق من رقم هاتفك تلقائيا بواسطة رسالة تأكيد SMS.</string>
+  <string name="registration_progress_activity__connecting">جاري الاتصال...</string>
+  <string name="registration_progress_activity__registering_with_server">جاري التسجيل مع الخادم...</string>
+  <string name="registration_progress_activity__generating_keys">جارِ انشاء المفتاح...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">إلى</string>
+  <string name="recipients_panel__add_member">إضافة عضو</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">لا يوجد لديك أي مفاتيح هوية مسجلة</string>
   <!--verify_identity_activity-->
@@ -288,6 +364,7 @@
   <string name="AndroidManifest__create_passphrase">انشاء عبارة سرية</string>
   <string name="AndroidManifest__enter_passphrase">ادخل العبارة السرية</string>
   <string name="AndroidManifest__select_contacts">اختيار جهات الاتصال</string>
+  <string name="AndroidManifest__select_contact">اختار جهة الاتصال</string>
   <string name="AndroidManifest__textsecure_detected">تم العثور على تكست سيكيور</string>
   <string name="AndroidManifest__public_identity_key">مفتاح الهوية العام</string>
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
@@ -301,10 +378,9 @@
   <string name="arrays__contact_keys">مفاتيح جهات الاتصال</string>
   <!--preferences.xml-->
   <string name="preferences__general">عام</string>
-  <string name="preferences__pref_all_sms_title">استخدام لكل الرسائل القصيرة</string>
-  <string name="preferences__pref_all_mms_title">استخدام لكل رسائل الوسائط المتعددة</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">استخدم تكست سيكيور لمشاهدة و حفظ كل الرسائل القصيرة الواردة</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم تكست سيكيور لمشاهدة وحفظ كل رسائل الوسائط المتعددة الواردة</string>
+  <string name="preferences__enable_enter_key_title">تفعيل مفتاح الرجوع</string>
   <string name="preferences__pref_enter_sends_title">زر الرجوع Enter يرسل الرسالة</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ضغط مفتاح الرجوع Enter سيرسل الرسالة</string>
   <string name="preferences__display_settings">اعدادات العرض</string>
@@ -326,7 +402,10 @@
   <string name="preferences__manage_configured_identity_keys">إدارة مفاتيح الهوية التي تم ضبطها</string>
   <string name="preferences__notifications">التنبيهات</string>
   <string name="preferences__display_message_notifications_in_status_bar">عرض تنبيهات الرسائل بشريط التنبيهات</string>
+  <string name="preferences__led_color">لون ضوء التنبيه LED</string>
+  <string name="preferences__pref_led_blink_title">اسلوب وميض LED</string>
   <string name="preferences__sound">صوت</string>
+  <string name="preferences__change_notification_sound">تغيير صوت التنبيه</string>
   <string name="preferences__inthread_notifications">تنبيهات داخل المحادثة</string>
   <string name="preferences__play_inthread_notifications">تشغيل صوت التنبيهات أثناء متابعة محادثة نشطة.</string>
   <string name="preferences__vibrate">هزاز</string>
@@ -339,12 +418,14 @@
   <string name="preferences__orange">برتقالي</string>
   <string name="preferences__cyan">سماوي</string>
   <string name="preferences__magenta">وردي</string>
+  <string name="preferences__white">أبيض</string>
   <string name="preferences__fast">سريع</string>
   <string name="preferences__normal">طبيعي</string>
   <string name="preferences__slow">بطىء</string>
   <string name="preferences__custom">مخصص</string>
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__passphrase">العبارة السرية</string>
+  <string name="preferences__advanced_mms_access_point_names">تفضيلات MMS</string>
   <string name="preferences__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
   <string name="preferences__mms_proxy_host_optional">عنوان بروكسي رسائل الوسائط المتعددة (غير الزامي)</string>
   <string name="preferences__mms_proxy_port_optional">منفذ او بورت بروكسي  الرسائل الوسائط المتعددة (غير الزامي)</string>
@@ -370,6 +451,8 @@
   <string name="contact_selection_list__menu_unselect_all">إزالة اختيار الكل</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">تم الانتهاء</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">انعش جهات الاتصال</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">أرسل من دون تشفير</string>
   <!--conversation_callable-->
@@ -389,9 +472,14 @@
   <string name="conversation_list__menu_search">بحث</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">الأمن</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">تحقق من مستقبل الرسالة</string>
+  <string name="conversation_secure_verified__menu_no_identity">لا هوية موجودة</string>
+  <string name="conversation_secure_verified__menu_verify_identity">تحقق من الهوية</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">انهاء قناة التشفير</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
+  <string name="conversation__menu_update_group">تحديث المجموعة</string>
+  <string name="conversation__menu_leave_group">ترك المجموعة</string>
+  <string name="conversation__menu_add_contact_info">إضافة معلومات الاتصال</string>
   <string name="conversation__menu_delete_thread">مسح المحاذفة</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">قائمة المشاركين</string>
@@ -406,7 +494,9 @@
   <string name="text_secure_locked__menu_unlock">فتح القفل</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">رسالة جديدة</string>
+  <string name="text_secure_normal__menu_new_group">مجموعة جديدة</string>
   <string name="text_secure_normal__menu_settings">الاعدادات</string>
+  <string name="text_secure_normal__menu_clear_passphrase">أقفل</string>
   <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">تم التحقق!</string>

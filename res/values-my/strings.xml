@@ -20,7 +20,6 @@
   <string name="ConversationItem_message_size_d_kb">စာတိုအရွယ်အစား: %d KB</string>
   <string name="ConversationItem_expires_s">သက်တမ်းကုန်: %s</string>
   <string name="ConversationItem_error_sending_message">မှာကြားချက်ပို့ခြင်းအမှား</string>
-  <string name="ConversationItem_sending">ပို့နေသည်...</string>
   <string name="ConversationItem_saving_attachment">ပူးတွဲပါအရာအားသိမ်းဆည်းနေ</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">ပူးတွဲပါအား SD ကဒ်သို့သိမ်းဆည်းနေ...</string>
   <string name="ConversationItem_save_to_sd_card">SD ကဒ်သို့သိမ်းမည်လား</string>
@@ -236,8 +235,6 @@
   <string name="AndroidManifest__complete_key_exchange">ကီးများပြောင်းလဲခြင်းပြီးဆုံးပါပြီ</string>
   <!--arrays.xml-->
   <!--preferences.xml-->
-  <string name="preferences__pref_all_sms_title">SMS အားလုံးအတွက်သုံးပါ</string>
-  <string name="preferences__pref_all_mms_title">MMS အားလုံးအတွက်သုံးပါ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">textsecure ကိုဝင်လာသောစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">textsecure ကိုဝင်လာသောမာတီမီဒီယာစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
   <string name="preferences__pref_enter_sends_title">ပို့ရန်ကိုနှိပ်ပါ</string>
@@ -289,6 +286,7 @@
   <string name="contact_selection_list__menu_unselect_all">အားလုံးကိုမရွေးချယ်ပါနှင့်</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">ပြီးပါပြီ</string>
+  <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">ဝှက်စာမလုပ်ပဲပို့ပါ</string>
   <!--conversation_callable-->
@@ -307,7 +305,7 @@
   <string name="conversation_list__menu_search">ရှာရန်</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">လုံခြုံရေး</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">လက်ခံကိုစစ်ဆေးပါ</string>
+  <string name="conversation_secure_verified__menu_verify_identity">အသိအမှတ်ပြုခြင်း　အတည်ပြု</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ပူးတွဲမှုအားပေါင်းထည့်</string>
   <string name="conversation__menu_delete_thread">စာတွဲကိုဖျက်ပါ</string>

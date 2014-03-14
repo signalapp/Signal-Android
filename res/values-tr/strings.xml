@@ -17,7 +17,6 @@
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Sunucu bağlantı hatası!</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Dizin güncelleniyor</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Varsayılan SMS uygulamanızı değiştirmek için dokunun</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Devredışı</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">TextSecure\'u varsayılan SMS uygulamanız yapmak için dokunun</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Resim</string>
@@ -27,7 +26,6 @@
   <string name="ConversationItem_message_size_d_kb">Mesaj boyutu: %d KB</string>
   <string name="ConversationItem_expires_s">Ömrü: %s</string>
   <string name="ConversationItem_error_sending_message">Mesaj gönderilirken hata</string>
-  <string name="ConversationItem_sending">Gönderiliyor...</string>
   <string name="ConversationItem_saving_attachment">Ek kaydediliyor</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">Ek SD karta kaydediliyor...</string>
   <string name="ConversationItem_save_to_sd_card">SD karta kaydet?</string>
@@ -39,6 +37,7 @@
   <string name="ConversationItem_error_received_stale_key_exchange_message">Hata, bozuk anahtar takas mesajı alındı.</string>
   <string name="ConversationItem_group_action_left">%1$s gruptan ayrıldı.</string>
   <string name="ConversationItem_group_action_joined">%1$s gruba katıldı.</string>
+  <string name="ConversationItem_group_action_modify">%1$s grubu güncelledi.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Güvenli oturum başlat?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%s ile güvenli oturum başlat?</string>
@@ -83,14 +82,21 @@
   <string name="ExportFragment_cancel">İptal</string>
   <string name="ExportFragment_exporting">Dışarı aktarılıyor</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">SD karta şifresiz metin olarak kaydediliyor...\n    </string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Hata, unable to write to SD\n        card!\n    </string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Hata, SD karta yazım başarısız!\n    </string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">SD karta kaydedilirken hata.</string>
   <string name="ExportFragment_success">Başarılı!</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Yeni Grup</string>
   <string name="GroupCreateActivity_actionbar_update_title">Grubu güncelle</string>
   <string name="GroupCreateActivity_group_name_hint">Grup İsmi</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Yeni MMS Grubu</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">TextSecure gruplarını desteklemeyen bir kişi seçtiniz. Bu nedenle grubunuz MMS grubu olacaktır.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Veri kanallarını kullanarak kayıt olmadığınız için TextSecure grupları kapatılmıştır.</string>
+  <string name="GroupCreateActivity_you_dont_own_this_group">Bu grubun sahibi olmamanız nedeni ile başlığı ve resmi değiştiremezsiniz.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Grup yaratılmasına engel olan beklenmedik bir hata oluştu.</string>
   <string name="GroupCreateActivity_contacts_no_members">Grubunuzda en az bir kişi olmalıdır.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Grubunuzun üyelerinden birinin doğru okunamayan bir numarası var. Lütfen numarayı düzeltiniz veya kişiyi siliniz. Ve tekrar deneyiniz.</string>
+  <string name="GroupCreateActivity_file_io_exception">Dosya I/O -Yazma/Okuma- hatası, geçici resim dosyası oluşturulamıyor.</string>
   <string name="GroupCreateActivity_avatar_content_description">Grup Resmi</string>
   <string name="GroupCreateActivity_menu_create_title">Grup Yarat</string>
   <string name="GroupCreateActivity_creating_group">%1$s yaratılıyor…</string>
@@ -114,6 +120,7 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Taralı anahtar bulunamadı!</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">MMS indirmek için bağlantı yok, daha sonra tekrar deneyiniz...</string>
   <string name="MmsDownloader_error_storing_mms">MMS depolama hatası!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS sağlayıcısına bağlanma hatası...</string>
   <!--NotificationMmsMessageRecord-->
@@ -128,6 +135,7 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Yanlış şifre!</string>
   <!--PromptMmsActivity-->
   <!--ReceiveKeyActivity-->
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bu kişiyi doğrulamak \nisteyebilirsiniz.</string>
   <string name="ReceiveKeyActivity_processing">İşleniyor</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Anahtar takası işleniyor...</string>
   <!--RegistrationActivity-->
@@ -253,6 +261,7 @@
   <string name="contact_selection_group_activity__finding_contacts">Kişiler bulunuyor...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Filtrelemek için bir isim yazınız...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Dizin güncelleniyor</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seç</string>
   <!--contact_selection_recent_activity-->
@@ -324,6 +333,7 @@
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Muhtemel sorunlar\n        içinde:\n    </string>
   <string name="registration_problems__incorrect_number">Geçersiz numara</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nLütfen girdiğiniz numaranın ve alan kodlarının doğruluğunu kontrol ediniz.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\n        TextSecure Google Voice numaraları ile çalışmaz.\n    </string>
   <!--registration_progress_activity-->
@@ -337,6 +347,8 @@
   <string name="registration_progress_activity__connecting">Bağlanılıyor...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">SMS doğrulama\n        için bekleniliyor...\n    </string>
   <string name="registration_progress_activity__registering_with_server">Sunucuya kaydolunuyor...</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nSMS doğrulaması için verilen süre aşılarak TestSecure zaman aşımına uğradı.</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS doğrulaması\nbaşarısız.</string>
   <string name="registration_progress_activity__generating_keys">Anahtarlar üretiliyor...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Alıcı</string>
@@ -372,8 +384,6 @@
   <string name="arrays__my_identity_key">Kimlik Anahtarım</string>
   <!--preferences.xml-->
   <string name="preferences__general">Genel</string>
-  <string name="preferences__pref_all_sms_title">Tüm SMS\'ler için kullan</string>
-  <string name="preferences__pref_all_mms_title">Tüm MMS\'ler için kullan</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gelen tüm mesajların gösterimi ve saklanması için TextSecure kullan</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm medya mesajların gösterimi ve saklanması için TextSecure kullan</string>
   <string name="preferences__pref_enter_sends_title">Enter gönderir</string>
@@ -447,6 +457,8 @@
   <string name="contact_selection_list__menu_unselect_all">Tüm seçimleri kaldır</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Tamamlanmış</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Kişi Listesini Tazele</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Şifrelenmemiş gönder</string>
   <!--conversation_callable-->
@@ -469,7 +481,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Güvenlik</string>
   <string name="conversation_secure_verified__menu_no_identity">Kimlik Yok</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Alıcı Doğrula</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Kimlik Doğrula</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Güvenli Oturumu Bitir</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Ek ekle</string>

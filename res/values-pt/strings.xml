@@ -18,9 +18,14 @@
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">A desregistrar...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">A desregistrar-se da comunicação de dados</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Desactivar mensagens push?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nIsto vai desactivar as mensagens push, eliminando o seu registo do servidor.\nVai necessitar de re-registar o seu número de telefone se pretender utilizar esta funcionalidade novamente.\n</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Não está registado com o serviço push...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Actualizando directório</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Actualizando directório PUSH...</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Definir como aplicação SMS por omissão</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pressione para tornar TextSecure a sua applicação SMS por omissão</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -29,7 +34,6 @@
   <string name="ConversationItem_message_size_d_kb">Tamanho da mensagem: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
   <string name="ConversationItem_error_sending_message">Erro no envio da mensagem</string>
-  <string name="ConversationItem_sending">A enviar...</string>
   <string name="ConversationItem_saving_attachment">A guardar anexo</string>
   <string name="ConversationItem_saving_attachment_to_sd_card">A guardar anexo para o cartão SD...</string>
   <string name="ConversationItem_save_to_sd_card">Guardar para o cartão SD?</string>
@@ -42,6 +46,7 @@
   <string name="ConversationItem_received_and_processed_key_exchange_message">Mensagem de intercâmbio de chaves recebida e processada.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Erro, foi recebida uma mensagem de intercâmbio de chaves desactualizada.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Foi recebida uma mensagem de intercâmbio de chaves, clique para processá-la.</string>
+  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Foi recebida uma mensagem de texto simples enquanto tem uma sessão segura aberta. Se o remetente não tem uma sessão aberta, mensagens que envie vão aparecer como texto codificado. Carregue aqui para terminar a sessão segura.</string>
   <string name="ConversationItem_group_action_left">%1$s deixou o grupo.</string>
   <string name="ConversationItem_group_action_joined">%1$s juntou-se ao grupo.</string>
   <string name="ConversationItem_group_action_modify">%1$s actualizou o grupo.</string>
@@ -74,6 +79,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem a certeza que quer deixar este grupo?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s\nEnviadas/Recebidas: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Remetente: %1$s\nTransporte: %2$s\nEnviado: %3$s\nRecebido: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirme apagar a mensagem</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Tem a certeza que pretende apagar permanentemente esta mensagem?</string>
   <!--ConversationListAdapter-->
@@ -103,9 +110,14 @@
   <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome do Grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Novo Grupo MMS</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Seleccionou um contacto que não suporta grupos TextSecure, pelo que este grupo será um grupo MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Não está registado para usar o canal de dados, pelo que os grupos TextSecure estão desactivados.</string>
   <string name="GroupCreateActivity_you_dont_own_this_group">Não tem permissão para alterar o título ou a imagem deste grupo</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Um irro inesperado ocorreu que impossibilitou a criação do grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">É necessária pelo menos uma pessoa para formar um grupo!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número ilegível. Por favor corrija ou remova esse contacto e tente novamente.</string>
   <string name="GroupCreateActivity_file_io_exception">Erro de I/O, não foi possível criar o ficheiro temporário de imagem.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Avatar do grupo</string>
   <string name="GroupCreateActivity_menu_create_title">Criar grupo</string>
   <string name="GroupCreateActivity_creating_group">Criando %1$s...</string>
   <!--ImportFragment-->
@@ -157,7 +169,7 @@
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Conectar-se ao TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Escolha o seu país</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve escolher o\ncódigo do seu país</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve escolher o\nindicativo do seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Você deve definir o seu\nnúmero de telefone</string>
   <string name="RegistrationActivity_invalid_number">Número inválido</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número que\nespecificou (%s) não é válido.</string>
@@ -182,22 +194,25 @@
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">O código de verificação introduzido está errado. Por favor tente novamente.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Demasiadas tentativas</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Introduziu um código de verificação incorrecto demasiadas vezes. Por favor espere um minuto antes de voltar a tentar.</string>
-  <string name="RegistrationProgressActivity_requesting_call">A requerer chamada</string>
+  <string name="RegistrationProgressActivity_requesting_call">A Requerer Chamada</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">A requerer chamada de verificação...</string>
-  <string name="RegistrationProgressActivity_server_error">Erro de servidor</string>
+  <string name="RegistrationProgressActivity_server_error">Erro de Servidor</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">O servidor deparou-se com um erro. Por favor tente novamente.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Demasiadas tentativas</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Já requereu uma chamada recentemente. Pode pedir outra dentro de 20 minutos.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">A validar código de voz...</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflito de registo</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número já está registado num servidor TextSecure diferente (CyanogenMod?). Tem de eliminar esse registo antes de se registar aqui.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registo Completo</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">O registo TextSecure foi completado com sucesso.</string>
-  <string name="RegistrationService_registration_error">Erro de registo</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">O registo TextSecure deparou-se com um problema.</string>
+  <string name="RegistrationService_registration_error">Erro de Registo</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">O registo do TextSecure deparou-se com um problema.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Foi recebida uma\nchave corrompida.\n</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Mensagem de troca de chave inválida para esta versão do protocolo.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nRecebida mensagem com chave de identidade desconhecida. Clique para processar e exibir.\n    </string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Actualização recebida mas com infomação de identidade desconhecida. Toque para validar identidade.</string>
   <string name="SmsMessageRecord_secure_session_ended">Sessão segura terminada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Deixou o grupo...</string>
@@ -229,6 +244,7 @@
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">A chave lida coincide!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verificado!</string>
   <string name="ViewIdentityActivity_identity_fingerprint">Impressão digital da identidade</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">A minha impressão digital da identidade</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Já enviou um pedido de início de sessão para este destinatário, tem a certeza que pretende enviar outro? Isto invalidará o pedido anterior.</string>
@@ -292,6 +308,9 @@
   <string name="contact_selection_group_activity__finding_contacts">Procurando contactos...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Pesquise por nome...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Não está registado com o serviço push...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Actualizando directório</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Actualizando directório PUSH...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
   <!--contact_selection_recent_activity-->
@@ -312,16 +331,22 @@
   <string name="country_selection_fragment__loading_countries">A carregar lista de países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
   <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Por favor escolha uma frase-chave se pretende cifrar os seus dados localmente.</string>
   <string name="create_passphrase_activity__passphrase">Frase-chave:</string>
   <string name="create_passphrase_activity__repeat">Repetir:</string>
   <string name="create_passphrase_activity__continue">Continuar</string>
   <string name="create_passphrase_activity__generating_secrets">A GERAR SEGREDOS</string>
   <string name="create_passphrase_activity__skip">Saltar</string>
+  <string name="create_passphrase_activity__create">Criar</string>
   <!--log_submit_activity-->
+  <string name="log_submit_activity__confirmation">Este registo será publicado online para que contribuidores TextSecure o analisem. Por favor examine-o ou edite-o antes de o submeter.</string>
   <string name="log_submit_activity__button_cancel">Não enviar</string>
   <string name="log_submit_activity__button_ok">Enviar</string>
+  <string name="log_submit_activity__log_fetch_failed">Não foi possível obter os registos do seu dispositivo. Alternativamente, pode utilizar o ADB para os obter.</string>
   <string name="log_submit_activity__log_submit_success_title">Sucesso!</string>
   <string name="log_submit_activity__log_got_it">Recebido</string>
+  <string name="log_submit_activity__your_pastebin_url">Por favor copie esta URL e adicione-a ao seu relatório (pressione algum tempo para a copiar para a área de transferência):\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="log_submit_activity__loading_logcat">A carregar logcat...</string>
   <string name="log_submit_activity__thanks">Obrigado pela sua ajuda!</string>
   <!--database_migration_activity-->
@@ -358,6 +383,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completo</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure pode usar mensagens instantâneas para aumentar a privacidade e evitar custos quando comunica com outros \nutilizadores TextSecure. Para activar esta funcionalidade, por favor valide o seu indicativo de país e número de telefone.</string>
   <string name="registration_activity__your_country">PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">PAÍS E\nNÚMERO DE TELEFONE</string>
   <string name="registration_activity__phone_number">TELEFONE</string>
@@ -367,22 +393,31 @@
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possíveis problemas\nincluem:</string>
   <string name="registration_problems__sms_interceptors">Interceptores de SMS.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nAlguns clientes alternativos de mensagem de texto, como Handcent ou GoSMS, comportam-se mal e interceptam todas as mensagens SMS que chegam. Verifique se recebeu uma mensagem de texto que começa com \"Your TextSecure verification code:\". Nesse caso será necessário configurar a sua app de mensagem de texto para deixar as mensagens de texto passarem.</string>
   <string name="registration_problems__incorrect_number">Número incorrecto.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nPor favor verifique que o seu número está correctamente inserido, e formatado correctamente\npara a sua região.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nO TextSecure não funcionará com números Google Voice.</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">Verificação por chamada</string>
+  <string name="registration_progress_activity__voice_verification">Verificação por Voz</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nTextSecure também pode ligar-lhe para verificar o seu número. Clique em \'Ligue-me\' e insira abaixo o código de seis dígitos que ouvirá.</string>
   <string name="registration_progress_activity__verify">Verificar</string>
   <string name="registration_progress_activity__call_me">Ligue-me</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>
   <string name="registration_progress_activity__connectivity_error">Erro de ligação.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\nTextSecure foi impossibilitado de se ligar ao serviço push\n</string>
   <string name="registration_progress_activity__some_possible_problems_include">Alguns problemas\npossíveis incluem:\n</string>
   <string name="registration_progress_activity__no_network_connectivity">Sem conectividade\nde rede.\n</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">O seu\ndispositivo necessita de ter conectividade de rede para usar esta funcionalidade TextSecure. Verifique que está ligado via 3G ou Wifi.\n</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall restritiva.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">\nSe está ligado via wifi, é possível que haja uma firewall a bloquar acesso ao\nservidor TextSecure. Tente outra rede ou use a ligação de dados.\n</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nTextSecure vai agora automaticamente verificar o seu número com um SMS de confirmação.</string>
   <string name="registration_progress_activity__connecting">A ligar...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">A aguardar\nverificação sms...\n</string>
   <string name="registration_progress_activity__registering_with_server">Registando com o servidor...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Isto pode demorar um pouco. Por favor seja paciente, será notificado quanto a verificação estiver completa.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nO tempo de espera da mensagem SMS de verificação TextSecure expirou.</string>
+  <string name="registration_progress_activity__sms_verification_failed">Verificação por SMS\nfalhou.</string>
   <string name="registration_progress_activity__generating_keys">A gerar chaves...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Para</string>
@@ -412,14 +447,13 @@
   <string name="AndroidManifest__verify_identity">Verificar identidade</string>
   <string name="AndroidManifest__manage_identity_keys">Gerir chaves de identidade</string>
   <string name="AndroidManifest__complete_key_exchange">Completar Intercâmbio de Chaves</string>
+  <string name="AndroidManifest__log_submit">Enviar Registos de Erro</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__my_identity_key">A minha chave de identidade</string>
   <string name="arrays__contact_keys">Chaves de contacto</string>
   <!--preferences.xml-->
   <string name="preferences__general">Geral</string>
-  <string name="preferences__pref_all_sms_title">Utilizar para todas as SMS</string>
-  <string name="preferences__pref_all_mms_title">Utilizar para todas as MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilizar TextSecure para visualizar e armazenar todas as mensagens de texto recebidas</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar TextSecure para visualizar e armazenar todas as mensagens multimédia recebidas</string>
   <string name="preferences__enable_enter_key_title">Habilitar a tecla Enter</string>
@@ -434,7 +468,9 @@
   <string name="preferences__complete_key_exchanges">Completar troca de chaves</string>
   <string name="preferences__disable_passphrase">Desabilitar frase-chave</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Desativar encriptação local para as mensagens e chaves</string>
+  <string name="preferences__screen_security">Segurança de ecrã</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automaticamente intercâmbios de chaves para novas sessões ou para sessões existentes com a mesma chave de identidade</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Desactivar segurança de ecrã para permitir screenshots</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Esquecer a frase-chave após algum intervalo</string>
   <string name="preferences__timeout_passphrase">Expirar frase-chave</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar tempo de expiração da frase-chave</string>
@@ -451,6 +487,7 @@
   <string name="preferences__pref_led_blink_custom_pattern_title">Definir padrão de intermitência de LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">Activo durante:</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Inactivo durante:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Padrão de intermitência LED definido!</string>
   <string name="preferences__sound">Som</string>
   <string name="preferences__change_notification_sound">Alterar som de notificação</string>
   <string name="preferences__inthread_notifications">Notificações em conversas</string>
@@ -465,6 +502,8 @@
   <string name="preferences__orange">Laranja</string>
   <string name="preferences__cyan">Cíano</string>
   <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Branco</string>
+  <string name="preferences__none">Nenhum</string>
   <string name="preferences__fast">Rápido</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lento</string>
@@ -493,8 +532,11 @@
   <string name="preferences__language">Língua</string>
   <string name="preferences__make_default_sms_app">Definir como aplicação SMS por omissão</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Tornar o TextSecure a aplicação de SMS/MMS padrão do sistema.</string>
-  <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Enviar e receber mensagens SMS quando PUSH não estiver disponível</string>
+  <string name="preferences__use_data_channel">Mensagens Push</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nAumente a privacidade e evite custos de SMS ao utilizar o canal de dados para comunicar com outros utilizadores TextSecure.\n</string>
+  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure é a sua aplicação de SMS pré-definida. Por favor defina outra aplicação como pré-definida para alterar esta preferência.</string>
   <string name="preferences__refresh_push_directory">Actualizar Directório PUSH</string>
+  <string name="preferences__submit_debug_log">Submeter registo de depuração</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -503,6 +545,8 @@
   <string name="contact_selection_list__menu_unselect_all">Desseleccionar tudo</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Terminado</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Actualizar Lista de Contactos</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Enviar não cifrado</string>
   <!--conversation_callable-->
@@ -520,10 +564,12 @@
   <string name="conversation_list_batch__menu_select_all">Seleccionar tudo</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Procurar</string>
+  <string name="conversation_list__drawer_open">Abrir gaveta de navegação</string>
+  <string name="conversation_list__drawer_close">Fechar gaveta de navegação</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Segurança</string>
   <string name="conversation_secure_verified__menu_no_identity">Nenhuma identidade disponível</string>
-  <string name="conversation_secure_verified__menu_verify_recipient">Verificar destinatário</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verificar identidade</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Terminar sessão segura</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adicionar anexo</string>
