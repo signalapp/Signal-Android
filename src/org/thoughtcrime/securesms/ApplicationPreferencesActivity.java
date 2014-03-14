@@ -47,6 +47,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gcm.GCMRegistrar;
 
+import org.thoughtcrime.securesms.components.OutgoingSmsPreference;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
@@ -77,6 +78,7 @@ import java.io.IOException;
 public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
+  private static final String TAG = "Preferences";
 
   private static final int PICK_IDENTITY_CONTACT        = 1;
   private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
@@ -87,6 +89,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final String KITKAT_DEFAULT_PREF   = "pref_set_default";
   private static final String UPDATE_DIRECTORY_PREF = "pref_update_directory";
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
+  private static final String OUTGOING_SMS_PREF     = "pref_outgoing_sms";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -103,7 +106,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     addPreferencesFromResource(R.xml.preferences);
 
     initializeIdentitySelection();
-    initializeSmsFallbackOption();
     initializePushMessagingToggle();
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
@@ -126,7 +128,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         .setOnPreferenceClickListener(new DirectoryUpdateListener());
     this.findPreference(SUBMIT_DEBUG_LOG_PREF)
         .setOnPreferenceClickListener(new SubmitDebugLogListener());
+    this.findPreference(OUTGOING_SMS_PREF)
+        .setOnPreferenceChangeListener(new OutgoingSmsPreferenceListener());
 
+    initializeOutgoingSmsSummary((OutgoingSmsPreference) findPreference(OUTGOING_SMS_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
     initializeRingtoneSummary((RingtonePreference) findPreference(TextSecurePreferences.RINGTONE_PREF));
@@ -188,14 +193,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   }
 
   private void initializePlatformSpecificOptions() {
-    PreferenceGroup    generalCategory    = (PreferenceGroup) findPreference("general_category");
+    PreferenceGroup    pushSmsCategory    = (PreferenceGroup) findPreference("push_sms_category");
     Preference         defaultPreference  = findPreference(KITKAT_DEFAULT_PREF);
     Preference         allSmsPreference   = findPreference(TextSecurePreferences.ALL_SMS_PREF);
     Preference         allMmsPreference   = findPreference(TextSecurePreferences.ALL_MMS_PREF);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      if (allSmsPreference != null) generalCategory.removePreference(allSmsPreference);
-      if (allMmsPreference != null) generalCategory.removePreference(allMmsPreference);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && pushSmsCategory != null) {
+      if (allSmsPreference != null) pushSmsCategory.removePreference(allSmsPreference);
+      if (allMmsPreference != null) pushSmsCategory.removePreference(allMmsPreference);
 
       if (Util.isDefaultSmsProvider(this)) {
         defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
@@ -208,36 +213,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
         defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app));
       }
-    } else {
-      if (defaultPreference != null) generalCategory.removePreference(defaultPreference);
-    }
-  }
-
-  private void initializeSmsFallbackOption() {
-    CheckBoxPreference allowSmsPreference =
-        (CheckBoxPreference) findPreference(TextSecurePreferences.ALLOW_SMS_FALLBACK_PREF);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      if (Util.isDefaultSmsProvider(this) || !TextSecurePreferences.isPushRegistered(this)) {
-        allowSmsPreference.setEnabled(false);
-        allowSmsPreference.setChecked(true);
-        allowSmsPreference.setSummary(R.string.preferences__allow_sms_fallback_disabled_reason);
-      } else {
-        allowSmsPreference.setEnabled(true);
-        allowSmsPreference.setSummary(R.string.preferences__send_and_receive_sms_messages_when_push_is_not_available);
-      }
-    } else {
-      if (TextSecurePreferences.isInterceptAllMmsEnabled(this) ||
-          TextSecurePreferences.isInterceptAllSmsEnabled(this) ||
-          !TextSecurePreferences.isPushRegistered(this))
-      {
-        allowSmsPreference.setEnabled(false);
-        allowSmsPreference.setChecked(true);
-        allowSmsPreference.setSummary(R.string.preferences__allow_sms_fallback_disabled_reason);
-      } else {
-        allowSmsPreference.setEnabled(true);
-        allowSmsPreference.setSummary(R.string.preferences__send_and_receive_sms_messages_when_push_is_not_available);
-      }
+    } else if (pushSmsCategory != null && defaultPreference != null) {
+      pushSmsCategory.removePreference(defaultPreference);
     }
   }
 
@@ -296,6 +273,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     listener.onPreferenceChange(pref, sharedPreferences.getString(pref.getKey(), ""));
   }
 
+  private void initializeOutgoingSmsSummary(OutgoingSmsPreference pref) {
+    pref.setSummary(buildOutgoingSmsDescription());
+  }
+
   private void handleIdentitySelection(Intent data) {
     Uri contactUri = data.getData();
 
@@ -311,11 +292,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       dynamicTheme.onResume(this);
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
       dynamicLanguage.onResume(this);
-    } else if (key.equals(TextSecurePreferences.ALL_MMS_PREF) ||
-               key.equals(TextSecurePreferences.ALL_SMS_PREF) ||
-               key.equals(TextSecurePreferences.REGISTERED_GCM_PREF))
-    {
-      initializeSmsFallbackOption();
     }
   }
 
@@ -612,6 +588,36 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       startActivity(intent);
       return true;
     }
+  }
+
+  private class OutgoingSmsPreferenceListener implements Preference.OnPreferenceChangeListener {
+
+    @Override
+    public boolean onPreferenceChange(final Preference preference, Object newValue) {
+
+      preference.setSummary(buildOutgoingSmsDescription());
+      return false;
+    }
+  }
+
+  private String buildOutgoingSmsDescription() {
+    final StringBuilder builder         = new StringBuilder();
+    final boolean       dataFallback    = TextSecurePreferences.isSmsFallbackEnabled(this);
+    final boolean       dataFallbackAsk = TextSecurePreferences.isSmsFallbackAskEnabled(this);
+    final boolean       nonData         = TextSecurePreferences.isSmsNonDataOutEnabled(this);
+
+    if (dataFallback) {
+      builder.append(getString(R.string.preferences__sms_outgoing_push_users));
+      if (dataFallbackAsk) builder.append(" ").append(getString(R.string.preferences__sms_fallback_push_users_ask));
+    }
+    if (nonData) {
+      if (dataFallback) builder.append(", ");
+      builder.append(getString(R.string.preferences__sms_fallback_non_push_users));
+    }
+    if (!dataFallback && !nonData) {
+      builder.append(getString(R.string.preferences__sms_fallback_nobody));
+    }
+    return builder.toString();
   }
 
   /* http://code.google.com/p/android/issues/detail?id=4611#c35 */

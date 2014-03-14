@@ -10,8 +10,8 @@ import org.thoughtcrime.securesms.R;
 
 public class ActionBarUtil {
 
-  public static void initializeDefaultActionBar(final Context c, final ActionBar actionBar, final int title_resid) {
-    actionBar.setTitle(title_resid);
+  public static void initializeDefaultActionBar(final Context c, final ActionBar actionBar, final int titleResId) {
+    actionBar.setTitle(titleResId);
     initializeDefaultActionBar(c, actionBar);
   }
 

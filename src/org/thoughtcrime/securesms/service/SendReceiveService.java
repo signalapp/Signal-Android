@@ -62,6 +62,8 @@ public class SendReceiveService extends Service {
   public static final String DOWNLOAD_PUSH_ACTION             = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_PUSH_ACTION";
   public static final String DOWNLOAD_AVATAR_ACTION           = "org.thoughtcrime.securesms.SendReceiveService.DOWNLOAD_AVATAR_ACTION";
 
+  public static final String MASTER_SECRET_EXTRA = "master_secret";
+
   private static final int SEND_SMS              = 0;
   private static final int RECEIVE_SMS           = 1;
   private static final int SEND_MMS              = 2;
@@ -307,7 +309,7 @@ public class SendReceiveService extends Service {
     @Override
     public void onReceive(Context context, Intent intent) {
       Log.w("SendReceiveService", "Got a MasterSecret broadcast...");
-      initializeWithMasterSecret((MasterSecret)intent.getParcelableExtra("master_secret"));
+      initializeWithMasterSecret((MasterSecret)intent.getParcelableExtra(MASTER_SECRET_EXTRA));
     }
   }
 

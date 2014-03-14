@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingTop="15dp"
+    android:paddingLeft="15dp"
+    android:paddingBottom="15dp"
+    android:paddingRight="10dp">
+
+    <CheckBox android:id="@+id/data_users"
+        style="@style/TextSecureDialogPrimaryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:singleLine="true"
+        android:text="@string/preferences__sms_outgoing_push_users" />
+
+    <TextView
+        style="@style/TextSecureDialogSecondaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="12sp"
+        android:text="@string/preferences__sms_outgoing_push_users_description" />
+
+    <CheckBox android:id="@+id/ask_before_fallback_data"
+        style="@style/TextSecureDialogPrimaryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:text="@string/preferences__sms_fallback_ask_fallback"
+        android:layout_marginLeft="25dp" />
+
+    <CheckBox android:id="@+id/non_data_users"
+        style="@style/TextSecureDialogPrimaryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:text="@string/preferences__sms_fallback_non_push_users" />
+
+</LinearLayout>

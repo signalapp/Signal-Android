@@ -32,9 +32,9 @@
     <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
     <string name="ApplicationPreferencesActivity_updating_directory">Updating directory</string>
     <string name="ApplicationPreferencesActivity_updating_push_directory">Updating push directory...</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
+    <string name="ApplicationPreferencesActivity_sms_enabled">Incoming SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabled</string>
+    <string name="ApplicationPreferencesActivity_sms_disabled">Incoming SMS Disabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Touch to make TextSecure your default SMS app</string>
 
     <!-- AttachmentTypeSelectorAdapter -->
@@ -63,6 +63,8 @@
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_group_action_joined">%1$s have joined the group.</string>
     <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
+    <string name="ConversationItem_click_to_approve">Tap for SMS fallback</string>
+    <string name="ConversationItem_click_to_approve_dialog_title">Fallback to SMS?</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate Secure Session?</string>
@@ -642,8 +644,9 @@
 
     <!-- preferences.xml -->
     <string name="preferences__general">General</string>
-    <string name="preferences__pref_all_sms_title">Use for all SMS</string>
-    <string name="preferences__pref_all_mms_title">Use for all MMS</string>
+    <string name="preferences__push_sms_category">Push and SMS</string>
+    <string name="preferences__pref_all_sms_title">Receive all SMS</string>
+    <string name="preferences__pref_all_mms_title">Receive all MMS</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for viewing and storing all incoming multimedia messages</string>
     <string name="preferences__enable_enter_key_title">Enable Enter key</string>
@@ -726,11 +729,16 @@
     <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
         Increase privacy and avoid SMS fees by using the data channel for communication with other TextSecure users
     </string>
-    <string name="preferences__allow_sms_fallback">SMS Fallback</string>
+    <string name="preferences__allow_sms_fallback">Allow outgoing SMS to</string>
     <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is currently your default SMS app. Please set another default SMS app first to change this preference.</string>
-    <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
     <string name="preferences__refresh_push_directory">Refresh Push Directory</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
+    <string name="preferences__sms_outgoing_push_users">TextSecure users</string>
+    <string name="preferences__sms_fallback_push_users_ask">(ask first)</string>
+    <string name="preferences__sms_outgoing_push_users_description">Send secure SMS if data connectivity is lost</string>
+    <string name="preferences__sms_fallback_ask_fallback">Ask before sending SMS</string>
+    <string name="preferences__sms_fallback_non_push_users">Non-TextSecure users</string>
+    <string name="preferences__sms_fallback_nobody">Nobody</string>
 
     <!-- **************************************** -->
     <!-- menus -->

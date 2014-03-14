@@ -44,7 +44,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
@@ -107,12 +109,15 @@ public class ConversationItem extends LinearLayout {
   private  View      conversationParent;
   private  TextView  bodyText;
   private  TextView  dateText;
+  private  TextView  indicatorText;
   private  TextView  groupStatusText;
   private  ImageView secureImage;
   private  ImageView failedImage;
   private  ImageView keyImage;
   private  ImageView contactPhoto;
   private  ImageView deliveredImage;
+  private  View      triangleTick;
+  private  ImageView pendingIndicator;
 
   private  View      mmsContainer;
   private  ImageView mmsThumbnail;
@@ -144,6 +149,7 @@ public class ConversationItem extends LinearLayout {
 
     this.bodyText            = (TextView) findViewById(R.id.conversation_item_body);
     this.dateText            = (TextView) findViewById(R.id.conversation_item_date);
+    this.indicatorText       = (TextView) findViewById(R.id.indicator_text);
     this.groupStatusText     = (TextView) findViewById(R.id.group_message_status);
     this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
     this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
@@ -155,6 +161,8 @@ public class ConversationItem extends LinearLayout {
     this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
     this.deliveredImage      = (ImageView)findViewById(R.id.delivered_indicator);
     this.conversationParent  = (View)     findViewById(R.id.conversation_item_parent);
+    this.triangleTick        =            findViewById(R.id.triangle_tick);
+    this.pendingIndicator    = (ImageView)findViewById(R.id.pending_approval_indicator);
     this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
 
     setOnClickListener(clickListener);
@@ -180,6 +188,7 @@ public class ConversationItem extends LinearLayout {
       setContactPhoto(messageRecord);
       setGroupMessageStatus(messageRecord);
       setEvents(messageRecord);
+      setMinimumWidth();
 
       if (messageRecord instanceof NotificationMmsMessageRecord) {
         setNotificationMmsAttributes((NotificationMmsMessageRecord)messageRecord);
@@ -218,10 +227,10 @@ public class ConversationItem extends LinearLayout {
       if (messageRecord.isOutgoing()) {
         final int background;
         final int triangleBackground;
-        if (messageRecord.isPending() && pushDestination) {
+        if (messageRecord.isPending() && pushDestination && !messageRecord.isForcedSms()) {
           background = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
-        } else if (messageRecord.isPending()) {
+        } else if (messageRecord.isPending() || messageRecord.isPendingFallbackApproval()) {
           background = SENT_SMS_PENDING;
           triangleBackground = SENT_SMS_PENDING_TRIANGLE;
         } else if (messageRecord.isPush()) {
@@ -232,7 +241,7 @@ public class ConversationItem extends LinearLayout {
           triangleBackground = SENT_SMS_TRIANGLE;
         }
         setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
-        setViewBackgroundWithoutResettingPadding(findViewById(R.id.triangle_tick), backgroundDrawables.getResourceId(triangleBackground, -1));
+        setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
       }
     }
   }
@@ -255,6 +264,10 @@ public class ConversationItem extends LinearLayout {
 
   private void setStatusIcons(MessageRecord messageRecord) {
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
+    if (messageRecord.isOutgoing()) {
+      pendingIndicator.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
+      indicatorText.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
+    }
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     keyImage.setVisibility(messageRecord.isKeyExchange() ? View.VISIBLE : View.GONE);
     deliveredImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
@@ -265,6 +278,9 @@ public class ConversationItem extends LinearLayout {
 
     if (messageRecord.isFailed()) {
       dateText.setText(R.string.ConversationItem_error_sending_message);
+    } else if (messageRecord.isPendingFallbackApproval() && indicatorText != null) {
+      dateText.setText("");
+      indicatorText.setText(R.string.ConversationItem_click_to_approve);
     } else if (messageRecord.isPending()) {
       dateText.setText(" ··· ");
     } else {
@@ -276,10 +292,19 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
+  private void setMinimumWidth() {
+    if (indicatorText != null && indicatorText.getVisibility() == View.VISIBLE && indicatorText.getText() != null) {
+      conversationParent.setMinimumWidth(indicatorText.getText().length() * 20);
+    } else {
+      conversationParent.setMinimumWidth(0);
+    }
+  }
+
   private void setEvents(MessageRecord messageRecord) {
-    setClickable(messageRecord.isKeyExchange()           &&
-                 !messageRecord.isCorruptedKeyExchange() &&
-                 !messageRecord.isOutgoing());
+    setClickable(messageRecord.isPendingFallbackApproval() ||
+                 (messageRecord.isKeyExchange()            &&
+                  !messageRecord.isCorruptedKeyExchange()  &&
+                  !messageRecord.isOutgoing()));
 
     if (!messageRecord.isOutgoing()                       &&
         messageRecord.getRecipients().isSingleRecipient() &&
@@ -615,7 +640,40 @@ public class ConversationItem extends LinearLayout {
           !messageRecord.isProcessedKeyExchange() &&
           !messageRecord.isStaleKeyExchange())
         handleKeyExchangeClicked();
+      else if (messageRecord.isPendingFallbackApproval())
+        handleMessageApproval();
     }
+  }
+
+  private void handleMessageApproval() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    builder.setTitle(R.string.ConversationItem_click_to_approve_dialog_title);
+    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialogInterface, int i) {
+        if (messageRecord.isMms()) {
+          MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+          database.markAsOutbox(messageRecord.getId());
+          database.markAsForcedSms(messageRecord.getId());
+        } else {
+          SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
+          database.markAsOutbox(messageRecord.getId());
+          database.markAsForcedSms(messageRecord.getId());
+        }
+        Intent intent = new Intent(context, SendReceiveService.class);
+        intent.setAction(SendReceiveService.SEND_SMS_ACTION);
+        intent.putExtra(SendReceiveService.MASTER_SECRET_EXTRA, masterSecret);
+        context.startService(intent);
+      }
+    });
+    builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialogInterface, int i) {
+        if (messageRecord.isMms()) DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
+        else                       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
+      }
+    });
+    builder.show();
   }
 
   private void handleAbortSecureSession() {

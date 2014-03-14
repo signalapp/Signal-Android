@@ -60,7 +60,7 @@ public class UniversalTransport {
   }
 
   public void deliver(SmsMessageRecord message)
-      throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException
+      throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException, UserInterventionRequiredException
   {
     if (!TextSecurePreferences.isPushRegistered(context)) {
       smsTransport.deliver(message);
@@ -71,23 +71,25 @@ public class UniversalTransport {
       Recipient recipient = message.getIndividualRecipient();
       String number       = Util.canonicalizeNumber(context, recipient.getNumber());
 
-      if (isPushTransport(number) && !message.isKeyExchange()) {
+      if (isPushTransport(number) && !message.isKeyExchange() && !message.isForcedSms()) {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(number);
 
         try {
-          Log.w("UniversalTransport", "Delivering with GCM...");
+          Log.w("UniversalTransport", "Using GCM as transport...");
           pushTransport.deliver(message);
         } catch (UnregisteredUserException uue) {
-          Log.w("UnviersalTransport", uue);
-          if (isSmsFallbackSupported) smsTransport.deliver(message);
+          Log.w("UniversalTransport", uue);
+          if (isSmsFallbackSupported) fallbackOrAskApproval(message, number);
           else                        throw new UndeliverableMessageException(uue);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
-          if (isSmsFallbackSupported) smsTransport.deliver(message);
+          if (isSmsFallbackSupported) fallbackOrAskApproval(message, number);
           else                        throw new RetryLaterException(ioe);
         }
+      } else if (!message.isForcedSms() && !TextSecurePreferences.isSmsNonDataOutEnabled(context)) {
+        throw new UndeliverableMessageException("User disallows non-push outgoing SMS");
       } else {
-        Log.w("UniversalTransport", "Delivering with SMS...");
+        Log.w("UniversalTransport", "Using SMS as transport...");
         smsTransport.deliver(message);
       }
     } catch (InvalidNumberException e) {
@@ -97,7 +99,7 @@ public class UniversalTransport {
   }
 
   public MmsSendResult deliver(SendReq mediaMessage, long threadId)
-      throws UndeliverableMessageException, RetryLaterException, UntrustedIdentityException
+      throws UndeliverableMessageException, RetryLaterException, UntrustedIdentityException, UserInterventionRequiredException
   {
     if (Util.isEmpty(mediaMessage.getTo())) {
       return mmsTransport.deliver(mediaMessage);
@@ -122,16 +124,16 @@ public class UniversalTransport {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(destination);
 
         try {
-          Log.w("UniversalTransport", "Delivering media message with GCM...");
+          Log.w("UniversalTransport", "Using GCM as transport...");
           pushTransport.deliver(mediaMessage, threadId);
           return new MmsSendResult("push".getBytes("UTF-8"), 0, true, true);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
-          if (isSmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
+          if (isSmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
           else                        throw new RetryLaterException(ioe);
         } catch (RecipientFormattingException e) {
           Log.w("UniversalTransport", e);
-          if (isSmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
+          if (isSmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
           else                        throw new UndeliverableMessageException(e);
         } catch (EncapsulatedExceptions ee) {
           Log.w("UniversalTransport", ee);
@@ -149,6 +151,32 @@ public class UniversalTransport {
     } catch (InvalidNumberException ine) {
       Log.w("UniversalTransport", ine);
       return mmsTransport.deliver(mediaMessage);
+    }
+  }
+
+  private MmsSendResult fallbackOrAskApproval(SendReq mediaMessage, String destination)
+      throws UserInterventionRequiredException, UndeliverableMessageException
+  {
+    boolean isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
+    if (!isSmsFallbackApprovalRequired) {
+      Log.i("UniversalTransport", "Falling back to MMS without user intervention");
+      return mmsTransport.deliver(mediaMessage);
+    } else {
+      Log.i("UniversalTransport", "Marking message as pending user approval per their settings");
+      throw new UserInterventionRequiredException("Pending user approval for fallback to SMS");
+    }
+  }
+
+  private void fallbackOrAskApproval(SmsMessageRecord smsMessage, String destination)
+      throws UserInterventionRequiredException, UndeliverableMessageException
+  {
+    boolean isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
+    if (!isSmsFallbackApprovalRequired) {
+      Log.i("UniversalTransport", "Falling back to SMS without user intervention");
+      smsTransport.deliver(smsMessage);
+    } else {
+      Log.i("UniversalTransport", "Marking message as pending user approval per their settings");
+      throw new UserInterventionRequiredException("Pending user approval for fallback to SMS");
     }
   }
 
@@ -207,6 +235,10 @@ public class UniversalTransport {
     }
 
     return recipientCount > 1;
+  }
+
+  private boolean isSmsFallbackApprovalRequired(String destination) {
+    return (isSmsFallbackSupported(destination) && TextSecurePreferences.isSmsFallbackAskEnabled(context));
   }
 
   private boolean isSmsFallbackSupported(String destination) {
