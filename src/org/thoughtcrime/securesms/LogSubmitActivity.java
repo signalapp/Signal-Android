@@ -2,9 +2,12 @@ package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.text.ClipboardManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,23 +22,10 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonIOException;
-import com.google.thoughtcrimegson.JsonParseException;
 import com.google.thoughtcrimegson.JsonSyntaxException;
 import com.google.thoughtcrimegson.reflect.TypeToken;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -44,12 +34,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -228,9 +215,17 @@ public class LogSubmitActivity extends SherlockActivity {
           @Override
           public boolean onLongClick(View v) {
             // Copy the Text to the clipboard
-            ClipboardManager manager =
-                (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            manager.setText(response);
+              if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                  ClipboardManager clipboardManager = (ClipboardManager)
+                          getSystemService(Context.CLIPBOARD_SERVICE);
+
+                  ClipData clip = ClipData.newPlainText("response", response);
+                  clipboardManager.setPrimaryClip(clip);
+              } else {
+                  android.text.ClipboardManager clipboardManager = (android.text.ClipboardManager)
+                          getSystemService(Context.CLIPBOARD_SERVICE);
+                  clipboardManager.setText(response);
+              }
             Toast.makeText(getApplicationContext(), R.string.log_submit_activity__copied_to_clipboard,
                            Toast.LENGTH_SHORT).show();
             return true;
