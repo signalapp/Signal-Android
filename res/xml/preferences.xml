@@ -98,12 +98,6 @@
                       android:entries="@array/language_entries"
                       android:entryValues="@array/language_values"
                       android:defaultValue="zz"/>
-
-      <CheckBoxPreference android:dependency="pref_display_non_push_contacts"
-                          android:key="pref_display_non_push_contacts"
-                          android:defaultValue="true"
-                          android:title="@string/preferences__display_non_push_contacts"
-                          android:summary="@string/preferences__display_contacts_that_dont_have_push" />
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__storage">

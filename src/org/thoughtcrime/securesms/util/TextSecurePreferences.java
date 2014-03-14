@@ -127,10 +127,6 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ENTER_SENDS_PREF, false);
   }
 
-  public static boolean isDisplayNonPushContactsEnabled(Context context) {
-    return getBooleanPreference(context, DISPLAY_NONPUSH_CONTACTS_PREF, true);
-  }
-
   public static boolean isPasswordDisabled(Context context) {
     return getBooleanPreference(context, DISABLE_PASSPHRASE_PREF, false);
   }

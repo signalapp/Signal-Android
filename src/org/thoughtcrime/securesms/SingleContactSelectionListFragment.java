@@ -274,6 +274,10 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
     ((TextView)getView().findViewById(android.R.id.empty)).setText(R.string.contact_selection_group_activity__no_contacts);
   }
 
+  private boolean shouldShowNonPushContacts() {
+    return TextSecurePreferences.isSmsNonDataOutEnabled(getActivity());
+  }
+
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
     switch (loader.getId()) {
@@ -294,7 +298,7 @@ public class SingleContactSelectionListFragment extends SherlockListFragment
     }
 
     if (this.contactsCursor == null) {
-      if (TextSecurePreferences.isDisplayNonPushContactsEnabled(getActivity())) {
+      if (shouldShowNonPushContacts()) {
         this.getLoaderManager().initLoader(LOAD_CONTACTS, null, this);
         return;
       }
