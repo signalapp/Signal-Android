@@ -7,6 +7,8 @@
       <item>Arabic العربية</item>
       <item>Bulgarian български</item>
       <item>Burmese မြန်မာစာ</item>
+      <item>Català</item>
+      <item>Čeština</item>
       <item>Chinese 中国的</item>
       <item>Danske</item>
       <item>Deutsch</item>
@@ -14,20 +16,25 @@
       <item>Français</item>
       <item>Greek ελληνικά</item>
       <item>Hebrew עברית</item>
+      <item>Indonesia</item>
       <item>Italiano</item>
       <item>Japanese 日本人</item>
       <item>Kannada ಕನ್ನಡ</item>
       <item>Magyar</item>
       <item>Nederlands</item>
       <item>Norsk</item>
+      <item>Polski</item>
       <item>Português</item>
       <item>Português (Brasil)</item>
       <item>Român</item>
       <item>Russian Pусский</item>
       <item>Slovenščina</item>
       <item>Slovenský</item>
+      <item>Suomalainen</item>
       <item>Svenska</item>
       <item>Tibetan བོད་སྐད།</item>
+      <item>Türk</item>
+      <item>Ukrainian Український</item>
   </string-array>
 
   <string-array name="language_values">
@@ -36,6 +43,8 @@
       <item>ar</item>
       <item>bg</item>
       <item>my</item>
+      <item>ca</item>
+      <item>cs</item>
       <item>zh_CN</item>
       <item>da</item>
       <item>de</item>
@@ -43,20 +52,25 @@
       <item>fr</item>
       <item>el</item>
       <item>he</item>
+      <item>id</item>
       <item>it</item>
       <item>ja</item>
       <item>kn_IN</item>
       <item>he</item>
       <item>nl</item>
       <item>no</item>
+      <item>pl</item>
       <item>pt</item>
       <item>pt_BR</item>
       <item>ro</item>
       <item>ru</item>
       <item>sl</item>
       <item>sk</item>
+      <item>fi</item>
       <item>sv</item>
       <item>bo</item>
+      <item>tr</item>
+      <item>uk</item>
   </string-array>
 
   <string-array name="minutes_hours">
