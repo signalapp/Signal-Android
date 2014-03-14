@@ -2,17 +2,15 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.text.ClipboardManager;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -113,18 +111,6 @@ public class ConversationFragment extends SherlockListFragment
     ClipboardManager clipboard = (ClipboardManager)getActivity()
         .getSystemService(Context.CLIPBOARD_SERVICE);
     clipboard.setText(body);
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-          ClipboardManager clipboardManager = (ClipboardManager)
-                  getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-          ClipData clip = ClipData.newPlainText("body", body);
-          clipboardManager.setPrimaryClip(clip);
-      } else {
-          android.text.ClipboardManager clipboardManager = (android.text.ClipboardManager)
-                  getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-          clipboardManager.setText(body);
-      }
-
   }
 
   private void handleDeleteMessage(final MessageRecord message) {
