@@ -399,8 +399,8 @@ public class ThreadDatabase extends Database {
     public void onProgress(int complete, int total);
   }
 
-  public Reader readerFor(Cursor cursor, MasterSecret masterSecret) {
-    return new Reader(cursor, masterSecret);
+  public Reader readerFor(Cursor cursor, MasterCipher masterCipher) {
+    return new Reader(cursor, masterCipher);
   }
 
   public static class DistributionTypes {
@@ -411,14 +411,12 @@ public class ThreadDatabase extends Database {
 
   public class Reader {
 
-    private final Cursor cursor;
+    private final Cursor       cursor;
     private final MasterCipher masterCipher;
 
-    public Reader(Cursor cursor, MasterSecret masterSecret) {
-      this.cursor = cursor;
-
-      if (masterSecret != null) this.masterCipher = new MasterCipher(masterSecret);
-      else                      this.masterCipher = null;
+    public Reader(Cursor cursor, MasterCipher masterCipher) {
+      this.cursor       = cursor;
+      this.masterCipher = masterCipher;
     }
 
     public ThreadRecord getNext() {
