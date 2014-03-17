@@ -241,8 +241,8 @@
   <string name="VerifyKeysActivity_verified_exclamation">Verifiziert!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Zum Vergleich einscannen</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Zum Vergleich einscannen lassen</string>
+  <string name="ViewIdentityActivity_scan_to_compare">Anderen Schlüssel einscannen</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">Eigenen Schlüssel einscannen lassen</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ACHTUNG: Der eingescannte Schlüssel stimmt NICHT überein!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NICHT verifiziert!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Der eingescannte Schlüssel stimmt überein!</string>
