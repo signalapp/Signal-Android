@@ -100,8 +100,8 @@ public class Recipient implements Parcelable, CanonicalRecipient {
     this.number       = in.readString();
     this.name         = in.readString();
     this.recipientId  = in.readLong();
-    this.contactUri   = (Uri)in.readParcelable(null);
-    this.contactPhoto = (Bitmap)in.readParcelable(null);
+    this.contactUri   = in.readParcelable(null);
+    this.contactPhoto = in.readParcelable(null);
   }
 
   public synchronized Uri getContactUri() {
@@ -137,19 +137,6 @@ public class Recipient implements Parcelable, CanonicalRecipient {
   public boolean isGroupRecipient() {
     return GroupUtil.isEncodedGroup(number);
   }
-
-//  public void updateAsynchronousContent(RecipientDetails result) {
-//    if (result != null) {
-//      Recipient.this.name.set(result.name);
-//      Recipient.this.contactUri.set(result.contactUri);
-//      Recipient.this.contactPhoto.set(result.avatar);
-//
-//      synchronized(this) {
-//        if (listener == null) asynchronousUpdateComplete = true;
-//        else                  listener.onModified(Recipient.this);
-//      }
-//    }
-//  }
 
   public synchronized void addListener(RecipientModifiedListener listener) {
     listeners.add(listener);

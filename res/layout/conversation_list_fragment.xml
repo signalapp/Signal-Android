@@ -7,7 +7,7 @@
 
         <ListView android:id="@android:id/list"
                   android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="match_parent"
                   android:drawSelectorOnTop="false"
                   android:scrollbarStyle="insideOverlay"
                   android:fadingEdgeLength="16dip"

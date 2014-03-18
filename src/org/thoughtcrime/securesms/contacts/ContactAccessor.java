@@ -20,9 +20,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.database.MergeCursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -33,6 +31,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.PhoneLookup;
 import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
@@ -44,6 +43,7 @@ import org.whispersystems.textsecure.util.Base64;
 import java.io.IOException;
 import java.lang.Long;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -82,6 +82,10 @@ public class ContactAccessor {
                             null, null, null, ContactsContract.Groups.TITLE + " ASC");
   }
 
+  public Loader<Cursor> getCursorLoaderForContacts(Context context) {
+    return new ContactsCursorLoader(context);
+  }
+
   public Cursor getCursorForContactsWithNumbers(Context context) {
     Uri uri = ContactsContract.Contacts.CONTENT_URI;
     String selection = ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1";
@@ -90,25 +94,28 @@ public class ContactAccessor {
                                               ContactsContract.Contacts.DISPLAY_NAME + " ASC");
   }
 
-  public Cursor getCursorForContactsWithPush(Context context) {
+  public Collection<ContactData> getContactsWithPush(Context context) {
     final ContentResolver resolver = context.getContentResolver();
-    final String[] inProjection = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME};
-    final String[] outProjection = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME, PUSH_COLUMN};
-    MatrixCursor cursor = new MatrixCursor(outProjection);
+    final String[] inProjection    = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME};
+
     List<String> pushNumbers = Directory.getInstance(context).getActiveNumbers();
+    final Collection<ContactData> lookupData = new ArrayList<ContactData>(pushNumbers.size());
+
     for (String pushNumber : pushNumbers) {
       Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(pushNumber));
       Cursor lookupCursor = resolver.query(uri, inProjection, null, null, null);
       try {
         if (lookupCursor != null && lookupCursor.moveToFirst()) {
-          cursor.addRow(new Object[]{lookupCursor.getLong(0), lookupCursor.getString(1), 1});
+          final ContactData contactData = new ContactData(lookupCursor.getLong(0), lookupCursor.getString(1));
+          contactData.numbers.add(new NumberData("TextSecure", pushNumber));
+          lookupData.add(contactData);
         }
       } finally {
         if (lookupCursor != null)
           lookupCursor.close();
       }
     }
-    return cursor;
+    return lookupData;
   }
 
   public String getNameFromContact(Context context, Uri uri) {

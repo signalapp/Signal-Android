@@ -413,13 +413,14 @@
     <!-- contact_selection_group_activity -->
     <!-- contact_selection_list_activity -->
     <string name="contact_selection_group_activity__no_contacts">No contacts.</string>
-    <string name="contact_selection_group_activity__finding_contacts">Finding contacts&#8230;</string>
+    <string name="contact_selection_group_activity__finding_contacts">Loading contacts&#8230;</string>
 
     <!-- single_contact_selection_activity -->
     <string name="single_contact_selection_group_activity__filter">Type a name to filter&#8230;</string>
-    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
+    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service&#8230;</string>
     <string name="SingleContactSelectionActivity_updating_directory">Updating directory</string>
-    <string name="SingleContactSelectionActivity_updating_push_directory">Updating push directory...</string>
+    <string name="SingleContactSelectionActivity_updating_push_directory">Updating push directory&#8230;</string>
+    <string name="SingleContactSelectionActivity_contact_photo">Contact Photo</string>
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionlistFragment_select_for">Select for</string>
@@ -468,6 +469,8 @@
     <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
     <string name="log_submit_activity__loading_logcat">Loading logcat&#8230;</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
+    <string name="log_submit_activity__submitting">Submitting</string>
+    <string name="log_submit_activity__posting_logs">Posting logs to pastebin&#8230;</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
@@ -602,7 +605,7 @@
     <string name="registration_progress_activity__generating_keys">Generating keys...</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to">To</string>
+    <string name="recipients_panel__to"><small>Enter a name or number</small></string>
     <string name="recipients_panel__add_member">Add member</string>
 
     <!-- review_identities -->
@@ -748,6 +751,8 @@
     <!-- contact_selection_list -->
     <string name="contact_selection_list__menu_select_all">Select All</string>
     <string name="contact_selection_list__menu_unselect_all">Unselect All</string>
+    <string name="contact_selection_list__header_textsecure_users">TEXTSECURE USERS</string>
+    <string name="contact_selection_list__header_other">ALL CONTACTS</string>
 
     <!-- contact_selection -->
     <string name="contact_selection__menu_finished">Finished</string>

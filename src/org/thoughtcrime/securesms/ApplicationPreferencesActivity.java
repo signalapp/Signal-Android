@@ -544,39 +544,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private class DirectoryUpdateListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      final Context context = ApplicationPreferencesActivity.this;
-
-      if (!TextSecurePreferences.isPushRegistered(context)) {
-        Toast.makeText(context,
-                       getString(R.string.ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service),
-                       Toast.LENGTH_LONG).show();
-        return true;
-      }
-
-      new AsyncTask<Void, Void, Void>() {
-        private ProgressDialog progress;
-
-        @Override
-        protected void onPreExecute() {
-          progress = ProgressDialog.show(context,
-                                         getString(R.string.ApplicationPreferencesActivity_updating_directory),
-                                         getString(R.string.ApplicationPreferencesActivity_updating_push_directory),
-                                         true);
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-          DirectoryHelper.refreshDirectory(context);
-          return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-          if (progress != null)
-            progress.dismiss();
-        }
-      }.execute();
-
+      DirectoryHelper.refreshDirectoryWithProgressDialog(ApplicationPreferencesActivity.this);
       return true;
     }
   }
