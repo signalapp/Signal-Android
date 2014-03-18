@@ -420,12 +420,12 @@ public class DecryptingQueue {
       }
     }
 
-    private void handleKeyExchangeProcessing(String plaintxtBody) {
+    private void handleKeyExchangeProcessing(String plaintextBody) {
       if (TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
         try {
           Recipient            recipient       = RecipientFactory.getRecipientsFromString(context, originator, false).getPrimaryRecipient();
           RecipientDevice      recipientDevice = new RecipientDevice(recipient.getRecipientId(), deviceId);
-          KeyExchangeMessage   message         = KeyExchangeMessage.createFor(plaintxtBody);
+          KeyExchangeMessage   message         = KeyExchangeMessage.createFor(plaintextBody);
           KeyExchangeProcessor processor       = KeyExchangeProcessor.createFor(context, masterSecret, recipientDevice, message);
 
           if (processor.isStale(message)) {

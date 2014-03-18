@@ -33,7 +33,6 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.util.Hex;
 
 import java.util.ArrayList;
 

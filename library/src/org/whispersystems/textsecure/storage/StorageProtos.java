@@ -63,6 +63,10 @@ public final class StorageProtos {
     // optional uint32 localRegistrationId = 11;
     boolean hasLocalRegistrationId();
     int getLocalRegistrationId();
+    
+    // optional bool needsRefresh = 12;
+    boolean hasNeedsRefresh();
+    boolean getNeedsRefresh();
   }
   public static final class SessionStructure extends
       com.google.protobuf.GeneratedMessage
@@ -2992,6 +2996,16 @@ public final class StorageProtos {
       return localRegistrationId_;
     }
     
+    // optional bool needsRefresh = 12;
+    public static final int NEEDSREFRESH_FIELD_NUMBER = 12;
+    private boolean needsRefresh_;
+    public boolean hasNeedsRefresh() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    public boolean getNeedsRefresh() {
+      return needsRefresh_;
+    }
+    
     private void initFields() {
       sessionVersion_ = 0;
       localIdentityPublic_ = com.google.protobuf.ByteString.EMPTY;
@@ -3004,6 +3018,7 @@ public final class StorageProtos {
       pendingPreKey_ = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKey.getDefaultInstance();
       remoteRegistrationId_ = 0;
       localRegistrationId_ = 0;
+      needsRefresh_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3049,6 +3064,9 @@ public final class StorageProtos {
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeUInt32(11, localRegistrationId_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeBool(12, needsRefresh_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -3102,6 +3120,10 @@ public final class StorageProtos {
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(11, localRegistrationId_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(12, needsRefresh_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3269,6 +3291,8 @@ public final class StorageProtos {
         bitField0_ = (bitField0_ & ~0x00000200);
         localRegistrationId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000400);
+        needsRefresh_ = false;
+        bitField0_ = (bitField0_ & ~0x00000800);
         return this;
       }
       
@@ -3368,6 +3392,10 @@ public final class StorageProtos {
           to_bitField0_ |= 0x00000200;
         }
         result.localRegistrationId_ = localRegistrationId_;
+        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+          to_bitField0_ |= 0x00000400;
+        }
+        result.needsRefresh_ = needsRefresh_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3439,6 +3467,9 @@ public final class StorageProtos {
         }
         if (other.hasLocalRegistrationId()) {
           setLocalRegistrationId(other.getLocalRegistrationId());
+        }
+        if (other.hasNeedsRefresh()) {
+          setNeedsRefresh(other.getNeedsRefresh());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3537,6 +3568,11 @@ public final class StorageProtos {
             case 88: {
               bitField0_ |= 0x00000400;
               localRegistrationId_ = input.readUInt32();
+              break;
+            }
+            case 96: {
+              bitField0_ |= 0x00000800;
+              needsRefresh_ = input.readBool();
               break;
             }
           }
@@ -4157,6 +4193,27 @@ public final class StorageProtos {
         return this;
       }
       
+      // optional bool needsRefresh = 12;
+      private boolean needsRefresh_ ;
+      public boolean hasNeedsRefresh() {
+        return ((bitField0_ & 0x00000800) == 0x00000800);
+      }
+      public boolean getNeedsRefresh() {
+        return needsRefresh_;
+      }
+      public Builder setNeedsRefresh(boolean value) {
+        bitField0_ |= 0x00000800;
+        needsRefresh_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNeedsRefresh() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        needsRefresh_ = false;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:textsecure.SessionStructure)
     }
     
@@ -4166,6 +4223,703 @@ public final class StorageProtos {
     }
     
     // @@protoc_insertion_point(class_scope:textsecure.SessionStructure)
+  }
+  
+  public interface RecordStructureOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .textsecure.SessionStructure currentSession = 1;
+    boolean hasCurrentSession();
+    org.whispersystems.textsecure.storage.StorageProtos.SessionStructure getCurrentSession();
+    org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder getCurrentSessionOrBuilder();
+    
+    // repeated .textsecure.SessionStructure previousSessions = 2;
+    java.util.List<org.whispersystems.textsecure.storage.StorageProtos.SessionStructure> 
+        getPreviousSessionsList();
+    org.whispersystems.textsecure.storage.StorageProtos.SessionStructure getPreviousSessions(int index);
+    int getPreviousSessionsCount();
+    java.util.List<? extends org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder> 
+        getPreviousSessionsOrBuilderList();
+    org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder getPreviousSessionsOrBuilder(
+        int index);
+  }
+  public static final class RecordStructure extends
+      com.google.protobuf.GeneratedMessage
+      implements RecordStructureOrBuilder {
+    // Use RecordStructure.newBuilder() to construct.
+    private RecordStructure(Builder builder) {
+      super(builder);
+    }
+    private RecordStructure(boolean noInit) {}
+    
+    private static final RecordStructure defaultInstance;
+    public static RecordStructure getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public RecordStructure getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.whispersystems.textsecure.storage.StorageProtos.internal_static_textsecure_RecordStructure_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.whispersystems.textsecure.storage.StorageProtos.internal_static_textsecure_RecordStructure_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional .textsecure.SessionStructure currentSession = 1;
+    public static final int CURRENTSESSION_FIELD_NUMBER = 1;
+    private org.whispersystems.textsecure.storage.StorageProtos.SessionStructure currentSession_;
+    public boolean hasCurrentSession() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public org.whispersystems.textsecure.storage.StorageProtos.SessionStructure getCurrentSession() {
+      return currentSession_;
+    }
+    public org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder getCurrentSessionOrBuilder() {
+      return currentSession_;
+    }
+    
+    // repeated .textsecure.SessionStructure previousSessions = 2;
+    public static final int PREVIOUSSESSIONS_FIELD_NUMBER = 2;
+    private java.util.List<org.whispersystems.textsecure.storage.StorageProtos.SessionStructure> previousSessions_;
+    public java.util.List<org.whispersystems.textsecure.storage.StorageProtos.SessionStructure> getPreviousSessionsList() {
+      return previousSessions_;
+    }
+    public java.util.List<? extends org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder> 
+        getPreviousSessionsOrBuilderList() {
+      return previousSessions_;
+    }
+    public int getPreviousSessionsCount() {
+      return previousSessions_.size();
+    }
+    public org.whispersystems.textsecure.storage.StorageProtos.SessionStructure getPreviousSessions(int index) {
+      return previousSessions_.get(index);
+    }
+    public org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder getPreviousSessionsOrBuilder(
+        int index) {
+      return previousSessions_.get(index);
+    }
+    
+    private void initFields() {
+      currentSession_ = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.getDefaultInstance();
+      previousSessions_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, currentSession_);
+      }
+      for (int i = 0; i < previousSessions_.size(); i++) {
+        output.writeMessage(2, previousSessions_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, currentSession_);
+      }
+      for (int i = 0; i < previousSessions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, previousSessions_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static org.whispersystems.textsecure.storage.StorageProtos.RecordStructure parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.whispersystems.textsecure.storage.StorageProtos.RecordStructure prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.whispersystems.textsecure.storage.StorageProtos.RecordStructureOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.textsecure.storage.StorageProtos.internal_static_textsecure_RecordStructure_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.textsecure.storage.StorageProtos.internal_static_textsecure_RecordStructure_fieldAccessorTable;
+      }
+      
+      // Construct using org.whispersystems.textsecure.storage.StorageProtos.RecordStructure.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getCurrentSessionFieldBuilder();
+          getPreviousSessionsFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (currentSessionBuilder_ == null) {
+          currentSession_ = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.getDefaultInstance();
+        } else {
+          currentSessionBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (previousSessionsBuilder_ == null) {
+          previousSessions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          previousSessionsBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.whispersystems.textsecure.storage.StorageProtos.RecordStructure.getDescriptor();
+      }
+      
+      public org.whispersystems.textsecure.storage.StorageProtos.RecordStructure getDefaultInstanceForType() {
+        return org.whispersystems.textsecure.storage.StorageProtos.RecordStructure.getDefaultInstance();
+      }
+      
+      public org.whispersystems.textsecure.storage.StorageProtos.RecordStructure build() {
+        org.whispersystems.textsecure.storage.StorageProtos.RecordStructure result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private org.whispersystems.textsecure.storage.StorageProtos.RecordStructure buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        org.whispersystems.textsecure.storage.StorageProtos.RecordStructure result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public org.whispersystems.textsecure.storage.StorageProtos.RecordStructure buildPartial() {
+        org.whispersystems.textsecure.storage.StorageProtos.RecordStructure result = new org.whispersystems.textsecure.storage.StorageProtos.RecordStructure(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (currentSessionBuilder_ == null) {
+          result.currentSession_ = currentSession_;
+        } else {
+          result.currentSession_ = currentSessionBuilder_.build();
+        }
+        if (previousSessionsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            previousSessions_ = java.util.Collections.unmodifiableList(previousSessions_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.previousSessions_ = previousSessions_;
+        } else {
+          result.previousSessions_ = previousSessionsBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.whispersystems.textsecure.storage.StorageProtos.RecordStructure) {
+          return mergeFrom((org.whispersystems.textsecure.storage.StorageProtos.RecordStructure)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(org.whispersystems.textsecure.storage.StorageProtos.RecordStructure other) {
+        if (other == org.whispersystems.textsecure.storage.StorageProtos.RecordStructure.getDefaultInstance()) return this;
+        if (other.hasCurrentSession()) {
+          mergeCurrentSession(other.getCurrentSession());
+        }
+        if (previousSessionsBuilder_ == null) {
+          if (!other.previousSessions_.isEmpty()) {
+            if (previousSessions_.isEmpty()) {
+              previousSessions_ = other.previousSessions_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensurePreviousSessionsIsMutable();
+              previousSessions_.addAll(other.previousSessions_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.previousSessions_.isEmpty()) {
+            if (previousSessionsBuilder_.isEmpty()) {
+              previousSessionsBuilder_.dispose();
+              previousSessionsBuilder_ = null;
+              previousSessions_ = other.previousSessions_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              previousSessionsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getPreviousSessionsFieldBuilder() : null;
+            } else {
+              previousSessionsBuilder_.addAllMessages(other.previousSessions_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder subBuilder = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.newBuilder();
+              if (hasCurrentSession()) {
+                subBuilder.mergeFrom(getCurrentSession());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setCurrentSession(subBuilder.buildPartial());
+              break;
+            }
+            case 18: {
+              org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder subBuilder = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addPreviousSessions(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional .textsecure.SessionStructure currentSession = 1;
+      private org.whispersystems.textsecure.storage.StorageProtos.SessionStructure currentSession_ = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.whispersystems.textsecure.storage.StorageProtos.SessionStructure, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder, org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder> currentSessionBuilder_;
+      public boolean hasCurrentSession() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public org.whispersystems.textsecure.storage.StorageProtos.SessionStructure getCurrentSession() {
+        if (currentSessionBuilder_ == null) {
+          return currentSession_;
+        } else {
+          return currentSessionBuilder_.getMessage();
+        }
+      }
+      public Builder setCurrentSession(org.whispersystems.textsecure.storage.StorageProtos.SessionStructure value) {
+        if (currentSessionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          currentSession_ = value;
+          onChanged();
+        } else {
+          currentSessionBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setCurrentSession(
+          org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder builderForValue) {
+        if (currentSessionBuilder_ == null) {
+          currentSession_ = builderForValue.build();
+          onChanged();
+        } else {
+          currentSessionBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeCurrentSession(org.whispersystems.textsecure.storage.StorageProtos.SessionStructure value) {
+        if (currentSessionBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              currentSession_ != org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.getDefaultInstance()) {
+            currentSession_ =
+              org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.newBuilder(currentSession_).mergeFrom(value).buildPartial();
+          } else {
+            currentSession_ = value;
+          }
+          onChanged();
+        } else {
+          currentSessionBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearCurrentSession() {
+        if (currentSessionBuilder_ == null) {
+          currentSession_ = org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.getDefaultInstance();
+          onChanged();
+        } else {
+          currentSessionBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder getCurrentSessionBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getCurrentSessionFieldBuilder().getBuilder();
+      }
+      public org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder getCurrentSessionOrBuilder() {
+        if (currentSessionBuilder_ != null) {
+          return currentSessionBuilder_.getMessageOrBuilder();
+        } else {
+          return currentSession_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          org.whispersystems.textsecure.storage.StorageProtos.SessionStructure, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder, org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder> 
+          getCurrentSessionFieldBuilder() {
+        if (currentSessionBuilder_ == null) {
+          currentSessionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.whispersystems.textsecure.storage.StorageProtos.SessionStructure, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder, org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder>(
+                  currentSession_,
+                  getParentForChildren(),
+                  isClean());
+          currentSession_ = null;
+        }
+        return currentSessionBuilder_;
+      }
+      
+      // repeated .textsecure.SessionStructure previousSessions = 2;
+      private java.util.List<org.whispersystems.textsecure.storage.StorageProtos.SessionStructure> previousSessions_ =
+        java.util.Collections.emptyList();
+      private void ensurePreviousSessionsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          previousSessions_ = new java.util.ArrayList<org.whispersystems.textsecure.storage.StorageProtos.SessionStructure>(previousSessions_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.whispersystems.textsecure.storage.StorageProtos.SessionStructure, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder, org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder> previousSessionsBuilder_;
+      
+      public java.util.List<org.whispersystems.textsecure.storage.StorageProtos.SessionStructure> getPreviousSessionsList() {
+        if (previousSessionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(previousSessions_);
+        } else {
+          return previousSessionsBuilder_.getMessageList();
+        }
+      }
+      public int getPreviousSessionsCount() {
+        if (previousSessionsBuilder_ == null) {
+          return previousSessions_.size();
+        } else {
+          return previousSessionsBuilder_.getCount();
+        }
+      }
+      public org.whispersystems.textsecure.storage.StorageProtos.SessionStructure getPreviousSessions(int index) {
+        if (previousSessionsBuilder_ == null) {
+          return previousSessions_.get(index);
+        } else {
+          return previousSessionsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setPreviousSessions(
+          int index, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure value) {
+        if (previousSessionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePreviousSessionsIsMutable();
+          previousSessions_.set(index, value);
+          onChanged();
+        } else {
+          previousSessionsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setPreviousSessions(
+          int index, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder builderForValue) {
+        if (previousSessionsBuilder_ == null) {
+          ensurePreviousSessionsIsMutable();
+          previousSessions_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          previousSessionsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addPreviousSessions(org.whispersystems.textsecure.storage.StorageProtos.SessionStructure value) {
+        if (previousSessionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePreviousSessionsIsMutable();
+          previousSessions_.add(value);
+          onChanged();
+        } else {
+          previousSessionsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addPreviousSessions(
+          int index, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure value) {
+        if (previousSessionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePreviousSessionsIsMutable();
+          previousSessions_.add(index, value);
+          onChanged();
+        } else {
+          previousSessionsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addPreviousSessions(
+          org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder builderForValue) {
+        if (previousSessionsBuilder_ == null) {
+          ensurePreviousSessionsIsMutable();
+          previousSessions_.add(builderForValue.build());
+          onChanged();
+        } else {
+          previousSessionsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addPreviousSessions(
+          int index, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder builderForValue) {
+        if (previousSessionsBuilder_ == null) {
+          ensurePreviousSessionsIsMutable();
+          previousSessions_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          previousSessionsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllPreviousSessions(
+          java.lang.Iterable<? extends org.whispersystems.textsecure.storage.StorageProtos.SessionStructure> values) {
+        if (previousSessionsBuilder_ == null) {
+          ensurePreviousSessionsIsMutable();
+          super.addAll(values, previousSessions_);
+          onChanged();
+        } else {
+          previousSessionsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearPreviousSessions() {
+        if (previousSessionsBuilder_ == null) {
+          previousSessions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          previousSessionsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removePreviousSessions(int index) {
+        if (previousSessionsBuilder_ == null) {
+          ensurePreviousSessionsIsMutable();
+          previousSessions_.remove(index);
+          onChanged();
+        } else {
+          previousSessionsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder getPreviousSessionsBuilder(
+          int index) {
+        return getPreviousSessionsFieldBuilder().getBuilder(index);
+      }
+      public org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder getPreviousSessionsOrBuilder(
+          int index) {
+        if (previousSessionsBuilder_ == null) {
+          return previousSessions_.get(index);  } else {
+          return previousSessionsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder> 
+           getPreviousSessionsOrBuilderList() {
+        if (previousSessionsBuilder_ != null) {
+          return previousSessionsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(previousSessions_);
+        }
+      }
+      public org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder addPreviousSessionsBuilder() {
+        return getPreviousSessionsFieldBuilder().addBuilder(
+            org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.getDefaultInstance());
+      }
+      public org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder addPreviousSessionsBuilder(
+          int index) {
+        return getPreviousSessionsFieldBuilder().addBuilder(
+            index, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.getDefaultInstance());
+      }
+      public java.util.List<org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder> 
+           getPreviousSessionsBuilderList() {
+        return getPreviousSessionsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.whispersystems.textsecure.storage.StorageProtos.SessionStructure, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder, org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder> 
+          getPreviousSessionsFieldBuilder() {
+        if (previousSessionsBuilder_ == null) {
+          previousSessionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.whispersystems.textsecure.storage.StorageProtos.SessionStructure, org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder, org.whispersystems.textsecure.storage.StorageProtos.SessionStructureOrBuilder>(
+                  previousSessions_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          previousSessions_ = null;
+        }
+        return previousSessionsBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:textsecure.RecordStructure)
+    }
+    
+    static {
+      defaultInstance = new RecordStructure(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:textsecure.RecordStructure)
   }
   
   public interface PreKeyRecordStructureOrBuilder
@@ -4657,6 +5411,11 @@ public final class StorageProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_textsecure_SessionStructure_PendingPreKey_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_RecordStructure_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_RecordStructure_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_textsecure_PreKeyRecordStructure_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -4671,7 +5430,7 @@ public final class StorageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\032LocalStorageProtocol.proto\022\ntextsecure" +
-      "\"\205\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
+      "\"\233\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
       "\001 \001(\r\022\033\n\023localIdentityPublic\030\002 \001(\014\022\034\n\024re" +
       "moteIdentityPublic\030\003 \001(\014\022\017\n\007rootKey\030\004 \001(" +
       "\014\022\027\n\017previousCounter\030\005 \001(\r\0227\n\013senderChai" +
@@ -4682,25 +5441,28 @@ public final class StorageProtos {
       "e.PendingKeyExchange\022A\n\rpendingPreKey\030\t ",
       "\001(\0132*.textsecure.SessionStructure.Pendin" +
       "gPreKey\022\034\n\024remoteRegistrationId\030\n \001(\r\022\033\n" +
-      "\023localRegistrationId\030\013 \001(\r\032\253\002\n\005Chain\022\027\n\017" +
-      "senderEphemeral\030\001 \001(\014\022\036\n\026senderEphemeral" +
-      "Private\030\002 \001(\014\022=\n\010chainKey\030\003 \001(\0132+.textse" +
-      "cure.SessionStructure.Chain.ChainKey\022B\n\013" +
-      "messageKeys\030\004 \003(\0132-.textsecure.SessionSt" +
-      "ructure.Chain.MessageKey\032&\n\010ChainKey\022\r\n\005" +
-      "index\030\001 \001(\r\022\013\n\003key\030\002 \001(\014\032>\n\nMessageKey\022\r" +
-      "\n\005index\030\001 \001(\r\022\021\n\tcipherKey\030\002 \001(\014\022\016\n\006macK",
-      "ey\030\003 \001(\014\032\321\001\n\022PendingKeyExchange\022\020\n\010seque" +
-      "nce\030\001 \001(\r\022\024\n\014localBaseKey\030\002 \001(\014\022\033\n\023local" +
-      "BaseKeyPrivate\030\003 \001(\014\022\031\n\021localEphemeralKe" +
-      "y\030\004 \001(\014\022 \n\030localEphemeralKeyPrivate\030\005 \001(" +
-      "\014\022\030\n\020localIdentityKey\030\007 \001(\014\022\037\n\027localIden" +
-      "tityKeyPrivate\030\010 \001(\014\0322\n\rPendingPreKey\022\020\n" +
-      "\010preKeyId\030\001 \001(\r\022\017\n\007baseKey\030\002 \001(\014\"J\n\025PreK" +
-      "eyRecordStructure\022\n\n\002id\030\001 \001(\r\022\021\n\tpublicK" +
-      "ey\030\002 \001(\014\022\022\n\nprivateKey\030\003 \001(\014B6\n%org.whis" +
-      "persystems.textsecure.storageB\rStoragePr",
-      "otos"
+      "\023localRegistrationId\030\013 \001(\r\022\024\n\014needsRefre" +
+      "sh\030\014 \001(\010\032\253\002\n\005Chain\022\027\n\017senderEphemeral\030\001 " +
+      "\001(\014\022\036\n\026senderEphemeralPrivate\030\002 \001(\014\022=\n\010c" +
+      "hainKey\030\003 \001(\0132+.textsecure.SessionStruct" +
+      "ure.Chain.ChainKey\022B\n\013messageKeys\030\004 \003(\0132" +
+      "-.textsecure.SessionStructure.Chain.Mess" +
+      "ageKey\032&\n\010ChainKey\022\r\n\005index\030\001 \001(\r\022\013\n\003key" +
+      "\030\002 \001(\014\032>\n\nMessageKey\022\r\n\005index\030\001 \001(\r\022\021\n\tc",
+      "ipherKey\030\002 \001(\014\022\016\n\006macKey\030\003 \001(\014\032\321\001\n\022Pendi" +
+      "ngKeyExchange\022\020\n\010sequence\030\001 \001(\r\022\024\n\014local" +
+      "BaseKey\030\002 \001(\014\022\033\n\023localBaseKeyPrivate\030\003 \001" +
+      "(\014\022\031\n\021localEphemeralKey\030\004 \001(\014\022 \n\030localEp" +
+      "hemeralKeyPrivate\030\005 \001(\014\022\030\n\020localIdentity" +
+      "Key\030\007 \001(\014\022\037\n\027localIdentityKeyPrivate\030\010 \001" +
+      "(\014\0322\n\rPendingPreKey\022\020\n\010preKeyId\030\001 \001(\r\022\017\n" +
+      "\007baseKey\030\002 \001(\014\"\177\n\017RecordStructure\0224\n\016cur" +
+      "rentSession\030\001 \001(\0132\034.textsecure.SessionSt" +
+      "ructure\0226\n\020previousSessions\030\002 \003(\0132\034.text",
+      "secure.SessionStructure\"J\n\025PreKeyRecordS" +
+      "tructure\022\n\n\002id\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022" +
+      "\022\n\nprivateKey\030\003 \001(\014B6\n%org.whispersystem" +
+      "s.textsecure.storageB\rStorageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4712,7 +5474,7 @@ public final class StorageProtos {
           internal_static_textsecure_SessionStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_descriptor,
-              new java.lang.String[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", "RemoteRegistrationId", "LocalRegistrationId", },
+              new java.lang.String[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", "RemoteRegistrationId", "LocalRegistrationId", "NeedsRefresh", },
               org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.class,
               org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.Builder.class);
           internal_static_textsecure_SessionStructure_Chain_descriptor =
@@ -4755,8 +5517,16 @@ public final class StorageProtos {
               new java.lang.String[] { "PreKeyId", "BaseKey", },
               org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKey.class,
               org.whispersystems.textsecure.storage.StorageProtos.SessionStructure.PendingPreKey.Builder.class);
-          internal_static_textsecure_PreKeyRecordStructure_descriptor =
+          internal_static_textsecure_RecordStructure_descriptor =
             getDescriptor().getMessageTypes().get(1);
+          internal_static_textsecure_RecordStructure_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_RecordStructure_descriptor,
+              new java.lang.String[] { "CurrentSession", "PreviousSessions", },
+              org.whispersystems.textsecure.storage.StorageProtos.RecordStructure.class,
+              org.whispersystems.textsecure.storage.StorageProtos.RecordStructure.Builder.class);
+          internal_static_textsecure_PreKeyRecordStructure_descriptor =
+            getDescriptor().getMessageTypes().get(2);
           internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PreKeyRecordStructure_descriptor,

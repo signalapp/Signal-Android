@@ -54,6 +54,13 @@ message SessionStructure {
 
   optional uint32 remoteRegistrationId = 10;
   optional uint32 localRegistrationId  = 11;
+
+  optional bool needsRefresh = 12;
+}
+
+message RecordStructure {
+  optional SessionStructure currentSession   = 1;
+  repeated SessionStructure previousSessions = 2;
 }
 
 message PreKeyRecordStructure {
