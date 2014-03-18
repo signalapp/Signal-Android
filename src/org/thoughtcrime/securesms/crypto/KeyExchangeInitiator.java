@@ -75,7 +75,7 @@ public class KeyExchangeInitiator {
     RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
     SessionRecordV2 sessionRecordV2 = new SessionRecordV2(context, masterSecret, recipientDevice);
-    sessionRecordV2.setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
+    sessionRecordV2.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
     sessionRecordV2.save();
 
     MessageSender.send(context, masterSecret, textMessage, -1);
@@ -87,6 +87,7 @@ public class KeyExchangeInitiator {
     RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
     return
         new SessionRecordV2(context, masterSecret, recipientDevice)
+            .getSessionState()
             .hasPendingKeyExchange();
   }
 

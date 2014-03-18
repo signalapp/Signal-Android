@@ -1,6 +1,7 @@
 package org.whispersystems.textsecure.crypto;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.Pair;
 
 import org.whispersystems.textsecure.crypto.ecc.Curve;
@@ -14,10 +15,12 @@ import org.whispersystems.textsecure.crypto.ratchet.MessageKeys;
 import org.whispersystems.textsecure.crypto.ratchet.RootKey;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.storage.SessionState;
 import org.whispersystems.textsecure.util.Conversions;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -45,27 +48,28 @@ public class SessionCipherV2 extends SessionCipher {
   public CiphertextMessage encrypt(byte[] paddedMessage) {
     synchronized (SESSION_LOCK) {
       SessionRecordV2 sessionRecord   = getSessionRecord();
-      ChainKey        chainKey        = sessionRecord.getSenderChainKey();
+      SessionState    sessionState    = sessionRecord.getSessionState();
+      ChainKey        chainKey        = sessionState.getSenderChainKey();
       MessageKeys     messageKeys     = chainKey.getMessageKeys();
-      ECPublicKey     senderEphemeral = sessionRecord.getSenderEphemeral();
-      int             previousCounter = sessionRecord.getPreviousCounter();
+      ECPublicKey     senderEphemeral = sessionState.getSenderEphemeral();
+      int             previousCounter = sessionState.getPreviousCounter();
 
       byte[]            ciphertextBody    = getCiphertext(messageKeys, paddedMessage);
       CiphertextMessage ciphertextMessage = new WhisperMessageV2(messageKeys.getMacKey(),
                                                                  senderEphemeral, chainKey.getIndex(),
                                                                  previousCounter, ciphertextBody);
 
-      if (sessionRecord.hasPendingPreKey()) {
-        Pair<Integer, ECPublicKey> pendingPreKey       = sessionRecord.getPendingPreKey();
-        int                        localRegistrationId = sessionRecord.getLocalRegistrationId();
+      if (sessionState.hasPendingPreKey()) {
+        Pair<Integer, ECPublicKey> pendingPreKey       = sessionState.getPendingPreKey();
+        int                        localRegistrationId = sessionState.getLocalRegistrationId();
 
         ciphertextMessage = new PreKeyWhisperMessage(localRegistrationId, pendingPreKey.first,
                                                      pendingPreKey.second,
-                                                     sessionRecord.getLocalIdentityKey(),
+                                                     sessionState.getLocalIdentityKey(),
                                                      (WhisperMessageV2) ciphertextMessage);
       }
 
-      sessionRecord.setSenderChainKey(chainKey.getNextChainKey());
+      sessionState.setSenderChainKey(chainKey.getNextChainKey());
       sessionRecord.save();
 
       return ciphertextMessage;
@@ -75,50 +79,83 @@ public class SessionCipherV2 extends SessionCipher {
   @Override
   public byte[] decrypt(byte[] decodedMessage) throws InvalidMessageException {
     synchronized (SESSION_LOCK) {
-      SessionRecordV2  sessionRecord     = getSessionRecord();
-      WhisperMessageV2 ciphertextMessage = new WhisperMessageV2(decodedMessage);
-      ECPublicKey      theirEphemeral    = ciphertextMessage.getSenderEphemeral();
-      int              counter           = ciphertextMessage.getCounter();
-      ChainKey         chainKey          = getOrCreateChainKey(sessionRecord, theirEphemeral);
-      MessageKeys      messageKeys       = getOrCreateMessageKeys(sessionRecord, theirEphemeral,
-                                                                  chainKey, counter);
+      SessionRecordV2    sessionRecord  = getSessionRecord();
+      SessionState       sessionState   = sessionRecord.getSessionState();
+      List<SessionState> previousStates = sessionRecord.getPreviousSessions();
 
-      ciphertextMessage.verifyMac(messageKeys.getMacKey());
+      try {
+        byte[] plaintext = decrypt(sessionState, decodedMessage);
+        sessionRecord.save();
 
-      byte[] plaintext = getPlaintext(messageKeys, ciphertextMessage.getBody());
+        return plaintext;
+      } catch (InvalidMessageException e) {
+        Log.w("SessionCipherV2", e);
+      }
 
-      sessionRecord.clearPendingPreKey();
-      sessionRecord.save();
+      for (SessionState previousState : previousStates) {
+        try {
+          byte[] plaintext = decrypt(previousState, decodedMessage);
+          sessionRecord.save();
 
-      return plaintext;
+          return plaintext;
+        } catch (InvalidMessageException e) {
+          Log.w("SessionCipherV2", e);
+        }
+      }
+
+      throw new InvalidMessageException("No valid sessions.");
     }
+  }
+
+  public byte[] decrypt(SessionState sessionState, byte[] decodedMessage)
+      throws InvalidMessageException
+  {
+    if (!sessionState.hasSenderChain()) {
+      throw new InvalidMessageException("Uninitialized session!");
+    }
+
+    WhisperMessageV2 ciphertextMessage = new WhisperMessageV2(decodedMessage);
+    ECPublicKey      theirEphemeral    = ciphertextMessage.getSenderEphemeral();
+    int              counter           = ciphertextMessage.getCounter();
+    ChainKey         chainKey          = getOrCreateChainKey(sessionState, theirEphemeral);
+    MessageKeys      messageKeys       = getOrCreateMessageKeys(sessionState, theirEphemeral,
+                                                                chainKey, counter);
+
+    ciphertextMessage.verifyMac(messageKeys.getMacKey());
+
+    byte[] plaintext = getPlaintext(messageKeys, ciphertextMessage.getBody());
+
+    sessionState.clearPendingPreKey();
+
+    return plaintext;
+
   }
 
   @Override
   public int getRemoteRegistrationId() {
     synchronized (SESSION_LOCK) {
       SessionRecordV2 sessionRecord = getSessionRecord();
-      return sessionRecord.getRemoteRegistrationId();
+      return sessionRecord.getSessionState().getRemoteRegistrationId();
     }
   }
 
-  private ChainKey getOrCreateChainKey(SessionRecordV2 sessionRecord, ECPublicKey theirEphemeral)
+  private ChainKey getOrCreateChainKey(SessionState sessionState, ECPublicKey theirEphemeral)
       throws InvalidMessageException
   {
     try {
-      if (sessionRecord.hasReceiverChain(theirEphemeral)) {
-        return sessionRecord.getReceiverChainKey(theirEphemeral);
+      if (sessionState.hasReceiverChain(theirEphemeral)) {
+        return sessionState.getReceiverChainKey(theirEphemeral);
       } else {
-        RootKey                 rootKey         = sessionRecord.getRootKey();
-        ECKeyPair               ourEphemeral    = sessionRecord.getSenderEphemeralPair();
+        RootKey                 rootKey         = sessionState.getRootKey();
+        ECKeyPair               ourEphemeral    = sessionState.getSenderEphemeralPair();
         Pair<RootKey, ChainKey> receiverChain   = rootKey.createChain(theirEphemeral, ourEphemeral);
         ECKeyPair               ourNewEphemeral = Curve.generateKeyPairForType(Curve.DJB_TYPE);
         Pair<RootKey, ChainKey> senderChain     = receiverChain.first.createChain(theirEphemeral, ourNewEphemeral);
 
-        sessionRecord.setRootKey(senderChain.first);
-        sessionRecord.addReceiverChain(theirEphemeral, receiverChain.second);
-        sessionRecord.setPreviousCounter(sessionRecord.getSenderChainKey().getIndex()-1);
-        sessionRecord.setSenderChain(ourNewEphemeral, senderChain.second);
+        sessionState.setRootKey(senderChain.first);
+        sessionState.addReceiverChain(theirEphemeral, receiverChain.second);
+        sessionState.setPreviousCounter(sessionState.getSenderChainKey().getIndex()-1);
+        sessionState.setSenderChain(ourNewEphemeral, senderChain.second);
 
         return receiverChain.second;
       }
@@ -127,14 +164,14 @@ public class SessionCipherV2 extends SessionCipher {
     }
   }
 
-  private MessageKeys getOrCreateMessageKeys(SessionRecordV2 sessionRecord,
+  private MessageKeys getOrCreateMessageKeys(SessionState sessionState,
                                              ECPublicKey theirEphemeral,
                                              ChainKey chainKey, int counter)
       throws InvalidMessageException
   {
     if (chainKey.getIndex() > counter) {
-      if (sessionRecord.hasMessageKeys(theirEphemeral, counter)) {
-        return sessionRecord.removeMessageKeys(theirEphemeral, counter);
+      if (sessionState.hasMessageKeys(theirEphemeral, counter)) {
+        return sessionState.removeMessageKeys(theirEphemeral, counter);
       } else {
         throw new InvalidMessageException("Received message with old counter!");
       }
@@ -146,11 +183,11 @@ public class SessionCipherV2 extends SessionCipher {
 
     while (chainKey.getIndex() < counter) {
       MessageKeys messageKeys = chainKey.getMessageKeys();
-      sessionRecord.setMessageKeys(theirEphemeral, messageKeys);
+      sessionState.setMessageKeys(theirEphemeral, messageKeys);
       chainKey = chainKey.getNextChainKey();
     }
 
-    sessionRecord.setReceiverChainKey(theirEphemeral, chainKey.getNextChainKey());
+    sessionState.setReceiverChainKey(theirEphemeral, chainKey.getNextChainKey());
     return chainKey.getMessageKeys();
   }
 
