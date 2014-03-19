@@ -29,7 +29,7 @@ public abstract class SessionCipher {
   protected static final Object SESSION_LOCK = new Object();
 
   public abstract CiphertextMessage encrypt(byte[] paddedMessage);
-  public abstract byte[] decrypt(byte[] decodedMessage) throws InvalidMessageException;
+  public abstract byte[] decrypt(byte[] decodedMessage) throws InvalidMessageException, DuplicateMessageException;
   public abstract int getRemoteRegistrationId();
 
   public static SessionCipher createFor(Context context,

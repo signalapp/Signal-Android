@@ -77,7 +77,9 @@ public class SessionCipherV2 extends SessionCipher {
   }
 
   @Override
-  public byte[] decrypt(byte[] decodedMessage) throws InvalidMessageException {
+  public byte[] decrypt(byte[] decodedMessage)
+      throws InvalidMessageException, DuplicateMessageException
+  {
     synchronized (SESSION_LOCK) {
       SessionRecordV2    sessionRecord  = getSessionRecord();
       SessionState       sessionState   = sessionRecord.getSessionState();
@@ -94,6 +96,7 @@ public class SessionCipherV2 extends SessionCipher {
 
       for (SessionState previousState : previousStates) {
         try {
+          Log.w("SessionCipherV2", "Attempting decrypt on previous state...");
           byte[] plaintext = decrypt(previousState, decodedMessage);
           sessionRecord.save();
 
@@ -108,7 +111,7 @@ public class SessionCipherV2 extends SessionCipher {
   }
 
   public byte[] decrypt(SessionState sessionState, byte[] decodedMessage)
-      throws InvalidMessageException
+      throws InvalidMessageException, DuplicateMessageException
   {
     if (!sessionState.hasSenderChain()) {
       throw new InvalidMessageException("Uninitialized session!");
@@ -167,18 +170,19 @@ public class SessionCipherV2 extends SessionCipher {
   private MessageKeys getOrCreateMessageKeys(SessionState sessionState,
                                              ECPublicKey theirEphemeral,
                                              ChainKey chainKey, int counter)
-      throws InvalidMessageException
+      throws InvalidMessageException, DuplicateMessageException
   {
     if (chainKey.getIndex() > counter) {
       if (sessionState.hasMessageKeys(theirEphemeral, counter)) {
         return sessionState.removeMessageKeys(theirEphemeral, counter);
       } else {
-        throw new InvalidMessageException("Received message with old counter!");
+        throw new DuplicateMessageException("Received message with old counter: " +
+                                                chainKey.getIndex() + " , " + counter);
       }
     }
 
-    if (chainKey.getIndex() - counter > 500) {
-      throw new InvalidMessageException("Over 500 messages into the future!");
+    if (chainKey.getIndex() - counter > 2000) {
+      throw new InvalidMessageException("Over 2000 messages into the future!");
     }
 
     while (chainKey.getIndex() < counter) {
