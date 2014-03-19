@@ -186,6 +186,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
   }
 
+  public void markAsDecryptDuplicate(long id) {
+    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_DUPLICATE_BIT);
+  }
+
   public void markAsNoSession(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
   }
