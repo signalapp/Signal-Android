@@ -40,6 +40,7 @@ public class PushServiceSocket {
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
+  private static final String PREKEY_METADATA_PATH      = "/v1/keys/";
   private static final String PREKEY_PATH               = "/v1/keys/%s";
   private static final String PREKEY_DEVICE_PATH        = "/v1/keys/%s/%s";
 
@@ -121,6 +122,13 @@ public class PushServiceSocket {
 
     makeRequest(String.format(PREKEY_PATH, ""), "PUT",
                 PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
+  }
+
+  public int getAvailablePreKeys() throws IOException {
+    String       responseText = makeRequest(PREKEY_METADATA_PATH, "GET", null);
+    PreKeyStatus preKeyStatus = new Gson().fromJson(responseText, PreKeyStatus.class);
+
+    return preKeyStatus.getCount();
   }
 
   public List<PreKeyEntity> getPreKeys(PushAddress destination) throws IOException {

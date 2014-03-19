@@ -34,7 +34,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -78,38 +77,38 @@ public class PreKeyUtil {
     return record;
   }
 
-  public static List<PreKeyRecord> getPreKeys(Context context, MasterSecret masterSecret) {
-    List<PreKeyRecord> records      = new LinkedList<PreKeyRecord>();
-    File               directory    = getPreKeysDirectory(context);
-    String[]           keyRecordIds = directory.list();
-
-    Arrays.sort(keyRecordIds, new PreKeyRecordIdComparator());
-
-    for (String keyRecordId : keyRecordIds) {
-      try {
-        if (!keyRecordId.equals(PreKeyIndex.FILE_NAME) && Integer.parseInt(keyRecordId) != Medium.MAX_VALUE) {
-          records.add(new PreKeyRecord(context, masterSecret, Integer.parseInt(keyRecordId)));
-        }
-      } catch (InvalidKeyIdException e) {
-        Log.w("PreKeyUtil", e);
-        new File(getPreKeysDirectory(context), keyRecordId).delete();
-      } catch (NumberFormatException nfe) {
-        Log.w("PreKeyUtil", nfe);
-        new File(getPreKeysDirectory(context), keyRecordId).delete();
-      }
-    }
-
-    return records;
-  }
-
-  public static void clearPreKeys(Context context) {
-    File     directory  = getPreKeysDirectory(context);
-    String[] keyRecords = directory.list();
-
-    for (String keyRecord : keyRecords) {
-      new File(directory, keyRecord).delete();
-    }
-  }
+//  public static List<PreKeyRecord> getPreKeys(Context context, MasterSecret masterSecret) {
+//    List<PreKeyRecord> records      = new LinkedList<PreKeyRecord>();
+//    File               directory    = getPreKeysDirectory(context);
+//    String[]           keyRecordIds = directory.list();
+//
+//    Arrays.sort(keyRecordIds, new PreKeyRecordIdComparator());
+//
+//    for (String keyRecordId : keyRecordIds) {
+//      try {
+//        if (!keyRecordId.equals(PreKeyIndex.FILE_NAME) && Integer.parseInt(keyRecordId) != Medium.MAX_VALUE) {
+//          records.add(new PreKeyRecord(context, masterSecret, Integer.parseInt(keyRecordId)));
+//        }
+//      } catch (InvalidKeyIdException e) {
+//        Log.w("PreKeyUtil", e);
+//        new File(getPreKeysDirectory(context), keyRecordId).delete();
+//      } catch (NumberFormatException nfe) {
+//        Log.w("PreKeyUtil", nfe);
+//        new File(getPreKeysDirectory(context), keyRecordId).delete();
+//      }
+//    }
+//
+//    return records;
+//  }
+//
+//  public static void clearPreKeys(Context context) {
+//    File     directory  = getPreKeysDirectory(context);
+//    String[] keyRecords = directory.list();
+//
+//    for (String keyRecord : keyRecords) {
+//      new File(directory, keyRecord).delete();
+//    }
+//  }
 
   private static void setNextPreKeyId(Context context, int id) {
     try {
@@ -126,7 +125,7 @@ public class PreKeyUtil {
     try {
       File nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
 
-      if (nextFile.exists()) {
+      if (!nextFile.exists()) {
         return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
       } else {
         InputStreamReader reader = new InputStreamReader(new FileInputStream(nextFile));
