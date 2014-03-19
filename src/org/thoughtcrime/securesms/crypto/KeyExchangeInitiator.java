@@ -62,8 +62,8 @@ public class KeyExchangeInitiator {
   private static void initiateKeyExchange(Context context, MasterSecret masterSecret, Recipient recipient) {
     int             sequence     = getRandomSequence();
     int             flags        = KeyExchangeMessageV2.INITIATE_FLAG;
-    ECKeyPair       baseKey      = Curve.generateKeyPairForSession(CiphertextMessage.CURRENT_VERSION);
-    ECKeyPair       ephemeralKey = Curve.generateKeyPairForSession(CiphertextMessage.CURRENT_VERSION);
+    ECKeyPair       baseKey      = Curve.generateKeyPairForSession(CiphertextMessage.CURRENT_VERSION, true);
+    ECKeyPair       ephemeralKey = Curve.generateKeyPairForSession(CiphertextMessage.CURRENT_VERSION, true);
     IdentityKeyPair identityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, Curve.DJB_TYPE);
 
     KeyExchangeMessageV2 message = new KeyExchangeMessageV2(sequence, flags,

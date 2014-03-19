@@ -25,9 +25,9 @@ public class Curve {
   private static final int NIST_TYPE2 = 0x03;
   public  static final int DJB_TYPE   = 0x05;
 
-  public static ECKeyPair generateKeyPairForType(int keyType) {
+  public static ECKeyPair generateKeyPairForType(int keyType, boolean ephemeral) {
     if (keyType == DJB_TYPE) {
-      return Curve25519.generateKeyPair();
+      return Curve25519.generateKeyPair(ephemeral);
     } else if (keyType == NIST_TYPE || keyType == NIST_TYPE2) {
       return CurveP256.generateKeyPair();
     } else {
@@ -35,11 +35,11 @@ public class Curve {
     }
   }
 
-  public static ECKeyPair generateKeyPairForSession(int messageVersion) {
+  public static ECKeyPair generateKeyPairForSession(int messageVersion, boolean ephemeral) {
     if (messageVersion <= CiphertextMessage.LEGACY_VERSION) {
-      return generateKeyPairForType(NIST_TYPE);
+      return generateKeyPairForType(NIST_TYPE, ephemeral);
     } else {
-      return generateKeyPairForType(DJB_TYPE);
+      return generateKeyPairForType(DJB_TYPE, ephemeral);
     }
   }
 
