@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessageV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.service.PreKeyService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -120,6 +121,8 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     if (preKeyId != Medium.MAX_VALUE) {
       PreKeyRecord.delete(context, preKeyId);
     }
+
+    PreKeyService.initiateRefresh(context, masterSecret);
 
     DatabaseFactory.getIdentityDatabase(context)
                    .saveIdentity(masterSecret, recipientDevice.getRecipientId(), theirIdentityKey);
