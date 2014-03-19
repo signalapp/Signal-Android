@@ -93,7 +93,7 @@ public class AsymmetricMasterCipher {
         theirPublic = asymmetricMasterSecret.getNistPublicKey();
       }
 
-      ECKeyPair    ourKeyPair         = Curve.generateKeyPairForType(theirPublic.getType());
+      ECKeyPair    ourKeyPair         = Curve.generateKeyPairForType(theirPublic.getType(), true);
       byte[]       secret             = Curve.calculateAgreement(theirPublic, ourKeyPair.getPrivateKey());
       MasterCipher masterCipher       = getMasterCipherForSecret(secret);
       byte[]       encryptedBodyBytes = masterCipher.encryptBytes(body.getBytes());

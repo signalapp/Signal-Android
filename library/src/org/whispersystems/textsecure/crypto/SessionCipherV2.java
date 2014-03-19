@@ -152,7 +152,7 @@ public class SessionCipherV2 extends SessionCipher {
         RootKey                 rootKey         = sessionState.getRootKey();
         ECKeyPair               ourEphemeral    = sessionState.getSenderEphemeralPair();
         Pair<RootKey, ChainKey> receiverChain   = rootKey.createChain(theirEphemeral, ourEphemeral);
-        ECKeyPair               ourNewEphemeral = Curve.generateKeyPairForType(Curve.DJB_TYPE);
+        ECKeyPair               ourNewEphemeral = Curve.generateKeyPairForType(Curve.DJB_TYPE, true);
         Pair<RootKey, ChainKey> senderChain     = receiverChain.first.createChain(theirEphemeral, ourNewEphemeral);
 
         sessionState.setRootKey(senderChain.first);

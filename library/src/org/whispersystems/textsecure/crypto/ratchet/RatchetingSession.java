@@ -45,7 +45,7 @@ public class RatchetingSession {
     sessionState.setRemoteIdentityKey(theirIdentityKey);
     sessionState.setLocalIdentityKey(ourIdentityKey.getPublicKey());
 
-    ECKeyPair               sendingKey     = Curve.generateKeyPairForType(ourIdentityKey.getPublicKey().getPublicKey().getType());
+    ECKeyPair               sendingKey     = Curve.generateKeyPairForType(ourIdentityKey.getPublicKey().getPublicKey().getType(), true);
     Pair<RootKey, ChainKey> receivingChain = calculate3DHE(true, ourBaseKey, theirBaseKey, ourIdentityKey, theirIdentityKey);
     Pair<RootKey, ChainKey> sendingChain   = receivingChain.first.createChain(theirEphemeralKey, sendingKey);
 

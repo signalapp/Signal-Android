@@ -48,7 +48,7 @@ public class PreKeyUtil {
 
     for (int i=0;i<BATCH_SIZE;i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
-      ECKeyPair    keyPair  = Curve25519.generateKeyPair();
+      ECKeyPair    keyPair  = Curve25519.generateKeyPair(true);
       PreKeyRecord record   = new PreKeyRecord(context, masterSecret, preKeyId, keyPair);
 
       record.save();
@@ -69,7 +69,7 @@ public class PreKeyUtil {
       }
     }
 
-    ECKeyPair    keyPair = Curve25519.generateKeyPair();
+    ECKeyPair    keyPair = Curve25519.generateKeyPair(true);
     PreKeyRecord record  = new PreKeyRecord(context, masterSecret, Medium.MAX_VALUE, keyPair);
 
     record.save();

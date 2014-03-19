@@ -131,8 +131,8 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
   public void processKeyExchangeMessage(PreKeyEntity message, long threadId)
       throws InvalidKeyException
   {
-    ECKeyPair       ourBaseKey        = Curve.generateKeyPairForSession(2);
-    ECKeyPair       ourEphemeralKey   = Curve.generateKeyPairForSession(2);
+    ECKeyPair       ourBaseKey        = Curve.generateKeyPairForSession(2, true);
+    ECKeyPair       ourEphemeralKey   = Curve.generateKeyPairForSession(2, true);
     ECPublicKey     theirBaseKey      = message.getPublicKey();
     ECPublicKey     theirEphemeralKey = theirBaseKey;
     IdentityKey     theirIdentityKey  = message.getIdentityKey();
@@ -184,8 +184,8 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
 
         if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
           Log.w("KeyExchangeProcessorV2", "We don't have a pending initiate...");
-          ourBaseKey      = Curve.generateKeyPairForType(message.getBaseKey().getType());
-          ourEphemeralKey = Curve.generateKeyPairForType(message.getBaseKey().getType());
+          ourBaseKey      = Curve.generateKeyPairForType(message.getBaseKey().getType(), true);
+          ourEphemeralKey = Curve.generateKeyPairForType(message.getBaseKey().getType(), true);
           ourIdentityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, message.getBaseKey().getType());
 
           sessionRecord.getSessionState().setPendingKeyExchange(message.getSequence(), ourBaseKey,
