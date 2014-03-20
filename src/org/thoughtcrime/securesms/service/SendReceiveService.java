@@ -215,6 +215,16 @@ public class SendReceiveService extends Service {
     CanonicalSessionMigrator.migrateSessions(this);
   }
 
+  private MasterSecret getPlaceholderSecret() {
+    try {
+      return MasterSecretUtil.getMasterSecret(SendReceiveService.this,
+                                              MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+    } catch (InvalidPassphraseException e) {
+      Log.w("SendReceiveService", e);
+      return null;
+    }
+  }
+
   private void scheduleIntent(int what, Intent intent) {
     Runnable work = new SendReceiveWorkItem(intent, what);
 
@@ -228,6 +238,10 @@ public class SendReceiveService extends Service {
     Runnable work = new SendReceiveWorkItem(intent, what);
 
     synchronized (workQueue) {
+      if (!hasSecret && TextSecurePreferences.isPasswordDisabled(SendReceiveService.this)) {
+        initializeWithMasterSecret(getPlaceholderSecret());
+      }
+
       if (hasSecret) {
         workQueue.add(work);
         workQueue.notifyAll();
@@ -264,16 +278,6 @@ public class SendReceiveService extends Service {
       case RECEIVE_PUSH:         pushReceiver.process(masterSecret, intent);     return;
       case DOWNLOAD_PUSH:        pushDownloader.process(masterSecret, intent);   return;
       case DOWNLOAD_AVATAR:      avatarDownloader.process(masterSecret, intent); return;
-      }
-    }
-
-    private MasterSecret getPlaceholderSecret() {
-      try {
-        return MasterSecretUtil.getMasterSecret(SendReceiveService.this,
-                                                MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-      } catch (InvalidPassphraseException e) {
-        Log.w("SendReceiveService", e);
-        return null;
       }
     }
   }
