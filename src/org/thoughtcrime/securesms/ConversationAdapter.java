@@ -18,11 +18,14 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -36,7 +39,9 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 import java.lang.ref.SoftReference;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,15 +49,10 @@ import java.util.Map;
  * used by ComposeMessageActivity to display a conversation
  * thread in a ListActivity.
  *
- * @author Moxie Marlinspike
+ * @author Moxie Marlinspike, Lukas Barth
  *
  */
-public class ConversationAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
-
-  private static final int MAX_CACHE_SIZE = 40;
-  private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
-      Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
-
+public class ConversationAdapter extends ArrayAdapter<MessageRecord> implements AbsListView.RecyclerListener {
   public static final int MESSAGE_TYPE_OUTGOING = 0;
   public static final int MESSAGE_TYPE_INCOMING = 1;
   public static final int MESSAGE_TYPE_GROUP_ACTION = 2;
@@ -65,48 +65,60 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   private final LayoutInflater inflater;
 
   public ConversationAdapter(Context context, MasterSecret masterSecret,
-                             Handler failedIconClickHandler, boolean groupThread, boolean pushDestination)
+                                Handler failedIconClickHandler, boolean groupThread, boolean pushDestination)
   {
-    super(context, null);
+    super(context, 0);
+
     this.context                = context;
     this.masterSecret           = masterSecret;
     this.failedIconClickHandler = failedIconClickHandler;
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
     this.inflater               = (LayoutInflater)context
-                                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+  }
+
+  private int getItemViewType(MessageRecord messageRecord) {
+    if      (messageRecord.isGroupAction()) return MESSAGE_TYPE_GROUP_ACTION;
+    else if (messageRecord.isOutgoing())    return MESSAGE_TYPE_OUTGOING;
+    else                                    return MESSAGE_TYPE_INCOMING;
   }
 
   @Override
-  public void bindView(View view, Context context, Cursor cursor) {
-    ConversationItem item       = (ConversationItem)view;
-    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-    String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
-
-    item.set(masterSecret, messageRecord, failedIconClickHandler, groupThread, pushDestination);
+  public int getItemViewType(int position) {
+    MessageRecord messageRecord = getItem(position);
+    return getItemViewType(messageRecord);
   }
 
   @Override
-  public View newView(Context context, Cursor cursor, ViewGroup parent) {
+  public View getView(int position, View convertView, ViewGroup parent) {
     View view;
 
-    int type = getItemViewType(cursor);
+    MessageRecord messageRecord = getItem(position);
 
-    switch (type) {
-      case ConversationAdapter.MESSAGE_TYPE_OUTGOING:
-        view = inflater.inflate(R.layout.conversation_item_sent, parent, false);
-        break;
-      case ConversationAdapter.MESSAGE_TYPE_INCOMING:
-        view = inflater.inflate(R.layout.conversation_item_received, parent, false);
-        break;
-      case ConversationAdapter.MESSAGE_TYPE_GROUP_ACTION:
-        view = inflater.inflate(R.layout.conversation_item_activity, parent, false);
-        break;
-      default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
+    int type = getItemViewType(messageRecord);
+
+    if (convertView == null) {
+      switch (type) {
+        case ConversationAdapter.MESSAGE_TYPE_OUTGOING:
+          view = inflater.inflate(R.layout.conversation_item_sent, parent, false);
+          break;
+        case ConversationAdapter.MESSAGE_TYPE_INCOMING:
+          view = inflater.inflate(R.layout.conversation_item_received, parent, false);
+          break;
+        case ConversationAdapter.MESSAGE_TYPE_GROUP_ACTION:
+          view = inflater.inflate(R.layout.conversation_item_activity, parent, false);
+          break;
+        default:
+          throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
+      }
+    } else {
+      view = convertView;
     }
 
-    bindView(view, context, cursor);
+    ConversationItem item = (ConversationItem)view;
+    item.set(masterSecret, messageRecord, failedIconClickHandler, groupThread, pushDestination);
+
     return view;
   }
 
@@ -116,53 +128,34 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   }
 
   @Override
-  public int getItemViewType(int position) {
-    Cursor cursor = (Cursor)getItem(position);
-    return getItemViewType(cursor);
-  }
-
-  private int getItemViewType(Cursor cursor) {
-    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
-    String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
-
-    if      (messageRecord.isGroupAction()) return MESSAGE_TYPE_GROUP_ACTION;
-    else if (messageRecord.isOutgoing())    return MESSAGE_TYPE_OUTGOING;
-    else                                    return MESSAGE_TYPE_INCOMING;
-  }
-
-  private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
-    SoftReference<MessageRecord> reference = messageRecordCache.get(type + messageId);
-
-    if (reference != null) {
-      MessageRecord record = reference.get();
-
-      if (record != null)
-        return record;
-    }
-
-    MmsSmsDatabase.Reader reader = DatabaseFactory.getMmsSmsDatabase(context)
-                                                  .readerFor(cursor, masterSecret);
-
-    MessageRecord messageRecord = reader.getCurrent();
-
-    messageRecordCache.put(type + messageId, new SoftReference<MessageRecord>(messageRecord));
-
-    return messageRecord;
-  }
-
-  @Override
-  protected void onContentChanged() {
-    super.onContentChanged();
-    messageRecordCache.clear();
-  }
-
-  public void close() {
-    this.getCursor().close();
-  }
-
-  @Override
   public void onMovedToScrapHeap(View view) {
     ((ConversationItem)view).unbind();
+  }
+
+  public Long getOldestDisplayedDate() {
+    if (getCount() == 0) {
+      return null;
+    }
+
+    long oldestDisplayed = getItem(getCount() - 1).getDateSent();
+
+    return oldestDisplayed;
+  }
+
+  public void appendMessages(List<MessageRecord> messageRecords) {
+    while ((messageRecords.size() > 0) && (getOldestDisplayedDate() != null) &&
+            (messageRecords.get(0).getDateSent() > getOldestDisplayedDate())) {
+      messageRecords.remove(0);
+    }
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      addAll(messageRecords);
+    } else {
+      for (MessageRecord messageRecord : messageRecords) {
+        add(messageRecord);
+      }
+    }
+
+    notifyDataSetChanged();
   }
 }
