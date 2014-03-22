@@ -1,20 +1,22 @@
 TextSecure
-=================
+==========
 
 A secure text messaging application for Android.
 
-TextSecure is a replacement for the standard text messaging application, allowing you to send and receive text messages as normal.  Additionally, TextSecure provides:
+TextSecure is a replacement for the standard text messaging application, allowing you to send and receive text messages as normal. Additionally, TextSecure provides:
 
 1. *Local Encryption* -- All text messages, regardless of destination, that are sent or received with TextSecure are stored in an encrypted database on your phone.
 2. *Wire Encryption* -- When communicating with a recipient who is also using TextSecure, text messages are encrypted during transmission.
 
 Current BitHub Payment For Commit:
-=================
+==================================
+
 [![Current Price](https://bithub.herokuapp.com/v1/status/payment/commit/)](https://whispersystems.org/blog/bithub/)
 
 Building and contributing code
 ==============================
-Instructions on how to build TextSecure, as well as on how to setup an IDE to modify it can be found in the "BUILDING.md" file.
+
+Instructions on how to build TextSecure, as well as on how to setup an IDE to modify it can be found in the [BUILDING.md](BUILDING.md) file.
 
 Bug tracker
 -----------
@@ -41,21 +43,21 @@ whispersystems@lists.riseup.net
 https://lists.riseup.net/www/info/whispersystems
 
 Translation
-------------
+-----------
 
 Interested in helping to translate TextSecure? Contribute here:
 
 https://www.transifex.com/projects/p/textsecure-official/
 
 Downloads
-------------
+---------
 
 TextSecure can be downloaded from the Play Store here:
 
 https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms
 
 Cryptography Notice
-------------
+-------------------
 
 This distribution includes cryptographic software. The country in which you currently reside may have restrictions on the import, possession, use, and/or re-export to another country, of encryption software. 
 BEFORE using any encryption software, please check your country's laws, regulations and policies concerning the import, possession, or use, and re-export of encryption software, to see if this is permitted. 
@@ -65,7 +67,7 @@ The U.S. Government Department of Commerce, Bureau of Industry and Security (BIS
 The form and manner of this distribution makes it eligible for export under the License Exception ENC Technology Software Unrestricted (TSU) exception (see the BIS Export Administration Regulations, Section 740.13) for both object code and source code.
 
 License
----------------------
+-------
 
 Copyright 2011 Whisper Systems
 Copyright 2013 Open WhisperSystems
