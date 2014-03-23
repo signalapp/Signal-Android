@@ -69,7 +69,7 @@ public class RecipientsPanel extends RelativeLayout {
   }
 
   public void addRecipient(String name, String number) {
-    if (name != null) recipientsText.append(name + "< " + number + ">, ");
+    if (name != null) recipientsText.append(name.replace(",", " ") + "< " + number + ">, ");
     else              recipientsText.append(number + ", ");
   }
 
