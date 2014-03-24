@@ -460,7 +460,7 @@
   <string name="preferences__general">Allgemein</string>
   <string name="preferences__push_sms_category">Push-Nachrichten und SMS</string>
   <string name="preferences__pref_all_sms_title">Für alle eingehenden SMS benutzen</string>
-  <string name="preferences__pref_all_mms_title">Für alle eingehenden SMS benutzen</string>
+  <string name="preferences__pref_all_mms_title">Für alle eingehenden MMS benutzen</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure zur Anzeige und Speicherung aller eingehenden SMS verwenden</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure zur Anzeige und Speicherung aller eingehenden MMS verwenden</string>
   <string name="preferences__enable_enter_key_title">Enter-Taste einschalten</string>
