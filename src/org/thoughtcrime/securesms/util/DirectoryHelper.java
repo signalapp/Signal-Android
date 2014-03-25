@@ -45,6 +45,7 @@ public class DirectoryHelper {
   }
 
   public static boolean isPushDestination(Context context, Recipient recipient) {
+    if (recipient == null) return false;
     try {
       final String number = recipient.getNumber();
 
