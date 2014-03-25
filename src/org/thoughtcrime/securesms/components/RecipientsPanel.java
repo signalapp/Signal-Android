@@ -69,7 +69,7 @@ public class RecipientsPanel extends RelativeLayout {
   }
 
   public void addRecipient(String name, String number) {
-    if (name != null) recipientsText.append(name.replace(",", " ") + "< " + number + ">, ");
+    if (name != null) recipientsText.append(sanitizeRecipientName(name) + "< " + number + ">, ");
     else              recipientsText.append(number + ", ");
   }
 
@@ -147,6 +147,10 @@ public class RecipientsPanel extends RelativeLayout {
     recipientsText.setAdapter(new RecipientsAdapter(this.getContext()));
     recipientsText.populate(recipients);
     recipientsText.setOnFocusChangeListener(new FocusChangedListener());
+  }
+
+  private static String sanitizeRecipientName(String name) {
+    return name.replaceAll("[,<>]", "");
   }
 
   private class FocusChangedListener implements View.OnFocusChangeListener {
