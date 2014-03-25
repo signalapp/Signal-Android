@@ -46,11 +46,13 @@ public class DirectoryHelper {
 
   public static boolean isPushDestination(Context context, Recipient recipient) {
     try {
-      if (!TextSecurePreferences.isPushRegistered(context)) return false;
-      if (GroupUtil.isEncodedGroup(recipient.getNumber()))  return true;
+      final String number = recipient.getNumber();
 
-      String number     = recipient.getNumber();
-      String e164number = Util.canonicalizeNumber(context, number);
+      if (number == null)                                   return false;
+      if (!TextSecurePreferences.isPushRegistered(context)) return false;
+      if (GroupUtil.isEncodedGroup(number))                 return true;
+
+      final String e164number = Util.canonicalizeNumber(context, number);
 
       return Directory.getInstance(context).isActiveNumber(e164number);
     } catch (InvalidNumberException e) {
