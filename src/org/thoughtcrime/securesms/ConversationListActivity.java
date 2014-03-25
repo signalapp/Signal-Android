@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.util.AccountUtil;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<account-authenticator
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="directory.securesms.thoughtcrime.org"
+    android:icon="@drawable/icon"
+    android:smallIcon="@drawable/icon"
+    android:label="@string/app_name"/>

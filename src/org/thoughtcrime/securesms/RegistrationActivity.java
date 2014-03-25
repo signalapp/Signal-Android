@@ -25,6 +25,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.thoughtcrime.securesms.util.AccountUtil;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -63,6 +64,9 @@ public class RegistrationActivity extends SherlockActivity {
     initializeResources();
     initializeSpinner();
     initializeNumber();
+
+    Log.i("RegistrationActivity", "Creating TextSecure Directory account");
+    AccountUtil.ensureAccountExists(getApplicationContext());
   }
 
   @Override
