@@ -16,20 +16,18 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
@@ -65,11 +63,6 @@ import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -168,6 +161,8 @@ public class ConversationItem extends LinearLayout {
     setOnClickListener(clickListener);
     if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
+
+    this.mmsThumbnail.setOnCreateContextMenuListener((Activity)getContext());
   }
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
@@ -375,7 +370,6 @@ public class ConversationItem extends LinearLayout {
                 slide.setThumbnailOn(mmsThumbnail);
 //                mmsThumbnail.setImageBitmap(slide.getThumbnail());
                 mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
-                mmsThumbnail.setOnLongClickListener(new ThumbnailSaveListener(slide));
                 mmsThumbnail.setVisibility(View.VISIBLE);
                 return;
               }
@@ -442,127 +436,6 @@ public class ConversationItem extends LinearLayout {
     intent.putExtra("master_secret", masterSecret);
     intent.putExtra("sent", messageRecord.isOutgoing());
     context.startActivity(intent);
-  }
-
-  private class ThumbnailSaveListener extends Handler implements View.OnLongClickListener, Runnable, MediaScannerConnection.MediaScannerConnectionClient {
-    private static final int SUCCESS              = 0;
-    private static final int FAILURE              = 1;
-    private static final int WRITE_ACCESS_FAILURE = 2;
-
-    private final Slide slide;
-    private ProgressDialog progressDialog;
-    private MediaScannerConnection mediaScannerConnection;
-    private File mediaFile;
-
-    public ThumbnailSaveListener(Slide slide) {
-      this.slide = slide;
-    }
-
-    public void run() {
-      if (!Environment.getExternalStorageDirectory().canWrite()) {
-        this.obtainMessage(WRITE_ACCESS_FAILURE).sendToTarget();
-        return;
-      }
-
-      try {
-        mediaFile                 = constructOutputFile();
-        InputStream inputStream   = slide.getPartDataInputStream();
-        OutputStream outputStream = new FileOutputStream(mediaFile);
-
-        byte[] buffer = new byte[4096];
-        int read;
-
-        while ((read = inputStream.read(buffer)) != -1) {
-          outputStream.write(buffer, 0, read);
-        }
-
-        outputStream.close();
-        inputStream.close();
-
-        mediaScannerConnection = new MediaScannerConnection(context, this);
-        mediaScannerConnection.connect();
-      } catch (IOException ioe) {
-        Log.w("ConversationItem", ioe);
-        this.obtainMessage(FAILURE).sendToTarget();
-      }
-    }
-
-    private File constructOutputFile() throws IOException {
-      File sdCard = Environment.getExternalStorageDirectory();
-      File outputDirectory;
-
-      if (slide.hasVideo())
-        outputDirectory = new File(sdCard.getAbsoluteFile() + File.separator + "Movies");
-      else if (slide.hasAudio())
-        outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Music");
-      else
-        outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Pictures");
-      outputDirectory.mkdirs();
-
-      MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-      String extension = mimeTypeMap.getExtensionFromMimeType(slide.getContentType());
-      if (extension == null)
-          extension = "attach";
-
-      return File.createTempFile("textsecure", "." + extension, outputDirectory);
-    }
-
-    private void saveToSdCard() {
-      progressDialog = new ProgressDialog(context);
-      progressDialog.setTitle(context.getString(R.string.ConversationItem_saving_attachment));
-      progressDialog.setMessage(context.getString(R.string.ConversationItem_saving_attachment_to_sd_card));
-      progressDialog.setCancelable(false);
-      progressDialog.setIndeterminate(true);
-      progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-      progressDialog.show();
-      new Thread(this).start();
-    }
-
-    public boolean onLongClick(View v) {
-      AlertDialog.Builder builder = new AlertDialog.Builder(context);
-      builder.setTitle(R.string.ConversationItem_save_to_sd_card);
-      builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
-      builder.setCancelable(true);
-      builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning);
-      builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          saveToSdCard();
-        }
-      });
-      builder.setNegativeButton(R.string.no, null);
-      builder.show();
-
-      return true;
-    }
-
-    @Override
-    public void handleMessage(Message message) {
-      switch (message.what) {
-      case FAILURE:
-        Toast.makeText(context, R.string.ConversationItem_error_while_saving_attachment_to_sd_card,
-                       Toast.LENGTH_LONG).show();
-        break;
-      case SUCCESS:
-        Toast.makeText(context, R.string.ConversationItem_success_exclamation,
-                       Toast.LENGTH_LONG).show();
-        break;
-      case WRITE_ACCESS_FAILURE:
-        Toast.makeText(context, R.string.ConversationItem_unable_to_write_to_sd_card_exclamation,
-                       Toast.LENGTH_LONG).show();
-        break;
-      }
-
-      progressDialog.dismiss();
-    }
-
-    public void onMediaScannerConnected() {
-      mediaScannerConnection.scanFile(mediaFile.getAbsolutePath(), slide.getContentType());
-    }
-
-    public void onScanCompleted(String path, Uri uri) {
-      mediaScannerConnection.disconnect();
-      this.obtainMessage(SUCCESS).sendToTarget();
-    }
   }
 
   private class ThumbnailClickListener implements View.OnClickListener {
