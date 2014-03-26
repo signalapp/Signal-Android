@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
@@ -102,6 +103,16 @@ public class ConversationFragment extends SherlockListFragment
     this.threadId   = threadId;
 
     initializeListAdapter();
+  }
+
+  public void scrollToBottom() {
+    final ListView list = getListView();
+    list.post(new Runnable() {
+      @Override
+      public void run() {
+        list.setSelection(getListAdapter().getCount() - 1);
+      }
+    });
   }
 
   private void handleCopyMessage(MessageRecord message) {

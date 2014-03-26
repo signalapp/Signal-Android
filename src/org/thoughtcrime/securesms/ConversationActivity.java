@@ -1060,17 +1060,16 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     this.recipients = recipients;
     this.threadId   = threadId;
 
+    ConversationFragment fragment = (ConversationFragment) getSupportFragmentManager()
+                                                          .findFragmentById(R.id.fragment_content);
     if (refreshFragment) {
-      ConversationFragment fragment
-        = (ConversationFragment)this.getSupportFragmentManager()
-          .findFragmentById(R.id.fragment_content);
-
       fragment.reload(recipients, threadId);
 
       this.recipientsPanel.setVisibility(View.GONE);
       initializeTitleBar();
       initializeSecurity();
     }
+    fragment.scrollToBottom();
   }
 
   private void sendMessage(boolean forcePlaintext) {
