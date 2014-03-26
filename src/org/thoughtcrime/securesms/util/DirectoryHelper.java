@@ -7,6 +7,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
@@ -77,15 +78,22 @@ public class DirectoryHelper {
     }
   }
 
-  public static boolean isPushDestination(Context context, Recipient recipient) {
-    if (recipient == null) return false;
+  public static boolean isPushDestination(Context context, Recipients recipients) {
     try {
-      final String number = recipient.getNumber();
+      if (recipients == null) {
+        return false;
+      }
+      if (!TextSecurePreferences.isPushRegistered(context)) {
+        return false;
+      }
+      if (!recipients.isSingleRecipient()) {
+        return false;
+      }
+      if (recipients.isGroupRecipient()) {
+        return true;
+      }
 
-      if (number == null)                                   return false;
-      if (!TextSecurePreferences.isPushRegistered(context)) return false;
-      if (GroupUtil.isEncodedGroup(number))                 return true;
-
+      final String number     = recipients.getPrimaryRecipient().getNumber();
       final String e164number = Util.canonicalizeNumber(context, number);
 
       return Directory.getInstance(context).isActiveNumber(e164number);
