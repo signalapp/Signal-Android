@@ -133,6 +133,14 @@
                     android:contentDescription="Delivered Indicator"
                     android:visibility="gone" />
 
+                <ImageView android:id="@+id/message_type_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dip"
+                    android:src="?conversation_delivered_indicator"
+                    android:contentDescription="Indicator for the message type"
+                    android:visibility="gone" />
+
                 <ImageView android:id="@+id/sms_secure_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
