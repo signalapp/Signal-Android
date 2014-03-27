@@ -233,6 +233,7 @@ public class ApnDefaults {
             put("310120", new MmsConnectionParameters("http://mms.sprintpcs.com", null, null));
             put("310127", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
             put("31013", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
+            put("310150", new MmsConnectionParameters("http://mmsc.aiowireless.net/", "proxy.aiowireless.net", "80"));
             put("31016", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("31018", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("310180", new MmsConnectionParameters("http://mms.wcc.net", "209.55.70.246", "80"));
