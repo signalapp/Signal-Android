@@ -163,7 +163,7 @@ public class ConversationItem extends LinearLayout {
     this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
     this.smsTypeIndicator    = (ImageView)findViewById(R.id.sms_type_indicator);
 
-      setOnClickListener(clickListener);
+    setOnClickListener(clickListener);
     if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
   }
