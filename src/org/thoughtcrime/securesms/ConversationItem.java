@@ -25,8 +25,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -59,8 +57,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -118,7 +114,7 @@ public class ConversationItem extends LinearLayout {
   private  ImageView deliveredImage;
   private  View      triangleTick;
   private  ImageView pendingIndicator;
-  private  ImageView messageTypeIndicator;
+  private  ImageView smsTypeIndicator;
 
   private  View      mmsContainer;
   private  ImageView mmsThumbnail;
@@ -148,24 +144,24 @@ public class ConversationItem extends LinearLayout {
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    this.bodyText             = (TextView) findViewById(R.id.conversation_item_body);
-    this.dateText             = (TextView) findViewById(R.id.conversation_item_date);
-    this.indicatorText        = (TextView) findViewById(R.id.indicator_text);
-    this.groupStatusText      = (TextView) findViewById(R.id.group_message_status);
-    this.secureImage          = (ImageView)findViewById(R.id.sms_secure_indicator);
-    this.failedImage          = (ImageView)findViewById(R.id.sms_failed_indicator);
-    this.keyImage             = (ImageView)findViewById(R.id.key_exchange_indicator);
-    this.mmsContainer         =            findViewById(R.id.mms_view);
-    this.mmsThumbnail         = (ImageView)findViewById(R.id.image_view);
-    this.mmsDownloadButton    = (Button)   findViewById(R.id.mms_download_button);
-    this.mmsDownloadingLabel  = (TextView) findViewById(R.id.mms_label_downloading);
-    this.contactPhoto         = (ImageView)findViewById(R.id.contact_photo);
-    this.deliveredImage       = (ImageView)findViewById(R.id.delivered_indicator);
-    this.conversationParent   = (View)     findViewById(R.id.conversation_item_parent);
-    this.triangleTick         =            findViewById(R.id.triangle_tick);
-    this.pendingIndicator     = (ImageView)findViewById(R.id.pending_approval_indicator);
-    this.backgroundDrawables  = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
-    this.messageTypeIndicator = (ImageView)findViewById(R.id.sms_type_indicator);
+    this.bodyText            = (TextView) findViewById(R.id.conversation_item_body);
+    this.dateText            = (TextView) findViewById(R.id.conversation_item_date);
+    this.indicatorText       = (TextView) findViewById(R.id.indicator_text);
+    this.groupStatusText     = (TextView) findViewById(R.id.group_message_status);
+    this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
+    this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
+    this.keyImage            = (ImageView)findViewById(R.id.key_exchange_indicator);
+    this.mmsContainer        =            findViewById(R.id.mms_view);
+    this.mmsThumbnail        = (ImageView)findViewById(R.id.image_view);
+    this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
+    this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
+    this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
+    this.deliveredImage      = (ImageView)findViewById(R.id.delivered_indicator);
+    this.conversationParent  = (View)     findViewById(R.id.conversation_item_parent);
+    this.triangleTick        =            findViewById(R.id.triangle_tick);
+    this.pendingIndicator    = (ImageView)findViewById(R.id.pending_approval_indicator);
+    this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
+    this.smsTypeIndicator    = (ImageView)findViewById(R.id.sms_type_indicator);
 
       setOnClickListener(clickListener);
     if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
@@ -270,7 +266,7 @@ public class ConversationItem extends LinearLayout {
       pendingIndicator.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
       indicatorText.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
     } else {
-      messageTypeIndicator.setVisibility(messageRecord.isPush() ? View.GONE : View.VISIBLE);
+      smsTypeIndicator.setVisibility(messageRecord.isPush() ? View.GONE : View.VISIBLE);
     }
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     keyImage.setVisibility(messageRecord.isKeyExchange() ? View.VISIBLE : View.GONE);
