@@ -165,7 +165,7 @@ public class ConversationItem extends LinearLayout {
     this.triangleTick         =            findViewById(R.id.triangle_tick);
     this.pendingIndicator     = (ImageView)findViewById(R.id.pending_approval_indicator);
     this.backgroundDrawables  = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
-    this.messageTypeIndicator = (ImageView)findViewById(R.id.message_type_indicator);
+    this.messageTypeIndicator = (ImageView)findViewById(R.id.sms_type_indicator);
 
       setOnClickListener(clickListener);
     if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
@@ -270,7 +270,7 @@ public class ConversationItem extends LinearLayout {
       pendingIndicator.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
       indicatorText.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
     } else {
-      messageTypeIndicator.setVisibility(messageRecord.isPush() ? View.VISIBLE : View.GONE);
+      messageTypeIndicator.setVisibility(messageRecord.isPush() ? View.GONE : View.VISIBLE);
     }
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     keyImage.setVisibility(messageRecord.isKeyExchange() ? View.VISIBLE : View.GONE);

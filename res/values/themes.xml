@@ -32,6 +32,7 @@
         <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_light</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
+        <item name="conversation_sms_type_indicator">@drawable/ic_sms_indicator_light</item>
 
         <item name="conversation_item_received_background">@drawable/conversation_item_received_shape</item>
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape</item>
@@ -119,6 +120,7 @@
         <item name="conversation_delivered_indicator">@drawable/ic_sms_mms_delivered_dark</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_light</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_light</item>
+        <item name="conversation_sms_type_indicator">@drawable/ic_sms_indicator_dark</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_dark</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_dark</item>
