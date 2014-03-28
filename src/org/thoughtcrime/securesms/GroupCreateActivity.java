@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -51,10 +50,10 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -79,8 +78,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
-  private File pendingFile = null;
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
@@ -260,36 +257,11 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       public void onClick(View view) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT, null);
         photoPickerIntent.setType("image/*");
-        photoPickerIntent.putExtra("crop", "true");
-        photoPickerIntent.putExtra("aspectX", 1);
-        photoPickerIntent.putExtra("aspectY", 1);
-        photoPickerIntent.putExtra("outputX", AVATAR_SIZE);
-        photoPickerIntent.putExtra("outputY", AVATAR_SIZE);
-        photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getAvatarTempUri());
-        photoPickerIntent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
         startActivityForResult(photoPickerIntent, PICK_AVATAR);
       }
     });
 
     ((RecipientsEditor)findViewById(R.id.recipients_text)).setHint(R.string.recipients_panel__add_member);
-  }
-
-  private Uri getAvatarTempUri() {
-    return Uri.fromFile(createAvatarTempFile());
-  }
-
-  private File createAvatarTempFile() {
-    try {
-      File f = File.createTempFile("avatar", ".tmp", getFilesDir());
-      pendingFile = f;
-      f.setWritable(true, false);
-      f.deleteOnExit();
-      return f;
-    } catch (IOException ioe) {
-      Log.e(TAG, "Error creating new temp file.", ioe);
-      Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_file_io_exception, Toast.LENGTH_SHORT).show();
-      return null;
-    }
   }
 
   @Override
@@ -392,9 +364,10 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         }
         syncAdapterWithSelectedContacts();
         break;
+
       case PICK_AVATAR:
-          new DecodeCropAndSetAsyncTask().execute();
-          break;
+        new DecodeCropAndSetAsyncTask(data.getData()).execute();
+        break;
     }
   }
 
@@ -496,13 +469,23 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private class DecodeCropAndSetAsyncTask extends AsyncTask<Void,Void,Bitmap> {
+    private final Uri avatarUri;
+
+    DecodeCropAndSetAsyncTask(Uri uri) {
+      avatarUri = uri;
+    }
 
     @Override
     protected Bitmap doInBackground(Void... voids) {
-      if (pendingFile != null) {
-        avatarBmp = BitmapUtil.getCircleCroppedBitmap(BitmapFactory.decodeFile(pendingFile.getAbsolutePath()));
-        pendingFile.delete();
-        pendingFile = null;
+      if (avatarUri != null) {
+        InputStream inputStream;
+        try {
+          inputStream = getApplicationContext().getContentResolver().openInputStream(avatarUri);
+        } catch (FileNotFoundException e) {
+          Log.w(TAG, e);
+          return null;
+        }
+        avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(BitmapFactory.decodeStream(inputStream), AVATAR_SIZE);
       }
       return avatarBmp;
     }
