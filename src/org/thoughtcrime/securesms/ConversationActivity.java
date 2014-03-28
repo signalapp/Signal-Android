@@ -851,7 +851,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       attachmentManager.setVideo(videoUri);
     } catch (IOException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment ,
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {

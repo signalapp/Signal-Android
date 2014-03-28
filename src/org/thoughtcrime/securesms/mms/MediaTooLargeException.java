@@ -24,18 +24,18 @@ public class MediaTooLargeException extends Exception {
     // TODO Auto-generated constructor stub
   }
 
-    public MediaTooLargeException(String detailMessage) {
-        super(detailMessage);
-        // TODO Auto-generated constructor stub
-    }
+  public MediaTooLargeException(String detailMessage) {
+    super(detailMessage);
+    // TODO Auto-generated constructor stub
+  }
 
-    public MediaTooLargeException(String detailMessage, int sizeLimit) {
-        super(detailMessage);
-        this.sizeLimit = sizeLimit;
-        // TODO Auto-generated constructor stub
-    }
+  public MediaTooLargeException(String detailMessage, int sizeLimit) {
+    super(detailMessage);
+    this.sizeLimit = sizeLimit;
+    // TODO Auto-generated constructor stub
+  }
 
-    public MediaTooLargeException(Throwable throwable) {
+  public MediaTooLargeException(Throwable throwable) {
     super(throwable);
     // TODO Auto-generated constructor stub
   }
