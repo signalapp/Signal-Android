@@ -23,12 +23,9 @@ import org.thoughtcrime.securesms.R;
 import ws.com.google.android.mms.pdu.PduPart;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
-import android.widget.ImageView;
 
 public class AudioSlide extends Slide {
 
@@ -58,8 +55,8 @@ public class AudioSlide extends Slide {
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
 		
-    if (getMediaSize(context, uri) > MAX_MESSAGE_SIZE)
-      throw new MediaTooLargeException("Audio track larger than size maximum.");
+    if (getMediaSize(context, uri) > MAX_MESSAGE_BASE_SIZE * MAX_MESSAGE_SIZE_FACTOR)
+      throw new MediaTooLargeException("Audio track larger than size maximum.", MAX_MESSAGE_SIZE_FACTOR);
 		
     Cursor cursor = null;
 		

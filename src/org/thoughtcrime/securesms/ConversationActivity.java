@@ -851,13 +851,15 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       attachmentManager.setVideo(videoUri);
     } catch (IOException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment ,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-                     Toast.LENGTH_LONG).show();
+      Toast.makeText(this,
+              String.format(getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions),
+                      e.sizeLimit),
+              Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
   }
@@ -872,7 +874,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
-      Toast.makeText(this, R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
+      Toast.makeText(this, String.format(getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions),
+                      e.sizeLimit),
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
