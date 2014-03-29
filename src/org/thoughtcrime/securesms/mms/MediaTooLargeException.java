@@ -18,12 +18,20 @@ package org.thoughtcrime.securesms.mms;
 
 public class MediaTooLargeException extends Exception {
 
+  public int sizeLimit;
+
   public MediaTooLargeException() {
     // TODO Auto-generated constructor stub
   }
 
   public MediaTooLargeException(String detailMessage) {
     super(detailMessage);
+    // TODO Auto-generated constructor stub
+  }
+
+  public MediaTooLargeException(String detailMessage, int sizeLimit) {
+    super(detailMessage);
+    this.sizeLimit = sizeLimit;
     // TODO Auto-generated constructor stub
   }
 

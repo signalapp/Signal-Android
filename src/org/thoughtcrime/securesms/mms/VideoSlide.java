@@ -24,13 +24,10 @@ import ws.com.google.android.mms.pdu.PduPart;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.widget.ImageView;
 
 public class VideoSlide extends Slide {
 
@@ -73,8 +70,8 @@ public class VideoSlide extends Slide {
         cursor.close();
     }
 		
-    if (getMediaSize(context, uri) > MAX_MESSAGE_SIZE)
-      throw new MediaTooLargeException("Video exceeds maximum message size.");
+    if (getMediaSize(context, uri) > MAX_MESSAGE_BASE_SIZE * MAX_MESSAGE_SIZE_FACTOR)
+      throw new MediaTooLargeException("Video exceeds maximum message size.", MAX_MESSAGE_SIZE_FACTOR);
 		
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
