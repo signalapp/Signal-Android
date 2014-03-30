@@ -156,7 +156,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/preferences__advanced">
+    <PreferenceCategory android:key="advanced_category" android:title="@string/preferences__advanced">
        <CheckBoxPreference android:defaultValue="true"
                            android:key="pref_auto_complete_key_exchange"
                            android:title="@string/preferences__complete_key_exchanges"
