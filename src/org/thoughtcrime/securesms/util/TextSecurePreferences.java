@@ -43,6 +43,7 @@ public class TextSecurePreferences {
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
+  private static final String DISPLAY_NONPUSH_CONTACTS_PREF    = "pref_display_non_push_contacts";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
   private static final String ALLOW_SMS_FALLBACK_PREF          = "pref_allow_sms_traffic_out";
