@@ -174,6 +174,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     updateTypeBitmask(id, 0, Types.SECURE_MESSAGE_BIT);
   }
 
+  public void markAsInsecure(long id) {
+    updateTypeBitmask(id, Types.SECURE_MESSAGE_BIT, 0);
+  }
+
   public void markAsPush(long id) {
     updateTypeBitmask(id, 0, Types.PUSH_MESSAGE_BIT);
   }
@@ -202,8 +206,12 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_OUTBOX_TYPE);
   }
 
-  public void markAsPendingApproval(long id) {
-    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_PENDING_FALLBACK_APPROVAL);
+  public void markAsPendingSecureSmsFallback(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_PENDING_SECURE_SMS_FALLBACK);
+  }
+
+  public void markAsPendingInsecureSmsFallback(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK);
   }
 
   public void markAsSending(long id) {

@@ -35,6 +35,27 @@ public class Session {
     return hasV1Session(context, recipient) || hasV2Session(context, masterSecret, recipient);
   }
 
+  public static boolean hasEncryptCapableSession(Context context,
+                                                 MasterSecret masterSecret,
+                                                 CanonicalRecipient recipient)
+  {
+    RecipientDevice device = new RecipientDevice(recipient.getRecipientId(),
+                                                 RecipientDevice.DEFAULT_DEVICE_ID);
+
+    return hasEncryptCapableSession(context, masterSecret, recipient, device);
+  }
+
+  public static boolean hasEncryptCapableSession(Context context,
+                                                 MasterSecret masterSecret,
+                                                 CanonicalRecipient recipient,
+                                                 RecipientDevice device)
+  {
+    return
+        hasV1Session(context, recipient) ||
+            (hasV2Session(context, masterSecret, recipient) &&
+             !SessionRecordV2.needsRefresh(context, masterSecret, device));
+  }
+
   public static boolean hasRemoteIdentityKey(Context context,
                                              MasterSecret masterSecret,
                                              CanonicalRecipient recipient)
