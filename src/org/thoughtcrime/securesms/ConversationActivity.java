@@ -675,7 +675,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
                                         R.attr.conversation_send_secure_button};
     TypedArray drawables    = obtainStyledAttributes(attributes);
 
-    if ((getRecipients() != null && getRecipients().isGroupRecipient()) ||
+    if (isPushDestination() || (getRecipients() != null && getRecipients().isGroupRecipient()) ||
         (isSingleConversation() && Session.hasSession(this, masterSecret, getRecipients().getPrimaryRecipient())))
     {
       sendButton.setImageDrawable(drawables.getDrawable(1));
@@ -1075,7 +1075,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private void sendMessage(boolean forcePlaintext) {
     try {
-      Recipients recipients   = getRecipients();
+      Recipients recipients = getRecipients();
 
       if (recipients == null)
         throw new RecipientFormattingException("Badly formatted");
