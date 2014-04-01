@@ -162,9 +162,17 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private void addSelectedContact(Recipient contact) {
+    final boolean isPushUser = isActiveInDirectory(this, contact);
+    if (existingContacts != null && !isPushUser) {
+      Toast.makeText(getApplicationContext(),
+                     R.string.GroupCreateActivity_cannot_add_non_push_to_existing_group,
+                     Toast.LENGTH_LONG).show();
+      return;
+    }
+
     if (!selectedContacts.contains(contact) && (existingContacts == null || !existingContacts.contains(contact)))
       selectedContacts.add(contact);
-    if (!isActiveInDirectory(this, contact)) {
+    if (!isPushUser) {
       disableWhisperGroupUi(R.string.GroupCreateActivity_contacts_dont_support_push);
       getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
     }
@@ -375,6 +383,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     @Override
     public void onClick(View v) {
       Intent intent = new Intent(GroupCreateActivity.this, PushContactSelectionActivity.class);
+      if (existingContacts != null) intent.putExtra(PushContactSelectionActivity.PUSH_ONLY_EXTRA, true);
       startActivityForResult(intent, PICK_CONTACT);
     }
   }
@@ -533,9 +542,13 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     @Override
     protected Pair<Long, Recipients> doInBackground(Void... params) {
       byte[] avatarBytes = null;
-      if (avatarBmp != null) {
+      final Bitmap bitmap;
+      if (avatarBmp == null) bitmap = existingAvatarBmp;
+      else                   bitmap = avatarBmp;
+
+      if (bitmap != null) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        avatarBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         avatarBytes = stream.toByteArray();
       }
       final String name = (groupName.getText() != null) ? groupName.getText().toString() : null;

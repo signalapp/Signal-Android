@@ -4,16 +4,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+    <EditText android:id="@+id/filter"
+        android:inputType="textPersonName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/recipients_panel__to"
+        android:paddingRight="45dip"
+        android:paddingLeft="15dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textColor="?conversation_editor_text_color"
+        android:background="?conversation_editor_background" />
+
     <se.emilsjolander.stickylistheaders.StickyListHeadersListView android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <TextView android:id="@android:id/empty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center|center_vertical"
-            android:layout_marginTop="15dp"
-            android:text="@string/contact_selection_group_activity__finding_contacts"
-            android:textSize="20sp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|center_vertical"
+        android:layout_marginTop="15dp"
+        android:text="@string/contact_selection_group_activity__finding_contacts"
+        android:textSize="20sp" />
 
 </LinearLayout>

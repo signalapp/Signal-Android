@@ -56,7 +56,8 @@ import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
  *
  */
 public class PushContactSelectionActivity extends PassphraseRequiredSherlockFragmentActivity {
-  private final static String TAG                 = "ContactSelectActivity";
+  private final static String TAG             = "ContactSelectActivity";
+  public  final static String PUSH_ONLY_EXTRA = "push_only";
 
   private final DynamicTheme dynamicTheme = new DynamicTheme();
 

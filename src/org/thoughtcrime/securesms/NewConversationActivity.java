@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -62,7 +63,6 @@ public class NewConversationActivity extends PassphraseRequiredSherlockFragmentA
   private final DynamicTheme dynamicTheme = new DynamicTheme();
   private       MasterSecret masterSecret;
 
-  private SingleRecipientPanel             recipientsPanel;
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
@@ -106,7 +106,6 @@ public class NewConversationActivity extends PassphraseRequiredSherlockFragmentA
   }
 
   private void initializeResources() {
-    recipientsPanel  = (SingleRecipientPanel)             findViewById(R.id.recipients);
     contactsFragment = (PushContactSelectionListFragment) getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
     contactsFragment.setOnContactSelectedListener(new PushContactSelectionListFragment.OnContactSelectedListener() {
       @Override
@@ -116,15 +115,6 @@ public class NewConversationActivity extends PassphraseRequiredSherlockFragmentA
         openNewConversation(recipients);
       }
     });
-
-    recipientsPanel.setPanelChangeListener(new SingleRecipientPanel.RecipientsPanelChangedListener() {
-      @Override
-      public void onRecipientsPanelUpdate(Recipients recipients) {
-        Log.i(TAG, "Choosing contact from autocompletion.");
-        openNewConversation(recipients);
-      }
-    });
-
   }
 
   private void handleSelectionFinished() {

@@ -20,6 +20,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
+import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -28,10 +29,15 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.util.Pair;
 
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Database to supply all types of contacts that TextSecure needs to know about
@@ -50,48 +56,100 @@ public class ContactsDatabase {
   public static final String NUMBER_COLUMN      = ContactsContract.CommonDataKinds.Phone.NUMBER;
   public static final String TYPE_COLUMN        = "type";
 
+  private static final String   FILTER_SELECTION   = NAME_COLUMN + " LIKE ? OR " + NUMBER_COLUMN + " LIKE ?";
   private static final String   CONTACT_LIST_SORT  = NAME_COLUMN + " ASC";
   private static final String[] ANDROID_PROJECTION = new String[]{ID_COLUMN,
                                                                   NAME_COLUMN,
                                                                   NUMBER_TYPE_COLUMN,
                                                                   NUMBER_COLUMN};
 
+  private static final String[] CONTACTS_PROJECTION = new String[]{ID_COLUMN,
+                                                                   NAME_COLUMN,
+                                                                   NUMBER_TYPE_COLUMN,
+                                                                   NUMBER_COLUMN,
+                                                                   TYPE_COLUMN};
+
   public static final int NORMAL_TYPE = 0;
   public static final int PUSH_TYPE   = 1;
   public static final int GROUP_TYPE  = 2;
 
-  public ContactsDatabase(Context context) {
+  private static ContactsDatabase instance = null;
+
+  public synchronized static ContactsDatabase getInstance(Context context) {
+    if (instance == null) instance = new ContactsDatabase(context);
+    return instance;
+  }
+
+  public synchronized static void destroyInstance() {
+    if (instance != null) instance.close();
+    instance = null;
+  }
+
+  private ContactsDatabase(Context context) {
     this.dbHelper = new DatabaseOpenHelper(context);
-    this.context = context;
+    this.context  = context;
   }
 
   public void close() {
     dbHelper.close();
   }
 
-  public Cursor getAllContacts() {
-    return query(null, null, null);
-  }
+  public Cursor query(String filter, boolean pushOnly) {
+    final boolean      includeAndroidContacts = !pushOnly && TextSecurePreferences.isSmsNonDataOutEnabled(context);
+    final Cursor       localCursor            = queryLocalDb(filter);
+    final Cursor       androidCursor;
+    final MatrixCursor newNumberCursor;
 
-  private Cursor query(String selection, String[] selectionArgs, String[] columns) {
-    final Cursor localCursor   = queryLocalDb(selection, selectionArgs, columns);
-    final Cursor androidCursor;
-
-    if (TextSecurePreferences.isSmsNonDataOutEnabled(context)) {
-      androidCursor = queryAndroidDb();
-    } else{
-      return localCursor;
+    if (includeAndroidContacts) {
+      androidCursor = queryAndroidDb(filter);
+    } else {
+      androidCursor = null;
     }
 
-    if      (localCursor != null && androidCursor != null) return new MergeCursor(new Cursor[]{localCursor,androidCursor});
-    else if (localCursor != null)                          return localCursor;
-    else if (androidCursor != null)                        return androidCursor;
-    else                                                   return null;
+    if (includeAndroidContacts && !Util.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
+      newNumberCursor = new MatrixCursor(CONTACTS_PROJECTION, 1);
+      newNumberCursor.addRow(new Object[]{-1L, context.getString(R.string.contact_selection_list__unknown_contact),
+                                          0, filter, NORMAL_TYPE});
+    } else {
+      newNumberCursor = null;
+    }
+
+    List<Cursor> cursors = new ArrayList<Cursor>();
+    if (localCursor != null)     cursors.add(localCursor);
+    if (androidCursor != null)   cursors.add(androidCursor);
+    if (newNumberCursor != null) cursors.add(newNumberCursor);
+
+    switch (cursors.size()) {
+    case 0: return null;
+    case 1: return cursors.get(0);
+    default: return new MergeCursor(cursors.toArray(new Cursor[]{}));
+    }
   }
 
-  private Cursor queryAndroidDb() {
-    Cursor cursor = context.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, ANDROID_PROJECTION, null, null, CONTACT_LIST_SORT);
+  private Cursor queryAndroidDb(String filter) {
+    final Uri baseUri;
+    if (filter != null) {
+      baseUri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI,
+                                     Uri.encode(filter));
+    } else {
+      baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+    }
+    Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION, null, null, CONTACT_LIST_SORT);
     return new TypedCursorWrapper(cursor);
+  }
+
+  private Cursor queryLocalDb(String filter) {
+    final String   selection;
+    final String[] selectionArgs;
+    final String   fuzzyFilter = "%" + filter + "%";
+    if (!Util.isEmpty(filter)) {
+      selection     = FILTER_SELECTION;
+      selectionArgs = new String[]{fuzzyFilter, fuzzyFilter};
+    } else {
+      selection     = null;
+      selectionArgs = null;
+    }
+    return queryLocalDb(selection, selectionArgs, null);
   }
 
   private Cursor queryLocalDb(String selection, String[] selectionArgs, String[] columns) {
