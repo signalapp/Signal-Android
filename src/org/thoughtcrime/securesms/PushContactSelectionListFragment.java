@@ -24,11 +24,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -36,6 +39,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.DataHolder;
+import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -61,6 +65,8 @@ public class PushContactSelectionListFragment extends    Fragment
   private OnContactSelectedListener onContactSelectedListener;
   private boolean                   multi = false;
   private StickyListHeadersListView listView;
+  private EditText                  filterEditText;
+  private String                    cursorFilter;
 
 
   @Override
@@ -78,6 +84,12 @@ public class PushContactSelectionListFragment extends    Fragment
   @Override
   public void onPause() {
     super.onPause();
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    ContactsDatabase.destroyInstance();
   }
 
   @Override
@@ -127,9 +139,27 @@ public class PushContactSelectionListFragment extends    Fragment
     listView  = (StickyListHeadersListView) getView().findViewById(android.R.id.list);
     listView.setFocusable(true);
     listView.setFastScrollEnabled(true);
-    listView.setFastScrollAlwaysVisible(true);
     listView.setDrawingListUnderStickyHeader(false);
     listView.setOnItemClickListener(new ListClickListener());
+    filterEditText = (EditText) getView().findViewById(R.id.filter);
+    filterEditText.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+      }
+
+      @Override
+      public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        cursorFilter = charSequence.toString();
+        getLoaderManager().restartLoader(0, null, PushContactSelectionListFragment.this);
+      }
+
+      @Override
+      public void afterTextChanged(Editable editable) {
+
+      }
+    });
+    cursorFilter = null;
   }
 
   public void update() {
@@ -138,13 +168,19 @@ public class PushContactSelectionListFragment extends    Fragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return ContactAccessor.getInstance().getCursorLoaderForContacts(getActivity());
+    if (getActivity().getIntent().getBooleanExtra(PushContactSelectionActivity.PUSH_ONLY_EXTRA, false)) {
+      return ContactAccessor.getInstance().getCursorLoaderForPushContacts(getActivity(), cursorFilter);
+    } else {
+      return ContactAccessor.getInstance().getCursorLoaderForContacts(getActivity(), cursorFilter);
+    }
   }
 
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
     ((CursorAdapter) listView.getAdapter()).changeCursor(data);
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
+    if (data != null && data.getCount() < 40) listView.setFastScrollAlwaysVisible(false);
+    else                                      listView.setFastScrollAlwaysVisible(true);
   }
 
   @Override

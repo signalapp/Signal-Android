@@ -82,8 +82,12 @@ public class ContactAccessor {
                             null, null, null, ContactsContract.Groups.TITLE + " ASC");
   }
 
-  public Loader<Cursor> getCursorLoaderForContacts(Context context) {
-    return new ContactsCursorLoader(context);
+  public Loader<Cursor> getCursorLoaderForContacts(Context context, String filter) {
+    return new ContactsCursorLoader(context, filter, false);
+  }
+
+  public Loader<Cursor> getCursorLoaderForPushContacts(Context context, String filter) {
+    return new ContactsCursorLoader(context, filter, true);
   }
 
   public Cursor getCursorForContactsWithNumbers(Context context) {
