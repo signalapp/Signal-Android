@@ -68,7 +68,7 @@
                     android:textColor="?conversation_received_text_primary_color"
                     android:textSize="16sp"
                     android:autoLink="all"
-                    android:linksClickable="true" />
+                    android:linksClickable="false" />
             </LinearLayout>
 
             <FrameLayout android:id="@+id/mms_view"

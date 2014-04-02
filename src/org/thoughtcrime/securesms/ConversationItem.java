@@ -34,6 +34,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
+import android.text.style.URLSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -253,6 +254,15 @@ public class ConversationItem extends LinearLayout {
                        TextView.BufferType.SPANNABLE);
     } else {
       bodyText.setText(messageRecord.getDisplayBody());
+    }
+  }
+
+  protected void onUrlSpansClick() {
+    URLSpan[] urlSpans = bodyText.getUrls();
+    if (urlSpans != null) {
+      for (URLSpan urlSpan : urlSpans) {
+        urlSpan.onClick(this);
+      }
     }
   }
 

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 
@@ -213,6 +214,14 @@ public class ConversationFragment extends SherlockListFragment
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients.getPrimaryRecipient())));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
+
+      getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+          ConversationItem item = (ConversationItem) view;
+          item.onUrlSpansClick();
+        }
+      });
     }
   }
 
