@@ -25,8 +25,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -59,8 +57,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -230,7 +226,7 @@ public class ConversationItem extends LinearLayout {
         if (messageRecord.isPending() && pushDestination && !messageRecord.isForcedSms()) {
           background = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
-        } else if (messageRecord.isPending() || messageRecord.isPendingFallbackApproval()) {
+        } else if (messageRecord.isPending() || messageRecord.isPendingSmsFallback()) {
           background = SENT_SMS_PENDING;
           triangleBackground = SENT_SMS_PENDING_TRIANGLE;
         } else if (messageRecord.isPush()) {
@@ -265,8 +261,8 @@ public class ConversationItem extends LinearLayout {
   private void setStatusIcons(MessageRecord messageRecord) {
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
     if (messageRecord.isOutgoing()) {
-      pendingIndicator.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
-      indicatorText.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
+      pendingIndicator.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
+      indicatorText.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
     }
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     keyImage.setVisibility(messageRecord.isKeyExchange() ? View.VISIBLE : View.GONE);
@@ -278,9 +274,10 @@ public class ConversationItem extends LinearLayout {
 
     if (messageRecord.isFailed()) {
       dateText.setText(R.string.ConversationItem_error_sending_message);
-    } else if (messageRecord.isPendingFallbackApproval() && indicatorText != null) {
+    } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
       dateText.setText("");
-      indicatorText.setText(R.string.ConversationItem_click_to_approve);
+      if (messageRecord.isPendingSecureSmsFallback()) indicatorText.setText(R.string.ConversationItem_click_to_approve);
+      else                                            indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
     } else if (messageRecord.isPending()) {
       dateText.setText(" ··· ");
     } else {
@@ -294,14 +291,15 @@ public class ConversationItem extends LinearLayout {
 
   private void setMinimumWidth() {
     if (indicatorText != null && indicatorText.getVisibility() == View.VISIBLE && indicatorText.getText() != null) {
-      conversationParent.setMinimumWidth(indicatorText.getText().length() * 20);
+      final float density = getResources().getDisplayMetrics().density;
+      conversationParent.setMinimumWidth(indicatorText.getText().length() * (int)(6.5 * density));
     } else {
       conversationParent.setMinimumWidth(0);
     }
   }
 
   private void setEvents(MessageRecord messageRecord) {
-    setClickable(messageRecord.isPendingFallbackApproval() ||
+    setClickable(messageRecord.isPendingSmsFallback() ||
                  (messageRecord.isKeyExchange()            &&
                   !messageRecord.isCorruptedKeyExchange()  &&
                   !messageRecord.isOutgoing()));
@@ -640,23 +638,40 @@ public class ConversationItem extends LinearLayout {
           !messageRecord.isProcessedKeyExchange() &&
           !messageRecord.isStaleKeyExchange())
         handleKeyExchangeClicked();
-      else if (messageRecord.isPendingFallbackApproval())
+      else if (messageRecord.isPendingSmsFallback())
         handleMessageApproval();
     }
   }
 
   private void handleMessageApproval() {
+    final int title;
+    final int message;
+    if (messageRecord.isPendingSecureSmsFallback()) {
+      title = R.string.ConversationItem_click_to_approve_dialog_title;
+      message = -1;
+    } else {
+      title = R.string.ConversationItem_click_to_approve_unencrypted_dialog_title;
+      message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
+    }
+
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setTitle(R.string.ConversationItem_click_to_approve_dialog_title);
+    builder.setTitle(title);
+    if (message > -1) builder.setMessage(message);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
         if (messageRecord.isMms()) {
           MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+          if (messageRecord.isPendingInsecureSmsFallback()) {
+            database.markAsInsecure(messageRecord.getId());
+          }
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
         } else {
           SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
+          if (messageRecord.isPendingInsecureSmsFallback()) {
+            database.markAsInsecure(messageRecord.getId());
+          }
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
         }
@@ -669,8 +684,11 @@ public class ConversationItem extends LinearLayout {
     builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
-        if (messageRecord.isMms()) DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
-        else                       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
+        if (messageRecord.isMms()) {
+          DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
+        } else {
+          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
+        }
       }
     });
     builder.show();

@@ -15,18 +15,20 @@ public interface MmsSmsColumns {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;
 
     // Base Types
-    protected static final long BASE_TYPE_MASK                 = 0x1F;
+    protected static final long BASE_TYPE_MASK                     = 0x1F;
 
-    protected static final long BASE_INBOX_TYPE                = 20;
-    protected static final long BASE_OUTBOX_TYPE               = 21;
-    protected static final long BASE_SENDING_TYPE              = 22;
-    protected static final long BASE_SENT_TYPE                 = 23;
-    protected static final long BASE_SENT_FAILED_TYPE          = 24;
-    protected static final long BASE_PENDING_FALLBACK_APPROVAL = 25;
+    protected static final long BASE_INBOX_TYPE                    = 20;
+    protected static final long BASE_OUTBOX_TYPE                   = 21;
+    protected static final long BASE_SENDING_TYPE                  = 22;
+    protected static final long BASE_SENT_TYPE                     = 23;
+    protected static final long BASE_SENT_FAILED_TYPE              = 24;
+    protected static final long BASE_PENDING_SECURE_SMS_FALLBACK   = 25;
+    protected static final long BASE_PENDING_INSECURE_SMS_FALLBACK = 26;
 
     protected static final long[] OUTGOING_MESSAGE_TYPES = {BASE_OUTBOX_TYPE, BASE_SENT_TYPE,
                                                             BASE_SENDING_TYPE, BASE_SENT_FAILED_TYPE,
-                                                            BASE_PENDING_FALLBACK_APPROVAL};
+                                                            BASE_PENDING_SECURE_SMS_FALLBACK,
+                                                            BASE_PENDING_INSECURE_SMS_FALLBACK};
 
     // Message attributes
     protected static final long MESSAGE_ATTRIBUTE_MASK = 0xE0;
@@ -82,8 +84,17 @@ public interface MmsSmsColumns {
               (type & BASE_TYPE_MASK) == BASE_SENDING_TYPE;
     }
 
-    public static boolean isPendingApprovalType(long type) {
-      return (type & BASE_TYPE_MASK) == BASE_PENDING_FALLBACK_APPROVAL;
+    public static boolean isPendingSmsFallbackType(long type) {
+      return (type & BASE_TYPE_MASK) == BASE_PENDING_INSECURE_SMS_FALLBACK ||
+             (type & BASE_TYPE_MASK) == BASE_PENDING_SECURE_SMS_FALLBACK;
+    }
+
+    public static boolean isPendingSecureSmsFallbackType(long type) {
+      return (type & BASE_TYPE_MASK) == BASE_PENDING_SECURE_SMS_FALLBACK;
+    }
+
+    public static boolean isPendingInsecureSmsFallbackType(long type) {
+      return (type & BASE_TYPE_MASK) == BASE_PENDING_INSECURE_SMS_FALLBACK;
     }
 
     public static boolean isInboxType(long type) {
