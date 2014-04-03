@@ -24,7 +24,9 @@
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">U bent niet geregistreerd bij de push service...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Contactpersonen updaten</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Pushcontactpersonen updaten...</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Inkomende SMS geactiveerd</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Raak aan om uw standaard SMS applicatie te veranderen</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Inkomende SMS uitgeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Raak aan om TextSecure uw standaard SMS applicatie te maken</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
@@ -50,6 +52,8 @@
   <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
   <string name="ConversationItem_group_action_joined">%1$s is toegetreden tot de groep.</string>
   <string name="ConversationItem_group_action_modify">%1$s heeft de groep bijgewerkt.</string>
+  <string name="ConversationItem_click_to_approve">Tik voor terugvallen op SMS</string>
+  <string name="ConversationItem_click_to_approve_dialog_title">Terugvallen naar SMS?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initieer Beveiligde Sessie?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initieer beveiligde sessie met %s?</string>
@@ -215,7 +219,7 @@
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bijgewerkte maar onbekende identiteitsgegevens ontvangen. Raak aan om identiteit te bevestigen.</string>
   <string name="SmsMessageRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Heeft de groep verlaten...</string>
+  <string name="ThreadRecord_left_the_group">Je hebt deze groep verlaten...</string>
   <string name="TheadRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">U heeft geen identiteitssleutel.</string>
@@ -305,12 +309,9 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Geen contacten.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Contacten zoeken...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Type een naam om te zoeken...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">U bent niet geregistreerd bij de push service...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Contactpersonen updaten</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Pushcontactpersonen updaten...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecteer voor</string>
   <!--contact_selection_recent_activity-->
@@ -420,7 +421,6 @@
   <string name="registration_progress_activity__sms_verification_failed">SMS-verificatie mislukt.</string>
   <string name="registration_progress_activity__generating_keys">Sleutels genereren...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Aan</string>
   <string name="recipients_panel__add_member">Voeg groepslid toe</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">U heeft momenteel geen identiteitssleutels in uw vertrouwensdatabase.</string>
@@ -454,8 +454,12 @@
   <string name="arrays__contact_keys">Sleutels van Contacten</string>
   <!--preferences.xml-->
   <string name="preferences__general">Algemeen</string>
+  <string name="preferences__push_sms_category">Push en SMS</string>
+  <string name="preferences__pref_all_sms_title">Ontvang alle SMS</string>
+  <string name="preferences__pref_all_mms_title">Ontvang alle MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gebruik TextSecure voor het bekijken en opslaan van alle inkomende tekstberichten</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gebruik TextSecure voor het bekijken en opslaan van alle inkomende multimediaberichten</string>
+  <string name="preferences__input_settings">Invoer Instellingen</string>
   <string name="preferences__enable_enter_key_title">Activeer Enter-toets</string>
   <string name="preferences__replace_smiley_with_enter_key">Vervang de smiley-toets door een enter-toets</string>
   <string name="preferences__pref_enter_sends_title">Enter verstuurt</string>
@@ -468,9 +472,9 @@
   <string name="preferences__complete_key_exchanges">Voltooi sleuteluitwisselingen</string>
   <string name="preferences__disable_passphrase">Wachtwoord uitschakelen</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Lokale versleuteling van berichten en sleutels uitschakelen</string>
-  <string name="preferences__screen_security">Scherm veiligheid</string>
+  <string name="preferences__screen_security">Schermbeveiliging</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisch sleuteluitwisselingen voltooien voor nieuwe sessies of voor bestaande sessies met dezelfde identiteitssleutel</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Zet scherm veiligheid uit om screenshots mogelijk te maken</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Screenshots onmogelijk maken</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Vergeet het wachtwoord uit het geheugen na een bepaalde tijd</string>
   <string name="preferences__timeout_passphrase">Time-out wachtwoord</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Selecteer Wachtwoord Time-out</string>
@@ -533,10 +537,17 @@
   <string name="preferences__make_default_sms_app">Stel in als standaard SMS-app</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Stel TextSecure in als standaard SMS/MMS-applicatie voor uw systeem.</string>
   <string name="preferences__use_data_channel">Pushberichten</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nVerbeter de privacy en vermijd SMS-kosten door het datakanaal te gebruiken om te communiceren met andere TextSecure gebruikers</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nPrivacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken om te communiceren met andere TextSecure gebruikers</string>
+  <string name="preferences__allow_sms_fallback">SMS versturen naar</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is momenteel uw standaard SMS applicatie. Selecteer alstublieft een andere SMS applicatie om deze voorkeur te veranderen.</string>
   <string name="preferences__refresh_push_directory">Ververs pushcontacten</string>
   <string name="preferences__submit_debug_log">Dien debug log in</string>
+  <string name="preferences__sms_outgoing_push_users">TextSecure gebruikers</string>
+  <string name="preferences__sms_fallback_push_users_ask">(eerst vragen)</string>
+  <string name="preferences__sms_outgoing_push_users_description">Stuur een veilige SMS als de dataverbinding niet beschikbaar is</string>
+  <string name="preferences__sms_fallback_ask_fallback">Vragen voor het versturen van SMS</string>
+  <string name="preferences__sms_fallback_non_push_users">Niet-TextSecure gebruikers</string>
+  <string name="preferences__sms_fallback_nobody">Niemand</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

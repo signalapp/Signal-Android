@@ -232,6 +232,7 @@
   <string name="ApplicationMigrationService_importing_text_messages">Mesajlar İçe Aktarılıyor</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Açmak için dokunun.</string>
+  <string name="KeyCachingService_passphrase_cached">TextSecure kilitsiz</string>
   <string name="KeyCachingService_lock">Parola ile kilitle</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d yeni mesaj</string>
@@ -258,7 +259,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Kişiler bulunuyor...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Filtrelemek için bir isim yazınız...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Dizin güncelleniyor</string>
@@ -351,7 +351,6 @@
   <string name="registration_progress_activity__sms_verification_failed">SMS doğrulaması\nbaşarısız.</string>
   <string name="registration_progress_activity__generating_keys">Anahtarlar üretiliyor...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Alıcı</string>
   <string name="recipients_panel__add_member">Üye ekle</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Güven veritabanınızda şu an herhangi bir kimlik anahtarı bulunmamaktadır.</string>
@@ -386,6 +385,7 @@
   <string name="preferences__general">Genel</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gelen tüm mesajların gösterimi ve saklanması için TextSecure kullan</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm medya mesajların gösterimi ve saklanması için TextSecure kullan</string>
+  <string name="preferences__input_settings">Girdi Ayarları</string>
   <string name="preferences__pref_enter_sends_title">Enter gönderir</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşu metin mesajları göndersin</string>
   <string name="preferences__display_settings">Görüntüleme Ayarları</string>
@@ -424,6 +424,7 @@
   <string name="preferences__cyan">Cam Göbeği</string>
   <string name="preferences__magenta">Magenta</string>
   <string name="preferences__white">Beyaz</string>
+  <string name="preferences__none">Hiçbiri</string>
   <string name="preferences__fast">Hızl</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Yavaş</string>
@@ -449,6 +450,11 @@
   <string name="preferences__make_default_sms_app">Varsayılan SMS uygulaması olarak ayarla</string>
   <string name="preferences__use_data_channel">Push mesajlar</string>
   <string name="preferences__submit_debug_log">Hata ayıklama kaydı gönder</string>
+  <string name="preferences__sms_outgoing_push_users">TextSecure kullanıcıları</string>
+  <string name="preferences__sms_fallback_push_users_ask">(önce sor)</string>
+  <string name="preferences__sms_fallback_ask_fallback">SMS göndermeden önce sor</string>
+  <string name="preferences__sms_fallback_non_push_users">TextSecure kullanıcısı olmayanlar</string>
+  <string name="preferences__sms_fallback_nobody">Hiç kimse</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

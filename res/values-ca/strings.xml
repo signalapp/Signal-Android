@@ -305,12 +305,9 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sense contactes.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Buscant contactes…</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Escriu un nom per filtrar...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">No estàs registrat al servei push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Actualitzant directori</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Actualitzant el Directori Push...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecciona per</string>
   <!--contact_selection_recent_activity-->
@@ -420,7 +417,6 @@
   <string name="registration_progress_activity__sms_verification_failed">La verificació SMS ha fallat.</string>
   <string name="registration_progress_activity__generating_keys">Generant claus...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Per a</string>
   <string name="recipients_panel__add_member">Afegeix membre</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Actualment no tens cap clau d\'identitat a la teva base de dades de confiança.</string>

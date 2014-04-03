@@ -293,7 +293,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádný kontakt</string>
-  <string name="contact_selection_group_activity__finding_contacts">Hledat kontakty...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Napište jméno pro vyfiltrování...</string>
   <!--ContactSelectionListFragment-->
@@ -401,7 +400,6 @@
   <string name="registration_progress_activity__sms_verification_failed">Ověření pomocí SMS\n        selhalo.\n    </string>
   <string name="registration_progress_activity__generating_keys">Probíhá generování klíčů...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Komu</string>
   <string name="recipients_panel__add_member">Přidat člena</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Aktuálně nemáte žádné cizí identifikační klíče v databázi.</string>

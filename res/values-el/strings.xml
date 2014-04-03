@@ -297,12 +297,9 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Δεν υπάρχουν επαφές.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Εύρεση επαφών...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Πληκτρολογήστε όνομα για φιλτράρισμα...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Δεν είστε εγγεγραμμένος για ειδοποιήσεις push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Ενημέρωση καταλόγου</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Ενημέρωση καταλόγου push...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Επιλογή για</string>
   <!--contact_selection_recent_activity-->
@@ -406,7 +403,6 @@
   <string name="registration_progress_activity__sms_verification_failed">Η επιβεβαίωση SMS\n        απέτυχε.\n    </string>
   <string name="registration_progress_activity__generating_keys">Δημιουργία κλειδιών σε εξέλιξη...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Προς</string>
   <string name="recipients_panel__add_member">Προσθέστε ένα μέλος</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Δεν έχετε κλειδιά ταυτότητας στη λίστα έμπιστών σας.</string>

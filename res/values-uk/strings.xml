@@ -285,7 +285,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Контактів не знайдено.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Пошук контактів...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Почніть друкувати ім’я для фільтрації...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Оновлення теки</string>
@@ -393,7 +392,6 @@
   <string name="registration_progress_activity__sms_verification_failed">SMS-перевірка не вдалася.</string>
   <string name="registration_progress_activity__generating_keys">Генерація ключів\u2026</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">До</string>
   <string name="recipients_panel__add_member">Додати учасника</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">У вашій базі довірених співрозмовників немає жодного особистого ключа.</string>

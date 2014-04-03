@@ -53,7 +53,10 @@
   <string name="ConversationItem_group_action_joined">%1$s ont rejoint le groupe.</string>
   <string name="ConversationItem_group_action_modify">%1$s a mis à jour le groupe.</string>
   <string name="ConversationItem_click_to_approve">Appuyez pour utiliser la solution de repli SMS</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Appuyez pour utiliser la solution de repli non sécurisée</string>
   <string name="ConversationItem_click_to_approve_dialog_title">Utiliser solution de repli SMS ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Se replier sur les SMS non chiffrés ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message <b>ne</b> sera <b>pas</b> chiffré, car une session sécurisée n\'a pas pu être établie.\n\nEnvoyer un message non sécurisé ?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initier une session sécurisée ?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initier une session sécurisée avec %s ?</string>
@@ -218,6 +221,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nUn message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'accepter et l\'afficher.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Nouvelle information d\'identité mise à jour mais inconnue reçue. Appuyez pour valider l\'identité.</string>
   <string name="SmsMessageRecord_secure_session_ended">La session sécurisée s’est terminée.</string>
+  <string name="SmsMessageRecord_duplicate_message">Message doublon.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Groupe quitté…</string>
   <string name="TheadRecord_secure_session_ended">La session sécurisée s’est terminée.</string>
@@ -309,12 +313,13 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Aucun contact.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Recherche des contacts en cours...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Chargement des contacts...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Taper un nom à filtrer...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Vous n’êtes pas abonné au service push…</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Vous n\'êtes pas enregistré avec le service push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Mise à jour du répertoire</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Mise à jour du répertoire push…</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Mise à jour du dossier push...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Photo de contact</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Sélectionner pour</string>
   <!--contact_selection_recent_activity-->
@@ -353,6 +358,8 @@
   <string name="log_submit_activity__copied_to_clipboard">Copié dans le presse-papier</string>
   <string name="log_submit_activity__loading_logcat">Chargement de logcat…</string>
   <string name="log_submit_activity__thanks">Merci pour votre aide !</string>
+  <string name="log_submit_activity__submitting">Soumission</string>
+  <string name="log_submit_activity__posting_logs">Enregistre les logs sur pastebin...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voulez-vous importer vos messages textes existant dans la base de données chiffrée de TextSecure ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de données par défaut du système ne sera en aucune façon modifiée ou altérée.</string>
@@ -424,7 +431,7 @@
   <string name="registration_progress_activity__sms_verification_failed">Échec de la vérification\npar SMS.</string>
   <string name="registration_progress_activity__generating_keys">Création des clés...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">À</string>
+  <string name="recipients_panel__to"><small>Entrez un nom ou un numéro</small></string>
   <string name="recipients_panel__add_member">Ajouter un membre</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Vous n\'avez pour l’instant  aucune clé d\'identité dans votre base de données de confiance.</string>
@@ -463,6 +470,7 @@
   <string name="preferences__pref_all_mms_title">Recevoir tous les MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utiliser TextSecure pour consulter et stocker tous les messages textes entrants</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utiliser TextSecure pour consulter et stocker tous les messages multimédia entrants</string>
+  <string name="preferences__input_settings">Paramètres de saisie</string>
   <string name="preferences__enable_enter_key_title">Activer la touche Entrée</string>
   <string name="preferences__replace_smiley_with_enter_key">Remplacer la touche émoticône par une touche Entrée</string>
   <string name="preferences__pref_enter_sends_title">La touche Entrée envoie</string>
@@ -557,6 +565,8 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Sélectionner tout</string>
   <string name="contact_selection_list__menu_unselect_all">Désélectionner tout</string>
+  <string name="contact_selection_list__header_textsecure_users">UTILISATEURS TEXTSECURE</string>
+  <string name="contact_selection_list__header_other">TOUS LES CONTACTS</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Terminé</string>
   <!--refreshing push directory from menu-->

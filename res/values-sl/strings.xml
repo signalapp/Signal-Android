@@ -53,7 +53,10 @@
   <string name="ConversationItem_group_action_joined">Oseba %1$s se je pridružila skupini.</string>
   <string name="ConversationItem_group_action_modify">Oseba %1$s je posodobila skupino.</string>
   <string name="ConversationItem_click_to_approve">Za prehod na SMS se dotakni</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Tapni za prehod na nešifriran SMS</string>
   <string name="ConversationItem_click_to_approve_dialog_title">Prehod na SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Preklopim na nešifriran SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker varna seja ne more biti vzpostavljena.\n\nPošljem nešifrirano sporočilo?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Začnem varno sejo?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Začnem varno sejo z %s?</string>
@@ -218,6 +221,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nPrejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo in prikaz.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Prejet je bil nadgrajen identifikacijski ključ neznanega stika. Tapnite za potrditev istovetnosti.</string>
   <string name="SmsMessageRecord_secure_session_ended">Varna seja je zaključena.</string>
+  <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Zapustili ste skupino...</string>
   <string name="TheadRecord_secure_session_ended">Varna seja je zaključena.</string>
@@ -309,12 +313,13 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ni stikov.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Iščem stike...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Nalagam stike...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Vnesite ime za filtriranje...</string>
   <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Niste prijavljeni v potisno storitev...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Posodabljam seznam</string>
   <string name="SingleContactSelectionActivity_updating_push_directory">Posodabljam potisni seznam...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Fotografija stika</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Izberi za</string>
   <!--contact_selection_recent_activity-->
@@ -353,6 +358,8 @@
   <string name="log_submit_activity__copied_to_clipboard">Prekopirano v odložišče</string>
   <string name="log_submit_activity__loading_logcat">Nalagam sistemsko zabeležbo...</string>
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
+  <string name="log_submit_activity__submitting">Oddajam</string>
+  <string name="log_submit_activity__posting_logs">Pošiljam zabeležke na spletno odložišče...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite uvoziti vaša obstoječa SMS sporočila v šifrirano podatkovno zbirko TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Osnovna SMS podatkovna zbirka bo ostala nespremenjena.</string>
@@ -424,7 +431,7 @@
   <string name="registration_progress_activity__sms_verification_failed">Potrditev SMS ni\nbila uspešna.</string>
   <string name="registration_progress_activity__generating_keys">Ustvarjam ključe...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Za</string>
+  <string name="recipients_panel__to"><small>Vnesite ime ali številko</small></string>
   <string name="recipients_panel__add_member">Dodaj člana</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Trenutno nimate identifikacijskih ključev v zbirki zaupanja vrednih.</string>
@@ -461,8 +468,9 @@
   <string name="preferences__push_sms_category">Potisna sporočila in SMS</string>
   <string name="preferences__pref_all_sms_title">Prejemaj sporočila SMS</string>
   <string name="preferences__pref_all_mms_title">Prejemaj sporočila MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Uporabljaj TextSecure za ogled in shranjevanje vseh dohodnih SMS sporočil</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj TextSecure za ogled in shranjevanje vseh dohodnih MMS sporočil</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Uporabljaj TextSecure za ogled in shranjevanje vseh dohodnih sporočil SMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj TextSecure za ogled in shranjevanje vseh dohodnih sporočil MMS</string>
+  <string name="preferences__input_settings">Nastavitve vnosa</string>
   <string name="preferences__enable_enter_key_title">Vklopi tipko \'pošlji\'</string>
   <string name="preferences__replace_smiley_with_enter_key">Zamenjaj tipko \'smeško\' s tipko \'pošlji\'</string>
   <string name="preferences__pref_enter_sends_title">Tipka \'naprej\' pošlje</string>
@@ -541,7 +549,7 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Nastavi TextSecure za privzeto aplikacijo SMS/MMS na napravi.</string>
   <string name="preferences__use_data_channel">Potisna sporočila</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">Izboljšajte stopnjo zasebnosti in se izognite stroškom SMS sporočil z uporabo podatkovnega kanala pri komunikaciji z drugimi uporabniki TextSecure</string>
-  <string name="preferences__allow_sms_fallback">Dovoli odhodna sporočila SMS za</string>
+  <string name="preferences__allow_sms_fallback">Odhodna sporočila SMS za</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure je trenutno vaša privzeta aplikacija SMS. Za spremembo morate najprej izbrati novo privzeto aplikacijo.</string>
   <string name="preferences__refresh_push_directory">Osveži potisni seznam</string>
   <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
@@ -557,6 +565,8 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Izberi vse</string>
   <string name="contact_selection_list__menu_unselect_all">Prekliči izbor vsega</string>
+  <string name="contact_selection_list__header_textsecure_users">UPORABNIKI TEXTSECURE</string>
+  <string name="contact_selection_list__header_other">VSI STIKI</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Končano</string>
   <!--refreshing push directory from menu-->

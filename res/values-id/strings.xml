@@ -14,6 +14,7 @@
   <string name="ApplicationPreferencesActivity_delete">Hapus</string>
   <string name="ApplicationPreferencesActivity_my">Saya</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Matikan enkripsi media simpan?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nPeringatan, ini akan menonaktifkan penyimpanan terenkripsi untuk semua pesan dan kunci. Sesi enkripsi\nanda selanjutnya akan berfungsi, tapi siapa saja yang mempunyai akses pisik ke perangkat anda\ndapat mengaksesnya</string>
   <string name="ApplicationPreferencesActivity_disable">Dinon aktifkan</string>
   <string name="ApplicationPreferencesActivity_unregistering">Keluar...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Keluar dari komunikasi berbasis data</string>
@@ -169,9 +170,11 @@
   <string name="RegistrationActivity_select_your_country">Pilih Negara Anda</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus menetapkan kode\nNegara anda\n</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Anda harus mengisi nomor\ntelefon anda\n</string>
-  <string name="RegistrationActivity_invalid_number">Nomor tidak lengkap</string>
+  <string name="RegistrationActivity_invalid_number">Nomor tidak benar</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nomor yang anda\nisikan (%s) tidak tepat.\n</string>
   <string name="RegistrationActivity_unsupported">Tidak didukung</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Maaf,\nperangkat ini tidak mendukung pesan data. Perangkat berjalan pada Android versi lama\ndari 4.0 harus registrasi Akun Google. Perangkat berjalan pada Android 4.0 atau lebih baru\ntidak memerlukan Akun Google, tetapi harus terpasang aplikasi Play Store</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nKami sekarang akan memverifikasi bahwa nomor berikut dikaitkan dengan perangkat ini:\n\n%s\n\n\nApakah nomor ini benar, apakah ingin merubahnya sebelum melanjutkan?</string>
   <string name="RegistrationActivity_continue">Lanjutkan</string>
   <string name="RegistrationActivity_edit">Edit</string>
   <!--RegistrationProblemsActivity-->
@@ -196,7 +199,7 @@
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Server mengalami gangguan. Silakan coba lagi.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Terlalu Banyak Permintaan!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Anda telah meminta panggilan suara. Anda dapat meminta lagi dalam 20 menit kemudian.</string>
-  <string name="RegistrationProgressActivity_verifying_voice_code">Memverifikasi kode suara</string>
+  <string name="RegistrationProgressActivity_verifying_voice_code">Memverifikasi kode suara...</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflik pendaftaran</string>
   <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Nomor ini telah didaftarkan di server TextSecure lainnya (CyanogenMod?). Anda harus keluar dari sana sebelum mendaftar ke server ini.</string>
   <!--RegistrationService-->
@@ -205,6 +208,8 @@
   <string name="RegistrationService_registration_error">Pendaftaran Gagal</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pendaftaran TextSecure mengalami masalah.</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Pesan menerima dan \nmemproses pertukaran kunci korupsi.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nMenerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan menampilkan.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Menerima pembaharuan atas identitas yang tidak diketahui. Sentuh untuk memvalidasi identitas</string>
   <string name="SmsMessageRecord_secure_session_ended">Sesi aman berakhir.</string>
   <!--ThreadRecord-->
@@ -298,12 +303,9 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Tidak ada kontak</string>
-  <string name="contact_selection_group_activity__finding_contacts">Temukan kontak...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Ketik nama untuk memfilter...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Anda tidak terdaftar dengan layanan push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Memperbaharui direktori</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Sedang memperbaharui direktori...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Pilih untuk</string>
   <!--contact_selection_recent_activity-->
@@ -354,7 +356,7 @@
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Eksport cadangan dienkripsi\nke kartu SD.</string>
   <string name="export_fragment__export_plaintext_backup">Eksport Cadangan Teks Polos</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nExport cadangan ke teks polos yang kompatibel dengan \'SMSBackup And Restore\'  ke kartu SD.</string>
-  <string name="import_fragment__import_system_sms_database">Import Database SMS Sistem</string>
+  <string name="import_fragment__import_system_sms_database">Import Basis data SMS Sistem</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Import database\ndari aplikasi perpesan bawaan\n</string>
   <string name="import_fragment__import_encrypted_backup">Import Cadangan yang Diacak</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nPulihkan dari cadangan teracak TextSecure.\n</string>
@@ -403,7 +405,6 @@
   <string name="registration_progress_activity__sms_verification_failed">Verifikasi SMS\nTelah gagal\n</string>
   <string name="registration_progress_activity__generating_keys">Membuat kunci...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Kepada</string>
   <string name="recipients_panel__add_member">Tambah Anggota</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Saat ini anda tidak memiliki kunci identitas di database yang dipercaya</string>
@@ -437,8 +438,11 @@
   <string name="arrays__contact_keys">Kunci Kontak</string>
   <!--preferences.xml-->
   <string name="preferences__general">Umum</string>
+  <string name="preferences__pref_all_sms_title">Terima semua SMS</string>
+  <string name="preferences__pref_all_mms_title">Terima semua MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gunakan TextSecure untuk melihat dan menyimpan semua pesan teks yang masuk</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan TextSecure untuk melihat dan menyimpan semua pesan multimedia yang masuk</string>
+  <string name="preferences__input_settings">Seting Masukan</string>
   <string name="preferences__enable_enter_key_title">Gunakan tombol Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Ganti tombol smiley dengan tombol enter</string>
   <string name="preferences__pref_enter_sends_title">Tekan enter untuk mengirim</string>
@@ -519,6 +523,11 @@
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure saat ini sebagai aplikasi SMS default. Silakan tentukan aplikasi SMS default yang lain untuk mengganti nilai ini.</string>
   <string name="preferences__refresh_push_directory">Muat ulang direktori Push</string>
   <string name="preferences__submit_debug_log">Kirim debug log</string>
+  <string name="preferences__sms_outgoing_push_users">Pengguna TextSecure</string>
+  <string name="preferences__sms_fallback_push_users_ask">(tanya dulu)</string>
+  <string name="preferences__sms_fallback_ask_fallback">Tanyakan sebelum kirim SMS</string>
+  <string name="preferences__sms_fallback_non_push_users">Bukan pengguna TextSecure</string>
+  <string name="preferences__sms_fallback_nobody">Tak seorangpun</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

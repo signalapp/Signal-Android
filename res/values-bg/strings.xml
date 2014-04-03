@@ -264,7 +264,6 @@
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
-  <string name="recipients_panel__to">До</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Нямате никакви лични ключове в базата данни.</string>
   <!--verify_identity_activity-->
