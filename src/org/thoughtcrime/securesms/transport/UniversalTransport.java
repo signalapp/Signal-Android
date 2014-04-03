@@ -167,6 +167,7 @@ public class UniversalTransport {
 
       if (!isSmsFallbackApprovalRequired) {
         Log.w("UniversalTransport", "Falling back to MMS");
+        DatabaseFactory.getMmsDatabase(context).markAsForcedSms(mediaMessage.getDatabaseMessageId());
         return mmsTransport.deliver(mediaMessage);
       } else if (!Session.hasEncryptCapableSession(context, masterSecret, recipient)) {
         Log.w("UniversalTransport", "Marking message as pending insecure SMS fallback");
@@ -188,6 +189,7 @@ public class UniversalTransport {
 
     if (!isSmsFallbackApprovalRequired) {
       Log.w("UniversalTransport", "Falling back to SMS");
+      DatabaseFactory.getSmsDatabase(context).markAsForcedSms(smsMessage.getId());
       smsTransport.deliver(smsMessage);
     } else if (!Session.hasEncryptCapableSession(context, masterSecret, recipient)) {
       Log.w("UniversalTransport", "Marking message as pending insecure fallback.");
