@@ -35,6 +35,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.BufferedInputStream;
@@ -159,11 +160,11 @@ public class LogSubmitActivity extends SherlockActivity {
     }
   }
 
-  private class SubmitToPastebinAsyncTask extends AsyncTask<Void,Void,String> {
-    private       ProgressDialog progressDialog;
+  private class SubmitToPastebinAsyncTask extends ProgressDialogAsyncTask<Void,Void,String> {
     private final String         paste;
 
     public SubmitToPastebinAsyncTask(String paste) {
+      super(LogSubmitActivity.this, R.string.log_submit_activity__submitting, R.string.log_submit_activity__posting_logs);
       this.paste = paste;
     }
 
@@ -174,7 +175,6 @@ public class LogSubmitActivity extends SherlockActivity {
         URL url = new URL(HASTEBIN_ENDPOINT);
         urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setDoOutput(true);
-        urlConnection.setFixedLengthStreamingMode(paste.length());
         urlConnection.setReadTimeout(10000);
         urlConnection.connect();
 
@@ -202,21 +202,8 @@ public class LogSubmitActivity extends SherlockActivity {
     }
 
     @Override
-    protected void onPreExecute() {
-      super.onPreExecute();
-      progressDialog = new ProgressDialog(LogSubmitActivity.this);
-      progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-      progressDialog.setCancelable(false);
-      progressDialog.setIndeterminate(true);
-      progressDialog.setTitle("Submitting");
-      progressDialog.setMessage("Posting logs to pastebin...");
-      progressDialog.show();
-    }
-
-    @Override
     protected void onPostExecute(final String response) {
       super.onPostExecute(response);
-      progressDialog.dismiss();
 
       if (response != null && !response.startsWith("Bad API request")) {
         TextView showText = new TextView(LogSubmitActivity.this);

@@ -13,7 +13,11 @@
             android:singleLine="true"
             android:hint="@string/recipients_panel__to"
             android:paddingRight="45dip"
+            android:paddingLeft="15dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
             android:textColor="?conversation_editor_text_color"
+            android:background="?conversation_editor_background"
             android:layout_width="fill_parent"/>
 
     </RelativeLayout>

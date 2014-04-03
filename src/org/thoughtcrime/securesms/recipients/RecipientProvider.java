@@ -129,8 +129,8 @@ public class RecipientProvider {
     try {
       if (cursor != null && cursor.moveToFirst()) {
         Uri contactUri      = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
-        Bitmap contactPhoto = getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
-                                                                            cursor.getLong(2)+""));
+        Bitmap contactPhoto = ContactPhotoFactory.getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
+                                                                                                cursor.getLong(2)+""));
 
         return new RecipientDetails(cursor.getString(0), contactUri, contactPhoto);
       }
@@ -162,15 +162,6 @@ public class RecipientProvider {
       Log.w("RecipientProvider", e);
       return null;
     }
-  }
-
-  private Bitmap getContactPhoto(Context context, Uri uri) {
-    InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri);
-
-    if (inputStream == null)
-      return ContactPhotoFactory.getDefaultContactPhoto(context);
-    else
-      return BitmapFactory.decodeStream(inputStream);
   }
 
   public static class RecipientDetails {

@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.textsecure.directory.Directory;
@@ -18,6 +20,37 @@ import java.util.Set;
 
 public class DirectoryHelper {
   private static final String TAG = DirectoryHelper.class.getSimpleName();
+
+  public static void refreshDirectoryWithProgressDialog(final Context context) {
+    refreshDirectoryWithProgressDialog(context, null);
+  }
+
+  public static void refreshDirectoryWithProgressDialog(final Context context, final DirectoryUpdateFinishedListener listener) {
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      Toast.makeText(context.getApplicationContext(),
+                     context.getString(R.string.SingleContactSelectionActivity_you_are_not_registered_with_the_push_service),
+                     Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    new ProgressDialogAsyncTask<Void,Void,Void>(context,
+                                                R.string.SingleContactSelectionActivity_updating_directory,
+                                                R.string.SingleContactSelectionActivity_updating_push_directory)
+    {
+      @Override
+      protected Void doInBackground(Void... voids) {
+        DirectoryHelper.refreshDirectory(context.getApplicationContext());
+        return null;
+      }
+
+      @Override
+      protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        if (listener != null) listener.onUpdateFinished();
+      }
+    }.execute();
+
+  }
 
   public static void refreshDirectory(final Context context) {
     refreshDirectory(context, PushServiceSocketFactory.create(context));
@@ -62,5 +95,9 @@ public class DirectoryHelper {
     } catch (NotInDirectoryException e) {
       return false;
     }
+  }
+
+  public static interface DirectoryUpdateFinishedListener {
+    public void onUpdateFinished();
   }
 }

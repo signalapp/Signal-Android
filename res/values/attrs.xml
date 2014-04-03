@@ -21,7 +21,7 @@
     <attr name="lower_right_divet" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
-    <attr name="conversation_editor_background" format="reference|color"/>
+    <attr name="conversation_editor_background" format="reference"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
     <attr name="conversation_send_button" format="reference"/>
     <attr name="conversation_send_secure_button" format="reference"/>
@@ -45,8 +45,7 @@
 
     <attr name="contact_selection_push_user" format="reference|color" />
     <attr name="contact_selection_lay_user" format="reference|color" />
-    <attr name="contact_selection_push_label" format="reference|color" />
-    <attr name="contact_selection_lay_label" format="reference|color" />
+    <attr name="contact_selection_label_text" format="reference|color" />
 
     <attr name="navigation_drawer_background" format="reference|color"/>
     <attr name="navigation_drawer_text_color" format="color"/>

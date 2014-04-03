@@ -17,67 +17,67 @@
 package org.thoughtcrime.securesms;
 
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.TypedArray;
 import android.database.Cursor;
-import android.database.MergeCursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CursorAdapter;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.AdapterView;
 import android.widget.TextView;
-
-import com.actionbarsherlock.app.SherlockListFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData;
+import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
+import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
+import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.DataHolder;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
- * Activity for selecting a list of contacts.  Displayed inside
- * a PushContactSelectionActivity tab frame, and ultimately called by
- * ComposeMessageActivity for selecting a list of destination contacts.
+ * Fragment for selecting a one or more contacts from a list.
  *
  * @author Moxie Marlinspike
  *
  */
 
-public class PushContactSelectionListFragment extends SherlockListFragment
-    implements LoaderManager.LoaderCallbacks<Cursor>
+public class PushContactSelectionListFragment extends    Fragment
+                                              implements LoaderManager.LoaderCallbacks<Cursor>
 {
-  private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.contact_selection_push_user,
-                                                   R.attr.contact_selection_lay_user,
-                                                   R.attr.contact_selection_push_label,
-                                                   R.attr.contact_selection_lay_label};
+  private static final String TAG = "ContactSelectFragment";
 
-  private final HashMap<Long, ContactData> selectedContacts = new HashMap<Long, ContactData>();
-  private static LayoutInflater li;
-  private        TypedArray     drawables;
+  private TextView emptyText;
+
+  private Map<Long, ContactData>    selectedContacts;
+  private OnContactSelectedListener onContactSelectedListener;
+  private boolean                   multi = false;
+  private StickyListHeadersListView listView;
 
 
   @Override
   public void onActivityCreated(Bundle icicle) {
     super.onCreate(icicle);
-    li = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     initializeResources();
     initializeCursor();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
   }
 
   @Override
@@ -85,277 +85,99 @@ public class PushContactSelectionListFragment extends SherlockListFragment
     return inflater.inflate(R.layout.push_contact_selection_list_activity, container, false);
   }
 
-  @Override
-  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-    inflater.inflate(R.menu.contact_selection_list, menu);
-    super.onCreateOptionsMenu(menu, inflater);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-
-    switch (item.getItemId()) {
-    case R.id.menu_select_all:
-      handleSelectAll();
-      return true;
-    case R.id.menu_unselect_all:
-      handleUnselectAll();
-      return true;
-    }
-
-    super.onOptionsItemSelected(item);
-    return false;
-  }
-
   public List<ContactData> getSelectedContacts() {
+    if (selectedContacts == null) return null;
+
     List<ContactData> selected = new LinkedList<ContactData>();
     selected.addAll(selectedContacts.values());
 
     return selected;
   }
 
-  private void handleUnselectAll() {
-    selectedContacts.clear();
-    ((CursorAdapter) getListView().getAdapter()).notifyDataSetChanged();
+  public void setMultiSelect(boolean multi) {
+    this.multi = multi;
   }
 
-  private void handleSelectAll() {
-    selectedContacts.clear();
-
-    Cursor cursor = null;
-
-    try {
-      cursor = ContactAccessor.getInstance().getCursorForContactsWithNumbers(getActivity());
-
-      while (cursor != null && cursor.moveToNext()) {
-        ContactData contactData = ContactAccessor.getInstance().getContactData(getActivity(), cursor);
-
-        if (contactData.numbers.isEmpty()) continue;
-        else if (contactData.numbers.size() == 1) addSingleNumberContact(contactData);
-        else addMultipleNumberContact(contactData, null, null);
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
+  private void addContact(DataHolder data) {
+    final ContactData contactData = new ContactData(data.id, data.name);
+    final CharSequence label = ContactsContract.CommonDataKinds.Phone.getTypeLabel(getResources(),
+                                                                                   data.numberType, "");
+    contactData.numbers.add(new ContactAccessor.NumberData(label.toString(), data.number));
+    if (multi) {
+      selectedContacts.put(contactData.id, contactData);
     }
-
-    ((CursorAdapter) getListView().getAdapter()).notifyDataSetChanged();
+    if (onContactSelectedListener != null) {
+      onContactSelectedListener.onContactSelected(contactData);
+    }
   }
 
-  private void addSingleNumberContact(ContactData contactData) {
-    selectedContacts.put(contactData.id, contactData);
-  }
-
-  private void removeContact(ContactData contactData) {
+  private void removeContact(DataHolder contactData) {
     selectedContacts.remove(contactData.id);
   }
 
-  private void addMultipleNumberContact(ContactData contactData, TextView textView, CheckBox checkBox) {
-    String[] options = new String[contactData.numbers.size()];
-    int i            = 0;
-
-    for (NumberData option : contactData.numbers) {
-      options[i++] = option.type + " " + option.number;
-    }
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle(getString(R.string.ContactSelectionlistFragment_select_for) + " " + contactData.name);
-    builder.setMultiChoiceItems(options, null, new DiscriminatorClickedListener(contactData));
-    builder.setPositiveButton(android.R.string.ok, new DiscriminatorFinishedListener(contactData, textView, checkBox));
-    builder.setOnCancelListener(new DiscriminatorFinishedListener(contactData, textView, checkBox));
-    builder.show();
-  }
-
   private void initializeCursor() {
-    setListAdapter(new ContactSelectionListAdapter(getActivity(), null));
+    ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(getActivity(), null, multi);
+    selectedContacts = adapter.getSelectedContacts();
+    listView.setAdapter(adapter);
     this.getLoaderManager().initLoader(0, null, this);
   }
 
   private void initializeResources() {
-    this.getListView().setFocusable(true);
-    this.drawables = getActivity().obtainStyledAttributes(STYLE_ATTRIBUTES);
+    emptyText = (TextView) getView().findViewById(android.R.id.empty);
+    listView  = (StickyListHeadersListView) getView().findViewById(android.R.id.list);
+    listView.setFocusable(true);
+    listView.setFastScrollEnabled(true);
+    listView.setFastScrollAlwaysVisible(true);
+    listView.setDrawingListUnderStickyHeader(false);
+    listView.setOnItemClickListener(new ListClickListener());
+  }
+
+  public void update() {
+    this.getLoaderManager().restartLoader(0, null, this);
   }
 
   @Override
-  public void onListItemClick(ListView l, View v, int position, long id) {
-    ((ContactItemView)v).selected();
+  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    return ContactAccessor.getInstance().getCursorLoaderForContacts(getActivity());
   }
 
-  private class ContactSelectionListAdapter extends CursorAdapter {
+  @Override
+  public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    ((CursorAdapter) listView.getAdapter()).changeCursor(data);
+    emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
+  }
 
-    public ContactSelectionListAdapter(Context context, Cursor c) {
-      super(context, c);
-    }
+  @Override
+  public void onLoaderReset(Loader<Cursor> loader) {
+    ((CursorAdapter) listView.getAdapter()).changeCursor(null);
+  }
 
+  private class ListClickListener implements AdapterView.OnItemClickListener {
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      ContactItemView view = new ContactItemView(context);
-      bindView(view, context, cursor);
+    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+      final DataHolder contactData = (DataHolder) v.getTag(R.id.contact_info_tag);
+      final ViewHolder holder      = (ViewHolder) v.getTag(R.id.holder_tag);
 
-      return view;
-    }
-
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-      boolean isPushUser;
-      try {
-        isPushUser = (cursor.getInt(cursor.getColumnIndexOrThrow(ContactAccessor.PUSH_COLUMN)) > 0);
-      } catch (IllegalArgumentException iae) {
-        isPushUser = false;
+      if (holder == null) {
+        Log.w(TAG, "ViewHolder was null, can't proceed with click logic.");
+        return;
       }
-      ContactData contactData = ContactAccessor.getInstance().getContactData(context, cursor);
-      PushContactData pushContactData = new PushContactData(contactData, isPushUser);
-      ((ContactItemView)view).set(pushContactData);
-    }
-  }
 
-  private class PushContactData {
-    private final ContactData contactData;
-    private final boolean     pushSupport;
-    public PushContactData(ContactData contactData, boolean pushSupport) {
-      this.contactData = contactData;
-      this.pushSupport = pushSupport;
-    }
-  }
+      if (multi) holder.checkBox.toggle();
 
-  private class ContactItemView extends RelativeLayout {
-    private ContactData contactData;
-    private boolean     pushSupport;
-    private CheckBox    checkBox;
-    private TextView    name;
-    private TextView    number;
-    private TextView    label;
-    private View        pushLabel;
-
-    public ContactItemView(Context context) {
-      super(context);
-
-      li.inflate(R.layout.push_contact_selection_list_item, this, true);
-
-      this.name = (TextView) findViewById(R.id.name);
-      this.number = (TextView) findViewById(R.id.number);
-      this.label = (TextView) findViewById(R.id.label);
-      this.checkBox = (CheckBox) findViewById(R.id.check_box);
-      this.pushLabel = findViewById(R.id.push_support_label);
-    }
-
-    public void selected() {
-
-      checkBox.toggle();
-
-      if (checkBox.isChecked()) {
-        if (contactData.numbers.size() == 1) addSingleNumberContact(contactData);
-        else addMultipleNumberContact(contactData, name, checkBox);
-      } else {
+      if (!multi || holder.checkBox.isChecked()) {
+        addContact(contactData);
+      } else if (multi) {
         removeContact(contactData);
       }
     }
-
-    public void set(PushContactData pushContactData) {
-      this.contactData = pushContactData.contactData;
-      this.pushSupport = pushContactData.pushSupport;
-
-      if (!pushSupport) {
-        this.name.setTextColor(drawables.getColor(1, 0xff000000));
-        this.number.setTextColor(drawables.getColor(1, 0xff000000));
-        this.pushLabel.setBackgroundColor(drawables.getColor(3, 0x99000000));
-      } else {
-        this.name.setTextColor(drawables.getColor(0, 0xa0000000));
-        this.number.setTextColor(drawables.getColor(0, 0xa0000000));
-        this.pushLabel.setBackgroundColor(drawables.getColor(2, 0xff64a926));
-      }
-
-      if (selectedContacts.containsKey(contactData.id))
-        this.checkBox.setChecked(true);
-      else
-        this.checkBox.setChecked(false);
-
-      this.name.setText(contactData.name);
-
-      if (contactData.numbers.isEmpty()) {
-        this.name.setEnabled(false);
-        this.number.setText("");
-        this.label.setText("");
-      } else {
-        this.number.setText(contactData.numbers.get(0).number);
-        this.label.setText(contactData.numbers.get(0).type);
-      }
-    }
   }
 
-  private class DiscriminatorFinishedListener implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
-    private final ContactData contactData;
-    private final TextView    textView;
-    private final CheckBox    checkBox;
-
-    public DiscriminatorFinishedListener(ContactData contactData, TextView textView, CheckBox checkBox) {
-      this.contactData = contactData;
-      this.textView = textView;
-      this.checkBox = checkBox;
-    }
-
-    public void onClick(DialogInterface dialog, int which) {
-      ContactData selected = selectedContacts.get(contactData.id);
-
-      if (selected == null && textView != null) {
-        if (textView != null) checkBox.setChecked(false);
-      } else if (selected.numbers.size() == 0) {
-        selectedContacts.remove(selected.id);
-        if (textView != null) checkBox.setChecked(false);
-      }
-
-      if (textView == null)
-        ((CursorAdapter) getListView().getAdapter()).notifyDataSetChanged();
-    }
-
-    public void onCancel(DialogInterface dialog) {
-      onClick(dialog, 0);
-    }
+  public void setOnContactSelectedListener(OnContactSelectedListener onContactSelectedListener) {
+    this.onContactSelectedListener = onContactSelectedListener;
   }
 
-  private class DiscriminatorClickedListener implements DialogInterface.OnMultiChoiceClickListener {
-    private final ContactData contactData;
-
-    public DiscriminatorClickedListener(ContactData contactData) {
-      this.contactData = contactData;
-    }
-
-    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-      Log.w("ContactSelectionListActivity", "Got checked: " + isChecked);
-
-      ContactData existing = selectedContacts.get(contactData.id);
-
-      if (existing == null) {
-        Log.w("ContactSelectionListActivity", "No existing contact data, creating...");
-
-        if (!isChecked)
-          throw new AssertionError("We shouldn't be unchecking data that doesn't exist.");
-
-        existing = new ContactData(contactData.id, contactData.name);
-        selectedContacts.put(existing.id, existing);
-      }
-
-      NumberData selectedData = contactData.numbers.get(which);
-
-      if (!isChecked) existing.numbers.remove(selectedData);
-      else existing.numbers.add(selectedData);
-    }
-  }
-
-  @Override
-  public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return ContactAccessor.getInstance().getCursorLoaderForContactsWithNumbers(getActivity());
-  }
-
-  @Override
-  public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    Cursor pushCursor = ContactAccessor.getInstance().getCursorForContactsWithPush(getActivity());
-    ((CursorAdapter) getListAdapter()).changeCursor(new MergeCursor(new Cursor[]{pushCursor,cursor}));
-    ((TextView)getView().findViewById(android.R.id.empty)).setText(R.string.contact_selection_group_activity__no_contacts);
-  }
-
-  @Override
-  public void onLoaderReset(Loader<Cursor> arg0) {
-    ((CursorAdapter) getListAdapter()).changeCursor(null);
+  public interface OnContactSelectedListener {
+    public void onContactSelected(ContactData contactData);
   }
 }

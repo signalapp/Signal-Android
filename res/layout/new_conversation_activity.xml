@@ -5,12 +5,16 @@
               android:orientation="vertical"
               xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <org.thoughtcrime.securesms.components.SingleRecipientPanel android:id="@+id/recipients"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
     <fragment
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/contact_selection_list_fragment"
-        android:name="org.thoughtcrime.securesms.SingleContactSelectionListFragment">
+        android:name="org.thoughtcrime.securesms.PushContactSelectionListFragment">
         </fragment>
 
 </LinearLayout>

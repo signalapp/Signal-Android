@@ -176,6 +176,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   @Override
   protected void onCreate(Bundle state) {
+    overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     super.onCreate(state);
@@ -219,6 +220,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   protected void onPause() {
     super.onPause();
     MessageNotifier.setVisibleThread(-1L);
+    overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
   }
 
   @Override
