@@ -93,7 +93,11 @@ public class DirectoryHelper {
         return true;
       }
 
-      final String number     = recipients.getPrimaryRecipient().getNumber();
+      final String number = recipients.getPrimaryRecipient().getNumber();
+      if (number == null) {
+        return false;
+      }
+
       final String e164number = Util.canonicalizeNumber(context, number);
 
       return Directory.getInstance(context).isActiveNumber(e164number);

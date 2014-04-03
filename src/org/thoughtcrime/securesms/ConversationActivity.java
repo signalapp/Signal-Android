@@ -679,24 +679,23 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private void initializeSecurity() {
 
-    TypedArray drawables = obtainStyledAttributes(SEND_ATTRIBUTES);
-    if ((getRecipients() != null && getRecipients().isGroupRecipient()) ||
+    TypedArray drawables         = obtainStyledAttributes(SEND_ATTRIBUTES);
+    boolean    isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
+    if (isPushDestination || (getRecipients() != null && getRecipients().isGroupRecipient()) ||
         (isSingleConversation() && Session.hasSession(this, masterSecret, getRecipients().getPrimaryRecipient())))
     {
       this.isEncryptedConversation     = true;
       this.isAuthenticatedConversation = Session.hasRemoteIdentityKey(this, masterSecret, getRecipients().getPrimaryRecipient());
       this.characterCalculator         = new EncryptedCharacterCalculator();
+      if (isPushDestination) {
+        sendButton.setImageDrawable(drawables.getDrawable(0));
+      } else {
+        sendButton.setImageDrawable(drawables.getDrawable(1));
+      }
     } else {
       this.isEncryptedConversation     = false;
       this.isAuthenticatedConversation = false;
       this.characterCalculator         = new CharacterCalculator();
-    }
-
-    if (DirectoryHelper.isPushDestination(this, getRecipients())) {
-      sendButton.setImageDrawable(drawables.getDrawable(0));
-    } else if (isEncryptedConversation) {
-      sendButton.setImageDrawable(drawables.getDrawable(1));
-    } else {
       sendButton.setImageDrawable(drawables.getDrawable(2));
     }
 
