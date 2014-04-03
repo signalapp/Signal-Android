@@ -193,10 +193,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   }
 
   private void initializePlatformSpecificOptions() {
-    PreferenceGroup    pushSmsCategory    = (PreferenceGroup) findPreference("push_sms_category");
-    Preference         defaultPreference  = findPreference(KITKAT_DEFAULT_PREF);
-    Preference         allSmsPreference   = findPreference(TextSecurePreferences.ALL_SMS_PREF);
-    Preference         allMmsPreference   = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    PreferenceGroup    pushSmsCategory          = (PreferenceGroup) findPreference("push_sms_category");
+    PreferenceGroup    advancedCategory         = (PreferenceGroup) findPreference("advanced_category");
+    Preference         defaultPreference        = findPreference(KITKAT_DEFAULT_PREF);
+    Preference         allSmsPreference         = findPreference(TextSecurePreferences.ALL_SMS_PREF);
+    Preference         allMmsPreference         = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    Preference         screenSecurityPreference = findPreference(TextSecurePreferences.SCREEN_SECURITY_PREF);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && pushSmsCategory != null) {
       if (allSmsPreference != null) pushSmsCategory.removePreference(allSmsPreference);
@@ -215,6 +217,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       }
     } else if (pushSmsCategory != null && defaultPreference != null) {
       pushSmsCategory.removePreference(defaultPreference);
+    }
+
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1 &&
+        advancedCategory != null                                   &&
+        screenSecurityPreference != null)
+    {
+      advancedCategory.removePreference(screenSecurityPreference);
     }
   }
 
