@@ -210,7 +210,7 @@ public class ConversationFragment extends SherlockListFragment
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
                                                   new FailedIconClickHandler(),
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
-                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients.getPrimaryRecipient())));
+                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }

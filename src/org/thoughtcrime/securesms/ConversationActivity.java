@@ -93,6 +93,7 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
@@ -564,7 +565,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void handleAddAttachment() {
-    if (this.isMmsEnabled || isPushDestination()) {
+    if (this.isMmsEnabled || DirectoryHelper.isPushDestination(this, getRecipients())) {
       AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.TextSecure_Light_Dialog));
       builder.setIcon(R.drawable.ic_dialog_attach);
       builder.setTitle(R.string.ConversationActivity_add_attachment);
@@ -691,7 +692,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       this.characterCalculator         = new CharacterCalculator();
     }
 
-    if (isPushDestination()) {
+    if (DirectoryHelper.isPushDestination(this, getRecipients())) {
       sendButton.setImageDrawable(drawables.getDrawable(0));
     } else if (isEncryptedConversation) {
       sendButton.setImageDrawable(drawables.getDrawable(1));
@@ -1005,30 +1006,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private boolean isPushGroupConversation() {
     return getRecipients() != null && getRecipients().isGroupRecipient();
-  }
-
-  private boolean isPushDestination() {
-    try {
-      if (!TextSecurePreferences.isPushRegistered(this))
-        return false;
-
-      if (getRecipients() == null)
-        return false;
-
-      if (isPushGroupConversation())
-        return true;
-
-      String number     = getRecipients().getPrimaryRecipient().getNumber();
-      String e164number = org.thoughtcrime.securesms.util.Util.canonicalizeNumber(this, number);
-
-      return Directory.getInstance(this).isActiveNumber(e164number);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-      return false;
-    } catch (NotInDirectoryException e) {
-      Log.w(TAG, e);
-      return false;
-    }
   }
 
   private Recipients getRecipients() {
