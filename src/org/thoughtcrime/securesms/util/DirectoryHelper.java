@@ -83,17 +83,25 @@ public class DirectoryHelper {
       if (recipients == null) {
         return false;
       }
+
       if (!TextSecurePreferences.isPushRegistered(context)) {
         return false;
       }
+
       if (!recipients.isSingleRecipient()) {
         return false;
       }
+
       if (recipients.isGroupRecipient()) {
         return true;
       }
 
-      final String number     = recipients.getPrimaryRecipient().getNumber();
+      final String number = recipients.getPrimaryRecipient().getNumber();
+
+      if (number == null) {
+        return false;
+      }
+
       final String e164number = Util.canonicalizeNumber(context, number);
 
       return Directory.getInstance(context).isActiveNumber(e164number);

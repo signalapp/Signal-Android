@@ -103,12 +103,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
-import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -678,25 +675,23 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeSecurity() {
+    TypedArray drawables         = obtainStyledAttributes(SEND_ATTRIBUTES);
+    boolean    isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
+    Recipient  primaryRecipient  = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
 
-    TypedArray drawables = obtainStyledAttributes(SEND_ATTRIBUTES);
-    if ((getRecipients() != null && getRecipients().isGroupRecipient()) ||
-        (isSingleConversation() && Session.hasSession(this, masterSecret, getRecipients().getPrimaryRecipient())))
+    if (isPushDestination ||
+        (isSingleConversation() && Session.hasSession(this, masterSecret, primaryRecipient)))
     {
       this.isEncryptedConversation     = true;
-      this.isAuthenticatedConversation = Session.hasRemoteIdentityKey(this, masterSecret, getRecipients().getPrimaryRecipient());
+      this.isAuthenticatedConversation = Session.hasRemoteIdentityKey(this, masterSecret, primaryRecipient);
       this.characterCalculator         = new EncryptedCharacterCalculator();
+
+      if (isPushDestination) sendButton.setImageDrawable(drawables.getDrawable(0));
+      else                   sendButton.setImageDrawable(drawables.getDrawable(1));
     } else {
       this.isEncryptedConversation     = false;
       this.isAuthenticatedConversation = false;
       this.characterCalculator         = new CharacterCalculator();
-    }
-
-    if (DirectoryHelper.isPushDestination(this, getRecipients())) {
-      sendButton.setImageDrawable(drawables.getDrawable(0));
-    } else if (isEncryptedConversation) {
-      sendButton.setImageDrawable(drawables.getDrawable(1));
-    } else {
       sendButton.setImageDrawable(drawables.getDrawable(2));
     }
 
