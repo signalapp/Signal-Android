@@ -437,9 +437,17 @@
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
 
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Media Message</string>
+    <string name="conversation_item__play_button_description">Play Button</string>
+    <string name="conversation_item__secure_message_description">Secure Message Indicator</string>
+
     <!-- conversation_item_sent -->
     <string name="conversation_item_sent__download">Download</string>
     <string name="conversation_item_sent__downloading">Downloading</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Send Failed Indicator</string>
+    <string name="conversation_item_sent__pending_approval_description">Pending Approval</string>
+    <string name="conversation_item_sent__delivered_description">Delivered Indicator</string>
 
     <!-- conversation_item_received -->
     <string name="conversation_item_received__download">Download</string>
