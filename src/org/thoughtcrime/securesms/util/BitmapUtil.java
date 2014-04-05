@@ -13,7 +13,6 @@ import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -89,7 +88,7 @@ public class BitmapUtil {
 
       Log.w("BitmapUtil", "Scaling to max width and height: " + aspectWidth + "," + aspectHeight);
       Bitmap scaledThumbnail = Bitmap.createScaledBitmap(roughThumbnail, (int)aspectWidth, (int)aspectHeight, true);
-      roughThumbnail.recycle();
+      if (roughThumbnail != scaledThumbnail) roughThumbnail.recycle();
       return scaledThumbnail;
     } else {
       return roughThumbnail;
