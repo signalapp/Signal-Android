@@ -251,7 +251,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">連絡先はありません。</string>
-  <string name="contact_selection_group_activity__finding_contacts">連絡先を検索中...</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">選択</string>
@@ -329,7 +328,6 @@
   <string name="registration_progress_activity__registering_with_server">サーバーに登録中...</string>
   <string name="registration_progress_activity__generating_keys">鍵を作成中...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">宛先</string>
   <string name="recipients_panel__add_member">参加者を追加する</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">信用した鍵のデータベースに認証キーは現在ありません。</string>
@@ -364,6 +362,7 @@
   <string name="preferences__general">一般設定</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキストメッセージ）の表示、及び保存にTextSecureを使用します</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）の表示、及び保存にTextSecureを使用します</string>
+  <string name="preferences__input_settings">設定入力</string>
   <string name="preferences__enable_enter_key_title">エンターキーを使えるようにする</string>
   <string name="preferences__replace_smiley_with_enter_key">顔文字ボタンをエンターキーにする</string>
   <string name="preferences__pref_enter_sends_title">Enterキーで送信</string>

@@ -208,7 +208,6 @@
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
-  <string name="recipients_panel__to">သို့</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">သင်၏စိတ်ချရသော　ဒေတာဘေ့၌　သင့်အသိအမှတ်ပြုကီး　လက်ရှိတွင်　မရှိသေး</string>
   <!--verify_identity_activity-->
@@ -237,6 +236,7 @@
   <!--preferences.xml-->
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">textsecure ကိုဝင်လာသောစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">textsecure ကိုဝင်လာသောမာတီမီဒီယာစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
+  <string name="preferences__input_settings">ကီးဘုတ်ပုံစံသတ်မှတ်ချက်များ</string>
   <string name="preferences__pref_enter_sends_title">ပို့ရန်ကိုနှိပ်ပါ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter နှိပ်လျှင် စာသားများကို ပို့ပါမည်</string>
   <string name="preferences__display_settings">သတ်မှတ်ချက်များကိုပြပါ</string>

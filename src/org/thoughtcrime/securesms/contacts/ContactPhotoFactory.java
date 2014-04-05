@@ -10,6 +10,7 @@ import android.provider.ContactsContract.Contacts;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.io.InputStream;
@@ -82,10 +83,13 @@ public class ContactPhotoFactory {
     localUserContactPhotoCache.remove(recipient.getContactUri());
   }
 
-  private static Bitmap getContactPhoto(Context context, Uri uri) {
+  public static Bitmap getContactPhoto(Context context, Uri uri) {
     InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri);
 
-    if (inputStream == null) return ContactPhotoFactory.getDefaultContactPhoto(context);
-    else                     return BitmapFactory.decodeStream(inputStream);
+    final Bitmap contactPhoto;
+    if (inputStream == null) contactPhoto = ContactPhotoFactory.getDefaultContactPhoto(context);
+    else                     contactPhoto = BitmapFactory.decodeStream(inputStream);
+
+    return contactPhoto;
   }
 }

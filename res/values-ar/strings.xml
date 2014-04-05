@@ -259,7 +259,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">لا توجد جهات اتصال.</string>
-  <string name="contact_selection_group_activity__finding_contacts">جاري العثورعلى جهات إتصال...</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">اختيار من أجل</string>
@@ -345,7 +344,6 @@
   <string name="registration_progress_activity__registering_with_server">جاري التسجيل مع الخادم...</string>
   <string name="registration_progress_activity__generating_keys">جارِ انشاء المفتاح...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">إلى</string>
   <string name="recipients_panel__add_member">إضافة عضو</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">لا يوجد لديك أي مفاتيح هوية مسجلة</string>
@@ -380,6 +378,7 @@
   <string name="preferences__general">عام</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">استخدم تكست سيكيور لمشاهدة و حفظ كل الرسائل القصيرة الواردة</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم تكست سيكيور لمشاهدة وحفظ كل رسائل الوسائط المتعددة الواردة</string>
+  <string name="preferences__input_settings">خيارات الادخال</string>
   <string name="preferences__enable_enter_key_title">تفعيل مفتاح الرجوع</string>
   <string name="preferences__pref_enter_sends_title">زر الرجوع Enter يرسل الرسالة</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ضغط مفتاح الرجوع Enter سيرسل الرسالة</string>

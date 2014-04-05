@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="68"
-      android:versionName="2.0.5">
+      android:versionCode="69"
+      android:versionName="2.0.6">
 
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19"/>
 
@@ -90,7 +90,7 @@
               android:windowSoftInputMode="stateUnchanged"              
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-     <activity android:name=".MmsPreferencesActivity"
+    <activity android:name=".MmsPreferencesActivity"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ConversationListActivity"
@@ -135,15 +135,15 @@
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".SingleContactSelectionActivity"
-              android:label="@string/AndroidManifest__select_contact"
+    <activity android:name=".NewConversationActivity"
+              android:label="@string/AndroidManifest__select_contacts"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PushContactSelectionActivity"
-              android:label="@string/AndroidManifest__select_contacts"
-              android:windowSoftInputMode="stateHidden"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+          android:label="@string/AndroidManifest__select_contacts"
+          android:windowSoftInputMode="stateHidden"
+          android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".AutoInitiateActivity"
               android:theme="@style/TextSecure.Light.Dialog"
@@ -205,6 +205,7 @@
     <service android:enabled="true" android:name=".service.SendReceiveService"/>
     <service android:enabled="true" android:name=".service.RegistrationService"/>
     <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
+    <service android:enabled="true" android:name=".service.PreKeyService"/>
     <service android:enabled="true" android:name=".gcm.GcmIntentService"/>
 
     <service android:name=".service.QuickResponseService"

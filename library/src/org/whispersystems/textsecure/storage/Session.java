@@ -35,6 +35,27 @@ public class Session {
     return hasV1Session(context, recipient) || hasV2Session(context, masterSecret, recipient);
   }
 
+  public static boolean hasEncryptCapableSession(Context context,
+                                                 MasterSecret masterSecret,
+                                                 CanonicalRecipient recipient)
+  {
+    RecipientDevice device = new RecipientDevice(recipient.getRecipientId(),
+                                                 RecipientDevice.DEFAULT_DEVICE_ID);
+
+    return hasEncryptCapableSession(context, masterSecret, recipient, device);
+  }
+
+  public static boolean hasEncryptCapableSession(Context context,
+                                                 MasterSecret masterSecret,
+                                                 CanonicalRecipient recipient,
+                                                 RecipientDevice device)
+  {
+    return
+        hasV1Session(context, recipient) ||
+            (hasV2Session(context, masterSecret, recipient) &&
+             !SessionRecordV2.needsRefresh(context, masterSecret, device));
+  }
+
   public static boolean hasRemoteIdentityKey(Context context,
                                              MasterSecret masterSecret,
                                              CanonicalRecipient recipient)
@@ -49,7 +70,6 @@ public class Session {
     return SessionRecordV2.hasSession(context, masterSecret, recipient.getRecipientId(),
                                       RecipientDevice.DEFAULT_DEVICE_ID);
   }
-
   private static boolean hasV1Session(Context context, CanonicalRecipient recipient) {
     return SessionRecordV1.hasSession(context, recipient)   &&
            RemoteKeyRecord.hasRecord(context, recipient)    &&
@@ -70,7 +90,8 @@ public class Session {
                                    RecipientDevice.DEFAULT_DEVICE_ID))
     {
       return new SessionRecordV2(context, masterSecret, recipientId,
-                                 RecipientDevice.DEFAULT_DEVICE_ID).getRemoteIdentityKey();
+                                 RecipientDevice.DEFAULT_DEVICE_ID).getSessionState()
+                                                                   .getRemoteIdentityKey();
     } else if (SessionRecordV1.hasSession(context, recipientId)) {
       return new SessionRecordV1(context, masterSecret, recipientId).getIdentityKey();
     } else {

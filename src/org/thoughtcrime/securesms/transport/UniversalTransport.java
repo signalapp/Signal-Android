@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
@@ -36,6 +37,7 @@ import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
+import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.DirectoryUtil;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
@@ -60,7 +62,8 @@ public class UniversalTransport {
   }
 
   public void deliver(SmsMessageRecord message)
-      throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException, UserInterventionRequiredException
+      throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException,
+             SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
     if (!TextSecurePreferences.isPushRegistered(context)) {
       smsTransport.deliver(message);
@@ -99,7 +102,8 @@ public class UniversalTransport {
   }
 
   public MmsSendResult deliver(SendReq mediaMessage, long threadId)
-      throws UndeliverableMessageException, RetryLaterException, UntrustedIdentityException, UserInterventionRequiredException
+      throws UndeliverableMessageException, RetryLaterException, UntrustedIdentityException,
+             SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
     if (Util.isEmpty(mediaMessage.getTo())) {
       return mmsTransport.deliver(mediaMessage);
@@ -155,28 +159,42 @@ public class UniversalTransport {
   }
 
   private MmsSendResult fallbackOrAskApproval(SendReq mediaMessage, String destination)
-      throws UserInterventionRequiredException, UndeliverableMessageException
+      throws SecureFallbackApprovalException, UndeliverableMessageException, InsecureFallbackApprovalException
   {
-    boolean isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
-    if (!isSmsFallbackApprovalRequired) {
-      Log.i("UniversalTransport", "Falling back to MMS without user intervention");
-      return mmsTransport.deliver(mediaMessage);
-    } else {
-      Log.i("UniversalTransport", "Marking message as pending user approval per their settings");
-      throw new UserInterventionRequiredException("Pending user approval for fallback to SMS");
+    try {
+      Recipient recipient                     = RecipientFactory.getRecipientsFromString(context, destination, false).getPrimaryRecipient();
+      boolean   isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
+
+      if (!isSmsFallbackApprovalRequired) {
+        Log.w("UniversalTransport", "Falling back to MMS");
+        return mmsTransport.deliver(mediaMessage);
+      } else if (!Session.hasEncryptCapableSession(context, masterSecret, recipient)) {
+        Log.w("UniversalTransport", "Marking message as pending insecure SMS fallback");
+        throw new InsecureFallbackApprovalException("Pending user approval for fallback to insecure SMS");
+      } else {
+        Log.w("UniversalTransport", "Marking message as pending secure SMS fallback");
+        throw new SecureFallbackApprovalException("Pending user approval for fallback secure to SMS");
+      }
+    } catch (RecipientFormattingException rfe) {
+      throw new UndeliverableMessageException(rfe);
     }
   }
 
   private void fallbackOrAskApproval(SmsMessageRecord smsMessage, String destination)
-      throws UserInterventionRequiredException, UndeliverableMessageException
+      throws SecureFallbackApprovalException, UndeliverableMessageException, InsecureFallbackApprovalException
   {
-    boolean isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
+    Recipient recipient                     = smsMessage.getIndividualRecipient();
+    boolean   isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
+
     if (!isSmsFallbackApprovalRequired) {
-      Log.i("UniversalTransport", "Falling back to SMS without user intervention");
+      Log.w("UniversalTransport", "Falling back to SMS");
       smsTransport.deliver(smsMessage);
+    } else if (!Session.hasEncryptCapableSession(context, masterSecret, recipient)) {
+      Log.w("UniversalTransport", "Marking message as pending insecure fallback.");
+      throw new InsecureFallbackApprovalException("Pending user approval for fallback to insecure SMS");
     } else {
-      Log.i("UniversalTransport", "Marking message as pending user approval per their settings");
-      throw new UserInterventionRequiredException("Pending user approval for fallback to SMS");
+      Log.w("UniversalTransport", "Marking message as pending secure fallback.");
+      throw new SecureFallbackApprovalException("Pending user approval for fallback to secure SMS");
     }
   }
 
@@ -217,7 +235,6 @@ public class UniversalTransport {
       }
     }
   }
-
 
   public boolean isMultipleRecipients(SendReq mediaMessage) {
     int recipientCount = 0;
@@ -267,9 +284,9 @@ public class UniversalTransport {
       return directory.isActiveNumber(destination);
     } catch (NotInDirectoryException e) {
       try {
-        PushServiceSocket    socket          = PushServiceSocketFactory.create(context);
-        String contactToken = DirectoryUtil.getDirectoryServerToken(destination);
-        ContactTokenDetails  registeredUser  = socket.getContactTokenDetails(contactToken);
+        PushServiceSocket   socket         = PushServiceSocketFactory.create(context);
+        String              contactToken   = DirectoryUtil.getDirectoryServerToken(destination);
+        ContactTokenDetails registeredUser = socket.getContactTokenDetails(contactToken);
 
         if (registeredUser == null) {
           registeredUser = new ContactTokenDetails();

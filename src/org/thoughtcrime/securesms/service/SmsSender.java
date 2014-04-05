@@ -36,12 +36,12 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
+import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
-import org.thoughtcrime.securesms.transport.UserInterventionRequiredException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.Session;
 
@@ -86,9 +86,13 @@ public class SmsSender {
           database.markAsSending(record.getId());
 
           transport.deliver(record);
-        } catch (UserInterventionRequiredException uire) {
-          Log.w("SmsSender", uire);
-          DatabaseFactory.getSmsDatabase(context).markAsPendingApproval(record.getId());
+        } catch (InsecureFallbackApprovalException ifae) {
+          Log.w("SmsSender", ifae);
+          DatabaseFactory.getSmsDatabase(context).markAsPendingInsecureSmsFallback(record.getId());
+          MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
+        } catch (SecureFallbackApprovalException sfae) {
+          Log.w("SmsSender", sfae);
+          DatabaseFactory.getSmsDatabase(context).markAsPendingSecureSmsFallback(record.getId());
           MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
         } catch (UntrustedIdentityException e) {
           Log.w("SmsSender", e);

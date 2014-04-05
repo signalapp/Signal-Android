@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.CursorAdapter;
 
+import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -40,18 +41,23 @@ import java.util.Set;
  */
 public class ConversationListAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
 
-  private final MasterSecret masterSecret;
-  private final Context context;
+  private final ThreadDatabase threadDatabase;
+  private final MasterCipher   masterCipher;
+  private final Context        context;
   private final LayoutInflater inflater;
 
-  private final Set<Long> batchSet = Collections.synchronizedSet(new HashSet<Long>());
-  private boolean batchMode        = false;
+  private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
+  private       boolean   batchMode = false;
 
   public ConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
     super(context, cursor);
-    this.masterSecret = masterSecret;
-    this.context      = context;
-    this.inflater     = LayoutInflater.from(context);
+
+    if (masterSecret != null) this.masterCipher = new MasterCipher(masterSecret);
+    else                      this.masterCipher = null;
+
+    this.context        = context;
+    this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    this.inflater       = LayoutInflater.from(context);
   }
 
   @Override
@@ -61,9 +67,9 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
-    if (masterSecret != null) {
-      ThreadDatabase.Reader reader = DatabaseFactory.getThreadDatabase(context).readerFor(cursor, masterSecret);
-      ThreadRecord record          = reader.getCurrent();
+    if (masterCipher != null) {
+      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
+      ThreadRecord          record = reader.getCurrent();
 
       ((ConversationListItem)view).set(record, batchSet, batchMode);
     }

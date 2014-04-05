@@ -214,7 +214,6 @@
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
-  <string name="recipients_panel__to">གཏོང་ཡུལ།</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">གནས་སྐབས་རིང་ཁྱེད་ཀྱི་ཡིད་ཆེས་མཛོད་ཀྱི་ཁོངས་སུ་ཁྱེད་ལ་ངོས་འཛིན་ལྡེ་མིག་མི་འདུག  </string>
   <!--verify_identity_activity-->
@@ -243,6 +242,7 @@
   <!--preferences.xml-->
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">ནང་ཡོང་འཕྲིན་ཐུང་ཚང་མར་བལྟ་བ་དང་ཉར་བ་ལ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">ནང་ཡོང་སྣ་མང་འཕྲིན་ཐུང་རིགས་ལ་ཉར་ཚགས་དང་ཞིབ་ལྟའི་ཆེད་དུ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
+  <string name="preferences__input_settings">ནང་འཇུག་སྒྲིག་བཟོ། </string>
   <string name="preferences__pref_enter_sends_title">གཏོང་བ་ནང་འཇུག་བྱོས། </string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ནང་འཛུལ་ལྡེ་མིག་ལ་བསྣུན་ན་འཕྲིན་ཐུང་གཏོང་། </string>
   <string name="preferences__display_settings">སྒྲིག་བཟོ་སྟོན། </string>

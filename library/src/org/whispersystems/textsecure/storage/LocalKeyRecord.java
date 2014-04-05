@@ -70,7 +70,7 @@ public class LocalKeyRecord extends Record {
 
       this.localCurrentKeyPair = this.localNextKeyPair;
       this.localNextKeyPair    = new KeyPair((this.localNextKeyPair.getId()+1) % Medium.MAX_VALUE,
-                                             Curve.generateKeyPairForType(keyType),
+                                             Curve.generateKeyPairForType(keyType, true),
                                              masterSecret);
     }
   }

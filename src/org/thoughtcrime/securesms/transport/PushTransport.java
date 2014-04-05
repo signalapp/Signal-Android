@@ -327,7 +327,9 @@ public class PushTransport extends BaseTransport {
                                        PushAddress pushAddress, byte[] plaintext)
       throws IOException, UntrustedIdentityException
   {
-    if (!SessionRecordV2.hasSession(context, masterSecret, pushAddress)) {
+    if (!SessionRecordV2.hasSession(context, masterSecret, pushAddress) ||
+        SessionRecordV2.needsRefresh(context, masterSecret, pushAddress))
+    {
       try {
         List<PreKeyEntity> preKeys = socket.getPreKeys(pushAddress);
 

@@ -251,7 +251,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Finder kontakter...</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vælg</string>
@@ -331,7 +330,6 @@
   <string name="registration_progress_activity__waiting_for_sms_verification">Venter på SMS\ngodkendelse...\n</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS godkendelse\nfejlede.\n</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Til</string>
   <string name="recipients_panel__add_member">Tilføj medlem</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Du har ingen ID-nøgler i din sikret database.</string>

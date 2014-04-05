@@ -64,7 +64,10 @@
     <string name="ConversationItem_group_action_joined">%1$s have joined the group.</string>
     <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
     <string name="ConversationItem_click_to_approve">Tap for SMS fallback</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Tap for insecure fallback</string>
     <string name="ConversationItem_click_to_approve_dialog_title">Fallback to SMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Fallback to unencrypted SMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because a secure session could not be established.\n\nSend insecure message?</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate Secure Session?</string>
@@ -298,6 +301,7 @@
     </string>
     <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
     <string name="SmsMessageRecord_secure_session_ended">Secure session ended.</string>
+    <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_left_the_group">Left the group...</string>
@@ -413,13 +417,14 @@
     <!-- contact_selection_group_activity -->
     <!-- contact_selection_list_activity -->
     <string name="contact_selection_group_activity__no_contacts">No contacts.</string>
-    <string name="contact_selection_group_activity__finding_contacts">Finding contacts&#8230;</string>
+    <string name="contact_selection_group_activity__finding_contacts">Loading contacts&#8230;</string>
 
     <!-- single_contact_selection_activity -->
     <string name="single_contact_selection_group_activity__filter">Type a name to filter&#8230;</string>
-    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
+    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service&#8230;</string>
     <string name="SingleContactSelectionActivity_updating_directory">Updating directory</string>
-    <string name="SingleContactSelectionActivity_updating_push_directory">Updating push directory...</string>
+    <string name="SingleContactSelectionActivity_updating_push_directory">Updating push directory&#8230;</string>
+    <string name="SingleContactSelectionActivity_contact_photo">Contact Photo</string>
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionlistFragment_select_for">Select for</string>
@@ -432,9 +437,17 @@
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
 
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Media Message</string>
+    <string name="conversation_item__play_button_description">Play Button</string>
+    <string name="conversation_item__secure_message_description">Secure Message Indicator</string>
+
     <!-- conversation_item_sent -->
     <string name="conversation_item_sent__download">Download</string>
     <string name="conversation_item_sent__downloading">Downloading</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Send Failed Indicator</string>
+    <string name="conversation_item_sent__pending_approval_description">Pending Approval</string>
+    <string name="conversation_item_sent__delivered_description">Delivered Indicator</string>
 
     <!-- conversation_item_received -->
     <string name="conversation_item_received__download">Download</string>
@@ -468,6 +481,8 @@
     <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
     <string name="log_submit_activity__loading_logcat">Loading logcat&#8230;</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
+    <string name="log_submit_activity__submitting">Submitting</string>
+    <string name="log_submit_activity__posting_logs">Posting logs to pastebin&#8230;</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
@@ -602,7 +617,7 @@
     <string name="registration_progress_activity__generating_keys">Generating keys...</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to">To</string>
+    <string name="recipients_panel__to"><small>Enter a name or number</small></string>
     <string name="recipients_panel__add_member">Add member</string>
 
     <!-- review_identities -->
@@ -649,6 +664,7 @@
     <string name="preferences__pref_all_mms_title">Receive all MMS</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for viewing and storing all incoming multimedia messages</string>
+    <string name="preferences__input_settings">Input Settings</string>
     <string name="preferences__enable_enter_key_title">Enable Enter key</string>
     <string name="preferences__replace_smiley_with_enter_key">Replace the smiley key with an enter key</string>
     <string name="preferences__pref_enter_sends_title">Enter sends</string>
@@ -747,6 +763,8 @@
     <!-- contact_selection_list -->
     <string name="contact_selection_list__menu_select_all">Select All</string>
     <string name="contact_selection_list__menu_unselect_all">Unselect All</string>
+    <string name="contact_selection_list__header_textsecure_users">TEXTSECURE USERS</string>
+    <string name="contact_selection_list__header_other">ALL CONTACTS</string>
 
     <!-- contact_selection -->
     <string name="contact_selection__menu_finished">Finished</string>

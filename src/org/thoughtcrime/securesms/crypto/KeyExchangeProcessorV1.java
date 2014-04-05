@@ -136,8 +136,8 @@ public class KeyExchangeProcessorV1 extends KeyExchangeProcessor {
       SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
       int initialId             = secureRandom.nextInt(4094) + 1;
 
-      KeyPair        currentPair = new KeyPair(initialId, Curve.generateKeyPairForSession(1), masterSecret);
-      KeyPair        nextPair    = new KeyPair(initialId + 1, Curve.generateKeyPairForSession(1), masterSecret);
+      KeyPair        currentPair = new KeyPair(initialId, Curve.generateKeyPairForSession(1, true), masterSecret);
+      KeyPair        nextPair    = new KeyPair(initialId + 1, Curve.generateKeyPairForSession(1, true), masterSecret);
       LocalKeyRecord record      = new LocalKeyRecord(context, masterSecret, recipient);
 
       record.setCurrentKeyPair(currentPair);

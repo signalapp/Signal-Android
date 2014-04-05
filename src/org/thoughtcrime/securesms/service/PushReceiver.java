@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
@@ -44,9 +43,10 @@ import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageCo
 
 public class PushReceiver {
 
-  public static final int RESULT_OK             = 0;
-  public static final int RESULT_NO_SESSION     = 1;
-  public static final int RESULT_DECRYPT_FAILED = 2;
+  public static final int RESULT_OK                = 0;
+  public static final int RESULT_NO_SESSION        = 1;
+  public static final int RESULT_DECRYPT_FAILED    = 2;
+  public static final int RESULT_DECRYPT_DUPLICATE = 3;
 
   private final Context       context;
   private final GroupReceiver groupReceiver;
@@ -69,9 +69,10 @@ public class PushReceiver {
     long                messageId = intent.getLongExtra("message_id", -1);
     int                 result    = intent.getIntExtra("result", 0);
 
-    if      (result == RESULT_OK)             handleReceivedMessage(masterSecret, message, true);
-    else if (result == RESULT_NO_SESSION)     handleReceivedMessageForNoSession(masterSecret, message);
-    else if (result == RESULT_DECRYPT_FAILED) handleReceivedCorruptedMessage(masterSecret, message, true);
+    if      (result == RESULT_OK)                handleReceivedMessage(masterSecret, message, true);
+    else if (result == RESULT_NO_SESSION)        handleReceivedMessageForNoSession(masterSecret, message);
+    else if (result == RESULT_DECRYPT_FAILED)    handleReceivedCorruptedMessage(masterSecret, message, true);
+    else if (result == RESULT_DECRYPT_DUPLICATE) handleReceivedDuplicateMessage(message);
 
     DatabaseFactory.getPushDatabase(context).delete(messageId);
   }
@@ -253,6 +254,10 @@ public class PushReceiver {
     DatabaseFactory.getEncryptingSmsDatabase(context).markAsDecryptFailed(messageAndThreadId.first);
 
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+  }
+
+  private void handleReceivedDuplicateMessage(IncomingPushMessage message) {
+    Log.w("PushReceiver", "Received duplicate message: " + message.getSource() + " , " + message.getSourceDevice());
   }
 
   private void handleReceivedCorruptedKey(MasterSecret masterSecret,

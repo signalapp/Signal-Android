@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.service.PushReceiver;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.DuplicateMessageException;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
@@ -213,6 +214,9 @@ public class DecryptingQueue {
       } catch (RecipientFormattingException e) {
         Log.w("DecryptionQueue", e);
         sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
+      } catch (DuplicateMessageException e) {
+        Log.w("DecryptingQueue", e);
+        sendResult(PushReceiver.RESULT_DECRYPT_DUPLICATE);
       }
     }
 
@@ -312,6 +316,9 @@ public class DecryptingQueue {
       } catch (InvalidMessageException ime) {
         Log.w("DecryptingQueue", ime);
         database.markAsDecryptFailed(messageId, threadId);
+      } catch (DuplicateMessageException dme) {
+        Log.w("DecryptingQueue", dme);
+        database.markAsDecryptDuplicate(messageId, threadId);
       } catch (MmsException mme) {
         Log.w("DecryptingQueue", mme);
         database.markAsDecryptFailed(messageId, threadId);
@@ -391,6 +398,10 @@ public class DecryptingQueue {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptFailed(messageId);
         return;
+      } catch (DuplicateMessageException e) {
+        Log.w("DecryptionQueue", e);
+        database.markAsDecryptDuplicate(messageId);
+        return;
       }
 
       database.updateMessageBody(masterSecret, messageId, plaintextBody);
@@ -420,12 +431,12 @@ public class DecryptingQueue {
       }
     }
 
-    private void handleKeyExchangeProcessing(String plaintxtBody) {
+    private void handleKeyExchangeProcessing(String plaintextBody) {
       if (TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
         try {
           Recipient            recipient       = RecipientFactory.getRecipientsFromString(context, originator, false).getPrimaryRecipient();
           RecipientDevice      recipientDevice = new RecipientDevice(recipient.getRecipientId(), deviceId);
-          KeyExchangeMessage   message         = KeyExchangeMessage.createFor(plaintxtBody);
+          KeyExchangeMessage   message         = KeyExchangeMessage.createFor(plaintextBody);
           KeyExchangeProcessor processor       = KeyExchangeProcessor.createFor(context, masterSecret, recipientDevice, message);
 
           if (processor.isStale(message)) {

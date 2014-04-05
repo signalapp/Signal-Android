@@ -33,7 +33,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.util.Hex;
+import org.whispersystems.textsecure.storage.Session;
 
 import java.util.ArrayList;
 
@@ -47,7 +47,9 @@ public class SmsTransport extends BaseTransport {
     this.masterSecret = masterSecret;
   }
 
-  public void deliver(SmsMessageRecord message) throws UndeliverableMessageException {
+  public void deliver(SmsMessageRecord message) throws UndeliverableMessageException,
+                                                       InsecureFallbackApprovalException
+  {
     if (!TextSecurePreferences.isSmsNonDataOutEnabled(context) && !TextSecurePreferences.isSmsFallbackEnabled(context)) {
       throw new UndeliverableMessageException("SMS Transport is not enabled!");
     }
@@ -59,7 +61,9 @@ public class SmsTransport extends BaseTransport {
     }
   }
 
-  private void deliverSecureMessage(SmsMessageRecord message) throws UndeliverableMessageException {
+  private void deliverSecureMessage(SmsMessageRecord message) throws UndeliverableMessageException,
+                                                                     InsecureFallbackApprovalException
+  {
     MultipartSmsMessageHandler multipartMessageHandler = new MultipartSmsMessageHandler();
     OutgoingTextMessage transportMessage               = OutgoingTextMessage.from(message);
 
@@ -162,9 +166,16 @@ public class SmsTransport extends BaseTransport {
 
   private OutgoingTextMessage getAsymmetricEncrypt(MasterSecret masterSecret,
                                                    OutgoingTextMessage message)
+      throws InsecureFallbackApprovalException
   {
     Recipient           recipient         = message.getRecipients().getPrimaryRecipient();
-    RecipientDevice     recipientDevice   = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
+    RecipientDevice     recipientDevice   = new RecipientDevice(recipient.getRecipientId(),
+                                                                RecipientDevice.DEFAULT_DEVICE_ID);
+
+    if (!Session.hasEncryptCapableSession(context, masterSecret, recipient, recipientDevice)) {
+      throw new InsecureFallbackApprovalException("No session exists for this secure message.");
+    }
+
     String              body              = message.getMessageBody();
     SmsTransportDetails transportDetails  = new SmsTransportDetails();
     SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
