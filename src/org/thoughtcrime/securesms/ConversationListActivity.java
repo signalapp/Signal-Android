@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -72,6 +73,12 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     initializeContactUpdatesReceiver();
 
     DirectoryRefreshListener.schedule(this);
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+      super.onNewIntent(intent);
+      setIntent(intent);
   }
 
   @Override
@@ -182,6 +189,15 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 
+    Intent originalIntent = getIntent();
+    String draftText  = originalIntent.getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA);
+    Uri    draftImage = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA);
+    Uri    draftAudio = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
+
+    intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, draftText);
+    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, draftImage);
+    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, draftAudio);
+
     startActivity(intent);
   }
 
@@ -287,7 +303,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     this.drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
     this.drawerList   = (ListView)findViewById(R.id.left_drawer);
-    this.masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
+    this.masterSecret = /*(MasterSecret)*/getIntent().getParcelableExtra("master_secret");
 
     this.fragment = (ConversationListFragment)this.getSupportFragmentManager()
         .findFragmentById(R.id.fragment_content);
