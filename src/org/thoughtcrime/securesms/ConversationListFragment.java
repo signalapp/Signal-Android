@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.whispersystems.textsecure.util.Util;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.view.ActionMode;
@@ -125,13 +126,23 @@ public class ConversationListFragment extends SherlockListFragment
     }
   }
 
+  private void setQueryFilter(String query) {
+    this.queryFilter = query;
+    getLoaderManager().restartLoader(0, null, this);
+  }
+
+  public void resetQueryFilter() {
+    if (!Util.isEmpty(this.queryFilter)) {
+      setQueryFilter("");
+    }
+  }
+
   private void initializeSearch(SearchView searchView) {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
         if (isAdded()) {
-          ConversationListFragment.this.queryFilter = query;
-          ConversationListFragment.this.getLoaderManager().restartLoader(0, null, ConversationListFragment.this);
+          setQueryFilter(query);
           return true;
         }
         return false;
