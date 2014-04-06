@@ -98,10 +98,14 @@
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
-    <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSent/Received: %2$s</string>
-    <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
-	<string name="ConversationFragment_confirm_message_delete">Confirm Message Delete</string>
-	<string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+    <string name="ConversationFragment_transport_status_pending">pending</string>
+    <string name="ConversationFragment_transport_method_push">PUSH</string>
+    <string name="ConversationFragment_transport_method_mms">MMS</string>
+    <string name="ConversationFragment_transport_method_sms">SMS</string>
+    <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\n\nSent/Received: %2$s</string>
+    <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\n\nTransport: %2$s\n\nSent: %3$s\n\nReceived: %4$s</string>
+    <string name="ConversationFragment_confirm_message_delete">Confirm Message Delete</string>
+    <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
 
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
