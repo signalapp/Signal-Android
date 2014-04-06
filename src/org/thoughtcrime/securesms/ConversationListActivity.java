@@ -325,6 +325,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     public void onDrawerOpened(View drawerView) {
 
       super.onDrawerOpened(drawerView);
+      fragment.resetQueryFilter();
 
       invalidateOptionsMenu();
     }
