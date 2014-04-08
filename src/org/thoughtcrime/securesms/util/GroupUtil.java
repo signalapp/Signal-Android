@@ -50,6 +50,7 @@ public class GroupUtil {
       }
 
       if (title != null && !title.trim().isEmpty()) {
+        if (!description.isEmpty()) description += " ";
         description += appContext.getString(R.string.ConversationItem_group_action_title_updated, title);
       }
 
