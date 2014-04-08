@@ -21,6 +21,8 @@
            parent="@style/Widget.Sherlock.ActionBar">
         <item name="android:background">#ff111111</item>
         <item name="background">#ff111111</item>
+        <item name="android:icon">@drawable/actionbar_icon_holo_dark</item>
+        <item name="icon">@drawable/actionbar_icon_holo_dark</item>
     </style>
 
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
@@ -37,6 +39,8 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="android:icon">@drawable/actionbar_icon_holo_light</item>
+        <item name="icon">@drawable/actionbar_icon_holo_light</item>
     </style>
 
 	<style name="transparent_progress">

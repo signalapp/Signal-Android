@@ -20,7 +20,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -32,7 +31,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.NumberUtil;
@@ -65,9 +63,7 @@ public class NewConversationActivity extends PassphraseRequiredSherlockFragmentA
     dynamicTheme.onCreate(this);
     super.onCreate(icicle);
 
-    final ActionBar actionBar = this.getSupportActionBar();
-    ActionBarUtil.initializeDefaultActionBar(this, actionBar);
-    actionBar.setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     setContentView(R.layout.new_conversation_activity);
     initializeResources();

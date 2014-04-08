@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -50,7 +49,6 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   public void onCreate(Bundle state) {
     super.onCreate(state);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
     setContentView(R.layout.verify_identity_activity);
 
     initializeResources();

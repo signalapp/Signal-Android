@@ -21,7 +21,6 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class ReviewIdentitiesActivity extends SherlockFragmentActivity {
@@ -34,7 +33,6 @@ public class ReviewIdentitiesActivity extends SherlockFragmentActivity {
     super.onCreate(bundle);
     setContentView(R.layout.review_identities);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
   }
 
   @Override
