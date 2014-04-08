@@ -24,12 +24,12 @@ public class DynamicLanguage {
       Intent intent = activity.getIntent();
       intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-      activity.startActivity(intent);
+      activity.finish();
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
         OverridePendingTransition.invoke(activity);
       }
 
-      activity.finish();
+      activity.startActivity(intent);
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
         OverridePendingTransition.invoke(activity);
       }
