@@ -222,7 +222,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   protected void onPause() {
     super.onPause();
     MessageNotifier.setVisibleThread(-1L);
-    overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
+    if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
   }
 
   @Override
