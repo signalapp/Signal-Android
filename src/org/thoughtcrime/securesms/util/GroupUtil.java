@@ -1,15 +1,15 @@
 package org.thoughtcrime.securesms.util;
 
+import android.content.Context;
 import android.util.Log;
 
-import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.thoughtcrime.securesms.R;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
@@ -34,9 +34,9 @@ public class GroupUtil {
     return groupId.startsWith(ENCODED_GROUP_PREFIX);
   }
 
-  public static String getDescription(String encodedGroup) {
+  public static String getDescription(String encodedGroup, Context appContext) {
     if (encodedGroup == null) {
-      return "Group updated.";
+      return appContext.getString(R.string.ConversationItem_group_action_updated);
     }
 
     try {
@@ -46,20 +46,21 @@ public class GroupUtil {
       String       title       = context.getName();
 
       if (!members.isEmpty()) {
-        description += org.whispersystems.textsecure.util.Util.join(members, ", ") + " joined the group.";
+        description += appContext.getString(R.string.ConversationItem_group_action_joined, org.whispersystems.textsecure.util.Util.join(members, ", "));
       }
 
       if (title != null && !title.trim().isEmpty()) {
-        description += " Title is now '" + title + "'.";
+        if (!description.isEmpty()) description += " ";
+        description += appContext.getString(R.string.ConversationItem_group_action_title_updated, title);
       }
 
       return description;
     } catch (InvalidProtocolBufferException e) {
       Log.w("GroupUtil", e);
-      return "Group updated.";
+      return appContext.getString(R.string.ConversationItem_group_action_updated);
     } catch (IOException e) {
       Log.w("GroupUtil", e);
-      return "Group updated.";
+      return appContext.getString(R.string.ConversationItem_group_action_updated);
     }
   }
 }

@@ -23,9 +23,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -40,6 +40,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ThreadDatabase extends Database {
+
+  private static final String TAG = "ThreadDatabase";
 
           static final String TABLE_NAME      = "thread";
   public  static final String ID              = "_id";
@@ -177,19 +179,19 @@ public class ThreadDatabase extends Database {
   }
 
   public void trimThread(long threadId, int length) {
-    Log.w("ThreadDatabase", "Trimming thread: " + threadId + " to: " + length);
+    Log.w(TAG, "Trimming thread: " + threadId + " to: " + length);
     Cursor cursor = null;
 
     try {
       cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId);
 
       if (cursor != null && cursor.getCount() > length) {
-        Log.w("ThreadDatabase", "Cursor count is greater than length!");
+        Log.w(TAG, "Cursor count is greater than length!");
         cursor.moveToPosition(cursor.getCount() - length);
 
         long lastTweetDate = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
 
-        Log.w("ThreadDatabase", "Cut off tweet date: " + lastTweetDate);
+        Log.w(TAG, "Cut off tweet date: " + lastTweetDate);
 
         DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
         DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
@@ -455,8 +457,8 @@ public class ThreadDatabase extends Database {
           return new DisplayRecord.Body(body, true);
         }
       } catch (InvalidMessageException e) {
-        Log.w("ThreadDatabase", e);
-        return new DisplayRecord.Body("Error decrypting message.", true);
+        Log.w(TAG, e);
+        return new DisplayRecord.Body(context.getString(R.string.MessageDisplayHelper_error_decrypting_message), true);
       }
     }
 

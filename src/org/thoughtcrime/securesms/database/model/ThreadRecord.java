@@ -55,8 +55,10 @@ public class ThreadRecord extends DisplayRecord {
   public SpannableString getDisplayBody() {
     if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
+    } else if (isGroupUpdate() && isOutgoing()) {
+      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_you_updated));
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(getBody().getBody()));
+      return emphasisAdded(GroupUtil.getDescription(getBody().getBody(), context));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));
     } else if (isKeyExchange()) {

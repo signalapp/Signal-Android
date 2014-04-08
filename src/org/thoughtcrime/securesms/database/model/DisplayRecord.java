@@ -95,6 +95,10 @@ public abstract class DisplayRecord {
     return isGroupUpdate() || isGroupQuit();
   }
 
+  public boolean isOutgoing() {
+    return SmsDatabase.Types.isOutgoingMessageType(type);
+  }
+
   public static class Body {
     private final String body;
     private final boolean plaintext;
