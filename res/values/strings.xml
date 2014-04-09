@@ -88,8 +88,8 @@
     <string name="ConversationFragment_message_details">Message details</string>
     <string name="ConversationFragment_sender_s_transport_s_sent_received_s">Sender: %1$s\nTransport: %2$s\nSent/Received:%3$s</string>
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived:%4$s</string>
-	<string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
-	<string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+    <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
+    <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
 
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
@@ -268,6 +268,8 @@
     <string name="RegistrationProgressActivity_too_many_requests">Too many requests!</string>
     <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
     <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code...</string>
+    <string name="RegistrationProgressActivity_registration_conflict">Registration conflict</string>
+    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different TextSecure server (CyanogenMod?). You must unregistering there before registering here.</string>
 
     <!-- RegistrationService -->
     <string name="RegistrationService_registration_complete">Registration complete</string>
@@ -440,6 +442,18 @@
     <string name="create_passphrase_activity__continue">Continue</string>
     <string name="create_passphrase_activity__generating_secrets">GENERATING SECRETS</string>
 
+    <!-- log_submit_activity -->
+    <string name="log_submit_activity__confirmation">This log will be posted publicly online for TextSecure contributors to view. Feel free to examine or edit the logs below before hitting submit.</string>
+    <string name="log_submit_activity__button_cancel">Don\'t submit</string>
+    <string name="log_submit_activity__button_ok">Submit</string>
+    <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
+    <string name="log_submit_activity__log_submit_success_title">Success!</string>
+    <string name="log_submit_activity__log_got_it">Got it</string>
+    <string name="log_submit_activity__your_pastebin_url">Please copy this URL and add it to your issue (long press to put in clipboard):\n\n<b>%1$s</b></string>
+    <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
+    <string name="log_submit_activity__loading_logcat">Loading logcat&#8230;</string>
+    <string name="log_submit_activity__thanks">Thanks for your help!</string>
+
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">The default system database will not be modified or altered in any way.</string>
@@ -594,7 +608,6 @@
     <string name="verify_keys_activity__you_read_this">You read this:</string>
 
     <!-- AndroidManifest.xml -->
-
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>
     <string name="AndroidManifest__enter_passphrase">Enter passphrase</string>
     <string name="AndroidManifest__select_contacts">Select contacts</string>
@@ -697,6 +710,7 @@
     <string name="preferences__allow_sms_fallback">SMS fallback</string>
     <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is currently your default SMS app. Please set another default SMS app first to change this preference.</string>
     <string name="preferences__send_and_receive_sms_messages_when_push_is_not_available">Send and receive SMS messages when push is not available</string>
+    <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__refresh_push_directory">Refresh push directory</string>
 
     <!-- **************************************** -->
@@ -771,7 +785,6 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
-
     <!-- EOF -->
 
 </resources>
