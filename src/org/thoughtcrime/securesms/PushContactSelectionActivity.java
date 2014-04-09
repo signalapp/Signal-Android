@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -43,13 +44,15 @@ public class PushContactSelectionActivity extends PassphraseRequiredSherlockFrag
   private final static String TAG             = "ContactSelectActivity";
   public  final static String PUSH_ONLY_EXTRA = "push_only";
 
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
   protected void onCreate(Bundle icicle) {
     dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -62,6 +65,8 @@ public class PushContactSelectionActivity extends PassphraseRequiredSherlockFrag
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
+    getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
   }
 
   @Override

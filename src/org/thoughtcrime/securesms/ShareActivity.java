@@ -18,25 +18,16 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
-import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -66,7 +57,6 @@ public class ShareActivity extends PassphraseRequiredSherlockFragmentActivity
     super.onCreate(icicle);
 
     setContentView(R.layout.share_activity);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), R.string.ShareActivity_share_with);
     initializeResources();
   }
 
@@ -81,6 +71,7 @@ public class ShareActivity extends PassphraseRequiredSherlockFragmentActivity
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    getSupportActionBar().setTitle(R.string.ShareActivity_share_with);
   }
 
   @Override

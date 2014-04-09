@@ -129,7 +129,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
     setContentView(R.layout.group_create_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
 
     selectedContacts = new HashSet<Recipient>();
     initializeResources();
@@ -140,6 +139,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
     if (!TextSecurePreferences.isPushRegistered(this)) {
       disableWhisperGroupUi(R.string.GroupCreateActivity_you_dont_support_push);
     }
