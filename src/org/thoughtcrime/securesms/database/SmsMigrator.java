@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -28,6 +29,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.SharedPreferencesCompat;
 
 import java.util.StringTokenizer;
 
@@ -222,8 +224,8 @@ public class SmsMigrator {
         cursor.close();
     }
 
-    context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).edit()
-      .putBoolean("migrated", true).commit();
+    final SharedPreferences prefs = context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE);
+    SharedPreferencesCompat.apply(prefs.edit().putBoolean("migrated", true));
   }
 
   public interface SmsMigrationProgressListener {

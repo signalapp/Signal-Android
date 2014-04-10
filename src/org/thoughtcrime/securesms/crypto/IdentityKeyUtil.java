@@ -17,6 +17,7 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -28,6 +29,7 @@ import org.spongycastle.asn1.ASN1Sequence;
 import org.spongycastle.asn1.DERInteger;
 import org.spongycastle.asn1.DERSequence;
 import org.spongycastle.crypto.signers.ECDSASigner;
+import org.thoughtcrime.securesms.util.SharedPreferencesCompat;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.IdentityKeyPair;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
@@ -219,14 +221,14 @@ public class IdentityKeyUtil {
       byte[]       privateKeyBytes = Base64.decode(retrieve(context, IDENTITY_PRIVATE_KEY_NIST_PREF));
       ECPrivateKey privateKey      = masterCipher.decryptKey(Curve.NIST_TYPE, privateKeyBytes);
       ECDSASigner  signer          = new ECDSASigner();
-			
+
       signer.init(true, ((NistECPrivateKey)privateKey).getParameters());
-			
+
       BigInteger[] messageSignatureInts    = signer.generateSignature(messageHash);
       DERInteger[] derMessageSignatureInts = new DERInteger[]{ new DERInteger(messageSignatureInts[0]), new DERInteger(messageSignatureInts[1]) };
       byte[] messageSignatureBytes         = new DERSequence(derMessageSignatureInts).getEncoded(ASN1Encoding.DER);
       byte[] messageSignature              = new byte[2 + messageSignatureBytes.length];
-	        
+
       Conversions.shortToByteArray(messageSignature, 0, messageSignatureBytes.length);	        
       System.arraycopy(messageSignatureBytes, 0, messageSignature, 2, messageSignatureBytes.length);
 
@@ -237,7 +239,7 @@ public class IdentityKeyUtil {
       throw new AssertionError(e);
     }
   }
-	
+
   private static byte[] getMessageHash(byte[] messageBytes, byte[] publicKeyBytes) {
     try {
       MessageDigest md = MessageDigest.getInstance("SHA1");
@@ -252,12 +254,10 @@ public class IdentityKeyUtil {
     SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
     return preferences.getString(key, null);
   }
-	
+
   public static void save(Context context, String key, String value) {
     SharedPreferences preferences   = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
-    Editor preferencesEditor        = preferences.edit();
-		
-    preferencesEditor.putString(key, value);
-    preferencesEditor.commit();
+
+    SharedPreferencesCompat.apply(preferences.edit().putString(key, value));
   }
 }

@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.thoughtcrime.securesms.util.SharedPreferencesCompat;
 
 /**
  * Activity which prompts the user to initiate a secure
@@ -96,7 +97,7 @@ public class AutoInitiateActivity extends Activity {
 
   public static void exemptThread(Context context, long threadId) {
     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-    sp.edit().putBoolean("pref_thread_auto_init_exempt_" + threadId, true).commit();
+    SharedPreferencesCompat.apply(sp.edit().putBoolean("pref_thread_auto_init_exempt_" + threadId, true));
   }
 
   public static boolean isValidAutoInitiateSituation(Context context, MasterSecret masterSecret,

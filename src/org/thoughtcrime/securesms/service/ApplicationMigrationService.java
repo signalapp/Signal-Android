@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.RoutingActivity;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
+import org.thoughtcrime.securesms.util.SharedPreferencesCompat;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -215,6 +217,7 @@ public class ApplicationMigrationService extends Service
   }
 
   public static void setDatabaseImported(Context context) {
-    context.getSharedPreferences(PREFERENCES_NAME, 0).edit().putBoolean(DATABASE_MIGRATED, true).commit();
+    final SharedPreferences prefs = context.getSharedPreferences(PREFERENCES_NAME, 0);
+    SharedPreferencesCompat.apply(prefs.edit().putBoolean(DATABASE_MIGRATED, true));
   }
 }

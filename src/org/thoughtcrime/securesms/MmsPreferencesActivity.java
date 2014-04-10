@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.SharedPreferencesCompat;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
@@ -89,8 +91,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
 
   private void initializePreferences() {
     if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(this, null, false)) {
-      PreferenceManager.getDefaultSharedPreferences(this).edit()
-          .putBoolean(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF, true).commit();
+      TextSecurePreferences.setUseLocalApnsEnabled(this, true);
       addPreferencesFromResource(R.xml.mms_preferences);
       this.findPreference(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
     } else {
@@ -129,8 +130,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
   private class OverrideMmsChangeListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
-      PreferenceManager.getDefaultSharedPreferences(MmsPreferencesActivity.this).edit()
-          .putBoolean(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF, true).commit();
+      TextSecurePreferences.setUseLocalApnsEnabled(MmsPreferencesActivity.this, true);
       Toast.makeText(MmsPreferencesActivity.this, R.string.mms_preferences_activity__manual_mms_settings_are_required, Toast.LENGTH_SHORT).show();
       return false;
     }
