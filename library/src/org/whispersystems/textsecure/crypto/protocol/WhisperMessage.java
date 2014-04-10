@@ -1,7 +1,5 @@
 package org.whispersystems.textsecure.crypto.protocol;
 
-import android.util.Log;
-
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -10,19 +8,17 @@ import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
-import org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage;
 import org.whispersystems.textsecure.util.Conversions;
-import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.util.Arrays;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-public class WhisperMessageV2 implements CiphertextMessage {
+public class WhisperMessage implements CiphertextMessage {
 
   private static final int MAC_LENGTH = 8;
 
@@ -32,7 +28,7 @@ public class WhisperMessageV2 implements CiphertextMessage {
   private final byte[]      ciphertext;
   private final byte[]      serialized;
 
-  public WhisperMessageV2(byte[] serialized) throws InvalidMessageException, LegacyMessageException {
+  public WhisperMessage(byte[] serialized) throws InvalidMessageException, LegacyMessageException {
     try {
       byte[][] messageParts = Util.split(serialized, 1, serialized.length - 1 - MAC_LENGTH, MAC_LENGTH);
       byte     version      = messageParts[0][0];
@@ -47,7 +43,7 @@ public class WhisperMessageV2 implements CiphertextMessage {
         throw new InvalidMessageException("Unknown version: " + Conversions.highBitsToInt(version));
       }
 
-      WhisperMessage whisperMessage = WhisperMessage.parseFrom(message);
+      WhisperProtos.WhisperMessage whisperMessage = WhisperProtos.WhisperMessage.parseFrom(message);
 
       if (!whisperMessage.hasCiphertext() ||
           !whisperMessage.hasCounter() ||
@@ -70,11 +66,11 @@ public class WhisperMessageV2 implements CiphertextMessage {
     }
   }
 
-  public WhisperMessageV2(SecretKeySpec macKey, ECPublicKey senderEphemeral,
-                          int counter, int previousCounter, byte[] ciphertext)
+  public WhisperMessage(SecretKeySpec macKey, ECPublicKey senderEphemeral,
+                        int counter, int previousCounter, byte[] ciphertext)
   {
     byte[] version = {Conversions.intsToByteHighAndLow(CURRENT_VERSION, CURRENT_VERSION)};
-    byte[] message = WhisperMessage.newBuilder()
+    byte[] message = WhisperProtos.WhisperMessage.newBuilder()
                                    .setEphemeralKey(ByteString.copyFrom(senderEphemeral.serialize()))
                                    .setCounter(counter)
                                    .setPreviousCounter(previousCounter)
@@ -108,7 +104,7 @@ public class WhisperMessageV2 implements CiphertextMessage {
     byte[]   ourMac   = getMac(macKey, parts[0]);
     byte[]   theirMac = parts[1];
 
-    if (!Arrays.equals(ourMac, theirMac)) {
+    if (!MessageDigest.isEqual(ourMac, theirMac)) {
       throw new InvalidMessageException("Bad Mac!");
     }
   }

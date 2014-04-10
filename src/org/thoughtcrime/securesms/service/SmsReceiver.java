@@ -47,7 +47,7 @@ import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.crypto.protocol.WhisperMessageV2;
+import org.whispersystems.textsecure.crypto.protocol.WhisperMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 
@@ -122,7 +122,7 @@ public class SmsReceiver {
       if (processor.isTrusted(preKeyExchange)) {
         processor.processKeyExchangeMessage(preKeyExchange);
 
-        WhisperMessageV2         ciphertextMessage  = preKeyExchange.getWhisperMessage();
+        WhisperMessage           ciphertextMessage  = preKeyExchange.getWhisperMessage();
         String                   bundledMessageBody = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
         IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, bundledMessageBody);
         Pair<Long, Long>         messageAndThreadId = storeSecureMessage(masterSecret, bundledMessage);
