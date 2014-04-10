@@ -64,7 +64,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     setContentView(R.layout.conversation_list_activity);
 
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), "TextSecure");
+    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), R.string.app_name);
 
     initializeNavigationDrawer();
     initializeSenderReceiverService();
@@ -287,7 +287,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     this.drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
     this.drawerList   = (ListView)findViewById(R.id.left_drawer);
-    this.masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
+    this.masterSecret = getIntent().getParcelableExtra("master_secret");
 
     this.fragment = (ConversationListFragment)this.getSupportFragmentManager()
         .findFragmentById(R.id.fragment_content);

@@ -71,7 +71,7 @@
                 <data android:mimeType="image/*" />
                 <data android:mimeType="text/plain" />
                 <data android:mimeType="video/*" />
-            </intent-filter>            
+            </intent-filter>
 
         </activity>
 
@@ -93,10 +93,17 @@
     <activity android:name=".MmsPreferencesActivity"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ConversationListActivity"
-              android:label="@string/app_name"
+    <activity android:name=".ShareActivity"
+              android:excludeFromRecents="true"
               android:launchMode="singleTask"
+              android:noHistory="true"
+              android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".ConversationListActivity"
+          android:label="@string/app_name"
+          android:launchMode="singleTask"
+          android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
@@ -126,7 +133,7 @@
     <activity android:name=".PassphrasePromptActivity"
               android:label="@string/AndroidManifest__enter_passphrase"
               android:launchMode="singleTop"
-              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"              
+              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

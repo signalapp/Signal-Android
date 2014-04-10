@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -126,16 +127,25 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private void handleDisplayConversationOrList() {
-    ConversationParameters parameters = getConversationParameters();
+    final ConversationParameters parameters = getConversationParameters();
 
-    Intent intent;
-
-    if (isShareAction() || parameters.recipients != null) {
+    final Intent intent;
+    if (isShareAction()) {
+      intent = getShareIntent(parameters);
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+      }
+    } else if (parameters.recipients != null) {
       intent = getConversationIntent(parameters);
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
     } else {
       intent = getConversationListIntent();
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+      }
     }
-
     startActivity(intent);
     finish();
   }
@@ -149,6 +159,20 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
     intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
     intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
+
+    return intent;
+  }
+
+  private Intent getShareIntent(ConversationParameters parameters) {
+    Intent intent = new Intent(this, ShareActivity.class);
+    intent.putExtra("master_secret", masterSecret);
+
+    if (parameters != null) {
+      intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
+      intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
+      intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
+      intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
+    }
 
     return intent;
   }
@@ -197,8 +221,8 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private ConversationParameters getConversationParametersForSendAction() {
-    Recipients recipients = null;
-    long       threadId   = getIntent().getLongExtra("thread_id", -1);
+    Recipients recipients;
+    long       threadId = getIntent().getLongExtra("thread_id", -1);
 
     try {
       String data = getIntent().getData().getSchemeSpecificPart();
@@ -220,11 +244,11 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
 
     if ("text/plain".equals(type)) {
       draftText = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    } else if (type.startsWith("image/")) {
+    } else if (type != null && type.startsWith("image/")) {
       draftImage = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-    } else if (type.startsWith("audio/")) {
+    } else if (type != null && type.startsWith("audio/")) {
       draftAudio = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-    } else if (type.startsWith("video/")) {
+    } else if (type != null && type.startsWith("video/")) {
       draftVideo = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
     }
 
