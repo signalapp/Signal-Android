@@ -47,6 +47,7 @@ import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.protocol.WhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
@@ -375,15 +376,17 @@ public class DecryptingQueue {
         Recipient       recipient       = recipients.getPrimaryRecipient();
         RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), deviceId);
 
+        SmsTransportDetails transportDetails  = new SmsTransportDetails();
+        byte[]              decodedCiphertext = transportDetails.getDecodedMessage(body.getBytes());
+
         if (!Session.hasSession(context, masterSecret, recipient)) {
-          database.markAsNoSession(messageId);
+          if (WhisperMessage.isLegacy(decodedCiphertext)) database.markAsLegacyVersion(messageId);
+          else                                            database.markAsNoSession(messageId);
           return;
         }
 
-        SmsTransportDetails transportDetails  = new SmsTransportDetails();
-        SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
-        byte[]              decodedCiphertext = transportDetails.getDecodedMessage(body.getBytes());
-        byte[]              paddedPlaintext   = sessionCipher.decrypt(decodedCiphertext);
+        SessionCipher sessionCipher   = SessionCipher.createFor(context, masterSecret, recipientDevice);
+        byte[]        paddedPlaintext = sessionCipher.decrypt(decodedCiphertext);
 
         plaintextBody = new String(transportDetails.getStrippedPaddingMessageBody(paddedPlaintext));
 

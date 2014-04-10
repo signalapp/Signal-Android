@@ -363,7 +363,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   }
 
   public void markAsLegacyVersion(long messageId, long threadId) {
-    updateMailboxBitmask(messageId, 0, Types.LEGACY_MESSAGE_BIT);
+    updateMailboxBitmask(messageId, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT);
     notifyConversationListeners(threadId);
   }
 

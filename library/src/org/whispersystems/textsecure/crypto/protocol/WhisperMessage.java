@@ -133,4 +133,9 @@ public class WhisperMessage implements CiphertextMessage {
     return CiphertextMessage.WHISPER_TYPE;
   }
 
+  public static boolean isLegacy(byte[] message) {
+    return message != null && message.length >= 1 &&
+        Conversions.highBitsToInt(message[0]) <= CiphertextMessage.UNSUPPORTED_VERSION;
+  }
+
 }

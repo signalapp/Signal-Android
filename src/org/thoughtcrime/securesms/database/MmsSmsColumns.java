@@ -47,7 +47,6 @@ public interface MmsSmsColumns {
     protected static final long SECURE_MESSAGE_BIT = 0x800000;
     protected static final long END_SESSION_BIT    = 0x400000;
     protected static final long PUSH_MESSAGE_BIT   = 0x200000;
-    protected static final long LEGACY_MESSAGE_BIT = 0x100000;
 
     // Group Message Information
     protected static final long GROUP_UPDATE_BIT = 0x10000;
@@ -61,6 +60,7 @@ public interface MmsSmsColumns {
     protected static final long ENCRYPTION_REMOTE_FAILED_BIT     = 0x10000000;
     protected static final long ENCRYPTION_REMOTE_NO_SESSION_BIT = 0x08000000;
     protected static final long ENCRYPTION_REMOTE_DUPLICATE_BIT  = 0x04000000;
+    protected static final long ENCRYPTION_REMOTE_LEGACY_BIT     = 0x02000000;
 
     public static boolean isFailedMessageType(long type) {
       return (type & BASE_TYPE_MASK) == BASE_SENT_FAILED_TYPE;
@@ -170,6 +170,10 @@ public interface MmsSmsColumns {
 
     public static boolean isNoRemoteSessionType(long type) {
       return (type & ENCRYPTION_REMOTE_NO_SESSION_BIT) != 0;
+    }
+
+    public static boolean isLegacyType(long type) {
+      return (type & ENCRYPTION_REMOTE_LEGACY_BIT) != 0;
     }
 
     public static long translateFromSystemBaseType(long theirType) {
