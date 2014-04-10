@@ -41,11 +41,7 @@ public abstract class KeyExchangeProcessor {
                                                RecipientDevice recipientDevice,
                                                KeyExchangeMessage message)
   {
-    if (message.isLegacy()) {
-      return new KeyExchangeProcessorV1(context, masterSecret, recipientDevice.getRecipient());
-    } else {
-      return new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
-    }
+    return new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
   }
 
   public static void broadcastSecurityUpdateEvent(Context context, long threadId) {

@@ -7,6 +7,7 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Conversions;
@@ -26,7 +27,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
       throws InvalidMessageException, InvalidVersionException
   {
     try {
-      this.version = Conversions.lowBitsToInt(serialized[0]);
+      this.version = Conversions.highBitsToInt(serialized[0]);
 
       if (this.version > CiphertextMessage.CURRENT_VERSION) {
         throw new InvalidVersionException("Unknown version: " + this.version);
@@ -53,6 +54,8 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     } catch (InvalidProtocolBufferException e) {
       throw new InvalidMessageException(e);
     } catch (InvalidKeyException e) {
+      throw new InvalidMessageException(e);
+    } catch (LegacyMessageException e) {
       throw new InvalidMessageException(e);
     }
   }
@@ -106,7 +109,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
 
   @Override
   public int getType() {
-    return CiphertextMessage.PREKEY_WHISPER_TYPE;
+    return CiphertextMessage.PREKEY_TYPE;
   }
 
 }

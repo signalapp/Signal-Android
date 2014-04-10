@@ -352,9 +352,9 @@ public class PushTransport extends BaseTransport {
     CiphertextMessage message = cipher.encrypt(plaintext);
     int remoteRegistrationId  = cipher.getRemoteRegistrationId();
 
-    if (message.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
+    if (message.getType() == CiphertextMessage.PREKEY_TYPE) {
       return new PushBody(IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE, remoteRegistrationId, message.serialize());
-    } else if (message.getType() == CiphertextMessage.CURRENT_WHISPER_TYPE) {
+    } else if (message.getType() == CiphertextMessage.WHISPER_TYPE) {
       return new PushBody(IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE, remoteRegistrationId, message.serialize());
     } else {
       throw new AssertionError("Unknown ciphertext type: " + message.getType());

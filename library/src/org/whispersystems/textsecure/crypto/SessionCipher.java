@@ -29,7 +29,7 @@ public abstract class SessionCipher {
   protected static final Object SESSION_LOCK = new Object();
 
   public abstract CiphertextMessage encrypt(byte[] paddedMessage);
-  public abstract byte[] decrypt(byte[] decodedMessage) throws InvalidMessageException, DuplicateMessageException;
+  public abstract byte[] decrypt(byte[] decodedMessage) throws InvalidMessageException, DuplicateMessageException, LegacyMessageException;
   public abstract int getRemoteRegistrationId();
 
   public static SessionCipher createFor(Context context,
@@ -38,8 +38,6 @@ public abstract class SessionCipher {
   {
     if (SessionRecordV2.hasSession(context, masterSecret, recipient)) {
       return new SessionCipherV2(context, masterSecret, recipient);
-    } else if (SessionRecordV1.hasSession(context, recipient.getRecipientId())) {
-      return new SessionCipherV1(context, masterSecret, recipient.getRecipient());
     } else {
       throw new AssertionError("Attempt to initialize cipher for non-existing session.");
     }

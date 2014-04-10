@@ -78,7 +78,7 @@ public class SessionCipherV2 extends SessionCipher {
 
   @Override
   public byte[] decrypt(byte[] decodedMessage)
-      throws InvalidMessageException, DuplicateMessageException
+      throws InvalidMessageException, DuplicateMessageException, LegacyMessageException
   {
     synchronized (SESSION_LOCK) {
       SessionRecordV2    sessionRecord  = getSessionRecord();
@@ -111,7 +111,7 @@ public class SessionCipherV2 extends SessionCipher {
   }
 
   public byte[] decrypt(SessionState sessionState, byte[] decodedMessage)
-      throws InvalidMessageException, DuplicateMessageException
+      throws InvalidMessageException, DuplicateMessageException, LegacyMessageException
   {
     if (!sessionState.hasSenderChain()) {
       throw new InvalidMessageException("Uninitialized session!");
@@ -152,7 +152,7 @@ public class SessionCipherV2 extends SessionCipher {
         RootKey                 rootKey         = sessionState.getRootKey();
         ECKeyPair               ourEphemeral    = sessionState.getSenderEphemeralPair();
         Pair<RootKey, ChainKey> receiverChain   = rootKey.createChain(theirEphemeral, ourEphemeral);
-        ECKeyPair               ourNewEphemeral = Curve.generateKeyPairForType(Curve.DJB_TYPE, true);
+        ECKeyPair               ourNewEphemeral = Curve.generateKeyPair(true);
         Pair<RootKey, ChainKey> senderChain     = receiverChain.first.createChain(theirEphemeral, ourNewEphemeral);
 
         sessionState.setRootKey(senderChain.first);

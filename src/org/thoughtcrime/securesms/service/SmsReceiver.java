@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -188,6 +189,9 @@ public class SmsReceiver {
       } catch (RecipientFormattingException e) {
         Log.w("SmsReceiver", e);
         message.setCorrupted(true);
+      } catch (LegacyMessageException e) {
+        Log.w("SmsReceiver", e);
+        message.setLegacyVersion(true);
       }
     }
 

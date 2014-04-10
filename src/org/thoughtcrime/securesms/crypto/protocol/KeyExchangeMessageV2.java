@@ -7,6 +7,7 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
@@ -57,7 +58,7 @@ public class KeyExchangeMessageV2 extends KeyExchangeMessage {
   }
 
   public KeyExchangeMessageV2(String serializedAndEncoded)
-      throws InvalidMessageException, InvalidVersionException
+      throws InvalidMessageException, InvalidVersionException, LegacyMessageException
   {
     try {
       byte[]   serialized = Base64.decodeWithoutPadding(serializedAndEncoded);
@@ -65,6 +66,10 @@ public class KeyExchangeMessageV2 extends KeyExchangeMessage {
 
       this.version          = Conversions.highBitsToInt(parts[0][0]);
       this.supportedVersion = Conversions.lowBitsToInt(parts[0][0]);
+
+      if (this.version <= CiphertextMessage.UNSUPPORTED_VERSION) {
+        throw new LegacyMessageException("Unsupported legacy version: " + this.version);
+      }
 
       if (this.version > CiphertextMessage.CURRENT_VERSION) {
         throw new InvalidVersionException("Unknown version: " + this.version);
@@ -104,11 +109,6 @@ public class KeyExchangeMessageV2 extends KeyExchangeMessage {
 
   public ECPublicKey getEphemeralKey() {
     return ephemeralKey;
-  }
-
-  @Override
-  public boolean isLegacy() {
-    return false;
   }
 
   @Override

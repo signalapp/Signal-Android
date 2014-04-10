@@ -99,7 +99,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     PreKeyRecord    preKeyRecord         = new PreKeyRecord(context, masterSecret, preKeyId);
     ECKeyPair       ourBaseKey           = preKeyRecord.getKeyPair();
     ECKeyPair       ourEphemeralKey      = ourBaseKey;
-    IdentityKeyPair ourIdentityKey       = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, ourBaseKey.getPublicKey().getType());
+    IdentityKeyPair ourIdentityKey       = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     boolean         simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
 
     if (!simultaneousInitiate) sessionRecord.clear();
@@ -131,14 +131,12 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
   public void processKeyExchangeMessage(PreKeyEntity message, long threadId)
       throws InvalidKeyException
   {
-    ECKeyPair       ourBaseKey        = Curve.generateKeyPairForSession(2, true);
-    ECKeyPair       ourEphemeralKey   = Curve.generateKeyPairForSession(2, true);
+    ECKeyPair       ourBaseKey        = Curve.generateKeyPair(true);
+    ECKeyPair       ourEphemeralKey   = Curve.generateKeyPair(true);
     ECPublicKey     theirBaseKey      = message.getPublicKey();
     ECPublicKey     theirEphemeralKey = theirBaseKey;
     IdentityKey     theirIdentityKey  = message.getIdentityKey();
-    IdentityKeyPair ourIdentityKey    = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret,
-                                                                           ourBaseKey.getPublicKey()
-                                                                                     .getType());
+    IdentityKeyPair ourIdentityKey    = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
     if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
     else                                                   sessionRecord.clear();
@@ -184,9 +182,9 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
 
         if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
           Log.w("KeyExchangeProcessorV2", "We don't have a pending initiate...");
-          ourBaseKey      = Curve.generateKeyPairForType(message.getBaseKey().getType(), true);
-          ourEphemeralKey = Curve.generateKeyPairForType(message.getBaseKey().getType(), true);
-          ourIdentityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret, message.getBaseKey().getType());
+          ourBaseKey      = Curve.generateKeyPair(true);
+          ourEphemeralKey = Curve.generateKeyPair(true);
+          ourIdentityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
           sessionRecord.getSessionState().setPendingKeyExchange(message.getSequence(), ourBaseKey,
                                                                 ourEphemeralKey, ourIdentityKey);

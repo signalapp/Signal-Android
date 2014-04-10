@@ -362,6 +362,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     notifyConversationListeners(threadId);
   }
 
+  public void markAsLegacyVersion(long messageId, long threadId) {
+    updateMailboxBitmask(messageId, 0, Types.LEGACY_MESSAGE_BIT);
+    notifyConversationListeners(threadId);
+  }
+
   public void setMessagesRead(long threadId) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     ContentValues contentValues = new ContentValues();

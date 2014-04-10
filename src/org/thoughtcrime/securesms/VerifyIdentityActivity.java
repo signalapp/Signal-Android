@@ -28,8 +28,6 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.Session;
 
 /**
@@ -44,8 +42,6 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   private TextView localIdentityFingerprint;
   private TextView remoteIdentityFingerprint;
-
-  private int keyType;
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -78,12 +74,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   private void initializeLocalIdentityKey() {
-    if (!IdentityKeyUtil.hasIdentityKey(this, keyType)) {
+    if (!IdentityKeyUtil.hasIdentityKey(this)) {
       localIdentityFingerprint.setText(R.string.VerifyIdentityActivity_you_do_not_have_an_identity_key);
       return;
     }
 
-    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this, keyType).getFingerprint());
+    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this).getFingerprint());
   }
 
   private void initializeRemoteIdentityKey() {
@@ -110,19 +106,11 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
     this.recipient                 = this.getIntent().getParcelableExtra("recipient");
     this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
-
-    int sessionVersion = Session.getSessionVersion(this, masterSecret, recipient);
-
-    if (sessionVersion <= CiphertextMessage.LEGACY_VERSION) {
-      this.keyType = Curve.NIST_TYPE;
-    } else {
-      this.keyType = Curve.DJB_TYPE;
-    }
   }
 
   @Override
   protected void initiateDisplay() {
-    if (!IdentityKeyUtil.hasIdentityKey(this, keyType)) {
+    if (!IdentityKeyUtil.hasIdentityKey(this)) {
       Toast.makeText(this,
                      R.string.VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation,
                      Toast.LENGTH_LONG).show();
@@ -161,7 +149,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected IdentityKey getIdentityKeyToDisplay() {
-    return IdentityKeyUtil.getIdentityKey(this, keyType);
+    return IdentityKeyUtil.getIdentityKey(this);
   }
 
   @Override

@@ -21,35 +21,18 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.PublicKey;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Conversions;
-
-import java.io.IOException;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 
 
 public abstract class KeyExchangeMessage {
-  public abstract boolean     isLegacy();
   public abstract IdentityKey getIdentityKey();
   public abstract boolean     hasIdentityKey();
   public abstract int         getMaxVersion();
   public abstract int         getVersion();
 
   public static KeyExchangeMessage createFor(String rawMessage)
-      throws InvalidMessageException, InvalidKeyException, InvalidVersionException
+      throws InvalidMessageException, InvalidKeyException, InvalidVersionException, LegacyMessageException
   {
-    try {
-      byte[] decodedMessage = Base64.decodeWithoutPadding(rawMessage);
-
-      if (Conversions.highBitsToInt(decodedMessage[0]) <= CiphertextMessage.LEGACY_VERSION) {
-        return new KeyExchangeMessageV1(rawMessage);
-      } else {
-        return new KeyExchangeMessageV2(rawMessage);
-      }
-    } catch (IOException e) {
-      throw new InvalidMessageException(e);
-    }
+    return new KeyExchangeMessageV2(rawMessage);
   }
 }

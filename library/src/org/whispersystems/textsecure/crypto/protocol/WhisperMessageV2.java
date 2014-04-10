@@ -7,6 +7,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage;
@@ -31,12 +32,16 @@ public class WhisperMessageV2 implements CiphertextMessage {
   private final byte[]      ciphertext;
   private final byte[]      serialized;
 
-  public WhisperMessageV2(byte[] serialized) throws InvalidMessageException {
+  public WhisperMessageV2(byte[] serialized) throws InvalidMessageException, LegacyMessageException {
     try {
       byte[][] messageParts = Util.split(serialized, 1, serialized.length - 1 - MAC_LENGTH, MAC_LENGTH);
       byte     version      = messageParts[0][0];
       byte[]   message      = messageParts[1];
       byte[]   mac          = messageParts[2];
+
+      if (Conversions.highBitsToInt(version) <= CiphertextMessage.UNSUPPORTED_VERSION) {
+        throw new LegacyMessageException("Legacy message: " + Conversions.highBitsToInt(version));
+      }
 
       if (Conversions.highBitsToInt(version) != CURRENT_VERSION) {
         throw new InvalidMessageException("Unknown version: " + Conversions.highBitsToInt(version));
@@ -129,7 +134,7 @@ public class WhisperMessageV2 implements CiphertextMessage {
 
   @Override
   public int getType() {
-    return CiphertextMessage.CURRENT_WHISPER_TYPE;
+    return CiphertextMessage.WHISPER_TYPE;
   }
 
 }

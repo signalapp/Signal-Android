@@ -183,7 +183,7 @@ public class SmsTransport extends BaseTransport {
     CiphertextMessage   ciphertextMessage = sessionCipher.encrypt(paddedPlaintext);
     String              encodedCiphertext = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
 
-    if (ciphertextMessage.getType() == CiphertextMessage.PREKEY_WHISPER_TYPE) {
+    if (ciphertextMessage.getType() == CiphertextMessage.PREKEY_TYPE) {
       message = new OutgoingPrekeyBundleMessage(message, encodedCiphertext);
     } else {
       message = message.withBody(encodedCiphertext);

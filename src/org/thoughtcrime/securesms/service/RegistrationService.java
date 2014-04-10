@@ -261,7 +261,7 @@ public class RegistrationService extends Service {
       throws GcmRegistrationTimeoutException, IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this, Curve.DJB_TYPE);
+    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this);
     List<PreKeyRecord> records     = PreKeyUtil.generatePreKeys(this, masterSecret);
     PreKeyRecord       lastResort  = PreKeyUtil.generateLastResortKey(this, masterSecret);
     socket.registerPreKeys(identityKey, lastResort, records);

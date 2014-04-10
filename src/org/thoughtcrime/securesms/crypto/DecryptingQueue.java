@@ -23,6 +23,7 @@ import android.database.Cursor;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -217,6 +218,9 @@ public class DecryptingQueue {
       } catch (DuplicateMessageException e) {
         Log.w("DecryptingQueue", e);
         sendResult(PushReceiver.RESULT_DECRYPT_DUPLICATE);
+      } catch (LegacyMessageException e) {
+        Log.w("DecryptionQueue", e);
+        sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
       }
     }
 
@@ -319,6 +323,9 @@ public class DecryptingQueue {
       } catch (DuplicateMessageException dme) {
         Log.w("DecryptingQueue", dme);
         database.markAsDecryptDuplicate(messageId, threadId);
+      } catch (LegacyMessageException lme) {
+        Log.w("DecryptingQueue", lme);
+        database.markAsLegacyVersion(messageId, threadId);
       } catch (MmsException mme) {
         Log.w("DecryptingQueue", mme);
         database.markAsDecryptFailed(messageId, threadId);
@@ -390,6 +397,10 @@ public class DecryptingQueue {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptFailed(messageId);
         return;
+      } catch (LegacyMessageException lme) {
+        Log.w("DecryptionQueue", lme);
+        database.markAsLegacyVersion(messageId);
+        return;
       } catch (RecipientFormattingException e) {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptFailed(messageId);
@@ -457,6 +468,9 @@ public class DecryptingQueue {
         } catch (RecipientFormattingException e) {
           Log.w("DecryptingQueue", e);
           DatabaseFactory.getEncryptingSmsDatabase(context).markAsCorruptKeyExchange(messageId);
+        } catch (LegacyMessageException e) {
+          Log.w("DecryptingQueue", e);
+          DatabaseFactory.getEncryptingSmsDatabase(context).markAsLegacyVersion(messageId);
         }
       }
     }

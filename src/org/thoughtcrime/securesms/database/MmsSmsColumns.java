@@ -47,6 +47,7 @@ public interface MmsSmsColumns {
     protected static final long SECURE_MESSAGE_BIT = 0x800000;
     protected static final long END_SESSION_BIT    = 0x400000;
     protected static final long PUSH_MESSAGE_BIT   = 0x200000;
+    protected static final long LEGACY_MESSAGE_BIT = 0x100000;
 
     // Group Message Information
     protected static final long GROUP_UPDATE_BIT = 0x10000;

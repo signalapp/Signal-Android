@@ -76,7 +76,7 @@ public class PreKeyService extends Service {
 
         List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeys(context, masterSecret);
         PreKeyRecord       lastResortKeyRecord = PreKeyUtil.generateLastResortKey(context, masterSecret);
-        IdentityKey        identityKey         = IdentityKeyUtil.getIdentityKey(context, Curve.DJB_TYPE);
+        IdentityKey        identityKey         = IdentityKeyUtil.getIdentityKey(context);
 
         Log.w(TAG, "Registering new prekeys...");
 
