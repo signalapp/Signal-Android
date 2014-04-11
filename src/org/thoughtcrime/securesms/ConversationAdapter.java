@@ -164,7 +164,8 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   @TargetApi(ANIMATION_TARGET_API)
   private void cancelAnimationForView(View view) {
     if (ANIMATION_SUPPORTED) {
-      view.setTranslationY(0);
+      view.setScaleX(1.f);
+      view.setScaleY(1.f);
       view.animate().cancel();
     }
   }
@@ -172,7 +173,8 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   @TargetApi(ANIMATION_TARGET_API)
   private void queueAnimationForView(final View view) {
     if (ANIMATION_SUPPORTED) {
-      view.setTranslationY(Integer.MAX_VALUE);
+      view.setScaleX(0.f);
+      view.setScaleY(0.f);
 
       animationHandler.post(new Runnable() {
         @Override
@@ -186,10 +188,12 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   @TargetApi(ANIMATION_TARGET_API)
   private void startAnimationForView(final View view) {
     if (ANIMATION_SUPPORTED) {
-      view.setTranslationY(view.getHeight());
+      view.setPivotX(view.getWidth());
+      view.setPivotY(view.getHeight());
 
       view.animate()
-        .translationY(0)
+        .scaleX(1.f)
+        .scaleY(1.f)
         .setStartDelay(ANIMATION_START_DELAY)
         .setDuration(ANIMATION_DURATION)
         .setInterpolator(new OvershootInterpolator(ANIMATION_OVERSHOOT_AMOUNT))
