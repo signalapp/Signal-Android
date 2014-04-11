@@ -445,6 +445,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
           OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, getRecipients(),
                                                                                     context, null);
           MessageSender.send(self, masterSecret, outgoingMessage, threadId);
+          DatabaseFactory.getGroupDatabase(self).remove(groupId, TextSecurePreferences.getLocalNumber(self));
           initializeEnabledCheck();
         } catch (IOException e) {
           Log.w(TAG, e);
