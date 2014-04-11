@@ -23,7 +23,8 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -38,7 +39,7 @@ import org.whispersystems.textsecure.storage.Session;
  */
 public class VerifyIdentityActivity extends KeyScanningActivity {
 
-  private Recipient recipient;
+  private Recipient    recipient;
   private MasterSecret masterSecret;
 
   private TextView localIdentityFingerprint;
@@ -46,15 +47,28 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   private int keyType;
 
+  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+
   @Override
   public void onCreate(Bundle state) {
+    dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
     super.onCreate(state);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
     setContentView(R.layout.verify_identity_activity);
 
     initializeResources();
     initializeFingerprints();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
+    getSupportActionBar().setTitle(R.string.AndroidManifest__verify_identity);
+
   }
 
   @Override

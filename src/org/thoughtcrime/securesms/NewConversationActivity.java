@@ -20,7 +20,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -32,8 +31,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -55,19 +54,19 @@ public class NewConversationActivity extends PassphraseRequiredSherlockFragmentA
   private final static String TAG                 = "ContactSelectActivity";
   public  final static String MASTER_SECRET_EXTRA = "master_secret";
 
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
-  private       MasterSecret masterSecret;
+  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private       MasterSecret    masterSecret;
 
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
   protected void onCreate(Bundle icicle) {
     dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
 
-    final ActionBar actionBar = this.getSupportActionBar();
-    ActionBarUtil.initializeDefaultActionBar(this, actionBar);
-    actionBar.setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     setContentView(R.layout.new_conversation_activity);
     initializeResources();
@@ -77,6 +76,8 @@ public class NewConversationActivity extends PassphraseRequiredSherlockFragmentA
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
+    getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
     masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
   }
 

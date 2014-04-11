@@ -55,7 +55,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -130,7 +129,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
     setContentView(R.layout.group_create_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), R.string.GroupCreateActivity_actionbar_title);
 
     selectedContacts = new HashSet<Recipient>();
     initializeResources();
@@ -141,6 +139,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
     if (!TextSecurePreferences.isPushRegistered(this)) {
       disableWhisperGroupUi(R.string.GroupCreateActivity_you_dont_support_push);
     }
