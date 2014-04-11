@@ -1026,6 +1026,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       String body = getMessage();
       long allocatedThreadId;
 
+      ConversationFragment fragment = (ConversationFragment)
+        getSupportFragmentManager().findFragmentById(R.id.fragment_content);
+      ConversationAdapter adapter = (ConversationAdapter) fragment.getListAdapter();
+      adapter.animateNext();
+
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
         return;
