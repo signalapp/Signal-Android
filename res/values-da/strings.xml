@@ -47,12 +47,10 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Beklager, den valgte lydfil overskrider grænsen på beskedstørrelsen</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Modtageren har ikke en gyldig SMS- eller e-mail adresse!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Beskeden er tom!</string>
-  <string name="ConversationActivity_forward_message_prefix">Videresend beskeden</string>
   <string name="ConversationActivity_group_conversation_recipients">Modtagere i gruppen</string>
   <string name="ConversationActivity_group_conversation">Gruppe beskeder</string>
   <string name="ConversationActivity_d_recipients_in_group">%d modtagere</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 medlem</string>
-  <string name="ConversationActivity_saving_draft">Gemmer kladde...</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig modtager!</string>
   <string name="ConversationActivity_calls_not_supported">Opkald er ikke understøttet</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Din enhed understøtter ikke initieret opkald.</string>
@@ -71,6 +69,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Sletter valgte tråde</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Eksporter til SD-kort?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dette vil eksportere dine krypteringsnøgler, indstillinger og beskeder til SD-kortet.</string>
@@ -89,7 +88,6 @@
   <string name="GroupCreateActivity_actionbar_update_title">Opdater Gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS Gruppe</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Du er ikke ejer af denne gruppe, så du kan ikke ændre titlen eller billedet.</string>
   <string name="GroupCreateActivity_contacts_no_members">Der skal være mindst én person i gruppen!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En af medlemmerne i gruppen har et nummer der ikke kan læses. Ret nummeret eller slet kontakten, og prøv igen.</string>
   <string name="GroupCreateActivity_menu_create_title">Opret Gruppe</string>
@@ -260,6 +258,7 @@
   <string name="conversation_activity__type_message"><small>Send en besked</small></string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slet</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Hent</string>
   <string name="conversation_item_sent__downloading">Henter</string>

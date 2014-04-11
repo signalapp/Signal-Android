@@ -72,13 +72,12 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，选定音频超过邮件大小限制。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人不是有效的短信或电子邮件地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">信息为空！</string>
-  <string name="ConversationActivity_forward_message_prefix">转发</string>
   <string name="ConversationActivity_group_conversation_recipients">群聊接收人</string>
   <string name="ConversationActivity_group_conversation">群聊</string>
   <string name="ConversationActivity_unnamed_group">未命名的群组</string>
   <string name="ConversationActivity_d_recipients_in_group">%d 名成员</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 名成员</string>
-  <string name="ConversationActivity_saving_draft">保存草稿...</string>
+  <string name="ConversationActivity_saved_draft">保存草稿</string>
   <string name="ConversationActivity_invalid_recipient">无效收件人！</string>
   <string name="ConversationActivity_calls_not_supported">不支持打电话</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">当前设备不支持拨号动作。</string>
@@ -99,6 +98,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">正在删除选中的对话...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息...</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">共享给</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">导出到SD卡？</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">这会将您的密钥、设置和信息加密后导出到SD卡。</string>
@@ -119,7 +120,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">新彩信群组</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">您所选择的联系人并不支持TextSecure群组，该群组将转化为彩信群组。</string>
   <string name="GroupCreateActivity_you_dont_support_push">您没有注册使用数据信道，TextSecure群组功能将被禁用。</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">您并不是该群组的拥有者，因此无法编辑标题或图片。</string>
   <string name="GroupCreateActivity_contacts_mms_exception">发生不可预料的错误导致创建群组失败。</string>
   <string name="GroupCreateActivity_contacts_no_members">群组中至少要有一个人！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">目前无法正确获取您组内一名成员的信息，请尝试修复或移除这名联系人以重试。</string>
@@ -127,6 +127,7 @@
   <string name="GroupCreateActivity_avatar_content_description">群组头像</string>
   <string name="GroupCreateActivity_menu_create_title">创建群组</string>
   <string name="GroupCreateActivity_creating_group">正在创建群组 %1$s…</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">无法添加非TextSecure联系人到现存的TextSecure群组</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">导入系统的短信数据库吗？</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">系统默认的短信数据库将会被导入TextSecure，如果您已经进行过导入的操作，本次操作可能会导致出现重复的短信。</string>
@@ -328,9 +329,16 @@
   <string name="conversation_activity__type_message"><small>发送信息</small></string>
   <string name="conversation_activity__send">发送</string>
   <string name="conversation_activity__remove">删除</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">媒体信息</string>
+  <string name="conversation_item__play_button_description">播放按钮</string>
+  <string name="conversation_item__secure_message_description">安全信息指示灯</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">下载</string>
   <string name="conversation_item_sent__downloading">下载中</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">发送失败指示灯</string>
+  <string name="conversation_item_sent__pending_approval_description">等待批准</string>
+  <string name="conversation_item_sent__delivered_description">送达指示灯</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">下载</string>
   <string name="conversation_item_received__downloading">下载中</string>
@@ -439,7 +447,7 @@
   <string name="verify_identity_activity__their_identity_they_read">他们的身份(他们读作)：</string>
   <string name="verify_identity_activity__your_identity_you_read">您的身份(您读成)：</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">身份名称：\</string>
+  <string name="verify_import_identity_activity__identity_name_n">身份名称：\\n</string>
   <string name="verify_import_identity_activity__imported_identity_n">导入身份：\</string>
   <string name="verify_import_identity_activity__verified">已验证！</string>
   <string name="verify_import_identity_activity__compare">比较</string>
@@ -567,6 +575,7 @@
   <string name="contact_selection_list__menu_unselect_all">取消全选</string>
   <string name="contact_selection_list__header_textsecure_users">TEXTSECURE 用户</string>
   <string name="contact_selection_list__header_other">所有联系人</string>
+  <string name="contact_selection_list__unknown_contact">新信息至…</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">已完成</string>
   <!--refreshing push directory from menu-->

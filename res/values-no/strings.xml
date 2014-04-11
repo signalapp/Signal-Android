@@ -53,7 +53,10 @@
   <string name="ConversationItem_group_action_joined">%1$s har sluttet seg til gruppen.</string>
   <string name="ConversationItem_group_action_modify">%1$s har oppdatert gruppen.</string>
   <string name="ConversationItem_click_to_approve">Klikk for \'SMS fallback\'</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Tast for usikret \"fallback\"</string>
   <string name="ConversationItem_click_to_approve_dialog_title">Benytte SMS som alternativ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">\"Fallback\" til ukryptert SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen vil <b>ikke</b> krypteres fordi det ikke var mulig å etablere en sikker sesjon.\n\nSend usikret melding?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Starte sikker sesjon?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Starte sikker sesjon med %s?</string>
@@ -69,13 +72,12 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Beklager, den valgte lydfilen overstiger begrensningene til meldingsstørrelse.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottakeren er ikke en gyldig SMS- eller e-postadresse!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meldingen er tom!</string>
-  <string name="ConversationActivity_forward_message_prefix">VS</string>
   <string name="ConversationActivity_group_conversation_recipients">Mottakere i gruppen</string>
   <string name="ConversationActivity_group_conversation">Gruppesamtale</string>
   <string name="ConversationActivity_unnamed_group">Navnløs gruppe</string>
   <string name="ConversationActivity_d_recipients_in_group">%d medlemmer</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 medlem</string>
-  <string name="ConversationActivity_saving_draft">Lagrer utkast...</string>
+  <string name="ConversationActivity_saved_draft">Lagret utkast</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig mottaker!</string>
   <string name="ConversationActivity_calls_not_supported">Anrop er ikke støttet</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne enheten ser ikke ut til å kunne initiere anrop.</string>
@@ -96,6 +98,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">Sletter utvalgte tråder...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Del med</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Eksporter til SD-kort?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dette vil eksportere dine krypteringsnøkler, innstillinger og meldinger til SD-kortet.</string>
@@ -116,7 +120,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontakt som ikke støtter TextSecure grupper, så dette vil bli en MMS gruppe.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Du har ikke registert deg som bruker av data kanalen, så TextSecure grupper er deaktivert.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Du er ikke eieren av denne gruppen, derfor kan du ikke endre tittel eller bilde.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">En ukjent feil har ført til at gruppeopprettelsen feilet.</string>
   <string name="GroupCreateActivity_contacts_no_members">Du må ha minst en person i gruppen din!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av gruppemedlemmene har et nummer som ikke kan tolkes. Vær vennlig og korriger eller slett kontakten og prøv igjen. </string>
@@ -124,6 +127,7 @@
   <string name="GroupCreateActivity_avatar_content_description">Gruppeavatar</string>
   <string name="GroupCreateActivity_menu_create_title">Opprett gruppe</string>
   <string name="GroupCreateActivity_creating_group">Oppretter %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan ikke legge til ikke-Textsecure kontakter til en eksisterende TextSecure gruppe.</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importer systemets SMS database?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere meldinger fra systemets standard SMS database til TextSecure. Dersom du har gjort en import tidligere, vil dette føre til dupliserte meldinger.</string>
@@ -218,6 +222,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nMottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Mottok oppdatert men ukjent identitetsinformasjon. Trykk for å validere identiteten.</string>
   <string name="SmsMessageRecord_secure_session_ended">Sikker sesjon avsluttet.</string>
+  <string name="SmsMessageRecord_duplicate_message">Duplisert melding.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Forlot gruppen...</string>
   <string name="TheadRecord_secure_session_ended">Sikker sesjon avsluttet.</string>
@@ -309,9 +314,13 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Laster kontakter...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Tast et navn for å filtrere...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Du er ikke registrert hos \"push\" tjenesten...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Oppdaterer katalog</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Oppdaterer \"push\" katalogen...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Kontaktbilde</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Velg for</string>
   <!--contact_selection_recent_activity-->
@@ -320,9 +329,16 @@
   <string name="conversation_activity__type_message"><small>Send en melding</small></string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slett</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Media melding</string>
+  <string name="conversation_item__play_button_description">Avspill knapp</string>
+  <string name="conversation_item__secure_message_description">Indikator for sikret melding</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Last ned</string>
   <string name="conversation_item_sent__downloading">Laster ned</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Indikator for feilet melding</string>
+  <string name="conversation_item_sent__pending_approval_description">Avventer godkjenning</string>
+  <string name="conversation_item_sent__delivered_description">Indikator for levert melding</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Last ned</string>
   <string name="conversation_item_received__downloading">Laster ned</string>
@@ -350,6 +366,8 @@
   <string name="log_submit_activity__copied_to_clipboard">Kopiert til utklippstavle</string>
   <string name="log_submit_activity__loading_logcat">Laster logcat...</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
+  <string name="log_submit_activity__submitting">Sender</string>
+  <string name="log_submit_activity__posting_logs">Sender logger til \"pastebin\"...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du å importere dine eksisterende meldinger til TextSecures krypterte database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabasen vil ikke på noen måte bli endret.</string>
@@ -421,6 +439,7 @@
   <string name="registration_progress_activity__sms_verification_failed">SMS verifikasjon\nfeilet.</string>
   <string name="registration_progress_activity__generating_keys">Genererer nøkler...</string>
   <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Tast inn et navn eller nummer</small></string>
   <string name="recipients_panel__add_member">Legg til medlem</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Du har ingen ID-nøkler som du stoler på.</string>
@@ -554,6 +573,9 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Merk alt</string>
   <string name="contact_selection_list__menu_unselect_all">Avmarker alt</string>
+  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE BRUKERE</string>
+  <string name="contact_selection_list__header_other">ALLE KONTAKTER</string>
+  <string name="contact_selection_list__unknown_contact">Ny melding til ...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Avslutt</string>
   <!--refreshing push directory from menu-->

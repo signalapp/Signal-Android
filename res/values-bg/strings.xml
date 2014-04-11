@@ -46,10 +46,8 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">За съжаление, тази музика е много голяма.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Получателя не е с валиден SMS или имейл!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Съобщението е празно!</string>
-  <string name="ConversationActivity_forward_message_prefix">Напред</string>
   <string name="ConversationActivity_group_conversation_recipients">Група от получатели</string>
   <string name="ConversationActivity_group_conversation">Група за разговори</string>
-  <string name="ConversationActivity_saving_draft">Запазване на чернова...</string>
   <string name="ConversationActivity_invalid_recipient">Невалиден получател!</string>
   <string name="ConversationActivity_calls_not_supported">Повикването не се поддържа</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Това устройство не поддържа повиквания.</string>
@@ -66,6 +64,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Изтриване на маркираните теми...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Експорт на SD карта?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Това⏎\nще изнесе вашите ключове, настройки и съобщения на  SD картата.⏎</string>
@@ -212,6 +211,7 @@
   <!--conversation_activity-->
   <string name="conversation_activity__send">Изпрати</string>
   <string name="conversation_activity__remove">Премахни</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Изтегляне</string>
   <string name="conversation_item_sent__downloading">Изтегля се</string>

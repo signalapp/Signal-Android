@@ -72,13 +72,12 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Oprostite, izbran zvočni posnetek presega omejitve glede velikosti.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Naslov prejemnika ni veljaven SMS oz. email nalsov!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Sporočilo je prazno!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Prejemniki skupinskega pogovora</string>
   <string name="ConversationActivity_group_conversation">Skupinski pogovor</string>
   <string name="ConversationActivity_unnamed_group">Neimenovana skupina</string>
   <string name="ConversationActivity_d_recipients_in_group">%d članov</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 član</string>
-  <string name="ConversationActivity_saving_draft">Shranjujem osnutek...</string>
+  <string name="ConversationActivity_saved_draft">Shranjen osnutek</string>
   <string name="ConversationActivity_invalid_recipient">Neveljaven prejemnik!</string>
   <string name="ConversationActivity_calls_not_supported">Klici niso podprti</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Naprava ne omogoča podpore klicnim operacijam.</string>
@@ -99,6 +98,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">Brišem izbrane pogovore...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Deli z</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Izvozim na kartico SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">S tem boste izvozili svoje ključe, nastavitve in sporočila na kartico SD v šifrirani obliki.</string>
@@ -119,7 +120,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Nova MMS skupina</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Izbrali ste stik, ki ne podpira skupin TextSecure, zato bo ta skupina MMS skupina.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Ker niste prijavljeni za uporabo podatkovnega kanala, so skupine TextSecure onemogočene.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Ker niste upravljalec te skupine, ne morete spreminjati naslova ali slike.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Prišlo je do nepričakovane napake, zato skupina ni bila ustvarjena.</string>
   <string name="GroupCreateActivity_contacts_no_members">V skupini mora biti vsaj ena oseba!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En izmed članov skupine ima nepravilno zapisano številko. Popravite napako ali odstranite stik iz skupine in poskusite znova.</string>
@@ -127,6 +127,7 @@
   <string name="GroupCreateActivity_avatar_content_description">Avatar skupine</string>
   <string name="GroupCreateActivity_menu_create_title">Ustvari skupino</string>
   <string name="GroupCreateActivity_creating_group">Ustvarjam %1$s…</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ne morem dodati neuporabnikov aplikacije TextSecure k obstoječi skupini TextSecure</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Uvozim sistemsko zbirko SMS sporočil?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">S tem boste uvozili sporočila iz sistemske zbirke SMS v aplikacijo TextSecure. Če ste predhodno že uvozili sporočila iz sistemske zbirke SMS, bodo ta sporočila v aplikaciji TextSecure podvojena.</string>
@@ -328,9 +329,16 @@
   <string name="conversation_activity__type_message"><small>Pošlji sporočilo</small></string>
   <string name="conversation_activity__send">Pošlji</string>
   <string name="conversation_activity__remove">Odstrani</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Multimedijsko sporočilo</string>
+  <string name="conversation_item__play_button_description">Gumb za predvajanje</string>
+  <string name="conversation_item__secure_message_description">Šifrirano sporočilo</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Prenos</string>
   <string name="conversation_item_sent__downloading">Prenašam</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Neuspelo pošiljanje</string>
+  <string name="conversation_item_sent__pending_approval_description">Potrdilo o oddaji</string>
+  <string name="conversation_item_sent__delivered_description">Dostavljeno sporočilo</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Prenos</string>
   <string name="conversation_item_received__downloading">Prenašam</string>
@@ -567,6 +575,7 @@
   <string name="contact_selection_list__menu_unselect_all">Prekliči izbor vsega</string>
   <string name="contact_selection_list__header_textsecure_users">UPORABNIKI TEXTSECURE</string>
   <string name="contact_selection_list__header_other">VSI STIKI</string>
+  <string name="contact_selection_list__unknown_contact">Novo sporočilo za...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Končano</string>
   <!--refreshing push directory from menu-->

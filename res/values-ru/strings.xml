@@ -69,13 +69,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Извините, выбранный аудио-файл больше максимального размера сообщения.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Получатели в конференции</string>
   <string name="ConversationActivity_group_conversation">Конференция</string>
   <string name="ConversationActivity_unnamed_group">Группа без названия</string>
   <string name="ConversationActivity_d_recipients_in_group">%d участников</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 участник</string>
-  <string name="ConversationActivity_saving_draft">Сохраняем черновик...</string>
   <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
   <string name="ConversationActivity_calls_not_supported">Звонки не поддерживаются</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ваше устройство, по-видимому, не поддерживает голосовые звонки.</string>
@@ -96,6 +94,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Удаляем выбранные разговоры...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщениe обмена ключами...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Экспортировать на SD-карту?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Вы собираетесь экспортировать на SD-карту свои зашифрованные ключи, настройки и сообщения.</string>
@@ -116,7 +115,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS группа</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает группы TextSecure. Для группы будет использоваться MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Вы не зарегистрированны для использования канала передачи данных. Группы отключены.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Вы не владелец этой группы и не можете менять название или изображение.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Непредвиденная ошибка не позволила создать группу.</string>
   <string name="GroupCreateActivity_contacts_no_members">Нужен как минимум один участник в группе!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Один из учасников имеет неправильный номер. Пожалуйста, исправьте или удалите контакт и попробуйте снова.</string>
@@ -320,6 +318,7 @@
   <string name="conversation_activity__type_message"><small>Послать сообщение</small></string>
   <string name="conversation_activity__send">Отправить</string>
   <string name="conversation_activity__remove">Удалить</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Скачать</string>
   <string name="conversation_item_sent__downloading">Скачивание</string>

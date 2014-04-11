@@ -54,10 +54,8 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ಕ್ಷಮಿಸಿ, ಆಯ್ಕೆ ಶ್ರಾವ್ಯ ಸಂದೇಶ ಗಾತ್ರ ನಿರ್ಬಂಧಗಳನ್ನು ಮೀರಿದೆ.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">ಸ್ವೀಕರಿಸುವವರ ಎಸ್.ಎಮ್.ಎಸ್ ಅಥವಾ ಇಮೇಲ್ ವಿಳಾಸ ಮಾನ್ಯವಾದುದಲ್ಲ!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">ಸಂದೇಶ ಖಾಲಿಯಾಗಿದೆ!</string>
-  <string name="ConversationActivity_forward_message_prefix">ಎಫ್. ಡಬ್ಲು. ಡಿ</string>
   <string name="ConversationActivity_group_conversation_recipients">ಸಮೂಹ ಸಂವಾದದ ಸ್ವೀಕೃತದಾರರು</string>
   <string name="ConversationActivity_group_conversation">ಸಮೂಹ ಸಂವಾದ</string>
-  <string name="ConversationActivity_saving_draft">ಕರಡು ಉಳಿಸುತ್ತಿದ್ದೇವೆ</string>
   <string name="ConversationActivity_invalid_recipient">ಸ್ವೀಕರಿಸುವವರು ಅಮಾನ್ಯ!</string>
   <string name="ConversationActivity_calls_not_supported">ಕರೆಗಳ ಬೆಂಬಲವಿರುವುದಿಲ್ಲ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನದಲ್ಲಿ ಡಯಲ್ ಕ್ರಮಗಳ ಬೆಂಬಲ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
@@ -74,6 +72,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">ಆಯ್ದ ವಾದಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶ...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">ಎಸ್.ಡಿ  ಕಾರ್ಡ್ಗೆ ರಫ್ತು ಮಾಡಿ?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">ಇದು\nಏಸ್.ಡಿ ಕಾರ್ಡ್ಗೆ ನಿಮ್ಮ ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಕೀಲಿಗಳನ್ನು, ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಮತ್ತು ಸಂದೇಶಗಳ ರಫ್ತು ಮಾಡುತ್ತದೆ.</string>
@@ -275,6 +274,7 @@
   <string name="conversation_activity__type_message"><small>ಸಂದೇಶ ಕಳುಹಿಸಲು</small></string>
   <string name="conversation_activity__send">ಕಳುಹಿಸು</string>
   <string name="conversation_activity__remove">ತೆಗೆದುಹಾಕಿ</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">ಡೌನ್ಲೋಡ್</string>
   <string name="conversation_item_sent__downloading">ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>

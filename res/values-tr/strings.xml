@@ -13,6 +13,8 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tüm konuşmaları anında %s konuşmaya indirmek istediğinizden emin misiniz?</string>
   <string name="ApplicationPreferencesActivity_delete">Sil</string>
   <string name="ApplicationPreferencesActivity_my">Benim</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Saklama alanı şifrelemesi sonlandırılsın mı?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nUyarı, bu tüm mesaj ve anahtarlar için depolama alanı şifrelemesini sonlandırır. Şifrelenmiş\noturumlarınız işlevlerini sürdürür, fakat cihazınıza fiziksel erişimi olan herhangi biri onlara\nerişebilir.</string>
   <string name="ApplicationPreferencesActivity_disable">Devredışı</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Sunucu bağlantı hatası!</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Dizin güncelleniyor</string>
@@ -52,18 +54,19 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Seçilen ses mesaj boyutu sınırlamalarını aşıyor.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Alıcı geçerli bir SMS veya e-posta adresi değil!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mesaj boş!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Grup Sohbeti Katılımcıları</string>
   <string name="ConversationActivity_group_conversation">Grup Sohbeti</string>
   <string name="ConversationActivity_unnamed_group">İsimsiz Grup</string>
   <string name="ConversationActivity_d_recipients_in_group">%d üye</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 üye</string>
-  <string name="ConversationActivity_saving_draft">Taslak kaydediliyor...</string>
   <string name="ConversationActivity_invalid_recipient">Geçersiz alıcı!</string>
+  <string name="ConversationActivity_calls_not_supported">Aramalar Desteklenmiyor</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Bu cihaz arama işlemlerini destekliyor gibi görünmüyor.</string>
   <string name="ConversationActivity_leave_group">Gruptan ayrıl?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bu gruptan ayrılmak istediğinize emin misiniz?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Mesaj detayları</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Gönderici: %1$s\nTaşıma: %2$s\nGönderildi: %3$s\nAlındı: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Mesaj Silinmesini Onayla</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Bu mesajın geri dönülemez şekilde silinmesini istediğinizden emin misiniz?</string>
   <!--ConversationListAdapter-->
@@ -75,16 +78,20 @@
   <string name="ConversationListFragment_deleting_selected_threads">Seçilmiş başlıklar siliniyor...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas mesajı...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">SD karta kaydet?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Bu\nşifrelenmiş anahtar, ayar ve mesajları SD karta kaydecek.</string>
   <string name="ExportFragment_export">Dışarı Aktar</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">SD karta şifresiz metin olarak kaydet?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Uyarı, bu\nTextSecure mesajlarınızın şifrelenmemiş açık metin içeriğini SD karta kaydecek.</string>
   <string name="ExportFragment_cancel">İptal</string>
   <string name="ExportFragment_exporting">Dışarı aktarılıyor</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">SD karta şifresiz metin olarak kaydediliyor...\n    </string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Hata, SD karta yazım başarısız!\n    </string>
   <string name="ExportFragment_error_while_writing_to_sd_card">SD karta kaydedilirken hata.</string>
   <string name="ExportFragment_success">Başarılı!</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Şifrelenmiş anahtar, ayar \nve mesajlar kaydediliyor...</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Yeni Grup</string>
   <string name="GroupCreateActivity_actionbar_update_title">Grubu güncelle</string>
@@ -92,7 +99,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Yeni MMS Grubu</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">TextSecure gruplarını desteklemeyen bir kişi seçtiniz. Bu nedenle grubunuz MMS grubu olacaktır.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Veri kanallarını kullanarak kayıt olmadığınız için TextSecure grupları kapatılmıştır.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Bu grubun sahibi olmamanız nedeni ile başlığı ve resmi değiştiremezsiniz.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Grup yaratılmasına engel olan beklenmedik bir hata oluştu.</string>
   <string name="GroupCreateActivity_contacts_no_members">Grubunuzda en az bir kişi olmalıdır.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Grubunuzun üyelerinden birinin doğru okunamayan bir numarası var. Lütfen numarayı düzeltiniz veya kişiyi siliniz. Ve tekrar deneyiniz.</string>
@@ -134,6 +140,8 @@
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Yanlış şifre!</string>
   <!--PromptMmsActivity-->
+  <string name="PromptMmsActivity_mms_settings_updated">MMS Ayarları Güncellendi</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Bu değerleri TextSecure ayarlar menüsünden istediğiniz zaman değiştirebilirsiniz.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bu kişiyi doğrulamak \nisteyebilirsiniz.</string>
   <string name="ReceiveKeyActivity_processing">İşleniyor</string>
@@ -221,6 +229,7 @@
   <string name="MmsDatabase_downloading_mms">MMS indiriliyor...</string>
   <string name="MmsDatabase_mms_download_failed">MMS İndirme başarısız!</string>
   <string name="MmsDatabase_downloading">İndiriliyor...</string>
+  <string name="MmsDatabase_mms_pending_download">İndirmeye devam etmek için dokunun ve MMS ayarlarını yapılandırın.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS şifresi çözülüyor, bekleyin...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Bozuk şifrelenmiş MMS mesajı...</string>
@@ -245,9 +254,15 @@
   <string name="MessageNotifier_mark_all_as_read">Tümünü okundu işaretle</string>
   <string name="MessageNotifier_mark_as_read">Okundu işaretle</string>
   <!--ViewLocalIdentityActivity-->
+  <string name="ViewLocalIdentityActivity_regenerating">Yeniden yaratılıyor...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Kimlik anahtarı yeniden\nyaratılıyor...</string>
+  <string name="ViewLocalIdentityActivity_regenerated">Yeniden Yaratıldı!</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Kimlik Anahtarını Sıfırla?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nDikkat! Kimlik anahtarınız yeniden yaratıldığında, mevcut kimlik anahtarınız kalıcı olarak kaybolur,\nve mevcut kontaktlarınız yeni güvenli oturum kurduklarında uyarı mesajı alırlar.\nDevam etmek istediğinize emin misiniz?</string>
   <string name="ViewLocalIdentityActivity_cancel">İptal</string>
   <string name="ViewLocalIdentityActivity_continue">Devam Et</string>
   <!--SmsReceiver-->
+  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">SMS mesajını şu anda gönderilemiyor. Servis ulaşılabilir hale geldiğinde gönderilecek.</string>
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">TextSecure şifreli oturumları destekleyen birinden bir mesaj aldınız. Güvenli bir oturum açmak ister misiniz?</string>
@@ -270,6 +285,8 @@
   <string name="conversation_activity__type_message"><small>Mesaj gönder</small></string>
   <string name="conversation_activity__send">Gönder</string>
   <string name="conversation_activity__remove">Kaldır</string>
+  <!--conversation_item-->
+  <string name="conversation_item__play_button_description">Oynat Butonu</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">İndir</string>
   <string name="conversation_item_sent__downloading">İndiriliyor</string>
@@ -316,11 +333,16 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nDaha önce dışa aktarılmış bir şifrelenmiş TextSecure yedeğini yeniden yükle. </string>
   <string name="import_fragment__import_plaintext_backup">Şifresiz metin yedeğinden içe aktar</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\n\'SMSBackup And Restore\' ile uyumlu bir şifrelenmemiş metin yedeğini içe aktar.</string>
+  <string name="local_identity__regenerate_key">Anahtarı Yeniden Yarat</string>
   <!--mms_preferences_activity-->
+  <string name="mms_preferences_activity__manual_mms_settings_are_required">Telefonunuz için manuel MMS ayarları gerekmektedir.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE PAROLASI</string>
   <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>
   <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (ZORUNLU)</string>
+  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS VEKİL SUNUCU (SEÇİMLİ)</string>
+  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS VEKİL PORTU (SEÇİMLİ)</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Tamamlandı</string>
   <!--registration_activity-->
@@ -351,6 +373,7 @@
   <string name="registration_progress_activity__sms_verification_failed">SMS doğrulaması\nbaşarısız.</string>
   <string name="registration_progress_activity__generating_keys">Anahtarlar üretiliyor...</string>
   <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Bir ad veya numara girin</small></string>
   <string name="recipients_panel__add_member">Üye ekle</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Güven veritabanınızda şu an herhangi bir kimlik anahtarı bulunmamaktadır.</string>
@@ -383,6 +406,8 @@
   <string name="arrays__my_identity_key">Kimlik Anahtarım</string>
   <!--preferences.xml-->
   <string name="preferences__general">Genel</string>
+  <string name="preferences__pref_all_sms_title">Tüm SMS\'leri al</string>
+  <string name="preferences__pref_all_mms_title">Tüm MMS\'leri al</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gelen tüm mesajların gösterimi ve saklanması için TextSecure kullan</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm medya mesajların gösterimi ve saklanması için TextSecure kullan</string>
   <string name="preferences__input_settings">Girdi Ayarları</string>
@@ -395,6 +420,7 @@
   <string name="preferences__change_my_passphrase">Parolamı değiştir</string>
   <string name="preferences__complete_key_exchanges">Anahtar takası tamamla</string>
   <string name="preferences__disable_passphrase">Parola devredışı bırak</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">Mesaj ve anahtarların lokal şifrelenmesi sonlandır</string>
   <string name="preferences__screen_security">Ekran güvenliği</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Yeni veya aynı kimlik anahtarına sahip oturumlar için otomatik olarak anahtar takası gerçekleştir</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Ekran görüntüsü alınmasına izin vermek için ekran güvenliğini devre dışı bırak</string>
@@ -409,6 +435,8 @@
   <string name="preferences__manage_configured_identity_keys">Ayarlanmış kimlik anahtarlarını yönet</string>
   <string name="preferences__notifications">Bildirimler</string>
   <string name="preferences__display_message_notifications_in_status_bar">Durum çubuğunda mesaj bildirimlerini göster</string>
+  <string name="preferences__led_color">LED rengi</string>
+  <string name="preferences__pref_led_blink_title">LED yanıp sönme şekli</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Özel LED yanıp sönme hızı belirle</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Özel LED yanıp sönme hızı belirlendi!</string>
   <string name="preferences__sound">Zil Sesi</string>
@@ -432,11 +460,13 @@
   <string name="preferences__advanced">Gelişmiş</string>
   <string name="preferences__passphrase">Parola</string>
   <string name="preferences__advanced_mms_access_point_names">MMS Tercihleri</string>
+  <string name="preferences__enable_manual_mms">Manuel MMS\'i Aç</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Gerekli)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Sunucusu (İsteğe Bağlı)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Bağlantı Noktası (İsteğe Bağlı)</string>
   <string name="preferences__sms_delivery_reports">SMS iletim raporları</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Gönderdiğiniz her SMS için iletim raporu iste</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Bir konuşma konu başlığı belirlenmiş bir uzunluğu aşınca eski mesajları otomatik olarak sil</string>
   <string name="preferences__delete_old_messages">Eski mesajları sil</string>
   <string name="preferences__storage">Depolama</string>
   <string name="preferences__conversation_length_limit">Sohbet uzunluk sınırı</string>
@@ -461,6 +491,8 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Tümünü Seç</string>
   <string name="contact_selection_list__menu_unselect_all">Tüm seçimleri kaldır</string>
+  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE KULLANICILARI</string>
+  <string name="contact_selection_list__header_other">TÜM KONTAKTLAR</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Tamamlanmış</string>
   <!--refreshing push directory from menu-->

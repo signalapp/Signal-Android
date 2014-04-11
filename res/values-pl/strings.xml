@@ -53,7 +53,10 @@
   <string name="ConversationItem_group_action_joined">%1$s dołączył do grupy.</string>
   <string name="ConversationItem_group_action_modify">%1$s zaktualizował grupę.</string>
   <string name="ConversationItem_click_to_approve">Naciśnij dla SMS fallbck</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Dotknij w celu użycia niezabezpieczonej alternatywy</string>
   <string name="ConversationItem_click_to_approve_dialog_title">Fallback do SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Użyć nieszyfrowanej wiadomości SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie</b> zostanie zaszyfrowana, ponieważ nie można ustanowić szyfrowanego połączenia.\n\nWysłać niezabezpieczoną wiadomość?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Rozpocząć Bezpieczną Sesję?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Rozpocząć Bezpieczną Sesję z %s?</string>
@@ -69,13 +72,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Przepraszamy, plik audio jest zbyt duży...</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Podany numer lub adres e-mail jest niepoprawny!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Wiadomość jest pusta!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Grupuj Odbiorców Rozmowy</string>
   <string name="ConversationActivity_group_conversation">Grupowa Rozmowa</string>
   <string name="ConversationActivity_unnamed_group">Grupa bez nazwy</string>
   <string name="ConversationActivity_d_recipients_in_group">%d uczestników</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 uczestnik</string>
-  <string name="ConversationActivity_saving_draft">Zapisuję kopię roboczą...</string>
   <string name="ConversationActivity_invalid_recipient">Nieprawidłowy adresat!</string>
   <string name="ConversationActivity_calls_not_supported">Połączenia nie są obsługiwane</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Wygląda na to, że urządzenie nie wspiera wybierania numeru.</string>
@@ -96,6 +97,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Usuwanie zaznaczonych wątków..</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Wyeksportować na kartę SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Wszystkie zaszyfrowane klucze , ustawienia i wiadomości zostaną wyeksportowane na kartę SD.</string>
@@ -116,7 +118,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Nowa Grupa MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Zaznaczyłeś kontakt, który nie wspiera grup TextSecure, dlatego ta grupa będzie grupą MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Nie jesteś zajerestrowany do urzywania kanału danych, tak więc grupy TextSecure są niedostępne.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Nie jesteś właścicielem tej grupy, nie możesz edytować tytułu lub zdjęcia.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Wystąpił niespodziewany błąd, który wywołał nieudane utworzenie nowej grupy.</string>
   <string name="GroupCreateActivity_contacts_no_members">Potrzebujesz przynajmniej jeden osoby w Twojej grupie.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z Twoich kontaktów z Twojej grupy ma numer który nie może być prawidłowo odczytany. Proszę popraw go, lub usuń ten kontakt i spróbuj ponownie.</string>
@@ -130,12 +131,12 @@
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Anulluj</string>
   <string name="ImportFragment_restore_encrypted_backup">Przywrócić z zaszyfrowanej kopii zapasowej?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nPrzywracanie z zaszyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniejących kluczy, ustawień i wiadomości. Stracisz wszystkie informacje zawarte w aplikacji TextSecure, oprócz informacji zawartych w kopii zapasowej.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nPrzywracanie z zaszyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniejących kluczy, ustawień i wiadomości. Stracisz wszystkie informacje zawarte w aplikacji TextSecure, z wyjątkiem tych zawartych w kopii zapasowej.</string>
   <string name="ImportFragment_restore">Przywróć</string>
   <string name="ImportFragment_import_plaintext_backup">Importować z jawnej kopii zapasowej?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Wiadomości z jawnej kopii zapasowej zostaną zaimportowane. Jeżeli wcześniej wykonywałeś już tę czynność, ponowny import spowoduje zduplikowanie się wiadomości.</string>
-  <string name="ImportFragment_importing">Importuje </string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importowanie tekstu z jawnej kopii zapasowej...</string>
+  <string name="ImportFragment_importing">Importowanie</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importowanie tekstu z niezaszyfrowanej kopii zapasowej...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nie odnaleziono niezaszyfrowanej kopii zapasowej!</string>
   <string name="ImportFragment_error_importing_backup">Błąd podczas importu kopii zapasowej!</string>
   <string name="ImportFragment_import_complete">Importowanie zakończone!</string>
@@ -218,6 +219,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nOtrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć i wyświetlić.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Otrzymał zaktualizowany, ale z nieznaną informacją tożsamości. Naciśnij aby potwierdzić tożsamość.</string>
   <string name="SmsMessageRecord_secure_session_ended">Bezpieczna sesja zakończona.</string>
+  <string name="SmsMessageRecord_duplicate_message">Duplikat wiadomości.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opuścił grupę...</string>
   <string name="TheadRecord_secure_session_ended">Bezpieczna sesja zakończona.</string>
@@ -309,9 +311,13 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Brak kontaktów.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Ładowanie listy kontaktów...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Wpisz imię aby przefiltrować...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Nie posiadasz włączonej usługi push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Aktualizowanie katalogu</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Aktualizowanie bazy kontaków push...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Obrazek kontaktu</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Wybierz dla</string>
   <!--contact_selection_recent_activity-->
@@ -320,9 +326,16 @@
   <string name="conversation_activity__type_message"><small>Wyślij wiadomość</small></string>
   <string name="conversation_activity__send">Wyślij</string>
   <string name="conversation_activity__remove">Usuń</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Wiadomość multimedialna</string>
+  <string name="conversation_item__play_button_description">Przycisk Play</string>
+  <string name="conversation_item__secure_message_description">Wskaźnik bezpiecznej wiadomości</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Pobierz</string>
   <string name="conversation_item_sent__downloading">Pobieranie</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Wskaźnik nieudanej próby wysyłki</string>
+  <string name="conversation_item_sent__pending_approval_description">Oczekuję akceptacji</string>
+  <string name="conversation_item_sent__delivered_description">Wskaźnik dostarczenia</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Pobierz</string>
   <string name="conversation_item_received__downloading">Pobieranie</string>
@@ -350,6 +363,8 @@
   <string name="log_submit_activity__copied_to_clipboard">Skopiowane do schowka </string>
   <string name="log_submit_activity__loading_logcat">Ładowanie logcat...</string>
   <string name="log_submit_activity__thanks">Dziękujemy za twoją pomoc!</string>
+  <string name="log_submit_activity__submitting">Wysyłanie</string>
+  <string name="log_submit_activity__posting_logs">Wstawianie logów do serwisu pastebin..</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Czy chcesz zaimportować swoje wiadomości do zaszyfrowanej bazy danych TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Domyślna baza danych nie zostanie zmodyfikowana ani zastąpiona w żaden sposób.</string>
@@ -421,6 +436,7 @@
   <string name="registration_progress_activity__sms_verification_failed">Weryfikacja SMS zakończona niepowodzeniem.</string>
   <string name="registration_progress_activity__generating_keys">Generowanie kluczy...</string>
   <!--recipients_panel-->
+  <string name="recipients_panel__to">Wprowadź nazwę lub numer kontaktu</string>
   <string name="recipients_panel__add_member">Dodaj uczestnika</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Aktualnie nie masz żadnych kluczy tożsamości w swojej zaufanej bazie danych.</string>
@@ -459,6 +475,7 @@
   <string name="preferences__pref_all_mms_title">Otrzymuj wszystkie MMSy</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Użyj TextSecure do przeglądania i przechowywania wszystkich wiadomości tekstowych.</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Użyj TextSecure do przeglądania i przechowywania wszystkich wiadomości multimedialnych</string>
+  <string name="preferences__input_settings">Ustawienia wprowadzania</string>
   <string name="preferences__enable_enter_key_title">Włącz klawisz Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Zastąp przycisk emotikon klawiszem Enter</string>
   <string name="preferences__pref_enter_sends_title">Enter wysyła</string>
@@ -553,6 +570,8 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Zaznacz wszystko</string>
   <string name="contact_selection_list__menu_unselect_all">Odznacz wszystko</string>
+  <string name="contact_selection_list__header_textsecure_users">UŻYTKOWNICY TEXTSECURE</string>
+  <string name="contact_selection_list__header_other">WSZYSTKIE KONTAKTY</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Zakończono</string>
   <!--refreshing push directory from menu-->

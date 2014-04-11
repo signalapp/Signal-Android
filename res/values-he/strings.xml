@@ -48,10 +48,8 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">סליחה, קובץ השמע שנבחר חורג מגבולות גודל ההודעה.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">הנמען אינו SMS או אימייל חוקיים!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">ההודעה ריקה!</string>
-  <string name="ConversationActivity_forward_message_prefix">העבר</string>
   <string name="ConversationActivity_group_conversation_recipients">נמעני שיחה קבוצתית</string>
   <string name="ConversationActivity_group_conversation">שיחה קבוצתית</string>
-  <string name="ConversationActivity_saving_draft">שומר טיוטה...</string>
   <string name="ConversationActivity_invalid_recipient">נמען שגוי!</string>
   <string name="ConversationActivity_calls_not_supported">שיחות אינן נתמכות</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">נראה כי מכשיר זה אינו תומך בפעולות חיוג.</string>
@@ -68,6 +66,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">מוחק שרשורים שנבחרו...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">לייצא לכרטיס ה-SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">פעולה זו\nתייצא את המפתחות, ההגדרות וההודעות המוצפנות שלך לכרטיס ה-SD.\n</string>
@@ -222,6 +221,7 @@
   <!--conversation_activity-->
   <string name="conversation_activity__send">שלח</string>
   <string name="conversation_activity__remove">הסר</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">הורד</string>
   <string name="conversation_item_sent__downloading">מוריד</string>

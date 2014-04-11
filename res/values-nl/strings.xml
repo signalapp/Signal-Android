@@ -53,7 +53,10 @@
   <string name="ConversationItem_group_action_joined">%1$s is toegetreden tot de groep.</string>
   <string name="ConversationItem_group_action_modify">%1$s heeft de groep bijgewerkt.</string>
   <string name="ConversationItem_click_to_approve">Tik voor terugvallen op SMS</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Tik voor terugvallen op onveilige verbinding</string>
   <string name="ConversationItem_click_to_approve_dialog_title">Terugvallen naar SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Terugvallen op onversleutelde SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden, omdat een veilige sessie niet opgezet kon worden.\n\nBericht onveilig versturen?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initieer Beveiligde Sessie?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initieer beveiligde sessie met %s?</string>
@@ -69,13 +72,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Excuses, de geselecteerde audio overschrijdt de berichtgrootterestricties.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ontvanger is niet een geldig SMS of e-mailadres!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Bericht is leeg!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Groepsconversatie Ontvangers</string>
   <string name="ConversationActivity_group_conversation">Groepsconversatie</string>
   <string name="ConversationActivity_unnamed_group">Naamloze Groep</string>
   <string name="ConversationActivity_d_recipients_in_group">%d leden</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 lid</string>
-  <string name="ConversationActivity_saving_draft">Concept opslaan...</string>
   <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
   <string name="ConversationActivity_calls_not_supported">Oproepen Niet Ondersteund</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt dial-acties niet te ondersteunen.</string>
@@ -96,6 +97,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Geselecteerde conversaties aan het verwijderen...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Opslaan op SD-kaart?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dit exporteert je keys, instellingen en berichten versleuteld naar de SD-kaart</string>
@@ -110,13 +112,12 @@
   <string name="ExportFragment_success">Succesvol!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Keys, instellingen en berichten versleuteld naar de SD-kaart aan het exporteren...</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Nieuwe Groep</string>
+  <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
   <string name="GroupCreateActivity_actionbar_update_title">Groep Bijwerken</string>
   <string name="GroupCreateActivity_group_name_hint">Groepsnaam</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe MMS-Groep</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">U hebt een contactpersoon geselecteerd die geen TextSecure-groepen ondersteunt, dus deze groep zal gebruik maken van MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">U bent niet geregistreed om het datakanaal te gebruiken, dus TextSecure groepen zijn uitgeschakeld.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Je bent niet de beheerder van deze groep, dus je de titel of afbeelding niet wijzigen.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Er is een onverwachte fout opgetreden waardoor het aanmaken van een groep is mislukt.</string>
   <string name="GroupCreateActivity_contacts_no_members">Uw groep moet ten minste één persoon bevatten.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Het nummer van een van de leden van uw groep kan niet goed worden gelezen. Corrigeer dit of verwijder deze persoon, en probeer het opnieuw.</string>
@@ -218,6 +219,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nBericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en weer te geven.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bijgewerkte maar onbekende identiteitsgegevens ontvangen. Raak aan om identiteit te bevestigen.</string>
   <string name="SmsMessageRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
+  <string name="SmsMessageRecord_duplicate_message">Dupliceer bericht.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Je hebt deze groep verlaten...</string>
   <string name="TheadRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
@@ -309,9 +311,13 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Geen contacten.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Contacten laden...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Type een naam om te zoeken...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">U bent niet geregistreerd bij de push service...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Contactpersonen updaten</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Pushcontacten aan het updaten...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Contactfoto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecteer voor</string>
   <!--contact_selection_recent_activity-->
@@ -320,9 +326,16 @@
   <string name="conversation_activity__type_message"><small>Verstuur een bericht</small></string>
   <string name="conversation_activity__send">Verstuur</string>
   <string name="conversation_activity__remove">Verwijder</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Media Bericht</string>
+  <string name="conversation_item__play_button_description">Afspeelknop</string>
+  <string name="conversation_item__secure_message_description">Beveiligd Bericht Indicator</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Download</string>
   <string name="conversation_item_sent__downloading">Downloaden</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Verzenden Mislukt Indicator</string>
+  <string name="conversation_item_sent__pending_approval_description">In afwachting van goedkeuring</string>
+  <string name="conversation_item_sent__delivered_description">Afgeleverd Indicator</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Download</string>
   <string name="conversation_item_received__downloading">Downloaden</string>
@@ -350,6 +363,8 @@
   <string name="log_submit_activity__copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="log_submit_activity__loading_logcat">Logcat laden...</string>
   <string name="log_submit_activity__thanks">Bedankt voor uw hulp!</string>
+  <string name="log_submit_activity__submitting">Aan het indienen</string>
+  <string name="log_submit_activity__posting_logs">Logs aan het plaatsen op pastebin...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wilt u uw huidige tekstberichtendatabase importeren naar de versleutelde database van TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabase zal niet gewijzigd of aangepast worden op enigerlei wijze.</string>
@@ -421,6 +436,7 @@
   <string name="registration_progress_activity__sms_verification_failed">SMS-verificatie mislukt.</string>
   <string name="registration_progress_activity__generating_keys">Sleutels genereren...</string>
   <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Typ een naam of nummer</small></string>
   <string name="recipients_panel__add_member">Voeg groepslid toe</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">U heeft momenteel geen identiteitssleutels in uw vertrouwensdatabase.</string>
@@ -457,25 +473,25 @@
   <string name="preferences__push_sms_category">Push en SMS</string>
   <string name="preferences__pref_all_sms_title">Ontvang alle SMS</string>
   <string name="preferences__pref_all_mms_title">Ontvang alle MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gebruik TextSecure voor het bekijken en opslaan van alle inkomende tekstberichten</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gebruik TextSecure voor het bekijken en opslaan van alle inkomende multimediaberichten</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure gebruiken voor het bekijken en opslaan van alle inkomende tekstberichten</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure gebruiken voor het bekijken en opslaan van alle inkomende multimediaberichten</string>
   <string name="preferences__input_settings">Invoer Instellingen</string>
   <string name="preferences__enable_enter_key_title">Activeer Enter-toets</string>
-  <string name="preferences__replace_smiley_with_enter_key">Vervang de smiley-toets door een enter-toets</string>
+  <string name="preferences__replace_smiley_with_enter_key">De smiley-toets vervangen door een enter-toets</string>
   <string name="preferences__pref_enter_sends_title">Enter verstuurt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">De \'Enter\' toets gebruiken voor versturen tekstberichten</string>
   <string name="preferences__display_settings">Beeldscherminstellingen</string>
   <string name="preferences__choose_identity">Kies Identiteit</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies uw contactinformatie uit de contactpersonenlijst.</string>
   <string name="preferences__change_passphrase">Verander wachtwoord</string>
-  <string name="preferences__change_my_passphrase">Verander mijn wachtwoord</string>
+  <string name="preferences__change_my_passphrase">Mijn wachtwoord veranderen</string>
   <string name="preferences__complete_key_exchanges">Voltooi sleuteluitwisselingen</string>
   <string name="preferences__disable_passphrase">Wachtwoord uitschakelen</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Lokale versleuteling van berichten en sleutels uitschakelen</string>
   <string name="preferences__screen_security">Schermbeveiliging</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisch sleuteluitwisselingen voltooien voor nieuwe sessies of voor bestaande sessies met dezelfde identiteitssleutel</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Screenshots onmogelijk maken</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Vergeet het wachtwoord uit het geheugen na een bepaalde tijd</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Wachtwoord na een bepaalde tijd uit het geheugen vergeten</string>
   <string name="preferences__timeout_passphrase">Time-out wachtwoord</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Selecteer Wachtwoord Time-out</string>
   <string name="preferences__pref_timeout_interval_title">Time-out interval</string>
@@ -485,7 +501,7 @@
   <string name="preferences__manage_identity_keys">Beheer identiteitssleutels</string>
   <string name="preferences__manage_configured_identity_keys">Beheer ingestelde identiteitssleutels</string>
   <string name="preferences__notifications">Notificaties</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Toon berichtmeldingen in notificatiebalk</string>
+  <string name="preferences__display_message_notifications_in_status_bar">Berichtmeldingen in notificatiebalk tonen</string>
   <string name="preferences__led_color">LED-kleur</string>
   <string name="preferences__pref_led_blink_title">LED-knipperpatroon</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Stel aangepaste LED knipper patroon in</string>
@@ -494,8 +510,8 @@
   <string name="preferences__pref_led_blink_custom_pattern_set">Aangepast LED knipper patroon ingesteld.</string>
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__change_notification_sound">Verander notificatiegeluid</string>
-  <string name="preferences__inthread_notifications">Notificatie binnen een conversatie</string>
-  <string name="preferences__play_inthread_notifications">Speel notificatiegeluid af bij het bekijken van een actieve conversatie.</string>
+  <string name="preferences__inthread_notifications">Notificaties in een gesprek</string>
+  <string name="preferences__play_inthread_notifications">Notificatiegeluid afspelen bij het bekijken van een actieve conversatie.</string>
   <string name="preferences__vibrate">Trillen</string>
   <string name="preferences__also_vibrate_when_notified">Ook trillen bij notificaties</string>
   <string name="preferences__minutes">minuten</string>
@@ -537,10 +553,10 @@
   <string name="preferences__make_default_sms_app">Stel in als standaard SMS-app</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Stel TextSecure in als standaard SMS/MMS-applicatie voor uw systeem.</string>
   <string name="preferences__use_data_channel">Pushberichten</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nPrivacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken om te communiceren met andere TextSecure gebruikers</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken om te communiceren met andere TextSecure gebruikers</string>
   <string name="preferences__allow_sms_fallback">SMS versturen naar</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is momenteel uw standaard SMS applicatie. Selecteer alstublieft een andere SMS applicatie om deze voorkeur te veranderen.</string>
-  <string name="preferences__refresh_push_directory">Ververs pushcontacten</string>
+  <string name="preferences__refresh_push_directory">Pushcontacten verversen</string>
   <string name="preferences__submit_debug_log">Dien debug log in</string>
   <string name="preferences__sms_outgoing_push_users">TextSecure gebruikers</string>
   <string name="preferences__sms_fallback_push_users_ask">(eerst vragen)</string>
@@ -554,10 +570,12 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Alles Selecteren</string>
   <string name="contact_selection_list__menu_unselect_all">Alles Deselecteren</string>
+  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE GEBRUIKERS</string>
+  <string name="contact_selection_list__header_other">ALLE CONTACTEN</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Voltooid</string>
   <!--refreshing push directory from menu-->
-  <string name="push_directory__menu_refresh">Ververs Contacten Lijst</string>
+  <string name="push_directory__menu_refresh">Contactenlijst verversen</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__menu_send_unencrypted">Verstuur onversleuteld</string>
   <!--conversation_callable-->
@@ -604,7 +622,7 @@
   <string name="text_secure_normal__menu_new_group">Nieuwe Groep</string>
   <string name="text_secure_normal__menu_settings">Instellingen</string>
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendel</string>
-  <string name="text_secure_normal__mark_all_as_read">Markeer Alles Als Gelezen</string>
+  <string name="text_secure_normal__mark_all_as_read">Markeer alles als gelezen</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Geverifieerd</string>
   <!--EOF-->

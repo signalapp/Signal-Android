@@ -69,13 +69,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lamento, o áudio seleccionado excede as restrições de tamanho da mensagem</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatário não é um endereço SMS ou email válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">A mensagem está vazia!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Agrupar destinatários de conversa</string>
   <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
   <string name="ConversationActivity_unnamed_group">Grupo Sem Nome</string>
   <string name="ConversationActivity_d_recipients_in_group">%d membros</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 membro</string>
-  <string name="ConversationActivity_saving_draft">A guardar rascunho...</string>
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Chamadas não suportadas</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo parece não suportar acções de marcação</string>
@@ -96,6 +94,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">A apagar conversas seleccionadas...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportar para cartão SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">As suas\nchaves de segurança, configurações e mensagens serão exportadas para o cartão SD.\n</string>
@@ -116,7 +115,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Novo Grupo MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Seleccionou um contacto que não suporta grupos TextSecure, pelo que este grupo será um grupo MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Não está registado para usar o canal de dados, pelo que os grupos TextSecure estão desactivados.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Não tem permissão para alterar o título ou a imagem deste grupo</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Um irro inesperado ocorreu que impossibilitou a criação do grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">É necessária pelo menos uma pessoa para formar um grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número ilegível. Por favor corrija ou remova esse contacto e tente novamente.</string>
@@ -320,6 +318,7 @@
   <string name="conversation_activity__type_message"><small>Envie uma mensagem</small></string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Remover</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Transferir</string>
   <string name="conversation_item_sent__downloading">A transferir</string>

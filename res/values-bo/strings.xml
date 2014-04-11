@@ -41,10 +41,8 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ཁྱོད་ཀྱིས་བདམས་པའི་སྒྲ་ཟློས་དེ་འཕྲིན་ཐུང་གི་ཚད་ལས་བརྒལ་འདུག</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">གཏོང་ས་དེར་གློག་འཕྲིན་ཁ་བྱང་ངམ་འཕྲིན་ཐུང་(SMS) ཁ་བྱང་ཚད་ལྡན་མི་འདུག </string>
   <string name="ConversationActivity_message_is_empty_exclamation">འཕྲིན་ཐུང་སྟོང་པ་རེད་འདུག </string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">མཉམ་འདུས་གླེང་མོལ་གྱི་ཁོངས་མི་དག </string>
   <string name="ConversationActivity_group_conversation">མཉམ་འདུས་གླེང་མོལ། </string>
-  <string name="ConversationActivity_saving_draft">ཟིན་བྲིས་ཉར་ཚགས་བྱེད་བཞིན་ཡོད།</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">འཕྲིན་ཐུང་གི་ཞིབ་ཆ།</string>
   <string name="ConversationFragment_confirm_message_delete">འཕྲིན་ཐུང་གསུབ་པ་ངེས་བརྟན་བཟོས། </string>
@@ -58,6 +56,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">འཕྲིན་ཐུང་སྐུད་རིམ་རྣམས་གསུབ་བཞིན་ཡོད།</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན།</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">ཕྱི་འདྲེན་བྱོས། </string>
   <string name="ExportFragment_cancel">ཕྱིར་འཐེན་བྱེད།</string>
@@ -174,6 +173,7 @@
   <!--conversation_activity-->
   <string name="conversation_activity__send">ཐོངས། </string>
   <string name="conversation_activity__remove">ཕྱིར་ཕུད། </string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">ཕབ་ལེན་བྱོས། </string>
   <string name="conversation_item_sent__downloading">ཕབ་ལེན་བྱེད་བཞིན་ཡོད། </string>
