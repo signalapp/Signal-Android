@@ -658,7 +658,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
   }
 
-  private class FillExistingGroupInfoAsyncTask extends AsyncTask<Void,Void,Boolean> {
+  private class FillExistingGroupInfoAsyncTask extends AsyncTask<Void,Void,Void> {
 
     @Override
     protected void onPreExecute() {
@@ -671,7 +671,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     }
 
     @Override
-    protected Boolean doInBackground(Void... voids) {
+    protected Void doInBackground(Void... voids) {
       final GroupDatabase db = DatabaseFactory.getGroupDatabase(GroupCreateActivity.this);
       final Recipients recipients = db.getGroupMembers(groupId, false);
       if (recipients != null) {
@@ -690,24 +690,18 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
           existingAvatarBmp = BitmapUtil.getCircleCroppedBitmap(
               BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length));
         }
-        return true;
       }
       return null;
     }
 
     @Override
-    protected void onPostExecute(Boolean isOwner) {
-      super.onPostExecute(isOwner);
+    protected void onPostExecute(Void aVoid) {
+      super.onPostExecute(aVoid);
 
       if (pd != null) pd.dismiss();
       if (existingTitle != null) groupName.setText(existingTitle);
       if (existingAvatarBmp != null) avatar.setImageBitmap(existingAvatarBmp);
       if (existingContacts != null) syncAdapterWithSelectedContacts();
-      if (!isOwner) {
-        disableWhisperGroupUi(R.string.GroupCreateActivity_you_dont_own_this_group);
-        getSupportActionBar().setTitle(getString(R.string.GroupCreateActivity_actionbar_update_title)
-                                       + (TextUtils.isEmpty(existingTitle) ? "" : ": " + existingTitle));
-      }
     }
   }
 }
