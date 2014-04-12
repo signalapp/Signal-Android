@@ -23,15 +23,15 @@
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering...</string>
     <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Unregistering for data based communication</string>
-    <string name="ApplicationPreferencesActivity_disable_push_messages">Disable push messages?</string>
+    <string name="ApplicationPreferencesActivity_disable_push_messages">Disable data messages?</string>
     <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-        This will disable push messages by unregistering you from the server.
-        You will need to re-register your phone number to use push messages again in the future.
+        This will disable data messages by unregistering you from the server.
+        You will need to re-register your phone number to use data messages again in the future.
     </string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
-    <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
+    <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">You are not registered with the data message service...</string>
     <string name="ApplicationPreferencesActivity_updating_directory">Updating directory</string>
-    <string name="ApplicationPreferencesActivity_updating_push_directory">Updating push directory...</string>
+    <string name="ApplicationPreferencesActivity_updating_push_directory">Updating TextSecure directory...</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">Incoming SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
     <string name="ApplicationPreferencesActivity_sms_disabled">Incoming SMS Disabled</string>
@@ -423,9 +423,9 @@
 
     <!-- single_contact_selection_activity -->
     <string name="single_contact_selection_group_activity__filter">Type a name to filter&#8230;</string>
-    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service&#8230;</string>
+    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the data message service&#8230;</string>
     <string name="SingleContactSelectionActivity_updating_directory">Updating directory</string>
-    <string name="SingleContactSelectionActivity_updating_push_directory">Updating push directory&#8230;</string>
+    <string name="SingleContactSelectionActivity_updating_push_directory">Updating TextSecure directory&#8230;</string>
     <string name="SingleContactSelectionActivity_contact_photo">Contact Photo</string>
 
     <!-- ContactSelectionListFragment-->
@@ -581,7 +581,7 @@
     <string name="registration_progress_activity__edit_number">Edit number</string>
     <string name="registration_progress_activity__connectivity_error">Connectivity error.</string>
     <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-        TextSecure was unable to connect to the push service.
+        TextSecure was unable to connect to the data message service.
     </string>
     <string name="registration_progress_activity__some_possible_problems_include">Some possible
         problems include:
@@ -661,7 +661,7 @@
 
     <!-- preferences.xml -->
     <string name="preferences__general">General</string>
-    <string name="preferences__push_sms_category">Push and SMS</string>
+    <string name="preferences__push_sms_category">Data messages and SMS</string>
     <string name="preferences__pref_all_sms_title">Receive all SMS</string>
     <string name="preferences__pref_all_mms_title">Receive all MMS</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
@@ -743,13 +743,13 @@
     <string name="preferences__language">Language</string>
     <string name="preferences__make_default_sms_app">Set as default SMS app</string>
     <string name="preferences__make_textsecure_the_default_sms_mms_app">Make TextSecure the default SMS/MMS application for your system.</string>
-    <string name="preferences__use_data_channel">Push messages</string>
+    <string name="preferences__use_data_channel">Data messages</string>
     <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
         Increase privacy and avoid SMS fees by using the data channel for communication with other TextSecure users
     </string>
     <string name="preferences__allow_sms_fallback">Allow outgoing SMS to</string>
     <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is currently your default SMS app. Please set another default SMS app first to change this preference.</string>
-    <string name="preferences__refresh_push_directory">Refresh Push Directory</string>
+    <string name="preferences__refresh_push_directory">Refresh TextSecure Directory</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__sms_outgoing_push_users">TextSecure users</string>
     <string name="preferences__sms_fallback_push_users_ask">(ask first)</string>
