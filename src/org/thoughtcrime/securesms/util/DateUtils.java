@@ -22,19 +22,16 @@ public class DateUtils extends android.text.format.DateUtils {
   }
 
   public static String getBetterRelativeTimeSpanString(final Context c, final long millis) {
-    final String prettyDate;
-    if (isToday(millis)) {
-      prettyDate = DateUtils.formatDateTime(c, millis, DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_ABBREV_TIME);
-    } else if (isWithinWeek(millis)) {
-      prettyDate = DateUtils.formatDateTime(c, millis,
-          DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_ABBREV_WEEKDAY);
-    } else if (isWithinYear(millis)) {
-      prettyDate = DateUtils.formatDateTime(c, millis,
-          DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL);
-    } else {
-      prettyDate = DateUtils.formatDateTime(c, millis,
-          DateUtils.FORMAT_NUMERIC_DATE);
+    int formatFlags = DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_ABBREV_TIME;
+    if (!isToday(millis)) {
+      if (isWithinWeek(millis)) {
+        formatFlags = formatFlags | DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_ABBREV_WEEKDAY;
+      } else if (isWithinYear(millis)) {
+        formatFlags = formatFlags | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL;
+      } else {
+        formatFlags = formatFlags | DateUtils.FORMAT_NUMERIC_DATE;
+      }
     }
-    return prettyDate;
+    return DateUtils.formatDateTime(c, millis, formatFlags);
   }
 }
