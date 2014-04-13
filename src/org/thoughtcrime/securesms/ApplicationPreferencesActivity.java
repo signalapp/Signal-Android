@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -43,6 +44,9 @@ import android.provider.Telephony;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+
+import android.view.View;
+import android.widget.Button;
 
 import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gcm.GCMRegistrar;
@@ -128,6 +132,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         .setOnPreferenceClickListener(new SubmitDebugLogListener());
     this.findPreference(OUTGOING_SMS_PREF)
         .setOnPreferenceChangeListener(new OutgoingSmsPreferenceListener());
+    this.findPreference(TextSecurePreferences.ABOUT_APPLICATION)
+      .setOnPreferenceClickListener(new AboutApplicationListener());
 
     initializeOutgoingSmsSummary((OutgoingSmsPreference) findPreference(OUTGOING_SMS_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
@@ -606,6 +612,30 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           if (((PreferenceScreen)preference).getDialog()!=null)
             ((PreferenceScreen)preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(this.getWindow().getDecorView().getBackground().getConstantState().newDrawable());
     return false;
+  }
+
+
+  private class AboutApplicationListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+
+      Context context = ApplicationPreferencesActivity.this;
+
+      AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
+
+      builder.setTitle(Util.getAppAndVersionName(context));
+      builder.setMessage("*test*");
+      builder.setPositiveButton("OK",
+        new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {}
+        }
+      );
+      builder.show();
+
+      return true;
+
+    }
+
   }
 
 }

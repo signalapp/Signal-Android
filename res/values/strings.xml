@@ -757,6 +757,8 @@
     <string name="preferences__sms_fallback_ask_fallback">Ask before sending SMS</string>
     <string name="preferences__sms_fallback_non_push_users">Non-TextSecure users</string>
     <string name="preferences__sms_fallback_nobody">Nobody</string>
+    <string name="preferences__about">About</string>
+    <string name="preferences__version">Version</string>
 
     <!-- **************************************** -->
     <!-- menus -->
