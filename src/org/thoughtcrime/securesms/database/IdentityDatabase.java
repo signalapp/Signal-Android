@@ -57,7 +57,7 @@ public class IdentityDatabase extends Database {
       RECIPIENT + " INTEGER UNIQUE, " +
       IDENTITY_KEY + " TEXT, " +
       MAC + " TEXT, " +
-      VERIFIED + "TEXT);";
+      VERIFIED + " TEXT);";
 
   public IdentityDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
