@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014 Open Whisper Systems and the original author or authors.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,21 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.preferences;
+package org.thoughtcrime.securesms;
 
-import android.content.Context;
-import android.preference.Preference;
-import android.util.AttributeSet;
-
-import org.thoughtcrime.securesms.util.Util;
-
-public class AboutApplicationPreference extends Preference {
-
-  public AboutApplicationPreference(Context context, AttributeSet attrs) {
-    super(context, attrs);
-
-    setTitle(Util.getAppAndVersionName(context));
-
-  }
-
+public class Constants
+{
+  public static final String LICENSE_URL = "http://www.gnu.org/licenses/gpl-3.0.txt";
+  public static final String CHANGES_URL = "https://github.com/WhisperSystems/TextSecure/wiki/History-of-changes";
+  public static final String SUPPORT_URL = "http://support.whispersystems.org";
+  public static final String BUGREPORTS_URL = "https://github.com/WhisperSystems/TextSecure/issues";
+  public static final String SOURCE_URL = "https://github.com/WhisperSystems/TextSecure";
 }

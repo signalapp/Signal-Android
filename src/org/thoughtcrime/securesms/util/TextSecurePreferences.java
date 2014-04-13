@@ -51,7 +51,6 @@ public class TextSecurePreferences {
 
   public  static final String ABOUT_APPLICATION                = "pref_key_about_application_version";
 
-
   public static boolean isSmsFallbackEnabled(Context context) {
     return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
   }

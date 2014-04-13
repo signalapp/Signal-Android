@@ -760,6 +760,14 @@
     <string name="preferences__about">About</string>
     <string name="preferences__version">Version</string>
 
+    <string name="about__title_version">Version</string>
+    <string name="about__title_changes">List of changes</string>
+    <string name="about__title_support">Support Center</string>
+    <string name="about__title_bugreports">Bug reports and feedback</string>
+    <string name="about__title_source_code">Source code</string>
+    <string name="about__title_license">License</string>
+
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->

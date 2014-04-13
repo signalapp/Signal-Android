@@ -45,9 +45,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import android.view.View;
-import android.widget.Button;
-
 import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gcm.GCMRegistrar;
 
@@ -65,6 +62,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.AboutActivity;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.AuthorizationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -620,17 +618,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     public boolean onPreferenceClick(Preference preference) {
 
       Context context = ApplicationPreferencesActivity.this;
-
-      AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
-
-      builder.setTitle(Util.getAppAndVersionName(context));
-      builder.setMessage("*test*");
-      builder.setPositiveButton("OK",
-        new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {}
-        }
-      );
-      builder.show();
+      startActivity(new Intent(context, AboutActivity.class));
 
       return true;
 
