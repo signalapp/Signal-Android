@@ -383,7 +383,7 @@ public class ThreadDatabase extends Database {
       MessageRecord record = null;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, record.getBody().getBody(), record.getDateSent(), record.getType());
+        updateThread(threadId, count, record.getBody().getBody(), record.getDateReceived(), record.getType());
       } else {
         deleteThread(threadId);
       }
