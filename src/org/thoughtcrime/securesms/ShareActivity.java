@@ -72,6 +72,7 @@ public class ShareActivity extends PassphraseRequiredSherlockFragmentActivity
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.ShareActivity_share_with);
+    initializeSecurity();
   }
 
   @Override
@@ -132,17 +133,22 @@ public class ShareActivity extends PassphraseRequiredSherlockFragmentActivity
   }
 
   private void initializeResources() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && TextSecurePreferences.isScreenSecurityEnabled(this)) {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                           WindowManager.LayoutParams.FLAG_SECURE);
-    }
-
     this.masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
 
     this.fragment = (ShareFragment)this.getSupportFragmentManager()
         .findFragmentById(R.id.fragment_content);
 
     this.fragment.setMasterSecret(masterSecret);
+  }
+
+  private void initializeSecurity() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      } else {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      }
+    }
   }
 
   private Intent getBaseShareIntent(final Class<?> target) {

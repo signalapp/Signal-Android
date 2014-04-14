@@ -86,6 +86,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     dynamicLanguage.onResume(this);
 
     initializeDefaultMessengerCheck();
+    initializeSecurity();
   }
 
   @Override
@@ -279,11 +280,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   }
 
   private void initializeResources() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && TextSecurePreferences.isScreenSecurityEnabled(this)) {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                           WindowManager.LayoutParams.FLAG_SECURE);
-    }
-
     this.drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
     this.drawerList   = (ListView)findViewById(R.id.left_drawer);
     this.masterSecret = getIntent().getParcelableExtra("master_secret");
@@ -300,6 +296,16 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
       Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
       intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
       startActivity(intent);
+    }
+  }
+
+  private void initializeSecurity() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      } else {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      }
     }
   }
 
