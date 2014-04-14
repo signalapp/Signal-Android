@@ -21,16 +21,13 @@ public class DynamicLanguage {
 
   public void onResume(Activity activity) {
     if (!currentLocale.equals(getSelectedLocale(activity))) {
-      Intent intent = activity.getIntent();
-      intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-      activity.finish();
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        activity.recreate();
+      } else {
+        Intent intent = activity.getIntent();
+        activity.finish();
         OverridePendingTransition.invoke(activity);
-      }
-
-      activity.startActivity(intent);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+        activity.startActivity(intent);
         OverridePendingTransition.invoke(activity);
       }
     }
