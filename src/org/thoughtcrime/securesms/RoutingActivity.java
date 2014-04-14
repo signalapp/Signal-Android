@@ -132,19 +132,10 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     final Intent intent;
     if (isShareAction()) {
       intent = getShareIntent(parameters);
-      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-      }
     } else if (parameters.recipients != null) {
       intent = getConversationIntent(parameters);
-      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
     } else {
       intent = getConversationListIntent();
-      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-        intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-      }
     }
     startActivity(intent);
     finish();
