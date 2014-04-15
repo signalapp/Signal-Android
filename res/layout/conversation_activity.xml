@@ -88,7 +88,6 @@
                         android:background="#00ffffff"
                         android:padding="12dp"
                         android:paddingRight="0dp"
-                        android:hint="@string/conversation_activity__type_message"
                         android:imeOptions="actionSend|flagNoEnterAction"
                         android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
                         android:maxLength="1000"

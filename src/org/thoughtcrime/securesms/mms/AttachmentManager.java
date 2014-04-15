@@ -37,13 +37,15 @@ public class AttachmentManager {
   private final ImageView thumbnail;
   private final Button removeButton;
   private final SlideDeck slideDeck;
+  private final AttachmentListener attachmentListener;
 
-  public AttachmentManager(Activity view) {
-    this.attachmentView = (View)view.findViewById(R.id.attachment_editor);
-    this.thumbnail      = (ImageView)view.findViewById(R.id.attachment_thumbnail);
-    this.removeButton   = (Button)view.findViewById(R.id.remove_image_button);
-    this.slideDeck      = new SlideDeck();
-    this.context        = view;
+  public AttachmentManager(Activity view, AttachmentListener listener) {
+    this.attachmentView     = (View)view.findViewById(R.id.attachment_editor);
+    this.thumbnail          = (ImageView)view.findViewById(R.id.attachment_thumbnail);
+    this.removeButton       = (Button)view.findViewById(R.id.remove_image_button);
+    this.slideDeck          = new SlideDeck();
+    this.context            = view;
+    this.attachmentListener = listener;
 
     this.removeButton.setOnClickListener(new RemoveButtonListener());
   }
@@ -51,6 +53,7 @@ public class AttachmentManager {
   public void clear() {
     slideDeck.clear();
     attachmentView.setVisibility(View.GONE);
+    attachmentListener.onAttachmentChanged();
   }
 
   public void setImage(Uri image) throws IOException, BitmapDecodingException {
@@ -58,6 +61,7 @@ public class AttachmentManager {
     slideDeck.addSlide(slide);
     thumbnail.setImageDrawable(slide.getThumbnail(345, 261));
     attachmentView.setVisibility(View.VISIBLE);
+    attachmentListener.onAttachmentChanged();
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
@@ -65,6 +69,7 @@ public class AttachmentManager {
     slideDeck.addSlide(slide);
     thumbnail.setImageDrawable(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
     attachmentView.setVisibility(View.VISIBLE);
+    attachmentListener.onAttachmentChanged();
   }
 
   public void setAudio(Uri audio)throws IOException, MediaTooLargeException {
@@ -72,6 +77,7 @@ public class AttachmentManager {
     slideDeck.addSlide(slide);
     thumbnail.setImageDrawable(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
     attachmentView.setVisibility(View.VISIBLE);
+    attachmentListener.onAttachmentChanged();
   }
 
   public boolean isAttachmentPresent() {
@@ -114,4 +120,7 @@ public class AttachmentManager {
     }
   }
 
+  public interface AttachmentListener {
+    public void onAttachmentChanged();
+  }
 }
