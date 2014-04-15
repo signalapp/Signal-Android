@@ -125,7 +125,7 @@ public class UniversalTransport {
       String destination = Util.canonicalizeNumber(context, mediaMessage.getTo()[0].getString());
 
       if (isPushTransport(destination)) {
-        boolean isSmsFallbackSupported = isSmsFallbackSupported(destination);
+        boolean isMmsFallbackSupported = isMmsFallbackSupported(destination);
 
         try {
           Log.w("UniversalTransport", "Using GCM as transport...");
@@ -133,16 +133,16 @@ public class UniversalTransport {
           return new MmsSendResult("push".getBytes("UTF-8"), 0, true, true);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
-          if (isSmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
+          if (isMmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
           else                        throw new RetryLaterException(ioe);
         } catch (RecipientFormattingException e) {
           Log.w("UniversalTransport", e);
-          if (isSmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
+          if (isMmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
           else                        throw new UndeliverableMessageException(e);
         } catch (EncapsulatedExceptions ee) {
           Log.w("UniversalTransport", ee);
           if (!ee.getUnregisteredUserExceptions().isEmpty()) {
-            if (isSmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
+            if (isMmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
             else                        throw new UndeliverableMessageException(ee);
           } else {
             throw new UntrustedIdentityException(ee.getUntrustedIdentityExceptions().get(0));
