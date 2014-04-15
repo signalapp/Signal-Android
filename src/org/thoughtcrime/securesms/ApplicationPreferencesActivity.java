@@ -576,19 +576,36 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   }
 
   private String buildOutgoingSmsDescription() {
-    final StringBuilder builder         = new StringBuilder();
-    final boolean       dataFallback    = TextSecurePreferences.isSmsFallbackEnabled(this);
-    final boolean       dataFallbackAsk = TextSecurePreferences.isSmsFallbackAskEnabled(this);
-    final boolean       nonData         = TextSecurePreferences.isSmsNonDataOutEnabled(this);
+    final StringBuilder builder             = new StringBuilder();
+    final boolean       dataFallback        = TextSecurePreferences.isSmsFallbackEnabled(this);
+    final boolean       dataFallbackAskSms  = TextSecurePreferences.isSmsFallbackAskEnabled(this);
+    final boolean       dataFallbackAskMms  = TextSecurePreferences.isMmsFallbackAskEnabled(this);
+    final boolean       nonData             = TextSecurePreferences.isSmsNonDataOutEnabled(this);
+    final boolean       mmsDisabled          = TextSecurePreferences.isMmsCompletelyDisabled(this);
 
     if (dataFallback) {
       builder.append(getString(R.string.preferences__sms_outgoing_push_users));
-      if (dataFallbackAsk) builder.append(" ").append(getString(R.string.preferences__sms_fallback_push_users_ask));
+
+      if (dataFallbackAskSms || (dataFallbackAskMms && !mmsDisabled)) {
+        builder.append(" (");
+
+        if (dataFallbackAskSms)
+          builder.append(getString(R.string.preferences__sms_fallback_push_users_ask));
+
+        if (dataFallbackAskMms && !mmsDisabled) {
+          if (dataFallbackAskSms) builder.append(", ");
+          builder.append(getString(R.string.preferences__mms_fallback_push_users_ask));
+        }
+
+        builder.append(")");
+      }
     }
     if (nonData) {
       if (dataFallback) builder.append(", ");
       builder.append(getString(R.string.preferences__sms_fallback_non_push_users));
     }
+    if( mmsDisabled && (dataFallback || nonData))
+      builder.append(", ").append(getString(R.string.preferences__mms_disabled));
     if (!dataFallback && !nonData) {
       builder.append(getString(R.string.preferences__sms_fallback_nobody));
     }

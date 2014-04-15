@@ -47,7 +47,9 @@ public class TextSecurePreferences {
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
   private static final String ALLOW_SMS_FALLBACK_PREF          = "pref_allow_sms_traffic_out";
   private static final String SMS_FALLBACK_ASK_PREF            = "pref_sms_fallback_ask";
+  private static final String MMS_FALLBACK_ASK_PREF            = "pref_mms_fallback_ask";
   private static final String ALLOW_SMS_NON_DATA_PREF          = "pref_sms_non_data_out";
+  private static final String MMS_COMPLETELY_DISABLED          = "pref_mms_completely_disabled";
 
   public static boolean isSmsFallbackEnabled(Context context) {
     return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
@@ -66,11 +68,27 @@ public class TextSecurePreferences {
   }
 
   public static boolean isSmsFallbackAskEnabled(Context context) {
-    return getBooleanPreference(context, SMS_FALLBACK_ASK_PREF, false);
+    return getBooleanPreference(context, SMS_FALLBACK_ASK_PREF, true);
+  }
+
+  public static boolean isMmsFallbackAskEnabled(Context context) {
+    return getBooleanPreference(context, MMS_FALLBACK_ASK_PREF, true);
   }
 
   public static void setSmsFallbackAskEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, SMS_FALLBACK_ASK_PREF, enabled);
+  }
+
+  public static void setMmsFallbackAskEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, MMS_FALLBACK_ASK_PREF, enabled);
+  }
+
+  public static boolean isMmsCompletelyDisabled(Context context) {
+    return getBooleanPreference(context, MMS_COMPLETELY_DISABLED, false);
+  }
+
+  public static void setMmsCompletelyDisabled(Context context, boolean disabled) {
+    setBooleanPreference(context, MMS_COMPLETELY_DISABLED, disabled);
   }
 
 

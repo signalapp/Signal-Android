@@ -163,9 +163,9 @@ public class UniversalTransport {
   {
     try {
       Recipient recipient                     = RecipientFactory.getRecipientsFromString(context, destination, false).getPrimaryRecipient();
-      boolean   isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
+      boolean   isMmsFallbackApprovalRequired = isMmsFallbackApprovalRequired(destination);
 
-      if (!isSmsFallbackApprovalRequired) {
+      if (!isMmsFallbackApprovalRequired) {
         Log.w("UniversalTransport", "Falling back to MMS");
         DatabaseFactory.getMmsDatabase(context).markAsForcedSms(mediaMessage.getDatabaseMessageId());
         return mmsTransport.deliver(mediaMessage);
@@ -260,6 +260,11 @@ public class UniversalTransport {
     return (isSmsFallbackSupported(destination) && TextSecurePreferences.isSmsFallbackAskEnabled(context));
   }
 
+  private boolean isMmsFallbackApprovalRequired(String destination) {
+    return (isMmsFallbackSupported(destination) && TextSecurePreferences.isMmsFallbackAskEnabled
+            (context));
+  }
+
   private boolean isSmsFallbackSupported(String destination) {
     if (GroupUtil.isEncodedGroup(destination)) {
       return false;
@@ -267,6 +272,24 @@ public class UniversalTransport {
 
     if (TextSecurePreferences.isPushRegistered(context) &&
         !TextSecurePreferences.isSmsFallbackEnabled(context))
+    {
+      return false;
+    }
+
+    Directory directory = Directory.getInstance(context);
+    return directory.isSmsFallbackSupported(destination);
+  }
+
+  private boolean isMmsFallbackSupported(String destination) {
+    if (GroupUtil.isEncodedGroup(destination)) {
+      return false;
+    }
+
+    if (TextSecurePreferences.isMmsCompletelyDisabled(context))
+      return false;
+
+    if (TextSecurePreferences.isPushRegistered(context) &&
+            !TextSecurePreferences.isSmsFallbackEnabled(context))
     {
       return false;
     }

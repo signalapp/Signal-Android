@@ -643,10 +643,17 @@ public class ConversationItem extends LinearLayout {
     final int title;
     final int message;
     if (messageRecord.isPendingSecureSmsFallback()) {
-      title = R.string.ConversationItem_click_to_approve_dialog_title;
+      if (messageRecord.isMms())
+        title = R.string.ConversationItem_click_to_approve_mms_dialog_title;
+      else
+        title = R.string.ConversationItem_click_to_approve_sms_dialog_title;
       message = -1;
     } else {
-      title = R.string.ConversationItem_click_to_approve_unencrypted_dialog_title;
+      if (messageRecord.isMms())
+        title = R.string.ConversationItem_click_to_approve_mms_unencrypted_dialog_title;
+      else
+        title = R.string.ConversationItem_click_to_approve_sms_unencrypted_dialog_title;
+
       message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
     }
 
