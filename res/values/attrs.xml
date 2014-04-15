@@ -49,6 +49,7 @@
     <attr name="contact_selection_push_user" format="reference|color" />
     <attr name="contact_selection_lay_user" format="reference|color" />
     <attr name="contact_selection_label_text" format="reference|color" />
+    <attr name="conversation_selection_header_text" format="reference|color" />
 
     <attr name="navigation_drawer_background" format="reference|color"/>
     <attr name="navigation_drawer_text_color" format="color"/>
