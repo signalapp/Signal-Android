@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+  <Preference android:key="about_version"
+              android:title="@string/about__title_version" />
+  <Preference android:summary="©2012-2014 Open Whisper Systems"
+              android:title="Copyright" />
+  <Preference android:key="about_changes"
+              android:title="@string/about__title_changes" />
+  <Preference android:key="about_support"
+              android:title="@string/about__title_support" />
+  <Preference android:key="about_source_code"
+              android:title="@string/about__title_source_code" />
+  <Preference android:key="about_license"
+              android:title="@string/about__title_license" />
+
+</PreferenceScreen>
