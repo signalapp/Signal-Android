@@ -48,6 +48,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gcm.GCMRegistrar;
 
 import org.thoughtcrime.securesms.components.OutgoingSmsPreference;
+import org.thoughtcrime.securesms.components.OutgoingMmsPreference;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
@@ -89,6 +90,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final String UPDATE_DIRECTORY_PREF = "pref_update_directory";
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
   private static final String OUTGOING_SMS_PREF     = "pref_outgoing_sms";
+  private static final String OUTGOING_MMS_PREF     = "pref_outgoing_mms";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -128,8 +130,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         .setOnPreferenceClickListener(new SubmitDebugLogListener());
     this.findPreference(OUTGOING_SMS_PREF)
         .setOnPreferenceChangeListener(new OutgoingSmsPreferenceListener());
+    this.findPreference(OUTGOING_MMS_PREF)
+            .setOnPreferenceChangeListener(new OutgoingMmsPreferenceListener());
+
 
     initializeOutgoingSmsSummary((OutgoingSmsPreference) findPreference(OUTGOING_SMS_PREF));
+    initializeOutgoingMmsSummary((OutgoingMmsPreference) findPreference(OUTGOING_MMS_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
     initializeRingtoneSummary((RingtonePreference) findPreference(TextSecurePreferences.RINGTONE_PREF));
@@ -282,6 +288,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private void initializeOutgoingSmsSummary(OutgoingSmsPreference pref) {
     pref.setSummary(buildOutgoingSmsDescription());
+  }
+
+  private void initializeOutgoingMmsSummary(OutgoingMmsPreference pref) {
+    pref.setSummary(buildOutgoingMmsDescription());
   }
 
   private void handleIdentitySelection(Intent data) {
@@ -575,6 +585,16 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
+  private class OutgoingMmsPreferenceListener implements Preference.OnPreferenceChangeListener {
+
+    @Override
+    public boolean onPreferenceChange(final Preference preference, Object newValue) {
+
+      preference.setSummary(buildOutgoingMmsDescription());
+      return false;
+    }
+  }
+
   private String buildOutgoingSmsDescription() {
     final StringBuilder builder         = new StringBuilder();
     final boolean       dataFallback    = TextSecurePreferences.isSmsFallbackEnabled(this);
@@ -594,6 +614,28 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
     return builder.toString();
   }
+
+  private String buildOutgoingMmsDescription() {
+    final StringBuilder builder         = new StringBuilder();
+    final boolean       dataFallback    = TextSecurePreferences.isMmsFallbackEnabled(this);
+    final boolean       dataFallbackAsk = TextSecurePreferences.isMmsFallbackAskEnabled(this);
+    final boolean       nonData         = TextSecurePreferences.isMmsNonDataOutEnabled(this);
+
+    if (dataFallback) {
+      builder.append(getString(R.string.preferences__mms_outgoing_push_users));
+      if (dataFallbackAsk) builder.append(" ").append(getString(R.string
+              .preferences__mms_fallback_push_users_ask));
+    }
+    if (nonData) {
+      if (dataFallback) builder.append(", ");
+      builder.append(getString(R.string.preferences__mms_fallback_non_push_users));
+    }
+    if (!dataFallback && !nonData) {
+      builder.append(getString(R.string.preferences__mms_fallback_nobody));
+    }
+    return builder.toString();
+  }
+
 
   /* http://code.google.com/p/android/issues/detail?id=4611#c35 */
   @SuppressWarnings("deprecation")

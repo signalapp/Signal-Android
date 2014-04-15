@@ -25,6 +25,10 @@
                         android:key="pref_outgoing_sms"
                         android:title="@string/preferences__allow_sms_fallback" />
 
+        <org.thoughtcrime.securesms.components.OutgoingMmsPreference
+            android:key="pref_outgoing_mms"
+            android:title="@string/preferences__allow_mms_fallback" />
+
         <CheckBoxPreference android:defaultValue="false"
                             android:key="pref_delivery_report_sms"
                             android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"

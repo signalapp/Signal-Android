@@ -66,8 +66,8 @@ public class MmsTransport {
   public MmsSendResult deliver(SendReq message) throws UndeliverableMessageException,
                                                        InsecureFallbackApprovalException
   {
-    if (TextSecurePreferences.isPushRegistered(context) &&
-        !TextSecurePreferences.isSmsFallbackEnabled(context))
+    if (!TextSecurePreferences.isMmsNonDataOutEnabled(context) && !TextSecurePreferences
+            .isMmsFallbackEnabled(context))
     {
       throw new UndeliverableMessageException("MMS Transport is not enabled!");
     }
