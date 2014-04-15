@@ -759,7 +759,8 @@
     <string name="preferences__sms_fallback_push_users_ask">ask SMS</string>
     <string name="preferences__mms_fallback_push_users_ask">ask MMS</string>
     <string name="preferences__mms_disabled">MMS disabled</string>
-    <string name="preferences__sms_outgoing_push_users_description">Send secure SMS if data connectivity is lost</string>
+    <string name="preferences__sms_outgoing_push_users_description">Send secure SMS/MMS if data
+        connectivity is lost</string>
     <string name="preferences__sms_fallback_ask_fallback">Ask before sending SMS</string>
     <string name="preferences__sms_fallback_non_push_users">Non-TextSecure users</string>
     <string name="preferences__sms_fallback_nobody">Nobody</string>
