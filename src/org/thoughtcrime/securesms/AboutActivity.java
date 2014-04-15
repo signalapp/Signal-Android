@@ -35,8 +35,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public final class AboutActivity extends SherlockPreferenceActivity
-{
+public final class AboutActivity extends SherlockPreferenceActivity {
+
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -44,71 +44,60 @@ public final class AboutActivity extends SherlockPreferenceActivity
   private static final String KEY_ABOUT_CHANGES = "about_changes";
   private static final String KEY_ABOUT_SOURCE = "about_source_code";
   private static final String KEY_ABOUT_SUPPORT = "about_support";
-  private static final String KEY_ABOUT_BUGREPORTS = "about_bugreports";
   private static final String KEY_ABOUT_LICENSE = "about_license";
 
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		dynamicTheme.onCreate(this);
-		dynamicLanguage.onCreate(this);
-		super.onCreate(savedInstanceState);
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
 
-		addPreferencesFromResource(R.xml.about);
+    dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
+    super.onCreate(savedInstanceState);
 
-		final ActionBar actionBar = getSupportActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
+    addPreferencesFromResource(R.xml.about);
 
-                Context context = AboutActivity.this;
-                findPreference(KEY_ABOUT_VERSION).setSummary(Util.getAppAndVersionName(context));
-                findPreference(KEY_ABOUT_CHANGES).setSummary(Constants.CHANGES_URL);
-                findPreference(KEY_ABOUT_SOURCE).setSummary(Constants.SOURCE_URL);
-                findPreference(KEY_ABOUT_SUPPORT).setSummary(Constants.SUPPORT_URL);
-                findPreference(KEY_ABOUT_BUGREPORTS).setSummary(Constants.BUGREPORTS_URL);
-                findPreference(KEY_ABOUT_LICENSE).setSummary(Constants.LICENSE_URL);
+    final ActionBar actionBar = getSupportActionBar();
+    actionBar.setDisplayHomeAsUpEnabled(true);
 
-	}
+    Context context = AboutActivity.this;
+    findPreference(KEY_ABOUT_VERSION).setSummary(Util.getAppAndVersionName(context));
+    findPreference(KEY_ABOUT_CHANGES).setSummary(Constants.CHANGES_URL);
+    findPreference(KEY_ABOUT_SOURCE).setSummary(Constants.SOURCE_URL);
+    findPreference(KEY_ABOUT_SUPPORT).setSummary(Constants.SUPPORT_URL);
+    findPreference(KEY_ABOUT_LICENSE).setSummary(Constants.LICENSE_URL);
 
-
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-			case android.R.id.home:
-				finish();
-				return true;
-                }
-
-                return super.onOptionsItemSelected(item);
-        }
+  }
 
 
-	@Override
-	public boolean onPreferenceTreeClick(final PreferenceScreen preferenceScreen, final Preference preference)
-	{
-		final String key = preference.getKey();
-		if (KEY_ABOUT_CHANGES.equals(key))
-		{
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CHANGES_URL)));
-		}
-                else if (KEY_ABOUT_SOURCE.equals(key))
-                {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SOURCE_URL)));
-                }
-                else if (KEY_ABOUT_SUPPORT.equals(key))
-                {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SUPPORT_URL)));
-                }
-                else if (KEY_ABOUT_BUGREPORTS.equals(key))
-                {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.BUGREPORTS_URL)));
-                }
-                else if (KEY_ABOUT_LICENSE.equals(key))
-                {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.LICENSE_URL)));
-                }
+  @Override
+  public boolean onOptionsItemSelected(final MenuItem item) {
 
-		return false;
-	}
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        finish();
+        return true;
+    }
+
+    return super.onOptionsItemSelected(item);
+  }
+
+
+  @Override
+  public boolean onPreferenceTreeClick(final PreferenceScreen preferenceScreen, final Preference preference) {
+
+    final String key = preference.getKey();
+
+    if (KEY_ABOUT_CHANGES.equals(key)) {
+      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CHANGES_URL)));
+    } else if (KEY_ABOUT_SOURCE.equals(key)) {
+      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SOURCE_URL)));
+    } else if (KEY_ABOUT_SUPPORT.equals(key)) {
+      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SUPPORT_URL)));
+    } else if (KEY_ABOUT_LICENSE.equals(key)) {
+      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.LICENSE_URL)));
+    }
+
+    return false;
+
+  }
+
 }

@@ -17,8 +17,7 @@
 
 package org.thoughtcrime.securesms;
 
-public class Constants
-{
+public class Constants {
   public static final String LICENSE_URL = "http://www.gnu.org/licenses/gpl-3.0.txt";
   public static final String CHANGES_URL = "https://github.com/WhisperSystems/TextSecure/wiki/History-of-changes";
   public static final String SUPPORT_URL = "http://support.whispersystems.org";

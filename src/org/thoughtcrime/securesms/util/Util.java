@@ -176,30 +176,20 @@ public class Util {
   //  }
 
   public static String getVersionName(Context context) {
-
     String versionName;
-
     try {
-
       versionName = context.getPackageManager()
                       .getPackageInfo(context.getPackageName(), 0)
                       .versionName;
-
     } catch (PackageManager.NameNotFoundException e) {
-
       throw new AssertionError(e);
-
     }
-
     return versionName;
-
   }
 
 
   public static String getAppAndVersionName(Context context) {
-
     return context.getString(R.string.app_name)+" "+getVersionName(context);
-
   }
 
 }
