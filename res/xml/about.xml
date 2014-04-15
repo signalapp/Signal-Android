@@ -5,7 +5,7 @@
     android:key="about_version"
     android:title="@string/about__title_version" />
   <Preference
-    android:summary="©2012-2014 Open Whisper Systems and other authors"
+    android:summary="©2012-2014 Open Whisper Systems"
     android:title="Copyright" />
   <Preference
     android:key="about_changes"
