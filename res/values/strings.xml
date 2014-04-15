@@ -435,7 +435,11 @@
     <string name="contact_selection_recent_activity__no_recent_calls">No recent calls.</string>
 
     <!-- conversation_activity -->
-    <string name="conversation_activity__type_message"><small>Send a message</small></string>
+    <string name="conversation_activity__type_message_push">Send TextSecure message</string>
+    <string name="conversation_activity__type_message_sms_secure">Send secure SMS</string>
+    <string name="conversation_activity__type_message_sms_insecure">Send insecure SMS</string>
+    <string name="conversation_activity__type_message_mms_secure">Send secure MMS</string>
+    <string name="conversation_activity__type_message_mms_insecure">Send insecure MMS</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
 
