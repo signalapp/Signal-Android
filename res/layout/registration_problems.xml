@@ -117,6 +117,35 @@
                                 android:text="@string/registration_problems__textsecure_will_not_work_with_google_voice_numbers" />
                     </LinearLayout>
                 </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                            style="@style/Registration.Description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="•" />
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/registration_problems__privacy_guard"
+                                android:textStyle="bold" />
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="@string/registration_problems__textsecure_will_not_work_with_privacy_guard" />
+                    </LinearLayout>
+                </TableRow>
+
             </TableLayout>
         </LinearLayout>
     </ScrollView>
