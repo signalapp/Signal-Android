@@ -89,7 +89,7 @@
                         android:padding="12dp"
                         android:paddingRight="0dp"
                         android:hint="@string/conversation_activity__type_message"
-                        android:imeOptions="actionSend|flagNoEnterAction"
+                        android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi"
                         android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
                         android:maxLength="1000"
                         android:maxLines="4"
