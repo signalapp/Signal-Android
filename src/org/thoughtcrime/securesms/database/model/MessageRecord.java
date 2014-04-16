@@ -90,7 +90,7 @@ public abstract class MessageRecord extends DisplayRecord {
     if (isGroupUpdate() && isOutgoing()) {
       return emphasisAdded("Updated the group.");
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(getBody().getBody()));
+      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()));
     } else if (isGroupQuit() && isOutgoing()) {
       return emphasisAdded("You have left the group.");
     } else if (isGroupQuit()) {

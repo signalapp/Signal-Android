@@ -60,9 +60,11 @@
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
     <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process.</string>
     <string name="ConversationItem_received_plaintext_message_click_to_terminate">Received a plaintext SMS while you have a secure session open. If they don\'t have a session open, messages you send will appear as garbled text. Click to terminate secure session.</string>
+    <string name="ConversationItem_group_action_updated">Group updated.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
-    <string name="ConversationItem_group_action_joined">%1$s have joined the group.</string>
+    <string name="ConversationItem_group_action_joined">%1$s has joined the group.</string>
     <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
+    <string name="ConversationItem_group_action_title">Title is now '%1$s'.</string>
     <string name="ConversationItem_click_to_approve">Tap for SMS fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for insecure fallback</string>
     <string name="ConversationItem_click_to_approve_dialog_title">Fallback to SMS?</string>
