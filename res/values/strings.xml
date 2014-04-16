@@ -777,6 +777,7 @@
 
     <!-- conversation_button_context -->
     <string name="conversation_button_context__menu_send_unencrypted">Send unencrypted</string>
+    <string name="conversation_button_context__menu_send_sms">Send SMS</string>
 
     <!-- conversation_callable -->
     <string name="conversation_callable__menu_call">Call</string>
