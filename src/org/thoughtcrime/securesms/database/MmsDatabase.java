@@ -971,7 +971,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
         }
       } catch (InvalidMessageException e) {
         Log.w("MmsDatabase", e);
-        return new DisplayRecord.Body("Error decrypting message.", true);
+        return new DisplayRecord.Body(context.getString(R.string.MessageDisplayHelper_error_decrypting_message), true);
       }
     }
 

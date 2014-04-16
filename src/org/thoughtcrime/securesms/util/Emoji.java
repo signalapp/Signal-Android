@@ -16,8 +16,6 @@ import android.util.Log;
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.reflect.TypeToken;
 
-import org.thoughtcrime.securesms.R;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -26,7 +24,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;

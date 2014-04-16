@@ -9,8 +9,12 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Base64;
@@ -23,10 +27,11 @@ import java.util.Set;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 
 public class GroupReceiver {
+  private static final String TAG = GroupReceiver.class.getSimpleName();
 
-  private static final String TAG =  GroupReceiver.class.getSimpleName();;
   private final Context context;
 
   public GroupReceiver(Context context) {
@@ -83,7 +88,6 @@ public class GroupReceiver {
                                  GroupContext group,
                                  GroupRecord groupRecord)
   {
-
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     byte[]        id       = group.getId().toByteArray();
 
@@ -110,15 +114,34 @@ public class GroupReceiver {
       // TODO We should tell added and missing about each-other.
     }
 
-    if (group.hasName() || group.hasAvatar()) {
-      database.update(id, group.getName(), group.getAvatar());
+    if ((!group.hasAvatar() && groupRecord.getAvatarId() < 0) ||
+        (group.hasAvatar() && group.getAvatar().getId() == groupRecord.getAvatarId()))
+    {
+      group = group.toBuilder().clearAvatar().build();
+    } else if (!group.hasAvatar()) {
+      AttachmentPointer noAvatar = AttachmentPointer.newBuilder().setId(-1).build();
+      group = group.toBuilder().setAvatar(noAvatar).build();
     }
 
     if (group.hasName() && group.getName() != null && group.getName().equals(groupRecord.getTitle())) {
       group = group.toBuilder().clearName().build();
+    } else {
+      try {
+        Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(id), true)
+                                                   .getPrimaryRecipient();
+        groupRecipient.setName(group.getName());
+      } catch (RecipientFormattingException e) {
+        Log.w(TAG, e);
+      }
     }
 
     if (!groupRecord.isActive()) database.setActive(id, true);
+    if (group.hasName() || group.hasAvatar()) {
+      database.update(id,
+                      group.hasName()   ? group.getName()   : groupRecord.getTitle(),
+                      group.hasAvatar() ? group.getAvatar() : null);
+    }
+
     storeMessage(masterSecret, message, group);
   }
 
@@ -140,12 +163,10 @@ public class GroupReceiver {
 
 
   private void storeMessage(MasterSecret masterSecret, IncomingPushMessage message, GroupContext group) {
-    if (group.hasAvatar()) {
-      Intent intent = new Intent(context, SendReceiveService.class);
-      intent.setAction(SendReceiveService.DOWNLOAD_AVATAR_ACTION);
-      intent.putExtra("group_id", group.getId().toByteArray());
-      context.startService(intent);
-    }
+    Intent intent = new Intent(context, SendReceiveService.class);
+    intent.setAction(SendReceiveService.DOWNLOAD_AVATAR_ACTION);
+    intent.putExtra("group_id", group.getId().toByteArray());
+    context.startService(intent);
 
     EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(context);
     String                body         = Base64.encodeBytes(group.toByteArray());
@@ -157,5 +178,4 @@ public class GroupReceiver {
 
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
-
 }
