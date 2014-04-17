@@ -201,7 +201,7 @@
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia Message</string>
 
     <!-- MessageRecord -->
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Message encrypted with a legacy protocol version that is no longer supported.  Please ask the sender to upgrade TextSecure to the most recent version.</string>
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted with a legacy protocol version that is no longer supported.  Please ask the sender to upgrade TextSecure to the most recent version and resend the message.</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases Don\'t Match!</string>
