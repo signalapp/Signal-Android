@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -48,7 +49,8 @@ public class AvatarDownloader {
 
         final Bitmap avatar;
         if (avatarId == -1 || key == null) {
-          avatar = null;
+          avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
+          database.updateAvatar(groupId, (Bitmap)null);
         } else {
           File        attachment         = downloadAttachment(relay, avatarId);
           InputStream scaleInputStream   = new AttachmentCipherInputStream(attachment, key);
@@ -56,8 +58,8 @@ public class AvatarDownloader {
 
           avatar = BitmapUtil.createScaledBitmap(measureInputStream, scaleInputStream, 500, 500);
           attachment.delete();
+          database.updateAvatar(groupId, avatar);
         }
-        database.updateAvatar(groupId, avatar);
 
         try {
           Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)

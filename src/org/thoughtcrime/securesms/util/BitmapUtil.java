@@ -132,6 +132,7 @@ public class BitmapUtil {
   }
 
   public static byte[] toByteArray(Bitmap bitmap) {
+    if (bitmap == null) return null;
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
     return stream.toByteArray();

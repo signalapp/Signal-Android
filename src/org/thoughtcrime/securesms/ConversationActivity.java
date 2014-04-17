@@ -155,7 +155,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
   private BroadcastReceiver             securityUpdateReceiver;
-  private BroadcastReceiver             groupUpdateReceiver;
   private EmojiDrawer                   emojiDrawer;
   private EmojiToggle                   emojiToggle;
 
@@ -220,7 +219,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   @Override
   protected void onDestroy() {
     unregisterReceiver(securityUpdateReceiver);
-    unregisterReceiver(groupUpdateReceiver);
     saveDraft();
     MemoryCleaner.clean(masterSecret);
     super.onDestroy();
@@ -598,7 +596,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     this.getSupportActionBar().setTitle(title);
 
-    if (subtitle != null && !Util.isEmpty(subtitle))
+    if (!Util.isEmpty(subtitle))
       this.getSupportActionBar().setSubtitle(PhoneNumberUtils.formatNumber(subtitle));
 
     this.invalidateOptionsMenu();
@@ -736,7 +734,12 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     recipients.addListener(new RecipientModifiedListener() {
       @Override
       public void onModified(Recipient recipient) {
-        initializeTitleBar();
+        ConversationActivity.this.runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            initializeTitleBar();
+          }
+        });
       }
     });
 
@@ -762,25 +765,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       }
     };
 
-    groupUpdateReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        Log.i("ConversationActivity", "Group update received...");
-        if (recipients != null) {
-          String ids = recipients.toIdString();
-          Log.i("ConversationActivity", "Looking up new recipients...");
-          recipients = RecipientFactory.getRecipientsForIds(context, ids, false);
-          initializeTitleBar();
-        }
-      }
-    };
-
     registerReceiver(securityUpdateReceiver,
                      new IntentFilter(KeyExchangeProcessor.SECURITY_UPDATE_EVENT),
                      KeyCachingService.KEY_PERMISSION, null);
 
-    registerReceiver(groupUpdateReceiver,
-                     new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
   }
 
   //////// Helper Methods

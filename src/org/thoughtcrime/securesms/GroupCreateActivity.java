@@ -219,8 +219,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
     if (name != null && name.length() > 0) {
       final int prefixResId = (groupId != null)
-          ? R.string.GroupCreateActivity_actionbar_update_title
-          : R.string.GroupCreateActivity_actionbar_title;
+                              ? R.string.GroupCreateActivity_actionbar_update_title
+                              : R.string.GroupCreateActivity_actionbar_title;
       actionBar.setTitle(prefixResId);
       actionBar.setSubtitle(name);
     } else {
@@ -461,12 +461,12 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
                                                        byte[] avatar, Set<Recipient> members)
       throws InvalidNumberException, MmsException
   {
-    GroupDatabase groupDatabase     = DatabaseFactory.getGroupDatabase(this);
+    GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(this);
     Set<String>  memberE164Numbers = getE164Numbers(members);
     memberE164Numbers.add(TextSecurePreferences.getLocalNumber(this));
 
     for (String number : memberE164Numbers)
-      Log.w(TAG, "Updating: " + number);
+      Log.d(TAG, "Updating: " + number);
 
     groupDatabase.updateMembers(groupId, new LinkedList<String>(memberE164Numbers));
     groupDatabase.updateTitle(groupId, groupName);
@@ -608,11 +608,22 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
       try {
         Set<Recipient> unionContacts = new HashSet<Recipient>(selectedContacts);
         unionContacts.addAll(existingContacts);
-        return handleUpdatePushGroup(groupId, name, avatarBytes, unionContacts);
+        Pair<Long,Recipients> updatedGroup = handleUpdatePushGroup(groupId, name, avatarBytes, unionContacts);
+        Recipient groupRecipient = RecipientFactory.getRecipientsFromString(GroupCreateActivity.this,
+                                                                            GroupUtil.getEncodedId(groupId),
+                                                                            true)
+                                                   .getPrimaryRecipient();
+        groupRecipient.setName(name);
+        groupRecipient.setContactPhoto(bitmap == null ? defaultAvatar : bitmap);
+        return updatedGroup;
+
       } catch (MmsException e) {
         Log.w(TAG, e);
         return new Pair<Long,Recipients>(RES_MMS_EXCEPTION, null);
       } catch (InvalidNumberException e) {
+        Log.w(TAG, e);
+        return new Pair<Long,Recipients>(RES_BAD_NUMBER, null);
+      } catch (RecipientFormattingException e) {
         Log.w(TAG, e);
         return new Pair<Long,Recipients>(RES_BAD_NUMBER, null);
       }

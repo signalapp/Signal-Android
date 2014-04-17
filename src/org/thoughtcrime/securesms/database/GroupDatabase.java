@@ -131,13 +131,16 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_ID, avatar.getId());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_KEY, avatar.getKey().toByteArray());
+    } else {
+      contentValues.put(AVATAR_ID, -1);
+      contentValues.put(AVATAR_CONTENT_TYPE, (String)null);
+      contentValues.put(AVATAR_KEY, (byte[])null);
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
     notifyDatabaseListeners();
   }
 
@@ -147,7 +150,6 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
     notifyDatabaseListeners();
   }
 
@@ -162,7 +164,6 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
     notifyDatabaseListeners();
   }
 
