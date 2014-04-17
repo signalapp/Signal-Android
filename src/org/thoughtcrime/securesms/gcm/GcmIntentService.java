@@ -56,7 +56,7 @@ public class GcmIntentService extends GCMBaseIntentService {
   protected void onMessage(Context context, Intent intent) {
     try {
       String data = intent.getStringExtra("message");
-      Log.w("GcmIntentService", "GCM message...");
+      Log.i("GcmIntentService", "GCM message...");
 
       if (Util.isEmpty(data))
         return;
