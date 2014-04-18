@@ -61,9 +61,11 @@
     <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process.</string>
     <string name="ConversationItem_received_plaintext_message_click_to_terminate">Received a plaintext SMS while you have a secure session open. If they don\'t have a session open, messages you send will appear as garbled text. Click to terminate secure session.</string>
     <string name="ConversationItem_group_action_updated">Group updated.</string>
+    <string name="ConversationItem_group_action_avatar_updated">Avatar updated.</string>
+    <string name="ConversationItem_group_action_you_updated">You updated the group.</string>
+    <string name="ConversationItem_group_action_you_left">You left the group.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
-    <string name="ConversationItem_group_action_joined">%1$s has joined the group.</string>
-    <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
+    <string name="ConversationItem_group_action_joined">%1$s joined the group.</string>
     <string name="ConversationItem_group_action_title">Title is now \'%1$s\'.</string>
     <string name="ConversationItem_click_to_approve">Tap for SMS fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for insecure fallback</string>
@@ -352,9 +354,10 @@
     <string name="KeyExchangeInitiator_send">Send</string>
 
     <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message...</string>
-    <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait...</string>
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session...</string>
+    <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message&#8230;</string>
+    <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait&#8230;</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session&#8230;</string>
+    <string name="MessageDisplayHelper_error_decrypting_message">Error decrypting message.</string>
 
     <!-- MmsDatabase -->
     <string name="MmsDatabase_connecting_to_mms_server">Connecting to MMS server...</string>

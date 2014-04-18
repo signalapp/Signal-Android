@@ -7,6 +7,7 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
 
@@ -53,7 +54,13 @@ public class GroupUtil {
       }
 
       if (title != null && !title.trim().isEmpty()) {
+        if (!description.isEmpty()) description += " ";
         description += context.getString(R.string.ConversationItem_group_action_title, title);
+      }
+
+      if (groupContext.hasAvatar()) {
+        if (!description.isEmpty()) description += " ";
+        description += context.getString(R.string.ConversationItem_group_action_avatar_updated);
       }
 
       return description;

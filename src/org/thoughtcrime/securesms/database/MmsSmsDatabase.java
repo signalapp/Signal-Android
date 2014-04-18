@@ -175,7 +175,7 @@ public class MmsSmsDatabase extends Database {
 
     String query      = outerQueryBuilder.buildQuery(projection, null, null, groupBy, null, null, limit);
 
-    Log.d("MmsSmsDatabase", "Executing query: " + query);
+    Log.w("MmsSmsDatabase", "Executing query: " + query);
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     return db.rawQuery(query, null);
   }

@@ -465,9 +465,6 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     Set<String>  memberE164Numbers = getE164Numbers(members);
     memberE164Numbers.add(TextSecurePreferences.getLocalNumber(this));
 
-    for (String number : memberE164Numbers)
-      Log.d(TAG, "Updating: " + number);
-
     groupDatabase.updateMembers(groupId, new LinkedList<String>(memberE164Numbers));
     groupDatabase.updateTitle(groupId, groupName);
     groupDatabase.updateAvatar(groupId, avatar);

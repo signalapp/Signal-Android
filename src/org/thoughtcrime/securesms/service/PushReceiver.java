@@ -42,7 +42,6 @@ import ws.com.google.android.mms.MmsException;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext.Type;
 
 public class PushReceiver {
-  public static final String TAG = PushReceiver.class.getSimpleName();
 
   public static final int RESULT_OK                = 0;
   public static final int RESULT_NO_SESSION        = 1;
@@ -131,19 +130,19 @@ public class PushReceiver {
         DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, bundleMessage);
       }
     } catch (InvalidKeyException e) {
-      Log.w(TAG, e);
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
     } catch (InvalidVersionException e) {
-      Log.w(TAG, e);
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, true);
     } catch (InvalidKeyIdException e) {
-      Log.w(TAG, e);
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
     } catch (InvalidMessageException e) {
-      Log.w(TAG, e);
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
     } catch (RecipientFormattingException e) {
-      Log.w(TAG, e);
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
     }
   }
@@ -156,20 +155,20 @@ public class PushReceiver {
       PushMessageContent messageContent = PushMessageContent.parseFrom(message.getBody());
 
       if (secure && (messageContent.getFlags() & PushMessageContent.Flags.END_SESSION_VALUE) != 0) {
-        Log.i(TAG, "Received end session message...");
+        Log.w("PushReceiver", "Received end session message...");
         handleEndSessionMessage(masterSecret, message, messageContent);
       } else if (messageContent.hasGroup() && messageContent.getGroup().getType().getNumber() != Type.DELIVER_VALUE) {
-        Log.i(TAG, "Received push group message...");
+        Log.w("PushReceiver", "Received push group message...");
         groupReceiver.process(masterSecret, message, messageContent, secure);
       } else if (messageContent.getAttachmentsCount() > 0) {
-        Log.i(TAG, "Received push media message...");
+        Log.w("PushReceiver", "Received push media message...");
         handleReceivedMediaMessage(masterSecret, message, messageContent, secure);
       } else {
-        Log.i(TAG, "Received push text message...");
+        Log.w("PushReceiver", "Received push text message...");
         handleReceivedTextMessage(masterSecret, message, messageContent, secure);
       }
     } catch (InvalidProtocolBufferException e) {
-      Log.w(TAG, e);
+      Log.w("PushReceiver", e);
       handleReceivedCorruptedMessage(masterSecret, message, secure);
     }
   }
@@ -191,7 +190,7 @@ public class PushReceiver {
       Session.abortSessionFor(context, recipient);
       KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, messageAndThreadId.second);
     } catch (RecipientFormattingException e) {
-      Log.w(TAG, e);
+      Log.w("PushReceiver", e);
     }
   }
 
@@ -222,7 +221,7 @@ public class PushReceiver {
 
       MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     } catch (MmsException e) {
-      Log.w(TAG, e);
+      Log.w("PushReceiver", e);
       // XXX
     }
   }
@@ -258,7 +257,7 @@ public class PushReceiver {
   }
 
   private void handleReceivedDuplicateMessage(IncomingPushMessage message) {
-    Log.w(TAG, "Received duplicate message: " + message.getSource() + " , " + message.getSourceDevice());
+    Log.w("PushReceiver", "Received duplicate message: " + message.getSource() + " , " + message.getSourceDevice());
   }
 
   private void handleReceivedCorruptedKey(MasterSecret masterSecret,

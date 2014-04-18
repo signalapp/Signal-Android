@@ -210,7 +210,7 @@ public class PushServiceSocket {
       throw new IOException("Server failed to allocate an attachment key!");
     }
 
-    Log.i("PushServiceSocket", "Got attachment content location: " + attachmentKey.getLocation());
+    Log.w("PushServiceSocket", "Got attachment content location: " + attachmentKey.getLocation());
 
     uploadExternalFile("PUT", attachmentKey.getLocation(), attachment.getData());
 
@@ -227,7 +227,7 @@ public class PushServiceSocket {
     String               response   = makeRequest(path, "GET", null);
     AttachmentDescriptor descriptor = new Gson().fromJson(response, AttachmentDescriptor.class);
 
-    Log.i("PushServiceSocket", "Attachment: " + attachmentId + " is at: " + descriptor.getLocation());
+    Log.w("PushServiceSocket", "Attachment: " + attachmentId + " is at: " + descriptor.getLocation());
 
     File attachment = File.createTempFile("attachment", ".tmp", context.getFilesDir());
     attachment.deleteOnExit();
@@ -283,7 +283,7 @@ public class PushServiceSocket {
       }
 
       output.close();
-      Log.i("PushServiceSocket", "Downloaded: " + url + " to: " + localDestination.getAbsolutePath());
+      Log.w("PushServiceSocket", "Downloaded: " + url + " to: " + localDestination.getAbsolutePath());
     } finally {
       connection.disconnect();
     }
@@ -335,7 +335,7 @@ public class PushServiceSocket {
     connection.connect();
 
     if (body != null) {
-      Log.i("PushServiceSocket", method +  "  --  " + body);
+      Log.w("PushServiceSocket", method +  "  --  " + body);
       OutputStream out = connection.getOutputStream();
       out.write(body.getBytes());
       out.close();
@@ -383,8 +383,8 @@ public class PushServiceSocket {
       context.init(null, trustManagers, null);
 
       URL url = new URL(String.format("%s%s", serviceUrl, urlFragment));
-      Log.i("PushServiceSocket", "Push service URL: " + serviceUrl);
-      Log.i("PushServiceSocket", "Opening URL: " + url);
+      Log.w("PushServiceSocket", "Push service URL: " + serviceUrl);
+      Log.w("PushServiceSocket", "Opening URL: " + url);
 
       HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 

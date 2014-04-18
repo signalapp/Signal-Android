@@ -262,7 +262,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
       @Override
       public void onChange(boolean selfChange) {
         super.onChange(selfChange);
-        Log.i(TAG, "detected android contact data changed, refreshing cache");
+        Log.w(TAG, "detected android contact data changed, refreshing cache");
         // TODO only clear updated recipients from cache
         RecipientFactory.clearCache();
         ConversationListActivity.this.runOnUiThread(new Runnable() {

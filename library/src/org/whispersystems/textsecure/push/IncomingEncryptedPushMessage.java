@@ -103,8 +103,8 @@ public class IncomingEncryptedPushMessage {
       byte[] theirMacBytes = new byte[MAC_SIZE];
       System.arraycopy(ciphertext, ciphertext.length-MAC_SIZE, theirMacBytes, 0, theirMacBytes.length);
 
-      Log.d(TAG, "Our MAC: " + Hex.toString(ourMacBytes));
-      Log.d(TAG, "Thr MAC: " + Hex.toString(theirMacBytes));
+      Log.w(TAG, "Our MAC: " + Hex.toString(ourMacBytes));
+      Log.w(TAG, "Thr MAC: " + Hex.toString(theirMacBytes));
 
       if (!Arrays.equals(ourMacBytes, theirMacBytes)) {
         throw new IOException("Invalid MAC compare!");

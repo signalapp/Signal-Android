@@ -23,6 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -456,7 +457,7 @@ public class ThreadDatabase extends Database {
         }
       } catch (InvalidMessageException e) {
         Log.w("ThreadDatabase", e);
-        return new DisplayRecord.Body("Error decrypting message.", true);
+        return new DisplayRecord.Body(context.getString(R.string.MessageDisplayHelper_error_decrypting_message), true);
       }
     }
 
