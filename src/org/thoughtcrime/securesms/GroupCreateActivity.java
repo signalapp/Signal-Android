@@ -217,16 +217,11 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     final String   name       = groupText == null ? null : groupText.toString();
     final ActionBar actionBar = getSupportActionBar();
 
-    if (name != null && name.length() > 0) {
-      final int prefixResId = (groupId != null)
-                              ? R.string.GroupCreateActivity_actionbar_update_title
-                              : R.string.GroupCreateActivity_actionbar_title;
-      actionBar.setTitle(prefixResId);
-      actionBar.setSubtitle(name);
-    } else {
-      actionBar.setTitle(R.string.GroupCreateActivity_actionbar_title);
-      actionBar.setSubtitle(null);
-    }
+    final int prefixResId = (groupId != null)
+        ? R.string.GroupCreateActivity_actionbar_update_title
+        : R.string.GroupCreateActivity_actionbar_title;
+    actionBar.setTitle(prefixResId);
+    actionBar.setSubtitle(!org.whispersystems.textsecure.util.Util.isEmpty(name) ? name : null);
   }
 
   private void initializeResources() {
@@ -243,6 +238,8 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         if (groupId != null) {
           new FillExistingGroupInfoAsyncTask().execute();
         }
+      } else {
+        Log.w(TAG, "encoded group id was null...");
       }
     }
 
