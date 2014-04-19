@@ -260,6 +260,36 @@
                                 style="@style/Registration.Description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="@string/registration_progress_activity__no_google_account"
+                                android:textStyle="bold" />
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="@string/registration_progress_activity__your_device_needs_to_be_connected_to_a_google_account" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                            style="@style/Registration.Description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="10dip"
+                            android:text="•" />
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                        <TextView
+                                style="@style/Registration.Description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:text="@string/registration_progress_activity__restrictive_firewall"
                                 android:textStyle="bold" />
 
