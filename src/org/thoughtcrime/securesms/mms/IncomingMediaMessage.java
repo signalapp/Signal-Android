@@ -9,6 +9,7 @@ import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
 
+import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduHeaders;
@@ -50,8 +51,9 @@ public class IncomingMediaMessage {
 
     if (!org.whispersystems.textsecure.util.Util.isEmpty(messageContent.getBody())) {
       PduPart text = new PduPart();
-      text.setData(Util.toIsoBytes(messageContent.getBody()));
+      text.setData(Util.toUtf8Bytes(messageContent.getBody()));
       text.setContentType(Util.toIsoBytes("text/plain"));
+      text.setCharset(CharacterSets.UTF_8);
       body.addPart(text);
     }
 
