@@ -21,10 +21,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 

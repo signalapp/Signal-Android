@@ -17,12 +17,12 @@
  */
 package org.thoughtcrime.securesms.crypto.protocol;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
-import org.whispersystems.textsecure.crypto.LegacyMessageException;
 
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.LegacyMessageException;
 
 public abstract class KeyExchangeMessage {
   public abstract IdentityKey getIdentityKey();

@@ -17,9 +17,8 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 
 /**
  * When a user first initializes TextSecure, a few secrets
@@ -40,7 +39,7 @@ import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 
 public class AsymmetricMasterSecret {
 
-  private final ECPublicKey  djbPublicKey;
+  private final ECPublicKey djbPublicKey;
   private final ECPrivateKey djbPrivateKey;
 
 

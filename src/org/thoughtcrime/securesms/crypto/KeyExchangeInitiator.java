@@ -27,10 +27,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
+import org.whispersystems.libaxolotl.IdentityKeyPair;
+import org.whispersystems.libaxolotl.ecc.Curve;
+import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 

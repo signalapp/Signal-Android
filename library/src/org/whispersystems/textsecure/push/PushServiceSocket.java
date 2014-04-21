@@ -23,7 +23,7 @@ import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonParseException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
-import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.BlacklistingTrustManager;

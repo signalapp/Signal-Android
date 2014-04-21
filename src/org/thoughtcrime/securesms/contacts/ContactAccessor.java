@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MergeCursor;
@@ -25,7 +24,6 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -33,15 +31,9 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.telephony.PhoneNumberUtils;
-import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.util.Base64;
 
-import java.io.IOException;
-import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -246,49 +238,6 @@ public class ContactAccessor {
 
   public CharSequence phoneTypeToString(Context mContext, int type, CharSequence label) {
     return Phone.getTypeLabel(mContext.getResources(), type, label);
-  }
-
-  public void insertIdentityKey(Context context, List<Long> rawContactIds, IdentityKey identityKey) {
-    for (long rawContactId : rawContactIds) {
-      Log.w("ContactAccessorNewApi", "Inserting data for raw contact id: " + rawContactId);
-      ContentValues contentValues = new ContentValues();
-      contentValues.put(Data.RAW_CONTACT_ID, rawContactId);
-      contentValues.put(Data.MIMETYPE, Im.CONTENT_ITEM_TYPE);
-      contentValues.put(Im.PROTOCOL, Im.PROTOCOL_CUSTOM);
-      contentValues.put(Im.CUSTOM_PROTOCOL, "TextSecure-IdentityKey");
-      contentValues.put(Im.DATA, Base64.encodeBytes(identityKey.serialize()));
-
-      context.getContentResolver().insert(Data.CONTENT_URI, contentValues);
-    }
-  }
-
-  public IdentityKey importIdentityKey(Context context, Uri uri) {
-    long contactId         = getContactIdFromLookupUri(context, uri);
-    String selection       = Im.CONTACT_ID + " = ? AND " + Im.PROTOCOL + " = ? AND " + Im.CUSTOM_PROTOCOL + " = ?";
-    String[] selectionArgs = new String[] {contactId+"", Im.PROTOCOL_CUSTOM+"", "TextSecure-IdentityKey"};
-
-    Cursor cursor          = context.getContentResolver().query(Data.CONTENT_URI, null, selection, selectionArgs, null);
-
-    try {
-      if (cursor != null && cursor.moveToFirst()) {
-        String data = cursor.getString(cursor.getColumnIndexOrThrow(Im.DATA));
-
-        if (data != null)
-          return new IdentityKey(Base64.decode(data), 0);
-
-      }
-    } catch (InvalidKeyException e) {
-      Log.w("ContactAccessorNewApi", e);
-      return null;
-    } catch (IOException e) {
-      Log.w("ContactAccessorNewApi", e);
-      return null;
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-
-    return null;
   }
 
   private long getContactIdFromLookupUri(Context context, Uri uri) {

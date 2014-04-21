@@ -23,7 +23,6 @@ import android.database.Cursor;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
-import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -41,13 +40,15 @@ import org.thoughtcrime.securesms.service.PushReceiver;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.DuplicateMessageException;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.libaxolotl.DuplicateMessageException;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.SessionCipher;
+import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.crypto.protocol.WhisperMessage;
+import org.whispersystems.textsecure.crypto.SessionCipherFactory;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
@@ -205,7 +206,7 @@ public class DecryptingQueue {
           return;
         }
 
-        SessionCipher sessionCipher = SessionCipher.createFor(context, masterSecret, recipientDevice);
+        SessionCipher sessionCipher = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
         byte[]        plaintextBody = sessionCipher.decrypt(message.getBody());
 
         message = message.withBody(plaintextBody);
@@ -290,7 +291,7 @@ public class DecryptingQueue {
 
         Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
         TextTransport transportDetails  = new TextTransport();
-        SessionCipher sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
+        SessionCipher sessionCipher     = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
         byte[]        decodedCiphertext = transportDetails.getDecodedMessage(ciphertextPduBytes);
 
         try {
@@ -385,7 +386,7 @@ public class DecryptingQueue {
           return;
         }
 
-        SessionCipher sessionCipher   = SessionCipher.createFor(context, masterSecret, recipientDevice);
+        SessionCipher sessionCipher   = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
         byte[]        paddedPlaintext = sessionCipher.decrypt(decodedCiphertext);
 
         plaintextBody = new String(transportDetails.getStrippedPaddingMessageBody(paddedPlaintext));

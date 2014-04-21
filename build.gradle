@@ -101,6 +101,12 @@ android {
     }
 }
 
+tasks.whenTaskAdded { task ->
+    if (task.name.equals("lint")) {
+        task.enabled = false
+    }
+}
+
 def Properties props = new Properties()
 def propFile = new File('signing.properties')
 

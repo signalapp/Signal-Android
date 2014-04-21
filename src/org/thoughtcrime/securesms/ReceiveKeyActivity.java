@@ -34,20 +34,21 @@ import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
-import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.textsecure.crypto.IdentityKeyParcelable;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
@@ -136,7 +137,7 @@ public class ReceiveKeyActivity extends Activity {
         Intent intent = new Intent(ReceiveKeyActivity.this, VerifyIdentityActivity.class);
         intent.putExtra("recipient", recipient);
         intent.putExtra("master_secret", masterSecret);
-        intent.putExtra("remote_identity", remoteIdentity);
+        intent.putExtra("remote_identity", new IdentityKeyParcelable(remoteIdentity));
         startActivity(intent);
       }
     }, getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different).length() +1,

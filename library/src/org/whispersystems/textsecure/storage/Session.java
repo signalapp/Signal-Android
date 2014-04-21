@@ -3,8 +3,11 @@ package org.whispersystems.textsecure.storage;
 import android.content.Context;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.storage.legacy.LocalKeyRecord;
+import org.whispersystems.textsecure.storage.legacy.RemoteKeyRecord;
+import org.whispersystems.textsecure.storage.legacy.SessionRecordV1;
 
 /**
  * Helper class for generating key pairs and calculating ECDH agreements.

@@ -35,11 +35,12 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.SessionCipher;
+import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.AttachmentCipher;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
+import org.whispersystems.textsecure.crypto.SessionCipherFactory;
 import org.whispersystems.textsecure.push.MismatchedDevices;
 import org.whispersystems.textsecure.push.MismatchedDevicesException;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
@@ -348,9 +349,9 @@ public class PushTransport extends BaseTransport {
       }
     }
 
-    SessionCipher     cipher  = SessionCipher.createFor(context, masterSecret, pushAddress);
-    CiphertextMessage message = cipher.encrypt(plaintext);
-    int remoteRegistrationId  = cipher.getRemoteRegistrationId();
+    SessionCipher     cipher               = SessionCipherFactory.getInstance(context, masterSecret, pushAddress);
+    CiphertextMessage message              = cipher.encrypt(plaintext);
+    int               remoteRegistrationId = cipher.getRemoteRegistrationId();
 
     if (message.getType() == CiphertextMessage.PREKEY_TYPE) {
       return new PushBody(IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE, remoteRegistrationId, message.serialize());

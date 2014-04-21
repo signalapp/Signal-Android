@@ -23,6 +23,8 @@ dependencies {
     compile 'com.madgag:sc-light-jdk15on:1.47.0.2'
     compile 'com.googlecode.libphonenumber:libphonenumber:6.1'
     compile 'org.whispersystems:gson:2.2.4'
+
+    compile project(':libaxolotl')
 }
 
 android {
@@ -42,6 +44,12 @@ android {
                 jniLibs.srcDirs = ['libs']
             }
         }
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.equals("lint")) {
+        task.enabled = false
     }
 }
 

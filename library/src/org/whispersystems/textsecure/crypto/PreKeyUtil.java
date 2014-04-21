@@ -22,8 +22,8 @@ import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
 
-import org.whispersystems.textsecure.crypto.ecc.Curve25519;
-import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.ecc.Curve25519;
+import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Medium;

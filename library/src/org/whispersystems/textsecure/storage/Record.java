@@ -30,7 +30,7 @@ import java.nio.channels.FileChannel;
 
 public abstract class Record {
 
-  protected static final String SESSIONS_DIRECTORY    = "sessions";
+  public    static final String SESSIONS_DIRECTORY    = "sessions";
   protected static final String SESSIONS_DIRECTORY_V2 = "sessions-v2";
   public    static final String PREKEY_DIRECTORY      = "prekeys";
 
@@ -48,7 +48,7 @@ public abstract class Record {
     delete(this.context, this.directory, this.address);
   }
 
-  protected static void delete(Context context, String directory, String address) {
+  public static void delete(Context context, String directory, String address) {
     getAddressFile(context, directory, address).delete();
   }
 

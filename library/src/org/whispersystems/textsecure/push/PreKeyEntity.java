@@ -10,10 +10,10 @@ import com.google.thoughtcrimegson.JsonSerializationContext;
 import com.google.thoughtcrimegson.JsonSerializer;
 import com.google.thoughtcrimegson.annotations.Expose;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.ecc.Curve;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;

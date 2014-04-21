@@ -26,7 +26,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
-import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.textsecure.crypto.IdentityKeyParcelable;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.Session;
 
@@ -83,7 +84,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   private void initializeRemoteIdentityKey() {
-    IdentityKey identityKey = getIntent().getParcelableExtra("remote_identity");
+    IdentityKeyParcelable identityKeyParcelable = getIntent().getParcelableExtra("remote_identity");
+    IdentityKey           identityKey           = null;
+
+    if (identityKeyParcelable != null) {
+      identityKey = identityKeyParcelable.get();
+    }
 
     if (identityKey == null) {
       identityKey = Session.getRemoteIdentityKey(this, masterSecret, recipient);

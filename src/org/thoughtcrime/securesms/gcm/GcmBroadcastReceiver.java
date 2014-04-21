@@ -9,7 +9,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;

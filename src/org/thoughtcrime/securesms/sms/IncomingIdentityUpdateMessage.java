@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.sms;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.textsecure.util.Base64;
 
 public class IncomingIdentityUpdateMessage extends IncomingKeyExchangeMessage {

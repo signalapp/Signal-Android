@@ -9,10 +9,9 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 

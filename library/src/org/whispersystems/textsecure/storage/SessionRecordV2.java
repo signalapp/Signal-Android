@@ -19,7 +19,9 @@ package org.whispersystems.textsecure.storage;
 import android.content.Context;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.SessionState;
+import org.whispersystems.libaxolotl.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
@@ -41,7 +43,7 @@ import static org.whispersystems.textsecure.storage.StorageProtos.SessionStructu
  * @author Moxie Marlinspike
  */
 
-public class SessionRecordV2 extends Record {
+public class SessionRecordV2 extends Record implements SessionStore {
 
   private static final Object FILE_LOCK = new Object();
 
@@ -51,8 +53,8 @@ public class SessionRecordV2 extends Record {
 
   private final MasterSecret masterSecret;
 
-  private SessionState       sessionState   = new SessionState(SessionStructure.newBuilder().build());
-  private List<SessionState> previousStates = new LinkedList<SessionState>();
+  private TextSecureSessionState sessionState   = new TextSecureSessionState(SessionStructure.newBuilder().build());
+  private List<SessionState>     previousStates = new LinkedList<SessionState>();
 
   public SessionRecordV2(Context context, MasterSecret masterSecret, RecipientDevice peer) {
     this(context, masterSecret, peer.getRecipientId(), peer.getDeviceId());
@@ -68,12 +70,12 @@ public class SessionRecordV2 extends Record {
     return recipientId + (deviceId == RecipientDevice.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
   }
 
-  public SessionState getSessionState() {
+  public TextSecureSessionState getSessionState() {
     return sessionState;
   }
 
 
-  public List<SessionState> getPreviousSessions() {
+  public List<SessionState> getPreviousSessionStates() {
     return previousStates;
   }
 
@@ -139,13 +141,13 @@ public class SessionRecordV2 extends Record {
   }
 
   public void clear() {
-    this.sessionState = new SessionState(SessionStructure.newBuilder().build());
+    this.sessionState   = new TextSecureSessionState(SessionStructure.newBuilder().build());
     this.previousStates = new LinkedList<SessionState>();
   }
 
   public void archiveCurrentState() {
     this.previousStates.add(sessionState);
-    this.sessionState = new SessionState(SessionStructure.newBuilder().build());
+    this.sessionState = new TextSecureSessionState(SessionStructure.newBuilder().build());
   }
 
   public void save() {
@@ -154,7 +156,7 @@ public class SessionRecordV2 extends Record {
         List<SessionStructure> previousStructures = new LinkedList<SessionStructure>();
 
         for (SessionState previousState : previousStates) {
-          previousStructures.add(previousState.getStructure());
+          previousStructures.add(((TextSecureSessionState)previousState).getStructure());
         }
 
         RecordStructure record = RecordStructure.newBuilder()
@@ -194,16 +196,16 @@ public class SessionRecordV2 extends Record {
         if (versionMarker == SINGLE_STATE_VERSION) {
           byte[]           plaintextBytes   = cipher.decryptBytes(encryptedBlob);
           SessionStructure sessionStructure = SessionStructure.parseFrom(plaintextBytes);
-          this.sessionState = new SessionState(sessionStructure);
+          this.sessionState = new TextSecureSessionState(sessionStructure);
         } else if (versionMarker == ARCHIVE_STATES_VERSION) {
           byte[]          plaintextBytes  = cipher.decryptBytes(encryptedBlob);
           RecordStructure recordStructure = RecordStructure.parseFrom(plaintextBytes);
 
-          this.sessionState   = new SessionState(recordStructure.getCurrentSession());
+          this.sessionState   = new TextSecureSessionState(recordStructure.getCurrentSession());
           this.previousStates = new LinkedList<SessionState>();
 
           for (SessionStructure sessionStructure : recordStructure.getPreviousSessionsList()) {
-            this.previousStates.add(new SessionState(sessionStructure));
+            this.previousStates.add(new TextSecureSessionState(sessionStructure));
           }
         } else {
           throw new AssertionError("Unknown version: " + versionMarker);
@@ -217,8 +219,9 @@ public class SessionRecordV2 extends Record {
       } catch (IOException ioe) {
         Log.w("SessionRecordV2", ioe);
         // XXX
-      } catch (InvalidMessageException e) {
-        Log.w("SessionRecordV2", e);
+      } catch (InvalidMessageException ime) {
+        Log.w("SessionRecordV2", ime);
+        // XXX
       }
     }
   }

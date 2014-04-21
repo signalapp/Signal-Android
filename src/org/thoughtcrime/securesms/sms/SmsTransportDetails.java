@@ -19,8 +19,8 @@ package org.thoughtcrime.securesms.sms;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.TransportDetails;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;

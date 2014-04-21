@@ -20,7 +20,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.SerializableKey;
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -112,8 +112,8 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
   protected abstract String getNotVerifiedTitle();
   protected abstract String getNotVerifiedMessage();
 
-  protected abstract SerializableKey getIdentityKeyToCompare();
-  protected abstract SerializableKey getIdentityKeyToDisplay();
+  protected abstract IdentityKey getIdentityKeyToCompare();
+  protected abstract IdentityKey getIdentityKeyToDisplay();
 
   protected abstract String getVerifiedTitle();
   protected abstract String getVerifiedMessage();
