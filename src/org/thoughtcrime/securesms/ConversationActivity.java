@@ -103,11 +103,11 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.Session;
-import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -316,9 +316,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   @Override
   public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
     if (isEncryptedConversation && isSingleConversation()) {
-      boolean   isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
-      Recipient primaryRecipient  = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
-      boolean   hasSession        = Session.hasSession(this, masterSecret, primaryRecipient);
+      SessionStore sessionStore      = new TextSecureSessionStore(this, masterSecret);
+      Recipient  primaryRecipient    = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
+      boolean    isPushDestination   = DirectoryHelper.isPushDestination(this, getRecipients());
+      boolean    isSecureDestination = isSingleConversation() && sessionStore.contains(primaryRecipient.getRecipientId(),
+                                                                                       RecipientDevice.DEFAULT_DEVICE_ID);
 
       getMenuInflater().inflate(R.menu.conversation_button_context, menu);
 
@@ -334,7 +336,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         menu.removeItem(R.id.menu_context_send_push);
       }
 
-      if (!hasSession) {
+      if (!isSecureDestination) {
         menu.removeItem(R.id.menu_context_send_encrypted_mms);
         menu.removeItem(R.id.menu_context_send_encrypted_sms);
       }
@@ -418,25 +420,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       @Override
       public void onClick(DialogInterface dialog, int which) {
         if (isSingleConversation()) {
-          ConversationActivity self      = ConversationActivity.this;
-          Recipient            recipient = getRecipients().getPrimaryRecipient();
+          ConversationActivity self = ConversationActivity.this;
 
-          if (SessionRecordV2.hasSession(self, masterSecret,
-                                         recipient.getRecipientId(),
-                                         RecipientDevice.DEFAULT_DEVICE_ID))
-          {
-            OutgoingEndSessionMessage endSessionMessage =
-                new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipients(), "TERMINATE"));
+          OutgoingEndSessionMessage endSessionMessage =
+              new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipients(), "TERMINATE"));
 
-            long allocatedThreadId = MessageSender.send(self, masterSecret,
-                                                        endSessionMessage, threadId, false);
+          long allocatedThreadId = MessageSender.send(self, masterSecret, endSessionMessage, threadId, false);
 
-            sendComplete(recipients, allocatedThreadId, allocatedThreadId != self.threadId);
-          } else {
-            Session.abortSessionFor(self, recipient);
-            initializeSecurity();
-            initializeTitleBar();
-          }
+          sendComplete(recipients, allocatedThreadId, allocatedThreadId != self.threadId);
         }
       }
     });
@@ -699,9 +690,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private void initializeSecurity() {
     TypedArray drawables           = obtainStyledAttributes(SEND_ATTRIBUTES);
+    SessionStore sessionStore      = new TextSecureSessionStore(this, masterSecret);
     Recipient  primaryRecipient    = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
     boolean    isPushDestination   = DirectoryHelper.isPushDestination(this, getRecipients());
-    boolean    isSecureDestination = isSingleConversation() && Session.hasSession(this, masterSecret, primaryRecipient);
+    boolean    isSecureDestination = isSingleConversation() && sessionStore.contains(primaryRecipient.getRecipientId(),
+                                                                                     RecipientDevice.DEFAULT_DEVICE_ID);
 
     if (isPushDestination || isSecureDestination) {
       this.isEncryptedConversation = true;

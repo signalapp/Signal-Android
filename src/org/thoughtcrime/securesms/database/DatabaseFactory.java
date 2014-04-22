@@ -33,7 +33,6 @@ import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
 
@@ -403,8 +402,15 @@ public class DatabaseFactory {
             String name = session.getName();
 
             if (name.matches("[0-9]+")) {
-              long recipientId            = Long.parseLong(name);
-              IdentityKey identityKey     = Session.getRemoteIdentityKey(context, masterSecret, recipientId);
+              long        recipientId = Long.parseLong(name);
+              IdentityKey identityKey = null;
+              // NOTE (4/21/14) -- At this moment in time, we're forgetting the ability to parse
+              // V1 session records.  Despite our usual attempts to avoid using shared code in the
+              // upgrade path, this is too complex to put here directly.  Thus, unfortunately
+              // this operation is now lost to the ages.  From the git log, it seems to have been
+              // almost exactly a year since this went in, so hopefully the bulk of people have
+              // already upgraded.
+//              IdentityKey identityKey     = Session.getRemoteIdentityKey(context, masterSecret, recipientId);
 
               if (identityKey != null) {
                 MasterCipher masterCipher = new MasterCipher(masterSecret);

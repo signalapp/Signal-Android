@@ -9,8 +9,9 @@ import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.SessionCipher;
-import org.whispersystems.libaxolotl.SessionState;
-import org.whispersystems.libaxolotl.SessionStore;
+import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionState;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
@@ -24,16 +25,19 @@ public class SessionCipherTest extends AndroidTestCase {
       throws InvalidKeyException, DuplicateMessageException,
       LegacyMessageException, InvalidMessageException
   {
-    SessionState aliceSessionState = new InMemorySessionState();
-    SessionState  bobSessionState   = new InMemorySessionState();
+    SessionRecord aliceSessionRecord = new InMemorySessionRecord();
+    SessionRecord bobSessionRecord   = new InMemorySessionRecord();
 
-    initializeSessions(aliceSessionState, bobSessionState);
+    initializeSessions(aliceSessionRecord.getSessionState(), bobSessionRecord.getSessionState());
 
-    SessionStore aliceSessionStore = new InMemorySessionStore(aliceSessionState);
-    SessionStore  bobSessionStore   = new InMemorySessionStore(bobSessionState);
+    SessionStore aliceSessionStore = new InMemorySessionStore();
+    SessionStore bobSessionStore   = new InMemorySessionStore();
 
-    SessionCipher aliceCipher       = new SessionCipher(aliceSessionStore);
-    SessionCipher bobCipher         = new SessionCipher(bobSessionStore);
+    aliceSessionStore.put(2L, 1, aliceSessionRecord);
+    bobSessionStore.put(3L, 1, bobSessionRecord);
+
+    SessionCipher     aliceCipher    = new SessionCipher(aliceSessionStore, 2L, 1);
+    SessionCipher     bobCipher      = new SessionCipher(bobSessionStore, 3L, 1);
 
     byte[]            alicePlaintext = "This is a plaintext message.".getBytes();
     CiphertextMessage message        = aliceCipher.encrypt(alicePlaintext);

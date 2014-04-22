@@ -1,44 +1,63 @@
 package org.whispersystems.test;
 
-import org.whispersystems.libaxolotl.SessionState;
-import org.whispersystems.libaxolotl.SessionStore;
+import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionStore;
+import org.whispersystems.libaxolotl.util.Pair;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class InMemorySessionStore implements SessionStore {
 
-  private SessionState currentSessionState;
-  private List<SessionState> previousSessionStates;
+  private Map<Pair<Long, Integer>, SessionRecord> sessions = new HashMap<>();
 
-  private SessionState       checkedOutSessionState;
-  private List<SessionState> checkedOutPreviousSessionStates;
+  public InMemorySessionStore() {}
 
-  public InMemorySessionStore(SessionState sessionState) {
-    this.currentSessionState             = sessionState;
-    this.previousSessionStates           = new LinkedList<>();
-    this.checkedOutPreviousSessionStates = new LinkedList<>();
+  @Override
+  public SessionRecord get(long recipientId, int deviceId) {
+    if (contains(recipientId, deviceId)) {
+      return new InMemorySessionRecord(sessions.get(new Pair<>(recipientId, deviceId)));
+    } else {
+      return new InMemorySessionRecord();
+    }
   }
 
   @Override
-  public SessionState getSessionState() {
-    checkedOutSessionState = new InMemorySessionState(currentSessionState);
-    return checkedOutSessionState;
-  }
+  public List<Integer> getSubDeviceSessions(long recipientId) {
+    List<Integer> deviceIds = new LinkedList<>();
 
-  @Override
-  public List<SessionState> getPreviousSessionStates() {
-    checkedOutPreviousSessionStates = new LinkedList<>();
-    for (SessionState state : previousSessionStates) {
-      checkedOutPreviousSessionStates.add(new InMemorySessionState(state));
+    for (Pair<Long, Integer> key : sessions.keySet()) {
+      if (key.first() == recipientId) {
+        deviceIds.add(key.second());
+      }
     }
 
-    return checkedOutPreviousSessionStates;
+    return deviceIds;
   }
 
   @Override
-  public void save() {
-    this.currentSessionState   = this.checkedOutSessionState;
-    this.previousSessionStates = this.checkedOutPreviousSessionStates;
+  public void put(long recipientId, int deviceId, SessionRecord record) {
+    sessions.put(new Pair<>(recipientId, deviceId), record);
+  }
+
+  @Override
+  public boolean contains(long recipientId, int deviceId) {
+    return sessions.containsKey(new Pair<>(recipientId, deviceId));
+  }
+
+  @Override
+  public void delete(long recipientId, int deviceId) {
+    sessions.remove(new Pair<>(recipientId, deviceId));
+  }
+
+  @Override
+  public void deleteAll(long recipientId) {
+    for (Pair<Long, Integer> key : sessions.keySet()) {
+      if (key.first() == recipientId) {
+        sessions.remove(key);
+      }
+    }
   }
 }

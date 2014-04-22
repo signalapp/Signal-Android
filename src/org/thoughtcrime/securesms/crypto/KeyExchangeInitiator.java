@@ -30,9 +30,11 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -70,12 +72,12 @@ public class KeyExchangeInitiator {
                                                             ephemeralKey.getPublicKey(),
                                                             identityKey.getPublicKey());
 
-    OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, message.serialize());
-    RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
+    OutgoingKeyExchangeMessage textMessage     = new OutgoingKeyExchangeMessage(recipient, message.serialize());
+    SessionStore               sessionStore    = new TextSecureSessionStore(context, masterSecret);
+    SessionRecord              sessionRecord   = sessionStore.get(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
-    SessionRecordV2 sessionRecordV2 = new SessionRecordV2(context, masterSecret, recipientDevice);
-    sessionRecordV2.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
-    sessionRecordV2.save();
+    sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
+    sessionStore.put(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID, sessionRecord);
 
     MessageSender.send(context, masterSecret, textMessage, -1, false);
   }
@@ -83,11 +85,10 @@ public class KeyExchangeInitiator {
   private static boolean hasInitiatedSession(Context context, MasterSecret masterSecret,
                                              Recipient recipient)
   {
-    RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
-    return
-        new SessionRecordV2(context, masterSecret, recipientDevice)
-            .getSessionState()
-            .hasPendingKeyExchange();
+    SessionStore  sessionStore  = new TextSecureSessionStore(context, masterSecret);
+    SessionRecord sessionRecord = sessionStore.get(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
+
+    return sessionRecord.getSessionState().hasPendingPreKey();
   }
 
   private static int getRandomSequence() {

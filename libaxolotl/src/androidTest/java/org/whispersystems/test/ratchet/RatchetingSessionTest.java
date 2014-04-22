@@ -6,7 +6,7 @@ import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.test.InMemorySessionState;
 import org.whispersystems.libaxolotl.InvalidKeyException;
-import org.whispersystems.libaxolotl.SessionState;
+import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;

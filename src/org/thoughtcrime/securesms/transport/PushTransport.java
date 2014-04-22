@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.SessionCipher;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.AttachmentCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipherFactory;
@@ -55,7 +56,8 @@ import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.StaleDevices;
 import org.whispersystems.textsecure.push.StaleDevicesException;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
-import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.storage.SessionUtil;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
@@ -93,7 +95,8 @@ public class PushTransport extends BaseTransport {
       deliver(socket, recipient, threadId, plaintext);
 
       if (message.isEndSession()) {
-        SessionRecordV2.deleteAll(context, recipient);
+        SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
+        sessionStore.deleteAll(recipient.getRecipientId());
         KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, threadId);
       }
 
@@ -121,8 +124,8 @@ public class PushTransport extends BaseTransport {
       recipients = RecipientFactory.getRecipientsFromString(context, destination, false);
     }
 
-    List<UntrustedIdentityException> untrustedIdentities = new LinkedList<UntrustedIdentityException>();
-    List<UnregisteredUserException>  unregisteredUsers   = new LinkedList<UnregisteredUserException>();
+    List<UntrustedIdentityException> untrustedIdentities = new LinkedList<>();
+    List<UnregisteredUserException>  unregisteredUsers   = new LinkedList<>();
 
     for (Recipient recipient : recipients.getRecipientsList()) {
       try {
@@ -164,7 +167,7 @@ public class PushTransport extends BaseTransport {
   private List<PushAttachmentPointer> getPushAttachmentPointers(PushServiceSocket socket, PduBody body)
       throws IOException
   {
-    List<PushAttachmentPointer> attachments = new LinkedList<PushAttachmentPointer>();
+    List<PushAttachmentPointer> attachments = new LinkedList<>();
 
     for (int i=0;i<body.getPartsNum();i++) {
       String contentType = Util.toIsoString(body.getPart(i).getContentType());
@@ -198,12 +201,12 @@ public class PushTransport extends BaseTransport {
       throws InvalidNumberException, IOException, UntrustedIdentityException
   {
     try {
-      String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
-      long   recipientId = recipient.getRecipientId();
+      SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
+      String       e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
+      long         recipientId  = recipient.getRecipientId();
 
       for (int extraDeviceId : mismatchedDevices.getExtraDevices()) {
-        PushAddress address = PushAddress.create(context, recipientId, e164number, extraDeviceId);
-        SessionRecordV2.delete(context, address);
+        sessionStore.delete(recipientId, extraDeviceId);
       }
 
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
@@ -222,19 +225,12 @@ public class PushTransport extends BaseTransport {
     }
   }
 
-  private void handleStaleDevices(Recipient recipient, StaleDevices staleDevices)
-      throws IOException
-  {
-    try {
-      long   recipientId = recipient.getRecipientId();
-      String e164number  = Util.canonicalizeNumber(context, recipient.getNumber());
+  private void handleStaleDevices(Recipient recipient, StaleDevices staleDevices) {
+    SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
+    long         recipientId  = recipient.getRecipientId();
 
-      for (int staleDeviceId : staleDevices.getStaleDevices()) {
-        PushAddress address = PushAddress.create(context, recipientId, e164number, staleDeviceId);
-        SessionRecordV2.delete(context, address);
-      }
-    } catch (InvalidNumberException e) {
-      throw new IOException(e);
+    for (int staleDeviceId : staleDevices.getStaleDevices()) {
+      sessionStore.delete(recipientId, staleDeviceId);
     }
   }
 
@@ -306,15 +302,16 @@ public class PushTransport extends BaseTransport {
                                                        Recipient recipient, byte[] plaintext)
       throws IOException, InvalidNumberException, UntrustedIdentityException
   {
-    String      e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
-    long        recipientId  = recipient.getRecipientId();
-    PushAddress masterDevice = PushAddress.create(context, recipientId, e164number, 1);
-    PushBody    masterBody   = getEncryptedMessage(socket, threadId, masterDevice, plaintext);
+    SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
+    String       e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
+    long         recipientId  = recipient.getRecipientId();
+    PushAddress  masterDevice = PushAddress.create(context, recipientId, e164number, 1);
+    PushBody     masterBody   = getEncryptedMessage(socket, threadId, masterDevice, plaintext);
 
-    List<OutgoingPushMessage> messages = new LinkedList<OutgoingPushMessage>();
+    List<OutgoingPushMessage> messages = new LinkedList<>();
     messages.add(new OutgoingPushMessage(masterDevice, masterBody));
 
-    for (int deviceId : SessionRecordV2.getSessionSubDevices(context, recipient)) {
+    for (int deviceId : sessionStore.getSubDeviceSessions(recipientId)) {
       PushAddress device = PushAddress.create(context, recipientId, e164number, deviceId);
       PushBody    body   = getEncryptedMessage(socket, threadId, device, plaintext);
 
@@ -328,9 +325,7 @@ public class PushTransport extends BaseTransport {
                                        PushAddress pushAddress, byte[] plaintext)
       throws IOException, UntrustedIdentityException
   {
-    if (!SessionRecordV2.hasSession(context, masterSecret, pushAddress) ||
-        SessionRecordV2.needsRefresh(context, masterSecret, pushAddress))
-    {
+    if (!SessionUtil.hasEncryptCapableSession(context, masterSecret, pushAddress)) {
       try {
         List<PreKeyEntity> preKeys = socket.getPreKeys(pushAddress);
 

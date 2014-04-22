@@ -29,12 +29,13 @@ import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Base64;
 
 import ws.com.google.android.mms.MmsException;
@@ -131,19 +132,12 @@ public class PushReceiver {
 
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
       }
-    } catch (InvalidKeyException e) {
-      Log.w("PushReceiver", e);
-      handleReceivedCorruptedKey(masterSecret, message, false);
     } catch (InvalidVersionException e) {
       Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, true);
-    } catch (InvalidKeyIdException e) {
-      Log.w("PushReceiver", e);
-      handleReceivedCorruptedKey(masterSecret, message, false);
-    } catch (InvalidMessageException e) {
-      Log.w("PushReceiver", e);
-      handleReceivedCorruptedKey(masterSecret, message, false);
-    } catch (RecipientFormattingException e) {
+    } catch (InvalidKeyException | InvalidKeyIdException | InvalidMessageException |
+             RecipientFormattingException e)
+    {
       Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
     }
@@ -189,7 +183,9 @@ public class PushReceiver {
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox(masterSecret, incomingEndSessionMessage);
       database.updateMessageBody(masterSecret, messageAndThreadId.first, messageContent.getBody());
 
-      Session.abortSessionFor(context, recipient);
+      SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
+      sessionStore.deleteAll(recipient.getRecipientId());
+
       KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, messageAndThreadId.second);
     } catch (RecipientFormattingException e) {
       Log.w("PushReceiver", e);

@@ -21,13 +21,14 @@ import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
+import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.Session;
-import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Medium;
 
 /**
@@ -41,14 +42,14 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
   private Context         context;
   private RecipientDevice recipientDevice;
   private MasterSecret    masterSecret;
-  private SessionRecordV2 sessionRecord;
+  private SessionStore    sessionStore;
 
   public KeyExchangeProcessorV2(Context context, MasterSecret masterSecret, RecipientDevice recipientDevice)
   {
     this.context         = context;
     this.recipientDevice = recipientDevice;
     this.masterSecret    = masterSecret;
-    this.sessionRecord   = new SessionRecordV2(context, masterSecret, recipientDevice);
+    this.sessionStore    = new TextSecureSessionStore(context, masterSecret);
   }
 
   public boolean isTrusted(PreKeyWhisperMessage message) {
@@ -70,7 +71,10 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
   }
 
   public boolean isStale(KeyExchangeMessage m) {
-    KeyExchangeMessageV2 message = (KeyExchangeMessageV2)m;
+    KeyExchangeMessageV2 message       = (KeyExchangeMessageV2) m;
+    SessionRecord        sessionRecord = sessionStore.get(recipientDevice.getRecipientId(),
+                                                          recipientDevice.getDeviceId());
+
     return
         message.isResponse() &&
             (!sessionRecord.getSessionState().hasPendingKeyExchange() ||
@@ -88,7 +92,9 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
 
     Log.w("KeyExchangeProcessor", "Received pre-key with local key ID: " + preKeyId);
 
-    if (!PreKeyRecord.hasRecord(context, preKeyId) && SessionRecordV2.hasSession(context, masterSecret, recipientDevice)) {
+    if (!PreKeyRecord.hasRecord(context, preKeyId) &&
+        sessionStore.contains(recipientDevice.getRecipientId(), recipientDevice.getDeviceId()))
+    {
       Log.w("KeyExchangeProcessor", "We've already processed the prekey part, letting bundled message fall through...");
       return;
     }
@@ -96,13 +102,15 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     if (!PreKeyRecord.hasRecord(context, preKeyId))
       throw new InvalidKeyIdException("No such prekey: " + preKeyId);
 
+    SessionRecord   sessionRecord        = sessionStore.get(recipientDevice.getRecipientId(),
+                                                            recipientDevice.getDeviceId());
     PreKeyRecord    preKeyRecord         = new PreKeyRecord(context, masterSecret, preKeyId);
     ECKeyPair       ourBaseKey           = preKeyRecord.getKeyPair();
     ECKeyPair       ourEphemeralKey      = ourBaseKey;
     IdentityKeyPair ourIdentityKey       = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
     boolean         simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
 
-    if (!simultaneousInitiate) sessionRecord.clear();
+    if (!simultaneousInitiate) sessionRecord.reset();
     else                       sessionRecord.archiveCurrentState();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
@@ -110,13 +118,12 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
                                         ourEphemeralKey, theirEphemeralKey,
                                         ourIdentityKey, theirIdentityKey);
 
-    Session.clearV1SessionFor(context, recipientDevice.getRecipient());
     sessionRecord.getSessionState().setLocalRegistrationId(TextSecurePreferences.getLocalRegistrationId(context));
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
-    sessionRecord.save();
+    sessionStore.put(recipientDevice.getRecipientId(), recipientDevice.getDeviceId(), sessionRecord);
 
     if (preKeyId != Medium.MAX_VALUE) {
       PreKeyRecord.delete(context, preKeyId);
@@ -131,6 +138,8 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
   public void processKeyExchangeMessage(PreKeyEntity message, long threadId)
       throws InvalidKeyException
   {
+    SessionRecord   sessionRecord     = sessionStore.get(recipientDevice.getRecipientId(),
+                                                         recipientDevice.getDeviceId());
     ECKeyPair       ourBaseKey        = Curve.generateKeyPair(true);
     ECKeyPair       ourEphemeralKey   = Curve.generateKeyPair(true);
     ECPublicKey     theirBaseKey      = message.getPublicKey();
@@ -139,7 +148,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     IdentityKeyPair ourIdentityKey    = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
     if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
-    else                                                   sessionRecord.clear();
+    else                                                   sessionRecord.reset();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                         ourBaseKey, theirBaseKey, ourEphemeralKey,
@@ -149,7 +158,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
     sessionRecord.getSessionState().setLocalRegistrationId(TextSecurePreferences.getLocalRegistrationId(context));
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
 
-    sessionRecord.save();
+    sessionStore.put(recipientDevice.getRecipientId(), recipientDevice.getDeviceId(), sessionRecord);
 
     DatabaseFactory.getIdentityDatabase(context)
                    .saveIdentity(masterSecret, recipientDevice.getRecipientId(), message.getIdentityKey());
@@ -164,11 +173,13 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
       throws InvalidMessageException
   {
     try {
-      KeyExchangeMessageV2 message = (KeyExchangeMessageV2)_message;
-      Recipient recipient = RecipientFactory.getRecipientsForIds(context,
-                                                                 String.valueOf(recipientDevice.getRecipientId()),
-                                                                 false)
-                                            .getPrimaryRecipient();
+      KeyExchangeMessageV2 message       = (KeyExchangeMessageV2) _message;
+      SessionRecord        sessionRecord = sessionStore.get(recipientDevice.getRecipientId(),
+                                                            recipientDevice.getDeviceId());
+      Recipient            recipient     = RecipientFactory.getRecipientsForIds(context,
+                                                                                String.valueOf(recipientDevice.getRecipientId()),
+                                                                                false)
+                                                           .getPrimaryRecipient();
 
       Log.w("KeyExchangeProcessorV2", "Received key exchange with sequence: " + message.getSequence());
 
@@ -219,7 +230,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
       ECKeyPair       ourEphemeralKey = sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey();
       IdentityKeyPair ourIdentityKey  = sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey();
 
-      sessionRecord.clear();
+      sessionRecord.reset();
 
       RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                           ourBaseKey, message.getBaseKey(),
@@ -227,8 +238,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
                                           ourIdentityKey, message.getIdentityKey());
 
       sessionRecord.getSessionState().setSessionVersion(message.getVersion());
-      Session.clearV1SessionFor(context, recipientDevice.getRecipient());
-      sessionRecord.save();
+      sessionStore.put(recipientDevice.getRecipientId(), recipientDevice.getDeviceId(), sessionRecord);
 
       DatabaseFactory.getIdentityDatabase(context)
                      .saveIdentity(masterSecret, recipientDevice.getRecipientId(), message.getIdentityKey());

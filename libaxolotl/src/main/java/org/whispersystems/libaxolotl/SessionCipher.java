@@ -25,6 +25,9 @@ import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 import org.whispersystems.libaxolotl.ratchet.MessageKeys;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
+import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionState;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.ByteUtil;
 import org.whispersystems.libaxolotl.util.Pair;
 
@@ -45,18 +48,23 @@ public class SessionCipher {
   private static final Object SESSION_LOCK = new Object();
 
   private final SessionStore sessionStore;
+  private final long         recipientId;
+  private final int          deviceId;
 
-  public SessionCipher(SessionStore sessionStore) {
+  public SessionCipher(SessionStore sessionStore, long recipientId, int deviceId) {
     this.sessionStore = sessionStore;
+    this.recipientId  = recipientId;
+    this.deviceId     = deviceId;
   }
 
   public CiphertextMessage encrypt(byte[] paddedMessage) {
     synchronized (SESSION_LOCK) {
-      SessionState      sessionState      = sessionStore.getSessionState();
-      ChainKey          chainKey          = sessionState.getSenderChainKey();
-      MessageKeys       messageKeys       = chainKey.getMessageKeys();
-      ECPublicKey       senderEphemeral   = sessionState.getSenderEphemeral();
-      int               previousCounter   = sessionState.getPreviousCounter();
+      SessionRecord sessionRecord   = sessionStore.get(recipientId, deviceId);
+      SessionState  sessionState    = sessionRecord.getSessionState();
+      ChainKey      chainKey        = sessionState.getSenderChainKey();
+      MessageKeys   messageKeys     = chainKey.getMessageKeys();
+      ECPublicKey   senderEphemeral = sessionState.getSenderEphemeral();
+      int           previousCounter = sessionState.getPreviousCounter();
 
       byte[]            ciphertextBody    = getCiphertext(messageKeys, paddedMessage);
       CiphertextMessage ciphertextMessage = new WhisperMessage(messageKeys.getMacKey(),
@@ -74,7 +82,7 @@ public class SessionCipher {
       }
 
       sessionState.setSenderChainKey(chainKey.getNextChainKey());
-      sessionStore.save();
+      sessionStore.put(recipientId, deviceId, sessionRecord);
       return ciphertextMessage;
     }
   }
@@ -83,13 +91,14 @@ public class SessionCipher {
       throws InvalidMessageException, DuplicateMessageException, LegacyMessageException
   {
     synchronized (SESSION_LOCK) {
-      SessionState       sessionState   = sessionStore.getSessionState();
-      List<SessionState> previousStates = sessionStore.getPreviousSessionStates();
-      List<Exception>    exceptions     = new LinkedList<Exception>();
+      SessionRecord      sessionRecord  = sessionStore.get(recipientId, deviceId);
+      SessionState       sessionState   = sessionRecord.getSessionState();
+      List<SessionState> previousStates = sessionRecord.getPreviousSessionStates();
+      List<Exception>    exceptions     = new LinkedList<>();
 
       try {
         byte[] plaintext = decrypt(sessionState, decodedMessage);
-        sessionStore.save();
+        sessionStore.put(recipientId, deviceId, sessionRecord);
 
         return plaintext;
       } catch (InvalidMessageException e) {
@@ -99,7 +108,7 @@ public class SessionCipher {
       for (SessionState previousState : previousStates) {
         try {
           byte[] plaintext = decrypt(previousState, decodedMessage);
-          sessionStore.save();
+          sessionStore.put(recipientId, deviceId, sessionRecord);
 
           return plaintext;
         } catch (InvalidMessageException e) {
@@ -137,7 +146,8 @@ public class SessionCipher {
 
   public int getRemoteRegistrationId() {
     synchronized (SESSION_LOCK) {
-      return sessionStore.getSessionState().getRemoteRegistrationId();
+      SessionRecord record = sessionStore.get(recipientId, deviceId);
+      return record.getSessionState().getRemoteRegistrationId();
     }
   }
 
@@ -201,9 +211,7 @@ public class SessionCipher {
                                 messageKeys.getCounter());
 
       return cipher.doFinal(plaintext);
-    } catch (IllegalBlockSizeException e) {
-      throw new AssertionError(e);
-    } catch (BadPaddingException e) {
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
       throw new AssertionError(e);
     }
   }
@@ -214,9 +222,7 @@ public class SessionCipher {
                                 messageKeys.getCipherKey(),
                                 messageKeys.getCounter());
       return cipher.doFinal(cipherText);
-    } catch (IllegalBlockSizeException e) {
-      throw new AssertionError(e);
-    } catch (BadPaddingException e) {
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
       throw new AssertionError(e);
     }
   }
@@ -232,13 +238,9 @@ public class SessionCipher {
       cipher.init(mode, key, iv);
 
       return cipher;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (NoSuchPaddingException e) {
-      throw new AssertionError(e);
-    } catch (java.security.InvalidKeyException e) {
-      throw new AssertionError(e);
-    } catch (InvalidAlgorithmParameterException e) {
+    } catch (NoSuchAlgorithmException | NoSuchPaddingException | java.security.InvalidKeyException |
+             InvalidAlgorithmParameterException e)
+    {
       throw new AssertionError(e);
     }
   }

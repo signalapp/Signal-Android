@@ -20,8 +20,9 @@ package org.whispersystems.textsecure.crypto;
 import android.content.Context;
 
 import org.whispersystems.libaxolotl.SessionCipher;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.SessionRecordV2;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 
 public class SessionCipherFactory {
 
@@ -29,9 +30,10 @@ public class SessionCipherFactory {
                                           MasterSecret masterSecret,
                                           RecipientDevice recipient)
   {
-    if (SessionRecordV2.hasSession(context, masterSecret, recipient)) {
-      SessionRecordV2 record = new SessionRecordV2(context, masterSecret, recipient);
-      return new SessionCipher(record);
+    SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
+
+    if (sessionStore.contains(recipient.getRecipientId(), recipient.getDeviceId())) {
+      return new SessionCipher(sessionStore, recipient.getRecipientId(), recipient.getDeviceId());
     } else {
       throw new AssertionError("Attempt to initialize cipher for non-existing session.");
     }

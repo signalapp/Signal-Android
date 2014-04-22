@@ -38,7 +38,7 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipherFactory;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.storage.SessionUtil;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
@@ -168,13 +168,15 @@ public class MmsTransport {
     return encryptedPdu;
   }
 
-  private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipientString, byte[] pduBytes) throws InsecureFallbackApprovalException {
+  private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipientString, byte[] pduBytes)
+      throws InsecureFallbackApprovalException
+  {
     try {
       TextTransport     transportDetails  = new TextTransport();
       Recipient         recipient         = RecipientFactory.getRecipientsFromString(context, recipientString, false).getPrimaryRecipient();
       RecipientDevice   recipientDevice   = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
-      if (!Session.hasEncryptCapableSession(context, masterSecret, recipient, recipientDevice)) {
+      if (!SessionUtil.hasEncryptCapableSession(context, masterSecret, recipientDevice)) {
         throw new InsecureFallbackApprovalException("No session exists for this secure message.");
       }
 

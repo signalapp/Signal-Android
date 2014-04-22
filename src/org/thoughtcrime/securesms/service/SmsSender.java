@@ -42,8 +42,9 @@ import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 
 public class SmsSender {
 
@@ -61,7 +62,7 @@ public class SmsSender {
     if (SendReceiveService.SEND_SMS_ACTION.equals(intent.getAction())) {
       handleSendMessage(masterSecret, intent);
     } else if (SendReceiveService.SENT_SMS_ACTION.equals(intent.getAction())) {
-      handleSentMessage(intent);
+      handleSentMessage(masterSecret, intent);
     } else if (SendReceiveService.DELIVERED_SMS_ACTION.equals(intent.getAction())) {
       handleDeliveredMessage(intent);
     }
@@ -116,7 +117,7 @@ public class SmsSender {
     }
   }
 
-  private void handleSentMessage(Intent intent) {
+  private void handleSentMessage(MasterSecret masterSecret, Intent intent) {
     long    messageId = intent.getLongExtra("message_id", -1);
     int     result    = intent.getIntExtra("ResultCode", -31337);
     boolean upgraded  = intent.getBooleanExtra("upgraded", false);
@@ -138,7 +139,8 @@ public class SmsSender {
 
       if (record != null && record.isEndSession()) {
         Log.w("SmsSender", "Ending session...");
-        Session.abortSessionFor(context, record.getIndividualRecipient());
+        SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
+        sessionStore.deleteAll(record.getIndividualRecipient().getRecipientId());
         KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, record.getThreadId());
       }
 
