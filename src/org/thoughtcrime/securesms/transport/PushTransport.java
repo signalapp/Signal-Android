@@ -23,7 +23,6 @@ import android.util.Log;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -212,7 +211,7 @@ public class PushTransport extends BaseTransport {
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
         PushAddress            address   = PushAddress.create(context, recipientId, e164number, missingDeviceId);
         PreKeyEntity           preKey    = socket.getPreKey(address);
-        KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(context, masterSecret, address);
+        KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, address);
 
         if (processor.isTrusted(preKey)) {
           processor.processKeyExchangeMessage(preKey, threadId);
@@ -331,7 +330,7 @@ public class PushTransport extends BaseTransport {
 
         for (PreKeyEntity preKey : preKeys) {
           PushAddress            device    = PushAddress.create(context, pushAddress.getRecipientId(), pushAddress.getNumber(), preKey.getDeviceId());
-          KeyExchangeProcessorV2 processor = new KeyExchangeProcessorV2(context, masterSecret, device);
+          KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, device);
 
           if (processor.isTrusted(preKey)) {
             processor.processKeyExchangeMessage(preKey, threadId);

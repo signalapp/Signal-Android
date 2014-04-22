@@ -22,7 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessageV2;
+import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
@@ -62,12 +62,12 @@ public class KeyExchangeInitiator {
 
   private static void initiateKeyExchange(Context context, MasterSecret masterSecret, Recipient recipient) {
     int             sequence     = getRandomSequence();
-    int             flags        = KeyExchangeMessageV2.INITIATE_FLAG;
+    int             flags        = KeyExchangeMessage.INITIATE_FLAG;
     ECKeyPair       baseKey      = Curve.generateKeyPair(true);
     ECKeyPair       ephemeralKey = Curve.generateKeyPair(true);
     IdentityKeyPair identityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
-    KeyExchangeMessageV2 message = new KeyExchangeMessageV2(sequence, flags,
+    KeyExchangeMessage message = new KeyExchangeMessage(sequence, flags,
                                                             baseKey.getPublicKey(),
                                                             ephemeralKey.getPublicKey(),
                                                             identityKey.getPublicKey());

@@ -9,7 +9,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -115,7 +114,7 @@ public class PushReceiver {
     try {
       Recipient              recipient       = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
       RecipientDevice        recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSourceDevice());
-      KeyExchangeProcessorV2 processor       = new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
+      KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipientDevice);
       PreKeyWhisperMessage   preKeyExchange  = new PreKeyWhisperMessage(message.getBody());
 
       if (processor.isTrusted(preKeyExchange)) {
