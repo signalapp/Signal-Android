@@ -87,7 +87,7 @@
 
     <activity android:name=".PromptMmsActivity"
               android:label="Configure MMS Settings"
-              android:windowSoftInputMode="stateUnchanged"              
+              android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".MmsPreferencesActivity"
@@ -176,11 +176,11 @@
               android:label="@string/AndroidManifest__manage_identity_keys"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ReceiveKeyActivity" 
+    <activity android:name=".ReceiveKeyActivity"
               android:label="@string/AndroidManifest__complete_key_exchange"
               android:theme="@style/TextSecure.Light.Dialog"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-    
+
     <activity android:name=".ApplicationPreferencesActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -206,6 +206,9 @@
               android:stateNotNeeded="true"
               android:clearTaskOnLaunch="true"
               android:finishOnTaskLaunch="true" />
+
+    <activity android:name="org.thoughtcrime.securesms.AboutActivity"
+              android:label="@string/preferences__about" />
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
