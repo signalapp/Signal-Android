@@ -58,9 +58,8 @@ public class GroupUtil {
         description += context.getString(R.string.ConversationItem_group_action_title, title);
       }
 
-      if (groupContext.hasAvatar()) {
-        if (!description.isEmpty()) description += " ";
-        description += context.getString(R.string.ConversationItem_group_action_avatar_updated);
+      if (description.isEmpty()) {
+        return context.getString(R.string.ConversationItem_group_action_updated);
       }
 
       return description;

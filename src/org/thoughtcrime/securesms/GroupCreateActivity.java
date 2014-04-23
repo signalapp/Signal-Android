@@ -631,14 +631,12 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
         Intent intent = getIntent();
         intent.putExtra(GROUP_THREAD_EXTRA, threadId);
         intent.putExtra(GROUP_RECIPIENT_EXTRA, recipients);
-        setResult(RESULT_OK, intent);
         finish();
       } else if (threadId == RES_BAD_NUMBER) {
         Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_invalid_number, Toast.LENGTH_LONG).show();
         disableWhisperGroupCreatingUi();
       } else if (threadId == RES_MMS_EXCEPTION) {
         Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_mms_exception, Toast.LENGTH_LONG).show();
-        setResult(RESULT_CANCELED);
         finish();
       }
     }

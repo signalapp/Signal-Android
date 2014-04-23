@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
@@ -65,7 +66,6 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
@@ -141,7 +141,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private static final int PICK_VIDEO        = 2;
   private static final int PICK_AUDIO        = 3;
   private static final int PICK_CONTACT_INFO = 4;
-  private static final int GROUP_EDIT        = 5;
 
   private static final int SEND_ATTRIBUTES[] = new int[]{R.attr.conversation_send_button_push,
                                                          R.attr.conversation_send_button_sms_secure,
@@ -155,6 +154,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
   private BroadcastReceiver             securityUpdateReceiver;
+  private RecipientModifiedListener     recipientModifiedListener;
   private EmojiDrawer                   emojiDrawer;
   private EmojiToggle                   emojiToggle;
 
@@ -182,7 +182,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     initializeReceivers();
     initializeResources();
     initializeDraft();
-    initializeTitleBar();
   }
 
   @Override
@@ -219,6 +218,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   @Override
   protected void onDestroy() {
     unregisterReceiver(securityUpdateReceiver);
+    recipients.removeListener(recipientModifiedListener);
     saveDraft();
     MemoryCleaner.clean(masterSecret);
     super.onDestroy();
@@ -242,10 +242,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       break;
     case PICK_CONTACT_INFO:
       addContactInfo(data.getData());
-      break;
-    case GROUP_EDIT:
-      this.recipients = data.getParcelableExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA);
-      initializeTitleBar();
       break;
     }
   }
@@ -462,7 +458,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
     intent.putExtra(GroupCreateActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients);
-    startActivityForResult(intent, GROUP_EDIT);
+    startActivity(intent);
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
@@ -564,34 +560,30 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   ///// Initializers
 
   private void initializeTitleBar() {
-    String title    = null;
-    String subtitle = null;
+    final String title;
+    final String subtitle;
 
+    final String recipientName = getRecipients().getPrimaryRecipient().getName();
     if (isSingleConversation()) {
-      title = getRecipients().getPrimaryRecipient().getName();
-
-      if (title == null || title.trim().length() == 0) {
-        title = getRecipients().getPrimaryRecipient().getNumber();
+      if (recipientName == null || recipientName.trim().length() == 0) {
+        title    = getRecipients().getPrimaryRecipient().getNumber();
+        subtitle = null;
       } else {
+        title    = recipientName;
         subtitle = getRecipients().getPrimaryRecipient().getNumber();
       }
-    } else if (isGroupConversation()) {
-      if (isPushGroupConversation()) {
-        final String groupName = getRecipients().getPrimaryRecipient().getName();
-        title = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
-        final Bitmap avatar = getRecipients().getPrimaryRecipient().getContactPhoto();
-        if (avatar != null) {
-          getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCircleCroppedBitmap(avatar)));
-        }
-      } else {
-        title = getString(R.string.ConversationActivity_group_conversation);
-        int size = getRecipients().getRecipientsList().size();
-        subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
-            : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
+    } else if (isPushGroupConversation()) {
+      title    = (!TextUtils.isEmpty(recipientName)) ? recipientName : getString(R.string.ConversationActivity_unnamed_group);
+      subtitle = null;
+      final Bitmap avatar = getRecipients().getPrimaryRecipient().getContactPhoto();
+      if (avatar != null) {
+        getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCircleCroppedBitmap(avatar)));
       }
     } else {
-      title    = getString(R.string.ConversationActivity_compose_message);
-      subtitle = "";
+      int size = getRecipients().getRecipientsList().size();
+      title    = getString(R.string.ConversationActivity_group_conversation);
+      subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
+                             : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
     }
 
     this.getSupportActionBar().setTitle(title);
@@ -731,17 +723,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     emojiDrawer.setComposeEditText(composeText);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
 
-    recipients.addListener(new RecipientModifiedListener() {
-      @Override
-      public void onModified(Recipient recipient) {
-        ConversationActivity.this.runOnUiThread(new Runnable() {
-          @Override
-          public void run() {
-            initializeTitleBar();
-          }
-        });
-      }
-    });
+    recipients.addListener(recipientModifiedListener);
 
     registerForContextMenu(sendButton);
 
@@ -769,6 +751,18 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
                      new IntentFilter(KeyExchangeProcessor.SECURITY_UPDATE_EVENT),
                      KeyCachingService.KEY_PERMISSION, null);
 
+    final Handler handler = new Handler(getMainLooper());
+    recipientModifiedListener = new RecipientModifiedListener() {
+      @Override
+      public void onModified(Recipient recipient) {
+        handler.post(new Runnable() {
+          @Override
+          public void run() {
+            initializeTitleBar();
+          }
+        });
+      }
+    };
   }
 
   //////// Helper Methods
@@ -937,7 +931,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
       return record != null && record.isActive();
     } catch (IOException e) {
-      Log.w("ConversationActivity", e);
+      Log.w(TAG, e);
       return false;
     }
   }
