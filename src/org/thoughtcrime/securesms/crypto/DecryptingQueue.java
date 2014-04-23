@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -41,10 +40,12 @@ import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
+import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.SessionCipher;
+import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -52,6 +53,7 @@ import org.whispersystems.textsecure.crypto.SessionCipherFactory;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 
@@ -428,7 +430,7 @@ public class DecryptingQueue {
           Recipient            recipient       = RecipientFactory.getRecipientsFromString(context, originator, false)
                                                                  .getPrimaryRecipient();
           RecipientDevice      recipientDevice = new RecipientDevice(recipient.getRecipientId(), deviceId);
-          KeyExchangeMessage   message         = new KeyExchangeMessage(plaintextBody);
+          KeyExchangeMessage   message         = new KeyExchangeMessage(Base64.decodeWithoutPadding(plaintextBody));
           KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipientDevice);
 
           if (processor.isStale(message)) {
@@ -440,7 +442,7 @@ public class DecryptingQueue {
         } catch (InvalidVersionException e) {
           Log.w("DecryptingQueue", e);
           DatabaseFactory.getEncryptingSmsDatabase(context).markAsInvalidVersionKeyExchange(messageId);
-        } catch (InvalidMessageException | RecipientFormattingException e) {
+        } catch (InvalidMessageException | IOException | InvalidKeyException | RecipientFormattingException e) {
           Log.w("DecryptingQueue", e);
           DatabaseFactory.getEncryptingSmsDatabase(context).markAsCorruptKeyExchange(messageId);
         } catch (LegacyMessageException e) {

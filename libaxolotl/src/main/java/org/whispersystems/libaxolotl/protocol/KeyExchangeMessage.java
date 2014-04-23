@@ -1,7 +1,7 @@
-package org.thoughtcrime.securesms.crypto.protocol;
+package org.whispersystems.libaxolotl.protocol;
+
 
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
@@ -10,11 +10,7 @@ import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
-import org.whispersystems.libaxolotl.protocol.WhisperProtos;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Conversions;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.libaxolotl.util.ByteUtil;
 
 import java.io.IOException;
 
@@ -46,26 +42,24 @@ public class KeyExchangeMessage {
     this.ephemeralKey     = ephemeralKey;
     this.identityKey      = identityKey;
 
-    byte[] version = {Conversions.intsToByteHighAndLow(this.version, this.supportedVersion)};
+    byte[] version = {ByteUtil.intsToByteHighAndLow(this.version, this.supportedVersion)};
     byte[] message = WhisperProtos.KeyExchangeMessage.newBuilder()
-                                  .setId((sequence << 5) | flags)
-                                  .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
-                                  .setEphemeralKey(ByteString.copyFrom(ephemeralKey.serialize()))
-                                  .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
-                                  .build().toByteArray();
+                                                     .setId((sequence << 5) | flags)
+                                                     .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
+                                                     .setEphemeralKey(ByteString.copyFrom(ephemeralKey.serialize()))
+                                                     .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
+                                                     .build().toByteArray();
 
-    this.serialized = Util.combine(version, message);
+    this.serialized = ByteUtil.combine(version, message);
   }
 
-  public KeyExchangeMessage(String serializedAndEncoded)
+  public KeyExchangeMessage(byte[] serialized)
       throws InvalidMessageException, InvalidVersionException, LegacyMessageException
   {
     try {
-      byte[]   serialized = Base64.decodeWithoutPadding(serializedAndEncoded);
-      byte[][] parts      = Util.split(serialized, 1, serialized.length - 1);
-
-      this.version          = Conversions.highBitsToInt(parts[0][0]);
-      this.supportedVersion = Conversions.lowBitsToInt(parts[0][0]);
+      byte[][] parts        = ByteUtil.split(serialized, 1, serialized.length - 1);
+      this.version          = ByteUtil.highBitsToInt(parts[0][0]);
+      this.supportedVersion = ByteUtil.lowBitsToInt(parts[0][0]);
 
       if (this.version <= CiphertextMessage.UNSUPPORTED_VERSION) {
         throw new LegacyMessageException("Unsupported legacy version: " + this.version);
@@ -138,7 +132,7 @@ public class KeyExchangeMessage {
     return sequence;
   }
 
-  public String serialize() {
-    return Base64.encodeBytesWithoutPadding(serialized);
+  public byte[] serialize() {
+    return serialized;
   }
 }

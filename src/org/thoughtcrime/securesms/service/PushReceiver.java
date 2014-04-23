@@ -32,7 +32,7 @@ import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import org.whispersystems.textsecure.storage.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Base64;

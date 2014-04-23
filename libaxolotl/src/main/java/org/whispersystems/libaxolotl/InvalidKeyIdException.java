@@ -1,5 +1,5 @@
 /** 
- * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2014 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,13 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.whispersystems.textsecure.storage;
+package org.whispersystems.libaxolotl;
 
 public class InvalidKeyIdException extends Exception {
-
-  public InvalidKeyIdException() {
-  }
-
   public InvalidKeyIdException(String detailMessage) {
     super(detailMessage);
   }
@@ -28,9 +24,4 @@ public class InvalidKeyIdException extends Exception {
   public InvalidKeyIdException(Throwable throwable) {
     super(throwable);
   }
-
-  public InvalidKeyIdException(String detailMessage, Throwable throwable) {
-    super(detailMessage, throwable);
-  }
-
 }

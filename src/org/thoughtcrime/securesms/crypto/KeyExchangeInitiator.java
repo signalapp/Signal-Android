@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
@@ -30,11 +29,13 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.whispersystems.textsecure.util.Base64;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -68,11 +69,11 @@ public class KeyExchangeInitiator {
     IdentityKeyPair identityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
     KeyExchangeMessage message = new KeyExchangeMessage(sequence, flags,
-                                                            baseKey.getPublicKey(),
-                                                            ephemeralKey.getPublicKey(),
-                                                            identityKey.getPublicKey());
+                                                        baseKey.getPublicKey(),
+                                                        ephemeralKey.getPublicKey(),
+                                                        identityKey.getPublicKey());
 
-    OutgoingKeyExchangeMessage textMessage     = new OutgoingKeyExchangeMessage(recipient, message.serialize());
+    OutgoingKeyExchangeMessage textMessage     = new OutgoingKeyExchangeMessage(recipient, Base64.encodeBytesWithoutPadding(message.serialize()));
     SessionStore               sessionStore    = new TextSecureSessionStore(context, masterSecret);
     SessionRecord              sessionRecord   = sessionStore.get(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 

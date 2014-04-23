@@ -14,12 +14,13 @@ import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.state.PreKey;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 
-public class PreKeyEntity {
+public class PreKeyEntity implements PreKey {
 
   @Expose(serialize = false)
   private int         deviceId;

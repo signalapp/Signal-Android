@@ -24,9 +24,12 @@ import com.google.thoughtcrimegson.Gson;
 
 import org.whispersystems.libaxolotl.ecc.Curve25519;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
-import org.whispersystems.textsecure.storage.InvalidKeyIdException;
-import org.whispersystems.textsecure.storage.PreKeyRecord;
-import org.whispersystems.textsecure.util.Medium;
+import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.state.PreKeyRecord;
+import org.whispersystems.libaxolotl.state.PreKeyStore;
+import org.whispersystems.libaxolotl.util.Medium;
+import org.whispersystems.textsecure.storage.TextSecurePreKeyRecord;
+import org.whispersystems.textsecure.storage.TextSecurePreKeyStore;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
@@ -43,15 +46,16 @@ public class PreKeyUtil {
   public static final int BATCH_SIZE = 100;
 
   public static List<PreKeyRecord> generatePreKeys(Context context, MasterSecret masterSecret) {
-    List<PreKeyRecord> records        = new LinkedList<PreKeyRecord>();
+    PreKeyStore        preKeyStore    = new TextSecurePreKeyStore(context, masterSecret);
+    List<PreKeyRecord> records        = new LinkedList<>();
     int                preKeyIdOffset = getNextPreKeyId(context);
 
     for (int i=0;i<BATCH_SIZE;i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
       ECKeyPair    keyPair  = Curve25519.generateKeyPair(true);
-      PreKeyRecord record   = new PreKeyRecord(context, masterSecret, preKeyId, keyPair);
+      PreKeyRecord record   = new TextSecurePreKeyRecord(masterSecret, preKeyId, keyPair);
 
-      record.save();
+      preKeyStore.store(preKeyId, record);
       records.add(record);
     }
 
@@ -60,19 +64,21 @@ public class PreKeyUtil {
   }
 
   public static PreKeyRecord generateLastResortKey(Context context, MasterSecret masterSecret) {
-    if (PreKeyRecord.hasRecord(context, Medium.MAX_VALUE)) {
+    PreKeyStore preKeyStore = new TextSecurePreKeyStore(context, masterSecret);
+
+    if (preKeyStore.contains(Medium.MAX_VALUE)) {
       try {
-        return new PreKeyRecord(context, masterSecret, Medium.MAX_VALUE);
+        return preKeyStore.load(Medium.MAX_VALUE);
       } catch (InvalidKeyIdException e) {
         Log.w("PreKeyUtil", e);
-        PreKeyRecord.delete(context, Medium.MAX_VALUE);
+        preKeyStore.remove(Medium.MAX_VALUE);
       }
     }
 
     ECKeyPair    keyPair = Curve25519.generateKeyPair(true);
-    PreKeyRecord record  = new PreKeyRecord(context, masterSecret, Medium.MAX_VALUE, keyPair);
+    PreKeyRecord record  = new TextSecurePreKeyRecord(masterSecret, Medium.MAX_VALUE, keyPair);
 
-    record.save();
+    preKeyStore.store(Medium.MAX_VALUE, record);
 
     return record;
   }
@@ -140,7 +146,7 @@ public class PreKeyUtil {
   }
 
   private static File getPreKeysDirectory(Context context) {
-    File directory = new File(context.getFilesDir(), PreKeyRecord.PREKEY_DIRECTORY);
+    File directory = new File(context.getFilesDir(), TextSecurePreKeyStore.PREKEY_DIRECTORY);
 
     if (!directory.exists())
       directory.mkdirs();

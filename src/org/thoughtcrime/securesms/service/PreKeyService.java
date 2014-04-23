@@ -10,10 +10,10 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.storage.PreKeyRecord;
 
 import java.io.IOException;
 import java.util.List;

@@ -24,7 +24,7 @@ import com.google.thoughtcrimegson.JsonParseException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.textsecure.storage.PreKeyRecord;
+import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.BlacklistingTrustManager;
 import org.whispersystems.textsecure.util.Util;
@@ -129,7 +129,7 @@ public class PushServiceSocket {
                               List<PreKeyRecord> records)
       throws IOException
   {
-    List<PreKeyEntity> entities = new LinkedList<PreKeyEntity>();
+    List<PreKeyEntity> entities = new LinkedList<>();
 
     for (PreKeyRecord record : records) {
       PreKeyEntity entity = new PreKeyEntity(record.getId(),

@@ -106,7 +106,6 @@ public class TextSecureSessionStore implements SessionStore {
     return results;
   }
 
-
   private File getSessionFile(long recipientId, int deviceId) {
     return new File(getSessionDirectory(), getSessionName(recipientId, deviceId));
   }
