@@ -328,6 +328,10 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     menu.clear();
 
     inflater.inflate(R.menu.group_create, menu);
+    View creatingGroup = findViewById(R.id.creating_group_layout);
+    if (creatingGroup != null && creatingGroup.getVisibility() == View.VISIBLE) {
+      menu.findItem(R.id.menu_create_group).setEnabled(false);
+    }
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -363,7 +367,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
   }
 
   private void handleGroupUpdate() {
-    Log.w("GroupCreateActivity", "Creating...");
+    enableWhisperGroupCreatingUi();
     new UpdateWhisperGroupAsyncTask().execute();
   }
 
@@ -371,14 +375,20 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     findViewById(R.id.group_details_layout).setVisibility(View.GONE);
     findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
     findViewById(R.id.menu_create_group).setVisibility(View.GONE);
-    if (groupName.getText() != null)
-      creatingText.setText(getString(R.string.GroupCreateActivity_creating_group, groupName.getText().toString()));
+    if (groupName.getText() != null) {
+      final int stringId;
+      if (groupId == null) stringId = R.string.GroupCreateActivity_creating_group;
+      else                 stringId = R.string.GroupCreateActivity_updating_group;
+      creatingText.setText(getString(stringId, groupName.getText().toString()));
+    }
+    invalidateOptionsMenu();
   }
 
   private void disableWhisperGroupCreatingUi() {
     findViewById(R.id.group_details_layout).setVisibility(View.VISIBLE);
     findViewById(R.id.creating_group_layout).setVisibility(View.GONE);
     findViewById(R.id.menu_create_group).setVisibility(View.VISIBLE);
+    invalidateOptionsMenu();
   }
 
   private void syncAdapterWithSelectedContacts() {
