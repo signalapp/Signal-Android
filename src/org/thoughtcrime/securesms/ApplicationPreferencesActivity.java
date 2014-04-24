@@ -217,8 +217,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       pushSmsCategory.removePreference(defaultPreference);
     }
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1 &&
-        advancedCategory != null                                   &&
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
+        advancedCategory != null                                       &&
         screenSecurityPreference != null)
     {
       advancedCategory.removePreference(screenSecurityPreference);
