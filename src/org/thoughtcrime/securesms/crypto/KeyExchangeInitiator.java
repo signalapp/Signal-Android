@@ -26,19 +26,17 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.whispersystems.libaxolotl.IdentityKeyPair;
-import org.whispersystems.libaxolotl.ecc.Curve;
-import org.whispersystems.libaxolotl.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
+import org.whispersystems.libaxolotl.state.IdentityKeyStore;
+import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.storage.TextSecurePreKeyStore;
 import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Base64;
-
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 public class KeyExchangeInitiator {
 
@@ -62,23 +60,17 @@ public class KeyExchangeInitiator {
   }
 
   private static void initiateKeyExchange(Context context, MasterSecret masterSecret, Recipient recipient) {
-    int             sequence     = getRandomSequence();
-    int             flags        = KeyExchangeMessage.INITIATE_FLAG;
-    ECKeyPair       baseKey      = Curve.generateKeyPair(true);
-    ECKeyPair       ephemeralKey = Curve.generateKeyPair(true);
-    IdentityKeyPair identityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    SessionStore     sessionStore     = new TextSecureSessionStore(context, masterSecret);
+    PreKeyStore      preKeyStore      = new TextSecurePreKeyStore(context, masterSecret);
+    IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(context, masterSecret);
 
-    KeyExchangeMessage message = new KeyExchangeMessage(sequence, flags,
-                                                        baseKey.getPublicKey(),
-                                                        ephemeralKey.getPublicKey(),
-                                                        identityKey.getPublicKey());
+    SessionBuilder   sessionBuilder   = new SessionBuilder(sessionStore, preKeyStore, identityKeyStore,
+                                                           recipient.getRecipientId(),
+                                                           RecipientDevice.DEFAULT_DEVICE_ID);
 
-    OutgoingKeyExchangeMessage textMessage     = new OutgoingKeyExchangeMessage(recipient, Base64.encodeBytesWithoutPadding(message.serialize()));
-    SessionStore               sessionStore    = new TextSecureSessionStore(context, masterSecret);
-    SessionRecord              sessionRecord   = sessionStore.get(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
-
-    sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
-    sessionStore.put(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID, sessionRecord);
+    KeyExchangeMessage         keyExchangeMessage = sessionBuilder.process();
+    String                     serializedMessage  = Base64.encodeBytesWithoutPadding(keyExchangeMessage.serialize());
+    OutgoingKeyExchangeMessage textMessage        = new OutgoingKeyExchangeMessage(recipient, serializedMessage);
 
     MessageSender.send(context, masterSecret, textMessage, -1, false);
   }
@@ -90,16 +82,5 @@ public class KeyExchangeInitiator {
     SessionRecord sessionRecord = sessionStore.get(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
     return sessionRecord.getSessionState().hasPendingPreKey();
-  }
-
-  private static int getRandomSequence() {
-    try {
-      SecureRandom random    = SecureRandom.getInstance("SHA1PRNG");
-      int          candidate = Math.abs(random.nextInt());
-
-      return candidate % 65535;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
   }
 }

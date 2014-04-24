@@ -16,7 +16,7 @@ public class InMemorySessionStore implements SessionStore {
   public InMemorySessionStore() {}
 
   @Override
-  public SessionRecord get(long recipientId, int deviceId) {
+  public synchronized SessionRecord get(long recipientId, int deviceId) {
     if (contains(recipientId, deviceId)) {
       return new InMemorySessionRecord(sessions.get(new Pair<>(recipientId, deviceId)));
     } else {
@@ -25,7 +25,7 @@ public class InMemorySessionStore implements SessionStore {
   }
 
   @Override
-  public List<Integer> getSubDeviceSessions(long recipientId) {
+  public synchronized List<Integer> getSubDeviceSessions(long recipientId) {
     List<Integer> deviceIds = new LinkedList<>();
 
     for (Pair<Long, Integer> key : sessions.keySet()) {
@@ -38,22 +38,22 @@ public class InMemorySessionStore implements SessionStore {
   }
 
   @Override
-  public void put(long recipientId, int deviceId, SessionRecord record) {
+  public synchronized void put(long recipientId, int deviceId, SessionRecord record) {
     sessions.put(new Pair<>(recipientId, deviceId), record);
   }
 
   @Override
-  public boolean contains(long recipientId, int deviceId) {
+  public synchronized boolean contains(long recipientId, int deviceId) {
     return sessions.containsKey(new Pair<>(recipientId, deviceId));
   }
 
   @Override
-  public void delete(long recipientId, int deviceId) {
+  public synchronized void delete(long recipientId, int deviceId) {
     sessions.remove(new Pair<>(recipientId, deviceId));
   }
 
   @Override
-  public void deleteAll(long recipientId) {
+  public synchronized void deleteAll(long recipientId) {
     for (Pair<Long, Integer> key : sessions.keySet()) {
       if (key.first() == recipientId) {
         sessions.remove(key);

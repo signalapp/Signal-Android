@@ -34,9 +34,8 @@ public class Hex {
   public static String toString(byte[] bytes, int offset, int length) {
     StringBuffer buf = new StringBuffer();
     for (int i = 0; i < length; i++) {
-      buf.append("(byte)0x");
       appendHexChar(buf, bytes[offset + i]);
-      buf.append(", ");
+      buf.append(" ");
     }
     return buf.toString();
   }

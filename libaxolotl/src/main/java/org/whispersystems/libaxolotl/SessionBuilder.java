@@ -14,6 +14,7 @@ import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
+import org.whispersystems.libaxolotl.util.Helper;
 import org.whispersystems.libaxolotl.util.Medium;
 
 public class SessionBuilder {
@@ -174,6 +175,23 @@ public class SessionBuilder {
     identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
 
     return responseMessage;
+  }
+
+  public KeyExchangeMessage process() {
+    int             sequence      = Helper.getRandomSequence(65534) + 1;
+    int             flags         = KeyExchangeMessage.INITIATE_FLAG;
+    ECKeyPair       baseKey       = Curve.generateKeyPair(true);
+    ECKeyPair       ephemeralKey  = Curve.generateKeyPair(true);
+    IdentityKeyPair identityKey   = identityKeyStore.getIdentityKeyPair();
+    SessionRecord   sessionRecord = sessionStore.get(recipientId, deviceId);
+
+    sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
+    sessionStore.put(recipientId, deviceId, sessionRecord);
+
+    return new KeyExchangeMessage(sequence, flags,
+                                  baseKey.getPublicKey(),
+                                  ephemeralKey.getPublicKey(),
+                                  identityKey.getPublicKey());
   }
 
 

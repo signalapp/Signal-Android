@@ -158,8 +158,8 @@ public class SessionCipher {
       if (sessionState.hasReceiverChain(theirEphemeral)) {
         return sessionState.getReceiverChainKey(theirEphemeral);
       } else {
-        RootKey rootKey         = sessionState.getRootKey();
-        ECKeyPair ourEphemeral    = sessionState.getSenderEphemeralPair();
+        RootKey                 rootKey         = sessionState.getRootKey();
+        ECKeyPair               ourEphemeral    = sessionState.getSenderEphemeralPair();
         Pair<RootKey, ChainKey> receiverChain   = rootKey.createChain(theirEphemeral, ourEphemeral);
         ECKeyPair               ourNewEphemeral = Curve.generateKeyPair(true);
         Pair<RootKey, ChainKey> senderChain     = receiverChain.first().createChain(theirEphemeral, ourNewEphemeral);

@@ -3,12 +3,14 @@ package org.whispersystems.test;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
-import org.whispersystems.libaxolotl.state.SessionState;
+import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 import org.whispersystems.libaxolotl.ratchet.MessageKeys;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
+import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.util.Pair;
 
 import java.util.HashMap;
@@ -36,23 +38,74 @@ public class InMemorySessionState implements SessionState {
   private int         remoteRegistrationId;
   private int         localRegistrationId;
 
+  private InMemoryPendingKeyExchange pendingKeyExchange;
+
   public InMemorySessionState() {}
 
   public InMemorySessionState(SessionState sessionState) {
     try {
       this.needsRefresh         = sessionState.getNeedsRefresh();
       this.sessionVersion       = sessionState.getSessionVersion();
-      this.remoteIdentityKey    = new IdentityKey(sessionState.getRemoteIdentityKey().serialize(), 0);
-      this.localIdentityKey     = new IdentityKey(sessionState.getLocalIdentityKey().serialize(), 0);
+
+      if (sessionState.getRemoteIdentityKey() != null) {
+        this.remoteIdentityKey = new IdentityKey(sessionState.getRemoteIdentityKey().serialize(), 0);
+      }
+
+      if (sessionState.getLocalIdentityKey() != null) {
+        this.localIdentityKey = new IdentityKey(sessionState.getLocalIdentityKey().serialize(), 0);
+      }
+
       this.previousCounter      = sessionState.getPreviousCounter();
-      this.rootKey              = new RootKey(sessionState.getRootKey().getKeyBytes());
+
+      if (sessionState.getRootKey() != null) {
+        this.rootKey = new RootKey(sessionState.getRootKey().getKeyBytes());
+      }
+
       this.senderEphemeral      = sessionState.getSenderEphemeralPair();
-      this.senderChainKey       = new ChainKey(sessionState.getSenderChainKey().getKey(),
-                                               sessionState.getSenderChainKey().getIndex());
-      this.pendingPreKeyid      = sessionState.getPendingPreKey().first();
-      this.pendingPreKey        = sessionState.getPendingPreKey().second();
+
+      if (sessionState.getSenderChainKey() != null) {
+        this.senderChainKey = new ChainKey(sessionState.getSenderChainKey().getKey(),
+                                           sessionState.getSenderChainKey().getIndex());
+      }
+
+      if (sessionState.getPendingPreKey() != null) {
+        this.pendingPreKeyid = sessionState.getPendingPreKey().first();
+      }
+
+      if (sessionState.getPendingPreKey() != null) {
+        this.pendingPreKey = sessionState.getPendingPreKey().second();
+      }
+
       this.remoteRegistrationId = sessionState.getRemoteRegistrationId();
       this.localRegistrationId  = sessionState.getLocalRegistrationId();
+
+      if (sessionState.hasPendingKeyExchange()) {
+        pendingKeyExchange                          = new InMemoryPendingKeyExchange();
+        pendingKeyExchange.sequence                 = sessionState.getPendingKeyExchangeSequence();
+        pendingKeyExchange.localBaseKey             = sessionState.getPendingKeyExchangeBaseKey()
+                                                                  .getPublicKey().serialize();
+        pendingKeyExchange.localBaseKeyPrivate      = sessionState.getPendingKeyExchangeBaseKey()
+                                                                  .getPrivateKey().serialize();
+        pendingKeyExchange.localEphemeralKey        = sessionState.getPendingKeyExchangeEphemeralKey()
+                                                                  .getPublicKey().serialize();
+        pendingKeyExchange.localEphemeralKeyPrivate = sessionState.getPendingKeyExchangeEphemeralKey()
+                                                                  .getPrivateKey().serialize();
+        pendingKeyExchange.localIdentityKey         = sessionState.getPendingKeyExchangeIdentityKey()
+                                                                  .getPublicKey().serialize();
+        pendingKeyExchange.localIdentityKeyPrivate  = sessionState.getPendingKeyExchangeIdentityKey()
+                                                                  .getPrivateKey().serialize();
+      }
+
+      for (ECPublicKey key : ((InMemorySessionState)sessionState).receiverChains.keySet()) {
+        ECPublicKey   chainKey   = Curve.decodePoint(key.serialize(), 0);
+        InMemoryChain ourChain   = new InMemoryChain();
+        InMemoryChain theirChain = ((InMemorySessionState)sessionState).receiverChains.get(key);
+
+        ourChain.chainKey    = theirChain.chainKey;
+        ourChain.index       = theirChain.index;
+        ourChain.messageKeys = theirChain.messageKeys;
+        receiverChains.put(chainKey, ourChain);
+      }
     } catch (InvalidKeyException e) {
       throw new AssertionError(e);
     }
@@ -230,33 +283,51 @@ public class InMemorySessionState implements SessionState {
   }
 
   @Override
-  public void setPendingKeyExchange(int sequence, ECKeyPair ourBaseKey, ECKeyPair ourEphemeralKey, IdentityKeyPair ourIdentityKey) {
-    throw new AssertionError();
+  public void setPendingKeyExchange(int sequence, ECKeyPair ourBaseKey, ECKeyPair ourEphemeralKey,
+                                    IdentityKeyPair ourIdentityKey)
+  {
+    pendingKeyExchange                          = new InMemoryPendingKeyExchange();
+    pendingKeyExchange.sequence                 = sequence;
+    pendingKeyExchange.localBaseKey             = ourBaseKey.getPublicKey().serialize();
+    pendingKeyExchange.localBaseKeyPrivate      = ourBaseKey.getPrivateKey().serialize();
+    pendingKeyExchange.localEphemeralKey        = ourEphemeralKey.getPublicKey().serialize();
+    pendingKeyExchange.localEphemeralKeyPrivate = ourEphemeralKey.getPrivateKey().serialize();
+    pendingKeyExchange.localIdentityKey         = ourIdentityKey.getPublicKey().serialize();
+    pendingKeyExchange.localIdentityKeyPrivate  = ourIdentityKey.getPrivateKey().serialize();
   }
 
   @Override
   public int getPendingKeyExchangeSequence() {
-    throw new AssertionError();
+    return pendingKeyExchange == null ? 0 : pendingKeyExchange.sequence;
   }
 
   @Override
   public ECKeyPair getPendingKeyExchangeBaseKey() throws InvalidKeyException {
-    throw new AssertionError();
+    ECPublicKey  publicKey  = Curve.decodePoint(pendingKeyExchange.localBaseKey, 0);
+    ECPrivateKey privateKey = Curve.decodePrivatePoint(pendingKeyExchange.localBaseKeyPrivate);
+
+    return new ECKeyPair(publicKey, privateKey);
   }
 
   @Override
   public ECKeyPair getPendingKeyExchangeEphemeralKey() throws InvalidKeyException {
-    throw new AssertionError();
+    ECPublicKey  publicKey  = Curve.decodePoint(pendingKeyExchange.localEphemeralKey, 0);
+    ECPrivateKey privateKey = Curve.decodePrivatePoint(pendingKeyExchange.localEphemeralKeyPrivate);
+
+    return new ECKeyPair(publicKey, privateKey);
   }
 
   @Override
   public IdentityKeyPair getPendingKeyExchangeIdentityKey() throws InvalidKeyException {
-    throw new AssertionError();
+    IdentityKey  publicKey  = new IdentityKey(pendingKeyExchange.localIdentityKey, 0);
+    ECPrivateKey privateKey = Curve.decodePrivatePoint(pendingKeyExchange.localIdentityKeyPrivate);
+
+    return new IdentityKeyPair(publicKey, privateKey);
   }
 
   @Override
   public boolean hasPendingKeyExchange() {
-    throw new AssertionError();
+    return pendingKeyExchange != null;
   }
 
   @Override
@@ -317,5 +388,15 @@ public class InMemorySessionState implements SessionState {
       byte[] cipherKey;
       byte[] macKey;
     }
+  }
+
+  private static class InMemoryPendingKeyExchange {
+    int sequence;
+    byte[] localBaseKey;
+    byte[] localBaseKeyPrivate;
+    byte[] localEphemeralKey;
+    byte[] localEphemeralKeyPrivate;
+    byte[] localIdentityKey;
+    byte[] localIdentityKeyPrivate;
   }
 }
