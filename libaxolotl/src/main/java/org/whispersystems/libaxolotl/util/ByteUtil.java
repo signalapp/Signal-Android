@@ -78,6 +78,13 @@ public class ByteUtil {
     return result;
   }
 
+  public static byte[] copyFrom(byte[] input) {
+    byte[] output = new byte[input.length];
+    System.arraycopy(input, 0, output, 0, output.length);
+
+    return output;
+  }
+
   public static byte intsToByteHighAndLow(int highValue, int lowValue) {
     return (byte)((highValue << 4 | lowValue) & 0xFF);
   }

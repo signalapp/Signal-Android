@@ -1,25 +1,51 @@
 package org.whispersystems.libaxolotl.state;
 
+import com.google.protobuf.ByteString;
+
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 
-/**
- * An interface describing a locally stored PreKey.
- *
- * @author Moxie Marlinspike
- */
-public interface PreKeyRecord {
-  /**
-   * @return the PreKey's ID.
-   */
-  public int       getId();
+import java.io.IOException;
 
-  /**
-   * @return the PreKey's key pair.
-   */
-  public ECKeyPair getKeyPair();
+import static org.whispersystems.libaxolotl.state.StorageProtos.PreKeyRecordStructure;
 
-  /**
-   * @return a serialized version of this PreKey.
-   */
-  public byte[]    serialize();
+public class PreKeyRecord {
+
+  private PreKeyRecordStructure structure;
+
+  public PreKeyRecord(int id, ECKeyPair keyPair) {
+    this.structure = PreKeyRecordStructure.newBuilder()
+                                          .setId(id)
+                                          .setPublicKey(ByteString.copyFrom(keyPair.getPublicKey()
+                                                                                   .serialize()))
+                                          .setPrivateKey(ByteString.copyFrom(keyPair.getPrivateKey()
+                                                                                    .serialize()))
+                                          .build();
+  }
+
+  public PreKeyRecord(byte[] serialized) throws IOException {
+    this.structure = PreKeyRecordStructure.parseFrom(serialized);
+  }
+
+  public int getId() {
+    return this.structure.getId();
+  }
+
+  public ECKeyPair getKeyPair() {
+    try {
+      ECPublicKey publicKey = Curve.decodePoint(this.structure.getPublicKey().toByteArray(), 0);
+      ECPrivateKey privateKey = Curve.decodePrivatePoint(this.structure.getPrivateKey().toByteArray());
+
+      return new ECKeyPair(publicKey, privateKey);
+    } catch (InvalidKeyException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public byte[] serialize() {
+    return this.structure.toByteArray();
+  }
 }

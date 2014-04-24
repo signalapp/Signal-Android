@@ -28,7 +28,6 @@ import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.util.Medium;
-import org.whispersystems.textsecure.storage.TextSecurePreKeyRecord;
 import org.whispersystems.textsecure.storage.TextSecurePreKeyStore;
 import org.whispersystems.textsecure.util.Util;
 
@@ -53,7 +52,7 @@ public class PreKeyUtil {
     for (int i=0;i<BATCH_SIZE;i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
       ECKeyPair    keyPair  = Curve25519.generateKeyPair(true);
-      PreKeyRecord record   = new TextSecurePreKeyRecord(masterSecret, preKeyId, keyPair);
+      PreKeyRecord record   = new PreKeyRecord(preKeyId, keyPair);
 
       preKeyStore.store(preKeyId, record);
       records.add(record);
@@ -76,7 +75,7 @@ public class PreKeyUtil {
     }
 
     ECKeyPair    keyPair = Curve25519.generateKeyPair(true);
-    PreKeyRecord record  = new TextSecurePreKeyRecord(masterSecret, Medium.MAX_VALUE, keyPair);
+    PreKeyRecord record  = new PreKeyRecord(Medium.MAX_VALUE, keyPair);
 
     preKeyStore.store(Medium.MAX_VALUE, record);
 

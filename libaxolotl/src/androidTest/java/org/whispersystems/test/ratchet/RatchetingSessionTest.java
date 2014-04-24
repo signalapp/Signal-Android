@@ -4,7 +4,6 @@ import android.test.AndroidTestCase;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
-import org.whispersystems.test.InMemorySessionState;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.ecc.Curve;
@@ -106,7 +105,7 @@ public class RatchetingSessionTest extends AndroidTestCase {
     ECPublicKey     aliceEphemeralPublicKey  = Curve.decodePoint(aliceEphemeralPublic, 0);
     IdentityKey     aliceIdentityPublicKey   = new IdentityKey(aliceIdentityPublic, 0);
 
-    SessionState session = new InMemorySessionState();
+    SessionState session = new SessionState();
 
     RatchetingSession.initializeSession(session, bobBaseKey, aliceBasePublicKey,
                                         bobEphemeralKey, aliceEphemeralPublicKey,
@@ -203,7 +202,7 @@ public class RatchetingSessionTest extends AndroidTestCase {
     ECPrivateKey    aliceIdentityPrivateKey  = Curve.decodePrivatePoint(aliceIdentityPrivate);
     IdentityKeyPair aliceIdentityKey         = new IdentityKeyPair(aliceIdentityPublicKey, aliceIdentityPrivateKey);
 
-    SessionState session = new InMemorySessionState();
+    SessionState session = new SessionState();
 
     RatchetingSession.initializeSession(session, aliceBaseKey, bobBasePublicKey,
                                         aliceEphemeralKey, bobEphemeralPublicKey,

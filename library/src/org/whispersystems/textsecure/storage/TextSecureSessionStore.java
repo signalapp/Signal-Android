@@ -5,8 +5,11 @@ import android.util.Log;
 
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
+import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.util.Conversions;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,11 +20,17 @@ import java.nio.channels.FileChannel;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure;
+
 public class TextSecureSessionStore implements SessionStore {
 
   private static final String TAG                   = TextSecureSessionStore.class.getSimpleName();
   private static final String SESSIONS_DIRECTORY_V2 = "sessions-v2";
   private static final Object FILE_LOCK             = new Object();
+
+  private static final int SINGLE_STATE_VERSION   = 1;
+  private static final int ARCHIVE_STATES_VERSION = 2;
+  private static final int CURRENT_VERSION        = 2;
 
   private final Context      context;
   private final MasterSecret masterSecret;
@@ -35,11 +44,30 @@ public class TextSecureSessionStore implements SessionStore {
   public SessionRecord load(long recipientId, int deviceId) {
     synchronized (FILE_LOCK) {
       try {
-        FileInputStream input = new FileInputStream(getSessionFile(recipientId, deviceId));
-        return new TextSecureSessionRecord(masterSecret, input);
+        MasterCipher    cipher = new MasterCipher(masterSecret);
+        FileInputStream in     = new FileInputStream(getSessionFile(recipientId, deviceId));
+
+        int versionMarker  = readInteger(in);
+
+        if (versionMarker > CURRENT_VERSION) {
+          throw new AssertionError("Unknown version: " + versionMarker);
+        }
+
+        byte[] serialized = cipher.decryptBytes(readBlob(in));
+        in.close();
+
+        if (versionMarker == SINGLE_STATE_VERSION) {
+          SessionStructure sessionStructure = SessionStructure.parseFrom(serialized);
+          SessionState     sessionState     = new SessionState(sessionStructure);
+          return new SessionRecord(sessionState);
+        } else if (versionMarker == ARCHIVE_STATES_VERSION) {
+          return new SessionRecord(serialized);
+        } else {
+          throw new AssertionError("Unknown version: " + versionMarker);
+        }
       } catch (InvalidMessageException | IOException e) {
         Log.w(TAG, "No existing session information found.");
-        return new TextSecureSessionRecord(masterSecret);
+        return new SessionRecord();
       }
     }
   }
@@ -47,11 +75,13 @@ public class TextSecureSessionStore implements SessionStore {
   @Override
   public void store(long recipientId, int deviceId, SessionRecord record) {
     try {
+      MasterCipher masterCipher = new MasterCipher(masterSecret);
       RandomAccessFile sessionFile = new RandomAccessFile(getSessionFile(recipientId, deviceId), "rw");
       FileChannel      out         = sessionFile.getChannel();
 
       out.position(0);
-      out.write(ByteBuffer.wrap(record.serialize()));
+      writeInteger(CURRENT_VERSION, out);
+      writeBlob(masterCipher.encryptBytes(record.serialize()), out);
       out.truncate(out.position());
 
       sessionFile.close();
@@ -124,6 +154,30 @@ public class TextSecureSessionStore implements SessionStore {
 
   private String getSessionName(long recipientId, int deviceId) {
     return recipientId + (deviceId == RecipientDevice.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
+  }
+
+  private byte[] readBlob(FileInputStream in) throws IOException {
+    int length       = readInteger(in);
+    byte[] blobBytes = new byte[length];
+
+    in.read(blobBytes, 0, blobBytes.length);
+    return blobBytes;
+  }
+
+  private void writeBlob(byte[] blobBytes, FileChannel out) throws IOException {
+    writeInteger(blobBytes.length, out);
+    out.write(ByteBuffer.wrap(blobBytes));
+  }
+
+  private int readInteger(FileInputStream in) throws IOException {
+    byte[] integer = new byte[4];
+    in.read(integer, 0, integer.length);
+    return Conversions.byteArrayToInt(integer);
+  }
+
+  private void writeInteger(int value, FileChannel out) throws IOException {
+    byte[] valueBytes = Conversions.intToByteArray(value);
+    out.write(ByteBuffer.wrap(valueBytes));
   }
 
 }

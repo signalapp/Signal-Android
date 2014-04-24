@@ -7,7 +7,9 @@ import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
+import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.util.Conversions;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,8 +20,9 @@ import java.nio.channels.FileChannel;
 
 public class TextSecurePreKeyStore implements PreKeyStore {
 
-  public  static final String PREKEY_DIRECTORY = "prekeys";
-  private static final String TAG              = TextSecurePreKeyStore.class.getSimpleName();
+  public  static final String PREKEY_DIRECTORY       = "prekeys";
+  private static final int    CURRENT_VERSION_MARKER = 1;
+  private static final String TAG                    = TextSecurePreKeyStore.class.getSimpleName();
 
   private final Context      context;
   private final MasterSecret masterSecret;
@@ -32,8 +35,17 @@ public class TextSecurePreKeyStore implements PreKeyStore {
   @Override
   public PreKeyRecord load(int preKeyId) throws InvalidKeyIdException {
     try {
-      FileInputStream fin = new FileInputStream(getPreKeyFile(preKeyId));
-      return new TextSecurePreKeyRecord(masterSecret, fin);
+      MasterCipher    masterCipher  = new MasterCipher(masterSecret);
+      FileInputStream fin           = new FileInputStream(getPreKeyFile(preKeyId));
+      int             recordVersion = readInteger(fin);
+
+      if (recordVersion != CURRENT_VERSION_MARKER) {
+        throw new AssertionError("Invalid version: " + recordVersion);
+      }
+
+      byte[] serializedRecord = masterCipher.decryptBytes(readBlob(fin));
+      return new PreKeyRecord(serializedRecord);
+
     } catch (IOException | InvalidMessageException e) {
       Log.w(TAG, e);
       throw new InvalidKeyIdException(e);
@@ -43,11 +55,13 @@ public class TextSecurePreKeyStore implements PreKeyStore {
   @Override
   public void store(int preKeyId, PreKeyRecord record) {
     try {
-      RandomAccessFile recordFile = new RandomAccessFile(getPreKeyFile(preKeyId), "rw");
-      FileChannel      out        = recordFile.getChannel();
+      MasterCipher     masterCipher = new MasterCipher(masterSecret);
+      RandomAccessFile recordFile   = new RandomAccessFile(getPreKeyFile(preKeyId), "rw");
+      FileChannel      out          = recordFile.getChannel();
 
       out.position(0);
-      out.write(ByteBuffer.wrap(record.serialize()));
+      writeInteger(CURRENT_VERSION_MARKER, out);
+      writeBlob(masterCipher.encryptBytes(record.serialize()), out);
       out.truncate(out.position());
 
       recordFile.close();
@@ -83,4 +97,29 @@ public class TextSecurePreKeyStore implements PreKeyStore {
 
     return directory;
   }
+
+  private byte[] readBlob(FileInputStream in) throws IOException {
+    int length       = readInteger(in);
+    byte[] blobBytes = new byte[length];
+
+    in.read(blobBytes, 0, blobBytes.length);
+    return blobBytes;
+  }
+
+  private void writeBlob(byte[] blobBytes, FileChannel out) throws IOException {
+    writeInteger(blobBytes.length, out);
+    out.write(ByteBuffer.wrap(blobBytes));
+  }
+
+  private int readInteger(FileInputStream in) throws IOException {
+    byte[] integer = new byte[4];
+    in.read(integer, 0, integer.length);
+    return Conversions.byteArrayToInt(integer);
+  }
+
+  private void writeInteger(int value, FileChannel out) throws IOException {
+    byte[] valueBytes = Conversions.intToByteArray(value);
+    out.write(ByteBuffer.wrap(valueBytes));
+  }
+
 }

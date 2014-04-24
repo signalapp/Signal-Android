@@ -1,45 +1,84 @@
 package org.whispersystems.libaxolotl.state;
 
+import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
+
+import static org.whispersystems.libaxolotl.state.StorageProtos.RecordStructure;
+import static org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure;
 
 /**
  * A SessionRecord encapsulates the state of an ongoing session.
- * <p>
- * It contains the current {@link org.whispersystems.libaxolotl.state.SessionState},
- * in addition to previous {@link SessionState}s for the same recipient, which need
- * to be maintained in some situations.
  *
  * @author Moxie Marlinspike
  */
-public interface SessionRecord {
+public class SessionRecord {
 
-  /**
-   * @return the current {@link org.whispersystems.libaxolotl.state.SessionState}
-   */
-  public SessionState       getSessionState();
+  private SessionState       sessionState   = new SessionState();
+  private List<SessionState> previousStates = new LinkedList<>();
+
+  public SessionRecord() {}
+
+  public SessionRecord(SessionState sessionState) {
+    this.sessionState = sessionState;
+  }
+
+  public SessionRecord(byte[] serialized) throws IOException {
+    RecordStructure record = RecordStructure.parseFrom(serialized);
+    this.sessionState = new SessionState(record.getCurrentSession());
+
+    for (SessionStructure previousStructure : record.getPreviousSessionsList()) {
+      previousStates.add(new SessionState(previousStructure));
+    }
+  }
+
+  public SessionState getSessionState() {
+    return sessionState;
+  }
 
   /**
    * @return the list of all currently maintained "previous" session states.
    */
-  public List<SessionState> getPreviousSessionStates();
+  public List<SessionState> getPreviousSessionStates() {
+    return previousStates;
+  }
 
   /**
    * Reset the current SessionRecord, clearing all "previous" session states,
    * and resetting the current {@link org.whispersystems.libaxolotl.state.SessionState}
    * to a fresh state.
    */
-  public void               reset();
+  public void reset() {
+    this.sessionState   = new SessionState();
+    this.previousStates = new LinkedList<>();
+  }
 
   /**
    * Move the current {@link SessionState} into the list of "previous" session states,
    * and replace the current {@link org.whispersystems.libaxolotl.state.SessionState}
    * with a fresh reset instance.
    */
-  public void               archiveCurrentState();
+  public void archiveCurrentState() {
+    this.previousStates.add(sessionState);
+    this.sessionState = new SessionState();
+  }
 
   /**
    * @return a serialized version of the current SessionRecord.
    */
-  public byte[]             serialize();
+  public byte[] serialize() {
+    List<SessionStructure> previousStructures = new LinkedList<>();
+
+    for (SessionState previousState : previousStates) {
+      previousStructures.add(previousState.getStructure());
+    }
+
+    RecordStructure record = RecordStructure.newBuilder()
+                                            .setCurrentSession(sessionState.getStructure())
+                                            .addAllPreviousSessions(previousStructures)
+                                            .build();
+
+    return record.toByteArray();
+  }
 
 }

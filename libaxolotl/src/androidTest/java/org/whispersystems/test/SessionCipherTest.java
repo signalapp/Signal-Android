@@ -25,8 +25,8 @@ public class SessionCipherTest extends AndroidTestCase {
       throws InvalidKeyException, DuplicateMessageException,
       LegacyMessageException, InvalidMessageException
   {
-    SessionRecord aliceSessionRecord = new InMemorySessionRecord();
-    SessionRecord bobSessionRecord   = new InMemorySessionRecord();
+    SessionRecord aliceSessionRecord = new SessionRecord();
+    SessionRecord bobSessionRecord   = new SessionRecord();
 
     initializeSessions(aliceSessionRecord.getSessionState(), bobSessionRecord.getSessionState());
 

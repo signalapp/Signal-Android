@@ -220,16 +220,13 @@ public class SessionBuilderTest extends AndroidTestCase {
     }
   }
 
-  private class InMemoryPreKey implements PreKey, PreKeyRecord {
+  private class InMemoryPreKey extends PreKeyRecord implements PreKey {
 
-    private final int         keyId;
-    private final ECKeyPair   keyPair;
     private final IdentityKey identityKey;
     private final int         registrationId;
 
     public InMemoryPreKey(int keyId, ECKeyPair keyPair, IdentityKey identityKey, int registrationId) {
-      this.keyId          = keyId;
-      this.keyPair        = keyPair;
+      super(keyId, keyPair);
       this.identityKey    = identityKey;
       this.registrationId = registrationId;
     }
@@ -241,12 +238,12 @@ public class SessionBuilderTest extends AndroidTestCase {
 
     @Override
     public int getKeyId() {
-      return keyId;
+      return getId();
     }
 
     @Override
     public ECPublicKey getPublicKey() {
-      return keyPair.getPublicKey();
+      return getKeyPair().getPublicKey();
     }
 
     @Override
@@ -257,21 +254,6 @@ public class SessionBuilderTest extends AndroidTestCase {
     @Override
     public int getRegistrationId() {
       return registrationId;
-    }
-
-    @Override
-    public int getId() {
-      return keyId;
-    }
-
-    @Override
-    public ECKeyPair getKeyPair() {
-      return keyPair;
-    }
-
-    @Override
-    public byte[] serialize() {
-      throw new AssertionError("nyi");
     }
   }
 

@@ -4,6 +4,7 @@ import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.Pair;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,16 +12,20 @@ import java.util.Map;
 
 public class InMemorySessionStore implements SessionStore {
 
-  private Map<Pair<Long, Integer>, SessionRecord> sessions = new HashMap<>();
+  private Map<Pair<Long, Integer>, byte[]> sessions = new HashMap<>();
 
   public InMemorySessionStore() {}
 
   @Override
   public synchronized SessionRecord load(long recipientId, int deviceId) {
-    if (contains(recipientId, deviceId)) {
-      return new InMemorySessionRecord(sessions.get(new Pair<>(recipientId, deviceId)));
-    } else {
-      return new InMemorySessionRecord();
+    try {
+      if (contains(recipientId, deviceId)) {
+        return new SessionRecord(sessions.get(new Pair<>(recipientId, deviceId)));
+      } else {
+        return new SessionRecord();
+      }
+    } catch (IOException e) {
+      throw new AssertionError(e);
     }
   }
 
@@ -39,7 +44,7 @@ public class InMemorySessionStore implements SessionStore {
 
   @Override
   public synchronized void store(long recipientId, int deviceId, SessionRecord record) {
-    sessions.put(new Pair<>(recipientId, deviceId), record);
+    sessions.put(new Pair<>(recipientId, deviceId), record.serialize());
   }
 
   @Override
