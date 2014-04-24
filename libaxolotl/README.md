@@ -45,16 +45,13 @@ State is kept in the following places:
 At install time, a libaxolotl client needs to generate its identity keys, registration id, and
 prekeys.
 
-```
-IdentityKeyPair    identityKeyPair = KeyHelper.generateIdentityKeyPair();
-int                registrationId  = KeyHelper.generateRegistrationId();
-List<PreKeyRecord> preKeys         = KeyHelper.generatePreKeys(startId, 100);
+    IdentityKeyPair    identityKeyPair = KeyHelper.generateIdentityKeyPair();
+    int                registrationId  = KeyHelper.generateRegistrationId();
+    List<PreKeyRecord> preKeys         = KeyHelper.generatePreKeys(startId, 100);
 
-// Store identityKeyPair somewhere durable and safe.
-// Store registrationId somewhere durable and safe.
-// Store preKeys somewhere durable and safe.
-
-```
+    // Store identityKeyPair somewhere durable and safe.
+    // Store registrationId somewhere durable and safe.
+    // Store preKeys somewhere durable and safe.
 
 ## Building a session
 
@@ -63,20 +60,18 @@ SessionStore.  These will manage loading and storing of identity, prekeys, and s
 
 Once those are implemented, building a session is fairly straightforward:
 
-```
-SessionStore     sessionStore  = new MySessionStore();
-PreKeyStore      preKeyStore   = new MyPreKeyStore();
-IdentityKeyStore identityStore = new MyIdentityKeyStore();
+    SessionStore     sessionStore  = new MySessionStore();
+    PreKeyStore      preKeyStore   = new MyPreKeyStore();
+    IdentityKeyStore identityStore = new MyIdentityKeyStore();
 
-// Instantiate a SessionBuilder for a remote recipientId + deviceId tuple.
-SessionBuilder sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, identityStore,
-                                                   recipientId, deviceId);
+    // Instantiate a SessionBuilder for a remote recipientId + deviceId tuple.
+    SessionBuilder sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, identityStore,
+                                                       recipientId, deviceId);
 
-// Build a session with a PreKey retrieved from the server.
-sessionBuilder.process(retrievedPreKey);
+    // Build a session with a PreKey retrieved from the server.
+    sessionBuilder.process(retrievedPreKey);
 
-SessionCipher sessionCipher = new SessionCipher(sessionStore, recipientId, deviceId);
-CiphertextMessage message = sessionCipher.encrypt("Hello world!".getBytes("UTF-8"));
+    SessionCipher sessionCipher = new SessionCipher(sessionStore, recipientId, deviceId);
+    CiphertextMessage message = sessionCipher.encrypt("Hello world!".getBytes("UTF-8"));
 
-deliver(message.serialize());
-```
+    deliver(message.serialize());
