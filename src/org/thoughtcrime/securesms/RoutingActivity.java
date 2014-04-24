@@ -248,7 +248,7 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
 
     if (streamExtra != null) {
-        type = getMimeType(streamExtra);
+      type = getMimeType(streamExtra);
     }
 
     if (type != null && type.startsWith("image/")) {
