@@ -77,8 +77,8 @@ public class KeyExchangeProcessor {
   }
 
   public boolean isStale(KeyExchangeMessage message) {
-    SessionRecord sessionRecord = sessionStore.get(recipientDevice.getRecipientId(),
-                                                   recipientDevice.getDeviceId());
+    SessionRecord sessionRecord = sessionStore.load(recipientDevice.getRecipientId(),
+                                                    recipientDevice.getDeviceId());
 
     return
         message.isResponse() &&

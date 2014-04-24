@@ -1,7 +1,6 @@
 package org.whispersystems.test;
 
 import android.test.AndroidTestCase;
-import android.util.Log;
 
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.IdentityKey;
@@ -57,7 +56,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     aliceSessionBuilder.process(bobPreKey);
 
     assertTrue(aliceSessionStore.contains(BOB_RECIPIENT_ID, 1));
-    assertTrue(!aliceSessionStore.get(BOB_RECIPIENT_ID, 1).getSessionState().getNeedsRefresh());
+    assertTrue(!aliceSessionStore.load(BOB_RECIPIENT_ID, 1).getSessionState().getNeedsRefresh());
 
     String            originalMessage    = "L'homme est condamné à être libre";
     SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
@@ -95,14 +94,10 @@ public class SessionBuilderTest extends AndroidTestCase {
     KeyExchangeMessage aliceKeyExchangeMessage = aliceSessionBuilder.process();
     KeyExchangeMessage bobKeyExchangeMessage   = bobSessionBuilder.process(aliceKeyExchangeMessage);
 
-    Log.w("SessionBuilderTest", "Record from test: " + bobSessionStore.get(ALICE_RECIPIENT_ID, 1));
-
     assertTrue(bobKeyExchangeMessage != null);
     assertTrue(aliceKeyExchangeMessage != null);
 
     KeyExchangeMessage response = aliceSessionBuilder.process(bobKeyExchangeMessage);
-
-    Log.w("SessionBuilderTest", "Record from test 2: " + bobSessionStore.get(ALICE_RECIPIENT_ID, 1));
 
     assertTrue(response == null);
     assertTrue(aliceSessionStore.contains(BOB_RECIPIENT_ID, 1));
@@ -171,7 +166,9 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(new String(plaintext).equals(originalMessage));
 
     for (int i=0;i<10;i++) {
-      String loopingMessage = ("You can only desire based on what you know: " + i);
+      String loopingMessage = ("What do we mean by saying that existence precedes essence? " +
+                               "We mean that man first of all exists, encounters himself, " +
+                               "surges up in the world--and defines himself aftward. " + i);
       CiphertextMessage aliceLoopingMessage = aliceSessionCipher.encrypt(loopingMessage.getBytes());
 
       byte[] loopingPlaintext = bobSessionCipher.decrypt(aliceLoopingMessage.serialize());
@@ -179,7 +176,9 @@ public class SessionBuilderTest extends AndroidTestCase {
     }
 
     for (int i=0;i<10;i++) {
-      String loopingMessage = ("You can only desire based on what you know: " + i);
+      String loopingMessage = ("What do we mean by saying that existence precedes essence? " +
+                               "We mean that man first of all exists, encounters himself, " +
+                               "surges up in the world--and defines himself aftward. " + i);
       CiphertextMessage bobLoopingMessage = bobSessionCipher.encrypt(loopingMessage.getBytes());
 
       byte[] loopingPlaintext = aliceSessionCipher.decrypt(bobLoopingMessage.serialize());
@@ -189,14 +188,18 @@ public class SessionBuilderTest extends AndroidTestCase {
     Set<Pair<String, CiphertextMessage>> aliceOutOfOrderMessages = new HashSet<>();
 
     for (int i=0;i<10;i++) {
-      String            loopingMessage      = ("You can only desire based on what you know: " + i);
+      String loopingMessage = ("What do we mean by saying that existence precedes essence? " +
+                               "We mean that man first of all exists, encounters himself, " +
+                               "surges up in the world--and defines himself aftward. " + i);
       CiphertextMessage aliceLoopingMessage = aliceSessionCipher.encrypt(loopingMessage.getBytes());
 
       aliceOutOfOrderMessages.add(new Pair<>(loopingMessage, aliceLoopingMessage));
     }
 
     for (int i=0;i<10;i++) {
-      String loopingMessage = ("You can only desire based on what you know: " + i);
+      String loopingMessage = ("What do we mean by saying that existence precedes essence? " +
+                               "We mean that man first of all exists, encounters himself, " +
+                               "surges up in the world--and defines himself aftward. " + i);
       CiphertextMessage aliceLoopingMessage = aliceSessionCipher.encrypt(loopingMessage.getBytes());
 
       byte[] loopingPlaintext = bobSessionCipher.decrypt(aliceLoopingMessage.serialize());

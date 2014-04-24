@@ -183,8 +183,8 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   private IdentityKey getRemoteIdentityKey(MasterSecret masterSecret, Recipient recipient) {
     SessionStore  sessionStore = new TextSecureSessionStore(this, masterSecret);
-    SessionRecord record       = sessionStore.get(recipient.getRecipientId(),
-                                                  RecipientDevice.DEFAULT_DEVICE_ID);
+    SessionRecord record       = sessionStore.load(recipient.getRecipientId(),
+                                                   RecipientDevice.DEFAULT_DEVICE_ID);
 
     if (record == null) {
       return null;

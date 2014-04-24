@@ -3,7 +3,7 @@ package org.whispersystems.libaxolotl.util;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-public class Helper {
+public class KeyHelper {
 
   public static int getRandomSequence(int max) {
     try {

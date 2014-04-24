@@ -10,6 +10,11 @@ import org.whispersystems.libaxolotl.ratchet.MessageKeys;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
 import org.whispersystems.libaxolotl.util.Pair;
 
+/**
+ * The current session state.
+ *
+ * @author Moxie Marlinspike
+ */
 public interface SessionState {
   public void setNeedsRefresh(boolean needsRefresh);
   public boolean getNeedsRefresh();

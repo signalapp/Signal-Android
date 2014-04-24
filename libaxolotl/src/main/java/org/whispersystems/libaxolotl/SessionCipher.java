@@ -43,6 +43,15 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * The main entry point for Axolotl encrypt/decrypt operations.
+ *
+ * Once a session has been established with {@link SessionBuilder},
+ * this class can be used for all encrypt/decrypt operations within
+ * that session.
+ *
+ * @author Moxie Marlinspike
+ */
 public class SessionCipher {
 
   private static final Object SESSION_LOCK = new Object();
@@ -51,15 +60,30 @@ public class SessionCipher {
   private final long         recipientId;
   private final int          deviceId;
 
+  /**
+   * Construct a SessionCipher for encrypt/decrypt operations on a session.
+   * In order to use SessionCipher, a session must have already been created
+   * and stored using {@link SessionBuilder}.
+   *
+   * @param  sessionStore The {@link SessionStore} that contains a session for this recipient.
+   * @param  recipientId  The remote ID that messages will be encrypted to or decrypted from.
+   * @param  deviceId     The device corresponding to the recipientId.
+   */
   public SessionCipher(SessionStore sessionStore, long recipientId, int deviceId) {
     this.sessionStore = sessionStore;
     this.recipientId  = recipientId;
     this.deviceId     = deviceId;
   }
 
+  /**
+   * Encrypt a message.
+   *
+   * @param  paddedMessage The plaintext message bytes, optionally padded to a constant multiple.
+   * @return A ciphertext message encrypted to the recipient+device tuple.
+   */
   public CiphertextMessage encrypt(byte[] paddedMessage) {
     synchronized (SESSION_LOCK) {
-      SessionRecord sessionRecord   = sessionStore.get(recipientId, deviceId);
+      SessionRecord sessionRecord   = sessionStore.load(recipientId, deviceId);
       SessionState  sessionState    = sessionRecord.getSessionState();
       ChainKey      chainKey        = sessionState.getSenderChainKey();
       MessageKeys   messageKeys     = chainKey.getMessageKeys();
@@ -82,23 +106,34 @@ public class SessionCipher {
       }
 
       sessionState.setSenderChainKey(chainKey.getNextChainKey());
-      sessionStore.put(recipientId, deviceId, sessionRecord);
+      sessionStore.store(recipientId, deviceId, sessionRecord);
       return ciphertextMessage;
     }
   }
 
-  public byte[] decrypt(byte[] decodedMessage)
+  /**
+   * Decrypt a message.
+   *
+   * @param  ciphertext The ciphertext message bytes corresponding to a serialized
+   *                    {@link WhisperMessage}.
+   * @return The plaintext.
+   * @throws InvalidMessageException if the input is not valid ciphertext.
+   * @throws DuplicateMessageException if the input is a message that has already been received.
+   * @throws LegacyMessageException if the input is a message formatted by a protocol version that
+   *                                is no longer supported.
+   */
+  public byte[] decrypt(byte[] ciphertext)
       throws InvalidMessageException, DuplicateMessageException, LegacyMessageException
   {
     synchronized (SESSION_LOCK) {
-      SessionRecord      sessionRecord  = sessionStore.get(recipientId, deviceId);
+      SessionRecord      sessionRecord  = sessionStore.load(recipientId, deviceId);
       SessionState       sessionState   = sessionRecord.getSessionState();
       List<SessionState> previousStates = sessionRecord.getPreviousSessionStates();
       List<Exception>    exceptions     = new LinkedList<>();
 
       try {
-        byte[] plaintext = decrypt(sessionState, decodedMessage);
-        sessionStore.put(recipientId, deviceId, sessionRecord);
+        byte[] plaintext = decrypt(sessionState, ciphertext);
+        sessionStore.store(recipientId, deviceId, sessionRecord);
 
         return plaintext;
       } catch (InvalidMessageException e) {
@@ -107,8 +142,8 @@ public class SessionCipher {
 
       for (SessionState previousState : previousStates) {
         try {
-          byte[] plaintext = decrypt(previousState, decodedMessage);
-          sessionStore.put(recipientId, deviceId, sessionRecord);
+          byte[] plaintext = decrypt(previousState, ciphertext);
+          sessionStore.store(recipientId, deviceId, sessionRecord);
 
           return plaintext;
         } catch (InvalidMessageException e) {
@@ -120,7 +155,7 @@ public class SessionCipher {
     }
   }
 
-  public byte[] decrypt(SessionState sessionState, byte[] decodedMessage)
+  private byte[] decrypt(SessionState sessionState, byte[] decodedMessage)
       throws InvalidMessageException, DuplicateMessageException, LegacyMessageException
   {
     if (!sessionState.hasSenderChain()) {
@@ -146,7 +181,7 @@ public class SessionCipher {
 
   public int getRemoteRegistrationId() {
     synchronized (SESSION_LOCK) {
-      SessionRecord record = sessionStore.get(recipientId, deviceId);
+      SessionRecord record = sessionStore.load(recipientId, deviceId);
       return record.getSessionState().getRemoteRegistrationId();
     }
   }

@@ -26,7 +26,7 @@ public class SessionUtil {
 
     return
         sessionStore.contains(recipientId, deviceId) &&
-        !sessionStore.get(recipientId, deviceId).getSessionState().getNeedsRefresh();
+        !sessionStore.load(recipientId, deviceId).getSessionState().getNeedsRefresh();
   }
 
 }

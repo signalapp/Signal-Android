@@ -14,9 +14,26 @@ import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.libaxolotl.util.Helper;
+import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.Medium;
 
+/**
+ * SessionBuilder is responsible for setting up encrypted sessions.
+ * Once a session has been established, {@link org.whispersystems.libaxolotl.SessionCipher}
+ * can be used to encrypt/decrypt messages in that session.
+ * <p>
+ * Sessions are built from one of three different possible vectors:
+ * <ol>
+ *   <li>A {@link org.whispersystems.libaxolotl.state.PreKey} retrieved from a server.</li>
+ *   <li>A {@link org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage} received from a client.</li>
+ *   <li>A {@link org.whispersystems.libaxolotl.protocol.KeyExchangeMessage} sent to or received from a client.</li>
+ * </ol>
+ *
+ * Sessions are constructed per recipientId + deviceId tuple.  Remote logical users are identified
+ * by their recipientId, and each logical recipientId can have multiple physical devices.
+ *
+ * @author Moxie Marlinspike
+ */
 public class SessionBuilder {
 
   private static final String TAG = SessionBuilder.class.getSimpleName();
@@ -27,6 +44,15 @@ public class SessionBuilder {
   private final long             recipientId;
   private final int              deviceId;
 
+  /**
+   * Constructs a SessionBuilder.
+   *
+   * @param sessionStore The {@link org.whispersystems.libaxolotl.state.SessionStore} to store the constructed session in.
+   * @param preKeyStore The {@link  org.whispersystems.libaxolotl.state.PreKeyStore} where the client's local {@link org.whispersystems.libaxolotl.state.PreKeyRecord}s are stored.
+   * @param identityKeyStore The {@link org.whispersystems.libaxolotl.state.IdentityKeyStore} containing the client's identity key information.
+   * @param recipientId The recipient ID of the remote user to build a session with.
+   * @param deviceId The device ID of the remote user's physical device.
+   */
   public SessionBuilder(SessionStore sessionStore,
                         PreKeyStore preKeyStore,
                         IdentityKeyStore identityKeyStore,
@@ -39,6 +65,19 @@ public class SessionBuilder {
     this.deviceId         = deviceId;
   }
 
+  /**
+   * Build a new session from a received {@link org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage}.
+   *
+   * After a session is constructed in this way, the embedded {@link org.whispersystems.libaxolotl.protocol.WhisperMessage}
+   * can be decrypted.
+   *
+   * @param message The received {@link org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage}.
+   * @throws org.whispersystems.libaxolotl.InvalidKeyIdException when there is no local
+   *                                                             {@link org.whispersystems.libaxolotl.state.PreKeyRecord}
+   *                                                             that corresponds to the PreKey ID in
+   *                                                             the message.
+   * @throws org.whispersystems.libaxolotl.InvalidKeyException when the message is formatted incorrectly.
+   */
   public void process(PreKeyWhisperMessage message)
       throws InvalidKeyIdException, InvalidKeyException
   {
@@ -59,7 +98,7 @@ public class SessionBuilder {
     if (!preKeyStore.contains(preKeyId))
       throw new InvalidKeyIdException("No such prekey: " + preKeyId);
 
-    SessionRecord   sessionRecord        = sessionStore.get(recipientId, deviceId);
+    SessionRecord   sessionRecord        = sessionStore.load(recipientId, deviceId);
     PreKeyRecord    preKeyRecord         = preKeyStore.load(preKeyId);
     ECKeyPair       ourBaseKey           = preKeyRecord.getKeyPair();
     ECKeyPair       ourEphemeralKey      = ourBaseKey;
@@ -79,7 +118,7 @@ public class SessionBuilder {
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
-    sessionStore.put(recipientId, deviceId, sessionRecord);
+    sessionStore.store(recipientId, deviceId, sessionRecord);
 
     if (preKeyId != Medium.MAX_VALUE) {
       preKeyStore.remove(preKeyId);
@@ -88,8 +127,16 @@ public class SessionBuilder {
     identityKeyStore.saveIdentity(recipientId, theirIdentityKey);
   }
 
+  /**
+   * Build a new session from a {@link org.whispersystems.libaxolotl.state.PreKey} retrieved from
+   * a server.
+   *
+   * @param preKey A PreKey for the destination recipient, retrieved from a server.
+   * @throws InvalidKeyException when the {@link org.whispersystems.libaxolotl.state.PreKey} is
+   *                             badly formatted.
+   */
   public void process(PreKey preKey) throws InvalidKeyException {
-    SessionRecord   sessionRecord     = sessionStore.get(recipientId, deviceId);
+    SessionRecord   sessionRecord     = sessionStore.load(recipientId, deviceId);
     ECKeyPair       ourBaseKey        = Curve.generateKeyPair(true);
     ECKeyPair       ourEphemeralKey   = Curve.generateKeyPair(true);
     ECPublicKey     theirBaseKey      = preKey.getPublicKey();
@@ -108,14 +155,22 @@ public class SessionBuilder {
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
 
-    sessionStore.put(recipientId, deviceId, sessionRecord);
+    sessionStore.store(recipientId, deviceId, sessionRecord);
 
     identityKeyStore.saveIdentity(recipientId, preKey.getIdentityKey());
   }
 
+  /**
+   * Build a new session from a {@link org.whispersystems.libaxolotl.protocol.KeyExchangeMessage}
+   * received from a remote client.
+   *
+   * @param message The received KeyExchangeMessage.
+   * @return The KeyExchangeMessage to respond with, or null if no response is necessary.
+   * @throws InvalidKeyException if the received KeyExchangeMessage is badly formatted.
+   */
   public KeyExchangeMessage process(KeyExchangeMessage message) throws InvalidKeyException {
     KeyExchangeMessage responseMessage = null;
-    SessionRecord      sessionRecord   = sessionStore.get(recipientId, deviceId);
+    SessionRecord      sessionRecord   = sessionStore.load(recipientId, deviceId);
 
     Log.w(TAG, "Received key exchange with sequence: " + message.getSequence());
 
@@ -170,23 +225,28 @@ public class SessionBuilder {
                                         ourIdentityKey, message.getIdentityKey());
 
     sessionRecord.getSessionState().setSessionVersion(message.getVersion());
-    sessionStore.put(recipientId, deviceId, sessionRecord);
+    sessionStore.store(recipientId, deviceId, sessionRecord);
 
     identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
 
     return responseMessage;
   }
 
+  /**
+   * Initiate a new session by sending an initial KeyExchangeMessage to the recipient.
+   *
+   * @return the KeyExchangeMessage to deliver.
+   */
   public KeyExchangeMessage process() {
-    int             sequence      = Helper.getRandomSequence(65534) + 1;
+    int             sequence      = KeyHelper.getRandomSequence(65534) + 1;
     int             flags         = KeyExchangeMessage.INITIATE_FLAG;
     ECKeyPair       baseKey       = Curve.generateKeyPair(true);
     ECKeyPair       ephemeralKey  = Curve.generateKeyPair(true);
     IdentityKeyPair identityKey   = identityKeyStore.getIdentityKeyPair();
-    SessionRecord   sessionRecord = sessionStore.get(recipientId, deviceId);
+    SessionRecord   sessionRecord = sessionStore.load(recipientId, deviceId);
 
     sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
-    sessionStore.put(recipientId, deviceId, sessionRecord);
+    sessionStore.store(recipientId, deviceId, sessionRecord);
 
     return new KeyExchangeMessage(sequence, flags,
                                   baseKey.getPublicKey(),

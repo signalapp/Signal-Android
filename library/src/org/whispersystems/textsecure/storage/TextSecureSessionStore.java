@@ -32,7 +32,7 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public SessionRecord get(long recipientId, int deviceId) {
+  public SessionRecord load(long recipientId, int deviceId) {
     synchronized (FILE_LOCK) {
       try {
         FileInputStream input = new FileInputStream(getSessionFile(recipientId, deviceId));
@@ -45,7 +45,7 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public void put(long recipientId, int deviceId, SessionRecord record) {
+  public void store(long recipientId, int deviceId, SessionRecord record) {
     try {
       RandomAccessFile sessionFile = new RandomAccessFile(getSessionFile(recipientId, deviceId), "rw");
       FileChannel      out         = sessionFile.getChannel();
@@ -63,7 +63,7 @@ public class TextSecureSessionStore implements SessionStore {
   @Override
   public boolean contains(long recipientId, int deviceId) {
     return getSessionFile(recipientId, deviceId).exists() &&
-        get(recipientId, deviceId).getSessionState().hasSenderChain();
+        load(recipientId, deviceId).getSessionState().hasSenderChain();
   }
 
   @Override

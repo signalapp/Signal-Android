@@ -16,7 +16,7 @@ public class InMemorySessionStore implements SessionStore {
   public InMemorySessionStore() {}
 
   @Override
-  public synchronized SessionRecord get(long recipientId, int deviceId) {
+  public synchronized SessionRecord load(long recipientId, int deviceId) {
     if (contains(recipientId, deviceId)) {
       return new InMemorySessionRecord(sessions.get(new Pair<>(recipientId, deviceId)));
     } else {
@@ -38,7 +38,7 @@ public class InMemorySessionStore implements SessionStore {
   }
 
   @Override
-  public synchronized void put(long recipientId, int deviceId, SessionRecord record) {
+  public synchronized void store(long recipientId, int deviceId, SessionRecord record) {
     sessions.put(new Pair<>(recipientId, deviceId), record);
   }
 

@@ -33,8 +33,8 @@ public class SessionCipherTest extends AndroidTestCase {
     SessionStore aliceSessionStore = new InMemorySessionStore();
     SessionStore bobSessionStore   = new InMemorySessionStore();
 
-    aliceSessionStore.put(2L, 1, aliceSessionRecord);
-    bobSessionStore.put(3L, 1, bobSessionRecord);
+    aliceSessionStore.store(2L, 1, aliceSessionRecord);
+    bobSessionStore.store(3L, 1, bobSessionRecord);
 
     SessionCipher     aliceCipher    = new SessionCipher(aliceSessionStore, 2L, 1);
     SessionCipher     bobCipher      = new SessionCipher(bobSessionStore, 3L, 1);
