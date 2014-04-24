@@ -23,6 +23,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -248,7 +250,7 @@ public class ThreadDatabase extends Database {
     if (filter == null || filter.size() == 0)
       return null;
 
-    List<Long> recipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddresses(filter);
+    List<Long> recipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddressIds(filter);
 
     if (recipientIds == null || recipientIds.size() == 0)
       return null;

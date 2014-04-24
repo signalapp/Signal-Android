@@ -24,6 +24,10 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.InvalidNumberException;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -31,8 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CanonicalAddressDatabase {
-
-  private static final int    DATABASE_VERSION = 1;
+  private static final String TAG              = "CanonicalAddressDb";
   private static final String DATABASE_NAME    = "canonical_address.db";
   private static final String TABLE            = "canonical_addresses";
   private static final String ID_COLUMN        = "_id";
@@ -40,11 +43,15 @@ public class CanonicalAddressDatabase {
 
   private static final String DATABASE_CREATE  = "CREATE TABLE " + TABLE + " (" + ID_COLUMN + " integer PRIMARY KEY, " + ADDRESS_COLUMN + " TEXT NOT NULL);";
   private static final String[] ID_PROJECTION  = {ID_COLUMN};
-  private static final String SELECTION        = "PHONE_NUMBERS_EQUAL(" + ADDRESS_COLUMN + ", ?)";
+  private static final String SELECTION        = ADDRESS_COLUMN + " = ?";
   private static final Object lock             = new Object();
 
+  private static final int DATABASE_VERSION          = 2;
+  private static final int INTRODUCED_E164_ADDRESSES = 2;
+
   private static CanonicalAddressDatabase instance;
-  private DatabaseHelper databaseHelper;
+  private        DatabaseHelper           databaseHelper;
+  private final  Context                  context;
 
   private final Map<String,Long> addressCache = Collections.synchronizedMap(new HashMap<String,Long>());
   private final Map<String,String> idCache    = Collections.synchronizedMap(new HashMap<String,String>());
@@ -59,6 +66,7 @@ public class CanonicalAddressDatabase {
   }
 
   private CanonicalAddressDatabase(Context context) {
+    this.context = context.getApplicationContext();
     databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     fillCache();
   }
@@ -104,7 +112,7 @@ public class CanonicalAddressDatabase {
     Cursor cursor = null;
 
     try {
-      Log.w("CanonicalAddressDatabase", "Hitting DB on query [ID].");
+      Log.w(TAG, "Hitting DB on query [ID].");
 
       SQLiteDatabase db = databaseHelper.getReadableDatabase();
       cursor            = db.query(TABLE, null, ID_COLUMN + " = ?", new String[] {id+""}, null, null, null);
@@ -131,37 +139,48 @@ public class CanonicalAddressDatabase {
     instance = null;
   }
 
-  public long getCanonicalAddress(String address) {
-    long canonicalAddress;
+  public long getCanonicalAddressId(String address) {
+    long addressId;
+    String canonicalAddress;
+    if (GroupUtil.isEncodedGroup(address)) {
+      canonicalAddress = address;
+    } else {
+      try {
+        canonicalAddress = Util.canonicalizeNumber(context, address);
+      } catch (InvalidNumberException ine) {
+        Log.w(TAG, ine);
+        canonicalAddress = address;
+      }
+    }
+    if ((addressId = getCanonicalAddressIdFromCache(canonicalAddress)) != -1)
+      return addressId;
 
-    if ((canonicalAddress = getCanonicalAddressFromCache(address)) != -1)
-      return canonicalAddress;
+    addressId = getCanonicalAddressIdFromDatabase(canonicalAddress);
+    addressCache.put(canonicalAddress, addressId);
 
-    canonicalAddress = getCanonicalAddressFromDatabase(address);
-    addressCache.put(address, canonicalAddress);
-
-    return canonicalAddress;
+    return addressId;
   }
 
-  public List<Long> getCanonicalAddresses(List<String> addresses) {
-    List<Long> addressList = new LinkedList<Long>();
+  public List<Long> getCanonicalAddressIds(List<String> addresses) {
+    List<Long> addressIdList = new LinkedList<Long>();
 
     for (String address : addresses) {
-      addressList.add(getCanonicalAddress(address));
+      addressIdList.add(getCanonicalAddressId(address));
     }
 
-    return addressList;
+    return addressIdList;
   }
 
-  private long getCanonicalAddressFromCache(String address) {
+  private long getCanonicalAddressIdFromCache(String address) {
     if (addressCache.containsKey(address))
       return Long.valueOf(addressCache.get(address));
 
     return -1L;
   }
 
-  private long getCanonicalAddressFromDatabase(String address) {
+  private long getCanonicalAddressIdFromDatabase(String address) {
     Cursor cursor = null;
+
     try {
       SQLiteDatabase db           = databaseHelper.getWritableDatabase();
       String[] selectionArguments = new String[] {address};
@@ -180,13 +199,14 @@ public class CanonicalAddressDatabase {
         cursor.close();
       }
     }
-
   }
 
   private static class DatabaseHelper extends SQLiteOpenHelper {
+    private final Context context;
 
     public DatabaseHelper(Context context, String name, CursorFactory factory, int version) {
       super(context, name, factory, version);
+      this.context = context.getApplicationContext();
     }
 
     @Override
@@ -196,7 +216,39 @@ public class CanonicalAddressDatabase {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    }
+      if (oldVersion < INTRODUCED_E164_ADDRESSES) {
+        long startMillis = System.currentTimeMillis();
+        Log.w(TAG, "canonicalizing canonical addresses");
+        final Cursor cursor = db.query("canonical_addresses", null, null, null, null, null, null);
 
+        db.beginTransaction();
+        try {
+          while (cursor != null && cursor.moveToNext()) {
+            final long id = cursor.getInt(0);
+            final String address = cursor.getString(1);
+
+            String canonicalAddress;
+            if (GroupUtil.isEncodedGroup(address)) {
+              canonicalAddress = address;
+            } else {
+              try {
+                canonicalAddress = Util.canonicalizeNumber(context, address);
+              } catch (InvalidNumberException ine) {
+                Log.w(TAG, ine);
+                canonicalAddress = address;
+              }
+            }
+            ContentValues values = new ContentValues(1);
+            values.put("address", canonicalAddress);
+            db.update("canonical_addresses", values, "_id = ?", new String[]{"" + id});
+          }
+          Log.w(TAG, "upgraded " + (cursor == null ? 0 : cursor.getCount()) + " numbers, took " +
+                     (System.currentTimeMillis() - startMillis) + "ms");
+          db.setTransactionSuccessful();
+        } finally {
+          db.endTransaction();
+        }
+      }
+    }
   }
 }
