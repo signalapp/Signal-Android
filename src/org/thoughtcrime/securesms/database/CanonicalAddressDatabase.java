@@ -22,13 +22,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
-import java.util.Collections;
-import java.util.HashMap;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.VisibleForTesting;
+import org.whispersystems.textsecure.util.Util;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CanonicalAddressDatabase {
 
@@ -39,15 +43,15 @@ public class CanonicalAddressDatabase {
   private static final String ADDRESS_COLUMN   = "address";
 
   private static final String DATABASE_CREATE  = "CREATE TABLE " + TABLE + " (" + ID_COLUMN + " integer PRIMARY KEY, " + ADDRESS_COLUMN + " TEXT NOT NULL);";
-  private static final String[] ID_PROJECTION  = {ID_COLUMN};
-  private static final String SELECTION        = "PHONE_NUMBERS_EQUAL(" + ADDRESS_COLUMN + ", ?)";
+  private static final String SELECTION_NUMBER = "PHONE_NUMBERS_EQUAL(" + ADDRESS_COLUMN + ", ?)";
+  private static final String SELECTION_OTHER  = ADDRESS_COLUMN + " = ? COLLATE NOCASE";
   private static final Object lock             = new Object();
 
   private static CanonicalAddressDatabase instance;
-  private DatabaseHelper databaseHelper;
+  private        DatabaseHelper           databaseHelper;
 
-  private final Map<String,Long> addressCache = Collections.synchronizedMap(new HashMap<String,Long>());
-  private final Map<String,String> idCache    = Collections.synchronizedMap(new HashMap<String,String>());
+  private final Map<String, Long> addressCache = new ConcurrentHashMap<String, Long>();
+  private final Map<Long, String> idCache      = new ConcurrentHashMap<Long, String>();
 
   public static CanonicalAddressDatabase getInstance(Context context) {
     synchronized (lock) {
@@ -78,13 +82,13 @@ public class CanonicalAddressDatabase {
       cursor            = db.query(TABLE, null, null, null, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        long id        = cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN));
+        long   id      = cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN));
         String address = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS_COLUMN));
 
         if (address == null || address.trim().length() == 0)
           address = "Anonymous";
 
-        idCache.put(id+"", address);
+        idCache.put(id, address);
         addressCache.put(address, id);
       }
     } finally {
@@ -93,9 +97,7 @@ public class CanonicalAddressDatabase {
     }
   }
 
-  public String getAddressFromId(String id) {
-    if (id == null || id.trim().equals("")) return "Anonymous";
-
+  public String getAddressFromId(long id) {
     String cachedAddress = idCache.get(id);
 
     if (cachedAddress != null)
@@ -131,57 +133,82 @@ public class CanonicalAddressDatabase {
     instance = null;
   }
 
-  public long getCanonicalAddress(String address) {
-    long canonicalAddress;
+  public long getCanonicalAddressId(String address) {
+    long canonicalAddressId;
 
-    if ((canonicalAddress = getCanonicalAddressFromCache(address)) != -1)
-      return canonicalAddress;
+    if ((canonicalAddressId = getCanonicalAddressFromCache(address)) != -1)
+      return canonicalAddressId;
 
-    canonicalAddress = getCanonicalAddressFromDatabase(address);
-    addressCache.put(address, canonicalAddress);
-
-    return canonicalAddress;
+    canonicalAddressId = getCanonicalAddressIdFromDatabase(address);
+    idCache.put(canonicalAddressId, address);
+    addressCache.put(address, canonicalAddressId);
+    return canonicalAddressId;
   }
 
-  public List<Long> getCanonicalAddresses(List<String> addresses) {
+  public List<Long> getCanonicalAddressIds(List<String> addresses) {
     List<Long> addressList = new LinkedList<Long>();
 
     for (String address : addresses) {
-      addressList.add(getCanonicalAddress(address));
+      addressList.add(getCanonicalAddressId(address));
     }
 
     return addressList;
   }
 
   private long getCanonicalAddressFromCache(String address) {
-    if (addressCache.containsKey(address))
-      return Long.valueOf(addressCache.get(address));
-
-    return -1L;
+    Long cachedAddress = addressCache.get(address);
+    return cachedAddress == null ? -1L : cachedAddress;
   }
 
-  private long getCanonicalAddressFromDatabase(String address) {
+  private long getCanonicalAddressIdFromDatabase(String address) {
     Cursor cursor = null;
     try {
       SQLiteDatabase db           = databaseHelper.getWritableDatabase();
       String[] selectionArguments = new String[] {address};
-      cursor                      = db.query(TABLE, ID_PROJECTION, SELECTION, selectionArguments, null, null, null);
+      boolean isNumber            = isNumberAddress(address);
+      cursor                      = db.query(TABLE, null,
+                                             isNumber ? SELECTION_NUMBER : SELECTION_OTHER,
+                                             selectionArguments, null, null, null);
 
       if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
         ContentValues contentValues = new ContentValues(1);
         contentValues.put(ADDRESS_COLUMN, address);
-
         return db.insert(TABLE, ADDRESS_COLUMN, contentValues);
-      }
+      } else {
+        final long   canonicalId = cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN));
+        final String oldAddress  = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS_COLUMN));
+        if (oldAddress == null || !oldAddress.equals(address)) {
+          ContentValues contentValues = new ContentValues(1);
+          contentValues.put(ADDRESS_COLUMN, address);
+          db.update(TABLE, contentValues, ID_COLUMN + " = ?", new String[]{canonicalId+""});
 
-      return cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN));
+          addressCache.remove(oldAddress);
+        }
+        return canonicalId;
+      }
     } finally {
       if (cursor != null) {
         cursor.close();
       }
     }
-
   }
+
+  @VisibleForTesting
+  static boolean isNumberAddress(String number) {
+    if (number.contains("@"))
+      return false;
+    if (GroupUtil.isEncodedGroup(number))
+      return false;
+
+    final String networkNumber = PhoneNumberUtils.extractNetworkPortion(number);
+    if (Util.isEmpty(networkNumber))
+      return false;
+    if (networkNumber.length() < 3)
+      return false;
+
+    return PhoneNumberUtils.isWellFormedSmsAddress(number);
+  }
+
 
   private static class DatabaseHelper extends SQLiteOpenHelper {
 

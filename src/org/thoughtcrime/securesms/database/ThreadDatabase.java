@@ -248,7 +248,7 @@ public class ThreadDatabase extends Database {
     if (filter == null || filter.size() == 0)
       return null;
 
-    List<Long> recipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddresses(filter);
+    List<Long> recipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddressIds(filter);
 
     if (recipientIds == null || recipientIds.size() == 0)
       return null;
