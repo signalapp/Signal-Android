@@ -159,7 +159,7 @@ public class ConversationFragment extends SherlockListFragment
     else if (message.isMms())     transport = "mms";
     else                          transport = "sms";
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' h:mm:ss a zzz");
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
