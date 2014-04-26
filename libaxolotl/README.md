@@ -48,6 +48,7 @@ prekeys.
     IdentityKeyPair    identityKeyPair = KeyHelper.generateIdentityKeyPair();
     int                registrationId  = KeyHelper.generateRegistrationId();
     List<PreKeyRecord> preKeys         = KeyHelper.generatePreKeys(startId, 100);
+    PreKeyRecord       lastResortKey   = KeyHelper.generateLastResortKey();
 
     // Store identityKeyPair somewhere durable and safe.
     // Store registrationId somewhere durable and safe.
