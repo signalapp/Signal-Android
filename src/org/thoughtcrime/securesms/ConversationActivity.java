@@ -32,6 +32,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -81,6 +82,7 @@ import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.RecipientIsSelfException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -107,6 +109,7 @@ import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -1012,6 +1015,21 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     try {
       Recipients recipients = getRecipients();
 
+        List<Recipient>       allRecipients;
+        Recipient             localRecipient;
+        String                myPhoneNumber;
+
+        myPhoneNumber = Util.getDeviceE164Number(this);
+        allRecipients = recipients.getRecipientsList();
+        for (Iterator<Recipient> it = allRecipients.iterator(); it.hasNext();)
+        {
+            localRecipient = it.next();
+            if (myPhoneNumber.contains(localRecipient.getNumber()))
+                throw new RecipientIsSelfException("Not Supported");
+
+        }
+
+
       if (recipients == null)
         throw new RecipientFormattingException("Badly formatted");
 
@@ -1050,6 +1068,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       }
 
       sendComplete(recipients, allocatedThreadId, allocatedThreadId != this.threadId);
+    } catch (RecipientIsSelfException ex){
+        Toast.makeText(ConversationActivity.this,
+                R.string.ConversationActivity_recipient_is_self,
+                Toast.LENGTH_LONG).show();
+        Log.w(TAG, ex);
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
                      R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
