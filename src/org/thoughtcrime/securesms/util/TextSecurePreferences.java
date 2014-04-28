@@ -69,7 +69,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isSmsFallbackAskEnabled(Context context) {
-    return getBooleanPreference(context, SMS_FALLBACK_ASK_PREF, false);
+    return getBooleanPreference(context, SMS_FALLBACK_ASK_PREF, true);
   }
 
   public static void setSmsFallbackAskEnabled(Context context, boolean enabled) {
@@ -94,7 +94,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isMmsFallbackAskEnabled(Context context) {
-    return getBooleanPreference(context, MMS_FALLBACK_ASK_PREF, false);
+    return getBooleanPreference(context, MMS_FALLBACK_ASK_PREF, true);
   }
 
   public static void setMmsFallbackAskEnabled(Context context, boolean enabled) {
