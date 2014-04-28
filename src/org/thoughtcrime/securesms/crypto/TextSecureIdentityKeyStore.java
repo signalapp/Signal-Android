@@ -33,4 +33,10 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   public void saveIdentity(long recipientId, IdentityKey identityKey) {
     DatabaseFactory.getIdentityDatabase(context).saveIdentity(masterSecret, recipientId, identityKey);
   }
+
+  @Override
+  public boolean isTrustedIdentity(long recipientId, IdentityKey identityKey) {
+    return DatabaseFactory.getIdentityDatabase(context)
+                          .isValidIdentity(masterSecret, recipientId, identityKey);
+  }
 }

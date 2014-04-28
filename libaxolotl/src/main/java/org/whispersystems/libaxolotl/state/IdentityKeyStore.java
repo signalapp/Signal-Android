@@ -37,4 +37,21 @@ public interface IdentityKeyStore {
    */
   public void            saveIdentity(long recipientId, IdentityKey identityKey);
 
+
+  /**
+   * Verify a remote client's identity key.
+   * <p>
+   * Determine whether a remote client's identity is trusted.  Convention is
+   * that the TextSecure protocol is 'trust on first use.'  This means that
+   * an identity key is considered 'trusted' if there is no entry for the recipient
+   * in the local store, or if it matches the saved key for a recipient in the local
+   * store.  Only if it mismatches an entry in the local store is it considered
+   * 'untrusted.'
+   *
+   * @param recipientId The recipient ID of the remote client.
+   * @param identityKey The identity key to verify.
+   * @return true if trusted, false if untrusted.
+   */
+  public boolean         isTrustedIdentity(long recipientId, IdentityKey identityKey);
+
 }

@@ -45,6 +45,8 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.SessionCipher;
+import org.whispersystems.libaxolotl.StaleKeyExchangeException;
+import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.SessionStore;
@@ -433,12 +435,8 @@ public class DecryptingQueue {
           KeyExchangeMessage   message         = new KeyExchangeMessage(Base64.decodeWithoutPadding(plaintextBody));
           KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipientDevice);
 
-          if (processor.isStale(message)) {
-            DatabaseFactory.getEncryptingSmsDatabase(context).markAsStaleKeyExchange(messageId);
-          } else if (processor.isTrusted(message)) {
-            DatabaseFactory.getEncryptingSmsDatabase(context).markAsProcessedKeyExchange(messageId);
-            processor.processKeyExchangeMessage(message, threadId);
-          }
+          processor.processKeyExchangeMessage(message, threadId);
+          DatabaseFactory.getEncryptingSmsDatabase(context).markAsProcessedKeyExchange(messageId);
         } catch (InvalidVersionException e) {
           Log.w("DecryptingQueue", e);
           DatabaseFactory.getEncryptingSmsDatabase(context).markAsInvalidVersionKeyExchange(messageId);
@@ -448,6 +446,11 @@ public class DecryptingQueue {
         } catch (LegacyMessageException e) {
           Log.w("DecryptingQueue", e);
           DatabaseFactory.getEncryptingSmsDatabase(context).markAsLegacyVersion(messageId);
+        } catch (StaleKeyExchangeException e) {
+          Log.w("DecryptingQueue", e);
+          DatabaseFactory.getEncryptingSmsDatabase(context).markAsStaleKeyExchange(messageId);
+        } catch (UntrustedIdentityException e) {
+          Log.w("DecryptingQueue", e);
         }
       }
     }

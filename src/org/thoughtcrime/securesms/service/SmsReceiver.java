@@ -32,17 +32,22 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
+import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.StaleKeyExchangeException;
+import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
@@ -119,22 +124,20 @@ public class SmsReceiver {
       byte[]               rawMessage       = transportDetails.getDecodedMessage(message.getMessageBody().getBytes());
       PreKeyWhisperMessage preKeyExchange   = new PreKeyWhisperMessage(rawMessage);
 
-      if (processor.isTrusted(preKeyExchange)) {
-        processor.processKeyExchangeMessage(preKeyExchange);
+      processor.processKeyExchangeMessage(preKeyExchange);
 
-        WhisperMessage           ciphertextMessage  = preKeyExchange.getWhisperMessage();
-        String                   bundledMessageBody = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
-        IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, bundledMessageBody);
-        Pair<Long, Long>         messageAndThreadId = storeSecureMessage(masterSecret, bundledMessage);
+      WhisperMessage           ciphertextMessage  = preKeyExchange.getWhisperMessage();
+      String                   bundledMessageBody = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
+      IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, bundledMessageBody);
+      Pair<Long, Long>         messageAndThreadId = storeSecureMessage(masterSecret, bundledMessage);
 
-        Intent intent = new Intent(KeyExchangeProcessor.SECURITY_UPDATE_EVENT);
-        intent.putExtra("thread_id", messageAndThreadId.second);
-        intent.setPackage(context.getPackageName());
-        context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
+      Intent intent = new Intent(KeyExchangeProcessor.SECURITY_UPDATE_EVENT);
+      intent.putExtra("thread_id", messageAndThreadId.second);
+      intent.setPackage(context.getPackageName());
+      context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
 
-        return messageAndThreadId;
-      }
-    } catch (InvalidKeyException e) {
+      return messageAndThreadId;
+    } catch (InvalidKeyException | RecipientFormattingException | InvalidMessageException | IOException e) {
       Log.w("SmsReceiver", e);
       message.setCorrupted(true);
     } catch (InvalidVersionException e) {
@@ -143,15 +146,8 @@ public class SmsReceiver {
     } catch (InvalidKeyIdException e) {
       Log.w("SmsReceiver", e);
       message.setStale(true);
-    } catch (IOException e) {
-      Log.w("SmsReceive", e);
-      message.setCorrupted(true);
-    } catch (InvalidMessageException e) {
+    } catch (UntrustedIdentityException e) {
       Log.w("SmsReceiver", e);
-      message.setCorrupted(true);
-    } catch (RecipientFormattingException e) {
-      Log.w("SmsReceiver", e);
-      message.setCorrupted(true);
     }
 
     return storeStandardMessage(masterSecret, message);
@@ -166,17 +162,18 @@ public class SmsReceiver {
         RecipientDevice      recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSenderDeviceId());
         KeyExchangeMessage   exchangeMessage = new KeyExchangeMessage(Base64.decodeWithoutPadding(message.getMessageBody()));
         KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipientDevice);
+        long                 threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(new Recipients(recipient));
+        OutgoingKeyExchangeMessage response = processor.processKeyExchangeMessage(exchangeMessage, threadId);
 
-        if (processor.isStale(exchangeMessage)) {
-          message.setStale(true);
-        } else if (processor.isTrusted(exchangeMessage)) {
-          message.setProcessed(true);
+        message.setProcessed(true);
 
-          Pair<Long, Long> messageAndThreadId = storeStandardMessage(masterSecret, message);
-          processor.processKeyExchangeMessage(exchangeMessage, messageAndThreadId.second);
+        Pair<Long, Long> messageAndThreadId = storeStandardMessage(masterSecret, message);
 
-          return messageAndThreadId;
+        if (response != null) {
+          MessageSender.send(context, masterSecret, response, messageAndThreadId.second, true);
         }
+
+        return messageAndThreadId;
       } catch (InvalidVersionException e) {
         Log.w("SmsReceiver", e);
         message.setInvalidVersion(true);
@@ -186,6 +183,11 @@ public class SmsReceiver {
       } catch (LegacyMessageException e) {
         Log.w("SmsReceiver", e);
         message.setLegacyVersion(true);
+      } catch (StaleKeyExchangeException e) {
+        Log.w("SmsReceiver", e);
+        message.setStale(true);
+      } catch (UntrustedIdentityException e) {
+        Log.w("SmsReceiver", e);
       }
     }
 

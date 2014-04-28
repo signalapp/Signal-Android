@@ -3,22 +3,20 @@ package org.thoughtcrime.securesms.crypto;
 import android.content.Context;
 import android.content.Intent;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.PreKeyService;
-import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
-import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.SessionBuilder;
+import org.whispersystems.libaxolotl.StaleKeyExchangeException;
+import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
-import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.PreKeyEntity;
@@ -41,7 +39,6 @@ public class KeyExchangeProcessor {
   private RecipientDevice recipientDevice;
   private MasterSecret    masterSecret;
   private SessionBuilder  sessionBuilder;
-  private SessionStore    sessionStore;
 
   public KeyExchangeProcessor(Context context, MasterSecret masterSecret, RecipientDevice recipientDevice)
   {
@@ -51,51 +48,22 @@ public class KeyExchangeProcessor {
 
     IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(context, masterSecret);
     PreKeyStore      preKeyStore      = new TextSecurePreKeyStore(context, masterSecret);
+    SessionStore     sessionStore     = new TextSecureSessionStore(context, masterSecret);
 
-    this.sessionStore   = new TextSecureSessionStore(context, masterSecret);
     this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, identityKeyStore,
                                              recipientDevice.getRecipientId(),
                                              recipientDevice.getDeviceId());
   }
 
-  public boolean isTrusted(PreKeyWhisperMessage message) {
-    return isTrusted(message.getIdentityKey());
-  }
-
-  public boolean isTrusted(PreKeyEntity entity) {
-    return isTrusted(entity.getIdentityKey());
-  }
-
-  public boolean isTrusted(KeyExchangeMessage message) {
-    return message.hasIdentityKey() && isTrusted(message.getIdentityKey());
-  }
-
-  public boolean isTrusted(IdentityKey identityKey) {
-    return DatabaseFactory.getIdentityDatabase(context).isValidIdentity(masterSecret,
-                                                                        recipientDevice.getRecipientId(),
-                                                                        identityKey);
-  }
-
-  public boolean isStale(KeyExchangeMessage message) {
-    SessionRecord sessionRecord = sessionStore.load(recipientDevice.getRecipientId(),
-                                                    recipientDevice.getDeviceId());
-
-    return
-        message.isResponse() &&
-            (!sessionRecord.getSessionState().hasPendingKeyExchange() ||
-              sessionRecord.getSessionState().getPendingKeyExchangeSequence() != message.getSequence()) &&
-        !message.isResponseForSimultaneousInitiate();
-  }
-
   public void processKeyExchangeMessage(PreKeyWhisperMessage message)
-      throws InvalidKeyIdException, InvalidKeyException
+      throws InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
     sessionBuilder.process(message);
     PreKeyService.initiateRefresh(context, masterSecret);
   }
 
   public void processKeyExchangeMessage(PreKeyEntity message, long threadId)
-      throws InvalidKeyException
+      throws InvalidKeyException, UntrustedIdentityException
   {
     sessionBuilder.process(message);
 
@@ -104,24 +72,25 @@ public class KeyExchangeProcessor {
     }
   }
 
-  public void processKeyExchangeMessage(KeyExchangeMessage message, long threadId)
-      throws InvalidKeyException
+  public OutgoingKeyExchangeMessage processKeyExchangeMessage(KeyExchangeMessage message, long threadId)
+      throws InvalidKeyException, UntrustedIdentityException, StaleKeyExchangeException
   {
     KeyExchangeMessage responseMessage = sessionBuilder.process(message);
-    Recipient            recipient     = RecipientFactory.getRecipientsForIds(context,
+    Recipient          recipient       = RecipientFactory.getRecipientsForIds(context,
                                                                               String.valueOf(recipientDevice.getRecipientId()),
                                                                               false)
                                                          .getPrimaryRecipient();
 
-    if (responseMessage != null) {
-      String                     serializedResponse = Base64.encodeBytesWithoutPadding(responseMessage.serialize());
-      OutgoingKeyExchangeMessage textMessage        = new OutgoingKeyExchangeMessage(recipient, serializedResponse);
-      MessageSender.send(context, masterSecret, textMessage, threadId, true);
-    }
-
     DecryptingQueue.scheduleRogueMessages(context, masterSecret, recipient);
 
     broadcastSecurityUpdateEvent(context, threadId);
+
+    if (responseMessage != null) {
+      String serializedResponse = Base64.encodeBytesWithoutPadding(responseMessage.serialize());
+      return new OutgoingKeyExchangeMessage(recipient, serializedResponse);
+    } else {
+      return null;
+    }
   }
 
   public static void broadcastSecurityUpdateEvent(Context context, long threadId) {

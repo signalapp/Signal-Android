@@ -11,6 +11,8 @@ import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.SessionCipher;
+import org.whispersystems.libaxolotl.StaleKeyExchangeException;
+import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
@@ -33,8 +35,7 @@ public class SessionBuilderTest extends AndroidTestCase {
   private static final long BOB_RECIPIENT_ID   = 2L;
 
   public void testBasicPreKey()
-      throws InvalidKeyException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException
-  {
+      throws InvalidKeyException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, UntrustedIdentityException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
@@ -74,9 +75,55 @@ public class SessionBuilderTest extends AndroidTestCase {
     byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage.getWhisperMessage().serialize());
 
     assertTrue(originalMessage.equals(new String(plaintext)));
+
+    CiphertextMessage bobOutgoingMessage = bobSessionCipher.encrypt(originalMessage.getBytes());
+    assertTrue(bobOutgoingMessage.getType() == CiphertextMessage.WHISPER_TYPE);
+
+    byte[] alicePlaintext = aliceSessionCipher.decrypt(bobOutgoingMessage.serialize());
+    assertTrue(new String(alicePlaintext).equals(originalMessage));
+
+    runInteraction(aliceSessionStore, bobSessionStore);
+
+    aliceSessionStore     = new InMemorySessionStore();
+    aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
+    aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
+                                               aliceIdentityKeyStore,
+                                               BOB_RECIPIENT_ID, 1);
+    aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
+
+    bobPreKey = new InMemoryPreKey(31338, Curve.generateKeyPair(true),
+                                   bobIdentityKeyStore.getIdentityKeyPair().getPublicKey(),
+                                   bobIdentityKeyStore.getLocalRegistrationId());
+
+    bobPreKeyStore.store(31338, bobPreKey);
+    aliceSessionBuilder.process(bobPreKey);
+
+    outgoingMessage = aliceSessionCipher.encrypt(originalMessage.getBytes());
+
+    try {
+      bobSessionBuilder.process(new PreKeyWhisperMessage(outgoingMessage.serialize()));
+      throw new AssertionError("shouldn't be trusted!");
+    } catch (UntrustedIdentityException uie) {
+      bobIdentityKeyStore.saveIdentity(ALICE_RECIPIENT_ID, new PreKeyWhisperMessage(outgoingMessage.serialize()).getIdentityKey());
+      bobSessionBuilder.process(new PreKeyWhisperMessage(outgoingMessage.serialize()));
+    }
+
+    plaintext = bobSessionCipher.decrypt(new PreKeyWhisperMessage(outgoingMessage.serialize()).getWhisperMessage().serialize());
+    assertTrue(new String(plaintext).equals(originalMessage));
+
+    bobPreKey = new InMemoryPreKey(31337, Curve.generateKeyPair(true),
+                                   aliceIdentityKeyStore.getIdentityKeyPair().getPublicKey(),
+                                   bobIdentityKeyStore.getLocalRegistrationId());
+
+    try {
+      aliceSessionBuilder.process(bobPreKey);
+      throw new AssertionError("shoulnd't be trusted!");
+    } catch (UntrustedIdentityException uie) {
+      // good
+    }
   }
 
-  public void testBasicKeyExchange() throws InvalidKeyException, LegacyMessageException, InvalidMessageException, DuplicateMessageException {
+  public void testBasicKeyExchange() throws InvalidKeyException, LegacyMessageException, InvalidMessageException, DuplicateMessageException, UntrustedIdentityException, StaleKeyExchangeException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
@@ -104,11 +151,28 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(bobSessionStore.contains(ALICE_RECIPIENT_ID, 1));
 
     runInteraction(aliceSessionStore, bobSessionStore);
+
+    aliceSessionStore       = new InMemorySessionStore();
+    aliceIdentityKeyStore   = new InMemoryIdentityKeyStore();
+    aliceSessionBuilder     = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
+                                                 aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
+    aliceKeyExchangeMessage = aliceSessionBuilder.process();
+
+    try {
+      bobKeyExchangeMessage = bobSessionBuilder.process(aliceKeyExchangeMessage);
+      throw new AssertionError("This identity shouldn't be trusted!");
+    } catch (UntrustedIdentityException uie) {
+      bobIdentityKeyStore.saveIdentity(ALICE_RECIPIENT_ID, aliceKeyExchangeMessage.getIdentityKey());
+      bobKeyExchangeMessage = bobSessionBuilder.process(aliceKeyExchangeMessage);
+    }
+
+    assertTrue(aliceSessionBuilder.process(bobKeyExchangeMessage) == null);
+
+    runInteraction(aliceSessionStore, bobSessionStore);
   }
 
   public void testSimultaneousKeyExchange()
-      throws InvalidKeyException, DuplicateMessageException, LegacyMessageException, InvalidMessageException
-  {
+      throws InvalidKeyException, DuplicateMessageException, LegacyMessageException, InvalidMessageException, UntrustedIdentityException, StaleKeyExchangeException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();

@@ -44,4 +44,10 @@ public class InMemoryIdentityKeyStore implements IdentityKeyStore {
   public void saveIdentity(long recipientId, IdentityKey identityKey) {
     trustedKeys.put(recipientId, identityKey);
   }
+
+  @Override
+  public boolean isTrustedIdentity(long recipientId, IdentityKey identityKey) {
+    IdentityKey trusted = trustedKeys.get(recipientId);
+    return (trusted == null || trusted.equals(identityKey));
+  }
 }

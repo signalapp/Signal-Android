@@ -13,6 +13,7 @@ import org.whispersystems.libaxolotl.state.PreKey;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.Medium;
@@ -77,16 +78,19 @@ public class SessionBuilder {
    *                                                             that corresponds to the PreKey ID in
    *                                                             the message.
    * @throws org.whispersystems.libaxolotl.InvalidKeyException when the message is formatted incorrectly.
+   * @throws org.whispersystems.libaxolotl.UntrustedIdentityException when the {@link IdentityKey} of the sender is untrusted.
    */
   public void process(PreKeyWhisperMessage message)
-      throws InvalidKeyIdException, InvalidKeyException
+      throws InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
     int         preKeyId          = message.getPreKeyId();
     ECPublicKey theirBaseKey      = message.getBaseKey();
     ECPublicKey theirEphemeralKey = message.getWhisperMessage().getSenderEphemeral();
     IdentityKey theirIdentityKey  = message.getIdentityKey();
 
-    Log.w(TAG, "Received pre-key with local key ID: " + preKeyId);
+    if (!identityKeyStore.isTrustedIdentity(recipientId, theirIdentityKey)) {
+      throw new UntrustedIdentityException();
+    }
 
     if (!preKeyStore.contains(preKeyId) &&
         sessionStore.contains(recipientId, deviceId))
@@ -134,8 +138,16 @@ public class SessionBuilder {
    * @param preKey A PreKey for the destination recipient, retrieved from a server.
    * @throws InvalidKeyException when the {@link org.whispersystems.libaxolotl.state.PreKey} is
    *                             badly formatted.
+   * @throws org.whispersystems.libaxolotl.UntrustedIdentityException when the sender's
+   *                                                                  {@link IdentityKey} is not
+   *                                                                  trusted.
    */
-  public void process(PreKey preKey) throws InvalidKeyException {
+  public void process(PreKey preKey) throws InvalidKeyException, UntrustedIdentityException {
+
+    if (!identityKeyStore.isTrustedIdentity(recipientId, preKey.getIdentityKey())) {
+      throw new UntrustedIdentityException();
+    }
+
     SessionRecord   sessionRecord     = sessionStore.load(recipientId, deviceId);
     ECKeyPair       ourBaseKey        = Curve.generateKeyPair(true);
     ECKeyPair       ourEphemeralKey   = Curve.generateKeyPair(true);
@@ -168,43 +180,34 @@ public class SessionBuilder {
    * @return The KeyExchangeMessage to respond with, or null if no response is necessary.
    * @throws InvalidKeyException if the received KeyExchangeMessage is badly formatted.
    */
-  public KeyExchangeMessage process(KeyExchangeMessage message) throws InvalidKeyException {
+  public KeyExchangeMessage process(KeyExchangeMessage message)
+      throws InvalidKeyException, UntrustedIdentityException, StaleKeyExchangeException
+  {
+
+    if (!identityKeyStore.isTrustedIdentity(recipientId, message.getIdentityKey())) {
+      throw new UntrustedIdentityException();
+    }
+
     KeyExchangeMessage responseMessage = null;
     SessionRecord      sessionRecord   = sessionStore.load(recipientId, deviceId);
 
     Log.w(TAG, "Received key exchange with sequence: " + message.getSequence());
 
     if (message.isInitiate()) {
-      ECKeyPair       ourBaseKey, ourEphemeralKey;
-      IdentityKeyPair ourIdentityKey;
-
-      int flags = KeyExchangeMessage.RESPONSE_FLAG;
-
       Log.w(TAG, "KeyExchange is an initiate.");
+      responseMessage = processInitiate(sessionRecord, message);
+    }
 
-      if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
-        Log.w(TAG, "We don't have a pending initiate...");
-        ourBaseKey      = Curve.generateKeyPair(true);
-        ourEphemeralKey = Curve.generateKeyPair(true);
-        ourIdentityKey  = identityKeyStore.getIdentityKeyPair();
+    if (message.isResponse()) {
+      SessionState sessionState                   = sessionRecord.getSessionState();
+      boolean      hasPendingKeyExchange          = sessionState.hasPendingKeyExchange();
+      boolean      isSimultaneousInitiateResponse = message.isResponseForSimultaneousInitiate();
 
-        sessionRecord.getSessionState().setPendingKeyExchange(message.getSequence(), ourBaseKey,
-                                                              ourEphemeralKey, ourIdentityKey);
-      } else {
-        Log.w(TAG, "We already have a pending initiate, responding as simultaneous initiate...");
-        ourBaseKey      = sessionRecord.getSessionState().getPendingKeyExchangeBaseKey();
-        ourEphemeralKey = sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey();
-        ourIdentityKey  = sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey();
-        flags          |= KeyExchangeMessage.SIMULTAENOUS_INITIATE_FLAG;
-
-        sessionRecord.getSessionState().setPendingKeyExchange(message.getSequence(), ourBaseKey,
-                                                              ourEphemeralKey, ourIdentityKey);
+      if ((!hasPendingKeyExchange || sessionState.getPendingKeyExchangeSequence() != message.getSequence()) &&
+          !isSimultaneousInitiateResponse)
+      {
+        throw new StaleKeyExchangeException();
       }
-
-      responseMessage = new KeyExchangeMessage(message.getSequence(),
-                                               flags, ourBaseKey.getPublicKey(),
-                                               ourEphemeralKey.getPublicKey(),
-                                               ourIdentityKey.getPublicKey());
     }
 
     if (message.getSequence() != sessionRecord.getSessionState().getPendingKeyExchangeSequence()) {
@@ -230,6 +233,39 @@ public class SessionBuilder {
     identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
 
     return responseMessage;
+  }
+
+  private KeyExchangeMessage processInitiate(SessionRecord sessionRecord, KeyExchangeMessage message)
+      throws InvalidKeyException
+  {
+    ECKeyPair       ourBaseKey, ourEphemeralKey;
+    IdentityKeyPair ourIdentityKey;
+
+    int flags = KeyExchangeMessage.RESPONSE_FLAG;
+
+    if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
+      Log.w(TAG, "We don't have a pending initiate...");
+      ourBaseKey      = Curve.generateKeyPair(true);
+      ourEphemeralKey = Curve.generateKeyPair(true);
+      ourIdentityKey  = identityKeyStore.getIdentityKeyPair();
+
+      sessionRecord.getSessionState().setPendingKeyExchange(message.getSequence(), ourBaseKey,
+                                                            ourEphemeralKey, ourIdentityKey);
+    } else {
+      Log.w(TAG, "We already have a pending initiate, responding as simultaneous initiate...");
+      ourBaseKey      = sessionRecord.getSessionState().getPendingKeyExchangeBaseKey();
+      ourEphemeralKey = sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey();
+      ourIdentityKey  = sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey();
+      flags          |= KeyExchangeMessage.SIMULTAENOUS_INITIATE_FLAG;
+
+      sessionRecord.getSessionState().setPendingKeyExchange(message.getSequence(), ourBaseKey,
+                                                            ourEphemeralKey, ourIdentityKey);
+    }
+
+    return new KeyExchangeMessage(message.getSequence(),
+                                  flags, ourBaseKey.getPublicKey(),
+                                  ourEphemeralKey.getPublicKey(),
+                                  ourIdentityKey.getPublicKey());
   }
 
   /**
