@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 public class ConversationFragment extends SherlockListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
@@ -159,7 +159,7 @@ public class ConversationFragment extends SherlockListFragment
     else if (message.isMms())     transport = "mms";
     else                          transport = "sms";
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
+    DateFormat timestampFormatter = DateFormat.getDateTimeInstance();
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
@@ -169,14 +169,14 @@ public class ConversationFragment extends SherlockListFragment
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_transport_s_sent_received_s),
                                        transport.toUpperCase(),
-                                       dateFormatter.format(new Date(dateSent))));
+                                       timestampFormatter.format(new Date(dateSent))));
     } else {
       builder.setMessage(String.format(getSherlockActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
                                        message.getIndividualRecipient().getNumber(),
                                        transport.toUpperCase(),
-                                       dateFormatter.format(new Date(dateSent)),
-                                       dateFormatter.format(new Date(dateReceived))));
+                                       timestampFormatter.format(new Date(dateSent)),
+                                       timestampFormatter.format(new Date(dateReceived))));
     }
 
     builder.setPositiveButton(android.R.string.ok, null);
