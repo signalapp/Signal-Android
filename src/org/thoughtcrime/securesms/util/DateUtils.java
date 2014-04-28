@@ -27,7 +27,7 @@ public class DateUtils extends android.text.format.DateUtils {
       prettyDate = DateUtils.formatDateTime(c, millis, DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_ABBREV_TIME);
     } else if (isWithinWeek(millis)) {
       prettyDate = DateUtils.formatDateTime(c, millis,
-          DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_ABBREV_WEEKDAY);
+          DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_ABBREV_WEEKDAY | DateUtils.FORMAT_SHOW_TIME);
     } else if (isWithinYear(millis)) {
       prettyDate = DateUtils.formatDateTime(c, millis,
           DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL);
