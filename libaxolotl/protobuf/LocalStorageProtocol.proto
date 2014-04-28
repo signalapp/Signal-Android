@@ -68,3 +68,8 @@ message PreKeyRecordStructure {
     optional bytes  publicKey = 2;
     optional bytes  privateKey = 3;
 }
+
+message IdentityKeyPairStructure {
+    optional bytes publicKey  = 1;
+    optional bytes privateKey = 2;
+}

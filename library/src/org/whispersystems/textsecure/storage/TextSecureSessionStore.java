@@ -75,9 +75,9 @@ public class TextSecureSessionStore implements SessionStore {
   @Override
   public void store(long recipientId, int deviceId, SessionRecord record) {
     try {
-      MasterCipher masterCipher = new MasterCipher(masterSecret);
-      RandomAccessFile sessionFile = new RandomAccessFile(getSessionFile(recipientId, deviceId), "rw");
-      FileChannel      out         = sessionFile.getChannel();
+      MasterCipher     masterCipher = new MasterCipher(masterSecret);
+      RandomAccessFile sessionFile  = new RandomAccessFile(getSessionFile(recipientId, deviceId), "rw");
+      FileChannel      out          = sessionFile.getChannel();
 
       out.position(0);
       writeInteger(CURRENT_VERSION, out);
