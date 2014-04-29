@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class KeyHelper {
 
+  private KeyHelper() {}
+
   /**
    * Generate an identity key pair.  Clients should only do this once,
    * at install time.
@@ -64,7 +66,7 @@ public class KeyHelper {
    * @param count The number of PreKeys to generate.
    * @return the list of generated PreKeyRecords.
    */
-  public List<PreKeyRecord> generatePreKeys(int start, int count) {
+  public static List<PreKeyRecord> generatePreKeys(int start, int count) {
     List<PreKeyRecord> results = new LinkedList<>();
 
     for (int i=0;i<count;i++) {
