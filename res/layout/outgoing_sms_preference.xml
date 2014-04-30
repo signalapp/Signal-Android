@@ -25,7 +25,7 @@
         android:textSize="12sp"
         android:text="@string/preferences__sms_outgoing_push_users_description" />
 
-    <CheckBox android:id="@+id/ask_before_fallback_data"
+    <CheckBox android:id="@+id/ask_before_sms_fallback"
         style="@style/TextSecureDialogPrimaryText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,11 +34,27 @@
         android:text="@string/preferences__sms_fallback_ask_fallback"
         android:layout_marginLeft="25dp" />
 
+    <CheckBox android:id="@+id/ask_before_mms_fallback"
+        style="@style/TextSecureDialogPrimaryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:text="@string/preferences__mms_fallback_ask_fallback"
+        android:layout_marginLeft="25dp" />
+
     <CheckBox android:id="@+id/non_data_users"
         style="@style/TextSecureDialogPrimaryText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         android:text="@string/preferences__sms_fallback_non_push_users" />
+
+    <CheckBox android:id="@+id/disable_mms"
+        style="@style/TextSecureDialogPrimaryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:text="@string/preferences__mms_completely_disable" />
 
 </LinearLayout>

@@ -37,6 +37,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -643,16 +645,29 @@ public class ConversationItem extends LinearLayout {
     final int title;
     final int message;
     if (messageRecord.isPendingSecureSmsFallback()) {
-      title = R.string.ConversationItem_click_to_approve_dialog_title;
+      if (messageRecord.isMms())
+        title = R.string.ConversationItem_click_to_approve_mms_dialog_title;
+      else
+        title = R.string.ConversationItem_click_to_approve_sms_dialog_title;
       message = -1;
     } else {
-      title = R.string.ConversationItem_click_to_approve_unencrypted_dialog_title;
+      if (messageRecord.isMms())
+        title = R.string.ConversationItem_click_to_approve_mms_unencrypted_dialog_title;
+      else
+        title = R.string.ConversationItem_click_to_approve_sms_unencrypted_dialog_title;
+
       message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
     }
+
+    final View doNotAskAgainCheckboxView = View.inflate(context,
+            R.layout.do_not_show_again_checkbox, null);
+    final CheckBox doNotAskAgainCheckbox = (CheckBox) doNotAskAgainCheckboxView.findViewById(R.id
+            .checkbox);
 
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(title);
     if (message > -1) builder.setMessage(message);
+    builder.setView(doNotAskAgainCheckboxView);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
@@ -663,6 +678,11 @@ public class ConversationItem extends LinearLayout {
           }
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
+
+          if (doNotAskAgainCheckbox.isChecked()) {
+            TextSecurePreferences.setMmsFallbackAskEnabled(context, false);
+          }
+
         } else {
           SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
           if (messageRecord.isPendingInsecureSmsFallback()) {
@@ -670,6 +690,11 @@ public class ConversationItem extends LinearLayout {
           }
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
+
+          if (doNotAskAgainCheckbox.isChecked()) {
+            TextSecurePreferences.setSmsFallbackAskEnabled(context, false);
+          }
+
         }
         Intent intent = new Intent(context, SendReceiveService.class);
         intent.setAction(SendReceiveService.SEND_SMS_ACTION);
