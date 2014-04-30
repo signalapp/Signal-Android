@@ -89,12 +89,6 @@ public class IdentityDatabase extends Database {
 
         IdentityKey ourIdentity = new IdentityKey(Base64.decode(serializedIdentity), 0);
 
-        if (theirIdentity.getPublicKey().getType() == Curve.DJB_TYPE &&
-            ourIdentity.getPublicKey().getType() == Curve.NIST_TYPE)
-        {
-          return true;
-        }
-
         return ourIdentity.equals(theirIdentity);
       } else {
         return true;

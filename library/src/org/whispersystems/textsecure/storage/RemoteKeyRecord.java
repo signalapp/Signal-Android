@@ -37,126 +37,13 @@ import java.nio.channels.FileChannel;
  * @author Moxie Marlinspike
  */
 
-public class RemoteKeyRecord extends Record {
-  private static final Object FILE_LOCK = new Object();
-
-  private PublicKey remoteKeyCurrent;
-  private PublicKey remoteKeyLast;
-
-  public RemoteKeyRecord(Context context, CanonicalRecipient recipient) {
-    super(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
-    loadData();
-  }
+public class RemoteKeyRecord {
 
   public static void delete(Context context, CanonicalRecipient recipient) {
-    delete(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
-  }
-
-  public static boolean hasRecord(Context context, CanonicalRecipient recipient) {
-    Log.w("LocalKeyRecord", "Checking: " + getFileNameForRecipient(recipient));
-    return hasRecord(context, SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
+    Record.delete(context, Record.SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
   }
 
   private static String getFileNameForRecipient(CanonicalRecipient recipient) {
     return recipient.getRecipientId() + "-remote";
   }
-
-  public void updateCurrentRemoteKey(PublicKey remoteKey) {
-    Log.w("RemoteKeyRecord", "Updating current remote key: " + remoteKey.getId());
-    if (isWrappingGreaterThan(remoteKey.getId(), remoteKeyCurrent.getId())) {
-      this.remoteKeyLast    = this.remoteKeyCurrent;
-      this.remoteKeyCurrent = remoteKey;
-    }
-  }
-
-  public void setCurrentRemoteKey(PublicKey remoteKeyCurrent) {
-    this.remoteKeyCurrent = remoteKeyCurrent;
-  }
-
-  public void setLastRemoteKey(PublicKey remoteKeyLast) {
-    this.remoteKeyLast = remoteKeyLast;
-  }
-
-  public PublicKey getCurrentRemoteKey() {
-    return this.remoteKeyCurrent;
-  }
-
-  public PublicKey getLastRemoteKey() {
-    return this.remoteKeyLast;
-  }
-
-  public PublicKey getKeyForId(int id) throws InvalidKeyIdException {
-    if (this.remoteKeyCurrent.getId() == id) return this.remoteKeyCurrent;
-    else if (this.remoteKeyLast.getId() == id) return this.remoteKeyLast;
-    else throw new InvalidKeyIdException("No remote key for ID: " + id);
-  }
-
-  public void save() {
-    Log.w("RemoteKeyRecord", "Saving remote key record for recipient: " + this.address);
-    synchronized (FILE_LOCK) {
-      try {
-        RandomAccessFile file = openRandomAccessFile();
-        FileChannel out       = file.getChannel();
-        Log.w("RemoteKeyRecord", "Opened file of size: " + out.size());
-        out.position(0);
-
-        writeKey(remoteKeyCurrent, out);
-        writeKey(remoteKeyLast, out);
-
-        out.truncate(out.position());
-        out.close();
-        file.close();
-      } catch (IOException ioe) {
-        Log.w("keyrecord", ioe);
-        // XXX
-      }
-    }
-  }
-
-  private boolean isWrappingGreaterThan(int receivedValue, int currentValue) {
-    if (receivedValue > currentValue) {
-      return true;
-    }
-
-    if (receivedValue == currentValue) {
-      return false;
-    }
-
-    int gap = (receivedValue - currentValue) + Medium.MAX_VALUE;
-
-    return (gap >= 0) && (gap < 5);
-  }
-
-  private void loadData() {
-    Log.w("RemoteKeyRecord", "Loading remote key record for recipient: " + this.address);
-    synchronized (FILE_LOCK) {
-      try {
-        FileInputStream in  = this.openInputStream();
-        remoteKeyCurrent    = readKey(in);
-        remoteKeyLast       = readKey(in);
-        in.close();
-      } catch (FileNotFoundException e) {
-        Log.w("RemoteKeyRecord", "No remote keys found.");
-      } catch (IOException ioe) {
-        Log.w("keyrecord", ioe);
-        // XXX
-      }
-    }
-  }
-
-  private void writeKey(PublicKey key, FileChannel out) throws IOException {
-    byte[] keyBytes = key.serialize();
-    Log.w("RemoteKeyRecord", "Serializing remote key bytes: " + Hex.toString(keyBytes));
-    writeBlob(keyBytes, out);
-  }
-
-  private PublicKey readKey(FileInputStream in) throws IOException {
-    try {
-      byte[] keyBytes = readBlob(in);
-      return new PublicKey(keyBytes);
-    } catch (InvalidKeyException ike) {
-      throw new AssertionError(ike);
-    }
-  }
-
 }

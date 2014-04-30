@@ -121,9 +121,8 @@ public class SessionState {
   }
 
   public ECKeyPair getSenderEphemeralPair() {
-    ECPublicKey publicKey = getSenderEphemeral();
-    ECPrivateKey privateKey = Curve.decodePrivatePoint(publicKey.getType(),
-                                                       sessionStructure.getSenderChain()
+    ECPublicKey  publicKey  = getSenderEphemeral();
+    ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.getSenderChain()
                                                                        .getSenderEphemeralPrivate()
                                                                        .toByteArray());
 
@@ -342,8 +341,7 @@ public class SessionState {
     ECPublicKey publicKey   = Curve.decodePoint(sessionStructure.getPendingKeyExchange()
                                                                 .getLocalBaseKey().toByteArray(), 0);
 
-    ECPrivateKey privateKey = Curve.decodePrivatePoint(publicKey.getType(),
-                                                       sessionStructure.getPendingKeyExchange()
+    ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.getPendingKeyExchange()
                                                                        .getLocalBaseKeyPrivate()
                                                                        .toByteArray());
 
@@ -354,8 +352,7 @@ public class SessionState {
     ECPublicKey publicKey   = Curve.decodePoint(sessionStructure.getPendingKeyExchange()
                                                                 .getLocalEphemeralKey().toByteArray(), 0);
 
-    ECPrivateKey privateKey = Curve.decodePrivatePoint(publicKey.getType(),
-                                                       sessionStructure.getPendingKeyExchange()
+    ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.getPendingKeyExchange()
                                                                        .getLocalEphemeralKeyPrivate()
                                                                        .toByteArray());
 
@@ -366,8 +363,7 @@ public class SessionState {
     IdentityKey publicKey = new IdentityKey(sessionStructure.getPendingKeyExchange()
                                                             .getLocalIdentityKey().toByteArray(), 0);
 
-    ECPrivateKey privateKey = Curve.decodePrivatePoint(publicKey.getPublicKey().getType(),
-                                                       sessionStructure.getPendingKeyExchange()
+    ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.getPendingKeyExchange()
                                                                        .getLocalIdentityKeyPrivate()
                                                                        .toByteArray());
 

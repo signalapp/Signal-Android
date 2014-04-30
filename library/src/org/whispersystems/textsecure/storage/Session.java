@@ -5,7 +5,6 @@ import android.util.Log;
 
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 
 /**
  * Helper class for generating key pairs and calculating ECDH agreements.
@@ -32,7 +31,8 @@ public class Session {
                                    CanonicalRecipient recipient)
   {
     Log.w("Session", "Checking session...");
-    return hasV1Session(context, recipient) || hasV2Session(context, masterSecret, recipient);
+    return SessionRecordV2.hasSession(context, masterSecret, recipient.getRecipientId(),
+                                      RecipientDevice.DEFAULT_DEVICE_ID);
   }
 
   public static boolean hasEncryptCapableSession(Context context,
@@ -50,30 +50,8 @@ public class Session {
                                                  CanonicalRecipient recipient,
                                                  RecipientDevice device)
   {
-    return
-        hasV1Session(context, recipient) ||
-            (hasV2Session(context, masterSecret, recipient) &&
-             !SessionRecordV2.needsRefresh(context, masterSecret, device));
-  }
-
-  public static boolean hasRemoteIdentityKey(Context context,
-                                             MasterSecret masterSecret,
-                                             CanonicalRecipient recipient)
-  {
-    return (hasV2Session(context, masterSecret, recipient) || (hasV1Session(context, recipient) &&
-        new SessionRecordV1(context, masterSecret, recipient).getIdentityKey() != null));
-  }
-
-  private static boolean hasV2Session(Context context, MasterSecret masterSecret,
-                                      CanonicalRecipient recipient)
-  {
-    return SessionRecordV2.hasSession(context, masterSecret, recipient.getRecipientId(),
-                                      RecipientDevice.DEFAULT_DEVICE_ID);
-  }
-  private static boolean hasV1Session(Context context, CanonicalRecipient recipient) {
-    return SessionRecordV1.hasSession(context, recipient)   &&
-           RemoteKeyRecord.hasRecord(context, recipient)    &&
-           LocalKeyRecord.hasRecord(context, recipient);
+    return hasSession(context, masterSecret, recipient) &&
+        !SessionRecordV2.needsRefresh(context, masterSecret, device);
   }
 
   public static IdentityKey getRemoteIdentityKey(Context context, MasterSecret masterSecret,
@@ -92,25 +70,8 @@ public class Session {
       return new SessionRecordV2(context, masterSecret, recipientId,
                                  RecipientDevice.DEFAULT_DEVICE_ID).getSessionState()
                                                                    .getRemoteIdentityKey();
-    } else if (SessionRecordV1.hasSession(context, recipientId)) {
-      return new SessionRecordV1(context, masterSecret, recipientId).getIdentityKey();
     } else {
       return null;
     }
-  }
-
-  public static int getSessionVersion(Context context, MasterSecret masterSecret,
-                                      CanonicalRecipient recipient)
-  {
-    if (SessionRecordV2.hasSession(context, masterSecret,
-                                   recipient.getRecipientId(),
-                                   RecipientDevice.DEFAULT_DEVICE_ID))
-    {
-      return CiphertextMessage.CURRENT_VERSION;
-    } else if (SessionRecordV1.hasSession(context, recipient)) {
-      return new SessionRecordV1(context, masterSecret, recipient).getSessionVersion();
-    }
-
-    return 0;
   }
 }

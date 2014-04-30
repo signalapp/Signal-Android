@@ -43,32 +43,20 @@ public class AsymmetricMasterSecret {
   private final ECPublicKey  djbPublicKey;
   private final ECPrivateKey djbPrivateKey;
 
-  private final ECPublicKey  nistPublicKey;
-  private final ECPrivateKey nistPrivateKey;
 
-  public AsymmetricMasterSecret(ECPublicKey djbPublicKey, ECPrivateKey djbPrivateKey,
-                                ECPublicKey nistPublicKey, ECPrivateKey nistPrivateKey)
+  public AsymmetricMasterSecret(ECPublicKey djbPublicKey, ECPrivateKey djbPrivateKey)
   {
     this.djbPublicKey   = djbPublicKey;
     this.djbPrivateKey  = djbPrivateKey;
-    this.nistPublicKey  = nistPublicKey;
-    this.nistPrivateKey = nistPrivateKey;
   }
 
   public ECPublicKey getDjbPublicKey() {
     return djbPublicKey;
   }
 
-  public ECPublicKey getNistPublicKey() {
-    return nistPublicKey;
-  }
 
-  public ECPrivateKey getPrivateKey(int type) {
-    if (type == Curve.DJB_TYPE) {
-      return djbPrivateKey;
-    } else {
-      return nistPrivateKey;
-    }
+  public ECPrivateKey getPrivateKey() {
+    return djbPrivateKey;
   }
 
 }

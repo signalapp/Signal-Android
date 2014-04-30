@@ -27,11 +27,10 @@ import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 
 /**
  * Activity that displays the local identity key and offers the option to regenerate it.
@@ -45,7 +44,7 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
   public void onCreate(Bundle bundle) {
     this.masterSecret = getIntent().getParcelableExtra("master_secret");
 
-    getIntent().putExtra("identity_key", IdentityKeyUtil.getIdentityKey(this, Curve.DJB_TYPE));
+    getIntent().putExtra("identity_key", IdentityKeyUtil.getIdentityKey(this));
     getIntent().putExtra("title", getString(R.string.ViewIdentityActivity_my_identity_fingerprint));
     super.onCreate(bundle);
   }
@@ -116,8 +115,7 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
                        Toast.LENGTH_LONG).show();
 
         getIntent().putExtra("identity_key",
-                             IdentityKeyUtil.getIdentityKey(ViewLocalIdentityActivity.this,
-                                                            Curve.DJB_TYPE));
+                             IdentityKeyUtil.getIdentityKey(ViewLocalIdentityActivity.this));
         initialize();
       }
 

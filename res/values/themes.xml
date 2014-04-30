@@ -28,6 +28,7 @@
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
         <item name="contact_selection_label_text">#66000000</item>
+        <item name="conversation_selection_header_text">#44000000</item>
 
         <item name="conversation_background">#ffdddddd</item>
         <item name="conversation_editor_background">@drawable/textlines</item>
@@ -100,6 +101,7 @@
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
         <item name="contact_selection_label_text">#66eeeeee</item>
+        <item name="conversation_selection_header_text">#66eeeeee</item>
 
         <item name="conversation_item_received_background">@drawable/conversation_item_received_shape_dark</item>
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape_dark</item>

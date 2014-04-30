@@ -163,7 +163,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private long       threadId;
   private int        distributionType;
   private boolean    isEncryptedConversation;
-  private boolean    isAuthenticatedConversation;
   private boolean    isMmsEnabled = true;
   private boolean    isCharactersLeftViewEnabled;
 
@@ -261,12 +260,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     boolean pushRegistered = TextSecurePreferences.isPushRegistered(this);
 
     if (isSingleConversation() && isEncryptedConversation) {
-      if (isAuthenticatedConversation) {
-        inflater.inflate(R.menu.conversation_secure_identity, menu);
-      } else {
-        inflater.inflate(R.menu.conversation_secure_no_identity, menu);
-      }
-
+      inflater.inflate(R.menu.conversation_secure_identity, menu);
       inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
     } else if (isSingleConversation() && !pushRegistered) {
       inflater.inflate(R.menu.conversation_insecure, menu);
@@ -670,16 +664,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     if (isPushDestination ||
         (isSingleConversation() && Session.hasSession(this, masterSecret, primaryRecipient)))
     {
-      this.isEncryptedConversation     = true;
-      this.isAuthenticatedConversation = Session.hasRemoteIdentityKey(this, masterSecret, primaryRecipient);
-      this.characterCalculator         = new EncryptedCharacterCalculator();
+      this.isEncryptedConversation = true;
+      this.characterCalculator     = new EncryptedCharacterCalculator();
 
       if (isPushDestination) sendButton.setImageDrawable(drawables.getDrawable(0));
       else                   sendButton.setImageDrawable(drawables.getDrawable(1));
     } else {
-      this.isEncryptedConversation     = false;
-      this.isAuthenticatedConversation = false;
-      this.characterCalculator         = new CharacterCalculator();
+      this.isEncryptedConversation = false;
+      this.characterCalculator     = new CharacterCalculator();
       sendButton.setImageDrawable(drawables.getDrawable(2));
     }
 
