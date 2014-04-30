@@ -66,7 +66,10 @@ public class UniversalTransport {
              SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
     if (!TextSecurePreferences.isPushRegistered(context)) {
-      smsTransport.deliver(message);
+      if(TextSecurePreferences.isSmsNonDataOutEnabled(context))
+        smsTransport.deliver(message);
+      else
+        throw new UndeliverableMessageException("User disallows non-push outgoing SMS");
       return;
     }
 
@@ -114,7 +117,10 @@ public class UniversalTransport {
     }
 
     if (!TextSecurePreferences.isPushRegistered(context)) {
-      return mmsTransport.deliver(mediaMessage);
+      if(TextSecurePreferences.isMmsNonDataOutEnabled(context))
+        return mmsTransport.deliver(mediaMessage);
+      else
+        throw new UndeliverableMessageException("User disallows non-push outgoing MMS");
     }
 
     if (isMultipleRecipients(mediaMessage)) {
@@ -149,6 +155,8 @@ public class UniversalTransport {
           }
         }
       } else {
+        if(!TextSecurePreferences.isMmsNonDataOutEnabled(context))
+          throw new UndeliverableMessageException("User disallows non-push outgoing MMS");
         Log.w("UniversalTransport", "Delivering media message with MMS...");
         return mmsTransport.deliver(mediaMessage);
       }
