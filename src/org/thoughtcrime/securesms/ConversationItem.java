@@ -641,6 +641,16 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
+  private CheckBox addDoNotAskAgainCheckboxToDialog(AlertDialog.Builder builder)
+  {
+    final View doNotAskAgainCheckboxView = View.inflate(context,
+            R.layout.do_not_show_again_checkbox, null);
+    CheckBox doNotAskAgainCheckbox = (CheckBox) doNotAskAgainCheckboxView.findViewById(R.id
+            .checkbox);
+    builder.setView(doNotAskAgainCheckboxView);
+    return doNotAskAgainCheckbox;
+  }
+
   private void handleMessageApproval() {
     final int title;
     final int message;
@@ -659,15 +669,16 @@ public class ConversationItem extends LinearLayout {
       message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
     }
 
-    final View doNotAskAgainCheckboxView = View.inflate(context,
-            R.layout.do_not_show_again_checkbox, null);
-    final CheckBox doNotAskAgainCheckbox = (CheckBox) doNotAskAgainCheckboxView.findViewById(R.id
-            .checkbox);
+    final CheckBox doNotAskAgainCheckbox;
 
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(title);
     if (message > -1) builder.setMessage(message);
-    builder.setView(doNotAskAgainCheckboxView);
+    if(messageRecord.isPendingSecureSmsFallback()) {
+      doNotAskAgainCheckbox = addDoNotAskAgainCheckboxToDialog(builder);
+    }
+    else doNotAskAgainCheckbox = null;
+
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
@@ -679,7 +690,7 @@ public class ConversationItem extends LinearLayout {
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
 
-          if (doNotAskAgainCheckbox.isChecked()) {
+          if (doNotAskAgainCheckbox != null && doNotAskAgainCheckbox.isChecked()) {
             TextSecurePreferences.setMmsFallbackAskEnabled(context, false);
           }
 
@@ -691,7 +702,7 @@ public class ConversationItem extends LinearLayout {
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
 
-          if (doNotAskAgainCheckbox.isChecked()) {
+          if (doNotAskAgainCheckbox != null && doNotAskAgainCheckbox.isChecked()) {
             TextSecurePreferences.setSmsFallbackAskEnabled(context, false);
           }
 
@@ -706,8 +717,14 @@ public class ConversationItem extends LinearLayout {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
         if (messageRecord.isMms()) {
+          if(doNotAskAgainCheckbox != null && doNotAskAgainCheckbox.isChecked()) {
+            TextSecurePreferences.setMmsFallbackEnabled(context, false);
+          }
           DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
         } else {
+          if(doNotAskAgainCheckbox != null && doNotAskAgainCheckbox.isChecked()) {
+            TextSecurePreferences.setSmsFallbackEnabled(context, false);
+          }
           DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
         }
       }
