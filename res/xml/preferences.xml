@@ -35,6 +35,17 @@
                             android:title="@string/preferences__notifications"
                             android:summary="@string/preferences__display_message_notifications_in_status_bar"
                             android:defaultValue="true" />
+
+        <org.thoughtcrime.securesms.preferences.TestNotificationDialogPreference
+                          android:key="pref_key_test_notification"
+                          android:dialogIcon="@drawable/android:ic_dialog_alert"
+                          android:title="@string/preferences__test_notification"
+                          android:dialogTitle="@string/preferences__test_notification"
+                          android:dialogMessage="@string/preferences__testing_your_notification_now"
+                          android:summary="@string/preferences__test_your_notification"
+                          android:dependency="pref_key_enable_notifications"
+                          android:negativeButtonText="@null" />
+
         <ListPreference
                           android:key="pref_led_color"
                           android:defaultValue="green"

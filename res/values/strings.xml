@@ -695,6 +695,9 @@
     <string name="preferences__manage_identity_keys">Manage identity keys</string>
     <string name="preferences__manage_configured_identity_keys">Manage configured identity keys</string>
     <string name="preferences__notifications">Notifications</string>
+    <string name="preferences__test_notification">Test Notification</string>
+    <string name="preferences__test_your_notification">Test your notification</string>
+    <string name="preferences__testing_your_notification_now">Testing your notification now!</string>
     <string name="preferences__display_message_notifications_in_status_bar">Display message notifications in status bar</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
