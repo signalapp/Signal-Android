@@ -22,6 +22,7 @@ public class TextSecurePreKeyStore implements PreKeyStore {
 
   public  static final String PREKEY_DIRECTORY       = "prekeys";
   private static final int    CURRENT_VERSION_MARKER = 1;
+  private static final Object FILE_LOCK              = new Object();
   private static final String TAG                    = TextSecurePreKeyStore.class.getSimpleName();
 
   private final Context      context;
@@ -34,39 +35,43 @@ public class TextSecurePreKeyStore implements PreKeyStore {
 
   @Override
   public PreKeyRecord load(int preKeyId) throws InvalidKeyIdException {
-    try {
-      MasterCipher    masterCipher  = new MasterCipher(masterSecret);
-      FileInputStream fin           = new FileInputStream(getPreKeyFile(preKeyId));
-      int             recordVersion = readInteger(fin);
+    synchronized (FILE_LOCK) {
+      try {
+        MasterCipher    masterCipher  = new MasterCipher(masterSecret);
+        FileInputStream fin           = new FileInputStream(getPreKeyFile(preKeyId));
+        int             recordVersion = readInteger(fin);
 
-      if (recordVersion != CURRENT_VERSION_MARKER) {
-        throw new AssertionError("Invalid version: " + recordVersion);
+        if (recordVersion != CURRENT_VERSION_MARKER) {
+          throw new AssertionError("Invalid version: " + recordVersion);
+        }
+
+        byte[] serializedRecord = masterCipher.decryptBytes(readBlob(fin));
+        return new PreKeyRecord(serializedRecord);
+
+      } catch (IOException | InvalidMessageException e) {
+        Log.w(TAG, e);
+        throw new InvalidKeyIdException(e);
       }
-
-      byte[] serializedRecord = masterCipher.decryptBytes(readBlob(fin));
-      return new PreKeyRecord(serializedRecord);
-
-    } catch (IOException | InvalidMessageException e) {
-      Log.w(TAG, e);
-      throw new InvalidKeyIdException(e);
     }
   }
 
   @Override
   public void store(int preKeyId, PreKeyRecord record) {
-    try {
-      MasterCipher     masterCipher = new MasterCipher(masterSecret);
-      RandomAccessFile recordFile   = new RandomAccessFile(getPreKeyFile(preKeyId), "rw");
-      FileChannel      out          = recordFile.getChannel();
+    synchronized (FILE_LOCK) {
+      try {
+        MasterCipher     masterCipher = new MasterCipher(masterSecret);
+        RandomAccessFile recordFile   = new RandomAccessFile(getPreKeyFile(preKeyId), "rw");
+        FileChannel      out          = recordFile.getChannel();
 
-      out.position(0);
-      writeInteger(CURRENT_VERSION_MARKER, out);
-      writeBlob(masterCipher.encryptBytes(record.serialize()), out);
-      out.truncate(out.position());
+        out.position(0);
+        writeInteger(CURRENT_VERSION_MARKER, out);
+        writeBlob(masterCipher.encryptBytes(record.serialize()), out);
+        out.truncate(out.position());
 
-      recordFile.close();
-    } catch (IOException e) {
-      throw new AssertionError(e);
+        recordFile.close();
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
     }
   }
 

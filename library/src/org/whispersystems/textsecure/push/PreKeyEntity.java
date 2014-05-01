@@ -25,16 +25,17 @@ public class PreKeyEntity implements PreKey {
   @Expose(serialize = false)
   private int         deviceId;
 
+  @Expose(serialize = false)
+  private int         registrationId;
+
   private int         keyId;
   private ECPublicKey publicKey;
   private IdentityKey identityKey;
-  private int         registrationId;
 
   public PreKeyEntity(int keyId, ECPublicKey publicKey, IdentityKey identityKey) {
-    this.keyId          = keyId;
-    this.publicKey      = publicKey;
-    this.identityKey    = identityKey;
-    this.registrationId = registrationId;
+    this.keyId       = keyId;
+    this.publicKey   = publicKey;
+    this.identityKey = identityKey;
   }
 
   public int getDeviceId() {
