@@ -128,7 +128,7 @@ public class ContactsDatabase {
 
   private Cursor queryAndroidDb(String filter) {
     final Uri baseUri;
-    if (filter != null) {
+    if (!Util.isEmpty(filter)) {
       baseUri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI,
                                      Uri.encode(filter));
     } else {
