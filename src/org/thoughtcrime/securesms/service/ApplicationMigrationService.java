@@ -215,6 +215,6 @@ public class ApplicationMigrationService extends Service
   }
 
   public static void setDatabaseImported(Context context) {
-    context.getSharedPreferences(PREFERENCES_NAME, 0).edit().putBoolean(DATABASE_MIGRATED, true).commit();
+    context.getSharedPreferences(PREFERENCES_NAME, 0).edit().putBoolean(DATABASE_MIGRATED, true).apply();
   }
 }
