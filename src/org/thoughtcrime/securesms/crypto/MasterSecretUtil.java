@@ -200,24 +200,33 @@ public class MasterSecretUtil {
   }
 
   private static void save(Context context, String key, int value) {
-    context.getSharedPreferences(PREFERENCES_NAME, 0)
-           .edit()
-           .putInt(key, value)
-           .commit();
+    if (!context.getSharedPreferences(PREFERENCES_NAME, 0)
+                .edit()
+                .putInt(key, value)
+                .commit())
+    {
+      throw new AssertionError("failed to save a shared pref in MasterSecretUtil");
+    }
   }
 
   private static void save(Context context, String key, byte[] value) {
-    context.getSharedPreferences(PREFERENCES_NAME, 0)
-           .edit()
-           .putString(key, Base64.encodeBytes(value))
-           .commit();
+    if (!context.getSharedPreferences(PREFERENCES_NAME, 0)
+                .edit()
+                .putString(key, Base64.encodeBytes(value))
+                .commit())
+    {
+      throw new AssertionError("failed to save a shared pref in MasterSecretUtil");
+    }
   }
 
   private static void save(Context context, String key, boolean value) {
-    context.getSharedPreferences(PREFERENCES_NAME, 0)
-           .edit()
-           .putBoolean(key, value)
-           .commit();
+    if (!context.getSharedPreferences(PREFERENCES_NAME, 0)
+                .edit()
+                .putBoolean(key, value)
+                .commit())
+    {
+      throw new AssertionError("failed to save a shared pref in MasterSecretUtil");
+    }
   }
 
   private static byte[] retrieve(Context context, String key) throws IOException {

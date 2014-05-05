@@ -194,7 +194,7 @@ public class Emoji {
       PreferenceManager.getDefaultSharedPreferences(context)
                        .edit()
                        .putString(EMOJI_LRU_PREFERENCE, serialized)
-                       .commit();
+                       .apply();
     }
   }
 }

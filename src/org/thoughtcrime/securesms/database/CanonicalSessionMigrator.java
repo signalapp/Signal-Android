@@ -64,7 +64,7 @@ public class CanonicalSessionMigrator {
       }
     }
 
-    context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).edit().putBoolean("canonicalized", true).commit();
+    context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).edit().putBoolean("canonicalized", true).apply();
   }
 
 }
