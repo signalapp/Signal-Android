@@ -595,45 +595,37 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
-  private String buildOutgoingSmsDescription() {
-    final StringBuilder builder         = new StringBuilder();
-    final boolean       dataFallback    = TextSecurePreferences.isSmsFallbackEnabled(this);
-    final boolean       dataFallbackAsk = TextSecurePreferences.isSmsFallbackAskEnabled(this);
-    final boolean       nonData         = TextSecurePreferences.isSmsNonDataOutEnabled(this);
+  private String buildOutgoingFallbackDescription(boolean isFallbackEnabled,
+                                                  boolean isFallbackAskEnabled,
+                                                  boolean isNonDataOutEnabled) {
 
-    if (dataFallback) {
-      builder.append(getString(R.string.preferences__sms_outgoing_push_users));
-      if (dataFallbackAsk) builder.append(" ").append(getString(R.string.preferences__sms_fallback_push_users_ask));
+    final StringBuilder builder         = new StringBuilder();
+
+    if (isFallbackEnabled) {
+      builder.append(getString(R.string.preferences__fallback_outgoing_push_users));
+      if (isFallbackAskEnabled) builder.append(" ").append(getString(R.string.preferences__fallback_push_users_ask));
     }
-    if (nonData) {
-      if (dataFallback) builder.append(", ");
-      builder.append(getString(R.string.preferences__sms_fallback_non_push_users));
+    if (isNonDataOutEnabled) {
+      if (isFallbackEnabled) builder.append(", ");
+      builder.append(getString(R.string.preferences__fallback_non_push_users));
     }
-    if (!dataFallback && !nonData) {
-      builder.append(getString(R.string.preferences__sms_fallback_nobody));
+    if (!isFallbackEnabled && !isNonDataOutEnabled) {
+      builder.append(getString(R.string.preferences__fallback_nobody));
     }
     return builder.toString();
   }
 
-  private String buildOutgoingMmsDescription() {
-    final StringBuilder builder         = new StringBuilder();
-    final boolean       dataFallback    = TextSecurePreferences.isMmsFallbackEnabled(this);
-    final boolean       dataFallbackAsk = TextSecurePreferences.isMmsFallbackAskEnabled(this);
-    final boolean       nonData         = TextSecurePreferences.isMmsNonDataOutEnabled(this);
+  private String buildOutgoingSmsDescription() {
 
-    if (dataFallback) {
-      builder.append(getString(R.string.preferences__mms_outgoing_push_users));
-      if (dataFallbackAsk) builder.append(" ").append(getString(R.string
-              .preferences__mms_fallback_push_users_ask));
-    }
-    if (nonData) {
-      if (dataFallback) builder.append(", ");
-      builder.append(getString(R.string.preferences__mms_fallback_non_push_users));
-    }
-    if (!dataFallback && !nonData) {
-      builder.append(getString(R.string.preferences__mms_fallback_nobody));
-    }
-    return builder.toString();
+    return buildOutgoingFallbackDescription(TextSecurePreferences.isSmsFallbackEnabled(this),
+            TextSecurePreferences.isSmsFallbackAskEnabled(this),
+            TextSecurePreferences.isSmsNonDataOutEnabled(this));
+  }
+
+  private String buildOutgoingMmsDescription() {
+    return buildOutgoingFallbackDescription(TextSecurePreferences.isMmsFallbackEnabled(this),
+            TextSecurePreferences.isMmsFallbackAskEnabled(this),
+            TextSecurePreferences.isMmsNonDataOutEnabled(this));
   }
 
 

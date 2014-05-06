@@ -14,7 +14,7 @@
               android:layout_height="wrap_content"
               android:checkMark="?android:attr/listChoiceIndicatorMultiple"
               android:singleLine="true"
-              android:text="@string/preferences__mms_outgoing_push_users" />
+              android:text="@string/preferences__fallback_outgoing_push_users" />
 
     <TextView
         style="@style/TextSecureDialogSecondaryText"
@@ -39,6 +39,6 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-              android:text="@string/preferences__mms_fallback_non_push_users" />
+              android:text="@string/preferences__fallback_non_push_users" />
 
 </LinearLayout>
