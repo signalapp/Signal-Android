@@ -78,7 +78,7 @@ public class TextSecurePreferences {
 
 
   public static boolean isMmsFallbackEnabled(Context context) {
-    return getBooleanPreference(context, ALLOW_MMS_FALLBACK_PREF, true);
+    return getBooleanPreference(context, ALLOW_MMS_FALLBACK_PREF, TextSecurePreferences.isSmsFallbackEnabled(context));
   }
 
   public static void setMmsFallbackEnabled(Context context, boolean enabled) {
@@ -86,7 +86,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isMmsNonDataOutEnabled(Context context) {
-    return getBooleanPreference(context, ALLOW_MMS_NON_DATA_PREF, true);
+    return getBooleanPreference(context, ALLOW_MMS_NON_DATA_PREF, TextSecurePreferences.isSmsNonDataOutEnabled(context));
   }
 
   public static void setMmsNonDataOutEnabled(Context context, boolean enabled) {
@@ -94,7 +94,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isMmsFallbackAskEnabled(Context context) {
-    return getBooleanPreference(context, MMS_FALLBACK_ASK_PREF, true);
+    return getBooleanPreference(context, MMS_FALLBACK_ASK_PREF, TextSecurePreferences.isSmsFallbackAskEnabled(context));
   }
 
   public static void setMmsFallbackAskEnabled(Context context, boolean enabled) {
