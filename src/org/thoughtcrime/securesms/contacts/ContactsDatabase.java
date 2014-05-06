@@ -214,7 +214,7 @@ public class ContactsDatabase {
         values.put(NUMBER_TYPE_COLUMN, ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM);
         values.put(NUMBER_COLUMN, user.numbers.get(0).number);
         values.put(TYPE_COLUMN, PUSH_TYPE);
-        mDatabase.insert(TABLE_NAME, null, values);
+        mDatabase.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
       }
       Log.d(TAG, "finished populating push users.");
     }
