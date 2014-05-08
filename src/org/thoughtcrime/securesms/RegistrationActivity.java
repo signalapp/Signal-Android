@@ -245,7 +245,7 @@ public class RegistrationActivity extends SherlockActivity {
         formattedNumber = countryFormatter.inputDigit(number.charAt(i));
       }
 
-      if (!s.toString().equals(formattedNumber)) {
+      if (formattedNumber != null && !s.toString().equals(formattedNumber)) {
         s.replace(0, s.length(), formattedNumber);
       }
     }
