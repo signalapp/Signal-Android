@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -61,6 +62,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.AboutActivity;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.AuthorizationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -128,6 +130,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         .setOnPreferenceClickListener(new SubmitDebugLogListener());
     this.findPreference(OUTGOING_SMS_PREF)
         .setOnPreferenceChangeListener(new OutgoingSmsPreferenceListener());
+    this.findPreference(TextSecurePreferences.ABOUT_APPLICATION)
+      .setOnPreferenceClickListener(new AboutApplicationListener());
 
     initializeOutgoingSmsSummary((OutgoingSmsPreference) findPreference(OUTGOING_SMS_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
@@ -606,6 +610,20 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           if (((PreferenceScreen)preference).getDialog()!=null)
             ((PreferenceScreen)preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(this.getWindow().getDecorView().getBackground().getConstantState().newDrawable());
     return false;
+  }
+
+
+  private class AboutApplicationListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+
+      Context context = ApplicationPreferencesActivity.this;
+      startActivity(new Intent(context, AboutActivity.class));
+
+      return true;
+
+    }
+
   }
 
 }

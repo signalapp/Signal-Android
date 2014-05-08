@@ -49,6 +49,8 @@ public class TextSecurePreferences {
   private static final String SMS_FALLBACK_ASK_PREF            = "pref_sms_fallback_ask";
   private static final String ALLOW_SMS_NON_DATA_PREF          = "pref_sms_non_data_out";
 
+  public  static final String ABOUT_APPLICATION                = "pref_key_about_application_version";
+
   public static boolean isSmsFallbackEnabled(Context context) {
     return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
   }
