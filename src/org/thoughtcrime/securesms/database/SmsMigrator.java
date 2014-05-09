@@ -29,9 +29,12 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class SmsMigrator {
+
+  private static final int DRAFT = 3;
 
   private static void addEncryptedStringToStatement(Context context, SQLiteStatement statement,
                                                     Cursor cursor, MasterSecret masterSecret,
@@ -80,6 +83,28 @@ public class SmsMigrator {
     } else {
       long theirType = cursor.getLong(columnIndex);
       statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(theirType) | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+    }
+  }
+
+  private static String getStringFromCursor(Cursor cursor, String key)
+  {
+    int columnIndex = cursor.getColumnIndexOrThrow(key);
+
+    if (cursor.isNull(columnIndex)) {
+      return "";
+    } else {
+      return cursor.getString(columnIndex);
+    }
+  }
+
+  private static int getLongFromCursor(Cursor cursor, String key)
+  {
+    int columnIndex = cursor.getColumnIndexOrThrow(key);
+
+    if (cursor.isNull(columnIndex)) {
+      return 1;
+    } else {
+      return cursor.getInt(columnIndex);
     }
   }
 
@@ -169,10 +194,17 @@ public class SmsMigrator {
       cursor                     = context.getContentResolver().query(uri, null, null, null, null);
       SQLiteDatabase transaction = ourSmsDatabase.beginTransaction();
       SQLiteStatement statement  = ourSmsDatabase.createInsertStatement(transaction);
+      MasterCipher masterCipher  = new MasterCipher(masterSecret);
 
       while (cursor != null && cursor.moveToNext()) {
-        getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
-        statement.execute();
+
+        if (getLongFromCursor(cursor, SmsDatabase.TYPE) != DRAFT) {
+          getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
+          statement.execute();
+        } else {
+          DatabaseFactory.getDraftDatabase(context).insertDrafts(masterCipher, ourThreadId,
+              Arrays.asList(new DraftDatabase.Draft(DraftDatabase.Draft.TEXT, getStringFromCursor(cursor, SmsDatabase.BODY))));
+        }
 
         listener.progressUpdate(new ProgressDescription(progress, cursor.getCount(), cursor.getPosition()));
       }
