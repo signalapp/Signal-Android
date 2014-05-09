@@ -22,6 +22,8 @@ import java.util.Set;
 
 public class PlaintextBackupImporter {
 
+  private static final int DRAFT = 3;
+
   public static void importPlaintextFromSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
@@ -64,7 +66,7 @@ public class PlaintextBackupImporter {
           if (item.getAddress() == null || item.getAddress().equals("null"))
             continue;
 
-          if (item.getType() != 3) {
+          if (item.getType() != DRAFT) {
             addStringToStatement(statement, 1, item.getAddress());
             addNullToStatement(statement, 2);
             addLongToStatement(statement, 3, item.getDate());
