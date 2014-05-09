@@ -64,7 +64,6 @@ public class PlaintextBackupImporter {
           if (item.getAddress() == null || item.getAddress().equals("null"))
             continue;
 
-           //TODO handle outbox (type 4) and failed (type 5)to prevent unwanted resending. Issue #960
           if (item.getType() != 3) {
             addStringToStatement(statement, 1, item.getAddress());
             addNullToStatement(statement, 2);
@@ -81,7 +80,6 @@ public class PlaintextBackupImporter {
             addLongToStatement(statement, 13, threadId);
             modifiedThreads.add(threadId);
             statement.execute();
-            //TODO add duplicate filter (createInsertUniqueItem; "where not exists ..." condition)
           } else {
             DatabaseFactory.getDraftDatabase(context).insertDrafts(masterCipher, threadId,
                 Arrays.asList(new DraftDatabase.Draft(DraftDatabase.Draft.TEXT, item.getBody())));
