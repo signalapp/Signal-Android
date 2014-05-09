@@ -6,15 +6,16 @@ import android.database.sqlite.SQLiteStatement;
 import android.os.Environment;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -63,21 +64,29 @@ public class PlaintextBackupImporter {
           if (item.getAddress() == null || item.getAddress().equals("null"))
             continue;
 
-          addStringToStatement(statement, 1, item.getAddress());
-          addNullToStatement(statement, 2);
-          addLongToStatement(statement, 3, item.getDate());
-          addLongToStatement(statement, 4, item.getDate());
-          addLongToStatement(statement, 5, item.getProtocol());
-          addLongToStatement(statement, 6, item.getRead());
-          addLongToStatement(statement, 7, item.getStatus());
-          addTranslatedTypeToStatement(statement, 8, item.getType());
-          addNullToStatement(statement, 9);
-          addStringToStatement(statement, 10, item.getSubject());
-          addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
-          addStringToStatement(statement, 12, item.getServiceCenter());
-          addLongToStatement(statement, 13, threadId);
-          modifiedThreads.add(threadId);
-          statement.execute();
+           //TODO handle outbox (type 4) and failed (type 5)to prevent unwanted resending. Issue #960
+          if (item.getType() != 3) {
+            addStringToStatement(statement, 1, item.getAddress());
+            addNullToStatement(statement, 2);
+            addLongToStatement(statement, 3, item.getDate());
+            addLongToStatement(statement, 4, item.getDate());
+            addLongToStatement(statement, 5, item.getProtocol());
+            addLongToStatement(statement, 6, item.getRead());
+            addLongToStatement(statement, 7, item.getStatus());
+            addTranslatedTypeToStatement(statement, 8, item.getType());
+            addNullToStatement(statement, 9);
+            addStringToStatement(statement, 10, item.getSubject());
+            addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
+            addStringToStatement(statement, 12, item.getServiceCenter());
+            addLongToStatement(statement, 13, threadId);
+            modifiedThreads.add(threadId);
+            statement.execute();
+            //TODO add duplicate filter (createInsertUniqueItem; "where not exists ..." condition)
+          } else {
+            DatabaseFactory.getDraftDatabase(context).insertDrafts(masterCipher, threadId,
+                Arrays.asList(new DraftDatabase.Draft(DraftDatabase.Draft.TEXT, item.getBody())));
+          }
+
         } catch (RecipientFormattingException rfe) {
           Log.w("PlaintextBackupImporter", rfe);
         }
