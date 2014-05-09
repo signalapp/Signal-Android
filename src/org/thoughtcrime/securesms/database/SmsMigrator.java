@@ -34,7 +34,7 @@ import java.util.StringTokenizer;
 
 public class SmsMigrator {
 
-  private static final int DRAFT = 3;
+  private static final long DRAFT = 3L;
 
   private static void addEncryptedStringToStatement(Context context, SQLiteStatement statement,
                                                     Cursor cursor, MasterSecret masterSecret,
@@ -97,14 +97,14 @@ public class SmsMigrator {
     }
   }
 
-  private static int getLongFromCursor(Cursor cursor, String key)
+  private static long getLongFromCursor(Cursor cursor, String key)
   {
     int columnIndex = cursor.getColumnIndexOrThrow(key);
 
     if (cursor.isNull(columnIndex)) {
-      return 1;
+      return 1L;
     } else {
-      return cursor.getInt(columnIndex);
+      return cursor.getLong(columnIndex);
     }
   }
 
