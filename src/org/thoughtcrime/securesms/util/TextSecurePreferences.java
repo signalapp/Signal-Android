@@ -57,6 +57,9 @@ public class TextSecurePreferences {
   }
 
   public static void setSmsFallbackEnabled(Context context, boolean enabled) {
+    if(!TextSecurePreferences.containsPreference(context, ALLOW_MMS_FALLBACK_PREF)) {
+      TextSecurePreferences.setMmsFallbackEnabled(context, TextSecurePreferences.isSmsFallbackEnabled(context));
+    }
     setBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, enabled);
   }
 
@@ -65,6 +68,9 @@ public class TextSecurePreferences {
   }
 
   public static void setSmsNonDataOutEnabled(Context context, boolean enabled) {
+    if(!TextSecurePreferences.containsPreference(context, ALLOW_MMS_NON_DATA_PREF)) {
+      TextSecurePreferences.setMmsNonDataOutEnabled(context, TextSecurePreferences.isSmsNonDataOutEnabled(context));
+    }
     setBooleanPreference(context, ALLOW_SMS_NON_DATA_PREF, enabled);
   }
 
@@ -73,6 +79,9 @@ public class TextSecurePreferences {
   }
 
   public static void setSmsFallbackAskEnabled(Context context, boolean enabled) {
+    if(!TextSecurePreferences.containsPreference(context, MMS_FALLBACK_ASK_PREF)) {
+      TextSecurePreferences.setMmsFallbackAskEnabled(context, TextSecurePreferences.isSmsFallbackAskEnabled(context));
+    }
     setBooleanPreference(context, SMS_FALLBACK_ASK_PREF, enabled);
   }
 
@@ -330,6 +339,10 @@ public class TextSecurePreferences {
 
   private static void setLongPreference(Context context, String key, long value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).commit();
+  }
+
+  private static boolean containsPreference(Context context, String key) {
+    return PreferenceManager.getDefaultSharedPreferences(context).contains(key);
   }
 
 
