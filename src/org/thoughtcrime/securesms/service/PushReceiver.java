@@ -113,6 +113,7 @@ public class PushReceiver {
 
     try {
       Recipient              recipient       = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
+      Recipients             recipients      = RecipientFactory.getRecipientsFromMessage(context, message, false);
       RecipientDevice        recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSourceDevice());
       KeyExchangeProcessorV2 processor       = new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
       PreKeyWhisperMessage   preKeyExchange  = new PreKeyWhisperMessage(message.getBody());
@@ -126,8 +127,10 @@ public class PushReceiver {
         String                      encoded       = Base64.encodeBytes(message.getBody());
         IncomingTextMessage         textMessage   = new IncomingTextMessage(message, encoded, null);
         IncomingPreKeyBundleMessage bundleMessage = new IncomingPreKeyBundleMessage(textMessage, encoded);
+        long                        threadId      = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
 
         DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, bundleMessage);
+        MessageNotifier.updateNotification(context, masterSecret, threadId);
       }
     } catch (InvalidKeyException e) {
       Log.w("PushReceiver", e);
