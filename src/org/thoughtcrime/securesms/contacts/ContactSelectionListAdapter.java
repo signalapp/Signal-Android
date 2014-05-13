@@ -68,6 +68,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
   private int NAME_COLUMN        = -1;
   private int NUMBER_COLUMN      = -1;
   private int NUMBER_TYPE_COLUMN = -1;
+  private int LABEL_COLUMN       = -1;
   private int ID_COLUMN          = -1;
 
   private final Context        context;
@@ -104,6 +105,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     public String name;
     public String number;
     public int    numberType;
+    public String Label;
     public long   id;
   }
 
@@ -150,6 +152,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     contactData.name       = cursor.getString(NAME_COLUMN);
     contactData.number     = cursor.getString(NUMBER_COLUMN);
     contactData.numberType = cursor.getInt(NUMBER_TYPE_COLUMN);
+    contactData.Label      = cursor.getString(LABEL_COLUMN);
     contactData.id         = cursor.getLong(ID_COLUMN);
 
     if (contactData.type != ContactsDatabase.PUSH_TYPE) {
@@ -175,7 +178,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       holder.number.setText(contactData.number);
     } else {
       final CharSequence label = ContactsContract.CommonDataKinds.Phone.getTypeLabel(context.getResources(),
-                                                                                     contactData.numberType, "");
+                                                                                     contactData.numberType, contactData.Label);
       final CharSequence numberWithLabel = contactData.number + "  " + label;
       final Spannable    numberLabelSpan = new SpannableString(numberWithLabel);
       numberLabelSpan.setSpan(new ForegroundColorSpan(drawables.getColor(2, 0xff444444)), contactData.number.length(), numberWithLabel.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -250,6 +253,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     this.NAME_COLUMN        = cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN);
     this.NUMBER_COLUMN      = cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN);
     this.NUMBER_TYPE_COLUMN = cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_TYPE_COLUMN);
+    this.LABEL_COLUMN       = cursor.getColumnIndexOrThrow(ContactsDatabase.LABEL_COLUMN);
     this.ID_COLUMN          = cursor.getColumnIndexOrThrow(ContactsDatabase.ID_COLUMN);
   }
 }
