@@ -212,7 +212,10 @@
     <string name="PassphraseCreateActivity_you_must_specify_a_password">You must specify a password</string>
 
     <!-- PassphrasePromptActivity -->
-    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid Passphrase!</string>
+    <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
+    <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icon</string>
+    <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
+    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
 
     <!-- PromptMmsActivity -->
     <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">You must specify an MMSC URL for your carrier.</string>
@@ -645,7 +648,7 @@
     <!-- AndroidManifest.xml -->
 
     <string name="AndroidManifest__create_passphrase">Create Passphrase</string>
-    <string name="AndroidManifest__enter_passphrase">Enter Passphrase</string>
+    <string name="AndroidManifest__enter_passphrase">Enter passphrase</string>
     <string name="AndroidManifest__select_contacts">Select Contacts</string>
     <string name="AndroidManifest__select_contact">Select Contact</string>
     <string name="AndroidManifest__textsecure_detected">TextSecure Detected</string>
