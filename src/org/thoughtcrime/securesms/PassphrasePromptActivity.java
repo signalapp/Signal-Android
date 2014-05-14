@@ -17,12 +17,21 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.TypefaceSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
@@ -35,9 +44,10 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.whispersystems.textsecure.util.Util;
 
 /**
- * Activity that prompts for a users's passphrase.
+ * Activity that prompts for a user's passphrase.
  *
  * @author Moxie Marlinspike
  */
@@ -79,10 +89,24 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    Button okButton = (Button)  findViewById(R.id.ok_button);
-    passphraseText  = (EditText)findViewById(R.id.passphrase_edit);
-
+    mitigateAndroidTilingBug();
+    ImageButton okButton = (ImageButton) findViewById(R.id.ok_button);
+    passphraseText       = (EditText)    findViewById(R.id.passphrase_edit);
+    SpannableString hint = new SpannableString(getString(R.string.PassphrasePromptActivity_enter_passphrase));
+    hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+    hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+    hint.setSpan(new ForegroundColorSpan(0x66000000), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+    passphraseText.setHint(hint);
     okButton.setOnClickListener(new OkButtonClickListener());
+  }
+
+  private void mitigateAndroidTilingBug() {
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+      Drawable actionBarBackground = getResources().getDrawable(R.drawable.background_pattern_repeat);
+      Util.fixBackgroundRepeat(actionBarBackground);
+      getSupportActionBar().setBackgroundDrawable(actionBarBackground);
+      Util.fixBackgroundRepeat(findViewById(R.id.scroll_parent).getBackground());
+    }
   }
 
   private class OkButtonClickListener implements OnClickListener {

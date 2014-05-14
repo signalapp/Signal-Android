@@ -133,8 +133,8 @@
     <activity android:name=".PassphrasePromptActivity"
               android:label="@string/AndroidManifest__enter_passphrase"
               android:launchMode="singleTop"
-              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
-              android:windowSoftInputMode="stateUnchanged"
+              android:theme="@style/TextSecure.IntroTheme"
+              android:windowSoftInputMode="stateAlwaysVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ContactSelectionActivity"
