@@ -55,7 +55,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
 
     List<String> recipientStrings = new LinkedList<String>();
     String e164number = "";
-    int meFlag = 0; //some may consider this hacky, but do you really want to import the boolean class just for a flag?
+    int meFlag = 0;
     for (Recipient recipient : members.getRecipientsList()) {
       try {
           e164number = Util.canonicalizeNumber(context, recipient.getNumber());
@@ -69,7 +69,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
       }
       recipientStrings.add(recipient.toShortString());
     }
-    if(meFlag == 0)//add "Me" to the list of members of a conversation
+    if(meFlag == 0)
     {
         recipientStrings.add("Me");
     }
