@@ -10,6 +10,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -51,8 +54,19 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
     }
 
     List<String> recipientStrings = new LinkedList<String>();
+    String e164number = "";
 
     for (Recipient recipient : members.getRecipientsList()) {
+      try {
+          e164number = Util.canonicalizeNumber(context, recipient.getNumber());
+          Log.d("GroupMembersDialog", e164number);
+      } catch (InvalidNumberException ine) {
+           Log.w("GroupMembersDialog", ine);
+           }
+      if( e164number.equals( TextSecurePreferences.getLocalNumber(context)))
+      {
+          recipient.setName("Me");
+      }
       recipientStrings.add(recipient.toShortString());
     }
 
