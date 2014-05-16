@@ -502,22 +502,26 @@
 
     <string name="export_fragment__export_encrypted_backup">Export Encrypted Backup</string>
     <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Export an encrypted
-        backup to the SD card.
+        backup to the SD card in a directory named TextSecureExport.
     </string>
     <string name="export_fragment__export_plaintext_backup">Export Plaintext Backup</string>
     <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Export a plaintext backup compatible with \'SMSBackup And Restore\' to the SD card.</string>
+        Export a plaintext backup file to the SD card named TextSecurePlaintextBackup.xml.
+        Compatible with \'SMSBackup And Restore.\'
+    </string>
     <string name="import_fragment__import_system_sms_database">Import System SMS Database</string>
     <string name="import_fragment__import_the_database_from_the_default_system">Import the database
         from the default system messenger app.
     </string>
     <string name="import_fragment__import_encrypted_backup">Import Encrypted Backup</string>
     <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-        Restore a previously exported encrypted TextSecure backup.
+        Restore a previously exported encrypted TextSecure backup from the SD card in a directory named TextSecureExport.
     </string>
     <string name="import_fragment__import_plaintext_backup">Import Plaintext Backup</string>
     <string name="import_fragment__import_a_plaintext_backup_file">
-        Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
+        Import a plaintext backup file from the SD card named TextSecurePlaintextBackup.xml.
+        Compatible with \'SMSBackup And Restore.\'
+    </string>
 
     <string name="local_identity__regenerate_key">Regenerate Key</string>
 
