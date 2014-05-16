@@ -105,7 +105,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     public String name;
     public String number;
     public int    numberType;
-    public String Label;
+    public String label;
     public long   id;
   }
 
@@ -152,7 +152,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     contactData.name       = cursor.getString(NAME_COLUMN);
     contactData.number     = cursor.getString(NUMBER_COLUMN);
     contactData.numberType = cursor.getInt(NUMBER_TYPE_COLUMN);
-    contactData.Label      = cursor.getString(LABEL_COLUMN);
+    contactData.label      = cursor.getString(LABEL_COLUMN);
     contactData.id         = cursor.getLong(ID_COLUMN);
 
     if (contactData.type != ContactsDatabase.PUSH_TYPE) {
@@ -178,7 +178,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       holder.number.setText(contactData.number);
     } else {
       final CharSequence label = ContactsContract.CommonDataKinds.Phone.getTypeLabel(context.getResources(),
-                                                                                     contactData.numberType, contactData.Label);
+                                                                                     contactData.numberType, contactData.label);
       final CharSequence numberWithLabel = contactData.number + "  " + label;
       final Spannable    numberLabelSpan = new SpannableString(numberWithLabel);
       numberLabelSpan.setSpan(new ForegroundColorSpan(drawables.getColor(2, 0xff444444)), contactData.number.length(), numberWithLabel.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
