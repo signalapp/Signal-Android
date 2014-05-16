@@ -177,4 +177,10 @@
                     android:title="@string/preferences__submit_debug_log"/>
 
     </PreferenceCategory>
-</PreferenceScreen>
+
+    <PreferenceCategory android:key="pref_key_about_application" android:title="@string/preferences__about">
+      <org.thoughtcrime.securesms.preferences.AboutApplicationPreference android:key="pref_key_about_application_version"
+                                                                         android:title="@string/preferences__version" />
+    </PreferenceCategory>
+
+ </PreferenceScreen>

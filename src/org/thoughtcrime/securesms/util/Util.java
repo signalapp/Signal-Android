@@ -25,6 +25,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.content.pm.PackageManager;
 
 import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
@@ -39,6 +40,8 @@ import java.util.concurrent.TimeUnit;
 
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
+
+import org.thoughtcrime.securesms.R;
 
 public class Util {
 
@@ -176,5 +179,22 @@ public class Util {
   ////
   ////  return BitmapFactory.decodeStream(src, null, options);
   //  }
+
+  public static String getVersionName(Context context) {
+    String versionName;
+    try {
+      versionName = context.getPackageManager()
+                      .getPackageInfo(context.getPackageName(), 0)
+                      .versionName;
+    } catch (PackageManager.NameNotFoundException e) {
+      throw new AssertionError(e);
+    }
+    return versionName;
+  }
+
+
+  public static String getAppAndVersionName(Context context) {
+    return context.getString(R.string.app_name)+" "+getVersionName(context);
+  }
 
 }
