@@ -5,6 +5,7 @@
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="windowContentOverlay">@null</item>
+        <item name="android:windowDisablePreview">true</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background_read_light</item>
         <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_background_unread_light</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
