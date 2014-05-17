@@ -108,12 +108,12 @@ public class VibratePatternListPreference extends ListPreference  {
 
     @Override
     public void onClick(View view) {
-      final String VibratePattern = vibratePatternEditText.getText().toString();
+      final String vibratePattern = vibratePatternEditText.getText().toString();
 
       try
       {
-        MessageNotifier.parseVibratePattern(VibratePattern);
-        TextSecurePreferences.setNotificationVibratePatternCustom(context, VibratePattern);
+        MessageNotifier.parseVibratePattern(vibratePattern);
+        TextSecurePreferences.setNotificationVibratePatternCustom(context, vibratePattern);
         Toast.makeText(context, R.string.preferences__pref_vibrate_custom_pattern_set, Toast.LENGTH_LONG).show();
         dialog.dismiss();
         dialogInProgress = false;
@@ -131,12 +131,12 @@ public class VibratePatternListPreference extends ListPreference  {
 
     @Override
     public void onClick(View view) {
-      final String VibratePattern = vibratePatternEditText.getText().toString();
+      final String vibratePattern = vibratePatternEditText.getText().toString();
 
       try
       {
         Vibrator vibrator = (Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(MessageNotifier.parseVibratePattern(VibratePattern), -1);
+        vibrator.vibrate(MessageNotifier.parseVibratePattern(vibratePattern), -1);
       }
       catch(NumberFormatException e)
       {
