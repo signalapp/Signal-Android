@@ -57,7 +57,7 @@ public class ContactsDatabase {
   public static final String TYPE_COLUMN        = "type";
 
   private static final String   FILTER_SELECTION   = NAME_COLUMN + " LIKE ? OR " + NUMBER_COLUMN + " LIKE ?";
-  private static final String   CONTACT_LIST_SORT  = NAME_COLUMN + " ASC";
+  private static final String   CONTACT_LIST_SORT  = NAME_COLUMN + " COLLATE NOCASE ASC";
   private static final String[] ANDROID_PROJECTION = new String[]{ID_COLUMN,
                                                                   NAME_COLUMN,
                                                                   NUMBER_TYPE_COLUMN,
