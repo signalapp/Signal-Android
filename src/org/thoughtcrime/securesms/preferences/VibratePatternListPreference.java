@@ -43,7 +43,7 @@ public class VibratePatternListPreference extends ListPreference  {
 
   private Context context;
 
-  private EditText VibratePatternEditText;
+  private EditText vibratePatternEditText;
 
   private boolean dialogInProgress;
 
@@ -69,10 +69,10 @@ public class VibratePatternListPreference extends ListPreference  {
     private void showDialog() {
     LayoutInflater inflater     = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View view                   = inflater.inflate(R.layout.vibrate_pattern_dialog, null);
-    this.VibratePatternEditText = (EditText)view.findViewById(R.id.editTextPattern);
+    this.vibratePatternEditText = (EditText)view.findViewById(R.id.editTextPattern);
 
     initializeDialog(view);
-    VibratePatternEditText.setText(TextSecurePreferences.getNotificationVibratePatternCustom(context));
+    vibratePatternEditText.setText(TextSecurePreferences.getNotificationVibratePatternCustom(context));
     dialogInProgress = true;
   }
 
@@ -108,7 +108,7 @@ public class VibratePatternListPreference extends ListPreference  {
 
     @Override
     public void onClick(View view) {
-      final String VibratePattern = VibratePatternEditText.getText().toString();
+      final String VibratePattern = vibratePatternEditText.getText().toString();
 
       try
       {
@@ -131,7 +131,7 @@ public class VibratePatternListPreference extends ListPreference  {
 
     @Override
     public void onClick(View view) {
-      final String VibratePattern = VibratePatternEditText.getText().toString();
+      final String VibratePattern = vibratePatternEditText.getText().toString();
 
       try
       {

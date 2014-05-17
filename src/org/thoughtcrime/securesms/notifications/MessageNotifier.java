@@ -376,8 +376,8 @@ public class MessageNotifier {
     }
   }
 
-  public static long[] parseVibratePattern(String VibratePattern) {
-    String[] vibratePatternCustomArrayString = VibratePattern.split(",");
+  public static long[] parseVibratePattern(String vibratePattern) {
+    String[] vibratePatternCustomArrayString = vibratePattern.split(",");
     long[] vibratePatternCustomArray         = new long[vibratePatternCustomArrayString.length];
 
     for (int i = 0; i < vibratePatternCustomArrayString.length; i++) {

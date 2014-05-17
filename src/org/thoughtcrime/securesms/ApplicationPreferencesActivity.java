@@ -123,7 +123,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     this.findPreference(TextSecurePreferences.LED_BLINK_PREF)
       .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.VIBRATE_PREF)
-            .setOnPreferenceChangeListener(new ListSummaryListener());
+      .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
       .setOnPreferenceChangeListener(new RingtoneSummaryListener());
     this.findPreference(UPDATE_DIRECTORY_PREF)
