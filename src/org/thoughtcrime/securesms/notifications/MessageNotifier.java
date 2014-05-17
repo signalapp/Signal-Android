@@ -39,7 +39,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -181,8 +180,10 @@ public class MessageNotifier {
     SpannableStringBuilder content = new SpannableStringBuilder();
 
     for (NotificationItem item : notifications) {
-      content.append(item.getBigStyleSummary());
-      content.append('\n');
+      if (!item.getBigStyleSummary().equals("")) {
+        content.append(item.getBigStyleSummary());
+        content.append('\n');
+      }
     }
 
     builder.setStyle(new BigTextStyle().bigText(content));
