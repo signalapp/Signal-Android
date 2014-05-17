@@ -25,7 +25,6 @@ import android.util.Log;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.PublicKey;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
 import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
@@ -59,8 +58,6 @@ public class MasterSecretUtil {
   public static final String UNENCRYPTED_PASSPHRASE  = "unencrypted";
   public static final String PREFERENCES_NAME        = "SecureSMS-Preferences";
 
-  private static final String ASYMMETRIC_LOCAL_PUBLIC_NIST  = "asymmetric_master_secret_public";
-  private static final String ASYMMETRIC_LOCAL_PRIVATE_NIST = "asymmetric_master_secret_private";
   private static final String ASYMMETRIC_LOCAL_PUBLIC_DJB   = "asymmetric_master_secret_curve25519_public";
   private static final String ASYMMETRIC_LOCAL_PRIVATE_DJB  = "asymmetric_master_secret_curve25519_private";
 
@@ -116,21 +113,11 @@ public class MasterSecretUtil {
                                                                  MasterSecret masterSecret)
   {
     try {
-      byte[] nistPublicBytes  = retrieve(context, ASYMMETRIC_LOCAL_PUBLIC_NIST);
       byte[] djbPublicBytes   = retrieve(context, ASYMMETRIC_LOCAL_PUBLIC_DJB);
-
-      byte[] nistPrivateBytes = retrieve(context, ASYMMETRIC_LOCAL_PRIVATE_NIST);
       byte[] djbPrivateBytes  = retrieve(context, ASYMMETRIC_LOCAL_PRIVATE_DJB);
 
-      ECPublicKey  nistPublicKey  = null;
       ECPublicKey  djbPublicKey   = null;
-
-      ECPrivateKey nistPrivateKey = null;
       ECPrivateKey djbPrivateKey  = null;
-
-      if (nistPublicBytes != null) {
-        nistPublicKey = new PublicKey(nistPublicBytes, 0).getKey();
-      }
 
       if (djbPublicBytes != null) {
         djbPublicKey = Curve.decodePoint(djbPublicBytes, 0);
@@ -139,16 +126,12 @@ public class MasterSecretUtil {
       if (masterSecret != null) {
         MasterCipher masterCipher = new MasterCipher(masterSecret);
 
-        if (nistPrivateBytes != null) {
-          nistPrivateKey = masterCipher.decryptKey(Curve.NIST_TYPE, nistPrivateBytes);
-        }
-
         if (djbPrivateBytes != null) {
-          djbPrivateKey = masterCipher.decryptKey(Curve.DJB_TYPE, djbPrivateBytes);
+          djbPrivateKey = masterCipher.decryptKey(djbPrivateBytes);
         }
       }
 
-      return new AsymmetricMasterSecret(djbPublicKey, djbPrivateKey, nistPublicKey, nistPrivateKey);
+      return new AsymmetricMasterSecret(djbPublicKey, djbPrivateKey);
     } catch (InvalidKeyException ike) {
       throw new AssertionError(ike);
     } catch (IOException e) {
@@ -160,12 +143,12 @@ public class MasterSecretUtil {
                                                                       MasterSecret masterSecret)
   {
     MasterCipher masterCipher = new MasterCipher(masterSecret);
-    ECKeyPair    keyPair      = Curve.generateKeyPairForType(Curve.DJB_TYPE);
+    ECKeyPair    keyPair      = Curve.generateKeyPair(true);
 
     save(context, ASYMMETRIC_LOCAL_PUBLIC_DJB, keyPair.getPublicKey().serialize());
     save(context, ASYMMETRIC_LOCAL_PRIVATE_DJB, masterCipher.encryptKey(keyPair.getPrivateKey()));
 
-    return new AsymmetricMasterSecret(keyPair.getPublicKey(), keyPair.getPrivateKey(), null, null);
+    return new AsymmetricMasterSecret(keyPair.getPublicKey(), keyPair.getPrivateKey());
   }
 
   public static MasterSecret generateMasterSecret(Context context, String passphrase) {
@@ -187,9 +170,7 @@ public class MasterSecretUtil {
   public static boolean hasAsymmericMasterSecret(Context context) {
     SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
 
-    return
-        settings.contains(ASYMMETRIC_LOCAL_PUBLIC_NIST) ||
-        settings.contains(ASYMMETRIC_LOCAL_PUBLIC_DJB);
+    return settings.contains(ASYMMETRIC_LOCAL_PUBLIC_DJB);
   }
 
   public static boolean isPassphraseInitialized(Context context) {

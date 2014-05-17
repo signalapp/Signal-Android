@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -46,7 +47,7 @@ import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.crypto.protocol.WhisperMessageV2;
+import org.whispersystems.textsecure.crypto.protocol.WhisperMessage;
 import org.whispersystems.textsecure.storage.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 
@@ -121,7 +122,7 @@ public class SmsReceiver {
       if (processor.isTrusted(preKeyExchange)) {
         processor.processKeyExchangeMessage(preKeyExchange);
 
-        WhisperMessageV2         ciphertextMessage  = preKeyExchange.getWhisperMessage();
+        WhisperMessage           ciphertextMessage  = preKeyExchange.getWhisperMessage();
         String                   bundledMessageBody = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
         IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, bundledMessageBody);
         Pair<Long, Long>         messageAndThreadId = storeSecureMessage(masterSecret, bundledMessage);
@@ -188,6 +189,9 @@ public class SmsReceiver {
       } catch (RecipientFormattingException e) {
         Log.w("SmsReceiver", e);
         message.setCorrupted(true);
+      } catch (LegacyMessageException e) {
+        Log.w("SmsReceiver", e);
+        message.setLegacyVersion(true);
       }
     }
 

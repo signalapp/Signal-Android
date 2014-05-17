@@ -57,13 +57,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Omlouváme se, ale zvolený audio soubor je příliš velký.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Adresa příjemce není ve správném tvaru! (sms či email)</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Zpráva je prázdná!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Příjemci skupinové konverzace</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzace</string>
   <string name="ConversationActivity_unnamed_group">Nepojmenovaná Skupina</string>
   <string name="ConversationActivity_d_recipients_in_group">Počet členů: %d</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 člen</string>
-  <string name="ConversationActivity_saving_draft">Ukládám koncept...</string>
   <string name="ConversationActivity_invalid_recipient">Chybný příjemce!</string>
   <string name="ConversationActivity_calls_not_supported">Vytáčení čísel není podporováno!</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Toto zařízení zřejmě neumí vytáčet telefonní čísla</string>
@@ -82,6 +80,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Mažu označené konverzace...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Předávání klíčů...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportovat na SD kartu?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Tímto exportujete šifrované klíče, nastavení a zprávy na SD kartu.</string>
@@ -102,7 +101,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Název MMS Skupiny</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Zvolený kontakt nepodporuje skupiny TextSecure. Tato skupina bude MMS Skupina.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Nejste registrováni k používání datového kanálu, tudíž nejsou skupiny TextSecure povoleny.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Nejsi vlastníkem skupiny, takže nemůžeš měnit název a obrázek.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Došlo k neočekávané chybě, která znemožnila vytvoření skupiny.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ve vaší skupině musí být alespoň jeden kontakt.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členů tvojí skupiny má číslo, které se nedaří správně zpracovat. Prosím opravte jej nebo odstraňte a zkuste znovu.</string>
@@ -293,7 +291,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádný kontakt</string>
-  <string name="contact_selection_group_activity__finding_contacts">Hledat kontakty...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Napište jméno pro vyfiltrování...</string>
   <!--ContactSelectionListFragment-->
@@ -304,6 +301,7 @@
   <string name="conversation_activity__type_message"><small>Odešli zprávu</small></string>
   <string name="conversation_activity__send">Odeslat</string>
   <string name="conversation_activity__remove">Odebrat</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Stažení</string>
   <string name="conversation_item_sent__downloading">Stahuji</string>
@@ -401,7 +399,6 @@
   <string name="registration_progress_activity__sms_verification_failed">Ověření pomocí SMS\n        selhalo.\n    </string>
   <string name="registration_progress_activity__generating_keys">Probíhá generování klíčů...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Komu</string>
   <string name="recipients_panel__add_member">Přidat člena</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Aktuálně nemáte žádné cizí identifikační klíče v databázi.</string>

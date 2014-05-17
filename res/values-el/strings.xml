@@ -60,13 +60,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Συγγνώμη, το επιλεγμένο αρχείο ήχου υπερβαίνει το μέγιστο μέγεθος μηνύματος.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ο παραλήπτης δεν είναι έγκυρη διεύθυνση SMS ή email!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Το μήνυμα είναι κενό!</string>
-  <string name="ConversationActivity_forward_message_prefix">ΠΡΘ</string>
   <string name="ConversationActivity_group_conversation_recipients">Παραλήπτες Ομαδικής Συζήτησης</string>
   <string name="ConversationActivity_group_conversation">Ομαδική Συζήτηση</string>
   <string name="ConversationActivity_unnamed_group">Ανώνυμη ομάδα</string>
   <string name="ConversationActivity_d_recipients_in_group">%d μέλη</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 μέλος</string>
-  <string name="ConversationActivity_saving_draft">Αποθηκεύεται προχείρο...</string>
   <string name="ConversationActivity_invalid_recipient">Άκυρος παραλήπτης!</string>
   <string name="ConversationActivity_calls_not_supported">Δεν Υποστηρίζονται Κλήσεις</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Αυτή η συσκευή δε φαίνεται να υποστηρίζει ενέργειες κλήσης.</string>
@@ -85,6 +83,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Διαγραφή επιλεγμένων συζητήσεων...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιών...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Εξαγωγή Σε Κάρτα Μνήμης;</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Αυτό\n        θα εξάγει τα κρυπτογραφημένα κλειδιά, τις ρυθμίσεις και τα μηνύματά σας στη κάρτα μνήμης.\n    </string>
@@ -105,7 +104,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Νέα ομάδα MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Επιλέξατε μια επαφή που δεν υποστηρίζει ομάδες TextSecure, γι αυτό η ομάδα θα γίνει MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Είστε εγγεγραμένος για χρήση του καναλιού δεδομένων, γι αυτό το οι ομάδες TextSecure είναι απενεργοποιημένες. </string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Δεν είστε ο κάτοχος αυτής της ομάδας και γι αυτο δεν μπορείτε να επεξεργαστείτε τον τίτλο ή την εικόνα.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Προέκυψε ένα απρόσμενο σφάλμα και η δημιουργία ομάδας απέτυχε.</string>
   <string name="GroupCreateActivity_contacts_no_members">Χρειάζεστε έστω ένα άτομο στην ομάδα σας!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Έχετε ένα μέλος στην ομάδα σας που ο αριθμός του δεν μπορεί να διαβαστεί σωστά. Παρακαλώ διορθώστε το ή διαγράψτε την επαφή και δοκιμάστε ξανά. </string>
@@ -297,12 +295,9 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Δεν υπάρχουν επαφές.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Εύρεση επαφών...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Πληκτρολογήστε όνομα για φιλτράρισμα...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Δεν είστε εγγεγραμμένος για ειδοποιήσεις push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Ενημέρωση καταλόγου</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Ενημέρωση καταλόγου push...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Επιλογή για</string>
   <!--contact_selection_recent_activity-->
@@ -311,6 +306,7 @@
   <string name="conversation_activity__type_message"><small>Στείλτε το μηνυμά σας</small></string>
   <string name="conversation_activity__send">Αποστολή</string>
   <string name="conversation_activity__remove">Αφαίρεση</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Λήψη</string>
   <string name="conversation_item_sent__downloading">Γίνεται λήψη</string>
@@ -406,7 +402,6 @@
   <string name="registration_progress_activity__sms_verification_failed">Η επιβεβαίωση SMS\n        απέτυχε.\n    </string>
   <string name="registration_progress_activity__generating_keys">Δημιουργία κλειδιών σε εξέλιξη...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Προς</string>
   <string name="recipients_panel__add_member">Προσθέστε ένα μέλος</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Δεν έχετε κλειδιά ταυτότητας στη λίστα έμπιστών σας.</string>

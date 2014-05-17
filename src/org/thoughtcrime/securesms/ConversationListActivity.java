@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.SendReceiveService;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -64,7 +63,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     setContentView(R.layout.conversation_list_activity);
 
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), "TextSecure");
+    getSupportActionBar().setTitle(R.string.app_name);
 
     initializeNavigationDrawer();
     initializeSenderReceiverService();
@@ -170,8 +169,8 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   }
 
   private void openSingleContactSelection() {
-    Intent intent = new Intent(this, SingleContactSelectionActivity.class);
-    intent.putExtra(SingleContactSelectionActivity.MASTER_SECRET_EXTRA, masterSecret);
+    Intent intent = new Intent(this, NewConversationActivity.class);
+    intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
     startActivity(intent);
   }
 
@@ -287,7 +286,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
 
     this.drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
     this.drawerList   = (ListView)findViewById(R.id.left_drawer);
-    this.masterSecret = (MasterSecret)getIntent().getParcelableExtra("master_secret");
+    this.masterSecret = getIntent().getParcelableExtra("master_secret");
 
     this.fragment = (ConversationListFragment)this.getSupportFragmentManager()
         .findFragmentById(R.id.fragment_content);

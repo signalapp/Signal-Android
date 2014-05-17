@@ -48,47 +48,37 @@
             android:background="?conversation_item_received_background"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView android:id="@+id/conversation_item_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dip"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:orientation="horizontal">
-                <ImageView android:id="@+id/key_exchange_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_menu_login"
-                    android:contentDescription="Key Exchange Indicator"
-                    android:visibility="gone" />
-                <TextView android:id="@+id/conversation_item_body"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?conversation_received_text_primary_color"
-                    android:textSize="16sp"
-                    android:autoLink="all"
-                    android:linksClickable="true" />
-            </LinearLayout>
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?conversation_received_text_primary_color"
+                android:textSize="16sp"
+                android:autoLink="all"
+                android:linksClickable="true" />
 
             <FrameLayout android:id="@+id/mms_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone">
+
                 <ImageView android:id="@+id/image_view"
                     android:layout_width="230dip"
                     android:layout_height="174dip"
                     android:layout_gravity="center"
                     android:scaleType="centerInside"
                     android:adjustViewBounds="true"
-                    android:contentDescription="Message Media"
+                    android:contentDescription="@string/conversation_item__mms_image_description"
                     android:visibility="gone" />
                 <ImageButton android:id="@+id/play_slideshow_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/mms_play_btn"
-                    android:contentDescription="Play Button"
+                    android:contentDescription="@string/conversation_item__play_button_description"
                     android:visibility="gone" />
             </FrameLayout>
 
@@ -130,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:paddingRight="3dip"
                     android:src="?conversation_delivered_indicator"
-                    android:contentDescription="Delivered Indicator"
+                    android:contentDescription="@string/conversation_item_sent__delivered_description"
                     android:visibility="gone" />
 
                 <ImageView android:id="@+id/sms_secure_indicator"
@@ -140,7 +130,7 @@
                     android:paddingRight="4dp"
                     android:paddingTop="2dp"
                     android:src="?menu_lock_icon_small"
-                    android:contentDescription="Secure Message Indicator"
+                    android:contentDescription="@string/conversation_item__secure_message_description"
                     android:visibility="gone" />
 
                 <TextView android:id="@+id/conversation_item_date"
@@ -168,7 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_list_alert_sms_failed"
-                android:contentDescription="Send Failed Indicator"
+                android:contentDescription="@string/conversation_item_sent__send_failed_indicator_description"
                 android:visibility="gone" />
         </LinearLayout>
 

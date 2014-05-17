@@ -21,32 +21,35 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class ReviewIdentitiesActivity extends SherlockFragmentActivity {
 
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
   public void onCreate(Bundle bundle) {
     dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
     super.onCreate(bundle);
     setContentView(R.layout.review_identities);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
   }
 
   @Override
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
+    getSupportActionBar().setTitle(R.string.AndroidManifest__manage_identity_keys);
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      case android.R.id.home: finish(); return true;
+    case android.R.id.home: finish(); return true;
     }
 
     return false;

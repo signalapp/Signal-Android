@@ -25,8 +25,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -59,9 +57,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
-import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
@@ -113,7 +108,6 @@ public class ConversationItem extends LinearLayout {
   private  TextView  groupStatusText;
   private  ImageView secureImage;
   private  ImageView failedImage;
-  private  ImageView keyImage;
   private  ImageView contactPhoto;
   private  ImageView deliveredImage;
   private  View      triangleTick;
@@ -153,14 +147,13 @@ public class ConversationItem extends LinearLayout {
     this.groupStatusText     = (TextView) findViewById(R.id.group_message_status);
     this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
     this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
-    this.keyImage            = (ImageView)findViewById(R.id.key_exchange_indicator);
     this.mmsContainer        =            findViewById(R.id.mms_view);
     this.mmsThumbnail        = (ImageView)findViewById(R.id.image_view);
     this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
     this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
     this.deliveredImage      = (ImageView)findViewById(R.id.delivered_indicator);
-    this.conversationParent  = (View)     findViewById(R.id.conversation_item_parent);
+    this.conversationParent  =            findViewById(R.id.conversation_item_parent);
     this.triangleTick        =            findViewById(R.id.triangle_tick);
     this.pendingIndicator    = (ImageView)findViewById(R.id.pending_approval_indicator);
     this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
@@ -230,7 +223,7 @@ public class ConversationItem extends LinearLayout {
         if (messageRecord.isPending() && pushDestination && !messageRecord.isForcedSms()) {
           background = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
-        } else if (messageRecord.isPending() || messageRecord.isPendingFallbackApproval()) {
+        } else if (messageRecord.isPending() || messageRecord.isPendingSmsFallback()) {
           background = SENT_SMS_PENDING;
           triangleBackground = SENT_SMS_PENDING_TRIANGLE;
         } else if (messageRecord.isPush()) {
@@ -265,11 +258,11 @@ public class ConversationItem extends LinearLayout {
   private void setStatusIcons(MessageRecord messageRecord) {
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
     if (messageRecord.isOutgoing()) {
-      pendingIndicator.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
-      indicatorText.setVisibility(messageRecord.isPendingFallbackApproval() ? View.VISIBLE : View.GONE);
+      pendingIndicator.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
+      indicatorText.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
     }
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
-    keyImage.setVisibility(messageRecord.isKeyExchange() ? View.VISIBLE : View.GONE);
+    bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
     deliveredImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
 
     mmsThumbnail.setVisibility(View.GONE);
@@ -278,15 +271,14 @@ public class ConversationItem extends LinearLayout {
 
     if (messageRecord.isFailed()) {
       dateText.setText(R.string.ConversationItem_error_sending_message);
-    } else if (messageRecord.isPendingFallbackApproval() && indicatorText != null) {
+    } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
       dateText.setText("");
-      indicatorText.setText(R.string.ConversationItem_click_to_approve);
+      if (messageRecord.isPendingSecureSmsFallback()) indicatorText.setText(R.string.ConversationItem_click_to_approve);
+      else                                            indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
     } else if (messageRecord.isPending()) {
       dateText.setText(" ··· ");
     } else {
-      final long timestamp = (messageRecord.isOutgoing() ?
-          messageRecord.getDateSent() :
-          messageRecord.getDateReceived());
+      final long timestamp = messageRecord.getDateSent();
 
       dateText.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp));
     }
@@ -294,14 +286,15 @@ public class ConversationItem extends LinearLayout {
 
   private void setMinimumWidth() {
     if (indicatorText != null && indicatorText.getVisibility() == View.VISIBLE && indicatorText.getText() != null) {
-      conversationParent.setMinimumWidth(indicatorText.getText().length() * 20);
+      final float density = getResources().getDisplayMetrics().density;
+      conversationParent.setMinimumWidth(indicatorText.getText().length() * (int)(6.5 * density));
     } else {
       conversationParent.setMinimumWidth(0);
     }
   }
 
   private void setEvents(MessageRecord messageRecord) {
-    setClickable(messageRecord.isPendingFallbackApproval() ||
+    setClickable(messageRecord.isPendingSmsFallback() ||
                  (messageRecord.isKeyExchange()            &&
                   !messageRecord.isCorruptedKeyExchange()  &&
                   !messageRecord.isOutgoing()));
@@ -411,6 +404,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
+    if (contactPhoto == null) return;
     contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -482,7 +476,7 @@ public class ConversationItem extends LinearLayout {
         mediaScannerConnection = new MediaScannerConnection(context, this);
         mediaScannerConnection.connect();
       } catch (IOException ioe) {
-        Log.w("ConversationItem", ioe);
+        Log.w(TAG, ioe);
         this.obtainMessage(FAILURE).sendToTarget();
       }
     }
@@ -573,7 +567,7 @@ public class ConversationItem extends LinearLayout {
     }
 
     private void fireIntent() {
-      Log.w("ConversationItem", "Clicked: " + slide.getUri() + " , " + slide.getContentType());
+      Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       intent.setDataAndType(slide.getUri(), slide.getContentType());
@@ -640,23 +634,40 @@ public class ConversationItem extends LinearLayout {
           !messageRecord.isProcessedKeyExchange() &&
           !messageRecord.isStaleKeyExchange())
         handleKeyExchangeClicked();
-      else if (messageRecord.isPendingFallbackApproval())
+      else if (messageRecord.isPendingSmsFallback())
         handleMessageApproval();
     }
   }
 
   private void handleMessageApproval() {
+    final int title;
+    final int message;
+    if (messageRecord.isPendingSecureSmsFallback()) {
+      title = R.string.ConversationItem_click_to_approve_dialog_title;
+      message = -1;
+    } else {
+      title = R.string.ConversationItem_click_to_approve_unencrypted_dialog_title;
+      message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
+    }
+
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setTitle(R.string.ConversationItem_click_to_approve_dialog_title);
+    builder.setTitle(title);
+    if (message > -1) builder.setMessage(message);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
         if (messageRecord.isMms()) {
           MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+          if (messageRecord.isPendingInsecureSmsFallback()) {
+            database.markAsInsecure(messageRecord.getId());
+          }
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
         } else {
           SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
+          if (messageRecord.isPendingInsecureSmsFallback()) {
+            database.markAsInsecure(messageRecord.getId());
+          }
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
         }
@@ -669,31 +680,13 @@ public class ConversationItem extends LinearLayout {
     builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
-        if (messageRecord.isMms()) DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
-        else                       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
-      }
-    });
-    builder.show();
-  }
-
-  private void handleAbortSecureSession() {
-    if (!messageRecord.isSecure()) return;
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setTitle(R.string.ConversationActivity_abort_secure_session_confirmation);
-    builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
-    builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question);
-    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        if (messageRecord.getRecipients().isSingleRecipient()) {
-          Recipient            recipient = messageRecord.getRecipients().getPrimaryRecipient();
-          Session.abortSessionFor(context, recipient);
+        if (messageRecord.isMms()) {
+          DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
+        } else {
+          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
         }
       }
     });
-    builder.setNegativeButton(R.string.no, null);
     builder.show();
   }
 }

@@ -41,10 +41,8 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ရွေးထားသော အသံဖိုင်သည် ကန့်သတ်ထားသော အရွယ်ကျော်နေ</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">လက်ခံသူသည်　မှန်ကန်သော SMS(သို့)အီးမေးလိပ်စာ　မဟုတ်</string>
   <string name="ConversationActivity_message_is_empty_exclamation">စာတိုမရှိ</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">အစုအဖွဲ့ဖြင့်စကားစမြည်ပြောခြင်းလက်ခံသူများ</string>
   <string name="ConversationActivity_group_conversation">အစုအဖွဲ့ဖြင့်စကားစမြည်ပြောခြင်း</string>
-  <string name="ConversationActivity_saving_draft">အကြမ်းသိမ်း...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
   <string name="ConversationFragment_confirm_message_delete">စာတိုဖျက်ခြင်းကိုအတည်ပြု</string>
@@ -58,6 +56,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">ရွေးချယ်ထားသောစကားဝိုင်းကိုဖျက်နေသည်...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ကီးပြောင်းလဲခြင်းစာတို...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_success">အောင်မြင်!</string>
   <!--GroupCreateActivity-->
@@ -168,6 +167,7 @@
   <!--conversation_activity-->
   <string name="conversation_activity__send">ပို့</string>
   <string name="conversation_activity__remove">ဖယ်ပစ်</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">ကူးဆွဲ</string>
   <string name="conversation_item_sent__downloading">ကူးဆွဲနေသည်</string>
@@ -208,7 +208,6 @@
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
-  <string name="recipients_panel__to">သို့</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">သင်၏စိတ်ချရသော　ဒေတာဘေ့၌　သင့်အသိအမှတ်ပြုကီး　လက်ရှိတွင်　မရှိသေး</string>
   <!--verify_identity_activity-->
@@ -237,6 +236,7 @@
   <!--preferences.xml-->
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">textsecure ကိုဝင်လာသောစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">textsecure ကိုဝင်လာသောမာတီမီဒီယာစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
+  <string name="preferences__input_settings">ကီးဘုတ်ပုံစံသတ်မှတ်ချက်များ</string>
   <string name="preferences__pref_enter_sends_title">ပို့ရန်ကိုနှိပ်ပါ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter နှိပ်လျှင် စာသားများကို ပို့ပါမည်</string>
   <string name="preferences__display_settings">သတ်မှတ်ချက်များကိုပြပါ</string>

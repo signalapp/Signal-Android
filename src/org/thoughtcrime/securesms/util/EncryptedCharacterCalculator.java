@@ -16,8 +16,6 @@
  */
 package org.thoughtcrime.securesms.util;
 
-import android.util.Log;
-
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 
 public class EncryptedCharacterCalculator extends CharacterCalculator {
@@ -37,7 +35,6 @@ public class EncryptedCharacterCalculator extends CharacterCalculator {
       spilloverMessagesSpent++;
 
     int charactersRemaining = (SmsTransportDetails.MULTI_MESSAGE_MAX_BYTES * spilloverMessagesSpent) - spillover;
-    Log.w("EncryptedCharacterCalculator", "charactersRemaining: " + charactersRemaining);
 
     return new CharacterState(spilloverMessagesSpent+1, charactersRemaining, SmsTransportDetails.MULTI_MESSAGE_MAX_BYTES);
   }

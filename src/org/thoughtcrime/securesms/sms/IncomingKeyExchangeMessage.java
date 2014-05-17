@@ -6,6 +6,7 @@ public class IncomingKeyExchangeMessage extends IncomingTextMessage {
   private boolean isProcessed;
   private boolean isCorrupted;
   private boolean isInvalidVersion;
+  private boolean isLegacyVersion;
 
   public IncomingKeyExchangeMessage(IncomingTextMessage base, String newBody) {
     super(base, newBody);
@@ -15,12 +16,17 @@ public class IncomingKeyExchangeMessage extends IncomingTextMessage {
       this.isProcessed      = ((IncomingKeyExchangeMessage)base).isProcessed;
       this.isCorrupted      = ((IncomingKeyExchangeMessage)base).isCorrupted;
       this.isInvalidVersion = ((IncomingKeyExchangeMessage)base).isInvalidVersion;
+      this.isLegacyVersion  = ((IncomingKeyExchangeMessage)base).isLegacyVersion;
     }
   }
 
   @Override
   public IncomingTextMessage withMessageBody(String messageBody) {
     return new IncomingKeyExchangeMessage(this, messageBody);
+  }
+
+  public boolean isIdentityUpdate() {
+    return false;
   }
 
   public boolean isStale() {
@@ -53,6 +59,14 @@ public class IncomingKeyExchangeMessage extends IncomingTextMessage {
 
   public void setInvalidVersion(boolean isInvalidVersion) {
     this.isInvalidVersion = isInvalidVersion;
+  }
+
+  public boolean isLegacyVersion() {
+    return isLegacyVersion;
+  }
+
+  public void setLegacyVersion(boolean isLegacyVersion) {
+    this.isLegacyVersion = isLegacyVersion;
   }
 
   @Override

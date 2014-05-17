@@ -7,6 +7,7 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Conversions;
@@ -14,19 +15,19 @@ import org.whispersystems.textsecure.util.Util;
 
 public class PreKeyWhisperMessage implements CiphertextMessage {
 
-  private final int              version;
-  private final int              registrationId;
-  private final int              preKeyId;
-  private final ECPublicKey      baseKey;
-  private final IdentityKey      identityKey;
-  private final WhisperMessageV2 message;
-  private final byte[]           serialized;
+  private final int            version;
+  private final int            registrationId;
+  private final int            preKeyId;
+  private final ECPublicKey    baseKey;
+  private final IdentityKey    identityKey;
+  private final WhisperMessage message;
+  private final byte[]         serialized;
 
   public PreKeyWhisperMessage(byte[] serialized)
       throws InvalidMessageException, InvalidVersionException
   {
     try {
-      this.version = Conversions.lowBitsToInt(serialized[0]);
+      this.version = Conversions.highBitsToInt(serialized[0]);
 
       if (this.version > CiphertextMessage.CURRENT_VERSION) {
         throw new InvalidVersionException("Unknown version: " + this.version);
@@ -49,16 +50,18 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
       this.preKeyId       = preKeyWhisperMessage.getPreKeyId();
       this.baseKey        = Curve.decodePoint(preKeyWhisperMessage.getBaseKey().toByteArray(), 0);
       this.identityKey    = new IdentityKey(Curve.decodePoint(preKeyWhisperMessage.getIdentityKey().toByteArray(), 0));
-      this.message        = new WhisperMessageV2(preKeyWhisperMessage.getMessage().toByteArray());
+      this.message        = new WhisperMessage(preKeyWhisperMessage.getMessage().toByteArray());
     } catch (InvalidProtocolBufferException e) {
       throw new InvalidMessageException(e);
     } catch (InvalidKeyException e) {
+      throw new InvalidMessageException(e);
+    } catch (LegacyMessageException e) {
       throw new InvalidMessageException(e);
     }
   }
 
   public PreKeyWhisperMessage(int registrationId, int preKeyId, ECPublicKey baseKey,
-                              IdentityKey identityKey, WhisperMessageV2 message)
+                              IdentityKey identityKey, WhisperMessage message)
   {
     this.version        = CiphertextMessage.CURRENT_VERSION;
     this.registrationId = registrationId;
@@ -95,7 +98,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     return baseKey;
   }
 
-  public WhisperMessageV2 getWhisperMessage() {
+  public WhisperMessage getWhisperMessage() {
     return message;
   }
 
@@ -106,7 +109,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
 
   @Override
   public int getType() {
-    return CiphertextMessage.PREKEY_WHISPER_TYPE;
+    return CiphertextMessage.PREKEY_TYPE;
   }
 
 }

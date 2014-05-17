@@ -37,10 +37,10 @@ public class Curve25519 {
 
   private static native byte[] calculateAgreement(byte[] ourPrivate, byte[] theirPublic);
   private static native byte[] generatePublicKey(byte[] privateKey);
-  private static native byte[] generatePrivateKey(byte[] random);
+  private static native byte[] generatePrivateKey(byte[] random, boolean ephemeral);
 
-  public static ECKeyPair generateKeyPair() {
-    byte[] privateKey = generatePrivateKey();
+  public static ECKeyPair generateKeyPair(boolean ephemeral) {
+    byte[] privateKey = generatePrivateKey(ephemeral);
     byte[] publicKey  = generatePublicKey(privateKey);
 
     return new ECKeyPair(new DjbECPublicKey(publicKey), new DjbECPrivateKey(privateKey));
@@ -65,11 +65,11 @@ public class Curve25519 {
     return new DjbECPublicKey(keyBytes);
   }
 
-  private static byte[] generatePrivateKey() {
+  private static byte[] generatePrivateKey(boolean ephemeral) {
     byte[] privateKey = new byte[32];
     random.nextBytes(privateKey);
 
-    return generatePrivateKey(privateKey);
+    return generatePrivateKey(privateKey, ephemeral);
   }
 
 }

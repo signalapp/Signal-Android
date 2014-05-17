@@ -70,7 +70,7 @@ public class AsymmetricMasterCipher {
       byte[][]  parts          = Util.split(combined, PublicKey.KEY_SIZE, combined.length - PublicKey.KEY_SIZE);
       PublicKey theirPublicKey = new PublicKey(parts[0], 0);
 
-      ECPrivateKey ourPrivateKey = asymmetricMasterSecret.getPrivateKey(theirPublicKey.getType());
+      ECPrivateKey ourPrivateKey = asymmetricMasterSecret.getPrivateKey();
       byte[]       secret        = Curve.calculateAgreement(theirPublicKey.getKey(), ourPrivateKey);
       MasterCipher masterCipher  = getMasterCipherForSecret(secret);
       byte[]       decryptedBody = masterCipher.decryptBytes(parts[1]);
@@ -85,15 +85,8 @@ public class AsymmetricMasterCipher {
 	
   public String encryptBody(String body) {
     try {
-      ECPublicKey theirPublic;
-
-      if (asymmetricMasterSecret.getDjbPublicKey() != null) {
-        theirPublic = asymmetricMasterSecret.getDjbPublicKey();
-      } else {
-        theirPublic = asymmetricMasterSecret.getNistPublicKey();
-      }
-
-      ECKeyPair    ourKeyPair         = Curve.generateKeyPairForType(theirPublic.getType());
+      ECPublicKey  theirPublic        = asymmetricMasterSecret.getDjbPublicKey();
+      ECKeyPair    ourKeyPair         = Curve.generateKeyPair(true);
       byte[]       secret             = Curve.calculateAgreement(theirPublic, ourKeyPair.getPrivateKey());
       MasterCipher masterCipher       = getMasterCipherForSecret(secret);
       byte[]       encryptedBodyBytes = masterCipher.encryptBytes(body.getBytes());

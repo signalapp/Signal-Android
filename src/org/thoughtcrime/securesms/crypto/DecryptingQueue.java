@@ -23,6 +23,7 @@ import android.database.Cursor;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -40,11 +41,13 @@ import org.thoughtcrime.securesms.service.PushReceiver;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.DuplicateMessageException;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.InvalidVersionException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
+import org.whispersystems.textsecure.crypto.protocol.WhisperMessage;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.Session;
@@ -213,6 +216,12 @@ public class DecryptingQueue {
       } catch (RecipientFormattingException e) {
         Log.w("DecryptionQueue", e);
         sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
+      } catch (DuplicateMessageException e) {
+        Log.w("DecryptingQueue", e);
+        sendResult(PushReceiver.RESULT_DECRYPT_DUPLICATE);
+      } catch (LegacyMessageException e) {
+        Log.w("DecryptionQueue", e);
+        sendResult(PushReceiver.RESULT_DECRYPT_FAILED);
       }
     }
 
@@ -312,6 +321,12 @@ public class DecryptingQueue {
       } catch (InvalidMessageException ime) {
         Log.w("DecryptingQueue", ime);
         database.markAsDecryptFailed(messageId, threadId);
+      } catch (DuplicateMessageException dme) {
+        Log.w("DecryptingQueue", dme);
+        database.markAsDecryptDuplicate(messageId, threadId);
+      } catch (LegacyMessageException lme) {
+        Log.w("DecryptingQueue", lme);
+        database.markAsLegacyVersion(messageId, threadId);
       } catch (MmsException mme) {
         Log.w("DecryptingQueue", mme);
         database.markAsDecryptFailed(messageId, threadId);
@@ -361,15 +376,17 @@ public class DecryptingQueue {
         Recipient       recipient       = recipients.getPrimaryRecipient();
         RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), deviceId);
 
+        SmsTransportDetails transportDetails  = new SmsTransportDetails();
+        byte[]              decodedCiphertext = transportDetails.getDecodedMessage(body.getBytes());
+
         if (!Session.hasSession(context, masterSecret, recipient)) {
-          database.markAsNoSession(messageId);
+          if (WhisperMessage.isLegacy(decodedCiphertext)) database.markAsLegacyVersion(messageId);
+          else                                            database.markAsNoSession(messageId);
           return;
         }
 
-        SmsTransportDetails transportDetails  = new SmsTransportDetails();
-        SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
-        byte[]              decodedCiphertext = transportDetails.getDecodedMessage(body.getBytes());
-        byte[]              paddedPlaintext   = sessionCipher.decrypt(decodedCiphertext);
+        SessionCipher sessionCipher   = SessionCipher.createFor(context, masterSecret, recipientDevice);
+        byte[]        paddedPlaintext = sessionCipher.decrypt(decodedCiphertext);
 
         plaintextBody = new String(transportDetails.getStrippedPaddingMessageBody(paddedPlaintext));
 
@@ -383,6 +400,10 @@ public class DecryptingQueue {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptFailed(messageId);
         return;
+      } catch (LegacyMessageException lme) {
+        Log.w("DecryptionQueue", lme);
+        database.markAsLegacyVersion(messageId);
+        return;
       } catch (RecipientFormattingException e) {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptFailed(messageId);
@@ -390,6 +411,10 @@ public class DecryptingQueue {
       } catch (IOException e) {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptFailed(messageId);
+        return;
+      } catch (DuplicateMessageException e) {
+        Log.w("DecryptionQueue", e);
+        database.markAsDecryptDuplicate(messageId);
         return;
       }
 
@@ -420,12 +445,12 @@ public class DecryptingQueue {
       }
     }
 
-    private void handleKeyExchangeProcessing(String plaintxtBody) {
+    private void handleKeyExchangeProcessing(String plaintextBody) {
       if (TextSecurePreferences.isAutoRespondKeyExchangeEnabled(context)) {
         try {
           Recipient            recipient       = RecipientFactory.getRecipientsFromString(context, originator, false).getPrimaryRecipient();
           RecipientDevice      recipientDevice = new RecipientDevice(recipient.getRecipientId(), deviceId);
-          KeyExchangeMessage   message         = KeyExchangeMessage.createFor(plaintxtBody);
+          KeyExchangeMessage   message         = KeyExchangeMessage.createFor(plaintextBody);
           KeyExchangeProcessor processor       = KeyExchangeProcessor.createFor(context, masterSecret, recipientDevice, message);
 
           if (processor.isStale(message)) {
@@ -446,6 +471,9 @@ public class DecryptingQueue {
         } catch (RecipientFormattingException e) {
           Log.w("DecryptingQueue", e);
           DatabaseFactory.getEncryptingSmsDatabase(context).markAsCorruptKeyExchange(messageId);
+        } catch (LegacyMessageException e) {
+          Log.w("DecryptingQueue", e);
+          DatabaseFactory.getEncryptingSmsDatabase(context).markAsLegacyVersion(messageId);
         }
       }
     }

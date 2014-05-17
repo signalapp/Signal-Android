@@ -22,6 +22,7 @@ import android.text.SpannableString;
 import android.text.style.StyleSpan;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -69,6 +70,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
     } else if (SmsDatabase.Types.isEndSessionType(type)) {
       return emphasisAdded(context.getString(R.string.TheadRecord_secure_session_ended));
+    } else if (MmsSmsColumns.Types.isLegacyType(type)) {
+      return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else {
       if (Util.isEmpty(getBody().getBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));

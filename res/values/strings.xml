@@ -64,7 +64,10 @@
     <string name="ConversationItem_group_action_joined">%1$s have joined the group.</string>
     <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
     <string name="ConversationItem_click_to_approve">Tap for SMS fallback</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Tap for insecure fallback</string>
     <string name="ConversationItem_click_to_approve_dialog_title">Fallback to SMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Fallback to unencrypted SMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because a secure session could not be established.\n\nSend insecure message?</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate Secure Session?</string>
@@ -81,13 +84,12 @@
     <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sorry, the selected audio exceeds message size restrictions.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Recipient is not a valid SMS or email address!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message is empty!</string>
-    <string name="ConversationActivity_forward_message_prefix">FWD</string>
     <string name="ConversationActivity_group_conversation_recipients">Group Conversation Recipients</string>
     <string name="ConversationActivity_group_conversation">Group Conversation</string>
     <string name="ConversationActivity_unnamed_group">Unnamed Group</string>
     <string name="ConversationActivity_d_recipients_in_group">%d members</string>
     <string name="ConversationActivity_d_recipients_in_group_singular">1 member</string>
-    <string name="ConversationActivity_saving_draft">Saving draft...</string>
+    <string name="ConversationActivity_saved_draft">Saved draft</string>
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
     <string name="ConversationActivity_calls_not_supported">Calls Not Supported</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
@@ -112,6 +114,9 @@
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
+
+    <!-- ShareActivity -->
+    <string name="ShareActivity_share_with">Share with</string>
 
     <!-- ExportFragment -->
     <string name="ExportFragment_export_to_sd_card">Export To SD Card?</string>
@@ -144,7 +149,6 @@
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS Group</string>
     <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support TextSecure groups, so this group will be MMS.</string>
     <string name="GroupCreateActivity_you_dont_support_push">You\'re not registered for using the data channel, so TextSecure groups are disabled.</string>
-    <string name="GroupCreateActivity_you_dont_own_this_group">You\'re not the owner of this group, so you cannot edit the title or picture.</string>
     <string name="GroupCreateActivity_contacts_mms_exception">An unexpected error happened that has made group creation fail.</string>
     <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
     <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
@@ -152,6 +156,7 @@
     <string name="GroupCreateActivity_avatar_content_description">Group Avatar</string>
     <string name="GroupCreateActivity_menu_create_title">Create Group</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
+    <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-TextSecure contacts to an existing TextSecure group</string>
 
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import System SMS Database?</string>
@@ -194,6 +199,9 @@
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia Message</string>
+
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of TextSecure that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases Don\'t Match!</string>
@@ -298,6 +306,7 @@
     </string>
     <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
     <string name="SmsMessageRecord_secure_session_ended">Secure session ended.</string>
+    <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_left_the_group">Left the group...</string>
@@ -413,13 +422,14 @@
     <!-- contact_selection_group_activity -->
     <!-- contact_selection_list_activity -->
     <string name="contact_selection_group_activity__no_contacts">No contacts.</string>
-    <string name="contact_selection_group_activity__finding_contacts">Finding contacts&#8230;</string>
+    <string name="contact_selection_group_activity__finding_contacts">Loading contacts&#8230;</string>
 
     <!-- single_contact_selection_activity -->
     <string name="single_contact_selection_group_activity__filter">Type a name to filter&#8230;</string>
-    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
+    <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service&#8230;</string>
     <string name="SingleContactSelectionActivity_updating_directory">Updating directory</string>
-    <string name="SingleContactSelectionActivity_updating_push_directory">Updating push directory...</string>
+    <string name="SingleContactSelectionActivity_updating_push_directory">Updating push directory&#8230;</string>
+    <string name="SingleContactSelectionActivity_contact_photo">Contact Photo</string>
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionlistFragment_select_for">Select for</string>
@@ -432,9 +442,17 @@
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
 
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Media Message</string>
+    <string name="conversation_item__play_button_description">Play Button</string>
+    <string name="conversation_item__secure_message_description">Secure Message Indicator</string>
+
     <!-- conversation_item_sent -->
     <string name="conversation_item_sent__download">Download</string>
     <string name="conversation_item_sent__downloading">Downloading</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Send Failed Indicator</string>
+    <string name="conversation_item_sent__pending_approval_description">Pending Approval</string>
+    <string name="conversation_item_sent__delivered_description">Delivered Indicator</string>
 
     <!-- conversation_item_received -->
     <string name="conversation_item_received__download">Download</string>
@@ -468,6 +486,8 @@
     <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
     <string name="log_submit_activity__loading_logcat">Loading logcat&#8230;</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
+    <string name="log_submit_activity__submitting">Submitting</string>
+    <string name="log_submit_activity__posting_logs">Posting logs to pastebin&#8230;</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
@@ -602,7 +622,7 @@
     <string name="registration_progress_activity__generating_keys">Generating keys...</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to">To</string>
+    <string name="recipients_panel__to"><small>Enter a name or number</small></string>
     <string name="recipients_panel__add_member">Add member</string>
 
     <!-- review_identities -->
@@ -649,6 +669,7 @@
     <string name="preferences__pref_all_mms_title">Receive all MMS</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
     <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for viewing and storing all incoming multimedia messages</string>
+    <string name="preferences__input_settings">Input Settings</string>
     <string name="preferences__enable_enter_key_title">Enable Enter key</string>
     <string name="preferences__replace_smiley_with_enter_key">Replace the smiley key with an enter key</string>
     <string name="preferences__pref_enter_sends_title">Enter sends</string>
@@ -756,6 +777,9 @@
     <!-- contact_selection_list -->
     <string name="contact_selection_list__menu_select_all">Select All</string>
     <string name="contact_selection_list__menu_unselect_all">Unselect All</string>
+    <string name="contact_selection_list__header_textsecure_users">TEXTSECURE USERS</string>
+    <string name="contact_selection_list__header_other">ALL CONTACTS</string>
+    <string name="contact_selection_list__unknown_contact">New message to...</string>
 
     <!-- contact_selection -->
     <string name="contact_selection__menu_finished">Finished</string>

@@ -22,11 +22,16 @@
 #include "curve25519-donna.h"
 
 JNIEXPORT jbyteArray JNICALL Java_org_whispersystems_textsecure_crypto_ecc_Curve25519_generatePrivateKey
-  (JNIEnv *env, jclass clazz, jbyteArray random)
+  (JNIEnv *env, jclass clazz, jbyteArray random, jboolean ephemeral)
 {
   uint8_t* privateKey = (uint8_t*)(*env)->GetByteArrayElements(env, random, 0);
 
   privateKey[0] &= 248;
+
+  if (ephemeral) {
+    privateKey[0] |= 1;
+  }
+
   privateKey[31] &= 127;
   privateKey[31] |= 64;
 

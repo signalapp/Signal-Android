@@ -6,12 +6,6 @@
     android:background="?conversation_background"
     android:orientation="vertical">
 
-    <org.thoughtcrime.securesms.components.RecipientsPanel
-            android:id="@+id/recipients"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
     <RelativeLayout
             android:id="@+id/layout_container"
             android:layout_width="fill_parent"
@@ -111,7 +105,7 @@
                     android:contentDescription="@string/conversation_activity__send"
                     android:nextFocusLeft="@+id/embedded_text_editor"
                     android:padding="12dp"
-                    android:src="?conversation_send_button"
+                    android:src="?conversation_send_button_sms_insecure"
                     android:clickable="false"
                     android:enabled="false" />
 

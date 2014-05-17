@@ -140,7 +140,7 @@ public class ApnDefaults {
             put("24007", new MmsConnectionParameters("http://mmsc.tele2.se", "130.244.202.30", "8080"));
             put("24008", new MmsConnectionParameters("http://mms", "172.30.253.241", "8799"));
             put("24024", new MmsConnectionParameters("http://mmsc.tele2.se", "130.244.202.30", "8080"));
-            put("24201", new MmsConnectionParameters("http://mmsc/", "10.10.10.11", "8080"));
+            put("24201", new MmsConnectionParameters("http://mmsc/", "mms-proxy.telenor.no", "8080"));
             put("24202", new MmsConnectionParameters("http://mm", "212.169.66.4", "8080"));
             put("24205", new MmsConnectionParameters("http://mms.nwn.no", "188.149.250.10", "80"));
             put("24405", new MmsConnectionParameters("http://mms.saunalahti.fi:8002", "62.142.4.197", "8080"));
@@ -233,6 +233,7 @@ public class ApnDefaults {
             put("310120", new MmsConnectionParameters("http://mms.sprintpcs.com", null, null));
             put("310127", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
             put("31013", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
+            put("310150", new MmsConnectionParameters("http://mmsc.aiowireless.net/", "proxy.aiowireless.net", "80"));
             put("31016", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("31018", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("310180", new MmsConnectionParameters("http://mms.wcc.net", "209.55.70.246", "80"));

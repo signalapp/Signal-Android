@@ -44,10 +44,8 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Vybrané audio prekračuje veľkostné obmedzenia správy.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Príjemca nie je platná SMS alebo emailová adresa!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Správa je prázdna!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Príjemcovia skupinovej správy</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzácia</string>
-  <string name="ConversationActivity_saving_draft">Ukladám koncept...</string>
   <string name="ConversationActivity_invalid_recipient">Nesprávny príjemca</string>
   <string name="ConversationActivity_calls_not_supported">Hovory nie sú podporované</string>
   <!--ConversationFragment-->
@@ -63,6 +61,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Mažem vybrané konverzácie...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportovať na SD kartu?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Toto\nexportuje Vaše kryptované kľúče, nastavenia a správy na SD kartu.</string>
@@ -205,6 +204,7 @@
   <!--conversation_activity-->
   <string name="conversation_activity__send">Odoslať</string>
   <string name="conversation_activity__remove">Odstrániť</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Stiahnuť</string>
   <string name="conversation_item_sent__downloading">Sťahujem</string>
@@ -252,7 +252,6 @@
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Pre</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">V databáze nemáte žiadne kľúče totožnosti.</string>
   <!--verify_identity_activity-->
@@ -283,6 +282,7 @@
   <string name="preferences__general">Všeobecné</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použi TextSecure na zobrazenie a uloženie všetkých prichádzajúcich správ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Použi TextSecure na zobrazenie a uloženie všetkých prichádzajúcich miltimediálnych správ</string>
+  <string name="preferences__input_settings">Nastavenia vstupu</string>
   <string name="preferences__pref_enter_sends_title">Enter odošle</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stlačením Enter odošlete textové správy</string>
   <string name="preferences__display_settings">Nastavenia zobrazenia</string>

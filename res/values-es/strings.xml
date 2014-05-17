@@ -24,7 +24,9 @@
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">No está registrado con el servicio de mensajería activa...,</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Actualizando directorio</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Actualizando directorio de mensajería activa...</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS entrantes habilitados</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS entrantes deshabilitados</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pulse para que TextSecure sea su aplicación de SMS predeterminada</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografía</string>
@@ -50,6 +52,11 @@
   <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
   <string name="ConversationItem_group_action_joined">%1$s se ha unido al grupo.</string>
   <string name="ConversationItem_group_action_modify">%1$s ha actualizado el grupo.</string>
+  <string name="ConversationItem_click_to_approve">Pulse para recurrir al SMS</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Pulse para usar recurso de emergencia no seguro </string>
+  <string name="ConversationItem_click_to_approve_dialog_title">¿Recurrir al SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">¿Recurrir a SMS no cifrado?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Este mensaje <b>no</b> se cifrará porque no pudo establecerse una sesión segura.\n\n¿Enviar mensaje no seguro?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">¿Iniciar una sesión segura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">¿Iniciar sesión segura con %s?</string>
@@ -65,13 +72,12 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lo sentimos, el audio seleccionado excede las restricciones de tamaño del mensaje.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatario no es un SMS o correo electrónico válido</string>
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Receptores de Conversación en Grupo</string>
   <string name="ConversationActivity_group_conversation">Conversación en Grupo</string>
   <string name="ConversationActivity_unnamed_group">Grupo sin nombre</string>
   <string name="ConversationActivity_d_recipients_in_group">%d miembros</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 miembro</string>
-  <string name="ConversationActivity_saving_draft">Guardando borrador...</string>
+  <string name="ConversationActivity_saved_draft">Guardar borrador</string>
   <string name="ConversationActivity_invalid_recipient">Receptor inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Llamadas no soportadas</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
@@ -92,6 +98,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">Eliminando hilos seleccionados...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Compartir con</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">¿Exportar a tarjeta SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Esto\n        exportará sus claves cifradas, configuración y mensajes a la tarjeta SD.\n    </string>
@@ -112,7 +120,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Nuevo grupo de MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Ha seleccionado un contacto que no soporta grupos TextSecure, así que este grupo será de MMS (mensajería multimedia).</string>
   <string name="GroupCreateActivity_you_dont_support_push">No está registrado para usar el canal de datos, así que tiene los grupos TextSecure deshabilitados.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Usted no es el propietario de este grupo, así que no puede editar el título ni la imagen.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ocurrió un error inesperado que ha hecho fallar la creación del grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">¡Necesita al menos una persona en su grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Uno de los miembros de su grupo tiene un número que no puede ser leído correctamente. Por favor arréglelo o elimine ese contacto, e inténtelo de nuevo.</string>
@@ -120,6 +127,7 @@
   <string name="GroupCreateActivity_avatar_content_description">Avatar del grupo</string>
   <string name="GroupCreateActivity_menu_create_title">Crear grupo</string>
   <string name="GroupCreateActivity_creating_group">Creando %1$s…</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No se pudieron añadir contactos no-TextSecure a un grupo TextSecure existente</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">¿Importar base de datos de SMS del sistema?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Esto importará\n        los mensajes desde la base de datos de SMS del sistema a TextSecure. Si la ha importado\n        anteriormente, obtendrá mensajes duplicados.\n    </string>
@@ -214,6 +222,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nSe recibió un mensaje con una clave de identidad desconocida. Haga clic para procesar y mostrar.\n</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Recibí actualizado pero con información de identidad desconocida. Pulse para validar identidad.</string>
   <string name="SmsMessageRecord_secure_session_ended">La sesión segura finalizó.</string>
+  <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ha dejado el grupo...</string>
   <string name="TheadRecord_secure_session_ended">La sesión segura finalizó.</string>
@@ -305,12 +314,13 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">No hay contactos.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Buscando contactos...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Cargando contactos...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Escriba un nombre a filtrar...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">No está registrado con el servicio de mensajería activa...,</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Usted no está registrado con el servicio de actualizaciones activas (push)...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Actualizando directorio</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Actualizando directorio de mensajería activa...</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Actualizando el directorio de actualizaciones activas (push)...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Foto del contacto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
   <!--contact_selection_recent_activity-->
@@ -319,9 +329,16 @@
   <string name="conversation_activity__type_message"><small>Enviar un mensaje</small></string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Eliminar</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Mensaje audiovisual</string>
+  <string name="conversation_item__play_button_description">Boton de reproducción</string>
+  <string name="conversation_item__secure_message_description">Indicador de mensaje seguro</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Descarga</string>
   <string name="conversation_item_sent__downloading">Descargando</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Indicador de envío fallido</string>
+  <string name="conversation_item_sent__pending_approval_description">Pendiente de aprobación</string>
+  <string name="conversation_item_sent__delivered_description">Indicador de entregado</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Descarga</string>
   <string name="conversation_item_received__downloading">Descargando</string>
@@ -349,6 +366,8 @@
   <string name="log_submit_activity__copied_to_clipboard">Copiado al portapapeles</string>
   <string name="log_submit_activity__loading_logcat">Cargando registro...</string>
   <string name="log_submit_activity__thanks">¡Gracias por su ayuda!</string>
+  <string name="log_submit_activity__submitting">Enviando</string>
+  <string name="log_submit_activity__posting_logs">Enviando registros (logs) a pastebin...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">¿Te gustaría importar los mensajes de texto existentes en la base de datos cifrada de TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de datos de sistema por defecto no será modificada o alterada de ningún modo.</string>
@@ -420,7 +439,7 @@
   <string name="registration_progress_activity__sms_verification_failed">Fallo de la\n        verificación SMS.\n    </string>
   <string name="registration_progress_activity__generating_keys">Generando claves...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Para</string>
+  <string name="recipients_panel__to"><small>Introduzca un nombre o número</small></string>
   <string name="recipients_panel__add_member">Añadir miembro</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">En este momento no tiene ninguna clave de identidad en su base de datos de confianza.</string>
@@ -454,8 +473,12 @@
   <string name="arrays__contact_keys">Claves de contacto</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
+  <string name="preferences__push_sms_category">Mensajes activos (push) y SMS</string>
+  <string name="preferences__pref_all_sms_title">Recibir todos los SMS</string>
+  <string name="preferences__pref_all_mms_title">Recibir todos los MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Usar TextSecure para ver y guardar todos los mensajes de texto entrantes</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Usar TextSecure para ver y guardar todos los mensajes multimedia entrantes</string>
+  <string name="preferences__input_settings">Preferencias de escritura</string>
   <string name="preferences__enable_enter_key_title">Habilitar tecla Intro</string>
   <string name="preferences__replace_smiley_with_enter_key">Reemplazar tecla de emoticón con una tecla Intro</string>
   <string name="preferences__pref_enter_sends_title">Envío con la tecla de entrada</string>
@@ -534,15 +557,25 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Hace de TextSecure la aplicación SMS/MMS predeterminada para su sistema.</string>
   <string name="preferences__use_data_channel">Mensajes activos (\'push\')</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nIncremente la privacidad y evite tarifas SMS al usar el canal de datos para la comunicación con otros usuarios de TextSecure\n</string>
+  <string name="preferences__allow_sms_fallback">Permitir SMS salientes hacia</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure es actualmente su aplicación SMS por defecto. Por favor configure primero otra aplicación SMS por defecto antes de cambiar esta preferencia.</string>
   <string name="preferences__refresh_push_directory">Refrescar directorio de mensajería activa</string>
   <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
+  <string name="preferences__sms_outgoing_push_users">Usuarios de TextSecure</string>
+  <string name="preferences__sms_fallback_push_users_ask">(preguntar primero)</string>
+  <string name="preferences__sms_outgoing_push_users_description">Enviar SMS seguros si se perdió la conectividad de datos</string>
+  <string name="preferences__sms_fallback_ask_fallback">Preguntar antes de enviar SMS</string>
+  <string name="preferences__sms_fallback_non_push_users">Usuarios no-de-TextSecure</string>
+  <string name="preferences__sms_fallback_nobody">Nadie</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Seleccionar todo</string>
   <string name="contact_selection_list__menu_unselect_all">Deseleccionar todo</string>
+  <string name="contact_selection_list__header_textsecure_users">USUARIOS DE TEXTSECURE</string>
+  <string name="contact_selection_list__header_other">TODOS LOS CONTACTOS</string>
+  <string name="contact_selection_list__unknown_contact">Nuevo mensaje a...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Terminado</string>
   <!--refreshing push directory from menu-->

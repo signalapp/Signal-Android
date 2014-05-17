@@ -23,9 +23,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.CursorAdapter;
+import android.support.v4.widget.CursorAdapter;
 
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -33,7 +32,6 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.util.LRUCache;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;
@@ -67,14 +65,13 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   public ConversationAdapter(Context context, MasterSecret masterSecret,
                              Handler failedIconClickHandler, boolean groupThread, boolean pushDestination)
   {
-    super(context, null);
+    super(context, null, true);
     this.context                = context;
     this.masterSecret           = masterSecret;
     this.failedIconClickHandler = failedIconClickHandler;
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
-    this.inflater               = (LayoutInflater)context
-                                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.inflater               = LayoutInflater.from(context);
   }
 
   @Override

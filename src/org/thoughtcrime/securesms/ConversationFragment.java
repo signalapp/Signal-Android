@@ -16,7 +16,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
+import android.support.v4.widget.CursorAdapter;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
@@ -104,6 +105,16 @@ public class ConversationFragment extends SherlockListFragment
     initializeListAdapter();
   }
 
+  public void scrollToBottom() {
+    final ListView list = getListView();
+    list.post(new Runnable() {
+      @Override
+      public void run() {
+        list.setSelection(getListAdapter().getCount() - 1);
+      }
+    });
+  }
+
   private void handleCopyMessage(MessageRecord message) {
     String body = message.getDisplayBody().toString();
     if (body == null) return;
@@ -173,9 +184,9 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void handleForwardMessage(MessageRecord message) {
-    Intent composeIntent = new Intent(getActivity(), ConversationActivity.class);
-    composeIntent.putExtra("forwarded_message", message.getDisplayBody().toString());
-    composeIntent.putExtra("master_secret", masterSecret);
+    Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
+    composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
+    composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
     startActivity(composeIntent);
   }
 
@@ -199,7 +210,7 @@ public class ConversationFragment extends SherlockListFragment
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
                                                   new FailedIconClickHandler(),
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
-                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients.getPrimaryRecipient())));
+                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }

@@ -54,10 +54,8 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ಕ್ಷಮಿಸಿ, ಆಯ್ಕೆ ಶ್ರಾವ್ಯ ಸಂದೇಶ ಗಾತ್ರ ನಿರ್ಬಂಧಗಳನ್ನು ಮೀರಿದೆ.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">ಸ್ವೀಕರಿಸುವವರ ಎಸ್.ಎಮ್.ಎಸ್ ಅಥವಾ ಇಮೇಲ್ ವಿಳಾಸ ಮಾನ್ಯವಾದುದಲ್ಲ!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">ಸಂದೇಶ ಖಾಲಿಯಾಗಿದೆ!</string>
-  <string name="ConversationActivity_forward_message_prefix">ಎಫ್. ಡಬ್ಲು. ಡಿ</string>
   <string name="ConversationActivity_group_conversation_recipients">ಸಮೂಹ ಸಂವಾದದ ಸ್ವೀಕೃತದಾರರು</string>
   <string name="ConversationActivity_group_conversation">ಸಮೂಹ ಸಂವಾದ</string>
-  <string name="ConversationActivity_saving_draft">ಕರಡು ಉಳಿಸುತ್ತಿದ್ದೇವೆ</string>
   <string name="ConversationActivity_invalid_recipient">ಸ್ವೀಕರಿಸುವವರು ಅಮಾನ್ಯ!</string>
   <string name="ConversationActivity_calls_not_supported">ಕರೆಗಳ ಬೆಂಬಲವಿರುವುದಿಲ್ಲ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನದಲ್ಲಿ ಡಯಲ್ ಕ್ರಮಗಳ ಬೆಂಬಲ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
@@ -74,6 +72,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">ಆಯ್ದ ವಾದಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶ...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">ಎಸ್.ಡಿ  ಕಾರ್ಡ್ಗೆ ರಫ್ತು ಮಾಡಿ?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">ಇದು\nಏಸ್.ಡಿ ಕಾರ್ಡ್ಗೆ ನಿಮ್ಮ ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಕೀಲಿಗಳನ್ನು, ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಮತ್ತು ಸಂದೇಶಗಳ ರಫ್ತು ಮಾಡುತ್ತದೆ.</string>
@@ -272,8 +271,10 @@
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">ಯಾವುದೇ ಇತ್ತೀಚಿನ ಕರೆಗಳಿಲ್ಲ.</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message"><small>ಸಂದೇಶ ಕಳುಹಿಸಲು</small></string>
   <string name="conversation_activity__send">ಕಳುಹಿಸು</string>
   <string name="conversation_activity__remove">ತೆಗೆದುಹಾಕಿ</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">ಡೌನ್ಲೋಡ್</string>
   <string name="conversation_item_sent__downloading">ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
@@ -286,6 +287,7 @@
   <string name="country_selection_fragment__loading_countries">ರಾಷ್ಟ್ರಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ ...</string>
   <string name="country_selection_fragment__search">ಹುಡುಕಿ</string>
   <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">ನೀವು ಸ್ಥಳೀಯವಾಗಿ ನಿಮ್ಮ ದತ್ತಾಂಶವನ್ನು ಗೂಢಲಿಪೀಕರಿಸ ಬಯಸಿದಲ್ಲಿ ಗುಪ್ತವಾಕ್ಯಾಂಶವನ್ನು ಆರಿಸಿ.</string>
   <string name="create_passphrase_activity__passphrase">ಗುಪ್ತಪದ:</string>
   <string name="create_passphrase_activity__repeat">ಪುನರಾವರ್ತಿಸಿ:</string>
   <string name="create_passphrase_activity__continue">ಮುಂದುವರಿಸು</string>
@@ -363,7 +365,7 @@
   <string name="registration_progress_activity__sms_verification_failed">ಎಸ್ ಎಂ ಎಸ್ ಪರಿಶೀಲನೆ \nವಿಫಲವಾಗಿದೆ. </string>
   <string name="registration_progress_activity__generating_keys">ಕೀಲಿಗಳನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">ಗೆ</string>
+  <string name="recipients_panel__to"><small>ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</small></string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">ನೀವು ಪ್ರಸ್ತುತ ನಿಮ್ಮ ನಂಬಿಕೆ ದತ್ತಾಂಶ ಸಂಗ್ರಹದಲ್ಲಿ ಯಾವುದೇ ಗುರುತು ಕೀಲಿಗಳನ್ನು ಹೊಂದಿಲ್ಲ.</string>
   <!--verify_identity_activity-->
@@ -394,6 +396,7 @@
   <string name="arrays__contact_keys">ಸಂಪರ್ಕದ ಕೀಲಿಗಳು</string>
   <!--preferences.xml-->
   <string name="preferences__general">ಸಾಮಾನ್ಯ</string>
+  <string name="preferences__pref_all_sms_title">ಎಲ್ಲಾ ಎಸ್ ಎಂ ಎಸ್ ಪಡೆಯುವಿರಿ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">ಎಲ್ಲಾ ಒಳಬರುವ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಮತ್ತು ಸಂಗ್ರಹಿಸಲು ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಸಿ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">ಎಲ್ಲಾ ಒಳಬರುವ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಮತ್ತು ಸಂಗ್ರಹಿಸಲು ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಸಿ</string>
   <string name="preferences__enable_enter_key_title">ಎಂಟರ್ ಕೀಲಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>

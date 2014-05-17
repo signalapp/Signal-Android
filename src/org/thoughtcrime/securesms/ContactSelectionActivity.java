@@ -30,7 +30,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import java.util.ArrayList;
@@ -61,7 +60,6 @@ public class ContactSelectionActivity extends PassphraseRequiredSherlockFragment
     super.onCreate(icicle);
 
     final ActionBar actionBar = this.getSupportActionBar();
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     actionBar.setDisplayHomeAsUpEnabled(true);
 

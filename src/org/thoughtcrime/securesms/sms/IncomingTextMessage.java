@@ -179,10 +179,6 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
-  public boolean isIdentityUpdate() {
-    return false;
-  }
-
   public boolean isPush() {
     return push;
   }

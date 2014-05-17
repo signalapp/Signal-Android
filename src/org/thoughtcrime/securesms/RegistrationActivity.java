@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.google.android.gcm.GCMRegistrar;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
@@ -25,7 +22,6 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Dialogs;
@@ -58,7 +54,7 @@ public class RegistrationActivity extends SherlockActivity {
     super.onCreate(icicle);
     setContentView(R.layout.registration_activity);
 
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), getString(R.string.RegistrationActivity_connect_with_textsecure));
+    getSupportActionBar().setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
 
     initializeResources();
     initializeSpinner();
@@ -249,7 +245,7 @@ public class RegistrationActivity extends SherlockActivity {
         formattedNumber = countryFormatter.inputDigit(number.charAt(i));
       }
 
-      if (!s.toString().equals(formattedNumber)) {
+      if (formattedNumber != null && !s.toString().equals(formattedNumber)) {
         s.replace(0, s.length(), formattedNumber);
       }
     }

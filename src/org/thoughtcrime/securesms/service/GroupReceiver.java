@@ -57,7 +57,7 @@ public class GroupReceiver {
       handleGroupUpdate(masterSecret, message, group, record);
     } else if (record == null && type == GroupContext.Type.UPDATE_VALUE) {
       handleGroupCreate(masterSecret, message, group);
-    } else if (type == GroupContext.Type.QUIT_VALUE) {
+    } else if (record != null && type == GroupContext.Type.QUIT_VALUE) {
       handleGroupLeave(masterSecret, message, group, record);
     } else if (type == GroupContext.Type.UNKNOWN_VALUE) {
       Log.w("GroupReceiver", "Received unknown type, ignoring...");

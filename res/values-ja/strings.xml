@@ -52,13 +52,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">選択された音声ファイルは容量を超えています。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">受信先のSMS又はEメールアドレスが有効ではありません。</string>
   <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です。</string>
-  <string name="ConversationActivity_forward_message_prefix">転送：</string>
   <string name="ConversationActivity_group_conversation_recipients">グループ通信の受信者</string>
   <string name="ConversationActivity_group_conversation">グループ通信</string>
   <string name="ConversationActivity_unnamed_group">グループ名なし</string>
   <string name="ConversationActivity_d_recipients_in_group">参加者%d人</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">参加者1人</string>
-  <string name="ConversationActivity_saving_draft">下書き保存中…</string>
   <string name="ConversationActivity_invalid_recipient">受信先が無効です。</string>
   <string name="ConversationActivity_calls_not_supported">通話不可</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末は、ダイヤル機能に対応していないようです。</string>
@@ -75,6 +73,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">選択したスレッドを削除中…</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">SDカードへエクスポートしますか？</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">これで、あなたの暗号化された鍵、設定、及びメッセージはSDカードへエクスポートされますが、よろしいですか？</string>
@@ -251,7 +250,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">連絡先はありません。</string>
-  <string name="contact_selection_group_activity__finding_contacts">連絡先を検索中...</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">選択</string>
@@ -261,6 +259,7 @@
   <string name="conversation_activity__type_message">メッセージを送信</string>
   <string name="conversation_activity__send">送信</string>
   <string name="conversation_activity__remove">削除</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">ダウンロード</string>
   <string name="conversation_item_sent__downloading">ダウンロード中</string>
@@ -329,7 +328,6 @@
   <string name="registration_progress_activity__registering_with_server">サーバーに登録中...</string>
   <string name="registration_progress_activity__generating_keys">鍵を作成中...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">宛先</string>
   <string name="recipients_panel__add_member">参加者を追加する</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">信用した鍵のデータベースに認証キーは現在ありません。</string>
@@ -364,6 +362,7 @@
   <string name="preferences__general">一般設定</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキストメッセージ）の表示、及び保存にTextSecureを使用します</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）の表示、及び保存にTextSecureを使用します</string>
+  <string name="preferences__input_settings">設定入力</string>
   <string name="preferences__enable_enter_key_title">エンターキーを使えるようにする</string>
   <string name="preferences__replace_smiley_with_enter_key">顔文字ボタンをエンターキーにする</string>
   <string name="preferences__pref_enter_sends_title">Enterキーで送信</string>

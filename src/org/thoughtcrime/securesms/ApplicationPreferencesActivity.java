@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -101,7 +100,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
 
     addPreferencesFromResource(R.xml.preferences);
 
@@ -196,10 +194,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   }
 
   private void initializePlatformSpecificOptions() {
-    PreferenceGroup    pushSmsCategory    = (PreferenceGroup) findPreference("push_sms_category");
-    Preference         defaultPreference  = findPreference(KITKAT_DEFAULT_PREF);
-    Preference         allSmsPreference   = findPreference(TextSecurePreferences.ALL_SMS_PREF);
-    Preference         allMmsPreference   = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    PreferenceGroup    pushSmsCategory          = (PreferenceGroup) findPreference("push_sms_category");
+    PreferenceGroup    advancedCategory         = (PreferenceGroup) findPreference("advanced_category");
+    Preference         defaultPreference        = findPreference(KITKAT_DEFAULT_PREF);
+    Preference         allSmsPreference         = findPreference(TextSecurePreferences.ALL_SMS_PREF);
+    Preference         allMmsPreference         = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    Preference         screenSecurityPreference = findPreference(TextSecurePreferences.SCREEN_SECURITY_PREF);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && pushSmsCategory != null) {
       if (allSmsPreference != null) pushSmsCategory.removePreference(allSmsPreference);
@@ -218,6 +218,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       }
     } else if (pushSmsCategory != null && defaultPreference != null) {
       pushSmsCategory.removePreference(defaultPreference);
+    }
+
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1 &&
+        advancedCategory != null                                   &&
+        screenSecurityPreference != null)
+    {
+      advancedCategory.removePreference(screenSecurityPreference);
     }
   }
 
@@ -547,39 +554,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private class DirectoryUpdateListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      final Context context = ApplicationPreferencesActivity.this;
-
-      if (!TextSecurePreferences.isPushRegistered(context)) {
-        Toast.makeText(context,
-                       getString(R.string.ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service),
-                       Toast.LENGTH_LONG).show();
-        return true;
-      }
-
-      new AsyncTask<Void, Void, Void>() {
-        private ProgressDialog progress;
-
-        @Override
-        protected void onPreExecute() {
-          progress = ProgressDialog.show(context,
-                                         getString(R.string.ApplicationPreferencesActivity_updating_directory),
-                                         getString(R.string.ApplicationPreferencesActivity_updating_push_directory),
-                                         true);
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-          DirectoryHelper.refreshDirectory(context);
-          return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-          if (progress != null)
-            progress.dismiss();
-        }
-      }.execute();
-
+      DirectoryHelper.refreshDirectoryWithProgressDialog(ApplicationPreferencesActivity.this);
       return true;
     }
   }

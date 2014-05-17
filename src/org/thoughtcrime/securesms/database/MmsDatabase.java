@@ -281,12 +281,18 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
-  public void markAsForcedSms(long id) {
-    updateMailboxBitmask(id, 0, Types.MESSAGE_FORCE_SMS_BIT);
+  public void markAsForcedSms(long messageId) {
+    updateMailboxBitmask(messageId, 0, Types.MESSAGE_FORCE_SMS_BIT);
+    notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
-  public void markAsPendingApproval(long messageId) {
-    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_FALLBACK_APPROVAL);
+  public void markAsPendingSecureSmsFallback(long messageId) {
+    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_SECURE_SMS_FALLBACK);
+    notifyConversationListeners(getThreadIdForMessage(messageId));
+  }
+
+  public void markAsPendingInsecureSmsFallback(long messageId) {
+    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK);
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
@@ -338,12 +344,26 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     updateMailboxBitmask(messageId, 0, Types.SECURE_MESSAGE_BIT);
   }
 
+  public void markAsInsecure(long messageId) {
+    updateMailboxBitmask(messageId, Types.SECURE_MESSAGE_BIT, 0);
+  }
+
   public void markAsPush(long messageId) {
     updateMailboxBitmask(messageId, 0, Types.PUSH_MESSAGE_BIT);
   }
 
   public void markAsDecryptFailed(long messageId, long threadId) {
     updateMailboxBitmask(messageId, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
+    notifyConversationListeners(threadId);
+  }
+
+  public void markAsDecryptDuplicate(long messageId, long threadId) {
+    updateMailboxBitmask(messageId, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_DUPLICATE_BIT);
+    notifyConversationListeners(threadId);
+  }
+
+  public void markAsLegacyVersion(long messageId, long threadId) {
+    updateMailboxBitmask(messageId, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT);
     notifyConversationListeners(threadId);
   }
 

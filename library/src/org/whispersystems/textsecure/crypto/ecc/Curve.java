@@ -21,26 +21,10 @@ import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 
 public class Curve {
 
-  public  static final int NIST_TYPE  = 0x02;
-  private static final int NIST_TYPE2 = 0x03;
   public  static final int DJB_TYPE   = 0x05;
 
-  public static ECKeyPair generateKeyPairForType(int keyType) {
-    if (keyType == DJB_TYPE) {
-      return Curve25519.generateKeyPair();
-    } else if (keyType == NIST_TYPE || keyType == NIST_TYPE2) {
-      return CurveP256.generateKeyPair();
-    } else {
-      throw new AssertionError("Bad key type: " + keyType);
-    }
-  }
-
-  public static ECKeyPair generateKeyPairForSession(int messageVersion) {
-    if (messageVersion <= CiphertextMessage.LEGACY_VERSION) {
-      return generateKeyPairForType(NIST_TYPE);
-    } else {
-      return generateKeyPairForType(DJB_TYPE);
-    }
+  public static ECKeyPair generateKeyPair(boolean ephemeral) {
+    return Curve25519.generateKeyPair(ephemeral);
   }
 
   public static ECPublicKey decodePoint(byte[] bytes, int offset)
@@ -50,21 +34,13 @@ public class Curve {
 
     if (type == DJB_TYPE) {
       return Curve25519.decodePoint(bytes, offset);
-    } else if (type == NIST_TYPE || type == NIST_TYPE2) {
-      return CurveP256.decodePoint(bytes, offset);
     } else {
       throw new InvalidKeyException("Unknown key type: " + type);
     }
   }
 
-  public static ECPrivateKey decodePrivatePoint(int type, byte[] bytes) {
-    if (type == DJB_TYPE) {
-      return new DjbECPrivateKey(bytes);
-    } else if (type == NIST_TYPE || type == NIST_TYPE2) {
-      return CurveP256.decodePrivatePoint(bytes);
-    } else {
-      throw new AssertionError("Bad key type: " + type);
-    }
+  public static ECPrivateKey decodePrivatePoint(byte[] bytes) {
+    return new DjbECPrivateKey(bytes);
   }
 
   public static byte[] calculateAgreement(ECPublicKey publicKey, ECPrivateKey privateKey)
@@ -76,8 +52,6 @@ public class Curve {
 
     if (publicKey.getType() == DJB_TYPE) {
       return Curve25519.calculateAgreement(publicKey, privateKey);
-    } else if (publicKey.getType() == NIST_TYPE || publicKey.getType() == NIST_TYPE2) {
-      return CurveP256.calculateAgreement(publicKey, privateKey);
     } else {
       throw new InvalidKeyException("Unknown type: " + publicKey.getType());
     }
