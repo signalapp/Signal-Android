@@ -1,5 +1,5 @@
 Building TextSecure
-=====================
+===================
 
 Basics
 ------
@@ -18,7 +18,7 @@ The following steps should help you (re)build TextSecure from the command line.
 
 2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed somewhere on your system.
 3. Ensure the "Android Support Repository" and "Android SDK Build-tools" are installed from the Android SDK manager.
-4. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.
+4. Create a local.properties file at the root of your source checkout and add a sdk.dir entry to it.
 
         sdk.dir=\<path to your sdk installation\>
 
@@ -33,10 +33,10 @@ Note: This step is optional; native components are contained as binaries (see [l
 
 1. Ensure that the Android NDK is installed.
 
-Execute ndk-build:
+2. Execute ndk-build:
 
-    cd library
-    ndk-build
+        cd library/
+        ndk-build
 
 Afterwards, execute Gradle as above to re-create the APK.
 
@@ -48,16 +48,16 @@ Setting up a development environment
 1. Install Android Studio
 2. Make sure the "Android Support Repository" is installed in the Android Studio SDK.
 3. Make sure the latest "Android SDK build-tools" is installed in the Android Studio SDK.
-4. Create a new Android Studio project. from the Quickstart pannel (use File > Close Project to see it), choose "Checkout from Version Control" then "git".
+4. Create a new Android Studio project. From the Quickstart panel (use File > Close Project to see it) choose "Checkout from Version Control" then "git".
 5. Paste the URL for the TextSecure project when prompted (https://github.com/WhisperSystems/TextSecure.git)
-6. Android studio should detect the presence of a project file and ask you wethere to open it. Click "yes".
+6. Android studio should detect the presence of a project file and ask you whether to open it. Click "yes".
 7. Default config options should be good enough.
 8. Project initialisation and build should proceed.
 
 Contributing code
 -----------------
 
-Code contributions should be sent via github as pull requests, from feature branches [as explained here](https://help.github.com/articles/using-pull-requests).
+Read [here](CONTRIBUTING.md#code) to learn how to contribute code to this project.
 
 Mailing list
 ------------
