@@ -55,23 +55,26 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
 
     List<String> recipientStrings = new LinkedList<String>();
     String e164number = "";
-    int meFlag = 0;
+    boolean meFlag = false;
     for (Recipient recipient : members.getRecipientsList()) {
       try {
-          e164number = Util.canonicalizeNumber(context, recipient.getNumber());
-      } catch (InvalidNumberException ine) {
-           Log.w("GroupMembersDialog", ine);
-           }
-      if( e164number.equals( TextSecurePreferences.getLocalNumber(context)))
-      {
-          recipient.setName("Me");
-          meFlag = 1;
+        e164number = Util.canonicalizeNumber(context, recipient.getNumber());
       }
-      recipientStrings.add(recipient.toShortString());
+      catch (InvalidNumberException ine) {
+        Log.w("GroupMembersDialog", ine);
+      }
+      if( e164number.equals(TextSecurePreferences.getLocalNumber(context)))
+      {
+        recipientStrings.add(context.getString(R.string.GroupMembersDialog_me));
+        meFlag = true;
+      }
+      else{
+        recipientStrings.add(recipient.toShortString());
+      }
     }
-    if(meFlag == 0)
+    if(!meFlag)
     {
-        recipientStrings.add("Me");
+      recipientStrings.add(context.getString(R.string.GroupMembersDialog_me));
     }
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(R.string.ConversationActivity_group_conversation_recipients);
