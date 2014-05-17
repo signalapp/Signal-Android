@@ -241,7 +241,7 @@ public class MessageNotifier {
 
   private static void sendInThreadNotification(Context context) {
     try {
-      if (!TextSecurePreferences.isInThreadNotifications(context)) {
+      if (!TextSecurePreferences.isInThreadNotifications(context) || !TextSecurePreferences.isNotificationsEnabled(context)) {
         return;
       }
 
