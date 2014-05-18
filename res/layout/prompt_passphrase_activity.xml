@@ -46,7 +46,10 @@
                          android:layout_alignParentRight="true"
                          android:layout_centerVertical="true"
                          android:textAppearance="?android:attr/textAppearanceMedium"
-                         android:layout_marginRight="10dp"/>
+                         android:paddingLeft="5dp"
+                         android:paddingTop="5dp"
+                         android:paddingRight="10dp"
+                         android:paddingBottom="5dp"/>
         </RelativeLayout>
 
     </RelativeLayout>

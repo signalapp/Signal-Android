@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,18 +28,16 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.TypefaceSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -89,7 +86,10 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
+    getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+    getSupportActionBar().setCustomView(R.layout.light_centered_app_title);
     mitigateAndroidTilingBug();
+
     ImageButton okButton = (ImageButton) findViewById(R.id.ok_button);
     passphraseText       = (EditText)    findViewById(R.id.passphrase_edit);
     SpannableString hint = new SpannableString(getString(R.string.PassphrasePromptActivity_enter_passphrase));
