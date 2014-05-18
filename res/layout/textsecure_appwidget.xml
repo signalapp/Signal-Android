@@ -28,8 +28,7 @@
             android:background="@drawable/circle_badge"
             android:gravity="center_vertical|center_horizontal"
             android:layout_alignParentEnd="false"
-            android:layout_gravity="left"
-            android:layout_marginLeft="25dip"/>
+            android:layout_gravity="right" />
     </FrameLayout>
 
 </LinearLayout>
