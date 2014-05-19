@@ -33,6 +33,7 @@ public interface MmsSmsColumns {
     // Message attributes
     protected static final long MESSAGE_ATTRIBUTE_MASK = 0xE0;
     protected static final long MESSAGE_FORCE_SMS_BIT  = 0x40;
+    protected static final long MESSAGE_DRAFT_BIT      = 0x80;
 
     // Key Exchange Information
     protected static final long KEY_EXCHANGE_BIT                 = 0x8000;
@@ -170,6 +171,10 @@ public interface MmsSmsColumns {
 
     public static boolean isNoRemoteSessionType(long type) {
       return (type & ENCRYPTION_REMOTE_NO_SESSION_BIT) != 0;
+    }
+
+    public static boolean isDraftType(long type) {
+      return (type & MESSAGE_DRAFT_BIT) != 0;
     }
 
     public static boolean isLegacyType(long type) {
