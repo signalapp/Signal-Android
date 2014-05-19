@@ -52,24 +52,25 @@ public class PlaintextBackupImporter {
     SQLiteDatabase transaction = db.beginTransaction();
 
     try {
-      ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      XmlBackup      backup          = new XmlBackup(getPlaintextExportDirectoryPath());
-      MasterCipher   masterCipher    = new MasterCipher(masterSecret);
-      Set<Long>      modifiedThreads = new HashSet<Long>();
+      ThreadDatabase  threads         = DatabaseFactory.getThreadDatabase(context);
+      XmlBackup       backup          = new XmlBackup(getPlaintextExportDirectoryPath());
+      MasterCipher    masterCipher    = new MasterCipher(masterSecret);
+      Set<Long>       modifiedThreads = new HashSet<Long>();
+      SQLiteStatement statement       = db.createInsertStatement(transaction);
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
         try {
-          Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
-          long            threadId   = threads.getThreadIdFor(recipients);
+          Recipients recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
+          long       threadId   = threads.getThreadIdFor(recipients);
 
           if (item.getAddress() == null || item.getAddress().equals("null"))
             continue;
 
           if (item.getType() != DRAFT)
-            insertMessage(db, transaction, masterCipher, item, threadId);
+            insertMessage(masterCipher, threadId, item, statement);
           else
-            insertDraft(context, masterCipher, item, threadId);
+            insertDraft(context, masterCipher, threadId, item);
 
           modifiedThreads.add(threadId);
 
@@ -91,8 +92,9 @@ public class PlaintextBackupImporter {
     }
   }
 
-  private static void insertMessage(SmsDatabase db, SQLiteDatabase transaction, MasterCipher masterCipher, XmlBackup.XmlBackupItem item, long threadId) {
-    SQLiteStatement statement  = db.createInsertStatement(transaction);
+  private static void insertMessage(MasterCipher masterCipher, long threadId,
+                                    XmlBackup.XmlBackupItem item, SQLiteStatement statement)
+  {
     getContentValuesForItem(masterCipher, item, threadId, statement);
     statement.execute();
   }
@@ -116,7 +118,7 @@ public class PlaintextBackupImporter {
   }
 
   private static void insertDraft(Context context, MasterCipher masterCipher,
-                                  XmlBackup.XmlBackupItem item, long threadId)
+                                  long threadId, XmlBackup.XmlBackupItem item)
   {
     DatabaseFactory.getDraftDatabase(context).insertDrafts(masterCipher, threadId,
         Arrays.asList(new DraftDatabase.Draft(DraftDatabase.Draft.TEXT, item.getBody())));

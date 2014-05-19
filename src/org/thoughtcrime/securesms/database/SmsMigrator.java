@@ -192,14 +192,14 @@ public class SmsMigrator {
       Uri uri                    = Uri.parse("content://sms/conversations/" + theirThreadId);
       cursor                     = context.getContentResolver().query(uri, null, null, null, null);
       SQLiteDatabase transaction = ourSmsDatabase.beginTransaction();
-      MasterCipher masterCipher  = new MasterCipher(masterSecret);
+      SQLiteStatement statement  = ourSmsDatabase.createInsertStatement(transaction);
 
       while (cursor != null && cursor.moveToNext()) {
 
         if (getLongFromCursor(cursor, SmsDatabase.TYPE) != DRAFT)
-          insertMessage(context, masterSecret, ourThreadId, ourSmsDatabase, cursor, transaction);
+          insertMessage(context, masterSecret, ourThreadId, cursor, statement);
         else
-          insertDraft(context, ourThreadId, cursor, masterCipher);
+          insertDraft(context, masterSecret, ourThreadId, cursor);
 
         listener.progressUpdate(new ProgressDescription(progress, cursor.getCount(), cursor.getPosition()));
       }
@@ -214,13 +214,13 @@ public class SmsMigrator {
     }
   }
 
-  private static void insertMessage(Context context, MasterSecret masterSecret, long ourThreadId, SmsDatabase ourSmsDatabase, Cursor cursor, SQLiteDatabase transaction) {
-    SQLiteStatement statement  = ourSmsDatabase.createInsertStatement(transaction);
+  private static void insertMessage(Context context, MasterSecret masterSecret, long ourThreadId, Cursor cursor, SQLiteStatement statement) {
     getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
     statement.execute();
   }
 
-  private static void insertDraft(Context context, long ourThreadId, Cursor cursor, MasterCipher masterCipher) {
+  private static void insertDraft(Context context, MasterSecret masterSecret, long ourThreadId, Cursor cursor) {
+    MasterCipher masterCipher = new MasterCipher(masterSecret);
     DatabaseFactory.getDraftDatabase(context)
                    .insertDrafts(masterCipher, ourThreadId,
                        Arrays.asList(new DraftDatabase.Draft(DraftDatabase.Draft.TEXT,
