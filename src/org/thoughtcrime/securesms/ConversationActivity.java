@@ -34,8 +34,11 @@ import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
@@ -124,7 +127,7 @@ import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageCo
  *
  */
 public class ConversationActivity extends PassphraseRequiredSherlockFragmentActivity
-    implements ConversationFragment.ConversationFragmentListener
+    implements ConversationFragment.ConversationFragmentListener, AttachmentManager.AttachmentListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -668,12 +671,28 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       this.isEncryptedConversation = true;
       this.characterCalculator     = new EncryptedCharacterCalculator();
 
-      if (isPushDestination) sendButton.setImageDrawable(drawables.getDrawable(0));
-      else                   sendButton.setImageDrawable(drawables.getDrawable(1));
+      if (isPushDestination) {
+        sendButton.setImageDrawable(drawables.getDrawable(0));
+        setComposeTextHint(getString(R.string.conversation_activity__type_message_push));
+      }
+      else {
+        sendButton.setImageDrawable(drawables.getDrawable(1));
+        if (attachmentManager.isAttachmentPresent()) {
+          setComposeTextHint(getString(R.string.conversation_activity__type_message_mms_secure));
+        }
+        else {
+          setComposeTextHint(getString(R.string.conversation_activity__type_message_sms_secure));
+        }
+      }
     } else {
       this.isEncryptedConversation = false;
       this.characterCalculator     = new CharacterCalculator();
       sendButton.setImageDrawable(drawables.getDrawable(2));
+      if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient()) {
+        setComposeTextHint(getString(R.string.conversation_activity__type_message_mms_insecure));
+      } else {
+        setComposeTextHint(getString(R.string.conversation_activity__type_message_sms_insecure));
+      }
     }
 
     drawables.recycle();
@@ -720,7 +739,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
 
     attachmentAdapter   = new AttachmentTypeSelectorAdapter(this);
-    attachmentManager   = new AttachmentManager(this);
+    attachmentManager   = new AttachmentManager(this, this);
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -1143,4 +1162,18 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     this.composeText.setText(text);
   }
 
+  private void setComposeTextHint(String hint){
+    if (hint == null) {
+      this.composeText.setHint(null);
+    } else {
+      SpannableString span = new SpannableString(hint);
+      span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+      this.composeText.setHint(span);
+    }
+  }
+
+  @Override
+  public void onAttachmentChanged() {
+    initializeSecurity();
+  }
 }
