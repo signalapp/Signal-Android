@@ -112,8 +112,8 @@ public class PushReceiver {
     }
 
     try {
-      Recipient              recipient       = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
-      Recipients             recipients      = RecipientFactory.getRecipientsFromMessage(context, message, false);
+      Recipients             recipients      = RecipientFactory.getRecipientsFromString(context, message.getSource(), false);
+      Recipient              recipient       = recipients.getPrimaryRecipient();
       RecipientDevice        recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSourceDevice());
       KeyExchangeProcessorV2 processor       = new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
       PreKeyWhisperMessage   preKeyExchange  = new PreKeyWhisperMessage(message.getBody());
