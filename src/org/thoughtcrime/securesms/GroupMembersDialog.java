@@ -59,8 +59,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
     for (Recipient recipient : members.getRecipientsList()) {
       try {
         e164number = Util.canonicalizeNumber(context, recipient.getNumber());
-      }
-      catch (InvalidNumberException ine) {
+      } catch (InvalidNumberException ine) {
         Log.w("GroupMembersDialog", ine);
       }
       if( !e164number.equals(TextSecurePreferences.getLocalNumber(context))) {
