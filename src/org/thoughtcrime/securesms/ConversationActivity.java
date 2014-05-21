@@ -666,34 +666,41 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeSecurity() {
-    TypedArray drawables         = obtainStyledAttributes(SEND_ATTRIBUTES);
-    boolean    isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
-    Recipient  primaryRecipient  = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
+    Recipient  primaryRecipient         = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
+    boolean    isPushDestination        = DirectoryHelper.isPushDestination(this, getRecipients());
+    boolean    isOtherSecureDestination = isSingleConversation() && Session.hasSession(this, masterSecret, primaryRecipient);
 
-    if (isPushDestination ||
-        (isSingleConversation() && Session.hasSession(this, masterSecret, primaryRecipient)))
-    {
+    if (isPushDestination || isOtherSecureDestination) {
       this.isEncryptedConversation     = true;
       this.isAuthenticatedConversation = Session.hasRemoteIdentityKey(this, masterSecret, primaryRecipient);
       this.characterCalculator         = new EncryptedCharacterCalculator();
-
-      if (isPushDestination) {
-        sendButton.setImageDrawable(drawables.getDrawable(0));
-        setComposeTextHint(getString(R.string.conversation_activity__type_message_push));
-      }
-      else {
-        sendButton.setImageDrawable(drawables.getDrawable(1));
-        if (attachmentManager.isAttachmentPresent()) {
-          setComposeTextHint(getString(R.string.conversation_activity__type_message_mms_secure));
-        }
-        else {
-          setComposeTextHint(getString(R.string.conversation_activity__type_message_sms_secure));
-        }
-      }
     } else {
       this.isEncryptedConversation     = false;
       this.isAuthenticatedConversation = false;
       this.characterCalculator         = new CharacterCalculator();
+    }
+
+    initializeSecurityUI();
+    calculateCharactersRemaining();
+  }
+
+  private void initializeSecurityUI() {
+    TypedArray drawables                = obtainStyledAttributes(SEND_ATTRIBUTES);
+    Recipient  primaryRecipient         = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
+    boolean    isPushDestination        = DirectoryHelper.isPushDestination(this, getRecipients());
+    boolean    isOtherSecureDestination = isSingleConversation() && Session.hasSession(this, masterSecret, primaryRecipient);
+
+    if (isPushDestination) {
+      sendButton.setImageDrawable(drawables.getDrawable(0));
+      setComposeTextHint(getString(R.string.conversation_activity__type_message_push));
+    } else if (isOtherSecureDestination) {
+      sendButton.setImageDrawable(drawables.getDrawable(1));
+      if (attachmentManager.isAttachmentPresent()) {
+        setComposeTextHint(getString(R.string.conversation_activity__type_message_mms_secure));
+      } else {
+        setComposeTextHint(getString(R.string.conversation_activity__type_message_sms_secure));
+      }
+    } else {
       sendButton.setImageDrawable(drawables.getDrawable(2));
       if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient()) {
         setComposeTextHint(getString(R.string.conversation_activity__type_message_mms_insecure));
@@ -703,8 +710,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
 
     drawables.recycle();
-
-    calculateCharactersRemaining();
   }
 
   private void initializeMmsEnabledCheck() {
@@ -1181,6 +1186,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   @Override
   public void onAttachmentChanged() {
-    initializeSecurity();
+    initializeSecurityUI();
   }
 }
