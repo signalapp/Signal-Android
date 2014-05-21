@@ -137,7 +137,6 @@ public class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
     notifyDatabaseListeners();
   }
 
@@ -147,7 +146,6 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
     notifyDatabaseListeners();
   }
 
@@ -162,7 +160,6 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
     notifyDatabaseListeners();
   }
 

@@ -73,13 +73,13 @@ public class AudioSlide extends Slide {
     } finally {
       if (cursor != null)
         cursor.close();
-    } 
+    }
 
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Audio" + System.currentTimeMillis()).getBytes());
-		
+
     return part;
   }
-	
+
 }
