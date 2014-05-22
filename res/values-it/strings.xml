@@ -96,7 +96,7 @@
   <string name="ConversationListItem_key_exchange_message">Messaggio di scambio della chiave...</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_export_to_sd_card">Esporta alla scheda SD?</string>
+  <string name="ExportFragment_export_to_sd_card">Esporta sulla scheda SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Verranno\n        esportate nella scheda SD le tue chiavi crittografiche, le impostazioni ed i messaggi.\n    </string>
   <string name="ExportFragment_export">Esporta</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Esporta il testo in formato PlainText nella scheda SD?</string>
@@ -151,15 +151,15 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio Multimediale</string>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le passwords non corrispondono!</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
   <!--PassphraseCreateActivity-->
   <string name="PassphraseCreateActivity_passphrases_dont_match">Le password non corrispondono</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Devi creare un password</string>
+  <string name="PassphraseCreateActivity_you_must_specify_a_password">Devi creare una password</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password errata!</string>
   <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Devi specificare un MMSC URL per il tuo provider.</string>
+  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Devi specificare una URL MMSC per il tuo provider.</string>
   <string name="PromptMmsActivity_mms_settings_updated">Impostazioni MMS aggiornate.</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Puoi modificare questi valori dalle impostazioni di TextSecure in ogni momento.</string>
   <!--ReceiveKeyActivity-->
@@ -455,7 +455,7 @@
   <string name="preferences__general">Generale</string>
   <string name="preferences__push_sms_category">Push e SMS</string>
   <string name="preferences__pref_all_sms_title">Utilizza per tutti gli SMS</string>
-  <string name="preferences__pref_all_mms_title">Utilizza per tutti gli SMS</string>
+  <string name="preferences__pref_all_mms_title">Utilizza per tutti gli MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Usa TextSecure per vedere e salvare tutti i messaggi in arrivo</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Usa TextSecure per vedere e salvare tutti gli MMS in arrivo</string>
   <string name="preferences__input_settings">Impostazioni di Input</string>
