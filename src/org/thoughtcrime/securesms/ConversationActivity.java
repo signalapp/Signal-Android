@@ -94,6 +94,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -658,11 +659,22 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
       @Override
       protected void onPostExecute(List<Draft> drafts) {
+        boolean nativeEmojiSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+        Context context              = ConversationActivity.this;
+
         for (Draft draft : drafts) {
-          if      (draft.getType().equals(Draft.TEXT))  composeText.setText(draft.getValue());
-          else if (draft.getType().equals(Draft.IMAGE)) addAttachmentImage(Uri.parse(draft.getValue()));
-          else if (draft.getType().equals(Draft.AUDIO)) addAttachmentAudio(Uri.parse(draft.getValue()));
-          else if (draft.getType().equals(Draft.VIDEO)) addAttachmentVideo(Uri.parse(draft.getValue()));
+          if (draft.getType().equals(Draft.TEXT) && !nativeEmojiSupported) {
+            composeText.setText(Emoji.getInstance(context).emojify(draft.getValue()),
+                                TextView.BufferType.SPANNABLE);
+          } else if (draft.getType().equals(Draft.TEXT)) {
+            composeText.setText(draft.getValue());
+          } else if (draft.getType().equals(Draft.IMAGE)) {
+            addAttachmentImage(Uri.parse(draft.getValue()));
+          } else if (draft.getType().equals(Draft.AUDIO)) {
+            addAttachmentAudio(Uri.parse(draft.getValue()));
+          } else if (draft.getType().equals(Draft.VIDEO)) {
+            addAttachmentVideo(Uri.parse(draft.getValue()));
+          }
         }
       }
     }.execute();
