@@ -87,7 +87,7 @@ public class PassphraseRequiredMixin {
   }
 
   private void removeServiceConnection(Context context) {
-    if (this.serviceConnection != null && this.serviceConnection.isBound()) {
+    if (this.serviceConnection != null) {
       context.unbindService(this.serviceConnection);
     }
   }
@@ -95,18 +95,14 @@ public class PassphraseRequiredMixin {
   private static class KeyCachingServiceConnection implements ServiceConnection {
     private final PassphraseRequiredActivity activity;
 
-    private boolean isBound;
-
     public KeyCachingServiceConnection(PassphraseRequiredActivity activity) {
       this.activity = activity;
-      this.isBound  = false;
     }
 
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
       KeyCachingService keyCachingService  = ((KeyCachingService.KeyCachingBinder)service).getService();
       MasterSecret masterSecret            = keyCachingService.getMasterSecret();
-      this.isBound                         = true;
 
       if (masterSecret == null) {
         activity.onMasterSecretCleared();
@@ -117,12 +113,8 @@ public class PassphraseRequiredMixin {
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
-      this.isBound  = false;
     }
 
-    public boolean isBound() {
-      return this.isBound;
-    }
   }
 
 }

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.util;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.text.TextUtils;
 
 import java.util.Locale;
@@ -21,15 +20,11 @@ public class DynamicLanguage {
 
   public void onResume(Activity activity) {
     if (!currentLocale.equals(getSelectedLocale(activity))) {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-        activity.recreate();
-      } else {
-        Intent intent = activity.getIntent();
-        activity.finish();
-        OverridePendingTransition.invoke(activity);
-        activity.startActivity(intent);
-        OverridePendingTransition.invoke(activity);
-      }
+      Intent intent = activity.getIntent();
+      activity.finish();
+      OverridePendingTransition.invoke(activity);
+      activity.startActivity(intent);
+      OverridePendingTransition.invoke(activity);
     }
   }
 
