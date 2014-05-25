@@ -48,12 +48,18 @@ public class TextSecurePreferences {
   private static final String ALLOW_SMS_FALLBACK_PREF          = "pref_allow_sms_traffic_out";
   private static final String SMS_FALLBACK_ASK_PREF            = "pref_sms_fallback_ask";
   private static final String ALLOW_SMS_NON_DATA_PREF          = "pref_sms_non_data_out";
+  private static final String ALLOW_MMS_FALLBACK_PREF          = "pref_allow_mms_traffic_out";
+  private static final String MMS_FALLBACK_ASK_PREF            = "pref_mms_fallback_ask";
+  private static final String ALLOW_MMS_NON_DATA_PREF          = "pref_mms_non_data_out";
 
   public static boolean isSmsFallbackEnabled(Context context) {
     return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
   }
 
   public static void setSmsFallbackEnabled(Context context, boolean enabled) {
+    if(!TextSecurePreferences.containsPreference(context, ALLOW_MMS_FALLBACK_PREF)) {
+      TextSecurePreferences.setMmsFallbackEnabled(context, TextSecurePreferences.isSmsFallbackEnabled(context));
+    }
     setBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, enabled);
   }
 
@@ -62,16 +68,48 @@ public class TextSecurePreferences {
   }
 
   public static void setSmsNonDataOutEnabled(Context context, boolean enabled) {
+    if(!TextSecurePreferences.containsPreference(context, ALLOW_MMS_NON_DATA_PREF)) {
+      TextSecurePreferences.setMmsNonDataOutEnabled(context, TextSecurePreferences.isSmsNonDataOutEnabled(context));
+    }
     setBooleanPreference(context, ALLOW_SMS_NON_DATA_PREF, enabled);
   }
 
   public static boolean isSmsFallbackAskEnabled(Context context) {
-    return getBooleanPreference(context, SMS_FALLBACK_ASK_PREF, false);
+    return getBooleanPreference(context, SMS_FALLBACK_ASK_PREF, true);
   }
 
   public static void setSmsFallbackAskEnabled(Context context, boolean enabled) {
+    if(!TextSecurePreferences.containsPreference(context, MMS_FALLBACK_ASK_PREF)) {
+      TextSecurePreferences.setMmsFallbackAskEnabled(context, TextSecurePreferences.isSmsFallbackAskEnabled(context));
+    }
     setBooleanPreference(context, SMS_FALLBACK_ASK_PREF, enabled);
   }
+
+
+  public static boolean isMmsFallbackEnabled(Context context) {
+    return getBooleanPreference(context, ALLOW_MMS_FALLBACK_PREF, TextSecurePreferences.isSmsFallbackEnabled(context));
+  }
+
+  public static void setMmsFallbackEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, ALLOW_MMS_FALLBACK_PREF, enabled);
+  }
+
+  public static boolean isMmsNonDataOutEnabled(Context context) {
+    return getBooleanPreference(context, ALLOW_MMS_NON_DATA_PREF, TextSecurePreferences.isSmsNonDataOutEnabled(context));
+  }
+
+  public static void setMmsNonDataOutEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, ALLOW_MMS_NON_DATA_PREF, enabled);
+  }
+
+  public static boolean isMmsFallbackAskEnabled(Context context) {
+    return getBooleanPreference(context, MMS_FALLBACK_ASK_PREF, TextSecurePreferences.isSmsFallbackAskEnabled(context));
+  }
+
+  public static void setMmsFallbackAskEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, MMS_FALLBACK_ASK_PREF, enabled);
+  }
+
 
 
   public static int getLocalRegistrationId(Context context) {
@@ -301,6 +339,10 @@ public class TextSecurePreferences {
 
   private static void setLongPreference(Context context, String key, long value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).commit();
+  }
+
+  private static boolean containsPreference(Context context, String key) {
+    return PreferenceManager.getDefaultSharedPreferences(context).contains(key);
   }
 
 

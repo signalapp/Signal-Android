@@ -66,7 +66,10 @@ public class UniversalTransport {
              SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
     if (!TextSecurePreferences.isPushRegistered(context)) {
-      smsTransport.deliver(message);
+      if(TextSecurePreferences.isSmsNonDataOutEnabled(context))
+        smsTransport.deliver(message);
+      else
+        throw new UndeliverableMessageException("User disallows non-push outgoing SMS");
       return;
     }
 
@@ -114,7 +117,10 @@ public class UniversalTransport {
     }
 
     if (!TextSecurePreferences.isPushRegistered(context)) {
-      return mmsTransport.deliver(mediaMessage);
+      if(TextSecurePreferences.isMmsNonDataOutEnabled(context))
+        return mmsTransport.deliver(mediaMessage);
+      else
+        throw new UndeliverableMessageException("User disallows non-push outgoing MMS");
     }
 
     if (isMultipleRecipients(mediaMessage)) {
@@ -125,7 +131,7 @@ public class UniversalTransport {
       String destination = Util.canonicalizeNumber(context, mediaMessage.getTo()[0].getString());
 
       if (isPushTransport(destination)) {
-        boolean isSmsFallbackSupported = isSmsFallbackSupported(destination);
+        boolean isMmsFallbackSupported = isMmsFallbackSupported(destination);
 
         try {
           Log.w("UniversalTransport", "Using GCM as transport...");
@@ -133,22 +139,24 @@ public class UniversalTransport {
           return new MmsSendResult("push".getBytes("UTF-8"), 0, true, true);
         } catch (IOException ioe) {
           Log.w("UniversalTransport", ioe);
-          if (isSmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
+          if (isMmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
           else                        throw new RetryLaterException(ioe);
         } catch (RecipientFormattingException e) {
           Log.w("UniversalTransport", e);
-          if (isSmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
+          if (isMmsFallbackSupported) return fallbackOrAskApproval(mediaMessage, destination);
           else                        throw new UndeliverableMessageException(e);
         } catch (EncapsulatedExceptions ee) {
           Log.w("UniversalTransport", ee);
           if (!ee.getUnregisteredUserExceptions().isEmpty()) {
-            if (isSmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
+            if (isMmsFallbackSupported) return mmsTransport.deliver(mediaMessage);
             else                        throw new UndeliverableMessageException(ee);
           } else {
             throw new UntrustedIdentityException(ee.getUntrustedIdentityExceptions().get(0));
           }
         }
       } else {
+        if(!TextSecurePreferences.isMmsNonDataOutEnabled(context))
+          throw new UndeliverableMessageException("User disallows non-push outgoing MMS");
         Log.w("UniversalTransport", "Delivering media message with MMS...");
         return mmsTransport.deliver(mediaMessage);
       }
@@ -163,9 +171,9 @@ public class UniversalTransport {
   {
     try {
       Recipient recipient                     = RecipientFactory.getRecipientsFromString(context, destination, false).getPrimaryRecipient();
-      boolean   isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
+      boolean   isMmsFallbackApprovalRequired = isMmsFallbackApprovalRequired(destination);
 
-      if (!isSmsFallbackApprovalRequired) {
+      if (!isMmsFallbackApprovalRequired) {
         Log.w("UniversalTransport", "Falling back to MMS");
         DatabaseFactory.getMmsDatabase(context).markAsForcedSms(mediaMessage.getDatabaseMessageId());
         return mmsTransport.deliver(mediaMessage);
@@ -260,13 +268,33 @@ public class UniversalTransport {
     return (isSmsFallbackSupported(destination) && TextSecurePreferences.isSmsFallbackAskEnabled(context));
   }
 
+  private boolean isMmsFallbackApprovalRequired(String destination) {
+    return (isMmsFallbackSupported(destination) && TextSecurePreferences.isMmsFallbackAskEnabled
+            (context));
+  }
+
   private boolean isSmsFallbackSupported(String destination) {
     if (GroupUtil.isEncodedGroup(destination)) {
       return false;
     }
 
     if (TextSecurePreferences.isPushRegistered(context) &&
-        !TextSecurePreferences.isSmsFallbackEnabled(context))
+            !TextSecurePreferences.isSmsFallbackEnabled(context))
+    {
+      return false;
+    }
+
+    Directory directory = Directory.getInstance(context);
+    return directory.isSmsFallbackSupported(destination);
+  }
+
+  private boolean isMmsFallbackSupported(String destination) {
+    if (GroupUtil.isEncodedGroup(destination)) {
+      return false;
+    }
+
+    if (TextSecurePreferences.isPushRegistered(context) &&
+            !TextSecurePreferences.isMmsFallbackEnabled(context))
     {
       return false;
     }

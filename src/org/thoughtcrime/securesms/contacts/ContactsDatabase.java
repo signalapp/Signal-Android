@@ -95,7 +95,7 @@ public class ContactsDatabase {
   }
 
   public Cursor query(String filter, boolean pushOnly) {
-    final boolean      includeAndroidContacts = !pushOnly && TextSecurePreferences.isSmsNonDataOutEnabled(context);
+    final boolean      includeAndroidContacts = !pushOnly && (TextSecurePreferences.isSmsNonDataOutEnabled(context) || TextSecurePreferences.isMmsNonDataOutEnabled(context));
     final Cursor       localCursor            = queryLocalDb(filter);
     final Cursor       androidCursor;
     final MatrixCursor newNumberCursor;
