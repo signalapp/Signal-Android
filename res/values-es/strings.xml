@@ -163,6 +163,9 @@
   <string name="PassphraseCreateActivity_passphrases_dont_match">Las frases de contraseña no coinciden</string>
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Debes especificar una contraseña</string>
   <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Introducir frase de contraseña</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Icono TextSecure</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Enviar Frase</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de contraseña inválida</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Debes especificar una URL MMSC para tu operador.</string>
