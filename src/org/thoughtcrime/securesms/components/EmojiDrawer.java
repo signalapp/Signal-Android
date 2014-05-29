@@ -1,14 +1,14 @@
 package org.thoughtcrime.securesms.components;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION_CODES;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ImageSpan;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,34 +19,39 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import com.astuetz.PagerSlidingTabStrip;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Emoji;
 
-public class EmojiDrawer extends FrameLayout {
+public class EmojiDrawer extends KeyboardAwareLinearLayout {
 
   private static final int RECENT_TYPE = 0;
   private static final int ALL_TYPE    = 1;
 
-  private FrameLayout   emojiGridLayout;
-  private FrameLayout   recentEmojiGridLayout;
-  private EditText      composeText;
-  private Emoji         emoji;
-  private GridView      emojiGrid;
-  private GridView      recentEmojiGrid;
-  private ViewPager     pager;
+  private FrameLayout[]        gridLayouts = new FrameLayout[Emoji.PAGES.length+1];
+  private EditText             composeText;
+  private Emoji                emoji;
+  private ViewPager            pager;
+  private PagerSlidingTabStrip strip;
 
+  @SuppressWarnings("unused")
   public EmojiDrawer(Context context) {
     super(context);
     initialize();
   }
 
+  @SuppressWarnings("unused")
   public EmojiDrawer(Context context, AttributeSet attrs) {
     super(context, attrs);
     initialize();
   }
 
+  @SuppressWarnings("unused")
+  @TargetApi(VERSION_CODES.HONEYCOMB)
   public EmojiDrawer(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     initialize();
@@ -61,7 +66,7 @@ public class EmojiDrawer extends FrameLayout {
   }
 
   private void initialize() {
-    LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.emoji_drawer, this, true);
 
     initializeResources();
@@ -69,26 +74,48 @@ public class EmojiDrawer extends FrameLayout {
   }
 
   private void initializeResources() {
-    LayoutInflater inflater    = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    this.pager                 = (ViewPager    )  findViewById(R.id.emoji_pager);
-    this.emojiGridLayout       = (FrameLayout  )  inflater.inflate(R.layout.emoji_grid_layout, null);
-    this.recentEmojiGridLayout = (FrameLayout  )  inflater.inflate(R.layout.emoji_grid_layout, null);
-    this.emojiGrid             = (GridView     )  emojiGridLayout.findViewById(R.id.emoji);
-    this.recentEmojiGrid       = (GridView     )  recentEmojiGridLayout.findViewById(R.id.emoji);
-    this.emoji                 = Emoji.getInstance(getContext());
+    this.pager     = (ViewPager                ) findViewById(R.id.emoji_pager);
+    this.strip     = (PagerSlidingTabStrip     ) findViewById(R.id.tabs);
+    this.emoji     = Emoji.getInstance(getContext());
+  }
+
+  public void hide() {
+    setVisibility(View.GONE);
+  }
+
+  public void show() {
+    int keyboardHeight = getKeyboardHeight();
+    Log.w("EmojiDrawer", "setting emoji drawer to height " + keyboardHeight);
+    setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, keyboardHeight));
+    requestLayout();
+    setVisibility(View.VISIBLE);
   }
 
   private void initializeEmojiGrid() {
-    emojiGrid.setAdapter(new EmojiGridAdapter(ALL_TYPE));
-    emojiGrid.setOnItemClickListener(new EmojiClickListener(ALL_TYPE));
-    recentEmojiGrid.setAdapter(new EmojiGridAdapter(RECENT_TYPE));
-    recentEmojiGrid.setOnItemClickListener(new EmojiClickListener(RECENT_TYPE));
+    LayoutInflater inflater = LayoutInflater.from(getContext());
+    for (int i = 0; i < gridLayouts.length; i++) {
+      gridLayouts[i]    = (FrameLayout) inflater.inflate(R.layout.emoji_grid_layout, pager, false);
+      final GridView gridView = (GridView) gridLayouts[i].findViewById(R.id.emoji);
+      gridLayouts[i].setTag(gridView);
+      final int      type     = (i == 0 ? RECENT_TYPE : ALL_TYPE);
+      gridView.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2*getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
+      gridView.setAdapter(new EmojiGridAdapter(type, i-1));
+      gridView.setOnItemClickListener(new EmojiClickListener(ALL_TYPE));
+    }
 
     pager.setAdapter(new EmojiPagerAdapter());
 
     if (emoji.getRecentlyUsedAssetCount() <= 0) {
       pager.setCurrentItem(1);
     }
+    strip.setTabPaddingLeftRight(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_left_right_padding));
+    strip.setAllCaps(false);
+    strip.setShouldExpand(true);
+    strip.setUnderlineColorResource(R.color.emoji_tab_underline);
+    strip.setIndicatorColorResource(R.color.emoji_tab_indicator);
+    strip.setIndicatorHeight(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_indicator_height));
+
+    strip.setViewPager(pager);
   }
 
   private class EmojiClickListener implements AdapterView.OnItemClickListener {
@@ -101,44 +128,43 @@ public class EmojiDrawer extends FrameLayout {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      String characters;
-
-      if (type == ALL_TYPE ) characters = emoji.getEmojiUnicode(position);
-      else                   characters = emoji.getRecentEmojiUnicode(position);
-
-      int start = composeText.getSelectionStart();
-      int end   = composeText.getSelectionEnd  ();
-
-      composeText.getText().replace(Math.min(start, end), Math.max(start, end),
-                                    characters, 0, characters.length());
-
-      composeText.setText(emoji.emojify(composeText.getText().toString()),
-                          TextView.BufferType.SPANNABLE);
-
-      composeText.setSelection(end+2);
-
+      Integer unicodePoint = (Integer) view.getTag();
+      insertEmoji(composeText, unicodePoint);
       if (type != RECENT_TYPE) {
-        emoji.setRecentlyUsed(position);
-        ((BaseAdapter)recentEmojiGrid.getAdapter()).notifyDataSetChanged();
+        emoji.setRecentlyUsed(Integer.toHexString(unicodePoint));
+        ((BaseAdapter)((GridView)gridLayouts[0].getTag()).getAdapter()).notifyDataSetChanged();
       }
+    }
+
+    private void insertEmoji(EditText editText, Integer unicodePoint) {
+      final char[] chars = Character.toChars(unicodePoint);
+      String characters = new String(chars);
+      int start = editText.getSelectionStart();
+      int end   = editText.getSelectionEnd();
+
+      CharSequence text = emoji.emojify(characters, new Emoji.InvalidatingPageLoadedListener(composeText));
+      editText.getText().replace(Math.min(start, end), Math.max(start, end), text, 0, text.length());
+
+      editText.setSelection(end+chars.length);
     }
   }
 
   private class EmojiGridAdapter extends BaseAdapter {
 
     private final int type;
+    private final int page;
     private final int emojiSize;
 
-    public EmojiGridAdapter(int type) {
-      this.type = type;
-      emojiSize = (int) getResources().getDimension(R.dimen.emoji_drawer_size);
+    public EmojiGridAdapter(int type, int page) {
+      this.type  = type;
+      this.page  = page;
+      emojiSize  = (int) getResources().getDimension(R.dimen.emoji_drawer_size);
     }
 
     @Override
     public int getCount() {
       if (type == RECENT_TYPE) return emoji.getRecentlyUsedAssetCount();
-      else                     return emoji.getEmojiAssetCount();
-
+      else                     return Emoji.PAGES[page].length;
     }
 
     @Override
@@ -148,57 +174,49 @@ public class EmojiDrawer extends FrameLayout {
 
     @Override
     public long getItemId(int position) {
-      return 0;
+      return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-      Drawable drawable;
-
-      if (type == RECENT_TYPE) drawable = emoji.getRecentlyUsed(position);
-      else                     drawable = emoji.getEmojiDrawable(position);
-
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
+      final ImageView view;
+      final int pad = getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding);
       if (convertView != null && convertView instanceof ImageView) {
-        ((ImageView)convertView).setImageDrawable(drawable);
-        return convertView;
+        view = (ImageView) convertView;
       } else {
         ImageView imageView = new ImageView(getContext());
-        imageView.setLayoutParams(new AbsListView.LayoutParams(emojiSize, emojiSize));
-        imageView.setImageDrawable(drawable);
-        return imageView;
+        imageView.setPadding(pad, pad, pad, pad);
+        imageView.setLayoutParams(new AbsListView.LayoutParams(emojiSize + 2*pad, emojiSize + 2*pad));
+        view = imageView;
       }
+
+      final Drawable drawable;
+      final Integer  unicodeTag;
+      if (type == ALL_TYPE) {
+        unicodeTag = Emoji.PAGES[page][position];
+        drawable   = emoji.getEmojiDrawable(new Emoji.DrawInfo(page, position),
+                                            Emoji.EMOJI_HUGE,
+                                            new Emoji.InvalidatingPageLoadedListener(view));
+      } else {
+        Pair<Integer, Drawable> recentlyUsed = emoji.getRecentlyUsed(position,
+                                                                     Emoji.EMOJI_HUGE,
+                                                                     new Emoji.InvalidatingPageLoadedListener(view));
+        unicodeTag = recentlyUsed.first;
+        drawable   = recentlyUsed.second;
+      }
+
+      view.setImageDrawable(drawable);
+      view.setPadding(pad, pad, pad, pad);
+      view.setTag(unicodeTag);
+      return view;
     }
   }
 
-  private class EmojiPagerAdapter extends PagerAdapter {
+  private class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
 
     @Override
     public int getCount() {
-      return 2;
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-      switch (position) {
-        case 0:
-          SpannableString recent      = new SpannableString(" Recent ");
-          ImageSpan       recentImage = new ImageSpan(getContext(), R.drawable.ic_emoji_recent_light,
-                                                      ImageSpan.ALIGN_BASELINE);
-
-          recent.setSpan(recentImage, 1, recent.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-          return recent;
-        case 1:
-          SpannableString emoji      = new SpannableString(" Emoji ");
-          ImageSpan       emojiImage = new ImageSpan(getContext(), R.drawable.ic_emoji_light,
-                                                     ImageSpan.ALIGN_BASELINE);
-
-          emoji.setSpan(emojiImage, 1, emoji.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-          return emoji;
-        default:
-          throw new AssertionError("Bad position!");
-      }
+      return gridLayouts.length;
     }
 
     @Override
@@ -207,17 +225,31 @@ public class EmojiDrawer extends FrameLayout {
     }
 
     public Object instantiateItem(ViewGroup container, int position) {
-      View view;
+      if (position < 0 || position >= gridLayouts.length)
+        throw new AssertionError("position out of range!");
 
-      switch (position) {
-        case 0:  view = recentEmojiGridLayout; break;
-        case 1:  view = emojiGridLayout;       break;
-        default: throw new AssertionError("Too many positions!");
+      container.addView(gridLayouts[position], 0);
+
+      return gridLayouts[position];
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+      Log.w("EmojiDrawer", "destroying item at " + position);
+      container.removeView(gridLayouts[position]);
+    }
+
+    @Override
+    public int getPageIconResId(int i) {
+      switch (i) {
+      case 0: return R.drawable.emoji_category_recent;
+      case 1: return R.drawable.emoji_category_smile;
+      case 2: return R.drawable.emoji_category_flower;
+      case 3: return R.drawable.emoji_category_bell;
+      case 4: return R.drawable.emoji_category_car;
+      case 5: return R.drawable.emoji_category_symbol;
+      default: return 0;
       }
-
-      container.addView(view, 0);
-
-      return view;
     }
   }
 }

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="emoji_drawer_size">40dip</dimen>
+    <dimen name="emoji_drawer_size">36sp</dimen>
+    <dimen name="min_emoji_drawer_height">200dp</dimen>
+    <dimen name="emoji_drawer_item_padding">8dp</dimen>
+    <dimen name="emoji_drawer_indicator_height">2dp</dimen>
+    <dimen name="emoji_drawer_left_right_padding">15dp</dimen>
     <dimen name="conversation_item_corner_radius">3dp</dimen>
     <dimen name="conversation_item_drop_shadow_dist">2dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>

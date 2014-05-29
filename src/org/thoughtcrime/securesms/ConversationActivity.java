@@ -45,8 +45,8 @@ import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -188,7 +188,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     initializeReceivers();
     initializeResources();
     initializeDraft();
-    initializeTitleBar();
   }
 
   @Override
@@ -680,7 +679,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
         for (Draft draft : drafts) {
           if (draft.getType().equals(Draft.TEXT) && !nativeEmojiSupported) {
-            composeText.setText(Emoji.getInstance(context).emojify(draft.getValue()),
+            composeText.setText(Emoji.getInstance(context).emojify(draft.getValue(),
+                                                                   new Emoji.InvalidatingPageLoadedListener(composeText)),
                                 TextView.BufferType.SPANNABLE);
           } else if (draft.getType().equals(Draft.TEXT)) {
             composeText.setText(draft.getValue());
@@ -781,6 +781,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     composeText.addTextChangedListener(composeKeyPressedListener);
     composeText.setOnEditorActionListener(sendButtonListener);
     composeText.setOnClickListener(composeKeyPressedListener);
+    composeText.setOnFocusChangeListener(composeKeyPressedListener);
     emojiDrawer.setComposeEditText(composeText);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
 
@@ -1137,12 +1138,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     public void onClick(View v) {
       InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
-      if (emojiDrawer.getVisibility() == View.VISIBLE) {
+      if (emojiDrawer.isOpen()) {
         input.showSoftInput(composeText, 0);
-        emojiDrawer.setVisibility(View.GONE);
+        emojiDrawer.hide();
       } else {
         input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
-        emojiDrawer.setVisibility(View.VISIBLE);
+
+        emojiDrawer.show();
       }
     }
   }
@@ -1164,7 +1166,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
   }
 
-  private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher {
+  private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher, OnFocusChangeListener {
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -1194,6 +1196,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
     @Override
     public void onTextChanged(CharSequence s, int start, int before,int count) {}
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+      if (hasFocus && emojiDrawer.isOpen()) {
+        emojiToggle.performClick();
+      }
+    }
   }
 
   @Override

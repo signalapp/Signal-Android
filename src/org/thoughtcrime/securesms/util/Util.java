@@ -161,29 +161,4 @@ public class Util {
       throw new AssertionError(e);
     }
   }
-
-  //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {
-  //    return BitmapFactory.decodeStream(src);
-  ////  BitmapFactory.Options options = new BitmapFactory.Options();
-  ////  options.inJustDecodeBounds    = true;
-  ////  BitmapFactory.decodeStream(src, null, options);
-  ////
-  ////  Log.w("Util", "Bitmap Origin Width: " + options.outWidth);
-  ////  Log.w("Util", "Bitmap Origin Height: " + options.outHeight);
-  ////
-  ////  boolean scaleByHeight =
-  ////    Math.abs(options.outHeight - targetHeight) >=
-  ////    Math.abs(options.outWidth - targetWidth);
-  ////
-  ////  if (options.outHeight * options.outWidth >= targetWidth * targetHeight * 2) {
-  ////    double sampleSize = scaleByHeight ? (double)options.outHeight / (double)targetHeight : (double)options.outWidth / (double)targetWidth;
-  //////    options.inSampleSize = (int)Math.pow(2d, Math.floor(Math.log(sampleSize) / Math.log(2d)));
-  ////    Log.w("Util", "Sampling by: " + options.inSampleSize);
-  ////  }
-  ////
-  ////  options.inJustDecodeBounds = false;
-  ////
-  ////  return BitmapFactory.decodeStream(src, null, options);
-  //  }
-
 }

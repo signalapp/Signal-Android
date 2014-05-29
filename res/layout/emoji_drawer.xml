@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:orientation="vertical"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                                 android:id="@+id/container"
+                                                                 android:orientation="vertical"
+                                                                 android:layout_width="match_parent"
+                                                                 android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/emoji_pager"
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ff333333"
-            android:minHeight="100dip">
+    <com.astuetz.PagerSlidingTabStrip android:id="@+id/tabs"
+                                      android:background="#ff333333"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="45dp" />
 
-        <android.support.v4.view.PagerTabStrip
-                android:id="@+id/emoji_tab_strip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:background="#ff333333"
-                android:textColor="#fff"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
-                android:paddingLeft="32dip"
-                android:paddingRight="32dip"/>
+    <android.support.v4.view.ViewPager android:id="@+id/emoji_pager"
+                                       android:visibility="visible"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:background="#ff333333" />
 
-    </android.support.v4.view.ViewPager>
-
-</FrameLayout>
+</org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>
