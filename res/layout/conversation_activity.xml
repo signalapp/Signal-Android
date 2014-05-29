@@ -30,7 +30,7 @@
                 android:orientation="vertical">
 
             <ScrollView android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1">
                 <LinearLayout
                         android:id="@+id/attachment_editor"
@@ -41,7 +41,7 @@
 
                     <ImageView
                             android:id="@+id/attachment_thumbnail"
-                            android:layout_width="fill_parent"
+                            android:layout_width="0dp"
                             android:layout_height="150dip"
                             android:layout_weight="1"
                             android:contentDescription="Attachment Thumbnail"/>
@@ -80,7 +80,7 @@
 
                 <EditText
                         android:id="@+id/embedded_text_editor"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:autoText="true"

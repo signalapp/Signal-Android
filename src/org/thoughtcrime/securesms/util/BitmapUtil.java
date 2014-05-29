@@ -47,33 +47,48 @@ public class BitmapUtil {
     else                        throw new IOException("Unable to scale image below: " + baos.size());
   }
 
-  public static Bitmap createScaledBitmap(InputStream measure, InputStream data,
-                                          int maxWidth, int maxHeight)
+  public static Bitmap createScaledBitmap(InputStream measure, InputStream data, float scale)
       throws BitmapDecodingException
   {
-    BitmapFactory.Options options = getImageDimensions(measure);
-    int imageWidth                = options.outWidth;
-    int imageHeight               = options.outHeight;
+    final BitmapFactory.Options options = getImageDimensions(measure);
+    final int outWidth = (int)(options.outWidth * scale);
+    final int outHeight = (int)(options.outHeight * scale);
+    Log.w("BitmapUtil", "creating scaled bitmap with scale " + scale + " => " + outWidth + "x" + outHeight);
+    return createScaledBitmap(data, outWidth, outHeight, options);
+  }
+
+  public static Bitmap createScaledBitmap(InputStream measure, InputStream data,
+                                         int maxWidth, int maxHeight)
+      throws BitmapDecodingException
+  {
+    final BitmapFactory.Options options = getImageDimensions(measure);
+    return createScaledBitmap(data, maxWidth, maxHeight, options);
+  }
+
+  private static Bitmap createScaledBitmap(InputStream data,
+                                          int maxWidth, int maxHeight, BitmapFactory.Options options)
+      throws BitmapDecodingException
+  {
+    final int imageWidth  = options.outWidth;
+    final int imageHeight = options.outHeight;
 
     int scaler = 1;
 
-    while ((imageWidth / scaler > maxWidth) && (imageHeight / scaler > maxHeight))
+    while ((imageWidth / scaler / 2 >= maxWidth) && (imageHeight / scaler / 2 >= maxHeight))
       scaler *= 2;
-
-    if (scaler > 1)
-      scaler /= 2;
 
     options.inSampleSize       = scaler;
     options.inJustDecodeBounds = false;
 
     Bitmap roughThumbnail  = BitmapFactory.decodeStream(new BufferedInputStream(data), null, options);
-
+    Log.w("BitmapUtil", "rough scale " + (imageWidth) + "x" + (imageHeight) +
+                        " => " + (options.outWidth) + "x" + (options.outHeight));
     if (roughThumbnail == null) {
       throw new BitmapDecodingException("Decoded stream was null.");
     }
 
-    if (roughThumbnail.getWidth() > maxWidth || roughThumbnail.getHeight() > maxHeight) {
-      float aspectWidth, aspectHeight;
+    if (options.outWidth > maxWidth || options.outHeight > maxHeight) {
+      final float aspectWidth, aspectHeight;
 
       if (imageWidth == 0 || imageHeight == 0) {
         aspectWidth = maxWidth;
@@ -86,7 +101,8 @@ public class BitmapUtil {
         aspectWidth = (aspectHeight / options.outHeight) * options.outWidth;
       }
 
-      Log.w("BitmapUtil", "Scaling to max width and height: " + aspectWidth + "," + aspectHeight);
+      Log.w("BitmapUtil", "fine scale  " + options.outWidth + "x" + options.outHeight +
+                          " => " + aspectWidth + "x" + aspectHeight);
       Bitmap scaledThumbnail = Bitmap.createScaledBitmap(roughThumbnail, (int)aspectWidth, (int)aspectHeight, true);
       if (roughThumbnail != scaledThumbnail) roughThumbnail.recycle();
       return scaledThumbnail;
