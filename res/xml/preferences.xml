@@ -70,6 +70,12 @@
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
 
+        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
+                            android:key="pref__key_wake_up_device"
+                            android:defaultValue="false"
+                            android:title="@string/preferences__wake_up_device"
+                            android:summary="@string/preferences__when_receiving_messages" />
+
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__input_settings">

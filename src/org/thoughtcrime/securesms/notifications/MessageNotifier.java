@@ -27,6 +27,7 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
@@ -354,6 +355,7 @@ public class MessageNotifier {
   {
     String ringtone              = TextSecurePreferences.getNotificationRingtone(context);
     boolean vibrate              = TextSecurePreferences.isNotificationVibrateEnabled(context);
+    boolean wakeup               = TextSecurePreferences.isWakeUpDeviceEnabled(context);
     String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
     String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
     String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
@@ -370,6 +372,14 @@ public class MessageNotifier {
                         Integer.parseInt(blinkPatternArray[0]),
                         Integer.parseInt(blinkPatternArray[1]));
     }
+
+    if(wakeup) {
+      PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+      PowerManager.WakeLock wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
+           | PowerManager.ACQUIRE_CAUSES_WAKEUP
+           | PowerManager.ON_AFTER_RELEASE, "WakeLock");
+      wakeLock.acquire(0);
+      }
   }
 
   private static String[] parseBlinkPattern(String blinkPattern, String blinkPatternCustom) {
