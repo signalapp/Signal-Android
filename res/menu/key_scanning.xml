@@ -13,6 +13,8 @@
             <item android:title="@string/key_scanning__menu_get_scanned_to_compare"
                   android:id="@+id/menu_get_scanned"/>
 
+            <item android:title="@string/key_scanning__menu_revoke_verification"
+                  android:id="@+id/menu_revoke_verification"/>
         </menu>
 
     </item>

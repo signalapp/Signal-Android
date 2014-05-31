@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -42,6 +44,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   private TextView localIdentityFingerprint;
   private TextView remoteIdentityFingerprint;
+  private TextView remoteIdentityVerified;
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -73,6 +76,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     super.onDestroy();
   }
 
+
   private void initializeLocalIdentityKey() {
     if (!IdentityKeyUtil.hasIdentityKey(this)) {
       localIdentityFingerprint.setText(R.string.VerifyIdentityActivity_you_do_not_have_an_identity_key);
@@ -80,6 +84,20 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     }
 
     localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this).getFingerprint());
+  }
+
+  private boolean isFriendVerified(IdentityKey identityKey) {
+    if (this.recipient == null) {
+      return false;
+    }
+
+    if (this.masterSecret == null) {
+      return false;
+    }
+
+    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(this);
+    return identityDatabase.isIdentityVerified(this.masterSecret, this.recipient,
+            identityKey);
   }
 
   private void initializeRemoteIdentityKey() {
@@ -91,8 +109,15 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
     if (identityKey == null) {
       remoteIdentityFingerprint.setText(R.string.VerifyIdentityActivity_recipient_has_no_identity_key);
+      remoteIdentityVerified.setText("");
     } else {
       remoteIdentityFingerprint.setText(identityKey.getFingerprint());
+
+      if (isFriendVerified(identityKey)) {
+        remoteIdentityVerified.setText(R.string.VerifyIdentityActivity_key_was_verified);
+      } else {
+        remoteIdentityVerified.setText(R.string.VerifyIdentityActivity_key_was_not_verified);
+      }
     }
   }
 
@@ -104,6 +129,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private void initializeResources() {
     this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
+    this.remoteIdentityVerified    = (TextView)findViewById(R.id.friend_verified);
     this.recipient                 = this.getIntent().getParcelableExtra("recipient");
     this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
   }
@@ -170,5 +196,15 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   @Override
   protected String getVerifiedTitle() {
     return getString(R.string.VerifyIdentityActivity_verified_exclamation);
+  }
+
+  @Override
+  protected Recipient getRecipient() {
+    return this.recipient;
+  }
+
+  @Override
+  protected MasterSecret getMasterSecret() {
+    return this.masterSecret;
   }
 }

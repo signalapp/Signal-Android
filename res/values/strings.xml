@@ -326,6 +326,8 @@
     <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Their key is correct. It is also necessary to verify your key with them as well.</string>
     <string name="VerifyIdentityActivity_verified_exclamation">Verified!</string>
     <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">You don\'t have an identity key!</string>
+    <string name="VerifyIdentityActivity_key_was_verified">This key has been verified by you.</string>
+    <string name="VerifyIdentityActivity_key_was_not_verified">This key has not yet been verified.</string>
 
     <!-- VerifyKeysActivity -->
     <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Get my fingerprint scanned</string>
@@ -345,6 +347,8 @@
     <string name="ViewIdentityActivity_verified_exclamation">Verified!</string>
     <string name="ViewIdentityActivity_identity_fingerprint">Identity Fingerprint</string>
     <string name="ViewIdentityActivity_my_identity_fingerprint">My Identity Fingerprint</string>
+    <string name="ViewIdentityActivity_key_was_verified">This key has been verified by you.</string>
+    <string name="ViewIdentityActivity_key_was_not_verified">This key has not yet been verified.</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate Despite Existing Request?</string>
@@ -829,6 +833,7 @@
     <string name="key_scanning__menu_compare">Compare</string>
     <string name="key_scanning__menu_get_scanned_to_compare">Get scanned to compare</string>
     <string name="key_scanning__menu_scan_to_compare">Scan to compare</string>
+    <string name="key_scanning__menu_revoke_verification">Revoke verification</string>
 
     <!-- text_secure_locked -->
     <string name="text_secure_locked__menu_unlock">Unlock</string>

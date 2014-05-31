@@ -19,7 +19,11 @@ package org.thoughtcrime.securesms;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 /**
  * Activity for displaying an identity key.
@@ -28,8 +32,11 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
  */
 public class ViewIdentityActivity extends KeyScanningActivity {
 
-  private TextView    identityFingerprint;
-  private IdentityKey identityKey;
+  private TextView      identityFingerprint;
+  private TextView      identityVerification;
+  private IdentityKey   identityKey;
+  private MasterSecret  masterSecret;
+  private Recipient     recipient;
 
   @Override
   public void onCreate(Bundle state) {
@@ -45,18 +52,45 @@ public class ViewIdentityActivity extends KeyScanningActivity {
     initializeFingerprint();
   }
 
+  private boolean isFriendVerified() {
+    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(this);
+    return identityDatabase.isIdentityVerified(this.masterSecret, this.recipient,
+            identityKey);
+  }
+
   private void initializeFingerprint() {
     if (identityKey == null) {
       identityFingerprint.setText(R.string.ViewIdentityActivity_you_do_not_have_an_identity_key);
     } else {
       identityFingerprint.setText(identityKey.getFingerprint());
+
+      if ((this.masterSecret != null) && (this.recipient != null)) {
+        if (this.isFriendVerified()) {
+          identityVerification.setText(R.string.ViewIdentityActivity_key_was_verified);
+        } else {
+          identityVerification.setText(R.string.ViewIdentityActivity_key_was_not_verified);
+        }
+      }
     }
   }
 
   private void initializeResources() {
-    this.identityKey         = (IdentityKey)getIntent().getParcelableExtra("identity_key");
-    this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
-    String title             = getIntent().getStringExtra("title");
+    this.identityKey          = (IdentityKey)getIntent().getParcelableExtra("identity_key");
+    this.identityFingerprint  = (TextView)findViewById(R.id.identity_fingerprint);
+    this.identityVerification = (TextView)findViewById(R.id.identity_verified);
+    String title              = getIntent().getStringExtra("title");
+
+    if (getIntent().hasExtra("recipient")) {
+      this.recipient = ((Recipient)getIntent().getParcelableExtra("recipient"));
+    } else {
+      this.recipient = null;
+    }
+
+    if (getIntent().hasExtra("master_secret")) {
+      this.masterSecret = getIntent().getParcelableExtra("master_secret");
+    } else {
+      this.masterSecret = null;
+    }
 
     if (title != null) {
       getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
@@ -101,5 +135,15 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   @Override
   protected String getVerifiedTitle() {
     return getString(R.string.ViewIdentityActivity_verified_exclamation);
+  }
+
+  @Override
+  protected MasterSecret getMasterSecret() {
+    return this.masterSecret;
+  }
+
+  @Override
+  protected Recipient getRecipient() {
+    return this.recipient;
   }
 }

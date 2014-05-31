@@ -17,9 +17,15 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SerializableKey;
 import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
@@ -64,7 +70,27 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
     menu.findItem(R.id.menu_scan).setTitle(getScanString());
     menu.findItem(R.id.menu_get_scanned).setTitle(getDisplayString());
 
+    if (this.getRecipient() == null) {
+      menu.findItem(R.id.menu_revoke_verification).setEnabled(false);
+    } else {
+      menu.findItem(R.id.menu_revoke_verification).setEnabled(true);
+    }
+
     return true;
+  }
+
+  private void handleRevokeVerification() {
+    if ((this.getRecipient() == null) || (this.getMasterSecret() == null)) {
+      return;
+    }
+
+    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(this);
+    identityDatabase.setIdentityUnverified(this.getMasterSecret(), this.getRecipient().getRecipientId(),
+            (IdentityKey)this.getIdentityKeyToCompare());
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      this.recreate();
+    } // TODO do some activity-reloading magic for pre-honeycomb devices?
   }
 
   @Override
@@ -72,12 +98,28 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case R.id.menu_scan:        initiateScan();    return true;
-    case R.id.menu_get_scanned: initiateDisplay(); return true;
-    case android.R.id.home:     finish();          return true;
+    case R.id.menu_scan:                initiateScan();    return true;
+    case R.id.menu_get_scanned:         initiateDisplay(); return true;
+    case R.id.menu_revoke_verification: handleRevokeVerification(); return true;
+    case android.R.id.home:             finish();          return true;
     }
 
     return false;
+  }
+
+  private void markKeyVerified() {
+    if (getRecipient() == null) {
+      return;
+    }
+
+    if (getMasterSecret() == null) {
+      return;
+    }
+
+    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(this);
+    MasterSecret masterSecret = getMasterSecret();
+
+    identityDatabase.setIdentityVerified(masterSecret, getRecipient(), (IdentityKey) getIdentityKeyToCompare());
   }
 
   @Override
@@ -89,6 +131,7 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
 
       if (data.equals(Base64.encodeBytes(getIdentityKeyToCompare().serialize()))) {
         Dialogs.showInfoDialog(this, getVerifiedTitle(), getVerifiedMessage());
+        markKeyVerified();
       } else {
         Dialogs.showAlertDialog(this, getNotVerifiedTitle(), getNotVerifiedMessage());
       }
@@ -114,6 +157,8 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
 
   protected abstract SerializableKey getIdentityKeyToCompare();
   protected abstract SerializableKey getIdentityKeyToDisplay();
+  protected abstract Recipient getRecipient();
+  protected abstract MasterSecret getMasterSecret();
 
   protected abstract String getVerifiedTitle();
   protected abstract String getVerifiedMessage();
