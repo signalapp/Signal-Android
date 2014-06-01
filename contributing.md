@@ -16,6 +16,8 @@ Truths which we believe to be self-evident:
    concepts better than others has proven to be, for the most part, false.
    If anything, "power users" are more dangerous than the rest, and we
    should avoid exposing dangerous functionality to them.
+1. **If it's "like PGP," it's wrong.**  PGP is our spirit guide for what
+   not to do.
 1. **It's an asynchronous world.**  Be wary of anything that is
    anti-asynchronous: ACKs, protocol confirmations, or any protocol-level
    "advisory" message.
