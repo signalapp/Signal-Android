@@ -21,4 +21,6 @@ Truths which we believe to be self-evident:
 1. **It's an asynchronous world.**  Be wary of anything that is
    anti-asynchronous: ACKs, protocol confirmations, or any protocol-level
    "advisory" message.
+1. **There is no such thing as time.** Protocol ideas that require synchronized
+   clocks are doomed to failure. 
 
