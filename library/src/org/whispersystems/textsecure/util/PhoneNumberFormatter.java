@@ -67,6 +67,11 @@ public class PhoneNumberFormatter {
     if (number.charAt(0) == '+')
       return number;
 
+    // TODO use libphonenumber's shortcode support when it's introduced
+    if (number.length() <= 6) {
+      return number;
+    }
+
     try {
       PhoneNumberUtil util          = PhoneNumberUtil.getInstance();
       PhoneNumber localNumberObject = util.parse(localNumber, null);
