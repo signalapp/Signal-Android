@@ -245,7 +245,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       addAttachmentAudio(data.getData());
       break;
     case PICK_CONTACT_INFO:
-      addContactInfo(data.getData());
+      addAttachmentContactInfo(data.getData());
       break;
     case GROUP_EDIT:
       this.recipients = data.getParcelableExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA);
@@ -286,6 +286,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     inflater.inflate(R.menu.conversation, menu);
+
+    if (isSingleConversation() && getRecipients().getPrimaryRecipient().getContactUri() == null) {
+      inflater.inflate(R.menu.conversation_add_to_contacts, menu);
+    }
+
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -296,8 +301,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     switch (item.getItemId()) {
     case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
     case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
-    case R.id.menu_add_contact_info:          handleAddContactInfo();                            return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
+    case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_start_secure_session:      handleStartSecureSession();                        return true;
     case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
     case R.id.menu_verify_identity:           handleVerifyIdentity();                            return true;
@@ -561,9 +566,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.show();
   }
 
-  private void handleAddContactInfo() {
-    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-    startActivityForResult(intent, PICK_CONTACT_INFO);
+  private void handleAddToContacts() {
+    final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+    intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
+    intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+    startActivity(intent);
   }
 
   private void handleAddAttachment() {
@@ -840,6 +847,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       AttachmentManager.selectVideo(this, PICK_VIDEO); break;
     case AttachmentTypeSelectorAdapter.ADD_SOUND:
       AttachmentManager.selectAudio(this, PICK_AUDIO); break;
+    case AttachmentTypeSelectorAdapter.ADD_CONTACT_INFO:
+      AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO); break;
     }
   }
 
@@ -886,7 +895,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void addContactInfo(Uri contactUri) {
+  private void addAttachmentContactInfo(Uri contactUri) {
     ContactAccessor contactDataList = ContactAccessor.getInstance();
     ContactData contactData = contactDataList.getContactData(this, contactUri);
 
@@ -1173,6 +1182,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         return true;
       }
       return false;
+    }
+  }
+
+  private class AddContactButtonListener implements OnClickListener {
+    @Override
+    public void onClick(View v) {
+      final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+      intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
+      intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+      startActivity(intent);
     }
   }
 
