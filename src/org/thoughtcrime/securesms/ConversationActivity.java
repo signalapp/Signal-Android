@@ -1022,7 +1022,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
         return;
-      } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
+      } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
         SlideDeck slideDeck;
 
         if (attachmentManager.isAttachmentPresent()) slideDeck = attachmentManager.getSlideDeck();
