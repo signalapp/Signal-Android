@@ -14,12 +14,30 @@
             android:orientation="vertical"
             android:gravity="bottom">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/top_panel"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ConversationActivity_add_contact_button"
+                android:id="@+id/add_contact_button"
+                android:clickable="true"
+                android:visibility="gone" />
+        </LinearLayout>
+
         <fragment
                 android:id="@+id/fragment_content"
                 android:name="org.thoughtcrime.securesms.ConversationFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/bottom_container" />
+                android:layout_above="@+id/bottom_container"
+            android:layout_below="@+id/top_panel" />
 
 
         <LinearLayout
@@ -119,6 +137,7 @@
                      android:text="160/160 (1)" />
 
         </LinearLayout>
+
     </RelativeLayout>
 
     <org.thoughtcrime.securesms.components.EmojiDrawer

@@ -31,6 +31,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -412,7 +413,9 @@ public class ConversationItem extends LinearLayout {
         if (recipient.getContactUri() != null) {
           QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
         } else {
-          Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT, Uri.fromParts("tel", recipient.getNumber(), null));
+          final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+          intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getNumber());
+          intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
           context.startActivity(intent);
         }
       }
