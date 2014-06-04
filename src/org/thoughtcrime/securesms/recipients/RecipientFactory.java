@@ -58,6 +58,12 @@ public class RecipientFactory {
   public static Recipients getRecipientsFromString(Context context, String rawText, boolean asynchronous)
       throws RecipientFormattingException
   {
+    return getRecipientsFromString(context, rawText, asynchronous, true);
+  }
+
+  public static Recipients getRecipientsFromString(Context context, String rawText, boolean asynchronous, boolean validate)
+      throws RecipientFormattingException
+  {
     if (rawText == null) {
       throw new RecipientFormattingException("Null recipient string specified");
     }
@@ -66,7 +72,7 @@ public class RecipientFactory {
     StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
 
     while (tokenizer.hasMoreTokens()) {
-      Recipient recipient = parseRecipient(context, tokenizer.nextToken(), asynchronous);
+      Recipient recipient = validate ? parseRecipient(context, tokenizer.nextToken(), asynchronous) : getRecipientForNumber(context, tokenizer.nextToken(), asynchronous);
       if( recipient != null )
         results.add(recipient);
     }
