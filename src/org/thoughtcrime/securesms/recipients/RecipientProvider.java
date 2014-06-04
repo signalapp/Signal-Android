@@ -85,19 +85,31 @@ public class RecipientProvider {
     return recipient;
   }
 
+  private class RecipientDetailsTask implements Callable<RecipientDetails> {
+    private final Context context;
+    private final String number;
+    private final boolean isGroupRecipient;
+
+    public RecipientDetailsTask(final Context context, final String number, final boolean isGroupRecipient) {
+      this.context = context;
+      this.number = number;
+      this.isGroupRecipient = isGroupRecipient;
+    }
+
+    @Override
+    public RecipientDetails call() throws Exception {
+      if (isGroupRecipient) return getGroupRecipientDetails(context, number);
+      else                  return getRecipientDetails(context, number);
+    }
+  }
+
   private Recipient getAsynchronousRecipient(final Context context, final long recipientId) {
     Log.w("RecipientProvider", "Cache miss [ASYNC]!");
 
     final String number = CanonicalAddressDatabase.getInstance(context).getAddressFromId(String.valueOf(recipientId));
     final boolean isGroupRecipient = GroupUtil.isEncodedGroup(number);
 
-    Callable<RecipientDetails> task = new Callable<RecipientDetails>() {
-      @Override
-      public RecipientDetails call() throws Exception {
-        if (isGroupRecipient) return getGroupRecipientDetails(context, number);
-        else                  return getRecipientDetails(context, number);
-      }
-    };
+    Callable<RecipientDetails> task = new RecipientDetailsTask(context, number, isGroupRecipient);
 
     ListenableFutureTask<RecipientDetails> future = new ListenableFutureTask<RecipientDetails>(task, null);
 
@@ -110,6 +122,10 @@ public class RecipientProvider {
     recipientCache.put(recipientId, recipient);
 
     return recipient;
+  }
+
+  public void updateAllRecipients() {
+
   }
 
   public void clearCache() {
