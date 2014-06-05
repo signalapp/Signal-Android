@@ -152,7 +152,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private EditText        composeText;
   private ImageButton     sendButton;
   private TextView        charactersLeft;
-  private Button          addContactButton;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
@@ -186,7 +185,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     initializeResources();
     initializeDraft();
     initializeTitleBar();
-    initializeAddContactButton();
   }
 
   @Override
@@ -203,7 +201,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     initializeSecurity();
     initializeTitleBar();
-    initializeAddContactButton();
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
     initializeIme();
@@ -289,7 +286,18 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     inflater.inflate(R.menu.conversation, menu);
     super.onPrepareOptionsMenu(menu);
+    initializeOptionAddContactButton(menu);
     return true;
+  }
+
+  private void initializeOptionAddContactButton(Menu menu) {
+    boolean visible = false;
+    Uri uri = getRecipients().getPrimaryRecipient().getContactUri();
+
+    if (isSingleConversation() && uri == null) {
+      visible = true;
+    }
+    menu.findItem(R.id.menu_add_contact).setVisible(visible);
   }
 
   @Override
@@ -309,6 +317,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
+    case R.id.menu_add_contact:               handleAddContact();                                return true;
     }
 
     return false;
@@ -548,6 +557,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     startActivityForResult(intent, PICK_CONTACT_INFO);
   }
 
+  private void handleAddContact() {
+    final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+    intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
+    intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+    startActivity(intent);
+  }
+
   private void handleAddAttachment() {
     if (this.isMmsEnabled || DirectoryHelper.isPushDestination(this, getRecipients())) {
       AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.TextSecure_Light_Dialog));
@@ -607,17 +623,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       this.getSupportActionBar().setSubtitle(PhoneNumberUtils.formatNumber(subtitle));
 
     this.invalidateOptionsMenu();
-  }
-
-  private void initializeAddContactButton() {
-    int visible = View.GONE;
-    Uri uri = getRecipients().getPrimaryRecipient().getContactUri();
-
-    if (isSingleConversation() && uri == null) {
-      visible = View.VISIBLE;
-    }
-
-    addContactButton.setVisibility(visible);
   }
 
   private void initializeDraft() {
@@ -729,7 +734,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     charactersLeft      = (TextView)findViewById(R.id.space_left);
     emojiDrawer         = (EmojiDrawer)findViewById(R.id.emoji_drawer);
     emojiToggle         = (EmojiToggle)findViewById(R.id.emoji_toggle);
-    addContactButton    = (Button)findViewById(R.id.add_contact_button);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       emojiToggle.setVisibility(View.GONE);
@@ -749,7 +753,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     composeText.setOnClickListener(composeKeyPressedListener);
     emojiDrawer.setComposeEditText(composeText);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
-    addContactButton.setOnClickListener(new AddContactButtonListener());
 
     recipients.addListener(new RecipientModifiedListener() {
       @Override
@@ -1120,16 +1123,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         return true;
       }
       return false;
-    }
-  }
-
-  private class AddContactButtonListener implements OnClickListener {
-    @Override
-    public void onClick(View v) {
-      final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-      intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
-      intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-      startActivity(intent);
     }
   }
 
