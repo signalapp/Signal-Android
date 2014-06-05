@@ -119,7 +119,7 @@
     <string name="ShareActivity_share_with">Share with</string>
 
     <!-- ExportFragment -->
-    <string name="ExportFragment_export_to_sd_card">Export To SD card?</string>
+    <string name="ExportFragment_export_to_sd_card">Export to SD card?</string>
     <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">This
         will export your encrypted keys, settings, and messages to the SD card.
     </string>
