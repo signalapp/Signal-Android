@@ -379,13 +379,17 @@ public class ThreadDatabase extends Database {
     MmsSmsDatabase.Reader reader = null;
 
     try {
-      reader               = mmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId));
-      MessageRecord record = null;
-
-      if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, record.getBody().getBody(), record.getDateReceived(), record.getType());
+      if (draftCount > 0) {
+        updateThread(threadId, count, "", System.currentTimeMillis(), MmsSmsColumns.Types.MESSAGE_DRAFT_BIT);
       } else {
-        deleteThread(threadId);
+        reader = mmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId));
+        MessageRecord record = null;
+
+        if (reader != null && (record = reader.getNext()) != null) {
+          updateThread(threadId, count, record.getBody().getBody(), record.getDateReceived(), record.getType());
+        } else {
+          deleteThread(threadId);
+        }
       }
     } finally {
       if (reader != null)
