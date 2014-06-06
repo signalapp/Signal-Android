@@ -36,7 +36,6 @@ dependencyVerification {
         'com.android.support:support-v4:a4268abd6370c3fd3f94d2a7f9e6e755f5ddd62450cf8bbc62ba789e1274d585',
         'com.google.android.gcm:gcm-client:5ff578202f93dcba1c210d015deb4241c7cdad9b7867bd1b32e0a5f4c16986ca',
         'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
-        'org.whispersystems.textsecure:textsecure-library:246e275ea80bdc65d11f08043f9b2765def60c0bdf1da340a864e4656f59a750',
         'com.google.protobuf:protobuf-java:ad9769a22989e688a46af4d3accc348cc501ced22118033230542bc916e33f0b',
         'com.madgag:sc-light-jdk15on:931f39d351429fb96c2f749e7ecb1a256a8ebbf5edca7995c9cc085b94d1841d',
         'com.googlecode.libphonenumber:libphonenumber:c2cffa5c2ccb8fd5fc4b432aa7d1ee27482860c9751035a25c8ffa2375274fcf',
