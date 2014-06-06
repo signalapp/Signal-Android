@@ -46,7 +46,6 @@ import android.view.View.OnKeyListener;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -286,18 +285,18 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     inflater.inflate(R.menu.conversation, menu);
     super.onPrepareOptionsMenu(menu);
-    initializeOptionAddContactButton(menu);
+    initializeOptionAddToContacts(menu);
     return true;
   }
 
-  private void initializeOptionAddContactButton(Menu menu) {
+  private void initializeOptionAddToContacts(Menu menu) {
     boolean visible = false;
     Uri uri = getRecipients().getPrimaryRecipient().getContactUri();
 
     if (isSingleConversation() && uri == null) {
       visible = true;
     }
-    menu.findItem(R.id.menu_add_contact).setVisible(visible);
+    menu.findItem(R.id.menu_add_to_contacts).setVisible(visible);
   }
 
   @Override
@@ -317,7 +316,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
-    case R.id.menu_add_contact:               handleAddContact();                                return true;
+    case R.id.menu_add_to_contacts:           handleAddContact();                                return true;
     }
 
     return false;
