@@ -1,1 +1,1 @@
-include ':library'
+include ':library', ':ShortcutBadger'

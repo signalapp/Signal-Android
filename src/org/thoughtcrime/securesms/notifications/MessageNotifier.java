@@ -37,6 +37,9 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 
+import com.shortcutBadger.ShortcutBadgeException;
+import com.shortcutBadger.ShortcutBadger;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
@@ -100,24 +103,60 @@ public class MessageNotifier {
 
 
   public static void updateNotification(Context context, MasterSecret masterSecret) {
-    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
-      return;
+    if (TextSecurePreferences.isNotificationsEnabled(context)) {
+      updateNotification(context, masterSecret, false);
     }
 
-    updateNotification(context, masterSecret, false);
+    addBadgeIfSupported(context);
   }
 
   public static void updateNotification(Context context, MasterSecret masterSecret, long threadId) {
-    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
-      return;
+    if (TextSecurePreferences.isNotificationsEnabled(context)) {
+      if (visibleThread == threadId) {
+        DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+        sendInThreadNotification(context);
+      } else {
+        updateNotification(context, masterSecret, true);
+      }
     }
 
-    if (visibleThread == threadId) {
-      DatabaseFactory.getThreadDatabase(context).setRead(threadId);
-      sendInThreadNotification(context);
-    } else {
-      updateNotification(context, masterSecret, true);
+    addBadgeIfSupported(context);
+  }
+
+
+  private static void addBadgeIfSupported(Context context) {
+    Context appContext = context.getApplicationContext();
+    int badgeCount = getUnreadCount(context);
+    try {
+      ShortcutBadger.setBadge(appContext, badgeCount);
+    } catch (ShortcutBadgeException e) {
+      Log.w("Error setting message count badge",e);
     }
+  }
+
+  private static int getUnreadCount(Context context) {
+    Cursor telcoCursor = null;
+    Cursor pushCursor = null;
+    int unread = 0;
+
+    try {
+      telcoCursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
+      pushCursor = DatabaseFactory.getPushDatabase(context).getPending();
+
+      if (telcoCursor != null) {
+        unread += telcoCursor.getCount();
+      }
+
+      if (pushCursor != null) {
+        unread += pushCursor.getCount();
+      }
+
+    } finally {
+      if (telcoCursor != null) telcoCursor.close();
+      if (pushCursor != null) pushCursor.close();
+    }
+
+    return unread;
   }
 
   private static void updateNotification(Context context, MasterSecret masterSecret, boolean signal) {
