@@ -107,7 +107,7 @@ public class MessageNotifier {
       updateNotification(context, masterSecret, false);
     }
 
-    addBadgeIfSupported(context);
+    updateBadge(context);
   }
 
   public static void updateNotification(Context context, MasterSecret masterSecret, long threadId) {
@@ -120,11 +120,11 @@ public class MessageNotifier {
       }
     }
 
-    addBadgeIfSupported(context);
+    updateBadge(context);
   }
 
 
-  private static void addBadgeIfSupported(Context context) {
+  private static void updateBadge(Context context) {
     Context appContext = context.getApplicationContext();
     int badgeCount = getUnreadCount(context);
     try {
@@ -188,6 +188,8 @@ public class MessageNotifier {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
     }
+
+    updateBadge(context);
   }
 
   private static void sendSingleThreadNotification(Context context,

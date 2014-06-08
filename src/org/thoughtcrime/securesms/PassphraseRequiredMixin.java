@@ -27,20 +27,9 @@ public class PassphraseRequiredMixin {
   }
 
   public void onResume(Context context, PassphraseRequiredActivity activity) {
-    clearBadgeCount(context);
     initializeNewKeyReceiver(context, activity);
     initializeServiceConnection(context, activity);
     KeyCachingService.registerPassphraseActivityStarted(context);
-  }
-
-  private void clearBadgeCount(Context context) {
-    Context appContext = context.getApplicationContext();
-    int badgeCount = 0;
-    try {
-      ShortcutBadger.setBadge(appContext, badgeCount);
-    } catch (ShortcutBadgeException e) {
-      Log.w("Error setting message count badge",e);
-    }
   }
 
   public void onPause(Context context, PassphraseRequiredActivity activity) {
