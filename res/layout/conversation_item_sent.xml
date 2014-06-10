@@ -64,8 +64,7 @@
                 android:textColorLink="?conversation_sent_text_primary_color"
                 android:textSize="16sp" />
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/mms_view"
+            <FrameLayout android:id="@+id/mms_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone">
@@ -91,7 +90,7 @@
 
             </FrameLayout>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout
                 android:id="@+id/mms_download_controls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

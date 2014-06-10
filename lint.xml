@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconColors">
+        <ignore path="res/drawable-hdpi-v11/icon_cached.png" />
+        <ignore path="res/drawable-xhdpi-v11/icon_cached.png" />
+    </issue>
+
+    <!-- ignore lint on translations and transifex-generated files -->
+    <issue id="MissingTranslation,ExtraTranslation,TypographyEllipsis,UnusedAttribute" severity="ignore" />
+
+    <issue id="Typos,UnusedResources" severity="info">
+        <ignore regexp="res/values-.*/strings.xml" />
+    </issue>
+
+    <!-- nobody wants to touch that android mms code, how about we pretend it doesn't exist? -->
+    <issue id="UseSparseArrays,Assert">
+        <ignore path="src/ws/com/google/android/mms/*" />
+    </issue>
+
+</lint>

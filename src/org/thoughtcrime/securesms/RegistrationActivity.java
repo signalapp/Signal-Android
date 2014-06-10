@@ -24,11 +24,14 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
+
+import java.util.Locale;
 
 /**
  * The register account activity.  Prompts ths user for their registration information
@@ -121,7 +124,7 @@ public class RegistrationActivity extends SherlockActivity {
         String simCountryIso = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE)).getSimCountryIso();
 
         if (!Util.isEmpty(simCountryIso)) {
-          this.countryCode.setText(numberUtil.getCountryCodeForRegion(simCountryIso.toUpperCase())+"");
+          this.countryCode.setText(numberUtil.getCountryCodeForRegion(simCountryIso.toUpperCase(Locale.ENGLISH)));
         }
       }
     } catch (NumberParseException npe) {

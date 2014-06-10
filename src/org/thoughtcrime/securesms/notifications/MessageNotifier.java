@@ -208,10 +208,10 @@ public class MessageNotifier {
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                                       R.drawable.icon_notification));
-    builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
-                                          notificationState.getMessageCount()));
-    builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
-                                         notifications.get(0).getIndividualRecipientName()));
+    builder.setContentTitle(context.getString(R.string.MessageNotifier_d_new_messages,
+                                              notificationState.getMessageCount()));
+    builder.setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
+                                             notifications.get(0).getIndividualRecipientName()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
     
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));

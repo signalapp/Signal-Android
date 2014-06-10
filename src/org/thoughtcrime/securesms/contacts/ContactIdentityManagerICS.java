@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
@@ -17,7 +19,7 @@ class ContactIdentityManagerICS extends ContactIdentityManager {
     super(context);
   }
 
-  @SuppressLint("NewApi")
+  @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   @Override
   public Uri getSelfIdentityUri() {
     String[] PROJECTION = new String[] {
@@ -48,7 +50,7 @@ class ContactIdentityManagerICS extends ContactIdentityManager {
     return true;
   }
 
-  @SuppressLint("NewApi")
+  @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   @Override
   public List<Long> getSelfIdentityRawContactIds() {
     List<Long> results = new LinkedList<Long>();

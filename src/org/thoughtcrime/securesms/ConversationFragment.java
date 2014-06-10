@@ -49,11 +49,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import java.lang.ref.WeakReference;
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.Locale;
 
 public class ConversationFragment extends SherlockListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
@@ -98,7 +101,7 @@ public class ConversationFragment extends SherlockListFragment
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
-                                                  new FailedIconClickHandler(),
+                                                  new FailedIconClickHandler(listener),
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
@@ -223,24 +226,24 @@ public class ConversationFragment extends SherlockListFragment
     else if (message.isMms())     transport = "mms";
     else                          transport = "sms";
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
+    DateFormat dateFormatter = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.LONG);
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
     builder.setCancelable(true);
 
     if (dateReceived == dateSent || message.isOutgoing()) {
-      builder.setMessage(String.format(getSherlockActivity()
-                                       .getString(R.string.ConversationFragment_transport_s_sent_received_s),
-                                       transport.toUpperCase(),
-                                       dateFormatter.format(new Date(dateSent))));
+      builder.setMessage(getSherlockActivity()
+                         .getString(R.string.ConversationFragment_transport_s_sent_received_s,
+                                    transport.toUpperCase(Locale.getDefault()),
+                                    dateFormatter.format(new Date(dateSent))));
     } else {
-      builder.setMessage(String.format(getSherlockActivity()
-                                       .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
-                                       message.getIndividualRecipient().getNumber(),
-                                       transport.toUpperCase(),
-                                       dateFormatter.format(new Date(dateSent)),
-                                       dateFormatter.format(new Date(dateReceived))));
+      builder.setMessage(getSherlockActivity()
+                         .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s,
+                                    message.getIndividualRecipient().getNumber(),
+                                    transport.toUpperCase(Locale.getDefault()),
+                                    dateFormatter.format(new Date(dateSent)),
+                                    dateFormatter.format(new Date(dateReceived))));
     }
 
     builder.setPositiveButton(android.R.string.ok, null);
@@ -291,9 +294,16 @@ public class ConversationFragment extends SherlockListFragment
     ((CursorAdapter)getListAdapter()).changeCursor(null);
   }
 
-  private class FailedIconClickHandler extends Handler {
+  private static class FailedIconClickHandler extends Handler {
+    private final WeakReference<ConversationFragmentListener> listenerReference;
+
+    public FailedIconClickHandler(ConversationFragmentListener listener) {
+      this.listenerReference = new WeakReference<ConversationFragmentListener>(listener);
+    }
+
     @Override
     public void handleMessage(android.os.Message message) {
+      final ConversationFragmentListener listener = listenerReference.get();
       if (listener != null) {
         listener.setComposeText((String)message.obj);
       }

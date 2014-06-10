@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -78,8 +79,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 {
   private static final String TAG = "Preferences";
 
-  private static final int PICK_IDENTITY_CONTACT        = 1;
-  private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
+  private static final int PICK_IDENTITY_CONTACT      = 1;
+  private static final int ENABLE_PASSPHRASE_ACTIVITY = 2;
+
+  private static final String MASTER_SECRET_EXTRA = "master_secret";
+
+  private static final String PUSH_SMS_CATEGORY = "push_sms_category";
+  private static final String ADVANCED_CATEGORY = "advanced_category";
 
   private static final String DISPLAY_CATEGORY_PREF = "pref_display_category";
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
@@ -154,7 +160,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   @Override
   public void onDestroy() {
-    MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra("master_secret"));
+    MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra(MASTER_SECRET_EXTRA));
     super.onDestroy();
   }
 
@@ -162,7 +168,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public void onActivityResult(int reqCode, int resultCode, Intent data) {
     super.onActivityResult(reqCode, resultCode, data);
 
-    Log.w("ApplicationPreferencesActivity", "Got result: " + resultCode + " for req: " + reqCode);
+    Log.w(TAG, "Got result: " + resultCode + " for req: " + reqCode);
 
     if (resultCode == Activity.RESULT_OK) {
       switch (reqCode) {
@@ -187,31 +193,11 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   }
 
   private void initializePlatformSpecificOptions() {
-    PreferenceGroup    pushSmsCategory          = (PreferenceGroup) findPreference("push_sms_category");
-    PreferenceGroup    advancedCategory         = (PreferenceGroup) findPreference("advanced_category");
-    Preference         defaultPreference        = findPreference(KITKAT_DEFAULT_PREF);
-    Preference         allSmsPreference         = findPreference(TextSecurePreferences.ALL_SMS_PREF);
-    Preference         allMmsPreference         = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    PreferenceGroup    advancedCategory         = (PreferenceGroup) findPreference(ADVANCED_CATEGORY);
     Preference         screenSecurityPreference = findPreference(TextSecurePreferences.SCREEN_SECURITY_PREF);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && pushSmsCategory != null) {
-      if (allSmsPreference != null) pushSmsCategory.removePreference(allSmsPreference);
-      if (allMmsPreference != null) pushSmsCategory.removePreference(allMmsPreference);
-
-      if (Util.isDefaultSmsProvider(this)) {
-        defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-        defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
-        defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
-      } else {
-        Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
-        defaultPreference.setIntent(intent);
-        defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
-        defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app));
-      }
-    } else if (pushSmsCategory != null && defaultPreference != null) {
-      pushSmsCategory.removePreference(defaultPreference);
-    }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) initializeModernSmsPreferences();
+    else                                                     initializeLegacySmsPreferences();
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
         advancedCategory != null                                       &&
@@ -221,20 +207,34 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
-  private void initializeEditTextSummary(final EditTextPreference preference) {
-    if (preference.getText() == null) {
-      preference.setSummary("Not set");
-    } else {
-      preference.setSummary(preference.getText());
-    }
+  private void initializeLegacySmsPreferences() {
+    PreferenceGroup    pushSmsCategory   = (PreferenceGroup) findPreference(PUSH_SMS_CATEGORY);
+    Preference         defaultPreference = findPreference(KITKAT_DEFAULT_PREF);
 
-    preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-      @Override
-      public boolean onPreferenceChange(Preference pref, Object newValue) {
-        preference.setSummary(newValue == null ? "Not set" : ((String) newValue));
-        return true;
-      }
-    });
+    if (defaultPreference != null) pushSmsCategory.removePreference(defaultPreference);
+  }
+
+  @TargetApi(Build.VERSION_CODES.KITKAT)
+  private void initializeModernSmsPreferences() {
+    PreferenceGroup    pushSmsCategory   = (PreferenceGroup) findPreference(PUSH_SMS_CATEGORY);
+    Preference         defaultPreference = findPreference(KITKAT_DEFAULT_PREF);
+    Preference         allSmsPreference  = findPreference(TextSecurePreferences.ALL_SMS_PREF);
+    Preference         allMmsPreference  = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+
+    if (allSmsPreference != null) pushSmsCategory.removePreference(allSmsPreference);
+    if (allMmsPreference != null) pushSmsCategory.removePreference(allMmsPreference);
+
+    if (Util.isDefaultSmsProvider(this)) {
+      defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+      defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
+      defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
+    } else {
+      Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
+      intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
+      defaultPreference.setIntent(intent);
+      defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
+      defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app));
+    }
   }
 
   private void initializePushMessagingToggle() {
@@ -347,10 +347,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
           GCMRegistrar.unregister(context);
           return SUCCESS;
         } catch (AuthorizationFailedException afe) {
-          Log.w("ApplicationPreferencesActivity", afe);
+          Log.w(TAG, afe);
           return SUCCESS;
         } catch (IOException ioe) {
-          Log.w("ApplicationPreferencesActivity", ioe);
+          Log.w(TAG, ioe);
           return NETWORK_ERROR;
         }
       }
@@ -373,7 +373,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         builder.show();
       } else {
         Intent intent = new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class);
-        intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
+        intent.putExtra(MASTER_SECRET_EXTRA, getIntent().getParcelableExtra(MASTER_SECRET_EXTRA));
         startActivity(intent);
       }
 
@@ -413,8 +413,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(ApplicationPreferencesActivity.this);
       AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
-      builder.setMessage(String.format(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages),
-      		                             threadLengthLimit));
+      builder.setMessage(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages,
+                                   threadLengthLimit));
       builder.setPositiveButton(R.string.ApplicationPreferencesActivity_delete,
                                 new DialogInterface.OnClickListener() {
         @Override
@@ -442,7 +442,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            MasterSecret masterSecret = getIntent().getParcelableExtra("master_secret");
+            MasterSecret masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
             MasterSecretUtil.changeMasterSecretPassphrase(ApplicationPreferencesActivity.this,
                                                           masterSecret,
                                                           MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
@@ -484,7 +484,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       try {
         Integer.parseInt((String)newValue);
       } catch (NumberFormatException nfe) {
-        Log.w("ApplicationPreferencesActivity", nfe);
+        Log.w(TAG, nfe);
         return false;
       }
 

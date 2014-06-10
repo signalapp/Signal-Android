@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@drawable/background_pattern_repeat"
@@ -7,7 +8,7 @@
 
     <FrameLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:gravity="center" >
 
         <LinearLayout
@@ -35,7 +36,7 @@
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
                         android:src="@drawable/alert"
-                        android:contentDescription="Alert"/>
+                        android:contentDescription="@string/registration_progress_activity__alert"/>
 
                 <TextView
                         style="@style/Registration.Constant"
@@ -73,7 +74,7 @@
                            android:paddingLeft="4dip"
                            android:paddingRight="4dip"
                            android:src="@drawable/telephone"
-                           android:contentDescription="Telephone"/>
+                           android:contentDescription="@string/registration_progress_activity__telephone"/>
 
                 <TextView style="@style/Registration.Constant"
                           android:layout_width="wrap_content"
@@ -167,7 +168,7 @@
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
                         android:src="@drawable/alert"
-                        android:contentDescription="Alert"/>
+                        android:contentDescription="@string/registration_progress_activity__alert"/>
 
                 <TextView
                         style="@style/Registration.Constant"
@@ -219,7 +220,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingRight="10dip"
-                            android:text="•" />
+                            android:text="•"
+                            tools:ignore="HardcodedText" />
 
                     <LinearLayout
                             android:layout_width="wrap_content"
@@ -249,7 +251,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingRight="10dip"
-                            android:text="•" />
+                            android:text="•"
+                            tools:ignore="HardcodedText" />
 
                     <LinearLayout
                             android:layout_width="wrap_content"
@@ -318,7 +321,7 @@
                                 android:paddingRight="4dip"
                                 android:src="@drawable/check_dark"
                                 android:visibility="invisible"
-                                android:contentDescription="Check"/>
+                                android:contentDescription="@string/registration_progress_activity__check"/>
 
                         <ProgressBar
                                 android:id="@+id/connecting_progress"
@@ -362,7 +365,7 @@
                                 android:paddingRight="4dip"
                                 android:src="@drawable/check_dark"
                                 android:visibility="invisible"
-                                android:contentDescription="Check"/>
+                                android:contentDescription="@string/registration_progress_activity__check"/>
 
                         <ProgressBar
                                 android:id="@+id/verification_progress"
@@ -406,7 +409,7 @@
                                 android:paddingRight="4dip"
                                 android:src="@drawable/check_dark"
                                 android:visibility="invisible"
-                                android:contentDescription="Check"/>
+                                android:contentDescription="@string/registration_progress_activity__check"/>
 
                         <ProgressBar
                                 android:id="@+id/generating_keys_progress"
@@ -450,7 +453,7 @@
                                 android:paddingRight="4dip"
                                 android:src="@drawable/check_dark"
                                 android:visibility="invisible"
-                                android:contentDescription="Check"/>
+                                android:contentDescription="@string/registration_progress_activity__check"/>
 
                         <ProgressBar
                                 android:id="@+id/gcm_registering_progress"
@@ -499,6 +502,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:text="1:57"
+                        tools:ignore="HardcodedText"
                         android:textSize="12.0sp" />
 
                 <TextView
