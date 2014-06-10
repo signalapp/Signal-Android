@@ -243,7 +243,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       addAttachmentAudio(data.getData());
       break;
     case PICK_CONTACT_INFO:
-      addContactInfo(data.getData());
+      addAttachmentContactInfo(data.getData());
       break;
     case GROUP_EDIT:
       this.recipients = data.getParcelableExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA);
@@ -305,7 +305,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     switch (item.getItemId()) {
     case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
     case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
-    case R.id.menu_add_contact_info:          handleAddContactInfo();                            return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_start_secure_session:      handleStartSecureSession();                        return true;
     case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
@@ -316,7 +315,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
-    case R.id.menu_add_to_contacts:           handleAddContact();                                return true;
+    case R.id.menu_add_to_contacts:           handleAddToContacts();                                return true;
     }
 
     return false;
@@ -551,12 +550,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     builder.show();
   }
 
-  private void handleAddContactInfo() {
-    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-    startActivityForResult(intent, PICK_CONTACT_INFO);
-  }
-
-  private void handleAddContact() {
+  private void handleAddToContacts() {
     final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
     intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
     intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
@@ -814,6 +808,8 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       AttachmentManager.selectVideo(this, PICK_VIDEO); break;
     case AttachmentTypeSelectorAdapter.ADD_SOUND:
       AttachmentManager.selectAudio(this, PICK_AUDIO); break;
+    case AttachmentTypeSelectorAdapter.ADD_CONTACT_INFO:
+      AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO); break;
     }
   }
 
@@ -865,7 +861,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
   }
 
-  private void addContactInfo(Uri contactUri) {
+  private void addAttachmentContactInfo(Uri contactUri) {
     ContactAccessor contactDataList = ContactAccessor.getInstance();
     ContactData contactData = contactDataList.getContactData(this, contactUri);
 

@@ -42,6 +42,7 @@
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+    <string name="AttachmentTypeSelectorAdapter_contact">Contact</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
@@ -815,7 +816,6 @@
     <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_update_group">Update group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
-    <string name="conversation__menu_add_contact_info">Add contact info</string>
     <string name="conversation__menu_delete_thread">Delete thread</string>
     <string name="conversation__menu_add_to_contacts">Add to contacts</string>
 

@@ -36,8 +36,9 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 //	public static final int TAKE_PICTURE  = 2;
 	public static final int ADD_VIDEO     = 3;
 //	public static final int	RECORD_VIDEO  = 4;
-	public static final int	ADD_SOUND	  = 5;
+	public static final int	ADD_SOUND	    = 5;
 //	public static final int	RECORD_SOUND  = 6;
+  public static final int	ADD_CONTACT_INFO	  = 7;
 
 	private final Context context;
 
@@ -83,6 +84,8 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 	  addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio),
 	          R.drawable.ic_attach_audio_holo_light, ADD_SOUND);
 //        addItem(data, "Record audio", R.drawable.ic_launcher_record_audio, RECORD_SOUND);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact),
+      R.drawable.ic_menu_friendslist, ADD_CONTACT_INFO);
 
 	  return data;
 	}

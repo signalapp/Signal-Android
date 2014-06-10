@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -91,6 +92,11 @@ public class AttachmentManager {
 
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, "audio/*", requestCode);
+  }
+
+  public static void selectContactInfo(Activity activity, int requestCode) {
+    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+    activity.startActivityForResult(intent, requestCode);
   }
 
   private static void selectMediaType(Activity activity, String type, int requestCode) {
