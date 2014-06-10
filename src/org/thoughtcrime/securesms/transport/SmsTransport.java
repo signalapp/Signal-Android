@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
 import org.thoughtcrime.securesms.sms.OutgoingPrekeyBundleMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
+import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
@@ -52,6 +53,10 @@ public class SmsTransport extends BaseTransport {
   {
     if (!TextSecurePreferences.isSmsNonDataOutEnabled(context) && !TextSecurePreferences.isSmsFallbackEnabled(context)) {
       throw new UndeliverableMessageException("SMS Transport is not enabled!");
+    }
+
+    if (!NumberUtil.isValidSmsOrEmail(message.getIndividualRecipient().getNumber())) {
+      throw new UndeliverableMessageException("Not a valid SMS destination! " + message.getIndividualRecipient().getNumber());
     }
 
     if (message.isSecure() || message.isKeyExchange() || message.isEndSession()) {
