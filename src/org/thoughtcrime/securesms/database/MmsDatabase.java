@@ -572,14 +572,14 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     Trimmer.trimThread(context, threadId);
   }
 
-  public long insertMessageOutbox(MasterSecret masterSecret, OutgoingMediaMessage message, long threadId)
+  public long insertMessageOutbox(MasterSecret masterSecret, OutgoingMediaMessage message,
+                                  long threadId, boolean forceSms)
       throws MmsException
   {
     long type = Types.BASE_OUTBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT;
 
-    if (message.isSecure()) {
-      type |= Types.SECURE_MESSAGE_BIT;
-    }
+    if (message.isSecure()) type |= Types.SECURE_MESSAGE_BIT;
+    if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
 
     if (message.isGroup()) {
       if      (((OutgoingGroupMediaMessage)message).isGroupUpdate()) type |= Types.GROUP_UPDATE_BIT;

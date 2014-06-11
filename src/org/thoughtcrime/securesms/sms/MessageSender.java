@@ -32,14 +32,14 @@ import ws.com.google.android.mms.MmsException;
 public class MessageSender {
 
   public static long send(Context context, MasterSecret masterSecret,
-                          OutgoingTextMessage message, long threadId)
+                          OutgoingTextMessage message, long threadId,
+                          boolean forceSms)
   {
     if (threadId == -1)
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(message.getRecipients());
 
     List<Long> messageIds = DatabaseFactory.getEncryptingSmsDatabase(context)
-        .insertMessageOutbox(masterSecret, threadId, message);
-
+        .insertMessageOutbox(masterSecret, threadId, message, forceSms);
 
     for (long messageId : messageIds) {
       Log.w("SMSSender", "Got message id for new message: " + messageId);
@@ -53,14 +53,16 @@ public class MessageSender {
     return threadId;
   }
 
-  public static long send(Context context, MasterSecret masterSecret, OutgoingMediaMessage message, long threadId)
+  public static long send(Context context, MasterSecret masterSecret,
+                          OutgoingMediaMessage message,
+                          long threadId, boolean forceSms)
       throws MmsException
   {
     if (threadId == -1)
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(message.getRecipients(), message.getDistributionType());
 
     long messageId = DatabaseFactory.getMmsDatabase(context)
-                                    .insertMessageOutbox(masterSecret, message, threadId);
+                                    .insertMessageOutbox(masterSecret, message, threadId, forceSms);
 
     Intent intent  = new Intent(SendReceiveService.SEND_MMS_ACTION, null,
                                 context, SendReceiveService.class);

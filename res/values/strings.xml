@@ -781,7 +781,9 @@
     <string name="push_directory__menu_refresh">Refresh contact list</string>
 
     <!-- conversation_button_context -->
-    <string name="conversation_button_context__menu_send_unencrypted">Send unencrypted</string>
+    <string name="conversation_button_context__send_textsecure_message">Send TextSecure message</string>
+    <string name="conversation_button_context__send_unencrypted_sms">Send unencrypted SMS</string>
+    <string name="conversation_button_context__send_encrypted_sms">Send encrypted SMS</string>
 
     <!-- conversation_callable -->
     <string name="conversation_callable__menu_call">Call</string>
@@ -841,6 +843,7 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
+
     <!-- EOF -->
 
 </resources>

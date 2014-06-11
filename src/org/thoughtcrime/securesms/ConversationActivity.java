@@ -193,7 +193,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   @Override
   protected void onResume() {
-
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
@@ -312,16 +311,28 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   @Override
   public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-    if (isEncryptedConversation) {
-      android.view.MenuInflater inflater = getMenuInflater();
-      inflater.inflate(R.menu.conversation_button_context, menu);
+    if (isEncryptedConversation && isSingleConversation()) {
+      boolean   isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
+      Recipient primaryRecipient  = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
+      boolean   hasSession        = Session.hasSession(this, masterSecret, primaryRecipient);
+
+      int context;
+
+      if      (isPushDestination && hasSession) context = R.menu.conversation_button_context_secure_push;
+      else if (isPushDestination)               context = R.menu.conversation_button_context_insecure_push;
+      else if (hasSession)                      context = R.menu.conversation_button_context_secure_sms;
+      else                                      return;
+
+      getMenuInflater().inflate(context, menu);
     }
   }
 
   @Override
   public boolean onContextItemSelected(android.view.MenuItem item) {
     switch (item.getItemId()) {
-    case R.id.menu_context_send_unencrypted: sendMessage(true); return true;
+      case R.id.menu_context_send_push:            sendMessage(false, false); return true;
+      case R.id.menu_context_send_encrypted_sms:   sendMessage(false, true);  return true;
+      case R.id.menu_context_send_unencrypted_sms: sendMessage(true, true);   return true;
     }
 
     return false;
@@ -402,7 +413,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
                 new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipients(), "TERMINATE"));
 
             long allocatedThreadId = MessageSender.send(self, masterSecret,
-                                                        endSessionMessage, threadId);
+                                                        endSessionMessage, threadId, false);
 
             sendComplete(recipients, allocatedThreadId, allocatedThreadId != self.threadId);
           } else {
@@ -444,7 +455,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
           OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, getRecipients(),
                                                                                     context, null);
-          MessageSender.send(self, masterSecret, outgoingMessage, threadId);
+          MessageSender.send(self, masterSecret, outgoingMessage, threadId, false);
           DatabaseFactory.getGroupDatabase(self).remove(groupId, TextSecurePreferences.getLocalNumber(self));
           initializeEnabledCheck();
         } catch (IOException e) {
@@ -1009,45 +1020,22 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     fragment.scrollToBottom();
   }
 
-  private void sendMessage(boolean forcePlaintext) {
+  private void sendMessage(boolean forcePlaintext, boolean forceSms) {
     try {
       Recipients recipients = getRecipients();
 
       if (recipients == null)
         throw new RecipientFormattingException("Badly formatted");
 
-      String body = getMessage();
       long allocatedThreadId;
 
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
         return;
       } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
-        SlideDeck slideDeck;
-
-        if (attachmentManager.isAttachmentPresent()) slideDeck = attachmentManager.getSlideDeck();
-        else                                         slideDeck = new SlideDeck();
-
-        OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(this, recipients, slideDeck,
-                                                                        body, distributionType);
-
-        if (isEncryptedConversation && !forcePlaintext) {
-          outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
-        }
-
-        allocatedThreadId = MessageSender.send(this, masterSecret, outgoingMessage, threadId);
+        allocatedThreadId = sendMediaMessage(forcePlaintext, forceSms);
       } else {
-        OutgoingTextMessage message;
-
-        if (isEncryptedConversation && !forcePlaintext) {
-          message = new OutgoingEncryptedMessage(recipients, body);
-        } else {
-          message = new OutgoingTextMessage(recipients, body);
-        }
-
-        Log.w(TAG, "Sending message...");
-        allocatedThreadId = MessageSender.send(ConversationActivity.this, masterSecret,
-                                               message, threadId);
+        allocatedThreadId = sendTextMessage(forcePlaintext, forceSms);
       }
 
       sendComplete(recipients, allocatedThreadId, allocatedThreadId != this.threadId);
@@ -1064,6 +1052,41 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       Log.w(TAG, e);
     }
   }
+
+  private long sendMediaMessage(boolean forcePlaintext, boolean forceSms)
+      throws InvalidMessageException, MmsException
+  {
+    SlideDeck slideDeck;
+
+    if (attachmentManager.isAttachmentPresent()) slideDeck = attachmentManager.getSlideDeck();
+    else                                         slideDeck = new SlideDeck();
+
+    OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(this, recipients, slideDeck,
+                                                                    getMessage(), distributionType);
+
+    if (isEncryptedConversation && !forcePlaintext) {
+      outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
+    }
+
+    return MessageSender.send(this, masterSecret, outgoingMessage, threadId, forceSms);
+  }
+
+  private long sendTextMessage(boolean forcePlaintext, boolean forceSms)
+      throws InvalidMessageException
+  {
+    OutgoingTextMessage message;
+
+    if (isEncryptedConversation && !forcePlaintext) {
+      message = new OutgoingEncryptedMessage(recipients, getMessage());
+    } else {
+      message = new OutgoingTextMessage(recipients, getMessage());
+    }
+
+    Log.w(TAG, "Sending message...");
+
+    return MessageSender.send(ConversationActivity.this, masterSecret, message, threadId, forceSms);
+  }
+
 
   // Listeners
 
@@ -1092,7 +1115,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
-      sendMessage(false);
+      sendMessage(false, false);
     }
 
     @Override

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/conversation_button_context__menu_send_unencrypted"
-          android:id="@+id/menu_context_send_unencrypted" />
-</menu>

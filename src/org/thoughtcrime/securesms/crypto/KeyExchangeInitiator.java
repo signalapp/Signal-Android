@@ -77,7 +77,7 @@ public class KeyExchangeInitiator {
     sessionRecordV2.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
     sessionRecordV2.save();
 
-    MessageSender.send(context, masterSecret, textMessage, -1);
+    MessageSender.send(context, masterSecret, textMessage, -1, false);
   }
 
   private static boolean hasInitiatedSession(Context context, MasterSecret masterSecret,
