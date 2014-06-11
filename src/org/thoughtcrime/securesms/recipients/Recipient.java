@@ -25,6 +25,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.textsecure.storage.CanonicalRecipient;
 import org.whispersystems.textsecure.util.FutureTaskListener;
@@ -52,15 +53,19 @@ public class Recipient implements Parcelable, CanonicalRecipient {
   private final long   recipientId;
 
   private String name;
+
   private Bitmap contactPhoto;
+  private Bitmap circleCroppedContactPhoto;
+
   private Uri    contactUri;
 
-  Recipient(String number, Bitmap contactPhoto, long recipientId,
+  Recipient(String number, Bitmap defautPhoto, Bitmap defaultCroppedPhoto, long recipientId,
             ListenableFutureTask<RecipientDetails> future)
   {
-    this.number       = number;
-    this.contactPhoto = contactPhoto;
-    this.recipientId  = recipientId;
+    this.number                     = number;
+    this.circleCroppedContactPhoto  = defaultCroppedPhoto;
+    this.contactPhoto               = defautPhoto;
+    this.recipientId                = recipientId;
 
     future.setListener(new FutureTaskListener<RecipientDetails>() {
       @Override
@@ -69,10 +74,11 @@ public class Recipient implements Parcelable, CanonicalRecipient {
           HashSet<RecipientModifiedListener> localListeners;
 
           synchronized (Recipient.this) {
-            Recipient.this.name         = result.name;
-            Recipient.this.contactUri   = result.contactUri;
-            Recipient.this.contactPhoto = result.avatar;
-            localListeners              = (HashSet<RecipientModifiedListener>)listeners.clone();
+            Recipient.this.name                         = result.name;
+            Recipient.this.contactUri                   = result.contactUri;
+            Recipient.this.contactPhoto                 = result.avatar;
+            Recipient.this.circleCroppedContactPhoto    = result.croppedAvatar;
+            localListeners                              = (HashSet<RecipientModifiedListener>)listeners.clone();
             listeners.clear();
           }
 
@@ -172,6 +178,10 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
   public synchronized Bitmap getContactPhoto() {
     return contactPhoto;
+  }
+
+  public synchronized Bitmap getCircleCroppedContactPhoto() {
+    return this.circleCroppedContactPhoto;
   }
 
   public static Recipient getUnknownRecipient(Context context) {
