@@ -153,6 +153,22 @@ public class XmlBackup {
       this.serializer.attribute("", "count", count+"");
     }
 
+    private String replaceInvalidCharacters(String text, char replacement) {
+      String cleanText = "";
+      for (int i = 0; i < text.length(); i++) {
+        char c = text.charAt(i);
+        // invalid characters lead to an exception in the android xml serializer
+        // see writeEscaped() in java/org/kxml2/io/KXmlSerializer.java
+        boolean valid = (c == '\t') || (c == '\r') || (c == '\n') || (c >= 0x20 && c <= 0xd7ff) || (c >= 0xe000 && c <= 0xfffd);
+        if (valid) {
+          cleanText += c;
+        } else {
+          cleanText += replacement;
+        }
+      }
+      return cleanText;
+    }
+
     public void writeItem(XmlBackupItem item) throws IOException {
       this.serializer.startTag("", "sms");
       this.serializer.attribute("", "protocol", item.getProtocol() + "");
@@ -160,13 +176,7 @@ public class XmlBackup {
       this.serializer.attribute("", "date", item.getDate()+"");
       this.serializer.attribute("", "type", item.getType()+"");
       this.serializer.attribute("", "subject", item.getSubject()+"");
-      try {
-        this.serializer.attribute("", "body", item.getBody()+"");
-      } catch (IllegalArgumentException ise) {
-        // XXX - Fucking Android. Their serializer includes a bug that doesn't
-        // handle some unicode characters correctly.
-        Log.w("XmlBackup", ise);
-      }
+      this.serializer.attribute("", "body", replaceInvalidCharacters(item.getBody(), ' '));
       this.serializer.attribute("", "toa", null+"");
       this.serializer.attribute("", "sc_toa", null+"");
       this.serializer.attribute("", "service_center", item.getServiceCenter()+"");

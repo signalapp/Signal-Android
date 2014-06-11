@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
+import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
 
 import java.io.IOException;
 
@@ -103,6 +104,7 @@ public class ExportFragment extends SherlockFragment {
     protected Integer doInBackground(Void... params) {
       try {
         PlaintextBackupExporter.exportPlaintextToSd(getActivity(), masterSecret);
+        PlaintextBackupImporter.checkPlaintextBackupOnSd(getActivity(), masterSecret);
         return SUCCESS;
       } catch (NoExternalStorageException e) {
         Log.w("ExportFragment", e);
