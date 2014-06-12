@@ -110,16 +110,13 @@ public class VibratePatternListPreference extends ListPreference  {
     public void onClick(View view) {
       final String vibratePattern = vibratePatternEditText.getText().toString();
 
-      try
-      {
+      try {
         MessageNotifier.parseVibratePattern(vibratePattern);
         TextSecurePreferences.setNotificationVibratePatternCustom(context, vibratePattern);
         Toast.makeText(context, R.string.preferences__pref_vibrate_custom_pattern_set, Toast.LENGTH_LONG).show();
         dialog.dismiss();
         dialogInProgress = false;
-      }
-      catch(NumberFormatException e)
-      {
+      } catch (NumberFormatException e) {
         Toast.makeText(context, R.string.preferences__pref_vibrate_custom_pattern_wrong, Toast.LENGTH_LONG).show();
       }
     }
@@ -133,13 +130,10 @@ public class VibratePatternListPreference extends ListPreference  {
     public void onClick(View view) {
       final String vibratePattern = vibratePatternEditText.getText().toString();
 
-      try
-      {
+      try {
         Vibrator vibrator = (Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(MessageNotifier.parseVibratePattern(vibratePattern), -1);
-      }
-      catch(NumberFormatException e)
-      {
+      } catch(NumberFormatException e) {
         Toast.makeText(context, R.string.preferences__pref_vibrate_custom_pattern_wrong, Toast.LENGTH_LONG).show();
       }
     }
