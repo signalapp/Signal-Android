@@ -34,6 +34,7 @@ import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -94,6 +95,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -628,7 +630,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     if (draftVideo != null) addAttachmentVideo(draftVideo);
 
     if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
-      initializeDraftFromDatabase();
+      initializeDraftFromDatabase(this);
     }
   }
 
@@ -643,7 +645,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         (TextSecurePreferences.isPushRegistered(this) && !TextSecurePreferences.isSmsFallbackEnabled(this)));
   }
 
-  private void initializeDraftFromDatabase() {
+  private void initializeDraftFromDatabase(final Context context) {
     new AsyncTask<Void, Void, List<Draft>>() {
       @Override
       protected List<Draft> doInBackground(Void... params) {
@@ -658,11 +660,23 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
       @Override
       protected void onPostExecute(List<Draft> drafts) {
+        SpannableString draftText;
         for (Draft draft : drafts) {
-          if      (draft.getType().equals(Draft.TEXT))  composeText.setText(draft.getValue());
-          else if (draft.getType().equals(Draft.IMAGE)) addAttachmentImage(Uri.parse(draft.getValue()));
-          else if (draft.getType().equals(Draft.AUDIO)) addAttachmentAudio(Uri.parse(draft.getValue()));
-          else if (draft.getType().equals(Draft.VIDEO)) addAttachmentVideo(Uri.parse(draft.getValue()));
+          if (draft.getType().equals(Draft.TEXT)) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+              Emoji emoji = Emoji.getInstance(context);
+              draftText   = emoji.emojify(draft.getValue());
+            } else {
+              draftText   = SpannableString.valueOf(draft.getValue());
+            }
+            composeText.setText(draftText, TextView.BufferType.SPANNABLE);
+          } else if (draft.getType().equals(Draft.IMAGE)) {
+            addAttachmentImage(Uri.parse(draft.getValue()));
+          } else if (draft.getType().equals(Draft.AUDIO)) {
+            addAttachmentAudio(Uri.parse(draft.getValue()));
+          } else if (draft.getType().equals(Draft.VIDEO)) {
+            addAttachmentVideo(Uri.parse(draft.getValue()));
+          }
         }
       }
     }.execute();
