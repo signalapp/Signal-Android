@@ -32,6 +32,7 @@
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
 
+    <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_received_background" format="reference" />
     <attr name="conversation_item_received_triangle_background" format="reference" />
     <attr name="conversation_item_sent_background" format="reference" />
@@ -69,6 +70,10 @@
     <attr name="menu_split_icon" format="reference" />
     <attr name="menu_accept_icon" format="reference" />
     <attr name="menu_refresh_directory" format="reference" />
+    <attr name="menu_copy_icon" format="reference" />
+    <attr name="menu_info_icon" format="reference" />
+    <attr name="menu_forward_icon" format="reference" />
+    <attr name="menu_save_icon" format="reference" />
 
     <declare-styleable name="ForegroundImageView">
         <attr name="android:foreground" />

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:paddingRight="10dip"
     android:orientation="vertical"
+    android:background="?conversation_item_background"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView android:id="@+id/group_message_status"
