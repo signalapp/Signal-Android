@@ -19,10 +19,6 @@ repositories {
     maven {
         url "https://raw.github.com/whispersystems/maven/master/gson/releases/"
     }
-
-    maven {
-        url "https://raw.github.com/whispersystems/maven/master/shortcutBadger/releases/"
-    }
 }
 
 dependencies {
@@ -30,7 +26,6 @@ dependencies {
     compile 'com.android.support:support-v4:19.0.1'
     compile 'com.google.android.gcm:gcm-client:1.0.2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
-    compile 'com.shortcutBadger:ShortcutBadger:1.0'
     compile project(':library')
 }
 

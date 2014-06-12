@@ -37,12 +37,10 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 
-import com.shortcutBadger.ShortcutBadgeException;
-import com.shortcutBadger.ShortcutBadger;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.badger.ShortcutBadgeException;
+import org.thoughtcrime.securesms.badger.ShortcutBadger;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
