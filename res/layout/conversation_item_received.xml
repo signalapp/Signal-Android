@@ -157,7 +157,7 @@
             <ImageView android:id="@+id/sms_failed_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_list_alert_sms_failed"
+                android:src="@drawable/ic_action_warning_red"
                 android:contentDescription="@string/conversation_item_sent__send_failed_indicator_description"
                 android:visibility="gone" />
         </LinearLayout>
