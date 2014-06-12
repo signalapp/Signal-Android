@@ -690,6 +690,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     drawables.recycle();
 
     calculateCharactersRemaining();
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      } else {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      }
+    }
   }
 
   private void initializeMmsEnabledCheck() {
@@ -753,10 +761,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     });
 
     registerForContextMenu(sendButton);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && TextSecurePreferences.isScreenSecurityEnabled(this)) {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-    }
   }
 
   private void initializeReceivers() {
