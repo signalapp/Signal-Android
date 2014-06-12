@@ -1,4 +1,4 @@
-TextSecure
+TextSecure [![Build Status](https://travis-ci.org/WhisperSystems/TextSecure.svg?branch=master)](https://travis-ci.org/WhisperSystems/TextSecure)
 =================
 
 A secure text messaging application for Android.
