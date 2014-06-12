@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/conversation_context__menu_copy_text"
-          android:id="@+id/menu_context_copy" />
+    <item android:title="@string/conversation_context__menu_message_details"
+          android:id="@+id/menu_context_details"
+          android:icon="?menu_info_icon"
+          android:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation_context__menu_delete_message"
-          android:id="@+id/menu_context_delete_message" />
+        android:id="@+id/menu_context_delete_message"
+        android:icon="?menu_trash_icon"
+        android:showAsAction="ifRoom" />
 
-    <item android:title="@string/conversation_context__menu_message_details"
-          android:id="@+id/menu_context_details" />
+    <item android:title="@string/conversation_context__menu_copy_text"
+          android:id="@+id/menu_context_copy"
+          android:icon="?menu_copy_icon"
+          android:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation_context__menu_forward_message"
-          android:id="@+id/menu_context_forward" />
+          android:id="@+id/menu_context_forward"
+          android:icon="?menu_forward_icon"
+          android:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation_context__menu_resend_message"
           android:id="@+id/menu_context_resend"
-          android:visible="false" />
+          android:visible="false"
+          android:showAsAction="never" />
 </menu>
