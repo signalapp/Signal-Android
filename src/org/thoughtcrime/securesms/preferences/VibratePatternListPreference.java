@@ -66,7 +66,7 @@ public class VibratePatternListPreference extends ListPreference  {
     }
   }
 
-    private void showDialog() {
+  private void showDialog() {
     LayoutInflater inflater     = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View view                   = inflater.inflate(R.layout.vibrate_pattern_dialog, null);
     this.vibratePatternEditText = (EditText)view.findViewById(R.id.editTextPattern);
