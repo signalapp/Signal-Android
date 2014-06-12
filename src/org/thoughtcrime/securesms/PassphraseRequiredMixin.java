@@ -7,10 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.util.Log;
-
-import com.shortcutBadger.ShortcutBadgeException;
-import com.shortcutBadger.ShortcutBadger;
 
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.service.KeyCachingService;
