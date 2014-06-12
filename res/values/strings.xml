@@ -7,8 +7,8 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
-    <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">You need to have entered your passphrase before managing keys...</string>
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
+    <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">You need to have entered your passphrase before managing keys…</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven’t set a passphrase yet!</string>
     <string name="ApplicationPreferencesActivity_messages_per_conversation">messages per conversation</string>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
     <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Are you sure you would like to immediately trim all conversation threads to the %s most recent messages?</string>
@@ -21,7 +21,7 @@
         able to access them.
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_unregistering">Unregistering...</string>
+    <string name="ApplicationPreferencesActivity_unregistering">Unregistering…</string>
     <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Unregistering for data based communication</string>
     <string name="ApplicationPreferencesActivity_disable_push_messages">Disable push messages?</string>
     <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
@@ -29,9 +29,9 @@
         You will need to re-register your phone number to use push messages again in the future.
     </string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
-    <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service...</string>
+    <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">You are not registered with the push service…</string>
     <string name="ApplicationPreferencesActivity_updating_directory">Updating directory</string>
-    <string name="ApplicationPreferencesActivity_updating_push_directory">Updating push directory...</string>
+    <string name="ApplicationPreferencesActivity_updating_push_directory">Updating push directory…</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">Incoming SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
     <string name="ApplicationPreferencesActivity_sms_disabled">Incoming SMS Disabled</string>
@@ -52,7 +52,7 @@
     <string name="ConversationItem_received_and_processed_key_exchange_message">Received and processed key exchange message.</string>
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
     <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process.</string>
-    <string name="ConversationItem_received_plaintext_message_click_to_terminate">Received a plaintext SMS while you have a secure session open. If they don\'t have a session open, messages you send will appear as garbled text. Click to terminate secure session.</string>
+    <string name="ConversationItem_received_plaintext_message_click_to_terminate">Received a plaintext SMS while you have a secure session open. If they don’t have a session open, messages you send will appear as garbled text. Click to terminate secure session.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_group_action_joined">%1$s have joined the group.</string>
     <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
@@ -101,19 +101,19 @@
     <string name="ConversationFragment_success_exclamation">Success!</string>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to SD card!</string>
     <string name="ConversationFragment_saving_attachment">Saving attachment</string>
-    <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
+    <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to SD card…</string>
 
     <!-- ConversationListAdapter -->
-    <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
+    <string name="ConversationListAdapter_key_exchange_message">Key exchange message…</string>
 
     <!-- ConversationListFragment -->
     <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
     <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Are you sure you wish to delete ALL selected conversation threads?</string>
     <string name="ConversationListFragment_deleting">Deleting</string>
-    <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads...</string>
+    <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads…</string>
 
     <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
+    <string name="ConversationListItem_key_exchange_message">Key exchange message…</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
@@ -130,7 +130,7 @@
     </string>
     <string name="ExportFragment_cancel">Cancel</string>
     <string name="ExportFragment_exporting">Exporting</string>
-    <string name="ExportFragment_exporting_plaintext_to_sd_card">Exporting plaintext to SD card...
+    <string name="ExportFragment_exporting_plaintext_to_sd_card">Exporting plaintext to SD card…
     </string>
     <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, unable to write to SD
         card!
@@ -139,7 +139,7 @@
     </string>
     <string name="ExportFragment_success">Success!</string>
     <string name="ExportFragment_exporting_keys_settings_and_messages">Exporting encrypted keys,
-        settings, and messages...
+        settings, and messages…
     </string>
 
     <!-- GroupCreateActivity -->
@@ -147,12 +147,12 @@
     <string name="GroupCreateActivity_actionbar_update_title">Update group</string>
     <string name="GroupCreateActivity_group_name_hint">Group name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS group</string>
-    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support TextSecure groups, so this group will be MMS.</string>
-    <string name="GroupCreateActivity_you_dont_support_push">You\'re not registered for using the data channel, so TextSecure groups are disabled.</string>
+    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn’t support TextSecure groups, so this group will be MMS.</string>
+    <string name="GroupCreateActivity_you_dont_support_push">You’re not registered for using the data channel, so TextSecure groups are disabled.</string>
     <string name="GroupCreateActivity_contacts_mms_exception">An unexpected error happened that has made group creation fail.</string>
     <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
-    <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
-    <string name="GroupCreateActivity_file_io_exception">File I/O error, couldn\'t create a temporary image file.</string>
+    <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can’t be read correctly. Please fix or remove that contact and try again.</string>
+    <string name="GroupCreateActivity_file_io_exception">File I/O error, couldn’t create a temporary image file.</string>
     <string name="GroupCreateActivity_avatar_content_description">Group avatar</string>
     <string name="GroupCreateActivity_menu_create_title">Create group</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
@@ -161,30 +161,30 @@
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import system SMS database?</string>
     <string name="ImportFragment_this_will_import_messages_from_the_system">This will import
-        messages from the system\'s default SMS database to TextSecure. If you\'ve previously
-        imported the system\'s SMS database, importing again will result in duplicated messages.
+        messages from the system’s default SMS database to TextSecure. If you’ve previously
+        imported the system’s SMS database, importing again will result in duplicated messages.
     </string>
     <string name="ImportFragment_import">Import</string>
     <string name="ImportFragment_cancel">Cancel</string>
     <string name="ImportFragment_restore_encrypted_backup">Restore encrypted backup?</string>
     <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
         Restoring an encrypted backup will completely replace your existing keys, preferences, and
-        messages. You will lose any information that\'s in your current TextSecure install but not
+        messages. You will lose any information that’s in your current TextSecure install but not
         in the backup.
     </string>
     <string name="ImportFragment_restore">Restore</string>
     <string name="ImportFragment_import_plaintext_backup">Import plaintext backup?</string>
     <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">This will import
-        messages from a plaintext backup. If you\'ve previously imported this backup,
+        messages from a plaintext backup. If you’ve previously imported this backup,
         importing again will result in duplicated messages.
     </string>
     <string name="ImportFragment_importing">Importing</string>
-    <string name="ImportFragment_import_plaintext_backup_elipse">Import plaintext backup...</string>
+    <string name="ImportFragment_import_plaintext_backup_elipse">Import plaintext backup…</string>
     <string name="ImportFragment_no_plaintext_backup_found">No plaintext backup found!</string>
     <string name="ImportFragment_error_importing_backup">Error importing backup!</string>
     <string name="ImportFragment_import_complete">Import complete!</string>
     <string name="ImportFragment_restoring">Restoring</string>
-    <string name="ImportFragment_restoring_encrypted_backup">Restoring encrypted backup...</string>
+    <string name="ImportFragment_restoring_encrypted_backup">Restoring encrypted backup…</string>
     <string name="ImportFragment_no_encrypted_backup_found">No encrypted backup found!</string>
     <string name="ImportFragment_restore_complete">Restore complete!</string>
 
@@ -192,10 +192,10 @@
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
 
     <!-- MmsDownloader -->
-    <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No connectivity available for MMS download, try again later...</string>
+    <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">No connectivity available for MMS download, try again later…</string>
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
-    <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>
-    <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings...</string>
+    <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider…</string>
+    <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings…</string>
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
@@ -204,11 +204,11 @@
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of TextSecure that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
 
     <!-- PassphraseChangeActivity -->
-    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
+    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don’t match!</string>
     <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect old passphrase!</string>
 
     <!-- PassphraseCreateActivity -->
-    <string name="PassphraseCreateActivity_passphrases_dont_match">Passphrases don\'t match</string>
+    <string name="PassphraseCreateActivity_passphrases_dont_match">Passphrases don’t match</string>
     <string name="PassphraseCreateActivity_you_must_specify_a_password">You must specify a password</string>
 
     <!-- PassphrasePromptActivity -->
@@ -224,7 +224,7 @@
 
     <!-- ReceiveKeyActivity -->
     <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">The
-        signature on this key exchange is different than what you\'ve previously received from this
+        signature on this key exchange is different than what you’ve previously received from this
         contact. This could either mean that someone is trying to intercept your communication, or
         that this contact simply re-installed TextSecure and now has a new identity key.
     </string>
@@ -232,8 +232,8 @@
         this contact.
     </string>
     <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">The
-        signature on this key exchange is trusted, but you have the \'automatically complete key
-        exchanges\' setting disabled.
+        signature on this key exchange is trusted, but you have the ‘automatically complete key
+        exchanges’ setting disabled.
     </string>
     <string name="ReceiveKeyActivity_processing">Processing</string>
     <string name="ReceiveKeyActivity_processing_key_exchange">Processing key exchange…</string>
@@ -272,22 +272,22 @@
     <string name="RegistrationProgressActivity_edit_s">Edit %s</string>
     <string name="RegistrationProgressActivity_registration_complete">Registration complete!</string>
     <string name="RegistrationProgressActivity_possible_problems">Possible problems.</string>
-    <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">You must enter the code you received first...</string>
+    <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">You must enter the code you received first…</string>
     <string name="RegistrationProgressActivity_connecting">Connecting</string>
-    <string name="RegistrationProgressActivity_connecting_for_verification">Connecting for verification...</string>
+    <string name="RegistrationProgressActivity_connecting_for_verification">Connecting for verification…</string>
     <string name="RegistrationProgressActivity_network_error">Network error!</string>
     <string name="RegistrationProgressActivity_unable_to_connect">Unable to connect. Please check your network connection and try again.</string>
     <string name="RegistrationProgressActivity_verification_failed">Verification failed!</string>
     <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">The verification code you submitted is incorrect. Please try again.</string>
     <string name="RegistrationProgressActivity_too_many_attempts">Too many attempts</string>
-    <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">You\'ve submitted an incorrect verification code too many times. Please wait a minute before trying again.</string>
+    <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">You’ve submitted an incorrect verification code too many times. Please wait a minute before trying again.</string>
     <string name="RegistrationProgressActivity_requesting_call">Requesting call</string>
-    <string name="RegistrationProgressActivity_requesting_incoming_call">Requesting incoming verification call...</string>
+    <string name="RegistrationProgressActivity_requesting_incoming_call">Requesting incoming verification call…</string>
     <string name="RegistrationProgressActivity_server_error">Server error</string>
     <string name="RegistrationProgressActivity_the_server_encountered_an_error">The server encountered an error. Please try again.</string>
     <string name="RegistrationProgressActivity_too_many_requests">Too many requests!</string>
-    <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
-    <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code...</string>
+    <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You’ve already recently requested a voice call. You can request another in 20 minutes.</string>
+    <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code…</string>
     <string name="RegistrationProgressActivity_registration_conflict">Registration conflict</string>
     <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different TextSecure server (CyanogenMod?). You must unregister there before registering here.</string>
 
@@ -312,7 +312,7 @@
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
     <!-- ThreadRecord -->
-    <string name="ThreadRecord_left_the_group">Left the group...</string>
+    <string name="ThreadRecord_left_the_group">Left the group…</string>
     <string name="TheadRecord_secure_session_ended">Secure session ended.</string>
 
     <!-- VerifyIdentityActivity -->
@@ -325,7 +325,7 @@
     <string name="VerifyIdentityActivity_not_verified_exclamation">NOT Verified!</string>
     <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Their key is correct. It is also necessary to verify your key with them as well.</string>
     <string name="VerifyIdentityActivity_verified_exclamation">Verified!</string>
-    <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">You don\'t have an identity key!</string>
+    <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">You don’t have an identity key!</string>
 
     <!-- VerifyKeysActivity -->
     <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Get my fingerprint scanned</string>
@@ -348,25 +348,25 @@
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
-    <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">You\'ve already sent a session initiation request to this recipient, are you sure you\'d like to send another?  This will invalidate the first request.</string>
+    <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">You’ve already sent a session initiation request to this recipient, are you sure you’d like to send another?  This will invalidate the first request.</string>
     <string name="KeyExchangeInitiator_send">Send</string>
 
     <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message...</string>
-    <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait...</string>
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session...</string>
+    <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message…</string>
+    <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait…</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session…</string>
 
     <!-- MmsDatabase -->
-    <string name="MmsDatabase_connecting_to_mms_server">Connecting to MMS server...</string>
-    <string name="MmsDatabase_downloading_mms">Downloading MMS...</string>
+    <string name="MmsDatabase_connecting_to_mms_server">Connecting to MMS server…</string>
+    <string name="MmsDatabase_downloading_mms">Downloading MMS…</string>
     <string name="MmsDatabase_mms_download_failed">MMS download failed!</string>
-    <string name="MmsDatabase_downloading">Downloading...</string>
+    <string name="MmsDatabase_downloading">Downloading…</string>
     <string name="MmsDatabase_mms_pending_download">Tap and configure MMS settings to continue download.</string>
 
     <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_decrypting_mms_please_wait">Decrypting MMS, please wait...</string>
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message...</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session...</string>
+    <string name="MmsMessageRecord_decrypting_mms_please_wait">Decrypting MMS, please wait…</string>
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message…</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session…</string>
 
     <!-- MmsSender -->
     <string name="MmsSender_currently_unable_to_send_your_mms_message">Currently unable to send your MMS message.</string>
@@ -384,7 +384,7 @@
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages">%d new messages</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %s</string>
-    <string name="MessageNotifier_encrypted_message">Encrypted message...</string>
+    <string name="MessageNotifier_encrypted_message">Encrypted message…</string>
     <string name="MessageNotifier_no_subject">(No subject)</string>
     <string name="MessageNotifier_message_delivery_failed">Message delivery failed.</string>
     <string name="MessageNotifier_failed_to_deliver_message">Failed to deliver message.</string>
@@ -393,9 +393,9 @@
     <string name="MessageNotifier_mark_as_read">Mark as read</string>
 
     <!-- ViewLocalIdentityActivity -->
-    <string name="ViewLocalIdentityActivity_regenerating">Regenerating...</string>
+    <string name="ViewLocalIdentityActivity_regenerating">Regenerating…</string>
     <string name="ViewLocalIdentityActivity_regenerating_identity_key">Regenerating identity
-        key...
+        key…
     </string>
     <string name="ViewLocalIdentityActivity_regenerated">Regenerated!</string>
     <string name="ViewLocalIdentityActivity_reset_identity_key">Reset identity key?</string>
@@ -465,7 +465,7 @@
     <string name="conversation_fragment_cab__batch_selection_mode">Batch selection mode</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Loading countries...</string>
+    <string name="country_selection_fragment__loading_countries">Loading countries…</string>
     <string name="country_selection_fragment__search">Search</string>
 
     <!-- create_passphrase_activity -->
@@ -480,7 +480,7 @@
 
     <!-- log_submit_activity -->
     <string name="log_submit_activity__confirmation">This log will be posted publicly online for TextSecure contributors to view. Feel free to examine or edit the logs below before hitting submit.</string>
-    <string name="log_submit_activity__button_cancel">Don\'t submit</string>
+    <string name="log_submit_activity__button_cancel">Don’t submit</string>
     <string name="log_submit_activity__button_ok">Submit</string>
     <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
     <string name="log_submit_activity__log_submit_success_title">Success!</string>
@@ -493,15 +493,15 @@
     <string name="log_submit_activity__posting_logs">Posting logs to pastebin&#8230;</string>
 
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure’s encrypted database?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">The default system database will not be modified or altered in any way.</string>
     <string name="database_migration_activity__skip">Skip</string>
     <string name="database_migration_activity__import">Import</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">This could take a moment. Please be patient, we\'ll notify you when the import is complete.</string>
+    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">This could take a moment. Please be patient, we’ll notify you when the import is complete.</string>
     <string name="database_migration_activity__importing">IMPORTING</string>
 
     <!-- database_upgrade_activity -->
-    <string name="database_upgrade_activity__updating_database">Updating database...</string>
+    <string name="database_upgrade_activity__updating_database">Updating database…</string>
 
     <string name="export_fragment__export_encrypted_backup">Export encrypted backup</string>
     <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Export an encrypted
@@ -509,7 +509,7 @@
     </string>
     <string name="export_fragment__export_plaintext_backup">Export plaintext backup</string>
     <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Export a plaintext backup compatible with \'SMSBackup And Restore\' to the SD card.</string>
+        Export a plaintext backup compatible with ‘SMSBackup And Restore’ to the SD card.</string>
     <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
     <string name="import_fragment__import_the_database_from_the_default_system">Import the database
         from the default system messenger app.
@@ -520,7 +520,7 @@
     </string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
     <string name="import_fragment__import_a_plaintext_backup_file">
-        Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
+        Import a plaintext backup file. Compatible with ‘SMSBackup And Restore.’</string>
 
     <string name="local_identity__regenerate_key">Regenerate key</string>
 
@@ -533,7 +533,7 @@
 
     <!-- prompt_mms_activity -->
     <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">To send media and group messages, click \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
+    <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">To send media and group messages, click ‘OK’ and complete the requested settings. The MMS settings for your carrier can generally be located by searching for ‘your carrier APN’. You will only need to do this once.</string>
     <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (REQUIRED):</string>
     <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY HOST (OPTIONAL):</string>
     <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PROXY PORT (OPTIONAL):</string>
@@ -563,7 +563,7 @@
     <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
         Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and
         intercept all incoming SMS messages. Check to see if you received a text message that starts
-        with \'Your TextSecure verification code:\', in which case you\'ll need to configure your
+        with ‘Your TextSecure verification code:’, in which case you’ll need to configure your
         third party text messaging app to let text messages through.
     </string>
     <string name="registration_problems__incorrect_number">Incorrect number.</string>
@@ -579,7 +579,7 @@
     <!-- registration_progress_activity -->
     <string name="registration_progress_activity__voice_verification">Voice verification</string>
     <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-        TextSecure can also call you to verify your number. Tap \'Call Me\' and enter the six digit
+        TextSecure can also call you to verify your number. Tap ‘Call Me’ and enter the six digit
         code that you hear below.
     </string>
     <string name="registration_progress_activity__verify">Verify</string>
@@ -602,19 +602,19 @@
     <string name="registration_progress_activity__restrictive_firewall">Restrictive firewall.
     </string>
     <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-        If you are connected via Wi-Fi, it\'s possible that there is a firewall blocking access to
+        If you are connected via Wi-Fi, it’s possible that there is a firewall blocking access to
         the TextSecure server. Try another network or mobile data.
     </string>
     <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
         TextSecure will now automatically verify your number with a confirmation SMS message.
     </string>
-    <string name="registration_progress_activity__connecting">Connecting...</string>
+    <string name="registration_progress_activity__connecting">Connecting…</string>
     <string name="registration_progress_activity__waiting_for_sms_verification">Waiting for SMS
-        verification...
+        verification…
     </string>
-    <string name="registration_progress_activity__registering_with_server">Registering with server...</string>
+    <string name="registration_progress_activity__registering_with_server">Registering with server…</string>
     <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">This
-        could take a moment. Please be patient, we\'ll notify you when verification is complete.
+        could take a moment. Please be patient, we’ll notify you when verification is complete.
     </string>
     <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
         TextSecure timed out while waiting for a verification SMS message.
@@ -622,14 +622,14 @@
     <string name="registration_progress_activity__sms_verification_failed">SMS verification
         failed.
     </string>
-    <string name="registration_progress_activity__generating_keys">Generating keys...</string>
+    <string name="registration_progress_activity__generating_keys">Generating keys…</string>
 
     <!-- recipients_panel -->
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
     <string name="recipients_panel__add_member">Add member</string>
 
     <!-- review_identities -->
-    <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don\'t currently have any identity keys in your trust database.</string>
+    <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">You don’t currently have any identity keys in your trust database.</string>
 
     <!-- verify_identity_activity -->
     <string name="verify_identity_activity__their_identity_they_read">Their identity (they read):</string>
@@ -772,7 +772,7 @@
     <string name="contact_selection_list__menu_unselect_all">Unselect all</string>
     <string name="contact_selection_list__header_textsecure_users">TEXTSECURE USERS</string>
     <string name="contact_selection_list__header_other">ALL CONTACTS</string>
-    <string name="contact_selection_list__unknown_contact">New message to...</string>
+    <string name="contact_selection_list__unknown_contact">New message to…</string>
 
     <!-- contact_selection -->
     <string name="contact_selection__menu_finished">Finished</string>
