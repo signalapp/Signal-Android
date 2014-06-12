@@ -26,8 +26,8 @@ import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -54,7 +54,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -122,8 +121,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
       .setOnPreferenceChangeListener(new RingtoneSummaryListener());
-    this.findPreference(UPDATE_DIRECTORY_PREF)
-        .setOnPreferenceClickListener(new DirectoryUpdateListener());
     this.findPreference(SUBMIT_DEBUG_LOG_PREF)
         .setOnPreferenceClickListener(new SubmitDebugLogListener());
     this.findPreference(OUTGOING_SMS_PREF)
@@ -544,14 +541,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         }
       }
 
-      return true;
-    }
-  }
-
-  private class DirectoryUpdateListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      DirectoryHelper.refreshDirectoryWithProgressDialog(ApplicationPreferencesActivity.this);
       return true;
     }
   }
