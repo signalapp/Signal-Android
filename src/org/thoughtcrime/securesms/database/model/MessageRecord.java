@@ -62,6 +62,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public abstract boolean isMms();
+  public abstract boolean isMmsNotification();
 
   public boolean isFailed() {
     return

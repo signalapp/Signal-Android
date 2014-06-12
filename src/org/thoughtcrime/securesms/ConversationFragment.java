@@ -2,41 +2,61 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.CursorAdapter;
+import android.webkit.MimeTypeMap;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.util.Util;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ConversationFragment extends SherlockListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
 {
+  private static final String TAG = ConversationFragment.class.getSimpleName();
 
   private ConversationFragmentListener listener;
 
@@ -66,9 +86,22 @@ public class ConversationFragment extends SherlockListFragment
     inflater.inflate(R.menu.conversation_context, menu);
 
     MessageRecord messageRecord = getMessageRecord();
+
     if (messageRecord.isFailed()) {
       MenuItem resend = menu.findItem(R.id.menu_context_resend);
       resend.setVisible(true);
+    }
+
+    if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
+      try {
+        if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
+          inflater.inflate(R.menu.conversation_context_image, menu);
+        }
+      } catch (InterruptedException ie) {
+        Log.w(TAG, ie);
+      } catch (ExecutionException ee) {
+        Log.w(TAG, ee);
+      }
     }
   }
 
@@ -81,6 +114,7 @@ public class ConversationFragment extends SherlockListFragment
     case R.id.menu_context_details:        handleDisplayDetails(messageRecord);  return true;
     case R.id.menu_context_forward:        handleForwardMessage(messageRecord);  return true;
     case R.id.menu_context_resend:         handleResendMessage(messageRecord);   return true;
+    case R.id.menu_context_save_attachment:handleSaveAttachment(messageRecord);  return true;
     }
 
     return false;
@@ -196,11 +230,26 @@ public class ConversationFragment extends SherlockListFragment
     MessageSender.resend(activity, messageId, message.isMms());
   }
 
+  private void handleSaveAttachment(final MessageRecord message) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    builder.setTitle(R.string.ConversationFragment_save_to_sd_card);
+    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
+    builder.setCancelable(true);
+    builder.setMessage(R.string.ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning);
+    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
+        saveTask.execute((MediaMmsMessageRecord) message);
+      }
+    });
+    builder.setNegativeButton(R.string.no, null);
+    builder.show();
+  }
+
   private void initializeResources() {
     String recipientIds = this.getActivity().getIntent().getStringExtra("recipients");
 
-    this.masterSecret = (MasterSecret)this.getActivity().getIntent()
-                          .getParcelableExtra("master_secret");
+    this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), recipientIds, true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }
@@ -244,4 +293,130 @@ public class ConversationFragment extends SherlockListFragment
     public void setComposeText(String text);
   }
 
+  private class SaveAttachmentTask extends AsyncTask<MediaMmsMessageRecord, Void, Integer> {
+
+    private static final int SUCCESS              = 0;
+    private static final int FAILURE              = 1;
+    private static final int WRITE_ACCESS_FAILURE = 2;
+
+    private final WeakReference<Context> contextReference;
+    private       ProgressDialog         progressDialog;
+
+    public SaveAttachmentTask(Context context) {
+      this.contextReference = new WeakReference<Context>(context);
+    }
+
+    @Override
+    protected void onPreExecute() {
+      Context context = contextReference.get();
+
+      if (context != null) {
+        progressDialog = ProgressDialog.show(context,
+                                             context.getString(R.string.ConversationFragment_saving_attachment),
+                                             context.getString(R.string.ConversationFragment_saving_attachment_to_sd_card),
+                                             true, false);
+      }
+    }
+
+    @Override
+    protected Integer doInBackground(MediaMmsMessageRecord... messageRecord) {
+      try {
+        Context context = contextReference.get();
+
+        if (!Environment.getExternalStorageDirectory().canWrite()) {
+          return WRITE_ACCESS_FAILURE;
+        }
+
+        if (context == null) {
+          return FAILURE;
+        }
+
+        Slide slide = getAttachment(messageRecord[0]);
+
+        if (slide == null) {
+          return FAILURE;
+        }
+
+        File         mediaFile    = constructOutputFile(slide);
+        InputStream  inputStream  = slide.getPartDataInputStream();
+        OutputStream outputStream = new FileOutputStream(mediaFile);
+
+        Util.copy(inputStream, outputStream);
+
+        MediaScannerConnection.scanFile(context, new String[] {mediaFile.getAbsolutePath()},
+                                        new String[] {slide.getContentType()}, null);
+
+        return SUCCESS;
+      } catch (IOException ioe) {
+        Log.w(TAG, ioe);
+        return FAILURE;
+      } catch (InterruptedException e) {
+        throw new AssertionError(e);
+      } catch (ExecutionException e) {
+        Log.w(TAG, e);
+        return FAILURE;
+      }
+    }
+
+    @Override
+    protected void onPostExecute(Integer result) {
+      Context context = contextReference.get();
+      if (context == null) return;
+
+      switch (result) {
+        case FAILURE:
+          Toast.makeText(context, R.string.ConversationFragment_error_while_saving_attachment_to_sd_card,
+                         Toast.LENGTH_LONG).show();
+          break;
+        case SUCCESS:
+          Toast.makeText(context, R.string.ConversationFragment_success_exclamation,
+                         Toast.LENGTH_LONG).show();
+          break;
+        case WRITE_ACCESS_FAILURE:
+          Toast.makeText(context, R.string.ConversationFragment_unable_to_write_to_sd_card_exclamation,
+                         Toast.LENGTH_LONG).show();
+          break;
+      }
+
+      if (progressDialog != null)
+        progressDialog.dismiss();
+    }
+
+    private Slide getAttachment(MediaMmsMessageRecord record)
+        throws ExecutionException, InterruptedException
+    {
+      List<Slide> slides = record.getSlideDeck().get().getSlides();
+
+      for (Slide slide : slides) {
+        if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
+          return slide;
+        }
+      }
+
+      return null;
+    }
+
+    private File constructOutputFile(Slide slide) throws IOException {
+      File sdCard = Environment.getExternalStorageDirectory();
+      File outputDirectory;
+
+      if (slide.hasVideo()) {
+        outputDirectory = new File(sdCard.getAbsoluteFile() + File.separator + "Movies");
+      } else if (slide.hasAudio()) {
+        outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Music");
+      } else {
+        outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Pictures");
+      }
+
+      outputDirectory.mkdirs();
+
+      MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+      String      extension   = mimeTypeMap.getExtensionFromMimeType(slide.getContentType());
+
+      if (extension == null)
+        extension = "attach";
+
+      return File.createTempFile("textsecure", "." + extension, outputDirectory);
+    }
+  }
 }

@@ -47,13 +47,6 @@
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>
     <string name="ConversationItem_error_sending_message">Error sending message</string>
-    <string name="ConversationItem_saving_attachment">Saving attachment</string>
-    <string name="ConversationItem_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
-    <string name="ConversationItem_save_to_sd_card">Save to SD card?</string>
-    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted. Would you like to continue?</string>
-    <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
-    <string name="ConversationItem_success_exclamation">Success!</string>
-    <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Unable to write to SD card!</string>
     <string name="ConversationItem_view_secure_media_question">View secure media?</string>
     <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk. Are you sure that you would like to do this?</string>
     <string name="ConversationItem_received_and_processed_key_exchange_message">Received and processed key exchange message.</string>
@@ -102,6 +95,13 @@
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
     <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
     <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+    <string name="ConversationFragment_save_to_sd_card">Save to SD card?</string>
+    <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted. Would you like to continue?</string>
+    <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
+    <string name="ConversationFragment_success_exclamation">Success!</string>
+    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to SD card!</string>
+    <string name="ConversationFragment_saving_attachment">Saving attachment</string>
+    <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
 
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
@@ -794,6 +794,9 @@
     <string name="conversation_context__menu_delete_message">Delete message</string>
     <string name="conversation_context__menu_forward_message">Forward message</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
+
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Save attachment</string>
 
     <!-- conversation_insecure -->
     <string name="conversation_insecure__menu_start_secure_session">Start secure session</string>
