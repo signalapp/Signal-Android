@@ -59,10 +59,23 @@ public class VibratePatternListPreference extends ListPreference  {
 
   @Override
   protected void onDialogClosed(boolean positiveResult) {
+    String previousSetting = getValue();
     super.onDialogClosed(positiveResult);
 
     if (positiveResult && getValue().equals("custom")) {
+      setValue(previousSetting);
+      callChangeListener(previousSetting);
+
       showDialog();
+    }
+  }
+
+  @Override
+  public CharSequence getSummary() {
+    if (getValue().equals("custom")) {
+      return getEntry() + ": " + TextSecurePreferences.getNotificationVibratePatternCustom(context);
+    } else {
+      return super.getSummary();
     }
   }
 
@@ -113,6 +126,8 @@ public class VibratePatternListPreference extends ListPreference  {
       try {
         MessageNotifier.parseVibratePattern(vibratePattern);
         TextSecurePreferences.setNotificationVibratePatternCustom(context, vibratePattern);
+        setValue("custom");
+        callChangeListener("custom");
         Toast.makeText(context, R.string.preferences__pref_vibrate_custom_pattern_set, Toast.LENGTH_LONG).show();
         dialog.dismiss();
         dialogInProgress = false;
