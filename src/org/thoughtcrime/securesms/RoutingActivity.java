@@ -2,7 +2,8 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
+import android.os.AsyncTask;
+import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -127,18 +128,29 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   }
 
   private void handleDisplayConversationOrList() {
-    final ConversationParameters parameters = getConversationParameters();
+    new AsyncTask<Void,Void,Intent>() {
 
-    final Intent intent;
-    if (isShareAction()) {
-      intent = getShareIntent(parameters);
-    } else if (parameters.recipients != null) {
-      intent = getConversationIntent(parameters);
-    } else {
-      intent = getConversationListIntent();
-    }
-    startActivity(intent);
-    finish();
+      @Override
+      protected Intent doInBackground(Void... params) {
+        final ConversationParameters parameters = getConversationParameters();
+
+        final Intent intent;
+        if (isShareAction()) {
+          intent = getShareIntent(parameters);
+        } else if (parameters.recipients != null) {
+          intent = getConversationIntent(parameters);
+        } else {
+          intent = getConversationListIntent();
+        }
+        return intent;
+      }
+
+      @Override
+      protected void onPostExecute(Intent intent) {
+        startActivity(intent);
+        finish();
+      }
+    }.execute();
   }
 
   private Intent getConversationIntent(ConversationParameters parameters) {
@@ -228,22 +240,35 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
 
   private ConversationParameters getConversationParametersForShareAction() {
     String type      = getIntent().getType();
-    String draftText = null;
+    String draftText = getIntent().getStringExtra(Intent.EXTRA_TEXT);
     Uri draftImage   = null;
     Uri draftAudio   = null;
     Uri draftVideo   = null;
 
-    if ("text/plain".equals(type)) {
-      draftText = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    } else if (type != null && type.startsWith("image/")) {
-      draftImage = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
+    Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
+
+    if (streamExtra != null) {
+      type = getMimeType(streamExtra);
+    }
+
+    if (type != null && type.startsWith("image/")) {
+      draftImage = streamExtra;
     } else if (type != null && type.startsWith("audio/")) {
-      draftAudio = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
+      draftAudio = streamExtra;
     } else if (type != null && type.startsWith("video/")) {
-      draftVideo = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
+      draftVideo = streamExtra;
     }
 
     return new ConversationParameters(-1, null, draftText, draftImage, draftAudio, draftVideo);
+  }
+
+  private String getMimeType(Uri uri) {
+    String type = getContentResolver().getType(uri);
+    if (type == null) {
+      String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+      type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+    }
+    return type;
   }
 
   private ConversationParameters getConversationParametersForInternalAction() {
