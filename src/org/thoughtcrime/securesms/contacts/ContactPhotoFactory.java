@@ -10,6 +10,7 @@ import android.provider.ContactsContract.Contacts;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.io.InputStream;
@@ -18,11 +19,15 @@ import java.util.Map;
 
 public class ContactPhotoFactory {
 
-  private static final Object defaultPhotoLock      = new Object();
-  private static final Object defaultGroupPhotoLock = new Object();
+  private static final Object defaultPhotoLock              = new Object();
+  private static final Object defaultGroupPhotoLock         = new Object();
+  private static final Object defaultPhotoCroppedLock       = new Object();
+  private static final Object defaultGroupPhotoCroppedLock  = new Object();
 
   private static Bitmap defaultContactPhoto;
   private static Bitmap defaultGroupContactPhoto;
+  private static Bitmap defaultContactPhotoCropped;
+  private static Bitmap defaultGroupContactPhotoCropped;
 
   private static final Map<Uri,Bitmap> localUserContactPhotoCache =
       Collections.synchronizedMap(new LRUCache<Uri,Bitmap>(2));
@@ -48,6 +53,24 @@ public class ContactPhotoFactory {
         defaultGroupContactPhoto =  BitmapFactory.decodeResource(context.getResources(),
                                                                  R.drawable.ic_group_photo);
       return defaultGroupContactPhoto;
+    }
+  }
+
+  public static Bitmap getDefaultContactPhotoCropped(Context context) {
+    synchronized (defaultPhotoCroppedLock) {
+      if (defaultContactPhotoCropped == null)
+        defaultContactPhotoCropped = BitmapUtil.getCircleCroppedBitmap(getDefaultContactPhoto(context));
+
+      return defaultContactPhotoCropped;
+    }
+  }
+
+  public static Bitmap getDefaultGroupPhotoCropped(Context context) {
+    synchronized (defaultGroupPhotoCroppedLock) {
+      if (defaultGroupContactPhotoCropped == null)
+        defaultGroupContactPhotoCropped = BitmapUtil.getCircleCroppedBitmap(getDefaultGroupPhoto(context));
+
+      return defaultGroupContactPhotoCropped;
     }
   }
 
@@ -82,10 +105,13 @@ public class ContactPhotoFactory {
     localUserContactPhotoCache.remove(recipient.getContactUri());
   }
 
-  private static Bitmap getContactPhoto(Context context, Uri uri) {
+  public static Bitmap getContactPhoto(Context context, Uri uri) {
     InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri);
 
-    if (inputStream == null) return ContactPhotoFactory.getDefaultContactPhoto(context);
-    else                     return BitmapFactory.decodeStream(inputStream);
+    final Bitmap contactPhoto;
+    if (inputStream == null) contactPhoto = ContactPhotoFactory.getDefaultContactPhoto(context);
+    else                     contactPhoto = BitmapFactory.decodeStream(inputStream);
+
+    return contactPhoto;
   }
 }

@@ -58,13 +58,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Вибачте, обраний аудіо-файл більший максимального розміру повідомлення.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адреса одержувача не є ні номером телефону, ні адресою електронної пошти!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Повідомлення порожнє!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Одержувачі у конференції</string>
   <string name="ConversationActivity_group_conversation">Конференція</string>
   <string name="ConversationActivity_unnamed_group">Неназвана група</string>
   <string name="ConversationActivity_d_recipients_in_group">%d отримувачів в групі</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 учасник</string>
-  <string name="ConversationActivity_saving_draft">Збереження чернетки\u2026</string>
   <string name="ConversationActivity_invalid_recipient">Неприпустимий отримувач!</string>
   <string name="ConversationActivity_calls_not_supported">Дзвінки не підтримуються</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ваше пристрій мабуть не підтримує голосові дзвінки.</string>
@@ -85,6 +83,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Видалення обраних бесід\u2026</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключами\u2026</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Експортувати на SD-карту?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Це експортує ваші шифровані ключі, налаштування та повідомлення на SD карту.</string>
@@ -103,7 +102,6 @@
   <string name="GroupCreateActivity_actionbar_update_title">Оновити групу</string>
   <string name="GroupCreateActivity_group_name_hint">Назва групи</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Нова група MMS</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Ви не власник цієї групи, а, отже, ви не можете відредагувати її заголовок та зображення.</string>
   <string name="GroupCreateActivity_file_io_exception">Помилка вводу-виводу. Не вдалося створити тимчасовий файл зображення.</string>
   <string name="GroupCreateActivity_avatar_content_description">Аватар групи</string>
   <string name="GroupCreateActivity_menu_create_title">Створити групу</string>
@@ -285,7 +283,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Контактів не знайдено.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Пошук контактів...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Почніть друкувати ім’я для фільтрації...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Оновлення теки</string>
@@ -297,6 +294,7 @@
   <string name="conversation_activity__type_message">Наберіть повідомлення</string>
   <string name="conversation_activity__send">Надіслати</string>
   <string name="conversation_activity__remove">Вилучити</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Завантажити</string>
   <string name="conversation_item_sent__downloading">Завантаження</string>
@@ -393,7 +391,6 @@
   <string name="registration_progress_activity__sms_verification_failed">SMS-перевірка не вдалася.</string>
   <string name="registration_progress_activity__generating_keys">Генерація ключів\u2026</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">До</string>
   <string name="recipients_panel__add_member">Додати учасника</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">У вашій базі довірених співрозмовників немає жодного особистого ключа.</string>

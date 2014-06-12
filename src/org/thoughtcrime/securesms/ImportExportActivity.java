@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 
@@ -25,7 +24,6 @@ public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActi
     super.onCreate(savedInstanceState);
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
 
     initializeResources();
     initializeViewPager();

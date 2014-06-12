@@ -31,11 +31,12 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SendReceiveService.ToastHandler;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
+import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
 import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
-import org.thoughtcrime.securesms.transport.UserInterventionRequiredException;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import ws.com.google.android.mms.MmsException;
@@ -84,16 +85,18 @@ public class MmsSender {
                               result.getResponseStatus());
 
           systemStateListener.unregisterForConnectivityChange();
-        } catch (UserInterventionRequiredException uire) {
-          Log.w("MmsSender", uire);
-          database.markAsPendingApproval(message.getDatabaseMessageId());
-          Recipients recipients = threads.getRecipientsForThreadId(threadId);
-          MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+        } catch (InsecureFallbackApprovalException ifae) {
+          Log.w("MmsSender", ifae);
+          database.markAsPendingInsecureSmsFallback(message.getDatabaseMessageId());
+          notifyMessageDeliveryFailed(context, threads, threadId);
+        } catch (SecureFallbackApprovalException sfae) {
+          Log.w("MmsSender", sfae);
+          database.markAsPendingSecureSmsFallback(message.getDatabaseMessageId());
+          notifyMessageDeliveryFailed(context, threads, threadId);
         } catch (UndeliverableMessageException e) {
           Log.w("MmsSender", e);
           database.markAsSentFailed(message.getDatabaseMessageId());
-          Recipients recipients = threads.getRecipientsForThreadId(threadId);
-          MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+          notifyMessageDeliveryFailed(context, threads, threadId);
         } catch (UntrustedIdentityException uie) {
           IncomingIdentityUpdateMessage identityUpdateMessage = IncomingIdentityUpdateMessage.createFor(message.getTo()[0].getString(), uie.getIdentityKey());
           DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
@@ -115,6 +118,11 @@ public class MmsSender {
       if (messageId != -1)
         database.markAsSentFailed(messageId);
     }
+  }
+
+  private static void notifyMessageDeliveryFailed(Context context, ThreadDatabase threads, long threadId) {
+    Recipients recipients = threads.getRecipientsForThreadId(threadId);
+    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
   }
 
   private void scheduleQuickRetryAlarm() {

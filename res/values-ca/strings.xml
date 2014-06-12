@@ -65,13 +65,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Ho sento, el clip de so seleccionat excedeix els límits de mida del missatge.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El recipient no és una adreça de correu electrònic o SMS vàlid!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">El missatge és buit!</string>
-  <string name="ConversationActivity_forward_message_prefix">RV</string>
   <string name="ConversationActivity_group_conversation_recipients">Recipients de converses de grup</string>
   <string name="ConversationActivity_group_conversation">Conversa de grup</string>
   <string name="ConversationActivity_unnamed_group">Grup Sensenom</string>
   <string name="ConversationActivity_d_recipients_in_group">%d membres</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 membre</string>
-  <string name="ConversationActivity_saving_draft">Desant borrador...</string>
   <string name="ConversationActivity_invalid_recipient">Destinatari invàlid!</string>
   <string name="ConversationActivity_calls_not_supported">Trucades no suportades</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Aquest dispositiu no sembla suportar accions de trucada.</string>
@@ -92,6 +90,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Esborrant els fils de conversa seleccionats...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportar a la targeta SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Això exportarà les teves claus encriptades, ajustaments, i missatges a la targeta SD.</string>
@@ -112,7 +111,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Nou grup MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Has seleccionat un contacte que no suporta grups de TextSecure, això farà que aquest grup sigui de MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">No estàs registrat per utilitzar el canal de dades, això farà que els grups de TextSecure estiguin desactivats.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">No ets el propietari d\'aquest grup, per tant no pots editar el títol o la fotografia.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ha passat un error inesperat que ha fet que la creació del grup hagi fallat.</string>
   <string name="GroupCreateActivity_contacts_no_members">Necessites almenys una persona dins el teu grup!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Un dels membres del teu grup té un número que no pot ser llegit correctament. Si us plau corregeix o treu aquest contacte i intenta-ho de nou.</string>
@@ -305,12 +303,9 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sense contactes.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Buscant contactes…</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Escriu un nom per filtrar...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">No estàs registrat al servei push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Actualitzant directori</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Actualitzant el Directori Push...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecciona per</string>
   <!--contact_selection_recent_activity-->
@@ -319,6 +314,7 @@
   <string name="conversation_activity__type_message"><small>Envia un missatge</small></string>
   <string name="conversation_activity__send">Envia</string>
   <string name="conversation_activity__remove">Treu</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Descàrrega</string>
   <string name="conversation_item_sent__downloading">Descarregant</string>
@@ -420,7 +416,6 @@
   <string name="registration_progress_activity__sms_verification_failed">La verificació SMS ha fallat.</string>
   <string name="registration_progress_activity__generating_keys">Generant claus...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Per a</string>
   <string name="recipients_panel__add_member">Afegeix membre</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Actualment no tens cap clau d\'identitat a la teva base de dades de confiança.</string>

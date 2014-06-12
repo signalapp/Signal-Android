@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
+import org.whispersystems.textsecure.crypto.LegacyMessageException;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
@@ -95,6 +96,8 @@ public class ReceiveKeyActivity extends Activity {
     } catch (InvalidVersionException ive) {
       Log.w("ReceiveKeyActivity", ive);
     } catch (InvalidMessageException e) {
+      Log.w("ReceiveKeyActivity", e);
+    } catch (LegacyMessageException e) {
       Log.w("ReceiveKeyActivity", e);
     }
     initializeListeners();
@@ -162,7 +165,8 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private void initializeKey()
-      throws InvalidKeyException, InvalidVersionException, InvalidMessageException
+      throws InvalidKeyException, InvalidVersionException,
+      InvalidMessageException, LegacyMessageException
   {
     try {
       String messageBody = getIntent().getStringExtra("body");

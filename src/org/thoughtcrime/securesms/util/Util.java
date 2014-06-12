@@ -98,9 +98,7 @@ public class Util {
     try {
       return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
     } catch (UnsupportedEncodingException e) {
-      // Impossible to reach here!
-      Log.e("MmsDatabase", "ISO_8859_1 must be supported!", e);
-      return "";
+      throw new AssertionError("ISO_8859_1 must be supported!");
     }
   }
 
@@ -108,8 +106,15 @@ public class Util {
     try {
       return isoString.getBytes(CharacterSets.MIMENAME_ISO_8859_1);
     } catch (UnsupportedEncodingException e) {
-      Log.w("Util", "ISO_8859_1 must be supported!", e);
-      return new byte[0];
+      throw new AssertionError("ISO_8859_1 must be supported!");
+    }
+  }
+
+  public static byte[] toUtf8Bytes(String utf8String) {
+    try {
+      return utf8String.getBytes(CharacterSets.MIMENAME_UTF_8);
+    } catch (UnsupportedEncodingException e) {
+      throw new AssertionError("UTF_8 must be supported!");
     }
   }
 

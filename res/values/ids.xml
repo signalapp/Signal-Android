@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="holder_tag"/>
+    <item type="id" name="contact_info_tag"/>
+</resources>

@@ -53,13 +53,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">عذراً، حجم هذا التسجيل يزيد عن الحد المسموح بالرسالة.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">الطرف الآخر ليس رقم هاتف أو عنوان بريد الكتروني صحيح!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">الرسالة فارغة</string>
-  <string name="ConversationActivity_forward_message_prefix">إعادة إرسال</string>
   <string name="ConversationActivity_group_conversation_recipients">مستقبلي رسائل المحادثة الجماعية</string>
   <string name="ConversationActivity_group_conversation">محادثة جماعية</string>
   <string name="ConversationActivity_unnamed_group">مجموعة لا اسم لها</string>
   <string name="ConversationActivity_d_recipients_in_group">أعضاء %d </string>
   <string name="ConversationActivity_d_recipients_in_group_singular">عضو 1</string>
-  <string name="ConversationActivity_saving_draft">حفظ مسودة</string>
   <string name="ConversationActivity_invalid_recipient">جهة اتصال غير صحيحة!</string>
   <string name="ConversationActivity_calls_not_supported">خاصية الاتصال غير متوفرة</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">هذا الجهاز لا يدعم خاصية الاتصال.</string>
@@ -78,6 +76,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">مسح المحادثات المختارة</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">تصديرإلى كرت الذاكرة؟</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">هذه الخاصية تصدر مفاتيحك المشفرة و إعداداتك و رسائلك لكرت الذاكرة.</string>
@@ -259,7 +258,6 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">لا توجد جهات اتصال.</string>
-  <string name="contact_selection_group_activity__finding_contacts">جاري العثورعلى جهات إتصال...</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">اختيار من أجل</string>
@@ -269,6 +267,7 @@
   <string name="conversation_activity__type_message"><small>ارسل رسالة</small></string>
   <string name="conversation_activity__send">ارسال</string>
   <string name="conversation_activity__remove">إزالة</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">تحميل</string>
   <string name="conversation_item_sent__downloading">تحميل</string>
@@ -345,7 +344,6 @@
   <string name="registration_progress_activity__registering_with_server">جاري التسجيل مع الخادم...</string>
   <string name="registration_progress_activity__generating_keys">جارِ انشاء المفتاح...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">إلى</string>
   <string name="recipients_panel__add_member">إضافة عضو</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">لا يوجد لديك أي مفاتيح هوية مسجلة</string>
@@ -380,6 +378,7 @@
   <string name="preferences__general">عام</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">استخدم تكست سيكيور لمشاهدة و حفظ كل الرسائل القصيرة الواردة</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم تكست سيكيور لمشاهدة وحفظ كل رسائل الوسائط المتعددة الواردة</string>
+  <string name="preferences__input_settings">خيارات الادخال</string>
   <string name="preferences__enable_enter_key_title">تفعيل مفتاح الرجوع</string>
   <string name="preferences__pref_enter_sends_title">زر الرجوع Enter يرسل الرسالة</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ضغط مفتاح الرجوع Enter سيرسل الرسالة</string>

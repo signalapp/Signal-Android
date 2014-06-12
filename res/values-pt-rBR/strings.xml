@@ -8,7 +8,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Correntemente: %s</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">É necessário digitar a frase-chave antes de gerenciar as chaves...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">Mensagens por conversa</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">mensagens por conversa</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Deletar todas mensagens antigas agora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
   <string name="ApplicationPreferencesActivity_delete">Deletar</string>
@@ -53,7 +53,10 @@
   <string name="ConversationItem_group_action_joined">%1$s entrou no grupo.</string>
   <string name="ConversationItem_group_action_modify">%1$s atualizou o grupo.</string>
   <string name="ConversationItem_click_to_approve">Clique para usar SMS como contingência</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Clique para usar contingência insegura</string>
   <string name="ConversationItem_click_to_approve_dialog_title">Contingenciar para SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Contingenciar para SMS não criptografado?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois não foi possível estabelecer uma sessão segura.\n\nEnviar mensagem insegura?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniciar sessão segura com %s?</string>
@@ -69,13 +72,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lamento, o áudio seleccionado excede as restrições de tamanho da mensagem</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatário não é um endereço SMS ou email válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">A mensagem está vazia!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Agrupar destinatários de conversa</string>
   <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
   <string name="ConversationActivity_unnamed_group">Grupo sem nome</string>
   <string name="ConversationActivity_d_recipients_in_group">%d membros</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 membro</string>
-  <string name="ConversationActivity_saving_draft">Salvando rascunho...</string>
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Chamadas não suportadas</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este aparelho parece não suportar ações de chamada.</string>
@@ -96,6 +97,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Deletando conversas selecionadas...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportar para cartão SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Isto\n        exportará suas chaves criptografadas, configurações e mensagens para o cartão SD.\n    </string>
@@ -116,7 +118,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Novo grupo MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Você selecionou um contato que não tem suporte a grupos TextSecure, então este grupo será de MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Você não está cadastrado para usar o canal de dados, então grupos TextSecure estão desabilitados.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Você não é o dono deste grupo, portanto não pode editar o título nem a foto.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Um erro inesperado ocorreu e fez a criação do grupo falhar.</string>
   <string name="GroupCreateActivity_contacts_no_members">Você precisa de pelo menos uma pessoa no seu grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número que não pôde ser lido. Favor consertar ou remover esse contato e tentar novamente.</string>
@@ -218,6 +219,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\n        Mensagem recebida com chave de identidade desconhecida. Clique para processar e exibir.\n    </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Foi recebida atualização mas com informação de identidade desconhecida. Clique para validar a identidade.</string>
   <string name="SmsMessageRecord_secure_session_ended">Sessão segura terminada.</string>
+  <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Saiu do grupo...</string>
   <string name="TheadRecord_secure_session_ended">Sessão segura terminada.</string>
@@ -309,12 +311,13 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sem contactos.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Encontrando contatos...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Carregando contatos...</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Digite um nome para filtrar...</string>
   <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Você não está cadastrado no serviço push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Atualizando diretório</string>
   <string name="SingleContactSelectionActivity_updating_push_directory">Atualizando diretório push...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Foto do contato</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
   <!--contact_selection_recent_activity-->
@@ -323,6 +326,7 @@
   <string name="conversation_activity__type_message"><small>Enviar uma mensagem</small></string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Remover</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Transferir</string>
   <string name="conversation_item_sent__downloading">A transferir</string>
@@ -353,6 +357,8 @@
   <string name="log_submit_activity__copied_to_clipboard">Copiada para a área de transferência</string>
   <string name="log_submit_activity__loading_logcat">Carregando logcat...</string>
   <string name="log_submit_activity__thanks">Obrigado por sua ajuda!</string>
+  <string name="log_submit_activity__submitting">Enviando</string>
+  <string name="log_submit_activity__posting_logs">Postando logs no pastebin...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar suas mensagens de texto existentes para a base de dados criptografada do TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados padrão do sistema não será alterada.</string>
@@ -424,7 +430,7 @@
   <string name="registration_progress_activity__sms_verification_failed">Verificação de SMS\nfalhou.</string>
   <string name="registration_progress_activity__generating_keys">Gerando chaves...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Para</string>
+  <string name="recipients_panel__to"><small>Digite um nome ou um número</small></string>
   <string name="recipients_panel__add_member">Adicionar membro</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Não tem, presentemente, nenhuma chave de identidade na sua base de dados de confianças.</string>
@@ -463,6 +469,7 @@
   <string name="preferences__pref_all_mms_title">Receber todos os MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilizar TextSecure para visualizar e armazenar todas as mensagens de texto recebidas</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar TextSecure para visualizar e armazenar todas as mensagens multimídia recebidas</string>
+  <string name="preferences__input_settings">Configurações de introdução</string>
   <string name="preferences__enable_enter_key_title">Habilitar tecla Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Troca a tecla smiley por uma tecla enter</string>
   <string name="preferences__pref_enter_sends_title">Tecla de enter envia</string>
@@ -557,6 +564,8 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Seleccionar tudo</string>
   <string name="contact_selection_list__menu_unselect_all">Desseleccionar tudo</string>
+  <string name="contact_selection_list__header_textsecure_users">USUÁRIOS TEXTSECURE</string>
+  <string name="contact_selection_list__header_other">TODOS OS CONTATOS</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Terminado</string>
   <!--refreshing push directory from menu-->

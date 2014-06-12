@@ -1,3 +1,19 @@
+/**
+ * Copyright (C) 2014 Open Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.whispersystems.textsecure.push;
 
 import android.content.Context;
@@ -10,6 +26,7 @@ import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.BlacklistingTrustManager;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
@@ -32,14 +49,22 @@ import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
+/**
+ *
+ * Network interface to the TextSecure server API.
+ *
+ * @author Moxie Marlinspike
+ */
 public class PushServiceSocket {
 
   private static final String CREATE_ACCOUNT_SMS_PATH   = "/v1/accounts/sms/code/%s";
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
+  private static final String PREKEY_METADATA_PATH      = "/v1/keys/";
   private static final String PREKEY_PATH               = "/v1/keys/%s";
   private static final String PREKEY_DEVICE_PATH        = "/v1/keys/%s/%s";
 
@@ -50,20 +75,20 @@ public class PushServiceSocket {
 
   private static final boolean ENFORCE_SSL = true;
 
-  private final Context context;
-  private final String serviceUrl;
-  private final String localNumber;
-  private final String password;
-  private final TrustManagerFactory trustManagerFactory;
+  private final Context        context;
+  private final String         serviceUrl;
+  private final String         localNumber;
+  private final String         password;
+  private final TrustManager[] trustManagers;
 
   public PushServiceSocket(Context context, String serviceUrl, TrustStore trustStore,
                            String localNumber, String password)
   {
-    this.context             = context.getApplicationContext();
-    this.serviceUrl          = serviceUrl;
-    this.localNumber         = localNumber;
-    this.password            = password;
-    this.trustManagerFactory = initializeTrustManagerFactory(trustStore);
+    this.context       = context.getApplicationContext();
+    this.serviceUrl    = serviceUrl;
+    this.localNumber   = localNumber;
+    this.password      = password;
+    this.trustManagers = initializeTrustManager(trustStore);
   }
 
   public void createAccount(boolean voice) throws IOException {
@@ -121,6 +146,13 @@ public class PushServiceSocket {
 
     makeRequest(String.format(PREKEY_PATH, ""), "PUT",
                 PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
+  }
+
+  public int getAvailablePreKeys() throws IOException {
+    String       responseText = makeRequest(PREKEY_METADATA_PATH, "GET", null);
+    PreKeyStatus preKeyStatus = new Gson().fromJson(responseText, PreKeyStatus.class);
+
+    return preKeyStatus.getCount();
   }
 
   public List<PreKeyEntity> getPreKeys(PushAddress destination) throws IOException {
@@ -348,7 +380,7 @@ public class PushServiceSocket {
   private HttpURLConnection getConnection(String urlFragment, String method) throws IOException {
     try {
       SSLContext context = SSLContext.getInstance("TLS");
-      context.init(null, trustManagerFactory.getTrustManagers(), null);
+      context.init(null, trustManagers, null);
 
       URL url = new URL(String.format("%s%s", serviceUrl, urlFragment));
       Log.w("PushServiceSocket", "Push service URL: " + serviceUrl);
@@ -386,7 +418,7 @@ public class PushServiceSocket {
     }
   }
 
-  private TrustManagerFactory initializeTrustManagerFactory(TrustStore trustStore) {
+  private TrustManager[] initializeTrustManager(TrustStore trustStore) {
     try {
       InputStream keyStoreInputStream = trustStore.getKeyStoreInputStream();
       KeyStore    keyStore            = KeyStore.getInstance("BKS");
@@ -396,7 +428,7 @@ public class PushServiceSocket {
       TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("X509");
       trustManagerFactory.init(keyStore);
 
-      return trustManagerFactory;
+      return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
     } catch (KeyStoreException kse) {
       throw new AssertionError(kse);
     } catch (CertificateException e) {

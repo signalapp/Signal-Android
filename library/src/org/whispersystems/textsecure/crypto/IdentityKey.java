@@ -23,7 +23,6 @@ import android.os.Parcelable;
 import org.whispersystems.textsecure.crypto.ecc.Curve;
 import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Hex;
-import org.whispersystems.textsecure.util.Util;
 
 /**
  * A class for representing an identity key.
@@ -80,14 +79,7 @@ public class IdentityKey implements Parcelable, SerializableKey {
   }
 	
   public byte[] serialize() {
-    if (publicKey.getType() == Curve.NIST_TYPE) {
-      byte[] versionBytes = {0x01};
-      byte[] encodedKey   = publicKey.serialize();
-
-      return Util.combine(versionBytes, encodedKey);
-    } else {
-      return publicKey.serialize();
-    }
+    return publicKey.serialize();
   }
 
   public String getFingerprint() {

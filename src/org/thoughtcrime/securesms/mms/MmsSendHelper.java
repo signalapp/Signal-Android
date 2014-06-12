@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
@@ -36,14 +37,15 @@ import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.SendConf;
 
 public class MmsSendHelper extends MmsCommunication {
+  private final static String TAG = MmsSendHelper.class.getSimpleName();
 
-  private static byte[] makePost(Context context, MmsConnectionParameters parameters, byte[] mms)
+  private static byte[] makePost(Context context, MmsConnectionParameters.Apn parameters, byte[] mms)
       throws IOException
   {
     AndroidHttpClient client = null;
 
     try {
-      Log.w("MmsSender", "Sending MMS1 of length: " + (mms != null ? mms.length : "null"));
+      Log.w(TAG, "Sending MMS1 of length: " + (mms != null ? mms.length : "null"));
       client                 = constructHttpClient(context, parameters);
       URI targetUrl          = new URI(parameters.getMmsc());
 
@@ -68,7 +70,7 @@ public class MmsSendHelper extends MmsCommunication {
 
       return parseResponse(response.getEntity());
     } catch (URISyntaxException use) {
-      Log.w("MmsSendHelper", use);
+      Log.w(TAG, use);
       throw new IOException("Couldn't parse URI.");
     } finally {
       if (client != null)
@@ -88,11 +90,6 @@ public class MmsSendHelper extends MmsCommunication {
       throws IOException
   {
     byte[] response = sendBytes(context, mms, apn, usingMmsRadio, useProxyIfAvailable);
-
-    if (response == null) {
-      throw new IOException("Got null response!");
-    }
-
     return (SendConf) new PduParser(response).parse();
   }
 
@@ -100,13 +97,18 @@ public class MmsSendHelper extends MmsCommunication {
                                   boolean usingMmsRadio, boolean useProxyIfAvailable)
     throws IOException
   {
-    Log.w("MmsSender", "Sending MMS of length: " + mms.length);
+    Log.w(TAG, "Sending MMS of length: " + mms.length);
     try {
       MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn, useProxyIfAvailable);
-      checkRouteToHost(context, parameters, parameters.getMmsc(), usingMmsRadio);
-      return makePost(context, parameters, mms);
+      for (MmsConnectionParameters.Apn param : parameters.get()) {
+        if (checkRouteToHost(context, param, param.getMmsc(), usingMmsRadio)) {
+          byte[] response = makePost(context, param, mms);
+          if (response != null) return response;
+        }
+      }
+      throw new IOException("Connection manager could not obtain route to host.");
     } catch (ApnUnavailableException aue) {
-      Log.w("MmsSender", aue);
+      Log.w(TAG, aue);
       throw new IOException("Failed to get MMSC information...");
     }
   }
@@ -114,7 +116,12 @@ public class MmsSendHelper extends MmsCommunication {
   public static boolean hasNecessaryApnDetails(Context context) {
     try {
       ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-      String apn = connectivityManager.getNetworkInfo(MmsRadio.TYPE_MOBILE_MMS).getExtraInfo();
+      NetworkInfo         networkInfo         = connectivityManager.getNetworkInfo(MmsRadio.TYPE_MOBILE_MMS);
+      if (networkInfo == null) {
+        Log.w(TAG, "MMS network info was null, unsupported by this device");
+        return false;
+      }
+      String apn = networkInfo.getExtraInfo();
 
       MmsCommunication.getMmsConnectionParameters(context, apn, true);
       return true;

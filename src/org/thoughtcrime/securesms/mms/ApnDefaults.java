@@ -21,8 +21,14 @@ public class ApnDefaults {
             //T-Mobile USA - Tested: Works
             put("310260", new MmsConnectionParameters("http://mms.msg.eng.t-mobile.com/mms/wapenc", null, null));
 
+            //T-Mobile UK - Untested (http://www.unlockme.co.uk/network-provider-codes.html)
+            put("23430", new MmsConnectionParameters("http://mmsc.t-mobile.co.uk:8002", "149.254.201.135","8080"));
+            put("23431", new MmsConnectionParameters("http://mmsc.t-mobile.co.uk:8002", "149.254.201.135","8080"));
+            put("23432", new MmsConnectionParameters("http://mmsc.t-mobile.co.uk:8002", "149.254.201.135","8080"));
+
             //AT&T - Testd
-            put("310410", new MmsConnectionParameters("http://mmsc.mobile.att.net", "proxy.mobile.att.net", "80"));
+            put("310410", (new MmsConnectionParameters("http://mmsc.cingular.com", "wireless.cingular.com", "80"))
+                                                  .add("http://mmsc.mobile.att.net", "proxy.mobile.att.net", "80"));
 
             //Verizon - Untested
             put("310004", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
@@ -127,7 +133,6 @@ public class ApnDefaults {
             put("23410", new MmsConnectionParameters("http://mmsc.mms.o2.co.uk:8002", "82.132.254.1", "8080"));
             put("23415", new MmsConnectionParameters("http://mms.vodafone.co.uk/servlets/mms", "212.183.137.12", "8799"));
             put("23420", new MmsConnectionParameters("http://mms.um.three.co.uk:10021/mmsc", "mms.three.co.uk", "8799"));
-            put("23430", new MmsConnectionParameters("http://mms.orange.co.uk/", "192.168.224.10", "8080"));
             put("23433", new MmsConnectionParameters("http://mms.orange.co.uk/", "192.168.224.10", "8080"));
             put("23801", new MmsConnectionParameters("http://mmsc.tdc.dk:8002", "194.182.251.15", "8080"));
             put("23802", new MmsConnectionParameters("http://mms.telenor.dk", "212.88.64.8", "8080"));
@@ -140,7 +145,7 @@ public class ApnDefaults {
             put("24007", new MmsConnectionParameters("http://mmsc.tele2.se", "130.244.202.30", "8080"));
             put("24008", new MmsConnectionParameters("http://mms", "172.30.253.241", "8799"));
             put("24024", new MmsConnectionParameters("http://mmsc.tele2.se", "130.244.202.30", "8080"));
-            put("24201", new MmsConnectionParameters("http://mmsc/", "10.10.10.11", "8080"));
+            put("24201", new MmsConnectionParameters("http://mmsc/", "mms-proxy.telenor.no", "8080"));
             put("24202", new MmsConnectionParameters("http://mm", "212.169.66.4", "8080"));
             put("24205", new MmsConnectionParameters("http://mms.nwn.no", "188.149.250.10", "80"));
             put("24405", new MmsConnectionParameters("http://mms.saunalahti.fi:8002", "62.142.4.197", "8080"));
@@ -233,6 +238,7 @@ public class ApnDefaults {
             put("310120", new MmsConnectionParameters("http://mms.sprintpcs.com", null, null));
             put("310127", new MmsConnectionParameters("http://mms.vtext.com/servlets/mms", null, null));
             put("31013", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
+            put("310150", new MmsConnectionParameters("http://mmsc.aiowireless.net/", "proxy.aiowireless.net", "80"));
             put("31016", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("31018", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("310180", new MmsConnectionParameters("http://mms.wcc.net", "209.55.70.246", "80"));
@@ -256,7 +262,6 @@ public class ApnDefaults {
             put("31039", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("31040", new MmsConnectionParameters("http://mms.sprintpcs.com", "68.28.31.7", "80"));
             put("31041", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
-            put("310410", new MmsConnectionParameters("http://mmsc.mobile.att.net", "proxy.mobile.att.net", "80"));
             put("31042", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));
             put("310420", new MmsConnectionParameters("http://mms.gocbw.com:8088/mms", "216.68.79.202", "80"));
             put("31043", new MmsConnectionParameters("http://mms.metropcs.net:3128/mmsc", "proxy.metropcs.net", "3128"));

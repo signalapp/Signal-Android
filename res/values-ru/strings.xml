@@ -24,7 +24,9 @@
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Вы не зарегистрированы для использования push...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Обновление Push</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Обновление push каталога...</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Входящие SMS включены</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора СМС обработчика</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Входящие SMS отключены</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Нажмите, что бы использовать TextSecure для SMS</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Изображение</string>
@@ -50,6 +52,8 @@
   <string name="ConversationItem_group_action_left">%1$s покинул группу.</string>
   <string name="ConversationItem_group_action_joined">%1$s присоединился к группе.</string>
   <string name="ConversationItem_group_action_modify">%1$s обновил группу.</string>
+  <string name="ConversationItem_click_to_approve">Активировать SMS-режим</string>
+  <string name="ConversationItem_click_to_approve_dialog_title">Резервный SMS-режим?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Начать защищённый сеанс?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Начать защищённый сеанс связи с %s?</string>
@@ -65,13 +69,11 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Извините, выбранный аудио-файл больше максимального размера сообщения.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
-  <string name="ConversationActivity_forward_message_prefix">FWD</string>
   <string name="ConversationActivity_group_conversation_recipients">Получатели в конференции</string>
   <string name="ConversationActivity_group_conversation">Конференция</string>
   <string name="ConversationActivity_unnamed_group">Группа без названия</string>
   <string name="ConversationActivity_d_recipients_in_group">%d участников</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 участник</string>
-  <string name="ConversationActivity_saving_draft">Сохраняем черновик...</string>
   <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
   <string name="ConversationActivity_calls_not_supported">Звонки не поддерживаются</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ваше устройство, по-видимому, не поддерживает голосовые звонки.</string>
@@ -92,6 +94,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Удаляем выбранные разговоры...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщениe обмена ключами...</string>
+  <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Экспортировать на SD-карту?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Вы собираетесь экспортировать на SD-карту свои зашифрованные ключи, настройки и сообщения.</string>
@@ -112,7 +115,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS группа</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает группы TextSecure. Для группы будет использоваться MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Вы не зарегистрированны для использования канала передачи данных. Группы отключены.</string>
-  <string name="GroupCreateActivity_you_dont_own_this_group">Вы не владелец этой группы и не можете менять название или изображение.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Непредвиденная ошибка не позволила создать группу.</string>
   <string name="GroupCreateActivity_contacts_no_members">Нужен как минимум один участник в группе!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Один из учасников имеет неправильный номер. Пожалуйста, исправьте или удалите контакт и попробуйте снова.</string>
@@ -215,6 +217,7 @@
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получены новые но непроверенные данные. Нажмите для проверки.</string>
   <string name="SmsMessageRecord_secure_session_ended">Защищённый сеанс завершён.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Покидает группу...</string>
   <string name="TheadRecord_secure_session_ended">Защищённый сеанс завершён.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>
@@ -304,12 +307,9 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нет контактов.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Поиск контактов…</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Введите имя для выбора...</string>
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Вы не зарегистрированы для использования push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Обновление Push</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Обновление push директории...</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Выбрать для</string>
   <!--contact_selection_recent_activity-->
@@ -318,6 +318,7 @@
   <string name="conversation_activity__type_message"><small>Послать сообщение</small></string>
   <string name="conversation_activity__send">Отправить</string>
   <string name="conversation_activity__remove">Удалить</string>
+  <!--conversation_item-->
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Скачать</string>
   <string name="conversation_item_sent__downloading">Скачивание</string>
@@ -330,7 +331,7 @@
   <string name="country_selection_fragment__loading_countries">Загружаем страны...</string>
   <string name="country_selection_fragment__search">Поиск</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Пожалуйста, выберите парольную фразу, для локального шифрования ваших данных.</string>
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Пожалуйста, выберите парольную фразу для локального шифрования ваших данных.</string>
   <string name="create_passphrase_activity__passphrase">ПАРОЛЬНАЯ ФРАЗА:</string>
   <string name="create_passphrase_activity__repeat">ПОВТОРИТЕ:</string>
   <string name="create_passphrase_activity__continue">Продолжить</string>
@@ -419,7 +420,6 @@
   <string name="registration_progress_activity__sms_verification_failed">Подтверждение\nпо SMS не удалось.\n</string>
   <string name="registration_progress_activity__generating_keys">Генерируем ключи...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">Кому</string>
   <string name="recipients_panel__add_member">Добавить участника</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">В вашей базе доверенных собеседников нет ни одного личного ключа.</string>
@@ -453,8 +453,12 @@
   <string name="arrays__contact_keys">Ключи контактов</string>
   <!--preferences.xml-->
   <string name="preferences__general">Общие</string>
+  <string name="preferences__push_sms_category">Push и SMS</string>
+  <string name="preferences__pref_all_sms_title">Получать все SMS</string>
+  <string name="preferences__pref_all_mms_title">Получать все MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Использовать TextSecure для просмотра и хранения всех входящих текстовых сообщений</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать TextSecure для просмотра и хранения всех входящих мультимедийных сообщений</string>
+  <string name="preferences__input_settings">Ввести Настройки</string>
   <string name="preferences__enable_enter_key_title">Включить клавишу «Ввод»</string>
   <string name="preferences__replace_smiley_with_enter_key">Заменить клавишу смайликов на «Ввод»</string>
   <string name="preferences__pref_enter_sends_title">Отправка по «Enter»</string>
@@ -483,6 +487,10 @@
   <string name="preferences__display_message_notifications_in_status_bar">Показывать уведомления о сообщениях в статусной строке</string>
   <string name="preferences__led_color">Цвет светодиода</string>
   <string name="preferences__pref_led_blink_title">Мигание светодиода</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Настроить индикацию</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Включен для:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Выключен для:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Индикация настроена!</string>
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__change_notification_sound">Изменить мелодию уведомления</string>
   <string name="preferences__inthread_notifications">Уведомления при разговоре</string>
@@ -529,9 +537,16 @@
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Сделать TextSecure приложением по умолчанию для SMS и MMS.</string>
   <string name="preferences__use_data_channel">Push сообщения</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nПовысить безопасность и снизить расходы на SMS, используя передачу данных при общении с другими пользователями TextSecure</string>
+  <string name="preferences__allow_sms_fallback">Разрешить исходящие SMS</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure используется для обработки SMS. Выберите другую программу для SMS, чтобы изменить эту настройку.</string>
   <string name="preferences__refresh_push_directory">Обновить Push каталог</string>
   <string name="preferences__submit_debug_log">Отправить журнал отладки</string>
+  <string name="preferences__sms_outgoing_push_users">Пользователи TextSecure</string>
+  <string name="preferences__sms_fallback_push_users_ask">(сначала спросить)</string>
+  <string name="preferences__sms_outgoing_push_users_description">Отправлять зашифрованные SMS если нет связи</string>
+  <string name="preferences__sms_fallback_ask_fallback">Спросить перед отправкой SMS</string>
+  <string name="preferences__sms_fallback_non_push_users">Пользователи без TextSecure</string>
+  <string name="preferences__sms_fallback_nobody">Никто</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

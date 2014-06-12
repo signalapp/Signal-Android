@@ -83,11 +83,11 @@ public class MasterCipher {
     return new String(decodeAndDecryptBytes(body));
   }
 	
-  public ECPrivateKey decryptKey(int type, byte[] key)
+  public ECPrivateKey decryptKey(byte[] key)
       throws org.whispersystems.textsecure.crypto.InvalidKeyException
   {
     try {
-      return Curve.decodePrivatePoint(type, decryptBytes(key));
+      return Curve.decodePrivatePoint(decryptBytes(key));
     } catch (InvalidMessageException ime) {
       throw new org.whispersystems.textsecure.crypto.InvalidKeyException(ime);
     }

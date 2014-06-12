@@ -21,19 +21,15 @@ public class DynamicTheme {
 
   public void onResume(Activity activity) {
     if (currentTheme != getSelectedTheme(activity)) {
-      Intent intent = activity.getIntent();
-      intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-      activity.startActivity(intent);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        activity.recreate();
+      } else {
+        Intent intent = activity.getIntent();
+        activity.finish();
+        OverridePendingTransition.invoke(activity);
+        activity.startActivity(intent);
         OverridePendingTransition.invoke(activity);
       }
-
-      activity.finish();
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
-        OverridePendingTransition.invoke(activity);
-      }
-
     }
   }
 

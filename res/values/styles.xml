@@ -21,6 +21,39 @@
            parent="@style/Widget.Sherlock.ActionBar">
         <item name="android:background">#ff111111</item>
         <item name="background">#ff111111</item>
+        <item name="android:icon">@drawable/actionbar_icon_holo_dark</item>
+        <item name="icon">@drawable/actionbar_icon_holo_dark</item>
+    </style>
+
+    <style name="TextSecure.ClearTitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+    <style name="TextSecure.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+        <item name="android:textColor">#ff555555</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">#ff555555</item>
+    </style>
+
+    <style name="TextSecure.LightActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid">
+        <item name="android:titleTextStyle">@style/TextSecure.TitleTextStyle</item>
+        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
+        <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="android:icon">@drawable/actionbar_icon_holo_light</item>
+        <item name="icon">@drawable/actionbar_icon_holo_light</item>
+    </style>
+
+    <style name="TextSecure.IntroActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid">
+        <item name="android:titleTextStyle">@style/TextSecure.ClearTitleTextStyle</item>
+        <item name="titleTextStyle">@style/TextSecure.ClearTitleTextStyle</item>
+        <item name="android:background">@drawable/background_pattern_repeat</item>
+        <item name="background">@drawable/background_pattern_repeat</item>
+        <item name="android:icon">@android:color/transparent</item>
+        <item name="icon">@android:color/transparent</item>
     </style>
 
 	<style name="transparent_progress">

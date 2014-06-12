@@ -174,6 +174,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     updateTypeBitmask(id, 0, Types.SECURE_MESSAGE_BIT);
   }
 
+  public void markAsInsecure(long id) {
+    updateTypeBitmask(id, Types.SECURE_MESSAGE_BIT, 0);
+  }
+
   public void markAsPush(long id) {
     updateTypeBitmask(id, 0, Types.PUSH_MESSAGE_BIT);
   }
@@ -186,6 +190,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
   }
 
+  public void markAsDecryptDuplicate(long id) {
+    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_DUPLICATE_BIT);
+  }
+
   public void markAsNoSession(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
   }
@@ -194,12 +202,20 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_BIT);
   }
 
+  public void markAsLegacyVersion(long id) {
+    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT);
+  }
+
   public void markAsOutbox(long id) {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_OUTBOX_TYPE);
   }
 
-  public void markAsPendingApproval(long id) {
-    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_PENDING_FALLBACK_APPROVAL);
+  public void markAsPendingSecureSmsFallback(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_PENDING_SECURE_SMS_FALLBACK);
+  }
+
+  public void markAsPendingInsecureSmsFallback(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK);
   }
 
   public void markAsSending(long id) {
@@ -263,8 +279,9 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       else if (((IncomingKeyExchangeMessage)message).isProcessed())      type |= Types.KEY_EXCHANGE_PROCESSED_BIT;
       else if (((IncomingKeyExchangeMessage)message).isCorrupted())      type |= Types.KEY_EXCHANGE_CORRUPTED_BIT;
       else if (((IncomingKeyExchangeMessage)message).isInvalidVersion()) type |= Types.KEY_EXCHANGE_INVALID_VERSION_BIT;
-      else if (((IncomingKeyExchangeMessage)message).isPreKeyBundle())   type |= Types.KEY_EXCHANGE_BUNDLE_BIT;
       else if (((IncomingKeyExchangeMessage)message).isIdentityUpdate()) type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
+      else if (((IncomingKeyExchangeMessage)message).isLegacyVersion())  type |= Types.ENCRYPTION_REMOTE_LEGACY_BIT;
+      else if (((IncomingKeyExchangeMessage)message).isPreKeyBundle())   type |= Types.KEY_EXCHANGE_BUNDLE_BIT;
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.ENCRYPTION_REMOTE_BIT;
@@ -345,10 +362,13 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
   }
 
-  protected List<Long> insertMessageOutbox(long threadId, OutgoingTextMessage message, long type) {
+  protected List<Long> insertMessageOutbox(long threadId, OutgoingTextMessage message,
+                                           long type, boolean forceSms)
+  {
     if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
     else if (message.isSecureMessage()) type |= Types.SECURE_MESSAGE_BIT;
     else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
+    if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
 
     long date             = System.currentTimeMillis();
     List<Long> messageIds = new LinkedList<Long>();

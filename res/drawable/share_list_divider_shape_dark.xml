@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/conversation_list_item_background_read_dark" />
+        </shape>
+    </item>
+    <item android:left="73dp" android:right="10dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/conversation_list_divider_dark" />
+        </shape>
+    </item>
+</layer-list>

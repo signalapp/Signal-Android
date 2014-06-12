@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="32sp"
+    android:paddingLeft="10dp"
+    android:paddingRight="25dp">
+
+    <TextView android:id="@+id/text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:singleLine="true"
+              android:ellipsize="marquee"
+              android:layout_centerVertical="true"
+              android:layout_alignParentLeft="true"
+              android:textSize="15sp"
+              android:textColor="?conversation_selection_header_text"
+              android:textStyle="bold" />
+
+    <View android:layout_width="match_parent"
+          android:layout_height="3dp"
+          android:layout_alignParentBottom="true"
+          android:layout_marginTop="2dp"
+          android:background="?conversation_selection_header_text" />
+</RelativeLayout>

@@ -68,7 +68,6 @@ public class RegistrationService extends Service {
   public static final String GCM_REGISTRATION_ID    = "GCMRegistrationId";
 
   private static final long REGISTRATION_TIMEOUT_MILLIS = 120000;
-  private static final Object GENERATING_PREKEYS_SEMAPHOR = new Object();
 
   private final ExecutorService executor = Executors.newSingleThreadExecutor();
   private final Binder          binder   = new RegistrationServiceBinder();
@@ -144,27 +143,6 @@ public class RegistrationService extends Service {
     registerReceiver(gcmRegistrationReceiver, filter);
   }
 
-  private void initializePreKeyGenerator(final MasterSecret masterSecret) {
-    synchronized (GENERATING_PREKEYS_SEMAPHOR) {
-      if (generatingPreKeys) return;
-      else                   generatingPreKeys = true;
-    }
-
-    new Thread() {
-      public void run() {
-        if (PreKeyUtil.getPreKeys(RegistrationService.this, masterSecret).size() < PreKeyUtil.BATCH_SIZE) {
-          PreKeyUtil.generatePreKeys(RegistrationService.this, masterSecret);
-          PreKeyUtil.generateLastResortKey(RegistrationService.this, masterSecret);
-        }
-
-        synchronized (GENERATING_PREKEYS_SEMAPHOR) {
-          generatingPreKeys = false;
-          GENERATING_PREKEYS_SEMAPHOR.notifyAll();
-        }
-      }
-    }.start();
-  }
-
   private synchronized void shutdownChallengeListener() {
     if (challengeReceiver != null) {
       unregisterReceiver(challengeReceiver);
@@ -195,7 +173,6 @@ public class RegistrationService extends Service {
 
     try {
       initializeGcmRegistrationListener();
-      initializePreKeyGenerator(masterSecret);
 
       PushServiceSocket socket = PushServiceSocketFactory.create(this, number, password);
 
@@ -240,8 +217,6 @@ public class RegistrationService extends Service {
 
       initializeChallengeListener();
       initializeGcmRegistrationListener();
-      initializePreKeyGenerator(masterSecret);
-
 
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
       PushServiceSocket socket = PushServiceSocketFactory.create(this, number, password);
@@ -286,8 +261,8 @@ public class RegistrationService extends Service {
       throws GcmRegistrationTimeoutException, IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this, Curve.DJB_TYPE);
-    List<PreKeyRecord> records     = waitForPreKeys(masterSecret);
+    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this);
+    List<PreKeyRecord> records     = PreKeyUtil.generatePreKeys(this, masterSecret);
     PreKeyRecord       lastResort  = PreKeyUtil.generateLastResortKey(this, masterSecret);
     socket.registerPreKeys(identityKey, lastResort, records);
 
@@ -331,20 +306,6 @@ public class RegistrationService extends Service {
       throw new GcmRegistrationTimeoutException();
 
     return this.gcmRegistrationId;
-  }
-
-  private List<PreKeyRecord> waitForPreKeys(MasterSecret masterSecret) {
-    synchronized (GENERATING_PREKEYS_SEMAPHOR) {
-      while (generatingPreKeys) {
-        try {
-          GENERATING_PREKEYS_SEMAPHOR.wait();
-        } catch (InterruptedException e) {
-          throw new AssertionError(e);
-        }
-      }
-    }
-
-    return PreKeyUtil.getPreKeys(this, masterSecret);
   }
 
   private synchronized void challengeReceived(String challenge) {

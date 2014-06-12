@@ -26,6 +26,7 @@ import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageCo
 
 public class GroupReceiver {
 
+  private static final String TAG =  GroupReceiver.class.getSimpleName();;
   private final Context context;
 
   public GroupReceiver(Context context) {
@@ -38,12 +39,12 @@ public class GroupReceiver {
                       boolean secure)
   {
     if (!messageContent.getGroup().hasId()) {
-      Log.w("GroupReceiver", "Received group message with no id! Ignoring...");
+      Log.w(TAG, "Received group message with no id! Ignoring...");
       return;
     }
 
     if (!secure) {
-      Log.w("GroupReceiver", "Received insecure group push action! Ignoring...");
+      Log.w(TAG, "Received insecure group push action! Ignoring...");
       return;
     }
 
@@ -57,10 +58,10 @@ public class GroupReceiver {
       handleGroupUpdate(masterSecret, message, group, record);
     } else if (record == null && type == GroupContext.Type.UPDATE_VALUE) {
       handleGroupCreate(masterSecret, message, group);
-    } else if (type == GroupContext.Type.QUIT_VALUE) {
+    } else if (record != null && type == GroupContext.Type.QUIT_VALUE) {
       handleGroupLeave(masterSecret, message, group, record);
     } else if (type == GroupContext.Type.UNKNOWN_VALUE) {
-      Log.w("GroupReceiver", "Received unknown type, ignoring...");
+      Log.w(TAG, "Received unknown type, ignoring...");
     }
   }
 
@@ -117,6 +118,7 @@ public class GroupReceiver {
       group = group.toBuilder().clearName().build();
     }
 
+    if (!groupRecord.isActive()) database.setActive(id, true);
     storeMessage(masterSecret, message, group);
   }
 

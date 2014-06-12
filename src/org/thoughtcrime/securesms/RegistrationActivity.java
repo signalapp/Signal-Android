@@ -17,7 +17,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.google.android.gcm.GCMRegistrar;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
@@ -25,7 +24,6 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import org.thoughtcrime.securesms.util.ActionBarUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Dialogs;
@@ -58,7 +56,7 @@ public class RegistrationActivity extends SherlockActivity {
     super.onCreate(icicle);
     setContentView(R.layout.registration_activity);
 
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), getString(R.string.RegistrationActivity_connect_with_textsecure));
+    getSupportActionBar().setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
 
     initializeResources();
     initializeSpinner();
@@ -108,16 +106,22 @@ public class RegistrationActivity extends SherlockActivity {
   }
 
   private void initializeNumber() {
-    String localNumber = org.whispersystems.textsecure.util.Util.getDeviceE164Number(this);
+    PhoneNumberUtil numberUtil  = PhoneNumberUtil.getInstance();
+    String          localNumber = org.whispersystems.textsecure.util.Util.getDeviceE164Number(this);
 
     try {
       if (!Util.isEmpty(localNumber)) {
-        PhoneNumberUtil numberUtil                = PhoneNumberUtil.getInstance();
         Phonenumber.PhoneNumber localNumberObject = numberUtil.parse(localNumber, null);
 
         if (localNumberObject != null) {
           this.countryCode.setText(localNumberObject.getCountryCode()+"");
           this.number.setText(localNumberObject.getNationalNumber()+"");
+        }
+      } else {
+        String simCountryIso = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE)).getSimCountryIso();
+
+        if (!Util.isEmpty(simCountryIso)) {
+          this.countryCode.setText(numberUtil.getCountryCodeForRegion(simCountryIso.toUpperCase())+"");
         }
       }
     } catch (NumberParseException npe) {
@@ -249,7 +253,7 @@ public class RegistrationActivity extends SherlockActivity {
         formattedNumber = countryFormatter.inputDigit(number.charAt(i));
       }
 
-      if (!s.toString().equals(formattedNumber)) {
+      if (formattedNumber != null && !s.toString().equals(formattedNumber)) {
         s.replace(0, s.length(), formattedNumber);
       }
     }
