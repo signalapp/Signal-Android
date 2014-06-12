@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,17 +16,20 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.CursorAdapter;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.ActionMode;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
@@ -63,6 +65,7 @@ public class ConversationFragment extends SherlockListFragment
   private MasterSecret masterSecret;
   private Recipients   recipients;
   private long         threadId;
+  private ActionMode   actionMode;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -75,55 +78,82 @@ public class ConversationFragment extends SherlockListFragment
 
     initializeResources();
     initializeListAdapter();
-    registerForContextMenu(getListView());
-  }
-
-  @Override
-  public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-    android.view.MenuInflater inflater = this.getSherlockActivity().getMenuInflater();
-    menu.clear();
-
-    inflater.inflate(R.menu.conversation_context, menu);
-
-    MessageRecord messageRecord = getMessageRecord();
-
-    if (messageRecord.isFailed()) {
-      MenuItem resend = menu.findItem(R.id.menu_context_resend);
-      resend.setVisible(true);
-    }
-
-    if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
-      try {
-        if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
-          inflater.inflate(R.menu.conversation_context_image, menu);
-        }
-      } catch (InterruptedException ie) {
-        Log.w(TAG, ie);
-      } catch (ExecutionException ee) {
-        Log.w(TAG, ee);
-      }
-    }
-  }
-
-  @Override
-  public boolean onContextItemSelected(android.view.MenuItem item) {
-    MessageRecord messageRecord = getMessageRecord();
-    switch(item.getItemId()) {
-    case R.id.menu_context_copy:           handleCopyMessage(messageRecord);     return true;
-    case R.id.menu_context_delete_message: handleDeleteMessage(messageRecord);   return true;
-    case R.id.menu_context_details:        handleDisplayDetails(messageRecord);  return true;
-    case R.id.menu_context_forward:        handleForwardMessage(messageRecord);  return true;
-    case R.id.menu_context_resend:         handleResendMessage(messageRecord);   return true;
-    case R.id.menu_context_save_attachment:handleSaveAttachment(messageRecord);  return true;
-    }
-
-    return false;
+    initializeContextualActionBar();
   }
 
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
     this.listener = (ConversationFragmentListener)activity;
+  }
+
+  private void initializeResources() {
+    String recipientIds = this.getActivity().getIntent().getStringExtra("recipients");
+
+    this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
+    this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), recipientIds, true);
+    this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
+  }
+
+  private void initializeListAdapter() {
+    if (this.recipients != null && this.threadId != -1) {
+      this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
+                                                  new FailedIconClickHandler(),
+                                                  (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
+                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
+      getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
+      getLoaderManager().initLoader(0, null, this);
+    }
+  }
+
+  private void initializeContextualActionBar() {
+    getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+      @Override
+      public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        if (actionMode != null) {
+          view.setSelected(true);
+          return false;
+        }
+
+        actionMode = getSherlockActivity().startActionMode(actionModeCallback);
+        view.setSelected(true);
+        return true;
+      }
+    });
+
+    getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (actionMode != null) {
+          view.setSelected(true);
+          setCorrectMenuVisibility(getMessageRecord(), actionMode.getMenu());
+        }
+      }
+    });
+  }
+
+  private void setCorrectMenuVisibility(MessageRecord messageRecord, Menu menu) {
+    MenuItem resend         = menu.findItem(R.id.menu_context_resend);
+    MenuItem saveAttachment = menu.findItem(R.id.menu_context_save_attachment);
+
+    if (messageRecord.isFailed()) resend.setVisible(true);
+    else                          resend.setVisible(false);
+
+    if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
+      try {
+        if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
+          saveAttachment.setVisible(true);
+        } else {
+          saveAttachment.setVisible(false);
+        }
+      } catch (InterruptedException ie) {
+        Log.w(TAG, ie);
+      } catch (ExecutionException ee) {
+        Log.w(TAG, ee);
+      }
+    } else {
+      saveAttachment.setVisible(false);
+    }
   }
 
   private MessageRecord getMessageRecord() {
@@ -246,25 +276,6 @@ public class ConversationFragment extends SherlockListFragment
     builder.show();
   }
 
-  private void initializeResources() {
-    String recipientIds = this.getActivity().getIntent().getStringExtra("recipients");
-
-    this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
-    this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), recipientIds, true);
-    this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
-  }
-
-  private void initializeListAdapter() {
-    if (this.recipients != null && this.threadId != -1) {
-      this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
-                                                  new FailedIconClickHandler(),
-                                                  (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
-                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
-      getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
-      getLoaderManager().initLoader(0, null, this);
-    }
-  }
-
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
     return new ConversationLoader(getActivity(), threadId);
@@ -292,6 +303,69 @@ public class ConversationFragment extends SherlockListFragment
   public interface ConversationFragmentListener {
     public void setComposeText(String text);
   }
+
+  private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+      MenuInflater inflater = mode.getMenuInflater();
+      inflater.inflate(R.menu.conversation_context, menu);
+
+      MessageRecord messageRecord = getMessageRecord();
+      setCorrectMenuVisibility(messageRecord, menu);
+
+      return true;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+      return false;
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+      if (getListView() != null && getListView().getChildCount() > 0) {
+        for (int i = 0; i < getListView().getChildCount(); i++){
+          getListView().getChildAt(i).setSelected(false);
+        }
+      }
+      actionMode = null;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+      MessageRecord messageRecord = getMessageRecord();
+
+      switch(item.getItemId()) {
+        case R.id.menu_context_copy:
+          handleCopyMessage(messageRecord);
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_delete_message:
+          handleDeleteMessage(messageRecord);
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_details:
+          handleDisplayDetails(messageRecord);
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_forward:
+          handleForwardMessage(messageRecord);
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_resend:
+          handleResendMessage(messageRecord);
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_save_attachment:
+          handleSaveAttachment(messageRecord);
+          actionMode.finish();
+          return true;
+      }
+
+      return false;
+    }
+  };
 
   private class SaveAttachmentTask extends AsyncTask<MediaMmsMessageRecord, Void, Integer> {
 
