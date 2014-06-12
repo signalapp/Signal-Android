@@ -101,9 +101,37 @@ public class ConversationFragment extends SherlockListFragment
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (actionMode != null) {
           view.setSelected(true);
+          setCorrectMenuVisibility(getMessageRecord(), actionMode.getMenu());
         }
       }
     });
+  }
+
+  private void setCorrectMenuVisibility(MessageRecord messageRecord, Menu menu) {
+    MenuItem resend = menu.findItem(R.id.menu_context_resend);
+    MenuItem saveAttachment = menu.findItem(R.id.menu_context_save_attachment);
+
+    if (messageRecord.isFailed()) {
+      resend.setVisible(true);
+    } else {
+      resend.setVisible(false);
+    }
+
+    if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
+      try {
+        if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
+          saveAttachment.setVisible(true);
+        } else {
+          saveAttachment.setVisible(false);
+        }
+      } catch (InterruptedException ie) {
+        Log.w(TAG, ie);
+      } catch (ExecutionException ee) {
+        Log.w(TAG, ee);
+      }
+    } else {
+      saveAttachment.setVisible(false);
+    }
   }
 
   private ActionMode.Callback actionModeCallback = new ActionMode.Callback(){
@@ -114,22 +142,7 @@ public class ConversationFragment extends SherlockListFragment
       inflater.inflate(R.menu.conversation_context, menu);
 
       MessageRecord messageRecord = getMessageRecord();
-      if (messageRecord.isFailed()) {
-        MenuItem resend = menu.findItem(R.id.menu_context_resend);
-        resend.setVisible(true);
-      }
-
-      if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
-        try {
-          if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
-            inflater.inflate(R.menu.conversation_context_image, menu);
-          }
-        } catch (InterruptedException ie) {
-          Log.w(TAG, ie);
-        } catch (ExecutionException ee) {
-          Log.w(TAG, ee);
-        }
-      }
+      setCorrectMenuVisibility(messageRecord, menu);
 
       return true;
     }

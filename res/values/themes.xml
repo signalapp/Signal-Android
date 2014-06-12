@@ -78,6 +78,7 @@
         <item name="menu_copy_icon">@drawable/ic_action_copy_holo_light</item>
         <item name="menu_info_icon">@drawable/ic_dialog_info_holo_light</item>
         <item name="menu_forward_icon">@drawable/ic_action_forward_holo_light</item>
+        <item name="menu_save_icon">@drawable/ic_action_save_holo_light</item>
     </style>
 
     <style name="TextSecure.LightTheme.NavigationDrawer"
@@ -158,6 +159,7 @@
         <item name="menu_copy_icon">@drawable/ic_action_copy_holo_dark</item>
         <item name="menu_info_icon">@drawable/ic_dialog_info_holo_dark</item>
         <item name="menu_forward_icon">@drawable/ic_action_forward_holo_dark</item>
+        <item name="menu_save_icon">@drawable/ic_action_save_holo_dark</item>
     </style>
 
     <style name="TextSecure.DarkTheme.NavigationDrawer"
