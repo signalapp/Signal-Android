@@ -59,7 +59,8 @@
     <string name="ConversationItem_group_action_you_left">You left the group.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_group_action_joined">%1$s joined the group.</string>
-    <string name="ConversationItem_group_action_title">Title is now \'%1$s\'.</string>
+    <string name="ConversationItem_group_action_title_empty">Group name unset.</string>
+    <string name="ConversationItem_group_action_title">Group name set to \'%1$s\'.</string>
     <string name="ConversationItem_click_to_approve">Tap for SMS fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for insecure fallback</string>
     <string name="ConversationItem_click_to_approve_dialog_title">Fallback to SMS?</string>

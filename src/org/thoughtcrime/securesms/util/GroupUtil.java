@@ -50,9 +50,13 @@ public class GroupUtil {
         description = context.getString(R.string.ConversationItem_group_action_joined, membersList);
       }
 
-      if (title != null && !title.trim().isEmpty()) {
+      if (title != null) {
         if (!description.isEmpty()) description += " ";
-        description += context.getString(R.string.ConversationItem_group_action_title, title);
+        if (title.trim().isEmpty()) {
+          description += context.getString(R.string.ConversationItem_group_action_title_empty);
+        } else {
+          description += context.getString(R.string.ConversationItem_group_action_title, title);
+        }
       }
 
       if (description.isEmpty()) {
