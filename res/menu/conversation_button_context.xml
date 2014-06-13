@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/conversation_button_context__send_textsecure_message"
+          android:id="@+id/menu_context_send_push" />
+    <item android:title="@string/conversation_button_context__send_secure_sms"
+          android:id="@+id/menu_context_send_encrypted_sms" />
+    <item android:title="@string/conversation_button_context__send_insecure_sms"
+          android:id="@+id/menu_context_send_unencrypted_sms" />
+    <item android:title="@string/conversation_button_context__send_secure_mms"
+          android:id="@+id/menu_context_send_encrypted_mms" />
+    <item android:title="@string/conversation_button_context__send_insecure_mms"
+          android:id="@+id/menu_context_send_unencrypted_mms" />
+
+</menu>

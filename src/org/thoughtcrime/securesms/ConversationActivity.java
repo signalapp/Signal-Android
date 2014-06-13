@@ -322,14 +322,24 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       Recipient primaryRecipient  = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
       boolean   hasSession        = Session.hasSession(this, masterSecret, primaryRecipient);
 
-      int context;
+      getMenuInflater().inflate(R.menu.conversation_button_context, menu);
 
-      if      (isPushDestination && hasSession) context = R.menu.conversation_button_context_secure_push;
-      else if (isPushDestination)               context = R.menu.conversation_button_context_insecure_push;
-      else if (hasSession)                      context = R.menu.conversation_button_context_secure_sms;
-      else                                      return;
+      if (attachmentManager.isAttachmentPresent()) {
+        menu.removeItem(R.id.menu_context_send_encrypted_sms);
+        menu.removeItem(R.id.menu_context_send_unencrypted_sms);
+      } else {
+        menu.removeItem(R.id.menu_context_send_encrypted_mms);
+        menu.removeItem(R.id.menu_context_send_unencrypted_mms);
+      }
 
-      getMenuInflater().inflate(context, menu);
+      if (!isPushDestination) {
+        menu.removeItem(R.id.menu_context_send_push);
+      }
+
+      if (!hasSession) {
+        menu.removeItem(R.id.menu_context_send_encrypted_mms);
+        menu.removeItem(R.id.menu_context_send_encrypted_sms);
+      }
     }
   }
 
@@ -337,7 +347,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   public boolean onContextItemSelected(android.view.MenuItem item) {
     switch (item.getItemId()) {
       case R.id.menu_context_send_push:            sendMessage(false, false); return true;
+      case R.id.menu_context_send_encrypted_mms:
       case R.id.menu_context_send_encrypted_sms:   sendMessage(false, true);  return true;
+      case R.id.menu_context_send_unencrypted_mms:
       case R.id.menu_context_send_unencrypted_sms: sendMessage(true, true);   return true;
     }
 
