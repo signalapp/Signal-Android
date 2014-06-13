@@ -85,7 +85,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
   private static final String MMS_PREF              = "pref_mms_preferences";
   private static final String KITKAT_DEFAULT_PREF   = "pref_set_default";
-  private static final String UPDATE_DIRECTORY_PREF = "pref_update_directory";
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
   private static final String OUTGOING_SMS_PREF     = "pref_outgoing_sms";
 
@@ -566,9 +565,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private String buildOutgoingSmsDescription() {
     final StringBuilder builder         = new StringBuilder();
-    final boolean       dataFallback    = TextSecurePreferences.isSmsFallbackEnabled(this);
-    final boolean       dataFallbackAsk = TextSecurePreferences.isSmsFallbackAskEnabled(this);
-    final boolean       nonData         = TextSecurePreferences.isSmsNonDataOutEnabled(this);
+    final boolean       dataFallback    = TextSecurePreferences.isFallbackSmsAllowed(this);
+    final boolean       dataFallbackAsk = TextSecurePreferences.isFallbackSmsAskRequired(this);
+    final boolean       nonData         = TextSecurePreferences.isDirectSmsAllowed(this);
 
     if (dataFallback) {
       builder.append(getString(R.string.preferences__sms_outgoing_push_users));

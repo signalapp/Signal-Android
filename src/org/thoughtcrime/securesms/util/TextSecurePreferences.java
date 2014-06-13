@@ -48,34 +48,33 @@ public class TextSecurePreferences {
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
-  private static final String ALLOW_SMS_FALLBACK_PREF          = "pref_allow_sms_traffic_out";
-  private static final String SMS_FALLBACK_ASK_PREF            = "pref_sms_fallback_ask";
-  private static final String ALLOW_SMS_NON_DATA_PREF          = "pref_sms_non_data_out";
+  private static final String FALLBACK_SMS_ALLOWED_PREF        = "pref_allow_sms_traffic_out";
+  private static final String FALLBACK_SMS_ASK_REQUIRED_PREF   = "pref_sms_fallback_ask";
+  private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
 
-  public static boolean isSmsFallbackEnabled(Context context) {
-    return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
+  public static boolean isFallbackSmsAllowed(Context context) {
+    return getBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, true);
   }
 
-  public static void setSmsFallbackEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, enabled);
+  public static void setFallbackSmsAllowed(Context context, boolean allowed) {
+    setBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, allowed);
   }
 
-  public static boolean isSmsNonDataOutEnabled(Context context) {
-    return getBooleanPreference(context, ALLOW_SMS_NON_DATA_PREF, true);
+  public static boolean isFallbackSmsAskRequired(Context context) {
+    return getBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, false);
   }
 
-  public static void setSmsNonDataOutEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, ALLOW_SMS_NON_DATA_PREF, enabled);
+  public static void setFallbackSmsAskRequired(Context context, boolean required) {
+    setBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, required);
   }
 
-  public static boolean isSmsFallbackAskEnabled(Context context) {
-    return getBooleanPreference(context, SMS_FALLBACK_ASK_PREF, false);
+  public static boolean isDirectSmsAllowed(Context context) {
+    return getBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, true);
   }
 
-  public static void setSmsFallbackAskEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, SMS_FALLBACK_ASK_PREF, enabled);
+  public static void setDirectSmsAllowed(Context context, boolean allowed) {
+    setBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, allowed);
   }
-
 
   public static int getLocalRegistrationId(Context context) {
     return getIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, 0);

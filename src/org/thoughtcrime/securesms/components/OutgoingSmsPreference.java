@@ -26,9 +26,9 @@ public class OutgoingSmsPreference extends DialogPreference {
     askForFallback = (CheckBox) view.findViewById(R.id.ask_before_fallback_data);
     nonDataUsers   = (CheckBox) view.findViewById(R.id.non_data_users);
 
-    dataUsers.setChecked(TextSecurePreferences.isSmsFallbackEnabled(getContext()));
-    askForFallback.setChecked(TextSecurePreferences.isSmsFallbackAskEnabled(getContext()));
-    nonDataUsers.setChecked(TextSecurePreferences.isSmsNonDataOutEnabled(getContext()));
+    dataUsers.setChecked(TextSecurePreferences.isFallbackSmsAllowed(getContext()));
+    askForFallback.setChecked(TextSecurePreferences.isFallbackSmsAskRequired(getContext()));
+    nonDataUsers.setChecked(TextSecurePreferences.isDirectSmsAllowed(getContext()));
 
     dataUsers.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -45,9 +45,9 @@ public class OutgoingSmsPreference extends DialogPreference {
     super.onDialogClosed(positiveResult);
 
     if (positiveResult) {
-      TextSecurePreferences.setSmsFallbackEnabled(getContext(), dataUsers.isChecked());
-      TextSecurePreferences.setSmsFallbackAskEnabled(getContext(), askForFallback.isChecked());
-      TextSecurePreferences.setSmsNonDataOutEnabled(getContext(), nonDataUsers.isChecked());
+      TextSecurePreferences.setFallbackSmsAllowed(getContext(), dataUsers.isChecked());
+      TextSecurePreferences.setFallbackSmsAskRequired(getContext(), askForFallback.isChecked());
+      TextSecurePreferences.setDirectSmsAllowed(getContext(), nonDataUsers.isChecked());
       if (getOnPreferenceChangeListener() != null) getOnPreferenceChangeListener().onPreferenceChange(this, null);
     }
   }

@@ -658,7 +658,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private void initializeCharactersLeftViewEnabledCheck() {
     isCharactersLeftViewEnabled = !(isPushGroupConversation() ||
-        (TextSecurePreferences.isPushRegistered(this) && !TextSecurePreferences.isSmsFallbackEnabled(this)));
+        (TextSecurePreferences.isPushRegistered(this) && !TextSecurePreferences.isFallbackSmsAllowed(this)));
   }
 
   private void initializeDraftFromDatabase() {

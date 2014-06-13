@@ -20,6 +20,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
@@ -65,16 +66,21 @@ public class UniversalTransport {
       throws UndeliverableMessageException, UntrustedIdentityException, RetryLaterException,
              SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (message.isForcedSms()) {
       smsTransport.deliver(message);
+      return;
+    }
+
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      deliverDirectSms(message);
       return;
     }
 
     try {
       Recipient recipient = message.getIndividualRecipient();
-      String number       = Util.canonicalizeNumber(context, recipient.getNumber());
+      String    number    = Util.canonicalizeNumber(context, recipient.getNumber());
 
-      if (isPushTransport(number) && !message.isKeyExchange() && !message.isForcedSms()) {
+      if (isPushTransport(number) && !message.isKeyExchange()) {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(number);
 
         try {
@@ -89,15 +95,13 @@ public class UniversalTransport {
           if (isSmsFallbackSupported) fallbackOrAskApproval(message, number);
           else                        throw new RetryLaterException(ioe);
         }
-      } else if (!message.isForcedSms() && !TextSecurePreferences.isSmsNonDataOutEnabled(context)) {
-        throw new UndeliverableMessageException("User disallows non-push outgoing SMS");
       } else {
         Log.w("UniversalTransport", "Using SMS as transport...");
-        smsTransport.deliver(message);
+        deliverDirectSms(message);
       }
     } catch (InvalidNumberException e) {
       Log.w("UniversalTransport", e);
-      smsTransport.deliver(message);
+      deliverDirectSms(message);
     }
   }
 
@@ -105,8 +109,12 @@ public class UniversalTransport {
       throws UndeliverableMessageException, RetryLaterException, UntrustedIdentityException,
              SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
-    if (Util.isEmpty(mediaMessage.getTo())) {
+    if (MmsDatabase.Types.isForcedSms(mediaMessage.getDatabaseMessageBox())) {
       return mmsTransport.deliver(mediaMessage);
+    }
+
+    if (Util.isEmpty(mediaMessage.getTo())) {
+      return deliverDirectMms(mediaMessage);
     }
 
     if (GroupUtil.isEncodedGroup(mediaMessage.getTo()[0].getString())) {
@@ -114,11 +122,11 @@ public class UniversalTransport {
     }
 
     if (!TextSecurePreferences.isPushRegistered(context)) {
-      return mmsTransport.deliver(mediaMessage);
+      return deliverDirectMms(mediaMessage);
     }
 
     if (isMultipleRecipients(mediaMessage)) {
-      return mmsTransport.deliver(mediaMessage);
+      return deliverDirectMms(mediaMessage);
     }
 
     try {
@@ -150,11 +158,11 @@ public class UniversalTransport {
         }
       } else {
         Log.w("UniversalTransport", "Delivering media message with MMS...");
-        return mmsTransport.deliver(mediaMessage);
+        return deliverDirectMms(mediaMessage);
       }
     } catch (InvalidNumberException ine) {
       Log.w("UniversalTransport", ine);
-      return mmsTransport.deliver(mediaMessage);
+      return deliverDirectMms(mediaMessage);
     }
   }
 
@@ -238,6 +246,26 @@ public class UniversalTransport {
     }
   }
 
+  private void deliverDirectSms(SmsMessageRecord message)
+      throws InsecureFallbackApprovalException, UndeliverableMessageException
+  {
+    if (TextSecurePreferences.isDirectSmsAllowed(context)) {
+      smsTransport.deliver(message);
+    } else {
+      throw new UndeliverableMessageException("Direct SMS delivery is disabled!");
+    }
+  }
+
+  private MmsSendResult deliverDirectMms(SendReq message)
+      throws InsecureFallbackApprovalException, UndeliverableMessageException
+  {
+    if (TextSecurePreferences.isDirectSmsAllowed(context)) {
+      return mmsTransport.deliver(message);
+    } else {
+      throw new UndeliverableMessageException("Direct MMS delivery is disabled!");
+    }
+  }
+
   public boolean isMultipleRecipients(SendReq mediaMessage) {
     int recipientCount = 0;
 
@@ -257,7 +285,7 @@ public class UniversalTransport {
   }
 
   private boolean isSmsFallbackApprovalRequired(String destination) {
-    return (isSmsFallbackSupported(destination) && TextSecurePreferences.isSmsFallbackAskEnabled(context));
+    return (isSmsFallbackSupported(destination) && TextSecurePreferences.isFallbackSmsAskRequired(context));
   }
 
   private boolean isSmsFallbackSupported(String destination) {
@@ -266,7 +294,7 @@ public class UniversalTransport {
     }
 
     if (TextSecurePreferences.isPushRegistered(context) &&
-        !TextSecurePreferences.isSmsFallbackEnabled(context))
+        !TextSecurePreferences.isFallbackSmsAllowed(context))
     {
       return false;
     }

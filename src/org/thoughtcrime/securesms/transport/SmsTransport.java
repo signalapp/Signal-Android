@@ -51,10 +51,6 @@ public class SmsTransport extends BaseTransport {
   public void deliver(SmsMessageRecord message) throws UndeliverableMessageException,
                                                        InsecureFallbackApprovalException
   {
-    if (!TextSecurePreferences.isSmsNonDataOutEnabled(context) && !TextSecurePreferences.isSmsFallbackEnabled(context)) {
-      throw new UndeliverableMessageException("SMS Transport is not enabled!");
-    }
-
     if (!NumberUtil.isValidSmsOrEmail(message.getIndividualRecipient().getNumber())) {
       throw new UndeliverableMessageException("Not a valid SMS destination! " + message.getIndividualRecipient().getNumber());
     }

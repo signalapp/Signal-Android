@@ -27,7 +27,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.NumberUtil;
@@ -95,7 +94,7 @@ public class ContactsDatabase {
   }
 
   public Cursor query(String filter, boolean pushOnly) {
-    final boolean      includeAndroidContacts = !pushOnly && TextSecurePreferences.isSmsNonDataOutEnabled(context);
+    final boolean      includeAndroidContacts = !pushOnly && TextSecurePreferences.isDirectSmsAllowed(context);
     final Cursor       localCursor            = queryLocalDb(filter);
     final Cursor       androidCursor;
     final MatrixCursor newNumberCursor;
