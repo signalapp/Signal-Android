@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.NotPossibleAsSmsException;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -324,12 +325,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
       int context;
 
-      if      (isPushDestination && hasSession) context = R.menu.conversation_button_context_secure_push;
-      else if (isPushDestination)               context = R.menu.conversation_button_context_insecure_push;
-      else if (hasSession)                      context = R.menu.conversation_button_context_secure_sms;
-      else                                      return;
+      if (!attachmentManager.isAttachmentPresent()) {
+        if      (isPushDestination && hasSession) context = R.menu.conversation_button_context_secure_push;
+        else if (isPushDestination)               context = R.menu.conversation_button_context_insecure_push;
+        else if (hasSession)                      context = R.menu.conversation_button_context_secure_sms;
+        else                                      return;
 
-      getMenuInflater().inflate(context, menu);
+        getMenuInflater().inflate(context, menu);
+      }
     }
   }
 
@@ -1060,6 +1063,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       if (recipients == null)
         throw new RecipientFormattingException("Badly formatted");
 
+      if (attachmentManager.isAttachmentPresent() && forceSms)
+        throw new NotPossibleAsSmsException();
+
       long allocatedThreadId;
 
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
@@ -1083,6 +1089,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       Log.w(TAG, ex);
     } catch (MmsException e) {
       Log.w(TAG, e);
+    } catch (NotPossibleAsSmsException e) {
+      Toast.makeText(ConversationActivity.this,
+                     R.string.ConversationActivity_message_can_not_be_sent_as_sms_because_of_attachments,
+                     Toast.LENGTH_LONG).show();
     }
   }
 
