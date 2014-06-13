@@ -102,7 +102,6 @@ public class ConversationListFragment extends SherlockListFragment
     if (v instanceof ConversationListItem) {
       ConversationListItem headerView = (ConversationListItem) v;
       boolean batchMode = (actionMode != null);
-      Log.w("ConversationListFragment", "Batch mode: " + batchMode);
       if (!batchMode) {
         handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
                                  headerView.getDistributionType());
