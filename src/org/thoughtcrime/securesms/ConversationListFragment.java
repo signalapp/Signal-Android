@@ -60,7 +60,6 @@ public class ConversationListFragment extends SherlockListFragment
   private ActionMode actionMode;
 
   private String queryFilter = "";
-  private boolean batchMode  = false;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -102,6 +101,7 @@ public class ConversationListFragment extends SherlockListFragment
   public void onListItemClick(ListView l, View v, int position, long id) {
     if (v instanceof ConversationListItem) {
       ConversationListItem headerView = (ConversationListItem) v;
+      boolean batchMode = (actionMode != null);
       Log.w("ConversationListFragment", "Batch mode: " + batchMode);
       if (!batchMode) {
         handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
@@ -163,7 +163,6 @@ public class ConversationListFragment extends SherlockListFragment
       public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
         ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
         actionMode = getSherlockActivity().startActionMode(ConversationListFragment.this);
-        batchMode  = true;
 
         adapter.initializeBatchMode(true);
         adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
@@ -218,7 +217,6 @@ public class ConversationListFragment extends SherlockListFragment
               if (actionMode != null) {
                 actionMode.finish();
                 actionMode = null;
-                batchMode  = false;
               }
             }
           }.execute();
@@ -291,7 +289,6 @@ public class ConversationListFragment extends SherlockListFragment
   public void onDestroyActionMode(ActionMode mode) {
     ((ConversationListAdapter)getListAdapter()).initializeBatchMode(false);
     actionMode = null;
-    batchMode  = false;
   }
 
 }
