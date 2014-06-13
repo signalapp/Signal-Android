@@ -325,12 +325,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
       int context;
 
-      if      (isPushDestination && hasSession) context = R.menu.conversation_button_context_secure_push;
-      else if (isPushDestination)               context = R.menu.conversation_button_context_insecure_push;
-      else if (hasSession)                      context = R.menu.conversation_button_context_secure_sms;
-      else                                      return;
+      if (!attachmentManager.isAttachmentPresent()) {
+        if      (isPushDestination && hasSession) context = R.menu.conversation_button_context_secure_push;
+        else if (isPushDestination)               context = R.menu.conversation_button_context_insecure_push;
+        else if (hasSession)                      context = R.menu.conversation_button_context_secure_sms;
+        else                                      return;
 
-      getMenuInflater().inflate(context, menu);
+        getMenuInflater().inflate(context, menu);
+      }
     }
   }
 
