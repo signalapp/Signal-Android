@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -16,11 +18,13 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.CursorAdapter;
 import android.webkit.MimeTypeMap;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -52,6 +56,7 @@ import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -78,7 +83,11 @@ public class ConversationFragment extends SherlockListFragment
 
     initializeResources();
     initializeListAdapter();
-    initializeContextualActionBar();
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+      initializeContextualActionBar();
+    } else {
+      initializeBatchContextualActionBar();
+    }
   }
 
   @Override
@@ -115,7 +124,7 @@ public class ConversationFragment extends SherlockListFragment
           return false;
         }
 
-        actionMode = getSherlockActivity().startActionMode(actionModeCallback);
+        actionMode = getSherlockActivity().startActionMode(new ModeCallback());
         view.setSelected(true);
         return true;
       }
@@ -132,13 +141,115 @@ public class ConversationFragment extends SherlockListFragment
     });
   }
 
+  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+  private void initializeBatchContextualActionBar() {
+    final ListView listView = getListView();
+    listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+    listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+
+      private List<MessageRecord> getSelectedMessages() {
+        List<MessageRecord> selectedMessages = new ArrayList<MessageRecord>();
+
+        SparseBooleanArray checked = listView.getCheckedItemPositions();
+        for (int i = 0; i < checked.size(); i++) {
+          int key = checked.keyAt(i);
+          boolean value = checked.get(key);
+          if (value) {
+            Cursor cursor = (Cursor) getListView().getItemAtPosition(key);
+            ConversationItem conversationItem = (ConversationItem) (((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
+            MessageRecord messageRecord = conversationItem.getMessageRecord();
+            selectedMessages.add(messageRecord);
+          }
+        }
+        return selectedMessages;
+      }
+
+      @Override
+      public void onItemCheckedStateChanged(android.view.ActionMode mode, int position, long id, boolean checked) {
+        int numberOfMessages = getSelectedMessages().size();
+        if (numberOfMessages == 1) {
+          mode.setTitle(null);
+          mode.setSubtitle(null);
+        } else if (numberOfMessages > 1) {
+          mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
+          mode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+                           numberOfMessages));
+          }
+        setCorrectMenuVisibility(getSelectedMessages(), mode.getMenu());
+      }
+
+      @Override
+      public boolean onCreateActionMode(android.view.ActionMode mode, android.view.Menu menu) {
+        android.view.MenuInflater inflater = mode.getMenuInflater();
+        inflater.inflate(R.menu.conversation_context, menu);
+
+        mode.setTitle(null);
+        mode.setSubtitle(null);
+
+        return true;
+      }
+
+      @Override
+      public boolean onPrepareActionMode(android.view.ActionMode mode, android.view.Menu menu) {
+        return false;
+      }
+
+      @Override
+      public boolean onActionItemClicked(android.view.ActionMode mode, android.view.MenuItem item) {
+        List<MessageRecord> selectedMessages = getSelectedMessages();
+
+        if (selectedMessages.size() == 1) {
+          MessageRecord messageRecord = selectedMessages.get(0);
+          switch (item.getItemId()) {
+            case R.id.menu_context_copy:
+              handleCopyMessage(messageRecord);
+              break;
+            case R.id.menu_context_delete_message:
+              handleDeleteMessage(messageRecord);
+              break;
+            case R.id.menu_context_details:
+              handleDisplayDetails(messageRecord);
+              break;
+            case R.id.menu_context_forward:
+              handleForwardMessage(messageRecord);
+              break;
+            case R.id.menu_context_resend:
+              handleResendMessage(messageRecord);
+              break;
+            case R.id.menu_context_save_attachment:
+              handleSaveAttachment(messageRecord);
+              break;
+            default:
+              return false;
+          }
+          mode.finish();
+          return true;
+        }
+
+        switch (item.getItemId()) {
+          case R.id.menu_context_delete_message:
+            handleDeleteMessages(selectedMessages);
+            mode.finish();
+            return true;
+        }
+
+        return false;
+      }
+
+      @Override
+      public void onDestroyActionMode(android.view.ActionMode mode) {
+
+      }
+    });
+  }
+
   private void setCorrectMenuVisibility(MessageRecord messageRecord, Menu menu) {
-    MenuItem resend         = menu.findItem(R.id.menu_context_resend);
+    menu.findItem(R.id.menu_context_details).setVisible(true);
+    menu.findItem(R.id.menu_context_copy).setVisible(true);
+    menu.findItem(R.id.menu_context_forward).setVisible(true);
+    menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
+
     MenuItem saveAttachment = menu.findItem(R.id.menu_context_save_attachment);
-
-    if (messageRecord.isFailed()) resend.setVisible(true);
-    else                          resend.setVisible(false);
-
     if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
       try {
         if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
@@ -153,6 +264,47 @@ public class ConversationFragment extends SherlockListFragment
       }
     } else {
       saveAttachment.setVisible(false);
+    }
+  }
+
+  private void setCorrectMenuVisibility(MessageRecord messageRecord, android.view.Menu menu){
+    menu.findItem(R.id.menu_context_details).setVisible(true);
+    menu.findItem(R.id.menu_context_copy).setVisible(true);
+    menu.findItem(R.id.menu_context_forward).setVisible(true);
+    menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
+
+    android.view.MenuItem saveAttachment = menu.findItem(R.id.menu_context_save_attachment);
+    if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
+      try {
+        if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
+          saveAttachment.setVisible(true);
+        } else {
+          saveAttachment.setVisible(false);
+        }
+      } catch (InterruptedException ie) {
+        Log.w(TAG, ie);
+      } catch (ExecutionException ee) {
+        Log.w(TAG, ee);
+      }
+    } else {
+      saveAttachment.setVisible(false);
+    }
+    return;
+  }
+
+  private void setCorrectMenuVisibility(List<MessageRecord> messageRecords, android.view.Menu menu){
+    switch (messageRecords.size()) {
+      case 0:
+        return;
+      case 1:
+        setCorrectMenuVisibility(messageRecords.get(0), menu);
+        return;
+      default:
+        menu.findItem(R.id.menu_context_details).setVisible(false);
+        menu.findItem(R.id.menu_context_copy).setVisible(false);
+        menu.findItem(R.id.menu_context_forward).setVisible(false);
+        menu.findItem(R.id.menu_context_resend).setVisible(false);
+        menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
     }
   }
 
@@ -210,6 +362,53 @@ public class ConversationFragment extends SherlockListFragment
 
     builder.setNegativeButton(R.string.no, null);
     builder.show();
+  }
+
+  private void handleDeleteMessages(final List<MessageRecord> messageRecords){
+    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+    alert.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
+    alert.setTitle(R.string.ConversationFragment_confirm_message_delete);
+    alert.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message);
+    alert.setCancelable(true);
+
+    alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        if (!messageRecords.isEmpty()) {
+          new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog dialog;
+
+            @Override
+            protected void onPreExecute() {
+              dialog = ProgressDialog.show(getActivity(),
+                  getSherlockActivity().getString(R.string.ConversationFragment_deleting),
+                  getSherlockActivity().getString(R.string.ConversationFragment_deleting_selected_messages),
+                                                  true, false);
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+              for (MessageRecord messageRecord : messageRecords) {
+                if (messageRecord.isMms()) {
+                  DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                } else {
+                  DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                }
+              }
+              return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+              dialog.dismiss();
+            }
+          }.execute();
+        }
+      }
+    });
+
+    alert.setNegativeButton(android.R.string.cancel, null);
+    alert.show();
   }
 
   private void handleDisplayDetails(MessageRecord message) {
@@ -291,6 +490,10 @@ public class ConversationFragment extends SherlockListFragment
     ((CursorAdapter)getListAdapter()).changeCursor(null);
   }
 
+  public interface ConversationFragmentListener {
+    public void setComposeText(String text);
+  }
+
   private class FailedIconClickHandler extends Handler {
     @Override
     public void handleMessage(android.os.Message message) {
@@ -300,11 +503,7 @@ public class ConversationFragment extends SherlockListFragment
     }
   }
 
-  public interface ConversationFragmentListener {
-    public void setComposeText(String text);
-  }
-
-  private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+  private final class ModeCallback implements ActionMode.Callback {
 
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
