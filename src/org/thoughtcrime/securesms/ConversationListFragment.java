@@ -112,6 +112,9 @@ public class ConversationListFragment extends SherlockListFragment
 
         if (adapter.getBatchSelections().size() == 0) {
           actionMode.finish();
+        } else {
+          actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+                                 adapter.getBatchSelections().size()));
         }
 
         adapter.notifyDataSetChanged();
@@ -263,10 +266,8 @@ public class ConversationListFragment extends SherlockListFragment
     MenuInflater inflater = getSherlockActivity().getSupportMenuInflater();
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
-    LayoutInflater layoutInflater = getSherlockActivity().getLayoutInflater();
-    View actionModeView = layoutInflater.inflate(R.layout.conversation_fragment_cab, null);
-
-    mode.setCustomView(actionModeView);
+    mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
+    mode.setSubtitle(null);
 
     return true;
   }
