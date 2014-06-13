@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -37,25 +38,28 @@ public class AvatarDownloader {
       if (!SendReceiveService.DOWNLOAD_AVATAR_ACTION.equals(intent.getAction()))
         return;
 
-      byte[]                    groupId  = intent.getByteArrayExtra("group_id");
-      GroupDatabase             database = DatabaseFactory.getGroupDatabase(context);
-      GroupDatabase.GroupRecord record   = database.getGroup(groupId);
+      byte[]        groupId  = intent.getByteArrayExtra("group_id");
+      GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
+      GroupRecord   record   = database.getGroup(groupId);
 
       if (record != null) {
-        long        avatarId           = record.getAvatarId();
-        byte[]      key                = record.getAvatarKey();
-        String      relay              = record.getRelay();
+        long   avatarId = record.getAvatarId();
+        byte[] key      = record.getAvatarKey();
+        String relay    = record.getRelay();
 
+        final Bitmap avatar;
         if (avatarId == -1 || key == null) {
-          return;
+          avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
+          database.updateAvatar(groupId, (byte[])null);
+        } else {
+          File        attachment         = downloadAttachment(relay, avatarId);
+          InputStream scaleInputStream   = new AttachmentCipherInputStream(attachment, key);
+          InputStream measureInputStream = new AttachmentCipherInputStream(attachment, key);
+
+          avatar = BitmapUtil.createScaledBitmap(measureInputStream, scaleInputStream, 500, 500);
+          attachment.delete();
+          database.updateAvatar(groupId, avatar);
         }
-
-        File        attachment         = downloadAttachment(relay, avatarId);
-        InputStream scaleInputStream   = new AttachmentCipherInputStream(attachment, key);
-        InputStream measureInputStream = new AttachmentCipherInputStream(attachment, key);
-        Bitmap      avatar             = BitmapUtil.createScaledBitmap(measureInputStream, scaleInputStream, 500, 500);
-
-        database.updateAvatar(groupId, avatar);
 
         try {
           Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
@@ -64,9 +68,6 @@ public class AvatarDownloader {
         } catch (RecipientFormattingException e) {
           Log.w("AvatarDownloader", e);
         }
-
-//        avatar.recycle();
-        attachment.delete();
       }
     } catch (IOException e) {
       Log.w("AvatarDownloader", e);

@@ -9,24 +9,28 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Base64;
 
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 
 public class GroupReceiver {
+  private static final String TAG = GroupReceiver.class.getSimpleName();
 
-  private static final String TAG =  GroupReceiver.class.getSimpleName();;
   private final Context context;
 
   public GroupReceiver(Context context) {
@@ -78,48 +82,72 @@ public class GroupReceiver {
     storeMessage(masterSecret, message, group);
   }
 
-  private void handleGroupUpdate(MasterSecret masterSecret,
-                                 IncomingPushMessage message,
-                                 GroupContext group,
-                                 GroupRecord groupRecord)
+  private void handleGroupUpdate(final MasterSecret masterSecret,
+                                 final IncomingPushMessage message,
+                                 final GroupContext groupUpdate,
+                                 final GroupRecord existingGroup)
   {
+    final GroupDatabase      database     = DatabaseFactory.getGroupDatabase(context);
+    final byte[]             id           = groupUpdate.getId().toByteArray();
+    final Collection<String> unionMembers = Util.getAllElements(existingGroup.getMembers(), groupUpdate.getMembersList());
 
-    GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    byte[]        id       = group.getId().toByteArray();
+    GroupContext.Builder groupDiffBuilder = groupUpdate.toBuilder();
+    processNewMembers(groupDiffBuilder, existingGroup);
+    processNewAvatar (groupDiffBuilder, existingGroup);
+    processNewTitle  (groupDiffBuilder, existingGroup);
+    GroupContext groupDiff = groupDiffBuilder.build();
 
-    Set<String> recordMembers = new HashSet<String>(groupRecord.getMembers());
-    Set<String> messageMembers = new HashSet<String>(group.getMembersList());
+    if (groupDiff.hasName()) updateRecipientName(id, groupDiff.getName());
 
-    Set<String> addedMembers = new HashSet<String>(messageMembers);
-    addedMembers.removeAll(recordMembers);
+    if (groupDiff.hasName() || groupDiff.getMembersCount() > 0 || groupDiff.hasAvatar()) {
+      database.update(id,
+                      unionMembers,
+                      groupDiff.hasName()   ? groupDiff.getName()   : existingGroup.getTitle(),
+                      groupDiff.hasAvatar() ? groupDiff.getAvatar() : null);
+    }
 
-    Set<String> missingMembers = new HashSet<String>(recordMembers);
-    missingMembers.removeAll(messageMembers);
+    if (groupDiff.hasName())             Log.w(TAG, "group diff has name " + groupDiff.getName());
+    if (groupDiff.getMembersCount() > 0) Log.w(TAG, "group diff has " + groupDiff.getMembersCount() + " new members");
+    if (groupDiff.hasAvatar())           Log.w(TAG, "group diff has avatar with id " + groupDiff.getAvatar().getId());
 
+    storeMessage(masterSecret, message, groupDiff);
+  }
+
+  private void updateRecipientName(final byte[] id, final String name) {
+    try {
+      Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(id), true)
+                                                 .getPrimaryRecipient();
+      groupRecipient.setName(name);
+    } catch (RecipientFormattingException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void processNewMembers(final GroupContext.Builder builder, final GroupRecord existingGroup) {
+    Collection<String> addedMembers = Util.getAddedElements(existingGroup.getMembers(), builder.getMembersList());
+
+    builder.clearMembers();
     if (addedMembers.size() > 0) {
-      Set<String> unionMembers = new HashSet<String>(recordMembers);
-      unionMembers.addAll(messageMembers);
-      database.updateMembers(id, new LinkedList<String>(unionMembers));
-
-      group = group.toBuilder().clearMembers().addAllMembers(addedMembers).build();
-    } else {
-      group = group.toBuilder().clearMembers().build();
+      builder.addAllMembers(addedMembers);
     }
+  }
 
-    if (missingMembers.size() > 0) {
-      // TODO We should tell added and missing about each-other.
+  private void processNewAvatar(final GroupContext.Builder builder, final GroupRecord existingGroup) {
+    if ((!builder.hasAvatar() && existingGroup.getAvatarId() < 0) ||
+        (builder.hasAvatar()  && builder.getAvatar().getId() == existingGroup.getAvatarId()))
+    {
+      builder.clearAvatar();
+    } else if (!builder.hasAvatar()) {
+      builder.setAvatar(AttachmentPointer.newBuilder().setId(-1).build());
     }
+  }
 
-    if (group.hasName() || group.hasAvatar()) {
-      database.update(id, group.getName(), group.getAvatar());
+  private void processNewTitle(final GroupContext.Builder builder, final GroupRecord existingGroup) {
+    if (builder.hasName()         &&
+        builder.getName() != null &&
+        builder.getName().equals(existingGroup.getTitle())) {
+      builder.clearName();
     }
-
-    if (group.hasName() && group.getName() != null && group.getName().equals(groupRecord.getTitle())) {
-      group = group.toBuilder().clearName().build();
-    }
-
-    if (!groupRecord.isActive()) database.setActive(id, true);
-    storeMessage(masterSecret, message, group);
   }
 
   private void handleGroupLeave(MasterSecret        masterSecret,
@@ -138,14 +166,11 @@ public class GroupReceiver {
     }
   }
 
-
   private void storeMessage(MasterSecret masterSecret, IncomingPushMessage message, GroupContext group) {
-    if (group.hasAvatar()) {
-      Intent intent = new Intent(context, SendReceiveService.class);
-      intent.setAction(SendReceiveService.DOWNLOAD_AVATAR_ACTION);
-      intent.putExtra("group_id", group.getId().toByteArray());
-      context.startService(intent);
-    }
+    Intent intent = new Intent(context, SendReceiveService.class);
+    intent.setAction(SendReceiveService.DOWNLOAD_AVATAR_ACTION);
+    intent.putExtra("group_id", group.getId().toByteArray());
+    context.startService(intent);
 
     EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(context);
     String                body         = Base64.encodeBytes(group.toByteArray());
@@ -157,5 +182,4 @@ public class GroupReceiver {
 
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
-
 }

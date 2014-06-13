@@ -33,6 +33,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -176,5 +179,26 @@ public class Util {
   ////
   ////  return BitmapFactory.decodeStream(src, null, options);
   //  }
+
+  public static <T> Collection<T> getAddedElements(Collection<T> oldCollection, Collection<T> newCollection) {
+    final Set<T> oldSet = new HashSet<T>(oldCollection);
+    final Set<T> newSet = new HashSet<T>(newCollection);
+    newSet.removeAll(oldSet);
+    return newSet;
+  }
+
+  public static <T> Collection<T> getRemovedElements(Collection<T> oldCollection, Collection<T> newCollection) {
+    final Set<T> oldSet = new HashSet<T>(oldCollection);
+    final Set<T> newSet = new HashSet<T>(newCollection);
+    oldSet.removeAll(newSet);
+    return oldSet;
+  }
+
+  public static <T> Collection<T> getAllElements(Collection<T> oldCollection, Collection<T> newCollection) {
+    final Set<T> oldSet = new HashSet<T>(oldCollection);
+    final Set<T> newSet = new HashSet<T>(newCollection);
+    newSet.addAll(oldSet);
+    return newSet;
+  }
 
 }
