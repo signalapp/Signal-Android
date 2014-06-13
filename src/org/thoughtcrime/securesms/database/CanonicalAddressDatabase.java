@@ -66,8 +66,8 @@ public class CanonicalAddressDatabase {
   }
 
   private CanonicalAddressDatabase(Context context) {
-    this.context = context.getApplicationContext();
-    databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    this.context        = context.getApplicationContext();
+    this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     fillCache();
   }
 
@@ -141,17 +141,7 @@ public class CanonicalAddressDatabase {
 
   public long getCanonicalAddressId(String address) {
     long addressId;
-    String canonicalAddress;
-    if (GroupUtil.isEncodedGroup(address)) {
-      canonicalAddress = address;
-    } else {
-      try {
-        canonicalAddress = Util.canonicalizeNumber(context, address);
-      } catch (InvalidNumberException ine) {
-        Log.w(TAG, ine);
-        canonicalAddress = address;
-      }
-    }
+    final String canonicalAddress = canonicalizeAddress(context, address);
     if ((addressId = getCanonicalAddressIdFromCache(canonicalAddress)) != -1)
       return addressId;
 
@@ -159,6 +149,19 @@ public class CanonicalAddressDatabase {
     addressCache.put(canonicalAddress, addressId);
 
     return addressId;
+  }
+
+  private static String canonicalizeAddress(Context context, String address) {
+    if (GroupUtil.isEncodedGroup(address)) {
+      return address;
+    }
+
+    try {
+      return Util.canonicalizeNumber(context, address);
+    } catch (InvalidNumberException ine) {
+      Log.w(TAG, ine);
+      return address;
+    }
   }
 
   public List<Long> getCanonicalAddressIds(List<String> addresses) {
