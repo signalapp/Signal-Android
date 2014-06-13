@@ -23,6 +23,7 @@ import org.whispersystems.textsecure.util.Util;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -123,9 +124,9 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
   }
 
-  public void update(byte[] groupId, String title, AttachmentPointer avatar) {
+  public void update(byte[] groupId, Collection<String> members, String title, AttachmentPointer avatar) {
     ContentValues contentValues = new ContentValues();
-    if (title != null) contentValues.put(TITLE, title);
+    contentValues.put(TITLE, title);
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
@@ -133,9 +134,15 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_KEY, avatar.getKey().toByteArray());
     }
 
+    if (members != null) {
+      contentValues.put(MEMBERS, Util.join(members, ","));
+    }
+
+    contentValues.put(ACTIVE, 1);
+
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
-                                                new String[] {GroupUtil.getEncodedId(groupId)});
+                                                new String[]{GroupUtil.getEncodedId(groupId)});
 
     RecipientFactory.clearCache();
     notifyDatabaseListeners();

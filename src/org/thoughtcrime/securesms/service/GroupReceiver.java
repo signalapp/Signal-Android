@@ -15,14 +15,13 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Base64;
 
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
@@ -83,66 +82,72 @@ public class GroupReceiver {
     storeMessage(masterSecret, message, group);
   }
 
-  private void handleGroupUpdate(MasterSecret masterSecret,
-                                 IncomingPushMessage message,
-                                 GroupContext group,
-                                 GroupRecord groupRecord)
+  private void handleGroupUpdate(final MasterSecret masterSecret,
+                                 final IncomingPushMessage message,
+                                 final GroupContext groupUpdate,
+                                 final GroupRecord existingGroup)
   {
-    GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    byte[]        id       = group.getId().toByteArray();
+    final GroupDatabase      database     = DatabaseFactory.getGroupDatabase(context);
+    final byte[]             id           = groupUpdate.getId().toByteArray();
+    final Collection<String> unionMembers = Util.getAllElements(existingGroup.getMembers(), groupUpdate.getMembersList());
 
-    Set<String> recordMembers = new HashSet<String>(groupRecord.getMembers());
-    Set<String> messageMembers = new HashSet<String>(group.getMembersList());
+    GroupContext.Builder groupDiffBuilder = groupUpdate.toBuilder();
+    processNewMembers(groupDiffBuilder, existingGroup);
+    processNewAvatar (groupDiffBuilder, existingGroup);
+    processNewTitle  (groupDiffBuilder, existingGroup);
+    GroupContext groupDiff = groupDiffBuilder.build();
 
-    Set<String> addedMembers = new HashSet<String>(messageMembers);
-    addedMembers.removeAll(recordMembers);
+    if (groupDiff.hasName()) updateRecipientName(id, groupDiff.getName());
 
-    Set<String> missingMembers = new HashSet<String>(recordMembers);
-    missingMembers.removeAll(messageMembers);
-
-    if (addedMembers.size() > 0) {
-      Set<String> unionMembers = new HashSet<String>(recordMembers);
-      unionMembers.addAll(messageMembers);
-      database.updateMembers(id, new LinkedList<String>(unionMembers));
-
-      group = group.toBuilder().clearMembers().addAllMembers(addedMembers).build();
-    } else {
-      group = group.toBuilder().clearMembers().build();
-    }
-
-    if (missingMembers.size() > 0) {
-      // TODO We should tell added and missing about each-other.
-    }
-
-    if ((!group.hasAvatar() && groupRecord.getAvatarId() < 0) ||
-        (group.hasAvatar() && group.getAvatar().getId() == groupRecord.getAvatarId()))
-    {
-      group = group.toBuilder().clearAvatar().build();
-    } else if (!group.hasAvatar()) {
-      AttachmentPointer noAvatar = AttachmentPointer.newBuilder().setId(-1).build();
-      group = group.toBuilder().setAvatar(noAvatar).build();
-    }
-
-    if (group.hasName() && group.getName() != null && group.getName().equals(groupRecord.getTitle())) {
-      group = group.toBuilder().clearName().build();
-    } else {
-      try {
-        Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(id), true)
-                                                   .getPrimaryRecipient();
-        groupRecipient.setName(group.getName());
-      } catch (RecipientFormattingException e) {
-        Log.w(TAG, e);
-      }
-    }
-
-    if (!groupRecord.isActive()) database.setActive(id, true);
-    if (group.hasName() || group.hasAvatar()) {
+    if (groupDiff.hasName() || groupDiff.getMembersCount() > 0 || groupDiff.hasAvatar()) {
       database.update(id,
-                      group.hasName()   ? group.getName()   : groupRecord.getTitle(),
-                      group.hasAvatar() ? group.getAvatar() : null);
+                      unionMembers,
+                      groupDiff.hasName()   ? groupDiff.getName()   : existingGroup.getTitle(),
+                      groupDiff.hasAvatar() ? groupDiff.getAvatar() : null);
     }
 
-    storeMessage(masterSecret, message, group);
+    if (groupDiff.hasName())             Log.w(TAG, "group diff has name " + groupDiff.getName());
+    if (groupDiff.getMembersCount() > 0) Log.w(TAG, "group diff has " + groupDiff.getMembersCount() + " new members");
+    if (groupDiff.hasAvatar())           Log.w(TAG, "group diff has avatar with id " + groupDiff.getAvatar().getId());
+
+    storeMessage(masterSecret, message, groupDiff);
+  }
+
+  private void updateRecipientName(final byte[] id, final String name) {
+    try {
+      Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(id), true)
+                                                 .getPrimaryRecipient();
+      groupRecipient.setName(name);
+    } catch (RecipientFormattingException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void processNewMembers(final GroupContext.Builder builder, final GroupRecord existingGroup) {
+    Collection<String> addedMembers = Util.getAddedElements(existingGroup.getMembers(), builder.getMembersList());
+
+    builder.clearMembers();
+    if (addedMembers.size() > 0) {
+      builder.addAllMembers(addedMembers);
+    }
+  }
+
+  private void processNewAvatar(final GroupContext.Builder builder, final GroupRecord existingGroup) {
+    if ((!builder.hasAvatar() && existingGroup.getAvatarId() < 0) ||
+        (builder.hasAvatar()  && builder.getAvatar().getId() == existingGroup.getAvatarId()))
+    {
+      builder.clearAvatar();
+    } else if (!builder.hasAvatar()) {
+      builder.setAvatar(AttachmentPointer.newBuilder().setId(-1).build());
+    }
+  }
+
+  private void processNewTitle(final GroupContext.Builder builder, final GroupRecord existingGroup) {
+    if (builder.hasName()         &&
+        builder.getName() != null &&
+        builder.getName().equals(existingGroup.getTitle())) {
+      builder.clearName();
+    }
   }
 
   private void handleGroupLeave(MasterSecret        masterSecret,
@@ -160,7 +165,6 @@ public class GroupReceiver {
       storeMessage(masterSecret, message, group);
     }
   }
-
 
   private void storeMessage(MasterSecret masterSecret, IncomingPushMessage message, GroupContext group) {
     Intent intent = new Intent(context, SendReceiveService.class);

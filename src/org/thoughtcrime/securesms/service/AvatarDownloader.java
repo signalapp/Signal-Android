@@ -50,7 +50,7 @@ public class AvatarDownloader {
         final Bitmap avatar;
         if (avatarId == -1 || key == null) {
           avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
-          database.updateAvatar(groupId, (Bitmap)null);
+          database.updateAvatar(groupId, (byte[])null);
         } else {
           File        attachment         = downloadAttachment(relay, avatarId);
           InputStream scaleInputStream   = new AttachmentCipherInputStream(attachment, key);
