@@ -261,8 +261,12 @@ public class ConversationItem extends LinearLayout {
       dateText.setText(R.string.ConversationItem_error_sending_message);
     } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
       dateText.setText("");
-      if (messageRecord.isPendingSecureSmsFallback()) indicatorText.setText(R.string.ConversationItem_click_to_approve);
-      else                                            indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
+      if (messageRecord.isPendingSecureSmsFallback()) {
+        if (messageRecord.isMms()) indicatorText.setText(R.string.ConversationItem_click_to_approve_mms);
+        else                       indicatorText.setText(R.string.ConversationItem_click_to_approve_sms);
+      } else {
+        indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
+      }
     } else if (messageRecord.isPending()) {
       dateText.setText(" ··· ");
     } else {
