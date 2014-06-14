@@ -58,8 +58,10 @@
     <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
     <string name="ConversationItem_click_to_approve">Tap for SMS fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for insecure fallback</string>
-    <string name="ConversationItem_click_to_approve_dialog_title">Fallback to SMS?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Fallback to unencrypted SMS?</string>
+    <string name="ConversationItem_click_to_approve_sms_dialog_title">Fallback to SMS?</string>
+    <string name="ConversationItem_click_to_approve_mms_dialog_title">Fallback to MMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback to unencrypted SMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because a secure session could not be established.\n\nSend insecure message?</string>
 
     <!-- ConversationActivity -->
