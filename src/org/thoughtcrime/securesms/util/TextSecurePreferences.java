@@ -27,6 +27,7 @@ public class TextSecurePreferences {
   public  static final String LED_COLOR_PREF                   = "pref_led_color";
   public  static final String LED_BLINK_PREF                   = "pref_led_blink";
   private static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
+  public  static final String NOTIFICATION_PRIVACY_PREF        = "pref_key_notification_privacy";
   public  static final String ALL_MMS_PREF                     = "pref_all_mms";
   public  static final String ALL_SMS_PREF                     = "pref_all_sms";
   private static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
@@ -86,6 +87,10 @@ public class TextSecurePreferences {
 
   public static boolean isInThreadNotifications(Context context) {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
+  }
+
+  public static boolean isNotificationPrivacyEnabled(Context context) {
+    return getBooleanPreference(context, NOTIFICATION_PRIVACY_PREF, false);
   }
 
   public static long getDirectoryRefreshTime(Context context) {

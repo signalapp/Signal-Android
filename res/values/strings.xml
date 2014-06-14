@@ -394,6 +394,7 @@
     <string name="MessageNotifier_error_delivering_message">Error delivering message.</string>
     <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
     <string name="MessageNotifier_mark_as_read">Mark as read</string>
+    <string name="MessageNotifier_click_to_open">Click to open</string>
 
     <!-- ViewLocalIdentityActivity -->
     <string name="ViewLocalIdentityActivity_regenerating">Regenerating...</string>
@@ -718,6 +719,8 @@
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation.</string>
     <string name="preferences__vibrate">Vibrate</string>
     <string name="preferences__also_vibrate_when_notified">Also vibrate when notified</string>
+    <string name="preferences__notification_privacy">Privacy mode</string>
+    <string name="preferences__hide_sensitive_info_in_notification">Hide sensitive information like sender and message body from notifications.</string>
     <string name="preferences__minutes">minutes</string>
     <string name="preferences__hours">hours</string>
     <string name="preferences__green">Green</string>
