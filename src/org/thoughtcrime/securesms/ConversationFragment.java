@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.CursorAdapter;
 import android.webkit.MimeTypeMap;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -83,11 +82,7 @@ public class ConversationFragment extends SherlockListFragment
 
     initializeResources();
     initializeListAdapter();
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-      initializeContextualActionBar();
-    } else {
-      initializeBatchContextualActionBar();
-    }
+    initializeContextualActionBar();
   }
 
   @Override
@@ -120,12 +115,12 @@ public class ConversationFragment extends SherlockListFragment
       @Override
       public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         if (actionMode != null) {
-          view.setSelected(true);
+          setCorrectMenuVisibility(getSelectedMessages(), actionMode.getMenu());
           return false;
         }
 
         actionMode = getSherlockActivity().startActionMode(new ModeCallback());
-        view.setSelected(true);
+        getListView().setItemChecked(position, true);
         return true;
       }
     });
@@ -134,111 +129,22 @@ public class ConversationFragment extends SherlockListFragment
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (actionMode != null) {
-          view.setSelected(true);
-          setCorrectMenuVisibility(getMessageRecord(), actionMode.getMenu());
-        }
-      }
-    });
-  }
-
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  private void initializeBatchContextualActionBar() {
-    final ListView listView = getListView();
-    listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-    listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-
-      private List<MessageRecord> getSelectedMessages() {
-        List<MessageRecord> selectedMessages = new ArrayList<MessageRecord>();
-
-        SparseBooleanArray checked = listView.getCheckedItemPositions();
-        for (int i = 0; i < checked.size(); i++) {
-          int key = checked.keyAt(i);
-          boolean value = checked.get(key);
-          if (value) {
-            Cursor cursor = (Cursor) getListView().getItemAtPosition(key);
-            ConversationItem conversationItem = (ConversationItem) (((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
-            MessageRecord messageRecord = conversationItem.getMessageRecord();
-            selectedMessages.add(messageRecord);
+          int numberOfMessages = getSelectedMessages().size();
+          if (numberOfMessages == 0) {
+            actionMode.finish();
+            return;
+          } else if (numberOfMessages == 1) {
+            actionMode.setTitle(null);
+            actionMode.setSubtitle(null);
+          } else if (numberOfMessages > 1) {
+            actionMode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
+            actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+                numberOfMessages));
           }
+          setCorrectMenuVisibility(getSelectedMessages(), actionMode.getMenu());
+        } else {
+          getListView().setItemChecked(position, false);
         }
-        return selectedMessages;
-      }
-
-      @Override
-      public void onItemCheckedStateChanged(android.view.ActionMode mode, int position, long id, boolean checked) {
-        int numberOfMessages = getSelectedMessages().size();
-        if (numberOfMessages == 1) {
-          mode.setTitle(null);
-          mode.setSubtitle(null);
-        } else if (numberOfMessages > 1) {
-          mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
-          mode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                           numberOfMessages));
-          }
-        setCorrectMenuVisibility(getSelectedMessages(), mode.getMenu());
-      }
-
-      @Override
-      public boolean onCreateActionMode(android.view.ActionMode mode, android.view.Menu menu) {
-        android.view.MenuInflater inflater = mode.getMenuInflater();
-        inflater.inflate(R.menu.conversation_context, menu);
-
-        mode.setTitle(null);
-        mode.setSubtitle(null);
-
-        return true;
-      }
-
-      @Override
-      public boolean onPrepareActionMode(android.view.ActionMode mode, android.view.Menu menu) {
-        return false;
-      }
-
-      @Override
-      public boolean onActionItemClicked(android.view.ActionMode mode, android.view.MenuItem item) {
-        List<MessageRecord> selectedMessages = getSelectedMessages();
-
-        if (selectedMessages.size() == 1) {
-          MessageRecord messageRecord = selectedMessages.get(0);
-          switch (item.getItemId()) {
-            case R.id.menu_context_copy:
-              handleCopyMessage(messageRecord);
-              break;
-            case R.id.menu_context_delete_message:
-              handleDeleteMessage(messageRecord);
-              break;
-            case R.id.menu_context_details:
-              handleDisplayDetails(messageRecord);
-              break;
-            case R.id.menu_context_forward:
-              handleForwardMessage(messageRecord);
-              break;
-            case R.id.menu_context_resend:
-              handleResendMessage(messageRecord);
-              break;
-            case R.id.menu_context_save_attachment:
-              handleSaveAttachment(messageRecord);
-              break;
-            default:
-              return false;
-          }
-          mode.finish();
-          return true;
-        }
-
-        switch (item.getItemId()) {
-          case R.id.menu_context_delete_message:
-            handleDeleteMessages(selectedMessages);
-            mode.finish();
-            return true;
-        }
-
-        return false;
-      }
-
-      @Override
-      public void onDestroyActionMode(android.view.ActionMode mode) {
-
       }
     });
   }
@@ -267,32 +173,7 @@ public class ConversationFragment extends SherlockListFragment
     }
   }
 
-  private void setCorrectMenuVisibility(MessageRecord messageRecord, android.view.Menu menu){
-    menu.findItem(R.id.menu_context_details).setVisible(true);
-    menu.findItem(R.id.menu_context_copy).setVisible(true);
-    menu.findItem(R.id.menu_context_forward).setVisible(true);
-    menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
-
-    android.view.MenuItem saveAttachment = menu.findItem(R.id.menu_context_save_attachment);
-    if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
-      try {
-        if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
-          saveAttachment.setVisible(true);
-        } else {
-          saveAttachment.setVisible(false);
-        }
-      } catch (InterruptedException ie) {
-        Log.w(TAG, ie);
-      } catch (ExecutionException ee) {
-        Log.w(TAG, ee);
-      }
-    } else {
-      saveAttachment.setVisible(false);
-    }
-    return;
-  }
-
-  private void setCorrectMenuVisibility(List<MessageRecord> messageRecords, android.view.Menu menu){
+  private void setCorrectMenuVisibility(List<MessageRecord> messageRecords, Menu menu){
     switch (messageRecords.size()) {
       case 0:
         return;
@@ -312,6 +193,24 @@ public class ConversationFragment extends SherlockListFragment
     Cursor cursor                     = ((CursorAdapter)getListAdapter()).getCursor();
     ConversationItem conversationItem = (ConversationItem)(((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
     return conversationItem.getMessageRecord();
+  }
+
+  private List<MessageRecord> getSelectedMessages() {
+    List<MessageRecord> selectedMessages = new ArrayList<MessageRecord>();
+
+    SparseBooleanArray checked = getListView().getCheckedItemPositions();
+    if (checked == null) return selectedMessages;
+    for (int i = 0; i < checked.size(); i++) {
+      int key = checked.keyAt(i);
+      boolean value = checked.get(key);
+      if (value) {
+        Cursor cursor = (Cursor) getListView().getItemAtPosition(key);
+        ConversationItem conversationItem = (ConversationItem) (((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
+        MessageRecord messageRecord = conversationItem.getMessageRecord();
+        selectedMessages.add(messageRecord);
+      }
+    }
+    return selectedMessages;
   }
 
   public void reload(Recipients recipients, long threadId) {
@@ -368,7 +267,7 @@ public class ConversationFragment extends SherlockListFragment
     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
     alert.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
     alert.setTitle(R.string.ConversationFragment_confirm_message_delete);
-    alert.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message);
+    alert.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_these_messages);
     alert.setCancelable(true);
 
     alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
@@ -510,8 +409,11 @@ public class ConversationFragment extends SherlockListFragment
       MenuInflater inflater = mode.getMenuInflater();
       inflater.inflate(R.menu.conversation_context, menu);
 
-      MessageRecord messageRecord = getMessageRecord();
-      setCorrectMenuVisibility(messageRecord, menu);
+      getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+      setCorrectMenuVisibility(getSelectedMessages(), menu);
+
+      mode.setTitle(null);
+      mode.setSubtitle(null);
 
       return true;
     }
@@ -523,9 +425,10 @@ public class ConversationFragment extends SherlockListFragment
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
-      if (getListView() != null && getListView().getChildCount() > 0) {
-        for (int i = 0; i < getListView().getChildCount(); i++){
-          getListView().getChildAt(i).setSelected(false);
+      final ListView listView = getListView();
+      if (listView != null && listView.getChildCount() > 0) {
+        for (int i = 0; i < listView.getAdapter().getCount(); i++){
+          listView.setItemChecked(i, false);
         }
       }
       actionMode = null;
@@ -533,32 +436,40 @@ public class ConversationFragment extends SherlockListFragment
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-      MessageRecord messageRecord = getMessageRecord();
+      List<MessageRecord> selectedMessages = getSelectedMessages();
 
-      switch(item.getItemId()) {
-        case R.id.menu_context_copy:
-          handleCopyMessage(messageRecord);
-          actionMode.finish();
-          return true;
+      if (selectedMessages.size() == 1) {
+        MessageRecord messageRecord = selectedMessages.get(0);
+        switch (item.getItemId()) {
+          case R.id.menu_context_copy:
+            handleCopyMessage(messageRecord);
+            break;
+          case R.id.menu_context_delete_message:
+            handleDeleteMessage(messageRecord);
+            break;
+          case R.id.menu_context_details:
+            handleDisplayDetails(messageRecord);
+            break;
+          case R.id.menu_context_forward:
+            handleForwardMessage(messageRecord);
+            break;
+          case R.id.menu_context_resend:
+            handleResendMessage(messageRecord);
+            break;
+          case R.id.menu_context_save_attachment:
+            handleSaveAttachment(messageRecord);
+            break;
+          default:
+            return false;
+        }
+        mode.finish();
+        return true;
+      }
+
+      switch (item.getItemId()) {
         case R.id.menu_context_delete_message:
-          handleDeleteMessage(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_details:
-          handleDisplayDetails(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_forward:
-          handleForwardMessage(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_resend:
-          handleResendMessage(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_save_attachment:
-          handleSaveAttachment(messageRecord);
-          actionMode.finish();
+          handleDeleteMessages(selectedMessages);
+          mode.finish();
           return true;
       }
 
