@@ -292,7 +292,6 @@
   <string name="MessageNotifier_error_delivering_message">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_mark_all_as_read">Alle als gelesen markieren</string>
   <string name="MessageNotifier_mark_as_read">Als gelesen markieren</string>
-  <string name="MessageNotifier_click_to_open">Zum Öffnen drücken</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Erzeuge neu...</string>
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Schlüssel wird\nneu erzeugt...</string>
@@ -518,8 +517,6 @@
   <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiven Unterhaltungen abspielen</string>
   <string name="preferences__vibrate">Vibration</string>
   <string name="preferences__also_vibrate_when_notified">Bei Benachrichtigungen vibrieren</string>
-  <string name="preferences__notification_privacy">Privatsphäre-Modus</string>
-  <string name="preferences__hide_sensitive_info_in_notification">Informationen wie Absender und Nachrichteninhalt werden in der Benachrichtigungen nicht angezeigt</string>
   <string name="preferences__minutes">Minuten</string>
   <string name="preferences__hours">Stunden</string>
   <string name="preferences__green">Grün</string>
