@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -10,7 +9,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -111,6 +109,8 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void initializeContextualActionBar() {
+    getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
     getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
       @Override
       public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -416,7 +416,6 @@ public class ConversationFragment extends SherlockListFragment
       MenuInflater inflater = mode.getMenuInflater();
       inflater.inflate(R.menu.conversation_context, menu);
 
-      getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
       setCorrectMenuVisibility(getSelectedMessages(), menu);
 
       mode.setTitle(null);
