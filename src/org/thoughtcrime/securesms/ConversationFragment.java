@@ -237,6 +237,7 @@ public class ConversationFragment extends SherlockListFragment
     ClipboardManager clipboard = (ClipboardManager)getActivity()
         .getSystemService(Context.CLIPBOARD_SERVICE);
     clipboard.setText(body);
+    actionMode.finish();
   }
 
   private void handleDeleteMessage(final MessageRecord message) {
@@ -256,6 +257,7 @@ public class ConversationFragment extends SherlockListFragment
         } else {
           DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageId);
         }
+        actionMode.finish();
       }
     });
 
@@ -303,6 +305,7 @@ public class ConversationFragment extends SherlockListFragment
             }
           }.execute();
         }
+        actionMode.finish();
       }
     });
 
@@ -343,6 +346,7 @@ public class ConversationFragment extends SherlockListFragment
 
     builder.setPositiveButton(android.R.string.ok, null);
     builder.show();
+    actionMode.finish();
   }
 
   private void handleForwardMessage(MessageRecord message) {
@@ -350,12 +354,14 @@ public class ConversationFragment extends SherlockListFragment
     composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
     composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
     startActivity(composeIntent);
+    actionMode.finish();
   }
 
   private void handleResendMessage(MessageRecord message) {
     long messageId = message.getId();
     final Activity activity = getActivity();
     MessageSender.resend(activity, messageId, message.isMms());
+    actionMode.finish();
   }
 
   private void handleSaveAttachment(final MessageRecord message) {
@@ -368,6 +374,7 @@ public class ConversationFragment extends SherlockListFragment
       public void onClick(DialogInterface dialog, int which) {
         SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
         saveTask.execute((MediaMmsMessageRecord) message);
+        actionMode.finish();
       }
     });
     builder.setNegativeButton(R.string.no, null);
@@ -443,27 +450,25 @@ public class ConversationFragment extends SherlockListFragment
         switch (item.getItemId()) {
           case R.id.menu_context_copy:
             handleCopyMessage(messageRecord);
-            break;
+            return true;
           case R.id.menu_context_delete_message:
             handleDeleteMessage(messageRecord);
-            break;
+            return true;
           case R.id.menu_context_details:
             handleDisplayDetails(messageRecord);
-            break;
+            return true;
           case R.id.menu_context_forward:
             handleForwardMessage(messageRecord);
-            break;
+            return true;
           case R.id.menu_context_resend:
             handleResendMessage(messageRecord);
-            break;
+            return true;
           case R.id.menu_context_save_attachment:
             handleSaveAttachment(messageRecord);
-            break;
+            return true;
           default:
             return false;
         }
-        mode.finish();
-        return true;
       }
 
       switch (item.getItemId()) {
@@ -471,9 +476,9 @@ public class ConversationFragment extends SherlockListFragment
           handleDeleteMessages(selectedMessages);
           mode.finish();
           return true;
+        default:
+          return false;
       }
-
-      return false;
     }
   };
 
