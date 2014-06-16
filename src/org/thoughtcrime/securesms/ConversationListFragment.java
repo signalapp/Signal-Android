@@ -227,10 +227,14 @@ public class ConversationListFragment extends SherlockListFragment
 
   private void handleSelectAllThreads() {
     ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
+    actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+                           ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
   }
 
   private void handleUnselectAllThreads() {
     ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
+    actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+        ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
   }
 
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
