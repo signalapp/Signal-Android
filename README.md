@@ -20,6 +20,9 @@ Interested in helping to translate TextSecure? Contribute here:
 https://www.transifex.com/projects/p/textsecure-official/
 
 ## Contributing Code
+
+[![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=11493)](https://www.bountysource.com/trackers/11493-whisper-systems-text-secure?utm_source=11493&utm_medium=shield&utm_campaign=TRACKER_BADGE)
+
 Instructions on how to setup your development environment and build TextSecure can be found in  [BUILDING.md](https://github.com/WhisperSystems/TextSecure/blob/master/BUILDING.md).
 
 If you're new to the TextSecure codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar.
