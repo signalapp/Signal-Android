@@ -16,25 +16,25 @@ public abstract class PassphraseRequiredSherlockPreferenceActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    delegate.onCreate(this, this);
+    delegate.onCreate(this);
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    delegate.onResume(this, this);
+    delegate.onResume(this);
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    delegate.onPause(this, this);
+    delegate.onPause(this);
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    delegate.onDestroy(this, this);
+    delegate.onDestroy(this);
   }
 
   @Override

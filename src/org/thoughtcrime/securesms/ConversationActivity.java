@@ -203,7 +203,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     dynamicLanguage.onResume(this);
 
     initializeSecurity();
-    initializeScreenshotSecurity();
     initializeTitleBar();
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
@@ -731,15 +730,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     calculateCharactersRemaining();
   }
 
-  private void initializeScreenshotSecurity() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-      } else {
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
-      }
-    }
-  }
 
   private void initializeMmsEnabledCheck() {
     new AsyncTask<Void, Void, Boolean>() {

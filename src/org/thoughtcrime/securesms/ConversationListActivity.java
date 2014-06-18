@@ -86,7 +86,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     dynamicLanguage.onResume(this);
 
     initializeDefaultMessengerCheck();
-    initializeSecurity();
   }
 
   @Override
@@ -296,16 +295,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
       Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
       intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
       startActivity(intent);
-    }
-  }
-
-  private void initializeSecurity() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-      } else {
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
-      }
     }
   }
 

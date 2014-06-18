@@ -1,13 +1,17 @@
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.IBinder;
+import android.view.WindowManager;
 
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 
@@ -18,27 +22,38 @@ public class PassphraseRequiredMixin {
   private BroadcastReceiver clearKeyReceiver;
   private BroadcastReceiver newKeyReceiver;
 
-  public void onCreate(Context context, PassphraseRequiredActivity activity) {
-    initializeClearKeyReceiver(context, activity);
+  public <T extends Activity & PassphraseRequiredActivity> void onCreate(T activity) {
+    initializeClearKeyReceiver(activity);
   }
 
-  public void onResume(Context context, PassphraseRequiredActivity activity) {
-    initializeNewKeyReceiver(context, activity);
-    initializeServiceConnection(context, activity);
-    KeyCachingService.registerPassphraseActivityStarted(context);
+  public <T extends Activity & PassphraseRequiredActivity> void onResume(T activity) {
+    initializeScreenshotSecurity(activity);
+    initializeNewKeyReceiver(activity);
+    initializeServiceConnection(activity);
+    KeyCachingService.registerPassphraseActivityStarted(activity);
   }
 
-  public void onPause(Context context, PassphraseRequiredActivity activity) {
-    removeNewKeyReceiver(context);
-    removeServiceConnection(context);
-    KeyCachingService.registerPassphraseActivityStopped(context);
+  public <T extends Activity & PassphraseRequiredActivity> void onPause(T activity) {
+    removeNewKeyReceiver(activity);
+    removeServiceConnection(activity);
+    KeyCachingService.registerPassphraseActivityStopped(activity);
   }
 
-  public void onDestroy(Context context, PassphraseRequiredActivity activity) {
-    removeClearKeyReceiver(context);
+  public <T extends Activity & PassphraseRequiredActivity> void onDestroy(T activity) {
+    removeClearKeyReceiver(activity);
   }
 
-  private void initializeClearKeyReceiver(Context context, final PassphraseRequiredActivity activity) {
+  private <T extends Activity & PassphraseRequiredActivity> void initializeScreenshotSecurity(T activity) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+      if (TextSecurePreferences.isScreenSecurityEnabled(activity)) {
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      } else {
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      }
+    }
+  }
+
+  private <T extends Activity & PassphraseRequiredActivity> void initializeClearKeyReceiver(final T activity) {
     this.clearKeyReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
@@ -47,10 +62,11 @@ public class PassphraseRequiredMixin {
     };
 
     IntentFilter filter = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
-    context.registerReceiver(clearKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null);
+
+    activity.registerReceiver(clearKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null);
   }
 
-  private void initializeNewKeyReceiver(Context context, final PassphraseRequiredActivity activity) {
+  private <T extends Activity & PassphraseRequiredActivity> void initializeNewKeyReceiver(final T activity) {
     this.newKeyReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
@@ -59,17 +75,17 @@ public class PassphraseRequiredMixin {
     };
 
     IntentFilter filter = new IntentFilter(KeyCachingService.NEW_KEY_EVENT);
-    context.registerReceiver(newKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null);
+    activity.registerReceiver(newKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null);
   }
 
-  private void initializeServiceConnection(Context context, PassphraseRequiredActivity activity) {
-    Intent cachingIntent = new Intent(context, KeyCachingService.class);
-    context.startService(cachingIntent);
+  private <T extends Activity & PassphraseRequiredActivity> void initializeServiceConnection(T activity) {
+    Intent cachingIntent = new Intent(activity, KeyCachingService.class);
+    activity.startService(cachingIntent);
 
     this.serviceConnection = new KeyCachingServiceConnection(activity);
 
-    Intent bindIntent = new Intent(context, KeyCachingService.class);
-    context.bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+    Intent bindIntent = new Intent(activity, KeyCachingService.class);
+    activity.bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
   }
 
   private void removeClearKeyReceiver(Context context) {
