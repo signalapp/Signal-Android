@@ -20,9 +20,11 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -43,11 +45,13 @@ public class DatabaseUpgradeActivity extends Activity {
   public static final int MMS_BODY_VERSION                    = 46;
   public static final int TOFU_IDENTITIES_VERSION             = 50;
   public static final int CURVE25519_VERSION                  = 63;
+  public static final int VIBRATE_PREF_STRING_VERSION         = 72;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
     add(TOFU_IDENTITIES_VERSION);
     add(CURVE25519_VERSION);
+    add(VIBRATE_PREF_STRING_VERSION);
   }};
 
   private MasterSecret masterSecret;
@@ -135,6 +139,17 @@ public class DatabaseUpgradeActivity extends Activity {
       if (params[0] < CURVE25519_VERSION) {
         if (!IdentityKeyUtil.hasCurve25519IdentityKeys(context)) {
           IdentityKeyUtil.generateCurve25519IdentityKeys(context, masterSecret);
+        }
+      }
+
+      if (params[0] < VIBRATE_PREF_STRING_VERSION) {
+        final String key_boolean = "pref_key_vibrate";
+        final String key_string  = "pref_vibrate";
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (preferences.contains(key_boolean) && !preferences.getBoolean(key_boolean, true)) {
+          preferences.edit().remove(key_boolean);
+          preferences.edit().putString(key_string, "disabled").commit();
         }
       }
 
