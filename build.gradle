@@ -4,11 +4,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.11.+'
+        classpath 'org.robolectric:robolectric-gradle-plugin:0.11.+'
         classpath files('libs/gradle-witness.jar')
     }
 }
 
 apply plugin: 'android'
+apply plugin: 'robolectric'
 apply plugin: 'witness'
 
 repositories {
@@ -27,6 +29,34 @@ dependencies {
     compile 'com.google.android.gcm:gcm-client:1.0.2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
 
+    androidTestCompile 'org.hamcrest:hamcrest-integration:1.3',
+            'org.hamcrest:hamcrest-core:1.3',
+            'org.hamcrest:hamcrest-library:1.3'
+
+    androidTestCompile('junit:junit:4.11') {
+        exclude module: 'hamcrest-core'
+    }
+    androidTestCompile('org.robolectric:robolectric:2.3') {
+        exclude module: 'classworlds'
+        exclude module: 'maven-artifact'
+        exclude module: 'maven-artifact-manager'
+        exclude module: 'maven-error-diagnostics'
+        exclude module: 'maven-model'
+        exclude module: 'maven-plugin-registry'
+        exclude module: 'maven-profile'
+        exclude module: 'maven-project'
+        exclude module: 'maven-settings'
+        exclude module: 'nekohtml'
+        exclude module: 'plexus-container-default'
+        exclude module: 'plexus-interpolation'
+        exclude module: 'plexus-utils'
+        exclude module: 'wagon-file'
+        exclude module: 'wagon-http-lightweight'
+        exclude module: 'wagon-http-shared'
+        exclude module: 'wagon-provider-api'
+    }
+    androidTestCompile 'com.squareup:fest-android:1.0.8'
+
     compile project(':library')
 }
 
@@ -43,6 +73,10 @@ dependencyVerification {
     ]
 }
 
+robolectric {
+    include '**/*Test.class'
+}
+
 android {
     compileSdkVersion 19
     buildToolsVersion '19.1.0'
@@ -53,14 +87,14 @@ android {
     }
 
     android {
+        packagingOptions {
+            exclude 'LICENSE.txt'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/NOTICE'
+        }
         sourceSets {
             main {
-                manifest.srcFile 'AndroidManifest.xml'
-                java.srcDirs = ['src']
-                resources.srcDirs = ['src']
-                aidl.srcDirs = ['src']
-                renderscript.srcDirs = ['src']
-                res.srcDirs = ['res']
                 assets.srcDirs = ['assets']
             }
         }
@@ -77,6 +111,14 @@ android {
 
      lintOptions {
         abortOnError false
+    }
+}
+
+apply plugin: 'idea'
+
+idea {
+    module {
+        testOutputDir = file('build/test-classes/debug')
     }
 }
 
@@ -104,3 +146,4 @@ if (propFile.canRead()){
     println 'signing.properties not found'
     android.buildTypes.release.signingConfig = null
 }
+
