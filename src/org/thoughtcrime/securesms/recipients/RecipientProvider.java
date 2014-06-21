@@ -72,12 +72,17 @@ public class RecipientProvider {
     else                  details = getRecipientDetails(context, number);
 
     if (details != null) {
-      recipient = new Recipient(details.name, number, recipientId, details.contactUri, details.avatar);
+      recipient = new Recipient(details.name, number, recipientId, details.contactUri, details.avatar,
+                                details.croppedAvatar);
     } else {
-      final Bitmap defaultPhoto = isGroupRecipient
-                                    ? ContactPhotoFactory.getDefaultGroupPhoto(context)
-                                    : ContactPhotoFactory.getDefaultContactPhoto(context);
-      recipient = new Recipient(null, number, recipientId, null, defaultPhoto);
+      final Bitmap defaultPhoto        = isGroupRecipient
+                                           ? ContactPhotoFactory.getDefaultGroupPhoto(context)
+                                           : ContactPhotoFactory.getDefaultContactPhoto(context);
+      final Bitmap defaultCroppedPhoto = isGroupRecipient
+                                           ? ContactPhotoFactory.getDefaultGroupPhotoCropped(context)
+                                           : ContactPhotoFactory.getDefaultContactPhotoCropped(context);
+
+      recipient = new Recipient(null, number, recipientId, null, defaultPhoto, defaultCroppedPhoto);
     }
 
     recipientCache.put(recipientId, recipient);
