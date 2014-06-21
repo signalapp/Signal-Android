@@ -78,6 +78,7 @@ public class Recipient implements Parcelable, CanonicalRecipient {
             Recipient.this.contactUri                = result.contactUri;
             Recipient.this.contactPhoto              = result.avatar;
             Recipient.this.circleCroppedContactPhoto = result.croppedAvatar;
+            
             localListeners                           = (HashSet<RecipientModifiedListener>) listeners.clone();
             listeners.clear();
           }
@@ -94,12 +95,15 @@ public class Recipient implements Parcelable, CanonicalRecipient {
     });
   }
 
-  Recipient(String name, String number, long recipientId, Uri contactUri, Bitmap contactPhoto) {
-    this.number       = number;
-    this.recipientId  = recipientId;
-    this.contactUri   = contactUri;
-    this.name         = name;
-    this.contactPhoto = contactPhoto;
+  Recipient(String name, String number, long recipientId, Uri contactUri, Bitmap contactPhoto,
+            Bitmap circleCroppedContactPhoto)
+  {
+    this.number                     = number;
+    this.recipientId                = recipientId;
+    this.contactUri                 = contactUri;
+    this.name                       = name;
+    this.contactPhoto               = contactPhoto;
+    this.circleCroppedContactPhoto  = circleCroppedContactPhoto;
   }
 
   public Recipient(Parcel in) {
@@ -185,7 +189,9 @@ public class Recipient implements Parcelable, CanonicalRecipient {
   }
 
   public static Recipient getUnknownRecipient(Context context) {
-    return new Recipient("Unknown", "Unknown", -1, null, ContactPhotoFactory.getDefaultContactPhoto(context));
+    return new Recipient("Unknown", "Unknown", -1, null,
+                         ContactPhotoFactory.getDefaultContactPhoto(context),
+                         ContactPhotoFactory.getDefaultContactPhotoCropped(context));
   }
 
   @Override
