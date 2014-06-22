@@ -670,7 +670,6 @@
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / Export</string>
     <string name="arrays__my_identity_key">My identity key</string>
-    <string name="arrays__contact_keys">Contact keys</string>
 
     <!-- preferences.xml -->
     <string name="preferences__general">General</string>
