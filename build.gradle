@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.11.+'
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.11.1-sourcesets'
+        classpath 'org.robolectric:robolectric-gradle-plugin:0.11.2-sourcesets'
         classpath files('libs/gradle-witness.jar')
     }
 }
@@ -106,6 +106,10 @@ android {
                 res.srcDirs = ['res']
                 assets.srcDirs = ['assets']
             }
+            androidTest {
+                java.srcDirs = ['androidTest/java']
+                resources.srcDirs = ['androidTest/java']
+            }
         }
     }
 
@@ -125,8 +129,8 @@ android {
 
 sourceSets {
     testDebug {
-        java.srcDirs = ['androidTest']
-        resources.srcDirs = ['androidTest']
+        java.srcDirs = ['androidTest/java']
+//        resources.srcDirs = ['androidTest']
     }       
 }
 
