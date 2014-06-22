@@ -50,11 +50,13 @@ public class VibratePatternListPreference extends ListPreference  {
   public VibratePatternListPreference(Context context) {
     super(context);
     this.context = context;
+    TextSecurePreferences.migrateNotificationVibrate(context);
   }
 
   public VibratePatternListPreference(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.context = context;
+    TextSecurePreferences.migrateNotificationVibrate(context);
   }
 
   @Override

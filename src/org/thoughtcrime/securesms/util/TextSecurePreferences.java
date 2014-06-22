@@ -244,7 +244,15 @@ public class TextSecurePreferences {
     return getStringPreference(context, RINGTONE_PREF, null);
   }
 
+  public static void migrateNotificationVibrate(Context context) {
+    if (!getBooleanPreference(context, "pref_key_vibrate", true)) {
+      setStringPreference(context, VIBRATE_PREF, "disabled");
+      PreferenceManager.getDefaultSharedPreferences(context).edit().remove("pref_key_vibrate").commit();
+    }
+  }
+
   public static String getNotificationVibrate(Context context) {
+    migrateNotificationVibrate(context);
     return getStringPreference(context, VIBRATE_PREF, "default");
   }
 
