@@ -16,9 +16,11 @@
  */
 package org.thoughtcrime.securesms.notifications;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -27,9 +29,11 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
+import android.text.AlteredCharSequence;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -52,7 +56,12 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * Handles posting system notifications for new messages.
@@ -64,6 +73,9 @@ import java.util.List;
 public class MessageNotifier {
 
   public static final int NOTIFICATION_ID = 1338;
+
+  public static final String RENOTIFY = "org.thoughtcrime.securesms.notifications.RENOTIFY";
+  public static final String CANCEL_RENOTIFY = "org.thoughtcrime.securesms.notifications.CANCEL_RENOTIFY";
 
   private volatile static long visibleThread = -1;
 
@@ -90,6 +102,10 @@ public class MessageNotifier {
       builder.setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));
       builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
       builder.setAutoCancel(true);
+
+      PendingIntent scheduledRenotification = MessageNotifier.scheduleRenotification(context, null);
+      if (scheduledRenotification != null)
+        builder.setDeleteIntent(MessageNotifier.getCancelRenotificationIntent(context, scheduledRenotification));
       setNotificationAlarms(context, builder, true);
 
       ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
@@ -150,6 +166,16 @@ public class MessageNotifier {
     }
   }
 
+  private static PendingIntent getCancelRenotificationIntent(Context context,
+                                                             PendingIntent scheduledRenotification)
+  {
+    Intent cancelIntent = new Intent(MessageNotifier.CANCEL_RENOTIFY);
+    cancelIntent.putExtra("scheduledRenotification", scheduledRenotification);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, cancelIntent, 0);
+
+    return pendingIntent;
+  }
+
   private static void sendSingleThreadNotification(Context context,
                                                    MasterSecret masterSecret,
                                                    NotificationState notificationState,
@@ -172,6 +198,10 @@ public class MessageNotifier {
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
+
+    PendingIntent scheduledRenotification = MessageNotifier.scheduleRenotification(context, masterSecret);
+    if (scheduledRenotification != null)
+      builder.setDeleteIntent(MessageNotifier.getCancelRenotificationIntent(context, scheduledRenotification));
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
@@ -216,6 +246,11 @@ public class MessageNotifier {
     
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
+
+
+    PendingIntent scheduledRenotification = MessageNotifier.scheduleRenotification(context, masterSecret);
+    if (scheduledRenotification != null)
+      builder.setDeleteIntent(MessageNotifier.getCancelRenotificationIntent(context, scheduledRenotification));
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read),
@@ -358,8 +393,7 @@ public class MessageNotifier {
     String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
     String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
     String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
-    String[] blinkPatternArray   = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
-
+    String[] blinkPatternArray   = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom
     builder.setSound(TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone));
 
     if (signal && vibrate) {
@@ -379,4 +413,54 @@ public class MessageNotifier {
 
     return blinkPattern.split(",");
   }
+
+  private static PendingIntent scheduleRenotification(final Context context,
+                                                      final MasterSecret masterSecret)
+  {
+    if (! TextSecurePreferences.isRenotificationEnabled(context)) {
+      return null;
+    }
+
+    AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+
+    Intent intent = new Intent(MessageNotifier.RENOTIFY);
+    intent.putExtra("master_secret", masterSecret);
+
+    PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+    int timeout = TextSecurePreferences.getRenotificationTime(context) * 60 * 1000;
+
+    alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                     SystemClock.elapsedRealtime() + timeout,
+                     alarmIntent);
+
+    return alarmIntent;
+  }
+
+  public static class NotificationDeleteBroadcastReceiver extends BroadcastReceiver {
+    public NotificationDeleteBroadcastReceiver() {
+      super();
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      PendingIntent scheduledRenotification = intent.getParcelableExtra("scheduledRenotification");
+      AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+      alarmManager.cancel(scheduledRenotification);
+    }
+  }
+
+  public static class RenotifyReceiver extends BroadcastReceiver {
+
+    public RenotifyReceiver() {
+      super();
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
+      MessageNotifier.updateNotification(context, masterSecret, true);
+    }
+  }
+
 }

@@ -27,6 +27,7 @@ public class TextSecurePreferences {
   public  static final String LED_COLOR_PREF                   = "pref_led_color";
   public  static final String LED_BLINK_PREF                   = "pref_led_blink";
   private static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
+  private static final String RENOTIFICATION_PREF              = "pref_renotification";
   public  static final String ALL_MMS_PREF                     = "pref_all_mms";
   public  static final String ALL_SMS_PREF                     = "pref_all_sms";
   private static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
@@ -242,6 +243,18 @@ public class TextSecurePreferences {
 
   public static void setPassphraseTimeoutInterval(Context context, int interval) {
     setIntegerPrefrence(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval);
+  }
+
+  public static boolean isRenotificationEnabled(Context context) {
+    return (getIntegerPreference(context, RENOTIFICATION_PREF, 0) != 0);
+  }
+
+  public static int getRenotificationTime(Context context) {
+    return getIntegerPreference(context, RENOTIFICATION_PREF, 0);
+  }
+
+  public static void setRenotificationTime(Context context, int time) {
+    setIntegerPrefrence(context, RENOTIFICATION_PREF, time);
   }
 
   public static String getLanguage(Context context) {
