@@ -15,7 +15,7 @@
                   android:background="#ffeaeaea">
 
 
-        <LinearLayout android:id="@+id/export_encrypted_backup"
+        <!--LinearLayout android:id="@+id/export_encrypted_backup"
                       android:clickable="true"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
 
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </LinearLayout-->
 
 
         <LinearLayout android:id="@+id/export_plaintext_backup"

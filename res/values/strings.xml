@@ -161,6 +161,10 @@
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-TextSecure contacts to an existing TextSecure group</string>
 
+    <!-- ImportExportActivity -->
+    <string name="ImportExportActivity_import">Import</string>
+    <string name="ImportExportActivity_export">Export</string>
+
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import system SMS database?</string>
     <string name="ImportFragment_this_will_import_messages_from_the_system">This will import
