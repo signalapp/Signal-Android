@@ -1,10 +1,13 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "https://raw.github.com/whispersystems/maven/master/robolectric-gradle-plugin/releases/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.11.+'
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.11.+'
+        classpath 'org.robolectric:robolectric-gradle-plugin:0.11.1-sourcesets'
         classpath files('libs/gradle-witness.jar')
     }
 }
@@ -95,6 +98,12 @@ android {
         }
         sourceSets {
             main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src']
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
                 assets.srcDirs = ['assets']
             }
         }
@@ -112,6 +121,13 @@ android {
      lintOptions {
         abortOnError false
     }
+}
+
+sourceSets {
+    testDebug {
+        java.srcDirs = ['androidTest']
+        resources.srcDirs = ['androidTest']
+    }       
 }
 
 apply plugin: 'idea'
