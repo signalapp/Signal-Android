@@ -48,14 +48,13 @@ public class PlaintextBackupExporter {
       reader = DatabaseFactory.getEncryptingSmsDatabase(context).getMessages(masterSecret, skip, ROW_LIMIT);
 
       while ((record = reader.getNext()) != null) {
-        XmlBackup.XmlBackupItem item =
-            new XmlBackup.XmlBackupItem(0, record.getIndividualRecipient().getNumber(),
-                                        record.getDateReceived(),
-                                        MmsSmsColumns.Types.translateToSystemBaseType(record.getType()),
-                                        null, record.getDisplayBody().toString(), null,
-                                        1, record.getDeliveryStatus());
-
-        writer.writeItem(item);
+        XmlBackup.Sms sms = new XmlBackup.Sms(record.getIndividualRecipient().getNumber(),
+                                              record.getDateReceived(),
+                                              MmsSmsColumns.Types.translateToSystemBaseType(record.getType()),
+                                              null,
+                                              record.getDisplayBody().toString(),
+                                              record.getDeliveryStatus());
+        writer.writeItem(sms);
       }
 
       skip += ROW_LIMIT;

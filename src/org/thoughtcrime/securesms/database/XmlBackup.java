@@ -1,17 +1,24 @@
 package org.thoughtcrime.securesms.database;
 
-import org.whispersystems.textsecure.util.Util;
+import android.util.Xml;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import com.thoughtworks.xstream.io.naming.NoNameCoder;
+import com.thoughtworks.xstream.io.xml.Xpp3DomDriver;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.LinkedList;
+import java.util.List;
 
 public class XmlBackup {
 
@@ -140,61 +147,67 @@ public class XmlBackup {
     }
   }
 
+  @XStreamAlias("sms")
+  public static class Sms {
+    @XStreamAsAttribute private String address;
+    @XStreamAsAttribute private long   date;
+    @XStreamAsAttribute private int    type;
+    @XStreamAsAttribute private String subject;
+    @XStreamAsAttribute private String body;
+    @XStreamAsAttribute private int    status;
+    @XStreamAsAttribute private int    protocol       = 0;
+    @XStreamAsAttribute private String toa            = "null";
+    @XStreamAsAttribute private String sc_toa         = "null";
+    @XStreamAsAttribute private String service_center = "null";
+    @XStreamAsAttribute private int    read           = 1;
+    @XStreamAsAttribute private int    locked         = 0;
+
+    public Sms(String address, long date, int type, String subject, String body, int status) {
+      this.address = address;
+      this.date = date;
+      this.type = type;
+      this.subject = subject;
+      this.body = body;
+      this.status = status;
+    }
+  }
+
+  @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+  @XStreamAlias("smses")
+  public static class Smses {
+    @XStreamImplicit    private List<Sms> smses;
+    @XStreamAsAttribute private int       count;
+
+    public Smses(int count) {
+      this.count = count;
+      this.smses = new LinkedList<Sms>();
+    }
+
+    public void addSms(Sms sms) {
+      smses.add(sms);
+    }
+  }
+
   public static class Writer {
 
-    private static final String  XML_HEADER      = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>";
-    private static final String  CREATED_BY      = "<!-- File Created By TextSecure -->";
-    private static final String  OPEN_TAG_SMSES  = "<smses count=\"%d\">";
-    private static final String  CLOSE_TAG_SMSES = "</smses>";
-    private static final String  OPEN_TAG_SMS    = " <sms ";
-    private static final String  CLOSE_EMPTYTAG  = "/>";
-    private static final String  OPEN_ATTRIBUTE  = "=\"";
-    private static final String  CLOSE_ATTRIBUTE = "\" ";
-
-    private static final Pattern PATTERN         = Pattern.compile("[^\u0020-\uD7FF]");
-
-    private final BufferedWriter bufferedWriter;
+    private BufferedWriter writer;
+    private XStream        xstream;
+    private Smses          smses;
 
     public Writer(String path, int count) throws IOException {
-      bufferedWriter = new BufferedWriter(new FileWriter(path, false));
+      this.writer = new BufferedWriter(new FileWriter(path));
 
-      bufferedWriter.write(XML_HEADER);
-      bufferedWriter.newLine();
-      bufferedWriter.write(CREATED_BY);
-      bufferedWriter.newLine();
-      bufferedWriter.write(String.format(OPEN_TAG_SMSES, count));
+      xstream = new XStream(new Xpp3DomDriver(new NoNameCoder()));
+      xstream.autodetectAnnotations(true);
+      smses = new Smses(count);
     }
 
-    public void writeItem(XmlBackupItem item) throws IOException {
-      StringBuilder stringBuilder = new StringBuilder();
-
-      stringBuilder.append(OPEN_TAG_SMS);
-      appendAttribute(stringBuilder, PROTOCOL, item.getProtocol());
-      appendAttribute(stringBuilder, ADDRESS, escapeXML(item.getAddress()));
-      appendAttribute(stringBuilder, DATE, item.getDate());
-      appendAttribute(stringBuilder, TYPE, item.getType());
-      appendAttribute(stringBuilder, SUBJECT, escapeXML(item.getSubject()));
-      appendAttribute(stringBuilder, BODY, escapeXML(item.getBody()));
-      appendAttribute(stringBuilder, TOA, "null");
-      appendAttribute(stringBuilder, SC_TOA, "null");
-      appendAttribute(stringBuilder, SERVICE_CENTER, item.getServiceCenter());
-      appendAttribute(stringBuilder, READ, item.getRead());
-      appendAttribute(stringBuilder, STATUS, item.getStatus());
-      appendAttribute(stringBuilder, LOCKED, 0);
-      stringBuilder.append(CLOSE_EMPTYTAG);
-
-      bufferedWriter.newLine();
-      bufferedWriter.write(stringBuilder.toString());
-    }
-
-    private <T> void appendAttribute(StringBuilder stringBuilder, String name, T value) {
-      stringBuilder.append(name).append(OPEN_ATTRIBUTE).append(value).append(CLOSE_ATTRIBUTE);
+    public void writeItem(Sms sms) throws IOException {
+      smses.addSms(sms);
     }
 
     public void close() throws IOException {
-      bufferedWriter.newLine();
-      bufferedWriter.write(CLOSE_TAG_SMSES);
-      bufferedWriter.close();
+      xstream.toXML(smses, writer);
     }
 
     private String escapeXML(String s) {

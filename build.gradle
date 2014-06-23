@@ -27,6 +27,9 @@ dependencies {
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
     compile 'com.google.android.gms:play-services:5.0.77'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile('com.thoughtworks.xstream:xstream:1.4.7'){
+        exclude module: 'xmlpull'
+    }
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
 
@@ -39,6 +42,8 @@ dependencyVerification {
         'com.android.support:support-v4:3f40fa7b3a4ead01ce15dce9453b061646e7fe2e7c51cb75ca01ee1e77037f3f',
         'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
         'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
+        'com.thoughtworks.xstream:xstream:7f8039c0ee7284f9c2a9554b5e2bc20bf26b74b37f690633a75ff1993136f364',
+        'xpp3:xpp3_min:bfc90e9e32d0eab1f397fb974b5f150a815188382ac41f372a7149d5bc178008',
         'com.google.protobuf:protobuf-java:ad9769a22989e688a46af4d3accc348cc501ced22118033230542bc916e33f0b',
         'com.madgag:sc-light-jdk15on:931f39d351429fb96c2f749e7ecb1a256a8ebbf5edca7995c9cc085b94d1841d',
         'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
