@@ -151,7 +151,7 @@ public class CanonicalAddressDatabase {
     return addressId;
   }
 
-  private static String canonicalizeAddress(Context context, String address) {
+  /*package*/ static String canonicalizeAddress(Context context, String address) {
     if (GroupUtil.isEncodedGroup(address)) {
       return address;
     }

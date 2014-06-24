@@ -27,6 +27,9 @@ dependencies {
     compile 'com.google.android.gcm:gcm-client:1.0.2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
 
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
+    androidTestCompile 'com.squareup:fest-android:1.0.8'
+
     compile project(':library')
 }
 
@@ -62,6 +65,12 @@ android {
                 renderscript.srcDirs = ['src']
                 res.srcDirs = ['res']
                 assets.srcDirs = ['assets']
+            }
+            androidTest {
+                java.srcDirs = ['androidTest']
+                resources.srcDirs = ['androidTest']
+                aidl.srcDirs = ['androidTest']
+                renderscript.srcDirs = ['androidTest']
             }
         }
     }
