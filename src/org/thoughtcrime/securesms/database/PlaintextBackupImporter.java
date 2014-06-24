@@ -6,6 +6,10 @@ import android.database.sqlite.SQLiteStatement;
 import android.os.Environment;
 import android.util.Log;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.naming.NoNameCoder;
+import com.thoughtworks.xstream.io.xml.Xpp3DomDriver;
+
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -48,33 +52,32 @@ public class PlaintextBackupImporter {
     SQLiteDatabase transaction = db.beginTransaction();
 
     try {
-      ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      XmlBackup      backup          = new XmlBackup(getPlaintextExportDirectoryPath());
-      MasterCipher   masterCipher    = new MasterCipher(masterSecret);
-      Set<Long>      modifiedThreads = new HashSet<Long>();
-      XmlBackup.XmlBackupItem item;
+      ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
+      MasterCipher masterCipher = new MasterCipher(masterSecret);
+      Set<Long> modifiedThreads = new HashSet<Long>();
 
-      while ((item = backup.getNext()) != null) {
+      XmlBackup.Smses smses = (XmlBackup.Smses) new XStream(new Xpp3DomDriver(new NoNameCoder())).fromXML(getPlaintextExportDirectoryPath());
+      for (XmlBackup.Sms sms : smses.smses) {
         try {
-          Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
-          long            threadId   = threads.getThreadIdFor(recipients);
-          SQLiteStatement statement  = db.createInsertStatement(transaction);
+          Recipients recipients = RecipientFactory.getRecipientsFromString(context, sms.address, false);
+          long threadId = threads.getThreadIdFor(recipients);
+          SQLiteStatement statement = db.createInsertStatement(transaction);
 
-          if (item.getAddress() == null || item.getAddress().equals("null"))
+          if (sms.address == null || sms.address.equals("null"))
             continue;
 
-          addStringToStatement(statement, 1, item.getAddress());
+          addStringToStatement(statement, 1, sms.address);
           addNullToStatement(statement, 2);
-          addLongToStatement(statement, 3, item.getDate());
-          addLongToStatement(statement, 4, item.getDate());
-          addLongToStatement(statement, 5, item.getProtocol());
-          addLongToStatement(statement, 6, item.getRead());
-          addLongToStatement(statement, 7, item.getStatus());
-          addTranslatedTypeToStatement(statement, 8, item.getType());
+          addLongToStatement(statement, 3, sms.date);
+          addLongToStatement(statement, 4, sms.date);
+          addLongToStatement(statement, 5, sms.protocol);
+          addLongToStatement(statement, 6, sms.read);
+          addLongToStatement(statement, 7, sms.status);
+          addTranslatedTypeToStatement(statement, 8, sms.type);
           addNullToStatement(statement, 9);
-          addStringToStatement(statement, 10, item.getSubject());
-          addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
-          addStringToStatement(statement, 12, item.getServiceCenter());
+          addStringToStatement(statement, 10, sms.subject);
+          addEncryptedStingToStatement(masterCipher, statement, 11, sms.body);
+          addStringToStatement(statement, 12, sms.service_center);
           addLongToStatement(statement, 13, threadId);
           modifiedThreads.add(threadId);
           statement.execute();
@@ -88,9 +91,6 @@ public class PlaintextBackupImporter {
       }
 
       Log.w("PlaintextBackupImporter", "Exited loop");
-    } catch (XmlPullParserException e) {
-      Log.w("PlaintextBackupImporter", e);
-      throw new IOException("XML Parsing error!");
     } finally {
       db.endTransaction(transaction);
     }
