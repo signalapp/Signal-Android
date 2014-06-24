@@ -470,7 +470,7 @@
   <string name="arrays__contact_keys">Kontaktien avaimet</string>
   <!--preferences.xml-->
   <string name="preferences__general">Yleistä</string>
-  <string name="preferences__push_sms_category">Push- ja tekstiviestit</string>
+  <string name="preferences__sending_receiving_category">Lähettäminen ja vastaanottaminen</string>
   <string name="preferences__pref_all_sms_title">Vastaanota kaikki tekstiviestit</string>
   <string name="preferences__pref_all_mms_title">Vastaanota kaikki multimediaviestit</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Käytä TextSecurea kaikkien saapuvien tekstiviestien katselemiseen ja tallentamiseen</string>

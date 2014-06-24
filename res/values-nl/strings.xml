@@ -470,7 +470,7 @@
   <string name="arrays__contact_keys">Sleutels van Contacten</string>
   <!--preferences.xml-->
   <string name="preferences__general">Algemeen</string>
-  <string name="preferences__push_sms_category">Push en SMS</string>
+  <string name="preferences__sending_receiving_category">Verzenden en ontvangen</string>
   <string name="preferences__pref_all_sms_title">Ontvang alle SMS</string>
   <string name="preferences__pref_all_mms_title">Ontvang alle MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure gebruiken voor het bekijken en opslaan van alle inkomende tekstberichten</string>
