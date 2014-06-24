@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Open Whisper Systems
+ * Copyright (C) 2013-2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 
 #include <jni.h>
 #include "curve25519-donna.h"
+#include "curve_sigs.h"
 
 JNIEXPORT jbyteArray JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_generatePrivateKey
   (JNIEnv *env, jclass clazz, jbyteArray random, jboolean ephemeral)
@@ -72,4 +73,39 @@ JNIEXPORT jbyteArray JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_c
     (*env)->ReleaseByteArrayElements(env, privateKey, privateKeyBytes, 0);
 
     return sharedKey;
+}
+
+JNIEXPORT jbyteArray JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_calculateSignature
+  (JNIEnv *env, jclass clazz, jbyteArray privateKey, jbyteArray message)
+{
+    jbyteArray signature       = (*env)->NewByteArray(env, 64);
+    uint8_t*   signatureBytes  = (uint8_t*)(*env)->GetByteArrayElements(env, signature, 0);
+    uint8_t*   privateKeyBytes = (uint8_t*)(*env)->GetByteArrayElements(env, privateKey, 0);
+    uint8_t*   messageBytes    = (uint8_t*)(*env)->GetByteArrayElements(env, message, 0);
+    jsize      messageLength   = (*env)->GetArrayLength(env, message);
+
+    curve25519_sign(signatureBytes, privateKeyBytes, messageBytes, messageLength);
+
+    (*env)->ReleaseByteArrayElements(env, signature, signatureBytes, 0);
+    (*env)->ReleaseByteArrayElements(env, privateKey, privateKeyBytes, 0);
+    (*env)->ReleaseByteArrayElements(env, message, messageBytes, 0);
+
+    return signature;
+}
+
+JNIEXPORT jboolean JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_verifySignature
+  (JNIEnv *env, jclass clazz, jbyteArray publicKey, jbyteArray message, jbyteArray signature)
+{
+    uint8_t*   signatureBytes = (uint8_t*)(*env)->GetByteArrayElements(env, signature, 0);
+    uint8_t*   publicKeyBytes = (uint8_t*)(*env)->GetByteArrayElements(env, publicKey, 0);
+    uint8_t*   messageBytes   = (uint8_t*)(*env)->GetByteArrayElements(env, message, 0);
+    jsize      messageLength  = (*env)->GetArrayLength(env, message);
+
+    jboolean result = (curve25519_verify(signatureBytes, publicKeyBytes, messageBytes, messageLength) == 0);
+
+    (*env)->ReleaseByteArrayElements(env, signature, signatureBytes, 0);
+    (*env)->ReleaseByteArrayElements(env, publicKey, publicKeyBytes, 0);
+    (*env)->ReleaseByteArrayElements(env, message, messageBytes, 0);
+
+    return result;
 }

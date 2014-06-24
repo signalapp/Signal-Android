@@ -39,6 +39,9 @@ public class Curve25519 {
   private static native byte[] generatePublicKey(byte[] privateKey);
   private static native byte[] generatePrivateKey(byte[] random, boolean ephemeral);
 
+  private static native byte[]  calculateSignature(byte[] privateKey, byte[] message);
+  private static native boolean verifySignature(byte[] publicKey, byte[] message, byte[] signature);
+
   public static ECKeyPair generateKeyPair(boolean ephemeral) {
     byte[] privateKey = generatePrivateKey(ephemeral);
     byte[] publicKey  = generatePublicKey(privateKey);
@@ -49,6 +52,14 @@ public class Curve25519 {
   static byte[] calculateAgreement(ECPublicKey publicKey, ECPrivateKey privateKey) {
     return calculateAgreement(((DjbECPrivateKey)privateKey).getPrivateKey(),
                               ((DjbECPublicKey)publicKey).getPublicKey());
+  }
+
+  static byte[] calculateSignature(ECPrivateKey privateKey, byte[] message) {
+    return calculateSignature(((DjbECPrivateKey)privateKey).getPrivateKey(), message);
+  }
+
+  static boolean verifySignature(ECPublicKey publicKey, byte[] message, byte[] signature) {
+    return verifySignature(((DjbECPublicKey)publicKey).getPublicKey(), message, signature);
   }
 
   static ECPublicKey decodePoint(byte[] encoded, int offset)
