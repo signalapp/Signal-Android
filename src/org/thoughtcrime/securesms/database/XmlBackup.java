@@ -1,17 +1,17 @@
 package org.thoughtcrime.securesms.database;
 
-import android.util.Log;
-import android.util.Xml;
-
+import org.whispersystems.textsecure.util.Util;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class XmlBackup {
 
@@ -28,7 +28,8 @@ public class XmlBackup {
   private final XmlPullParser parser;
 
   public XmlBackup(String path) throws XmlPullParserException, FileNotFoundException {
-    this.parser = Xml.newPullParser();
+    XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+    parser = factory.newPullParser();
     parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
     parser.setInput(new FileInputStream(path), null);
   }
@@ -41,7 +42,7 @@ public class XmlBackup {
 
       String name = parser.getName();
 
-      if (!name.equals("sms")) {
+      if (!name.equalsIgnoreCase("sms")) {
         continue;
       }
 
@@ -139,46 +140,82 @@ public class XmlBackup {
 
   public static class Writer {
 
-    private BufferedWriter writer;
-    private XmlSerializer serializer;
+    private static final String XML_HEADER      = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>";
+    private static final String CREATED_BY      = "<!-- File Created By TextSecure -->";
+    private static final String OPEN_TAG_SMSES  = "<smses count=\"%d\">";
+    private static final String CLOSE_TAG_SMSES = "</smses>";
+    private static final String OPEN_TAG_SMS    = " <sms ";
+    private static final String CLOSE_EMPTYTAG  = "/>";
+    private static final String OPEN_ATTRIBUTE  = "=\"";
+    private static final String CLOSE_ATTRIBUTE = "\" ";
+    private static final String TOA             = "toa=\"null\" ";
+    private static final String SC_TOA          = "sc_toa=\"null\" ";
+    private static final String LOCKED          = "locked=\"0\" ";
+
+    private static final String ESCAPE_PATTERN = "[^\u0020-\uD7FF]";
+    private static final Pattern pattern       = Pattern.compile(ESCAPE_PATTERN);
+    private final BufferedWriter bufferedWriter;
 
     public Writer(String path, int count) throws IOException {
-      this.writer     = new BufferedWriter(new FileWriter(path));
-      this.serializer = Xml.newSerializer();
+      bufferedWriter = new BufferedWriter(new FileWriter(path, false));
 
-      this.serializer.setOutput(writer);
-      this.serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
-      this.serializer.startDocument("UTF-8", true);
-      this.serializer.startTag("", "smses");
-      this.serializer.attribute("", "count", count+"");
+      bufferedWriter.write(XML_HEADER);
+      bufferedWriter.newLine();
+      bufferedWriter.write(CREATED_BY);
+      bufferedWriter.newLine();
+      bufferedWriter.write(String.format(OPEN_TAG_SMSES, count));
     }
 
     public void writeItem(XmlBackupItem item) throws IOException {
-      this.serializer.startTag("", "sms");
-      this.serializer.attribute("", "protocol", item.getProtocol() + "");
-      this.serializer.attribute("", "address", item.getAddress());
-      this.serializer.attribute("", "date", item.getDate()+"");
-      this.serializer.attribute("", "type", item.getType()+"");
-      this.serializer.attribute("", "subject", item.getSubject()+"");
-      try {
-        this.serializer.attribute("", "body", item.getBody()+"");
-      } catch (IllegalArgumentException ise) {
-        // XXX - Fucking Android. Their serializer includes a bug that doesn't
-        // handle some unicode characters correctly.
-        Log.w("XmlBackup", ise);
-      }
-      this.serializer.attribute("", "toa", null+"");
-      this.serializer.attribute("", "sc_toa", null+"");
-      this.serializer.attribute("", "service_center", item.getServiceCenter()+"");
-      this.serializer.attribute("", "read", item.getRead()+"");
-      this.serializer.attribute("" , "status", item.getStatus()+"");
-      this.serializer.attribute("", "locked", "0");
-      this.serializer.endTag("", "sms");
+      StringBuilder stringBuilder = new StringBuilder();
+
+      stringBuilder.append(OPEN_TAG_SMS);
+
+      stringBuilder.append(PROTOCOL      ).append(OPEN_ATTRIBUTE).append(item.getProtocol()       ).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(ADDRESS       ).append(OPEN_ATTRIBUTE).append(item.getAddress()        ).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(DATE          ).append(OPEN_ATTRIBUTE).append(item.getDate()           ).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(TYPE          ).append(OPEN_ATTRIBUTE).append(item.getType()           ).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(SUBJECT       ).append(OPEN_ATTRIBUTE).append(String.valueOf(escapeXML(item.getSubject()))
+                                                                                                  ).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(BODY          ).append(OPEN_ATTRIBUTE).append(escapeXML(item.getBody())).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(TOA           );
+      stringBuilder.append(SC_TOA        );
+      stringBuilder.append(SERVICE_CENTER).append(OPEN_ATTRIBUTE).append(item.getServiceCenter()  ).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(READ          ).append(OPEN_ATTRIBUTE).append(item.getRead()           ).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(STATUS        ).append(OPEN_ATTRIBUTE).append(item.getStatus()         ).append(CLOSE_ATTRIBUTE);
+      stringBuilder.append(LOCKED        );
+
+      stringBuilder.append(CLOSE_EMPTYTAG);
+
+      bufferedWriter.newLine();
+      bufferedWriter.write(stringBuilder.toString());
     }
 
     public void close() throws IOException {
-      this.serializer.endTag("", "smses");
-      this.serializer.endDocument();
+      bufferedWriter.newLine();
+      bufferedWriter.write(CLOSE_TAG_SMSES);
+      bufferedWriter.close();
     }
+
+    private String escapeXML(String s) {
+      if (Util.isEmpty(s)) return s;
+
+      Matcher matcher = pattern.matcher( s.replace("&",  "&amp;")
+                                          .replace("<",  "&lt;")
+                                          .replace(">",  "&gt;")
+                                          .replace("\"", "&quot;")
+                                          .replace("'",  "&apos;"));
+      StringBuffer st = new StringBuffer();
+
+      while (matcher.find()) {
+        String escaped="";
+        for (char ch: matcher.group(0).toCharArray())
+          escaped += ("&#" + ((int)ch) + ";");
+        matcher.appendReplacement(st, escaped);
+      }
+      matcher.appendTail(st);
+      return st.toString();
+    }
+
   }
 }
