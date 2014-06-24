@@ -79,7 +79,7 @@ public class XmlBackup {
     public Writer(String path, int count) throws IOException {
       this.writer = new BufferedWriter(new FileWriter(path));
 
-      xstream = new XStream(new Xpp3DomDriver(new NoNameCoder()));
+      xstream = new XStream();
       xstream.autodetectAnnotations(true);
       smses = new Smses(count);
     }
@@ -89,6 +89,7 @@ public class XmlBackup {
     }
 
     public void close() throws IOException {
+      writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
       xstream.toXML(smses, writer);
     }
 

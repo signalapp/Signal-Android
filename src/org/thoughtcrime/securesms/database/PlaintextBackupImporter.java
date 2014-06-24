@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,7 +57,13 @@ public class PlaintextBackupImporter {
       MasterCipher masterCipher = new MasterCipher(masterSecret);
       Set<Long> modifiedThreads = new HashSet<Long>();
 
-      XmlBackup.Smses smses = (XmlBackup.Smses) new XStream(new Xpp3DomDriver(new NoNameCoder())).fromXML(getPlaintextExportDirectoryPath());
+      XStream xstream = new XStream(new Xpp3DomDriver(new NoNameCoder()));
+      xstream.autodetectAnnotations(true);
+      xstream.alias("smses", XmlBackup.Smses.class);
+      xstream.alias("sms", XmlBackup.Sms.class);
+      Log.w("PlaintextBackupImporter", getPlaintextExportDirectoryPath());
+      FileReader reader = new FileReader(getPlaintextExportDirectoryPath());
+      XmlBackup.Smses smses = (XmlBackup.Smses)xstream.fromXML(reader);
       for (XmlBackup.Sms sms : smses.smses) {
         try {
           Recipients recipients = RecipientFactory.getRecipientsFromString(context, sms.address, false);
