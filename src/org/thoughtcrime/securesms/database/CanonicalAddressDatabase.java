@@ -25,8 +25,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -67,6 +65,7 @@ public class CanonicalAddressDatabase {
   private CanonicalAddressDatabase(Context context) {
     this.context = context;
     databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     fillCache();
   }
 
@@ -138,6 +137,16 @@ public class CanonicalAddressDatabase {
     instance = null;
   }
 
+  public void updateCanonicalAddress(long canonicalId, String address) {
+    SQLiteDatabase db           = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(ADDRESS_COLUMN, address);
+
+    db.update(TABLE, contentValues, ID_COLUMN + " = ?", new String[]{""+canonicalId});
+    idCache.put(""+canonicalId, address);
+    context.getContentResolver().notifyChange(Uri.parse(CONTENT_URI + canonicalId), null);
+  }
+
   public long getCanonicalAddressId(String address) {
     long canonicalAddress;
 
@@ -161,7 +170,6 @@ public class CanonicalAddressDatabase {
   }
 
   private long getCanonicalAddressFromCache(String address) {
-    Log.w("CanonicalAddressDb", "getting from cache, " + address);
     if (addressCache.containsKey(address))
       return Long.valueOf(addressCache.get(address));
 
@@ -169,7 +177,6 @@ public class CanonicalAddressDatabase {
   }
 
   private long getCanonicalAddressIdFromDatabase(String address) {
-    Log.w("CanonicalAddressDb", "getting from db, " + address);
     Cursor cursor = null;
     try {
       SQLiteDatabase db           = databaseHelper.getWritableDatabase();
@@ -182,11 +189,7 @@ public class CanonicalAddressDatabase {
         return db.insert(TABLE, ADDRESS_COLUMN, contentValues);
       } else {
         final long canonicalId = cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN));
-        Log.w("CanonicalAddressDb", "notifying change on " + CONTENT_URI + canonicalId);
-        db.update(TABLE, contentValues, ID_COLUMN + " = ?", new String[]{""+canonicalId});
-        idCache.put(""+canonicalId, address);
-        Log.w("CanonicalAddressDb", "updating result on " + canonicalId + " to " + address);
-        context.getContentResolver().notifyChange(Uri.parse(CONTENT_URI + canonicalId), null);
+        updateCanonicalAddress(canonicalId, address);
         return canonicalId;
       }
     } finally {

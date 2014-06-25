@@ -216,7 +216,6 @@ public class ConversationListItem extends RelativeLayout
     handler.post(new Runnable() {
       @Override
       public void run() {
-        Log.w(TAG, "recipient " + recipient.getNumber() + " modified");
         ConversationListItem.this.fromView.setText(formatFrom(recipients, count, read));
         setContactPhoto(ConversationListItem.this.recipients.getPrimaryRecipient());
       }

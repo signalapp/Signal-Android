@@ -75,6 +75,7 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
           synchronized (Recipient.this) {
             Recipient.this.name                      = result.name;
+            Recipient.this.number                    = result.number;
             Recipient.this.contactUri                = result.contactUri;
             Recipient.this.contactPhoto              = result.avatar;
             Recipient.this.circleCroppedContactPhoto = result.croppedAvatar;
