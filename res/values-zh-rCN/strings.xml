@@ -473,7 +473,7 @@
   <string name="arrays__contact_keys">联系人身份密钥</string>
   <!--preferences.xml-->
   <string name="preferences__general">一般</string>
-  <string name="preferences__push_sms_category">推送和短信</string>
+  <string name="preferences__sending_receiving_category">发送和接收</string>
   <string name="preferences__pref_all_sms_title">获得所有的短信</string>
   <string name="preferences__pref_all_mms_title">获得所有的彩信</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">使用 TextSecure 查看和存储接收到的所有文本消息</string>

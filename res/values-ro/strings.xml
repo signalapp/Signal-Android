@@ -465,7 +465,7 @@
   <string name="arrays__contact_keys">Chei de contact</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
-  <string name="preferences__push_sms_category">Push și SMS</string>
+  <string name="preferences__sending_receiving_category">Trimiterea si primirea</string>
   <string name="preferences__pref_all_sms_title">Recepționează toate SMS-urile</string>
   <string name="preferences__pref_all_mms_title">Recepționează toate MMS-urile</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Foloseste TextSecure pentru vizualizarea si salvarea tuturor mesajelor text primite</string>

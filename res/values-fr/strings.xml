@@ -470,7 +470,7 @@
   <string name="arrays__contact_keys">Clés du contact</string>
   <!--preferences.xml-->
   <string name="preferences__general">Général</string>
-  <string name="preferences__push_sms_category">Push et SMS</string>
+  <string name="preferences__sending_receiving_category">Envoi et réception</string>
   <string name="preferences__pref_all_sms_title">Recevoir tous les SMS</string>
   <string name="preferences__pref_all_mms_title">Recevoir tous les MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utiliser TextSecure pour consulter et stocker tous les messages textes entrants</string>

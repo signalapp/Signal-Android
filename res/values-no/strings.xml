@@ -473,7 +473,7 @@
   <string name="arrays__contact_keys">Kontaktnøkler</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
-  <string name="preferences__push_sms_category">\'Push\' og SMS</string>
+  <string name="preferences__sending_receiving_category">Sende og motta</string>
   <string name="preferences__pref_all_sms_title">Motta alle SMS</string>
   <string name="preferences__pref_all_mms_title">Motta alle MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Benytt TextSecure for å lese og lagre alle innkommende SMS meldinger.</string>

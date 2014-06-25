@@ -470,7 +470,7 @@
   <string name="arrays__contact_keys">Chìa Khóa Liên Hệ</string>
   <!--preferences.xml-->
   <string name="preferences__general">Tổng quát</string>
-  <string name="preferences__push_sms_category">Đẩy và SMS</string>
+  <string name="preferences__sending_receiving_category">Gửi và nhận</string>
   <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
   <string name="preferences__pref_all_mms_title">Nhận tất cả MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Dùng TextScure để xem và lưu trữ tất cả tin nhắn gửi vào</string>
