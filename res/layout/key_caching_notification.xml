@@ -33,11 +33,12 @@
     </LinearLayout>
     
 	<ImageView android:id="@+id/lock_cache_icon"
-        android:src="@drawable/icon_cached"
+        android:src="@drawable/icon_lock"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:background="@drawable/notify_panel_notification_icon_bg_tile"
         android:scaleType="center" 
         android:layout_alignParentRight="true"
         />
+	    
 </RelativeLayout>
