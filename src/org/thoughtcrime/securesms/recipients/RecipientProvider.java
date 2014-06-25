@@ -87,14 +87,6 @@ public class RecipientProvider {
       recipient = new Recipient(null, number, recipientId, null, defaultPhoto, defaultCroppedPhoto);
     }
 
-    context.getContentResolver().registerContentObserver(Uri.parse(CanonicalAddressDatabase.CONTENT_URI + recipientId), true, new ContentObserver(null) {
-      @Override
-      public void onChange(boolean selfChange) {
-        super.onChange(selfChange);
-        Log.w("RecipientProvider", "canonical address changed!");
-        recipient.setNumber(CanonicalAddressDatabase.getInstance(context).getAddressFromId(""+recipient.getRecipientId()));
-      }
-    });
     recipientCache.put(recipientId, recipient);
     return recipient;
   }

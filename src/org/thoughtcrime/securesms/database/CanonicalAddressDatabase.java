@@ -22,7 +22,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
 import android.util.Log;
 
 import java.util.Collections;
@@ -33,7 +32,6 @@ import java.util.Map;
 
 public class CanonicalAddressDatabase {
 
-  public  static final String CONTENT_URI      = "content://textsecure/canonical-address/";
   private static final int    DATABASE_VERSION = 1;
   private static final String DATABASE_NAME    = "canonical_address.db";
   private static final String TABLE            = "canonical_addresses";
@@ -48,7 +46,6 @@ public class CanonicalAddressDatabase {
   private static CanonicalAddressDatabase instance;
   private DatabaseHelper databaseHelper;
 
-  private final Context context;
 
   private final Map<String,Long> addressCache = Collections.synchronizedMap(new HashMap<String,Long>());
   private final Map<String,String> idCache    = Collections.synchronizedMap(new HashMap<String,String>());
@@ -63,7 +60,6 @@ public class CanonicalAddressDatabase {
   }
 
   private CanonicalAddressDatabase(Context context) {
-    this.context = context;
     databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     fillCache();
@@ -144,7 +140,6 @@ public class CanonicalAddressDatabase {
 
     db.update(TABLE, contentValues, ID_COLUMN + " = ?", new String[]{""+canonicalId});
     idCache.put(""+canonicalId, address);
-    context.getContentResolver().notifyChange(Uri.parse(CONTENT_URI + canonicalId), null);
   }
 
   public long getCanonicalAddressId(String address) {
