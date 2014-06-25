@@ -22,7 +22,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.util.Log;
+
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -32,6 +35,7 @@ import java.util.Map;
 
 public class CanonicalAddressDatabase {
 
+  public  static final String CONTENT_URI      = "content://textsecure/canonical-address/";
   private static final int    DATABASE_VERSION = 1;
   private static final String DATABASE_NAME    = "canonical_address.db";
   private static final String TABLE            = "canonical_addresses";
@@ -46,6 +50,8 @@ public class CanonicalAddressDatabase {
   private static CanonicalAddressDatabase instance;
   private DatabaseHelper databaseHelper;
 
+  private final Context context;
+
   private final Map<String,Long> addressCache = Collections.synchronizedMap(new HashMap<String,Long>());
   private final Map<String,String> idCache    = Collections.synchronizedMap(new HashMap<String,String>());
 
@@ -59,6 +65,7 @@ public class CanonicalAddressDatabase {
   }
 
   private CanonicalAddressDatabase(Context context) {
+    this.context = context;
     databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     fillCache();
   }
@@ -131,56 +138,62 @@ public class CanonicalAddressDatabase {
     instance = null;
   }
 
-  public long getCanonicalAddress(String address) {
+  public long getCanonicalAddressId(String address) {
     long canonicalAddress;
 
     if ((canonicalAddress = getCanonicalAddressFromCache(address)) != -1)
       return canonicalAddress;
 
-    canonicalAddress = getCanonicalAddressFromDatabase(address);
+    canonicalAddress = getCanonicalAddressIdFromDatabase(address);
     addressCache.put(address, canonicalAddress);
 
     return canonicalAddress;
   }
 
-  public List<Long> getCanonicalAddresses(List<String> addresses) {
+  public List<Long> getCanonicalAddressIds(List<String> addresses) {
     List<Long> addressList = new LinkedList<Long>();
 
     for (String address : addresses) {
-      addressList.add(getCanonicalAddress(address));
+      addressList.add(getCanonicalAddressId(address));
     }
 
     return addressList;
   }
 
   private long getCanonicalAddressFromCache(String address) {
+    Log.w("CanonicalAddressDb", "getting from cache, " + address);
     if (addressCache.containsKey(address))
       return Long.valueOf(addressCache.get(address));
 
     return -1L;
   }
 
-  private long getCanonicalAddressFromDatabase(String address) {
+  private long getCanonicalAddressIdFromDatabase(String address) {
+    Log.w("CanonicalAddressDb", "getting from db, " + address);
     Cursor cursor = null;
     try {
       SQLiteDatabase db           = databaseHelper.getWritableDatabase();
       String[] selectionArguments = new String[] {address};
       cursor                      = db.query(TABLE, ID_PROJECTION, SELECTION, selectionArguments, null, null, null);
 
+      ContentValues contentValues = new ContentValues(1);
+      contentValues.put(ADDRESS_COLUMN, address);
       if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
-        ContentValues contentValues = new ContentValues(1);
-        contentValues.put(ADDRESS_COLUMN, address);
-
         return db.insert(TABLE, ADDRESS_COLUMN, contentValues);
+      } else {
+        final long canonicalId = cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN));
+        Log.w("CanonicalAddressDb", "notifying change on " + CONTENT_URI + canonicalId);
+        db.update(TABLE, contentValues, ID_COLUMN + " = ?", new String[]{""+canonicalId});
+        idCache.put(""+canonicalId, address);
+        Log.w("CanonicalAddressDb", "updating result on " + canonicalId + " to " + address);
+        context.getContentResolver().notifyChange(Uri.parse(CONTENT_URI + canonicalId), null);
+        return canonicalId;
       }
-
-      return cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN));
     } finally {
       if (cursor != null) {
         cursor.close();
       }
     }
-
   }
 
   private static class DatabaseHelper extends SQLiteOpenHelper {

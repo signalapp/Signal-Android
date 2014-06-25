@@ -30,6 +30,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -211,10 +212,11 @@ public class ConversationListItem extends RelativeLayout
   }
 
   @Override
-  public void onModified(Recipient recipient) {
+  public void onModified(final Recipient recipient) {
     handler.post(new Runnable() {
       @Override
       public void run() {
+        Log.w(TAG, "recipient " + recipient.getNumber() + " modified");
         ConversationListItem.this.fromView.setText(formatFrom(recipients, count, read));
         setContactPhoto(ConversationListItem.this.recipients.getPrimaryRecipient());
       }

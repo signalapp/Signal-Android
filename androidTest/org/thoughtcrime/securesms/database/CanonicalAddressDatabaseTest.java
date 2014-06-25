@@ -13,18 +13,6 @@ public class CanonicalAddressDatabaseTest extends InstrumentationTestCase {
   private Context           mockContext;
   private SharedPreferences mockSharedPreferences;
 
-  public void testCanonicalizeAddressNumeric() throws Exception {
-    assertThat(CanonicalAddressDatabase.canonicalizeAddress(mockContext, "555 5555")).isEqualTo(LOCAL_NUMBER);
-  }
-
-  public void testCanonicalAddressEmail() throws Exception {
-    assertThat(CanonicalAddressDatabase.canonicalizeAddress(mockContext, "email@domain.com")). isEqualTo("email@domain.com");
-  }
-
-  public void testCanonicalAddressAlpha() throws Exception {
-    assertThat(CanonicalAddressDatabase.canonicalizeAddress(mockContext, "T-Mobile")).isEqualTo("T-Mobile");
-  }
-
   @Override
   public void setUp() throws Exception {
     super.setUp();
