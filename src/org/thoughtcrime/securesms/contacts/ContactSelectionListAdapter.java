@@ -185,7 +185,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       holder.number.setText(numberLabelSpan);
     }
     holder.contactPhoto.setImageBitmap(defaultCroppedPhoto);
-    loadBitmap(contactData.number, holder.contactPhoto);
+    if (contactData.id > -1) loadBitmap(contactData.number, holder.contactPhoto);
   }
 
   @Override
