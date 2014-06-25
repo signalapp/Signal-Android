@@ -21,7 +21,7 @@ repositories {
 dependencies {
     compile 'com.google.protobuf:protobuf-java:2.4.1'
     compile 'com.madgag:sc-light-jdk15on:1.47.0.2'
-    compile 'com.googlecode.libphonenumber:libphonenumber:6.1'
+    compile 'com.googlecode.libphonenumber:libphonenumber:5.3'
     compile 'org.whispersystems:gson:2.2.4'
 }
 
