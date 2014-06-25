@@ -59,7 +59,7 @@ public class CanonicalSessionMigrator {
       File item = new File(rootDirectory.getAbsolutePath() + File.separatorChar + files[i]);
 
       if (!item.isDirectory() && files[i].matches("[0-9]+")) {
-        long canonicalAddress = canonicalDb.getCanonicalAddressId(files[i]);
+        long canonicalAddress = canonicalDb.getCanonicalAddress(files[i]);
         migrateSession(item, sessionsDirectory, canonicalAddress);
       }
     }
