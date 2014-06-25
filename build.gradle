@@ -27,6 +27,9 @@ dependencies {
     compile 'com.google.android.gcm:gcm-client:1.0.2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
 
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
+    androidTestCompile 'com.squareup:fest-android:1.0.8'
+
     compile project(':library')
 }
 
@@ -38,7 +41,7 @@ dependencyVerification {
         'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
         'com.google.protobuf:protobuf-java:ad9769a22989e688a46af4d3accc348cc501ced22118033230542bc916e33f0b',
         'com.madgag:sc-light-jdk15on:931f39d351429fb96c2f749e7ecb1a256a8ebbf5edca7995c9cc085b94d1841d',
-        'com.googlecode.libphonenumber:libphonenumber:c2cffa5c2ccb8fd5fc4b432aa7d1ee27482860c9751035a25c8ffa2375274fcf',
+        'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
         'org.whispersystems:gson:08f4f7498455d1539c9233e5aac18e9b1805815ef29221572996508eb512fe51',
     ]
 }
@@ -62,6 +65,12 @@ android {
                 renderscript.srcDirs = ['src']
                 res.srcDirs = ['res']
                 assets.srcDirs = ['assets']
+            }
+            androidTest {
+                java.srcDirs = ['androidTest']
+                resources.srcDirs = ['androidTest']
+                aidl.srcDirs = ['androidTest']
+                renderscript.srcDirs = ['androidTest']
             }
         }
     }

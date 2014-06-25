@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -50,6 +51,7 @@ public class RecipientProvider {
     PhoneLookup.DISPLAY_NAME,
     PhoneLookup.LOOKUP_KEY,
     PhoneLookup._ID,
+    PhoneLookup.NUMBER
   };
 
   public Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
@@ -60,10 +62,10 @@ public class RecipientProvider {
     else                         return getSynchronousRecipient(context, recipientId);
   }
 
-  private Recipient getSynchronousRecipient(Context context, long recipientId) {
+  private Recipient getSynchronousRecipient(final Context context, final long recipientId) {
     Log.w("RecipientProvider", "Cache miss [SYNC]!");
 
-    Recipient recipient;
+    final Recipient recipient;
     RecipientDetails details;
     String number = CanonicalAddressDatabase.getInstance(context).getAddressFromId(String.valueOf(recipientId));
     final boolean isGroupRecipient = GroupUtil.isEncodedGroup(number);
@@ -72,7 +74,7 @@ public class RecipientProvider {
     else                  details = getRecipientDetails(context, number);
 
     if (details != null) {
-      recipient = new Recipient(details.name, number, recipientId, details.contactUri, details.avatar,
+      recipient = new Recipient(details.name, details.number, recipientId, details.contactUri, details.avatar,
                                 details.croppedAvatar);
     } else {
       final Bitmap defaultPhoto        = isGroupRecipient
@@ -143,8 +145,9 @@ public class RecipientProvider {
         Uri contactUri      = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
         Bitmap contactPhoto = ContactPhotoFactory.getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
                                                                                                 cursor.getLong(2)+""));
-
-        return new RecipientDetails(cursor.getString(0), contactUri, contactPhoto,
+        Log.w("RecipientProvider", "got number " + cursor.getString(3) + " from android.");
+        CanonicalAddressDatabase.getInstance(context).getCanonicalAddressId(cursor.getString(3));
+        return new RecipientDetails(cursor.getString(0), cursor.getString(3), contactUri, contactPhoto,
                                     BitmapUtil.getCircleCroppedBitmap(contactPhoto));
       }
     } finally {
@@ -167,7 +170,7 @@ public class RecipientProvider {
         if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
         else                     avatar = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
 
-        return new RecipientDetails(record.getTitle(), null, avatar, BitmapUtil.getCircleCroppedBitmap(avatar));
+        return new RecipientDetails(record.getTitle(), groupId, null, avatar, BitmapUtil.getCircleCroppedBitmap(avatar));
       }
 
       return null;
@@ -179,12 +182,14 @@ public class RecipientProvider {
 
   public static class RecipientDetails {
     public final String name;
+    public final String number;
     public final Bitmap avatar;
     public final Bitmap croppedAvatar;
     public final Uri    contactUri;
 
-    public RecipientDetails(String name, Uri contactUri, Bitmap avatar, Bitmap croppedAvatar) {
+    public RecipientDetails(String name, String number, Uri contactUri, Bitmap avatar, Bitmap croppedAvatar) {
       this.name          = name;
+      this.number        = number;
       this.avatar        = avatar;
       this.croppedAvatar = croppedAvatar;
       this.contactUri    = contactUri;

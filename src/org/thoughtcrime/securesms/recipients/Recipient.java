@@ -49,9 +49,9 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
   private final HashSet<RecipientModifiedListener> listeners = new HashSet<RecipientModifiedListener>();
 
-  private final String number;
-  private final long   recipientId;
+  private final long recipientId;
 
+  private String number;
   private String name;
 
   private Bitmap contactPhoto;
@@ -75,6 +75,7 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
           synchronized (Recipient.this) {
             Recipient.this.name                      = result.name;
+            Recipient.this.number                    = result.number;
             Recipient.this.contactUri                = result.contactUri;
             Recipient.this.contactPhoto              = result.avatar;
             Recipient.this.circleCroppedContactPhoto = result.croppedAvatar;
@@ -125,6 +126,11 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
   public synchronized void setName(String name) {
     this.name = name;
+    notifyListeners();
+  }
+
+  public synchronized void setNumber(String number) {
+    this.number = number;
     notifyListeners();
   }
 
