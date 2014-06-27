@@ -114,7 +114,7 @@
   <string-array name="pref_received_messages_type_indicator_entries">
     <item>@string/preferences__received_messages_type_indicator_none</item>
     <item>@string/preferences__received_messages_type_indicator_label</item>
-      <item>@string/preferences__received_messages_type_indicator_color</item>
+    <item>@string/preferences__received_messages_type_indicator_color</item>
   </string-array>
 
   <string-array name="pref_received_messages_type_indicator_values" translatable="false">
