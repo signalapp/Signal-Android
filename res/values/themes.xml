@@ -31,6 +31,8 @@
         <item name="conversation_sent_text_secondary_color">#44000000</item>
         <item name="conversation_received_text_primary_color">#ff111111</item>
         <item name="conversation_received_text_secondary_color">#33000000</item>
+        <item name="conversation_received_text_primary_color_modified">#ffeeeeee</item>
+        <item name="conversation_received_text_secondary_color_modified">#44000000</item>
 
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
@@ -48,17 +50,21 @@
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
 
         <item name="conversation_item_background">@drawable/conversation_item_background</item>
-        <item name="conversation_item_received_background">@drawable/conversation_item_received_shape</item>
-        <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape</item>
-        <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape</item>
-        <item name="conversation_item_sent_triangle_background">@drawable/conversation_item_sent_triangle_shape</item>
+        <item name="conversation_item_received_generic_background">@drawable/conversation_item_received_generic_shape</item>
+        <item name="conversation_item_received_generic_triangle_background">@drawable/conversation_item_received_generic_triangle_shape</item>
+        <item name="conversation_item_received_sms_background">@drawable/conversation_item_received_sms_shape</item>
+        <item name="conversation_item_received_sms_triangle_background">@drawable/conversation_item_received_sms_triangle_shape</item>
+        <item name="conversation_item_received_push_background">@drawable/conversation_item_received_push_shape</item>
+        <item name="conversation_item_received_push_triangle_background">@drawable/conversation_item_received_push_triangle_shape</item>
+        <item name="conversation_item_sent_sms_background">@drawable/conversation_item_sent_sms_shape</item>
+        <item name="conversation_item_sent_sms_triangle_background">@drawable/conversation_item_sent_sms_triangle_shape</item>
         <item name="conversation_item_sent_push_background">@drawable/conversation_item_sent_push_shape</item>
         <item name="conversation_item_sent_push_triangle_background">@drawable/conversation_item_sent_push_triangle_shape</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
         <item name="dialog_info_icon">@drawable/ic_dialog_info_light</item>
         <item name="dialog_alert_icon">@drawable/ic_dialog_alert_light</item>
-        <item name="conversation_item_sent_pending_background">@drawable/conversation_item_sent_pending_shape</item>
-        <item name="conversation_item_sent_pending_triangle_background">@drawable/conversation_item_sent_pending_triangle_shape</item>
+        <item name="conversation_item_sent_sms_pending_background">@drawable/conversation_item_sent_sms_pending_shape</item>
+        <item name="conversation_item_sent_sms_pending_triangle_background">@drawable/conversation_item_sent_sms_pending_triangle_shape</item>
         <item name="conversation_item_sent_push_pending_background">@drawable/conversation_item_sent_push_pending_shape</item>
         <item name="conversation_item_sent_push_pending_triangle_background">@drawable/conversation_item_sent_push_pending_triangle_shape</item>
 
@@ -109,6 +115,8 @@
         <item name="conversation_sent_text_secondary_color">#44eeeeee</item>
         <item name="conversation_received_text_primary_color">#ffeeeeee</item>
         <item name="conversation_received_text_secondary_color">#44eeeeee</item>
+        <item name="conversation_received_text_primary_color_modified">#ffeeeeee</item>
+        <item name="conversation_received_text_secondary_color_modified">#44eeeeee</item>
 
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
@@ -116,17 +124,21 @@
         <item name="conversation_selection_header_text">#66eeeeee</item>
 
         <item name="conversation_item_background">@drawable/conversation_item_background_dark</item>
-        <item name="conversation_item_received_background">@drawable/conversation_item_received_shape_dark</item>
-        <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape_dark</item>
-        <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape_dark</item>
-        <item name="conversation_item_sent_triangle_background">@drawable/conversation_item_sent_triangle_shape_dark</item>
+        <item name="conversation_item_received_generic_background">@drawable/conversation_item_received_generic_shape_dark</item>
+        <item name="conversation_item_received_generic_triangle_background">@drawable/conversation_item_received_generic_triangle_shape_dark</item>
+        <item name="conversation_item_received_sms_background">@drawable/conversation_item_received_sms_shape_dark</item>
+        <item name="conversation_item_received_sms_triangle_background">@drawable/conversation_item_received_sms_triangle_shape_dark</item>
+        <item name="conversation_item_received_push_background">@drawable/conversation_item_received_push_shape_dark</item>
+        <item name="conversation_item_received_push_triangle_background">@drawable/conversation_item_received_push_triangle_shape_dark</item>
+        <item name="conversation_item_sent_sms_background">@drawable/conversation_item_sent_sms_shape_dark</item>
+        <item name="conversation_item_sent_sms_triangle_background">@drawable/conversation_item_sent_sms_triangle_shape_dark</item>
         <item name="conversation_item_sent_push_background">@drawable/conversation_item_sent_push_shape_dark</item>
         <item name="conversation_item_sent_push_triangle_background">@drawable/conversation_item_sent_push_triangle_shape_dark</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
         <item name="dialog_info_icon">@drawable/ic_dialog_info_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_dialog_alert_dark</item>
-        <item name="conversation_item_sent_pending_background">@drawable/conversation_item_sent_pending_shape_dark</item>
-        <item name="conversation_item_sent_pending_triangle_background">@drawable/conversation_item_sent_pending_triangle_shape_dark</item>
+        <item name="conversation_item_sent_sms_pending_background">@drawable/conversation_item_sent_sms_pending_shape_dark</item>
+        <item name="conversation_item_sent_sms_pending_triangle_background">@drawable/conversation_item_sent_sms_pending_triangle_shape_dark</item>
         <item name="conversation_item_sent_push_pending_background">@drawable/conversation_item_sent_push_pending_shape_dark</item>
         <item name="conversation_item_sent_push_pending_triangle_background">@drawable/conversation_item_sent_push_pending_triangle_shape_dark</item>
 

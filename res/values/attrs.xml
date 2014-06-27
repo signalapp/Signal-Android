@@ -18,6 +18,8 @@
     <attr name="conversation_received_card_background" format="reference|color"/>
     <attr name="conversation_received_text_primary_color" format="reference|color"/>
     <attr name="conversation_received_text_secondary_color" format="reference|color"/>
+    <attr name="conversation_received_text_primary_color_modified" format="reference|color"/>
+    <attr name="conversation_received_text_secondary_color_modified" format="reference|color"/>
 
     <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
@@ -33,12 +35,16 @@
     <attr name="conversation_keyboard_toggle" format="reference"/>
 
     <attr name="conversation_item_background" format="reference"/>
-    <attr name="conversation_item_received_background" format="reference" />
-    <attr name="conversation_item_received_triangle_background" format="reference" />
-    <attr name="conversation_item_sent_background" format="reference" />
-    <attr name="conversation_item_sent_triangle_background" format="reference" />
-    <attr name="conversation_item_sent_pending_background" format="reference" />
-    <attr name="conversation_item_sent_pending_triangle_background" format="reference" />
+    <attr name="conversation_item_received_generic_background" format="reference" />
+    <attr name="conversation_item_received_generic_triangle_background" format="reference" />
+    <attr name="conversation_item_received_sms_background" format="reference" />
+    <attr name="conversation_item_received_sms_triangle_background" format="reference" />
+    <attr name="conversation_item_received_push_background" format="reference" />
+    <attr name="conversation_item_received_push_triangle_background" format="reference" />
+    <attr name="conversation_item_sent_sms_background" format="reference" />
+    <attr name="conversation_item_sent_sms_triangle_background" format="reference" />
+    <attr name="conversation_item_sent_sms_pending_background" format="reference" />
+    <attr name="conversation_item_sent_sms_pending_triangle_background" format="reference" />
     <attr name="conversation_item_sent_push_background" format="reference" />
     <attr name="conversation_item_sent_push_triangle_background" format="reference" />
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />

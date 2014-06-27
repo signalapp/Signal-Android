@@ -776,6 +776,7 @@
     <string name="preferences__received_messages_type_indicator">Incoming Message Type Indicator</string>
     <string name="preferences__received_messages_type_indicator_none">None</string>
     <string name="preferences__received_messages_type_indicator_label">Label next to Timestamp</string>
+    <string name="preferences__received_messages_type_indicator_color">Change Message Background Color</string>
 
     <!-- **************************************** -->
     <!-- menus -->
