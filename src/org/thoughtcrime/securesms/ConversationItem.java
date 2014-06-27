@@ -271,11 +271,16 @@ public class ConversationItem extends LinearLayout {
       dateText.setText(" ··· ");
     } else {
       final long timestamp;
+      final String datestr;
 
       if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
       else                        timestamp = messageRecord.getDateReceived();
 
-      dateText.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp));
+      datestr = DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp);
+
+      if (messageRecord.isOutgoing()) dateText.setText(datestr);
+      else if (messageRecord.isPush()) dateText.setText(datestr + " (PUSH)");
+      else                             dateText.setText(datestr + " (SMS)");
     }
   }
 
