@@ -131,31 +131,6 @@ public class MessageNotifier {
     }
   }
 
-  private static int getUnreadCount(Context context) {
-    Cursor telcoCursor = null;
-    Cursor pushCursor = null;
-    int unread = 0;
-
-    try {
-      telcoCursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
-      pushCursor = DatabaseFactory.getPushDatabase(context).getPending();
-
-      if (telcoCursor != null) {
-        unread += telcoCursor.getCount();
-      }
-
-      if (pushCursor != null) {
-        unread += pushCursor.getCount();
-      }
-
-    } finally {
-      if (telcoCursor != null) telcoCursor.close();
-      if (pushCursor != null) pushCursor.close();
-    }
-
-    return unread;
-  }
-
   private static void updateNotification(Context context, MasterSecret masterSecret, boolean signal) {
     Cursor telcoCursor = null;
     Cursor pushCursor = null;
