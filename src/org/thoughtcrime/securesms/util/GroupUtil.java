@@ -63,7 +63,7 @@ public class GroupUtil {
           if (memberName != null) {
             memberList.add(memberName);
           } else if (isOwnNumber(context, memberNumber)){
-            memberList.add(context.getString(R.string.GroupUtil_me));
+            memberList.add(context.getString(R.string.GroupUtil_you));
           } else {
             memberList.add(memberNumber);
           }
