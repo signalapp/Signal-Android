@@ -29,7 +29,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.badger;
+package org.thoughtcrime.securesms.notifications.badger;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;

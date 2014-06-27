@@ -39,9 +39,11 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
-import org.thoughtcrime.securesms.badger.ShortcutBadgeException;
-import org.thoughtcrime.securesms.badger.ShortcutBadger;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.notifications.NotificationItem;
+import org.thoughtcrime.securesms.notifications.NotificationState;
+import org.thoughtcrime.securesms.notifications.badger.ShortcutBadgeException;
+import org.thoughtcrime.securesms.notifications.badger.ShortcutBadger;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.whispersystems.textsecure.crypto.MasterSecret;

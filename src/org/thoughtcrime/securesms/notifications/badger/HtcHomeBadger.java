@@ -29,32 +29,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.badger;
+package org.thoughtcrime.securesms.notifications.badger;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import java.lang.String;
+import android.database.Cursor;
+import android.net.Uri;
 
-public class SonyHomeBadger extends ShortcutBadger {
+public class HtcHomeBadger extends ShortcutBadger {
+  private static final String CONTENT_URI = "content://com.htc.launcher.settings/favorites?notify=true";
+  private static final String UNSUPPORTED_LAUNCHER = "ShortcutBadger is currently not supporting this home launcher package \"%s\"";
 
-    private static final String INTENT_ACTION = "com.sonyericsson.home.action.UPDATE_BADGE";
-    private static final String INTENT_EXTRA_PACKAGE_NAME = "com.sonyericsson.home.intent.extra.badge.PACKAGE_NAME";
-    private static final String INTENT_EXTRA_ACTIVITY_NAME = "com.sonyericsson.home.intent.extra.badge.ACTIVITY_NAME";
-    private static final String INTENT_EXTRA_MESSAGE = "com.sonyericsson.home.intent.extra.badge.MESSAGE";
-    private static final String INTENT_EXTRA_SHOW_MESSAGE = "com.sonyericsson.home.intent.extra.badge.SHOW_MESSAGE";
+  public HtcHomeBadger(Context context) {
+    super(context);
+  }
 
+  @Override
+  protected void executeBadge(int badgeCount) throws ShortcutBadgeException {
+    ContentResolver contentResolver = context.getContentResolver();
+    Uri uri = Uri.parse(CONTENT_URI);
+    String appName = context.getResources().getText(context.getResources().getIdentifier("app_name",
+            "string", getContextPackageName())).toString();
 
-    public SonyHomeBadger(Context context) {
-        super(context);
+    try {
+      Cursor cursor = contentResolver.query(uri, new String[]{"notifyCount"}, "title=?", new String[]{appName}, null);
+      ContentValues contentValues = new ContentValues();
+      contentValues.put("notifyCount", badgeCount);
+      contentResolver.update(uri, contentValues, "title=?", new String[]{appName});
+    } catch (Throwable e) {
+      throw new ShortcutBadgeException(UNSUPPORTED_LAUNCHER);
     }
-
-    @Override
-    protected void executeBadge(int badgeCount) {
-        Intent intent = new Intent(INTENT_ACTION);
-        intent.putExtra(INTENT_EXTRA_PACKAGE_NAME, getContextPackageName());
-        intent.putExtra(INTENT_EXTRA_ACTIVITY_NAME, getEntryActivityName());
-        intent.putExtra(INTENT_EXTRA_MESSAGE, String.valueOf(badgeCount));
-        intent.putExtra(INTENT_EXTRA_SHOW_MESSAGE, badgeCount > 0);
-        context.sendBroadcast(intent);
-    }
+  }
 }

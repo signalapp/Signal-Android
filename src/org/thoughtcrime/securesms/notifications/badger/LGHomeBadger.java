@@ -29,36 +29,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.badger;
+package org.thoughtcrime.securesms.notifications.badger;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
+import android.content.Intent;
+import java.lang.String;
 
-public class HtcHomeBadger extends ShortcutBadger {
-  private static final String CONTENT_URI = "content://com.htc.launcher.settings/favorites?notify=true";
-  private static final String UNSUPPORTED_LAUNCHER = "ShortcutBadger is currently not supporting this home launcher package \"%s\"";
+public class LGHomeBadger extends ShortcutBadger {
 
-  public HtcHomeBadger(Context context) {
-    super(context);
-  }
+    private static final String INTENT_ACTION = "android.intent.action.BADGE_COUNT_UPDATE";
+    private static final String INTENT_EXTRA_BADGE_COUNT = "badge_count";
+    private static final String INTENT_EXTRA_PACKAGENAME = "badge_count_package_name";
+    private static final String INTENT_EXTRA_ACTIVITY_NAME = "badge_count_class_name";
 
-  @Override
-  protected void executeBadge(int badgeCount) throws ShortcutBadgeException {
-    ContentResolver contentResolver = context.getContentResolver();
-    Uri uri = Uri.parse(CONTENT_URI);
-    String appName = context.getResources().getText(context.getResources().getIdentifier("app_name",
-            "string", getContextPackageName())).toString();
-
-    try {
-      Cursor cursor = contentResolver.query(uri, new String[]{"notifyCount"}, "title=?", new String[]{appName}, null);
-      ContentValues contentValues = new ContentValues();
-      contentValues.put("notifyCount", badgeCount);
-      contentResolver.update(uri, contentValues, "title=?", new String[]{appName});
-    } catch (Throwable e) {
-      throw new ShortcutBadgeException(UNSUPPORTED_LAUNCHER);
+    public LGHomeBadger(Context context) {
+        super(context);
     }
-  }
+
+    @Override
+    protected void executeBadge(int badgeCount) {
+        Intent intent = new Intent(INTENT_ACTION);
+        intent.putExtra(INTENT_EXTRA_BADGE_COUNT, badgeCount);
+        intent.putExtra(INTENT_EXTRA_PACKAGENAME, getContextPackageName());
+        intent.putExtra(INTENT_EXTRA_ACTIVITY_NAME, getEntryActivityName());
+        context.sendBroadcast(intent);
+    }
 }
