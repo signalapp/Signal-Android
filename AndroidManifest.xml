@@ -43,7 +43,8 @@
     <application android:name="org.thoughtcrime.securesms.ApplicationListener"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
-                 android:theme="@style/TextSecure.LightTheme">
+                 android:theme="@style/TextSecure.LightTheme"
+                 tools:replace="icon" >
 
         <activity android:name=".RoutingActivity"
                   android:theme="@style/NoAnimation.Theme.BlackScreen"

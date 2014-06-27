@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Set;
 
@@ -102,13 +101,7 @@ public class ConversationListItem extends RelativeLayout
     this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-      this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
-                                                                  Emoji.EMOJI_SMALL),
-                               TextView.BufferType.SPANNABLE);
-    } else {
-      this.subjectView.setText(thread.getDisplayBody());
-    }
+    this.subjectView.setText(thread.getDisplayBody());
 
     if (thread.getDate() > 0)
       this.dateView.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), thread.getDate()));

@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -30,7 +32,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.support.v4.app.FragmentTransaction;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
@@ -39,18 +43,23 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.RelativeSizeSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
+import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,9 +67,12 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.protobuf.ByteString;
+import com.rockerhieu.emojicon.EmojiconGridFragment;
+import com.rockerhieu.emojicon.EmojiconsFragment;
+import com.rockerhieu.emojicon.emoji.Emojicon;
 
-import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
@@ -97,7 +109,6 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -129,7 +140,10 @@ import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageCo
  */
 public class ConversationActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationFragment.ConversationFragmentListener,
-               AttachmentManager.AttachmentListener
+               AttachmentManager.AttachmentListener,
+               EmojiconsFragment.OnEmojiconBackspaceClickedListener,
+               EmojiconGridFragment.OnEmojiconClickedListener,
+               KeyboardAwareLinearLayout.KeyboardListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -161,8 +175,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private AttachmentManager             attachmentManager;
   private BroadcastReceiver             securityUpdateReceiver;
   private BroadcastReceiver             groupUpdateReceiver;
-  private EmojiDrawer                   emojiDrawer;
+  private RelativeLayout                emojiDrawer;
   private EmojiToggle                   emojiToggle;
+  private KeyboardAwareLinearLayout     container;
 
   private Recipients recipients;
   private long       threadId;
@@ -676,12 +691,10 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       @Override
       protected void onPostExecute(List<Draft> drafts) {
         boolean nativeEmojiSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
-        Context context              = ConversationActivity.this;
 
         for (Draft draft : drafts) {
           if (draft.getType().equals(Draft.TEXT) && !nativeEmojiSupported) {
-            composeText.setText(Emoji.getInstance(context).emojify(draft.getValue()),
-                                TextView.BufferType.SPANNABLE);
+            composeText.setText(draft.getValue());
           } else if (draft.getType().equals(Draft.TEXT)) {
             composeText.setText(draft.getValue());
           } else if (draft.getType().equals(Draft.IMAGE)) {
@@ -754,6 +767,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeResources() {
+    container           = (KeyboardAwareLinearLayout) findViewById(R.id.layout_container);
     recipients          = RecipientFactory.getRecipientsForIds(this, getIntent().getStringExtra(RECIPIENTS_EXTRA), true);
     threadId            = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     distributionType    = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA,
@@ -762,12 +776,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     composeText         = (EditText)findViewById(R.id.embedded_text_editor);
     masterSecret        = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     charactersLeft      = (TextView)findViewById(R.id.space_left);
-    emojiDrawer         = (EmojiDrawer)findViewById(R.id.emoji_drawer);
+    emojiDrawer         = (RelativeLayout)findViewById(R.id.emoji_drawer);
+    emojiDrawer.setVisibility(View.GONE);
     emojiToggle         = (EmojiToggle)findViewById(R.id.emoji_toggle);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      emojiToggle.setVisibility(View.GONE);
-    }
 
     attachmentAdapter   = new AttachmentTypeSelectorAdapter(this);
     attachmentManager   = new AttachmentManager(this, this);
@@ -775,13 +786,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
+    container.setListener(this);
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
     composeText.setOnEditorActionListener(sendButtonListener);
     composeText.setOnClickListener(composeKeyPressedListener);
-    emojiDrawer.setComposeEditText(composeText);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
 
     recipients.addListener(new RecipientModifiedListener() {
@@ -1122,6 +1133,63 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     return MessageSender.send(ConversationActivity.this, masterSecret, message, threadId, forceSms);
   }
 
+  @Override
+  public void onEmojiconBackspaceClicked(View view) {
+    composeText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+    composeText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+  }
+
+  @Override
+  public void onEmojiconClicked(Emojicon emojicon) {
+    int start = Math.max(composeText.getSelectionStart(), 0);
+    int end = Math.max(composeText.getSelectionEnd(), 0);
+    composeText.getText().replace(Math.min(start, end), Math.max(start, end),
+                                 emojicon.getEmoji(), 0, emojicon.getEmoji().length());
+  }
+
+  @Override
+  public void onKeyboardShown(int keyboardHeight) {
+    Log.w(TAG, "keyboard shown, height " + keyboardHeight);
+    if (keyboardHeight > getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height)) {
+      WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Activity.WINDOW_SERVICE);
+      if (wm == null || wm.getDefaultDisplay() == null) {
+        return;
+      }
+      int rotation = wm.getDefaultDisplay().getRotation();
+
+      switch (rotation) {
+      case Surface.ROTATION_270:
+      case Surface.ROTATION_90:
+        setKeyboardLandscapeHeight(keyboardHeight);
+        break;
+      case Surface.ROTATION_0:
+      case Surface.ROTATION_180:
+        setKeyboardPortraitHeight(keyboardHeight);
+      }
+    }
+  }
+
+  private int getKeyboardLandscapeHeight() {
+    return PreferenceManager.getDefaultSharedPreferences(this)
+                            .getInt("keyboard_height_landscape",
+                                    getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
+  }
+
+  private int getKeyboardPortraitHeight() {
+    return PreferenceManager.getDefaultSharedPreferences(this)
+                            .getInt("keyboard_height_portrait",
+                                    getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
+  }
+
+  private void setKeyboardLandscapeHeight(int height) {
+    PreferenceManager.getDefaultSharedPreferences(this)
+                     .edit().putInt("keyboard_height_landscape", height).apply();
+  }
+
+  private void setKeyboardPortraitHeight(int height) {
+    PreferenceManager.getDefaultSharedPreferences(this)
+                     .edit().putInt("keyboard_height_portrait", height).apply();
+  }
 
   // Listeners
 
@@ -1136,11 +1204,38 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     @Override
     public void onClick(View v) {
       InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+      WindowManager      wm    = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
 
       if (emojiDrawer.getVisibility() == View.VISIBLE) {
         input.showSoftInput(composeText, 0);
         emojiDrawer.setVisibility(View.GONE);
       } else {
+        if (getSupportFragmentManager().findFragmentByTag("emojicons") == null) {
+          FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+          transaction.add(R.id.emoji_drawer, new EmojiconsFragment(), "emojicons");
+          transaction.commit();
+        }
+
+        if (wm == null || wm.getDefaultDisplay() == null) {
+          return;
+        }
+        int rotation = wm.getDefaultDisplay().getRotation();
+
+        final int height;
+        switch (rotation) {
+        case Surface.ROTATION_270:
+        case Surface.ROTATION_90:
+          height = getKeyboardLandscapeHeight();
+          break;
+        case Surface.ROTATION_0:
+        case Surface.ROTATION_180:
+        default:
+          height = getKeyboardPortraitHeight();
+        }
+
+        emojiDrawer.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
+        emojiDrawer.requestLayout();
+
         input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
         emojiDrawer.setVisibility(View.VISIBLE);
       }
@@ -1181,7 +1276,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     @Override
     public void onClick(View v) {
-      if (emojiDrawer.isOpen()) {
+      if (emojiDrawer.getVisibility() == View.VISIBLE) {
         emojiToggle.performClick();
       }
     }

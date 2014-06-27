@@ -26,6 +26,7 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.google.android.gcm:gcm-client:1.0.2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
+    compile 'com.rockerhieu.emojicon:library:1.0'
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
 
