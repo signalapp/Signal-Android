@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -272,13 +273,15 @@ public class ConversationItem extends LinearLayout {
     } else {
       final long timestamp;
       final String datestr;
+      final boolean showTextIndicator =
+        TextSecurePreferences.getMessageTypeIndicator(context).equals("label");
 
       if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
       else                        timestamp = messageRecord.getDateReceived();
 
       datestr = DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp);
 
-      if (messageRecord.isOutgoing()) dateText.setText(datestr);
+      if (messageRecord.isOutgoing() || !showTextIndicator) dateText.setText(datestr);
       else if (messageRecord.isPush()) dateText.setText(datestr + " (PUSH)");
       else                             dateText.setText(datestr + " (SMS)");
     }

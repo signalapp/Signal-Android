@@ -29,6 +29,13 @@
                             android:key="pref_delivery_report_sms"
                             android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
                             android:title="@string/preferences__sms_delivery_reports" />
+
+        <ListPreference android:key="pref_recv_messages_type_indicator"
+                        android:defaultValue="none"
+                        android:title="@string/preferences__received_messages_type_indicator"
+                        android:entries="@array/pref_received_messages_type_indicator_entries"
+                        android:entryValues="@array/pref_received_messages_type_indicator_values" />
+
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences__notifications">
         <CheckBoxPreference android:key="pref_key_enable_notifications"
