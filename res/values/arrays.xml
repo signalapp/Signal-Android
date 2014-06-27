@@ -111,7 +111,6 @@
     <item>none</item>
   </string-array>
 
-  <!-- currently only 2 options, will extend to 3 after implementing background option too -->
   <string-array name="pref_received_messages_type_indicator_entries">
     <item>@string/preferences__received_messages_type_indicator_none</item>
     <item>@string/preferences__received_messages_type_indicator_label</item>
