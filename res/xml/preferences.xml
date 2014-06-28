@@ -73,10 +73,6 @@
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__input_settings">
-      <CheckBoxPreference android:defaultValue="false"
-                          android:key="pref_enter_key"
-                          android:title="@string/preferences__enable_enter_key_title"
-                          android:summary="@string/preferences__replace_smiley_with_enter_key"/>
 
       <CheckBoxPreference android:defaultValue="false"
                           android:key="pref_enter_sends"

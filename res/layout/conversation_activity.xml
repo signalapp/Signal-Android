@@ -80,7 +80,7 @@
 
                 <com.rockerhieu.emojicon.EmojiconEditText
                         android:id="@+id/embedded_text_editor"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:autoText="true"
@@ -88,8 +88,8 @@
                         android:background="#00ffffff"
                         android:padding="12dp"
                         android:paddingRight="0dp"
-                        android:imeOptions="actionSend|flagNoEnterAction"
-                        android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
+                        android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi"
+                        android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
                         android:maxLength="1000"
                         android:maxLines="4"
                         android:nextFocusRight="@+id/send_button"
@@ -122,6 +122,7 @@
 
     <RelativeLayout
         android:id="@+id/emoji_drawer"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="450dp" />
 

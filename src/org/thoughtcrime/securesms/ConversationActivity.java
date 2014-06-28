@@ -221,7 +221,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     initializeTitleBar();
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
-    initializeIme();
     initializeCharactersLeftViewEnabledCheck();
     calculateCharactersRemaining();
 
@@ -690,12 +689,9 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
       @Override
       protected void onPostExecute(List<Draft> drafts) {
-        boolean nativeEmojiSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
         for (Draft draft : drafts) {
-          if (draft.getType().equals(Draft.TEXT) && !nativeEmojiSupported) {
-            composeText.setText(draft.getValue());
-          } else if (draft.getType().equals(Draft.TEXT)) {
+          if (draft.getType().equals(Draft.TEXT)) {
             composeText.setText(draft.getValue());
           } else if (draft.getType().equals(Draft.IMAGE)) {
             addAttachmentImage(Uri.parse(draft.getValue()));
@@ -758,14 +754,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }.execute();
   }
 
-  private void initializeIme() {
-    if (TextSecurePreferences.isEnterImeKeyEnabled(this)) {
-      composeText.setInputType(composeText.getInputType() & (~InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE));
-    } else {
-      composeText.setInputType(composeText.getInputType() | (InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE));
-    }
-  }
-
   private void initializeResources() {
     container           = (KeyboardAwareLinearLayout) findViewById(R.id.layout_container);
     recipients          = RecipientFactory.getRecipientsForIds(this, getIntent().getStringExtra(RECIPIENTS_EXTRA), true);
@@ -777,7 +765,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     masterSecret        = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     charactersLeft      = (TextView)findViewById(R.id.space_left);
     emojiDrawer         = (RelativeLayout)findViewById(R.id.emoji_drawer);
-    emojiDrawer.setVisibility(View.GONE);
     emojiToggle         = (EmojiToggle)findViewById(R.id.emoji_toggle);
 
     attachmentAdapter   = new AttachmentTypeSelectorAdapter(this);
