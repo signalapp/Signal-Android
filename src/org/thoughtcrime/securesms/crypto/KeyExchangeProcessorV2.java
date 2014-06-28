@@ -206,7 +206,7 @@ public class KeyExchangeProcessorV2 extends KeyExchangeProcessor {
 
         OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient,
                                                                                 ourMessage.serialize());
-        MessageSender.send(context, masterSecret, textMessage, threadId);
+        MessageSender.send(context, masterSecret, textMessage, threadId, false);
       }
 
       if (message.getSequence() != sessionRecord.getSessionState().getPendingKeyExchangeSequence()) {

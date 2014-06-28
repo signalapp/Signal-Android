@@ -47,6 +47,7 @@
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
 
+        <item name="conversation_item_background">@drawable/conversation_item_background</item>
         <item name="conversation_item_received_background">@drawable/conversation_item_received_shape</item>
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape</item>
         <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape</item>
@@ -74,6 +75,10 @@
         <item name="menu_split_icon">@drawable/ic_menu_split_holo_light</item>
         <item name="menu_accept_icon">@drawable/ic_menu_accept_holo_light</item>
         <item name="menu_refresh_directory">@drawable/ic_menu_refresh_holo_light</item>
+        <item name="menu_copy_icon">@drawable/ic_action_copy_holo_light</item>
+        <item name="menu_info_icon">@drawable/ic_dialog_info_holo_light</item>
+        <item name="menu_forward_icon">@drawable/ic_action_forward_holo_light</item>
+        <item name="menu_save_icon">@drawable/ic_action_save_holo_light</item>
     </style>
 
     <style name="TextSecure.LightTheme.NavigationDrawer"
@@ -110,6 +115,7 @@
         <item name="contact_selection_label_text">#66eeeeee</item>
         <item name="conversation_selection_header_text">#66eeeeee</item>
 
+        <item name="conversation_item_background">@drawable/conversation_item_background_dark</item>
         <item name="conversation_item_received_background">@drawable/conversation_item_received_shape_dark</item>
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape_dark</item>
         <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape_dark</item>
@@ -150,6 +156,10 @@
         <item name="menu_split_icon">@drawable/ic_menu_split_holo_dark</item>
         <item name="menu_accept_icon">@drawable/ic_menu_accept_holo_dark</item>
         <item name="menu_refresh_directory">@drawable/ic_menu_refresh_holo_dark</item>
+        <item name="menu_copy_icon">@drawable/ic_action_copy_holo_dark</item>
+        <item name="menu_info_icon">@drawable/ic_dialog_info_holo_dark</item>
+        <item name="menu_forward_icon">@drawable/ic_action_forward_holo_dark</item>
+        <item name="menu_save_icon">@drawable/ic_action_save_holo_dark</item>
     </style>
 
     <style name="TextSecure.DarkTheme.NavigationDrawer"

@@ -132,11 +132,6 @@ public class ShareActivity extends PassphraseRequiredSherlockFragmentActivity
   }
 
   private void initializeResources() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && TextSecurePreferences.isScreenSecurityEnabled(this)) {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                           WindowManager.LayoutParams.FLAG_SECURE);
-    }
-
     this.masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
 
     this.fragment = (ShareFragment)this.getSupportFragmentManager()

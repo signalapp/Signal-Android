@@ -26,10 +26,13 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.TypefaceSpan;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -38,9 +41,9 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.Util;
 
 /**
@@ -85,6 +88,21 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     startActivity(intent);
   }
 
+  private void handlePassphrase() {
+    try {
+      Editable text             = passphraseText.getText();
+      String passphrase         = (text == null ? "" : text.toString());
+      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(PassphrasePromptActivity.this, passphrase);
+
+      MemoryCleaner.clean(passphrase);
+      setMasterSecret(masterSecret);
+    } catch (InvalidPassphraseException ipe) {
+      passphraseText.setText("");
+      Toast.makeText(this, R.string.PassphrasePromptActivity_invalid_passphrase_exclamation,
+                     Toast.LENGTH_SHORT).show();
+    }
+  }
+
   private void initializeResources() {
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
     getSupportActionBar().setCustomView(R.layout.light_centered_app_title);
@@ -93,11 +111,34 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     ImageButton okButton = (ImageButton) findViewById(R.id.ok_button);
     passphraseText       = (EditText)    findViewById(R.id.passphrase_edit);
     SpannableString hint = new SpannableString(getString(R.string.PassphrasePromptActivity_enter_passphrase));
+
     hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     hint.setSpan(new ForegroundColorSpan(0x66000000), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     passphraseText.setHint(hint);
     okButton.setOnClickListener(new OkButtonClickListener());
+    passphraseText.setOnEditorActionListener(new PassphraseActionListener());
+    passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock),
+                                     EditorInfo.IME_ACTION_DONE);
+  }
+
+  private class PassphraseActionListener implements TextView.OnEditorActionListener {
+    @Override
+    public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent keyEvent) {
+      if ((keyEvent == null && actionId == EditorInfo.IME_ACTION_DONE) ||
+          (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_DOWN &&
+              (actionId == EditorInfo.IME_NULL)))
+      {
+        handlePassphrase();
+        return true;
+      } else if (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_UP &&
+                 actionId == EditorInfo.IME_NULL)
+      {
+        return true;
+      }
+
+      return false;
+    }
   }
 
   private void mitigateAndroidTilingBug() {
@@ -112,19 +153,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private class OkButtonClickListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      try {
-        Editable text             = passphraseText.getText();
-        String passphrase         = (text == null ? "" : text.toString());
-        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(PassphrasePromptActivity.this, passphrase);
-
-        MemoryCleaner.clean(passphrase);
-        setMasterSecret(masterSecret);
-      } catch (InvalidPassphraseException ipe) {
-        passphraseText.setText("");
-        Toast.makeText(getApplicationContext(),
-                       R.string.PassphrasePromptActivity_invalid_passphrase_exclamation,
-                       Toast.LENGTH_SHORT).show();
-      }
+      handlePassphrase();
     }
   }
 

@@ -459,7 +459,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
                                          .build();
 
       OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
-      long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1);
+      long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 
       return new Pair<Long, Recipients>(threadId, groupRecipient);
     } catch (RecipientFormattingException e) {

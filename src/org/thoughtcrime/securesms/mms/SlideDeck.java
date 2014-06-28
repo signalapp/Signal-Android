@@ -74,5 +74,15 @@ public class SlideDeck {
   public List<Slide> getSlides() {
     return slides;
   }
+
+  public boolean containsMediaSlide() {
+    for (Slide slide : slides) {
+      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 	
 }

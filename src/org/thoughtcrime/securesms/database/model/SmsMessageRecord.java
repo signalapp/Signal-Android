@@ -98,6 +98,11 @@ public class SmsMessageRecord extends MessageRecord {
     return false;
   }
 
+  @Override
+  public boolean isMmsNotification() {
+    return false;
+  }
+
   private static int getGenericDeliveryStatus(int status) {
     if (status == SmsDatabase.Status.STATUS_NONE) {
       return MessageRecord.DELIVERY_STATUS_NONE;
