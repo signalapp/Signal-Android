@@ -19,16 +19,18 @@ package org.thoughtcrime.securesms.mms;
 import java.io.IOException;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.SmilUtil;
+import org.w3c.dom.smil.SMILDocument;
+import org.w3c.dom.smil.SMILMediaElement;
+import org.w3c.dom.smil.SMILRegionElement;
+import org.w3c.dom.smil.SMILRegionMediaElement;
 
 import ws.com.google.android.mms.pdu.PduPart;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
-import android.widget.ImageView;
 
 public class AudioSlide extends Slide {
 
@@ -49,7 +51,17 @@ public class AudioSlide extends Slide {
     public boolean hasAudio() {
     return true;
   }
-	
+
+  @Override
+  public SMILRegionElement getSmilRegion(SMILDocument document) {
+    return null;
+  }
+
+  @Override
+  public SMILMediaElement getMediaElement(SMILDocument document) {
+    return SmilUtil.createMediaElement("audio", document, new String(getPart().getName()));
+  }
+
   @Override
   public Drawable getThumbnail(int maxWidth, int maxHeight) {
     return context.getResources().getDrawable(R.drawable.ic_menu_add_sound);
@@ -81,5 +93,4 @@ public class AudioSlide extends Slide {
 		
     return part;
   }
-	
 }
