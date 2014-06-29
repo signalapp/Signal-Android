@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.actionbarsherlock.app.SherlockActivity;
 
-public class RegistrationProblemsActivity extends SherlockActivity {
+public class RegistrationProblemsActivity extends ActionBarActivity {
 
   @Override
   public void onCreate(Bundle bundle) {

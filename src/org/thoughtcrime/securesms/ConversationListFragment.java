@@ -23,21 +23,24 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.text.TextUtils;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.view.ActionMode;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
-
-import com.actionbarsherlock.app.SherlockListFragment;
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.widget.SearchView;
 
 import org.thoughtcrime.securesms.components.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.PushRegistrationReminder;
@@ -53,7 +56,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import java.util.Set;
 
 
-public class ConversationListFragment extends SherlockListFragment
+public class ConversationListFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
 {
 
@@ -103,20 +106,6 @@ public class ConversationListFragment extends SherlockListFragment
   }
 
   @Override
-  public void onPrepareOptionsMenu(Menu menu) {
-    MenuInflater inflater = this.getSherlockActivity().getSupportMenuInflater();
-
-    if (this.masterSecret != null) {
-      inflater.inflate(R.menu.conversation_list, menu);
-      initializeSearch((SearchView)menu.findItem(R.id.menu_search).getActionView());
-    } else {
-      inflater.inflate(R.menu.conversation_list_empty, menu);
-    }
-
-    super.onPrepareOptionsMenu(menu);
-  }
-
-  @Override
   public void onListItemClick(ListView l, View v, int position, long id) {
     if (v instanceof ConversationListItem) {
       ConversationListItem headerView = (ConversationListItem) v;
@@ -146,27 +135,15 @@ public class ConversationListFragment extends SherlockListFragment
     }
   }
 
-  private void setQueryFilter(String query) {
+  public void setQueryFilter(String query) {
     this.queryFilter = query;
     getLoaderManager().restartLoader(0, null, this);
   }
 
-  private void initializeSearch(SearchView searchView) {
-    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-      @Override
-      public boolean onQueryTextSubmit(String query) {
-        if (isAdded()) {
-          setQueryFilter(query);
-          return true;
-        }
-        return false;
-      }
-
-      @Override
-      public boolean onQueryTextChange(String newText) {
-        return onQueryTextSubmit(newText);
-      }
-    });
+  public void resetQueryFilter() {
+    if (!TextUtils.isEmpty(this.queryFilter)) {
+      setQueryFilter("");
+    }
   }
 
   private void initializeBatchListener() {
@@ -174,7 +151,7 @@ public class ConversationListFragment extends SherlockListFragment
       @Override
       public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
         ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
-        actionMode = getSherlockActivity().startActionMode(ConversationListFragment.this);
+        actionMode = ((ActionBarActivity)getActivity()).startSupportActionMode(ConversationListFragment.this);
 
         adapter.initializeBatchMode(true);
         adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
@@ -223,8 +200,8 @@ public class ConversationListFragment extends SherlockListFragment
             @Override
             protected void onPreExecute() {
               dialog = ProgressDialog.show(getActivity(),
-                                           getSherlockActivity().getString(R.string.ConversationListFragment_deleting),
-                                           getSherlockActivity().getString(R.string.ConversationListFragment_deleting_selected_threads),
+                                           getActivity().getString(R.string.ConversationListFragment_deleting),
+                                           getActivity().getString(R.string.ConversationListFragment_deleting_selected_threads),
                                            true, false);
             }
 
@@ -289,7 +266,7 @@ public class ConversationListFragment extends SherlockListFragment
 
   @Override
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-    MenuInflater inflater = getSherlockActivity().getSupportMenuInflater();
+    MenuInflater inflater = getActivity().getMenuInflater();
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
     mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);

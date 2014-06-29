@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="@string/conversation_list__menu_search"
           android:id="@+id/menu_search"
           android:icon="?attr/menu_search_icon"
-          android:actionViewClass="com.actionbarsherlock.widget.SearchView"
-          android:showAsAction="ifRoom|collapseActionView" />
+          app:actionViewClass="android.support.v7.widget.SearchView"
+          app:showAsAction="ifRoom|collapseActionView" />
 
 </menu>

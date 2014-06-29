@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
@@ -27,7 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockListFragment;
 
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -38,7 +38,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
  *
  * @author Jake McGinty
  */
-public class ShareFragment extends SherlockListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ShareFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
   private ConversationSelectedListener listener;
   private MasterSecret masterSecret;

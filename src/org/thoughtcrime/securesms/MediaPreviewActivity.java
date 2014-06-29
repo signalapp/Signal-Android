@@ -25,21 +25,19 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.providers.PartProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -52,14 +50,13 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaPreviewActivity extends PassphraseRequiredSherlockActivity {
+public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public final static String MASTER_SECRET_EXTRA = "master_secret";
   public final static String RECIPIENT_EXTRA     = "recipient";
   public final static String DATE_EXTRA          = "date";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private MasterSecret masterSecret;
@@ -76,17 +73,17 @@ public class MediaPreviewActivity extends PassphraseRequiredSherlockActivity {
     setFullscreenIfPossible();
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                          WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+    this.setTheme(R.style.TextSecure_DarkTheme);
     super.onCreate(bundle);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.media_preview_activity);
     initializeResources();
   }
 
-  @TargetApi(VERSION_CODES.HONEYCOMB)
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
   private void setFullscreenIfPossible() {
-    if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
+    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
       getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
   }
@@ -94,11 +91,9 @@ public class MediaPreviewActivity extends PassphraseRequiredSherlockActivity {
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
     masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-
     mediaUri     = getIntent().getData();
     mediaType    = getIntent().getType();
     recipient    = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
@@ -175,7 +170,7 @@ public class MediaPreviewActivity extends PassphraseRequiredSherlockActivity {
     super.onPrepareOptionsMenu(menu);
 
     menu.clear();
-    MenuInflater inflater = this.getSupportMenuInflater();
+    MenuInflater inflater = this.getMenuInflater();
     inflater.inflate(R.menu.media_preview, menu);
 
     return true;

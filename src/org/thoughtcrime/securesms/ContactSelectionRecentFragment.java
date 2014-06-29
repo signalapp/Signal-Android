@@ -20,6 +20,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.CallLog.Calls;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -33,8 +34,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.actionbarsherlock.app.SherlockListFragment;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
@@ -55,7 +54,7 @@ import java.util.List;
  * @author Moxie Marlinspike
  *
  */
-public class ContactSelectionRecentFragment extends SherlockListFragment
+public class ContactSelectionRecentFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<Cursor>
 {
 

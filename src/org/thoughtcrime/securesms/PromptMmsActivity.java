@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class PromptMmsActivity extends PassphraseRequiredSherlockActivity {
+public class PromptMmsActivity extends PassphraseRequiredActionBarActivity {
 
   private Button okButton;
   private Button cancelButton;

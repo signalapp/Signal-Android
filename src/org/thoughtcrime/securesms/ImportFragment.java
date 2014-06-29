@@ -7,13 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import java.io.IOException;
 
 
-public class ImportFragment extends SherlockFragment {
+public class ImportFragment extends Fragment {
 
   private static final int SUCCESS    = 0;
   private static final int NO_SD_CARD = 1;

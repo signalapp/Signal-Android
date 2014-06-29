@@ -114,12 +114,12 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".DatabaseMigrationActivity"
-              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
+              android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".DatabaseUpgradeActivity"
-              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
+              android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -194,7 +194,6 @@
 
     <activity android:name=".MediaPreviewActivity"
               android:label="@string/AndroidManifest__media_preview"
-              android:theme="@style/TextSecure.DarkTheme"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

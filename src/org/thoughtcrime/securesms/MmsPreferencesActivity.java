@@ -18,21 +18,18 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.Preference;
-import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.view.MenuItem;
-
-import org.thoughtcrime.securesms.mms.IncomingMmsConnection;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
-public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity {
+public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity {
 
   private MasterSecret masterSecret;
 
@@ -46,11 +43,15 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
     super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    initializePreferences();
 
     masterSecret = getIntent().getParcelableExtra("master_secret");
 
-    initializeEditTextSummaries();
+    Fragment fragment = new MmsPreferencesFragment();
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    fragmentTransaction.replace(android.R.id.content, fragment);
+    fragmentTransaction.commit();
+
   }
 
   @Override
@@ -85,51 +86,9 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
     super.onBackPressed();
   }
 
-  private void initializePreferences() {
-    if (!IncomingMmsConnection.isConnectionPossible(this, null)) {
-      TextSecurePreferences.setUseLocalApnsEnabled(this, true);
-      addPreferencesFromResource(R.xml.mms_preferences);
-      this.findPreference(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
-    } else {
-      addPreferencesFromResource(R.xml.mms_preferences);
-    }
-  }
-
-  private void initializeEditTextSummary(final EditTextPreference preference) {
-    if (preference.getText() == null) {
-      preference.setSummary("Not set");
-    } else {
-      preference.setSummary(preference.getText());
-    }
-
-    preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-      @Override
-      public boolean onPreferenceChange(Preference pref, Object newValue) {
-        preference.setSummary(newValue == null ? "Not set" : ((String) newValue));
-        return true;
-      }
-    });
-  }
-
-  private void initializeEditTextSummaries() {
-    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_HOST_PREF));
-    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_HOST_PREF));
-    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_PORT_PREF));
-  }
-
   private void handleDownloadMmsPendingApn() {
     Intent intent = new Intent(this, SendReceiveService.class);
     intent.setAction(SendReceiveService.DOWNLOAD_MMS_PENDING_APN_ACTION);
     startService(intent);
   }
-
-  private class OverrideMmsChangeListener implements Preference.OnPreferenceChangeListener {
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object o) {
-      TextSecurePreferences.setUseLocalApnsEnabled(MmsPreferencesActivity.this, true);
-      Toast.makeText(MmsPreferencesActivity.this, R.string.mms_preferences_activity__manual_mms_settings_are_required, Toast.LENGTH_SHORT).show();
-      return false;
-    }
-  }
-
 }
