@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.preference.PreferenceManager;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -22,18 +21,10 @@ public class DynamicTheme {
   public void onResume(Activity activity) {
     if (currentTheme != getSelectedTheme(activity)) {
       Intent intent = activity.getIntent();
-      intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-      activity.startActivity(intent);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
-        OverridePendingTransition.invoke(activity);
-      }
-
       activity.finish();
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
-        OverridePendingTransition.invoke(activity);
-      }
-
+      OverridePendingTransition.invoke(activity);
+      activity.startActivity(intent);
+      OverridePendingTransition.invoke(activity);
     }
   }
 

@@ -67,7 +67,7 @@
                        android:layout_height="match_parent"
                        android:layout_width="20sp"
                        android:visibility="gone"
-                       android:src="@drawable/ic_list_alert_sms_failed"
+                       android:src="@drawable/ic_action_warning_red"
                        android:contentDescription="Error Alert" />
 
             <TextView android:id="@+id/date"

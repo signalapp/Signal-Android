@@ -4,7 +4,8 @@
     android:id="@+id/conversation_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="?conversation_item_background" >
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
                 android:id="@+id/sms_failed_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_list_alert_sms_failed"
+                android:src="@drawable/ic_action_warning_red"
                 android:visibility="gone"
                 android:contentDescription="@string/conversation_item_sent__send_failed_indicator_description"/>
 

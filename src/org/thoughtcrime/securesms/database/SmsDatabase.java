@@ -362,10 +362,13 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
   }
 
-  protected List<Long> insertMessageOutbox(long threadId, OutgoingTextMessage message, long type) {
+  protected List<Long> insertMessageOutbox(long threadId, OutgoingTextMessage message,
+                                           long type, boolean forceSms)
+  {
     if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
     else if (message.isSecureMessage()) type |= Types.SECURE_MESSAGE_BIT;
     else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
+    if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
 
     long date             = System.currentTimeMillis();
     List<Long> messageIds = new LinkedList<Long>();

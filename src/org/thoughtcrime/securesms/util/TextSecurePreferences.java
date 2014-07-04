@@ -4,6 +4,8 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import java.io.IOException;
+
 public class TextSecurePreferences {
 
   public  static final String IDENTITY_PREF                    = "pref_choose_identity";
@@ -18,6 +20,7 @@ public class TextSecurePreferences {
   public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
 
+  private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
@@ -45,34 +48,33 @@ public class TextSecurePreferences {
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
-  private static final String ALLOW_SMS_FALLBACK_PREF          = "pref_allow_sms_traffic_out";
-  private static final String SMS_FALLBACK_ASK_PREF            = "pref_sms_fallback_ask";
-  private static final String ALLOW_SMS_NON_DATA_PREF          = "pref_sms_non_data_out";
+  private static final String FALLBACK_SMS_ALLOWED_PREF        = "pref_allow_sms_traffic_out";
+  private static final String FALLBACK_SMS_ASK_REQUIRED_PREF   = "pref_sms_fallback_ask";
+  private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
 
-  public static boolean isSmsFallbackEnabled(Context context) {
-    return getBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, true);
+  public static boolean isFallbackSmsAllowed(Context context) {
+    return getBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, true);
   }
 
-  public static void setSmsFallbackEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, ALLOW_SMS_FALLBACK_PREF, enabled);
+  public static void setFallbackSmsAllowed(Context context, boolean allowed) {
+    setBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, allowed);
   }
 
-  public static boolean isSmsNonDataOutEnabled(Context context) {
-    return getBooleanPreference(context, ALLOW_SMS_NON_DATA_PREF, true);
+  public static boolean isFallbackSmsAskRequired(Context context) {
+    return getBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, false);
   }
 
-  public static void setSmsNonDataOutEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, ALLOW_SMS_NON_DATA_PREF, enabled);
+  public static void setFallbackSmsAskRequired(Context context, boolean required) {
+    setBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, required);
   }
 
-  public static boolean isSmsFallbackAskEnabled(Context context) {
-    return getBooleanPreference(context, SMS_FALLBACK_ASK_PREF, false);
+  public static boolean isDirectSmsAllowed(Context context) {
+    return getBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, true);
   }
 
-  public static void setSmsFallbackAskEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, SMS_FALLBACK_ASK_PREF, enabled);
+  public static void setDirectSmsAllowed(Context context, boolean allowed) {
+    setBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, allowed);
   }
-
 
   public static int getLocalRegistrationId(Context context) {
     return getIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, 0);
@@ -165,6 +167,20 @@ public class TextSecurePreferences {
   public static boolean isUseLocalApnsEnabled(Context context) {
     return getBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, false);
   }
+
+  public static void setUseLocalApnsEnabled(Context context, boolean useLocal) {
+    setBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, useLocal);
+  }
+
+  public static int getLastVersionCode(Context context) {
+    return getIntegerPreference(context, LAST_VERSION_CODE_PREF, 0);
+  }
+
+  public static void setLastVersionCode(Context context, int versionCode) throws IOException {
+    if (!setIntegerPrefrenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
+      throw new IOException("couldn't write version code to sharedpreferences");
+    }
+ }
 
   public static String getTheme(Context context) {
     return getStringPreference(context, THEME_PREF, "light");
@@ -272,7 +288,7 @@ public class TextSecurePreferences {
   }
 
   private static void setBooleanPreference(Context context, String key, boolean value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).commit();
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
 
   private static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
@@ -280,7 +296,7 @@ public class TextSecurePreferences {
   }
 
   public static void setStringPreference(Context context, String key, String value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).commit();
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).apply();
   }
 
   private static String getStringPreference(Context context, String key, String defaultValue) {
@@ -292,7 +308,11 @@ public class TextSecurePreferences {
   }
 
   private static void setIntegerPrefrence(Context context, String key, int value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).apply();
+  }
+
+  private static boolean setIntegerPrefrenceBlocking(Context context, String key, int value) {
+    return PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
   }
 
   private static long getLongPreference(Context context, String key, long defaultValue) {
@@ -300,7 +320,7 @@ public class TextSecurePreferences {
   }
 
   private static void setLongPreference(Context context, String key, long value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).commit();
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
   }
 
 

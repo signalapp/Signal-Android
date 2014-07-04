@@ -102,22 +102,15 @@ public class RecipientFactory {
            (recipient.indexOf('>', openBracketIndex) != -1);
   }
 
-  private static String parseBracketedNumber(String recipient)
-      throws RecipientFormattingException
-  {
+  private static String parseBracketedNumber(String recipient) {
     int begin    = recipient.indexOf('<');
     int end      = recipient.indexOf('>', begin);
     String value = recipient.substring(begin + 1, end);
 
-    if (NumberUtil.isValidSmsOrEmail(value))
-      return value;
-    else
-      throw new RecipientFormattingException("Bracketed value: " + value + " is not valid.");
+    return value;
   }
 
-  private static Recipient parseRecipient(Context context, String recipient, boolean asynchronous)
-      throws RecipientFormattingException
-  {
+  private static Recipient parseRecipient(Context context, String recipient, boolean asynchronous) {
     recipient = recipient.trim();
 
     if( recipient.length() == 0 )
@@ -126,10 +119,7 @@ public class RecipientFactory {
     if (hasBracketedNumber(recipient))
       return getRecipientForNumber(context, parseBracketedNumber(recipient), asynchronous);
 
-    if (NumberUtil.isValidSmsOrEmailOrGroup(recipient))
-      return getRecipientForNumber(context, recipient, asynchronous);
-
-    throw new RecipientFormattingException("Recipient: " + recipient + " is badly formatted.");
+    return getRecipientForNumber(context, recipient, asynchronous);
   }
 
   public static void clearCache() {

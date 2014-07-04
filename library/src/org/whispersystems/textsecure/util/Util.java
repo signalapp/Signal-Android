@@ -1,7 +1,13 @@
 package org.whispersystems.textsecure.util;
 
 import android.content.Context;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
+import android.graphics.drawable.StateListDrawable;
 import android.telephony.TelephonyManager;
+import android.view.View;
 import android.widget.EditText;
 
 import java.io.ByteArrayOutputStream;
@@ -199,6 +205,19 @@ public class Util {
       return SecureRandom.getInstance("SHA1PRNG");
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
+    }
+  }
+
+  /*
+   * source: http://stackoverflow.com/a/9500334
+   */
+  public static void fixBackgroundRepeat(Drawable bg) {
+    if (bg != null) {
+      if (bg instanceof BitmapDrawable) {
+        BitmapDrawable bmp = (BitmapDrawable) bg;
+        bmp.mutate();
+        bmp.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+      }
     }
   }
 }
