@@ -26,8 +26,8 @@ import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -54,7 +54,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -86,7 +85,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
   private static final String MMS_PREF              = "pref_mms_preferences";
   private static final String KITKAT_DEFAULT_PREF   = "pref_set_default";
-  private static final String UPDATE_DIRECTORY_PREF = "pref_update_directory";
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
   private static final String OUTGOING_SMS_PREF     = "pref_outgoing_sms";
 
@@ -122,8 +120,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
       .setOnPreferenceChangeListener(new RingtoneSummaryListener());
-    this.findPreference(UPDATE_DIRECTORY_PREF)
-        .setOnPreferenceClickListener(new DirectoryUpdateListener());
     this.findPreference(SUBMIT_DEBUG_LOG_PREF)
         .setOnPreferenceClickListener(new SubmitDebugLogListener());
     this.findPreference(OUTGOING_SMS_PREF)
@@ -217,8 +213,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       pushSmsCategory.removePreference(defaultPreference);
     }
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1 &&
-        advancedCategory != null                                   &&
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
+        advancedCategory != null                                       &&
         screenSecurityPreference != null)
     {
       advancedCategory.removePreference(screenSecurityPreference);
@@ -548,14 +544,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     }
   }
 
-  private class DirectoryUpdateListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      DirectoryHelper.refreshDirectoryWithProgressDialog(ApplicationPreferencesActivity.this);
-      return true;
-    }
-  }
-
   private class SubmitDebugLogListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
@@ -577,9 +565,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private String buildOutgoingSmsDescription() {
     final StringBuilder builder         = new StringBuilder();
-    final boolean       dataFallback    = TextSecurePreferences.isSmsFallbackEnabled(this);
-    final boolean       dataFallbackAsk = TextSecurePreferences.isSmsFallbackAskEnabled(this);
-    final boolean       nonData         = TextSecurePreferences.isSmsNonDataOutEnabled(this);
+    final boolean       dataFallback    = TextSecurePreferences.isFallbackSmsAllowed(this);
+    final boolean       dataFallbackAsk = TextSecurePreferences.isFallbackSmsAskRequired(this);
+    final boolean       nonData         = TextSecurePreferences.isDirectSmsAllowed(this);
 
     if (dataFallback) {
       builder.append(getString(R.string.preferences__sms_outgoing_push_users));

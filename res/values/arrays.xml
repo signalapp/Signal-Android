@@ -128,24 +128,20 @@
   <string-array name="navigation_drawer_text">
     <item>@string/arrays__import_export</item>
     <item>@string/arrays__my_identity_key</item>
-    <item>@string/arrays__contact_keys</item>
   </string-array>
 
   <string-array name="navigation_drawer_values" translatable="false">
     <item>import_export</item>
     <item>my_identity_key</item>
-    <item>contact_identity_keys</item>
   </string-array>
 
   <string-array name="navigation_drawer_icons_light">
     <item>@drawable/import_export_light</item>
     <item>@drawable/my_identity_light</item>
-    <item>@drawable/contacts_identities_light</item>
   </string-array>
 
   <string-array name="navigation_drawer_icons_dark">
     <item>@drawable/import_export_dark</item>
     <item>@drawable/my_identity_dark</item>
-    <item>@drawable/contacts_identities_dark</item>
   </string-array>
 </resources>

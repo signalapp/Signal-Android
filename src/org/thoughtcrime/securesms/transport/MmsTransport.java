@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
@@ -66,11 +67,8 @@ public class MmsTransport {
   public MmsSendResult deliver(SendReq message) throws UndeliverableMessageException,
                                                        InsecureFallbackApprovalException
   {
-    if (TextSecurePreferences.isPushRegistered(context) &&
-        !TextSecurePreferences.isSmsFallbackEnabled(context))
-    {
-      throw new UndeliverableMessageException("MMS Transport is not enabled!");
-    }
+
+    validateDestinations(message);
 
     try {
       if (isCdmaDevice()) {
@@ -195,6 +193,37 @@ public class MmsTransport {
     return ((TelephonyManager)context
         .getSystemService(Context.TELEPHONY_SERVICE))
         .getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
+  }
+
+  private void validateDestination(EncodedStringValue destination) throws UndeliverableMessageException {
+    if (destination == null || !NumberUtil.isValidSmsOrEmail(destination.getString())) {
+      throw new UndeliverableMessageException("Invalid destination: " +
+                                              (destination == null ? null : destination.getString()));
+    }
+  }
+
+  private void validateDestinations(SendReq message) throws UndeliverableMessageException {
+    if (message.getTo() != null) {
+      for (EncodedStringValue to : message.getTo()) {
+        validateDestination(to);
+      }
+    }
+
+    if (message.getCc() != null) {
+      for (EncodedStringValue cc : message.getCc()) {
+        validateDestination(cc);
+      }
+    }
+
+    if (message.getBcc() != null) {
+      for (EncodedStringValue bcc : message.getBcc()) {
+        validateDestination(bcc);
+      }
+    }
+
+    if (message.getTo() == null && message.getCc() == null && message.getBcc() == null) {
+      throw new UndeliverableMessageException("No to, cc, or bcc specified!");
+    }
   }
 
 }

@@ -72,8 +72,8 @@ public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActi
       public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {}
     };
 
-    actionBar.addTab(actionBar.newTab().setText("Import").setTabListener(tabListener));
-    actionBar.addTab(actionBar.newTab().setText("Export").setTabListener(tabListener));
+    actionBar.addTab(actionBar.newTab().setText(R.string.ImportExportActivity_import).setTabListener(tabListener));
+    actionBar.addTab(actionBar.newTab().setText(R.string.ImportExportActivity_export).setTabListener(tabListener));
   }
 
   private class TabPagerAdapter extends FragmentStatePagerAdapter {
@@ -102,8 +102,8 @@ public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActi
 
     @Override
     public CharSequence getPageTitle(int i) {
-      if (i == 0) return "Import";
-      else        return "Export";
+      if (i == 0) return getString(R.string.ImportExportActivity_import);
+      else        return getString(R.string.ImportExportActivity_export);
     }
   }
 

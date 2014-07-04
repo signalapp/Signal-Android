@@ -95,7 +95,7 @@ public class AutoInitiateActivity extends Activity {
 
   public static void exemptThread(Context context, long threadId) {
     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-    sp.edit().putBoolean("pref_thread_auto_init_exempt_" + threadId, true).commit();
+    sp.edit().putBoolean("pref_thread_auto_init_exempt_" + threadId, true).apply();
   }
 
   public static boolean isValidAutoInitiateSituation(Context context, MasterSecret masterSecret,

@@ -128,9 +128,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     } else if (selected.equals("my_identity_key")) {
       intent = new Intent(this, ViewLocalIdentityActivity.class);
       intent.putExtra("master_secret", masterSecret);
-    } else if (selected.equals("contact_identity_keys")) {
-      intent = new Intent(this, ReviewIdentitiesActivity.class);
-      intent.putExtra("master_secret", masterSecret);
     } else {
       return;
     }
@@ -279,11 +276,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   }
 
   private void initializeResources() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && TextSecurePreferences.isScreenSecurityEnabled(this)) {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                           WindowManager.LayoutParams.FLAG_SECURE);
-    }
-
     this.drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
     this.drawerList   = (ListView)findViewById(R.id.left_drawer);
     this.masterSecret = getIntent().getParcelableExtra("master_secret");
@@ -325,6 +317,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     public void onDrawerOpened(View drawerView) {
 
       super.onDrawerOpened(drawerView);
+      fragment.resetQueryFilter();
 
       invalidateOptionsMenu();
     }

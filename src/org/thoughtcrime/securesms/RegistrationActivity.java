@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -104,16 +106,22 @@ public class RegistrationActivity extends SherlockActivity {
   }
 
   private void initializeNumber() {
-    String localNumber = org.whispersystems.textsecure.util.Util.getDeviceE164Number(this);
+    PhoneNumberUtil numberUtil  = PhoneNumberUtil.getInstance();
+    String          localNumber = org.whispersystems.textsecure.util.Util.getDeviceE164Number(this);
 
     try {
       if (!Util.isEmpty(localNumber)) {
-        PhoneNumberUtil numberUtil                = PhoneNumberUtil.getInstance();
         Phonenumber.PhoneNumber localNumberObject = numberUtil.parse(localNumber, null);
 
         if (localNumberObject != null) {
           this.countryCode.setText(localNumberObject.getCountryCode()+"");
           this.number.setText(localNumberObject.getNationalNumber()+"");
+        }
+      } else {
+        String simCountryIso = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE)).getSimCountryIso();
+
+        if (!Util.isEmpty(simCountryIso)) {
+          this.countryCode.setText(numberUtil.getCountryCodeForRegion(simCountryIso.toUpperCase())+"");
         }
       }
     } catch (NumberParseException npe) {
@@ -245,7 +253,7 @@ public class RegistrationActivity extends SherlockActivity {
         formattedNumber = countryFormatter.inputDigit(number.charAt(i));
       }
 
-      if (!s.toString().equals(formattedNumber)) {
+      if (formattedNumber != null && !s.toString().equals(formattedNumber)) {
         s.replace(0, s.length(), formattedNumber);
       }
     }

@@ -27,7 +27,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.NumberUtil;
@@ -54,18 +53,21 @@ public class ContactsDatabase {
   public static final String NAME_COLUMN        = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
   public static final String NUMBER_TYPE_COLUMN = ContactsContract.CommonDataKinds.Phone.TYPE;
   public static final String NUMBER_COLUMN      = ContactsContract.CommonDataKinds.Phone.NUMBER;
+  public static final String LABEL_COLUMN       = ContactsContract.CommonDataKinds.Phone.LABEL;
   public static final String TYPE_COLUMN        = "type";
 
   private static final String   FILTER_SELECTION   = NAME_COLUMN + " LIKE ? OR " + NUMBER_COLUMN + " LIKE ?";
-  private static final String   CONTACT_LIST_SORT  = NAME_COLUMN + " ASC";
+  private static final String   CONTACT_LIST_SORT  = NAME_COLUMN + " COLLATE NOCASE ASC";
   private static final String[] ANDROID_PROJECTION = new String[]{ID_COLUMN,
                                                                   NAME_COLUMN,
                                                                   NUMBER_TYPE_COLUMN,
+                                                                  LABEL_COLUMN,
                                                                   NUMBER_COLUMN};
 
   private static final String[] CONTACTS_PROJECTION = new String[]{ID_COLUMN,
                                                                    NAME_COLUMN,
                                                                    NUMBER_TYPE_COLUMN,
+                                                                   LABEL_COLUMN,
                                                                    NUMBER_COLUMN,
                                                                    TYPE_COLUMN};
 
@@ -95,7 +97,7 @@ public class ContactsDatabase {
   }
 
   public Cursor query(String filter, boolean pushOnly) {
-    final boolean      includeAndroidContacts = !pushOnly && TextSecurePreferences.isSmsNonDataOutEnabled(context);
+    final boolean      includeAndroidContacts = !pushOnly && TextSecurePreferences.isDirectSmsAllowed(context);
     final Cursor       localCursor            = queryLocalDb(filter);
     final Cursor       androidCursor;
     final MatrixCursor newNumberCursor;
@@ -109,7 +111,7 @@ public class ContactsDatabase {
     if (includeAndroidContacts && !Util.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
       newNumberCursor = new MatrixCursor(CONTACTS_PROJECTION, 1);
       newNumberCursor.addRow(new Object[]{-1L, context.getString(R.string.contact_selection_list__unknown_contact),
-                                          0, filter, NORMAL_TYPE});
+                             ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM, "\u21e2", filter, NORMAL_TYPE});
     } else {
       newNumberCursor = null;
     }
@@ -174,6 +176,7 @@ public class ContactsDatabase {
             ID_COLUMN          + " INTEGER PRIMARY KEY, " +
             NAME_COLUMN        + " TEXT, " +
             NUMBER_TYPE_COLUMN + " INTEGER, " +
+            LABEL_COLUMN       + " TEXT, " +
             NUMBER_COLUMN      + " TEXT, " +
             TYPE_COLUMN        + " INTEGER);";
 
@@ -212,9 +215,10 @@ public class ContactsDatabase {
         values.put(ID_COLUMN, user.id);
         values.put(NAME_COLUMN, user.name);
         values.put(NUMBER_TYPE_COLUMN, ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM);
+        values.put(LABEL_COLUMN, (String)null);
         values.put(NUMBER_COLUMN, user.numbers.get(0).number);
         values.put(TYPE_COLUMN, PUSH_TYPE);
-        mDatabase.insert(TABLE_NAME, null, values);
+        mDatabase.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
       }
       Log.d(TAG, "finished populating push users.");
     }

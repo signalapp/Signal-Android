@@ -69,6 +69,11 @@ public class MediaMmsMessageRecord extends MessageRecord {
   }
 
   @Override
+  public boolean isMmsNotification() {
+    return false;
+  }
+
+  @Override
   public SpannableString getDisplayBody() {
     if (MmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_decrypting_mms_please_wait));

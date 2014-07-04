@@ -124,6 +124,6 @@ public class IdentityKeyUtil {
     Editor preferencesEditor        = preferences.edit();
 		
     preferencesEditor.putString(key, value);
-    preferencesEditor.commit();
+    if (!preferencesEditor.commit()) throw new AssertionError("failed to save identity key/value to shared preferences");
   }
 }
