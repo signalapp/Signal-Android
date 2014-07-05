@@ -17,7 +17,8 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.IdentityKeyPair;
+import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -227,10 +228,11 @@ public class RegistrationService extends Service {
       throws IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    IdentityKey        identityKey = IdentityKeyUtil.getIdentityKey(this);
+    IdentityKeyPair    identityKey = IdentityKeyUtil.getIdentityKeyPair(this, masterSecret);
     List<PreKeyRecord> records     = PreKeyUtil.generatePreKeys(this, masterSecret);
     PreKeyRecord       lastResort  = PreKeyUtil.generateLastResortKey(this, masterSecret);
-    socket.registerPreKeys(identityKey, lastResort, records);
+    DeviceKeyRecord    deviceKey   = PreKeyUtil.generateDeviceKey(this, masterSecret, identityKey);
+    socket.registerPreKeys(identityKey.getPublicKey(), lastResort, deviceKey, records);
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 

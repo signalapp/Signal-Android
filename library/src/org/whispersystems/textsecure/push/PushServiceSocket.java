@@ -24,6 +24,9 @@ import com.google.thoughtcrimegson.JsonParseException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
+import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.BlacklistingTrustManager;
@@ -64,9 +67,9 @@ public class PushServiceSocket {
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
-  private static final String PREKEY_METADATA_PATH      = "/v1/keys/";
-  private static final String PREKEY_PATH               = "/v1/keys/%s";
-  private static final String PREKEY_DEVICE_PATH        = "/v1/keys/%s/%s";
+  private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
+  private static final String PREKEY_PATH               = "/v2/keys/%s";
+  private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
 
   private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
   private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
@@ -126,6 +129,7 @@ public class PushServiceSocket {
 
   public void registerPreKeys(IdentityKey identityKey,
                               PreKeyRecord lastResortKey,
+                              DeviceKeyRecord deviceKey,
                               List<PreKeyRecord> records)
       throws IOException
   {
@@ -133,19 +137,20 @@ public class PushServiceSocket {
 
     for (PreKeyRecord record : records) {
       PreKeyEntity entity = new PreKeyEntity(record.getId(),
-                                             record.getKeyPair().getPublicKey(),
-                                             identityKey);
+                                             record.getKeyPair().getPublicKey());
 
       entities.add(entity);
     }
 
     PreKeyEntity lastResortEntity = new PreKeyEntity(lastResortKey.getId(),
-                                                     lastResortKey.getKeyPair().getPublicKey(),
-                                                     identityKey);
+                                                     lastResortKey.getKeyPair().getPublicKey());
 
+    DeviceKeyEntity deviceKeyEntity = new DeviceKeyEntity(deviceKey.getId(),
+                                                          deviceKey.getKeyPair().getPublicKey(),
+                                                          deviceKey.getSignature());
 
     makeRequest(String.format(PREKEY_PATH, ""), "PUT",
-                PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
+                PreKeyState.toJson(new PreKeyState(entities, lastResortEntity, deviceKeyEntity, identityKey)));
   }
 
   public int getAvailablePreKeys() throws IOException {
@@ -155,7 +160,7 @@ public class PushServiceSocket {
     return preKeyStatus.getCount();
   }
 
-  public List<PreKeyEntity> getPreKeys(PushAddress destination) throws IOException {
+  public List<PreKeyBundle> getPreKeys(PushAddress destination) throws IOException {
     try {
       String deviceId = String.valueOf(destination.getDeviceId());
 
@@ -168,10 +173,34 @@ public class PushServiceSocket {
         path = path + "?relay=" + destination.getRelay();
       }
 
-      String responseText = makeRequest(path, "GET", null);
-      PreKeyList response = PreKeyList.fromJson(responseText);
+      String             responseText = makeRequest(path, "GET", null);
+      PreKeyResponse     response     = PreKeyResponse.fromJson(responseText);
+      List<PreKeyBundle> bundles      = new LinkedList<>();
 
-      return response.getKeys();
+      for (PreKeyResponseItem device : response.getDevices()) {
+        ECPublicKey preKey             = null;
+        ECPublicKey deviceKey          = null;
+        byte[]      deviceKeySignature = null;
+        int         preKeyId           = -1;
+        int         deviceKeyId        = -1;
+
+        if (device.getDeviceKey() != null) {
+          deviceKey          = device.getDeviceKey().getPublicKey();
+          deviceKeyId        = device.getDeviceKey().getKeyId();
+          deviceKeySignature = device.getDeviceKey().getSignature();
+        }
+
+        if (device.getPreKey() != null) {
+          preKeyId = device.getPreKey().getKeyId();
+          preKey   = device.getPreKey().getPublicKey();
+        }
+
+        bundles.add(new PreKeyBundle(device.getRegistrationId(), device.getDeviceId(), preKeyId,
+                                     preKey, deviceKeyId, deviceKey, deviceKeySignature,
+                                     response.getIdentityKey()));
+      }
+
+      return bundles;
     } catch (JsonParseException e) {
       throw new IOException(e);
     } catch (NotFoundException nfe) {
@@ -179,7 +208,7 @@ public class PushServiceSocket {
     }
   }
 
-  public PreKeyEntity getPreKey(PushAddress destination) throws IOException {
+  public PreKeyBundle getPreKey(PushAddress destination) throws IOException {
     try {
       String path = String.format(PREKEY_DEVICE_PATH, destination.getNumber(),
                                   String.valueOf(destination.getDeviceId()));
@@ -188,13 +217,32 @@ public class PushServiceSocket {
         path = path + "?relay=" + destination.getRelay();
       }
 
-      String     responseText = makeRequest(path, "GET", null);
-      PreKeyList response     = PreKeyList.fromJson(responseText);
+      String         responseText = makeRequest(path, "GET", null);
+      PreKeyResponse response     = PreKeyResponse.fromJson(responseText);
 
-      if (response.getKeys() == null || response.getKeys().size() < 1)
+      if (response.getDevices() == null || response.getDevices().size() < 1)
         throw new IOException("Empty prekey list");
 
-      return response.getKeys().get(0);
+      PreKeyResponseItem device             = response.getDevices().get(0);
+      ECPublicKey        preKey             = null;
+      ECPublicKey        deviceKey          = null;
+      byte[]             deviceKeySignature = null;
+      int                preKeyId           = -1;
+      int                deviceKeyId        = -1;
+
+      if (device.getPreKey() != null) {
+        preKeyId = device.getPreKey().getKeyId();
+        preKey   = device.getPreKey().getPublicKey();
+      }
+
+      if (device.getDeviceKey() != null) {
+        deviceKeyId        = device.getDeviceKey().getKeyId();
+        deviceKey          = device.getDeviceKey().getPublicKey();
+        deviceKeySignature = device.getDeviceKey().getSignature();
+      }
+
+      return new PreKeyBundle(device.getRegistrationId(), device.getDeviceId(), preKeyId, preKey,
+                              deviceKeyId, deviceKey, deviceKeySignature, response.getIdentityKey());
     } catch (JsonParseException e) {
       throw new IOException(e);
     } catch (NotFoundException nfe) {

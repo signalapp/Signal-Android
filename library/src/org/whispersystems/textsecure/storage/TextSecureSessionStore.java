@@ -41,7 +41,7 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public SessionRecord load(long recipientId, int deviceId) {
+  public SessionRecord loadSession(long recipientId, int deviceId) {
     synchronized (FILE_LOCK) {
       try {
         MasterCipher    cipher = new MasterCipher(masterSecret);
@@ -73,7 +73,7 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public void store(long recipientId, int deviceId, SessionRecord record) {
+  public void storeSession(long recipientId, int deviceId, SessionRecord record) {
     synchronized (FILE_LOCK) {
       try {
         MasterCipher     masterCipher = new MasterCipher(masterSecret);
@@ -93,24 +93,24 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public boolean contains(long recipientId, int deviceId) {
+  public boolean containsSession(long recipientId, int deviceId) {
     return getSessionFile(recipientId, deviceId).exists() &&
-        load(recipientId, deviceId).getSessionState().hasSenderChain();
+        loadSession(recipientId, deviceId).getSessionState().hasSenderChain();
   }
 
   @Override
-  public void delete(long recipientId, int deviceId) {
+  public void deleteSession(long recipientId, int deviceId) {
     getSessionFile(recipientId, deviceId).delete();
   }
 
   @Override
-  public void deleteAll(long recipientId) {
+  public void deleteAllSessions(long recipientId) {
     List<Integer> devices = getSubDeviceSessions(recipientId);
 
-    delete(recipientId, RecipientDevice.DEFAULT_DEVICE_ID);
+    deleteSession(recipientId, RecipientDevice.DEFAULT_DEVICE_ID);
 
     for (int device : devices) {
-      delete(recipientId, device);
+      deleteSession(recipientId, device);
     }
   }
 

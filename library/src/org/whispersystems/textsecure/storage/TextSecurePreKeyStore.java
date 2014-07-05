@@ -5,6 +5,8 @@ import android.util.Log;
 
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
+import org.whispersystems.libaxolotl.state.DeviceKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.textsecure.crypto.MasterCipher;
@@ -17,10 +19,15 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.LinkedList;
+import java.util.List;
 
-public class TextSecurePreKeyStore implements PreKeyStore {
+public class TextSecurePreKeyStore implements PreKeyStore, DeviceKeyStore {
 
-  public  static final String PREKEY_DIRECTORY       = "prekeys";
+  public  static final String PREKEY_DIRECTORY     = "prekeys";
+  public  static final String DEVICE_KEY_DIRECTORY = "device_keys";
+
+
   private static final int    CURRENT_VERSION_MARKER = 1;
   private static final Object FILE_LOCK              = new Object();
   private static final String TAG                    = TextSecurePreKeyStore.class.getSimpleName();
@@ -34,20 +41,10 @@ public class TextSecurePreKeyStore implements PreKeyStore {
   }
 
   @Override
-  public PreKeyRecord load(int preKeyId) throws InvalidKeyIdException {
+  public PreKeyRecord loadPreKey(int preKeyId) throws InvalidKeyIdException {
     synchronized (FILE_LOCK) {
       try {
-        MasterCipher    masterCipher  = new MasterCipher(masterSecret);
-        FileInputStream fin           = new FileInputStream(getPreKeyFile(preKeyId));
-        int             recordVersion = readInteger(fin);
-
-        if (recordVersion != CURRENT_VERSION_MARKER) {
-          throw new AssertionError("Invalid version: " + recordVersion);
-        }
-
-        byte[] serializedRecord = masterCipher.decryptBytes(readBlob(fin));
-        return new PreKeyRecord(serializedRecord);
-
+        return new PreKeyRecord(loadSerializedRecord(getPreKeyFile(preKeyId)));
       } catch (IOException | InvalidMessageException e) {
         Log.w(TAG, e);
         throw new InvalidKeyIdException(e);
@@ -56,19 +53,40 @@ public class TextSecurePreKeyStore implements PreKeyStore {
   }
 
   @Override
-  public void store(int preKeyId, PreKeyRecord record) {
+  public DeviceKeyRecord loadDeviceKey(int deviceKeyId) throws InvalidKeyIdException {
     synchronized (FILE_LOCK) {
       try {
-        MasterCipher     masterCipher = new MasterCipher(masterSecret);
-        RandomAccessFile recordFile   = new RandomAccessFile(getPreKeyFile(preKeyId), "rw");
-        FileChannel      out          = recordFile.getChannel();
+        return new DeviceKeyRecord(loadSerializedRecord(getDeviceKeyFile(deviceKeyId)));
+      } catch (IOException | InvalidMessageException e) {
+        Log.w(TAG, e);
+        throw new InvalidKeyIdException(e);
+      }
+    }
+  }
 
-        out.position(0);
-        writeInteger(CURRENT_VERSION_MARKER, out);
-        writeBlob(masterCipher.encryptBytes(record.serialize()), out);
-        out.truncate(out.position());
+  @Override
+  public List<DeviceKeyRecord> loadDeviceKeys() {
+    synchronized (FILE_LOCK) {
+      File                  directory = getDeviceKeyDirectory();
+      List<DeviceKeyRecord> results   = new LinkedList<>();
 
-        recordFile.close();
+      for (File deviceKeyFile : directory.listFiles()) {
+        try {
+          results.add(new DeviceKeyRecord(loadSerializedRecord(deviceKeyFile)));
+        } catch (IOException | InvalidMessageException e) {
+          Log.w(TAG, e);
+        }
+      }
+
+      return results;
+    }
+  }
+
+  @Override
+  public void storePreKey(int preKeyId, PreKeyRecord record) {
+    synchronized (FILE_LOCK) {
+      try {
+        storeSerializedRecord(getPreKeyFile(preKeyId), record.serialize());
       } catch (IOException e) {
         throw new AssertionError(e);
       }
@@ -76,23 +94,85 @@ public class TextSecurePreKeyStore implements PreKeyStore {
   }
 
   @Override
-  public boolean contains(int preKeyId) {
+  public void storeDeviceKey(int deviceKeyId, DeviceKeyRecord record) {
+    synchronized (FILE_LOCK) {
+      try {
+        storeSerializedRecord(getDeviceKeyFile(deviceKeyId), record.serialize());
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+    }
+  }
+
+  @Override
+  public boolean containsPreKey(int preKeyId) {
     File record = getPreKeyFile(preKeyId);
     return record.exists();
   }
 
   @Override
-  public void remove(int preKeyId) {
+  public boolean containsDeviceKey(int deviceKeyId) {
+    File record = getDeviceKeyFile(deviceKeyId);
+    return record.exists();
+  }
+
+
+  @Override
+  public void removePreKey(int preKeyId) {
     File record = getPreKeyFile(preKeyId);
     record.delete();
+  }
+
+  @Override
+  public void removeDeviceKey(int deviceKeyId) {
+    File record = getDeviceKeyFile(deviceKeyId);
+    record.delete();
+  }
+
+  private byte[] loadSerializedRecord(File recordFile)
+      throws IOException, InvalidMessageException
+  {
+    MasterCipher    masterCipher  = new MasterCipher(masterSecret);
+    FileInputStream fin           = new FileInputStream(recordFile);
+    int             recordVersion = readInteger(fin);
+
+    if (recordVersion != CURRENT_VERSION_MARKER) {
+      throw new AssertionError("Invalid version: " + recordVersion);
+    }
+
+    return masterCipher.decryptBytes(readBlob(fin));
+  }
+
+  private void storeSerializedRecord(File file, byte[] serialized) throws IOException {
+    MasterCipher     masterCipher = new MasterCipher(masterSecret);
+    RandomAccessFile recordFile   = new RandomAccessFile(file, "rw");
+    FileChannel      out          = recordFile.getChannel();
+
+    out.position(0);
+    writeInteger(CURRENT_VERSION_MARKER, out);
+    writeBlob(masterCipher.encryptBytes(serialized), out);
+    out.truncate(out.position());
+    recordFile.close();
   }
 
   private File getPreKeyFile(int preKeyId) {
     return new File(getPreKeyDirectory(), String.valueOf(preKeyId));
   }
 
+  private File getDeviceKeyFile(int deviceKeyId) {
+    return new File(getDeviceKeyDirectory(), String.valueOf(deviceKeyId));
+  }
+
   private File getPreKeyDirectory() {
-    File directory = new File(context.getFilesDir(), PREKEY_DIRECTORY);
+    return getRecordsDirectory(PREKEY_DIRECTORY);
+  }
+
+  private File getDeviceKeyDirectory() {
+    return getRecordsDirectory(DEVICE_KEY_DIRECTORY);
+  }
+
+  private File getRecordsDirectory(String directoryName) {
+    File directory = new File(context.getFilesDir(), directoryName);
 
     if (!directory.exists()) {
       if (!directory.mkdirs()) {
@@ -126,5 +206,7 @@ public class TextSecurePreKeyStore implements PreKeyStore {
     byte[] valueBytes = Conversions.intToByteArray(value);
     out.write(ByteBuffer.wrap(valueBytes));
   }
+
+
 
 }

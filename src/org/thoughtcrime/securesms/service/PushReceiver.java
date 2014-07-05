@@ -185,7 +185,7 @@ public class PushReceiver {
       database.updateMessageBody(masterSecret, messageAndThreadId.first, messageContent.getBody());
 
       SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-      sessionStore.deleteAll(recipient.getRecipientId());
+      sessionStore.deleteAllSessions(recipient.getRecipientId());
 
       KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, messageAndThreadId.second);
     } catch (RecipientFormattingException e) {

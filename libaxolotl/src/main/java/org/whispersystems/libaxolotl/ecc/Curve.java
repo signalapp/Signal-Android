@@ -55,4 +55,24 @@ public class Curve {
       throw new InvalidKeyException("Unknown type: " + publicKey.getType());
     }
   }
+
+  public static boolean verifySignature(ECPublicKey signingKey, byte[] message, byte[] signature)
+      throws InvalidKeyException
+  {
+    if (signingKey.getType() == DJB_TYPE) {
+      return Curve25519.verifySignature(signingKey, message, signature);
+    } else {
+      throw new InvalidKeyException("Unknown type: " + signingKey.getType());
+    }
+  }
+
+  public static byte[] calculateSignature(ECPrivateKey signingKey, byte[] message)
+      throws InvalidKeyException
+  {
+    if (signingKey.getType() == DJB_TYPE) {
+      return Curve25519.calculateSignature(signingKey, message);
+    } else {
+      throw new InvalidKeyException("Unknown type: " + signingKey.getType());
+    }
+  }
 }

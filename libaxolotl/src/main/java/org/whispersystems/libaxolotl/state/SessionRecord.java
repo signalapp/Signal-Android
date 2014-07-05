@@ -1,6 +1,7 @@
 package org.whispersystems.libaxolotl.state;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,6 +31,24 @@ public class SessionRecord {
     for (SessionStructure previousStructure : record.getPreviousSessionsList()) {
       previousStates.add(new SessionState(previousStructure));
     }
+  }
+
+  public boolean hasSessionState(int version, byte[] aliceBaseKey) {
+    if (sessionState.getSessionVersion() == version &&
+        Arrays.equals(aliceBaseKey, sessionState.getAliceBaseKey()))
+    {
+      return true;
+    }
+
+    for (SessionState state : previousStates) {
+      if (state.getSessionVersion() == version &&
+          Arrays.equals(aliceBaseKey, state.getAliceBaseKey()))
+      {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   public SessionState getSessionState() {

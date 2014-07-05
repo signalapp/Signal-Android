@@ -37,6 +37,7 @@ public class WhisperMessage implements CiphertextMessage {
 
   private static final int MAC_LENGTH = 8;
 
+  private final int         messageVersion;
   private final ECPublicKey senderEphemeral;
   private final int         counter;
   private final int         previousCounter;
@@ -54,7 +55,7 @@ public class WhisperMessage implements CiphertextMessage {
         throw new LegacyMessageException("Legacy message: " + ByteUtil.highBitsToInt(version));
       }
 
-      if (ByteUtil.highBitsToInt(version) != CURRENT_VERSION) {
+      if (ByteUtil.highBitsToInt(version) > CURRENT_VERSION) {
         throw new InvalidMessageException("Unknown version: " + ByteUtil.highBitsToInt(version));
       }
 
@@ -69,22 +70,19 @@ public class WhisperMessage implements CiphertextMessage {
 
       this.serialized      = serialized;
       this.senderEphemeral = Curve.decodePoint(whisperMessage.getEphemeralKey().toByteArray(), 0);
+      this.messageVersion  = ByteUtil.highBitsToInt(version);
       this.counter         = whisperMessage.getCounter();
       this.previousCounter = whisperMessage.getPreviousCounter();
       this.ciphertext      = whisperMessage.getCiphertext().toByteArray();
-    } catch (InvalidProtocolBufferException e) {
-      throw new InvalidMessageException(e);
-    } catch (InvalidKeyException e) {
-      throw new InvalidMessageException(e);
-    } catch (ParseException e) {
+    } catch (InvalidProtocolBufferException | InvalidKeyException | ParseException e) {
       throw new InvalidMessageException(e);
     }
   }
 
-  public WhisperMessage(SecretKeySpec macKey, ECPublicKey senderEphemeral,
+  public WhisperMessage(int messageVersion, SecretKeySpec macKey, ECPublicKey senderEphemeral,
                         int counter, int previousCounter, byte[] ciphertext)
   {
-    byte[] version = {ByteUtil.intsToByteHighAndLow(CURRENT_VERSION, CURRENT_VERSION)};
+    byte[] version = {ByteUtil.intsToByteHighAndLow(messageVersion, CURRENT_VERSION)};
     byte[] message = WhisperProtos.WhisperMessage.newBuilder()
                                    .setEphemeralKey(ByteString.copyFrom(senderEphemeral.serialize()))
                                    .setCounter(counter)
@@ -98,10 +96,15 @@ public class WhisperMessage implements CiphertextMessage {
     this.counter         = counter;
     this.previousCounter = previousCounter;
     this.ciphertext      = ciphertext;
+    this.messageVersion  = messageVersion;
   }
 
   public ECPublicKey getSenderEphemeral()  {
     return senderEphemeral;
+  }
+
+  public int getMessageVersion() {
+    return messageVersion;
   }
 
   public int getCounter() {
@@ -131,9 +134,7 @@ public class WhisperMessage implements CiphertextMessage {
 
       byte[] fullMac = mac.doFinal(serialized);
       return ByteUtil.trim(fullMac, MAC_LENGTH);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (java.security.InvalidKeyException e) {
+    } catch (NoSuchAlgorithmException | java.security.InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }

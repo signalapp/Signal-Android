@@ -83,30 +83,34 @@ public class SessionCipher {
    */
   public CiphertextMessage encrypt(byte[] paddedMessage) {
     synchronized (SESSION_LOCK) {
-      SessionRecord sessionRecord   = sessionStore.load(recipientId, deviceId);
+      SessionRecord sessionRecord   = sessionStore.loadSession(recipientId, deviceId);
       SessionState  sessionState    = sessionRecord.getSessionState();
       ChainKey      chainKey        = sessionState.getSenderChainKey();
       MessageKeys   messageKeys     = chainKey.getMessageKeys();
       ECPublicKey   senderEphemeral = sessionState.getSenderEphemeral();
       int           previousCounter = sessionState.getPreviousCounter();
+      int           sessionVersion  = sessionState.getSessionVersion();
 
       byte[]            ciphertextBody    = getCiphertext(messageKeys, paddedMessage);
-      CiphertextMessage ciphertextMessage = new WhisperMessage(messageKeys.getMacKey(),
+      CiphertextMessage ciphertextMessage = new WhisperMessage(sessionVersion, messageKeys.getMacKey(),
                                                                senderEphemeral, chainKey.getIndex(),
                                                                previousCounter, ciphertextBody);
 
       if (sessionState.hasPendingPreKey()) {
-        Pair<Integer, ECPublicKey> pendingPreKey       = sessionState.getPendingPreKey();
-        int                        localRegistrationId = sessionState.getLocalRegistrationId();
+        int         pendingPreKeyId     = sessionState.getPendingPreKeyId();
+        int         pendingDeviceKeyId  = sessionState.getPendingDeviceKeyId();
+        ECPublicKey pendingBaseKey      = sessionState.getPendingBaseKey();
+        int         localRegistrationId = sessionState.getLocalRegistrationId();
 
-        ciphertextMessage = new PreKeyWhisperMessage(localRegistrationId, pendingPreKey.first(),
-                                                     pendingPreKey.second(),
+        ciphertextMessage = new PreKeyWhisperMessage(sessionVersion,
+                                                     localRegistrationId, pendingPreKeyId,
+                                                     pendingDeviceKeyId, pendingBaseKey,
                                                      sessionState.getLocalIdentityKey(),
                                                      (WhisperMessage) ciphertextMessage);
       }
 
       sessionState.setSenderChainKey(chainKey.getNextChainKey());
-      sessionStore.store(recipientId, deviceId, sessionRecord);
+      sessionStore.storeSession(recipientId, deviceId, sessionRecord);
       return ciphertextMessage;
     }
   }
@@ -126,14 +130,14 @@ public class SessionCipher {
       throws InvalidMessageException, DuplicateMessageException, LegacyMessageException
   {
     synchronized (SESSION_LOCK) {
-      SessionRecord      sessionRecord  = sessionStore.load(recipientId, deviceId);
+      SessionRecord      sessionRecord  = sessionStore.loadSession(recipientId, deviceId);
       SessionState       sessionState   = sessionRecord.getSessionState();
       List<SessionState> previousStates = sessionRecord.getPreviousSessionStates();
       List<Exception>    exceptions     = new LinkedList<>();
 
       try {
         byte[] plaintext = decrypt(sessionState, ciphertext);
-        sessionStore.store(recipientId, deviceId, sessionRecord);
+        sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
         return plaintext;
       } catch (InvalidMessageException e) {
@@ -143,7 +147,7 @@ public class SessionCipher {
       for (SessionState previousState : previousStates) {
         try {
           byte[] plaintext = decrypt(previousState, ciphertext);
-          sessionStore.store(recipientId, deviceId, sessionRecord);
+          sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
           return plaintext;
         } catch (InvalidMessageException e) {
@@ -181,7 +185,7 @@ public class SessionCipher {
 
   public int getRemoteRegistrationId() {
     synchronized (SESSION_LOCK) {
-      SessionRecord record = sessionStore.load(recipientId, deviceId);
+      SessionRecord record = sessionStore.loadSession(recipientId, deviceId);
       return record.getSessionState().getRemoteRegistrationId();
     }
   }

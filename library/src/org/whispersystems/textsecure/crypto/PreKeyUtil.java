@@ -22,9 +22,14 @@ import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
 
+import org.whispersystems.libaxolotl.IdentityKeyPair;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.Curve25519;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
-import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
+import org.whispersystems.libaxolotl.state.DeviceKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.util.Medium;
@@ -36,7 +41,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -54,7 +58,7 @@ public class PreKeyUtil {
       ECKeyPair    keyPair  = Curve25519.generateKeyPair(true);
       PreKeyRecord record   = new PreKeyRecord(preKeyId, keyPair);
 
-      preKeyStore.store(preKeyId, record);
+      preKeyStore.storePreKey(preKeyId, record);
       records.add(record);
     }
 
@@ -62,64 +66,61 @@ public class PreKeyUtil {
     return records;
   }
 
+  public static DeviceKeyRecord generateDeviceKey(Context context, MasterSecret masterSecret,
+                                                  IdentityKeyPair identityKeyPair)
+  {
+    try {
+      DeviceKeyStore  deviceKeyStore = new TextSecurePreKeyStore(context, masterSecret);
+      int             deviceKeyId    = getNextDeviceKeyId(context);
+      ECKeyPair       keyPair        = Curve25519.generateKeyPair(true);
+      byte[]          signature      = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());
+      DeviceKeyRecord record         = new DeviceKeyRecord(deviceKeyId, System.currentTimeMillis(), keyPair, signature);
+
+      deviceKeyStore.storeDeviceKey(deviceKeyId, record);
+      setNextDeviceKeyId(context, (deviceKeyId + 1) % Medium.MAX_VALUE);
+
+      return record;
+    } catch (InvalidKeyException e) {
+      throw new AssertionError(e);
+    }
+  }
+
   public static PreKeyRecord generateLastResortKey(Context context, MasterSecret masterSecret) {
     PreKeyStore preKeyStore = new TextSecurePreKeyStore(context, masterSecret);
 
-    if (preKeyStore.contains(Medium.MAX_VALUE)) {
+    if (preKeyStore.containsPreKey(Medium.MAX_VALUE)) {
       try {
-        return preKeyStore.load(Medium.MAX_VALUE);
+        return preKeyStore.loadPreKey(Medium.MAX_VALUE);
       } catch (InvalidKeyIdException e) {
         Log.w("PreKeyUtil", e);
-        preKeyStore.remove(Medium.MAX_VALUE);
+        preKeyStore.removePreKey(Medium.MAX_VALUE);
       }
     }
 
     ECKeyPair    keyPair = Curve25519.generateKeyPair(true);
     PreKeyRecord record  = new PreKeyRecord(Medium.MAX_VALUE, keyPair);
 
-    preKeyStore.store(Medium.MAX_VALUE, record);
+    preKeyStore.storePreKey(Medium.MAX_VALUE, record);
 
     return record;
   }
-
-//  public static List<PreKeyRecord> getPreKeys(Context context, MasterSecret masterSecret) {
-//    List<PreKeyRecord> records      = new LinkedList<PreKeyRecord>();
-//    File               directory    = getPreKeysDirectory(context);
-//    String[]           keyRecordIds = directory.list();
-//
-//    Arrays.sort(keyRecordIds, new PreKeyRecordIdComparator());
-//
-//    for (String keyRecordId : keyRecordIds) {
-//      try {
-//        if (!keyRecordId.equals(PreKeyIndex.FILE_NAME) && Integer.parseInt(keyRecordId) != Medium.MAX_VALUE) {
-//          records.add(new PreKeyRecord(context, masterSecret, Integer.parseInt(keyRecordId)));
-//        }
-//      } catch (InvalidKeyIdException e) {
-//        Log.w("PreKeyUtil", e);
-//        new File(getPreKeysDirectory(context), keyRecordId).delete();
-//      } catch (NumberFormatException nfe) {
-//        Log.w("PreKeyUtil", nfe);
-//        new File(getPreKeysDirectory(context), keyRecordId).delete();
-//      }
-//    }
-//
-//    return records;
-//  }
-//
-//  public static void clearPreKeys(Context context) {
-//    File     directory  = getPreKeysDirectory(context);
-//    String[] keyRecords = directory.list();
-//
-//    for (String keyRecord : keyRecords) {
-//      new File(directory, keyRecord).delete();
-//    }
-//  }
 
   private static void setNextPreKeyId(Context context, int id) {
     try {
       File             nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
       FileOutputStream fout     = new FileOutputStream(nextFile);
       fout.write(new Gson().toJson(new PreKeyIndex(id)).getBytes());
+      fout.close();
+    } catch (IOException e) {
+      Log.w("PreKeyUtil", e);
+    }
+  }
+
+  private static void setNextDeviceKeyId(Context context, int id) {
+    try {
+      File             nextFile = new File(getDeviceKeysDirectory(context), DeviceKeyIndex.FILE_NAME);
+      FileOutputStream fout     = new FileOutputStream(nextFile);
+      fout.write(new Gson().toJson(new DeviceKeyIndex(id)).getBytes());
       fout.close();
     } catch (IOException e) {
       Log.w("PreKeyUtil", e);
@@ -144,32 +145,39 @@ public class PreKeyUtil {
     }
   }
 
+  private static int getNextDeviceKeyId(Context context) {
+    try {
+      File nextFile = new File(getDeviceKeysDirectory(context), DeviceKeyIndex.FILE_NAME);
+
+      if (!nextFile.exists()) {
+        return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
+      } else {
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(nextFile));
+        DeviceKeyIndex    index  = new Gson().fromJson(reader, DeviceKeyIndex.class);
+        reader.close();
+        return index.nextDeviceKeyId;
+      }
+    } catch (IOException e) {
+      Log.w("PreKeyUtil", e);
+      return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
+    }
+  }
+
   private static File getPreKeysDirectory(Context context) {
-    File directory = new File(context.getFilesDir(), TextSecurePreKeyStore.PREKEY_DIRECTORY);
+    return getKeysDirectory(context, TextSecurePreKeyStore.PREKEY_DIRECTORY);
+  }
+
+  private static File getDeviceKeysDirectory(Context context) {
+    return getKeysDirectory(context, TextSecurePreKeyStore.DEVICE_KEY_DIRECTORY);
+  }
+
+  private static File getKeysDirectory(Context context, String name) {
+    File directory = new File(context.getFilesDir(), name);
 
     if (!directory.exists())
       directory.mkdirs();
 
     return directory;
-  }
-
-  private static class PreKeyRecordIdComparator implements Comparator<String> {
-    @Override
-    public int compare(String lhs, String rhs) {
-      if      (lhs.equals(PreKeyIndex.FILE_NAME)) return -1;
-      else if (rhs.equals(PreKeyIndex.FILE_NAME)) return 1;
-
-      try {
-        long lhsLong = Long.parseLong(lhs);
-        long rhsLong = Long.parseLong(rhs);
-
-        if      (lhsLong < rhsLong) return -1;
-        else if (lhsLong > rhsLong) return 1;
-        else                        return 0;
-      } catch (NumberFormatException e) {
-        return 0;
-      }
-    }
   }
 
   private static class PreKeyIndex {
@@ -183,5 +191,18 @@ public class PreKeyUtil {
       this.nextPreKeyId = nextPreKeyId;
     }
   }
+
+  private static class DeviceKeyIndex {
+    public static final String FILE_NAME = "index.dat";
+
+    private int nextDeviceKeyId;
+
+    public DeviceKeyIndex() {}
+
+    public DeviceKeyIndex(int nextDeviceKeyId) {
+      this.nextDeviceKeyId = nextDeviceKeyId;
+    }
+  }
+
 
 }

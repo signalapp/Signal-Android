@@ -16,7 +16,7 @@ public interface PreKeyStore {
    * @return the corresponding PreKeyRecord.
    * @throws InvalidKeyIdException when there is no corresponding PreKeyRecord.
    */
-  public PreKeyRecord load(int preKeyId) throws InvalidKeyIdException;
+  public PreKeyRecord loadPreKey(int preKeyId) throws InvalidKeyIdException;
 
   /**
    * Store a local PreKeyRecord.
@@ -24,19 +24,19 @@ public interface PreKeyStore {
    * @param preKeyId the ID of the PreKeyRecord to store.
    * @param record the PreKeyRecord.
    */
-  public void         store(int preKeyId, PreKeyRecord record);
+  public void         storePreKey(int preKeyId, PreKeyRecord record);
 
   /**
    * @param preKeyId A PreKeyRecord ID.
    * @return true if the store has a record for the preKeyId, otherwise false.
    */
-  public boolean      contains(int preKeyId);
+  public boolean      containsPreKey(int preKeyId);
 
   /**
    * Delete a PreKeyRecord from local storage.
    *
    * @param preKeyId The ID of the PreKeyRecord to remove.
    */
-  public void         remove(int preKeyId);
+  public void         removePreKey(int preKeyId);
 
 }

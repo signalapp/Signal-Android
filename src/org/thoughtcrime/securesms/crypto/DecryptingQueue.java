@@ -205,7 +205,7 @@ public class DecryptingQueue {
         Recipient       recipient       = recipients.getPrimaryRecipient();
         RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSourceDevice());
 
-        if (!sessionStore.contains(recipientDevice.getRecipientId(), recipientDevice.getDeviceId())) {
+        if (!sessionStore.containsSession(recipientDevice.getRecipientId(), recipientDevice.getDeviceId())) {
           sendResult(PushReceiver.RESULT_NO_SESSION);
           return;
         }
@@ -280,7 +280,7 @@ public class DecryptingQueue {
           return;
         }
 
-        if (!sessionStore.contains(recipientDevice.getRecipientId(), recipientDevice.getDeviceId())) {
+        if (!sessionStore.containsSession(recipientDevice.getRecipientId(), recipientDevice.getDeviceId())) {
           Log.w("DecryptingQueue", "No such recipient session for MMS...");
           database.markAsNoSession(messageId, threadId);
           return;
@@ -371,7 +371,7 @@ public class DecryptingQueue {
         SmsTransportDetails transportDetails  = new SmsTransportDetails();
         byte[]              decodedCiphertext = transportDetails.getDecodedMessage(body.getBytes());
 
-        if (!sessionStore.contains(recipientDevice.getRecipientId(), recipientDevice.getDeviceId())) {
+        if (!sessionStore.containsSession(recipientDevice.getRecipientId(), recipientDevice.getDeviceId())) {
           if (WhisperMessage.isLegacy(decodedCiphertext)) database.markAsLegacyVersion(messageId);
           else                                            database.markAsNoSession(messageId);
           return;
@@ -384,9 +384,9 @@ public class DecryptingQueue {
 
         if (isEndSession &&
             "TERMINATE".equals(plaintextBody) &&
-            sessionStore.contains(recipientDevice.getRecipientId(), recipientDevice.getDeviceId()))
+            sessionStore.containsSession(recipientDevice.getRecipientId(), recipientDevice.getDeviceId()))
         {
-          sessionStore.delete(recipientDevice.getRecipientId(), recipientDevice.getDeviceId());
+          sessionStore.deleteSession(recipientDevice.getRecipientId(), recipientDevice.getDeviceId());
         }
       } catch (InvalidMessageException | IOException | RecipientFormattingException e) {
         Log.w("DecryptionQueue", e);

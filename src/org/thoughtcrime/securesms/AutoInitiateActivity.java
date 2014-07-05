@@ -118,6 +118,6 @@ public class AutoInitiateActivity extends Activity {
                                              Recipient recipient)
   {
     SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-    return sessionStore.contains(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
+    return sessionStore.containsSession(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
   }
 }

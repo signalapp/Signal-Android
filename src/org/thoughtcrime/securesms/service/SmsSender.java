@@ -140,7 +140,7 @@ public class SmsSender {
       if (record != null && record.isEndSession()) {
         Log.w("SmsSender", "Ending session...");
         SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-        sessionStore.deleteAll(record.getIndividualRecipient().getRecipientId());
+        sessionStore.deleteAllSessions(record.getIndividualRecipient().getRecipientId());
         KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, record.getThreadId());
       }
 

@@ -24,7 +24,7 @@ public interface SessionStore {
    * @return a copy of the SessionRecord corresponding to the recipientId + deviceId tuple, or
    *         a new SessionRecord if one does not currently exist.
    */
-  public SessionRecord load(long recipientId, int deviceId);
+  public SessionRecord loadSession(long recipientId, int deviceId);
 
   /**
    * Returns all known devices with active sessions for a recipient
@@ -40,7 +40,7 @@ public interface SessionStore {
    * @param deviceId the device ID of the remote client.
    * @param record the current SessionRecord for the remote client.
    */
-  public void store(long recipientId, int deviceId, SessionRecord record);
+  public void storeSession(long recipientId, int deviceId, SessionRecord record);
 
   /**
    * Determine whether there is a committed {@link SessionRecord} for a recipientId + deviceId tuple.
@@ -48,7 +48,7 @@ public interface SessionStore {
    * @param deviceId the device ID of the remote client.
    * @return true if a {@link SessionRecord} exists, false otherwise.
    */
-  public boolean contains(long recipientId, int deviceId);
+  public boolean containsSession(long recipientId, int deviceId);
 
   /**
    * Remove a {@link SessionRecord} for a recipientId + deviceId tuple.
@@ -56,13 +56,13 @@ public interface SessionStore {
    * @param recipientId the recipient ID of the remote client.
    * @param deviceId the device ID of the remote client.
    */
-  public void delete(long recipientId, int deviceId);
+  public void deleteSession(long recipientId, int deviceId);
 
   /**
    * Remove the {@link SessionRecord}s corresponding to all devices of a recipientId.
    *
    * @param recipientId the recipient ID of the remote client.
    */
-  public void deleteAll(long recipientId);
+  public void deleteAllSessions(long recipientId);
 
 }

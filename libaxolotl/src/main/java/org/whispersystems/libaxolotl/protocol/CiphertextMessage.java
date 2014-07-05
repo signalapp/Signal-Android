@@ -19,7 +19,7 @@ package org.whispersystems.libaxolotl.protocol;
 public interface CiphertextMessage {
 
   public static final int UNSUPPORTED_VERSION = 1;
-  public static final int CURRENT_VERSION     = 2;
+  public static final int CURRENT_VERSION     = 3;
 
   public static final int WHISPER_TYPE = 2;
   public static final int PREKEY_TYPE  = 3;

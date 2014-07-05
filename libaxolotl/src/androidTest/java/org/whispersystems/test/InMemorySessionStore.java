@@ -17,9 +17,9 @@ public class InMemorySessionStore implements SessionStore {
   public InMemorySessionStore() {}
 
   @Override
-  public synchronized SessionRecord load(long recipientId, int deviceId) {
+  public synchronized SessionRecord loadSession(long recipientId, int deviceId) {
     try {
-      if (contains(recipientId, deviceId)) {
+      if (containsSession(recipientId, deviceId)) {
         return new SessionRecord(sessions.get(new Pair<>(recipientId, deviceId)));
       } else {
         return new SessionRecord();
@@ -43,22 +43,22 @@ public class InMemorySessionStore implements SessionStore {
   }
 
   @Override
-  public synchronized void store(long recipientId, int deviceId, SessionRecord record) {
+  public synchronized void storeSession(long recipientId, int deviceId, SessionRecord record) {
     sessions.put(new Pair<>(recipientId, deviceId), record.serialize());
   }
 
   @Override
-  public synchronized boolean contains(long recipientId, int deviceId) {
+  public synchronized boolean containsSession(long recipientId, int deviceId) {
     return sessions.containsKey(new Pair<>(recipientId, deviceId));
   }
 
   @Override
-  public synchronized void delete(long recipientId, int deviceId) {
+  public synchronized void deleteSession(long recipientId, int deviceId) {
     sessions.remove(new Pair<>(recipientId, deviceId));
   }
 
   @Override
-  public synchronized void deleteAll(long recipientId) {
+  public synchronized void deleteAllSessions(long recipientId) {
     for (Pair<Long, Integer> key : sessions.keySet()) {
       if (key.first() == recipientId) {
         sessions.remove(key);

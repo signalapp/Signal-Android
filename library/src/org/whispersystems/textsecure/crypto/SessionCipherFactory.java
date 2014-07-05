@@ -32,7 +32,7 @@ public class SessionCipherFactory {
   {
     SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
 
-    if (sessionStore.contains(recipient.getRecipientId(), recipient.getDeviceId())) {
+    if (sessionStore.containsSession(recipient.getRecipientId(), recipient.getDeviceId())) {
       return new SessionCipher(sessionStore, recipient.getRecipientId(), recipient.getDeviceId());
     } else {
       throw new AssertionError("Attempt to initialize cipher for non-existing session.");

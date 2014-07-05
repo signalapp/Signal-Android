@@ -8,38 +8,26 @@ import com.google.thoughtcrimegson.JsonParseException;
 import com.google.thoughtcrimegson.JsonPrimitive;
 import com.google.thoughtcrimegson.JsonSerializationContext;
 import com.google.thoughtcrimegson.JsonSerializer;
-import com.google.thoughtcrimegson.annotations.Expose;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.libaxolotl.state.PreKey;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 
-public class PreKeyEntity implements PreKey {
-
-  @Expose(serialize = false)
-  private int         deviceId;
-
-  @Expose(serialize = false)
-  private int         registrationId;
+public class PreKeyEntity {
 
   private int         keyId;
   private ECPublicKey publicKey;
-  private IdentityKey identityKey;
 
-  public PreKeyEntity(int keyId, ECPublicKey publicKey, IdentityKey identityKey) {
-    this.keyId       = keyId;
-    this.publicKey   = publicKey;
-    this.identityKey = identityKey;
-  }
+  public PreKeyEntity() {}
 
-  public int getDeviceId() {
-    return deviceId;
+  public PreKeyEntity(int keyId, ECPublicKey publicKey) {
+    this.keyId     = keyId;
+    this.publicKey = publicKey;
   }
 
   public int getKeyId() {
@@ -50,28 +38,8 @@ public class PreKeyEntity implements PreKey {
     return publicKey;
   }
 
-  public IdentityKey getIdentityKey() {
-    return identityKey;
-  }
-
-  public int getRegistrationId() {
-    return registrationId;
-  }
-
-  public static String toJson(PreKeyEntity entity) {
-    return getBuilder().create().toJson(entity);
-  }
-
-  public static PreKeyEntity fromJson(String encoded) {
-    return getBuilder().create().fromJson(encoded, PreKeyEntity.class);
-  }
-
-  public static GsonBuilder getBuilder() {
-    GsonBuilder builder = new GsonBuilder();
-    builder.registerTypeAdapter(ECPublicKey.class, new ECPublicKeyJsonAdapter());
-    builder.registerTypeAdapter(IdentityKey.class, new IdentityKeyJsonAdapter());
-
-    return builder;
+  public static GsonBuilder forBuilder(GsonBuilder builder) {
+    return builder.registerTypeAdapter(ECPublicKey.class, new ECPublicKeyJsonAdapter());
   }
 
 
@@ -92,34 +60,7 @@ public class PreKeyEntity implements PreKey {
     {
       try {
         return Curve.decodePoint(Base64.decodeWithoutPadding(jsonElement.getAsJsonPrimitive().getAsString()), 0);
-      } catch (InvalidKeyException e) {
-        throw new JsonParseException(e);
-      } catch (IOException e) {
-        throw new JsonParseException(e);
-      }
-    }
-  }
-
-  private static class IdentityKeyJsonAdapter
-      implements JsonSerializer<IdentityKey>, JsonDeserializer<IdentityKey>
-  {
-    @Override
-    public JsonElement serialize(IdentityKey identityKey, Type type,
-                                 JsonSerializationContext jsonSerializationContext)
-    {
-      return new JsonPrimitive(Base64.encodeBytesWithoutPadding(identityKey.serialize()));
-    }
-
-    @Override
-    public IdentityKey deserialize(JsonElement jsonElement, Type type,
-                                   JsonDeserializationContext jsonDeserializationContext)
-        throws JsonParseException
-    {
-      try {
-        return new IdentityKey(Base64.decodeWithoutPadding(jsonElement.getAsJsonPrimitive().getAsString()), 0);
-      } catch (InvalidKeyException e) {
-        throw new JsonParseException(e);
-      } catch (IOException e) {
+      } catch (InvalidKeyException | IOException e) {
         throw new JsonParseException(e);
       }
     }

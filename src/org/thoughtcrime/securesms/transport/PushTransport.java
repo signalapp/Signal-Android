@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.SessionCipher;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
+import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.AttachmentCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -45,7 +46,6 @@ import org.whispersystems.textsecure.push.MismatchedDevices;
 import org.whispersystems.textsecure.push.MismatchedDevicesException;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.push.OutgoingPushMessageList;
-import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.PushAttachmentData;
 import org.whispersystems.textsecure.push.PushAttachmentPointer;
@@ -95,7 +95,7 @@ public class PushTransport extends BaseTransport {
 
       if (message.isEndSession()) {
         SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-        sessionStore.deleteAll(recipient.getRecipientId());
+        sessionStore.deleteAllSessions(recipient.getRecipientId());
         KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, threadId);
       }
 
@@ -205,12 +205,12 @@ public class PushTransport extends BaseTransport {
       long         recipientId  = recipient.getRecipientId();
 
       for (int extraDeviceId : mismatchedDevices.getExtraDevices()) {
-        sessionStore.delete(recipientId, extraDeviceId);
+        sessionStore.deleteSession(recipientId, extraDeviceId);
       }
 
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
-        PushAddress            address   = PushAddress.create(context, recipientId, e164number, missingDeviceId);
-        PreKeyEntity           preKey    = socket.getPreKey(address);
+        PushAddress          address   = PushAddress.create(context, recipientId, e164number, missingDeviceId);
+        PreKeyBundle         preKey    = socket.getPreKey(address);
         KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, address);
 
         try {
@@ -230,7 +230,7 @@ public class PushTransport extends BaseTransport {
     long         recipientId  = recipient.getRecipientId();
 
     for (int staleDeviceId : staleDevices.getStaleDevices()) {
-      sessionStore.delete(recipientId, staleDeviceId);
+      sessionStore.deleteSession(recipientId, staleDeviceId);
     }
   }
 
@@ -327,10 +327,10 @@ public class PushTransport extends BaseTransport {
   {
     if (!SessionUtil.hasEncryptCapableSession(context, masterSecret, pushAddress)) {
       try {
-        List<PreKeyEntity> preKeys = socket.getPreKeys(pushAddress);
+        List<PreKeyBundle> preKeys = socket.getPreKeys(pushAddress);
 
-        for (PreKeyEntity preKey : preKeys) {
-          PushAddress            device    = PushAddress.create(context, pushAddress.getRecipientId(), pushAddress.getNumber(), preKey.getDeviceId());
+        for (PreKeyBundle preKey : preKeys) {
+          PushAddress          device    = PushAddress.create(context, pushAddress.getRecipientId(), pushAddress.getNumber(), preKey.getDeviceId());
           KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, device);
 
           try {

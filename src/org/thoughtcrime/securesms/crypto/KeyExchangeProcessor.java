@@ -15,7 +15,9 @@ import org.whispersystems.libaxolotl.StaleKeyExchangeException;
 import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.libaxolotl.state.DeviceKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
+import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
@@ -48,10 +50,11 @@ public class KeyExchangeProcessor {
 
     IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(context, masterSecret);
     PreKeyStore      preKeyStore      = new TextSecurePreKeyStore(context, masterSecret);
+    DeviceKeyStore   deviceKeyStore   = new TextSecurePreKeyStore(context, masterSecret);
     SessionStore     sessionStore     = new TextSecureSessionStore(context, masterSecret);
 
-    this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, identityKeyStore,
-                                             recipientDevice.getRecipientId(),
+    this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, deviceKeyStore,
+                                             identityKeyStore, recipientDevice.getRecipientId(),
                                              recipientDevice.getDeviceId());
   }
 
@@ -62,10 +65,10 @@ public class KeyExchangeProcessor {
     PreKeyService.initiateRefresh(context, masterSecret);
   }
 
-  public void processKeyExchangeMessage(PreKeyEntity message, long threadId)
+  public void processKeyExchangeMessage(PreKeyBundle bundle, long threadId)
       throws InvalidKeyException, UntrustedIdentityException
   {
-    sessionBuilder.process(message);
+    sessionBuilder.process(bundle);
 
     if (threadId != -1) {
       broadcastSecurityUpdateEvent(context, threadId);

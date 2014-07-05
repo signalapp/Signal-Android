@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
+import org.whispersystems.libaxolotl.state.DeviceKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
@@ -62,10 +63,11 @@ public class KeyExchangeInitiator {
   private static void initiateKeyExchange(Context context, MasterSecret masterSecret, Recipient recipient) {
     SessionStore     sessionStore     = new TextSecureSessionStore(context, masterSecret);
     PreKeyStore      preKeyStore      = new TextSecurePreKeyStore(context, masterSecret);
+    DeviceKeyStore   deviceKeyStore   = new TextSecurePreKeyStore(context, masterSecret);
     IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(context, masterSecret);
 
-    SessionBuilder   sessionBuilder   = new SessionBuilder(sessionStore, preKeyStore, identityKeyStore,
-                                                           recipient.getRecipientId(),
+    SessionBuilder   sessionBuilder   = new SessionBuilder(sessionStore, preKeyStore, deviceKeyStore,
+                                                           identityKeyStore, recipient.getRecipientId(),
                                                            RecipientDevice.DEFAULT_DEVICE_ID);
 
     KeyExchangeMessage         keyExchangeMessage = sessionBuilder.process();
@@ -79,7 +81,7 @@ public class KeyExchangeInitiator {
                                              Recipient recipient)
   {
     SessionStore  sessionStore  = new TextSecureSessionStore(context, masterSecret);
-    SessionRecord sessionRecord = sessionStore.load(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
+    SessionRecord sessionRecord = sessionStore.loadSession(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
     return sessionRecord.getSessionState().hasPendingPreKey();
   }

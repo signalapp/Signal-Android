@@ -30,7 +30,7 @@ import org.whispersystems.libaxolotl.util.Pair;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class RatchetingSession {
+public class RatchetingSessionV2 {
 
   public static void initializeSession(SessionState sessionState,
                                        ECKeyPair ourBaseKey,
@@ -48,6 +48,8 @@ public class RatchetingSession {
       initializeSessionAsBob(sessionState, ourBaseKey, theirBaseKey,
                              ourEphemeralKey, ourIdentityKey, theirIdentityKey);
     }
+
+    sessionState.setSessionVersion(2);
   }
 
   private static void initializeSessionAsAlice(SessionState sessionState,

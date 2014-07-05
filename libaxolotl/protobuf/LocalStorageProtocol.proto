@@ -35,8 +35,9 @@ message SessionStructure {
     }
 
     message PendingPreKey {
-        optional uint32 preKeyId = 1;
-        optional bytes  baseKey  = 2;
+        optional uint32 preKeyId    = 1;
+        optional int32  deviceKeyId = 3;
+        optional bytes  baseKey     = 2;
     }
 
     optional uint32 sessionVersion      = 1;
@@ -56,6 +57,7 @@ message SessionStructure {
     optional uint32 localRegistrationId  = 11;
 
     optional bool needsRefresh = 12;
+    optional bytes aliceBaseKey = 13;
 }
 
 message RecordStructure {
@@ -67,6 +69,14 @@ message PreKeyRecordStructure {
     optional uint32 id        = 1;
     optional bytes  publicKey = 2;
     optional bytes  privateKey = 3;
+}
+
+message DeviceKeyRecordStructure {
+    optional uint32  id         = 1;
+    optional bytes   publicKey  = 2;
+    optional bytes   privateKey = 3;
+    optional bytes   signature  = 4;
+    optional fixed64 timestamp  = 5;
 }
 
 message IdentityKeyPairStructure {

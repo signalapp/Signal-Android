@@ -60,6 +60,16 @@ public class SessionState {
     return sessionStructure;
   }
 
+  public byte[] getAliceBaseKey() {
+    return this.sessionStructure.getAliceBaseKey().toByteArray();
+  }
+
+  public void setAliceBaseKey(byte[] aliceBaseKey) {
+    this.sessionStructure = this.sessionStructure.toBuilder()
+                                                 .setAliceBaseKey(ByteString.copyFrom(aliceBaseKey))
+                                                 .build();
+  }
+
   public void setNeedsRefresh(boolean needsRefresh) {
     this.sessionStructure = this.sessionStructure.toBuilder()
                                                  .setNeedsRefresh(needsRefresh)
@@ -77,7 +87,10 @@ public class SessionState {
   }
 
   public int getSessionVersion() {
-    return this.sessionStructure.getSessionVersion();
+    int sessionVersion = this.sessionStructure.getSessionVersion();
+
+    if (sessionVersion == 0) return 2;
+    else                     return sessionVersion;
   }
 
   public void setRemoteIdentityKey(IdentityKey identityKey) {
@@ -395,9 +408,10 @@ public class SessionState {
     return sessionStructure.hasPendingKeyExchange();
   }
 
-  public void setPendingPreKey(int preKeyId, ECPublicKey baseKey) {
+  public void setPendingPreKey(int preKeyId, int deviceKeyId, ECPublicKey baseKey) {
     PendingPreKey pending = PendingPreKey.newBuilder()
                                          .setPreKeyId(preKeyId)
+                                         .setDeviceKeyId(deviceKeyId)
                                          .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
                                          .build();
 
@@ -410,12 +424,17 @@ public class SessionState {
     return this.sessionStructure.hasPendingPreKey();
   }
 
-  public Pair<Integer, ECPublicKey> getPendingPreKey() {
+  public int getPendingPreKeyId() {
+    return sessionStructure.getPendingPreKey().getPreKeyId();
+  }
+
+  public int getPendingDeviceKeyId() {
+    return sessionStructure.getPendingPreKey().getDeviceKeyId();
+  }
+
+  public ECPublicKey getPendingBaseKey() {
     try {
-      return new Pair<Integer, ECPublicKey>(sessionStructure.getPendingPreKey().getPreKeyId(),
-                                            Curve.decodePoint(sessionStructure.getPendingPreKey()
-                                                                              .getBaseKey()
-                                                                              .toByteArray(), 0));
+      return Curve.decodePoint(sessionStructure.getPendingPreKey().getBaseKey().toByteArray(), 0);
     } catch (InvalidKeyException e) {
       throw new AssertionError(e);
     }

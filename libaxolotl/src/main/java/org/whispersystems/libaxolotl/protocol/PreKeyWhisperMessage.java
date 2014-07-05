@@ -34,6 +34,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
   private final int            version;
   private final int            registrationId;
   private final int            preKeyId;
+  private final int            deviceKeyId;
   private final ECPublicKey    baseKey;
   private final IdentityKey    identityKey;
   private final WhisperMessage message;
@@ -53,9 +54,10 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
           = WhisperProtos.PreKeyWhisperMessage.parseFrom(ByteString.copyFrom(serialized, 1,
                                                                              serialized.length-1));
 
-      if (!preKeyWhisperMessage.hasPreKeyId()       ||
-          !preKeyWhisperMessage.hasBaseKey()        ||
-          !preKeyWhisperMessage.hasIdentityKey()    ||
+      if ((version == 2 && !preKeyWhisperMessage.hasPreKeyId())    ||
+          (version == 3 && !preKeyWhisperMessage.hasDeviceKeyId()) ||
+          !preKeyWhisperMessage.hasBaseKey()                       ||
+          !preKeyWhisperMessage.hasIdentityKey()                   ||
           !preKeyWhisperMessage.hasMessage())
       {
         throw new InvalidMessageException("Incomplete message.");
@@ -63,32 +65,31 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
 
       this.serialized     = serialized;
       this.registrationId = preKeyWhisperMessage.getRegistrationId();
-      this.preKeyId       = preKeyWhisperMessage.getPreKeyId();
+      this.preKeyId       = preKeyWhisperMessage.hasPreKeyId() ? preKeyWhisperMessage.getPreKeyId() : -1;
+      this.deviceKeyId    = preKeyWhisperMessage.hasDeviceKeyId() ? preKeyWhisperMessage.getDeviceKeyId() : -1;
       this.baseKey        = Curve.decodePoint(preKeyWhisperMessage.getBaseKey().toByteArray(), 0);
       this.identityKey    = new IdentityKey(Curve.decodePoint(preKeyWhisperMessage.getIdentityKey().toByteArray(), 0));
       this.message        = new WhisperMessage(preKeyWhisperMessage.getMessage().toByteArray());
-    } catch (InvalidProtocolBufferException e) {
-      throw new InvalidMessageException(e);
-    } catch (InvalidKeyException e) {
-      throw new InvalidMessageException(e);
-    } catch (LegacyMessageException e) {
+    } catch (InvalidProtocolBufferException | InvalidKeyException | LegacyMessageException e) {
       throw new InvalidMessageException(e);
     }
   }
 
-  public PreKeyWhisperMessage(int registrationId, int preKeyId, ECPublicKey baseKey,
-                              IdentityKey identityKey, WhisperMessage message)
+  public PreKeyWhisperMessage(int messageVersion, int registrationId, int preKeyId, int deviceKeyId,
+                              ECPublicKey baseKey, IdentityKey identityKey, WhisperMessage message)
   {
-    this.version        = CiphertextMessage.CURRENT_VERSION;
+    this.version        = messageVersion;
     this.registrationId = registrationId;
     this.preKeyId       = preKeyId;
+    this.deviceKeyId    = deviceKeyId;
     this.baseKey        = baseKey;
     this.identityKey    = identityKey;
     this.message        = message;
 
-    byte[] versionBytes = {ByteUtil.intsToByteHighAndLow(CURRENT_VERSION, this.version)};
+    byte[] versionBytes = {ByteUtil.intsToByteHighAndLow(this.version, CURRENT_VERSION)};
     byte[] messageBytes = WhisperProtos.PreKeyWhisperMessage.newBuilder()
                                        .setPreKeyId(preKeyId)
+                                       .setDeviceKeyId(deviceKeyId)
                                        .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
                                        .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
                                        .setMessage(ByteString.copyFrom(message.serialize()))
@@ -96,6 +97,10 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
                                        .build().toByteArray();
 
     this.serialized = ByteUtil.combine(versionBytes, messageBytes);
+  }
+
+  public int getMessageVersion() {
+    return version;
   }
 
   public IdentityKey getIdentityKey() {
@@ -108,6 +113,10 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
 
   public int getPreKeyId() {
     return preKeyId;
+  }
+
+  public int getDeviceKeyId() {
+    return deviceKeyId;
   }
 
   public ECPublicKey getBaseKey() {

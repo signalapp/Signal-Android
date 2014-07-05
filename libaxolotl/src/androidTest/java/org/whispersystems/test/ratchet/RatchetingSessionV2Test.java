@@ -10,11 +10,11 @@ import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
+import org.whispersystems.libaxolotl.ratchet.RatchetingSessionV2;
 
 import java.util.Arrays;
 
-public class RatchetingSessionTest extends AndroidTestCase {
+public class RatchetingSessionV2Test extends AndroidTestCase {
 
   public void testRatchetingSessionAsBob() throws InvalidKeyException {
     byte[] bobPublic             = {(byte) 0x05, (byte) 0x2c, (byte) 0xb4, (byte) 0x97,
@@ -107,9 +107,9 @@ public class RatchetingSessionTest extends AndroidTestCase {
 
     SessionState session = new SessionState();
 
-    RatchetingSession.initializeSession(session, bobBaseKey, aliceBasePublicKey,
-                                        bobEphemeralKey, aliceEphemeralPublicKey,
-                                        bobIdentityKey, aliceIdentityPublicKey);
+    RatchetingSessionV2.initializeSession(session, bobBaseKey, aliceBasePublicKey,
+                                          bobEphemeralKey, aliceEphemeralPublicKey,
+                                          bobIdentityKey, aliceIdentityPublicKey);
 
     assertTrue(session.getLocalIdentityKey().equals(bobIdentityKey.getPublicKey()));
     assertTrue(session.getRemoteIdentityKey().equals(aliceIdentityPublicKey));
@@ -204,9 +204,9 @@ public class RatchetingSessionTest extends AndroidTestCase {
 
     SessionState session = new SessionState();
 
-    RatchetingSession.initializeSession(session, aliceBaseKey, bobBasePublicKey,
-                                        aliceEphemeralKey, bobEphemeralPublicKey,
-                                        aliceIdentityKey, bobIdentityKey);
+    RatchetingSessionV2.initializeSession(session, aliceBaseKey, bobBasePublicKey,
+                                          aliceEphemeralKey, bobEphemeralPublicKey,
+                                          aliceIdentityKey, bobIdentityKey);
 
     assertTrue(session.getLocalIdentityKey().equals(aliceIdentityKey.getPublicKey()));
     assertTrue(session.getRemoteIdentityKey().equals(bobIdentityKey));

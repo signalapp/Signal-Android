@@ -7,9 +7,12 @@ import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
-import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
+import org.whispersystems.libaxolotl.ratchet.RatchetingSessionV2;
+import org.whispersystems.libaxolotl.ratchet.RatchetingSessionV3;
+import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
+import org.whispersystems.libaxolotl.state.DeviceKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
-import org.whispersystems.libaxolotl.state.PreKey;
+import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
@@ -18,6 +21,8 @@ import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.Medium;
 
+import java.util.Arrays;
+
 /**
  * SessionBuilder is responsible for setting up encrypted sessions.
  * Once a session has been established, {@link org.whispersystems.libaxolotl.SessionCipher}
@@ -25,7 +30,7 @@ import org.whispersystems.libaxolotl.util.Medium;
  * <p>
  * Sessions are built from one of three different possible vectors:
  * <ol>
- *   <li>A {@link org.whispersystems.libaxolotl.state.PreKey} retrieved from a server.</li>
+ *   <li>A {@link org.whispersystems.libaxolotl.state.PreKeyBundle} retrieved from a server.</li>
  *   <li>A {@link org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage} received from a client.</li>
  *   <li>A {@link org.whispersystems.libaxolotl.protocol.KeyExchangeMessage} sent to or received from a client.</li>
  * </ol>
@@ -41,6 +46,7 @@ public class SessionBuilder {
 
   private final SessionStore     sessionStore;
   private final PreKeyStore      preKeyStore;
+  private final DeviceKeyStore   deviceKeyStore;
   private final IdentityKeyStore identityKeyStore;
   private final long             recipientId;
   private final int              deviceId;
@@ -56,11 +62,13 @@ public class SessionBuilder {
    */
   public SessionBuilder(SessionStore sessionStore,
                         PreKeyStore preKeyStore,
+                        DeviceKeyStore deviceKeyStore,
                         IdentityKeyStore identityKeyStore,
                         long recipientId, int deviceId)
   {
     this.sessionStore     = sessionStore;
     this.preKeyStore      = preKeyStore;
+    this.deviceKeyStore   = deviceKeyStore;
     this.identityKeyStore = identityKeyStore;
     this.recipientId      = recipientId;
     this.deviceId         = deviceId;
@@ -83,27 +91,93 @@ public class SessionBuilder {
   public void process(PreKeyWhisperMessage message)
       throws InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
-    int         preKeyId          = message.getPreKeyId();
-    ECPublicKey theirBaseKey      = message.getBaseKey();
-    ECPublicKey theirEphemeralKey = message.getWhisperMessage().getSenderEphemeral();
-    IdentityKey theirIdentityKey  = message.getIdentityKey();
+    int         messageVersion   = message.getMessageVersion();
+    IdentityKey theirIdentityKey = message.getIdentityKey();
 
     if (!identityKeyStore.isTrustedIdentity(recipientId, theirIdentityKey)) {
       throw new UntrustedIdentityException();
     }
 
-    if (!preKeyStore.contains(preKeyId) &&
-        sessionStore.contains(recipientId, deviceId))
-    {
-      Log.w(TAG, "We've already processed the prekey part, letting bundled message fall through...");
+    if      (messageVersion == 2) processV2(message);
+    else if (messageVersion == 3) processV3(message);
+    else                          throw new AssertionError("Unknown version: " + messageVersion);
+
+    identityKeyStore.saveIdentity(recipientId, theirIdentityKey);
+  }
+
+  private void processV3(PreKeyWhisperMessage message)
+      throws UntrustedIdentityException, InvalidKeyIdException, InvalidKeyException
+  {
+    SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
+    int           preKeyId          = message.getPreKeyId();
+    int           deviceKeyId       = message.getDeviceKeyId();
+    ECPublicKey   theirBaseKey      = message.getBaseKey();
+    ECPublicKey   theirEphemeralKey = message.getWhisperMessage().getSenderEphemeral();
+    IdentityKey   theirIdentityKey  = message.getIdentityKey();
+
+    if (sessionRecord.hasSessionState(message.getMessageVersion(), theirBaseKey.serialize())) {
+      Log.w(TAG, "We've already setup a session for this V3 message, letting bundled message fall through...");
       return;
     }
 
-    if (!preKeyStore.contains(preKeyId))
+    if (preKeyId >=0 && !preKeyStore.containsPreKey(preKeyId))
       throw new InvalidKeyIdException("No such prekey: " + preKeyId);
 
-    SessionRecord   sessionRecord        = sessionStore.load(recipientId, deviceId);
-    PreKeyRecord    preKeyRecord         = preKeyStore.load(preKeyId);
+    if (!deviceKeyStore.containsDeviceKey(deviceKeyId))
+      throw new InvalidKeyIdException("No such device key: " + deviceKeyId);
+
+    PreKeyRecord    preKeyRecord         = preKeyId >= 0 ? preKeyStore.loadPreKey(preKeyId) : null;
+    DeviceKeyRecord deviceKeyRecord      = deviceKeyStore.loadDeviceKey(deviceKeyId);
+    ECKeyPair       ourPreKey            = preKeyRecord != null ? preKeyRecord.getKeyPair() : null;
+    ECPublicKey     theirPreKey          = theirBaseKey;
+    ECKeyPair       ourBaseKey           = deviceKeyRecord.getKeyPair();
+    ECKeyPair       ourEphemeralKey      = ourBaseKey;
+    IdentityKeyPair ourIdentityKey       = identityKeyStore.getIdentityKeyPair();
+    boolean         simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
+
+    if (!simultaneousInitiate) sessionRecord.reset();
+    else                       sessionRecord.archiveCurrentState();
+
+    RatchetingSessionV3.initializeSession(sessionRecord.getSessionState(),
+                                          ourBaseKey, theirBaseKey,
+                                          ourEphemeralKey, theirEphemeralKey,
+                                          ourPreKey, theirPreKey,
+                                          ourIdentityKey, theirIdentityKey);
+
+    sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
+    sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
+    sessionRecord.getSessionState().setAliceBaseKey(theirBaseKey.serialize());
+    sessionRecord.getSessionState().setSessionVersion(message.getMessageVersion());
+
+    if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
+
+    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+
+    if (preKeyId >= 0 && preKeyId != Medium.MAX_VALUE) {
+      preKeyStore.removePreKey(preKeyId);
+    }
+  }
+
+  private void processV2(PreKeyWhisperMessage message)
+      throws UntrustedIdentityException, InvalidKeyIdException, InvalidKeyException
+  {
+    int           preKeyId          = message.getPreKeyId();
+    ECPublicKey   theirBaseKey      = message.getBaseKey();
+    ECPublicKey   theirEphemeralKey = message.getWhisperMessage().getSenderEphemeral();
+    IdentityKey   theirIdentityKey  = message.getIdentityKey();
+
+    if (!preKeyStore.containsPreKey(preKeyId) &&
+        sessionStore.containsSession(recipientId, deviceId))
+    {
+      Log.w(TAG, "We've already processed the prekey part of this V2 session, letting bundled message fall through...");
+      return;
+    }
+
+    if (!preKeyStore.containsPreKey(preKeyId))
+      throw new InvalidKeyIdException("No such prekey: " + preKeyId);
+
+    SessionRecord   sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
+    PreKeyRecord    preKeyRecord         = preKeyStore.loadPreKey(preKeyId);
     ECKeyPair       ourBaseKey           = preKeyRecord.getKeyPair();
     ECKeyPair       ourEphemeralKey      = ourBaseKey;
     IdentityKeyPair ourIdentityKey       = identityKeyStore.getIdentityKeyPair();
@@ -112,63 +186,77 @@ public class SessionBuilder {
     if (!simultaneousInitiate) sessionRecord.reset();
     else                       sessionRecord.archiveCurrentState();
 
-    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                        ourBaseKey, theirBaseKey,
-                                        ourEphemeralKey, theirEphemeralKey,
-                                        ourIdentityKey, theirIdentityKey);
+    RatchetingSessionV2.initializeSession(sessionRecord.getSessionState(),
+                                          ourBaseKey, theirBaseKey,
+                                          ourEphemeralKey, theirEphemeralKey,
+                                          ourIdentityKey, theirIdentityKey);
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
+    sessionRecord.getSessionState().setSessionVersion(message.getMessageVersion());
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
-    sessionStore.store(recipientId, deviceId, sessionRecord);
+    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
     if (preKeyId != Medium.MAX_VALUE) {
-      preKeyStore.remove(preKeyId);
+      preKeyStore.removePreKey(preKeyId);
     }
-
-    identityKeyStore.saveIdentity(recipientId, theirIdentityKey);
   }
 
   /**
-   * Build a new session from a {@link org.whispersystems.libaxolotl.state.PreKey} retrieved from
+   * Build a new session from a {@link org.whispersystems.libaxolotl.state.PreKeyBundle} retrieved from
    * a server.
    *
    * @param preKey A PreKey for the destination recipient, retrieved from a server.
-   * @throws InvalidKeyException when the {@link org.whispersystems.libaxolotl.state.PreKey} is
+   * @throws InvalidKeyException when the {@link org.whispersystems.libaxolotl.state.PreKeyBundle} is
    *                             badly formatted.
    * @throws org.whispersystems.libaxolotl.UntrustedIdentityException when the sender's
    *                                                                  {@link IdentityKey} is not
    *                                                                  trusted.
    */
-  public void process(PreKey preKey) throws InvalidKeyException, UntrustedIdentityException {
-
+  public void process(PreKeyBundle preKey) throws InvalidKeyException, UntrustedIdentityException {
     if (!identityKeyStore.isTrustedIdentity(recipientId, preKey.getIdentityKey())) {
       throw new UntrustedIdentityException();
     }
 
-    SessionRecord   sessionRecord     = sessionStore.load(recipientId, deviceId);
+    if (preKey.getDeviceKey() != null &&
+        !Curve.verifySignature(preKey.getIdentityKey().getPublicKey(),
+                               preKey.getDeviceKey().serialize(),
+                               preKey.getDeviceKeySignature()))
+    {
+      throw new InvalidKeyException("Invalid signature on device key!");
+    }
+
+    SessionRecord   sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
+    IdentityKeyPair ourIdentityKey    = identityKeyStore.getIdentityKeyPair();
     ECKeyPair       ourBaseKey        = Curve.generateKeyPair(true);
     ECKeyPair       ourEphemeralKey   = Curve.generateKeyPair(true);
-    ECPublicKey     theirBaseKey      = preKey.getPublicKey();
-    ECPublicKey     theirEphemeralKey = theirBaseKey;
+    ECKeyPair       ourPreKey         = ourBaseKey;
+
     IdentityKey     theirIdentityKey  = preKey.getIdentityKey();
-    IdentityKeyPair ourIdentityKey    = identityKeyStore.getIdentityKeyPair();
+    ECPublicKey     theirPreKey       = preKey.getPreKey();
+    ECPublicKey     theirBaseKey      = preKey.getDeviceKey() == null ? preKey.getPreKey() : preKey.getDeviceKey();
+    ECPublicKey     theirEphemeralKey = theirBaseKey;
 
     if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
     else                                                   sessionRecord.reset();
 
-    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                        ourBaseKey, theirBaseKey, ourEphemeralKey,
-                                        theirEphemeralKey, ourIdentityKey, theirIdentityKey);
+    if (preKey.getDeviceKey() == null) {
+      RatchetingSessionV2.initializeSession(sessionRecord.getSessionState(),
+                                            ourBaseKey, theirBaseKey, ourEphemeralKey,
+                                            theirEphemeralKey, ourIdentityKey, theirIdentityKey);
+    } else {
+      RatchetingSessionV3.initializeSession(sessionRecord.getSessionState(),
+                                            ourBaseKey, theirBaseKey, ourEphemeralKey, theirEphemeralKey,
+                                            ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
+    }
 
-    sessionRecord.getSessionState().setPendingPreKey(preKey.getKeyId(), ourBaseKey.getPublicKey());
+    sessionRecord.getSessionState().setPendingPreKey(preKey.getPreKeyId(), preKey.getDeviceKeyId(), ourBaseKey.getPublicKey());
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
 
-    sessionStore.store(recipientId, deviceId, sessionRecord);
-
+    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
     identityKeyStore.saveIdentity(recipientId, preKey.getIdentityKey());
   }
 
@@ -189,7 +277,7 @@ public class SessionBuilder {
     }
 
     KeyExchangeMessage responseMessage = null;
-    SessionRecord      sessionRecord   = sessionStore.load(recipientId, deviceId);
+    SessionRecord      sessionRecord   = sessionStore.loadSession(recipientId, deviceId);
 
     Log.w(TAG, "Received key exchange with sequence: " + message.getSequence());
 
@@ -222,13 +310,13 @@ public class SessionBuilder {
 
     sessionRecord.reset();
 
-    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                        ourBaseKey, message.getBaseKey(),
-                                        ourEphemeralKey, message.getEphemeralKey(),
-                                        ourIdentityKey, message.getIdentityKey());
+    RatchetingSessionV2.initializeSession(sessionRecord.getSessionState(),
+                                          ourBaseKey, message.getBaseKey(),
+                                          ourEphemeralKey, message.getEphemeralKey(),
+                                          ourIdentityKey, message.getIdentityKey());
 
     sessionRecord.getSessionState().setSessionVersion(message.getVersion());
-    sessionStore.store(recipientId, deviceId, sessionRecord);
+    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
     identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
 
@@ -279,10 +367,10 @@ public class SessionBuilder {
     ECKeyPair       baseKey       = Curve.generateKeyPair(true);
     ECKeyPair       ephemeralKey  = Curve.generateKeyPair(true);
     IdentityKeyPair identityKey   = identityKeyStore.getIdentityKeyPair();
-    SessionRecord   sessionRecord = sessionStore.load(recipientId, deviceId);
+    SessionRecord   sessionRecord = sessionStore.loadSession(recipientId, deviceId);
 
     sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
-    sessionStore.store(recipientId, deviceId, sessionRecord);
+    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
     return new KeyExchangeMessage(sequence, flags,
                                   baseKey.getPublicKey(),
