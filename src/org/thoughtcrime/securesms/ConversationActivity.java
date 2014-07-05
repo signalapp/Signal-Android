@@ -315,7 +315,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
-    case R.id.menu_add_to_contacts:           handleAddToContacts();                                return true;
+    case R.id.menu_add_to_contacts:           handleAddToContacts();                          	 return true;
     }
 
     return false;

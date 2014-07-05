@@ -32,13 +32,13 @@ import java.util.List;
 
 public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSelectorAdapter.IconListItem> {
 
-	public static final int ADD_IMAGE     = 1;
+	public static final int ADD_IMAGE     			= 1;
 //	public static final int TAKE_PICTURE  = 2;
-	public static final int ADD_VIDEO     = 3;
+	public static final int ADD_VIDEO     			= 3;
 //	public static final int	RECORD_VIDEO  = 4;
-	public static final int	ADD_SOUND	    = 5;
+	public static final int	ADD_SOUND	    			= 5;
 //	public static final int	RECORD_SOUND  = 6;
-  public static final int	ADD_CONTACT_INFO	  = 7;
+	public static final int	ADD_CONTACT_INFO	  = 7;
 
 	private final Context context;
 

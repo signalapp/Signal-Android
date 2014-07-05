@@ -19,8 +19,7 @@
                 android:name="org.thoughtcrime.securesms.ConversationFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/bottom_container"
-            />
+                android:layout_above="@+id/bottom_container" />
 
 
         <LinearLayout
@@ -120,7 +119,6 @@
                      android:text="160/160 (1)" />
 
         </LinearLayout>
-
     </RelativeLayout>
 
     <org.thoughtcrime.securesms.components.EmojiDrawer

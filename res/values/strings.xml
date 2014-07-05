@@ -42,7 +42,7 @@
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
-    <string name="AttachmentTypeSelectorAdapter_contact">Contact</string>
+    <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
