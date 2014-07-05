@@ -7,8 +7,7 @@ import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
-import org.whispersystems.libaxolotl.ratchet.RatchetingSessionV2;
-import org.whispersystems.libaxolotl.ratchet.RatchetingSessionV3;
+import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
 import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
 import org.whispersystems.libaxolotl.state.DeviceKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
@@ -20,8 +19,6 @@ import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.Medium;
-
-import java.util.Arrays;
 
 /**
  * SessionBuilder is responsible for setting up encrypted sessions.
@@ -138,11 +135,12 @@ public class SessionBuilder {
     if (!simultaneousInitiate) sessionRecord.reset();
     else                       sessionRecord.archiveCurrentState();
 
-    RatchetingSessionV3.initializeSession(sessionRecord.getSessionState(),
-                                          ourBaseKey, theirBaseKey,
-                                          ourEphemeralKey, theirEphemeralKey,
-                                          ourPreKey, theirPreKey,
-                                          ourIdentityKey, theirIdentityKey);
+    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
+                                        message.getMessageVersion(),
+                                        ourBaseKey, theirBaseKey,
+                                        ourEphemeralKey, theirEphemeralKey,
+                                        ourPreKey, theirPreKey,
+                                        ourIdentityKey, theirIdentityKey);
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
@@ -186,10 +184,12 @@ public class SessionBuilder {
     if (!simultaneousInitiate) sessionRecord.reset();
     else                       sessionRecord.archiveCurrentState();
 
-    RatchetingSessionV2.initializeSession(sessionRecord.getSessionState(),
-                                          ourBaseKey, theirBaseKey,
-                                          ourEphemeralKey, theirEphemeralKey,
-                                          ourIdentityKey, theirIdentityKey);
+    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
+                                        message.getMessageVersion(),
+                                        ourBaseKey, theirBaseKey,
+                                        ourEphemeralKey, theirEphemeralKey,
+                                        null, null,
+                                        ourIdentityKey, theirIdentityKey);
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
@@ -242,15 +242,11 @@ public class SessionBuilder {
     if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
     else                                                   sessionRecord.reset();
 
-    if (preKey.getDeviceKey() == null) {
-      RatchetingSessionV2.initializeSession(sessionRecord.getSessionState(),
-                                            ourBaseKey, theirBaseKey, ourEphemeralKey,
-                                            theirEphemeralKey, ourIdentityKey, theirIdentityKey);
-    } else {
-      RatchetingSessionV3.initializeSession(sessionRecord.getSessionState(),
-                                            ourBaseKey, theirBaseKey, ourEphemeralKey, theirEphemeralKey,
-                                            ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
-    }
+    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
+                                        preKey.getDeviceKey() == null ? 2 : 3,
+                                        ourBaseKey, theirBaseKey, ourEphemeralKey,
+                                        theirEphemeralKey, ourPreKey, theirPreKey,
+                                        ourIdentityKey, theirIdentityKey);
 
     sessionRecord.getSessionState().setPendingPreKey(preKey.getPreKeyId(), preKey.getDeviceKeyId(), ourBaseKey.getPublicKey());
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
@@ -310,10 +306,12 @@ public class SessionBuilder {
 
     sessionRecord.reset();
 
-    RatchetingSessionV2.initializeSession(sessionRecord.getSessionState(),
-                                          ourBaseKey, message.getBaseKey(),
-                                          ourEphemeralKey, message.getEphemeralKey(),
-                                          ourIdentityKey, message.getIdentityKey());
+    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
+                                        2,
+                                        ourBaseKey, message.getBaseKey(),
+                                        ourEphemeralKey, message.getEphemeralKey(),
+                                        null, null,
+                                        ourIdentityKey, message.getIdentityKey());
 
     sessionRecord.getSessionState().setSessionVersion(message.getVersion());
     sessionStore.storeSession(recipientId, deviceId, sessionRecord);

@@ -19,42 +19,48 @@ package org.whispersystems.libaxolotl.ratchet;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
-import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.kdf.DerivedSecrets;
 import org.whispersystems.libaxolotl.kdf.HKDF;
+import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.util.Pair;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
-public class RatchetingSessionV2 {
+public class RatchetingSession {
 
-  public static void initializeSession(SessionState sessionState,
-                                       ECKeyPair ourBaseKey,
-                                       ECPublicKey theirBaseKey,
-                                       ECKeyPair ourEphemeralKey,
-                                       ECPublicKey theirEphemeralKey,
+  public static void initializeSession(SessionState    sessionState,
+                                       int             sessionVersion,
+                                       ECKeyPair       ourBaseKey,
+                                       ECPublicKey     theirBaseKey,
+                                       ECKeyPair       ourEphemeralKey,
+                                       ECPublicKey     theirEphemeralKey,
+                                       ECKeyPair       ourPreKey,
+                                       ECPublicKey     theirPreKey,
                                        IdentityKeyPair ourIdentityKey,
-                                       IdentityKey theirIdentityKey)
+                                       IdentityKey     theirIdentityKey)
       throws InvalidKeyException
   {
     if (isAlice(ourBaseKey.getPublicKey(), theirBaseKey, ourEphemeralKey.getPublicKey(), theirEphemeralKey)) {
-      initializeSessionAsAlice(sessionState, ourBaseKey, theirBaseKey, theirEphemeralKey,
-                               ourIdentityKey, theirIdentityKey);
+      initializeSessionAsAlice(sessionState, sessionVersion, ourBaseKey, theirBaseKey, theirEphemeralKey,
+                               ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
     } else {
-      initializeSessionAsBob(sessionState, ourBaseKey, theirBaseKey,
-                             ourEphemeralKey, ourIdentityKey, theirIdentityKey);
+      initializeSessionAsBob(sessionState, sessionVersion, ourBaseKey, theirBaseKey, ourEphemeralKey,
+                             ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
     }
 
-    sessionState.setSessionVersion(2);
+    sessionState.setSessionVersion(sessionVersion);
   }
 
   private static void initializeSessionAsAlice(SessionState sessionState,
+                                               int sessionVersion,
                                                ECKeyPair ourBaseKey, ECPublicKey theirBaseKey,
                                                ECPublicKey theirEphemeralKey,
+                                               ECKeyPair ourPreKey, ECPublicKey theirPreKey,
                                                IdentityKeyPair ourIdentityKey,
                                                IdentityKey theirIdentityKey)
       throws InvalidKeyException
@@ -63,7 +69,10 @@ public class RatchetingSessionV2 {
     sessionState.setLocalIdentityKey(ourIdentityKey.getPublicKey());
 
     ECKeyPair               sendingKey     = Curve.generateKeyPair(true);
-    Pair<RootKey, ChainKey> receivingChain = calculate3DHE(true, ourBaseKey, theirBaseKey, ourIdentityKey, theirIdentityKey);
+    Pair<RootKey, ChainKey> receivingChain = calculate4DHE(true, sessionVersion,
+                                                           ourBaseKey, theirBaseKey,
+                                                           ourPreKey, theirPreKey,
+                                                           ourIdentityKey, theirIdentityKey);
     Pair<RootKey, ChainKey> sendingChain   = receivingChain.first().createChain(theirEphemeralKey, sendingKey);
 
     sessionState.addReceiverChain(theirEphemeralKey, receivingChain.second());
@@ -72,8 +81,10 @@ public class RatchetingSessionV2 {
   }
 
   private static void initializeSessionAsBob(SessionState sessionState,
+                                             int sessionVersion,
                                              ECKeyPair ourBaseKey, ECPublicKey theirBaseKey,
                                              ECKeyPair ourEphemeralKey,
+                                             ECKeyPair ourPreKey, ECPublicKey theirPreKey,
                                              IdentityKeyPair ourIdentityKey,
                                              IdentityKey theirIdentityKey)
       throws InvalidKeyException
@@ -81,20 +92,29 @@ public class RatchetingSessionV2 {
     sessionState.setRemoteIdentityKey(theirIdentityKey);
     sessionState.setLocalIdentityKey(ourIdentityKey.getPublicKey());
 
-    Pair<RootKey, ChainKey> sendingChain = calculate3DHE(false, ourBaseKey, theirBaseKey,
+    Pair<RootKey, ChainKey> sendingChain = calculate4DHE(false, sessionVersion,
+                                                         ourBaseKey, theirBaseKey,
+                                                         ourPreKey, theirPreKey,
                                                          ourIdentityKey, theirIdentityKey);
 
     sessionState.setSenderChain(ourEphemeralKey, sendingChain.second());
     sessionState.setRootKey(sendingChain.first());
   }
 
-  private static Pair<RootKey, ChainKey> calculate3DHE(boolean isAlice,
+  private static Pair<RootKey, ChainKey> calculate4DHE(boolean isAlice, int sessionVersion,
                                                        ECKeyPair ourEphemeral, ECPublicKey theirEphemeral,
+                                                       ECKeyPair ourPreKey, ECPublicKey theirPreKey,
                                                        IdentityKeyPair ourIdentity, IdentityKey theirIdentity)
       throws InvalidKeyException
   {
     try {
-      ByteArrayOutputStream secrets = new ByteArrayOutputStream();
+        byte[]                discontinuity = new byte[32];
+        ByteArrayOutputStream secrets       = new ByteArrayOutputStream();
+
+      if (sessionVersion >= 3) {
+        Arrays.fill(discontinuity, (byte) 0xFF);
+        secrets.write(discontinuity);
+      }
 
       if (isAlice) {
         secrets.write(Curve.calculateAgreement(theirEphemeral, ourIdentity.getPrivateKey()));
@@ -106,11 +126,15 @@ public class RatchetingSessionV2 {
 
       secrets.write(Curve.calculateAgreement(theirEphemeral, ourEphemeral.getPrivateKey()));
 
+      if (sessionVersion >= 3 && ourPreKey != null && theirPreKey != null) {
+        secrets.write(Curve.calculateAgreement(theirPreKey, ourPreKey.getPrivateKey()));
+      }
+
       DerivedSecrets derivedSecrets = new HKDF().deriveSecrets(secrets.toByteArray(),
                                                                "WhisperText".getBytes());
 
-      return new Pair<RootKey, ChainKey>(new RootKey(derivedSecrets.getCipherKey().getEncoded()),
-                                         new ChainKey(derivedSecrets.getMacKey().getEncoded(), 0));
+      return new Pair<>(new RootKey(derivedSecrets.getCipherKey().getEncoded()),
+                        new ChainKey(derivedSecrets.getMacKey().getEncoded(), 0));
     } catch (IOException e) {
       throw new AssertionError(e);
     }

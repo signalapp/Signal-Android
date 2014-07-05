@@ -12,8 +12,7 @@ import org.whispersystems.libaxolotl.SessionCipher;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
-import org.whispersystems.libaxolotl.ratchet.RatchetingSessionV2;
-import org.whispersystems.libaxolotl.ratchet.RatchetingSessionV3;
+import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
@@ -136,13 +135,15 @@ public class SessionCipherTest extends AndroidTestCase {
     ECKeyPair       bobEphemeralKey      = bobBaseKey;
 
 
-    RatchetingSessionV2.initializeSession(aliceSessionState, aliceBaseKey, bobBaseKey.getPublicKey(),
-                                          aliceEphemeralKey, bobEphemeralKey.getPublicKey(),
-                                          aliceIdentityKey, bobIdentityKey.getPublicKey());
+    RatchetingSession.initializeSession(aliceSessionState, 2, aliceBaseKey, bobBaseKey.getPublicKey(),
+                                        aliceEphemeralKey, bobEphemeralKey.getPublicKey(),
+                                        null, null,
+                                        aliceIdentityKey, bobIdentityKey.getPublicKey());
 
-    RatchetingSessionV2.initializeSession(bobSessionState, bobBaseKey, aliceBaseKey.getPublicKey(),
-                                          bobEphemeralKey, aliceEphemeralKey.getPublicKey(),
-                                          bobIdentityKey, aliceIdentityKey.getPublicKey());
+    RatchetingSession.initializeSession(bobSessionState, 2, bobBaseKey, aliceBaseKey.getPublicKey(),
+                                        bobEphemeralKey, aliceEphemeralKey.getPublicKey(),
+                                        null, null,
+                                        bobIdentityKey, aliceIdentityKey.getPublicKey());
   }
 
   private void initializeSessionsV3(SessionState aliceSessionState, SessionState bobSessionState)
@@ -165,15 +166,15 @@ public class SessionCipherTest extends AndroidTestCase {
     ECKeyPair       bobPreKey            = Curve.generateKeyPair(true);
 
 
-    RatchetingSessionV3.initializeSession(aliceSessionState, aliceBaseKey, bobBaseKey.getPublicKey(),
-                                          aliceEphemeralKey, bobEphemeralKey.getPublicKey(),
-                                          alicePreKey, bobPreKey.getPublicKey(),
-                                          aliceIdentityKey, bobIdentityKey.getPublicKey());
+    RatchetingSession.initializeSession(aliceSessionState, 3, aliceBaseKey, bobBaseKey.getPublicKey(),
+                                        aliceEphemeralKey, bobEphemeralKey.getPublicKey(),
+                                        alicePreKey, bobPreKey.getPublicKey(),
+                                        aliceIdentityKey, bobIdentityKey.getPublicKey());
 
-    RatchetingSessionV3.initializeSession(bobSessionState, bobBaseKey, aliceBaseKey.getPublicKey(),
-                                          bobEphemeralKey, aliceEphemeralKey.getPublicKey(),
-                                          bobPreKey, alicePreKey.getPublicKey(),
-                                          bobIdentityKey, aliceIdentityKey.getPublicKey());
+    RatchetingSession.initializeSession(bobSessionState, 3, bobBaseKey, aliceBaseKey.getPublicKey(),
+                                        bobEphemeralKey, aliceEphemeralKey.getPublicKey(),
+                                        bobPreKey, alicePreKey.getPublicKey(),
+                                        bobIdentityKey, aliceIdentityKey.getPublicKey());
 
   }
 }
