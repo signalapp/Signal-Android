@@ -85,7 +85,7 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 	          R.drawable.ic_attach_audio_holo_light, ADD_SOUND);
 //        addItem(data, "Record audio", R.drawable.ic_launcher_record_audio, RECORD_SOUND);
     addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact),
-      R.drawable.ic_menu_friendslist, ADD_CONTACT_INFO);
+      R.drawable.ic_action_add_person, ADD_CONTACT_INFO);
 
 	  return data;
 	}
