@@ -223,7 +223,7 @@ public class SmsMigrator {
     }
 
     context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).edit()
-      .putBoolean("migrated", true).commit();
+      .putBoolean("migrated", true).apply();
   }
 
   public interface SmsMigrationProgressListener {

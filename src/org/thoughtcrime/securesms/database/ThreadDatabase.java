@@ -23,15 +23,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.util.Util;
 
 import java.util.Arrays;
@@ -379,11 +378,16 @@ public class ThreadDatabase extends Database {
     MmsSmsDatabase.Reader reader = null;
 
     try {
-      reader               = mmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId));
-      MessageRecord record = null;
+      reader = mmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId));
+      MessageRecord record;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, record.getBody().getBody(), record.getDateReceived(), record.getType());
+        final long timestamp;
+
+        if (record.isPush()) timestamp = record.getDateSent();
+        else                 timestamp = record.getDateReceived();
+
+        updateThread(threadId, count, record.getBody().getBody(), timestamp, record.getType());
       } else {
         deleteThread(threadId);
       }

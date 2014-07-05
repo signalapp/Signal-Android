@@ -48,13 +48,6 @@
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>
     <string name="ConversationItem_error_sending_message">Error sending message</string>
-    <string name="ConversationItem_saving_attachment">Saving attachment</string>
-    <string name="ConversationItem_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
-    <string name="ConversationItem_save_to_sd_card">Save to SD card?</string>
-    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted. Would you like to continue?</string>
-    <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
-    <string name="ConversationItem_success_exclamation">Success!</string>
-    <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Unable to write to SD card!</string>
     <string name="ConversationItem_view_secure_media_question">View secure media?</string>
     <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk. Are you sure that you would like to do this?</string>
     <string name="ConversationItem_received_and_processed_key_exchange_message">Received and processed key exchange message.</string>
@@ -64,10 +57,13 @@
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_group_action_joined">%1$s have joined the group.</string>
     <string name="ConversationItem_group_action_modify">%1$s has updated the group.</string>
-    <string name="ConversationItem_click_to_approve">Tap for SMS fallback</string>
+    <string name="ConversationItem_click_to_approve_sms">Tap for SMS fallback</string>
+    <string name="ConversationItem_click_to_approve_mms">Tap for MMS fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for insecure fallback</string>
-    <string name="ConversationItem_click_to_approve_dialog_title">Fallback to SMS?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_title">Fallback to unencrypted SMS?</string>
+    <string name="ConversationItem_click_to_approve_sms_dialog_title">Fallback to SMS?</string>
+    <string name="ConversationItem_click_to_approve_mms_dialog_title">Fallback to MMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback to unencrypted SMS?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because a secure session could not be established.\n\nSend insecure message?</string>
 
     <!-- ConversationActivity -->
@@ -103,6 +99,13 @@
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
     <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
     <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+    <string name="ConversationFragment_save_to_sd_card">Save to SD card?</string>
+    <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted. Would you like to continue?</string>
+    <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
+    <string name="ConversationFragment_success_exclamation">Success!</string>
+    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to SD card!</string>
+    <string name="ConversationFragment_saving_attachment">Saving attachment</string>
+    <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
 
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
@@ -158,6 +161,10 @@
     <string name="GroupCreateActivity_menu_create_title">Create group</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-TextSecure contacts to an existing TextSecure group</string>
+
+    <!-- ImportExportActivity -->
+    <string name="ImportExportActivity_import">Import</string>
+    <string name="ImportExportActivity_export">Export</string>
 
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import system SMS database?</string>
@@ -290,7 +297,7 @@
     <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
     <string name="RegistrationProgressActivity_verifying_voice_code">Verifying voice code...</string>
     <string name="RegistrationProgressActivity_registration_conflict">Registration conflict</string>
-    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different TextSecure server (CyanogenMod?). You must unregistering there before registering here.</string>
+    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different TextSecure server (CyanogenMod?). You must unregister there before registering here.</string>
 
     <!-- RegistrationService -->
     <string name="RegistrationService_registration_complete">Registration complete</string>
@@ -442,7 +449,11 @@
     <string name="contact_selection_recent_activity__no_recent_calls">No recent calls.</string>
 
     <!-- conversation_activity -->
-    <string name="conversation_activity__type_message"><small>Send a message</small></string>
+    <string name="conversation_activity__type_message_push">Send TextSecure message</string>
+    <string name="conversation_activity__type_message_sms_secure">Send secure SMS</string>
+    <string name="conversation_activity__type_message_sms_insecure">Send insecure SMS</string>
+    <string name="conversation_activity__type_message_mms_secure">Send secure MMS</string>
+    <string name="conversation_activity__type_message_mms_insecure">Send insecure MMS</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
 
@@ -464,6 +475,7 @@
 
     <!-- conversation_fragment_cab -->
     <string name="conversation_fragment_cab__batch_selection_mode">Batch selection mode</string>
+    <string name="conversation_fragment_cab__batch_selection_amount">%s selected</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries...</string>
@@ -663,7 +675,6 @@
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / Export</string>
     <string name="arrays__my_identity_key">My identity key</string>
-    <string name="arrays__contact_keys">Contact keys</string>
 
     <!-- preferences.xml -->
     <string name="preferences__general">General</string>
@@ -687,7 +698,7 @@
     <string name="preferences__disable_local_encryption_of_messages_and_keys">Disable local encryption of messages and keys</string>
     <string name="preferences__screen_security">Screen security</string>
     <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatically complete key exchanges for new sessions or for existing sessions with the same identity key</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">Disable screen security to allow screen shots</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>
     <string name="preferences__forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
     <string name="preferences__timeout_passphrase">Timeout passphrase</string>
     <string name="preferences__pref_timeout_interval_dialogtitle">Select passphrase timeout</string>
@@ -782,7 +793,11 @@
     <string name="push_directory__menu_refresh">Refresh contact list</string>
 
     <!-- conversation_button_context -->
-    <string name="conversation_button_context__menu_send_unencrypted">Send unencrypted</string>
+    <string name="conversation_button_context__send_textsecure_message">Send TextSecure message</string>
+    <string name="conversation_button_context__send_secure_sms">Send secure SMS</string>
+    <string name="conversation_button_context__send_insecure_sms">Send insecure SMS</string>
+    <string name="conversation_button_context__send_secure_mms">Send secure MMS</string>
+    <string name="conversation_button_context__send_insecure_mms">Send insecure MMS</string>
 
     <!-- conversation_callable -->
     <string name="conversation_callable__menu_call">Call</string>
@@ -793,6 +808,9 @@
     <string name="conversation_context__menu_delete_message">Delete message</string>
     <string name="conversation_context__menu_forward_message">Forward message</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
+
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Save attachment</string>
 
     <!-- conversation_insecure -->
     <string name="conversation_insecure__menu_start_secure_session">Start secure session</string>
@@ -842,6 +860,7 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
+
     <!-- EOF -->
 
 </resources>

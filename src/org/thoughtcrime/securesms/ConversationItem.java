@@ -17,17 +17,14 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
@@ -36,12 +33,10 @@ import android.provider.ContactsContract.QuickContact;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -53,19 +48,12 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.Emoji;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -184,9 +172,9 @@ public class ConversationItem extends LinearLayout {
       setEvents(messageRecord);
       setMinimumWidth();
 
-      if (messageRecord instanceof NotificationMmsMessageRecord) {
+      if (messageRecord.isMmsNotification()) {
         setNotificationMmsAttributes((NotificationMmsMessageRecord)messageRecord);
-      } else if (messageRecord instanceof MediaMmsMessageRecord) {
+      } else if (messageRecord.isMms()) {
         setMediaMmsAttributes((MediaMmsMessageRecord)messageRecord);
       }
     }
@@ -274,12 +262,19 @@ public class ConversationItem extends LinearLayout {
       dateText.setText(R.string.ConversationItem_error_sending_message);
     } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
       dateText.setText("");
-      if (messageRecord.isPendingSecureSmsFallback()) indicatorText.setText(R.string.ConversationItem_click_to_approve);
-      else                                            indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
+      if (messageRecord.isPendingSecureSmsFallback()) {
+        if (messageRecord.isMms()) indicatorText.setText(R.string.ConversationItem_click_to_approve_mms);
+        else                       indicatorText.setText(R.string.ConversationItem_click_to_approve_sms);
+      } else {
+        indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
+      }
     } else if (messageRecord.isPending()) {
       dateText.setText(" ··· ");
     } else {
-      final long timestamp = messageRecord.getDateSent();
+      final long timestamp;
+
+      if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
+      else                        timestamp = messageRecord.getDateReceived();
 
       dateText.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp));
     }
@@ -367,9 +362,13 @@ public class ConversationItem extends LinearLayout {
             for (Slide slide : result.getSlides()) {
               if (slide.hasImage()) {
                 slide.setThumbnailOn(mmsThumbnail);
-//                mmsThumbnail.setImageBitmap(slide.getThumbnail());
                 mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
-                mmsThumbnail.setOnLongClickListener(new ThumbnailSaveListener(slide));
+                mmsThumbnail.setOnLongClickListener(new OnLongClickListener() {
+                  @Override
+                  public boolean onLongClick(View v) {
+                    return false;
+                  }
+                });
                 mmsThumbnail.setVisibility(View.VISIBLE);
                 return;
               }
@@ -406,7 +405,9 @@ public class ConversationItem extends LinearLayout {
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
     if (contactPhoto == null) return;
-    contactPhoto.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
+
+    contactPhoto.setImageBitmap(recipient.getCircleCroppedContactPhoto());
+
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -439,127 +440,6 @@ public class ConversationItem extends LinearLayout {
     intent.putExtra("master_secret", masterSecret);
     intent.putExtra("sent", messageRecord.isOutgoing());
     context.startActivity(intent);
-  }
-
-  private class ThumbnailSaveListener extends Handler implements View.OnLongClickListener, Runnable, MediaScannerConnection.MediaScannerConnectionClient {
-    private static final int SUCCESS              = 0;
-    private static final int FAILURE              = 1;
-    private static final int WRITE_ACCESS_FAILURE = 2;
-
-    private final Slide slide;
-    private ProgressDialog progressDialog;
-    private MediaScannerConnection mediaScannerConnection;
-    private File mediaFile;
-
-    public ThumbnailSaveListener(Slide slide) {
-      this.slide = slide;
-    }
-
-    public void run() {
-      if (!Environment.getExternalStorageDirectory().canWrite()) {
-        this.obtainMessage(WRITE_ACCESS_FAILURE).sendToTarget();
-        return;
-      }
-
-      try {
-        mediaFile                 = constructOutputFile();
-        InputStream inputStream   = slide.getPartDataInputStream();
-        OutputStream outputStream = new FileOutputStream(mediaFile);
-
-        byte[] buffer = new byte[4096];
-        int read;
-
-        while ((read = inputStream.read(buffer)) != -1) {
-          outputStream.write(buffer, 0, read);
-        }
-
-        outputStream.close();
-        inputStream.close();
-
-        mediaScannerConnection = new MediaScannerConnection(context, this);
-        mediaScannerConnection.connect();
-      } catch (IOException ioe) {
-        Log.w(TAG, ioe);
-        this.obtainMessage(FAILURE).sendToTarget();
-      }
-    }
-
-    private File constructOutputFile() throws IOException {
-      File sdCard = Environment.getExternalStorageDirectory();
-      File outputDirectory;
-
-      if (slide.hasVideo())
-        outputDirectory = new File(sdCard.getAbsoluteFile() + File.separator + "Movies");
-      else if (slide.hasAudio())
-        outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Music");
-      else
-        outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + "Pictures");
-      outputDirectory.mkdirs();
-
-      MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-      String extension = mimeTypeMap.getExtensionFromMimeType(slide.getContentType());
-      if (extension == null)
-          extension = "attach";
-
-      return File.createTempFile("textsecure", "." + extension, outputDirectory);
-    }
-
-    private void saveToSdCard() {
-      progressDialog = new ProgressDialog(context);
-      progressDialog.setTitle(context.getString(R.string.ConversationItem_saving_attachment));
-      progressDialog.setMessage(context.getString(R.string.ConversationItem_saving_attachment_to_sd_card));
-      progressDialog.setCancelable(false);
-      progressDialog.setIndeterminate(true);
-      progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-      progressDialog.show();
-      new Thread(this).start();
-    }
-
-    public boolean onLongClick(View v) {
-      AlertDialog.Builder builder = new AlertDialog.Builder(context);
-      builder.setTitle(R.string.ConversationItem_save_to_sd_card);
-      builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
-      builder.setCancelable(true);
-      builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning);
-      builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          saveToSdCard();
-        }
-      });
-      builder.setNegativeButton(R.string.no, null);
-      builder.show();
-
-      return true;
-    }
-
-    @Override
-    public void handleMessage(Message message) {
-      switch (message.what) {
-      case FAILURE:
-        Toast.makeText(context, R.string.ConversationItem_error_while_saving_attachment_to_sd_card,
-                       Toast.LENGTH_LONG).show();
-        break;
-      case SUCCESS:
-        Toast.makeText(context, R.string.ConversationItem_success_exclamation,
-                       Toast.LENGTH_LONG).show();
-        break;
-      case WRITE_ACCESS_FAILURE:
-        Toast.makeText(context, R.string.ConversationItem_unable_to_write_to_sd_card_exclamation,
-                       Toast.LENGTH_LONG).show();
-        break;
-      }
-
-      progressDialog.dismiss();
-    }
-
-    public void onMediaScannerConnected() {
-      mediaScannerConnection.scanFile(mediaFile.getAbsolutePath(), slide.getContentType());
-    }
-
-    public void onScanCompleted(String path, Uri uri) {
-      mediaScannerConnection.disconnect();
-      this.obtainMessage(SUCCESS).sendToTarget();
-    }
   }
 
   private class ThumbnailClickListener implements View.OnClickListener {
@@ -645,17 +525,24 @@ public class ConversationItem extends LinearLayout {
   private void handleMessageApproval() {
     final int title;
     final int message;
+
     if (messageRecord.isPendingSecureSmsFallback()) {
-      title = R.string.ConversationItem_click_to_approve_dialog_title;
+      if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_mms_dialog_title;
+      else                       title = R.string.ConversationItem_click_to_approve_sms_dialog_title;
+
       message = -1;
     } else {
-      title = R.string.ConversationItem_click_to_approve_unencrypted_dialog_title;
+      if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_unencrypted_mms_dialog_title;
+      else                       title = R.string.ConversationItem_click_to_approve_unencrypted_sms_dialog_title;
+
       message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
     }
 
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(title);
+
     if (message > -1) builder.setMessage(message);
+
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
@@ -674,12 +561,17 @@ public class ConversationItem extends LinearLayout {
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
         }
+
         Intent intent = new Intent(context, SendReceiveService.class);
-        intent.setAction(SendReceiveService.SEND_SMS_ACTION);
+        intent.setAction(messageRecord.isMms() ?
+                             SendReceiveService.SEND_MMS_ACTION :
+                             SendReceiveService.SEND_SMS_ACTION);
         intent.putExtra(SendReceiveService.MASTER_SECRET_EXTRA, masterSecret);
+
         context.startService(intent);
       }
     });
+
     builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {

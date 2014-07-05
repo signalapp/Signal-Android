@@ -85,7 +85,7 @@ public class MessageNotifier {
       NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
       builder.setSmallIcon(R.drawable.icon_notification);
       builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-                                                        R.drawable.ic_list_alert_sms_failed));
+                                                        R.drawable.ic_action_warning_red));
       builder.setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed));
       builder.setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message));
       builder.setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));

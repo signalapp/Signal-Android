@@ -19,11 +19,15 @@ import java.util.Map;
 
 public class ContactPhotoFactory {
 
-  private static final Object defaultPhotoLock      = new Object();
-  private static final Object defaultGroupPhotoLock = new Object();
+  private static final Object defaultPhotoLock              = new Object();
+  private static final Object defaultGroupPhotoLock         = new Object();
+  private static final Object defaultPhotoCroppedLock       = new Object();
+  private static final Object defaultGroupPhotoCroppedLock  = new Object();
 
   private static Bitmap defaultContactPhoto;
   private static Bitmap defaultGroupContactPhoto;
+  private static Bitmap defaultContactPhotoCropped;
+  private static Bitmap defaultGroupContactPhotoCropped;
 
   private static final Map<Uri,Bitmap> localUserContactPhotoCache =
       Collections.synchronizedMap(new LRUCache<Uri,Bitmap>(2));
@@ -49,6 +53,24 @@ public class ContactPhotoFactory {
         defaultGroupContactPhoto =  BitmapFactory.decodeResource(context.getResources(),
                                                                  R.drawable.ic_group_photo);
       return defaultGroupContactPhoto;
+    }
+  }
+
+  public static Bitmap getDefaultContactPhotoCropped(Context context) {
+    synchronized (defaultPhotoCroppedLock) {
+      if (defaultContactPhotoCropped == null)
+        defaultContactPhotoCropped = BitmapUtil.getCircleCroppedBitmap(getDefaultContactPhoto(context));
+
+      return defaultContactPhotoCropped;
+    }
+  }
+
+  public static Bitmap getDefaultGroupPhotoCropped(Context context) {
+    synchronized (defaultGroupPhotoCroppedLock) {
+      if (defaultGroupContactPhotoCropped == null)
+        defaultGroupContactPhotoCropped = BitmapUtil.getCircleCroppedBitmap(getDefaultGroupPhoto(context));
+
+      return defaultGroupContactPhotoCropped;
     }
   }
 

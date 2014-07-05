@@ -123,11 +123,13 @@ public class PushReceiver {
         IncomingPushMessage bundledMessage = message.withBody(preKeyExchange.getWhisperMessage().serialize());
         handleReceivedSecureMessage(masterSecret, bundledMessage);
       } else {
-        String                      encoded       = Base64.encodeBytes(message.getBody());
-        IncomingTextMessage         textMessage   = new IncomingTextMessage(message, encoded, null);
-        IncomingPreKeyBundleMessage bundleMessage = new IncomingPreKeyBundleMessage(textMessage, encoded);
+        String                      encoded            = Base64.encodeBytes(message.getBody());
+        IncomingTextMessage         textMessage        = new IncomingTextMessage(message, encoded, null);
+        IncomingPreKeyBundleMessage bundleMessage      = new IncomingPreKeyBundleMessage(textMessage, encoded);
+        EncryptingSmsDatabase       database           = DatabaseFactory.getEncryptingSmsDatabase(context);
+        Pair<Long, Long>            messageAndThreadId = database.insertMessageInbox(masterSecret, bundleMessage);
 
-        DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, bundleMessage);
+        MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
       }
     } catch (InvalidKeyException e) {
       Log.w("PushReceiver", e);

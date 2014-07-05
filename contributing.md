@@ -2,6 +2,10 @@
 
 Please do not submit issues or pull requests for translation fixes. Anyone can update the translations in [Transifex](https://www.transifex.com/projects/p/textsecure-official/). Please submit your corrections there.
 
+## Submitting useful bug reports
+1. Search our issues first to make sure this is not a duplicate.
+1. Read the [Submitting useful bug reports guide](https://github.com/WhisperSystems/TextSecure/wiki/Submitting-useful-bug-reports) before posting a bug.
+
 ## Development Ideology
 
 Truths which we believe to be self-evident:
