@@ -32,6 +32,7 @@ import org.whispersystems.libaxolotl.kdf.HKDF;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 import org.whispersystems.libaxolotl.ratchet.MessageKeys;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
+import org.whispersystems.libaxolotl.ratchet.VerifyKey;
 import org.whispersystems.libaxolotl.util.Pair;
 import org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.Chain;
 import org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.PendingKeyExchange;
@@ -59,6 +60,16 @@ public class SessionState {
 
   public SessionStructure getStructure() {
     return sessionStructure;
+  }
+
+  public byte[] getVerification() {
+    return this.sessionStructure.getVerification().toByteArray();
+  }
+
+  public void setVerification(byte[] verification) {
+    this.sessionStructure = this.sessionStructure.toBuilder()
+                                                 .setVerification(ByteString.copyFrom(verification))
+                                                 .build();
   }
 
   public byte[] getAliceBaseKey() {

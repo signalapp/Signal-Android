@@ -106,6 +106,7 @@ public class SessionCipher {
                                                      localRegistrationId, pendingPreKeyId,
                                                      pendingDeviceKeyId, pendingBaseKey,
                                                      sessionState.getLocalIdentityKey(),
+                                                     sessionState.getVerification(),
                                                      (WhisperMessage) ciphertextMessage);
       }
 

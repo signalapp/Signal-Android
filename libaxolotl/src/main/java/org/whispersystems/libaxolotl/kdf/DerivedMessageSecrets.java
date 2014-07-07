@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Open Whisper Systems
+ * Copyright (C) 2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ package org.whispersystems.libaxolotl.kdf;
 
 import javax.crypto.spec.SecretKeySpec;
 
-public class DerivedSecrets {
+public class DerivedMessageSecrets {
 
   public  static final int SIZE               = 64;
   private static final int CIPHER_KEYS_OFFSET = 0;
@@ -28,10 +28,11 @@ public class DerivedSecrets {
   private final SecretKeySpec cipherKey;
   private final SecretKeySpec macKey;
 
-  public DerivedSecrets(byte[] okm) {
+  public DerivedMessageSecrets(byte[] okm) {
     this.cipherKey = deriveCipherKey(okm);
     this.macKey    = deriveMacKey(okm);
   }
+
   private SecretKeySpec deriveCipherKey(byte[] okm) {
     byte[] cipherKey = new byte[32];
     System.arraycopy(okm, CIPHER_KEYS_OFFSET, cipherKey, 0, cipherKey.length);

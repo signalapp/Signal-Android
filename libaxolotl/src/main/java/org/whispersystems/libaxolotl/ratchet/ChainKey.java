@@ -17,7 +17,7 @@
 package org.whispersystems.libaxolotl.ratchet;
 
 
-import org.whispersystems.libaxolotl.kdf.DerivedSecrets;
+import org.whispersystems.libaxolotl.kdf.DerivedMessageSecrets;
 import org.whispersystems.libaxolotl.kdf.HKDF;
 
 import java.security.InvalidKeyException;
@@ -55,9 +55,9 @@ public class ChainKey {
   }
 
   public MessageKeys getMessageKeys() {
-    byte[]         inputKeyMaterial = getBaseMaterial(MESSAGE_KEY_SEED);
-    byte[]         keyMaterialBytes = kdf.deriveSecrets(inputKeyMaterial, "WhisperMessageKeys".getBytes(), DerivedSecrets.SIZE);
-    DerivedSecrets keyMaterial      = new DerivedSecrets(keyMaterialBytes);
+    byte[]                inputKeyMaterial = getBaseMaterial(MESSAGE_KEY_SEED);
+    byte[]                keyMaterialBytes = kdf.deriveSecrets(inputKeyMaterial, "WhisperMessageKeys".getBytes(), DerivedMessageSecrets.SIZE);
+    DerivedMessageSecrets keyMaterial      = new DerivedMessageSecrets(keyMaterialBytes);
 
     return new MessageKeys(keyMaterial.getCipherKey(), keyMaterial.getMacKey(), index);
   }

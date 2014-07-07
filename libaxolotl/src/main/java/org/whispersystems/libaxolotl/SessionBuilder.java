@@ -20,6 +20,8 @@ import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.Medium;
 
+import java.security.MessageDigest;
+
 /**
  * SessionBuilder is responsible for setting up encrypted sessions.
  * Once a session has been established, {@link org.whispersystems.libaxolotl.SessionCipher}
@@ -123,12 +125,10 @@ public class SessionBuilder {
     if (!deviceKeyStore.containsDeviceKey(deviceKeyId))
       throw new InvalidKeyIdException("No such device key: " + deviceKeyId);
 
-    PreKeyRecord    preKeyRecord         = preKeyId >= 0 ? preKeyStore.loadPreKey(preKeyId) : null;
-    DeviceKeyRecord deviceKeyRecord      = deviceKeyStore.loadDeviceKey(deviceKeyId);
-    ECKeyPair       ourPreKey            = preKeyRecord != null ? preKeyRecord.getKeyPair() : null;
-    ECPublicKey     theirPreKey          = theirBaseKey;
-    ECKeyPair       ourBaseKey           = deviceKeyRecord.getKeyPair();
+    ECKeyPair       ourBaseKey           = deviceKeyStore.loadDeviceKey(deviceKeyId).getKeyPair();
     ECKeyPair       ourEphemeralKey      = ourBaseKey;
+    ECKeyPair       ourPreKey            = preKeyId < 0 ? ourBaseKey : preKeyStore.loadPreKey(preKeyId).getKeyPair();
+    ECPublicKey     theirPreKey          = theirBaseKey;
     IdentityKeyPair ourIdentityKey       = identityKeyStore.getIdentityKeyPair();
     boolean         simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
 
@@ -141,6 +141,10 @@ public class SessionBuilder {
                                         ourEphemeralKey, theirEphemeralKey,
                                         ourPreKey, theirPreKey,
                                         ourIdentityKey, theirIdentityKey);
+
+    if (!MessageDigest.isEqual(sessionRecord.getSessionState().getVerification(), message.getVerification())) {
+      throw new InvalidKeyException("Verification secret mismatch!");
+    }
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());

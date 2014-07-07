@@ -22,13 +22,14 @@ import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.libaxolotl.kdf.DerivedSecrets;
 import org.whispersystems.libaxolotl.kdf.HKDF;
 import org.whispersystems.libaxolotl.state.SessionState;
+import org.whispersystems.libaxolotl.util.ByteUtil;
 import org.whispersystems.libaxolotl.util.Pair;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Arrays;
 
 public class RatchetingSession {
@@ -68,16 +69,26 @@ public class RatchetingSession {
     sessionState.setRemoteIdentityKey(theirIdentityKey);
     sessionState.setLocalIdentityKey(ourIdentityKey.getPublicKey());
 
-    ECKeyPair               sendingKey     = Curve.generateKeyPair(true);
-    Pair<RootKey, ChainKey> receivingChain = calculate4DHE(true, sessionVersion,
-                                                           ourBaseKey, theirBaseKey,
-                                                           ourPreKey, theirPreKey,
-                                                           ourIdentityKey, theirIdentityKey);
-    Pair<RootKey, ChainKey> sendingChain   = receivingChain.first().createChain(theirEphemeralKey, sendingKey);
+    ECKeyPair sendingKey = Curve.generateKeyPair(true);
+    DHEResult result     = calculate4DHE(true, sessionVersion, ourBaseKey, theirBaseKey,
+                                         ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
 
-    sessionState.addReceiverChain(theirEphemeralKey, receivingChain.second());
+    Pair<RootKey, ChainKey> sendingChain = result.getRootKey().createChain(theirEphemeralKey, sendingKey);
+
+    sessionState.addReceiverChain(theirEphemeralKey, result.getChainKey());
     sessionState.setSenderChain(sendingKey, sendingChain.second());
     sessionState.setRootKey(sendingChain.first());
+
+    if (sessionVersion >= 3) {
+      VerifyKey verifyKey       = result.getVerifyKey();
+      byte[]    verificationTag = verifyKey.generateVerification(ourBaseKey.getPublicKey(),
+                                                                 ourPreKey.getPublicKey(),
+                                                                 ourIdentityKey.getPublicKey().getPublicKey(),
+                                                                 theirBaseKey, theirPreKey,
+                                                                 theirIdentityKey.getPublicKey());
+
+      sessionState.setVerification(verificationTag);
+    }
   }
 
   private static void initializeSessionAsBob(SessionState sessionState,
@@ -92,19 +103,28 @@ public class RatchetingSession {
     sessionState.setRemoteIdentityKey(theirIdentityKey);
     sessionState.setLocalIdentityKey(ourIdentityKey.getPublicKey());
 
-    Pair<RootKey, ChainKey> sendingChain = calculate4DHE(false, sessionVersion,
-                                                         ourBaseKey, theirBaseKey,
-                                                         ourPreKey, theirPreKey,
-                                                         ourIdentityKey, theirIdentityKey);
+    DHEResult result = calculate4DHE(false, sessionVersion, ourBaseKey, theirBaseKey,
+                                     ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
 
-    sessionState.setSenderChain(ourEphemeralKey, sendingChain.second());
-    sessionState.setRootKey(sendingChain.first());
+    sessionState.setSenderChain(ourEphemeralKey, result.getChainKey());
+    sessionState.setRootKey(result.getRootKey());
+
+    if (sessionVersion >= 3) {
+      VerifyKey verifyKey       = result.getVerifyKey();
+      byte[]    verificationTag = verifyKey.generateVerification(theirBaseKey, theirPreKey,
+                                                                 theirIdentityKey.getPublicKey(),
+                                                                 ourBaseKey.getPublicKey(),
+                                                                 ourPreKey.getPublicKey(),
+                                                                 ourIdentityKey.getPublicKey().getPublicKey());
+
+      sessionState.setVerification(verificationTag);
+    }
   }
 
-  private static Pair<RootKey, ChainKey> calculate4DHE(boolean isAlice, int sessionVersion,
-                                                       ECKeyPair ourEphemeral, ECPublicKey theirEphemeral,
-                                                       ECKeyPair ourPreKey, ECPublicKey theirPreKey,
-                                                       IdentityKeyPair ourIdentity, IdentityKey theirIdentity)
+  private static DHEResult calculate4DHE(boolean isAlice, int sessionVersion,
+                                         ECKeyPair ourBaseKey, ECPublicKey theirBaseKey,
+                                         ECKeyPair ourPreKey, ECPublicKey theirPreKey,
+                                         IdentityKeyPair ourIdentity, IdentityKey theirIdentity)
       throws InvalidKeyException
   {
     try {
@@ -118,25 +138,27 @@ public class RatchetingSession {
       }
 
       if (isAlice) {
-        secrets.write(Curve.calculateAgreement(theirEphemeral, ourIdentity.getPrivateKey()));
-        secrets.write(Curve.calculateAgreement(theirIdentity.getPublicKey(), ourEphemeral.getPrivateKey()));
+        secrets.write(Curve.calculateAgreement(theirBaseKey, ourIdentity.getPrivateKey()));
+        secrets.write(Curve.calculateAgreement(theirIdentity.getPublicKey(), ourBaseKey.getPrivateKey()));
       } else {
-        secrets.write(Curve.calculateAgreement(theirIdentity.getPublicKey(), ourEphemeral.getPrivateKey()));
-        secrets.write(Curve.calculateAgreement(theirEphemeral, ourIdentity.getPrivateKey()));
+        secrets.write(Curve.calculateAgreement(theirIdentity.getPublicKey(), ourBaseKey.getPrivateKey()));
+        secrets.write(Curve.calculateAgreement(theirBaseKey, ourIdentity.getPrivateKey()));
       }
 
-      secrets.write(Curve.calculateAgreement(theirEphemeral, ourEphemeral.getPrivateKey()));
+      secrets.write(Curve.calculateAgreement(theirBaseKey, ourBaseKey.getPrivateKey()));
 
-      if (sessionVersion >= 3 && ourPreKey != null && theirPreKey != null) {
+      if (sessionVersion >= 3) {
         secrets.write(Curve.calculateAgreement(theirPreKey, ourPreKey.getPrivateKey()));
       }
 
-      byte[]         derivedSecretBytes = kdf.deriveSecrets(secrets.toByteArray(), "WhisperText".getBytes(), DerivedSecrets.SIZE);
-      DerivedSecrets derivedSecrets     = new DerivedSecrets(derivedSecretBytes);
+      byte[]   derivedSecretBytes = kdf.deriveSecrets(secrets.toByteArray(), "WhisperText".getBytes(), 96);
+      byte[][] derivedSecrets     = ByteUtil.split(derivedSecretBytes, 32, 32, 32);
 
-      return new Pair<>(new RootKey(kdf, derivedSecrets.getCipherKey().getEncoded()),
-                        new ChainKey(kdf, derivedSecrets.getMacKey().getEncoded(), 0));
-    } catch (IOException e) {
+      return new DHEResult(new RootKey(kdf, derivedSecrets[0]),
+                           new ChainKey(kdf, derivedSecrets[1], 0),
+                           new VerifyKey(derivedSecrets[2]));
+
+    } catch (IOException | ParseException e) {
       throw new AssertionError(e);
     }
   }
@@ -159,5 +181,28 @@ public class RatchetingSession {
     return ourKey.compareTo(theirKey) < 0;
   }
 
+  private static class DHEResult {
+    private final RootKey   rootKey;
+    private final ChainKey  chainKey;
+    private final VerifyKey verifyKey;
+
+    private DHEResult(RootKey rootKey, ChainKey chainKey, VerifyKey verifyKey) {
+      this.rootKey   = rootKey;
+      this.chainKey  = chainKey;
+      this.verifyKey = verifyKey;
+    }
+
+    public RootKey getRootKey() {
+      return rootKey;
+    }
+
+    public ChainKey getChainKey() {
+      return chainKey;
+    }
+
+    public VerifyKey getVerifyKey() {
+      return verifyKey;
+    }
+  }
 
 }
