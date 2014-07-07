@@ -27,10 +27,6 @@ import javax.crypto.spec.SecretKeySpec;
 public abstract class HKDF {
 
   private static final int HASH_OUTPUT_SIZE  = 32;
-  private static final int KEY_MATERIAL_SIZE = 64;
-
-  private static final int CIPHER_KEYS_OFFSET = 0;
-  private static final int MAC_KEYS_OFFSET    = 32;
 
   public static HKDF createFor(int messageVersion) {
     switch (messageVersion) {
@@ -40,31 +36,14 @@ public abstract class HKDF {
     }
   }
 
-  public DerivedSecrets deriveSecrets(byte[] inputKeyMaterial, byte[] info) {
+  public byte[] deriveSecrets(byte[] inputKeyMaterial, byte[] info, int outputLength) {
     byte[] salt = new byte[HASH_OUTPUT_SIZE];
-    return deriveSecrets(inputKeyMaterial, salt, info);
+    return deriveSecrets(inputKeyMaterial, salt, info, outputLength);
   }
 
-  public DerivedSecrets deriveSecrets(byte[] inputKeyMaterial, byte[] salt, byte[] info) {
-    byte[] prk              = extract(salt, inputKeyMaterial);
-    byte[] okm              = expand(prk, info, KEY_MATERIAL_SIZE);
-
-    SecretKeySpec cipherKey = deriveCipherKey(okm);
-    SecretKeySpec macKey    = deriveMacKey(okm);
-
-    return new DerivedSecrets(cipherKey, macKey);
-  }
-
-  private SecretKeySpec deriveCipherKey(byte[] okm) {
-    byte[] cipherKey = new byte[32];
-    System.arraycopy(okm, CIPHER_KEYS_OFFSET, cipherKey, 0, cipherKey.length);
-    return new SecretKeySpec(cipherKey, "AES");
-  }
-
-  private SecretKeySpec deriveMacKey(byte[] okm) {
-    byte[] macKey = new byte[32];
-    System.arraycopy(okm, MAC_KEYS_OFFSET, macKey, 0, macKey.length);
-    return new SecretKeySpec(macKey, "HmacSHA256");
+  public byte[] deriveSecrets(byte[] inputKeyMaterial, byte[] salt, byte[] info, int outputLength) {
+    byte[] prk = extract(salt, inputKeyMaterial);
+    return expand(prk, info, outputLength);
   }
 
   private byte[] extract(byte[] salt, byte[] inputKeyMaterial) {
@@ -79,9 +58,10 @@ public abstract class HKDF {
 
   private byte[] expand(byte[] prk, byte[] info, int outputSize) {
     try {
-      int                   iterations = (int)Math.ceil((double)outputSize/(double)HASH_OUTPUT_SIZE);
-      byte[]                mixin      = new byte[0];
-      ByteArrayOutputStream results    = new ByteArrayOutputStream();
+      int                   iterations     = (int) Math.ceil((double) outputSize / (double) HASH_OUTPUT_SIZE);
+      byte[]                mixin          = new byte[0];
+      ByteArrayOutputStream results        = new ByteArrayOutputStream();
+      int                   remainingBytes = outputSize;
 
       for (int i= getIterationStartOffset();i<iterations + getIterationEndOffset();i++) {
         Mac mac = Mac.getInstance("HmacSHA256");
@@ -94,9 +74,12 @@ public abstract class HKDF {
         mac.update((byte)i);
 
         byte[] stepResult = mac.doFinal();
-        results.write(stepResult, 0, stepResult.length);
+        int    stepSize   = Math.min(remainingBytes, stepResult.length);
 
-        mixin = stepResult;
+        results.write(stepResult, 0, stepSize);
+
+        mixin          = stepResult;
+        remainingBytes -= stepSize;
       }
 
       return results.toByteArray();

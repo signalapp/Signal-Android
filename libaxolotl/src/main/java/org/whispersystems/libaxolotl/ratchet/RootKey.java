@@ -22,6 +22,7 @@ import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.kdf.DerivedSecrets;
 import org.whispersystems.libaxolotl.kdf.HKDF;
+import org.whispersystems.libaxolotl.util.ByteUtil;
 import org.whispersystems.libaxolotl.util.Pair;
 
 public class RootKey {
@@ -41,10 +42,12 @@ public class RootKey {
   public Pair<RootKey, ChainKey> createChain(ECPublicKey theirEphemeral, ECKeyPair ourEphemeral)
       throws InvalidKeyException
   {
-    byte[]         sharedSecret = Curve.calculateAgreement(theirEphemeral, ourEphemeral.getPrivateKey());
-    DerivedSecrets keys         = kdf.deriveSecrets(sharedSecret, key, "WhisperRatchet".getBytes());
-    RootKey        newRootKey   = new RootKey(kdf, keys.getCipherKey().getEncoded());
-    ChainKey       newChainKey  = new ChainKey(kdf, keys.getMacKey().getEncoded(), 0);
+    byte[]   sharedSecret = Curve.calculateAgreement(theirEphemeral, ourEphemeral.getPrivateKey());
+    byte[]   keyBytes     = kdf.deriveSecrets(sharedSecret, key, "WhisperRatchet".getBytes(), 64);
+    byte[][] keys         = ByteUtil.split(keyBytes, 32, 32);
+
+    RootKey        newRootKey   = new RootKey(kdf, keys[0]);
+    ChainKey       newChainKey  = new ChainKey(kdf, keys[1], 0);
 
     return new Pair<>(newRootKey, newChainKey);
   }

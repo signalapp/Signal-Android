@@ -21,12 +21,27 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class DerivedSecrets {
 
+  public  static final int SIZE               = 64;
+  private static final int CIPHER_KEYS_OFFSET = 0;
+  private static final int MAC_KEYS_OFFSET    = 32;
+
   private final SecretKeySpec cipherKey;
   private final SecretKeySpec macKey;
 
-  public DerivedSecrets(SecretKeySpec cipherKey, SecretKeySpec macKey) {
-    this.cipherKey = cipherKey;
-    this.macKey    = macKey;
+  public DerivedSecrets(byte[] okm) {
+    this.cipherKey = deriveCipherKey(okm);
+    this.macKey    = deriveMacKey(okm);
+  }
+  private SecretKeySpec deriveCipherKey(byte[] okm) {
+    byte[] cipherKey = new byte[32];
+    System.arraycopy(okm, CIPHER_KEYS_OFFSET, cipherKey, 0, cipherKey.length);
+    return new SecretKeySpec(cipherKey, "AES");
+  }
+
+  private SecretKeySpec deriveMacKey(byte[] okm) {
+    byte[] macKey = new byte[32];
+    System.arraycopy(okm, MAC_KEYS_OFFSET, macKey, 0, macKey.length);
+    return new SecretKeySpec(macKey, "HmacSHA256");
   }
 
   public SecretKeySpec getCipherKey() {

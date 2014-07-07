@@ -56,7 +56,8 @@ public class ChainKey {
 
   public MessageKeys getMessageKeys() {
     byte[]         inputKeyMaterial = getBaseMaterial(MESSAGE_KEY_SEED);
-    DerivedSecrets keyMaterial      = kdf.deriveSecrets(inputKeyMaterial, "WhisperMessageKeys".getBytes());
+    byte[]         keyMaterialBytes = kdf.deriveSecrets(inputKeyMaterial, "WhisperMessageKeys".getBytes(), DerivedSecrets.SIZE);
+    DerivedSecrets keyMaterial      = new DerivedSecrets(keyMaterialBytes);
 
     return new MessageKeys(keyMaterial.getCipherKey(), keyMaterial.getMacKey(), index);
   }

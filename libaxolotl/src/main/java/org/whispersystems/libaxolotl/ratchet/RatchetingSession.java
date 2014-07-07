@@ -131,7 +131,8 @@ public class RatchetingSession {
         secrets.write(Curve.calculateAgreement(theirPreKey, ourPreKey.getPrivateKey()));
       }
 
-      DerivedSecrets derivedSecrets = kdf.deriveSecrets(secrets.toByteArray(), "WhisperText".getBytes());
+      byte[]         derivedSecretBytes = kdf.deriveSecrets(secrets.toByteArray(), "WhisperText".getBytes(), DerivedSecrets.SIZE);
+      DerivedSecrets derivedSecrets     = new DerivedSecrets(derivedSecretBytes);
 
       return new Pair<>(new RootKey(kdf, derivedSecrets.getCipherKey().getEncoded()),
                         new ChainKey(kdf, derivedSecrets.getMacKey().getEncoded(), 0));
