@@ -108,8 +108,9 @@ public class RatchetingSession {
       throws InvalidKeyException
   {
     try {
-        byte[]                discontinuity = new byte[32];
-        ByteArrayOutputStream secrets       = new ByteArrayOutputStream();
+      HKDF                  kdf           = HKDF.createFor(sessionVersion);
+      byte[]                discontinuity = new byte[32];
+      ByteArrayOutputStream secrets       = new ByteArrayOutputStream();
 
       if (sessionVersion >= 3) {
         Arrays.fill(discontinuity, (byte) 0xFF);
@@ -130,11 +131,10 @@ public class RatchetingSession {
         secrets.write(Curve.calculateAgreement(theirPreKey, ourPreKey.getPrivateKey()));
       }
 
-      DerivedSecrets derivedSecrets = new HKDF().deriveSecrets(secrets.toByteArray(),
-                                                               "WhisperText".getBytes());
+      DerivedSecrets derivedSecrets = kdf.deriveSecrets(secrets.toByteArray(), "WhisperText".getBytes());
 
-      return new Pair<>(new RootKey(derivedSecrets.getCipherKey().getEncoded()),
-                        new ChainKey(derivedSecrets.getMacKey().getEncoded(), 0));
+      return new Pair<>(new RootKey(kdf, derivedSecrets.getCipherKey().getEncoded()),
+                        new ChainKey(kdf, derivedSecrets.getMacKey().getEncoded(), 0));
     } catch (IOException e) {
       throw new AssertionError(e);
     }

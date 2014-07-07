@@ -24,13 +24,21 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-public class HKDF {
+public abstract class HKDF {
 
   private static final int HASH_OUTPUT_SIZE  = 32;
   private static final int KEY_MATERIAL_SIZE = 64;
 
   private static final int CIPHER_KEYS_OFFSET = 0;
   private static final int MAC_KEYS_OFFSET    = 32;
+
+  public static HKDF createFor(int messageVersion) {
+    switch (messageVersion) {
+      case 2:  return new HKDFv2();
+      case 3:  return new HKDFv3();
+      default: throw new AssertionError("Unknown version: " + messageVersion);
+    }
+  }
 
   public DerivedSecrets deriveSecrets(byte[] inputKeyMaterial, byte[] info) {
     byte[] salt = new byte[HASH_OUTPUT_SIZE];
@@ -64,9 +72,7 @@ public class HKDF {
       Mac mac = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(salt, "HmacSHA256"));
       return mac.doFinal(inputKeyMaterial);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (InvalidKeyException e) {
+    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }
@@ -77,7 +83,7 @@ public class HKDF {
       byte[]                mixin      = new byte[0];
       ByteArrayOutputStream results    = new ByteArrayOutputStream();
 
-      for (int i=0;i<iterations;i++) {
+      for (int i= getIterationStartOffset();i<iterations + getIterationEndOffset();i++) {
         Mac mac = Mac.getInstance("HmacSHA256");
         mac.init(new SecretKeySpec(prk, "HmacSHA256"));
 
@@ -94,13 +100,12 @@ public class HKDF {
       }
 
       return results.toByteArray();
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (InvalidKeyException e) {
+    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }
 
-
+  protected abstract int getIterationStartOffset();
+  protected abstract int getIterationEndOffset();
 
 }

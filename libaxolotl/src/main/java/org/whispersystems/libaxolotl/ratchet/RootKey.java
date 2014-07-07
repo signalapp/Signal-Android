@@ -26,9 +26,11 @@ import org.whispersystems.libaxolotl.util.Pair;
 
 public class RootKey {
 
+  private final HKDF   kdf;
   private final byte[] key;
 
-  public RootKey(byte[] key) {
+  public RootKey(HKDF kdf, byte[] key) {
+    this.kdf = kdf;
     this.key = key;
   }
 
@@ -39,11 +41,10 @@ public class RootKey {
   public Pair<RootKey, ChainKey> createChain(ECPublicKey theirEphemeral, ECKeyPair ourEphemeral)
       throws InvalidKeyException
   {
-    HKDF           kdf          = new HKDF();
     byte[]         sharedSecret = Curve.calculateAgreement(theirEphemeral, ourEphemeral.getPrivateKey());
     DerivedSecrets keys         = kdf.deriveSecrets(sharedSecret, key, "WhisperRatchet".getBytes());
-    RootKey        newRootKey   = new RootKey(keys.getCipherKey().getEncoded());
-    ChainKey       newChainKey  = new ChainKey(keys.getMacKey().getEncoded(), 0);
+    RootKey        newRootKey   = new RootKey(kdf, keys.getCipherKey().getEncoded());
+    ChainKey       newChainKey  = new ChainKey(kdf, keys.getMacKey().getEncoded(), 0);
 
     return new Pair<>(newRootKey, newChainKey);
   }

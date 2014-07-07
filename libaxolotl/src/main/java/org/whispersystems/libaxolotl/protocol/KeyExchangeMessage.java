@@ -34,8 +34,8 @@ public class KeyExchangeMessage {
                             ECPublicKey baseKey, ECPublicKey ephemeralKey,
                             IdentityKey identityKey)
   {
-    this.supportedVersion = CiphertextMessage.CURRENT_VERSION;
-    this.version          = CiphertextMessage.CURRENT_VERSION;
+    this.supportedVersion = 2;
+    this.version          = 2;
     this.sequence         = sequence;
     this.flags            = flags;
     this.baseKey          = baseKey;

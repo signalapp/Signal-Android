@@ -31,10 +31,12 @@ public class ChainKey {
   private static final byte[] MESSAGE_KEY_SEED = {0x01};
   private static final byte[] CHAIN_KEY_SEED   = {0x02};
 
+  private final HKDF   kdf;
   private final byte[] key;
   private final int    index;
 
-  public ChainKey(byte[] key, int index) {
+  public ChainKey(HKDF kdf, byte[] key, int index) {
+    this.kdf   = kdf;
     this.key   = key;
     this.index = index;
   }
@@ -49,11 +51,10 @@ public class ChainKey {
 
   public ChainKey getNextChainKey() {
     byte[] nextKey = getBaseMaterial(CHAIN_KEY_SEED);
-    return new ChainKey(nextKey, index + 1);
+    return new ChainKey(kdf, nextKey, index + 1);
   }
 
   public MessageKeys getMessageKeys() {
-    HKDF           kdf              = new HKDF();
     byte[]         inputKeyMaterial = getBaseMaterial(MESSAGE_KEY_SEED);
     DerivedSecrets keyMaterial      = kdf.deriveSecrets(inputKeyMaterial, "WhisperMessageKeys".getBytes());
 

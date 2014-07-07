@@ -2,6 +2,7 @@ package org.whispersystems.test.ratchet;
 
 import android.test.AndroidTestCase;
 
+import org.whispersystems.libaxolotl.kdf.HKDF;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 
 import java.security.NoSuchAlgorithmException;
@@ -9,7 +10,7 @@ import java.util.Arrays;
 
 public class ChainKeyTest extends AndroidTestCase {
 
-  public void testChainKeyDerivation() throws NoSuchAlgorithmException {
+  public void testChainKeyDerivationV2() throws NoSuchAlgorithmException {
 
     byte[] seed         = {(byte) 0x8a, (byte) 0xb7, (byte) 0x2d, (byte) 0x6f, (byte) 0x4c,
                            (byte) 0xc5, (byte) 0xac, (byte) 0x0d, (byte) 0x38, (byte) 0x7e,
@@ -43,7 +44,7 @@ public class ChainKeyTest extends AndroidTestCase {
                            (byte) 0xc1, (byte) 0x03, (byte) 0x42, (byte) 0xa2, (byte) 0x46,
                            (byte) 0xd1, (byte) 0x5d};
 
-    ChainKey chainKey = new ChainKey(seed, 0);
+    ChainKey chainKey = new ChainKey(HKDF.createFor(2), seed, 0);
 
     assertTrue(Arrays.equals(chainKey.getKey(), seed));
     assertTrue(Arrays.equals(chainKey.getMessageKeys().getCipherKey().getEncoded(), messageKey));

@@ -7,6 +7,7 @@ import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.kdf.HKDF;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
 import org.whispersystems.libaxolotl.util.Pair;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 
 public class RootKeyTest extends AndroidTestCase {
 
-  public void testRootKeyDerivation() throws NoSuchAlgorithmException, InvalidKeyException {
+  public void testRootKeyDerivationV2() throws NoSuchAlgorithmException, InvalidKeyException {
     byte[] rootKeySeed  = {(byte) 0x7b, (byte) 0xa6, (byte) 0xde, (byte) 0xbc, (byte) 0x2b,
                            (byte) 0xc1, (byte) 0xbb, (byte) 0xf9, (byte) 0x1a, (byte) 0xbb,
                            (byte) 0xc1, (byte) 0x36, (byte) 0x74, (byte) 0x04, (byte) 0x17,
@@ -69,8 +70,8 @@ public class RootKeyTest extends AndroidTestCase {
     ECPrivateKey alicePrivateKey = Curve.decodePrivatePoint(alicePrivate);
     ECKeyPair    aliceKeyPair    = new ECKeyPair(alicePublicKey, alicePrivateKey);
 
-    ECPublicKey  bobPublicKey    = Curve.decodePoint(bobPublic, 0);
-    RootKey rootKey         = new RootKey(rootKeySeed);
+    ECPublicKey bobPublicKey = Curve.decodePoint(bobPublic, 0);
+    RootKey     rootKey      = new RootKey(HKDF.createFor(2), rootKeySeed);
 
     Pair<RootKey, ChainKey> rootKeyChainKeyPair = rootKey.createChain(bobPublicKey, aliceKeyPair);
     RootKey                 nextRootKey         = rootKeyChainKeyPair.first();

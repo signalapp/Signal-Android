@@ -28,6 +28,7 @@ import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.kdf.HKDF;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 import org.whispersystems.libaxolotl.ratchet.MessageKeys;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
@@ -137,7 +138,8 @@ public class SessionState {
   }
 
   public RootKey getRootKey() {
-    return new RootKey(this.sessionStructure.getRootKey().toByteArray());
+    return new RootKey(HKDF.createFor(getSessionVersion()),
+                       this.sessionStructure.getRootKey().toByteArray());
   }
 
   public void setRootKey(RootKey rootKey) {
@@ -180,7 +182,7 @@ public class SessionState {
         ECPublicKey chainSenderEphemeral = Curve.decodePoint(receiverChain.getSenderEphemeral().toByteArray(), 0);
 
         if (chainSenderEphemeral.equals(senderEphemeral)) {
-          return new Pair<Chain,Integer>(receiverChain,index);
+          return new Pair<>(receiverChain,index);
         }
       } catch (InvalidKeyException e) {
         Log.w("SessionRecordV2", e);
@@ -199,7 +201,8 @@ public class SessionState {
     if (receiverChain == null) {
       return null;
     } else {
-      return new ChainKey(receiverChain.getChainKey().getKey().toByteArray(),
+      return new ChainKey(HKDF.createFor(getSessionVersion()),
+                          receiverChain.getChainKey().getKey().toByteArray(),
                           receiverChain.getChainKey().getIndex());
     }
   }
@@ -241,7 +244,8 @@ public class SessionState {
 
   public ChainKey getSenderChainKey() {
     Chain.ChainKey chainKeyStructure = sessionStructure.getSenderChain().getChainKey();
-    return new ChainKey(chainKeyStructure.getKey().toByteArray(), chainKeyStructure.getIndex());
+    return new ChainKey(HKDF.createFor(getSessionVersion()),
+                        chainKeyStructure.getKey().toByteArray(), chainKeyStructure.getIndex());
   }
 
 
@@ -284,7 +288,7 @@ public class SessionState {
       return null;
     }
 
-    List<Chain.MessageKey>     messageKeyList     = new LinkedList<Chain.MessageKey>(chain.getMessageKeysList());
+    List<Chain.MessageKey>     messageKeyList     = new LinkedList<>(chain.getMessageKeysList());
     Iterator<Chain.MessageKey> messageKeyIterator = messageKeyList.iterator();
     MessageKeys                result             = null;
 
