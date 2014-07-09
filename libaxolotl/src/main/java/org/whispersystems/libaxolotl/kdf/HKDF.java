@@ -63,7 +63,7 @@ public abstract class HKDF {
       ByteArrayOutputStream results        = new ByteArrayOutputStream();
       int                   remainingBytes = outputSize;
 
-      for (int i= getIterationStartOffset();i<iterations + getIterationEndOffset();i++) {
+      for (int i= getIterationStartOffset();i<iterations + getIterationStartOffset();i++) {
         Mac mac = Mac.getInstance("HmacSHA256");
         mac.init(new SecretKeySpec(prk, "HmacSHA256"));
 
@@ -89,6 +89,5 @@ public abstract class HKDF {
   }
 
   protected abstract int getIterationStartOffset();
-  protected abstract int getIterationEndOffset();
 
 }

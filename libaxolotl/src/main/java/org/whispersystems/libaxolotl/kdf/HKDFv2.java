@@ -5,9 +5,4 @@ public class HKDFv2 extends HKDF {
   protected int getIterationStartOffset() {
     return 0;
   }
-
-  @Override
-  protected int getIterationEndOffset() {
-    return 0;
-  }
 }
