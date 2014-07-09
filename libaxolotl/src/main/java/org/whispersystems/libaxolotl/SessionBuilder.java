@@ -5,10 +5,10 @@ import android.util.Log;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
-import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
 import org.whispersystems.libaxolotl.state.DeviceKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
@@ -149,7 +149,6 @@ public class SessionBuilder {
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
     sessionRecord.getSessionState().setAliceBaseKey(theirBaseKey.serialize());
-    sessionRecord.getSessionState().setSessionVersion(message.getMessageVersion());
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
@@ -197,7 +196,6 @@ public class SessionBuilder {
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
-    sessionRecord.getSessionState().setSessionVersion(message.getMessageVersion());
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
@@ -277,31 +275,71 @@ public class SessionBuilder {
     }
 
     KeyExchangeMessage responseMessage = null;
-    SessionRecord      sessionRecord   = sessionStore.loadSession(recipientId, deviceId);
 
-    Log.w(TAG, "Received key exchange with sequence: " + message.getSequence());
+    if (message.isInitiate()) responseMessage = processInitiate(message);
+    else                      processResponse(message);
 
-    if (message.isInitiate()) {
-      Log.w(TAG, "KeyExchange is an initiate.");
-      responseMessage = processInitiate(sessionRecord, message);
+    return responseMessage;
+  }
+
+  private KeyExchangeMessage processInitiate(KeyExchangeMessage message) throws InvalidKeyException {
+    ECKeyPair       ourBaseKey,    ourEphemeralKey;
+    IdentityKeyPair ourIdentityKey;
+
+    int           flags         = KeyExchangeMessage.RESPONSE_FLAG;
+    SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
+
+    if (message.getVersion() >= 3 &&
+        !Curve.verifySignature(message.getIdentityKey().getPublicKey(),
+                               message.getBaseKey().serialize(),
+                               message.getBaseKeySignature()))
+    {
+      throw new InvalidKeyException("Bad signature!");
     }
 
-    if (message.isResponse()) {
-      SessionState sessionState                   = sessionRecord.getSessionState();
-      boolean      hasPendingKeyExchange          = sessionState.hasPendingKeyExchange();
-      boolean      isSimultaneousInitiateResponse = message.isResponseForSimultaneousInitiate();
-
-      if ((!hasPendingKeyExchange || sessionState.getPendingKeyExchangeSequence() != message.getSequence()) &&
-          !isSimultaneousInitiateResponse)
-      {
-        throw new StaleKeyExchangeException();
-      }
+    if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
+      Log.w(TAG, "We don't have a pending initiate...");
+      ourBaseKey      = Curve.generateKeyPair(true);
+      ourEphemeralKey = Curve.generateKeyPair(true);
+      ourIdentityKey  = identityKeyStore.getIdentityKeyPair();
+    } else {
+      Log.w(TAG, "We already have a pending initiate, responding as simultaneous initiate...");
+      ourBaseKey      = sessionRecord.getSessionState().getPendingKeyExchangeBaseKey();
+      ourEphemeralKey = sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey();
+      ourIdentityKey  = sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey();
+      flags          |= KeyExchangeMessage.SIMULTAENOUS_INITIATE_FLAG;
     }
 
-    if (message.getSequence() != sessionRecord.getSessionState().getPendingKeyExchangeSequence()) {
-      Log.w("KeyExchangeProcessor", "No matching sequence for response. " +
-          "Is simultaneous initiate response: " + message.isResponseForSimultaneousInitiate());
-      return responseMessage;
+    sessionRecord.reset();
+
+    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
+                                        Math.min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),
+                                        ourBaseKey, message.getBaseKey(),
+                                        ourEphemeralKey, message.getEphemeralKey(),
+                                        ourBaseKey, message.getBaseKey(),
+                                        ourIdentityKey, message.getIdentityKey());
+
+    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+    identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
+
+    return new KeyExchangeMessage(sessionRecord.getSessionState().getSessionVersion(),
+                                  message.getSequence(), flags, ourBaseKey.getPublicKey(), null,
+                                  ourEphemeralKey.getPublicKey(), ourIdentityKey.getPublicKey(),
+                                  sessionRecord.getSessionState().getVerification());
+  }
+
+  private void processResponse(KeyExchangeMessage message)
+      throws StaleKeyExchangeException, InvalidKeyException
+  {
+    SessionRecord sessionRecord                  = sessionStore.loadSession(recipientId, deviceId);
+    SessionState  sessionState                   = sessionRecord.getSessionState();
+    boolean       hasPendingKeyExchange          = sessionState.hasPendingKeyExchange();
+    boolean       isSimultaneousInitiateResponse = message.isResponseForSimultaneousInitiate();
+
+    if (!hasPendingKeyExchange || sessionState.getPendingKeyExchangeSequence() != message.getSequence()) {
+      Log.w(TAG, "No matching sequence for response. Is simultaneous initiate response: " + isSimultaneousInitiateResponse);
+      if (!isSimultaneousInitiateResponse) throw new StaleKeyExchangeException();
+      else                                 return;
     }
 
     ECKeyPair       ourBaseKey      = sessionRecord.getSessionState().getPendingKeyExchangeBaseKey();
@@ -311,51 +349,22 @@ public class SessionBuilder {
     sessionRecord.reset();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                        2,
+                                        Math.min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),
                                         ourBaseKey, message.getBaseKey(),
                                         ourEphemeralKey, message.getEphemeralKey(),
-                                        null, null,
+                                        ourBaseKey, message.getBaseKey(),
                                         ourIdentityKey, message.getIdentityKey());
 
-    sessionRecord.getSessionState().setSessionVersion(message.getVersion());
-    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
-
-    identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
-
-    return responseMessage;
-  }
-
-  private KeyExchangeMessage processInitiate(SessionRecord sessionRecord, KeyExchangeMessage message)
-      throws InvalidKeyException
-  {
-    ECKeyPair       ourBaseKey, ourEphemeralKey;
-    IdentityKeyPair ourIdentityKey;
-
-    int flags = KeyExchangeMessage.RESPONSE_FLAG;
-
-    if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
-      Log.w(TAG, "We don't have a pending initiate...");
-      ourBaseKey      = Curve.generateKeyPair(true);
-      ourEphemeralKey = Curve.generateKeyPair(true);
-      ourIdentityKey  = identityKeyStore.getIdentityKeyPair();
-
-      sessionRecord.getSessionState().setPendingKeyExchange(message.getSequence(), ourBaseKey,
-                                                            ourEphemeralKey, ourIdentityKey);
-    } else {
-      Log.w(TAG, "We already have a pending initiate, responding as simultaneous initiate...");
-      ourBaseKey      = sessionRecord.getSessionState().getPendingKeyExchangeBaseKey();
-      ourEphemeralKey = sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey();
-      ourIdentityKey  = sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey();
-      flags          |= KeyExchangeMessage.SIMULTAENOUS_INITIATE_FLAG;
-
-      sessionRecord.getSessionState().setPendingKeyExchange(message.getSequence(), ourBaseKey,
-                                                            ourEphemeralKey, ourIdentityKey);
+    if (sessionRecord.getSessionState().getSessionVersion() >= 3 &&
+        !MessageDigest.isEqual(message.getVerificationTag(),
+                               sessionRecord.getSessionState().getVerification()))
+    {
+      throw new InvalidKeyException("Verification tag doesn't match!");
     }
 
-    return new KeyExchangeMessage(message.getSequence(),
-                                  flags, ourBaseKey.getPublicKey(),
-                                  ourEphemeralKey.getPublicKey(),
-                                  ourIdentityKey.getPublicKey());
+    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+    identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
+
   }
 
   /**
@@ -374,10 +383,10 @@ public class SessionBuilder {
     sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
     sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
-    return new KeyExchangeMessage(sequence, flags,
-                                  baseKey.getPublicKey(),
+    return new KeyExchangeMessage(2, sequence, flags,
+                                  baseKey.getPublicKey(), null,
                                   ephemeralKey.getPublicKey(),
-                                  identityKey.getPublicKey());
+                                  identityKey.getPublicKey(), null);
   }
 
 

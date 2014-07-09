@@ -1621,6 +1621,26 @@ public final class WhisperProtos {
      * <code>optional bytes identityKey = 4;</code>
      */
     com.google.protobuf.ByteString getIdentityKey();
+
+    // optional bytes baseKeySignature = 5;
+    /**
+     * <code>optional bytes baseKeySignature = 5;</code>
+     */
+    boolean hasBaseKeySignature();
+    /**
+     * <code>optional bytes baseKeySignature = 5;</code>
+     */
+    com.google.protobuf.ByteString getBaseKeySignature();
+
+    // optional bytes verification = 6;
+    /**
+     * <code>optional bytes verification = 6;</code>
+     */
+    boolean hasVerification();
+    /**
+     * <code>optional bytes verification = 6;</code>
+     */
+    com.google.protobuf.ByteString getVerification();
   }
   /**
    * Protobuf type {@code textsecure.KeyExchangeMessage}
@@ -1691,6 +1711,16 @@ public final class WhisperProtos {
             case 34: {
               bitField0_ |= 0x00000008;
               identityKey_ = input.readBytes();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000010;
+              baseKeySignature_ = input.readBytes();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              verification_ = input.readBytes();
               break;
             }
           }
@@ -1797,11 +1827,45 @@ public final class WhisperProtos {
       return identityKey_;
     }
 
+    // optional bytes baseKeySignature = 5;
+    public static final int BASEKEYSIGNATURE_FIELD_NUMBER = 5;
+    private com.google.protobuf.ByteString baseKeySignature_;
+    /**
+     * <code>optional bytes baseKeySignature = 5;</code>
+     */
+    public boolean hasBaseKeySignature() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional bytes baseKeySignature = 5;</code>
+     */
+    public com.google.protobuf.ByteString getBaseKeySignature() {
+      return baseKeySignature_;
+    }
+
+    // optional bytes verification = 6;
+    public static final int VERIFICATION_FIELD_NUMBER = 6;
+    private com.google.protobuf.ByteString verification_;
+    /**
+     * <code>optional bytes verification = 6;</code>
+     */
+    public boolean hasVerification() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional bytes verification = 6;</code>
+     */
+    public com.google.protobuf.ByteString getVerification() {
+      return verification_;
+    }
+
     private void initFields() {
       id_ = 0;
       baseKey_ = com.google.protobuf.ByteString.EMPTY;
       ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
       identityKey_ = com.google.protobuf.ByteString.EMPTY;
+      baseKeySignature_ = com.google.protobuf.ByteString.EMPTY;
+      verification_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1827,6 +1891,12 @@ public final class WhisperProtos {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeBytes(4, identityKey_);
       }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, baseKeySignature_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, verification_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -1851,6 +1921,14 @@ public final class WhisperProtos {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(4, identityKey_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, baseKeySignature_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, verification_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1976,6 +2054,10 @@ public final class WhisperProtos {
         bitField0_ = (bitField0_ & ~0x00000004);
         identityKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000008);
+        baseKeySignature_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        verification_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -2020,6 +2102,14 @@ public final class WhisperProtos {
           to_bitField0_ |= 0x00000008;
         }
         result.identityKey_ = identityKey_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.baseKeySignature_ = baseKeySignature_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.verification_ = verification_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2047,6 +2137,12 @@ public final class WhisperProtos {
         }
         if (other.hasIdentityKey()) {
           setIdentityKey(other.getIdentityKey());
+        }
+        if (other.hasBaseKeySignature()) {
+          setBaseKeySignature(other.getBaseKeySignature());
+        }
+        if (other.hasVerification()) {
+          setVerification(other.getVerification());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2216,6 +2312,78 @@ public final class WhisperProtos {
         return this;
       }
 
+      // optional bytes baseKeySignature = 5;
+      private com.google.protobuf.ByteString baseKeySignature_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes baseKeySignature = 5;</code>
+       */
+      public boolean hasBaseKeySignature() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional bytes baseKeySignature = 5;</code>
+       */
+      public com.google.protobuf.ByteString getBaseKeySignature() {
+        return baseKeySignature_;
+      }
+      /**
+       * <code>optional bytes baseKeySignature = 5;</code>
+       */
+      public Builder setBaseKeySignature(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        baseKeySignature_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes baseKeySignature = 5;</code>
+       */
+      public Builder clearBaseKeySignature() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        baseKeySignature_ = getDefaultInstance().getBaseKeySignature();
+        onChanged();
+        return this;
+      }
+
+      // optional bytes verification = 6;
+      private com.google.protobuf.ByteString verification_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes verification = 6;</code>
+       */
+      public boolean hasVerification() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional bytes verification = 6;</code>
+       */
+      public com.google.protobuf.ByteString getVerification() {
+        return verification_;
+      }
+      /**
+       * <code>optional bytes verification = 6;</code>
+       */
+      public Builder setVerification(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        verification_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes verification = 6;</code>
+       */
+      public Builder clearVerification() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        verification_ = getDefaultInstance().getVerification();
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:textsecure.KeyExchangeMessage)
     }
 
@@ -2258,11 +2426,12 @@ public final class WhisperProtos {
       "essage\022\026\n\016registrationId\030\005 \001(\r\022\020\n\010preKey" +
       "Id\030\001 \001(\r\022\023\n\013deviceKeyId\030\006 \001(\r\022\017\n\007baseKey" +
       "\030\002 \001(\014\022\023\n\013identityKey\030\003 \001(\014\022\024\n\014verificat" +
-      "ion\030\007 \001(\014\022\017\n\007message\030\004 \001(\014\"\\\n\022KeyExchang" +
-      "eMessage\022\n\n\002id\030\001 \001(\r\022\017\n\007baseKey\030\002 \001(\014\022\024\n" +
-      "\014ephemeralKey\030\003 \001(\014\022\023\n\013identityKey\030\004 \001(\014",
-      "B7\n&org.whispersystems.libaxolotl.protoc" +
-      "olB\rWhisperProtos"
+      "ion\030\007 \001(\014\022\017\n\007message\030\004 \001(\014\"\214\001\n\022KeyExchan" +
+      "geMessage\022\n\n\002id\030\001 \001(\r\022\017\n\007baseKey\030\002 \001(\014\022\024" +
+      "\n\014ephemeralKey\030\003 \001(\014\022\023\n\013identityKey\030\004 \001(",
+      "\014\022\030\n\020baseKeySignature\030\005 \001(\014\022\024\n\014verificat" +
+      "ion\030\006 \001(\014B7\n&org.whispersystems.libaxolo" +
+      "tl.protocolB\rWhisperProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2286,7 +2455,7 @@ public final class WhisperProtos {
           internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_KeyExchangeMessage_descriptor,
-              new java.lang.String[] { "Id", "BaseKey", "EphemeralKey", "IdentityKey", });
+              new java.lang.String[] { "Id", "BaseKey", "EphemeralKey", "IdentityKey", "BaseKeySignature", "Verification", });
           return null;
         }
       };

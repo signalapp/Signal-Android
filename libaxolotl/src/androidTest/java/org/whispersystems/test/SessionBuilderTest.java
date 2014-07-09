@@ -501,7 +501,7 @@ public class SessionBuilderTest extends AndroidTestCase {
   }
 
 
-  public void testBasicKeyExchange() throws InvalidKeyException, LegacyMessageException, InvalidMessageException, DuplicateMessageException, UntrustedIdentityException, StaleKeyExchangeException {
+  public void testBasicKeyExchange() throws InvalidKeyException, LegacyMessageException, InvalidMessageException, DuplicateMessageException, UntrustedIdentityException, StaleKeyExchangeException, InvalidVersionException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
@@ -520,13 +520,16 @@ public class SessionBuilderTest extends AndroidTestCase {
                                                               bobIdentityKeyStore,
                                                               ALICE_RECIPIENT_ID, 1);
 
-    KeyExchangeMessage aliceKeyExchangeMessage = aliceSessionBuilder.process();
-    KeyExchangeMessage bobKeyExchangeMessage   = bobSessionBuilder.process(aliceKeyExchangeMessage);
-
-    assertTrue(bobKeyExchangeMessage != null);
+    KeyExchangeMessage aliceKeyExchangeMessage      = aliceSessionBuilder.process();
     assertTrue(aliceKeyExchangeMessage != null);
 
-    KeyExchangeMessage response = aliceSessionBuilder.process(bobKeyExchangeMessage);
+    byte[]             aliceKeyExchangeMessageBytes = aliceKeyExchangeMessage.serialize();
+    KeyExchangeMessage bobKeyExchangeMessage        = bobSessionBuilder.process(new KeyExchangeMessage(aliceKeyExchangeMessageBytes));
+
+    assertTrue(bobKeyExchangeMessage != null);
+
+    byte[]             bobKeyExchangeMessageBytes = bobKeyExchangeMessage.serialize();
+    KeyExchangeMessage response                   = aliceSessionBuilder.process(new KeyExchangeMessage(bobKeyExchangeMessageBytes));
 
     assertTrue(response == null);
     assertTrue(aliceSessionStore.containsSession(BOB_RECIPIENT_ID, 1));
