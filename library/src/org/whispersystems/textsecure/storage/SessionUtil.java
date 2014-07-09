@@ -7,6 +7,17 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 
 public class SessionUtil {
 
+  public static int getSessionVersion(Context context,
+                                      MasterSecret masterSecret,
+                                      RecipientDevice recipient)
+  {
+    return
+        new TextSecureSessionStore(context, masterSecret)
+            .loadSession(recipient.getRecipientId(), recipient.getDeviceId())
+            .getSessionState()
+            .getSessionVersion();
+  }
+
   public static boolean hasEncryptCapableSession(Context context,
                                                  MasterSecret masterSecret,
                                                  CanonicalRecipient recipient)

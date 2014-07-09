@@ -52,8 +52,11 @@ import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipherFactory;
+import org.whispersystems.textsecure.crypto.TransportDetails;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.push.PushTransportDetails;
 import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.storage.SessionUtil;
 import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
@@ -210,10 +213,12 @@ public class DecryptingQueue {
           return;
         }
 
-        SessionCipher sessionCipher = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
-        byte[]        plaintextBody = sessionCipher.decrypt(message.getBody());
+        int              sessionVersion = SessionUtil.getSessionVersion(context, masterSecret, recipientDevice);
+        SessionCipher    sessionCipher  = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
+        byte[]           plaintextBody  = sessionCipher.decrypt(message.getBody());
+        TransportDetails transport      = new PushTransportDetails(sessionVersion);
 
-        message = message.withBody(plaintextBody);
+        message = message.withBody(transport.getStrippedPaddingMessageBody(plaintextBody));
         sendResult(PushReceiver.RESULT_OK);
       } catch (InvalidMessageException | LegacyMessageException | RecipientFormattingException e) {
         Log.w("DecryptionQueue", e);

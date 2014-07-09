@@ -168,6 +168,13 @@ public class SessionCipher {
     }
 
     WhisperMessage ciphertextMessage = new WhisperMessage(decodedMessage);
+
+    if (ciphertextMessage.getMessageVersion() != sessionState.getSessionVersion()) {
+      throw new InvalidMessageException(String.format("Message version %d, but session version %d",
+                                                      ciphertextMessage.getMessageVersion(),
+                                                      sessionState.getSessionVersion()));
+    }
+
     ECPublicKey    theirEphemeral    = ciphertextMessage.getSenderEphemeral();
     int            counter           = ciphertextMessage.getCounter();
     ChainKey       chainKey          = getOrCreateChainKey(sessionState, theirEphemeral);

@@ -52,6 +52,7 @@ import org.whispersystems.textsecure.push.PushAttachmentPointer;
 import org.whispersystems.textsecure.push.PushBody;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.PushTransportDetails;
 import org.whispersystems.textsecure.push.StaleDevices;
 import org.whispersystems.textsecure.push.StaleDevicesException;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
@@ -344,8 +345,10 @@ public class PushTransport extends BaseTransport {
       }
     }
 
+    int               sessionVersion       = SessionUtil.getSessionVersion(context, masterSecret, pushAddress);
     SessionCipher     cipher               = SessionCipherFactory.getInstance(context, masterSecret, pushAddress);
-    CiphertextMessage message              = cipher.encrypt(plaintext);
+    byte[]            paddedPlaintext      = new PushTransportDetails(sessionVersion).getPaddedMessageBody(plaintext);
+    CiphertextMessage message              = cipher.encrypt(paddedPlaintext);
     int               remoteRegistrationId = cipher.getRemoteRegistrationId();
 
     if (message.getType() == CiphertextMessage.PREKEY_TYPE) {
