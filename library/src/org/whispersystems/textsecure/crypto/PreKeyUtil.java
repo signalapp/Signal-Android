@@ -28,8 +28,8 @@ import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.Curve25519;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
-import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
-import org.whispersystems.libaxolotl.state.DeviceKeyStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.util.Medium;
@@ -66,18 +66,18 @@ public class PreKeyUtil {
     return records;
   }
 
-  public static DeviceKeyRecord generateDeviceKey(Context context, MasterSecret masterSecret,
-                                                  IdentityKeyPair identityKeyPair)
+  public static SignedPreKeyRecord generateSignedPreKey(Context context, MasterSecret masterSecret,
+                                                        IdentityKeyPair identityKeyPair)
   {
     try {
-      DeviceKeyStore  deviceKeyStore = new TextSecurePreKeyStore(context, masterSecret);
-      int             deviceKeyId    = getNextDeviceKeyId(context);
-      ECKeyPair       keyPair        = Curve25519.generateKeyPair(true);
-      byte[]          signature      = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());
-      DeviceKeyRecord record         = new DeviceKeyRecord(deviceKeyId, System.currentTimeMillis(), keyPair, signature);
+      SignedPreKeyStore  signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
+      int                signedPreKeyId    = getNextSignedPreKeyId(context);
+      ECKeyPair          keyPair           = Curve25519.generateKeyPair(true);
+      byte[]             signature         = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());
+      SignedPreKeyRecord record            = new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
 
-      deviceKeyStore.storeDeviceKey(deviceKeyId, record);
-      setNextDeviceKeyId(context, (deviceKeyId + 1) % Medium.MAX_VALUE);
+      signedPreKeyStore.storeSignedPreKey(signedPreKeyId, record);
+      setNextSignedPreKeyId(context, (signedPreKeyId + 1) % Medium.MAX_VALUE);
 
       return record;
     } catch (InvalidKeyException e) {
@@ -116,11 +116,11 @@ public class PreKeyUtil {
     }
   }
 
-  private static void setNextDeviceKeyId(Context context, int id) {
+  private static void setNextSignedPreKeyId(Context context, int id) {
     try {
-      File             nextFile = new File(getDeviceKeysDirectory(context), DeviceKeyIndex.FILE_NAME);
+      File             nextFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
       FileOutputStream fout     = new FileOutputStream(nextFile);
-      fout.write(new Gson().toJson(new DeviceKeyIndex(id)).getBytes());
+      fout.write(new Gson().toJson(new SignedPreKeyIndex(id)).getBytes());
       fout.close();
     } catch (IOException e) {
       Log.w("PreKeyUtil", e);
@@ -145,17 +145,17 @@ public class PreKeyUtil {
     }
   }
 
-  private static int getNextDeviceKeyId(Context context) {
+  private static int getNextSignedPreKeyId(Context context) {
     try {
-      File nextFile = new File(getDeviceKeysDirectory(context), DeviceKeyIndex.FILE_NAME);
+      File nextFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
 
       if (!nextFile.exists()) {
         return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
       } else {
         InputStreamReader reader = new InputStreamReader(new FileInputStream(nextFile));
-        DeviceKeyIndex    index  = new Gson().fromJson(reader, DeviceKeyIndex.class);
+        SignedPreKeyIndex index  = new Gson().fromJson(reader, SignedPreKeyIndex.class);
         reader.close();
-        return index.nextDeviceKeyId;
+        return index.nextSignedPreKeyId;
       }
     } catch (IOException e) {
       Log.w("PreKeyUtil", e);
@@ -167,8 +167,8 @@ public class PreKeyUtil {
     return getKeysDirectory(context, TextSecurePreKeyStore.PREKEY_DIRECTORY);
   }
 
-  private static File getDeviceKeysDirectory(Context context) {
-    return getKeysDirectory(context, TextSecurePreKeyStore.DEVICE_KEY_DIRECTORY);
+  private static File getSignedPreKeysDirectory(Context context) {
+    return getKeysDirectory(context, TextSecurePreKeyStore.SIGNED_PREKEY_DIRECTORY);
   }
 
   private static File getKeysDirectory(Context context, String name) {
@@ -192,15 +192,15 @@ public class PreKeyUtil {
     }
   }
 
-  private static class DeviceKeyIndex {
+  private static class SignedPreKeyIndex {
     public static final String FILE_NAME = "index.dat";
 
-    private int nextDeviceKeyId;
+    private int nextSignedPreKeyId;
 
-    public DeviceKeyIndex() {}
+    public SignedPreKeyIndex() {}
 
-    public DeviceKeyIndex(int nextDeviceKeyId) {
-      this.nextDeviceKeyId = nextDeviceKeyId;
+    public SignedPreKeyIndex(int nextSignedPreKeyId) {
+      this.nextSignedPreKeyId = nextSignedPreKeyId;
     }
   }
 

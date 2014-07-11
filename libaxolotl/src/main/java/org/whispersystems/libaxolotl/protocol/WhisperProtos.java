@@ -676,15 +676,15 @@ public final class WhisperProtos {
      */
     int getPreKeyId();
 
-    // optional uint32 deviceKeyId = 6;
+    // optional uint32 signedPreKeyId = 6;
     /**
-     * <code>optional uint32 deviceKeyId = 6;</code>
+     * <code>optional uint32 signedPreKeyId = 6;</code>
      */
-    boolean hasDeviceKeyId();
+    boolean hasSignedPreKeyId();
     /**
-     * <code>optional uint32 deviceKeyId = 6;</code>
+     * <code>optional uint32 signedPreKeyId = 6;</code>
      */
-    int getDeviceKeyId();
+    int getSignedPreKeyId();
 
     // optional bytes baseKey = 2;
     /**
@@ -812,7 +812,7 @@ public final class WhisperProtos {
             }
             case 48: {
               bitField0_ |= 0x00000004;
-              deviceKeyId_ = input.readUInt32();
+              signedPreKeyId_ = input.readUInt32();
               break;
             }
             case 58: {
@@ -892,20 +892,20 @@ public final class WhisperProtos {
       return preKeyId_;
     }
 
-    // optional uint32 deviceKeyId = 6;
-    public static final int DEVICEKEYID_FIELD_NUMBER = 6;
-    private int deviceKeyId_;
+    // optional uint32 signedPreKeyId = 6;
+    public static final int SIGNEDPREKEYID_FIELD_NUMBER = 6;
+    private int signedPreKeyId_;
     /**
-     * <code>optional uint32 deviceKeyId = 6;</code>
+     * <code>optional uint32 signedPreKeyId = 6;</code>
      */
-    public boolean hasDeviceKeyId() {
+    public boolean hasSignedPreKeyId() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional uint32 deviceKeyId = 6;</code>
+     * <code>optional uint32 signedPreKeyId = 6;</code>
      */
-    public int getDeviceKeyId() {
-      return deviceKeyId_;
+    public int getSignedPreKeyId() {
+      return signedPreKeyId_;
     }
 
     // optional bytes baseKey = 2;
@@ -983,7 +983,7 @@ public final class WhisperProtos {
     private void initFields() {
       registrationId_ = 0;
       preKeyId_ = 0;
-      deviceKeyId_ = 0;
+      signedPreKeyId_ = 0;
       baseKey_ = com.google.protobuf.ByteString.EMPTY;
       identityKey_ = com.google.protobuf.ByteString.EMPTY;
       verification_ = com.google.protobuf.ByteString.EMPTY;
@@ -1017,7 +1017,7 @@ public final class WhisperProtos {
         output.writeUInt32(5, registrationId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt32(6, deviceKeyId_);
+        output.writeUInt32(6, signedPreKeyId_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeBytes(7, verification_);
@@ -1053,7 +1053,7 @@ public final class WhisperProtos {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(6, deviceKeyId_);
+          .computeUInt32Size(6, signedPreKeyId_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1179,7 +1179,7 @@ public final class WhisperProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         preKeyId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        deviceKeyId_ = 0;
+        signedPreKeyId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
         baseKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -1228,7 +1228,7 @@ public final class WhisperProtos {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.deviceKeyId_ = deviceKeyId_;
+        result.signedPreKeyId_ = signedPreKeyId_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -1267,8 +1267,8 @@ public final class WhisperProtos {
         if (other.hasPreKeyId()) {
           setPreKeyId(other.getPreKeyId());
         }
-        if (other.hasDeviceKeyId()) {
-          setDeviceKeyId(other.getDeviceKeyId());
+        if (other.hasSignedPreKeyId()) {
+          setSignedPreKeyId(other.getSignedPreKeyId());
         }
         if (other.hasBaseKey()) {
           setBaseKey(other.getBaseKey());
@@ -1375,35 +1375,35 @@ public final class WhisperProtos {
         return this;
       }
 
-      // optional uint32 deviceKeyId = 6;
-      private int deviceKeyId_ ;
+      // optional uint32 signedPreKeyId = 6;
+      private int signedPreKeyId_ ;
       /**
-       * <code>optional uint32 deviceKeyId = 6;</code>
+       * <code>optional uint32 signedPreKeyId = 6;</code>
        */
-      public boolean hasDeviceKeyId() {
+      public boolean hasSignedPreKeyId() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional uint32 deviceKeyId = 6;</code>
+       * <code>optional uint32 signedPreKeyId = 6;</code>
        */
-      public int getDeviceKeyId() {
-        return deviceKeyId_;
+      public int getSignedPreKeyId() {
+        return signedPreKeyId_;
       }
       /**
-       * <code>optional uint32 deviceKeyId = 6;</code>
+       * <code>optional uint32 signedPreKeyId = 6;</code>
        */
-      public Builder setDeviceKeyId(int value) {
+      public Builder setSignedPreKeyId(int value) {
         bitField0_ |= 0x00000004;
-        deviceKeyId_ = value;
+        signedPreKeyId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 deviceKeyId = 6;</code>
+       * <code>optional uint32 signedPreKeyId = 6;</code>
        */
-      public Builder clearDeviceKeyId() {
+      public Builder clearSignedPreKeyId() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        deviceKeyId_ = 0;
+        signedPreKeyId_ = 0;
         onChanged();
         return this;
       }
@@ -2422,16 +2422,16 @@ public final class WhisperProtos {
       "\n\031WhisperTextProtocol.proto\022\ntextsecure\"" +
       "d\n\016WhisperMessage\022\024\n\014ephemeralKey\030\001 \001(\014\022" +
       "\017\n\007counter\030\002 \001(\r\022\027\n\017previousCounter\030\003 \001(" +
-      "\r\022\022\n\nciphertext\030\004 \001(\014\"\242\001\n\024PreKeyWhisperM" +
+      "\r\022\022\n\nciphertext\030\004 \001(\014\"\245\001\n\024PreKeyWhisperM" +
       "essage\022\026\n\016registrationId\030\005 \001(\r\022\020\n\010preKey" +
-      "Id\030\001 \001(\r\022\023\n\013deviceKeyId\030\006 \001(\r\022\017\n\007baseKey" +
-      "\030\002 \001(\014\022\023\n\013identityKey\030\003 \001(\014\022\024\n\014verificat" +
-      "ion\030\007 \001(\014\022\017\n\007message\030\004 \001(\014\"\214\001\n\022KeyExchan" +
-      "geMessage\022\n\n\002id\030\001 \001(\r\022\017\n\007baseKey\030\002 \001(\014\022\024" +
-      "\n\014ephemeralKey\030\003 \001(\014\022\023\n\013identityKey\030\004 \001(",
-      "\014\022\030\n\020baseKeySignature\030\005 \001(\014\022\024\n\014verificat" +
-      "ion\030\006 \001(\014B7\n&org.whispersystems.libaxolo" +
-      "tl.protocolB\rWhisperProtos"
+      "Id\030\001 \001(\r\022\026\n\016signedPreKeyId\030\006 \001(\r\022\017\n\007base" +
+      "Key\030\002 \001(\014\022\023\n\013identityKey\030\003 \001(\014\022\024\n\014verifi" +
+      "cation\030\007 \001(\014\022\017\n\007message\030\004 \001(\014\"\214\001\n\022KeyExc" +
+      "hangeMessage\022\n\n\002id\030\001 \001(\r\022\017\n\007baseKey\030\002 \001(" +
+      "\014\022\024\n\014ephemeralKey\030\003 \001(\014\022\023\n\013identityKey\030\004",
+      " \001(\014\022\030\n\020baseKeySignature\030\005 \001(\014\022\024\n\014verifi" +
+      "cation\030\006 \001(\014B7\n&org.whispersystems.libax" +
+      "olotl.protocolB\rWhisperProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2449,7 +2449,7 @@ public final class WhisperProtos {
           internal_static_textsecure_PreKeyWhisperMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PreKeyWhisperMessage_descriptor,
-              new java.lang.String[] { "RegistrationId", "PreKeyId", "DeviceKeyId", "BaseKey", "IdentityKey", "Verification", "Message", });
+              new java.lang.String[] { "RegistrationId", "PreKeyId", "SignedPreKeyId", "BaseKey", "IdentityKey", "Verification", "Message", });
           internal_static_textsecure_KeyExchangeMessage_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable = new

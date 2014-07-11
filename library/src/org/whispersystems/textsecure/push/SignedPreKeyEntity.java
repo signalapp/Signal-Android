@@ -15,13 +15,13 @@ import org.whispersystems.textsecure.util.Base64;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
-public class DeviceKeyEntity extends PreKeyEntity {
+public class SignedPreKeyEntity extends PreKeyEntity {
 
   private byte[] signature;
 
-  public DeviceKeyEntity() {}
+  public SignedPreKeyEntity() {}
 
-  public DeviceKeyEntity(int keyId, ECPublicKey publicKey, byte[] signature) {
+  public SignedPreKeyEntity(int keyId, ECPublicKey publicKey, byte[] signature) {
     super(keyId, publicKey);
     this.signature = signature;
   }

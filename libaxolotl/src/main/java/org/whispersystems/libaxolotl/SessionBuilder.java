@@ -9,7 +9,7 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
-import org.whispersystems.libaxolotl.state.DeviceKeyStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
@@ -43,12 +43,12 @@ public class SessionBuilder {
 
   private static final String TAG = SessionBuilder.class.getSimpleName();
 
-  private final SessionStore     sessionStore;
-  private final PreKeyStore      preKeyStore;
-  private final DeviceKeyStore   deviceKeyStore;
-  private final IdentityKeyStore identityKeyStore;
-  private final long             recipientId;
-  private final int              deviceId;
+  private final SessionStore      sessionStore;
+  private final PreKeyStore       preKeyStore;
+  private final SignedPreKeyStore signedPreKeyStore;
+  private final IdentityKeyStore  identityKeyStore;
+  private final long              recipientId;
+  private final int               deviceId;
 
   /**
    * Constructs a SessionBuilder.
@@ -61,16 +61,16 @@ public class SessionBuilder {
    */
   public SessionBuilder(SessionStore sessionStore,
                         PreKeyStore preKeyStore,
-                        DeviceKeyStore deviceKeyStore,
+                        SignedPreKeyStore signedPreKeyStore,
                         IdentityKeyStore identityKeyStore,
                         long recipientId, int deviceId)
   {
-    this.sessionStore     = sessionStore;
-    this.preKeyStore      = preKeyStore;
-    this.deviceKeyStore   = deviceKeyStore;
-    this.identityKeyStore = identityKeyStore;
-    this.recipientId      = recipientId;
-    this.deviceId         = deviceId;
+    this.sessionStore      = sessionStore;
+    this.preKeyStore       = preKeyStore;
+    this.signedPreKeyStore = signedPreKeyStore;
+    this.identityKeyStore  = identityKeyStore;
+    this.recipientId       = recipientId;
+    this.deviceId          = deviceId;
   }
 
   /**
@@ -109,7 +109,7 @@ public class SessionBuilder {
   {
     SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
     int           preKeyId          = message.getPreKeyId();
-    int           deviceKeyId       = message.getDeviceKeyId();
+    int           signedPreKeyId    = message.getSignedPreKeyId();
     ECPublicKey   theirBaseKey      = message.getBaseKey();
     ECPublicKey   theirEphemeralKey = message.getWhisperMessage().getSenderEphemeral();
     IdentityKey   theirIdentityKey  = message.getIdentityKey();
@@ -122,10 +122,10 @@ public class SessionBuilder {
     if (preKeyId >=0 && !preKeyStore.containsPreKey(preKeyId))
       throw new InvalidKeyIdException("No such prekey: " + preKeyId);
 
-    if (!deviceKeyStore.containsDeviceKey(deviceKeyId))
-      throw new InvalidKeyIdException("No such device key: " + deviceKeyId);
+    if (!signedPreKeyStore.containsSignedPreKey(signedPreKeyId))
+      throw new InvalidKeyIdException("No such device key: " + signedPreKeyId);
 
-    ECKeyPair       ourBaseKey           = deviceKeyStore.loadDeviceKey(deviceKeyId).getKeyPair();
+    ECKeyPair       ourBaseKey           = signedPreKeyStore.loadSignedPreKey(signedPreKeyId).getKeyPair();
     ECKeyPair       ourEphemeralKey      = ourBaseKey;
     ECKeyPair       ourPreKey            = preKeyId < 0 ? ourBaseKey : preKeyStore.loadPreKey(preKeyId).getKeyPair();
     ECPublicKey     theirPreKey          = theirBaseKey;
@@ -222,10 +222,10 @@ public class SessionBuilder {
       throw new UntrustedIdentityException();
     }
 
-    if (preKey.getDeviceKey() != null &&
+    if (preKey.getSignedPreKey() != null &&
         !Curve.verifySignature(preKey.getIdentityKey().getPublicKey(),
-                               preKey.getDeviceKey().serialize(),
-                               preKey.getDeviceKeySignature()))
+                               preKey.getSignedPreKey().serialize(),
+                               preKey.getSignedPreKeySignature()))
     {
       throw new InvalidKeyException("Invalid signature on device key!");
     }
@@ -238,19 +238,19 @@ public class SessionBuilder {
 
     IdentityKey     theirIdentityKey  = preKey.getIdentityKey();
     ECPublicKey     theirPreKey       = preKey.getPreKey();
-    ECPublicKey     theirBaseKey      = preKey.getDeviceKey() == null ? preKey.getPreKey() : preKey.getDeviceKey();
+    ECPublicKey     theirBaseKey      = preKey.getSignedPreKey() == null ? preKey.getPreKey() : preKey.getSignedPreKey();
     ECPublicKey     theirEphemeralKey = theirBaseKey;
 
     if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
     else                                                   sessionRecord.reset();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                        preKey.getDeviceKey() == null ? 2 : 3,
+                                        preKey.getSignedPreKey() == null ? 2 : 3,
                                         ourBaseKey, theirBaseKey, ourEphemeralKey,
                                         theirEphemeralKey, ourPreKey, theirPreKey,
                                         ourIdentityKey, theirIdentityKey);
 
-    sessionRecord.getSessionState().setPendingPreKey(preKey.getPreKeyId(), preKey.getDeviceKeyId(), ourBaseKey.getPublicKey());
+    sessionRecord.getSessionState().setPendingPreKey(preKey.getPreKeyId(), preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
 

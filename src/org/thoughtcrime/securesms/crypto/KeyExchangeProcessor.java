@@ -15,13 +15,12 @@ import org.whispersystems.libaxolotl.StaleKeyExchangeException;
 import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
-import org.whispersystems.libaxolotl.state.DeviceKeyStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.push.PreKeyEntity;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.TextSecurePreKeyStore;
 import org.whispersystems.textsecure.storage.TextSecureSessionStore;
@@ -48,12 +47,12 @@ public class KeyExchangeProcessor {
     this.recipientDevice = recipientDevice;
     this.masterSecret    = masterSecret;
 
-    IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(context, masterSecret);
-    PreKeyStore      preKeyStore      = new TextSecurePreKeyStore(context, masterSecret);
-    DeviceKeyStore   deviceKeyStore   = new TextSecurePreKeyStore(context, masterSecret);
-    SessionStore     sessionStore     = new TextSecureSessionStore(context, masterSecret);
+    IdentityKeyStore  identityKeyStore  = new TextSecureIdentityKeyStore(context, masterSecret);
+    PreKeyStore       preKeyStore       = new TextSecurePreKeyStore(context, masterSecret);
+    SignedPreKeyStore signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
+    SessionStore      sessionStore      = new TextSecureSessionStore(context, masterSecret);
 
-    this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, deviceKeyStore,
+    this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
                                              identityKeyStore, recipientDevice.getRecipientId(),
                                              recipientDevice.getDeviceId());
   }

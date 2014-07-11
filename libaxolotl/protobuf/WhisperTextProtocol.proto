@@ -13,7 +13,7 @@ message WhisperMessage {
 message PreKeyWhisperMessage {
   optional uint32 registrationId = 5;
   optional uint32 preKeyId       = 1;
-  optional uint32 deviceKeyId    = 6;
+  optional uint32 signedPreKeyId = 6;
   optional bytes  baseKey        = 2;
   optional bytes  identityKey    = 3;
   optional bytes  verification   = 7;

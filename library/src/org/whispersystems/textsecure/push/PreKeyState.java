@@ -11,21 +11,21 @@ public class PreKeyState {
   private IdentityKey        identityKey;
   private List<PreKeyEntity> preKeys;
   private PreKeyEntity       lastResortKey;
-  private DeviceKeyEntity    deviceKey;
+  private SignedPreKeyEntity signedPreKey;
 
 
   public PreKeyState(List<PreKeyEntity> preKeys, PreKeyEntity lastResortKey,
-                     DeviceKeyEntity deviceKey, IdentityKey identityKey)
+                     SignedPreKeyEntity signedPreKey, IdentityKey identityKey)
   {
     this.preKeys       = preKeys;
     this.lastResortKey = lastResortKey;
-    this.deviceKey     = deviceKey;
+    this.signedPreKey  = signedPreKey;
     this.identityKey   = identityKey;
   }
 
   public static String toJson(PreKeyState state) {
     GsonBuilder builder = new GsonBuilder();
-    return DeviceKeyEntity.forBuilder(builder)
+    return SignedPreKeyEntity.forBuilder(builder)
                           .registerTypeAdapter(IdentityKey.class, new PreKeyResponse.IdentityKeyJsonAdapter())
                           .create().toJson(state);
   }

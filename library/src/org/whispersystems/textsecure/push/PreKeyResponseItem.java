@@ -4,10 +4,10 @@ import com.google.thoughtcrimegson.GsonBuilder;
 
 public class PreKeyResponseItem {
 
-  private int             deviceId;
-  private int             registrationId;
-  private DeviceKeyEntity deviceKey;
-  private PreKeyEntity    preKey;
+  private int                deviceId;
+  private int                registrationId;
+  private SignedPreKeyEntity signedPreKey;
+  private PreKeyEntity       preKey;
 
   public int getDeviceId() {
     return deviceId;
@@ -17,8 +17,8 @@ public class PreKeyResponseItem {
     return registrationId;
   }
 
-  public DeviceKeyEntity getDeviceKey() {
-    return deviceKey;
+  public SignedPreKeyEntity getSignedPreKey() {
+    return signedPreKey;
   }
 
   public PreKeyEntity getPreKey() {
@@ -26,6 +26,6 @@ public class PreKeyResponseItem {
   }
 
   public static GsonBuilder forBuilder(GsonBuilder builder) {
-    return DeviceKeyEntity.forBuilder(builder);
+    return SignedPreKeyEntity.forBuilder(builder);
   }
 }

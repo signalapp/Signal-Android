@@ -3362,15 +3362,15 @@ public final class StorageProtos {
        */
       int getPreKeyId();
 
-      // optional int32 deviceKeyId = 3;
+      // optional int32 signedPreKeyId = 3;
       /**
-       * <code>optional int32 deviceKeyId = 3;</code>
+       * <code>optional int32 signedPreKeyId = 3;</code>
        */
-      boolean hasDeviceKeyId();
+      boolean hasSignedPreKeyId();
       /**
-       * <code>optional int32 deviceKeyId = 3;</code>
+       * <code>optional int32 signedPreKeyId = 3;</code>
        */
-      int getDeviceKeyId();
+      int getSignedPreKeyId();
 
       // optional bytes baseKey = 2;
       /**
@@ -3445,7 +3445,7 @@ public final class StorageProtos {
               }
               case 24: {
                 bitField0_ |= 0x00000002;
-                deviceKeyId_ = input.readInt32();
+                signedPreKeyId_ = input.readInt32();
                 break;
               }
             }
@@ -3504,20 +3504,20 @@ public final class StorageProtos {
         return preKeyId_;
       }
 
-      // optional int32 deviceKeyId = 3;
-      public static final int DEVICEKEYID_FIELD_NUMBER = 3;
-      private int deviceKeyId_;
+      // optional int32 signedPreKeyId = 3;
+      public static final int SIGNEDPREKEYID_FIELD_NUMBER = 3;
+      private int signedPreKeyId_;
       /**
-       * <code>optional int32 deviceKeyId = 3;</code>
+       * <code>optional int32 signedPreKeyId = 3;</code>
        */
-      public boolean hasDeviceKeyId() {
+      public boolean hasSignedPreKeyId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional int32 deviceKeyId = 3;</code>
+       * <code>optional int32 signedPreKeyId = 3;</code>
        */
-      public int getDeviceKeyId() {
-        return deviceKeyId_;
+      public int getSignedPreKeyId() {
+        return signedPreKeyId_;
       }
 
       // optional bytes baseKey = 2;
@@ -3538,7 +3538,7 @@ public final class StorageProtos {
 
       private void initFields() {
         preKeyId_ = 0;
-        deviceKeyId_ = 0;
+        signedPreKeyId_ = 0;
         baseKey_ = com.google.protobuf.ByteString.EMPTY;
       }
       private byte memoizedIsInitialized = -1;
@@ -3560,7 +3560,7 @@ public final class StorageProtos {
           output.writeBytes(2, baseKey_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          output.writeInt32(3, deviceKeyId_);
+          output.writeInt32(3, signedPreKeyId_);
         }
         getUnknownFields().writeTo(output);
       }
@@ -3581,7 +3581,7 @@ public final class StorageProtos {
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(3, deviceKeyId_);
+            .computeInt32Size(3, signedPreKeyId_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSerializedSize = size;
@@ -3701,7 +3701,7 @@ public final class StorageProtos {
           super.clear();
           preKeyId_ = 0;
           bitField0_ = (bitField0_ & ~0x00000001);
-          deviceKeyId_ = 0;
+          signedPreKeyId_ = 0;
           bitField0_ = (bitField0_ & ~0x00000002);
           baseKey_ = com.google.protobuf.ByteString.EMPTY;
           bitField0_ = (bitField0_ & ~0x00000004);
@@ -3740,7 +3740,7 @@ public final class StorageProtos {
           if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
             to_bitField0_ |= 0x00000002;
           }
-          result.deviceKeyId_ = deviceKeyId_;
+          result.signedPreKeyId_ = signedPreKeyId_;
           if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
             to_bitField0_ |= 0x00000004;
           }
@@ -3764,8 +3764,8 @@ public final class StorageProtos {
           if (other.hasPreKeyId()) {
             setPreKeyId(other.getPreKeyId());
           }
-          if (other.hasDeviceKeyId()) {
-            setDeviceKeyId(other.getDeviceKeyId());
+          if (other.hasSignedPreKeyId()) {
+            setSignedPreKeyId(other.getSignedPreKeyId());
           }
           if (other.hasBaseKey()) {
             setBaseKey(other.getBaseKey());
@@ -3830,35 +3830,35 @@ public final class StorageProtos {
           return this;
         }
 
-        // optional int32 deviceKeyId = 3;
-        private int deviceKeyId_ ;
+        // optional int32 signedPreKeyId = 3;
+        private int signedPreKeyId_ ;
         /**
-         * <code>optional int32 deviceKeyId = 3;</code>
+         * <code>optional int32 signedPreKeyId = 3;</code>
          */
-        public boolean hasDeviceKeyId() {
+        public boolean hasSignedPreKeyId() {
           return ((bitField0_ & 0x00000002) == 0x00000002);
         }
         /**
-         * <code>optional int32 deviceKeyId = 3;</code>
+         * <code>optional int32 signedPreKeyId = 3;</code>
          */
-        public int getDeviceKeyId() {
-          return deviceKeyId_;
+        public int getSignedPreKeyId() {
+          return signedPreKeyId_;
         }
         /**
-         * <code>optional int32 deviceKeyId = 3;</code>
+         * <code>optional int32 signedPreKeyId = 3;</code>
          */
-        public Builder setDeviceKeyId(int value) {
+        public Builder setSignedPreKeyId(int value) {
           bitField0_ |= 0x00000002;
-          deviceKeyId_ = value;
+          signedPreKeyId_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional int32 deviceKeyId = 3;</code>
+         * <code>optional int32 signedPreKeyId = 3;</code>
          */
-        public Builder clearDeviceKeyId() {
+        public Builder clearSignedPreKeyId() {
           bitField0_ = (bitField0_ & ~0x00000002);
-          deviceKeyId_ = 0;
+          signedPreKeyId_ = 0;
           onChanged();
           return this;
         }
@@ -7061,7 +7061,7 @@ public final class StorageProtos {
     // @@protoc_insertion_point(class_scope:textsecure.PreKeyRecordStructure)
   }
 
-  public interface DeviceKeyRecordStructureOrBuilder
+  public interface SignedPreKeyRecordStructureOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
     // optional uint32 id = 1;
@@ -7115,24 +7115,24 @@ public final class StorageProtos {
     long getTimestamp();
   }
   /**
-   * Protobuf type {@code textsecure.DeviceKeyRecordStructure}
+   * Protobuf type {@code textsecure.SignedPreKeyRecordStructure}
    */
-  public static final class DeviceKeyRecordStructure extends
+  public static final class SignedPreKeyRecordStructure extends
       com.google.protobuf.GeneratedMessage
-      implements DeviceKeyRecordStructureOrBuilder {
-    // Use DeviceKeyRecordStructure.newBuilder() to construct.
-    private DeviceKeyRecordStructure(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      implements SignedPreKeyRecordStructureOrBuilder {
+    // Use SignedPreKeyRecordStructure.newBuilder() to construct.
+    private SignedPreKeyRecordStructure(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private DeviceKeyRecordStructure(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private SignedPreKeyRecordStructure(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final DeviceKeyRecordStructure defaultInstance;
-    public static DeviceKeyRecordStructure getDefaultInstance() {
+    private static final SignedPreKeyRecordStructure defaultInstance;
+    public static SignedPreKeyRecordStructure getDefaultInstance() {
       return defaultInstance;
     }
 
-    public DeviceKeyRecordStructure getDefaultInstanceForType() {
+    public SignedPreKeyRecordStructure getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -7142,7 +7142,7 @@ public final class StorageProtos {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private DeviceKeyRecordStructure(
+    private SignedPreKeyRecordStructure(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7204,28 +7204,28 @@ public final class StorageProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_DeviceKeyRecordStructure_descriptor;
+      return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_DeviceKeyRecordStructure_fieldAccessorTable
+      return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure.class, org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure.Builder.class);
+              org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure.class, org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<DeviceKeyRecordStructure> PARSER =
-        new com.google.protobuf.AbstractParser<DeviceKeyRecordStructure>() {
-      public DeviceKeyRecordStructure parsePartialFrom(
+    public static com.google.protobuf.Parser<SignedPreKeyRecordStructure> PARSER =
+        new com.google.protobuf.AbstractParser<SignedPreKeyRecordStructure>() {
+      public SignedPreKeyRecordStructure parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DeviceKeyRecordStructure(input, extensionRegistry);
+        return new SignedPreKeyRecordStructure(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<DeviceKeyRecordStructure> getParserForType() {
+    public com.google.protobuf.Parser<SignedPreKeyRecordStructure> getParserForType() {
       return PARSER;
     }
 
@@ -7385,53 +7385,53 @@ public final class StorageProtos {
       return super.writeReplace();
     }
 
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseFrom(
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseFrom(
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseFrom(byte[] data)
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseFrom(
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseFrom(java.io.InputStream input)
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseFrom(
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseDelimitedFrom(java.io.InputStream input)
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseDelimitedFrom(
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseFrom(
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parseFrom(
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -7440,7 +7440,7 @@ public final class StorageProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure prototype) {
+    public static Builder newBuilder(org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -7452,24 +7452,24 @@ public final class StorageProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code textsecure.DeviceKeyRecordStructure}
+     * Protobuf type {@code textsecure.SignedPreKeyRecordStructure}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructureOrBuilder {
+       implements org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructureOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_DeviceKeyRecordStructure_descriptor;
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_DeviceKeyRecordStructure_fieldAccessorTable
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure.class, org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure.Builder.class);
+                org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure.class, org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure.Builder.class);
       }
 
-      // Construct using org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure.newBuilder()
+      // Construct using org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -7508,23 +7508,23 @@ public final class StorageProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_DeviceKeyRecordStructure_descriptor;
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_descriptor;
       }
 
-      public org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure getDefaultInstanceForType() {
-        return org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure.getDefaultInstance();
+      public org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure getDefaultInstanceForType() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure.getDefaultInstance();
       }
 
-      public org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure build() {
-        org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure result = buildPartial();
+      public org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure build() {
+        org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure buildPartial() {
-        org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure result = new org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure(this);
+      public org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure buildPartial() {
+        org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure result = new org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -7553,16 +7553,16 @@ public final class StorageProtos {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure) {
-          return mergeFrom((org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure)other);
+        if (other instanceof org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure) {
+          return mergeFrom((org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure other) {
-        if (other == org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure other) {
+        if (other == org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure.getDefaultInstance()) return this;
         if (other.hasId()) {
           setId(other.getId());
         }
@@ -7590,11 +7590,11 @@ public final class StorageProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure parsedMessage = null;
+        org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.whispersystems.libaxolotl.state.StorageProtos.DeviceKeyRecordStructure) e.getUnfinishedMessage();
+          parsedMessage = (org.whispersystems.libaxolotl.state.StorageProtos.SignedPreKeyRecordStructure) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -7779,15 +7779,15 @@ public final class StorageProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:textsecure.DeviceKeyRecordStructure)
+      // @@protoc_insertion_point(builder_scope:textsecure.SignedPreKeyRecordStructure)
     }
 
     static {
-      defaultInstance = new DeviceKeyRecordStructure(true);
+      defaultInstance = new SignedPreKeyRecordStructure(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:textsecure.DeviceKeyRecordStructure)
+    // @@protoc_insertion_point(class_scope:textsecure.SignedPreKeyRecordStructure)
   }
 
   public interface IdentityKeyPairStructureOrBuilder
@@ -8314,10 +8314,10 @@ public final class StorageProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_textsecure_DeviceKeyRecordStructure_descriptor;
+    internal_static_textsecure_SignedPreKeyRecordStructure_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_textsecure_DeviceKeyRecordStructure_fieldAccessorTable;
+      internal_static_textsecure_SignedPreKeyRecordStructure_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_textsecure_IdentityKeyPairStructure_descriptor;
   private static
@@ -8333,7 +8333,7 @@ public final class StorageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\032LocalStorageProtocol.proto\022\ntextsecure" +
-      "\"\334\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
+      "\"\337\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
       "\001 \001(\r\022\033\n\023localIdentityPublic\030\002 \001(\014\022\034\n\024re" +
       "moteIdentityPublic\030\003 \001(\014\022\017\n\007rootKey\030\004 \001(" +
       "\014\022\027\n\017previousCounter\030\005 \001(\r\0227\n\013senderChai" +
@@ -8359,20 +8359,20 @@ public final class StorageProtos {
       "\030\003 \001(\014\022\031\n\021localEphemeralKey\030\004 \001(\014\022 \n\030loc" +
       "alEphemeralKeyPrivate\030\005 \001(\014\022\030\n\020localIden" +
       "tityKey\030\007 \001(\014\022\037\n\027localIdentityKeyPrivate" +
-      "\030\010 \001(\014\032G\n\rPendingPreKey\022\020\n\010preKeyId\030\001 \001(" +
-      "\r\022\023\n\013deviceKeyId\030\003 \001(\005\022\017\n\007baseKey\030\002 \001(\014\"" +
-      "\177\n\017RecordStructure\0224\n\016currentSession\030\001 \001",
-      "(\0132\034.textsecure.SessionStructure\0226\n\020prev" +
-      "iousSessions\030\002 \003(\0132\034.textsecure.SessionS" +
-      "tructure\"J\n\025PreKeyRecordStructure\022\n\n\002id\030" +
-      "\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivateKey\030\003" +
-      " \001(\014\"s\n\030DeviceKeyRecordStructure\022\n\n\002id\030\001" +
-      " \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivateKey\030\003 " +
-      "\001(\014\022\021\n\tsignature\030\004 \001(\014\022\021\n\ttimestamp\030\005 \001(" +
-      "\006\"A\n\030IdentityKeyPairStructure\022\021\n\tpublicK" +
-      "ey\030\001 \001(\014\022\022\n\nprivateKey\030\002 \001(\014B4\n#org.whis" +
-      "persystems.libaxolotl.stateB\rStorageProt",
-      "os"
+      "\030\010 \001(\014\032J\n\rPendingPreKey\022\020\n\010preKeyId\030\001 \001(" +
+      "\r\022\026\n\016signedPreKeyId\030\003 \001(\005\022\017\n\007baseKey\030\002 \001" +
+      "(\014\"\177\n\017RecordStructure\0224\n\016currentSession\030",
+      "\001 \001(\0132\034.textsecure.SessionStructure\0226\n\020p" +
+      "reviousSessions\030\002 \003(\0132\034.textsecure.Sessi" +
+      "onStructure\"J\n\025PreKeyRecordStructure\022\n\n\002" +
+      "id\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivateKe" +
+      "y\030\003 \001(\014\"v\n\033SignedPreKeyRecordStructure\022\n" +
+      "\n\002id\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivate" +
+      "Key\030\003 \001(\014\022\021\n\tsignature\030\004 \001(\014\022\021\n\ttimestam" +
+      "p\030\005 \001(\006\"A\n\030IdentityKeyPairStructure\022\021\n\tp" +
+      "ublicKey\030\001 \001(\014\022\022\n\nprivateKey\030\002 \001(\014B4\n#or" +
+      "g.whispersystems.libaxolotl.stateB\rStora",
+      "geProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -8414,7 +8414,7 @@ public final class StorageProtos {
           internal_static_textsecure_SessionStructure_PendingPreKey_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_PendingPreKey_descriptor,
-              new java.lang.String[] { "PreKeyId", "DeviceKeyId", "BaseKey", });
+              new java.lang.String[] { "PreKeyId", "SignedPreKeyId", "BaseKey", });
           internal_static_textsecure_RecordStructure_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_textsecure_RecordStructure_fieldAccessorTable = new
@@ -8427,11 +8427,11 @@ public final class StorageProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PreKeyRecordStructure_descriptor,
               new java.lang.String[] { "Id", "PublicKey", "PrivateKey", });
-          internal_static_textsecure_DeviceKeyRecordStructure_descriptor =
+          internal_static_textsecure_SignedPreKeyRecordStructure_descriptor =
             getDescriptor().getMessageTypes().get(3);
-          internal_static_textsecure_DeviceKeyRecordStructure_fieldAccessorTable = new
+          internal_static_textsecure_SignedPreKeyRecordStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_textsecure_DeviceKeyRecordStructure_descriptor,
+              internal_static_textsecure_SignedPreKeyRecordStructure_descriptor,
               new java.lang.String[] { "Id", "PublicKey", "PrivateKey", "Signature", "Timestamp", });
           internal_static_textsecure_IdentityKeyPairStructure_descriptor =
             getDescriptor().getMessageTypes().get(4);

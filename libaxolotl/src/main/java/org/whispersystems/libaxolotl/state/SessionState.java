@@ -423,10 +423,10 @@ public class SessionState {
     return sessionStructure.hasPendingKeyExchange();
   }
 
-  public void setPendingPreKey(int preKeyId, int deviceKeyId, ECPublicKey baseKey) {
+  public void setPendingPreKey(int preKeyId, int signedPreKeyId, ECPublicKey baseKey) {
     PendingPreKey pending = PendingPreKey.newBuilder()
                                          .setPreKeyId(preKeyId)
-                                         .setDeviceKeyId(deviceKeyId)
+                                         .setSignedPreKeyId(signedPreKeyId)
                                          .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
                                          .build();
 
@@ -443,8 +443,8 @@ public class SessionState {
     return sessionStructure.getPendingPreKey().getPreKeyId();
   }
 
-  public int getPendingDeviceKeyId() {
-    return sessionStructure.getPendingPreKey().getDeviceKeyId();
+  public int getPendingSignedPreKeyId() {
+    return sessionStructure.getPendingPreKey().getSignedPreKeyId();
   }
 
   public ECPublicKey getPendingBaseKey() {

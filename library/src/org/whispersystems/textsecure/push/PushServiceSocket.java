@@ -25,7 +25,7 @@ import com.google.thoughtcrimegson.JsonParseException;
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
@@ -129,7 +129,7 @@ public class PushServiceSocket {
 
   public void registerPreKeys(IdentityKey identityKey,
                               PreKeyRecord lastResortKey,
-                              DeviceKeyRecord deviceKey,
+                              SignedPreKeyRecord signedPreKey,
                               List<PreKeyRecord> records)
       throws IOException
   {
@@ -145,12 +145,13 @@ public class PushServiceSocket {
     PreKeyEntity lastResortEntity = new PreKeyEntity(lastResortKey.getId(),
                                                      lastResortKey.getKeyPair().getPublicKey());
 
-    DeviceKeyEntity deviceKeyEntity = new DeviceKeyEntity(deviceKey.getId(),
-                                                          deviceKey.getKeyPair().getPublicKey(),
-                                                          deviceKey.getSignature());
+    SignedPreKeyEntity signedPreKeyEntity = new SignedPreKeyEntity(signedPreKey.getId(),
+                                                                   signedPreKey.getKeyPair().getPublicKey(),
+                                                                   signedPreKey.getSignature());
 
     makeRequest(String.format(PREKEY_PATH, ""), "PUT",
-                PreKeyState.toJson(new PreKeyState(entities, lastResortEntity, deviceKeyEntity, identityKey)));
+                PreKeyState.toJson(new PreKeyState(entities, lastResortEntity,
+                                                   signedPreKeyEntity, identityKey)));
   }
 
   public int getAvailablePreKeys() throws IOException {
@@ -178,16 +179,16 @@ public class PushServiceSocket {
       List<PreKeyBundle> bundles      = new LinkedList<>();
 
       for (PreKeyResponseItem device : response.getDevices()) {
-        ECPublicKey preKey             = null;
-        ECPublicKey deviceKey          = null;
-        byte[]      deviceKeySignature = null;
-        int         preKeyId           = -1;
-        int         deviceKeyId        = -1;
+        ECPublicKey preKey                = null;
+        ECPublicKey signedPreKey          = null;
+        byte[]      signedPreKeySignature = null;
+        int         preKeyId              = -1;
+        int         signedPreKeyId        = -1;
 
-        if (device.getDeviceKey() != null) {
-          deviceKey          = device.getDeviceKey().getPublicKey();
-          deviceKeyId        = device.getDeviceKey().getKeyId();
-          deviceKeySignature = device.getDeviceKey().getSignature();
+        if (device.getSignedPreKey() != null) {
+          signedPreKey          = device.getSignedPreKey().getPublicKey();
+          signedPreKeyId        = device.getSignedPreKey().getKeyId();
+          signedPreKeySignature = device.getSignedPreKey().getSignature();
         }
 
         if (device.getPreKey() != null) {
@@ -196,7 +197,7 @@ public class PushServiceSocket {
         }
 
         bundles.add(new PreKeyBundle(device.getRegistrationId(), device.getDeviceId(), preKeyId,
-                                     preKey, deviceKeyId, deviceKey, deviceKeySignature,
+                                     preKey, signedPreKeyId, signedPreKey, signedPreKeySignature,
                                      response.getIdentityKey()));
       }
 
@@ -223,26 +224,26 @@ public class PushServiceSocket {
       if (response.getDevices() == null || response.getDevices().size() < 1)
         throw new IOException("Empty prekey list");
 
-      PreKeyResponseItem device             = response.getDevices().get(0);
-      ECPublicKey        preKey             = null;
-      ECPublicKey        deviceKey          = null;
-      byte[]             deviceKeySignature = null;
-      int                preKeyId           = -1;
-      int                deviceKeyId        = -1;
+      PreKeyResponseItem device                = response.getDevices().get(0);
+      ECPublicKey        preKey                = null;
+      ECPublicKey        signedPreKey          = null;
+      byte[]             signedPreKeySignature = null;
+      int                preKeyId              = -1;
+      int                signedPreKeyId        = -1;
 
       if (device.getPreKey() != null) {
         preKeyId = device.getPreKey().getKeyId();
         preKey   = device.getPreKey().getPublicKey();
       }
 
-      if (device.getDeviceKey() != null) {
-        deviceKeyId        = device.getDeviceKey().getKeyId();
-        deviceKey          = device.getDeviceKey().getPublicKey();
-        deviceKeySignature = device.getDeviceKey().getSignature();
+      if (device.getSignedPreKey() != null) {
+        signedPreKeyId        = device.getSignedPreKey().getKeyId();
+        signedPreKey          = device.getSignedPreKey().getPublicKey();
+        signedPreKeySignature = device.getSignedPreKey().getSignature();
       }
 
       return new PreKeyBundle(device.getRegistrationId(), device.getDeviceId(), preKeyId, preKey,
-                              deviceKeyId, deviceKey, deviceKeySignature, response.getIdentityKey());
+                              signedPreKeyId, signedPreKey, signedPreKeySignature, response.getIdentityKey());
     } catch (JsonParseException e) {
       throw new IOException(e);
     } catch (NotFoundException nfe) {

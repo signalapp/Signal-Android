@@ -9,10 +9,9 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
-import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
-import org.whispersystems.libaxolotl.state.DeviceKeyStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
@@ -69,7 +68,7 @@ public class PreKeyService extends Service {
     }
 
     public void run() {
-      DeviceKeyRecord deviceKeyRecord = null;
+      SignedPreKeyRecord signedPreKeyRecord = null;
 
       try {
         if (!TextSecurePreferences.isPushRegistered(context)) return;
@@ -86,38 +85,38 @@ public class PreKeyService extends Service {
         PreKeyRecord       lastResortKeyRecord = PreKeyUtil.generateLastResortKey(context, masterSecret);
         IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
 
-        deviceKeyRecord = PreKeyUtil.generateDeviceKey(context, masterSecret, identityKey);
+        signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, masterSecret, identityKey);
 
         Log.w(TAG, "Registering new prekeys...");
 
         socket.registerPreKeys(identityKey.getPublicKey(), lastResortKeyRecord,
-                               deviceKeyRecord, preKeyRecords);
+                               signedPreKeyRecord, preKeyRecords);
 
-        removeOldDeviceKeysIfNecessary(deviceKeyRecord);
+        removeOldSignedPreKeysIfNecessary(signedPreKeyRecord);
       } catch (IOException e) {
         Log.w(TAG, e);
-        if (deviceKeyRecord != null) {
-          Log.w(TAG, "Remote store failed, removing generated device key: " + deviceKeyRecord.getId());
-          new TextSecurePreKeyStore(context, masterSecret).removeDeviceKey(deviceKeyRecord.getId());
+        if (signedPreKeyRecord != null) {
+          Log.w(TAG, "Remote store failed, removing generated device key: " + signedPreKeyRecord.getId());
+          new TextSecurePreKeyStore(context, masterSecret).removeSignedPreKey(signedPreKeyRecord.getId());
         }
       }
     }
 
-    private void removeOldDeviceKeysIfNecessary(DeviceKeyRecord currentDeviceKey) {
-      DeviceKeyStore            deviceKeyStore = new TextSecurePreKeyStore(context, masterSecret);
-      List<DeviceKeyRecord>     records        = deviceKeyStore.loadDeviceKeys();
-      Iterator<DeviceKeyRecord> iterator       = records.iterator();
+    private void removeOldSignedPreKeysIfNecessary(SignedPreKeyRecord currentSignedPreKey) {
+      SignedPreKeyStore            signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
+      List<SignedPreKeyRecord>     records           = signedPreKeyStore.loadSignedPreKeys();
+      Iterator<SignedPreKeyRecord> iterator          = records.iterator();
 
       while (iterator.hasNext()) {
-        if (iterator.next().getId() == currentDeviceKey.getId()) {
+        if (iterator.next().getId() == currentSignedPreKey.getId()) {
           iterator.remove();
         }
       }
 
-      DeviceKeyRecord[] recordsArray = (DeviceKeyRecord[])records.toArray();
-      Arrays.sort(recordsArray, new Comparator<DeviceKeyRecord>() {
+      SignedPreKeyRecord[] recordsArray = (SignedPreKeyRecord[])records.toArray();
+      Arrays.sort(recordsArray, new Comparator<SignedPreKeyRecord>() {
         @Override
-        public int compare(DeviceKeyRecord lhs, DeviceKeyRecord rhs) {
+        public int compare(SignedPreKeyRecord lhs, SignedPreKeyRecord rhs) {
           if      (lhs.getTimestamp() < rhs.getTimestamp()) return -1;
           else if (lhs.getTimestamp() > rhs.getTimestamp()) return 1;
           else                                              return 0;
@@ -127,15 +126,15 @@ public class PreKeyService extends Service {
       Log.w(TAG, "Existing device key record count: " + recordsArray.length);
 
       if (recordsArray.length > 3) {
-        long              oldTimestamp = System.currentTimeMillis() - (14 * 24 * 60 * 60 * 1000);
-        DeviceKeyRecord[] oldRecords   = Arrays.copyOf(recordsArray, recordsArray.length - 1);
+        long                 oldTimestamp = System.currentTimeMillis() - (14 * 24 * 60 * 60 * 1000);
+        SignedPreKeyRecord[] oldRecords   = Arrays.copyOf(recordsArray, recordsArray.length - 1);
 
-        for (DeviceKeyRecord oldRecord : oldRecords) {
+        for (SignedPreKeyRecord oldRecord : oldRecords) {
           Log.w(TAG, "Old device key record timestamp: " + oldRecord.getTimestamp());
 
           if (oldRecord.getTimestamp() <= oldTimestamp) {
             Log.w(TAG, "Remove device key record: " + oldRecord.getId());
-            deviceKeyStore.removeDeviceKey(oldRecord.getId());
+            signedPreKeyStore.removeSignedPreKey(oldRecord.getId());
           }
         }
       }

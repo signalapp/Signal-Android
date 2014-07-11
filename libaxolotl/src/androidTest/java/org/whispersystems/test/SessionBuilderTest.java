@@ -17,8 +17,8 @@ import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
-import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
-import org.whispersystems.libaxolotl.state.DeviceKeyStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
@@ -36,29 +36,29 @@ public class SessionBuilderTest extends AndroidTestCase {
 
   public void testBasicPreKeyV2()
       throws InvalidKeyException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, UntrustedIdentityException {
-    SessionStore     aliceSessionStore     = new InMemorySessionStore();
-    DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
-    PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
-    IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
-    SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceDeviceKeyStore,
-                                                                aliceIdentityKeyStore,
-                                                                BOB_RECIPIENT_ID, 1);
+    SessionStore      aliceSessionStore      = new InMemorySessionStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
+    PreKeyStore       alicePreKeyStore       = new InMemoryPreKeyStore();
+    IdentityKeyStore  aliceIdentityKeyStore  = new InMemoryIdentityKeyStore();
+    SessionBuilder    aliceSessionBuilder    = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
+                                                                  aliceSignedPreKeyStore,
+                                                                  aliceIdentityKeyStore,
+                                                                  BOB_RECIPIENT_ID, 1);
 
-    SessionStore     bobSessionStore     = new InMemorySessionStore();
-    PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   bobDeviceKeyStore   = new InMemoryDeviceKeyStore();
-    IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
-    SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobDeviceKeyStore,
-                                                              bobIdentityKeyStore,
-                                                              ALICE_RECIPIENT_ID, 1);
+    SessionStore      bobSessionStore      = new InMemorySessionStore();
+    PreKeyStore       bobPreKeyStore       = new InMemoryPreKeyStore();
+    SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
+    IdentityKeyStore  bobIdentityKeyStore  = new InMemoryIdentityKeyStore();
+    SessionBuilder    bobSessionBuilder    = new SessionBuilder(bobSessionStore, bobPreKeyStore,
+                                                                bobSignedPreKeyStore,
+                                                                bobIdentityKeyStore,
+                                                                ALICE_RECIPIENT_ID, 1);
 
-    ECKeyPair  bobPreKeyPair = Curve.generateKeyPair(true);
-    PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
-                                              31337, bobPreKeyPair.getPublicKey(),
-                                              0, null, null,
-                                              bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
+    ECKeyPair    bobPreKeyPair = Curve.generateKeyPair(true);
+    PreKeyBundle bobPreKey     = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
+                                                  31337, bobPreKeyPair.getPublicKey(),
+                                                  0, null, null,
+                                                  bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     aliceSessionBuilder.process(bobPreKey);
 
@@ -95,7 +95,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     aliceSessionStore     = new InMemorySessionStore();
     aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
     aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                               aliceDeviceKeyStore,
+                                               aliceSignedPreKeyStore,
                                                aliceIdentityKeyStore,
                                                BOB_RECIPIENT_ID, 1);
     aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
@@ -137,31 +137,31 @@ public class SessionBuilderTest extends AndroidTestCase {
   public void testBasicPreKeyV3()
       throws InvalidKeyException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, UntrustedIdentityException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
-    DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceDeviceKeyStore,
+                                                                aliceSignedPreKeyStore,
                                                                 aliceIdentityKeyStore,
                                                                 BOB_RECIPIENT_ID, 1);
 
     SessionStore     bobSessionStore     = new InMemorySessionStore();
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   bobDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobDeviceKeyStore,
+                                                              bobSignedPreKeyStore,
                                                               bobIdentityKeyStore,
                                                               ALICE_RECIPIENT_ID, 1);
 
-    ECKeyPair bobPreKeyPair         = Curve.generateKeyPair(true);
-    ECKeyPair bobDeviceKeyPair      = Curve.generateKeyPair(true);
-    byte[]    bobDeviceKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
-                                                               bobDeviceKeyPair.getPublicKey().serialize());
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
+                                                                  bobSignedPreKeyPair.getPublicKey().serialize());
 
     PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                               31337, bobPreKeyPair.getPublicKey(),
-                                              22, bobDeviceKeyPair.getPublicKey(), bobDeviceKeySignature,
+                                              22, bobSignedPreKeyPair.getPublicKey(), bobSignedPreKeySignature,
                                               bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     aliceSessionBuilder.process(bobPreKey);
@@ -178,7 +178,7 @@ public class SessionBuilderTest extends AndroidTestCase {
 
     PreKeyWhisperMessage incomingMessage = new PreKeyWhisperMessage(outgoingMessage.serialize());
     bobPreKeyStore.storePreKey(31337, new PreKeyRecord(bobPreKey.getPreKeyId(), bobPreKeyPair));
-    bobDeviceKeyStore.storeDeviceKey(22, new DeviceKeyRecord(22, System.currentTimeMillis(), bobDeviceKeyPair, bobDeviceKeySignature));
+    bobSignedPreKeyStore.storeSignedPreKey(22, new SignedPreKeyRecord(22, System.currentTimeMillis(), bobSignedPreKeyPair, bobSignedPreKeySignature));
     bobSessionBuilder.process(incomingMessage);
 
     assertTrue(bobSessionStore.containsSession(ALICE_RECIPIENT_ID, 1));
@@ -201,21 +201,21 @@ public class SessionBuilderTest extends AndroidTestCase {
     aliceSessionStore     = new InMemorySessionStore();
     aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
     aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                               aliceDeviceKeyStore,
+                                               aliceSignedPreKeyStore,
                                                aliceIdentityKeyStore,
                                                BOB_RECIPIENT_ID, 1);
     aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
 
-    bobPreKeyPair    = Curve.generateKeyPair(true);
-    bobDeviceKeyPair = Curve.generateKeyPair(true);
-    bobDeviceKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(), bobDeviceKeyPair.getPublicKey().serialize());
+    bobPreKeyPair            = Curve.generateKeyPair(true);
+    bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(), bobSignedPreKeyPair.getPublicKey().serialize());
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(),
                                  1, 31338, bobPreKeyPair.getPublicKey(),
-                                 23, bobDeviceKeyPair.getPublicKey(), bobDeviceKeySignature,
+                                 23, bobSignedPreKeyPair.getPublicKey(), bobSignedPreKeySignature,
                                  bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     bobPreKeyStore.storePreKey(31338, new PreKeyRecord(bobPreKey.getPreKeyId(), bobPreKeyPair));
-    bobDeviceKeyStore.storeDeviceKey(23, new DeviceKeyRecord(23, System.currentTimeMillis(), bobDeviceKeyPair, bobDeviceKeySignature));
+    bobSignedPreKeyStore.storeSignedPreKey(23, new SignedPreKeyRecord(23, System.currentTimeMillis(), bobSignedPreKeyPair, bobSignedPreKeySignature));
     aliceSessionBuilder.process(bobPreKey);
 
     outgoingMessage = aliceSessionCipher.encrypt(originalMessage.getBytes());
@@ -233,7 +233,7 @@ public class SessionBuilderTest extends AndroidTestCase {
 
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                  31337, Curve.generateKeyPair(true).getPublicKey(),
-                                 23, bobDeviceKeyPair.getPublicKey(), bobDeviceKeySignature,
+                                 23, bobSignedPreKeyPair.getPublicKey(), bobSignedPreKeySignature,
                                  aliceIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     try {
@@ -244,33 +244,33 @@ public class SessionBuilderTest extends AndroidTestCase {
     }
   }
 
-  public void testBadDeviceKeySignature() throws InvalidKeyException, UntrustedIdentityException {
-    SessionStore     aliceSessionStore     = new InMemorySessionStore();
-    DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
-    PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
-    IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
-    SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceDeviceKeyStore,
-                                                                aliceIdentityKeyStore,
-                                                                BOB_RECIPIENT_ID, 1);
+  public void testBadSignedPreKeySignature() throws InvalidKeyException, UntrustedIdentityException {
+    SessionStore      aliceSessionStore      = new InMemorySessionStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
+    PreKeyStore       alicePreKeyStore       = new InMemoryPreKeyStore();
+    IdentityKeyStore  aliceIdentityKeyStore  = new InMemoryIdentityKeyStore();
+    SessionBuilder    aliceSessionBuilder    = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
+                                                                  aliceSignedPreKeyStore,
+                                                                  aliceIdentityKeyStore,
+                                                                  BOB_RECIPIENT_ID, 1);
 
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
 
-    ECKeyPair bobPreKeyPair         = Curve.generateKeyPair(true);
-    ECKeyPair bobDeviceKeyPair      = Curve.generateKeyPair(true);
-    byte[]    bobDeviceKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
-                                                               bobDeviceKeyPair.getPublicKey().serialize());
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
+                                                                  bobSignedPreKeyPair.getPublicKey().serialize());
 
 
-    for (int i=0;i<bobDeviceKeySignature.length * 8;i++) {
-      byte[] modifiedSignature = new byte[bobDeviceKeySignature.length];
-      System.arraycopy(bobDeviceKeySignature, 0, modifiedSignature, 0, modifiedSignature.length);
+    for (int i=0;i<bobSignedPreKeySignature.length * 8;i++) {
+      byte[] modifiedSignature = new byte[bobSignedPreKeySignature.length];
+      System.arraycopy(bobSignedPreKeySignature, 0, modifiedSignature, 0, modifiedSignature.length);
 
       modifiedSignature[i/8] ^= (0x01 << (i % 8));
 
       PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                                 31337, bobPreKeyPair.getPublicKey(),
-                                                22, bobDeviceKeyPair.getPublicKey(), modifiedSignature,
+                                                22, bobSignedPreKeyPair.getPublicKey(), modifiedSignature,
                                                 bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
       try {
@@ -283,7 +283,7 @@ public class SessionBuilderTest extends AndroidTestCase {
 
     PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                               31337, bobPreKeyPair.getPublicKey(),
-                                              22, bobDeviceKeyPair.getPublicKey(), bobDeviceKeySignature,
+                                              22, bobSignedPreKeyPair.getPublicKey(), bobSignedPreKeySignature,
                                               bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     aliceSessionBuilder.process(bobPreKey);
@@ -291,27 +291,27 @@ public class SessionBuilderTest extends AndroidTestCase {
 
   public void testRepeatBundleMessageV2() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
-    DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceDeviceKeyStore,
+                                                                aliceSignedPreKeyStore,
                                                                 aliceIdentityKeyStore,
                                                                 BOB_RECIPIENT_ID, 1);
 
     SessionStore     bobSessionStore     = new InMemorySessionStore();
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   bobDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobDeviceKeyStore,
+                                                              bobSignedPreKeyStore,
                                                               bobIdentityKeyStore,
                                                               ALICE_RECIPIENT_ID, 1);
 
-    ECKeyPair bobPreKeyPair         = Curve.generateKeyPair(true);
-    ECKeyPair bobDeviceKeyPair      = Curve.generateKeyPair(true);
-    byte[]    bobDeviceKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
-                                                               bobDeviceKeyPair.getPublicKey().serialize());
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
+                                                                  bobSignedPreKeyPair.getPublicKey().serialize());
 
     PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                               31337, bobPreKeyPair.getPublicKey(),
@@ -319,7 +319,7 @@ public class SessionBuilderTest extends AndroidTestCase {
                                               bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     bobPreKeyStore.storePreKey(31337, new PreKeyRecord(bobPreKey.getPreKeyId(), bobPreKeyPair));
-    bobDeviceKeyStore.storeDeviceKey(22, new DeviceKeyRecord(22, System.currentTimeMillis(), bobDeviceKeyPair, bobDeviceKeySignature));
+    bobSignedPreKeyStore.storeSignedPreKey(22, new SignedPreKeyRecord(22, System.currentTimeMillis(), bobSignedPreKeyPair, bobSignedPreKeySignature));
 
     aliceSessionBuilder.process(bobPreKey);
 
@@ -359,35 +359,35 @@ public class SessionBuilderTest extends AndroidTestCase {
 
   public void testRepeatBundleMessageV3() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
-    DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceDeviceKeyStore,
+                                                                aliceSignedPreKeyStore,
                                                                 aliceIdentityKeyStore,
                                                                 BOB_RECIPIENT_ID, 1);
 
     SessionStore     bobSessionStore     = new InMemorySessionStore();
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   bobDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobDeviceKeyStore,
+                                                              bobSignedPreKeyStore,
                                                               bobIdentityKeyStore,
                                                               ALICE_RECIPIENT_ID, 1);
 
-    ECKeyPair bobPreKeyPair         = Curve.generateKeyPair(true);
-    ECKeyPair bobDeviceKeyPair      = Curve.generateKeyPair(true);
-    byte[]    bobDeviceKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
-                                                               bobDeviceKeyPair.getPublicKey().serialize());
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
+                                                                  bobSignedPreKeyPair.getPublicKey().serialize());
 
     PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                               31337, bobPreKeyPair.getPublicKey(),
-                                              22, bobDeviceKeyPair.getPublicKey(), bobDeviceKeySignature,
+                                              22, bobSignedPreKeyPair.getPublicKey(), bobSignedPreKeySignature,
                                               bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     bobPreKeyStore.storePreKey(31337, new PreKeyRecord(bobPreKey.getPreKeyId(), bobPreKeyPair));
-    bobDeviceKeyStore.storeDeviceKey(22, new DeviceKeyRecord(22, System.currentTimeMillis(), bobDeviceKeyPair, bobDeviceKeySignature));
+    bobSignedPreKeyStore.storeSignedPreKey(22, new SignedPreKeyRecord(22, System.currentTimeMillis(), bobSignedPreKeyPair, bobSignedPreKeySignature));
 
     aliceSessionBuilder.process(bobPreKey);
 
@@ -427,35 +427,35 @@ public class SessionBuilderTest extends AndroidTestCase {
 
   public void testBadVerificationTagV3() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
-    DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceDeviceKeyStore,
+                                                                aliceSignedPreKeyStore,
                                                                 aliceIdentityKeyStore,
                                                                 BOB_RECIPIENT_ID, 1);
 
     SessionStore     bobSessionStore     = new InMemorySessionStore();
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   bobDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobDeviceKeyStore,
+                                                              bobSignedPreKeyStore,
                                                               bobIdentityKeyStore,
                                                               ALICE_RECIPIENT_ID, 1);
 
-    ECKeyPair bobPreKeyPair         = Curve.generateKeyPair(true);
-    ECKeyPair bobDeviceKeyPair      = Curve.generateKeyPair(true);
-    byte[]    bobDeviceKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
-                                                               bobDeviceKeyPair.getPublicKey().serialize());
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
+                                                                  bobSignedPreKeyPair.getPublicKey().serialize());
 
     PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                               31337, bobPreKeyPair.getPublicKey(),
-                                              22, bobDeviceKeyPair.getPublicKey(), bobDeviceKeySignature,
+                                              22, bobSignedPreKeyPair.getPublicKey(), bobSignedPreKeySignature,
                                               bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     bobPreKeyStore.storePreKey(31337, new PreKeyRecord(bobPreKey.getPreKeyId(), bobPreKeyPair));
-    bobDeviceKeyStore.storeDeviceKey(22, new DeviceKeyRecord(22, System.currentTimeMillis(), bobDeviceKeyPair, bobDeviceKeySignature));
+    bobSignedPreKeyStore.storeSignedPreKey(22, new SignedPreKeyRecord(22, System.currentTimeMillis(), bobSignedPreKeyPair, bobSignedPreKeySignature));
 
     aliceSessionBuilder.process(bobPreKey);
 
@@ -474,7 +474,7 @@ public class SessionBuilderTest extends AndroidTestCase {
       PreKeyWhisperMessage modifiedMessage = new PreKeyWhisperMessage(incomingMessage.getMessageVersion(),
                                                                       incomingMessage.getRegistrationId(),
                                                                       incomingMessage.getPreKeyId(),
-                                                                      incomingMessage.getDeviceKeyId(),
+                                                                      incomingMessage.getSignedPreKeyId(),
                                                                       incomingMessage.getBaseKey(),
                                                                       incomingMessage.getIdentityKey(),
                                                                       modifiedVerification,
@@ -491,7 +491,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     PreKeyWhisperMessage unmodifiedMessage = new PreKeyWhisperMessage(incomingMessage.getMessageVersion(),
                                                                       incomingMessage.getRegistrationId(),
                                                                       incomingMessage.getPreKeyId(),
-                                                                      incomingMessage.getDeviceKeyId(),
+                                                                      incomingMessage.getSignedPreKeyId(),
                                                                       incomingMessage.getBaseKey(),
                                                                       incomingMessage.getIdentityKey(),
                                                                       incomingMessage.getVerification(),
@@ -504,19 +504,19 @@ public class SessionBuilderTest extends AndroidTestCase {
   public void testBasicKeyExchange() throws InvalidKeyException, LegacyMessageException, InvalidMessageException, DuplicateMessageException, UntrustedIdentityException, StaleKeyExchangeException, InvalidVersionException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceDeviceKeyStore,
+                                                                aliceSignedPreKeyStore,
                                                                 aliceIdentityKeyStore,
                                                                 BOB_RECIPIENT_ID, 1);
 
     SessionStore     bobSessionStore     = new InMemorySessionStore();
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   bobDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobDeviceKeyStore,
+                                                              bobSignedPreKeyStore,
                                                               bobIdentityKeyStore,
                                                               ALICE_RECIPIENT_ID, 1);
 
@@ -540,7 +540,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     aliceSessionStore       = new InMemorySessionStore();
     aliceIdentityKeyStore   = new InMemoryIdentityKeyStore();
     aliceSessionBuilder     = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                 aliceDeviceKeyStore,
+                                                 aliceSignedPreKeyStore,
                                                  aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
     aliceKeyExchangeMessage = aliceSessionBuilder.process();
 
@@ -561,19 +561,19 @@ public class SessionBuilderTest extends AndroidTestCase {
       throws InvalidKeyException, DuplicateMessageException, LegacyMessageException, InvalidMessageException, UntrustedIdentityException, StaleKeyExchangeException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   aliceDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceDeviceKeyStore,
+                                                                aliceSignedPreKeyStore,
                                                                 aliceIdentityKeyStore,
                                                                 BOB_RECIPIENT_ID, 1);
 
     SessionStore     bobSessionStore     = new InMemorySessionStore();
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
-    DeviceKeyStore   bobDeviceKeyStore   = new InMemoryDeviceKeyStore();
+    SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
     SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobDeviceKeyStore,
+                                                              bobSignedPreKeyStore,
                                                               bobIdentityKeyStore,
                                                               ALICE_RECIPIENT_ID, 1);
 

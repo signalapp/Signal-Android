@@ -97,14 +97,14 @@ public class SessionCipher {
                                                                previousCounter, ciphertextBody);
 
       if (sessionState.hasPendingPreKey()) {
-        int         pendingPreKeyId     = sessionState.getPendingPreKeyId();
-        int         pendingDeviceKeyId  = sessionState.getPendingDeviceKeyId();
-        ECPublicKey pendingBaseKey      = sessionState.getPendingBaseKey();
-        int         localRegistrationId = sessionState.getLocalRegistrationId();
+        int         pendingPreKeyId       = sessionState.getPendingPreKeyId();
+        int         pendingSignedPreKeyId = sessionState.getPendingSignedPreKeyId();
+        ECPublicKey pendingBaseKey        = sessionState.getPendingBaseKey();
+        int         localRegistrationId   = sessionState.getLocalRegistrationId();
 
         ciphertextMessage = new PreKeyWhisperMessage(sessionVersion,
                                                      localRegistrationId, pendingPreKeyId,
-                                                     pendingDeviceKeyId, pendingBaseKey,
+                                                     pendingSignedPreKeyId, pendingBaseKey,
                                                      sessionState.getLocalIdentityKey(),
                                                      sessionState.getVerification(),
                                                      (WhisperMessage) ciphertextMessage);

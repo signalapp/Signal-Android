@@ -13,29 +13,29 @@ public class PreKeyBundle {
 
   private int         registrationId;
 
-  private int        deviceId;
+  private int         deviceId;
 
   private int         preKeyId;
   private ECPublicKey preKeyPublic;
 
-  private int         deviceKeyId;
-  private ECPublicKey deviceKeyPublic;
-  private byte[]      deviceKeySignature;
+  private int         signedPreKeyId;
+  private ECPublicKey signedPreKeyPublic;
+  private byte[]      signedPreKeySignature;
 
   private IdentityKey identityKey;
 
   public PreKeyBundle(int registrationId, int deviceId, int preKeyId, ECPublicKey preKeyPublic,
-                      int deviceKeyId, ECPublicKey deviceKeyPublic, byte[] deviceKeySignature,
+                      int signedPreKeyId, ECPublicKey signedPreKeyPublic, byte[] signedPreKeySignature,
                       IdentityKey identityKey)
   {
-    this.registrationId     = registrationId;
-    this.deviceId           = deviceId;
-    this.preKeyId           = preKeyId;
-    this.preKeyPublic       = preKeyPublic;
-    this.deviceKeyId        = deviceKeyId;
-    this.deviceKeyPublic    = deviceKeyPublic;
-    this.deviceKeySignature = deviceKeySignature;
-    this.identityKey        = identityKey;
+    this.registrationId        = registrationId;
+    this.deviceId              = deviceId;
+    this.preKeyId              = preKeyId;
+    this.preKeyPublic          = preKeyPublic;
+    this.signedPreKeyId        = signedPreKeyId;
+    this.signedPreKeyPublic    = signedPreKeyPublic;
+    this.signedPreKeySignature = signedPreKeySignature;
+    this.identityKey           = identityKey;
   }
 
   /**
@@ -60,24 +60,24 @@ public class PreKeyBundle {
   }
 
   /**
-   * @return the unique key ID for this DeviceKey.
+   * @return the unique key ID for this signed prekey.
    */
-  public int getDeviceKeyId() {
-    return deviceKeyId;
+  public int getSignedPreKeyId() {
+    return signedPreKeyId;
   }
 
   /**
-   * @return the device key for this PreKey.
+   * @return the signed prekey for this PreKeyBundle.
    */
-  public ECPublicKey getDeviceKey() {
-    return deviceKeyPublic;
+  public ECPublicKey getSignedPreKey() {
+    return signedPreKeyPublic;
   }
 
   /**
-   * @return the signature over the device key.
+   * @return the signature over the signed  prekey.
    */
-  public byte[] getDeviceKeySignature() {
-    return deviceKeySignature;
+  public byte[] getSignedPreKeySignature() {
+    return signedPreKeySignature;
   }
 
   /**

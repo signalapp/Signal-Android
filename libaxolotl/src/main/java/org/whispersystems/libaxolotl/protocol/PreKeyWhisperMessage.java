@@ -34,7 +34,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
   private final int            version;
   private final int            registrationId;
   private final int            preKeyId;
-  private final int            deviceKeyId;
+  private final int            signedPreKeyId;
   private final ECPublicKey    baseKey;
   private final IdentityKey    identityKey;
   private final byte[]         verification;
@@ -55,11 +55,11 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
           = WhisperProtos.PreKeyWhisperMessage.parseFrom(ByteString.copyFrom(serialized, 1,
                                                                              serialized.length-1));
 
-      if ((version == 2 && !preKeyWhisperMessage.hasPreKeyId())     ||
-          (version == 3 && !preKeyWhisperMessage.hasDeviceKeyId())  ||
-          (version == 3 && !preKeyWhisperMessage.hasVerification()) ||
-          !preKeyWhisperMessage.hasBaseKey()                        ||
-          !preKeyWhisperMessage.hasIdentityKey()                    ||
+      if ((version == 2 && !preKeyWhisperMessage.hasPreKeyId())        ||
+          (version == 3 && !preKeyWhisperMessage.hasSignedPreKeyId())  ||
+          (version == 3 && !preKeyWhisperMessage.hasVerification())    ||
+          !preKeyWhisperMessage.hasBaseKey()                           ||
+          !preKeyWhisperMessage.hasIdentityKey()                       ||
           !preKeyWhisperMessage.hasMessage())
       {
         throw new InvalidMessageException("Incomplete message.");
@@ -68,7 +68,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
       this.serialized     = serialized;
       this.registrationId = preKeyWhisperMessage.getRegistrationId();
       this.preKeyId       = preKeyWhisperMessage.hasPreKeyId() ? preKeyWhisperMessage.getPreKeyId() : -1;
-      this.deviceKeyId    = preKeyWhisperMessage.hasDeviceKeyId() ? preKeyWhisperMessage.getDeviceKeyId() : -1;
+      this.signedPreKeyId = preKeyWhisperMessage.hasSignedPreKeyId() ? preKeyWhisperMessage.getSignedPreKeyId() : -1;
       this.baseKey        = Curve.decodePoint(preKeyWhisperMessage.getBaseKey().toByteArray(), 0);
       this.identityKey    = new IdentityKey(Curve.decodePoint(preKeyWhisperMessage.getIdentityKey().toByteArray(), 0));
       this.verification   = preKeyWhisperMessage.getVerification().toByteArray();
@@ -78,14 +78,14 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     }
   }
 
-  public PreKeyWhisperMessage(int messageVersion, int registrationId, int preKeyId, int deviceKeyId,
+  public PreKeyWhisperMessage(int messageVersion, int registrationId, int preKeyId, int signedPreKeyId,
                               ECPublicKey baseKey, IdentityKey identityKey, byte[] verification,
                               WhisperMessage message)
   {
     this.version        = messageVersion;
     this.registrationId = registrationId;
     this.preKeyId       = preKeyId;
-    this.deviceKeyId    = deviceKeyId;
+    this.signedPreKeyId = signedPreKeyId;
     this.baseKey        = baseKey;
     this.identityKey    = identityKey;
     this.verification   = verification;
@@ -94,7 +94,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     byte[] versionBytes = {ByteUtil.intsToByteHighAndLow(this.version, CURRENT_VERSION)};
     byte[] messageBytes = WhisperProtos.PreKeyWhisperMessage.newBuilder()
                                        .setPreKeyId(preKeyId)
-                                       .setDeviceKeyId(deviceKeyId)
+                                       .setSignedPreKeyId(signedPreKeyId)
                                        .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
                                        .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
                                        .setVerification(ByteString.copyFrom(verification))
@@ -121,8 +121,8 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     return preKeyId;
   }
 
-  public int getDeviceKeyId() {
-    return deviceKeyId;
+  public int getSignedPreKeyId() {
+    return signedPreKeyId;
   }
 
   public ECPublicKey getBaseKey() {

@@ -5,8 +5,8 @@ import android.util.Log;
 
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.libaxolotl.state.DeviceKeyRecord;
-import org.whispersystems.libaxolotl.state.DeviceKeyStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.textsecure.crypto.MasterCipher;
@@ -22,10 +22,10 @@ import java.nio.channels.FileChannel;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TextSecurePreKeyStore implements PreKeyStore, DeviceKeyStore {
+public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
 
-  public  static final String PREKEY_DIRECTORY     = "prekeys";
-  public  static final String DEVICE_KEY_DIRECTORY = "device_keys";
+  public  static final String PREKEY_DIRECTORY        = "prekeys";
+  public  static final String SIGNED_PREKEY_DIRECTORY = "signed_prekeys";
 
 
   private static final int    CURRENT_VERSION_MARKER = 1;
@@ -53,10 +53,10 @@ public class TextSecurePreKeyStore implements PreKeyStore, DeviceKeyStore {
   }
 
   @Override
-  public DeviceKeyRecord loadDeviceKey(int deviceKeyId) throws InvalidKeyIdException {
+  public SignedPreKeyRecord loadSignedPreKey(int signedPreKeyId) throws InvalidKeyIdException {
     synchronized (FILE_LOCK) {
       try {
-        return new DeviceKeyRecord(loadSerializedRecord(getDeviceKeyFile(deviceKeyId)));
+        return new SignedPreKeyRecord(loadSerializedRecord(getSignedPreKeyFile(signedPreKeyId)));
       } catch (IOException | InvalidMessageException e) {
         Log.w(TAG, e);
         throw new InvalidKeyIdException(e);
@@ -65,14 +65,14 @@ public class TextSecurePreKeyStore implements PreKeyStore, DeviceKeyStore {
   }
 
   @Override
-  public List<DeviceKeyRecord> loadDeviceKeys() {
+  public List<SignedPreKeyRecord> loadSignedPreKeys() {
     synchronized (FILE_LOCK) {
-      File                  directory = getDeviceKeyDirectory();
-      List<DeviceKeyRecord> results   = new LinkedList<>();
+      File                     directory = getSignedPreKeyDirectory();
+      List<SignedPreKeyRecord> results   = new LinkedList<>();
 
-      for (File deviceKeyFile : directory.listFiles()) {
+      for (File signedPreKeyFile : directory.listFiles()) {
         try {
-          results.add(new DeviceKeyRecord(loadSerializedRecord(deviceKeyFile)));
+          results.add(new SignedPreKeyRecord(loadSerializedRecord(signedPreKeyFile)));
         } catch (IOException | InvalidMessageException e) {
           Log.w(TAG, e);
         }
@@ -94,10 +94,10 @@ public class TextSecurePreKeyStore implements PreKeyStore, DeviceKeyStore {
   }
 
   @Override
-  public void storeDeviceKey(int deviceKeyId, DeviceKeyRecord record) {
+  public void storeSignedPreKey(int signedPreKeyId, SignedPreKeyRecord record) {
     synchronized (FILE_LOCK) {
       try {
-        storeSerializedRecord(getDeviceKeyFile(deviceKeyId), record.serialize());
+        storeSerializedRecord(getSignedPreKeyFile(signedPreKeyId), record.serialize());
       } catch (IOException e) {
         throw new AssertionError(e);
       }
@@ -111,8 +111,8 @@ public class TextSecurePreKeyStore implements PreKeyStore, DeviceKeyStore {
   }
 
   @Override
-  public boolean containsDeviceKey(int deviceKeyId) {
-    File record = getDeviceKeyFile(deviceKeyId);
+  public boolean containsSignedPreKey(int signedPreKeyId) {
+    File record = getSignedPreKeyFile(signedPreKeyId);
     return record.exists();
   }
 
@@ -124,8 +124,8 @@ public class TextSecurePreKeyStore implements PreKeyStore, DeviceKeyStore {
   }
 
   @Override
-  public void removeDeviceKey(int deviceKeyId) {
-    File record = getDeviceKeyFile(deviceKeyId);
+  public void removeSignedPreKey(int signedPreKeyId) {
+    File record = getSignedPreKeyFile(signedPreKeyId);
     record.delete();
   }
 
@@ -159,16 +159,16 @@ public class TextSecurePreKeyStore implements PreKeyStore, DeviceKeyStore {
     return new File(getPreKeyDirectory(), String.valueOf(preKeyId));
   }
 
-  private File getDeviceKeyFile(int deviceKeyId) {
-    return new File(getDeviceKeyDirectory(), String.valueOf(deviceKeyId));
+  private File getSignedPreKeyFile(int signedPreKeyId) {
+    return new File(getSignedPreKeyDirectory(), String.valueOf(signedPreKeyId));
   }
 
   private File getPreKeyDirectory() {
     return getRecordsDirectory(PREKEY_DIRECTORY);
   }
 
-  private File getDeviceKeyDirectory() {
-    return getRecordsDirectory(DEVICE_KEY_DIRECTORY);
+  private File getSignedPreKeyDirectory() {
+    return getRecordsDirectory(SIGNED_PREKEY_DIRECTORY);
   }
 
   private File getRecordsDirectory(String directoryName) {

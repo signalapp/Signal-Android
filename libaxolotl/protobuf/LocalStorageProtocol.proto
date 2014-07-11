@@ -35,9 +35,9 @@ message SessionStructure {
     }
 
     message PendingPreKey {
-        optional uint32 preKeyId    = 1;
-        optional int32  deviceKeyId = 3;
-        optional bytes  baseKey     = 2;
+        optional uint32 preKeyId       = 1;
+        optional int32  signedPreKeyId = 3;
+        optional bytes  baseKey        = 2;
     }
 
     optional uint32 sessionVersion      = 1;
@@ -72,7 +72,7 @@ message PreKeyRecordStructure {
     optional bytes  privateKey = 3;
 }
 
-message DeviceKeyRecordStructure {
+message SignedPreKeyRecordStructure {
     optional uint32  id         = 1;
     optional bytes   publicKey  = 2;
     optional bytes   privateKey = 3;
