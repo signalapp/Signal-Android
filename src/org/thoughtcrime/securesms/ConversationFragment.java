@@ -411,7 +411,7 @@ public class ConversationFragment extends SherlockListFragment
           return FAILURE;
         }
 
-        File         mediaFile    = constructOutputFile(slide);
+        File         mediaFile    = constructOutputFile(slide, messageRecord[0].getDateReceived());
         InputStream  inputStream  = slide.getPartDataInputStream();
         OutputStream outputStream = new FileOutputStream(mediaFile);
 
@@ -470,7 +470,7 @@ public class ConversationFragment extends SherlockListFragment
       return null;
     }
 
-    private File constructOutputFile(Slide slide) throws IOException {
+    private File constructOutputFile(Slide slide, long timestamp) throws IOException {
       File sdCard = Environment.getExternalStorageDirectory();
       File outputDirectory;
 
@@ -484,13 +484,14 @@ public class ConversationFragment extends SherlockListFragment
 
       outputDirectory.mkdirs();
 
-      MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-      String      extension   = mimeTypeMap.getExtensionFromMimeType(slide.getContentType());
+      MimeTypeMap       mimeTypeMap   = MimeTypeMap.getSingleton();
+      String            extension     = mimeTypeMap.getExtensionFromMimeType(slide.getContentType());
+      SimpleDateFormat  dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
       if (extension == null)
         extension = "attach";
 
-      return File.createTempFile("textsecure", "." + extension, outputDirectory);
+      return File.createTempFile("textsecure-" + dateFormatter.format(timestamp), "." + extension, outputDirectory);
     }
   }
 }
