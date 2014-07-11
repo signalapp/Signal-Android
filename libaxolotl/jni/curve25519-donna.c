@@ -43,8 +43,7 @@
  *
  * This is, almost, a clean room reimplementation from the curve25519 paper. It
  * uses many of the tricks described therein. Only the crecip function is taken
- * from the sample implementation.
- */
+ * from the sample implementation. */
 
 #include <string.h>
 #include <stdint.h>
@@ -63,25 +62,23 @@ typedef int64_t limb;
  * significant first. The value of the field element is:
  *   x[0] + 2^26·x[1] + x^51·x[2] + 2^102·x[3] + ...
  *
- * i.e. the limbs are 26, 25, 26, 25, ... bits wide.
- */
+ * i.e. the limbs are 26, 25, 26, 25, ... bits wide. */
 
 /* Sum two numbers: output += in */
 static void fsum(limb *output, const limb *in) {
   unsigned i;
   for (i = 0; i < 10; i += 2) {
-    output[0+i] = (output[0+i] + in[0+i]);
-    output[1+i] = (output[1+i] + in[1+i]);
+    output[0+i] = output[0+i] + in[0+i];
+    output[1+i] = output[1+i] + in[1+i];
   }
 }
 
 /* Find the difference of two numbers: output = in - output
- * (note the order of the arguments!)
- */
+ * (note the order of the arguments!). */
 static void fdifference(limb *output, const limb *in) {
   unsigned i;
   for (i = 0; i < 10; ++i) {
-    output[i] = (in[i] - output[i]);
+    output[i] = in[i] - output[i];
   }
 }
 
@@ -97,7 +94,8 @@ static void fscalar_product(limb *output, const limb *in, const limb scalar) {
  *
  * output must be distinct to both inputs. The inputs are reduced coefficient
  * form, the output is not.
- */
+ *
+ * output[x] <= 14 * the largest product of the input limbs. */
 static void fproduct(limb *output, const limb *in2, const limb *in) {
   output[0] =       ((limb) ((s32) in2[0])) * ((s32) in[0]);
   output[1] =       ((limb) ((s32) in2[0])) * ((s32) in[1]) +
@@ -201,9 +199,15 @@ static void fproduct(limb *output, const limb *in2, const limb *in) {
   output[18] = 2 *  ((limb) ((s32) in2[9])) * ((s32) in[9]);
 }
 
-/* Reduce a long form to a short form by taking the input mod 2^255 - 19. */
+/* Reduce a long form to a short form by taking the input mod 2^255 - 19.
+ *
+ * On entry: |output[i]| < 14*2^54
+ * On exit: |output[0..8]| < 280*2^54 */
 static void freduce_degree(limb *output) {
-  /* Each of these shifts and adds ends up multiplying the value by 19. */
+  /* Each of these shifts and adds ends up multiplying the value by 19.
+   *
+   * For output[0..8], the absolute entry value is < 14*2^54 and we add, at
+   * most, 19*14*2^54 thus, on exit, |output[0..8]| < 280*2^54. */
   output[8] += output[18] << 4;
   output[8] += output[18] << 1;
   output[8] += output[18];
@@ -237,11 +241,13 @@ static void freduce_degree(limb *output) {
 #error "This code only works on a two's complement system"
 #endif
 
-/* return v / 2^26, using only shifts and adds. */
+/* return v / 2^26, using only shifts and adds.
+ *
+ * On entry: v can take any value. */
 static inline limb
 div_by_2_26(const limb v)
 {
-  /* High word of v; no shift needed*/
+  /* High word of v; no shift needed. */
   const uint32_t highword = (uint32_t) (((uint64_t) v) >> 32);
   /* Set to all 1s if v was negative; else set to 0s. */
   const int32_t sign = ((int32_t) highword) >> 31;
@@ -251,7 +257,9 @@ div_by_2_26(const limb v)
   return (v + roundoff) >> 26;
 }
 
-/* return v / (2^25), using only shifts and adds. */
+/* return v / (2^25), using only shifts and adds.
+ *
+ * On entry: v can take any value. */
 static inline limb
 div_by_2_25(const limb v)
 {
@@ -265,6 +273,9 @@ div_by_2_25(const limb v)
   return (v + roundoff) >> 25;
 }
 
+/* return v / (2^25), using only shifts and adds.
+ *
+ * On entry: v can take any value. */
 static inline s32
 div_s32_by_2_25(const s32 v)
 {
@@ -274,8 +285,7 @@ div_s32_by_2_25(const s32 v)
 
 /* Reduce all coefficients of the short form input so that |x| < 2^26.
  *
- * On entry: |output[i]| < 2^62
- */
+ * On entry: |output[i]| < 280*2^54 */
 static void freduce_coefficients(limb *output) {
   unsigned i;
 
@@ -283,56 +293,65 @@ static void freduce_coefficients(limb *output) {
 
   for (i = 0; i < 10; i += 2) {
     limb over = div_by_2_26(output[i]);
+    /* The entry condition (that |output[i]| < 280*2^54) means that over is, at
+     * most, 280*2^28 in the first iteration of this loop. This is added to the
+     * next limb and we can approximate the resulting bound of that limb by
+     * 281*2^54. */
     output[i] -= over << 26;
     output[i+1] += over;
 
+    /* For the first iteration, |output[i+1]| < 281*2^54, thus |over| <
+     * 281*2^29. When this is added to the next limb, the resulting bound can
+     * be approximated as 281*2^54.
+     *
+     * For subsequent iterations of the loop, 281*2^54 remains a conservative
+     * bound and no overflow occurs. */
     over = div_by_2_25(output[i+1]);
     output[i+1] -= over << 25;
     output[i+2] += over;
   }
-  /* Now |output[10]| < 2 ^ 38 and all other coefficients are reduced. */
+  /* Now |output[10]| < 281*2^29 and all other coefficients are reduced. */
   output[0] += output[10] << 4;
   output[0] += output[10] << 1;
   output[0] += output[10];
 
   output[10] = 0;
 
-  /* Now output[1..9] are reduced, and |output[0]| < 2^26 + 19 * 2^38
-   * So |over| will be no more than 77825  */
+  /* Now output[1..9] are reduced, and |output[0]| < 2^26 + 19*281*2^29
+   * So |over| will be no more than 2^16. */
   {
     limb over = div_by_2_26(output[0]);
     output[0] -= over << 26;
     output[1] += over;
   }
 
-  /* Now output[0,2..9] are reduced, and |output[1]| < 2^25 + 77825
-   * So |over| will be no more than 1. */
-  {
-    /* output[1] fits in 32 bits, so we can use div_s32_by_2_25 here. */
-    s32 over32 = div_s32_by_2_25((s32) output[1]);
-    output[1] -= over32 << 25;
-    output[2] += over32;
-  }
-
-  /* Finally, output[0,1,3..9] are reduced, and output[2] is "nearly reduced":
-   * we have |output[2]| <= 2^26.  This is good enough for all of our math,
-   * but it will require an extra freduce_coefficients before fcontract. */
+  /* Now output[0,2..9] are reduced, and |output[1]| < 2^25 + 2^16 < 2^26. The
+   * bound on |output[1]| is sufficient to meet our needs. */
 }
 
 /* A helpful wrapper around fproduct: output = in * in2.
  *
- * output must be distinct to both inputs. The output is reduced degree and
- * reduced coefficient.
- */
+ * On entry: |in[i]| < 2^27 and |in2[i]| < 2^27.
+ *
+ * output must be distinct to both inputs. The output is reduced degree
+ * (indeed, one need only provide storage for 10 limbs) and |output[i]| < 2^26. */
 static void
 fmul(limb *output, const limb *in, const limb *in2) {
   limb t[19];
   fproduct(t, in, in2);
+  /* |t[i]| < 14*2^54 */
   freduce_degree(t);
   freduce_coefficients(t);
+  /* |t[i]| < 2^26 */
   memcpy(output, t, sizeof(limb) * 10);
 }
 
+/* Square a number: output = in**2
+ *
+ * output must be distinct from the input. The inputs are reduced coefficient
+ * form, the output is not.
+ *
+ * output[x] <= 14 * the largest product of the input limbs. */
 static void fsquare_inner(limb *output, const limb *in) {
   output[0] =       ((limb) ((s32) in[0])) * ((s32) in[0]);
   output[1] =  2 *  ((limb) ((s32) in[0])) * ((s32) in[1]);
@@ -391,12 +410,23 @@ static void fsquare_inner(limb *output, const limb *in) {
   output[18] = 2 *  ((limb) ((s32) in[9])) * ((s32) in[9]);
 }
 
+/* fsquare sets output = in^2.
+ *
+ * On entry: The |in| argument is in reduced coefficients form and |in[i]| <
+ * 2^27.
+ *
+ * On exit: The |output| argument is in reduced coefficients form (indeed, one
+ * need only provide storage for 10 limbs) and |out[i]| < 2^26. */
 static void
 fsquare(limb *output, const limb *in) {
   limb t[19];
   fsquare_inner(t, in);
+  /* |t[i]| < 14*2^54 because the largest product of two limbs will be <
+   * 2^(27+27) and fsquare_inner adds together, at most, 14 of those
+   * products. */
   freduce_degree(t);
   freduce_coefficients(t);
+  /* |t[i]| < 2^26 */
   memcpy(output, t, sizeof(limb) * 10);
 }
 
@@ -417,7 +447,7 @@ fexpand(limb *output, const u8 *input) {
   F(6, 19, 1, 0x3ffffff);
   F(7, 22, 3, 0x1ffffff);
   F(8, 25, 4, 0x3ffffff);
-  F(9, 28, 6, 0x3ffffff);
+  F(9, 28, 6, 0x1ffffff);
 #undef F
 }
 
@@ -425,60 +455,143 @@ fexpand(limb *output, const u8 *input) {
 #error "This code only works when >> does sign-extension on negative numbers"
 #endif
 
+/* s32_eq returns 0xffffffff iff a == b and zero otherwise. */
+static s32 s32_eq(s32 a, s32 b) {
+  a = ~(a ^ b);
+  a &= a << 16;
+  a &= a << 8;
+  a &= a << 4;
+  a &= a << 2;
+  a &= a << 1;
+  return a >> 31;
+}
+
+/* s32_gte returns 0xffffffff if a >= b and zero otherwise, where a and b are
+ * both non-negative. */
+static s32 s32_gte(s32 a, s32 b) {
+  a -= b;
+  /* a >= 0 iff a >= b. */
+  return ~(a >> 31);
+}
+
 /* Take a fully reduced polynomial form number and contract it into a
- * little-endian, 32-byte array
- */
+ * little-endian, 32-byte array.
+ *
+ * On entry: |input_limbs[i]| < 2^26 */
 static void
-fcontract(u8 *output, limb *input) {
+fcontract(u8 *output, limb *input_limbs) {
   int i;
   int j;
+  s32 input[10];
+  s32 mask;
+
+  /* |input_limbs[i]| < 2^26, so it's valid to convert to an s32. */
+  for (i = 0; i < 10; i++) {
+    input[i] = input_limbs[i];
+  }
 
   for (j = 0; j < 2; ++j) {
     for (i = 0; i < 9; ++i) {
       if ((i & 1) == 1) {
-        /* This calculation is a time-invariant way to make input[i] positive
-           by borrowing from the next-larger limb.
-        */
-        const s32 mask = (s32)(input[i]) >> 31;
-        const s32 carry = -(((s32)(input[i]) & mask) >> 25);
-        input[i] = (s32)(input[i]) + (carry << 25);
-        input[i+1] = (s32)(input[i+1]) - carry;
+        /* This calculation is a time-invariant way to make input[i]
+         * non-negative by borrowing from the next-larger limb. */
+        const s32 mask = input[i] >> 31;
+        const s32 carry = -((input[i] & mask) >> 25);
+        input[i] = input[i] + (carry << 25);
+        input[i+1] = input[i+1] - carry;
       } else {
-        const s32 mask = (s32)(input[i]) >> 31;
-        const s32 carry = -(((s32)(input[i]) & mask) >> 26);
-        input[i] = (s32)(input[i]) + (carry << 26);
-        input[i+1] = (s32)(input[i+1]) - carry;
+        const s32 mask = input[i] >> 31;
+        const s32 carry = -((input[i] & mask) >> 26);
+        input[i] = input[i] + (carry << 26);
+        input[i+1] = input[i+1] - carry;
       }
     }
+
+    /* There's no greater limb for input[9] to borrow from, but we can multiply
+     * by 19 and borrow from input[0], which is valid mod 2^255-19. */
     {
-      const s32 mask = (s32)(input[9]) >> 31;
-      const s32 carry = -(((s32)(input[9]) & mask) >> 25);
-      input[9] = (s32)(input[9]) + (carry << 25);
-      input[0] = (s32)(input[0]) - (carry * 19);
+      const s32 mask = input[9] >> 31;
+      const s32 carry = -((input[9] & mask) >> 25);
+      input[9] = input[9] + (carry << 25);
+      input[0] = input[0] - (carry * 19);
     }
+
+    /* After the first iteration, input[1..9] are non-negative and fit within
+     * 25 or 26 bits, depending on position. However, input[0] may be
+     * negative. */
   }
 
   /* The first borrow-propagation pass above ended with every limb
      except (possibly) input[0] non-negative.
 
-     Since each input limb except input[0] is decreased by at most 1
-     by a borrow-propagation pass, the second borrow-propagation pass
-     could only have wrapped around to decrease input[0] again if the
-     first pass left input[0] negative *and* input[1] through input[9]
-     were all zero.  In that case, input[1] is now 2^25 - 1, and this
-     last borrow-propagation step will leave input[1] non-negative.
-  */
+     If input[0] was negative after the first pass, then it was because of a
+     carry from input[9]. On entry, input[9] < 2^26 so the carry was, at most,
+     one, since (2**26-1) >> 25 = 1. Thus input[0] >= -19.
+
+     In the second pass, each limb is decreased by at most one. Thus the second
+     borrow-propagation pass could only have wrapped around to decrease
+     input[0] again if the first pass left input[0] negative *and* input[1]
+     through input[9] were all zero.  In that case, input[1] is now 2^25 - 1,
+     and this last borrow-propagation step will leave input[1] non-negative. */
   {
-    const s32 mask = (s32)(input[0]) >> 31;
-    const s32 carry = -(((s32)(input[0]) & mask) >> 26);
-    input[0] = (s32)(input[0]) + (carry << 26);
-    input[1] = (s32)(input[1]) - carry;
+    const s32 mask = input[0] >> 31;
+    const s32 carry = -((input[0] & mask) >> 26);
+    input[0] = input[0] + (carry << 26);
+    input[1] = input[1] - carry;
   }
 
-  /* Both passes through the above loop, plus the last 0-to-1 step, are
-     necessary: if input[9] is -1 and input[0] through input[8] are 0,
-     negative values will remain in the array until the end.
-   */
+  /* All input[i] are now non-negative. However, there might be values between
+   * 2^25 and 2^26 in a limb which is, nominally, 25 bits wide. */
+  for (j = 0; j < 2; j++) {
+    for (i = 0; i < 9; i++) {
+      if ((i & 1) == 1) {
+        const s32 carry = input[i] >> 25;
+        input[i] &= 0x1ffffff;
+        input[i+1] += carry;
+      } else {
+        const s32 carry = input[i] >> 26;
+        input[i] &= 0x3ffffff;
+        input[i+1] += carry;
+      }
+    }
+
+    {
+      const s32 carry = input[9] >> 25;
+      input[9] &= 0x1ffffff;
+      input[0] += 19*carry;
+    }
+  }
+
+  /* If the first carry-chain pass, just above, ended up with a carry from
+   * input[9], and that caused input[0] to be out-of-bounds, then input[0] was
+   * < 2^26 + 2*19, because the carry was, at most, two.
+   *
+   * If the second pass carried from input[9] again then input[0] is < 2*19 and
+   * the input[9] -> input[0] carry didn't push input[0] out of bounds. */
+
+  /* It still remains the case that input might be between 2^255-19 and 2^255.
+   * In this case, input[1..9] must take their maximum value and input[0] must
+   * be >= (2^255-19) & 0x3ffffff, which is 0x3ffffed. */
+  mask = s32_gte(input[0], 0x3ffffed);
+  for (i = 1; i < 10; i++) {
+    if ((i & 1) == 1) {
+      mask &= s32_eq(input[i], 0x1ffffff);
+    } else {
+      mask &= s32_eq(input[i], 0x3ffffff);
+    }
+  }
+
+  /* mask is either 0xffffffff (if input >= 2^255-19) and zero otherwise. Thus
+   * this conditionally subtracts 2^255-19. */
+  input[0] -= mask & 0x3ffffed;
+
+  for (i = 1; i < 10; i++) {
+    if ((i & 1) == 1) {
+      input[i] -= mask & 0x1ffffff;
+    } else {
+      input[i] -= mask & 0x3ffffff;
+    }
+  }
 
   input[1] <<= 2;
   input[2] <<= 3;
@@ -516,7 +629,9 @@ fcontract(u8 *output, limb *input) {
  *   x z: short form, destroyed
  *   xprime zprime: short form, destroyed
  *   qmqp: short form, preserved
- */
+ *
+ * On entry and exit, the absolute value of the limbs of all inputs and outputs
+ * are < 2^26. */
 static void fmonty(limb *x2, limb *z2,  /* output 2Q */
                    limb *x3, limb *z3,  /* output Q + Q' */
                    limb *x, limb *z,    /* input Q */
@@ -527,43 +642,69 @@ static void fmonty(limb *x2, limb *z2,  /* output 2Q */
 
   memcpy(origx, x, 10 * sizeof(limb));
   fsum(x, z);
-  fdifference(z, origx);  // does x - z
+  /* |x[i]| < 2^27 */
+  fdifference(z, origx);  /* does x - z */
+  /* |z[i]| < 2^27 */
 
   memcpy(origxprime, xprime, sizeof(limb) * 10);
   fsum(xprime, zprime);
+  /* |xprime[i]| < 2^27 */
   fdifference(zprime, origxprime);
+  /* |zprime[i]| < 2^27 */
   fproduct(xxprime, xprime, z);
+  /* |xxprime[i]| < 14*2^54: the largest product of two limbs will be <
+   * 2^(27+27) and fproduct adds together, at most, 14 of those products.
+   * (Approximating that to 2^58 doesn't work out.) */
   fproduct(zzprime, x, zprime);
+  /* |zzprime[i]| < 14*2^54 */
   freduce_degree(xxprime);
   freduce_coefficients(xxprime);
+  /* |xxprime[i]| < 2^26 */
   freduce_degree(zzprime);
   freduce_coefficients(zzprime);
+  /* |zzprime[i]| < 2^26 */
   memcpy(origxprime, xxprime, sizeof(limb) * 10);
   fsum(xxprime, zzprime);
+  /* |xxprime[i]| < 2^27 */
   fdifference(zzprime, origxprime);
+  /* |zzprime[i]| < 2^27 */
   fsquare(xxxprime, xxprime);
+  /* |xxxprime[i]| < 2^26 */
   fsquare(zzzprime, zzprime);
+  /* |zzzprime[i]| < 2^26 */
   fproduct(zzprime, zzzprime, qmqp);
+  /* |zzprime[i]| < 14*2^52 */
   freduce_degree(zzprime);
   freduce_coefficients(zzprime);
+  /* |zzprime[i]| < 2^26 */
   memcpy(x3, xxxprime, sizeof(limb) * 10);
   memcpy(z3, zzprime, sizeof(limb) * 10);
 
   fsquare(xx, x);
+  /* |xx[i]| < 2^26 */
   fsquare(zz, z);
+  /* |zz[i]| < 2^26 */
   fproduct(x2, xx, zz);
+  /* |x2[i]| < 14*2^52 */
   freduce_degree(x2);
   freduce_coefficients(x2);
+  /* |x2[i]| < 2^26 */
   fdifference(zz, xx);  // does zz = xx - zz
+  /* |zz[i]| < 2^27 */
   memset(zzz + 10, 0, sizeof(limb) * 9);
   fscalar_product(zzz, zz, 121665);
+  /* |zzz[i]| < 2^(27+17) */
   /* No need to call freduce_degree here:
      fscalar_product doesn't increase the degree of its input. */
   freduce_coefficients(zzz);
+  /* |zzz[i]| < 2^26 */
   fsum(zzz, xx);
+  /* |zzz[i]| < 2^27 */
   fproduct(z2, zz, zzz);
+  /* |z2[i]| < 14*2^(26+27) */
   freduce_degree(z2);
   freduce_coefficients(z2);
+  /* |z2|i| < 2^26 */
 }
 
 /* Conditionally swap two reduced-form limb arrays if 'iswap' is 1, but leave
@@ -574,8 +715,7 @@ static void fmonty(limb *x2, limb *z2,  /* output 2Q */
  * wrong results.  Also, the two limb arrays must be in reduced-coefficient,
  * reduced-degree form: the values in a[10..19] or b[10..19] aren't swapped,
  * and all all values in a[0..9],b[0..9] must have magnitude less than
- * INT32_MAX.
- */
+ * INT32_MAX. */
 static void
 swap_conditional(limb a[19], limb b[19], limb iswap) {
   unsigned i;
@@ -592,8 +732,7 @@ swap_conditional(limb a[19], limb b[19], limb iswap) {
  *
  *   resultx/resultz: the x coordinate of the resulting curve point (short form)
  *   n: a little endian, 32-byte number
- *   q: a point of the curve (short form)
- */
+ *   q: a point of the curve (short form) */
 static void
 cmult(limb *resultx, limb *resultz, const u8 *n, const limb *q) {
   limb a[19] = {0}, b[19] = {1}, c[19] = {1}, d[19] = {0};
@@ -711,8 +850,6 @@ crecip(limb *out, const limb *z) {
   /* 2^255 - 21 */ fmul(out,t1,z11);
 }
 
-int curve25519_donna(u8 *, const u8 *, const u8 *);
-
 int
 curve25519_donna(u8 *mypublic, const u8 *secret, const u8 *basepoint) {
   limb bp[10], x[10], z[11], zmone[10];
@@ -720,12 +857,14 @@ curve25519_donna(u8 *mypublic, const u8 *secret, const u8 *basepoint) {
   int i;
 
   for (i = 0; i < 32; ++i) e[i] = secret[i];
+//  e[0] &= 248;
+//  e[31] &= 127;
+//  e[31] |= 64;
 
   fexpand(bp, basepoint);
   cmult(x, z, e, bp);
   crecip(zmone, z);
   fmul(z, x, zmone);
-  freduce_coefficients(z);
   fcontract(mypublic, z);
   return 0;
 }
