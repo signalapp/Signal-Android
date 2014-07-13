@@ -163,6 +163,7 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
       intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
       intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
       intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
+      intent.putExtra(ConversationActivity.DRAFT_VCARD_EXTRA, parameters.draftVCard);
     }
 
     return intent;
@@ -223,7 +224,7 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
       recipients = null;
     }
 
-    return new ConversationParameters(threadId, recipients, null, null, null, null);
+    return new ConversationParameters(threadId, recipients, null, null, null, null, null);
   }
 
   private ConversationParameters getConversationParametersForShareAction() {
@@ -232,6 +233,7 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     Uri draftImage   = null;
     Uri draftAudio   = null;
     Uri draftVideo   = null;
+    Uri draftVCard   = null;
 
     Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
 
@@ -245,9 +247,11 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
       draftAudio = streamExtra;
     } else if (type != null && type.startsWith("video/")) {
       draftVideo = streamExtra;
+    } else if (type != null && type.equals("text/x-vcard")) {
+      draftVCard = streamExtra;
     }
 
-    return new ConversationParameters(-1, null, draftText, draftImage, draftAudio, draftVideo);
+    return new ConversationParameters(-1, null, draftText, draftImage, draftAudio, draftVideo, draftVCard);
   }
 
   private String getMimeType(Uri uri) {
@@ -265,7 +269,7 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     long threadId         = getIntent().getLongExtra("thread_id", -1);
     Recipients recipients = getIntent().getParcelableExtra("recipients");
 
-    return new ConversationParameters(threadId, recipients, null, null, null, null);
+    return new ConversationParameters(threadId, recipients, null, null, null, null, null);
   }
 
   private boolean isShareAction() {
@@ -283,9 +287,11 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     public final Uri        draftImage;
     public final Uri        draftAudio;
     public final Uri        draftVideo;
+    public final Uri        draftVCard;
 
     public ConversationParameters(long thread, Recipients recipients,
-                                  String draftText, Uri draftImage, Uri draftAudio, Uri draftVideo)
+                                  String draftText, Uri draftImage, Uri draftAudio, Uri draftVideo,
+                                  Uri draftVCard)
     {
      this.thread     = thread;
      this.recipients = recipients;
@@ -293,6 +299,7 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
      this.draftImage = draftImage;
      this.draftAudio = draftAudio;
      this.draftVideo = draftVideo;
+     this.draftVCard = draftVCard;
     }
   }
 

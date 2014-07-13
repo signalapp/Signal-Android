@@ -159,6 +159,7 @@ public class NewConversationActivity extends PassphraseRequiredSherlockFragmentA
       intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA));
+      intent.putExtra(ConversationActivity.DRAFT_VCARD_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_VCARD_EXTRA));
       long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
       intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
       intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
