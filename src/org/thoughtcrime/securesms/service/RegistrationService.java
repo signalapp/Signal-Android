@@ -281,6 +281,7 @@ public class RegistrationService extends Service {
     TextSecurePreferences.setLocalNumber(this, number);
     TextSecurePreferences.setPushServerPassword(this, password);
     TextSecurePreferences.setSignalingKey(this, signalingKey);
+    TextSecurePreferences.setSignedPreKeyRegistered(this, true);
   }
 
   private void setState(RegistrationState state) {

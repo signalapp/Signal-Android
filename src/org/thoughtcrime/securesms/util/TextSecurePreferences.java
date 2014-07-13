@@ -51,6 +51,15 @@ public class TextSecurePreferences {
   private static final String FALLBACK_SMS_ALLOWED_PREF        = "pref_allow_sms_traffic_out";
   private static final String FALLBACK_SMS_ASK_REQUIRED_PREF   = "pref_sms_fallback_ask";
   private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
+  private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
+
+  public static boolean isSignedPreKeyRegistered(Context context) {
+    return getBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, false);
+  }
+
+  public static void setSignedPreKeyRegistered(Context context, boolean value) {
+    setBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, value);
+  }
 
   private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
   private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";

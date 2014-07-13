@@ -30,6 +30,16 @@ public class SignedPreKeyEntity extends PreKeyEntity {
     return signature;
   }
 
+  public static String toJson(SignedPreKeyEntity entity) {
+    GsonBuilder builder = new GsonBuilder();
+    return forBuilder(builder).create().toJson(entity);
+  }
+
+  public static SignedPreKeyEntity fromJson(String serialized) {
+    GsonBuilder builder = new GsonBuilder();
+    return forBuilder(builder).create().fromJson(serialized, SignedPreKeyEntity.class);
+  }
+
   public static GsonBuilder forBuilder(GsonBuilder builder) {
     return PreKeyEntity.forBuilder(builder)
                        .registerTypeAdapter(byte[].class, new ByteArrayJsonAdapter());

@@ -40,6 +40,9 @@ dependencies {
     androidTestCompile 'com.squareup:fest-android:1.0.8'
 
     compile project(':library')
+
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
 }
 
 dependencyVerification {
@@ -84,10 +87,10 @@ android {
                 assets.srcDirs = ['assets']
             }
             androidTest {
-                java.srcDirs = ['androidTest']
-                resources.srcDirs = ['androidTest']
-                aidl.srcDirs = ['androidTest']
-                renderscript.srcDirs = ['androidTest']
+                java.srcDirs = ['androidTest/java']
+                resources.srcDirs = ['androidTest/java']
+                aidl.srcDirs = ['androidTest/java']
+                renderscript.srcDirs = ['androidTest/java']
             }
         }
     }

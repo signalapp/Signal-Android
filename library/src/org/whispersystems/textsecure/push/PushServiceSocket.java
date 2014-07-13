@@ -70,6 +70,7 @@ public class PushServiceSocket {
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
+  private static final String SIGNED_PREKEY_PATH        = "/v2/keys/signed";
 
   private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
   private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
@@ -249,6 +250,23 @@ public class PushServiceSocket {
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(destination.getNumber(), nfe);
     }
+  }
+
+  public SignedPreKeyEntity getCurrentSignedPreKey() throws IOException {
+    try {
+      String responseText = makeRequest(SIGNED_PREKEY_PATH, "GET", null);
+      return SignedPreKeyEntity.fromJson(responseText);
+    } catch (NotFoundException e) {
+      Log.w("PushServiceSocket", e);
+      return null;
+    }
+  }
+
+  public void setCurrentSignedPreKey(SignedPreKeyRecord signedPreKey) throws IOException {
+    SignedPreKeyEntity signedPreKeyEntity = new SignedPreKeyEntity(signedPreKey.getId(),
+                                                                   signedPreKey.getKeyPair().getPublicKey(),
+                                                                   signedPreKey.getSignature());
+    makeRequest(SIGNED_PREKEY_PATH, "PUT", SignedPreKeyEntity.toJson(signedPreKeyEntity));
   }
 
   public long sendAttachment(PushAttachmentData attachment) throws IOException {
