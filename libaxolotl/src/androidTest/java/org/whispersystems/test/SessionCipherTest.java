@@ -11,11 +11,13 @@ import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.SessionCipher;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.InitializationParameters;
 
 public class SessionCipherTest extends AndroidTestCase {
 
@@ -134,16 +138,33 @@ public class SessionCipherTest extends AndroidTestCase {
     ECKeyPair       bobBaseKey           = Curve.generateKeyPair(true);
     ECKeyPair       bobEphemeralKey      = bobBaseKey;
 
+    InitializationParameters aliceParameters =
+        InitializationParameters.newBuilder()
+                                .setOurIdentityKey(aliceIdentityKey)
+                                .setOurBaseKey(aliceBaseKey)
+                                .setOurEphemeralKey(aliceEphemeralKey)
+                                .setOurPreKey(Optional.<ECKeyPair>absent())
+                                .setTheirIdentityKey(bobIdentityKey.getPublicKey())
+                                .setTheirBaseKey(bobBaseKey.getPublicKey())
+                                .setTheirEphemeralKey(bobEphemeralKey.getPublicKey())
+                                .setTheirPreKey(Optional.<ECPublicKey>absent())
+                                .create();
 
-    RatchetingSession.initializeSession(aliceSessionState, 2, aliceBaseKey, bobBaseKey.getPublicKey(),
-                                        aliceEphemeralKey, bobEphemeralKey.getPublicKey(),
-                                        null, null,
-                                        aliceIdentityKey, bobIdentityKey.getPublicKey());
+    InitializationParameters bobParameters =
+        InitializationParameters.newBuilder()
+                                .setOurIdentityKey(bobIdentityKey)
+                                .setOurBaseKey(bobBaseKey)
+                                .setOurEphemeralKey(bobEphemeralKey)
+                                .setOurPreKey(Optional.<ECKeyPair>absent())
+                                .setTheirIdentityKey(aliceIdentityKey.getPublicKey())
+                                .setTheirBaseKey(aliceBaseKey.getPublicKey())
+                                .setTheirEphemeralKey(aliceEphemeralKey.getPublicKey())
+                                .setTheirPreKey(Optional.<ECPublicKey>absent())
+                                .create();
 
-    RatchetingSession.initializeSession(bobSessionState, 2, bobBaseKey, aliceBaseKey.getPublicKey(),
-                                        bobEphemeralKey, aliceEphemeralKey.getPublicKey(),
-                                        null, null,
-                                        bobIdentityKey, aliceIdentityKey.getPublicKey());
+
+    RatchetingSession.initializeSession(aliceSessionState, 2, aliceParameters);
+    RatchetingSession.initializeSession(bobSessionState, 2, bobParameters);
   }
 
   private void initializeSessionsV3(SessionState aliceSessionState, SessionState bobSessionState)
@@ -165,16 +186,33 @@ public class SessionCipherTest extends AndroidTestCase {
 
     ECKeyPair       bobPreKey            = Curve.generateKeyPair(true);
 
+    InitializationParameters aliceParameters =
+        InitializationParameters.newBuilder()
+                                .setOurIdentityKey(aliceIdentityKey)
+                                .setOurBaseKey(aliceBaseKey)
+                                .setOurEphemeralKey(aliceEphemeralKey)
+                                .setOurPreKey(Optional.of(alicePreKey))
+                                .setTheirIdentityKey(bobIdentityKey.getPublicKey())
+                                .setTheirBaseKey(bobBaseKey.getPublicKey())
+                                .setTheirEphemeralKey(bobEphemeralKey.getPublicKey())
+                                .setTheirPreKey(Optional.of(bobPreKey.getPublicKey()))
+                                .create();
 
-    RatchetingSession.initializeSession(aliceSessionState, 3, aliceBaseKey, bobBaseKey.getPublicKey(),
-                                        aliceEphemeralKey, bobEphemeralKey.getPublicKey(),
-                                        alicePreKey, bobPreKey.getPublicKey(),
-                                        aliceIdentityKey, bobIdentityKey.getPublicKey());
+    InitializationParameters bobParameters =
+        InitializationParameters.newBuilder()
+                                .setOurIdentityKey(bobIdentityKey)
+                                .setOurBaseKey(bobBaseKey)
+                                .setOurEphemeralKey(bobEphemeralKey)
+                                .setOurPreKey(Optional.of(bobPreKey))
+                                .setTheirIdentityKey(aliceIdentityKey.getPublicKey())
+                                .setTheirBaseKey(aliceBaseKey.getPublicKey())
+                                .setTheirEphemeralKey(aliceEphemeralKey.getPublicKey())
+                                .setTheirPreKey(Optional.of(alicePreKey.getPublicKey()))
+                                .create();
 
-    RatchetingSession.initializeSession(bobSessionState, 3, bobBaseKey, aliceBaseKey.getPublicKey(),
-                                        bobEphemeralKey, aliceEphemeralKey.getPublicKey(),
-                                        bobPreKey, alicePreKey.getPublicKey(),
-                                        bobIdentityKey, aliceIdentityKey.getPublicKey());
+
+    RatchetingSession.initializeSession(aliceSessionState, 3, aliceParameters);
+    RatchetingSession.initializeSession(bobSessionState, 3, bobParameters);
 
   }
 }

@@ -426,23 +426,23 @@ public class SessionBuilderTest extends AndroidTestCase {
   }
 
   public void testBadVerificationTagV3() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException {
-    SessionStore     aliceSessionStore     = new InMemorySessionStore();
+    SessionStore      aliceSessionStore      = new InMemorySessionStore();
     SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
-    PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
-    IdentityKeyStore aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
-    SessionBuilder   aliceSessionBuilder   = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
-                                                                aliceSignedPreKeyStore,
-                                                                aliceIdentityKeyStore,
-                                                                BOB_RECIPIENT_ID, 1);
+    PreKeyStore       alicePreKeyStore       = new InMemoryPreKeyStore();
+    IdentityKeyStore  aliceIdentityKeyStore  = new InMemoryIdentityKeyStore();
+    SessionBuilder    aliceSessionBuilder    = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
+                                                                  aliceSignedPreKeyStore,
+                                                                  aliceIdentityKeyStore,
+                                                                  BOB_RECIPIENT_ID, 1);
 
-    SessionStore     bobSessionStore     = new InMemorySessionStore();
-    PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
+    SessionStore      bobSessionStore      = new InMemorySessionStore();
+    PreKeyStore       bobPreKeyStore       = new InMemoryPreKeyStore();
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
-    IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
-    SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobSignedPreKeyStore,
-                                                              bobIdentityKeyStore,
-                                                              ALICE_RECIPIENT_ID, 1);
+    IdentityKeyStore  bobIdentityKeyStore  = new InMemoryIdentityKeyStore();
+    SessionBuilder    bobSessionBuilder    = new SessionBuilder(bobSessionStore, bobPreKeyStore,
+                                                                bobSignedPreKeyStore,
+                                                                bobIdentityKeyStore,
+                                                                ALICE_RECIPIENT_ID, 1);
 
     ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
     ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
@@ -469,6 +469,7 @@ public class SessionBuilderTest extends AndroidTestCase {
 
     for (int i=0;i<incomingMessage.getVerification().length * 8;i++) {
       byte[] modifiedVerification  = new byte[incomingMessage.getVerification().length];
+      System.arraycopy(incomingMessage.getVerification(), 0, modifiedVerification, 0, modifiedVerification.length);
       modifiedVerification[i / 8] ^= (0x01 << i % 8);
 
       PreKeyWhisperMessage modifiedMessage = new PreKeyWhisperMessage(incomingMessage.getMessageVersion(),

@@ -11,8 +11,11 @@ import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
 import org.whispersystems.libaxolotl.state.SessionState;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Arrays;
+
+import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.InitializationParameters;
 
 public class RatchetingSessionTest extends AndroidTestCase {
 
@@ -105,12 +108,21 @@ public class RatchetingSessionTest extends AndroidTestCase {
     ECPublicKey     aliceEphemeralPublicKey  = Curve.decodePoint(aliceEphemeralPublic, 0);
     IdentityKey     aliceIdentityPublicKey   = new IdentityKey(aliceIdentityPublic, 0);
 
+    InitializationParameters parameters = InitializationParameters.newBuilder()
+                                                                  .setOurBaseKey(bobBaseKey)
+                                                                  .setOurEphemeralKey(bobEphemeralKey)
+                                                                  .setOurIdentityKey(bobIdentityKey)
+                                                                  .setOurPreKey(Optional.<ECKeyPair>absent())
+                                                                  .setTheirBaseKey(aliceBasePublicKey)
+                                                                  .setTheirEphemeralKey(aliceEphemeralPublicKey)
+                                                                  .setTheirIdentityKey(aliceIdentityPublicKey)
+                                                                  .setTheirPreKey(Optional.<ECPublicKey>absent())
+                                                                  .create();
+
     SessionState session = new SessionState();
 
-    RatchetingSession.initializeSession(session, 2, bobBaseKey, aliceBasePublicKey,
-                                        bobEphemeralKey, aliceEphemeralPublicKey,
-                                        null, null,
-                                        bobIdentityKey, aliceIdentityPublicKey);
+
+    RatchetingSession.initializeSession(session, 2, parameters);
 
     assertTrue(session.getLocalIdentityKey().equals(bobIdentityKey.getPublicKey()));
     assertTrue(session.getRemoteIdentityKey().equals(aliceIdentityPublicKey));
@@ -205,10 +217,18 @@ public class RatchetingSessionTest extends AndroidTestCase {
 
     SessionState session = new SessionState();
 
-    RatchetingSession.initializeSession(session, 2, aliceBaseKey, bobBasePublicKey,
-                                        aliceEphemeralKey, bobEphemeralPublicKey,
-                                        null, null,
-                                        aliceIdentityKey, bobIdentityKey);
+    InitializationParameters parameters = InitializationParameters.newBuilder()
+                                                                  .setOurBaseKey(aliceBaseKey)
+                                                                  .setOurEphemeralKey(aliceEphemeralKey)
+                                                                  .setOurIdentityKey(aliceIdentityKey)
+                                                                  .setOurPreKey(Optional.<ECKeyPair>absent())
+                                                                  .setTheirBaseKey(bobBasePublicKey)
+                                                                  .setTheirEphemeralKey(bobEphemeralPublicKey)
+                                                                  .setTheirIdentityKey(bobIdentityKey)
+                                                                  .setTheirPreKey(Optional.<ECPublicKey>absent())
+                                                                  .create();
+
+    RatchetingSession.initializeSession(session, 2, parameters);
 
     assertTrue(session.getLocalIdentityKey().equals(aliceIdentityKey.getPublicKey()));
     assertTrue(session.getRemoteIdentityKey().equals(bobIdentityKey));

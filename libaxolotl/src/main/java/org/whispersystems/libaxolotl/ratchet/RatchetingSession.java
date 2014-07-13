@@ -26,6 +26,7 @@ import org.whispersystems.libaxolotl.kdf.HKDF;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.util.ByteUtil;
 import org.whispersystems.libaxolotl.util.Pair;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -34,97 +35,58 @@ import java.util.Arrays;
 
 public class RatchetingSession {
 
-  public static void initializeSession(SessionState    sessionState,
-                                       int             sessionVersion,
-                                       ECKeyPair       ourBaseKey,
-                                       ECPublicKey     theirBaseKey,
-                                       ECKeyPair       ourEphemeralKey,
-                                       ECPublicKey     theirEphemeralKey,
-                                       ECKeyPair       ourPreKey,
-                                       ECPublicKey     theirPreKey,
-                                       IdentityKeyPair ourIdentityKey,
-                                       IdentityKey     theirIdentityKey)
+  public static void initializeSession(SessionState sessionState,
+                                       int sessionVersion,
+                                       InitializationParameters parameters)
       throws InvalidKeyException
   {
-    if (isAlice(ourBaseKey.getPublicKey(), theirBaseKey, ourEphemeralKey.getPublicKey(), theirEphemeralKey)) {
-      initializeSessionAsAlice(sessionState, sessionVersion, ourBaseKey, theirBaseKey, theirEphemeralKey,
-                               ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
-    } else {
-      initializeSessionAsBob(sessionState, sessionVersion, ourBaseKey, theirBaseKey, ourEphemeralKey,
-                             ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
-    }
+    if (isAlice(parameters)) initializeSessionAsAlice(sessionState, sessionVersion, parameters);
+    else                     initializeSessionAsBob(sessionState, sessionVersion, parameters);
 
     sessionState.setSessionVersion(sessionVersion);
   }
 
   private static void initializeSessionAsAlice(SessionState sessionState,
                                                int sessionVersion,
-                                               ECKeyPair ourBaseKey, ECPublicKey theirBaseKey,
-                                               ECPublicKey theirEphemeralKey,
-                                               ECKeyPair ourPreKey, ECPublicKey theirPreKey,
-                                               IdentityKeyPair ourIdentityKey,
-                                               IdentityKey theirIdentityKey)
+                                               InitializationParameters parameters)
       throws InvalidKeyException
   {
-    sessionState.setRemoteIdentityKey(theirIdentityKey);
-    sessionState.setLocalIdentityKey(ourIdentityKey.getPublicKey());
+    sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
+    sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
 
     ECKeyPair sendingKey = Curve.generateKeyPair(true);
-    DHEResult result     = calculate4DHE(true, sessionVersion, ourBaseKey, theirBaseKey,
-                                         ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
+    DHEResult result     = calculate4DHE(true, sessionVersion, parameters);
 
-    Pair<RootKey, ChainKey> sendingChain = result.getRootKey().createChain(theirEphemeralKey, sendingKey);
+    Pair<RootKey, ChainKey> sendingChain = result.getRootKey().createChain(parameters.getTheirEphemeralKey(), sendingKey);
 
-    sessionState.addReceiverChain(theirEphemeralKey, result.getChainKey());
+    sessionState.addReceiverChain(parameters.getTheirEphemeralKey(), result.getChainKey());
     sessionState.setSenderChain(sendingKey, sendingChain.second());
     sessionState.setRootKey(sendingChain.first());
 
     if (sessionVersion >= 3) {
-      VerifyKey verifyKey       = result.getVerifyKey();
-      byte[]    verificationTag = verifyKey.generateVerification(ourBaseKey.getPublicKey(),
-                                                                 ourPreKey.getPublicKey(),
-                                                                 ourIdentityKey.getPublicKey().getPublicKey(),
-                                                                 theirBaseKey, theirPreKey,
-                                                                 theirIdentityKey.getPublicKey());
-
-      sessionState.setVerification(verificationTag);
+      sessionState.setVerification(calculateVerificationTag(true, result.getVerifyKey(), parameters));
     }
   }
 
   private static void initializeSessionAsBob(SessionState sessionState,
                                              int sessionVersion,
-                                             ECKeyPair ourBaseKey, ECPublicKey theirBaseKey,
-                                             ECKeyPair ourEphemeralKey,
-                                             ECKeyPair ourPreKey, ECPublicKey theirPreKey,
-                                             IdentityKeyPair ourIdentityKey,
-                                             IdentityKey theirIdentityKey)
+                                             InitializationParameters parameters)
       throws InvalidKeyException
   {
-    sessionState.setRemoteIdentityKey(theirIdentityKey);
-    sessionState.setLocalIdentityKey(ourIdentityKey.getPublicKey());
+    sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
+    sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
 
-    DHEResult result = calculate4DHE(false, sessionVersion, ourBaseKey, theirBaseKey,
-                                     ourPreKey, theirPreKey, ourIdentityKey, theirIdentityKey);
+    DHEResult result = calculate4DHE(false, sessionVersion, parameters);
 
-    sessionState.setSenderChain(ourEphemeralKey, result.getChainKey());
+    sessionState.setSenderChain(parameters.getOurEphemeralKey(), result.getChainKey());
     sessionState.setRootKey(result.getRootKey());
 
     if (sessionVersion >= 3) {
-      VerifyKey verifyKey       = result.getVerifyKey();
-      byte[]    verificationTag = verifyKey.generateVerification(theirBaseKey, theirPreKey,
-                                                                 theirIdentityKey.getPublicKey(),
-                                                                 ourBaseKey.getPublicKey(),
-                                                                 ourPreKey.getPublicKey(),
-                                                                 ourIdentityKey.getPublicKey().getPublicKey());
-
-      sessionState.setVerification(verificationTag);
+      sessionState.setVerification(calculateVerificationTag(false, result.getVerifyKey(), parameters));
     }
   }
 
-  private static DHEResult calculate4DHE(boolean isAlice, int sessionVersion,
-                                         ECKeyPair ourBaseKey, ECPublicKey theirBaseKey,
-                                         ECKeyPair ourPreKey, ECPublicKey theirPreKey,
-                                         IdentityKeyPair ourIdentity, IdentityKey theirIdentity)
+  private static DHEResult calculate4DHE(boolean isAlice, int sessionVersion, InitializationParameters parameters)
       throws InvalidKeyException
   {
     try {
@@ -138,17 +100,22 @@ public class RatchetingSession {
       }
 
       if (isAlice) {
-        secrets.write(Curve.calculateAgreement(theirBaseKey, ourIdentity.getPrivateKey()));
-        secrets.write(Curve.calculateAgreement(theirIdentity.getPublicKey(), ourBaseKey.getPrivateKey()));
+        secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
+                                               parameters.getOurIdentityKey().getPrivateKey()));
+        secrets.write(Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
+                                               parameters.getOurBaseKey().getPrivateKey()));
       } else {
-        secrets.write(Curve.calculateAgreement(theirIdentity.getPublicKey(), ourBaseKey.getPrivateKey()));
-        secrets.write(Curve.calculateAgreement(theirBaseKey, ourIdentity.getPrivateKey()));
+        secrets.write(Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
+                                               parameters.getOurBaseKey().getPrivateKey()));
+        secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
+                                               parameters.getOurIdentityKey().getPrivateKey()));
       }
 
-      secrets.write(Curve.calculateAgreement(theirBaseKey, ourBaseKey.getPrivateKey()));
+      secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
+                                             parameters.getOurBaseKey().getPrivateKey()));
 
-      if (sessionVersion >= 3) {
-        secrets.write(Curve.calculateAgreement(theirPreKey, ourPreKey.getPrivateKey()));
+      if (sessionVersion >= 3 && parameters.getTheirPreKey().isPresent() && parameters.getOurPreKey().isPresent()) {
+        secrets.write(Curve.calculateAgreement(parameters.getTheirPreKey().get(), parameters.getOurPreKey().get().getPrivateKey()));
       }
 
       byte[]   derivedSecretBytes = kdf.deriveSecrets(secrets.toByteArray(), "WhisperText".getBytes(), 96);
@@ -163,22 +130,189 @@ public class RatchetingSession {
     }
   }
 
-  private static boolean isAlice(ECPublicKey ourBaseKey, ECPublicKey theirBaseKey,
-                                 ECPublicKey ourEphemeralKey, ECPublicKey theirEphemeralKey)
+  private static byte[] calculateVerificationTag(boolean isAlice, VerifyKey verifyKey,
+                                                 InitializationParameters parameters)
   {
-    if (ourEphemeralKey.equals(ourBaseKey)) {
+    if (isAlice) {
+      return verifyKey.generateVerification(parameters.getOurBaseKey().getPublicKey(),
+                                            getPublicKey(parameters.getOurPreKey()),
+                                            parameters.getOurIdentityKey().getPublicKey().getPublicKey(),
+                                            parameters.getTheirBaseKey(),
+                                            parameters.getTheirPreKey(),
+                                            parameters.getTheirIdentityKey().getPublicKey());
+    } else {
+      return verifyKey.generateVerification(parameters.getTheirBaseKey(),
+                                            parameters.getTheirPreKey(),
+                                            parameters.getTheirIdentityKey().getPublicKey(),
+                                            parameters.getOurBaseKey().getPublicKey(),
+                                            getPublicKey(parameters.getOurPreKey()),
+                                            parameters.getOurIdentityKey().getPublicKey().getPublicKey());
+    }
+  }
+
+  private static boolean isAlice(InitializationParameters parameters)
+  {
+    if (parameters.getOurEphemeralKey().equals(parameters.getOurBaseKey())) {
       return false;
     }
 
-    if (theirEphemeralKey.equals(theirBaseKey)) {
+    if (parameters.getTheirEphemeralKey().equals(parameters.getTheirBaseKey())) {
       return true;
     }
 
-    return isLowEnd(ourBaseKey, theirBaseKey);
+    return isLowEnd(parameters.getOurBaseKey().getPublicKey(), parameters.getTheirBaseKey());
   }
 
   private static boolean isLowEnd(ECPublicKey ourKey, ECPublicKey theirKey) {
     return ourKey.compareTo(theirKey) < 0;
+  }
+
+  private static Optional<ECPublicKey> getPublicKey(Optional<ECKeyPair> keyPair) {
+    if (keyPair.isPresent()) return Optional.of(keyPair.get().getPublicKey());
+    else                     return Optional.absent();
+  }
+
+  public static class InitializationParameters {
+    private final ECKeyPair             ourBaseKey;
+    private final ECKeyPair             ourEphemeralKey;
+    private final Optional<ECKeyPair>   ourPreKey;
+    private final IdentityKeyPair       ourIdentityKey;
+
+    private final ECPublicKey           theirBaseKey;
+    private final ECPublicKey           theirEphemeralKey;
+    private final Optional<ECPublicKey> theirPreKey;
+    private final IdentityKey           theirIdentityKey;
+
+    public InitializationParameters(ECKeyPair ourBaseKey, ECKeyPair ourEphemeralKey,
+                                    Optional<ECKeyPair> ourPreKey, IdentityKeyPair ourIdentityKey,
+                                    ECPublicKey theirBaseKey, ECPublicKey theirEphemeralKey,
+                                    Optional<ECPublicKey> theirPreKey, IdentityKey theirIdentityKey)
+    {
+      this.ourBaseKey        = ourBaseKey;
+      this.ourEphemeralKey   = ourEphemeralKey;
+      this.ourPreKey         = ourPreKey;
+      this.ourIdentityKey    = ourIdentityKey;
+      this.theirBaseKey      = theirBaseKey;
+      this.theirEphemeralKey = theirEphemeralKey;
+      this.theirPreKey       = theirPreKey;
+      this.theirIdentityKey  = theirIdentityKey;
+    }
+
+    public ECKeyPair getOurBaseKey() {
+      return ourBaseKey;
+    }
+
+    public ECKeyPair getOurEphemeralKey() {
+      return ourEphemeralKey;
+    }
+
+    public Optional<ECKeyPair> getOurPreKey() {
+      return ourPreKey;
+    }
+
+    public IdentityKeyPair getOurIdentityKey() {
+      return ourIdentityKey;
+    }
+
+    public ECPublicKey getTheirBaseKey() {
+      return theirBaseKey;
+    }
+
+    public ECPublicKey getTheirEphemeralKey() {
+      return theirEphemeralKey;
+    }
+
+    public Optional<ECPublicKey> getTheirPreKey() {
+      return theirPreKey;
+    }
+
+    public IdentityKey getTheirIdentityKey() {
+      return theirIdentityKey;
+    }
+
+    public static Builder newBuilder() {
+      return new Builder();
+    }
+
+    public static class Builder {
+      private ECKeyPair             ourBaseKey;
+      private ECKeyPair             ourEphemeralKey;
+      private Optional<ECKeyPair>   ourPreKey;
+      private IdentityKeyPair       ourIdentityKey;
+      private ECPublicKey           theirBaseKey;
+      private ECPublicKey           theirEphemeralKey;
+      private Optional<ECPublicKey> theirPreKey;
+      private IdentityKey           theirIdentityKey;
+
+      public Builder setOurBaseKey(ECKeyPair ourBaseKey) {
+        this.ourBaseKey = ourBaseKey;
+        return this;
+      }
+
+      public ECKeyPair getOurBaseKey() {
+        return ourBaseKey;
+      }
+
+      public Builder setOurEphemeralKey(ECKeyPair ourEphemeralKey) {
+        this.ourEphemeralKey = ourEphemeralKey;
+        return this;
+      }
+
+      public ECKeyPair getOurEphemeralKey() {
+        return ourEphemeralKey;
+      }
+
+      public Builder setOurPreKey(Optional<ECKeyPair> ourPreKey) {
+        this.ourPreKey = ourPreKey;
+        return this;
+      }
+
+      public Builder setOurIdentityKey(IdentityKeyPair ourIdentityKey) {
+        this.ourIdentityKey = ourIdentityKey;
+        return this;
+      }
+
+      public IdentityKeyPair getOurIdentityKey() {
+        return ourIdentityKey;
+      }
+
+      public Builder setTheirBaseKey(ECPublicKey theirBaseKey) {
+        this.theirBaseKey = theirBaseKey;
+        return this;
+      }
+
+      public ECPublicKey getTheirBaseKey() {
+        return theirBaseKey;
+      }
+
+      public Builder setTheirEphemeralKey(ECPublicKey theirEphemeralKey) {
+        this.theirEphemeralKey = theirEphemeralKey;
+        return this;
+      }
+
+      public Builder setTheirPreKey(Optional<ECPublicKey> theirPreKey) {
+        this.theirPreKey = theirPreKey;
+        return this;
+      }
+
+      public Builder setTheirIdentityKey(IdentityKey theirIdentityKey) {
+        this.theirIdentityKey = theirIdentityKey;
+        return this;
+      }
+
+      public RatchetingSession.InitializationParameters create() {
+        if (ourBaseKey == null || ourEphemeralKey == null || ourPreKey == null || ourIdentityKey == null ||
+            theirBaseKey == null || theirEphemeralKey == null || theirPreKey == null || theirIdentityKey == null)
+        {
+          throw new IllegalArgumentException("All parameters not specified!");
+        }
+
+        return new RatchetingSession.InitializationParameters(ourBaseKey, ourEphemeralKey,
+                                                              ourPreKey, ourIdentityKey,
+                                                              theirBaseKey, theirEphemeralKey,
+                                                              theirPreKey, theirIdentityKey);
+      }
+    }
   }
 
   private static class DHEResult {

@@ -9,18 +9,21 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
-import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
-import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
+import org.whispersystems.libaxolotl.util.Hex;
 import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.Medium;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.security.MessageDigest;
+
+import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.InitializationParameters;
 
 /**
  * SessionBuilder is responsible for setting up encrypted sessions.
@@ -107,40 +110,33 @@ public class SessionBuilder {
   private void processV3(PreKeyWhisperMessage message)
       throws UntrustedIdentityException, InvalidKeyIdException, InvalidKeyException
   {
-    SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
-    int           preKeyId          = message.getPreKeyId();
-    int           signedPreKeyId    = message.getSignedPreKeyId();
-    ECPublicKey   theirBaseKey      = message.getBaseKey();
-    ECPublicKey   theirEphemeralKey = message.getWhisperMessage().getSenderEphemeral();
-    IdentityKey   theirIdentityKey  = message.getIdentityKey();
+    SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
 
-    if (sessionRecord.hasSessionState(message.getMessageVersion(), theirBaseKey.serialize())) {
+    if (sessionRecord.hasSessionState(message.getMessageVersion(), message.getBaseKey().serialize())) {
       Log.w(TAG, "We've already setup a session for this V3 message, letting bundled message fall through...");
       return;
     }
 
-    if (preKeyId >=0 && !preKeyStore.containsPreKey(preKeyId))
-      throw new InvalidKeyIdException("No such prekey: " + preKeyId);
+    boolean simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
 
-    if (!signedPreKeyStore.containsSignedPreKey(signedPreKeyId))
-      throw new InvalidKeyIdException("No such device key: " + signedPreKeyId);
+    InitializationParameters.Builder parameters = InitializationParameters.newBuilder();
 
-    ECKeyPair       ourBaseKey           = signedPreKeyStore.loadSignedPreKey(signedPreKeyId).getKeyPair();
-    ECKeyPair       ourEphemeralKey      = ourBaseKey;
-    ECKeyPair       ourPreKey            = preKeyId < 0 ? ourBaseKey : preKeyStore.loadPreKey(preKeyId).getKeyPair();
-    ECPublicKey     theirPreKey          = theirBaseKey;
-    IdentityKeyPair ourIdentityKey       = identityKeyStore.getIdentityKeyPair();
-    boolean         simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
+    parameters.setTheirBaseKey(message.getBaseKey());
+    parameters.setTheirEphemeralKey(message.getWhisperMessage().getSenderEphemeral());
+    parameters.setTheirPreKey(Optional.of(message.getBaseKey()));
+    parameters.setTheirIdentityKey(message.getIdentityKey());
+
+    parameters.setOurBaseKey(signedPreKeyStore.loadSignedPreKey(message.getSignedPreKeyId()).getKeyPair());
+    parameters.setOurEphemeralKey(parameters.getOurBaseKey());
+    parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair());
+
+    if (message.getPreKeyId() >= 0) parameters.setOurPreKey(Optional.of(preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair()));
+    else                            parameters.setOurPreKey(Optional.<ECKeyPair>absent());
 
     if (!simultaneousInitiate) sessionRecord.reset();
     else                       sessionRecord.archiveCurrentState();
 
-    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                        message.getMessageVersion(),
-                                        ourBaseKey, theirBaseKey,
-                                        ourEphemeralKey, theirEphemeralKey,
-                                        ourPreKey, theirPreKey,
-                                        ourIdentityKey, theirIdentityKey);
+    RatchetingSession.initializeSession(sessionRecord.getSessionState(), message.getMessageVersion(), parameters.create());
 
     if (!MessageDigest.isEqual(sessionRecord.getSessionState().getVerification(), message.getVerification())) {
       throw new InvalidKeyException("Verification secret mismatch!");
@@ -148,51 +144,47 @@ public class SessionBuilder {
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
-    sessionRecord.getSessionState().setAliceBaseKey(theirBaseKey.serialize());
+    sessionRecord.getSessionState().setAliceBaseKey(message.getBaseKey().serialize());
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
     sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
-    if (preKeyId >= 0 && preKeyId != Medium.MAX_VALUE) {
-      preKeyStore.removePreKey(preKeyId);
+    if (message.getPreKeyId() >= 0 && message.getPreKeyId() != Medium.MAX_VALUE) {
+      preKeyStore.removePreKey(message.getPreKeyId());
     }
   }
 
   private void processV2(PreKeyWhisperMessage message)
       throws UntrustedIdentityException, InvalidKeyIdException, InvalidKeyException
   {
-    int           preKeyId          = message.getPreKeyId();
-    ECPublicKey   theirBaseKey      = message.getBaseKey();
-    ECPublicKey   theirEphemeralKey = message.getWhisperMessage().getSenderEphemeral();
-    IdentityKey   theirIdentityKey  = message.getIdentityKey();
 
-    if (!preKeyStore.containsPreKey(preKeyId) &&
+    if (!preKeyStore.containsPreKey(message.getPreKeyId()) &&
         sessionStore.containsSession(recipientId, deviceId))
     {
       Log.w(TAG, "We've already processed the prekey part of this V2 session, letting bundled message fall through...");
       return;
     }
 
-    if (!preKeyStore.containsPreKey(preKeyId))
-      throw new InvalidKeyIdException("No such prekey: " + preKeyId);
+    SessionRecord sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
+    boolean       simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
 
-    SessionRecord   sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
-    PreKeyRecord    preKeyRecord         = preKeyStore.loadPreKey(preKeyId);
-    ECKeyPair       ourBaseKey           = preKeyRecord.getKeyPair();
-    ECKeyPair       ourEphemeralKey      = ourBaseKey;
-    IdentityKeyPair ourIdentityKey       = identityKeyStore.getIdentityKeyPair();
-    boolean         simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
+    InitializationParameters.Builder parameters = InitializationParameters.newBuilder();
+
+    parameters.setTheirBaseKey(message.getBaseKey());
+    parameters.setTheirEphemeralKey(message.getWhisperMessage().getSenderEphemeral());
+    parameters.setTheirPreKey(Optional.<ECPublicKey>absent());
+    parameters.setTheirIdentityKey(message.getIdentityKey());
+
+    parameters.setOurBaseKey(preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair());
+    parameters.setOurEphemeralKey(parameters.getOurBaseKey());
+    parameters.setOurPreKey(Optional.<ECKeyPair>absent());
+    parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair());
 
     if (!simultaneousInitiate) sessionRecord.reset();
     else                       sessionRecord.archiveCurrentState();
 
-    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                        message.getMessageVersion(),
-                                        ourBaseKey, theirBaseKey,
-                                        ourEphemeralKey, theirEphemeralKey,
-                                        null, null,
-                                        ourIdentityKey, theirIdentityKey);
+    RatchetingSession.initializeSession(sessionRecord.getSessionState(), message.getMessageVersion(), parameters.create());
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
@@ -201,8 +193,8 @@ public class SessionBuilder {
 
     sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
-    if (preKeyId != Medium.MAX_VALUE) {
-      preKeyStore.removePreKey(preKeyId);
+    if (message.getPreKeyId() != Medium.MAX_VALUE) {
+      preKeyStore.removePreKey(message.getPreKeyId());
     }
   }
 
@@ -218,6 +210,7 @@ public class SessionBuilder {
    *                                                                  trusted.
    */
   public void process(PreKeyBundle preKey) throws InvalidKeyException, UntrustedIdentityException {
+
     if (!identityKeyStore.isTrustedIdentity(recipientId, preKey.getIdentityKey())) {
       throw new UntrustedIdentityException();
     }
@@ -230,25 +223,31 @@ public class SessionBuilder {
       throw new InvalidKeyException("Invalid signature on device key!");
     }
 
-    SessionRecord   sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
-    IdentityKeyPair ourIdentityKey    = identityKeyStore.getIdentityKeyPair();
-    ECKeyPair       ourBaseKey        = Curve.generateKeyPair(true);
-    ECKeyPair       ourEphemeralKey   = Curve.generateKeyPair(true);
-    ECKeyPair       ourPreKey         = ourBaseKey;
+    if (preKey.getSignedPreKey() == null && preKey.getPreKey() == null) {
+      throw new InvalidKeyException("Both signed and unsigned prekeys are absent!");
+    }
 
-    IdentityKey     theirIdentityKey  = preKey.getIdentityKey();
-    ECPublicKey     theirPreKey       = preKey.getPreKey();
-    ECPublicKey     theirBaseKey      = preKey.getSignedPreKey() == null ? preKey.getPreKey() : preKey.getSignedPreKey();
-    ECPublicKey     theirEphemeralKey = theirBaseKey;
+    SessionRecord                    sessionRecord = sessionStore.loadSession(recipientId, deviceId);
+    InitializationParameters.Builder parameters    = InitializationParameters.newBuilder();
+    ECKeyPair                        ourBaseKey    = Curve.generateKeyPair(true);
+
+    parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair());
+    parameters.setOurBaseKey(ourBaseKey);
+    parameters.setOurEphemeralKey(Curve.generateKeyPair(true));
+    parameters.setOurPreKey(Optional.of(parameters.getOurBaseKey()));
+
+    parameters.setTheirIdentityKey(preKey.getIdentityKey());
+    if (preKey.getSignedPreKey() == null) parameters.setTheirBaseKey(preKey.getPreKey());
+    else                                  parameters.setTheirBaseKey(preKey.getSignedPreKey());
+    parameters.setTheirEphemeralKey(parameters.getTheirBaseKey());
+    parameters.setTheirPreKey(Optional.fromNullable(preKey.getPreKey()));
 
     if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
     else                                                   sessionRecord.reset();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                         preKey.getSignedPreKey() == null ? 2 : 3,
-                                        ourBaseKey, theirBaseKey, ourEphemeralKey,
-                                        theirEphemeralKey, ourPreKey, theirPreKey,
-                                        ourIdentityKey, theirIdentityKey);
+                                        parameters.create());
 
     sessionRecord.getSessionState().setPendingPreKey(preKey.getPreKeyId(), preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
@@ -283,11 +282,9 @@ public class SessionBuilder {
   }
 
   private KeyExchangeMessage processInitiate(KeyExchangeMessage message) throws InvalidKeyException {
-    ECKeyPair       ourBaseKey,    ourEphemeralKey;
-    IdentityKeyPair ourIdentityKey;
-
-    int           flags         = KeyExchangeMessage.RESPONSE_FLAG;
-    SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
+    InitializationParameters.Builder parameters    = InitializationParameters.newBuilder();
+    int                              flags         = KeyExchangeMessage.RESPONSE_FLAG;
+    SessionRecord                    sessionRecord = sessionStore.loadSession(recipientId, deviceId);
 
     if (message.getVersion() >= 3 &&
         !Curve.verifySignature(message.getIdentityKey().getPublicKey(),
@@ -299,32 +296,38 @@ public class SessionBuilder {
 
     if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
       Log.w(TAG, "We don't have a pending initiate...");
-      ourBaseKey      = Curve.generateKeyPair(true);
-      ourEphemeralKey = Curve.generateKeyPair(true);
-      ourIdentityKey  = identityKeyStore.getIdentityKeyPair();
+      parameters.setOurBaseKey(Curve.generateKeyPair(true));
+      parameters.setOurEphemeralKey(Curve.generateKeyPair(true));
+      parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair());
+      parameters.setOurPreKey(Optional.<ECKeyPair>absent());
     } else {
       Log.w(TAG, "We already have a pending initiate, responding as simultaneous initiate...");
-      ourBaseKey      = sessionRecord.getSessionState().getPendingKeyExchangeBaseKey();
-      ourEphemeralKey = sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey();
-      ourIdentityKey  = sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey();
+      parameters.setOurBaseKey(sessionRecord.getSessionState().getPendingKeyExchangeBaseKey());
+      parameters.setOurEphemeralKey(sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey());
+      parameters.setOurIdentityKey(sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey());
+      parameters.setOurPreKey(Optional.<ECKeyPair>absent());
       flags          |= KeyExchangeMessage.SIMULTAENOUS_INITIATE_FLAG;
     }
+
+    parameters.setTheirBaseKey(message.getBaseKey());
+    parameters.setTheirEphemeralKey(message.getEphemeralKey());
+    parameters.setTheirPreKey(Optional.<ECPublicKey>absent());
+    parameters.setTheirIdentityKey(message.getIdentityKey());
 
     sessionRecord.reset();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                         Math.min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),
-                                        ourBaseKey, message.getBaseKey(),
-                                        ourEphemeralKey, message.getEphemeralKey(),
-                                        ourBaseKey, message.getBaseKey(),
-                                        ourIdentityKey, message.getIdentityKey());
+                                        parameters.create());
 
     sessionStore.storeSession(recipientId, deviceId, sessionRecord);
     identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
 
     return new KeyExchangeMessage(sessionRecord.getSessionState().getSessionVersion(),
-                                  message.getSequence(), flags, ourBaseKey.getPublicKey(), null,
-                                  ourEphemeralKey.getPublicKey(), ourIdentityKey.getPublicKey(),
+                                  message.getSequence(), flags,
+                                  parameters.getOurBaseKey().getPublicKey(), null,
+                                  parameters.getOurEphemeralKey().getPublicKey(),
+                                  parameters.getOurIdentityKey().getPublicKey(),
                                   sessionRecord.getSessionState().getVerification());
   }
 
@@ -342,18 +345,23 @@ public class SessionBuilder {
       else                                 return;
     }
 
-    ECKeyPair       ourBaseKey      = sessionRecord.getSessionState().getPendingKeyExchangeBaseKey();
-    ECKeyPair       ourEphemeralKey = sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey();
-    IdentityKeyPair ourIdentityKey  = sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey();
+    InitializationParameters parameters =
+        InitializationParameters.newBuilder()
+                                .setOurBaseKey(sessionRecord.getSessionState().getPendingKeyExchangeBaseKey())
+                                .setOurEphemeralKey(sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey())
+                                .setOurPreKey(Optional.<ECKeyPair>absent())
+                                .setOurIdentityKey(sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey())
+                                .setTheirBaseKey(message.getBaseKey())
+                                .setTheirEphemeralKey(message.getEphemeralKey())
+                                .setTheirPreKey(Optional.<ECPublicKey>absent())
+                                .setTheirIdentityKey(message.getIdentityKey())
+                                .create();
 
     sessionRecord.reset();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                         Math.min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),
-                                        ourBaseKey, message.getBaseKey(),
-                                        ourEphemeralKey, message.getEphemeralKey(),
-                                        ourBaseKey, message.getBaseKey(),
-                                        ourIdentityKey, message.getIdentityKey());
+                                        parameters);
 
     if (sessionRecord.getSessionState().getSessionVersion() >= 3 &&
         !MessageDigest.isEqual(message.getVerificationTag(),

@@ -2,6 +2,7 @@ package org.whispersystems.libaxolotl.ratchet;
 
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.util.ByteUtil;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -23,8 +24,12 @@ public class VerifyKey {
     return key;
   }
 
-  public byte[] generateVerification(ECPublicKey aliceBaseKey, ECPublicKey alicePreKey, ECPublicKey aliceIdentityKey,
-                                     ECPublicKey bobBaseKey,   ECPublicKey bobPreKey,   ECPublicKey bobIdentityKey)
+  public byte[] generateVerification(ECPublicKey           aliceBaseKey,
+                                     Optional<ECPublicKey> alicePreKey,
+                                     ECPublicKey           aliceIdentityKey,
+                                     ECPublicKey           bobBaseKey,
+                                     Optional<ECPublicKey> bobPreKey,
+                                     ECPublicKey           bobIdentityKey)
   {
     try {
       Mac mac = Mac.getInstance("HmacSHA256");
@@ -32,15 +37,15 @@ public class VerifyKey {
 
       mac.update(VERIFICATION_INFO);
       mac.update(aliceBaseKey.serialize());
-      mac.update(alicePreKey.serialize());
       mac.update(aliceIdentityKey.serialize());
       mac.update(bobBaseKey.serialize());
+      mac.update(bobIdentityKey.serialize());
 
-      if (bobPreKey != null) {
-        mac.update(bobPreKey.serialize());
+      if (alicePreKey.isPresent() && bobPreKey.isPresent()) {
+        mac.update(alicePreKey.get().serialize());
+        mac.update(bobPreKey.get().serialize());
       }
 
-      mac.update(bobIdentityKey.serialize());
 
       return ByteUtil.trim(mac.doFinal(), 8);
     } catch (NoSuchAlgorithmException | InvalidKeyException e) {
