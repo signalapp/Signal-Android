@@ -2,9 +2,11 @@ package org.whispersystems.libaxolotl.util;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
+import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -85,6 +87,24 @@ public class KeyHelper {
   public static PreKeyRecord generateLastResortPreKey() {
     ECKeyPair keyPair = Curve.generateKeyPair(true);
     return new PreKeyRecord(Medium.MAX_VALUE, keyPair);
+  }
+
+  /**
+   * Generate a signed PreKey
+   *
+   * @param identityKeyPair The local client's identity key pair.
+   * @param signedPreKeyId The PreKey id to assign the generated signed PreKey
+   *
+   * @return the generated signed PreKey
+   * @throws InvalidKeyException when the provided identity key is invalid
+   */
+  public static SignedPreKeyRecord generateSignedPreKey(IdentityKeyPair identityKeyPair, int signedPreKeyId)
+      throws InvalidKeyException
+  {
+    ECKeyPair keyPair   = Curve.generateKeyPair(true);
+    byte[]    signature = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());
+
+    return new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
   }
 
 }

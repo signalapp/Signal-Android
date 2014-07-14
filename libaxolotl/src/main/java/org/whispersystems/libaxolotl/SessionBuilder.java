@@ -16,7 +16,6 @@ import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
-import org.whispersystems.libaxolotl.util.Hex;
 import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.Medium;
 import org.whispersystems.libaxolotl.util.guava.Optional;
