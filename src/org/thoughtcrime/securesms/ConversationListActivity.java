@@ -50,10 +50,11 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ConversationListFragment fragment;
-  private MasterSecret masterSecret;
-  private DrawerLayout drawerLayout;
-  private DrawerToggle drawerToggle;
-  private ListView     drawerList;
+  private MasterSecret    masterSecret;
+  private DrawerLayout    drawerLayout;
+  private DrawerToggle    drawerToggle;
+  private ListView        drawerList;
+  private ContentObserver observer;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -92,6 +93,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   public void onDestroy() {
     Log.w("ConversationListActivity", "onDestroy...");
     MemoryCleaner.clean(masterSecret);
+    if (observer != null) getContentResolver().unregisterContentObserver(observer);
     super.onDestroy();
   }
 
@@ -254,11 +256,19 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   }
 
   private void initializeContactUpdatesReceiver() {
-    ContentObserver observer = new ContentObserver(null) {
+    observer = new ContentObserver(null) {
       @Override
       public void onChange(boolean selfChange) {
         super.onChange(selfChange);
+        Log.w("ConversationListActivity", "detected android contact data changed, refreshing cache");
+        // TODO only clear updated recipients from cache
         RecipientFactory.clearCache();
+        ConversationListActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((ConversationListAdapter)fragment.getListAdapter()).notifyDataSetChanged();
+              }
+          });
       }
     };
 

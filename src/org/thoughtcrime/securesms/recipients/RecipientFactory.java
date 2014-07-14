@@ -21,7 +21,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.thoughtcrime.securesms.util.NumberUtil;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Util;
 
@@ -51,7 +50,7 @@ public class RecipientFactory {
   }
 
   private static Recipient getRecipientForNumber(Context context, String number, boolean asynchronous) {
-    long recipientId = CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(number);
+    long recipientId = CanonicalAddressDatabase.getInstance(context).getCanonicalAddressId(number);
     return provider.getRecipient(context, recipientId, asynchronous);
   }
 
