@@ -1,16 +1,17 @@
 
 # Overview
 
-The axolotl protocol is a "ratcheting" forward secrecy protocol that works in synchronous and
-asynchronous messaging environments.  The protocol overview is available [here](https://github.com/trevp/axolotl/wiki),
+This is a ratcheting forward secrecy protocol that works in synchronous and asynchronous messaging 
+environments.  The protocol overview is available [here](https://github.com/trevp/axolotl/wiki),
 and the details of the wire format are available [here](https://github.com/WhisperSystems/TextSecure/wiki/ProtocolV2).
 
 ## PreKeys
 
-This protocol implementation heavily leverages the concept of PreKeys.  A PreKey is simply an
-ECPublicKey and unique PreKey ID.  At install time, clients generate a large list of PreKeys
-and transmit them to the server.  The server will then remove PreKeys from that list and hand
-them to other clients when requested.  A single PreKey can never be used twice.
+This protocol uses a concept called 'PreKeys'.  A PreKey is an ECPublicKey and an associated unique 
+ID which are stored together by a server.  PreKeys can also be signed.
+
+At install time, clients generate a single signed PreKey, as well as a large list of unsigned
+PreKeys, and transmit all of them to the server.
 
 ## Sessions
 
@@ -20,8 +21,8 @@ has been established.
 
 Sessions are established in one of three ways:
 
-1. PreKeys. A client that wishes to send a message to a recipient can establish a session by
-   retrieving a PreKey for that recipient from the server.
+1. PreKeyBundles. A client that wishes to send a message to a recipient can establish a session by
+   retrieving a PreKeyBundle for that recipient from the server.
 1. PreKeyWhisperMessages.  A client can receive a PreKeyWhisperMessage from a recipient and use it
    to establish a session.
 1. KeyExchangeMessages.  Two clients can exchange KeyExchange messages to establish a session.
@@ -36,6 +37,7 @@ State is kept in the following places:
 1. Identity State.  Clients will need to maintain the state of their own identity key pair, as well
    as identity keys received from other clients.
 1. PreKey State. Clients will need to maintain the state of their generated PreKeys.
+1. Signed PreKey States. Clients will need to maintain the state of their signed PreKeys.
 1. Session State.  Clients will need to maintain the state of the sessions they have established.
 
 # Using libaxolotl
@@ -49,30 +51,35 @@ prekeys.
     int                registrationId  = KeyHelper.generateRegistrationId();
     List<PreKeyRecord> preKeys         = KeyHelper.generatePreKeys(startId, 100);
     PreKeyRecord       lastResortKey   = KeyHelper.generateLastResortKey();
+    SignedPreKeyRecord signedPreKey    = KeyHelper.generateSignedPreKey(identityKeyPair, 5);
 
     // Store identityKeyPair somewhere durable and safe.
     // Store registrationId somewhere durable and safe.
-    // Store preKeys somewhere durable and safe.
+
+    // Store preKeys in PreKeyStore.
+    // Store signed prekey in SignedPreKeyStore.
 
 ## Building a session
 
-A libaxolotl client needs to implement three interfaces: IdentityKeyStore, PreKeyStore, and
-SessionStore.  These will manage loading and storing of identity, prekeys, and session state.
+A libaxolotl client needs to implement four interfaces: IdentityKeyStore, PreKeyStore, 
+SignedPreKeyStore, and SessionStore.  These will manage loading and storing of identity, 
+prekeys, signed prekeys, and session state.
 
 Once those are implemented, building a session is fairly straightforward:
 
-    SessionStore     sessionStore  = new MySessionStore();
-    PreKeyStore      preKeyStore   = new MyPreKeyStore();
-    IdentityKeyStore identityStore = new MyIdentityKeyStore();
+    SessionStore      sessionStore      = new MySessionStore();
+    PreKeyStore       preKeyStore       = new MyPreKeyStore();
+    SignedPreKeyStore signedPreKeyStore = new MySignedPreKeyStore();
+    IdentityKeyStore  identityStore     = new MyIdentityKeyStore();
 
     // Instantiate a SessionBuilder for a remote recipientId + deviceId tuple.
-    SessionBuilder sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, identityStore,
-                                                       recipientId, deviceId);
+    SessionBuilder sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
+                                                       identityStore, recipientId, deviceId);
 
     // Build a session with a PreKey retrieved from the server.
     sessionBuilder.process(retrievedPreKey);
 
-    SessionCipher sessionCipher = new SessionCipher(sessionStore, recipientId, deviceId);
-    CiphertextMessage message = sessionCipher.encrypt("Hello world!".getBytes("UTF-8"));
+    SessionCipher     sessionCipher = new SessionCipher(sessionStore, recipientId, deviceId);
+    CiphertextMessage message      = sessionCipher.encrypt("Hello world!".getBytes("UTF-8"));
 
     deliver(message.serialize());
