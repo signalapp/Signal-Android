@@ -18,10 +18,16 @@
   <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerar...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Avregistrerar för datakommunikation</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Inaktivera push-meddelanden?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nDet här kommer slå av pushmeddelanden genom att avregistrera dig från servern. Du kommer behöva återregistrera ditt telefonnummer för att använda pushmeddelanden igen i framtiden.\n</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fel vid anslutning till server!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Du är inte registrerad i push-tjänsten...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Uppdaterar katalogen</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Uppdaterar push-katalogen...</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Inkommande SMS påslaget</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din default-SMS-app</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Inkommande SMS avslaget</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tryck för att göra TextSecure till din default-SMS-app</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -30,13 +36,6 @@
   <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
   <string name="ConversationItem_expires_s">Går ut: %s</string>
   <string name="ConversationItem_error_sending_message">Det gick inte att skicka meddelandet</string>
-  <string name="ConversationItem_saving_attachment">Sparar bilaga</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Sparar bilaga till minneskort ...</string>
-  <string name="ConversationItem_save_to_sd_card">Spara till minneskort?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Denna fil har lagrats i en krypterad databas. Versionen du sparar på SD-kortet kommer inte längre vara krypterad. Vill du fortsätta?</string>
-  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Ett fel uppstod vid sparandet av bilagan till minneskortet!</string>
-  <string name="ConversationItem_success_exclamation">Klart!</string>
-  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">Kan inte skriva till minneskortet!</string>
   <string name="ConversationItem_view_secure_media_question">Visa skyddad fil?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denna mediefil har lagrats krypterat. För att öppna den i en en extern visare måste den tillfälligt dekrypteras och skrivas till disk. Är du säker på att du vill göra detta?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Tog emot och bearbetade meddelande för nyckelutbyte.</string>
@@ -46,8 +45,16 @@
   <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
   <string name="ConversationItem_group_action_joined">%1$s har anslutit till gruppen.</string>
   <string name="ConversationItem_group_action_modify">%1$s har uppdaterat gruppen.</string>
+  <string name="ConversationItem_click_to_approve_sms">Tryck för SMS-fallback</string>
+  <string name="ConversationItem_click_to_approve_mms">Tryck för MMS-fallback</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Tryck för osäkert fallback</string>
+  <string name="ConversationItem_click_to_approve_sms_dialog_title">Använd SMS istället?</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">Använd MMS istället?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Det här meddelandet kommer <b>inte</b> att krypteras eftersom en säker session inte kunde upprättas.\n\nSkicka okrypterat meddelande?</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Upprätta en säker förbindelse?</string>
+  <string name="ConversationActivity_initiate_secure_session_question">Påbörja säker session?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Upprätta en säker förbindelse med %s?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Bekräfta avslutning av säker session</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Är du säker på att du vill avsluta denna säkra session?</string>
@@ -55,7 +62,7 @@
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Är du säker att du vill permanent radera denna konversation?</string>
   <string name="ConversationActivity_add_attachment">Bifoga fil</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
-  <string name="ConversationActivity_compose_message">Skriv ditt meddelande</string>
+  <string name="ConversationActivity_compose_message">Skriv meddelande</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Tyvärr uppstod det ett fel vid bifogning av din fil.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr överskrider den valda videon storleksbegränsningen för meddelanden.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Tyvärr överskrider den valda ljudfilen storleksbegränsningen för meddelanden.</string>
@@ -66,6 +73,7 @@
   <string name="ConversationActivity_unnamed_group">Namnlös grupp</string>
   <string name="ConversationActivity_d_recipients_in_group">%d medlemmar</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 medlem</string>
+  <string name="ConversationActivity_saved_draft">Sparade utkast</string>
   <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds ej</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp handlingar.</string>
@@ -73,9 +81,17 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna den här gruppen?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSkickat/Mottaget: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsändare: %1$s\nTransport: %2$s\nSkickat: %3$s\nMottaget: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Bekräfta radering av meddelande</string>
+  <string name="ConversationFragment_confirm_message_delete">Bekräfta borttagning av meddelande</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Är du säker på att du vill ta bort detta meddelande permanent?</string>
+  <string name="ConversationFragment_save_to_sd_card">Spara till minneskort?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Denna fil har lagrats i en krypterad databas. Versionen du sparar på SD-kortet kommer inte längre vara krypterad. Vill du fortsätta?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Ett fel uppstod vid sparandet av bilagan till minneskortet!</string>
+  <string name="ConversationFragment_success_exclamation">Klart!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunde inte skriva till minneskort!</string>
+  <string name="ConversationFragment_saving_attachment">Sparar bilaga</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Sparar bilaga till minneskort ...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Meddelande för nyckelutbyte ...</string>
   <!--ConversationListFragment-->
@@ -86,11 +102,12 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Meddelande för nyckelutbyte ...</string>
   <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Dela med</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportera till minneskort?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Denna\nåtgärd kommer att exportera dina krypterade nycklar, inställningar och meddelanden till ditt minneskort.</string>
   <string name="ExportFragment_export">Exportera</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Exportera ren text till minneskort?</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Exportera okrypterat till minneskort?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varning, detta kommer\nspara den okrypterad texten av din konversation till ditt minneskort.</string>
   <string name="ExportFragment_cancel">Avbryt</string>
   <string name="ExportFragment_exporting">Sparar</string>
@@ -110,18 +127,22 @@
   <string name="GroupCreateActivity_contacts_no_members">Du behöver åtminstone en person i din grupp!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av deltagarna i din grupp har ett nummer som inte kan läsas ordentligt. Vänligen åtgärda eller ta bort kontakten och försök igen.</string>
   <string name="GroupCreateActivity_file_io_exception">Fil I/O fel, kunde inte skapa en temporär bildfil.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Grupp Avatar</string>
+  <string name="GroupCreateActivity_avatar_content_description">Gruppavatar</string>
   <string name="GroupCreateActivity_menu_create_title">Skapa grupp</string>
   <string name="GroupCreateActivity_creating_group">Skapar %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan inte lägga in annat än TextSecure-kontakter i en TextSecure-grupp</string>
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">Importera</string>
+  <string name="ImportExportActivity_export">Exportera</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">Importera okrypterade SMS?</string>
+  <string name="ImportFragment_import_system_sms_database">Importera systemets SMS-databas?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Denna åtgärd importerar\nmeddelanden från telefonens originella SMS-databas till TextSecure. Om du tidigare har\nimporterat via denna metod kommer samtliga SMS bli duplicerade.</string>
   <string name="ImportFragment_import">Importera</string>
   <string name="ImportFragment_cancel">Avbryt</string>
-  <string name="ImportFragment_restore_encrypted_backup">Återställa krypterad säkerhetskopia?</string>
+  <string name="ImportFragment_restore_encrypted_backup">Återställ krypterad backup?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Genom att återställa en krypterad säkerhetskopia resulterar i att dina existerande nycklar,\ninställningar och meddelanden kommer att skrivas över. Du kommer att förlora all information\nsom för närvarande finns i TextSecure.</string>
   <string name="ImportFragment_restore">Återställ</string>
-  <string name="ImportFragment_import_plaintext_backup">Importera okrypterad säkerhetskopia?</string>
+  <string name="ImportFragment_import_plaintext_backup">Importera okrypterad backup?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Denna åtgärd importerar meddelanden från en säkerhetskopia i klartext. Om du redan har importerat denna säkerhetskopia och importerar igen kommer du att få duplicerade meddelanden.</string>
   <string name="ImportFragment_importing">Importerar</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importera okrypterad säkerhetskopia...</string>
@@ -141,13 +162,18 @@
   <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsning av operatörens MMS inställningar...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediameddelande</string>
+  <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Fick krypterat meddelande från en gammal version av TextSecure som inte längre supporteras. Vänligen be avsändaren att uppgradera till senaste version och skicka om meddelandet.</string>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden överensstämmer Inte!</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Inkorrekt gammalt lösenord!</string>
   <!--PassphraseCreateActivity-->
   <string name="PassphraseCreateActivity_passphrases_dont_match">Lösenord matchar inte</string>
   <string name="PassphraseCreateActivity_you_must_specify_a_password">Du måste specificera ett lösenord</string>
   <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ikon</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Skicka lösenord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Fel lösenord!</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du måste specificera en MMSC URL för din operatör.</string>
@@ -167,12 +193,12 @@
   <string name="RegistrationActivity_invalid_number">Ogiltigt nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_unsupported">Stöds ej</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Tyvärr,\ndenna enhet stöds inte för datameddelanden. Enheter som kör versioner av Android äldre än 4.0 måste ha ett registrerat Google-konto. Enheter med Android 4.0 eller senare behöver inte ett Google-konto, men måste ha appen Play Store installerad.</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Tyvärr stödjer inte den här enheten datameddelanden. Enheter som kör Androidversioner äldre än 4.0 måste ha ett registrerat Google-konto. Enheter med versioner nyare än 4.0 behöver inte ett Google-konto, men måste ha appen Play Store installerad.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nVi kommer nu att verifiera att följande nummer går till denna enhet:\n\n%s\n\n\nÄr detta nummer rätt eller vill du ändra det innan du fortsätter?</string>
   <string name="RegistrationActivity_continue">Fortsätt</string>
   <string name="RegistrationActivity_edit">Ändra</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">Möjliga problem</string>
+  <string name="RegistrationProblemsActivity_possible_problems">Potentiella problem</string>
   <!--RegistrationProgressActivity-->
   <string name="RegistrationProgressActivity_verifying_number">Verifierar nummer</string>
   <string name="RegistrationProgressActivity_edit_s">Ändra %s</string>
@@ -195,7 +221,7 @@
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har redan begärt ett röstsamtal. Du kan begära ett nytt om 20 minuter.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Verifierar röstkod...</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registrerings konflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan TextSecure server (CyanogenMod?). Du måste avregistrera dig där innan du kan registrera dig här.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan TextSecure-server (CyanogenMod?). Du måste avregistrera dig där innan du kan registrera dig här.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering klar</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure-registrering har lyckats.</string>
@@ -207,6 +233,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nTog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och visa.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Mottagit uppdaterad men okänd identitetsinformation. Klicka för att bekräfta identitet.</string>
   <string name="SmsMessageRecord_secure_session_ended">Säker session avslutad.</string>
+  <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Lämnat gruppen...</string>
   <string name="TheadRecord_secure_session_ended">Säker session avslutad.</string>
@@ -237,8 +264,9 @@
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannade nyckeln överensstämmer!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verifierad!</string>
   <string name="ViewIdentityActivity_identity_fingerprint">Identitetens fingeravtryck</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Mitt identitets-fingeravtryck</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiera trots existerande begäran?</string>
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Påbörja ny nyckelutbytesförfrågan trots redan existerande?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har redan skickat en sessionsinitieringsbegäran till denna mottagare, är du säker på att du vill skicka en till? Detta kommer göra din första begäran ogiltig.</string>
   <string name="KeyExchangeInitiator_send">Skicka</string>
   <!--MessageDisplayHelper-->
@@ -248,7 +276,7 @@
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Ansluter till MMS server...</string>
   <string name="MmsDatabase_downloading_mms">Laddar ner MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">MMS nedladdning misslyckades!</string>
+  <string name="MmsDatabase_mms_download_failed">MMS-nedladdning misslyckades!</string>
   <string name="MmsDatabase_downloading">Laddar ner...</string>
   <string name="MmsDatabase_mms_pending_download">Tappa och ställ in MMS inställningar för att fortsätta nedladdning.</string>
   <!--MmsMessageRecord-->
@@ -259,7 +287,7 @@
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Kan för tillfället inte skicka ditt MMS meddelande.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
-  <string name="ApplicationMigrationService_importing_text_messages">Importerar textmeddelanden</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Importerar SMS</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Tryck för att öppna.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Tryck för att öppna, tryck på låset för att stänga.</string>
@@ -289,7 +317,7 @@
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Tyvärr, Quick Response stöds inte ännu av TextSecure!</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har fått ett meddelande från någon som stödjer TextSecure krypterade sessioner. Vill du initiera en säker session?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Initiera utbyte</string>
+  <string name="auto_initiate_activity__initiate_exchange">Påbörja nyckelutbyte</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">GAMMALT LÖSENORD:</string>
   <string name="change_passphrase_activity__new_passphrase">NYTT LÖSENORD:</string>
@@ -297,26 +325,41 @@
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Inga kontakter.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Laddar kontakter…</string>
   <!--single_contact_selection_activity-->
   <string name="single_contact_selection_group_activity__filter">Skriv ett namn för att filtrera...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Du är inte registrerad med push-tjänsten...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Uppdaterar katalogen</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Uppdaterar push-katalogen...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Kontaktfotografi</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Välj för</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Inga nyliga samtal.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message"><small>Skicka ett meddelande</small></string>
+  <string name="conversation_activity__type_message_push">Skicka TextSecure-meddelande</string>
+  <string name="conversation_activity__type_message_sms_secure">Skicka säkert SMS</string>
+  <string name="conversation_activity__type_message_sms_insecure">Skicka okrypterat SMS</string>
+  <string name="conversation_activity__type_message_mms_secure">Skicka säkert MMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Skicka okrypterat MMS</string>
   <string name="conversation_activity__send">Skicka</string>
   <string name="conversation_activity__remove">Ta bort</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Mediameddelande</string>
+  <string name="conversation_item__play_button_description">Playknapp</string>
+  <string name="conversation_item__secure_message_description">Säkert Meddelande-indikator</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Ladda ner</string>
   <string name="conversation_item_sent__downloading">Laddar ner</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Försändelse Misslyckades-indikator</string>
+  <string name="conversation_item_sent__pending_approval_description">Avvaktar godkännande</string>
+  <string name="conversation_item_sent__delivered_description">Försändelse Lyckades-indikator</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Ladda ner</string>
   <string name="conversation_item_received__downloading">Laddar ner</string>
   <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">Sats-markerings läge</string>
+  <string name="conversation_fragment_cab__batch_selection_mode">Flervalsläge</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">%s vald</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Läser in länder...</string>
   <string name="country_selection_fragment__search">Sök</string>
@@ -327,11 +370,20 @@
   <string name="create_passphrase_activity__continue">Fortsätt</string>
   <string name="create_passphrase_activity__generating_secrets">GENERERAR HEMLIGHETER</string>
   <string name="create_passphrase_activity__skip">Hoppa över</string>
+  <string name="create_passphrase_activity__create">Skapa</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__confirmation">Denna log kommer att postas publikt online så att TextSecure-utvecklare kan ta del av den. D u kan undersöka och ändra loggen innan du klickar på skicka. </string>
   <string name="log_submit_activity__button_cancel">Skicka ej</string>
   <string name="log_submit_activity__button_ok">Skicka</string>
+  <string name="log_submit_activity__log_fetch_failed">Kunde inte plocka loggarna från din enhet, men du kan använda ADB för att hämta debugloggarna istället.</string>
   <string name="log_submit_activity__log_submit_success_title">Lyckades!</string>
+  <string name="log_submit_activity__log_got_it">Uppfattat</string>
+  <string name="log_submit_activity__your_pastebin_url">Var vänlig och kopiera den här adressen och skriv in den i ditt ärende (långtryck för att kopiera):\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__copied_to_clipboard">Kopierade till urklipp</string>
+  <string name="log_submit_activity__loading_logcat">Laddar logcat…</string>
+  <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
+  <string name="log_submit_activity__submitting">Skickar</string>
+  <string name="log_submit_activity__posting_logs">Skickar loggarna till pastebin...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera existerande text meddelanden till TextSecure\'s krypterade databas?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den vanliga systemdatabasen kommer inte modifieras eller röras på något sätt.</string>
@@ -340,16 +392,16 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Detta kan ta en stund. Var tålmodig, vi notifierar dig när importen är klar.</string>
   <string name="database_migration_activity__importing">IMPORTERAR</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Uppdaterar databas ...</string>
-  <string name="export_fragment__export_encrypted_backup">Exportera krypterad säkerhetskopia</string>
+  <string name="database_upgrade_activity__updating_database">Uppgraderar databasen...</string>
+  <string name="export_fragment__export_encrypted_backup">Exportera krypterad backup</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportera en krypterad\nsäkerhetskopia till minneskortet.</string>
-  <string name="export_fragment__export_plaintext_backup">Exportera okrypterad säkerhetskopia</string>
+  <string name="export_fragment__export_plaintext_backup">Exportera okrypterad backup</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exportera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\' till minneskortet.</string>
-  <string name="import_fragment__import_system_sms_database">Importera okrypterade meddelanden</string>
+  <string name="import_fragment__import_system_sms_database">Importera systemets SMS-databas</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importera databasen från\nden originella meddelande-applikationen.</string>
-  <string name="import_fragment__import_encrypted_backup">Importera krypterad säkerhetskopia</string>
+  <string name="import_fragment__import_encrypted_backup">Importera krypterad backup</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Återställ en tidigare krypterad säkerhetskopia av TextSecure.</string>
-  <string name="import_fragment__import_plaintext_backup">Importera okrypterad säkerhetskopia</string>
+  <string name="import_fragment__import_plaintext_backup">Importera okrypterad backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\'.</string>
   <string name="local_identity__regenerate_key">Återgenerera nyckel</string>
   <!--mms_preferences_activity-->
@@ -375,7 +427,7 @@
   <string name="registration_activity__skip">Hoppa över</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Några möjliga orsaker:</string>
-  <string name="registration_problems__sms_interceptors">SMS-uppsnappare.</string>
+  <string name="registration_problems__sms_interceptors">SMS-interceptorer</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nVissa meddelandeklienter från tredje part, t.ex. Handcent och GoSMS, \nsnappar upp alla inkommande sms. Kontrollera om du tog emot ett meddelande som börjar\nmed \'Your TextSecure verification code:\', isåfall måste du konfigurera din\nmeddelandeklient för att släppa igenom meddelanden.</string>
   <string name="registration_problems__incorrect_number">Felaktigt nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nKontrollera att du angav telefonnummret rätt och att det är rätt formaterat för ditt område.</string>
@@ -403,6 +455,7 @@
   <string name="registration_progress_activity__sms_verification_failed">Sms-verifiering misslyckades.</string>
   <string name="registration_progress_activity__generating_keys">Skapar nycklar...</string>
   <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <string name="recipients_panel__add_member">Lägg till medlem</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Du har för närvarande inga identitetsnycklar i din förtroendedatabas.</string>
@@ -421,30 +474,31 @@
   <string name="AndroidManifest__create_passphrase">Skapa lösenord</string>
   <string name="AndroidManifest__enter_passphrase">Ange lösenord</string>
   <string name="AndroidManifest__select_contacts">Välj kontakter</string>
-  <string name="AndroidManifest__select_contact">Välj Kontakt</string>
+  <string name="AndroidManifest__select_contact">Välj kontakt</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure upptäckt</string>
   <string name="AndroidManifest__public_identity_key">Publik identitetsnyckel</string>
   <string name="AndroidManifest__change_passphrase">Ändra lösenord</string>
-  <string name="AndroidManifest__verify_session">Verifiera session</string>
-  <string name="AndroidManifest__verify_identity">Verifiera identitet</string>
+  <string name="AndroidManifest__verify_session">Verifiera sessionen</string>
+  <string name="AndroidManifest__verify_identity">Verifiera identiteten</string>
   <string name="AndroidManifest__manage_identity_keys">Hantera identitetsnycklar</string>
-  <string name="AndroidManifest__complete_key_exchange">Fullborda nyckelutbyte</string>
+  <string name="AndroidManifest__complete_key_exchange">Slutför nyckelutbyte</string>
+  <string name="AndroidManifest__log_submit">Skicka in loggarna</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera / Exportera</string>
   <string name="arrays__my_identity_key">Min identitetsnyckel</string>
-  <string name="arrays__contact_keys">Kontaktnycklar</string>
   <!--preferences.xml-->
   <string name="preferences__general">Allmänt</string>
+  <string name="preferences__push_sms_category">Push och SMS</string>
   <string name="preferences__pref_all_sms_title">Använd för alla SMS</string>
   <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Använd TextSecure för att läsa och lagra alla inkommande text meddelanden</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Använd TextSecure för att se och lagra alla inkommande multimedia meddelanden</string>
   <string name="preferences__input_settings">Inputinställningar</string>
   <string name="preferences__enable_enter_key_title">Aktivera returtagenten</string>
-  <string name="preferences__replace_smiley_with_enter_key">Ersätt tangenten för uttryckssymboler med retur</string>
-  <string name="preferences__pref_enter_sends_title">Enter skickar</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Klick på enter-tangenten skickar text meddelanden</string>
-  <string name="preferences__display_settings">Visningsinställningar</string>
+  <string name="preferences__replace_smiley_with_enter_key">Ersätt tangenten för uttryckssymboler med Retur</string>
+  <string name="preferences__pref_enter_sends_title">Entertangenten skickar</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter-tangenten skickar textmeddelanden</string>
+  <string name="preferences__display_settings">Skärminställningar</string>
   <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontakt listan.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>
@@ -452,7 +506,9 @@
   <string name="preferences__complete_key_exchanges">Fullborda nyckelutbyten</string>
   <string name="preferences__disable_passphrase">Inaktivera lösenord</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Inaktivera lokal kryptering av meddelanden och nycklar</string>
+  <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Fullfölj nyckelutbyten automatiskt för nya sessioner eller för existerande sessioner med samma identitetsnyckel</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Glöm lösenord från minnet efter ett intervall</string>
   <string name="preferences__timeout_passphrase">Timeout lösenord</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Välj lösenordstimeout</string>
@@ -466,6 +522,10 @@
   <string name="preferences__display_message_notifications_in_status_bar">Visa meddelande notifikationer i statusraden</string>
   <string name="preferences__led_color">Färg på ljusindikator</string>
   <string name="preferences__pref_led_blink_title">Blinkmönster på ljusindikator</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Specialanpassa LED-blinkningsmönstret</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">På under:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Av under:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Specialanpassat LED-blinkningsmönster valt!</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__change_notification_sound">Ändra notifieringsljud</string>
   <string name="preferences__inthread_notifications">Inom-tråd notifikationer</string>
@@ -480,13 +540,15 @@
   <string name="preferences__orange">Orange</string>
   <string name="preferences__cyan">Turkos</string>
   <string name="preferences__magenta">Lila</string>
+  <string name="preferences__white">Vit</string>
+  <string name="preferences__none">Inga</string>
   <string name="preferences__fast">Snabb</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Långsam</string>
   <string name="preferences__custom">Skräddarsydd</string>
   <string name="preferences__advanced">Avancerade</string>
   <string name="preferences__passphrase">Lösenfras</string>
-  <string name="preferences__advanced_mms_access_point_names">MMS inställningar</string>
+  <string name="preferences__advanced_mms_access_point_names">MMS-inställningar</string>
   <string name="preferences__enable_manual_mms">Aktivera manuell MMS</string>
   <string name="preferences__override_system_mms_settings">Åsidosätt systemets MMS-inställningar med nedanstående.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nödvändigt)</string>
@@ -511,23 +573,34 @@
   <string name="preferences__use_data_channel">Push-meddelanden</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nÖka din integritet och undvik SMS-kostnader genom att använda mobil data för att kommunicera med andra TextSecure-användare</string>
   <string name="preferences__allow_sms_fallback">Tillåt utgående SMS till</string>
-  <string name="preferences__refresh_push_directory">Uppdatera Push-katalog</string>
+  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure är för närvarande din default-SMS-app. Vänligen väl en annan default först för att ändra den här inställningen.</string>
+  <string name="preferences__refresh_push_directory">Uppdatera pushkatalog</string>
   <string name="preferences__submit_debug_log">Skicka in loggfilen för felsökning</string>
   <string name="preferences__sms_outgoing_push_users">TextSecure användare</string>
+  <string name="preferences__sms_fallback_push_users_ask">(fråga först)</string>
   <string name="preferences__sms_outgoing_push_users_description">Skicka säkert SMS om dataanslutningen är nere</string>
   <string name="preferences__sms_fallback_ask_fallback">Fråga innan SMS skickas</string>
   <string name="preferences__sms_fallback_non_push_users">Icke-TextSecure användare</string>
+  <string name="preferences__sms_fallback_nobody">Ingen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Markera alla</string>
   <string name="contact_selection_list__menu_unselect_all">Avmarkera alla</string>
+  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE ANVÄNDARE</string>
+  <string name="contact_selection_list__header_other">ALLA KONTAKTER</string>
+  <string name="contact_selection_list__unknown_contact">Nytt meddelande till...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Färdig</string>
   <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Uppdaterar kontaktlistan</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__menu_send_unencrypted">Skicka okrypterad</string>
+  <string name="conversation_button_context__send_textsecure_message">Skicka TextSecure-meddelande</string>
+  <string name="conversation_button_context__send_secure_sms">Skicka säkert SMS</string>
+  <string name="conversation_button_context__send_insecure_sms">Skicka okrypterat SMS</string>
+  <string name="conversation_button_context__send_secure_mms">Skicka säkert MMS</string>
+  <string name="conversation_button_context__send_insecure_mms">Skicka okrypterat MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Ring</string>
   <!--conversation_context-->
@@ -536,6 +609,8 @@
   <string name="conversation_context__menu_delete_message">Radera meddelande</string>
   <string name="conversation_context__menu_forward_message">Vidarebefodra meddelande</string>
   <string name="conversation_context__menu_resend_message">Skicka meddelande igen</string>
+  <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">Spara bilaga</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__menu_start_secure_session">Starta säker session</string>
   <!--conversation_list_batch-->
@@ -543,10 +618,12 @@
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Sök</string>
+  <string name="conversation_list__drawer_open">Öppna navigeringslådan</string>
+  <string name="conversation_list__drawer_close">Stäng navigeringslådan</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Säkerhet</string>
   <string name="conversation_secure_verified__menu_no_identity">Ingen identitet tillgänglig</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Verifiera identitet</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verifiera identiteten</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Avsluta säker session</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Bifoga fil</string>
@@ -570,7 +647,7 @@
   <string name="text_secure_normal__menu_new_group">Ny grupp</string>
   <string name="text_secure_normal__menu_settings">Inställningar</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
-  <string name="text_secure_normal__mark_all_as_read">Markera alla som lästa</string>
+  <string name="text_secure_normal__mark_all_as_read">Markera alla lästa</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verifierad</string>
   <!--EOF-->
