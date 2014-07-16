@@ -127,7 +127,9 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     else if (parameters.recipients != null) intent = getConversationIntent(parameters);
     else                                    intent = getConversationListIntent();
 
-    if (!TextSecurePreferences.isSignedPreKeyRegistered(this)) {
+    if (TextSecurePreferences.isPushRegistered(this) &&
+        !TextSecurePreferences.isSignedPreKeyRegistered(this))
+    {
       PreKeyService.initiateCreateSigned(this, masterSecret);
     }
 
