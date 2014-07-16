@@ -17,11 +17,18 @@
 package org.thoughtcrime.securesms.components;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Surface;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
+
+import org.thoughtcrime.securesms.R;
 
 /**
  * LinearLayout that, when a view container, will report back when it thinks a soft keyboard
@@ -30,8 +37,6 @@ import android.widget.LinearLayout;
 public class KeyboardAwareLinearLayout extends LinearLayout {
   private static final String TAG  = KeyboardAwareLinearLayout.class.getSimpleName();
   private static final Rect   rect = new Rect();
-
-  private KeyboardListener listener;
 
   public KeyboardAwareLinearLayout(Context context) {
     super(context);
@@ -44,14 +49,6 @@ public class KeyboardAwareLinearLayout extends LinearLayout {
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   public KeyboardAwareLinearLayout(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-  }
-
-  public interface KeyboardListener {
-    public void onKeyboardShown(int keyboardHeight);
-  }
-
-  public void setListener(KeyboardListener listener) {
-    this.listener = listener;
   }
 
   /**
@@ -69,8 +66,71 @@ public class KeyboardAwareLinearLayout extends LinearLayout {
 
     final int keyboardHeight = availableHeight - (rect.bottom - rect.top);
 
-    if (listener != null) listener.onKeyboardShown(keyboardHeight);
+    onKeyboardShown(keyboardHeight);
 
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
   }
+
+  private void onKeyboardShown(int keyboardHeight) {
+    Log.w(TAG, "keyboard shown, height " + keyboardHeight);
+    if (keyboardHeight > getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height)) {
+      WindowManager wm = (WindowManager) getContext().getSystemService(Activity.WINDOW_SERVICE);
+      if (wm == null || wm.getDefaultDisplay() == null) {
+        return;
+      }
+      int rotation = wm.getDefaultDisplay().getRotation();
+
+      switch (rotation) {
+        case Surface.ROTATION_270:
+        case Surface.ROTATION_90:
+          setKeyboardLandscapeHeight(keyboardHeight);
+          break;
+        case Surface.ROTATION_0:
+        case Surface.ROTATION_180:
+          setKeyboardPortraitHeight(keyboardHeight);
+      }
+    }
+  }
+
+  public int getKeyboardHeight() {
+    WindowManager      wm    = (WindowManager)getContext().getSystemService(Context.WINDOW_SERVICE);
+    if (wm == null || wm.getDefaultDisplay() == null) {
+      throw new AssertionError("WindowManager was null or there is no default display");
+    }
+
+    int rotation = wm.getDefaultDisplay().getRotation();
+
+    switch (rotation) {
+      case Surface.ROTATION_270:
+      case Surface.ROTATION_90:
+        return getKeyboardLandscapeHeight();
+      case Surface.ROTATION_0:
+      case Surface.ROTATION_180:
+      default:
+        return getKeyboardPortraitHeight();
+    }
+  }
+
+  private int getKeyboardLandscapeHeight() {
+    return PreferenceManager.getDefaultSharedPreferences(getContext())
+                            .getInt("keyboard_height_landscape",
+                                    getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
+  }
+
+  private int getKeyboardPortraitHeight() {
+    return PreferenceManager.getDefaultSharedPreferences(getContext())
+                            .getInt("keyboard_height_portrait",
+                                    getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
+  }
+
+  private void setKeyboardLandscapeHeight(int height) {
+    PreferenceManager.getDefaultSharedPreferences(getContext())
+                     .edit().putInt("keyboard_height_landscape", height).apply();
+  }
+
+  private void setKeyboardPortraitHeight(int height) {
+    PreferenceManager.getDefaultSharedPreferences(getContext())
+                     .edit().putInt("keyboard_height_portrait", height).apply();
+  }
+
 }

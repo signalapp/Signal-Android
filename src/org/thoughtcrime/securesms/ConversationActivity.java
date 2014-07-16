@@ -16,8 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -30,30 +28,23 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v4.app.FragmentTransaction;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.RelativeSizeSpan;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
-import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -142,8 +133,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     implements ConversationFragment.ConversationFragmentListener,
                AttachmentManager.AttachmentListener,
                EmojiconsFragment.OnEmojiconBackspaceClickedListener,
-               EmojiconGridFragment.OnEmojiconClickedListener,
-               KeyboardAwareLinearLayout.KeyboardListener
+               EmojiconGridFragment.OnEmojiconClickedListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -773,7 +763,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
-    container.setListener(this);
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
     composeText.setOnKeyListener(composeKeyPressedListener);
@@ -1134,50 +1123,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
                                  emojicon.getEmoji(), 0, emojicon.getEmoji().length());
   }
 
-  @Override
-  public void onKeyboardShown(int keyboardHeight) {
-    Log.w(TAG, "keyboard shown, height " + keyboardHeight);
-    if (keyboardHeight > getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height)) {
-      WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Activity.WINDOW_SERVICE);
-      if (wm == null || wm.getDefaultDisplay() == null) {
-        return;
-      }
-      int rotation = wm.getDefaultDisplay().getRotation();
-
-      switch (rotation) {
-      case Surface.ROTATION_270:
-      case Surface.ROTATION_90:
-        setKeyboardLandscapeHeight(keyboardHeight);
-        break;
-      case Surface.ROTATION_0:
-      case Surface.ROTATION_180:
-        setKeyboardPortraitHeight(keyboardHeight);
-      }
-    }
-  }
-
-  private int getKeyboardLandscapeHeight() {
-    return PreferenceManager.getDefaultSharedPreferences(this)
-                            .getInt("keyboard_height_landscape",
-                                    getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
-  }
-
-  private int getKeyboardPortraitHeight() {
-    return PreferenceManager.getDefaultSharedPreferences(this)
-                            .getInt("keyboard_height_portrait",
-                                    getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
-  }
-
-  private void setKeyboardLandscapeHeight(int height) {
-    PreferenceManager.getDefaultSharedPreferences(this)
-                     .edit().putInt("keyboard_height_landscape", height).apply();
-  }
-
-  private void setKeyboardPortraitHeight(int height) {
-    PreferenceManager.getDefaultSharedPreferences(this)
-                     .edit().putInt("keyboard_height_portrait", height).apply();
-  }
-
   // Listeners
 
   private class AttachmentTypeListener implements DialogInterface.OnClickListener {
@@ -1191,7 +1136,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     @Override
     public void onClick(View v) {
       InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-      WindowManager      wm    = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
 
       if (emojiDrawer.getVisibility() == View.VISIBLE) {
         input.showSoftInput(composeText, 0);
@@ -1202,26 +1146,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
           transaction.add(R.id.emoji_drawer, new EmojiconsFragment(), "emojicons");
           transaction.commit();
         }
-
-        if (wm == null || wm.getDefaultDisplay() == null) {
-          return;
-        }
-        int rotation = wm.getDefaultDisplay().getRotation();
-
-        final int height;
-        switch (rotation) {
-        case Surface.ROTATION_270:
-        case Surface.ROTATION_90:
-          height = getKeyboardLandscapeHeight();
-          break;
-        case Surface.ROTATION_0:
-        case Surface.ROTATION_180:
-        default:
-          height = getKeyboardPortraitHeight();
-        }
-
-        emojiDrawer.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
+        int keyboardHeight = container.getKeyboardHeight();
+        Log.w(TAG, "setting emoji drawer to height " + keyboardHeight);
+        emojiDrawer.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, keyboardHeight));
         emojiDrawer.requestLayout();
+        emojiDrawer.invalidate();
 
         input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
         emojiDrawer.setVisibility(View.VISIBLE);
