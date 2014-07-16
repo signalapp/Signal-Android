@@ -1150,7 +1150,6 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
         Log.w(TAG, "setting emoji drawer to height " + keyboardHeight);
         emojiDrawer.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, keyboardHeight));
         emojiDrawer.requestLayout();
-        emojiDrawer.invalidate();
 
         input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
         emojiDrawer.setVisibility(View.VISIBLE);
