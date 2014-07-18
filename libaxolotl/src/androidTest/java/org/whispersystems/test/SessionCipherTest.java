@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.InitializationParameters;
+import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.AxolotlParameters;
 
 public class SessionCipherTest extends AndroidTestCase {
 
@@ -138,8 +138,8 @@ public class SessionCipherTest extends AndroidTestCase {
     ECKeyPair       bobBaseKey           = Curve.generateKeyPair(true);
     ECKeyPair       bobEphemeralKey      = bobBaseKey;
 
-    InitializationParameters aliceParameters =
-        InitializationParameters.newBuilder()
+    AxolotlParameters aliceParameters =
+        AxolotlParameters.newBuilder()
                                 .setOurIdentityKey(aliceIdentityKey)
                                 .setOurBaseKey(aliceBaseKey)
                                 .setOurEphemeralKey(aliceEphemeralKey)
@@ -150,8 +150,8 @@ public class SessionCipherTest extends AndroidTestCase {
                                 .setTheirPreKey(Optional.<ECPublicKey>absent())
                                 .create();
 
-    InitializationParameters bobParameters =
-        InitializationParameters.newBuilder()
+    AxolotlParameters bobParameters =
+        RatchetingSession.AxolotlParameters.newBuilder()
                                 .setOurIdentityKey(bobIdentityKey)
                                 .setOurBaseKey(bobBaseKey)
                                 .setOurEphemeralKey(bobEphemeralKey)
@@ -186,8 +186,8 @@ public class SessionCipherTest extends AndroidTestCase {
 
     ECKeyPair       bobPreKey            = Curve.generateKeyPair(true);
 
-    InitializationParameters aliceParameters =
-        InitializationParameters.newBuilder()
+    AxolotlParameters aliceParameters =
+        AxolotlParameters.newBuilder()
                                 .setOurIdentityKey(aliceIdentityKey)
                                 .setOurBaseKey(aliceBaseKey)
                                 .setOurEphemeralKey(aliceEphemeralKey)
@@ -198,8 +198,8 @@ public class SessionCipherTest extends AndroidTestCase {
                                 .setTheirPreKey(Optional.of(bobPreKey.getPublicKey()))
                                 .create();
 
-    InitializationParameters bobParameters =
-        InitializationParameters.newBuilder()
+    AxolotlParameters bobParameters =
+        AxolotlParameters.newBuilder()
                                 .setOurIdentityKey(bobIdentityKey)
                                 .setOurBaseKey(bobBaseKey)
                                 .setOurEphemeralKey(bobEphemeralKey)

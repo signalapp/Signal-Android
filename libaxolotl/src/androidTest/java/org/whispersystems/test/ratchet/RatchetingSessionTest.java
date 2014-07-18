@@ -15,7 +15,7 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Arrays;
 
-import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.InitializationParameters;
+import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.AxolotlParameters;
 
 public class RatchetingSessionTest extends AndroidTestCase {
 
@@ -108,7 +108,7 @@ public class RatchetingSessionTest extends AndroidTestCase {
     ECPublicKey     aliceEphemeralPublicKey  = Curve.decodePoint(aliceEphemeralPublic, 0);
     IdentityKey     aliceIdentityPublicKey   = new IdentityKey(aliceIdentityPublic, 0);
 
-    InitializationParameters parameters = InitializationParameters.newBuilder()
+    AxolotlParameters parameters = AxolotlParameters.newBuilder()
                                                                   .setOurBaseKey(bobBaseKey)
                                                                   .setOurEphemeralKey(bobEphemeralKey)
                                                                   .setOurIdentityKey(bobIdentityKey)
@@ -217,7 +217,7 @@ public class RatchetingSessionTest extends AndroidTestCase {
 
     SessionState session = new SessionState();
 
-    InitializationParameters parameters = InitializationParameters.newBuilder()
+    AxolotlParameters parameters = AxolotlParameters.newBuilder()
                                                                   .setOurBaseKey(aliceBaseKey)
                                                                   .setOurEphemeralKey(aliceEphemeralKey)
                                                                   .setOurIdentityKey(aliceIdentityKey)

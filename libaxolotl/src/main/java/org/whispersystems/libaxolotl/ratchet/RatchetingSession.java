@@ -37,7 +37,7 @@ public class RatchetingSession {
 
   public static void initializeSession(SessionState sessionState,
                                        int sessionVersion,
-                                       InitializationParameters parameters)
+                                       AxolotlParameters parameters)
       throws InvalidKeyException
   {
     if (isAlice(parameters)) initializeSessionAsAlice(sessionState, sessionVersion, parameters);
@@ -48,7 +48,7 @@ public class RatchetingSession {
 
   private static void initializeSessionAsAlice(SessionState sessionState,
                                                int sessionVersion,
-                                               InitializationParameters parameters)
+                                               AxolotlParameters parameters)
       throws InvalidKeyException
   {
     sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
@@ -70,7 +70,7 @@ public class RatchetingSession {
 
   private static void initializeSessionAsBob(SessionState sessionState,
                                              int sessionVersion,
-                                             InitializationParameters parameters)
+                                             AxolotlParameters parameters)
       throws InvalidKeyException
   {
     sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
@@ -86,7 +86,7 @@ public class RatchetingSession {
     }
   }
 
-  private static DHEResult calculate4DHE(boolean isAlice, int sessionVersion, InitializationParameters parameters)
+  private static DHEResult calculate4DHE(boolean isAlice, int sessionVersion, AxolotlParameters parameters)
       throws InvalidKeyException
   {
     try {
@@ -131,7 +131,7 @@ public class RatchetingSession {
   }
 
   private static byte[] calculateVerificationTag(boolean isAlice, VerifyKey verifyKey,
-                                                 InitializationParameters parameters)
+                                                 AxolotlParameters parameters)
   {
     if (isAlice) {
       return verifyKey.generateVerification(parameters.getOurBaseKey().getPublicKey(),
@@ -150,7 +150,7 @@ public class RatchetingSession {
     }
   }
 
-  private static boolean isAlice(InitializationParameters parameters)
+  private static boolean isAlice(AxolotlParameters parameters)
   {
     if (parameters.getOurEphemeralKey().equals(parameters.getOurBaseKey())) {
       return false;
@@ -172,7 +172,7 @@ public class RatchetingSession {
     else                     return Optional.absent();
   }
 
-  public static class InitializationParameters {
+  public static class AxolotlParameters {
     private final ECKeyPair             ourBaseKey;
     private final ECKeyPair             ourEphemeralKey;
     private final Optional<ECKeyPair>   ourPreKey;
@@ -183,10 +183,10 @@ public class RatchetingSession {
     private final Optional<ECPublicKey> theirPreKey;
     private final IdentityKey           theirIdentityKey;
 
-    public InitializationParameters(ECKeyPair ourBaseKey, ECKeyPair ourEphemeralKey,
-                                    Optional<ECKeyPair> ourPreKey, IdentityKeyPair ourIdentityKey,
-                                    ECPublicKey theirBaseKey, ECPublicKey theirEphemeralKey,
-                                    Optional<ECPublicKey> theirPreKey, IdentityKey theirIdentityKey)
+    public AxolotlParameters(ECKeyPair ourBaseKey, ECKeyPair ourEphemeralKey,
+                             Optional<ECKeyPair> ourPreKey, IdentityKeyPair ourIdentityKey,
+                             ECPublicKey theirBaseKey, ECPublicKey theirEphemeralKey,
+                             Optional<ECPublicKey> theirPreKey, IdentityKey theirIdentityKey)
     {
       this.ourBaseKey        = ourBaseKey;
       this.ourEphemeralKey   = ourEphemeralKey;
@@ -300,17 +300,15 @@ public class RatchetingSession {
         return this;
       }
 
-      public RatchetingSession.InitializationParameters create() {
+      public AxolotlParameters create() {
         if (ourBaseKey == null || ourEphemeralKey == null || ourPreKey == null || ourIdentityKey == null ||
             theirBaseKey == null || theirEphemeralKey == null || theirPreKey == null || theirIdentityKey == null)
         {
           throw new IllegalArgumentException("All parameters not specified!");
         }
 
-        return new RatchetingSession.InitializationParameters(ourBaseKey, ourEphemeralKey,
-                                                              ourPreKey, ourIdentityKey,
-                                                              theirBaseKey, theirEphemeralKey,
-                                                              theirPreKey, theirIdentityKey);
+        return new AxolotlParameters(ourBaseKey, ourEphemeralKey, ourPreKey, ourIdentityKey,
+                                     theirBaseKey, theirEphemeralKey, theirPreKey, theirIdentityKey);
       }
     }
   }
