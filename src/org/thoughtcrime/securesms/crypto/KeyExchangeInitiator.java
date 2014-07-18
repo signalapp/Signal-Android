@@ -83,6 +83,6 @@ public class KeyExchangeInitiator {
     SessionStore  sessionStore  = new TextSecureSessionStore(context, masterSecret);
     SessionRecord sessionRecord = sessionStore.loadSession(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
-    return sessionRecord.getSessionState().hasPendingPreKey();
+    return sessionRecord.getSessionState().hasPendingKeyExchange();
   }
 }

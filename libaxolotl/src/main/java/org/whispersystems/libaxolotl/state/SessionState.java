@@ -423,7 +423,7 @@ public class SessionState {
     return sessionStructure.hasPendingKeyExchange();
   }
 
-  public void setPendingPreKey(int preKeyId, int signedPreKeyId, ECPublicKey baseKey) {
+  public void setUnacknowledgedPreKeyMessage(int preKeyId, int signedPreKeyId, ECPublicKey baseKey) {
     PendingPreKey pending = PendingPreKey.newBuilder()
                                          .setPreKeyId(preKeyId)
                                          .setSignedPreKeyId(signedPreKeyId)
@@ -435,27 +435,24 @@ public class SessionState {
                                                  .build();
   }
 
-  public boolean hasPendingPreKey() {
+  public boolean hasUnacknowledgedPreKeyMessage() {
     return this.sessionStructure.hasPendingPreKey();
   }
 
-  public int getPendingPreKeyId() {
-    return sessionStructure.getPendingPreKey().getPreKeyId();
-  }
-
-  public int getPendingSignedPreKeyId() {
-    return sessionStructure.getPendingPreKey().getSignedPreKeyId();
-  }
-
-  public ECPublicKey getPendingBaseKey() {
+  public UnacknowledgedPreKeyMessageItems getUnacknowledgedPreKeyMessageItems() {
     try {
-      return Curve.decodePoint(sessionStructure.getPendingPreKey().getBaseKey().toByteArray(), 0);
+      return
+          new UnacknowledgedPreKeyMessageItems(sessionStructure.getPendingPreKey().getPreKeyId(),
+                                               sessionStructure.getPendingPreKey().getSignedPreKeyId(),
+                                               Curve.decodePoint(sessionStructure.getPendingPreKey()
+                                                                                 .getBaseKey()
+                                                                                 .toByteArray(), 0));
     } catch (InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }
 
-  public void clearPendingPreKey() {
+  public void clearUnacknowledgedPreKeyMessage() {
     this.sessionStructure = this.sessionStructure.toBuilder()
                                                  .clearPendingPreKey()
                                                  .build();
@@ -483,5 +480,30 @@ public class SessionState {
 
   public byte[] serialize() {
     return sessionStructure.toByteArray();
+  }
+
+  public static class UnacknowledgedPreKeyMessageItems {
+    private final int         preKeyId;
+    private final int         signedPreKeyId;
+    private final ECPublicKey baseKey;
+
+    public UnacknowledgedPreKeyMessageItems(int preKeyId, int signedPreKeyId, ECPublicKey baseKey) {
+      this.preKeyId       = preKeyId;
+      this.signedPreKeyId = signedPreKeyId;
+      this.baseKey        = baseKey;
+    }
+
+
+    public int getPreKeyId() {
+      return preKeyId;
+    }
+
+    public int getSignedPreKeyId() {
+      return signedPreKeyId;
+    }
+
+    public ECPublicKey getBaseKey() {
+      return baseKey;
+    }
   }
 }

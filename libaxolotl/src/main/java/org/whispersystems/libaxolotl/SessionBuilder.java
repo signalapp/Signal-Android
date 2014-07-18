@@ -116,7 +116,7 @@ public class SessionBuilder {
       return;
     }
 
-    boolean simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
+    boolean simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
 
     AxolotlParameters.Builder parameters = AxolotlParameters.newBuilder();
 
@@ -166,7 +166,7 @@ public class SessionBuilder {
     }
 
     SessionRecord             sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
-    boolean                   simultaneousInitiate = sessionRecord.getSessionState().hasPendingPreKey();
+    boolean                   simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
     AxolotlParameters.Builder parameters           = RatchetingSession.AxolotlParameters.newBuilder();
 
     parameters.setTheirBaseKey(message.getBaseKey());
@@ -247,7 +247,7 @@ public class SessionBuilder {
                                         preKey.getSignedPreKey() == null ? 2 : 3,
                                         parameters.create());
 
-    sessionRecord.getSessionState().setPendingPreKey(preKey.getPreKeyId(), preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
+    sessionRecord.getSessionState().setUnacknowledgedPreKeyMessage(preKey.getPreKeyId(), preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
 
@@ -389,10 +389,8 @@ public class SessionBuilder {
     sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
     sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
-    return new KeyExchangeMessage(2, sequence, flags,
-                                  baseKey.getPublicKey(), null,
-                                  ephemeralKey.getPublicKey(),
-                                  identityKey.getPublicKey(), null);
+    return new KeyExchangeMessage(2, sequence, flags, baseKey.getPublicKey(), null,
+                                  ephemeralKey.getPublicKey(), identityKey.getPublicKey(), null);
   }
 
 

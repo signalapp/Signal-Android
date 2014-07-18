@@ -43,6 +43,8 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import static org.whispersystems.libaxolotl.state.SessionState.UnacknowledgedPreKeyMessageItems;
+
 /**
  * The main entry point for Axolotl encrypt/decrypt operations.
  *
@@ -96,15 +98,12 @@ public class SessionCipher {
                                                                senderEphemeral, chainKey.getIndex(),
                                                                previousCounter, ciphertextBody);
 
-      if (sessionState.hasPendingPreKey()) {
-        int         pendingPreKeyId       = sessionState.getPendingPreKeyId();
-        int         pendingSignedPreKeyId = sessionState.getPendingSignedPreKeyId();
-        ECPublicKey pendingBaseKey        = sessionState.getPendingBaseKey();
-        int         localRegistrationId   = sessionState.getLocalRegistrationId();
+      if (sessionState.hasUnacknowledgedPreKeyMessage()) {
+        UnacknowledgedPreKeyMessageItems items = sessionState.getUnacknowledgedPreKeyMessageItems();
+        int localRegistrationId = sessionState.getLocalRegistrationId();
 
-        ciphertextMessage = new PreKeyWhisperMessage(sessionVersion,
-                                                     localRegistrationId, pendingPreKeyId,
-                                                     pendingSignedPreKeyId, pendingBaseKey,
+        ciphertextMessage = new PreKeyWhisperMessage(sessionVersion, localRegistrationId, items.getPreKeyId(),
+                                                     items.getSignedPreKeyId(), items.getBaseKey(),
                                                      sessionState.getLocalIdentityKey(),
                                                      sessionState.getVerification(),
                                                      (WhisperMessage) ciphertextMessage);
@@ -185,7 +184,7 @@ public class SessionCipher {
 
     byte[] plaintext = getPlaintext(messageKeys, ciphertextMessage.getBody());
 
-    sessionState.clearPendingPreKey();
+    sessionState.clearUnacknowledgedPreKeyMessage();
 
     return plaintext;
 
