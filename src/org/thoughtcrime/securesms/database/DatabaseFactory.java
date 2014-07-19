@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,6 +27,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
@@ -43,15 +45,15 @@ import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
-  private static final int INTRODUCED_IDENTITIES_VERSION    = 2;
-  private static final int INTRODUCED_INDEXES_VERSION       = 3;
-  private static final int INTRODUCED_DATE_SENT_VERSION     = 4;
-  private static final int INTRODUCED_DRAFTS_VERSION        = 5;
-  private static final int INTRODUCED_NEW_TYPES_VERSION     = 6;
-  private static final int INTRODUCED_MMS_BODY_VERSION      = 7;
-  private static final int INTRODUCED_MMS_FROM_VERSION      = 8;
-  private static final int INTRODUCED_TOFU_IDENTITY_VERSION = 9;
-  private static final int INTRODUCED_PUSH_DATABASE_VERSION = 10;
+  private static final int INTRODUCED_IDENTITIES_VERSION     = 2;
+  private static final int INTRODUCED_INDEXES_VERSION        = 3;
+  private static final int INTRODUCED_DATE_SENT_VERSION      = 4;
+  private static final int INTRODUCED_DRAFTS_VERSION         = 5;
+  private static final int INTRODUCED_NEW_TYPES_VERSION      = 6;
+  private static final int INTRODUCED_MMS_BODY_VERSION       = 7;
+  private static final int INTRODUCED_MMS_FROM_VERSION       = 8;
+  private static final int INTRODUCED_TOFU_IDENTITY_VERSION  = 9;
+  private static final int INTRODUCED_PUSH_DATABASE_VERSION  = 10;
   private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
   private static final int INTRODUCED_PUSH_FIX_VERSION       = 12;
   private static final int DATABASE_VERSION                  = 12;
@@ -415,6 +417,41 @@ public class DatabaseFactory {
               }
             }
           }
+        }
+      }
+    }
+
+    if (fromVersion < DatabaseUpgradeActivity.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
+      if (!MasterSecretUtil.hasAsymmericMasterSecret(context)) {
+        MasterSecretUtil.generateAsymmetricMasterSecret(context, masterSecret);
+
+        MasterCipher masterCipher = new MasterCipher(masterSecret);
+        Cursor       cursor       = null;
+
+        try {
+          cursor = db.query(SmsDatabase.TABLE_NAME,
+                            new String[] {SmsDatabase.ID, SmsDatabase.BODY, SmsDatabase.TYPE},
+                            SmsDatabase.TYPE + " & ? == 0",
+                            new String[] {String.valueOf(SmsDatabase.Types.ENCRYPTION_MASK)},
+                            null, null, null);
+
+          while (cursor.moveToNext()) {
+            long   id   = cursor.getLong(0);
+            String body = cursor.getString(1);
+            long   type = cursor.getLong(2);
+
+            String encryptedBody = masterCipher.encryptBody(body);
+
+            ContentValues update = new ContentValues();
+            update.put(SmsDatabase.BODY, encryptedBody);
+            update.put(SmsDatabase.TYPE, type | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+
+            db.update(SmsDatabase.TABLE_NAME, update, SmsDatabase.ID  + " = ?",
+                      new String[] {String.valueOf(id)});
+          }
+        } finally {
+          if (cursor != null)
+            cursor.close();
         }
       }
     }

@@ -39,15 +39,17 @@ import java.util.TreeSet;
 
 public class DatabaseUpgradeActivity extends Activity {
 
-  public static final int NO_MORE_KEY_EXCHANGE_PREFIX_VERSION = 46;
-  public static final int MMS_BODY_VERSION                    = 46;
-  public static final int TOFU_IDENTITIES_VERSION             = 50;
-  public static final int CURVE25519_VERSION                  = 63;
+  public static final int NO_MORE_KEY_EXCHANGE_PREFIX_VERSION  = 46;
+  public static final int MMS_BODY_VERSION                     = 46;
+  public static final int TOFU_IDENTITIES_VERSION              = 50;
+  public static final int CURVE25519_VERSION                   = 63;
+  public static final int ASYMMETRIC_MASTER_SECRET_FIX_VERSION = 73;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
     add(TOFU_IDENTITIES_VERSION);
     add(CURVE25519_VERSION);
+    add(ASYMMETRIC_MASTER_SECRET_FIX_VERSION);
   }};
 
   private MasterSecret masterSecret;
