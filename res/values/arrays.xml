@@ -142,4 +142,46 @@
     <item>3000,3000</item>
     <item>custom</item>
   </string-array>
+
+  <string-array name="transport_selection_entries_text">
+    <item>@string/ConversationActivity_transport_insecure_sms</item>
+    <item>@string/ConversationActivity_transport_secure_sms</item>
+    <item>@string/ConversationActivity_transport_textsecure</item>
+  </string-array>
+
+  <string-array name="transport_selection_entries_media">
+    <item>@string/ConversationActivity_transport_insecure_mms</item>
+    <item>@string/ConversationActivity_transport_secure_mms</item>
+    <item>@string/ConversationActivity_transport_textsecure</item>
+  </string-array>
+
+  <string-array name="transport_selection_entries_compose_text">
+    <item>@string/conversation_activity__type_message_sms_insecure</item>
+    <item>@string/conversation_activity__type_message_sms_secure</item>
+    <item>@string/conversation_activity__type_message_push</item>
+  </string-array>
+
+  <string-array name="transport_selection_entries_compose_media">
+    <item>@string/conversation_activity__type_message_mms_insecure</item>
+    <item>@string/conversation_activity__type_message_mms_secure</item>
+    <item>@string/conversation_activity__type_message_push</item>
+  </string-array>
+
+  <string-array name="transport_selection_values">
+    <item>insecure_sms</item>
+    <item>secure_sms</item>
+    <item>textsecure</item>
+  </string-array>
+
+  <string-array name="transport_selection_icons_light">
+    <item>@drawable/ic_send_sms_insecure</item>
+    <item>@drawable/ic_send_sms_secure</item>
+    <item>@drawable/ic_send_push</item>
+  </string-array>
+
+  <string-array name="transport_selection_icons_dark">
+    <item>@drawable/ic_send_sms_insecure_dark</item>
+    <item>@drawable/ic_send_sms_secure</item>
+    <item>@drawable/ic_send_push</item>
+  </string-array>
 </resources>

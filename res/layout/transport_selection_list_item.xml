@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="@dimen/transport_selection_popup_width"
+              android:layout_height="60dp"
+              android:gravity="center_vertical"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp">
+    <ImageView android:id="@+id/icon"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:contentDescription="Transport icon"/>
+    <TextView android:id="@+id/text"
+              android:paddingLeft="10dp"
+              android:fontFamily="sans-serif-light"
+              android:textSize="16sp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+</LinearLayout>
