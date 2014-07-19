@@ -80,7 +80,7 @@
                       android:singleLine="true" />
             </LinearLayout>
 
-        <TextView android:id="@+id/subject"
+        <com.rockerhieu.emojicon.EmojiconTextView android:id="@+id/subject"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceSmall"

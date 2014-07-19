@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="?conversation_background"
     android:orientation="vertical">
 
     <RelativeLayout
-            android:id="@+id/layout_container"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -78,9 +78,9 @@
                         android:background="@drawable/touch_highlight_background"
                         android:padding="10dp"/>
 
-                <EditText
+                <com.rockerhieu.emojicon.EmojiconEditText
                         android:id="@+id/embedded_text_editor"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:autoText="true"
@@ -88,8 +88,8 @@
                         android:background="#00ffffff"
                         android:padding="12dp"
                         android:paddingRight="0dp"
-                        android:imeOptions="actionSend|flagNoEnterAction"
-                        android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
+                        android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi"
+                        android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
                         android:maxLength="1000"
                         android:maxLines="4"
                         android:nextFocusRight="@+id/send_button"
@@ -120,11 +120,10 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <org.thoughtcrime.securesms.components.EmojiDrawer
-            android:id="@+id/emoji_drawer"
-            android:visibility="gone"
-            android:layout_weight="1.1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:id="@+id/emoji_drawer"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="450dp" />
 
-</LinearLayout>
+</org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>

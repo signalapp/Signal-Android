@@ -49,7 +49,7 @@
             android:background="?conversation_item_received_background"
             android:orientation="vertical">
 
-            <TextView android:id="@+id/conversation_item_body"
+            <com.rockerhieu.emojicon.EmojiconTextView android:id="@+id/conversation_item_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dip"

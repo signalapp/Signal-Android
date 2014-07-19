@@ -34,7 +34,6 @@ public class TextSecurePreferences {
   private static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
   public  static final String SCREEN_SECURITY_PREF             = "pref_screen_security";
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
-  private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
   private static final String THREAD_TRIM_ENABLED              = "pref_trim_threads";
   private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
@@ -118,10 +117,6 @@ public class TextSecurePreferences {
 
   public static String getSignalingKey(Context context) {
     return getStringPreference(context, SIGNALING_KEY_PREF, null);
-  }
-
-  public static boolean isEnterImeKeyEnabled(Context context) {
-    return getBooleanPreference(context, ENTER_PRESENT_PREF, false);
   }
 
   public static boolean isEnterSendsEnabled(Context context) {

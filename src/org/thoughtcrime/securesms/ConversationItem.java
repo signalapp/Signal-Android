@@ -24,7 +24,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
@@ -49,7 +48,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.Emoji;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -228,13 +226,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setBodyText(MessageRecord messageRecord) {
-
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-      bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(), Emoji.EMOJI_LARGE),
-                       TextView.BufferType.SPANNABLE);
-    } else {
-      bodyText.setText(messageRecord.getDisplayBody());
-    }
+    bodyText.setText(messageRecord.getDisplayBody());
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
