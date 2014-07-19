@@ -45,6 +45,8 @@
         <item name="conversation_send_button_sms_secure">@drawable/ic_send_sms_secure</item>
         <item name="conversation_send_button_sms_insecure">@drawable/ic_send_sms_insecure</item>
         <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered</item>
+        <item name="conversation_transport_indicators">@array/transport_selection_icons_light</item>
+        <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
 
@@ -139,6 +141,8 @@
         <item name="conversation_send_button_sms_secure">@drawable/ic_send_sms_secure</item>
         <item name="conversation_send_button_sms_insecure">@drawable/ic_send_sms_insecure_dark</item>
         <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered_dark</item>
+        <item name="conversation_transport_indicators">@array/transport_selection_icons_dark</item>
+        <item name="conversation_transport_popup_background">@color/black</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_light</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_light</item>
 
