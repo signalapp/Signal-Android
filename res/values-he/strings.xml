@@ -24,39 +24,29 @@
   <string name="ConversationItem_message_size_d_kb">גודל ההודעה: %d KB</string>
   <string name="ConversationItem_expires_s">פג: %s</string>
   <string name="ConversationItem_error_sending_message">שגיאה בשליחת ההודעה</string>
-  <string name="ConversationItem_saving_attachment">שומר קובץ מצורף</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">שומר את הקובץ המצורף בכרטיס ה-SD...</string>
-  <string name="ConversationItem_save_to_sd_card">לשמור בכרטיס ה-SD?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">המדיה הזאת אוחסנה בבסיס נתונים מוצפן. הגרסה שתשמור בכרטיס ה-SD לא תהיה מוצפנת יותר. אתה בטוח שברצונך להמשיך?</string>
-  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">שגיאה בשמירת הקובץ המצורף בכרטיס ה-SD!</string>
-  <string name="ConversationItem_success_exclamation">הצליח!</string>
-  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">לא ניתן לכתוב לכרטיס ה-SD!</string>
   <string name="ConversationItem_view_secure_media_question">לצפות במדיה מאובטחת?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">הודעת החלפת מפתח התקבלה ועברה עיבוד.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">שגיאה, התקבלה הודעת החלפת מפתח מיושנת.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">התקבלה הודעת החלפת מפתח, לחץ כדי להמשיך</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">להתחיל חיבור מאובטח?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">להתחיל חיבור מאובטח עם %s?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">אישור מחיקת שרשור</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">אתה בטוח שאתה רוצה למחוק את השיחה הזאת לתמיד?</string>
   <string name="ConversationActivity_add_attachment">צרף קובץ</string>
   <string name="ConversationActivity_select_contact_info">בחר מידע של איש קשר</string>
-  <string name="ConversationActivity_compose_message">חבר הודעה</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">סליחה, הייתה שגיאה בהצבת הקובץ המצורף שלך.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">סליחה, קובץ הוידאו שנבחר חורג מגבולות גודל ההודעה.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">סליחה, קובץ השמע שנבחר חורג מגבולות גודל ההודעה.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">הנמען אינו SMS או אימייל חוקיים!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">ההודעה ריקה!</string>
-  <string name="ConversationActivity_group_conversation_recipients">נמעני שיחה קבוצתית</string>
-  <string name="ConversationActivity_group_conversation">שיחה קבוצתית</string>
   <string name="ConversationActivity_invalid_recipient">נמען שגוי!</string>
-  <string name="ConversationActivity_calls_not_supported">שיחות אינן נתמכות</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">נראה כי מכשיר זה אינו תומך בפעולות חיוג.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי הודעה</string>
-  <string name="ConversationFragment_confirm_message_delete">אשר מחיקת הודעה</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">אתה בטוח שאתה רוצה למחוק את ההודעה הזו לתמיד?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">המדיה הזאת אוחסנה בבסיס נתונים מוצפן. הגרסה שתשמור בכרטיס ה-SD לא תהיה מוצפנת יותר. אתה בטוח שברצונך להמשיך?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">שגיאה בשמירת הקובץ המצורף בכרטיס ה-SD!</string>
+  <string name="ConversationFragment_success_exclamation">הצליח!</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">שומר את הקובץ המצורף בכרטיס ה-SD...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">הודעת החלפת מפתח...</string>
   <!--ConversationListFragment-->
@@ -68,10 +58,8 @@
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_export_to_sd_card">לייצא לכרטיס ה-SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">פעולה זו\nתייצא את המפתחות, ההגדרות וההודעות המוצפנות שלך לכרטיס ה-SD.\n</string>
   <string name="ExportFragment_export">יצא</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">לייצא לכרטיס ה-SD ללא הצפנה?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">אזהרה, פעולה זו\nתייצא את תוכן הודעות ה-TextSecure שלך לכרטיס ה-SD ללא הצפנה.\n</string>
   <string name="ExportFragment_cancel">בטל</string>
   <string name="ExportFragment_exporting">מייצא</string>
@@ -81,15 +69,15 @@
   <string name="ExportFragment_success">הצליח!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">מייצא מפתחות, הגדרות\nוהודעות מוצפנות...\n</string>
   <!--GroupCreateActivity-->
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">יבא</string>
+  <string name="ImportExportActivity_export">יצא</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">לייבא את בסיס הנתונים של ה-SMS מהמערכת?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">פעולה זו תייבא\nהודעות מבסיס הנתונים של ה-SMS ברירת המחדל של המערכת ל-TextSecure.\n אם כבר ייבאת מבסיס נתונים זה, ייבוא מחדש יגרום להודעות כפולות.</string>
   <string name="ImportFragment_import">יבא</string>
   <string name="ImportFragment_cancel">בטל</string>
-  <string name="ImportFragment_restore_encrypted_backup">לשחזר גיבוי מוצפן?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nשחזור גיבוי מוצפן יחליף לגמרי את המפתחות, ההגדרות וההודעות הקיימות.\nאתה \nתאבד את כל המידע שבהתקנת ה-TextSecure הנוכחית שלך אבל לא שבגיבוי.\n</string>
   <string name="ImportFragment_restore">שחזר</string>
-  <string name="ImportFragment_import_plaintext_backup">לייבא גיבוי לא מוצפן?</string>
   <string name="ImportFragment_importing">מייבא</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">יבא גיבוי לא מוצפן...</string>
   <string name="ImportFragment_no_plaintext_backup_found">לא נמצא גיבוי לא מוצפן!</string>
@@ -107,18 +95,15 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה-MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות ה-MMS של ספק השירות...</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">הודעת מולטימדיה</string>
+  <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">סיסמאות לא זהות!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">סיסמה ישנה לא נכונה.</string>
   <!--PassphraseCreateActivity-->
   <string name="PassphraseCreateActivity_passphrases_dont_match">הסיסמאות אינן תואמות</string>
   <string name="PassphraseCreateActivity_you_must_specify_a_password">אתה חייב לציין סיסמה</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">סיסמה שגויה!</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">אתה חייב לציין כתובת MMSC עבור ספק השירות שלך.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">הגדרות ה-MMS עודכנו</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">אתה יכול לערוך את הערכים האלו מתפריט ההגדרות של TextSecure בכל זמן.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה\nעל החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.\nזה יכול להעיד שמישהו מנסה ליירט את התקשורת שלך\nאו\nשאיש הקשר פשוט התקין מחדש את TextSecure ועכשיו יש לו מפתח זהות חדש.\n</string>
@@ -146,7 +131,6 @@
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">סריק את טביעת האצבע שלי</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">סרוק את טביעת האצבע שלהם</string>
   <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">אזהרה, המפתח שנסרק אינו תואם! בבקשה בדוק בזהירות את הטקסט של טביעת האצבע.</string>
-  <string name="VerifyKeysActivity_not_verified_exclamation">לא מאומת!</string>
   <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">המפתח שלהם נכון. זה הכרחי גם לסרוק את טביעת האצבע שלך.</string>
   <string name="VerifyKeysActivity_verified_exclamation">אומת!</string>
   <!--ViewIdentityActivity-->
@@ -154,12 +138,9 @@
   <string name="ViewIdentityActivity_scan_to_compare">סרוק להשוואה</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">עבור סריקה להשוואה</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">אזהרה המפתח שנסרק אינו תואם!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">לא מאומת!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">המפתח שנסרק מתאים!</string>
   <string name="ViewIdentityActivity_verified_exclamation">אומת!</string>
-  <string name="ViewIdentityActivity_identity_fingerprint">טביעת אצבע של זהות</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">לאתחל למרות הבקשה הקיימת?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">אתה כבר שלחת בקשת אתחול חיבור לנמען הזה, אתה בטוח שאתה רוצה לשלוח עוד אחד? זה יבטל את הבקשה הראשונה.</string>
   <string name="KeyExchangeInitiator_send">שלח</string>
   <!--MessageDisplayHelper-->
@@ -169,7 +150,6 @@
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">מתחבר לשרת ה-MMS...</string>
   <string name="MmsDatabase_downloading_mms">מוריד MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">הורדת MMS נכשלה!</string>
   <string name="MmsDatabase_downloading">מוריד...</string>
   <string name="MmsDatabase_mms_pending_download">גע להגדרת תצורת ה-MMS ולהמשך הורדה.</string>
   <!--MmsMessageRecord-->
@@ -180,13 +160,11 @@
   <string name="MmsSender_currently_unable_to_send_your_mms_message">לא ניתן לשלוח כעת את הודעת ה-MMS שלך.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">בתהליך ייבוא</string>
-  <string name="ApplicationMigrationService_importing_text_messages">מייבא הודעות טקסט</string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d הודעות חדשות</string>
   <string name="MessageNotifier_most_recent_from_s">האחרון מ-: %s</string>
   <string name="MessageNotifier_encrypted_message">הודעה מוצפנת...</string>
-  <string name="MessageNotifier_no_subject">(ללא נושא)</string>
   <string name="MessageNotifier_message_delivery_failed">מסירת ההודעה נכשלה.</string>
   <string name="MessageNotifier_failed_to_deliver_message">כישלון במסירת ההודעה.</string>
   <string name="MessageNotifier_error_delivering_message">שגיאה במסירת ההודעה.</string>
@@ -196,7 +174,6 @@
   <string name="ViewLocalIdentityActivity_regenerating">מייצר מחדש...</string>
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">מייצר מפתח זהות\nמחדש...\n</string>
   <string name="ViewLocalIdentityActivity_regenerated">יוצר מחדש!</string>
-  <string name="ViewLocalIdentityActivity_reset_identity_key">לאפס מפתח זהות?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nאזהרה! ייצור מחדש של מפתח הזהות יאבד את מפתח הזהות\nהעכשווי,\nואנשי הקשר הקיימים שלך יקבלו אזהרה כשהם ינסו לבצע חיבור מאובטח\nחדש איתך.\nאתה בטוח שברצונך להמשיך?\n</string>
   <string name="ViewLocalIdentityActivity_cancel">בטל</string>
   <string name="ViewLocalIdentityActivity_continue">המשך</string>
@@ -205,7 +182,6 @@
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">קיבלת הודעה ממישהו שתומך בחיבור מאובטח של TextSecure. האם ברצונך להתחיל חיבור מאובטח? </string>
-  <string name="auto_initiate_activity__initiate_exchange">התחל החלפה</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">סיסמה ישנה:</string>
   <string name="change_passphrase_activity__new_passphrase">סיסמה חדשה:</string>
@@ -229,7 +205,6 @@
   <string name="conversation_item_received__download">הורד</string>
   <string name="conversation_item_received__downloading">מוריד</string>
   <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">מצב בחירה מרובה</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__search">חפש</string>
   <!--create_passphrase_activity-->
@@ -248,18 +223,11 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">זה יכול לקחת כמה רגעים. סבלנות בבקשה, אנחנו נודיע לך כשהייבוא הושלם.</string>
   <string name="database_migration_activity__importing">מייבא</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">מעדכן את בסיס הנתונים...</string>
-  <string name="export_fragment__export_encrypted_backup">יצא גיבוי מוצפן</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">יצא גיבוי\nמוצפן לכרטיס ה-SD.\n</string>
-  <string name="export_fragment__export_plaintext_backup">יצא גיבוי לא מוצפן.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nיצא גיבוי לא מוצפן שתואם את האפליקציה \'SMSBackup And Restore\' לכרטיס ה-SD.</string>
-  <string name="import_fragment__import_system_sms_database">מייבא </string>
   <string name="import_fragment__import_the_database_from_the_default_system">יבא את בסיס הנתונים\nמאפליקציית ברירת המחדל של המערכת.\n</string>
-  <string name="import_fragment__import_encrypted_backup">יבא גיבוי מוצפן</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nשחזר גיבוי מוצפן של TextSecure שיוצא בעבר.\n</string>
-  <string name="import_fragment__import_plaintext_backup">יבא גיבוי לא מוצפן</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\nיבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
-  <string name="local_identity__regenerate_key">יצר מפתח מחדש</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
   <!--prompt_passphrase_activity-->
@@ -292,29 +260,15 @@
   <string name="verify_keys_activity__they_read_this">הם קוראים את זה:</string>
   <string name="verify_keys_activity__you_read_this">אתה קורא את זה:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">צור סיסמה</string>
-  <string name="AndroidManifest__enter_passphrase">הכנס סיסמה</string>
-  <string name="AndroidManifest__select_contacts">בחר אנשי קשר</string>
-  <string name="AndroidManifest__textsecure_detected">זוהה TextSecure</string>
-  <string name="AndroidManifest__public_identity_key">מפתח זהות פומבי</string>
   <string name="AndroidManifest__change_passphrase">שנה סיסמה</string>
-  <string name="AndroidManifest__verify_session">אמת חיבור</string>
-  <string name="AndroidManifest__verify_identity">אמת זהות</string>
   <string name="AndroidManifest__manage_identity_keys">נהל מפתחות זהות</string>
-  <string name="AndroidManifest__complete_key_exchange">השלם החלפת מפתח</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">יבא / יצא</string>
-  <string name="arrays__my_identity_key">מפתח הזהות שלי</string>
-  <string name="arrays__contact_keys">מפתחות אנשי קשר</string>
   <!--preferences.xml-->
   <string name="preferences__general">כללי</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות הטקסט</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות המולטימדיה</string>
   <string name="preferences__input_settings">הכנס הגדרות</string>
-  <string name="preferences__pref_enter_sends_title">\"אנטר\" שולח</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על כפתור ה-\"Enter\" תשלח הודעות טקסט</string>
-  <string name="preferences__display_settings">הצג הגדרות</string>
-  <string name="preferences__choose_identity">בחר זהות</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר איש קשר מאנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה סיסמה</string>
   <string name="preferences__change_my_passphrase">שנה סיסמה</string>
@@ -324,7 +278,6 @@
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">השלם אוטומטית החלפות מפתח לחיבורים חדשים או קיימים עם אותו מפתח הזהות</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">שכח את הסיסמה מהזיכרון לאחר זמן מסויים </string>
   <string name="preferences__timeout_passphrase">זמן תוקף לסיסמה</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">בחר את זמן התוקף של הסיסמה</string>
   <string name="preferences__pref_timeout_interval_title">זמן התוקף</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">פרק הזמן שיש להמתין לפני שכיחת הסיסמה מהזיכרון</string>
   <string name="preferences__identity_key_settings">מפתחות זהות</string>
@@ -354,8 +307,6 @@
   <string name="preferences__custom">מותאם אישית</string>
   <string name="preferences__advanced">מתקדם</string>
   <string name="preferences__passphrase">סיסמה</string>
-  <string name="preferences__advanced_mms_access_point_names">העדפות MMS</string>
-  <string name="preferences__enable_manual_mms">אפשר MMS ידני</string>
   <string name="preferences__override_system_mms_settings">החלף את הגדרות ה-MMS של המערכת עם המידע הבא.</string>
   <string name="preferences__mmsc_url_required">כתובת MMSC (חובה)</string>
   <string name="preferences__mms_proxy_host_optional">שרת Proxy של MMS (לא חובה)</string>
@@ -368,8 +319,6 @@
   <string name="preferences__conversation_length_limit">הגבלת אורך שיחה</string>
   <string name="preferences__trim_all_threads_now">קצץ את כל השרשורים כעת</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">סרוק את כל השרשורים ואכוף את הגבלות אורך השיחה</string>
-  <string name="preferences__light_theme">בהיר</string>
-  <string name="preferences__dark_theme">כהה</string>
   <string name="preferences__appearance">מראה</string>
   <string name="preferences__theme">ערכת נושא</string>
   <string name="preferences__default">ברירת מחדל</string>
@@ -378,13 +327,10 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">בחר הכל</string>
-  <string name="contact_selection_list__menu_unselect_all">נקה הכל</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">הושלם</string>
   <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
-  <string name="conversation_button_context__menu_send_unencrypted">שלח לא מוצפן</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">התקשר</string>
   <!--conversation_context-->
@@ -393,16 +339,13 @@
   <string name="conversation_context__menu_delete_message">מחק הודעה</string>
   <string name="conversation_context__menu_forward_message">העבר הודעה</string>
   <string name="conversation_context__menu_resend_message">שלח הודעה מחדש</string>
+  <!--conversation_context_image-->
   <!--conversation_insecure-->
-  <string name="conversation_insecure__menu_start_secure_session">החל חיבור מאובטח</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">מחק נבחרים</string>
-  <string name="conversation_list_batch__menu_select_all">בחר הכל</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">חפש</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">אבטחה</string>
-  <string name="conversation_secure_verified__menu_verify_identity">אמת זהות</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">צרף קובץ</string>
   <string name="conversation__menu_add_contact_info">הוסף מידע לאיש הקשר</string>
@@ -419,9 +362,7 @@
   <!--text_secure_locked-->
   <string name="text_secure_locked__menu_unlock">פתח</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">הודעה חדשה</string>
   <string name="text_secure_normal__menu_settings">הגדרות</string>
-  <string name="text_secure_normal__mark_all_as_read">סמן הכל כנקרא</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">מאומת</string>
   <!--EOF-->
