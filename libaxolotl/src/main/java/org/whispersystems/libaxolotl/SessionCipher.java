@@ -25,9 +25,12 @@ import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 import org.whispersystems.libaxolotl.ratchet.MessageKeys;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
+import org.whispersystems.libaxolotl.state.IdentityKeyStore;
+import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.util.ByteUtil;
 import org.whispersystems.libaxolotl.util.Pair;
 
@@ -58,9 +61,10 @@ public class SessionCipher {
 
   private static final Object SESSION_LOCK = new Object();
 
-  private final SessionStore sessionStore;
-  private final long         recipientId;
-  private final int          deviceId;
+  private final SessionStore   sessionStore;
+  private final SessionBuilder sessionBuilder;
+  private final long           recipientId;
+  private final int            deviceId;
 
   /**
    * Construct a SessionCipher for encrypt/decrypt operations on a session.
@@ -71,10 +75,15 @@ public class SessionCipher {
    * @param  recipientId  The remote ID that messages will be encrypted to or decrypted from.
    * @param  deviceId     The device corresponding to the recipientId.
    */
-  public SessionCipher(SessionStore sessionStore, long recipientId, int deviceId) {
-    this.sessionStore = sessionStore;
-    this.recipientId  = recipientId;
-    this.deviceId     = deviceId;
+  public SessionCipher(SessionStore sessionStore, PreKeyStore preKeyStore,
+                       SignedPreKeyStore signedPreKeyStore, IdentityKeyStore identityKeyStore,
+                       long recipientId, int deviceId)
+  {
+    this.sessionStore   = sessionStore;
+    this.recipientId    = recipientId;
+    this.deviceId       = deviceId;
+    this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
+                                             identityKeyStore, recipientId, deviceId);
   }
 
   /**
@@ -115,6 +124,26 @@ public class SessionCipher {
     }
   }
 
+  public byte[] decrypt(PreKeyWhisperMessage ciphertext)
+      throws DuplicateMessageException, LegacyMessageException, InvalidMessageException,
+             InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException, NoSessionException
+  {
+    synchronized (SESSION_LOCK) {
+      boolean sessionCreated = sessionBuilder.process(ciphertext);
+
+      try {
+        return decrypt(ciphertext.getWhisperMessage());
+      } catch (InvalidMessageException | DuplicateMessageException | LegacyMessageException e) {
+        if (sessionCreated) {
+          sessionStore.deleteSession(recipientId, deviceId);
+        }
+
+        throw e;
+      }
+    }
+  }
+
+
   /**
    * Decrypt a message.
    *
@@ -126,10 +155,15 @@ public class SessionCipher {
    * @throws LegacyMessageException if the input is a message formatted by a protocol version that
    *                                is no longer supported.
    */
-  public byte[] decrypt(byte[] ciphertext)
-      throws InvalidMessageException, DuplicateMessageException, LegacyMessageException
+  public byte[] decrypt(WhisperMessage ciphertext)
+      throws InvalidMessageException, DuplicateMessageException, LegacyMessageException, NoSessionException
   {
     synchronized (SESSION_LOCK) {
+
+      if (!sessionStore.containsSession(recipientId, deviceId)) {
+        throw new NoSessionException("No session for: " + recipientId + ", " + deviceId);
+      }
+
       SessionRecord      sessionRecord  = sessionStore.loadSession(recipientId, deviceId);
       SessionState       sessionState   = sessionRecord.getSessionState();
       List<SessionState> previousStates = sessionRecord.getPreviousSessionStates();
@@ -159,14 +193,12 @@ public class SessionCipher {
     }
   }
 
-  private byte[] decrypt(SessionState sessionState, byte[] decodedMessage)
+  private byte[] decrypt(SessionState sessionState, WhisperMessage ciphertextMessage)
       throws InvalidMessageException, DuplicateMessageException, LegacyMessageException
   {
     if (!sessionState.hasSenderChain()) {
       throw new InvalidMessageException("Uninitialized session!");
     }
-
-    WhisperMessage ciphertextMessage = new WhisperMessage(decodedMessage);
 
     if (ciphertextMessage.getMessageVersion() != sessionState.getSessionVersion()) {
       throw new InvalidMessageException(String.format("Message version %d, but session version %d",

@@ -44,14 +44,13 @@ import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
-import org.whispersystems.libaxolotl.SessionCipher;
+import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.StaleKeyExchangeException;
 import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipherFactory;
 import org.whispersystems.textsecure.crypto.TransportDetails;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushTransportDetails;
@@ -213,12 +212,12 @@ public class DecryptingQueue {
           return;
         }
 
-        int              sessionVersion = SessionUtil.getSessionVersion(context, masterSecret, recipientDevice);
-        SessionCipher    sessionCipher  = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
-        byte[]           plaintextBody  = sessionCipher.decrypt(message.getBody());
-        TransportDetails transport      = new PushTransportDetails(sessionVersion);
+        int              sessionVersion   = SessionUtil.getSessionVersion(context, masterSecret, recipientDevice);
+        TransportDetails transportDetails = new PushTransportDetails(sessionVersion);
+        TextSecureCipher textSecureCipher = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
+        byte[]           plaintextBody    = textSecureCipher.decrypt(new WhisperMessage(message.getBody()));
 
-        message = message.withBody(transport.getStrippedPaddingMessageBody(plaintextBody));
+        message = message.withBody(plaintextBody);
         sendResult(PushReceiver.RESULT_OK);
       } catch (InvalidMessageException | LegacyMessageException | RecipientFormattingException e) {
         Log.w("DecryptionQueue", e);
@@ -226,6 +225,9 @@ public class DecryptingQueue {
       } catch (DuplicateMessageException e) {
         Log.w("DecryptingQueue", e);
         sendResult(PushReceiver.RESULT_DECRYPT_DUPLICATE);
+      } catch (NoSessionException e) {
+        Log.w("DecryptingQueue", e);
+        sendResult(PushReceiver.RESULT_NO_SESSION);
       }
     }
 
@@ -294,12 +296,12 @@ public class DecryptingQueue {
         byte[] plaintextPduBytes;
 
         Log.w("DecryptingQueue", "Decrypting: " + Hex.toString(ciphertextPduBytes));
-        TextTransport transportDetails  = new TextTransport();
-        SessionCipher sessionCipher     = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
-        byte[]        decodedCiphertext = transportDetails.getDecodedMessage(ciphertextPduBytes);
+        TextTransport    transportDetails  = new TextTransport();
+        TextSecureCipher cipher            = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
+        byte[]           decodedCiphertext = transportDetails.getDecodedMessage(ciphertextPduBytes);
 
         try {
-          plaintextPduBytes = sessionCipher.decrypt(decodedCiphertext);
+          plaintextPduBytes = cipher.decrypt(new WhisperMessage(decodedCiphertext));
         } catch (InvalidMessageException ime) {
           // XXX - For some reason, Sprint seems to append a single character to the
           // end of message text segments.  I don't know why, so here we just try
@@ -308,7 +310,7 @@ public class DecryptingQueue {
             Log.w("DecryptingQueue", "Attempting truncated decrypt...");
             byte[] truncated = Util.trim(ciphertextPduBytes, ciphertextPduBytes.length - 1);
             decodedCiphertext = transportDetails.getDecodedMessage(truncated);
-            plaintextPduBytes = sessionCipher.decrypt(decodedCiphertext);
+            plaintextPduBytes = cipher.decrypt(new WhisperMessage(decodedCiphertext));
           } else {
             throw ime;
           }
@@ -329,6 +331,9 @@ public class DecryptingQueue {
       } catch (LegacyMessageException lme) {
         Log.w("DecryptingQueue", lme);
         database.markAsLegacyVersion(messageId, threadId);
+      } catch (NoSessionException nse) {
+        Log.w("DecryptingQueue", nse);
+        database.markAsNoSession(messageId, threadId);
       }
     }
   }
@@ -382,8 +387,8 @@ public class DecryptingQueue {
           return;
         }
 
-        SessionCipher sessionCipher   = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
-        byte[]        paddedPlaintext = sessionCipher.decrypt(decodedCiphertext);
+        TextSecureCipher cipher          = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
+        byte[]           paddedPlaintext = cipher.decrypt(new WhisperMessage(decodedCiphertext));
 
         plaintextBody = new String(transportDetails.getStrippedPaddingMessageBody(paddedPlaintext));
 
@@ -404,6 +409,10 @@ public class DecryptingQueue {
       } catch (DuplicateMessageException e) {
         Log.w("DecryptionQueue", e);
         database.markAsDecryptDuplicate(messageId);
+        return;
+      } catch (NoSessionException e) {
+        Log.w("DecryptingQueue", e);
+        database.markAsNoSession(messageId);
         return;
       }
 

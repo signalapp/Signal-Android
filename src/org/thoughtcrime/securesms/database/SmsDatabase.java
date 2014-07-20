@@ -281,6 +281,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       else if (((IncomingKeyExchangeMessage)message).isInvalidVersion()) type |= Types.KEY_EXCHANGE_INVALID_VERSION_BIT;
       else if (((IncomingKeyExchangeMessage)message).isIdentityUpdate()) type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
       else if (((IncomingKeyExchangeMessage)message).isLegacyVersion())  type |= Types.ENCRYPTION_REMOTE_LEGACY_BIT;
+      else if (((IncomingKeyExchangeMessage)message).isDuplicate())      type |= Types.ENCRYPTION_REMOTE_DUPLICATE_BIT;
       else if (((IncomingKeyExchangeMessage)message).isPreKeyBundle())   type |= Types.KEY_EXCHANGE_BUNDLE_BIT;
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;

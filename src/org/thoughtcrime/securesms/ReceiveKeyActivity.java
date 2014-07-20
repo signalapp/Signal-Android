@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,18 +34,24 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.TextSecureCipher;
 import org.thoughtcrime.securesms.crypto.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.StaleKeyExchangeException;
 import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
@@ -53,8 +60,10 @@ import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.textsecure.crypto.IdentityKeyParcelable;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.TransportDetails;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.textsecure.push.PushTransportDetails;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.InvalidNumberException;
@@ -243,43 +252,36 @@ public class ReceiveKeyActivity extends Activity {
             }
           } else if (keyExchangeMessageBundle != null) {
             try {
-              RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), recipientDeviceId);
-              KeyExchangeProcessor processor = new KeyExchangeProcessor(ReceiveKeyActivity.this,
-                                                                        masterSecret, recipientDevice);
+              Context               context         = ReceiveKeyActivity.this;
+              EncryptingSmsDatabase database        = DatabaseFactory.getEncryptingSmsDatabase(context);
+              RecipientDevice       recipientDevice = new RecipientDevice(recipient.getRecipientId(), recipientDeviceId);
+
+              TransportDetails transportDetails = getIntent().getBooleanExtra("is_push", false) ?
+                  new PushTransportDetails(keyExchangeMessageBundle.getMessageVersion()) :
+                  new SmsTransportDetails();
+
+              TextSecureCipher cipher           = new TextSecureCipher(ReceiveKeyActivity.this, masterSecret, recipientDevice, transportDetails);
               IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(ReceiveKeyActivity.this,
                                                                                  masterSecret);
 
               identityKeyStore.saveIdentity(recipient.getRecipientId(), keyExchangeMessageBundle.getIdentityKey());
-              processor.processKeyExchangeMessage(keyExchangeMessageBundle);
+              byte[] plaintext = cipher.decrypt(keyExchangeMessageBundle);
 
-              CiphertextMessage bundledMessage = keyExchangeMessageBundle.getWhisperMessage();
+              database.updateBundleMessageBody(masterSecret, messageId, "");
+              database.updateMessageBody(masterSecret, messageId, new String(plaintext));
 
-              if (getIntent().getBooleanExtra("is_push", false)) {
-                String source = Util.canonicalizeNumber(ReceiveKeyActivity.this, recipient.getNumber());
-                IncomingPushMessage incoming = new IncomingPushMessage(Type.CIPHERTEXT_VALUE, source, recipientDeviceId, bundledMessage.serialize(), System.currentTimeMillis());
-
-                DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
-                               .markAsProcessedKeyExchange(messageId);
-
-                Intent intent = new Intent(ReceiveKeyActivity.this, SendReceiveService.class);
-                intent.setAction(SendReceiveService.RECEIVE_PUSH_ACTION);
-                intent.putExtra("message", incoming);
-                startService(intent);
-              } else {
-                SmsTransportDetails transportDetails = new SmsTransportDetails();
-                String              messageBody      = new String(transportDetails.getEncodedMessage(bundledMessage.serialize()));
-
-                DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
-                               .updateBundleMessageBody(masterSecret, messageId, messageBody);
-
-                DecryptingQueue.scheduleDecryption(ReceiveKeyActivity.this, masterSecret, messageId,
-                                                   threadId, recipient.getNumber(), recipientDeviceId,
-                                                   messageBody, true, false, false);
-              }
-            } catch (InvalidKeyIdException | InvalidNumberException | InvalidKeyException e) {
+            } catch (InvalidKeyIdException | InvalidKeyException | LegacyMessageException | NoSessionException e) {
               Log.w("ReceiveKeyActivity", e);
               DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
                              .markAsCorruptKeyExchange(messageId);
+            } catch (InvalidMessageException e) {
+              Log.w("ReceiveKeyActivity", e);
+              DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
+                             .markAsDecryptFailed(messageId);
+            } catch (DuplicateMessageException e) {
+              Log.w("ReceiveKeyActivity", e);
+              DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)
+                             .markAsDecryptDuplicate(messageId);
             } catch (UntrustedIdentityException e) {
               Log.w("ReceiveKeyActivity", e);
               Toast.makeText(ReceiveKeyActivity.this, "Untrusted!", Toast.LENGTH_LONG).show();

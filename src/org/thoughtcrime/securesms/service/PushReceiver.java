@@ -9,6 +9,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.TextSecureCipher;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -24,16 +25,21 @@ import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.whispersystems.textsecure.crypto.TransportDetails;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.textsecure.push.PushTransportDetails;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Base64;
@@ -113,34 +119,39 @@ public class PushReceiver {
     }
 
     try {
-      Recipient              recipient       = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
-      RecipientDevice        recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSourceDevice());
-      KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipientDevice);
-      PreKeyWhisperMessage   preKeyExchange  = new PreKeyWhisperMessage(message.getBody());
+      Recipient            recipient            = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
+      RecipientDevice      recipientDevice      = new RecipientDevice(recipient.getRecipientId(), message.getSourceDevice());
+      PreKeyWhisperMessage preKeyWhisperMessage = new PreKeyWhisperMessage(message.getBody());
+      TransportDetails     transportDetails     = new PushTransportDetails(preKeyWhisperMessage.getMessageVersion());
+      TextSecureCipher     cipher               = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
+      byte[]               plaintext            = cipher.decrypt(preKeyWhisperMessage);
 
-      try {
-        processor.processKeyExchangeMessage(preKeyExchange);
+      IncomingPushMessage bundledMessage = message.withBody(plaintext);
+      handleReceivedMessage(masterSecret, bundledMessage, true);
 
-        IncomingPushMessage bundledMessage = message.withBody(preKeyExchange.getWhisperMessage().serialize());
-        handleReceivedSecureMessage(masterSecret, bundledMessage);
-      } catch (UntrustedIdentityException uie) {
-        Log.w("PushReceiver", uie);
-        String                      encoded       = Base64.encodeBytes(message.getBody());
-        IncomingTextMessage         textMessage   = new IncomingTextMessage(message, encoded, null);
-        IncomingPreKeyBundleMessage bundleMessage = new IncomingPreKeyBundleMessage(textMessage, encoded);
-        EncryptingSmsDatabase       database           = DatabaseFactory.getEncryptingSmsDatabase(context);
-        Pair<Long, Long>            messageAndThreadId = database.insertMessageInbox(masterSecret, bundleMessage);
-
-        MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
-      }
     } catch (InvalidVersionException e) {
       Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, true);
     } catch (InvalidKeyException | InvalidKeyIdException | InvalidMessageException |
-             RecipientFormattingException e)
+             RecipientFormattingException | LegacyMessageException e)
     {
       Log.w("PushReceiver", e);
       handleReceivedCorruptedKey(masterSecret, message, false);
+    } catch (DuplicateMessageException e) {
+      Log.w("PushReceiver", e);
+      handleReceivedDuplicateMessage(message);
+    } catch (NoSessionException e) {
+      Log.w("PushReceiver", e);
+      handleReceivedMessageForNoSession(masterSecret, message);
+    } catch (UntrustedIdentityException e) {
+      Log.w("PushReceiver", e);
+      String                      encoded            = Base64.encodeBytes(message.getBody());
+      IncomingTextMessage         textMessage        = new IncomingTextMessage(message, encoded, null);
+      IncomingPreKeyBundleMessage bundleMessage      = new IncomingPreKeyBundleMessage(textMessage, encoded);
+      Pair<Long, Long>            messageAndThreadId = DatabaseFactory.getEncryptingSmsDatabase(context)
+                                                                      .insertMessageInbox(masterSecret, bundleMessage);
+
+      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     }
   }
 

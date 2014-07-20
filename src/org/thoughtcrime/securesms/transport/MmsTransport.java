@@ -21,6 +21,7 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.TextSecureCipher;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.MmsRadio;
@@ -33,10 +34,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.NumberUtil;
-import org.whispersystems.libaxolotl.SessionCipher;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipherFactory;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.storage.SessionUtil;
 import org.whispersystems.textsecure.util.Hex;
@@ -180,8 +179,8 @@ public class MmsTransport {
         throw new InsecureFallbackApprovalException("No session exists for this secure message.");
       }
 
-      SessionCipher     sessionCipher     = SessionCipherFactory.getInstance(context, masterSecret, recipientDevice);
-      CiphertextMessage ciphertextMessage = sessionCipher.encrypt(pduBytes);
+      TextSecureCipher  cipher            = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
+      CiphertextMessage ciphertextMessage = cipher.encrypt(pduBytes);
 
       return transportDetails.getEncodedMessage(ciphertextMessage.serialize());
     } catch (RecipientFormattingException e) {

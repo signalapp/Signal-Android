@@ -7,6 +7,7 @@ public class IncomingKeyExchangeMessage extends IncomingTextMessage {
   private boolean isCorrupted;
   private boolean isInvalidVersion;
   private boolean isLegacyVersion;
+  private boolean isDuplicate;
 
   public IncomingKeyExchangeMessage(IncomingTextMessage base, String newBody) {
     super(base, newBody);
@@ -67,6 +68,14 @@ public class IncomingKeyExchangeMessage extends IncomingTextMessage {
 
   public void setLegacyVersion(boolean isLegacyVersion) {
     this.isLegacyVersion = isLegacyVersion;
+  }
+
+  public void setDuplicate(boolean isDuplicate) {
+    this.isDuplicate = isDuplicate;
+  }
+
+  public boolean isDuplicate() {
+    return isDuplicate;
   }
 
   @Override

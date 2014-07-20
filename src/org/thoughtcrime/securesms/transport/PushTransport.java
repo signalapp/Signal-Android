@@ -23,6 +23,7 @@ import android.util.Log;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.TextSecureCipher;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -35,13 +36,12 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidKeyException;
-import org.whispersystems.libaxolotl.SessionCipher;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.AttachmentCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipherFactory;
+import org.whispersystems.textsecure.crypto.TransportDetails;
 import org.whispersystems.textsecure.push.MismatchedDevices;
 import org.whispersystems.textsecure.push.MismatchedDevicesException;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
@@ -345,10 +345,9 @@ public class PushTransport extends BaseTransport {
       }
     }
 
-    int               sessionVersion       = SessionUtil.getSessionVersion(context, masterSecret, pushAddress);
-    SessionCipher     cipher               = SessionCipherFactory.getInstance(context, masterSecret, pushAddress);
-    byte[]            paddedPlaintext      = new PushTransportDetails(sessionVersion).getPaddedMessageBody(plaintext);
-    CiphertextMessage message              = cipher.encrypt(paddedPlaintext);
+    TransportDetails  transportDetails     = new PushTransportDetails(SessionUtil.getSessionVersion(context, masterSecret, pushAddress));
+    TextSecureCipher  cipher               = new TextSecureCipher(context, masterSecret, pushAddress, transportDetails);
+    CiphertextMessage message              = cipher.encrypt(plaintext);
     int               remoteRegistrationId = cipher.getRemoteRegistrationId();
 
     if (message.getType() == CiphertextMessage.PREKEY_TYPE) {
