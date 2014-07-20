@@ -124,6 +124,21 @@ public class SessionCipher {
     }
   }
 
+  /**
+   * Decrypt a message.
+   *
+   * @param  ciphertext The {@link PreKeyWhisperMessage} to decrypt.
+   * @return The plaintext.
+   * @throws InvalidMessageException if the input is not valid ciphertext.
+   * @throws DuplicateMessageException if the input is a message that has already been received.
+   * @throws LegacyMessageException if the input is a message formatted by a protocol version that
+   *                                is no longer supported.
+   * @throws InvalidKeyIdException when there is no local {@link org.whispersystems.libaxolotl.state.PreKeyRecord}
+   *                               that corresponds to the PreKey ID in the message.
+   * @throws InvalidKeyException when the message is formatted incorrectly.
+   * @throws UntrustedIdentityException when the {@link IdentityKey} of the sender is untrusted.
+
+   */
   public byte[] decrypt(PreKeyWhisperMessage ciphertext)
       throws DuplicateMessageException, LegacyMessageException, InvalidMessageException,
              InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException, NoSessionException
@@ -147,16 +162,18 @@ public class SessionCipher {
   /**
    * Decrypt a message.
    *
-   * @param  ciphertext The ciphertext message bytes corresponding to a serialized
-   *                    {@link WhisperMessage}.
+   * @param  ciphertext The {@link WhisperMessage} to decrypt.
+   *
    * @return The plaintext.
    * @throws InvalidMessageException if the input is not valid ciphertext.
    * @throws DuplicateMessageException if the input is a message that has already been received.
    * @throws LegacyMessageException if the input is a message formatted by a protocol version that
    *                                is no longer supported.
+   * @throws NoSessionException if there is no established session for this contact.
    */
   public byte[] decrypt(WhisperMessage ciphertext)
-      throws InvalidMessageException, DuplicateMessageException, LegacyMessageException, NoSessionException
+      throws InvalidMessageException, DuplicateMessageException, LegacyMessageException,
+             NoSessionException
   {
     synchronized (SESSION_LOCK) {
 
