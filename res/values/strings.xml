@@ -835,7 +835,9 @@
     <string name="conversation__menu_update_group">Update group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_delete_thread">Delete thread</string>
-    <string name="conversation__menu_add_to_contacts">Add to contacts</string>
+
+    <!-- conversation_callable -->
+    <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
 
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Recipients list</string>

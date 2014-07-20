@@ -9,8 +9,4 @@
           android:id="@+id/menu_delete_thread"
           android:icon="@android:drawable/ic_menu_delete" />
 
-    <item android:title="@string/conversation__menu_add_to_contacts"
-          android:id="@+id/menu_add_to_contacts"
-          android:icon="@drawable/ic_menu_invite" />
-
 </menu>

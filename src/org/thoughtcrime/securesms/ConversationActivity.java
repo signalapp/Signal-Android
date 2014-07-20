@@ -288,19 +288,13 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
 
     inflater.inflate(R.menu.conversation, menu);
-    super.onPrepareOptionsMenu(menu);
-    initializeOptionAddToContacts(menu);
-    return true;
-  }
 
-  private void initializeOptionAddToContacts(Menu menu) {
-    boolean visible = false;
-    Uri uri = getRecipients().getPrimaryRecipient().getContactUri();
-
-    if (isSingleConversation() && uri == null) {
-      visible = true;
+    if (isSingleConversation() && getRecipients().getPrimaryRecipient().getContactUri() == null) {
+      inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
-    menu.findItem(R.id.menu_add_to_contacts).setVisible(visible);
+
+    super.onPrepareOptionsMenu(menu);
+    return true;
   }
 
   @Override
@@ -319,7 +313,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
-    case R.id.menu_add_to_contacts:           handleAddToContacts();                          	 return true;
+    case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     }
 
     return false;
