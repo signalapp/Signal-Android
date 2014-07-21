@@ -13,7 +13,7 @@
 
 -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
 
 	<string name="PlaystoreDescription_para_0100">TextSecure Private Messenger</string>
 	<string name="PlaystoreDescription_para_0200">TextSecure is a messaging app that allows you to take back your privacy while easily communicating with friends.</string>

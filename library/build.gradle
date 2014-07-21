@@ -24,10 +24,14 @@ dependencies {
     compile 'com.googlecode.libphonenumber:libphonenumber:6.1'
     compile 'org.whispersystems:gson:2.2.4'
 }
-
 android {
     compileSdkVersion 19
     buildToolsVersion '19.1.0'
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 19
+    }
 
     android {
         sourceSets {

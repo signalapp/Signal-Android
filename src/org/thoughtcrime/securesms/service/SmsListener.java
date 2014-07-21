@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.service;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,11 +33,12 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SmsListener extends BroadcastReceiver {
 
-  private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
-  private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
+  @SuppressLint("InlinedApi") private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
+  @SuppressLint("InlinedApi") private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -50,13 +53,13 @@ public class SmsListener extends BroadcastReceiver {
 
     return
       message.getOriginatingAddress().length() < 7 &&
-      (messageBody.toUpperCase().startsWith("//ANDROID:") || // Sprint Visual Voicemail
+      (messageBody.toUpperCase(Locale.ENGLISH).startsWith("//ANDROID:") || // Sprint Visual Voicemail
        messageBody.startsWith("//BREW:")); //BREW stands for “Binary Runtime Environment for Wireless"
   }
 
   private SmsMessage getSmsMessageFromIntent(Intent intent) {
-    Bundle bundle             = intent.getExtras();
-    Object[] pdus             = (Object[])bundle.get("pdus");
+    Bundle bundle = intent.getExtras();
+    Object[] pdus = (Object[])bundle.get("pdus");
 
     if (pdus == null || pdus.length == 0)
       return null;

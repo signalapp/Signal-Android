@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fillViewport="true"
@@ -47,7 +48,8 @@
                       android:layout_height="wrap_content"
                       android:textSize="20sp"
                       style="@style/Registration.Constant"
-                      android:text="+" />
+                      android:text="+"
+                      tools:ignore="HardcodedText" />
 
             <EditText android:id="@+id/country_code"
                       android:layout_width="55dip"

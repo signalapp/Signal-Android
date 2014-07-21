@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="TextSecure.IntroTheme" parent="@style/Theme.Sherlock.Light">
-        <item name="android:actionBarStyle">@style/TextSecure.IntroActionBar</item>
+        <item name="android:actionBarStyle" tools:targetApi="HONEYCOMB">@style/TextSecure.IntroActionBar</item>
         <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="windowContentOverlay">@null</item>
     </style>
 
     <style name="TextSecure.LightTheme" parent="@style/Theme.Sherlock.Light">
-        <item name="android:actionBarStyle">@style/TextSecure.LightActionBar</item>
+        <item name="android:actionBarStyle" tools:targetApi="HONEYCOMB">@style/TextSecure.LightActionBar</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="windowContentOverlay">@null</item>

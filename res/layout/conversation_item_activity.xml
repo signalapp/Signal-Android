@@ -26,7 +26,6 @@
         android:layout_gravity="right"
         android:fontFamily="sans-serif-light"
         android:textColor="?conversation_sent_text_secondary_color"
-        android:text="date"
         android:layout_marginBottom="8dp"
         android:visibility="gone"/>
 

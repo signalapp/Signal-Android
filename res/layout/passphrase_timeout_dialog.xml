@@ -15,7 +15,7 @@
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:layout_marginRight="10dip"
-				  android:textSize="30dip" />
+				  android:textSize="30sp" />
 		
 		<Spinner android:id="@+id/scale"
 				 android:layout_width="wrap_content"

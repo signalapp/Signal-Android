@@ -8,14 +8,13 @@ public class SmsDeliveryListener extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    if (SendReceiveService.SENT_SMS_ACTION.equals(intent.getAction())) {
-      intent.putExtra("ResultCode", this.getResultCode());
-      intent.setClass(context, SendReceiveService.class);
-      context.startService(intent);
-    } else if (SendReceiveService.DELIVERED_SMS_ACTION.equals(intent.getAction())) {
-      intent.putExtra("ResultCode", this.getResultCode());
-      intent.setClass(context, SendReceiveService.class);
-      context.startService(intent);
-    }
+      String action = intent.getAction();
+      if (SendReceiveService.SENT_SMS_ACTION.equals(action) ||
+          SendReceiveService.DELIVERED_SMS_ACTION.equals(action))
+      {
+        intent.putExtra("ResultCode", this.getResultCode());
+        intent.setClass(context, SendReceiveService.class);
+        context.startService(intent);
+      }
   }
 }

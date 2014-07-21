@@ -8,9 +8,8 @@
 
         <org.thoughtcrime.securesms.contacts.RecipientsEditor android:id="@+id/recipients_text"
            android:layout_height="wrap_content"
-            android:capitalize="sentences"
-            android:autoText="true"
             android:singleLine="true"
+            android:inputType="textCapSentences|textAutoCorrect"
             android:hint="@string/recipients_panel__to"
             android:paddingRight="45dip"
             android:paddingLeft="15dp"

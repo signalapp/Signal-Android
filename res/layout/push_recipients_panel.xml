@@ -8,9 +8,8 @@
 
         <org.thoughtcrime.securesms.contacts.RecipientsEditor android:id="@+id/recipients_text"
            android:layout_height="wrap_content"
-            android:capitalize="sentences"
-            android:autoText="true"
             android:singleLine="true"
+            android:inputType="textCapSentences|textAutoCorrect"
             android:hint="@string/recipients_panel__to"
             android:paddingRight="45dip"
             android:textColor="?conversation_editor_text_color"
@@ -24,6 +23,7 @@
                      android:layout_marginTop="4dip"
                      android:src="@drawable/ic_menu_add_field_holo_light"
                      android:layout_alignRight="@id/recipients_text"
+                     android:contentDescription="@string/push_recipients_panel__add_contact_description"
                      android:maxWidth="32dip"
                      android:maxHeight="32dip" />
 

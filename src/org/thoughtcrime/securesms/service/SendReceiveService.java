@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WorkerThread;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
+import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -156,7 +157,7 @@ public class SendReceiveService extends Service {
 
   private void initializeHandlers() {
     systemStateListener = new SystemStateListener(this);
-    toastHandler        = new ToastHandler();
+    toastHandler        = new ToastHandler(this);
   }
 
   private void initializeProcessors() {
@@ -282,32 +283,43 @@ public class SendReceiveService extends Service {
     }
   }
 
-  public class ToastHandler extends Handler {
+  public static class ToastHandler extends Handler {
+    private final WeakReference<Context> contextReference;
+
+    public ToastHandler(final Context context) {
+      this.contextReference = new WeakReference<Context>(context);
+    }
+
     public void makeToast(String toast) {
       Message message = this.obtainMessage();
       message.obj     = toast;
       this.sendMessage(message);
     }
+
     @Override
     public void handleMessage(Message message) {
-      Toast.makeText(SendReceiveService.this, (String)message.obj, Toast.LENGTH_LONG).show();
+      final Context context = contextReference.get();
+
+      if (context != null) {
+        Toast.makeText(context.getApplicationContext(), (String) message.obj, Toast.LENGTH_LONG).show();
+      }
     }
   }
 
   private ServiceConnection serviceConnection = new ServiceConnection() {
-      @Override
-      public void onServiceConnected(ComponentName className, IBinder service) {
-        KeyCachingService keyCachingService  = ((KeyCachingService.KeyCachingBinder)service).getService();
-        MasterSecret masterSecret            = keyCachingService.getMasterSecret();
+    @Override
+    public void onServiceConnected(ComponentName className, IBinder service) {
+      KeyCachingService keyCachingService = ((KeyCachingService.KeyCachingBinder) service).getService();
+      MasterSecret masterSecret = keyCachingService.getMasterSecret();
 
-        initializeWithMasterSecret(masterSecret);
+      initializeWithMasterSecret(masterSecret);
 
-        SendReceiveService.this.unbindService(this);
-      }
+      SendReceiveService.this.unbindService(this);
+    }
 
-      @Override
-      public void onServiceDisconnected(ComponentName name) {}
-    };
+    @Override
+    public void onServiceDisconnected(ComponentName name) {}
+  };
 
   private class NewKeyReceiver extends BroadcastReceiver {
     @Override
@@ -358,5 +370,5 @@ public class SendReceiveService extends Service {
         workQueue.notifyAll();
       }
     }
-  };
+  }
 }

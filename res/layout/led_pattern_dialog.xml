@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_height="wrap_content"
   android:layout_width="fill_parent"
   android:orientation="vertical"
   android:paddingLeft="5sp"
@@ -36,12 +37,14 @@
           android:layout_width="40dip"
           android:layout_height="wrap_content"
           android:text="0"
+          tools:ignore="HardcodedText"
           android:gravity="right" />
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_margin="0dip"
-          android:text="ms" />
+          android:text="ms"
+          tools:ignore="HardcodedText" />
       </LinearLayout>
       <LinearLayout
         android:orientation="horizontal"
@@ -72,12 +75,14 @@
         android:layout_width="40dip"
         android:layout_height="wrap_content"
         android:text="0"
+        tools:ignore="HardcodedText"
         android:gravity="right" />
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="0dip"
-        android:text="ms" />
+        android:text="ms"
+        tools:ignore="HardcodedText" />
       </LinearLayout>
       <LinearLayout
         android:orientation="horizontal"

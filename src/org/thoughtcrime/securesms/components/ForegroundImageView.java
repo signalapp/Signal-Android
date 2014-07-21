@@ -16,11 +16,13 @@
 
 package org.thoughtcrime.securesms.components;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -31,6 +33,8 @@ import org.thoughtcrime.securesms.R;
  * https://gist.github.com/chrisbanes/9091754
  */
 public class ForegroundImageView extends ImageView {
+
+  private static final boolean SUPPORTS_GRAVITY_START = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
 
   private Drawable mForeground;
 
@@ -91,8 +95,8 @@ public class ForegroundImageView extends ImageView {
    */
   public void setForegroundGravity(int foregroundGravity) {
     if (mForegroundGravity != foregroundGravity) {
-      if ((foregroundGravity & Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 0) {
-        foregroundGravity |= Gravity.START;
+      if ((foregroundGravity & Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 0 && SUPPORTS_GRAVITY_START) {
+        foregroundGravity = setGravityStartFlag(foregroundGravity);
       }
 
       if ((foregroundGravity & Gravity.VERTICAL_GRAVITY_MASK) == 0) {
@@ -111,11 +115,17 @@ public class ForegroundImageView extends ImageView {
     }
   }
 
+  @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+  private int setGravityStartFlag(final int initialGravity) {
+    return initialGravity | Gravity.START;
+  }
+
   @Override
   protected boolean verifyDrawable(Drawable who) {
     return super.verifyDrawable(who) || (who == mForeground);
   }
 
+  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   @Override
   public void jumpDrawablesToCurrentState() {
     super.jumpDrawablesToCurrentState();

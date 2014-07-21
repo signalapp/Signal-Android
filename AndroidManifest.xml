@@ -5,8 +5,6 @@
       android:versionCode="73"
       android:versionName="2.1.1">
 
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19"/>
-
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />
@@ -33,7 +31,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
@@ -41,6 +38,7 @@
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
 
     <application android:name="org.thoughtcrime.securesms.ApplicationListener"
+                 android:allowBackup="true"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
                  android:theme="@style/TextSecure.LightTheme">
@@ -253,12 +251,7 @@
              </intent-filter>
     </receiver>
 
-    <receiver android:name=".service.SmsDeliveryListener"
-              android:exported="true">
-        <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
-        </intent-filter>
-    </receiver>
+    <receiver android:name=".service.SmsDeliveryListener" />
 
     <receiver android:name=".service.MmsListener"
               android:enabled="true"
@@ -276,7 +269,7 @@
 
     <receiver android:name=".notifications.MarkReadReceiver"
               android:enabled="true"
-              android:exported="true">
+              android:exported="false">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.notifications.CLEAR"/>
         </intent-filter>
@@ -284,7 +277,8 @@
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
-              android:authorities="org.thoughtcrime.provider.securesms" />
+              android:authorities="org.thoughtcrime.provider.securesms"
+              android:exported="false" />
 
     <receiver android:name=".service.RegistrationNotifier"
               android:exported="false">
@@ -293,7 +287,8 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".service.DirectoryRefreshListener">
+    <receiver android:name=".service.DirectoryRefreshListener"
+              android:exported="true">
         <intent-filter>
             <action android:name="org.whispersystems.whisperpush.DIRECTORY_REFRESH"/>
             <action android:name="android.intent.action.BOOT_COMPLETED" />

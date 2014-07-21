@@ -80,7 +80,9 @@ public abstract class WirePrefix {
 
     String calculatedPrefix = calculatePrefix((prefixType + message).getBytes(), PREFIX_BYTES);
 
-    assert(calculatedPrefix.length() == PREFIX_SIZE);
+    if (calculatedPrefix.length() != PREFIX_SIZE) {
+      throw new AssertionError("calculated prefix didn't match expected prefix size");
+    }
 
     return prefix.equals(calculatedPrefix);
   }

@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -147,7 +148,7 @@ public class Util {
     return baos.toByteArray();
   }
 
-  @SuppressLint("NewApi")
+  @TargetApi(Build.VERSION_CODES.KITKAT)
   public static boolean isDefaultSmsProvider(Context context){
     return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) ||
       (context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context)));

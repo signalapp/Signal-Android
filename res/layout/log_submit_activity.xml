@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -18,7 +19,7 @@
 
     <ScrollView android:id="@+id/log_preview_container"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:layout_weight="2">
         <EditText android:id="@+id/log_preview"
                   android:layout_width="fill_parent"
@@ -29,7 +30,8 @@
                   android:fontFamily="monospace"
                   android:hint=""
                   android:inputType="textImeMultiLine|textNoSuggestions|textMultiLine"
-                  android:textSize="10sp" />
+                  android:textSize="10sp"
+                  tools:ignore="SmallSp" />
     </ScrollView>
 
     <LinearLayout

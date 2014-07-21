@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fillViewport="true"
@@ -8,9 +8,9 @@
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:gravity="center" >
-        
+
         <LinearLayout android:id="@+id/prompt_layout"
                       android:paddingRight="16dip"
                       android:paddingLeft="16dip"
@@ -84,7 +84,7 @@
             
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="15dip"
                 android:layout_weight="1.0" >
 
@@ -95,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="0/100"
+                    tools:ignore="HardcodedText"
                     android:textSize="12.0sp" />
 
                 <TextView
