@@ -24,13 +24,13 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.LRUCache;
+import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;
@@ -146,7 +146,9 @@ public class EncryptingSmsDatabase extends SmsDatabase {
       String ciphertext = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
 
       try {
-        if (SmsDatabase.Types.isSymmetricEncryption(type)) {
+        if (ciphertext == null) {
+          return new DisplayRecord.Body("", true);
+        } else if (SmsDatabase.Types.isSymmetricEncryption(type)) {
           String plaintext = plaintextCache.get(ciphertext);
 
           if (plaintext != null)
