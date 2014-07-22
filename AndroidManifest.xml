@@ -126,7 +126,7 @@
     <activity android:name=".PassphraseCreateActivity"
               android:label="@string/AndroidManifest__create_passphrase"
               android:windowSoftInputMode="stateUnchanged"
-              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
+              android:theme="@style/TextSecure.IntroTheme"
               android:launchMode="singleTop"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
