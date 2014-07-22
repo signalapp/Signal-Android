@@ -50,7 +50,6 @@ public class XmlBackup {
     }
   }
 
-  @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
   @XStreamAlias("smses")
   public static class Smses {
     @XStreamImplicit     List<Sms> smses;
