@@ -214,10 +214,6 @@
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
     <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect old passphrase!</string>
 
-    <!-- PassphraseCreateActivity -->
-    <string name="PassphraseCreateActivity_passphrases_dont_match">Passphrases don\'t match</string>
-    <string name="PassphraseCreateActivity_you_must_specify_a_password">You must specify a password</string>
-
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
     <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icon</string>
