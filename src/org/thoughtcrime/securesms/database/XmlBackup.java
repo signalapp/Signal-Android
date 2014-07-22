@@ -1,16 +1,13 @@
 package org.thoughtcrime.securesms.database;
 
-import android.util.Xml;
-
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
-import com.thoughtworks.xstream.io.naming.NoNameCoder;
-import com.thoughtworks.xstream.io.xml.Xpp3DomDriver;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -21,10 +18,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class XmlBackup {
-  private final XmlPullParser parser;
 
   public XmlBackup(String path) throws XmlPullParserException, FileNotFoundException {
-    this.parser = XmlPullParserFactory.newInstance().newPullParser();
+    XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
     parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
     parser.setInput(new FileInputStream(path), null);
   }
@@ -92,27 +88,5 @@ public class XmlBackup {
       writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
       xstream.toXML(smses, writer);
     }
-
-    private String escapeXML(String s) {
-      if (Util.isEmpty(s)) return s;
-
-      Matcher matcher = PATTERN.matcher( s.replace("&",  "&amp;")
-                                          .replace("<",  "&lt;")
-                                          .replace(">",  "&gt;")
-                                          .replace("\"", "&quot;")
-                                          .replace("'",  "&apos;"));
-      StringBuffer st = new StringBuffer();
-
-      while (matcher.find()) {
-        String escaped="";
-        for (char ch: matcher.group(0).toCharArray()) {
-          escaped += ("&#" + ((int) ch) + ";");
-        }
-        matcher.appendReplacement(st, escaped);
-      }
-      matcher.appendTail(st);
-      return st.toString();
-    }
-
   }
 }
