@@ -1,0 +1,10 @@
+package textsecure;
+
+option java_package = "org.thoughtcrime.securesms.backup";
+option java_outer_classname = "EncryptedBackupHeaderProto";
+
+message EncryptedBackupHeader {
+  required bytes  encryptionSalt  = 1;
+  required bytes  macSalt         = 2;
+  required uint32 kdfIterations   = 3;
+}
