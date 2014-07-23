@@ -20,14 +20,19 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.channels.FileChannel;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
@@ -36,16 +41,9 @@ import java.util.zip.ZipOutputStream;
 
 public class EncryptedBackupExporter {
 
-  private static final Pattern[] EXPORT_FILE_BLACKLIST = new Pattern[]{
-      Pattern.compile("^lib/"),
-      Pattern.compile("^cache/"),
-      Pattern.compile("^files/prekeys/"),
-      Pattern.compile("^files/sessions-\\w+/")
-  };
-
-  public static void exportToSd(Context context) throws NoExternalStorageException, IOException {
+  public static void exportToSd(Context context, MasterSecret masterSecret) throws NoExternalStorageException, IOException {
     verifyExternalStorageForExport();
-    exportDirectory(context);
+    exportDirectory(context, masterSecret);
   }
 
   public static void importFromSd(Context context) throws NoExternalStorageException, IOException {
@@ -96,53 +94,30 @@ public class EncryptedBackupExporter {
     }
   }
 
-  private static void exportDirectory(Context context) throws IOException {
+  private static void exportDirectory(Context context, MasterSecret masterSecret) throws IOException {
     File exportDirectory = new File(getExportDirectoryPath());
     File exportZipFile = new File(exportDirectory.getAbsolutePath() + File.separator + "export.zip");
     if (!exportZipFile.exists()) {
       if (!exportZipFile.createNewFile()) throw new AssertionError("export zip file didn't exist but then couldn't create one...");
     }
-    FileOutputStream zipFileStream = new FileOutputStream(exportZipFile);
+    FileOutputStream zipFileStream = new EncryptingPartOutputStream(exportZipFile, masterSecret);
+//    FileOutputStream zipFileStream = new FileOutputStream(exportZipFile);
     ZipOutputStream  zipStream     = new ZipOutputStream(new BufferedOutputStream(zipFileStream));
+    BufferedWriter   writer        = new BufferedWriter(new OutputStreamWriter(zipStream));
     try {
-      exportDirectory(context, "", zipStream);
+      final ZipEntry smsesEntry = new ZipEntry("smses.xml");
+      zipStream.putNextEntry(smsesEntry);
+      PlaintextBackupExporter.exportPlaintext(context, masterSecret, writer);
+
+      final ZipEntry secretsEntry = new ZipEntry("identity.xml");
+      zipStream.putNextEntry(secretsEntry);
+      IdentityExporter.exportIdentity(context, masterSecret, writer);
+
+      writer.flush();
     } finally {
       zipStream.close();
       zipFileStream.close();
     }
-  }
-
-  private static void exportDirectory(Context context, String directoryName, ZipOutputStream zipStream) throws IOException {
-    final String baseDir   = context.getFilesDir().getParent() + File.separatorChar;
-    final File   directory = new File(baseDir + directoryName);
-
-    if (directory.exists()) {
-
-      File[] contents = directory.listFiles();
-
-      for (File localFile: contents) {
-        final String relativePath = localFile.getAbsolutePath().substring(baseDir.length());
-        if (isBlacklistedPath(relativePath)) {
-          Log.w("EncryptedBackupExporter", "skipping export of blacklisted path " + relativePath);
-          continue;
-        }
-
-        if (localFile.isFile()) {
-          migrateFile(context, localFile, zipStream, relativePath);
-        } else {
-          exportDirectory(context, directoryName + File.separator + localFile.getName(), zipStream);
-        }
-      }
-    } else {
-      Log.w("EncryptedBackupExporter", "Could not find directory: " + directory.getAbsolutePath());
-    }
-  }
-
-  private static boolean isBlacklistedPath(String path) {
-    for (Pattern pattern : EXPORT_FILE_BLACKLIST) {
-      if (pattern.matcher(path).matches()) return true;
-    }
-    return false;
   }
 
   private static void importDirectory(Context context, String directoryName) throws IOException {

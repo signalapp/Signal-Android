@@ -71,8 +71,8 @@ public class XmlBackup {
     private XStream        xstream;
     private Smses          smses;
 
-    public Writer(String path, int count) throws IOException {
-      this.writer = new BufferedWriter(new FileWriter(path));
+    public Writer(BufferedWriter writer, int count) throws IOException {
+      this.writer = writer;
 
       xstream = new XStream();
       xstream.autodetectAnnotations(true);

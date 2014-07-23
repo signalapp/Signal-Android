@@ -7,7 +7,9 @@ import android.os.Environment;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class PlaintextBackupExporter {
@@ -16,7 +18,8 @@ public class PlaintextBackupExporter {
       throws NoExternalStorageException, IOException
   {
     verifyExternalStorageForPlaintextExport();
-    exportPlaintext(context, masterSecret);
+    BufferedWriter writer = new BufferedWriter(new FileWriter(getPlaintextExportDirectoryPath()));
+    exportPlaintext(context, masterSecret, writer);
   }
 
   private static void verifyExternalStorageForPlaintextExport() throws NoExternalStorageException {
@@ -29,11 +32,11 @@ public class PlaintextBackupExporter {
     return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
   }
 
-  private static void exportPlaintext(Context context, MasterSecret masterSecret)
+  public static void exportPlaintext(Context context, MasterSecret masterSecret, BufferedWriter outWriter)
       throws IOException
   {
     int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath(), count);
+    XmlBackup.Writer writer = new XmlBackup.Writer(outWriter, count);
 
 
     SmsMessageRecord record;
