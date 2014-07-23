@@ -8,6 +8,7 @@ import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.SessionCipher;
 import org.whispersystems.libaxolotl.StaleKeyExchangeException;
@@ -17,6 +18,7 @@ import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
@@ -35,7 +37,7 @@ public class SessionBuilderTest extends AndroidTestCase {
   private static final long BOB_RECIPIENT_ID   = 2L;
 
   public void testBasicPreKeyV2()
-      throws InvalidKeyException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, UntrustedIdentityException {
+      throws InvalidKeyException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, UntrustedIdentityException, NoSessionException {
     SessionStore      aliceSessionStore      = new InMemorySessionStore();
     SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore       alicePreKeyStore       = new InMemoryPreKeyStore();
@@ -49,10 +51,6 @@ public class SessionBuilderTest extends AndroidTestCase {
     PreKeyStore       bobPreKeyStore       = new InMemoryPreKeyStore();
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore  bobIdentityKeyStore  = new InMemoryIdentityKeyStore();
-    SessionBuilder    bobSessionBuilder    = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                                bobSignedPreKeyStore,
-                                                                bobIdentityKeyStore,
-                                                                ALICE_RECIPIENT_ID, 1);
 
     ECKeyPair    bobPreKeyPair = Curve.generateKeyPair(true);
     PreKeyBundle bobPreKey     = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
@@ -67,30 +65,29 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(aliceSessionStore.loadSession(BOB_RECIPIENT_ID, 1).getSessionState().getSessionVersion() == 2);
 
     String            originalMessage    = "L'homme est condamné à être libre";
-    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
+    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
     CiphertextMessage outgoingMessage    = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     assertTrue(outgoingMessage.getType() == CiphertextMessage.PREKEY_TYPE);
 
     PreKeyWhisperMessage incomingMessage = new PreKeyWhisperMessage(outgoingMessage.serialize());
     bobPreKeyStore.storePreKey(31337, new PreKeyRecord(bobPreKey.getPreKeyId(), bobPreKeyPair));
-    bobSessionBuilder.process(incomingMessage);
+
+    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore, ALICE_RECIPIENT_ID, 1);
+    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage);
 
     assertTrue(bobSessionStore.containsSession(ALICE_RECIPIENT_ID, 1));
     assertTrue(bobSessionStore.loadSession(ALICE_RECIPIENT_ID, 1).getSessionState().getSessionVersion() == 2);
-
-    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, ALICE_RECIPIENT_ID, 1);
-    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage.getWhisperMessage().serialize());
-
     assertTrue(originalMessage.equals(new String(plaintext)));
 
     CiphertextMessage bobOutgoingMessage = bobSessionCipher.encrypt(originalMessage.getBytes());
     assertTrue(bobOutgoingMessage.getType() == CiphertextMessage.WHISPER_TYPE);
 
-    byte[] alicePlaintext = aliceSessionCipher.decrypt(bobOutgoingMessage.serialize());
+    byte[] alicePlaintext = aliceSessionCipher.decrypt((WhisperMessage)bobOutgoingMessage);
     assertTrue(new String(alicePlaintext).equals(originalMessage));
 
-    runInteraction(aliceSessionStore, bobSessionStore);
+    runInteraction(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore,
+                   bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore);
 
     aliceSessionStore     = new InMemorySessionStore();
     aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
@@ -98,7 +95,7 @@ public class SessionBuilderTest extends AndroidTestCase {
                                                aliceSignedPreKeyStore,
                                                aliceIdentityKeyStore,
                                                BOB_RECIPIENT_ID, 1);
-    aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
+    aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
 
     bobPreKeyPair = Curve.generateKeyPair(true);
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(),
@@ -111,14 +108,14 @@ public class SessionBuilderTest extends AndroidTestCase {
     outgoingMessage = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     try {
-      bobSessionBuilder.process(new PreKeyWhisperMessage(outgoingMessage.serialize()));
+      bobSessionCipher.decrypt(new PreKeyWhisperMessage(outgoingMessage.serialize()));
       throw new AssertionError("shouldn't be trusted!");
     } catch (UntrustedIdentityException uie) {
       bobIdentityKeyStore.saveIdentity(ALICE_RECIPIENT_ID, new PreKeyWhisperMessage(outgoingMessage.serialize()).getIdentityKey());
-      bobSessionBuilder.process(new PreKeyWhisperMessage(outgoingMessage.serialize()));
     }
 
-    plaintext = bobSessionCipher.decrypt(new PreKeyWhisperMessage(outgoingMessage.serialize()).getWhisperMessage().serialize());
+    plaintext = bobSessionCipher.decrypt(new PreKeyWhisperMessage(outgoingMessage.serialize()));
+
     assertTrue(new String(plaintext).equals(originalMessage));
 
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
@@ -135,7 +132,7 @@ public class SessionBuilderTest extends AndroidTestCase {
   }
 
   public void testBasicPreKeyV3()
-      throws InvalidKeyException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, UntrustedIdentityException {
+      throws InvalidKeyException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, UntrustedIdentityException, NoSessionException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
@@ -149,10 +146,6 @@ public class SessionBuilderTest extends AndroidTestCase {
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
-    SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobSignedPreKeyStore,
-                                                              bobIdentityKeyStore,
-                                                              ALICE_RECIPIENT_ID, 1);
 
     ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
     ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
@@ -171,7 +164,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(aliceSessionStore.loadSession(BOB_RECIPIENT_ID, 1).getSessionState().getSessionVersion() == 3);
 
     String            originalMessage    = "L'homme est condamné à être libre";
-    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
+    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
     CiphertextMessage outgoingMessage    = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     assertTrue(outgoingMessage.getType() == CiphertextMessage.PREKEY_TYPE);
@@ -179,24 +172,24 @@ public class SessionBuilderTest extends AndroidTestCase {
     PreKeyWhisperMessage incomingMessage = new PreKeyWhisperMessage(outgoingMessage.serialize());
     bobPreKeyStore.storePreKey(31337, new PreKeyRecord(bobPreKey.getPreKeyId(), bobPreKeyPair));
     bobSignedPreKeyStore.storeSignedPreKey(22, new SignedPreKeyRecord(22, System.currentTimeMillis(), bobSignedPreKeyPair, bobSignedPreKeySignature));
-    bobSessionBuilder.process(incomingMessage);
+
+    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore, ALICE_RECIPIENT_ID, 1);
+    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage);
+
 
     assertTrue(bobSessionStore.containsSession(ALICE_RECIPIENT_ID, 1));
     assertTrue(bobSessionStore.loadSession(ALICE_RECIPIENT_ID, 1).getSessionState().getSessionVersion() == 3);
     assertTrue(bobSessionStore.loadSession(ALICE_RECIPIENT_ID, 1).getSessionState().getAliceBaseKey() != null);
-
-    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, ALICE_RECIPIENT_ID, 1);
-    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage.getWhisperMessage().serialize());
-
     assertTrue(originalMessage.equals(new String(plaintext)));
 
     CiphertextMessage bobOutgoingMessage = bobSessionCipher.encrypt(originalMessage.getBytes());
     assertTrue(bobOutgoingMessage.getType() == CiphertextMessage.WHISPER_TYPE);
 
-    byte[] alicePlaintext = aliceSessionCipher.decrypt(bobOutgoingMessage.serialize());
+    byte[] alicePlaintext = aliceSessionCipher.decrypt(new WhisperMessage(bobOutgoingMessage.serialize()));
     assertTrue(new String(alicePlaintext).equals(originalMessage));
 
-    runInteraction(aliceSessionStore, bobSessionStore);
+    runInteraction(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore,
+                   bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore);
 
     aliceSessionStore     = new InMemorySessionStore();
     aliceIdentityKeyStore = new InMemoryIdentityKeyStore();
@@ -204,7 +197,7 @@ public class SessionBuilderTest extends AndroidTestCase {
                                                aliceSignedPreKeyStore,
                                                aliceIdentityKeyStore,
                                                BOB_RECIPIENT_ID, 1);
-    aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
+    aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
 
     bobPreKeyPair            = Curve.generateKeyPair(true);
     bobSignedPreKeyPair      = Curve.generateKeyPair(true);
@@ -221,14 +214,13 @@ public class SessionBuilderTest extends AndroidTestCase {
     outgoingMessage = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     try {
-      bobSessionBuilder.process(new PreKeyWhisperMessage(outgoingMessage.serialize()));
+      plaintext = bobSessionCipher.decrypt(new PreKeyWhisperMessage(outgoingMessage.serialize()));
       throw new AssertionError("shouldn't be trusted!");
     } catch (UntrustedIdentityException uie) {
       bobIdentityKeyStore.saveIdentity(ALICE_RECIPIENT_ID, new PreKeyWhisperMessage(outgoingMessage.serialize()).getIdentityKey());
-      bobSessionBuilder.process(new PreKeyWhisperMessage(outgoingMessage.serialize()));
     }
 
-    plaintext = bobSessionCipher.decrypt(new PreKeyWhisperMessage(outgoingMessage.serialize()).getWhisperMessage().serialize());
+    plaintext = bobSessionCipher.decrypt(new PreKeyWhisperMessage(outgoingMessage.serialize()));
     assertTrue(new String(plaintext).equals(originalMessage));
 
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
@@ -289,7 +281,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     aliceSessionBuilder.process(bobPreKey);
   }
 
-  public void testRepeatBundleMessageV2() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException {
+  public void testRepeatBundleMessageV2() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, NoSessionException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
@@ -303,10 +295,6 @@ public class SessionBuilderTest extends AndroidTestCase {
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
-    SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobSignedPreKeyStore,
-                                                              bobIdentityKeyStore,
-                                                              ALICE_RECIPIENT_ID, 1);
 
     ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
     ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
@@ -324,40 +312,38 @@ public class SessionBuilderTest extends AndroidTestCase {
     aliceSessionBuilder.process(bobPreKey);
 
     String            originalMessage    = "L'homme est condamné à être libre";
-    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
+    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
     CiphertextMessage outgoingMessageOne = aliceSessionCipher.encrypt(originalMessage.getBytes());
     CiphertextMessage outgoingMessageTwo = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     assertTrue(outgoingMessageOne.getType() == CiphertextMessage.PREKEY_TYPE);
 
     PreKeyWhisperMessage incomingMessage = new PreKeyWhisperMessage(outgoingMessageOne.serialize());
-    bobSessionBuilder.process(incomingMessage);
 
-    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, ALICE_RECIPIENT_ID, 1);
+    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore, ALICE_RECIPIENT_ID, 1);
 
-    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage.getWhisperMessage().serialize());
+    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage);
     assertTrue(originalMessage.equals(new String(plaintext)));
 
     CiphertextMessage bobOutgoingMessage = bobSessionCipher.encrypt(originalMessage.getBytes());
 
-    byte[] alicePlaintext = aliceSessionCipher.decrypt(bobOutgoingMessage.serialize());
+    byte[] alicePlaintext = aliceSessionCipher.decrypt(new WhisperMessage(bobOutgoingMessage.serialize()));
     assertTrue(originalMessage.equals(new String(alicePlaintext)));
 
     // The test
 
     PreKeyWhisperMessage incomingMessageTwo = new PreKeyWhisperMessage(outgoingMessageTwo.serialize());
-    bobSessionBuilder.process(incomingMessageTwo);
 
-    plaintext = bobSessionCipher.decrypt(incomingMessageTwo.getWhisperMessage().serialize());
+    plaintext = bobSessionCipher.decrypt(incomingMessageTwo);
     assertTrue(originalMessage.equals(new String(plaintext)));
 
     bobOutgoingMessage = bobSessionCipher.encrypt(originalMessage.getBytes());
-    alicePlaintext = aliceSessionCipher.decrypt(bobOutgoingMessage.serialize());
+    alicePlaintext = aliceSessionCipher.decrypt(new WhisperMessage(bobOutgoingMessage.serialize()));
     assertTrue(originalMessage.equals(new String(alicePlaintext)));
 
   }
 
-  public void testRepeatBundleMessageV3() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException {
+  public void testRepeatBundleMessageV3() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, NoSessionException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
@@ -371,10 +357,6 @@ public class SessionBuilderTest extends AndroidTestCase {
     PreKeyStore      bobPreKeyStore      = new InMemoryPreKeyStore();
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
-    SessionBuilder   bobSessionBuilder   = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                              bobSignedPreKeyStore,
-                                                              bobIdentityKeyStore,
-                                                              ALICE_RECIPIENT_ID, 1);
 
     ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
     ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
@@ -392,40 +374,38 @@ public class SessionBuilderTest extends AndroidTestCase {
     aliceSessionBuilder.process(bobPreKey);
 
     String            originalMessage    = "L'homme est condamné à être libre";
-    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
+    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
     CiphertextMessage outgoingMessageOne = aliceSessionCipher.encrypt(originalMessage.getBytes());
     CiphertextMessage outgoingMessageTwo = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     assertTrue(outgoingMessageOne.getType() == CiphertextMessage.PREKEY_TYPE);
 
     PreKeyWhisperMessage incomingMessage = new PreKeyWhisperMessage(outgoingMessageOne.serialize());
-    bobSessionBuilder.process(incomingMessage);
 
-    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, ALICE_RECIPIENT_ID, 1);
+    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore, ALICE_RECIPIENT_ID, 1);
 
-    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage.getWhisperMessage().serialize());
+    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage);
     assertTrue(originalMessage.equals(new String(plaintext)));
 
     CiphertextMessage bobOutgoingMessage = bobSessionCipher.encrypt(originalMessage.getBytes());
 
-    byte[] alicePlaintext = aliceSessionCipher.decrypt(bobOutgoingMessage.serialize());
+    byte[] alicePlaintext = aliceSessionCipher.decrypt(new WhisperMessage(bobOutgoingMessage.serialize()));
     assertTrue(originalMessage.equals(new String(alicePlaintext)));
 
     // The test
 
     PreKeyWhisperMessage incomingMessageTwo = new PreKeyWhisperMessage(outgoingMessageTwo.serialize());
-    bobSessionBuilder.process(incomingMessageTwo);
 
-    plaintext = bobSessionCipher.decrypt(incomingMessageTwo.getWhisperMessage().serialize());
+    plaintext = bobSessionCipher.decrypt(new PreKeyWhisperMessage(incomingMessageTwo.serialize()));
     assertTrue(originalMessage.equals(new String(plaintext)));
 
     bobOutgoingMessage = bobSessionCipher.encrypt(originalMessage.getBytes());
-    alicePlaintext = aliceSessionCipher.decrypt(bobOutgoingMessage.serialize());
+    alicePlaintext = aliceSessionCipher.decrypt(new WhisperMessage(bobOutgoingMessage.serialize()));
     assertTrue(originalMessage.equals(new String(alicePlaintext)));
 
   }
 
-  public void testBadVerificationTagV3() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException {
+  public void testBadVerificationTagV3() throws InvalidKeyException, UntrustedIdentityException, InvalidVersionException, InvalidMessageException, InvalidKeyIdException, DuplicateMessageException, LegacyMessageException, NoSessionException {
     SessionStore      aliceSessionStore      = new InMemorySessionStore();
     SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
     PreKeyStore       alicePreKeyStore       = new InMemoryPreKeyStore();
@@ -439,10 +419,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     PreKeyStore       bobPreKeyStore       = new InMemoryPreKeyStore();
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore  bobIdentityKeyStore  = new InMemoryIdentityKeyStore();
-    SessionBuilder    bobSessionBuilder    = new SessionBuilder(bobSessionStore, bobPreKeyStore,
-                                                                bobSignedPreKeyStore,
-                                                                bobIdentityKeyStore,
-                                                                ALICE_RECIPIENT_ID, 1);
+
 
     ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
     ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
@@ -460,12 +437,14 @@ public class SessionBuilderTest extends AndroidTestCase {
     aliceSessionBuilder.process(bobPreKey);
 
     String            originalMessage    = "L'homme est condamné à être libre";
-    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
+    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
     CiphertextMessage outgoingMessageOne = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     assertTrue(outgoingMessageOne.getType() == CiphertextMessage.PREKEY_TYPE);
 
     PreKeyWhisperMessage incomingMessage = new PreKeyWhisperMessage(outgoingMessageOne.serialize());
+
+    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore, ALICE_RECIPIENT_ID, 1);
 
     for (int i=0;i<incomingMessage.getVerification().length * 8;i++) {
       byte[] modifiedVerification  = new byte[incomingMessage.getVerification().length];
@@ -482,7 +461,7 @@ public class SessionBuilderTest extends AndroidTestCase {
                                                                       incomingMessage.getWhisperMessage());
 
       try {
-        bobSessionBuilder.process(modifiedMessage);
+        bobSessionCipher.decrypt(modifiedMessage);
         throw new AssertionError("Modified verification tag passed!");
       } catch (InvalidKeyException e) {
         // good
@@ -498,11 +477,11 @@ public class SessionBuilderTest extends AndroidTestCase {
                                                                       incomingMessage.getVerification(),
                                                                       incomingMessage.getWhisperMessage());
 
-    bobSessionBuilder.process(unmodifiedMessage);
+    bobSessionCipher.decrypt(unmodifiedMessage);
   }
 
 
-  public void testBasicKeyExchange() throws InvalidKeyException, LegacyMessageException, InvalidMessageException, DuplicateMessageException, UntrustedIdentityException, StaleKeyExchangeException, InvalidVersionException {
+  public void testBasicKeyExchange() throws InvalidKeyException, LegacyMessageException, InvalidMessageException, DuplicateMessageException, UntrustedIdentityException, StaleKeyExchangeException, InvalidVersionException, NoSessionException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
@@ -536,7 +515,8 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(aliceSessionStore.containsSession(BOB_RECIPIENT_ID, 1));
     assertTrue(bobSessionStore.containsSession(ALICE_RECIPIENT_ID, 1));
 
-    runInteraction(aliceSessionStore, bobSessionStore);
+    runInteraction(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore,
+                   bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore);
 
     aliceSessionStore       = new InMemorySessionStore();
     aliceIdentityKeyStore   = new InMemoryIdentityKeyStore();
@@ -555,11 +535,12 @@ public class SessionBuilderTest extends AndroidTestCase {
 
     assertTrue(aliceSessionBuilder.process(bobKeyExchangeMessage) == null);
 
-    runInteraction(aliceSessionStore, bobSessionStore);
+    runInteraction(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore,
+                   bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore);
   }
 
   public void testSimultaneousKeyExchange()
-      throws InvalidKeyException, DuplicateMessageException, LegacyMessageException, InvalidMessageException, UntrustedIdentityException, StaleKeyExchangeException {
+      throws InvalidKeyException, DuplicateMessageException, LegacyMessageException, InvalidMessageException, UntrustedIdentityException, StaleKeyExchangeException, NoSessionException {
     SessionStore     aliceSessionStore     = new InMemorySessionStore();
     PreKeyStore      alicePreKeyStore      = new InMemoryPreKeyStore();
     SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
@@ -596,28 +577,36 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(aliceAck == null);
     assertTrue(bobAck == null);
 
-    runInteraction(aliceSessionStore, bobSessionStore);
+    runInteraction(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore,
+                   bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore);
   }
 
-  private void runInteraction(SessionStore aliceSessionStore, SessionStore bobSessionStore)
-      throws DuplicateMessageException, LegacyMessageException, InvalidMessageException
+  private void runInteraction(SessionStore aliceSessionStore,
+                              PreKeyStore alicePreKeyStore,
+                              SignedPreKeyStore aliceSignedPreKeyStore,
+                              IdentityKeyStore aliceIdentityKeyStore,
+                              SessionStore bobSessionStore,
+                              PreKeyStore bobPreKeyStore,
+                              SignedPreKeyStore bobSignedPreKeyStore,
+                              IdentityKeyStore bobIdentityKeyStore)
+      throws DuplicateMessageException, LegacyMessageException, InvalidMessageException, NoSessionException
   {
-    SessionCipher aliceSessionCipher = new SessionCipher(aliceSessionStore, BOB_RECIPIENT_ID, 1);
-    SessionCipher bobSessionCipher   = new SessionCipher(bobSessionStore, ALICE_RECIPIENT_ID, 1);
+    SessionCipher aliceSessionCipher = new SessionCipher(aliceSessionStore,  alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
+    SessionCipher bobSessionCipher   = new SessionCipher(bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore, ALICE_RECIPIENT_ID, 1);
 
     String originalMessage = "smert ze smert";
     CiphertextMessage aliceMessage = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     assertTrue(aliceMessage.getType() == CiphertextMessage.WHISPER_TYPE);
 
-    byte[] plaintext = bobSessionCipher.decrypt(aliceMessage.serialize());
+    byte[] plaintext = bobSessionCipher.decrypt(new WhisperMessage(aliceMessage.serialize()));
     assertTrue(new String(plaintext).equals(originalMessage));
 
     CiphertextMessage bobMessage = bobSessionCipher.encrypt(originalMessage.getBytes());
 
     assertTrue(bobMessage.getType() == CiphertextMessage.WHISPER_TYPE);
 
-    plaintext = aliceSessionCipher.decrypt(bobMessage.serialize());
+    plaintext = aliceSessionCipher.decrypt(new WhisperMessage(bobMessage.serialize()));
     assertTrue(new String(plaintext).equals(originalMessage));
 
     for (int i=0;i<10;i++) {
@@ -626,7 +615,7 @@ public class SessionBuilderTest extends AndroidTestCase {
                                "surges up in the world--and defines himself aftward. " + i);
       CiphertextMessage aliceLoopingMessage = aliceSessionCipher.encrypt(loopingMessage.getBytes());
 
-      byte[] loopingPlaintext = bobSessionCipher.decrypt(aliceLoopingMessage.serialize());
+      byte[] loopingPlaintext = bobSessionCipher.decrypt(new WhisperMessage(aliceLoopingMessage.serialize()));
       assertTrue(new String(loopingPlaintext).equals(loopingMessage));
     }
 
@@ -636,7 +625,7 @@ public class SessionBuilderTest extends AndroidTestCase {
                                "surges up in the world--and defines himself aftward. " + i);
       CiphertextMessage bobLoopingMessage = bobSessionCipher.encrypt(loopingMessage.getBytes());
 
-      byte[] loopingPlaintext = aliceSessionCipher.decrypt(bobLoopingMessage.serialize());
+      byte[] loopingPlaintext = aliceSessionCipher.decrypt(new WhisperMessage(bobLoopingMessage.serialize()));
       assertTrue(new String(loopingPlaintext).equals(loopingMessage));
     }
 
@@ -657,7 +646,7 @@ public class SessionBuilderTest extends AndroidTestCase {
                                "surges up in the world--and defines himself aftward. " + i);
       CiphertextMessage aliceLoopingMessage = aliceSessionCipher.encrypt(loopingMessage.getBytes());
 
-      byte[] loopingPlaintext = bobSessionCipher.decrypt(aliceLoopingMessage.serialize());
+      byte[] loopingPlaintext = bobSessionCipher.decrypt(new WhisperMessage(aliceLoopingMessage.serialize()));
       assertTrue(new String(loopingPlaintext).equals(loopingMessage));
     }
 
@@ -665,12 +654,12 @@ public class SessionBuilderTest extends AndroidTestCase {
       String loopingMessage = ("You can only desire based on what you know: " + i);
       CiphertextMessage bobLoopingMessage = bobSessionCipher.encrypt(loopingMessage.getBytes());
 
-      byte[] loopingPlaintext = aliceSessionCipher.decrypt(bobLoopingMessage.serialize());
+      byte[] loopingPlaintext = aliceSessionCipher.decrypt(new WhisperMessage(bobLoopingMessage.serialize()));
       assertTrue(new String(loopingPlaintext).equals(loopingMessage));
     }
 
     for (Pair<String, CiphertextMessage> aliceOutOfOrderMessage : aliceOutOfOrderMessages) {
-      byte[] outOfOrderPlaintext = bobSessionCipher.decrypt(aliceOutOfOrderMessage.second().serialize());
+      byte[] outOfOrderPlaintext = bobSessionCipher.decrypt(new WhisperMessage(aliceOutOfOrderMessage.second().serialize()));
       assertTrue(new String(outOfOrderPlaintext).equals(aliceOutOfOrderMessage.first()));
     }
   }
