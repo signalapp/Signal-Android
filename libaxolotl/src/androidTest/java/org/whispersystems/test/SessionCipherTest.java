@@ -15,6 +15,8 @@ import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
+import org.whispersystems.libaxolotl.ratchet.AliceAxolotlParameters;
+import org.whispersystems.libaxolotl.ratchet.BobAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
@@ -31,7 +33,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.AxolotlParameters;
 
 public class SessionCipherTest extends AndroidTestCase {
 
@@ -149,30 +150,23 @@ public class SessionCipherTest extends AndroidTestCase {
     ECKeyPair       bobBaseKey           = Curve.generateKeyPair(true);
     ECKeyPair       bobEphemeralKey      = bobBaseKey;
 
-    AxolotlParameters aliceParameters =
-        AxolotlParameters.newBuilder()
-                                .setOurIdentityKey(aliceIdentityKey)
-                                .setOurBaseKey(aliceBaseKey)
-                                .setOurEphemeralKey(aliceEphemeralKey)
-                                .setOurPreKey(Optional.<ECKeyPair>absent())
-                                .setTheirIdentityKey(bobIdentityKey.getPublicKey())
-                                .setTheirBaseKey(bobBaseKey.getPublicKey())
-                                .setTheirEphemeralKey(bobEphemeralKey.getPublicKey())
-                                .setTheirPreKey(Optional.<ECPublicKey>absent())
-                                .create();
+    AliceAxolotlParameters aliceParameters = AliceAxolotlParameters.newBuilder()
+        .setOurIdentityKey(aliceIdentityKey)
+        .setOurBaseKey(aliceBaseKey)
+        .setTheirIdentityKey(bobIdentityKey.getPublicKey())
+        .setTheirSignedPreKey(bobEphemeralKey.getPublicKey())
+        .setTheirRatchetKey(bobEphemeralKey.getPublicKey())
+        .setTheirOneTimePreKey(Optional.<ECPublicKey>absent())
+        .create();
 
-    AxolotlParameters bobParameters =
-        RatchetingSession.AxolotlParameters.newBuilder()
-                                .setOurIdentityKey(bobIdentityKey)
-                                .setOurBaseKey(bobBaseKey)
-                                .setOurEphemeralKey(bobEphemeralKey)
-                                .setOurPreKey(Optional.<ECKeyPair>absent())
-                                .setTheirIdentityKey(aliceIdentityKey.getPublicKey())
-                                .setTheirBaseKey(aliceBaseKey.getPublicKey())
-                                .setTheirEphemeralKey(aliceEphemeralKey.getPublicKey())
-                                .setTheirPreKey(Optional.<ECPublicKey>absent())
-                                .create();
-
+    BobAxolotlParameters bobParameters = BobAxolotlParameters.newBuilder()
+        .setOurIdentityKey(bobIdentityKey)
+        .setOurOneTimePreKey(Optional.<ECKeyPair>absent())
+        .setOurRatchetKey(bobEphemeralKey)
+        .setOurSignedPreKey(bobBaseKey)
+        .setTheirBaseKey(aliceBaseKey.getPublicKey())
+        .setTheirIdentityKey(aliceIdentityKey.getPublicKey())
+        .create();
 
     RatchetingSession.initializeSession(aliceSessionState, 2, aliceParameters);
     RatchetingSession.initializeSession(bobSessionState, 2, bobParameters);
@@ -197,33 +191,25 @@ public class SessionCipherTest extends AndroidTestCase {
 
     ECKeyPair       bobPreKey            = Curve.generateKeyPair(true);
 
-    AxolotlParameters aliceParameters =
-        AxolotlParameters.newBuilder()
-                                .setOurIdentityKey(aliceIdentityKey)
-                                .setOurBaseKey(aliceBaseKey)
-                                .setOurEphemeralKey(aliceEphemeralKey)
-                                .setOurPreKey(Optional.of(alicePreKey))
-                                .setTheirIdentityKey(bobIdentityKey.getPublicKey())
-                                .setTheirBaseKey(bobBaseKey.getPublicKey())
-                                .setTheirEphemeralKey(bobEphemeralKey.getPublicKey())
-                                .setTheirPreKey(Optional.of(bobPreKey.getPublicKey()))
-                                .create();
+    AliceAxolotlParameters aliceParameters = AliceAxolotlParameters.newBuilder()
+        .setOurBaseKey(aliceBaseKey)
+        .setOurIdentityKey(aliceIdentityKey)
+        .setTheirOneTimePreKey(Optional.<ECPublicKey>absent())
+        .setTheirRatchetKey(bobEphemeralKey.getPublicKey())
+        .setTheirSignedPreKey(bobBaseKey.getPublicKey())
+        .setTheirIdentityKey(bobIdentityKey.getPublicKey())
+        .create();
 
-    AxolotlParameters bobParameters =
-        AxolotlParameters.newBuilder()
-                                .setOurIdentityKey(bobIdentityKey)
-                                .setOurBaseKey(bobBaseKey)
-                                .setOurEphemeralKey(bobEphemeralKey)
-                                .setOurPreKey(Optional.of(bobPreKey))
-                                .setTheirIdentityKey(aliceIdentityKey.getPublicKey())
-                                .setTheirBaseKey(aliceBaseKey.getPublicKey())
-                                .setTheirEphemeralKey(aliceEphemeralKey.getPublicKey())
-                                .setTheirPreKey(Optional.of(alicePreKey.getPublicKey()))
-                                .create();
-
+    BobAxolotlParameters bobParameters = BobAxolotlParameters.newBuilder()
+        .setOurRatchetKey(bobEphemeralKey)
+        .setOurSignedPreKey(bobBaseKey)
+        .setOurOneTimePreKey(Optional.<ECKeyPair>absent())
+        .setOurIdentityKey(bobIdentityKey)
+        .setTheirIdentityKey(aliceIdentityKey.getPublicKey())
+        .setTheirBaseKey(aliceBaseKey.getPublicKey())
+        .create();
 
     RatchetingSession.initializeSession(aliceSessionState, 3, aliceParameters);
     RatchetingSession.initializeSession(bobSessionState, 3, bobParameters);
-
   }
 }

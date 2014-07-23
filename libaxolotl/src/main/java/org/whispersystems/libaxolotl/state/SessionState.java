@@ -32,11 +32,10 @@ import org.whispersystems.libaxolotl.kdf.HKDF;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 import org.whispersystems.libaxolotl.ratchet.MessageKeys;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
-import org.whispersystems.libaxolotl.ratchet.VerifyKey;
-import org.whispersystems.libaxolotl.util.Pair;
 import org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.Chain;
 import org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.PendingKeyExchange;
 import org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.PendingPreKey;
+import org.whispersystems.libaxolotl.util.Pair;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -159,18 +158,18 @@ public class SessionState {
                                                  .build();
   }
 
-  public ECPublicKey getSenderEphemeral() {
+  public ECPublicKey getSenderRatchetKey() {
     try {
-      return Curve.decodePoint(sessionStructure.getSenderChain().getSenderEphemeral().toByteArray(), 0);
+      return Curve.decodePoint(sessionStructure.getSenderChain().getSenderRatchetKey().toByteArray(), 0);
     } catch (InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }
 
-  public ECKeyPair getSenderEphemeralPair() {
-    ECPublicKey  publicKey  = getSenderEphemeral();
+  public ECKeyPair getSenderRatchetKeyPair() {
+    ECPublicKey  publicKey  = getSenderRatchetKey();
     ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.getSenderChain()
-                                                                       .getSenderEphemeralPrivate()
+                                                                       .getSenderRatchetKeyPrivate()
                                                                        .toByteArray());
 
     return new ECKeyPair(publicKey, privateKey);
@@ -190,9 +189,9 @@ public class SessionState {
 
     for (Chain receiverChain : receiverChains) {
       try {
-        ECPublicKey chainSenderEphemeral = Curve.decodePoint(receiverChain.getSenderEphemeral().toByteArray(), 0);
+        ECPublicKey chainSenderRatchetKey = Curve.decodePoint(receiverChain.getSenderRatchetKey().toByteArray(), 0);
 
-        if (chainSenderEphemeral.equals(senderEphemeral)) {
+        if (chainSenderRatchetKey.equals(senderEphemeral)) {
           return new Pair<>(receiverChain,index);
         }
       } catch (InvalidKeyException e) {
@@ -218,7 +217,7 @@ public class SessionState {
     }
   }
 
-  public void addReceiverChain(ECPublicKey senderEphemeral, ChainKey chainKey) {
+  public void addReceiverChain(ECPublicKey senderRatchetKey, ChainKey chainKey) {
     Chain.ChainKey chainKeyStructure = Chain.ChainKey.newBuilder()
                                                      .setKey(ByteString.copyFrom(chainKey.getKey()))
                                                      .setIndex(chainKey.getIndex())
@@ -226,7 +225,7 @@ public class SessionState {
 
     Chain chain = Chain.newBuilder()
                        .setChainKey(chainKeyStructure)
-                       .setSenderEphemeral(ByteString.copyFrom(senderEphemeral.serialize()))
+                       .setSenderRatchetKey(ByteString.copyFrom(senderRatchetKey.serialize()))
                        .build();
 
     this.sessionStructure = this.sessionStructure.toBuilder().addReceiverChains(chain).build();
@@ -238,15 +237,15 @@ public class SessionState {
     }
   }
 
-  public void setSenderChain(ECKeyPair senderEphemeralPair, ChainKey chainKey) {
+  public void setSenderChain(ECKeyPair senderRatchetKeyPair, ChainKey chainKey) {
     Chain.ChainKey chainKeyStructure = Chain.ChainKey.newBuilder()
                                                      .setKey(ByteString.copyFrom(chainKey.getKey()))
                                                      .setIndex(chainKey.getIndex())
                                                      .build();
 
     Chain senderChain = Chain.newBuilder()
-                             .setSenderEphemeral(ByteString.copyFrom(senderEphemeralPair.getPublicKey().serialize()))
-                             .setSenderEphemeralPrivate(ByteString.copyFrom(senderEphemeralPair.getPrivateKey().serialize()))
+                             .setSenderRatchetKey(ByteString.copyFrom(senderRatchetKeyPair.getPublicKey().serialize()))
+                             .setSenderRatchetKeyPrivate(ByteString.copyFrom(senderRatchetKeyPair.getPrivateKey().serialize()))
                              .setChainKey(chainKeyStructure)
                              .build();
 
@@ -363,7 +362,7 @@ public class SessionState {
 
   public void setPendingKeyExchange(int sequence,
                                     ECKeyPair ourBaseKey,
-                                    ECKeyPair ourEphemeralKey,
+                                    ECKeyPair ourRatchetKey,
                                     IdentityKeyPair ourIdentityKey)
   {
     PendingKeyExchange structure =
@@ -371,8 +370,8 @@ public class SessionState {
                           .setSequence(sequence)
                           .setLocalBaseKey(ByteString.copyFrom(ourBaseKey.getPublicKey().serialize()))
                           .setLocalBaseKeyPrivate(ByteString.copyFrom(ourBaseKey.getPrivateKey().serialize()))
-                          .setLocalEphemeralKey(ByteString.copyFrom(ourEphemeralKey.getPublicKey().serialize()))
-                          .setLocalEphemeralKeyPrivate(ByteString.copyFrom(ourEphemeralKey.getPrivateKey().serialize()))
+                          .setLocalRatchetKey(ByteString.copyFrom(ourRatchetKey.getPublicKey().serialize()))
+                          .setLocalRatchetKeyPrivate(ByteString.copyFrom(ourRatchetKey.getPrivateKey().serialize()))
                           .setLocalIdentityKey(ByteString.copyFrom(ourIdentityKey.getPublicKey().serialize()))
                           .setLocalIdentityKeyPrivate(ByteString.copyFrom(ourIdentityKey.getPrivateKey().serialize()))
                           .build();
@@ -397,12 +396,12 @@ public class SessionState {
     return new ECKeyPair(publicKey, privateKey);
   }
 
-  public ECKeyPair getPendingKeyExchangeEphemeralKey() throws InvalidKeyException {
+  public ECKeyPair getPendingKeyExchangeRatchetKey() throws InvalidKeyException {
     ECPublicKey publicKey   = Curve.decodePoint(sessionStructure.getPendingKeyExchange()
-                                                                .getLocalEphemeralKey().toByteArray(), 0);
+                                                                .getLocalRatchetKey().toByteArray(), 0);
 
     ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.getPendingKeyExchange()
-                                                                       .getLocalEphemeralKeyPrivate()
+                                                                       .getLocalRatchetKeyPrivate()
                                                                        .toByteArray());
 
     return new ECKeyPair(publicKey, privateKey);

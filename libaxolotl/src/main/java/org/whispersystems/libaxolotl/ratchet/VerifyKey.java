@@ -1,5 +1,6 @@
 package org.whispersystems.libaxolotl.ratchet;
 
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.util.ByteUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -24,28 +25,25 @@ public class VerifyKey {
     return key;
   }
 
-  public byte[] generateVerification(ECPublicKey           aliceBaseKey,
-                                     Optional<ECPublicKey> alicePreKey,
-                                     ECPublicKey           aliceIdentityKey,
-                                     ECPublicKey           bobBaseKey,
-                                     Optional<ECPublicKey> bobPreKey,
-                                     ECPublicKey           bobIdentityKey)
+  public byte[] generateVerification(IdentityKey           aliceIdentity,
+                                     IdentityKey           bobIdentity,
+                                     ECPublicKey           aliceBaseKey,
+                                     ECPublicKey           bobSignedPreKey,
+                                     Optional<ECPublicKey> bobOneTimePreKey)
   {
     try {
       Mac mac = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(key, "HmacSHA256"));
 
       mac.update(VERIFICATION_INFO);
+      mac.update(aliceIdentity.getPublicKey().serialize());
+      mac.update(bobIdentity.getPublicKey().serialize());
       mac.update(aliceBaseKey.serialize());
-      mac.update(aliceIdentityKey.serialize());
-      mac.update(bobBaseKey.serialize());
-      mac.update(bobIdentityKey.serialize());
+      mac.update(bobSignedPreKey.serialize());
 
-      if (alicePreKey.isPresent() && bobPreKey.isPresent()) {
-        mac.update(alicePreKey.get().serialize());
-        mac.update(bobPreKey.get().serialize());
+      if (bobOneTimePreKey.isPresent()) {
+        mac.update(bobOneTimePreKey.get().serialize());
       }
-
 
       return ByteUtil.trim(mac.doFinal(), 8);
     } catch (NoSuchAlgorithmException | InvalidKeyException e) {

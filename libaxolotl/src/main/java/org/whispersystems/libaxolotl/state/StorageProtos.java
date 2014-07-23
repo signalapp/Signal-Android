@@ -371,25 +371,25 @@ public final class StorageProtos {
     public interface ChainOrBuilder
         extends com.google.protobuf.MessageOrBuilder {
 
-      // optional bytes senderEphemeral = 1;
+      // optional bytes senderRatchetKey = 1;
       /**
-       * <code>optional bytes senderEphemeral = 1;</code>
+       * <code>optional bytes senderRatchetKey = 1;</code>
        */
-      boolean hasSenderEphemeral();
+      boolean hasSenderRatchetKey();
       /**
-       * <code>optional bytes senderEphemeral = 1;</code>
+       * <code>optional bytes senderRatchetKey = 1;</code>
        */
-      com.google.protobuf.ByteString getSenderEphemeral();
+      com.google.protobuf.ByteString getSenderRatchetKey();
 
-      // optional bytes senderEphemeralPrivate = 2;
+      // optional bytes senderRatchetKeyPrivate = 2;
       /**
-       * <code>optional bytes senderEphemeralPrivate = 2;</code>
+       * <code>optional bytes senderRatchetKeyPrivate = 2;</code>
        */
-      boolean hasSenderEphemeralPrivate();
+      boolean hasSenderRatchetKeyPrivate();
       /**
-       * <code>optional bytes senderEphemeralPrivate = 2;</code>
+       * <code>optional bytes senderRatchetKeyPrivate = 2;</code>
        */
-      com.google.protobuf.ByteString getSenderEphemeralPrivate();
+      com.google.protobuf.ByteString getSenderRatchetKeyPrivate();
 
       // optional .textsecure.SessionStructure.Chain.ChainKey chainKey = 3;
       /**
@@ -483,12 +483,12 @@ public final class StorageProtos {
               }
               case 10: {
                 bitField0_ |= 0x00000001;
-                senderEphemeral_ = input.readBytes();
+                senderRatchetKey_ = input.readBytes();
                 break;
               }
               case 18: {
                 bitField0_ |= 0x00000002;
-                senderEphemeralPrivate_ = input.readBytes();
+                senderRatchetKeyPrivate_ = input.readBytes();
                 break;
               }
               case 26: {
@@ -1599,36 +1599,36 @@ public final class StorageProtos {
       }
 
       private int bitField0_;
-      // optional bytes senderEphemeral = 1;
-      public static final int SENDEREPHEMERAL_FIELD_NUMBER = 1;
-      private com.google.protobuf.ByteString senderEphemeral_;
+      // optional bytes senderRatchetKey = 1;
+      public static final int SENDERRATCHETKEY_FIELD_NUMBER = 1;
+      private com.google.protobuf.ByteString senderRatchetKey_;
       /**
-       * <code>optional bytes senderEphemeral = 1;</code>
+       * <code>optional bytes senderRatchetKey = 1;</code>
        */
-      public boolean hasSenderEphemeral() {
+      public boolean hasSenderRatchetKey() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional bytes senderEphemeral = 1;</code>
+       * <code>optional bytes senderRatchetKey = 1;</code>
        */
-      public com.google.protobuf.ByteString getSenderEphemeral() {
-        return senderEphemeral_;
+      public com.google.protobuf.ByteString getSenderRatchetKey() {
+        return senderRatchetKey_;
       }
 
-      // optional bytes senderEphemeralPrivate = 2;
-      public static final int SENDEREPHEMERALPRIVATE_FIELD_NUMBER = 2;
-      private com.google.protobuf.ByteString senderEphemeralPrivate_;
+      // optional bytes senderRatchetKeyPrivate = 2;
+      public static final int SENDERRATCHETKEYPRIVATE_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString senderRatchetKeyPrivate_;
       /**
-       * <code>optional bytes senderEphemeralPrivate = 2;</code>
+       * <code>optional bytes senderRatchetKeyPrivate = 2;</code>
        */
-      public boolean hasSenderEphemeralPrivate() {
+      public boolean hasSenderRatchetKeyPrivate() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional bytes senderEphemeralPrivate = 2;</code>
+       * <code>optional bytes senderRatchetKeyPrivate = 2;</code>
        */
-      public com.google.protobuf.ByteString getSenderEphemeralPrivate() {
-        return senderEphemeralPrivate_;
+      public com.google.protobuf.ByteString getSenderRatchetKeyPrivate() {
+        return senderRatchetKeyPrivate_;
       }
 
       // optional .textsecure.SessionStructure.Chain.ChainKey chainKey = 3;
@@ -1690,8 +1690,8 @@ public final class StorageProtos {
       }
 
       private void initFields() {
-        senderEphemeral_ = com.google.protobuf.ByteString.EMPTY;
-        senderEphemeralPrivate_ = com.google.protobuf.ByteString.EMPTY;
+        senderRatchetKey_ = com.google.protobuf.ByteString.EMPTY;
+        senderRatchetKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
         chainKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.Chain.ChainKey.getDefaultInstance();
         messageKeys_ = java.util.Collections.emptyList();
       }
@@ -1708,10 +1708,10 @@ public final class StorageProtos {
                           throws java.io.IOException {
         getSerializedSize();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          output.writeBytes(1, senderEphemeral_);
+          output.writeBytes(1, senderRatchetKey_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          output.writeBytes(2, senderEphemeralPrivate_);
+          output.writeBytes(2, senderRatchetKeyPrivate_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
           output.writeMessage(3, chainKey_);
@@ -1730,11 +1730,11 @@ public final class StorageProtos {
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(1, senderEphemeral_);
+            .computeBytesSize(1, senderRatchetKey_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(2, senderEphemeralPrivate_);
+            .computeBytesSize(2, senderRatchetKeyPrivate_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
           size += com.google.protobuf.CodedOutputStream
@@ -1862,9 +1862,9 @@ public final class StorageProtos {
 
         public Builder clear() {
           super.clear();
-          senderEphemeral_ = com.google.protobuf.ByteString.EMPTY;
+          senderRatchetKey_ = com.google.protobuf.ByteString.EMPTY;
           bitField0_ = (bitField0_ & ~0x00000001);
-          senderEphemeralPrivate_ = com.google.protobuf.ByteString.EMPTY;
+          senderRatchetKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
           bitField0_ = (bitField0_ & ~0x00000002);
           if (chainKeyBuilder_ == null) {
             chainKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.Chain.ChainKey.getDefaultInstance();
@@ -1909,11 +1909,11 @@ public final class StorageProtos {
           if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
             to_bitField0_ |= 0x00000001;
           }
-          result.senderEphemeral_ = senderEphemeral_;
+          result.senderRatchetKey_ = senderRatchetKey_;
           if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
             to_bitField0_ |= 0x00000002;
           }
-          result.senderEphemeralPrivate_ = senderEphemeralPrivate_;
+          result.senderRatchetKeyPrivate_ = senderRatchetKeyPrivate_;
           if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
             to_bitField0_ |= 0x00000004;
           }
@@ -1947,11 +1947,11 @@ public final class StorageProtos {
 
         public Builder mergeFrom(org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.Chain other) {
           if (other == org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.Chain.getDefaultInstance()) return this;
-          if (other.hasSenderEphemeral()) {
-            setSenderEphemeral(other.getSenderEphemeral());
+          if (other.hasSenderRatchetKey()) {
+            setSenderRatchetKey(other.getSenderRatchetKey());
           }
-          if (other.hasSenderEphemeralPrivate()) {
-            setSenderEphemeralPrivate(other.getSenderEphemeralPrivate());
+          if (other.hasSenderRatchetKeyPrivate()) {
+            setSenderRatchetKeyPrivate(other.getSenderRatchetKeyPrivate());
           }
           if (other.hasChainKey()) {
             mergeChainKey(other.getChainKey());
@@ -2009,74 +2009,74 @@ public final class StorageProtos {
         }
         private int bitField0_;
 
-        // optional bytes senderEphemeral = 1;
-        private com.google.protobuf.ByteString senderEphemeral_ = com.google.protobuf.ByteString.EMPTY;
+        // optional bytes senderRatchetKey = 1;
+        private com.google.protobuf.ByteString senderRatchetKey_ = com.google.protobuf.ByteString.EMPTY;
         /**
-         * <code>optional bytes senderEphemeral = 1;</code>
+         * <code>optional bytes senderRatchetKey = 1;</code>
          */
-        public boolean hasSenderEphemeral() {
+        public boolean hasSenderRatchetKey() {
           return ((bitField0_ & 0x00000001) == 0x00000001);
         }
         /**
-         * <code>optional bytes senderEphemeral = 1;</code>
+         * <code>optional bytes senderRatchetKey = 1;</code>
          */
-        public com.google.protobuf.ByteString getSenderEphemeral() {
-          return senderEphemeral_;
+        public com.google.protobuf.ByteString getSenderRatchetKey() {
+          return senderRatchetKey_;
         }
         /**
-         * <code>optional bytes senderEphemeral = 1;</code>
+         * <code>optional bytes senderRatchetKey = 1;</code>
          */
-        public Builder setSenderEphemeral(com.google.protobuf.ByteString value) {
+        public Builder setSenderRatchetKey(com.google.protobuf.ByteString value) {
           if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-          senderEphemeral_ = value;
+          senderRatchetKey_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional bytes senderEphemeral = 1;</code>
+         * <code>optional bytes senderRatchetKey = 1;</code>
          */
-        public Builder clearSenderEphemeral() {
+        public Builder clearSenderRatchetKey() {
           bitField0_ = (bitField0_ & ~0x00000001);
-          senderEphemeral_ = getDefaultInstance().getSenderEphemeral();
+          senderRatchetKey_ = getDefaultInstance().getSenderRatchetKey();
           onChanged();
           return this;
         }
 
-        // optional bytes senderEphemeralPrivate = 2;
-        private com.google.protobuf.ByteString senderEphemeralPrivate_ = com.google.protobuf.ByteString.EMPTY;
+        // optional bytes senderRatchetKeyPrivate = 2;
+        private com.google.protobuf.ByteString senderRatchetKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
         /**
-         * <code>optional bytes senderEphemeralPrivate = 2;</code>
+         * <code>optional bytes senderRatchetKeyPrivate = 2;</code>
          */
-        public boolean hasSenderEphemeralPrivate() {
+        public boolean hasSenderRatchetKeyPrivate() {
           return ((bitField0_ & 0x00000002) == 0x00000002);
         }
         /**
-         * <code>optional bytes senderEphemeralPrivate = 2;</code>
+         * <code>optional bytes senderRatchetKeyPrivate = 2;</code>
          */
-        public com.google.protobuf.ByteString getSenderEphemeralPrivate() {
-          return senderEphemeralPrivate_;
+        public com.google.protobuf.ByteString getSenderRatchetKeyPrivate() {
+          return senderRatchetKeyPrivate_;
         }
         /**
-         * <code>optional bytes senderEphemeralPrivate = 2;</code>
+         * <code>optional bytes senderRatchetKeyPrivate = 2;</code>
          */
-        public Builder setSenderEphemeralPrivate(com.google.protobuf.ByteString value) {
+        public Builder setSenderRatchetKeyPrivate(com.google.protobuf.ByteString value) {
           if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000002;
-          senderEphemeralPrivate_ = value;
+          senderRatchetKeyPrivate_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional bytes senderEphemeralPrivate = 2;</code>
+         * <code>optional bytes senderRatchetKeyPrivate = 2;</code>
          */
-        public Builder clearSenderEphemeralPrivate() {
+        public Builder clearSenderRatchetKeyPrivate() {
           bitField0_ = (bitField0_ & ~0x00000002);
-          senderEphemeralPrivate_ = getDefaultInstance().getSenderEphemeralPrivate();
+          senderRatchetKeyPrivate_ = getDefaultInstance().getSenderRatchetKeyPrivate();
           onChanged();
           return this;
         }
@@ -2482,25 +2482,25 @@ public final class StorageProtos {
        */
       com.google.protobuf.ByteString getLocalBaseKeyPrivate();
 
-      // optional bytes localEphemeralKey = 4;
+      // optional bytes localRatchetKey = 4;
       /**
-       * <code>optional bytes localEphemeralKey = 4;</code>
+       * <code>optional bytes localRatchetKey = 4;</code>
        */
-      boolean hasLocalEphemeralKey();
+      boolean hasLocalRatchetKey();
       /**
-       * <code>optional bytes localEphemeralKey = 4;</code>
+       * <code>optional bytes localRatchetKey = 4;</code>
        */
-      com.google.protobuf.ByteString getLocalEphemeralKey();
+      com.google.protobuf.ByteString getLocalRatchetKey();
 
-      // optional bytes localEphemeralKeyPrivate = 5;
+      // optional bytes localRatchetKeyPrivate = 5;
       /**
-       * <code>optional bytes localEphemeralKeyPrivate = 5;</code>
+       * <code>optional bytes localRatchetKeyPrivate = 5;</code>
        */
-      boolean hasLocalEphemeralKeyPrivate();
+      boolean hasLocalRatchetKeyPrivate();
       /**
-       * <code>optional bytes localEphemeralKeyPrivate = 5;</code>
+       * <code>optional bytes localRatchetKeyPrivate = 5;</code>
        */
-      com.google.protobuf.ByteString getLocalEphemeralKeyPrivate();
+      com.google.protobuf.ByteString getLocalRatchetKeyPrivate();
 
       // optional bytes localIdentityKey = 7;
       /**
@@ -2590,12 +2590,12 @@ public final class StorageProtos {
               }
               case 34: {
                 bitField0_ |= 0x00000008;
-                localEphemeralKey_ = input.readBytes();
+                localRatchetKey_ = input.readBytes();
                 break;
               }
               case 42: {
                 bitField0_ |= 0x00000010;
-                localEphemeralKeyPrivate_ = input.readBytes();
+                localRatchetKeyPrivate_ = input.readBytes();
                 break;
               }
               case 58: {
@@ -2696,36 +2696,36 @@ public final class StorageProtos {
         return localBaseKeyPrivate_;
       }
 
-      // optional bytes localEphemeralKey = 4;
-      public static final int LOCALEPHEMERALKEY_FIELD_NUMBER = 4;
-      private com.google.protobuf.ByteString localEphemeralKey_;
+      // optional bytes localRatchetKey = 4;
+      public static final int LOCALRATCHETKEY_FIELD_NUMBER = 4;
+      private com.google.protobuf.ByteString localRatchetKey_;
       /**
-       * <code>optional bytes localEphemeralKey = 4;</code>
+       * <code>optional bytes localRatchetKey = 4;</code>
        */
-      public boolean hasLocalEphemeralKey() {
+      public boolean hasLocalRatchetKey() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional bytes localEphemeralKey = 4;</code>
+       * <code>optional bytes localRatchetKey = 4;</code>
        */
-      public com.google.protobuf.ByteString getLocalEphemeralKey() {
-        return localEphemeralKey_;
+      public com.google.protobuf.ByteString getLocalRatchetKey() {
+        return localRatchetKey_;
       }
 
-      // optional bytes localEphemeralKeyPrivate = 5;
-      public static final int LOCALEPHEMERALKEYPRIVATE_FIELD_NUMBER = 5;
-      private com.google.protobuf.ByteString localEphemeralKeyPrivate_;
+      // optional bytes localRatchetKeyPrivate = 5;
+      public static final int LOCALRATCHETKEYPRIVATE_FIELD_NUMBER = 5;
+      private com.google.protobuf.ByteString localRatchetKeyPrivate_;
       /**
-       * <code>optional bytes localEphemeralKeyPrivate = 5;</code>
+       * <code>optional bytes localRatchetKeyPrivate = 5;</code>
        */
-      public boolean hasLocalEphemeralKeyPrivate() {
+      public boolean hasLocalRatchetKeyPrivate() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional bytes localEphemeralKeyPrivate = 5;</code>
+       * <code>optional bytes localRatchetKeyPrivate = 5;</code>
        */
-      public com.google.protobuf.ByteString getLocalEphemeralKeyPrivate() {
-        return localEphemeralKeyPrivate_;
+      public com.google.protobuf.ByteString getLocalRatchetKeyPrivate() {
+        return localRatchetKeyPrivate_;
       }
 
       // optional bytes localIdentityKey = 7;
@@ -2764,8 +2764,8 @@ public final class StorageProtos {
         sequence_ = 0;
         localBaseKey_ = com.google.protobuf.ByteString.EMPTY;
         localBaseKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
-        localEphemeralKey_ = com.google.protobuf.ByteString.EMPTY;
-        localEphemeralKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
+        localRatchetKey_ = com.google.protobuf.ByteString.EMPTY;
+        localRatchetKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
         localIdentityKey_ = com.google.protobuf.ByteString.EMPTY;
         localIdentityKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
       }
@@ -2791,10 +2791,10 @@ public final class StorageProtos {
           output.writeBytes(3, localBaseKeyPrivate_);
         }
         if (((bitField0_ & 0x00000008) == 0x00000008)) {
-          output.writeBytes(4, localEphemeralKey_);
+          output.writeBytes(4, localRatchetKey_);
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
-          output.writeBytes(5, localEphemeralKeyPrivate_);
+          output.writeBytes(5, localRatchetKeyPrivate_);
         }
         if (((bitField0_ & 0x00000020) == 0x00000020)) {
           output.writeBytes(7, localIdentityKey_);
@@ -2825,11 +2825,11 @@ public final class StorageProtos {
         }
         if (((bitField0_ & 0x00000008) == 0x00000008)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(4, localEphemeralKey_);
+            .computeBytesSize(4, localRatchetKey_);
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(5, localEphemeralKeyPrivate_);
+            .computeBytesSize(5, localRatchetKeyPrivate_);
         }
         if (((bitField0_ & 0x00000020) == 0x00000020)) {
           size += com.google.protobuf.CodedOutputStream
@@ -2961,9 +2961,9 @@ public final class StorageProtos {
           bitField0_ = (bitField0_ & ~0x00000002);
           localBaseKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
           bitField0_ = (bitField0_ & ~0x00000004);
-          localEphemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+          localRatchetKey_ = com.google.protobuf.ByteString.EMPTY;
           bitField0_ = (bitField0_ & ~0x00000008);
-          localEphemeralKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
+          localRatchetKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
           bitField0_ = (bitField0_ & ~0x00000010);
           localIdentityKey_ = com.google.protobuf.ByteString.EMPTY;
           bitField0_ = (bitField0_ & ~0x00000020);
@@ -3012,11 +3012,11 @@ public final class StorageProtos {
           if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
             to_bitField0_ |= 0x00000008;
           }
-          result.localEphemeralKey_ = localEphemeralKey_;
+          result.localRatchetKey_ = localRatchetKey_;
           if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
             to_bitField0_ |= 0x00000010;
           }
-          result.localEphemeralKeyPrivate_ = localEphemeralKeyPrivate_;
+          result.localRatchetKeyPrivate_ = localRatchetKeyPrivate_;
           if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
             to_bitField0_ |= 0x00000020;
           }
@@ -3050,11 +3050,11 @@ public final class StorageProtos {
           if (other.hasLocalBaseKeyPrivate()) {
             setLocalBaseKeyPrivate(other.getLocalBaseKeyPrivate());
           }
-          if (other.hasLocalEphemeralKey()) {
-            setLocalEphemeralKey(other.getLocalEphemeralKey());
+          if (other.hasLocalRatchetKey()) {
+            setLocalRatchetKey(other.getLocalRatchetKey());
           }
-          if (other.hasLocalEphemeralKeyPrivate()) {
-            setLocalEphemeralKeyPrivate(other.getLocalEphemeralKeyPrivate());
+          if (other.hasLocalRatchetKeyPrivate()) {
+            setLocalRatchetKeyPrivate(other.getLocalRatchetKeyPrivate());
           }
           if (other.hasLocalIdentityKey()) {
             setLocalIdentityKey(other.getLocalIdentityKey());
@@ -3194,74 +3194,74 @@ public final class StorageProtos {
           return this;
         }
 
-        // optional bytes localEphemeralKey = 4;
-        private com.google.protobuf.ByteString localEphemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+        // optional bytes localRatchetKey = 4;
+        private com.google.protobuf.ByteString localRatchetKey_ = com.google.protobuf.ByteString.EMPTY;
         /**
-         * <code>optional bytes localEphemeralKey = 4;</code>
+         * <code>optional bytes localRatchetKey = 4;</code>
          */
-        public boolean hasLocalEphemeralKey() {
+        public boolean hasLocalRatchetKey() {
           return ((bitField0_ & 0x00000008) == 0x00000008);
         }
         /**
-         * <code>optional bytes localEphemeralKey = 4;</code>
+         * <code>optional bytes localRatchetKey = 4;</code>
          */
-        public com.google.protobuf.ByteString getLocalEphemeralKey() {
-          return localEphemeralKey_;
+        public com.google.protobuf.ByteString getLocalRatchetKey() {
+          return localRatchetKey_;
         }
         /**
-         * <code>optional bytes localEphemeralKey = 4;</code>
+         * <code>optional bytes localRatchetKey = 4;</code>
          */
-        public Builder setLocalEphemeralKey(com.google.protobuf.ByteString value) {
+        public Builder setLocalRatchetKey(com.google.protobuf.ByteString value) {
           if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000008;
-          localEphemeralKey_ = value;
+          localRatchetKey_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional bytes localEphemeralKey = 4;</code>
+         * <code>optional bytes localRatchetKey = 4;</code>
          */
-        public Builder clearLocalEphemeralKey() {
+        public Builder clearLocalRatchetKey() {
           bitField0_ = (bitField0_ & ~0x00000008);
-          localEphemeralKey_ = getDefaultInstance().getLocalEphemeralKey();
+          localRatchetKey_ = getDefaultInstance().getLocalRatchetKey();
           onChanged();
           return this;
         }
 
-        // optional bytes localEphemeralKeyPrivate = 5;
-        private com.google.protobuf.ByteString localEphemeralKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
+        // optional bytes localRatchetKeyPrivate = 5;
+        private com.google.protobuf.ByteString localRatchetKeyPrivate_ = com.google.protobuf.ByteString.EMPTY;
         /**
-         * <code>optional bytes localEphemeralKeyPrivate = 5;</code>
+         * <code>optional bytes localRatchetKeyPrivate = 5;</code>
          */
-        public boolean hasLocalEphemeralKeyPrivate() {
+        public boolean hasLocalRatchetKeyPrivate() {
           return ((bitField0_ & 0x00000010) == 0x00000010);
         }
         /**
-         * <code>optional bytes localEphemeralKeyPrivate = 5;</code>
+         * <code>optional bytes localRatchetKeyPrivate = 5;</code>
          */
-        public com.google.protobuf.ByteString getLocalEphemeralKeyPrivate() {
-          return localEphemeralKeyPrivate_;
+        public com.google.protobuf.ByteString getLocalRatchetKeyPrivate() {
+          return localRatchetKeyPrivate_;
         }
         /**
-         * <code>optional bytes localEphemeralKeyPrivate = 5;</code>
+         * <code>optional bytes localRatchetKeyPrivate = 5;</code>
          */
-        public Builder setLocalEphemeralKeyPrivate(com.google.protobuf.ByteString value) {
+        public Builder setLocalRatchetKeyPrivate(com.google.protobuf.ByteString value) {
           if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000010;
-          localEphemeralKeyPrivate_ = value;
+          localRatchetKeyPrivate_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional bytes localEphemeralKeyPrivate = 5;</code>
+         * <code>optional bytes localRatchetKeyPrivate = 5;</code>
          */
-        public Builder clearLocalEphemeralKeyPrivate() {
+        public Builder clearLocalRatchetKeyPrivate() {
           bitField0_ = (bitField0_ & ~0x00000010);
-          localEphemeralKeyPrivate_ = getDefaultInstance().getLocalEphemeralKeyPrivate();
+          localRatchetKeyPrivate_ = getDefaultInstance().getLocalRatchetKeyPrivate();
           onChanged();
           return this;
         }
@@ -8333,7 +8333,7 @@ public final class StorageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\032LocalStorageProtocol.proto\022\ntextsecure" +
-      "\"\337\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
+      "\"\335\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
       "\001 \001(\r\022\033\n\023localIdentityPublic\030\002 \001(\014\022\034\n\024re" +
       "moteIdentityPublic\030\003 \001(\014\022\017\n\007rootKey\030\004 \001(" +
       "\014\022\027\n\017previousCounter\030\005 \001(\r\0227\n\013senderChai" +
@@ -8346,33 +8346,33 @@ public final class StorageProtos {
       "gPreKey\022\034\n\024remoteRegistrationId\030\n \001(\r\022\033\n" +
       "\023localRegistrationId\030\013 \001(\r\022\024\n\014needsRefre" +
       "sh\030\014 \001(\010\022\024\n\014aliceBaseKey\030\r \001(\014\022\024\n\014verifi" +
-      "cation\030\016 \001(\014\032\253\002\n\005Chain\022\027\n\017senderEphemera" +
-      "l\030\001 \001(\014\022\036\n\026senderEphemeralPrivate\030\002 \001(\014\022" +
-      "=\n\010chainKey\030\003 \001(\0132+.textsecure.SessionSt" +
-      "ructure.Chain.ChainKey\022B\n\013messageKeys\030\004 " +
-      "\003(\0132-.textsecure.SessionStructure.Chain." +
-      "MessageKey\032&\n\010ChainKey\022\r\n\005index\030\001 \001(\r\022\013\n",
-      "\003key\030\002 \001(\014\032>\n\nMessageKey\022\r\n\005index\030\001 \001(\r\022" +
-      "\021\n\tcipherKey\030\002 \001(\014\022\016\n\006macKey\030\003 \001(\014\032\321\001\n\022P" +
-      "endingKeyExchange\022\020\n\010sequence\030\001 \001(\r\022\024\n\014l" +
-      "ocalBaseKey\030\002 \001(\014\022\033\n\023localBaseKeyPrivate" +
-      "\030\003 \001(\014\022\031\n\021localEphemeralKey\030\004 \001(\014\022 \n\030loc" +
-      "alEphemeralKeyPrivate\030\005 \001(\014\022\030\n\020localIden" +
-      "tityKey\030\007 \001(\014\022\037\n\027localIdentityKeyPrivate" +
-      "\030\010 \001(\014\032J\n\rPendingPreKey\022\020\n\010preKeyId\030\001 \001(" +
-      "\r\022\026\n\016signedPreKeyId\030\003 \001(\005\022\017\n\007baseKey\030\002 \001" +
-      "(\014\"\177\n\017RecordStructure\0224\n\016currentSession\030",
-      "\001 \001(\0132\034.textsecure.SessionStructure\0226\n\020p" +
-      "reviousSessions\030\002 \003(\0132\034.textsecure.Sessi" +
-      "onStructure\"J\n\025PreKeyRecordStructure\022\n\n\002" +
+      "cation\030\016 \001(\014\032\255\002\n\005Chain\022\030\n\020senderRatchetK" +
+      "ey\030\001 \001(\014\022\037\n\027senderRatchetKeyPrivate\030\002 \001(" +
+      "\014\022=\n\010chainKey\030\003 \001(\0132+.textsecure.Session" +
+      "Structure.Chain.ChainKey\022B\n\013messageKeys\030" +
+      "\004 \003(\0132-.textsecure.SessionStructure.Chai" +
+      "n.MessageKey\032&\n\010ChainKey\022\r\n\005index\030\001 \001(\r\022",
+      "\013\n\003key\030\002 \001(\014\032>\n\nMessageKey\022\r\n\005index\030\001 \001(" +
+      "\r\022\021\n\tcipherKey\030\002 \001(\014\022\016\n\006macKey\030\003 \001(\014\032\315\001\n" +
+      "\022PendingKeyExchange\022\020\n\010sequence\030\001 \001(\r\022\024\n" +
+      "\014localBaseKey\030\002 \001(\014\022\033\n\023localBaseKeyPriva" +
+      "te\030\003 \001(\014\022\027\n\017localRatchetKey\030\004 \001(\014\022\036\n\026loc" +
+      "alRatchetKeyPrivate\030\005 \001(\014\022\030\n\020localIdenti" +
+      "tyKey\030\007 \001(\014\022\037\n\027localIdentityKeyPrivate\030\010" +
+      " \001(\014\032J\n\rPendingPreKey\022\020\n\010preKeyId\030\001 \001(\r\022" +
+      "\026\n\016signedPreKeyId\030\003 \001(\005\022\017\n\007baseKey\030\002 \001(\014" +
+      "\"\177\n\017RecordStructure\0224\n\016currentSession\030\001 ",
+      "\001(\0132\034.textsecure.SessionStructure\0226\n\020pre" +
+      "viousSessions\030\002 \003(\0132\034.textsecure.Session" +
+      "Structure\"J\n\025PreKeyRecordStructure\022\n\n\002id" +
+      "\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivateKey\030" +
+      "\003 \001(\014\"v\n\033SignedPreKeyRecordStructure\022\n\n\002" +
       "id\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivateKe" +
-      "y\030\003 \001(\014\"v\n\033SignedPreKeyRecordStructure\022\n" +
-      "\n\002id\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivate" +
-      "Key\030\003 \001(\014\022\021\n\tsignature\030\004 \001(\014\022\021\n\ttimestam" +
-      "p\030\005 \001(\006\"A\n\030IdentityKeyPairStructure\022\021\n\tp" +
-      "ublicKey\030\001 \001(\014\022\022\n\nprivateKey\030\002 \001(\014B4\n#or" +
-      "g.whispersystems.libaxolotl.stateB\rStora",
-      "geProtos"
+      "y\030\003 \001(\014\022\021\n\tsignature\030\004 \001(\014\022\021\n\ttimestamp\030" +
+      "\005 \001(\006\"A\n\030IdentityKeyPairStructure\022\021\n\tpub" +
+      "licKey\030\001 \001(\014\022\022\n\nprivateKey\030\002 \001(\014B4\n#org." +
+      "whispersystems.libaxolotl.stateB\rStorage",
+      "Protos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -8390,7 +8390,7 @@ public final class StorageProtos {
           internal_static_textsecure_SessionStructure_Chain_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_Chain_descriptor,
-              new java.lang.String[] { "SenderEphemeral", "SenderEphemeralPrivate", "ChainKey", "MessageKeys", });
+              new java.lang.String[] { "SenderRatchetKey", "SenderRatchetKeyPrivate", "ChainKey", "MessageKeys", });
           internal_static_textsecure_SessionStructure_Chain_ChainKey_descriptor =
             internal_static_textsecure_SessionStructure_Chain_descriptor.getNestedTypes().get(0);
           internal_static_textsecure_SessionStructure_Chain_ChainKey_fieldAccessorTable = new
@@ -8408,7 +8408,7 @@ public final class StorageProtos {
           internal_static_textsecure_SessionStructure_PendingKeyExchange_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_PendingKeyExchange_descriptor,
-              new java.lang.String[] { "Sequence", "LocalBaseKey", "LocalBaseKeyPrivate", "LocalEphemeralKey", "LocalEphemeralKeyPrivate", "LocalIdentityKey", "LocalIdentityKeyPrivate", });
+              new java.lang.String[] { "Sequence", "LocalBaseKey", "LocalBaseKeyPrivate", "LocalRatchetKey", "LocalRatchetKeyPrivate", "LocalIdentityKey", "LocalIdentityKeyPrivate", });
           internal_static_textsecure_SessionStructure_PendingPreKey_descriptor =
             internal_static_textsecure_SessionStructure_descriptor.getNestedTypes().get(2);
           internal_static_textsecure_SessionStructure_PendingPreKey_fieldAccessorTable = new

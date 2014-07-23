@@ -98,7 +98,7 @@ public class SessionCipher {
       SessionState  sessionState    = sessionRecord.getSessionState();
       ChainKey      chainKey        = sessionState.getSenderChainKey();
       MessageKeys   messageKeys     = chainKey.getMessageKeys();
-      ECPublicKey   senderEphemeral = sessionState.getSenderEphemeral();
+      ECPublicKey   senderEphemeral = sessionState.getSenderRatchetKey();
       int           previousCounter = sessionState.getPreviousCounter();
       int           sessionVersion  = sessionState.getSessionVersion();
 
@@ -223,7 +223,7 @@ public class SessionCipher {
                                                       sessionState.getSessionVersion()));
     }
 
-    ECPublicKey    theirEphemeral    = ciphertextMessage.getSenderEphemeral();
+    ECPublicKey    theirEphemeral    = ciphertextMessage.getSenderRatchetKey();
     int            counter           = ciphertextMessage.getCounter();
     ChainKey       chainKey          = getOrCreateChainKey(sessionState, theirEphemeral);
     MessageKeys    messageKeys       = getOrCreateMessageKeys(sessionState, theirEphemeral,
@@ -254,7 +254,7 @@ public class SessionCipher {
         return sessionState.getReceiverChainKey(theirEphemeral);
       } else {
         RootKey                 rootKey         = sessionState.getRootKey();
-        ECKeyPair               ourEphemeral    = sessionState.getSenderEphemeralPair();
+        ECKeyPair               ourEphemeral    = sessionState.getSenderRatchetKeyPair();
         Pair<RootKey, ChainKey> receiverChain   = rootKey.createChain(theirEphemeral, ourEphemeral);
         ECKeyPair               ourNewEphemeral = Curve.generateKeyPair(true);
         Pair<RootKey, ChainKey> senderChain     = receiverChain.first().createChain(theirEphemeral, ourNewEphemeral);

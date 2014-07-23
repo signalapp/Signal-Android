@@ -5,8 +5,8 @@ option java_outer_classname = "StorageProtos";
 
 message SessionStructure {
     message Chain {
-        optional bytes senderEphemeral = 1;
-        optional bytes senderEphemeralPrivate = 2;
+        optional bytes senderRatchetKey = 1;
+        optional bytes senderRatchetKeyPrivate = 2;
 
         message ChainKey {
             optional uint32 index = 1;
@@ -28,8 +28,8 @@ message SessionStructure {
         optional uint32 sequence                 = 1;
         optional bytes  localBaseKey             = 2;
         optional bytes  localBaseKeyPrivate      = 3;
-        optional bytes  localEphemeralKey        = 4;
-        optional bytes  localEphemeralKeyPrivate = 5;
+        optional bytes  localRatchetKey          = 4;
+        optional bytes  localRatchetKeyPrivate   = 5;
         optional bytes  localIdentityKey         = 7;
         optional bytes  localIdentityKeyPrivate  = 8;
     }

@@ -16,8 +16,6 @@
  */
 package org.whispersystems.libaxolotl.ratchet;
 
-import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
@@ -37,288 +35,176 @@ public class RatchetingSession {
 
   public static void initializeSession(SessionState sessionState,
                                        int sessionVersion,
-                                       AxolotlParameters parameters)
+                                       SymmetricAxolotlParameters parameters)
       throws InvalidKeyException
   {
-    if (isAlice(parameters)) initializeSessionAsAlice(sessionState, sessionVersion, parameters);
-    else                     initializeSessionAsBob(sessionState, sessionVersion, parameters);
+    if (isAlice(parameters.getOurBaseKey().getPublicKey(), parameters.getTheirBaseKey())) {
+      AliceAxolotlParameters.Builder aliceParameters = AliceAxolotlParameters.newBuilder();
 
-    sessionState.setSessionVersion(sessionVersion);
-  }
+      aliceParameters.setOurBaseKey(parameters.getOurBaseKey())
+                     .setOurIdentityKey(parameters.getOurIdentityKey())
+                     .setTheirRatchetKey(parameters.getTheirRatchetKey())
+                     .setTheirIdentityKey(parameters.getTheirIdentityKey())
+                     .setTheirSignedPreKey(parameters.getTheirBaseKey())
+                     .setTheirOneTimePreKey(Optional.<ECPublicKey>absent());
 
-  private static void initializeSessionAsAlice(SessionState sessionState,
-                                               int sessionVersion,
-                                               AxolotlParameters parameters)
-      throws InvalidKeyException
-  {
-    sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
-    sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
+      RatchetingSession.initializeSession(sessionState, sessionVersion, aliceParameters.create());
+    } else {
+      BobAxolotlParameters.Builder bobParameters = BobAxolotlParameters.newBuilder();
 
-    ECKeyPair sendingKey = Curve.generateKeyPair(true);
-    DHEResult result     = calculate4DHE(true, sessionVersion, parameters);
+      bobParameters.setOurIdentityKey(parameters.getOurIdentityKey())
+                   .setOurRatchetKey(parameters.getOurRatchetKey())
+                   .setOurSignedPreKey(parameters.getOurBaseKey())
+                   .setOurOneTimePreKey(Optional.<ECKeyPair>absent())
+                   .setTheirBaseKey(parameters.getTheirBaseKey())
+                   .setTheirIdentityKey(parameters.getTheirIdentityKey());
 
-    Pair<RootKey, ChainKey> sendingChain = result.getRootKey().createChain(parameters.getTheirEphemeralKey(), sendingKey);
-
-    sessionState.addReceiverChain(parameters.getTheirEphemeralKey(), result.getChainKey());
-    sessionState.setSenderChain(sendingKey, sendingChain.second());
-    sessionState.setRootKey(sendingChain.first());
-
-    if (sessionVersion >= 3) {
-      sessionState.setVerification(calculateVerificationTag(true, result.getVerifyKey(), parameters));
+      RatchetingSession.initializeSession(sessionState, sessionVersion, bobParameters.create());
     }
   }
 
-  private static void initializeSessionAsBob(SessionState sessionState,
-                                             int sessionVersion,
-                                             AxolotlParameters parameters)
-      throws InvalidKeyException
-  {
-    sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
-    sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
-
-    DHEResult result = calculate4DHE(false, sessionVersion, parameters);
-
-    sessionState.setSenderChain(parameters.getOurEphemeralKey(), result.getChainKey());
-    sessionState.setRootKey(result.getRootKey());
-
-    if (sessionVersion >= 3) {
-      sessionState.setVerification(calculateVerificationTag(false, result.getVerifyKey(), parameters));
-    }
-  }
-
-  private static DHEResult calculate4DHE(boolean isAlice, int sessionVersion, AxolotlParameters parameters)
+  public static void initializeSession(SessionState sessionState,
+                                       int sessionVersion,
+                                       AliceAxolotlParameters parameters)
       throws InvalidKeyException
   {
     try {
-      HKDF                  kdf           = HKDF.createFor(sessionVersion);
-      byte[]                discontinuity = new byte[32];
-      ByteArrayOutputStream secrets       = new ByteArrayOutputStream();
+      sessionState.setSessionVersion(sessionVersion);
+      sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
+      sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
+
+      ECKeyPair             sendingRatchetKey = Curve.generateKeyPair(true);
+      ByteArrayOutputStream secrets           = new ByteArrayOutputStream();
 
       if (sessionVersion >= 3) {
-        Arrays.fill(discontinuity, (byte) 0xFF);
-        secrets.write(discontinuity);
+        secrets.write(getDiscontinuityBytes());
       }
 
-      if (isAlice) {
-        secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
-                                               parameters.getOurIdentityKey().getPrivateKey()));
-        secrets.write(Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
-                                               parameters.getOurBaseKey().getPrivateKey()));
-      } else {
-        secrets.write(Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
-                                               parameters.getOurBaseKey().getPrivateKey()));
-        secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
-                                               parameters.getOurIdentityKey().getPrivateKey()));
-      }
-
-      secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
+      secrets.write(Curve.calculateAgreement(parameters.getTheirSignedPreKey(),
+                                             parameters.getOurIdentityKey().getPrivateKey()));
+      secrets.write(Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
+                                             parameters.getOurBaseKey().getPrivateKey()));
+      secrets.write(Curve.calculateAgreement(parameters.getTheirSignedPreKey(),
                                              parameters.getOurBaseKey().getPrivateKey()));
 
-      if (sessionVersion >= 3 && parameters.getTheirPreKey().isPresent() && parameters.getOurPreKey().isPresent()) {
-        secrets.write(Curve.calculateAgreement(parameters.getTheirPreKey().get(), parameters.getOurPreKey().get().getPrivateKey()));
+      if (sessionVersion >= 3 & parameters.getTheirOneTimePreKey().isPresent()) {
+        secrets.write(Curve.calculateAgreement(parameters.getTheirOneTimePreKey().get(),
+                                               parameters.getOurBaseKey().getPrivateKey()));
       }
 
-      byte[]   derivedSecretBytes = kdf.deriveSecrets(secrets.toByteArray(), "WhisperText".getBytes(), 96);
-      byte[][] derivedSecrets     = ByteUtil.split(derivedSecretBytes, 32, 32, 32);
+      DerivedKeys             derivedKeys  = calculateDerivedKeys(sessionVersion, secrets.toByteArray());
+      Pair<RootKey, ChainKey> sendingChain = derivedKeys.getRootKey().createChain(parameters.getTheirRatchetKey(), sendingRatchetKey);
 
-      return new DHEResult(new RootKey(kdf, derivedSecrets[0]),
-                           new ChainKey(kdf, derivedSecrets[1], 0),
-                           new VerifyKey(derivedSecrets[2]));
+      sessionState.addReceiverChain(parameters.getTheirRatchetKey(), derivedKeys.getChainKey());
+      sessionState.setSenderChain(sendingRatchetKey, sendingChain.second());
+      sessionState.setRootKey(sendingChain.first());
 
-    } catch (IOException | ParseException e) {
+      if (sessionVersion >= 3) {
+        sessionState.setVerification(calculateVerificationTag(derivedKeys.getVerifyKey(), parameters));
+      }
+
+    } catch (IOException e) {
       throw new AssertionError(e);
     }
   }
 
-  private static byte[] calculateVerificationTag(boolean isAlice, VerifyKey verifyKey,
-                                                 AxolotlParameters parameters)
+  public static void initializeSession(SessionState sessionState,
+                                       int sessionVersion,
+                                       BobAxolotlParameters parameters)
+      throws InvalidKeyException
   {
-    if (isAlice) {
-      return verifyKey.generateVerification(parameters.getOurBaseKey().getPublicKey(),
-                                            getPublicKey(parameters.getOurPreKey()),
-                                            parameters.getOurIdentityKey().getPublicKey().getPublicKey(),
-                                            parameters.getTheirBaseKey(),
-                                            parameters.getTheirPreKey(),
-                                            parameters.getTheirIdentityKey().getPublicKey());
+
+    try {
+      sessionState.setSessionVersion(sessionVersion);
+      sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
+      sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
+
+      ByteArrayOutputStream secrets = new ByteArrayOutputStream();
+
+      if (sessionVersion >= 3) {
+        secrets.write(getDiscontinuityBytes());
+      }
+
+      secrets.write(Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
+                                             parameters.getOurSignedPreKey().getPrivateKey()));
+      secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
+                                             parameters.getOurIdentityKey().getPrivateKey()));
+      secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
+                                             parameters.getOurSignedPreKey().getPrivateKey()));
+
+      if (sessionVersion >= 3 && parameters.getOurOneTimePreKey().isPresent()) {
+        secrets.write(Curve.calculateAgreement(parameters.getTheirBaseKey(),
+                                               parameters.getOurOneTimePreKey().get().getPrivateKey()));
+      }
+
+      DerivedKeys derivedKeys = calculateDerivedKeys(sessionVersion, secrets.toByteArray());
+
+      sessionState.setSenderChain(parameters.getOurRatchetKey(), derivedKeys.getChainKey());
+      sessionState.setRootKey(derivedKeys.getRootKey());
+
+      if (sessionVersion >= 3) {
+        sessionState.setVerification(calculateVerificationTag(derivedKeys.getVerifyKey(), parameters));
+      }
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  private static byte[] calculateVerificationTag(VerifyKey verifyKey, AliceAxolotlParameters parameters) {
+    return verifyKey.generateVerification(parameters.getOurIdentityKey().getPublicKey(),
+                                          parameters.getTheirIdentityKey(),
+                                          parameters.getOurBaseKey().getPublicKey(),
+                                          parameters.getTheirSignedPreKey(),
+                                          parameters.getTheirOneTimePreKey());
+  }
+
+  private static byte[] calculateVerificationTag(VerifyKey verifyKey, BobAxolotlParameters parameters) {
+    Optional<ECPublicKey> ourOneTimePreKey;
+
+    if (parameters.getOurOneTimePreKey().isPresent()) {
+      ourOneTimePreKey = Optional.of(parameters.getOurOneTimePreKey().get().getPublicKey());
     } else {
-      return verifyKey.generateVerification(parameters.getTheirBaseKey(),
-                                            parameters.getTheirPreKey(),
-                                            parameters.getTheirIdentityKey().getPublicKey(),
-                                            parameters.getOurBaseKey().getPublicKey(),
-                                            getPublicKey(parameters.getOurPreKey()),
-                                            parameters.getOurIdentityKey().getPublicKey().getPublicKey());
+      ourOneTimePreKey = Optional.absent();
+    }
+
+    return verifyKey.generateVerification(parameters.getTheirIdentityKey(),
+                                          parameters.getOurIdentityKey().getPublicKey(),
+                                          parameters.getTheirBaseKey(),
+                                          parameters.getOurSignedPreKey().getPublicKey(),
+                                          ourOneTimePreKey);
+  }
+
+  private static byte[] getDiscontinuityBytes() {
+    byte[] discontinuity = new byte[32];
+    Arrays.fill(discontinuity, (byte) 0xFF);
+    return discontinuity;
+  }
+
+  private static DerivedKeys calculateDerivedKeys(int sessionVersion, byte[] masterSecret) {
+    try {
+      HKDF     kdf                = HKDF.createFor(sessionVersion);
+      byte[]   derivedSecretBytes = kdf.deriveSecrets(masterSecret, "WhisperText".getBytes(), 96);
+      byte[][] derivedSecrets     = ByteUtil.split(derivedSecretBytes, 32, 32, 32);
+
+      return new DerivedKeys(new RootKey(kdf, derivedSecrets[0]),
+                             new ChainKey(kdf, derivedSecrets[1], 0),
+                             new VerifyKey(derivedSecrets[2]));
+    } catch (ParseException e) {
+      throw new AssertionError(e);
     }
   }
 
-  private static boolean isAlice(AxolotlParameters parameters)
-  {
-    if (parameters.getOurEphemeralKey().equals(parameters.getOurBaseKey())) {
-      return false;
-    }
-
-    if (parameters.getTheirEphemeralKey().equals(parameters.getTheirBaseKey())) {
-      return true;
-    }
-
-    return isLowEnd(parameters.getOurBaseKey().getPublicKey(), parameters.getTheirBaseKey());
-  }
-
-  private static boolean isLowEnd(ECPublicKey ourKey, ECPublicKey theirKey) {
+  private static boolean isAlice(ECPublicKey ourKey, ECPublicKey theirKey) {
     return ourKey.compareTo(theirKey) < 0;
   }
 
-  private static Optional<ECPublicKey> getPublicKey(Optional<ECKeyPair> keyPair) {
-    if (keyPair.isPresent()) return Optional.of(keyPair.get().getPublicKey());
-    else                     return Optional.absent();
-  }
 
-  public static class AxolotlParameters {
-    private final ECKeyPair             ourBaseKey;
-    private final ECKeyPair             ourEphemeralKey;
-    private final Optional<ECKeyPair>   ourPreKey;
-    private final IdentityKeyPair       ourIdentityKey;
-
-    private final ECPublicKey           theirBaseKey;
-    private final ECPublicKey           theirEphemeralKey;
-    private final Optional<ECPublicKey> theirPreKey;
-    private final IdentityKey           theirIdentityKey;
-
-    public AxolotlParameters(ECKeyPair ourBaseKey, ECKeyPair ourEphemeralKey,
-                             Optional<ECKeyPair> ourPreKey, IdentityKeyPair ourIdentityKey,
-                             ECPublicKey theirBaseKey, ECPublicKey theirEphemeralKey,
-                             Optional<ECPublicKey> theirPreKey, IdentityKey theirIdentityKey)
-    {
-      this.ourBaseKey        = ourBaseKey;
-      this.ourEphemeralKey   = ourEphemeralKey;
-      this.ourPreKey         = ourPreKey;
-      this.ourIdentityKey    = ourIdentityKey;
-      this.theirBaseKey      = theirBaseKey;
-      this.theirEphemeralKey = theirEphemeralKey;
-      this.theirPreKey       = theirPreKey;
-      this.theirIdentityKey  = theirIdentityKey;
-    }
-
-    public ECKeyPair getOurBaseKey() {
-      return ourBaseKey;
-    }
-
-    public ECKeyPair getOurEphemeralKey() {
-      return ourEphemeralKey;
-    }
-
-    public Optional<ECKeyPair> getOurPreKey() {
-      return ourPreKey;
-    }
-
-    public IdentityKeyPair getOurIdentityKey() {
-      return ourIdentityKey;
-    }
-
-    public ECPublicKey getTheirBaseKey() {
-      return theirBaseKey;
-    }
-
-    public ECPublicKey getTheirEphemeralKey() {
-      return theirEphemeralKey;
-    }
-
-    public Optional<ECPublicKey> getTheirPreKey() {
-      return theirPreKey;
-    }
-
-    public IdentityKey getTheirIdentityKey() {
-      return theirIdentityKey;
-    }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public static class Builder {
-      private ECKeyPair             ourBaseKey;
-      private ECKeyPair             ourEphemeralKey;
-      private Optional<ECKeyPair>   ourPreKey;
-      private IdentityKeyPair       ourIdentityKey;
-      private ECPublicKey           theirBaseKey;
-      private ECPublicKey           theirEphemeralKey;
-      private Optional<ECPublicKey> theirPreKey;
-      private IdentityKey           theirIdentityKey;
-
-      public Builder setOurBaseKey(ECKeyPair ourBaseKey) {
-        this.ourBaseKey = ourBaseKey;
-        return this;
-      }
-
-      public ECKeyPair getOurBaseKey() {
-        return ourBaseKey;
-      }
-
-      public Builder setOurEphemeralKey(ECKeyPair ourEphemeralKey) {
-        this.ourEphemeralKey = ourEphemeralKey;
-        return this;
-      }
-
-      public ECKeyPair getOurEphemeralKey() {
-        return ourEphemeralKey;
-      }
-
-      public Builder setOurPreKey(Optional<ECKeyPair> ourPreKey) {
-        this.ourPreKey = ourPreKey;
-        return this;
-      }
-
-      public Builder setOurIdentityKey(IdentityKeyPair ourIdentityKey) {
-        this.ourIdentityKey = ourIdentityKey;
-        return this;
-      }
-
-      public IdentityKeyPair getOurIdentityKey() {
-        return ourIdentityKey;
-      }
-
-      public Builder setTheirBaseKey(ECPublicKey theirBaseKey) {
-        this.theirBaseKey = theirBaseKey;
-        return this;
-      }
-
-      public ECPublicKey getTheirBaseKey() {
-        return theirBaseKey;
-      }
-
-      public Builder setTheirEphemeralKey(ECPublicKey theirEphemeralKey) {
-        this.theirEphemeralKey = theirEphemeralKey;
-        return this;
-      }
-
-      public Builder setTheirPreKey(Optional<ECPublicKey> theirPreKey) {
-        this.theirPreKey = theirPreKey;
-        return this;
-      }
-
-      public Builder setTheirIdentityKey(IdentityKey theirIdentityKey) {
-        this.theirIdentityKey = theirIdentityKey;
-        return this;
-      }
-
-      public AxolotlParameters create() {
-        if (ourBaseKey == null || ourEphemeralKey == null || ourPreKey == null || ourIdentityKey == null ||
-            theirBaseKey == null || theirEphemeralKey == null || theirPreKey == null || theirIdentityKey == null)
-        {
-          throw new IllegalArgumentException("All parameters not specified!");
-        }
-
-        return new AxolotlParameters(ourBaseKey, ourEphemeralKey, ourPreKey, ourIdentityKey,
-                                     theirBaseKey, theirEphemeralKey, theirPreKey, theirIdentityKey);
-      }
-    }
-  }
-
-  private static class DHEResult {
+  private static class DerivedKeys {
     private final RootKey   rootKey;
     private final ChainKey  chainKey;
     private final VerifyKey verifyKey;
 
-    private DHEResult(RootKey rootKey, ChainKey chainKey, VerifyKey verifyKey) {
+    private DerivedKeys(RootKey rootKey, ChainKey chainKey, VerifyKey verifyKey) {
       this.rootKey   = rootKey;
       this.chainKey  = chainKey;
       this.verifyKey = verifyKey;
@@ -336,5 +222,4 @@ public class RatchetingSession {
       return verifyKey;
     }
   }
-
 }

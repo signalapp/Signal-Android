@@ -11,15 +11,15 @@ public final class WhisperProtos {
   public interface WhisperMessageOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // optional bytes ephemeralKey = 1;
+    // optional bytes ratchetKey = 1;
     /**
-     * <code>optional bytes ephemeralKey = 1;</code>
+     * <code>optional bytes ratchetKey = 1;</code>
      */
-    boolean hasEphemeralKey();
+    boolean hasRatchetKey();
     /**
-     * <code>optional bytes ephemeralKey = 1;</code>
+     * <code>optional bytes ratchetKey = 1;</code>
      */
-    com.google.protobuf.ByteString getEphemeralKey();
+    com.google.protobuf.ByteString getRatchetKey();
 
     // optional uint32 counter = 2;
     /**
@@ -104,7 +104,7 @@ public final class WhisperProtos {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              ephemeralKey_ = input.readBytes();
+              ratchetKey_ = input.readBytes();
               break;
             }
             case 16: {
@@ -162,20 +162,20 @@ public final class WhisperProtos {
     }
 
     private int bitField0_;
-    // optional bytes ephemeralKey = 1;
-    public static final int EPHEMERALKEY_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString ephemeralKey_;
+    // optional bytes ratchetKey = 1;
+    public static final int RATCHETKEY_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString ratchetKey_;
     /**
-     * <code>optional bytes ephemeralKey = 1;</code>
+     * <code>optional bytes ratchetKey = 1;</code>
      */
-    public boolean hasEphemeralKey() {
+    public boolean hasRatchetKey() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional bytes ephemeralKey = 1;</code>
+     * <code>optional bytes ratchetKey = 1;</code>
      */
-    public com.google.protobuf.ByteString getEphemeralKey() {
-      return ephemeralKey_;
+    public com.google.protobuf.ByteString getRatchetKey() {
+      return ratchetKey_;
     }
 
     // optional uint32 counter = 2;
@@ -227,7 +227,7 @@ public final class WhisperProtos {
     }
 
     private void initFields() {
-      ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+      ratchetKey_ = com.google.protobuf.ByteString.EMPTY;
       counter_ = 0;
       previousCounter_ = 0;
       ciphertext_ = com.google.protobuf.ByteString.EMPTY;
@@ -245,7 +245,7 @@ public final class WhisperProtos {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, ephemeralKey_);
+        output.writeBytes(1, ratchetKey_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeUInt32(2, counter_);
@@ -267,7 +267,7 @@ public final class WhisperProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, ephemeralKey_);
+          .computeBytesSize(1, ratchetKey_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -397,7 +397,7 @@ public final class WhisperProtos {
 
       public Builder clear() {
         super.clear();
-        ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+        ratchetKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000001);
         counter_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -436,7 +436,7 @@ public final class WhisperProtos {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.ephemeralKey_ = ephemeralKey_;
+        result.ratchetKey_ = ratchetKey_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -465,8 +465,8 @@ public final class WhisperProtos {
 
       public Builder mergeFrom(org.whispersystems.libaxolotl.protocol.WhisperProtos.WhisperMessage other) {
         if (other == org.whispersystems.libaxolotl.protocol.WhisperProtos.WhisperMessage.getDefaultInstance()) return this;
-        if (other.hasEphemeralKey()) {
-          setEphemeralKey(other.getEphemeralKey());
+        if (other.hasRatchetKey()) {
+          setRatchetKey(other.getRatchetKey());
         }
         if (other.hasCounter()) {
           setCounter(other.getCounter());
@@ -504,38 +504,38 @@ public final class WhisperProtos {
       }
       private int bitField0_;
 
-      // optional bytes ephemeralKey = 1;
-      private com.google.protobuf.ByteString ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+      // optional bytes ratchetKey = 1;
+      private com.google.protobuf.ByteString ratchetKey_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes ephemeralKey = 1;</code>
+       * <code>optional bytes ratchetKey = 1;</code>
        */
-      public boolean hasEphemeralKey() {
+      public boolean hasRatchetKey() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional bytes ephemeralKey = 1;</code>
+       * <code>optional bytes ratchetKey = 1;</code>
        */
-      public com.google.protobuf.ByteString getEphemeralKey() {
-        return ephemeralKey_;
+      public com.google.protobuf.ByteString getRatchetKey() {
+        return ratchetKey_;
       }
       /**
-       * <code>optional bytes ephemeralKey = 1;</code>
+       * <code>optional bytes ratchetKey = 1;</code>
        */
-      public Builder setEphemeralKey(com.google.protobuf.ByteString value) {
+      public Builder setRatchetKey(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        ephemeralKey_ = value;
+        ratchetKey_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bytes ephemeralKey = 1;</code>
+       * <code>optional bytes ratchetKey = 1;</code>
        */
-      public Builder clearEphemeralKey() {
+      public Builder clearRatchetKey() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        ephemeralKey_ = getDefaultInstance().getEphemeralKey();
+        ratchetKey_ = getDefaultInstance().getRatchetKey();
         onChanged();
         return this;
       }
@@ -1602,15 +1602,15 @@ public final class WhisperProtos {
      */
     com.google.protobuf.ByteString getBaseKey();
 
-    // optional bytes ephemeralKey = 3;
+    // optional bytes ratchetKey = 3;
     /**
-     * <code>optional bytes ephemeralKey = 3;</code>
+     * <code>optional bytes ratchetKey = 3;</code>
      */
-    boolean hasEphemeralKey();
+    boolean hasRatchetKey();
     /**
-     * <code>optional bytes ephemeralKey = 3;</code>
+     * <code>optional bytes ratchetKey = 3;</code>
      */
-    com.google.protobuf.ByteString getEphemeralKey();
+    com.google.protobuf.ByteString getRatchetKey();
 
     // optional bytes identityKey = 4;
     /**
@@ -1625,22 +1625,20 @@ public final class WhisperProtos {
     // optional bytes baseKeySignature = 5;
     /**
      * <code>optional bytes baseKeySignature = 5;</code>
+     *
+     * <pre>
+     *  optional bytes  verification     = 6;
+     * </pre>
      */
     boolean hasBaseKeySignature();
     /**
      * <code>optional bytes baseKeySignature = 5;</code>
+     *
+     * <pre>
+     *  optional bytes  verification     = 6;
+     * </pre>
      */
     com.google.protobuf.ByteString getBaseKeySignature();
-
-    // optional bytes verification = 6;
-    /**
-     * <code>optional bytes verification = 6;</code>
-     */
-    boolean hasVerification();
-    /**
-     * <code>optional bytes verification = 6;</code>
-     */
-    com.google.protobuf.ByteString getVerification();
   }
   /**
    * Protobuf type {@code textsecure.KeyExchangeMessage}
@@ -1705,7 +1703,7 @@ public final class WhisperProtos {
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              ephemeralKey_ = input.readBytes();
+              ratchetKey_ = input.readBytes();
               break;
             }
             case 34: {
@@ -1716,11 +1714,6 @@ public final class WhisperProtos {
             case 42: {
               bitField0_ |= 0x00000010;
               baseKeySignature_ = input.readBytes();
-              break;
-            }
-            case 50: {
-              bitField0_ |= 0x00000020;
-              verification_ = input.readBytes();
               break;
             }
           }
@@ -1795,20 +1788,20 @@ public final class WhisperProtos {
       return baseKey_;
     }
 
-    // optional bytes ephemeralKey = 3;
-    public static final int EPHEMERALKEY_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString ephemeralKey_;
+    // optional bytes ratchetKey = 3;
+    public static final int RATCHETKEY_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString ratchetKey_;
     /**
-     * <code>optional bytes ephemeralKey = 3;</code>
+     * <code>optional bytes ratchetKey = 3;</code>
      */
-    public boolean hasEphemeralKey() {
+    public boolean hasRatchetKey() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional bytes ephemeralKey = 3;</code>
+     * <code>optional bytes ratchetKey = 3;</code>
      */
-    public com.google.protobuf.ByteString getEphemeralKey() {
-      return ephemeralKey_;
+    public com.google.protobuf.ByteString getRatchetKey() {
+      return ratchetKey_;
     }
 
     // optional bytes identityKey = 4;
@@ -1832,40 +1825,31 @@ public final class WhisperProtos {
     private com.google.protobuf.ByteString baseKeySignature_;
     /**
      * <code>optional bytes baseKeySignature = 5;</code>
+     *
+     * <pre>
+     *  optional bytes  verification     = 6;
+     * </pre>
      */
     public boolean hasBaseKeySignature() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
      * <code>optional bytes baseKeySignature = 5;</code>
+     *
+     * <pre>
+     *  optional bytes  verification     = 6;
+     * </pre>
      */
     public com.google.protobuf.ByteString getBaseKeySignature() {
       return baseKeySignature_;
     }
 
-    // optional bytes verification = 6;
-    public static final int VERIFICATION_FIELD_NUMBER = 6;
-    private com.google.protobuf.ByteString verification_;
-    /**
-     * <code>optional bytes verification = 6;</code>
-     */
-    public boolean hasVerification() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional bytes verification = 6;</code>
-     */
-    public com.google.protobuf.ByteString getVerification() {
-      return verification_;
-    }
-
     private void initFields() {
       id_ = 0;
       baseKey_ = com.google.protobuf.ByteString.EMPTY;
-      ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+      ratchetKey_ = com.google.protobuf.ByteString.EMPTY;
       identityKey_ = com.google.protobuf.ByteString.EMPTY;
       baseKeySignature_ = com.google.protobuf.ByteString.EMPTY;
-      verification_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1886,16 +1870,13 @@ public final class WhisperProtos {
         output.writeBytes(2, baseKey_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, ephemeralKey_);
+        output.writeBytes(3, ratchetKey_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeBytes(4, identityKey_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, baseKeySignature_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, verification_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1916,7 +1897,7 @@ public final class WhisperProtos {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, ephemeralKey_);
+          .computeBytesSize(3, ratchetKey_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1925,10 +1906,6 @@ public final class WhisperProtos {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, baseKeySignature_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, verification_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2050,14 +2027,12 @@ public final class WhisperProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         baseKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
-        ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+        ratchetKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
         identityKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000008);
         baseKeySignature_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000010);
-        verification_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -2097,7 +2072,7 @@ public final class WhisperProtos {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.ephemeralKey_ = ephemeralKey_;
+        result.ratchetKey_ = ratchetKey_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -2106,10 +2081,6 @@ public final class WhisperProtos {
           to_bitField0_ |= 0x00000010;
         }
         result.baseKeySignature_ = baseKeySignature_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.verification_ = verification_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2132,17 +2103,14 @@ public final class WhisperProtos {
         if (other.hasBaseKey()) {
           setBaseKey(other.getBaseKey());
         }
-        if (other.hasEphemeralKey()) {
-          setEphemeralKey(other.getEphemeralKey());
+        if (other.hasRatchetKey()) {
+          setRatchetKey(other.getRatchetKey());
         }
         if (other.hasIdentityKey()) {
           setIdentityKey(other.getIdentityKey());
         }
         if (other.hasBaseKeySignature()) {
           setBaseKeySignature(other.getBaseKeySignature());
-        }
-        if (other.hasVerification()) {
-          setVerification(other.getVerification());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2240,38 +2208,38 @@ public final class WhisperProtos {
         return this;
       }
 
-      // optional bytes ephemeralKey = 3;
-      private com.google.protobuf.ByteString ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+      // optional bytes ratchetKey = 3;
+      private com.google.protobuf.ByteString ratchetKey_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes ephemeralKey = 3;</code>
+       * <code>optional bytes ratchetKey = 3;</code>
        */
-      public boolean hasEphemeralKey() {
+      public boolean hasRatchetKey() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional bytes ephemeralKey = 3;</code>
+       * <code>optional bytes ratchetKey = 3;</code>
        */
-      public com.google.protobuf.ByteString getEphemeralKey() {
-        return ephemeralKey_;
+      public com.google.protobuf.ByteString getRatchetKey() {
+        return ratchetKey_;
       }
       /**
-       * <code>optional bytes ephemeralKey = 3;</code>
+       * <code>optional bytes ratchetKey = 3;</code>
        */
-      public Builder setEphemeralKey(com.google.protobuf.ByteString value) {
+      public Builder setRatchetKey(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000004;
-        ephemeralKey_ = value;
+        ratchetKey_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bytes ephemeralKey = 3;</code>
+       * <code>optional bytes ratchetKey = 3;</code>
        */
-      public Builder clearEphemeralKey() {
+      public Builder clearRatchetKey() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        ephemeralKey_ = getDefaultInstance().getEphemeralKey();
+        ratchetKey_ = getDefaultInstance().getRatchetKey();
         onChanged();
         return this;
       }
@@ -2316,18 +2284,30 @@ public final class WhisperProtos {
       private com.google.protobuf.ByteString baseKeySignature_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>optional bytes baseKeySignature = 5;</code>
+       *
+       * <pre>
+       *  optional bytes  verification     = 6;
+       * </pre>
        */
       public boolean hasBaseKeySignature() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
        * <code>optional bytes baseKeySignature = 5;</code>
+       *
+       * <pre>
+       *  optional bytes  verification     = 6;
+       * </pre>
        */
       public com.google.protobuf.ByteString getBaseKeySignature() {
         return baseKeySignature_;
       }
       /**
        * <code>optional bytes baseKeySignature = 5;</code>
+       *
+       * <pre>
+       *  optional bytes  verification     = 6;
+       * </pre>
        */
       public Builder setBaseKeySignature(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -2340,46 +2320,14 @@ public final class WhisperProtos {
       }
       /**
        * <code>optional bytes baseKeySignature = 5;</code>
+       *
+       * <pre>
+       *  optional bytes  verification     = 6;
+       * </pre>
        */
       public Builder clearBaseKeySignature() {
         bitField0_ = (bitField0_ & ~0x00000010);
         baseKeySignature_ = getDefaultInstance().getBaseKeySignature();
-        onChanged();
-        return this;
-      }
-
-      // optional bytes verification = 6;
-      private com.google.protobuf.ByteString verification_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes verification = 6;</code>
-       */
-      public boolean hasVerification() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>optional bytes verification = 6;</code>
-       */
-      public com.google.protobuf.ByteString getVerification() {
-        return verification_;
-      }
-      /**
-       * <code>optional bytes verification = 6;</code>
-       */
-      public Builder setVerification(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        verification_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes verification = 6;</code>
-       */
-      public Builder clearVerification() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        verification_ = getDefaultInstance().getVerification();
         onChanged();
         return this;
       }
@@ -2420,18 +2368,18 @@ public final class WhisperProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\031WhisperTextProtocol.proto\022\ntextsecure\"" +
-      "d\n\016WhisperMessage\022\024\n\014ephemeralKey\030\001 \001(\014\022" +
-      "\017\n\007counter\030\002 \001(\r\022\027\n\017previousCounter\030\003 \001(" +
-      "\r\022\022\n\nciphertext\030\004 \001(\014\"\245\001\n\024PreKeyWhisperM" +
-      "essage\022\026\n\016registrationId\030\005 \001(\r\022\020\n\010preKey" +
-      "Id\030\001 \001(\r\022\026\n\016signedPreKeyId\030\006 \001(\r\022\017\n\007base" +
-      "Key\030\002 \001(\014\022\023\n\013identityKey\030\003 \001(\014\022\024\n\014verifi" +
-      "cation\030\007 \001(\014\022\017\n\007message\030\004 \001(\014\"\214\001\n\022KeyExc" +
-      "hangeMessage\022\n\n\002id\030\001 \001(\r\022\017\n\007baseKey\030\002 \001(" +
-      "\014\022\024\n\014ephemeralKey\030\003 \001(\014\022\023\n\013identityKey\030\004",
-      " \001(\014\022\030\n\020baseKeySignature\030\005 \001(\014\022\024\n\014verifi" +
-      "cation\030\006 \001(\014B7\n&org.whispersystems.libax" +
-      "olotl.protocolB\rWhisperProtos"
+      "b\n\016WhisperMessage\022\022\n\nratchetKey\030\001 \001(\014\022\017\n" +
+      "\007counter\030\002 \001(\r\022\027\n\017previousCounter\030\003 \001(\r\022" +
+      "\022\n\nciphertext\030\004 \001(\014\"\245\001\n\024PreKeyWhisperMes" +
+      "sage\022\026\n\016registrationId\030\005 \001(\r\022\020\n\010preKeyId" +
+      "\030\001 \001(\r\022\026\n\016signedPreKeyId\030\006 \001(\r\022\017\n\007baseKe" +
+      "y\030\002 \001(\014\022\023\n\013identityKey\030\003 \001(\014\022\024\n\014verifica" +
+      "tion\030\007 \001(\014\022\017\n\007message\030\004 \001(\014\"t\n\022KeyExchan" +
+      "geMessage\022\n\n\002id\030\001 \001(\r\022\017\n\007baseKey\030\002 \001(\014\022\022" +
+      "\n\nratchetKey\030\003 \001(\014\022\023\n\013identityKey\030\004 \001(\014\022",
+      "\030\n\020baseKeySignature\030\005 \001(\014B7\n&org.whisper" +
+      "systems.libaxolotl.protocolB\rWhisperProt" +
+      "os"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2443,7 +2391,7 @@ public final class WhisperProtos {
           internal_static_textsecure_WhisperMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_WhisperMessage_descriptor,
-              new java.lang.String[] { "EphemeralKey", "Counter", "PreviousCounter", "Ciphertext", });
+              new java.lang.String[] { "RatchetKey", "Counter", "PreviousCounter", "Ciphertext", });
           internal_static_textsecure_PreKeyWhisperMessage_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_textsecure_PreKeyWhisperMessage_fieldAccessorTable = new
@@ -2455,7 +2403,7 @@ public final class WhisperProtos {
           internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_KeyExchangeMessage_descriptor,
-              new java.lang.String[] { "Id", "BaseKey", "EphemeralKey", "IdentityKey", "BaseKeySignature", "Verification", });
+              new java.lang.String[] { "Id", "BaseKey", "RatchetKey", "IdentityKey", "BaseKeySignature", });
           return null;
         }
       };

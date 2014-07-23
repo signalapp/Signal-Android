@@ -154,7 +154,8 @@ public class SessionBuilderTest extends AndroidTestCase {
 
     PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                               31337, bobPreKeyPair.getPublicKey(),
-                                              22, bobSignedPreKeyPair.getPublicKey(), bobSignedPreKeySignature,
+                                              22, bobSignedPreKeyPair.getPublicKey(),
+                                              bobSignedPreKeySignature,
                                               bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
     aliceSessionBuilder.process(bobPreKey);

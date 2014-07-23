@@ -9,13 +9,13 @@ import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.ratchet.AliceAxolotlParameters;
+import org.whispersystems.libaxolotl.ratchet.BobAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Arrays;
-
-import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.AxolotlParameters;
 
 public class RatchetingSessionTest extends AndroidTestCase {
 
@@ -108,19 +108,16 @@ public class RatchetingSessionTest extends AndroidTestCase {
     ECPublicKey     aliceEphemeralPublicKey  = Curve.decodePoint(aliceEphemeralPublic, 0);
     IdentityKey     aliceIdentityPublicKey   = new IdentityKey(aliceIdentityPublic, 0);
 
-    AxolotlParameters parameters = AxolotlParameters.newBuilder()
-                                                                  .setOurBaseKey(bobBaseKey)
-                                                                  .setOurEphemeralKey(bobEphemeralKey)
-                                                                  .setOurIdentityKey(bobIdentityKey)
-                                                                  .setOurPreKey(Optional.<ECKeyPair>absent())
-                                                                  .setTheirBaseKey(aliceBasePublicKey)
-                                                                  .setTheirEphemeralKey(aliceEphemeralPublicKey)
-                                                                  .setTheirIdentityKey(aliceIdentityPublicKey)
-                                                                  .setTheirPreKey(Optional.<ECPublicKey>absent())
-                                                                  .create();
+    BobAxolotlParameters parameters = BobAxolotlParameters.newBuilder()
+        .setOurIdentityKey(bobIdentityKey)
+        .setOurSignedPreKey(bobBaseKey)
+        .setOurRatchetKey(bobEphemeralKey)
+        .setOurOneTimePreKey(Optional.<ECKeyPair>absent())
+        .setTheirIdentityKey(aliceIdentityPublicKey)
+        .setTheirBaseKey(aliceBasePublicKey)
+        .create();
 
     SessionState session = new SessionState();
-
 
     RatchetingSession.initializeSession(session, 2, parameters);
 
@@ -217,16 +214,14 @@ public class RatchetingSessionTest extends AndroidTestCase {
 
     SessionState session = new SessionState();
 
-    AxolotlParameters parameters = AxolotlParameters.newBuilder()
-                                                                  .setOurBaseKey(aliceBaseKey)
-                                                                  .setOurEphemeralKey(aliceEphemeralKey)
-                                                                  .setOurIdentityKey(aliceIdentityKey)
-                                                                  .setOurPreKey(Optional.<ECKeyPair>absent())
-                                                                  .setTheirBaseKey(bobBasePublicKey)
-                                                                  .setTheirEphemeralKey(bobEphemeralPublicKey)
-                                                                  .setTheirIdentityKey(bobIdentityKey)
-                                                                  .setTheirPreKey(Optional.<ECPublicKey>absent())
-                                                                  .create();
+    AliceAxolotlParameters parameters = AliceAxolotlParameters.newBuilder()
+        .setOurBaseKey(aliceBaseKey)
+        .setOurIdentityKey(aliceIdentityKey)
+        .setTheirIdentityKey(bobIdentityKey)
+        .setTheirSignedPreKey(bobBasePublicKey)
+        .setTheirRatchetKey(bobEphemeralPublicKey)
+        .setTheirOneTimePreKey(Optional.<ECPublicKey>absent())
+        .create();
 
     RatchetingSession.initializeSession(session, 2, parameters);
 

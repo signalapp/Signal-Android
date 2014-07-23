@@ -3,6 +3,7 @@ package org.whispersystems.test.ratchet;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
@@ -65,8 +66,8 @@ public class VerifyKeyTest extends AndroidTestCase {
                   (byte)0x79, (byte)0x00, (byte)0xef, (byte)0x1b, (byte)0x40,
                   (byte)0x0f, (byte)0xdc};
 
-    byte[] expectedTag = {(byte)0x2f, (byte)0x77, (byte)0xaf, (byte)0xad, (byte)0x5b,
-                          (byte)0x96, (byte)0xf5, (byte)0x3c};
+    byte[] expectedTag = {(byte)0xd3, (byte)0x62, (byte)0x84, (byte)0x3c,
+                          (byte)0x9d, (byte)0x59, (byte)0x8c, (byte)0x6f};
 
     ECPublicKey aliceBaseKey     = Curve.decodePoint(aliceBaseKeyBytes, 0);
     ECPublicKey alicePreKey      = aliceBaseKey;
@@ -77,9 +78,11 @@ public class VerifyKeyTest extends AndroidTestCase {
     ECPublicKey bobIdentityKey   = Curve.decodePoint(bobIdentityKeyBytes, 0);
 
     VerifyKey verifyKey    = new VerifyKey(key);
-    byte[]    verification = verifyKey.generateVerification(aliceBaseKey, Optional.of(alicePreKey),
-                                                            aliceIdentityKey, bobBaseKey,
-                                                            Optional.of(bobPreKey), bobIdentityKey);
+
+    byte[] verification = verifyKey.generateVerification(new IdentityKey(aliceIdentityKey),
+                                                         new IdentityKey(bobIdentityKey),
+                                                         aliceBaseKey, bobBaseKey,
+                                                         Optional.of(bobPreKey));
 
     assertTrue(MessageDigest.isEqual(verification, expectedTag));
   }

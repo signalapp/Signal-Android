@@ -8,7 +8,10 @@ import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.libaxolotl.ratchet.AliceAxolotlParameters;
+import org.whispersystems.libaxolotl.ratchet.BobAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
+import org.whispersystems.libaxolotl.ratchet.SymmetricAxolotlParameters;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
@@ -21,8 +24,6 @@ import org.whispersystems.libaxolotl.util.Medium;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.security.MessageDigest;
-
-import static org.whispersystems.libaxolotl.ratchet.RatchetingSession.AxolotlParameters;
 
 /**
  * SessionBuilder is responsible for setting up encrypted sessions.
@@ -120,21 +121,22 @@ public class SessionBuilder {
       return false;
     }
 
-    boolean simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
+    boolean   simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
+    ECKeyPair ourSignedPreKey      = signedPreKeyStore.loadSignedPreKey(message.getSignedPreKeyId()).getKeyPair();
 
-    AxolotlParameters.Builder parameters = AxolotlParameters.newBuilder();
+    BobAxolotlParameters.Builder parameters = BobAxolotlParameters.newBuilder();
 
-    parameters.setTheirBaseKey(message.getBaseKey());
-    parameters.setTheirEphemeralKey(message.getWhisperMessage().getSenderEphemeral());
-    parameters.setTheirPreKey(Optional.of(message.getBaseKey()));
-    parameters.setTheirIdentityKey(message.getIdentityKey());
+    parameters.setTheirBaseKey(message.getBaseKey())
+              .setTheirIdentityKey(message.getIdentityKey())
+              .setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+              .setOurSignedPreKey(ourSignedPreKey)
+              .setOurRatchetKey(ourSignedPreKey);
 
-    parameters.setOurBaseKey(signedPreKeyStore.loadSignedPreKey(message.getSignedPreKeyId()).getKeyPair());
-    parameters.setOurEphemeralKey(parameters.getOurBaseKey());
-    parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair());
-
-    if (message.getPreKeyId() >= 0) parameters.setOurPreKey(Optional.of(preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair()));
-    else                            parameters.setOurPreKey(Optional.<ECKeyPair>absent());
+    if (message.getPreKeyId() >= 0) {
+      parameters.setOurOneTimePreKey(Optional.of(preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair()));
+    } else {
+      parameters.setOurOneTimePreKey(Optional.<ECKeyPair>absent());
+    }
 
     if (!simultaneousInitiate) sessionRecord.reset();
     else                       sessionRecord.archiveCurrentState();
@@ -171,19 +173,18 @@ public class SessionBuilder {
       return false;
     }
 
-    SessionRecord             sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
-    boolean                   simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
-    AxolotlParameters.Builder parameters           = RatchetingSession.AxolotlParameters.newBuilder();
+    SessionRecord sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
+    ECKeyPair     ourPreKey            = preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair();
+    boolean       simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
 
-    parameters.setTheirBaseKey(message.getBaseKey());
-    parameters.setTheirEphemeralKey(message.getWhisperMessage().getSenderEphemeral());
-    parameters.setTheirPreKey(Optional.<ECPublicKey>absent());
-    parameters.setTheirIdentityKey(message.getIdentityKey());
+    BobAxolotlParameters.Builder parameters = BobAxolotlParameters.newBuilder();
 
-    parameters.setOurBaseKey(preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair());
-    parameters.setOurEphemeralKey(parameters.getOurBaseKey());
-    parameters.setOurPreKey(Optional.<ECKeyPair>absent());
-    parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair());
+    parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+              .setOurSignedPreKey(ourPreKey)
+              .setOurRatchetKey(ourPreKey)
+              .setOurOneTimePreKey(Optional.<ECKeyPair>absent())
+              .setTheirIdentityKey(message.getIdentityKey())
+              .setTheirBaseKey(message.getBaseKey());
 
     if (!simultaneousInitiate) sessionRecord.reset();
     else                       sessionRecord.archiveCurrentState();
@@ -195,11 +196,11 @@ public class SessionBuilder {
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
-    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
-
     if (message.getPreKeyId() != Medium.MAX_VALUE) {
       preKeyStore.removePreKey(message.getPreKeyId());
     }
+
+    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
     return true;
   }
@@ -233,20 +234,21 @@ public class SessionBuilder {
       throw new InvalidKeyException("Both signed and unsigned prekeys are absent!");
     }
 
-    SessionRecord             sessionRecord = sessionStore.loadSession(recipientId, deviceId);
-    AxolotlParameters.Builder parameters    = AxolotlParameters.newBuilder();
-    ECKeyPair                 ourBaseKey    = Curve.generateKeyPair(true);
+    SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
+    ECKeyPair     ourBaseKey        = Curve.generateKeyPair(true);
+    ECPublicKey   theirSignedPreKey = preKey.getSignedPreKey() != null ? preKey.getSignedPreKey() :
+                                                                         preKey.getPreKey();
 
-    parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair());
-    parameters.setOurBaseKey(ourBaseKey);
-    parameters.setOurEphemeralKey(Curve.generateKeyPair(true));
-    parameters.setOurPreKey(Optional.of(parameters.getOurBaseKey()));
+    AliceAxolotlParameters.Builder parameters = AliceAxolotlParameters.newBuilder();
 
-    parameters.setTheirIdentityKey(preKey.getIdentityKey());
-    if (preKey.getSignedPreKey() == null) parameters.setTheirBaseKey(preKey.getPreKey());
-    else                                  parameters.setTheirBaseKey(preKey.getSignedPreKey());
-    parameters.setTheirEphemeralKey(parameters.getTheirBaseKey());
-    parameters.setTheirPreKey(Optional.fromNullable(preKey.getPreKey()));
+    parameters.setOurBaseKey(ourBaseKey)
+              .setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+              .setTheirIdentityKey(preKey.getIdentityKey())
+              .setTheirSignedPreKey(theirSignedPreKey)
+              .setTheirRatchetKey(theirSignedPreKey)
+              .setTheirOneTimePreKey(preKey.getSignedPreKey() != null ?
+                                         Optional.fromNullable(preKey.getPreKey()) :
+                                         Optional.<ECPublicKey>absent());
 
     if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
     else                                                   sessionRecord.reset();
@@ -288,9 +290,8 @@ public class SessionBuilder {
   }
 
   private KeyExchangeMessage processInitiate(KeyExchangeMessage message) throws InvalidKeyException {
-    AxolotlParameters.Builder parameters    = AxolotlParameters.newBuilder();
-    int                       flags         = KeyExchangeMessage.RESPONSE_FLAG;
-    SessionRecord             sessionRecord = sessionStore.loadSession(recipientId, deviceId);
+    int           flags         = KeyExchangeMessage.RESPONSE_FLAG;
+    SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
 
     if (message.getVersion() >= 3 &&
         !Curve.verifySignature(message.getIdentityKey().getPublicKey(),
@@ -300,41 +301,42 @@ public class SessionBuilder {
       throw new InvalidKeyException("Bad signature!");
     }
 
+    SymmetricAxolotlParameters.Builder builder = SymmetricAxolotlParameters.newBuilder();
+
     if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
-      Log.w(TAG, "We don't have a pending initiate...");
-      parameters.setOurBaseKey(Curve.generateKeyPair(true));
-      parameters.setOurEphemeralKey(Curve.generateKeyPair(true));
-      parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair());
-      parameters.setOurPreKey(Optional.<ECKeyPair>absent());
+      builder.setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+             .setOurBaseKey(Curve.generateKeyPair(true))
+             .setOurRatchetKey(Curve.generateKeyPair(true));
     } else {
-      Log.w(TAG, "We already have a pending initiate, responding as simultaneous initiate...");
-      parameters.setOurBaseKey(sessionRecord.getSessionState().getPendingKeyExchangeBaseKey());
-      parameters.setOurEphemeralKey(sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey());
-      parameters.setOurIdentityKey(sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey());
-      parameters.setOurPreKey(Optional.<ECKeyPair>absent());
+      builder.setOurIdentityKey(sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey())
+             .setOurBaseKey(sessionRecord.getSessionState().getPendingKeyExchangeBaseKey())
+             .setOurRatchetKey(sessionRecord.getSessionState().getPendingKeyExchangeRatchetKey());
       flags |= KeyExchangeMessage.SIMULTAENOUS_INITIATE_FLAG;
     }
 
-    parameters.setTheirBaseKey(message.getBaseKey());
-    parameters.setTheirEphemeralKey(message.getEphemeralKey());
-    parameters.setTheirPreKey(Optional.<ECPublicKey>absent());
-    parameters.setTheirIdentityKey(message.getIdentityKey());
+    builder.setTheirBaseKey(message.getBaseKey())
+           .setTheirRatchetKey(message.getRatchetKey())
+           .setTheirIdentityKey(message.getIdentityKey());
+
+    SymmetricAxolotlParameters parameters = builder.create();
 
     sessionRecord.reset();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                         Math.min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),
-                                        parameters.create());
+                                        parameters);
 
     sessionStore.storeSession(recipientId, deviceId, sessionRecord);
     identityKeyStore.saveIdentity(recipientId, message.getIdentityKey());
 
+    byte[] baseKeySignature = Curve.calculateSignature(parameters.getOurIdentityKey().getPrivateKey(),
+                                                       parameters.getOurBaseKey().getPublicKey().serialize());
+
     return new KeyExchangeMessage(sessionRecord.getSessionState().getSessionVersion(),
                                   message.getSequence(), flags,
-                                  parameters.getOurBaseKey().getPublicKey(), null,
-                                  parameters.getOurEphemeralKey().getPublicKey(),
-                                  parameters.getOurIdentityKey().getPublicKey(),
-                                  sessionRecord.getSessionState().getVerification());
+                                  parameters.getOurBaseKey().getPublicKey(),
+                                  baseKeySignature, parameters.getOurRatchetKey().getPublicKey(),
+                                  parameters.getOurIdentityKey().getPublicKey());
   }
 
   private void processResponse(KeyExchangeMessage message)
@@ -351,29 +353,27 @@ public class SessionBuilder {
       else                                 return;
     }
 
-    AxolotlParameters parameters =
-        AxolotlParameters.newBuilder()
-                         .setOurBaseKey(sessionRecord.getSessionState().getPendingKeyExchangeBaseKey())
-                         .setOurEphemeralKey(sessionRecord.getSessionState().getPendingKeyExchangeEphemeralKey())
-                         .setOurPreKey(Optional.<ECKeyPair>absent())
-                         .setOurIdentityKey(sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey())
-                         .setTheirBaseKey(message.getBaseKey())
-                         .setTheirEphemeralKey(message.getEphemeralKey())
-                         .setTheirPreKey(Optional.<ECPublicKey>absent())
-                         .setTheirIdentityKey(message.getIdentityKey())
-                         .create();
+    SymmetricAxolotlParameters.Builder parameters = SymmetricAxolotlParameters.newBuilder();
+
+    parameters.setOurBaseKey(sessionRecord.getSessionState().getPendingKeyExchangeBaseKey())
+              .setOurRatchetKey(sessionRecord.getSessionState().getPendingKeyExchangeRatchetKey())
+              .setOurIdentityKey(sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey())
+              .setTheirBaseKey(message.getBaseKey())
+              .setTheirRatchetKey(message.getRatchetKey())
+              .setTheirIdentityKey(message.getIdentityKey());
 
     sessionRecord.reset();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                         Math.min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),
-                                        parameters);
+                                        parameters.create());
 
     if (sessionRecord.getSessionState().getSessionVersion() >= 3 &&
-        !MessageDigest.isEqual(message.getVerificationTag(),
-                               sessionRecord.getSessionState().getVerification()))
+        !Curve.verifySignature(message.getIdentityKey().getPublicKey(),
+                               message.getBaseKey().serialize(),
+                               message.getBaseKeySignature()))
     {
-      throw new InvalidKeyException("Verification tag doesn't match!");
+      throw new InvalidKeyException("Base key signature doesn't match!");
     }
 
     sessionStore.storeSession(recipientId, deviceId, sessionRecord);
@@ -387,18 +387,23 @@ public class SessionBuilder {
    * @return the KeyExchangeMessage to deliver.
    */
   public KeyExchangeMessage process() {
-    int             sequence      = KeyHelper.getRandomSequence(65534) + 1;
-    int             flags         = KeyExchangeMessage.INITIATE_FLAG;
-    ECKeyPair       baseKey       = Curve.generateKeyPair(true);
-    ECKeyPair       ephemeralKey  = Curve.generateKeyPair(true);
-    IdentityKeyPair identityKey   = identityKeyStore.getIdentityKeyPair();
-    SessionRecord   sessionRecord = sessionStore.loadSession(recipientId, deviceId);
+    try {
+      int             sequence         = KeyHelper.getRandomSequence(65534) + 1;
+      int             flags            = KeyExchangeMessage.INITIATE_FLAG;
+      ECKeyPair       baseKey          = Curve.generateKeyPair(true);
+      ECKeyPair       ratchetKey       = Curve.generateKeyPair(true);
+      IdentityKeyPair identityKey      = identityKeyStore.getIdentityKeyPair();
+      byte[]          baseKeySignature = Curve.calculateSignature(identityKey.getPrivateKey(), baseKey.getPublicKey().serialize());
+      SessionRecord   sessionRecord    = sessionStore.loadSession(recipientId, deviceId);
 
-    sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
-    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+      sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ratchetKey, identityKey);
+      sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
-    return new KeyExchangeMessage(2, sequence, flags, baseKey.getPublicKey(), null,
-                                  ephemeralKey.getPublicKey(), identityKey.getPublicKey(), null);
+      return new KeyExchangeMessage(2, sequence, flags, baseKey.getPublicKey(), baseKeySignature,
+                                    ratchetKey.getPublicKey(), identityKey.getPublicKey());
+    } catch (InvalidKeyException e) {
+      throw new AssertionError(e);
+    }
   }
 
 

@@ -38,7 +38,7 @@ public class WhisperMessage implements CiphertextMessage {
   private static final int MAC_LENGTH = 8;
 
   private final int         messageVersion;
-  private final ECPublicKey senderEphemeral;
+  private final ECPublicKey senderRatchetKey;
   private final int         counter;
   private final int         previousCounter;
   private final byte[]      ciphertext;
@@ -63,44 +63,44 @@ public class WhisperMessage implements CiphertextMessage {
 
       if (!whisperMessage.hasCiphertext() ||
           !whisperMessage.hasCounter() ||
-          !whisperMessage.hasEphemeralKey())
+          !whisperMessage.hasRatchetKey())
       {
         throw new InvalidMessageException("Incomplete message.");
       }
 
-      this.serialized      = serialized;
-      this.senderEphemeral = Curve.decodePoint(whisperMessage.getEphemeralKey().toByteArray(), 0);
-      this.messageVersion  = ByteUtil.highBitsToInt(version);
-      this.counter         = whisperMessage.getCounter();
-      this.previousCounter = whisperMessage.getPreviousCounter();
-      this.ciphertext      = whisperMessage.getCiphertext().toByteArray();
+      this.serialized       = serialized;
+      this.senderRatchetKey = Curve.decodePoint(whisperMessage.getRatchetKey().toByteArray(), 0);
+      this.messageVersion   = ByteUtil.highBitsToInt(version);
+      this.counter          = whisperMessage.getCounter();
+      this.previousCounter  = whisperMessage.getPreviousCounter();
+      this.ciphertext       = whisperMessage.getCiphertext().toByteArray();
     } catch (InvalidProtocolBufferException | InvalidKeyException | ParseException e) {
       throw new InvalidMessageException(e);
     }
   }
 
-  public WhisperMessage(int messageVersion, SecretKeySpec macKey, ECPublicKey senderEphemeral,
+  public WhisperMessage(int messageVersion, SecretKeySpec macKey, ECPublicKey senderRatchetKey,
                         int counter, int previousCounter, byte[] ciphertext)
   {
     byte[] version = {ByteUtil.intsToByteHighAndLow(messageVersion, CURRENT_VERSION)};
     byte[] message = WhisperProtos.WhisperMessage.newBuilder()
-                                   .setEphemeralKey(ByteString.copyFrom(senderEphemeral.serialize()))
+                                   .setRatchetKey(ByteString.copyFrom(senderRatchetKey.serialize()))
                                    .setCounter(counter)
                                    .setPreviousCounter(previousCounter)
                                    .setCiphertext(ByteString.copyFrom(ciphertext))
                                    .build().toByteArray();
     byte[] mac     = getMac(macKey, ByteUtil.combine(version, message));
 
-    this.serialized      = ByteUtil.combine(version, message, mac);
-    this.senderEphemeral = senderEphemeral;
-    this.counter         = counter;
-    this.previousCounter = previousCounter;
-    this.ciphertext      = ciphertext;
-    this.messageVersion  = messageVersion;
+    this.serialized       = ByteUtil.combine(version, message, mac);
+    this.senderRatchetKey = senderRatchetKey;
+    this.counter          = counter;
+    this.previousCounter  = previousCounter;
+    this.ciphertext       = ciphertext;
+    this.messageVersion   = messageVersion;
   }
 
-  public ECPublicKey getSenderEphemeral()  {
-    return senderEphemeral;
+  public ECPublicKey getSenderRatchetKey()  {
+    return senderRatchetKey;
   }
 
   public int getMessageVersion() {

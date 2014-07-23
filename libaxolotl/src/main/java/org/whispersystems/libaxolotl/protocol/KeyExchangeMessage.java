@@ -29,15 +29,14 @@ public class KeyExchangeMessage {
 
   private final ECPublicKey baseKey;
   private final byte[]      baseKeySignature;
-  private final ECPublicKey ephemeralKey;
+  private final ECPublicKey ratchetKey;
   private final IdentityKey identityKey;
-  private final byte[]      verificationTag;
   private final byte[]      serialized;
 
   public KeyExchangeMessage(int messageVersion, int sequence, int flags,
                             ECPublicKey baseKey, byte[] baseKeySignature,
-                            ECPublicKey ephemeralKey,
-                            IdentityKey identityKey, byte[] verificationTag)
+                            ECPublicKey ratchetKey,
+                            IdentityKey identityKey)
   {
     this.supportedVersion = CiphertextMessage.CURRENT_VERSION;
     this.version          = messageVersion;
@@ -45,23 +44,19 @@ public class KeyExchangeMessage {
     this.flags            = flags;
     this.baseKey          = baseKey;
     this.baseKeySignature = baseKeySignature;
-    this.ephemeralKey     = ephemeralKey;
+    this.ratchetKey       = ratchetKey;
     this.identityKey      = identityKey;
-    this.verificationTag  = verificationTag;
 
     byte[]  version = {ByteUtil.intsToByteHighAndLow(this.version, this.supportedVersion)};
-    Builder builder = WhisperProtos.KeyExchangeMessage.newBuilder()
-                                                      .setId((sequence << 5) | flags)
-                                                      .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
-                                                      .setEphemeralKey(ByteString.copyFrom(ephemeralKey.serialize()))
-                                                      .setIdentityKey(ByteString.copyFrom(identityKey.serialize()));
+    Builder builder = WhisperProtos.KeyExchangeMessage
+                                   .newBuilder()
+                                   .setId((sequence << 5) | flags)
+                                   .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
+                                   .setRatchetKey(ByteString.copyFrom(ratchetKey.serialize()))
+                                   .setIdentityKey(ByteString.copyFrom(identityKey.serialize()));
 
-    if (messageVersion >= 3 && baseKeySignature != null) {
+    if (messageVersion >= 3) {
       builder.setBaseKeySignature(ByteString.copyFrom(baseKeySignature));
-    }
-
-    if (messageVersion >=3 && verificationTag != null) {
-      builder.setVerification(ByteString.copyFrom(verificationTag));
     }
 
     this.serialized = ByteUtil.combine(version, builder.build().toByteArray());
@@ -86,9 +81,8 @@ public class KeyExchangeMessage {
       WhisperProtos.KeyExchangeMessage message = WhisperProtos.KeyExchangeMessage.parseFrom(parts[1]);
 
       if (!message.hasId()           || !message.hasBaseKey()     ||
-          !message.hasEphemeralKey() || !message.hasIdentityKey() ||
-          (this.version >=3 && (((message.getId() & 0x1f) & INITIATE_FLAG) != 0) && !message.hasBaseKeySignature()) ||
-          (this.version >=3 && (((message.getId() & 0x1f) & RESPONSE_FLAG) != 0) && !message.hasVerification()))
+          !message.hasRatchetKey()   || !message.hasIdentityKey() ||
+          (this.version >=3 && !message.hasBaseKeySignature()))
       {
         throw new InvalidMessageException("Some required fields missing!");
       }
@@ -98,8 +92,7 @@ public class KeyExchangeMessage {
       this.serialized       = serialized;
       this.baseKey          = Curve.decodePoint(message.getBaseKey().toByteArray(), 0);
       this.baseKeySignature = message.getBaseKeySignature().toByteArray();
-      this.verificationTag  = message.getVerification().toByteArray();
-      this.ephemeralKey     = Curve.decodePoint(message.getEphemeralKey().toByteArray(), 0);
+      this.ratchetKey       = Curve.decodePoint(message.getRatchetKey().toByteArray(), 0);
       this.identityKey      = new IdentityKey(message.getIdentityKey().toByteArray(), 0);
     } catch (InvalidKeyException | IOException e) {
       throw new InvalidMessageException(e);
@@ -118,12 +111,8 @@ public class KeyExchangeMessage {
     return baseKeySignature;
   }
 
-  public byte[] getVerificationTag() {
-    return verificationTag;
-  }
-
-  public ECPublicKey getEphemeralKey() {
-    return ephemeralKey;
+  public ECPublicKey getRatchetKey() {
+    return ratchetKey;
   }
 
   public IdentityKey getIdentityKey() {
