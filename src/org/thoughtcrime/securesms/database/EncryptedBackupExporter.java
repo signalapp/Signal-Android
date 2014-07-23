@@ -53,7 +53,7 @@ public class EncryptedBackupExporter {
 
   private static String getExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecureExport";
+    return sdDirectory.getAbsolutePath();
   }
 
   private static void verifyExternalStorageForExport() throws NoExternalStorageException {
@@ -96,9 +96,9 @@ public class EncryptedBackupExporter {
 
   private static void exportDirectory(Context context, MasterSecret masterSecret) throws IOException {
     File exportDirectory = new File(getExportDirectoryPath());
-    File exportZipFile = new File(exportDirectory.getAbsolutePath() + File.separator + "export.zip");
+    File exportZipFile = new File(exportDirectory.getAbsolutePath() + File.separator + "TextSecureBackup.tsbk");
     if (!exportZipFile.exists()) {
-      if (!exportZipFile.createNewFile()) throw new AssertionError("export zip file didn't exist but then couldn't create one...");
+      if (!exportZipFile.createNewFile()) throw new AssertionError("export file didn't exist but then couldn't create one...");
     }
     FileOutputStream zipFileStream = new EncryptingPartOutputStream(exportZipFile, masterSecret);
 //    FileOutputStream zipFileStream = new FileOutputStream(exportZipFile);
