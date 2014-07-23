@@ -261,7 +261,7 @@ public class SessionCipher {
 
         sessionState.setRootKey(senderChain.first());
         sessionState.addReceiverChain(theirEphemeral, receiverChain.second());
-        sessionState.setPreviousCounter(sessionState.getSenderChainKey().getIndex()-1);
+        sessionState.setPreviousCounter(Math.max(sessionState.getSenderChainKey().getIndex()-1, 0));
         sessionState.setSenderChain(ourNewEphemeral, senderChain.second());
 
         return receiverChain.second();
