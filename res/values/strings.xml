@@ -856,6 +856,11 @@
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
 
+    <!-- reminder_header -->
+    <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
+    <string name="reminder_header_sms_default_text">TextSecure is not currently your default SMS app.</string>
+    <string name="reminder_header_sms_import_title">Import system SMS?</string>
+    <string name="reminder_header_sms_import_text">TextSecure can copy your phone\'s SMS messages into its encrypted database.</string>
     <!-- EOF -->
 
 </resources>

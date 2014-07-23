@@ -85,8 +85,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
-
-    initializeDefaultMessengerCheck();
   }
 
   @Override
@@ -294,15 +292,6 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
         .findFragmentById(R.id.fragment_content);
 
     this.fragment.setMasterSecret(masterSecret);
-  }
-
-  private void initializeDefaultMessengerCheck() {
-    if (!TextSecurePreferences.hasPromptedDefaultSmsProvider(this) && !Util.isDefaultSmsProvider(this)) {
-      TextSecurePreferences.setPromptedDefaultSmsProvider(this, true);
-      Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-      intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
-      startActivity(intent);
-    }
   }
 
   class DrawerToggle extends ActionBarDrawerToggle {

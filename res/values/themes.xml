@@ -79,6 +79,8 @@
         <item name="menu_info_icon">@drawable/ic_dialog_info_holo_light</item>
         <item name="menu_forward_icon">@drawable/ic_action_forward_holo_light</item>
         <item name="menu_save_icon">@drawable/ic_action_save_holo_light</item>
+
+        <item name="reminder_header_background">#ff5a8800</item>
     </style>
 
     <style name="TextSecure.LightTheme.NavigationDrawer"
@@ -160,6 +162,8 @@
         <item name="menu_info_icon">@drawable/ic_dialog_info_holo_dark</item>
         <item name="menu_forward_icon">@drawable/ic_action_forward_holo_dark</item>
         <item name="menu_save_icon">@drawable/ic_action_save_holo_dark</item>
+
+        <item name="reminder_header_background">#ff385400</item>
     </style>
 
     <style name="TextSecure.DarkTheme.NavigationDrawer"

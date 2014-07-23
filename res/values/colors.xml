@@ -15,7 +15,8 @@
     <color name="textsecure_holo_blue_light">#ff33b5e5</color>
 
     <color name="touch_highlight">#400099cc</color>
-
+    <color name="light_button">#33ffffff</color>
+    <color name="light_button_highlight">#66ffffff</color>
     <color name="conversation_item_sent_background_dark">#ff284e0a</color>
     <color name="conversation_item_sent_background_light">#ff64a926</color>
     <color name="conversation_item_sent_shadow_light">#ffd5d5d5</color>
