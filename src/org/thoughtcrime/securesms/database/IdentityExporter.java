@@ -5,6 +5,8 @@ import android.content.Context;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.io.naming.NoNameCoder;
+import com.thoughtworks.xstream.io.xml.Xpp3DomDriver;
 
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
@@ -41,7 +43,7 @@ public class IdentityExporter {
     public Writer(BufferedWriter writer, AsymmetricMasterSecret identity) throws IOException {
       this.writer = writer;
 
-      xstream = new XStream();
+      xstream = new XStream(new Xpp3DomDriver(new NoNameCoder()));
       xstream.autodetectAnnotations(true);
       this.identity = new Identity(identity);
     }

@@ -4,6 +4,8 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import com.thoughtworks.xstream.io.naming.NoNameCoder;
+import com.thoughtworks.xstream.io.xml.Xpp3DomDriver;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -74,7 +76,7 @@ public class XmlBackup {
     public Writer(BufferedWriter writer, int count) throws IOException {
       this.writer = writer;
 
-      xstream = new XStream();
+      xstream = new XStream(new Xpp3DomDriver(new NoNameCoder()));
       xstream.autodetectAnnotations(true);
       smses = new Smses(count);
     }
