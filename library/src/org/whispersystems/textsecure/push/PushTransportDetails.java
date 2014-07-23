@@ -32,7 +32,7 @@ public class PushTransportDetails implements TransportDetails {
 
   @Override
   public byte[] getStrippedPaddingMessageBody(byte[] messageWithPadding) {
-    if       (messageVersion < 2) throw new AssertionError("Unknown version: " + messageVersion);
+    if      (messageVersion < 2) throw new AssertionError("Unknown version: " + messageVersion);
     else if (messageVersion == 2) return messageWithPadding;
 
     int paddingStart = 0;
@@ -47,7 +47,7 @@ public class PushTransportDetails implements TransportDetails {
       }
     }
 
-    byte[] strippedMessage = new byte[messageWithPadding.length - paddingStart];
+    byte[] strippedMessage = new byte[paddingStart];
     System.arraycopy(messageWithPadding, 0, strippedMessage, 0, strippedMessage.length);
 
     return strippedMessage;
