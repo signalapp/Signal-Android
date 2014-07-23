@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.provider.Telephony;
@@ -151,6 +152,14 @@ public class Util {
   public static boolean isDefaultSmsProvider(Context context){
     return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) ||
       (context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context)));
+  }
+
+  public static int getCurrentApkReleaseVersion(Context context) {
+    try {
+      return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+    } catch (PackageManager.NameNotFoundException e) {
+      throw new AssertionError(e);
+    }
   }
 
   //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {

@@ -30,6 +30,7 @@ import android.widget.ProgressBar;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.VersionTracker;
@@ -78,25 +79,21 @@ public class DatabaseUpgradeActivity extends Activity {
   }
 
   private boolean needsUpgradeTask() {
-    try {
-      int currentVersionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-      int lastSeenVersion    = VersionTracker.getLastSeenVersion(this);
+    int currentVersionCode = Util.getCurrentApkReleaseVersion(this);
+    int lastSeenVersion    = VersionTracker.getLastSeenVersion(this);
 
-      Log.w("DatabaseUpgradeActivity", "LastSeenVersion: " + lastSeenVersion);
+    Log.w("DatabaseUpgradeActivity", "LastSeenVersion: " + lastSeenVersion);
 
-      if (lastSeenVersion >= currentVersionCode)
-        return false;
-
-      for (int version : UPGRADE_VERSIONS) {
-        Log.w("DatabaseUpgradeActivity", "Comparing: " + version);
-        if (lastSeenVersion < version)
-          return true;
-      }
-
+    if (lastSeenVersion >= currentVersionCode)
       return false;
-    } catch (PackageManager.NameNotFoundException e) {
-      throw new AssertionError(e);
+
+    for (int version : UPGRADE_VERSIONS) {
+      Log.w("DatabaseUpgradeActivity", "Comparing: " + version);
+      if (lastSeenVersion < version)
+        return true;
     }
+
+    return false;
   }
 
   public static boolean isUpdate(Context context) {

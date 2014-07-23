@@ -52,6 +52,24 @@ public class TextSecurePreferences {
   private static final String FALLBACK_SMS_ASK_REQUIRED_PREF   = "pref_sms_fallback_ask";
   private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
 
+  private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
+  private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
+
+  public static void setGcmRegistrationId(Context context, String registrationId) {
+    setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);
+    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCurrentApkReleaseVersion(context));
+  }
+
+  public static String getGcmRegistrationId(Context context) {
+    int storedRegistrationIdVersion = getIntegerPreference(context, GCM_REGISTRATION_ID_VERSION_PREF, 0);
+
+    if (storedRegistrationIdVersion != Util.getCurrentApkReleaseVersion(context)) {
+      return null;
+    } else {
+      return getStringPreference(context, GCM_REGISTRATION_ID_PREF, null);
+    }
+  }
+
   public static boolean isFallbackSmsAllowed(Context context) {
     return getBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, true);
   }
