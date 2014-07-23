@@ -18,10 +18,9 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
 
   private static final int STATE_CREATE_PASSPHRASE        = 1;
   private static final int STATE_PROMPT_PASSPHRASE        = 2;
-  private static final int STATE_IMPORT_DATABASE          = 3;
-  private static final int STATE_CONVERSATION_OR_LIST     = 4;
-  private static final int STATE_UPGRADE_DATABASE         = 5;
-  private static final int STATE_PROMPT_PUSH_REGISTRATION = 6;
+  private static final int STATE_CONVERSATION_OR_LIST     = 3;
+  private static final int STATE_UPGRADE_DATABASE         = 4;
+  private static final int STATE_PROMPT_PUSH_REGISTRATION = 5;
 
   private MasterSecret masterSecret   = null;
   private boolean      isVisible      = false;
@@ -84,7 +83,6 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     switch (state) {
     case STATE_CREATE_PASSPHRASE:        handleCreatePassphrase();          break;
     case STATE_PROMPT_PASSPHRASE:        handlePromptPassphrase();          break;
-    case STATE_IMPORT_DATABASE:          handleImportDatabase();            break;
     case STATE_CONVERSATION_OR_LIST:     handleDisplayConversationOrList(); break;
     case STATE_UPGRADE_DATABASE:         handleUpgradeDatabase();           break;
     case STATE_PROMPT_PUSH_REGISTRATION: handlePushRegistration();          break;
@@ -99,15 +97,6 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   private void handlePromptPassphrase() {
     Intent intent = new Intent(this, PassphrasePromptActivity.class);
     startActivityForResult(intent, 2);
-  }
-
-  private void handleImportDatabase() {
-    Intent intent = new Intent(this, DatabaseMigrationActivity.class);
-    intent.putExtra("master_secret", masterSecret);
-    intent.putExtra("next_intent", getPushRegistrationIntent());
-
-    startActivity(intent);
-    finish();
   }
 
   private void handleUpgradeDatabase() {
@@ -201,9 +190,6 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
 
     if (masterSecret == null)
       return STATE_PROMPT_PASSPHRASE;
-
-    if (!ApplicationMigrationService.isDatabaseImported(this))
-      return STATE_IMPORT_DATABASE;
 
     if (DatabaseUpgradeActivity.isUpdate(this))
       return STATE_UPGRADE_DATABASE;

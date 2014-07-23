@@ -20,17 +20,26 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.view.ActionMode;
@@ -43,9 +52,11 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Set;
 
@@ -57,12 +68,20 @@ public class ConversationListFragment extends SherlockListFragment
   private ConversationSelectedListener listener;
   private MasterSecret                 masterSecret;
   private ActionMode                   actionMode;
-
+  private View reminderView;
   private String queryFilter = "";
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    return inflater.inflate(R.layout.conversation_list_fragment, container, false);
+    final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
+    reminderView = LayoutInflater.from(getActivity()).inflate(R.layout.reminder_header, null);
+    return view;
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    getListView().setAdapter(null);
   }
 
   @Override
@@ -70,10 +89,19 @@ public class ConversationListFragment extends SherlockListFragment
     super.onActivityCreated(bundle);
 
     setHasOptionsMenu(true);
+    getListView().setAdapter(null);
+    getListView().addHeaderView(reminderView);
     initializeListAdapter();
     initializeBatchListener();
 
     getLoaderManager().initLoader(0, null, this);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+
+    initializeReminders();
   }
 
   @Override
@@ -132,7 +160,7 @@ public class ConversationListFragment extends SherlockListFragment
   }
 
   public void resetQueryFilter() {
-    if (!Util.isEmpty(this.queryFilter)) {
+    if (!TextUtils.isEmpty(this.queryFilter)) {
       setQueryFilter("");
     }
   }
@@ -147,6 +175,7 @@ public class ConversationListFragment extends SherlockListFragment
         }
         return false;
       }
+
       @Override
       public boolean onQueryTextChange(String newText) {
         return onQueryTextSubmit(newText);
@@ -168,6 +197,73 @@ public class ConversationListFragment extends SherlockListFragment
         return true;
       }
     });
+  }
+
+  private void initializeReminders() {
+    final boolean isDefault = Util.isDefaultSmsProvider(getActivity());
+    if (isDefault) {
+      TextSecurePreferences.setPromptedDefaultSmsProvider(getActivity(), false);
+    }
+
+    final ViewGroup   container = (ViewGroup  ) reminderView.findViewById(R.id.container     );
+    final ImageButton cancel    = (ImageButton) reminderView.findViewById(R.id.cancel        );
+    final Button      ok        = (Button     ) reminderView.findViewById(R.id.ok            );
+    final TextView    title     = (TextView   ) reminderView.findViewById(R.id.reminder_title);
+    final TextView    text      = (TextView   ) reminderView.findViewById(R.id.reminder_text );
+    final ImageView   icon      = (ImageView  ) reminderView.findViewById(R.id.icon          );
+    if (!isDefault && !TextSecurePreferences.hasPromptedDefaultSmsProvider(getActivity())) {
+      icon.setImageResource(R.drawable.sms_selection_icon);
+      title.setText(R.string.reminder_header_sms_default_title);
+      text.setText(R.string.reminder_header_sms_default_text);
+      cancel.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          TextSecurePreferences.setPromptedDefaultSmsProvider(getActivity(), true);
+          container.setVisibility(View.GONE);
+        }
+      });
+      ok.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          TextSecurePreferences.setPromptedDefaultSmsProvider(getActivity(), true);
+          Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
+          intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getActivity().getPackageName());
+          startActivity(intent);
+        }
+      });
+      container.setVisibility(View.VISIBLE);
+    } else if (isDefault && !ApplicationMigrationService.isDatabaseImported(getActivity())) {
+      icon.setImageResource(R.drawable.sms_system_import_icon);
+      title.setText(R.string.reminder_header_sms_import_title);
+      text.setText(R.string.reminder_header_sms_import_text);
+      cancel.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          ApplicationMigrationService.setDatabaseImported(getActivity());
+          container.setVisibility(View.GONE);
+        }
+      });
+      ok.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          Intent intent = new Intent(getActivity(), ApplicationMigrationService.class);
+          intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
+          intent.putExtra("master_secret", masterSecret);
+          getActivity().startService(intent);
+
+          Intent nextIntent = new Intent(getActivity(), ConversationListActivity.class);
+          intent.putExtra("master_secret", masterSecret);
+
+          Intent activityIntent = new Intent(getActivity(), DatabaseMigrationActivity.class);
+          activityIntent.putExtra("master_secret", masterSecret);
+          activityIntent.putExtra("next_intent", nextIntent);
+          getActivity().startActivity(activityIntent);
+        }
+      });
+      container.setVisibility(View.VISIBLE);
+    } else {
+      container.setVisibility(View.GONE);
+    }
   }
 
   private void initializeListAdapter() {

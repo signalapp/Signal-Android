@@ -57,6 +57,8 @@
     <attr name="navigation_drawer_icons" format="reference"/>
     <attr name="navigation_drawer_shadow" format="reference"/>
 
+    <attr name="reminder_header_background" format="color"/>
+
     <attr name="menu_new_conversation_icon" format="reference" />
     <attr name="menu_new_group_icon" format="reference" />
     <attr name="menu_search_icon" format="reference" />
