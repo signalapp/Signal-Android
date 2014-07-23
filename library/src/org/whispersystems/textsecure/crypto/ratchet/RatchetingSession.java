@@ -110,12 +110,7 @@ public class RatchetingSession {
       return true;
     }
 
-    return isLowEnd(ourBaseKey, theirBaseKey);
+    throw new RuntimeException("Invalid call to initializeSession");
   }
-
-  private static boolean isLowEnd(ECPublicKey ourKey, ECPublicKey theirKey) {
-    return ourKey.compareTo(theirKey) < 0;
-  }
-
 
 }
