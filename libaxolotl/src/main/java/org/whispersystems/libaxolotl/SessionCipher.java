@@ -105,7 +105,9 @@ public class SessionCipher {
       byte[]            ciphertextBody    = getCiphertext(messageKeys, paddedMessage);
       CiphertextMessage ciphertextMessage = new WhisperMessage(sessionVersion, messageKeys.getMacKey(),
                                                                senderEphemeral, chainKey.getIndex(),
-                                                               previousCounter, ciphertextBody);
+                                                               previousCounter, ciphertextBody,
+                                                               sessionState.getLocalIdentityKey(),
+                                                               sessionState.getRemoteIdentityKey());
 
       if (sessionState.hasUnacknowledgedPreKeyMessage()) {
         UnacknowledgedPreKeyMessageItems items = sessionState.getUnacknowledgedPreKeyMessageItems();
@@ -114,7 +116,6 @@ public class SessionCipher {
         ciphertextMessage = new PreKeyWhisperMessage(sessionVersion, localRegistrationId, items.getPreKeyId(),
                                                      items.getSignedPreKeyId(), items.getBaseKey(),
                                                      sessionState.getLocalIdentityKey(),
-                                                     sessionState.getVerification(),
                                                      (WhisperMessage) ciphertextMessage);
       }
 
@@ -229,7 +230,10 @@ public class SessionCipher {
     MessageKeys    messageKeys       = getOrCreateMessageKeys(sessionState, theirEphemeral,
                                                               chainKey, counter);
 
-    ciphertextMessage.verifyMac(messageKeys.getMacKey());
+    ciphertextMessage.verifyMac(ciphertextMessage.getMessageVersion(),
+                                sessionState.getRemoteIdentityKey(),
+                                sessionState.getLocalIdentityKey(),
+                                messageKeys.getMacKey());
 
     byte[] plaintext = getPlaintext(messageKeys, ciphertextMessage.getBody());
 

@@ -28,7 +28,6 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Arrays;
 
 public class RatchetingSession {
@@ -98,11 +97,6 @@ public class RatchetingSession {
       sessionState.addReceiverChain(parameters.getTheirRatchetKey(), derivedKeys.getChainKey());
       sessionState.setSenderChain(sendingRatchetKey, sendingChain.second());
       sessionState.setRootKey(sendingChain.first());
-
-      if (sessionVersion >= 3) {
-        sessionState.setVerification(calculateVerificationTag(derivedKeys.getVerifyKey(), parameters));
-      }
-
     } catch (IOException e) {
       throw new AssertionError(e);
     }
@@ -141,37 +135,9 @@ public class RatchetingSession {
 
       sessionState.setSenderChain(parameters.getOurRatchetKey(), derivedKeys.getChainKey());
       sessionState.setRootKey(derivedKeys.getRootKey());
-
-      if (sessionVersion >= 3) {
-        sessionState.setVerification(calculateVerificationTag(derivedKeys.getVerifyKey(), parameters));
-      }
     } catch (IOException e) {
       throw new AssertionError(e);
     }
-  }
-
-  private static byte[] calculateVerificationTag(VerifyKey verifyKey, AliceAxolotlParameters parameters) {
-    return verifyKey.generateVerification(parameters.getOurIdentityKey().getPublicKey(),
-                                          parameters.getTheirIdentityKey(),
-                                          parameters.getOurBaseKey().getPublicKey(),
-                                          parameters.getTheirSignedPreKey(),
-                                          parameters.getTheirOneTimePreKey());
-  }
-
-  private static byte[] calculateVerificationTag(VerifyKey verifyKey, BobAxolotlParameters parameters) {
-    Optional<ECPublicKey> ourOneTimePreKey;
-
-    if (parameters.getOurOneTimePreKey().isPresent()) {
-      ourOneTimePreKey = Optional.of(parameters.getOurOneTimePreKey().get().getPublicKey());
-    } else {
-      ourOneTimePreKey = Optional.absent();
-    }
-
-    return verifyKey.generateVerification(parameters.getTheirIdentityKey(),
-                                          parameters.getOurIdentityKey().getPublicKey(),
-                                          parameters.getTheirBaseKey(),
-                                          parameters.getOurSignedPreKey().getPublicKey(),
-                                          ourOneTimePreKey);
   }
 
   private static byte[] getDiscontinuityBytes() {
@@ -181,33 +147,25 @@ public class RatchetingSession {
   }
 
   private static DerivedKeys calculateDerivedKeys(int sessionVersion, byte[] masterSecret) {
-    try {
-      HKDF     kdf                = HKDF.createFor(sessionVersion);
-      byte[]   derivedSecretBytes = kdf.deriveSecrets(masterSecret, "WhisperText".getBytes(), 96);
-      byte[][] derivedSecrets     = ByteUtil.split(derivedSecretBytes, 32, 32, 32);
+    HKDF     kdf                = HKDF.createFor(sessionVersion);
+    byte[]   derivedSecretBytes = kdf.deriveSecrets(masterSecret, "WhisperText".getBytes(), 64);
+    byte[][] derivedSecrets     = ByteUtil.split(derivedSecretBytes, 32, 32);
 
-      return new DerivedKeys(new RootKey(kdf, derivedSecrets[0]),
-                             new ChainKey(kdf, derivedSecrets[1], 0),
-                             new VerifyKey(derivedSecrets[2]));
-    } catch (ParseException e) {
-      throw new AssertionError(e);
-    }
+    return new DerivedKeys(new RootKey(kdf, derivedSecrets[0]),
+                           new ChainKey(kdf, derivedSecrets[1], 0));
   }
 
   private static boolean isAlice(ECPublicKey ourKey, ECPublicKey theirKey) {
     return ourKey.compareTo(theirKey) < 0;
   }
 
-
   private static class DerivedKeys {
     private final RootKey   rootKey;
     private final ChainKey  chainKey;
-    private final VerifyKey verifyKey;
 
-    private DerivedKeys(RootKey rootKey, ChainKey chainKey, VerifyKey verifyKey) {
+    private DerivedKeys(RootKey rootKey, ChainKey chainKey) {
       this.rootKey   = rootKey;
       this.chainKey  = chainKey;
-      this.verifyKey = verifyKey;
     }
 
     public RootKey getRootKey() {
@@ -216,10 +174,6 @@ public class RatchetingSession {
 
     public ChainKey getChainKey() {
       return chainKey;
-    }
-
-    public VerifyKey getVerifyKey() {
-      return verifyKey;
     }
   }
 }

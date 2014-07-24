@@ -16,7 +16,6 @@ message PreKeyWhisperMessage {
   optional uint32 signedPreKeyId = 6;
   optional bytes  baseKey        = 2;
   optional bytes  identityKey    = 3;
-  optional bytes  verification   = 7;
   optional bytes  message        = 4; // WhisperMessage
 }
 

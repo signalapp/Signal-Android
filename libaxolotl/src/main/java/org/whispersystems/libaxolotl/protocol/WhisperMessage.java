@@ -19,6 +19,7 @@ package org.whispersystems.libaxolotl.protocol;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
@@ -80,7 +81,9 @@ public class WhisperMessage implements CiphertextMessage {
   }
 
   public WhisperMessage(int messageVersion, SecretKeySpec macKey, ECPublicKey senderRatchetKey,
-                        int counter, int previousCounter, byte[] ciphertext)
+                        int counter, int previousCounter, byte[] ciphertext,
+                        IdentityKey senderIdentityKey,
+                        IdentityKey receiverIdentityKey)
   {
     byte[] version = {ByteUtil.intsToByteHighAndLow(messageVersion, CURRENT_VERSION)};
     byte[] message = WhisperProtos.WhisperMessage.newBuilder()
@@ -89,7 +92,9 @@ public class WhisperMessage implements CiphertextMessage {
                                    .setPreviousCounter(previousCounter)
                                    .setCiphertext(ByteString.copyFrom(ciphertext))
                                    .build().toByteArray();
-    byte[] mac     = getMac(macKey, ByteUtil.combine(version, message));
+
+    byte[] mac     = getMac(messageVersion, senderIdentityKey, receiverIdentityKey, macKey,
+                            ByteUtil.combine(version, message));
 
     this.serialized       = ByteUtil.combine(version, message, mac);
     this.senderRatchetKey = senderRatchetKey;
@@ -115,11 +120,12 @@ public class WhisperMessage implements CiphertextMessage {
     return ciphertext;
   }
 
-  public void verifyMac(SecretKeySpec macKey)
+  public void verifyMac(int messageVersion, IdentityKey senderIdentityKey,
+                        IdentityKey receiverIdentityKey, SecretKeySpec macKey)
       throws InvalidMessageException
   {
     byte[][] parts    = ByteUtil.split(serialized, serialized.length - MAC_LENGTH, MAC_LENGTH);
-    byte[]   ourMac   = getMac(macKey, parts[0]);
+    byte[]   ourMac   = getMac(messageVersion, senderIdentityKey, receiverIdentityKey, macKey, parts[0]);
     byte[]   theirMac = parts[1];
 
     if (!MessageDigest.isEqual(ourMac, theirMac)) {
@@ -127,10 +133,19 @@ public class WhisperMessage implements CiphertextMessage {
     }
   }
 
-  private byte[] getMac(SecretKeySpec macKey, byte[] serialized) {
+  private byte[] getMac(int messageVersion,
+                        IdentityKey senderIdentityKey,
+                        IdentityKey receiverIdentityKey,
+                        SecretKeySpec macKey, byte[] serialized)
+  {
     try {
       Mac mac = Mac.getInstance("HmacSHA256");
       mac.init(macKey);
+
+      if (messageVersion >= 3) {
+        mac.update(senderIdentityKey.getPublicKey().serialize());
+        mac.update(receiverIdentityKey.getPublicKey().serialize());
+      }
 
       byte[] fullMac = mac.doFinal(serialized);
       return ByteUtil.trim(fullMac, MAC_LENGTH);

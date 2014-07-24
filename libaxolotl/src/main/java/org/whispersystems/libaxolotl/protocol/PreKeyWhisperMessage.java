@@ -37,7 +37,6 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
   private final int            signedPreKeyId;
   private final ECPublicKey    baseKey;
   private final IdentityKey    identityKey;
-  private final byte[]         verification;
   private final WhisperMessage message;
   private final byte[]         serialized;
 
@@ -57,7 +56,6 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
 
       if ((version == 2 && !preKeyWhisperMessage.hasPreKeyId())        ||
           (version == 3 && !preKeyWhisperMessage.hasSignedPreKeyId())  ||
-          (version == 3 && !preKeyWhisperMessage.hasVerification())    ||
           !preKeyWhisperMessage.hasBaseKey()                           ||
           !preKeyWhisperMessage.hasIdentityKey()                       ||
           !preKeyWhisperMessage.hasMessage())
@@ -71,7 +69,6 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
       this.signedPreKeyId = preKeyWhisperMessage.hasSignedPreKeyId() ? preKeyWhisperMessage.getSignedPreKeyId() : -1;
       this.baseKey        = Curve.decodePoint(preKeyWhisperMessage.getBaseKey().toByteArray(), 0);
       this.identityKey    = new IdentityKey(Curve.decodePoint(preKeyWhisperMessage.getIdentityKey().toByteArray(), 0));
-      this.verification   = preKeyWhisperMessage.getVerification().toByteArray();
       this.message        = new WhisperMessage(preKeyWhisperMessage.getMessage().toByteArray());
     } catch (InvalidProtocolBufferException | InvalidKeyException | LegacyMessageException e) {
       throw new InvalidMessageException(e);
@@ -79,8 +76,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
   }
 
   public PreKeyWhisperMessage(int messageVersion, int registrationId, int preKeyId, int signedPreKeyId,
-                              ECPublicKey baseKey, IdentityKey identityKey, byte[] verification,
-                              WhisperMessage message)
+                              ECPublicKey baseKey, IdentityKey identityKey, WhisperMessage message)
   {
     this.version        = messageVersion;
     this.registrationId = registrationId;
@@ -88,7 +84,6 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     this.signedPreKeyId = signedPreKeyId;
     this.baseKey        = baseKey;
     this.identityKey    = identityKey;
-    this.verification   = verification;
     this.message        = message;
 
     byte[] versionBytes = {ByteUtil.intsToByteHighAndLow(this.version, CURRENT_VERSION)};
@@ -97,7 +92,6 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
                                        .setSignedPreKeyId(signedPreKeyId)
                                        .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
                                        .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
-                                       .setVerification(ByteString.copyFrom(verification))
                                        .setMessage(ByteString.copyFrom(message.serialize()))
                                        .setRegistrationId(registrationId)
                                        .build().toByteArray();
@@ -127,10 +121,6 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
 
   public ECPublicKey getBaseKey() {
     return baseKey;
-  }
-
-  public byte[] getVerification() {
-    return verification;
   }
 
   public WhisperMessage getWhisperMessage() {

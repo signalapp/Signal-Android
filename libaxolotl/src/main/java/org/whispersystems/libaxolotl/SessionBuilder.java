@@ -23,8 +23,6 @@ import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.Medium;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
-import java.security.MessageDigest;
-
 /**
  * SessionBuilder is responsible for setting up encrypted sessions.
  * Once a session has been established, {@link org.whispersystems.libaxolotl.SessionCipher}
@@ -142,10 +140,6 @@ public class SessionBuilder {
     else                       sessionRecord.archiveCurrentState();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(), message.getMessageVersion(), parameters.create());
-
-    if (!MessageDigest.isEqual(sessionRecord.getSessionState().getVerification(), message.getVerification())) {
-      throw new InvalidKeyException("Verification secret mismatch!");
-    }
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());

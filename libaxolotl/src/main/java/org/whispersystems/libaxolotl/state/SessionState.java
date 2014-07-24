@@ -61,16 +61,6 @@ public class SessionState {
     return sessionStructure;
   }
 
-  public byte[] getVerification() {
-    return this.sessionStructure.getVerification().toByteArray();
-  }
-
-  public void setVerification(byte[] verification) {
-    this.sessionStructure = this.sessionStructure.toBuilder()
-                                                 .setVerification(ByteString.copyFrom(verification))
-                                                 .build();
-  }
-
   public byte[] getAliceBaseKey() {
     return this.sessionStructure.getAliceBaseKey().toByteArray();
   }

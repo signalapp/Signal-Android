@@ -167,16 +167,6 @@ public final class StorageProtos {
      * <code>optional bytes aliceBaseKey = 13;</code>
      */
     com.google.protobuf.ByteString getAliceBaseKey();
-
-    // optional bytes verification = 14;
-    /**
-     * <code>optional bytes verification = 14;</code>
-     */
-    boolean hasVerification();
-    /**
-     * <code>optional bytes verification = 14;</code>
-     */
-    com.google.protobuf.ByteString getVerification();
   }
   /**
    * Protobuf type {@code textsecure.SessionStructure}
@@ -319,11 +309,6 @@ public final class StorageProtos {
             case 106: {
               bitField0_ |= 0x00000800;
               aliceBaseKey_ = input.readBytes();
-              break;
-            }
-            case 114: {
-              bitField0_ |= 0x00001000;
-              verification_ = input.readBytes();
               break;
             }
           }
@@ -4157,22 +4142,6 @@ public final class StorageProtos {
       return aliceBaseKey_;
     }
 
-    // optional bytes verification = 14;
-    public static final int VERIFICATION_FIELD_NUMBER = 14;
-    private com.google.protobuf.ByteString verification_;
-    /**
-     * <code>optional bytes verification = 14;</code>
-     */
-    public boolean hasVerification() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
-    }
-    /**
-     * <code>optional bytes verification = 14;</code>
-     */
-    public com.google.protobuf.ByteString getVerification() {
-      return verification_;
-    }
-
     private void initFields() {
       sessionVersion_ = 0;
       localIdentityPublic_ = com.google.protobuf.ByteString.EMPTY;
@@ -4187,7 +4156,6 @@ public final class StorageProtos {
       localRegistrationId_ = 0;
       needsRefresh_ = false;
       aliceBaseKey_ = com.google.protobuf.ByteString.EMPTY;
-      verification_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4239,9 +4207,6 @@ public final class StorageProtos {
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         output.writeBytes(13, aliceBaseKey_);
-      }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        output.writeBytes(14, verification_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4303,10 +4268,6 @@ public final class StorageProtos {
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(13, aliceBaseKey_);
-      }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(14, verification_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4470,8 +4431,6 @@ public final class StorageProtos {
         bitField0_ = (bitField0_ & ~0x00000800);
         aliceBaseKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00001000);
-        verification_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00002000);
         return this;
       }
 
@@ -4569,10 +4528,6 @@ public final class StorageProtos {
           to_bitField0_ |= 0x00000800;
         }
         result.aliceBaseKey_ = aliceBaseKey_;
-        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
-          to_bitField0_ |= 0x00001000;
-        }
-        result.verification_ = verification_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4650,9 +4605,6 @@ public final class StorageProtos {
         }
         if (other.hasAliceBaseKey()) {
           setAliceBaseKey(other.getAliceBaseKey());
-        }
-        if (other.hasVerification()) {
-          setVerification(other.getVerification());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5577,42 +5529,6 @@ public final class StorageProtos {
       public Builder clearAliceBaseKey() {
         bitField0_ = (bitField0_ & ~0x00001000);
         aliceBaseKey_ = getDefaultInstance().getAliceBaseKey();
-        onChanged();
-        return this;
-      }
-
-      // optional bytes verification = 14;
-      private com.google.protobuf.ByteString verification_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes verification = 14;</code>
-       */
-      public boolean hasVerification() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
-      }
-      /**
-       * <code>optional bytes verification = 14;</code>
-       */
-      public com.google.protobuf.ByteString getVerification() {
-        return verification_;
-      }
-      /**
-       * <code>optional bytes verification = 14;</code>
-       */
-      public Builder setVerification(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00002000;
-        verification_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes verification = 14;</code>
-       */
-      public Builder clearVerification() {
-        bitField0_ = (bitField0_ & ~0x00002000);
-        verification_ = getDefaultInstance().getVerification();
         onChanged();
         return this;
       }
@@ -8333,7 +8249,7 @@ public final class StorageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\032LocalStorageProtocol.proto\022\ntextsecure" +
-      "\"\335\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
+      "\"\307\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
       "\001 \001(\r\022\033\n\023localIdentityPublic\030\002 \001(\014\022\034\n\024re" +
       "moteIdentityPublic\030\003 \001(\014\022\017\n\007rootKey\030\004 \001(" +
       "\014\022\027\n\017previousCounter\030\005 \001(\r\0227\n\013senderChai" +
@@ -8345,34 +8261,33 @@ public final class StorageProtos {
       "\001(\0132*.textsecure.SessionStructure.Pendin" +
       "gPreKey\022\034\n\024remoteRegistrationId\030\n \001(\r\022\033\n" +
       "\023localRegistrationId\030\013 \001(\r\022\024\n\014needsRefre" +
-      "sh\030\014 \001(\010\022\024\n\014aliceBaseKey\030\r \001(\014\022\024\n\014verifi" +
-      "cation\030\016 \001(\014\032\255\002\n\005Chain\022\030\n\020senderRatchetK" +
-      "ey\030\001 \001(\014\022\037\n\027senderRatchetKeyPrivate\030\002 \001(" +
-      "\014\022=\n\010chainKey\030\003 \001(\0132+.textsecure.Session" +
-      "Structure.Chain.ChainKey\022B\n\013messageKeys\030" +
-      "\004 \003(\0132-.textsecure.SessionStructure.Chai" +
-      "n.MessageKey\032&\n\010ChainKey\022\r\n\005index\030\001 \001(\r\022",
-      "\013\n\003key\030\002 \001(\014\032>\n\nMessageKey\022\r\n\005index\030\001 \001(" +
-      "\r\022\021\n\tcipherKey\030\002 \001(\014\022\016\n\006macKey\030\003 \001(\014\032\315\001\n" +
-      "\022PendingKeyExchange\022\020\n\010sequence\030\001 \001(\r\022\024\n" +
-      "\014localBaseKey\030\002 \001(\014\022\033\n\023localBaseKeyPriva" +
-      "te\030\003 \001(\014\022\027\n\017localRatchetKey\030\004 \001(\014\022\036\n\026loc" +
-      "alRatchetKeyPrivate\030\005 \001(\014\022\030\n\020localIdenti" +
-      "tyKey\030\007 \001(\014\022\037\n\027localIdentityKeyPrivate\030\010" +
-      " \001(\014\032J\n\rPendingPreKey\022\020\n\010preKeyId\030\001 \001(\r\022" +
-      "\026\n\016signedPreKeyId\030\003 \001(\005\022\017\n\007baseKey\030\002 \001(\014" +
-      "\"\177\n\017RecordStructure\0224\n\016currentSession\030\001 ",
-      "\001(\0132\034.textsecure.SessionStructure\0226\n\020pre" +
-      "viousSessions\030\002 \003(\0132\034.textsecure.Session" +
-      "Structure\"J\n\025PreKeyRecordStructure\022\n\n\002id" +
-      "\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivateKey\030" +
-      "\003 \001(\014\"v\n\033SignedPreKeyRecordStructure\022\n\n\002" +
-      "id\030\001 \001(\r\022\021\n\tpublicKey\030\002 \001(\014\022\022\n\nprivateKe" +
-      "y\030\003 \001(\014\022\021\n\tsignature\030\004 \001(\014\022\021\n\ttimestamp\030" +
-      "\005 \001(\006\"A\n\030IdentityKeyPairStructure\022\021\n\tpub" +
-      "licKey\030\001 \001(\014\022\022\n\nprivateKey\030\002 \001(\014B4\n#org." +
-      "whispersystems.libaxolotl.stateB\rStorage",
-      "Protos"
+      "sh\030\014 \001(\010\022\024\n\014aliceBaseKey\030\r \001(\014\032\255\002\n\005Chain" +
+      "\022\030\n\020senderRatchetKey\030\001 \001(\014\022\037\n\027senderRatc" +
+      "hetKeyPrivate\030\002 \001(\014\022=\n\010chainKey\030\003 \001(\0132+." +
+      "textsecure.SessionStructure.Chain.ChainK" +
+      "ey\022B\n\013messageKeys\030\004 \003(\0132-.textsecure.Ses" +
+      "sionStructure.Chain.MessageKey\032&\n\010ChainK" +
+      "ey\022\r\n\005index\030\001 \001(\r\022\013\n\003key\030\002 \001(\014\032>\n\nMessag",
+      "eKey\022\r\n\005index\030\001 \001(\r\022\021\n\tcipherKey\030\002 \001(\014\022\016" +
+      "\n\006macKey\030\003 \001(\014\032\315\001\n\022PendingKeyExchange\022\020\n" +
+      "\010sequence\030\001 \001(\r\022\024\n\014localBaseKey\030\002 \001(\014\022\033\n" +
+      "\023localBaseKeyPrivate\030\003 \001(\014\022\027\n\017localRatch" +
+      "etKey\030\004 \001(\014\022\036\n\026localRatchetKeyPrivate\030\005 " +
+      "\001(\014\022\030\n\020localIdentityKey\030\007 \001(\014\022\037\n\027localId" +
+      "entityKeyPrivate\030\010 \001(\014\032J\n\rPendingPreKey\022" +
+      "\020\n\010preKeyId\030\001 \001(\r\022\026\n\016signedPreKeyId\030\003 \001(" +
+      "\005\022\017\n\007baseKey\030\002 \001(\014\"\177\n\017RecordStructure\0224\n" +
+      "\016currentSession\030\001 \001(\0132\034.textsecure.Sessi",
+      "onStructure\0226\n\020previousSessions\030\002 \003(\0132\034." +
+      "textsecure.SessionStructure\"J\n\025PreKeyRec" +
+      "ordStructure\022\n\n\002id\030\001 \001(\r\022\021\n\tpublicKey\030\002 " +
+      "\001(\014\022\022\n\nprivateKey\030\003 \001(\014\"v\n\033SignedPreKeyR" +
+      "ecordStructure\022\n\n\002id\030\001 \001(\r\022\021\n\tpublicKey\030" +
+      "\002 \001(\014\022\022\n\nprivateKey\030\003 \001(\014\022\021\n\tsignature\030\004" +
+      " \001(\014\022\021\n\ttimestamp\030\005 \001(\006\"A\n\030IdentityKeyPa" +
+      "irStructure\022\021\n\tpublicKey\030\001 \001(\014\022\022\n\nprivat" +
+      "eKey\030\002 \001(\014B4\n#org.whispersystems.libaxol" +
+      "otl.stateB\rStorageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -8384,7 +8299,7 @@ public final class StorageProtos {
           internal_static_textsecure_SessionStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_descriptor,
-              new java.lang.String[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", "RemoteRegistrationId", "LocalRegistrationId", "NeedsRefresh", "AliceBaseKey", "Verification", });
+              new java.lang.String[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", "RemoteRegistrationId", "LocalRegistrationId", "NeedsRefresh", "AliceBaseKey", });
           internal_static_textsecure_SessionStructure_Chain_descriptor =
             internal_static_textsecure_SessionStructure_descriptor.getNestedTypes().get(0);
           internal_static_textsecure_SessionStructure_Chain_fieldAccessorTable = new
