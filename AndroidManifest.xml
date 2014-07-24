@@ -295,7 +295,7 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".notifications.MessageNotifier$NotificationDeleteBroadcastReceiver"
+    <receiver android:name=".notifications.MessageNotifier$NotificationDeleteReceiver"
               android:enabled="true"
               android:exported="false">
         <intent-filter>
