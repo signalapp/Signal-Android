@@ -76,17 +76,19 @@ JNIEXPORT jbyteArray JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_c
 }
 
 JNIEXPORT jbyteArray JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_calculateSignature
-  (JNIEnv *env, jclass clazz, jbyteArray privateKey, jbyteArray message)
+  (JNIEnv *env, jclass clazz, jbyteArray random, jbyteArray privateKey, jbyteArray message)
 {
     jbyteArray signature       = (*env)->NewByteArray(env, 64);
     uint8_t*   signatureBytes  = (uint8_t*)(*env)->GetByteArrayElements(env, signature, 0);
+    uint8_t*   randomBytes     = (uint8_t*)(*env)->GetByteArrayElements(env, random, 0);
     uint8_t*   privateKeyBytes = (uint8_t*)(*env)->GetByteArrayElements(env, privateKey, 0);
     uint8_t*   messageBytes    = (uint8_t*)(*env)->GetByteArrayElements(env, message, 0);
     jsize      messageLength   = (*env)->GetArrayLength(env, message);
 
-    curve25519_sign(signatureBytes, privateKeyBytes, messageBytes, messageLength);
+    curve25519_sign(signatureBytes, privateKeyBytes, messageBytes, messageLength, randomBytes);
 
     (*env)->ReleaseByteArrayElements(env, signature, signatureBytes, 0);
+    (*env)->ReleaseByteArrayElements(env, random, randomBytes, 0);
     (*env)->ReleaseByteArrayElements(env, privateKey, privateKeyBytes, 0);
     (*env)->ReleaseByteArrayElements(env, message, messageBytes, 0);
 

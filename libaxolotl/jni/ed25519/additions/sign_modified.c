@@ -3,6 +3,7 @@
 #include "crypto_hash_sha512.h"
 #include "ge.h"
 #include "sc.h"
+#include "zeroize.h"
 
 /* NEW: Compare to pristine crypto_sign() 
    Uses explicit private key for nonce derivation and as scalar,
@@ -11,22 +12,30 @@
 int crypto_sign_modified(
   unsigned char *sm,unsigned long long *smlen,
   const unsigned char *m,unsigned long long mlen,
-  const unsigned char *sk
+  const unsigned char *sk, const unsigned char* pk,
+  const unsigned char* random
 )
 {
-  unsigned char pk[32];
-  unsigned char az[64];
   unsigned char nonce[64];
   unsigned char hram[64];
   ge_p3 R;
-
-  memmove(pk,sk + 32,32);
+  int count=0;
 
   *smlen = mlen + 64;
   memmove(sm + 64,m,mlen);
   memmove(sm + 32,sk,32); /* NEW: Use privkey directly for nonce derivation */
-  crypto_hash_sha512(nonce,sm + 32,mlen + 32);
+
+  /* NEW : add prefix to separate hash uses - see .h */
+  sm[0] = 0xFE;
+  for (count = 1; count < 32; count++)
+    sm[count] = 0xFF;
+
+  crypto_hash_sha512(nonce,sm,mlen + 64);
   memmove(sm + 32,pk,32);
+
+  /* NEW: XOR random into nonce */
+  for (count=0; count < 64; count++)
+    nonce[count] ^= random[count];
 
   sc_reduce(nonce);
   ge_scalarmult_base(&R,nonce);
@@ -36,5 +45,11 @@ int crypto_sign_modified(
   sc_reduce(hram);
   sc_muladd(sm + 32,hram,sk,nonce); /* NEW: Use privkey directly */
 
+  /* NEW: Dummy call to hopefully erase any traces of privkey or 
+     nonce left in the stack from prev call to this func. */
+  volatile unsigned char* p = sm+64;
+  sc_muladd(sm+64,hram,hram,hram);
+
+  zeroize(nonce, 64);
   return 0;
 }
