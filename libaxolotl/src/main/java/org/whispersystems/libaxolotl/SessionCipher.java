@@ -145,17 +145,13 @@ public class SessionCipher {
              InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException, NoSessionException
   {
     synchronized (SESSION_LOCK) {
-      boolean sessionCreated = sessionBuilder.process(ciphertext);
+      SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
 
-      try {
-        return decrypt(ciphertext.getWhisperMessage());
-      } catch (InvalidMessageException | DuplicateMessageException | LegacyMessageException e) {
-        if (sessionCreated) {
-          sessionStore.deleteSession(recipientId, deviceId);
-        }
+      sessionBuilder.process(sessionRecord, ciphertext);
+      byte[] plaintext = decrypt(sessionRecord, ciphertext.getWhisperMessage());
 
-        throw e;
-      }
+      sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+      return plaintext;
     }
   }
 
@@ -182,26 +178,32 @@ public class SessionCipher {
         throw new NoSessionException("No session for: " + recipientId + ", " + deviceId);
       }
 
-      SessionRecord      sessionRecord  = sessionStore.loadSession(recipientId, deviceId);
+      SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
+      byte[]        plaintext     = decrypt(sessionRecord, ciphertext);
+
+      sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+
+      return plaintext;
+    }
+  }
+
+  private byte[] decrypt(SessionRecord sessionRecord, WhisperMessage ciphertext)
+      throws DuplicateMessageException, LegacyMessageException, InvalidMessageException
+  {
+    synchronized (SESSION_LOCK) {
       SessionState       sessionState   = sessionRecord.getSessionState();
       List<SessionState> previousStates = sessionRecord.getPreviousSessionStates();
       List<Exception>    exceptions     = new LinkedList<>();
 
       try {
-        byte[] plaintext = decrypt(sessionState, ciphertext);
-        sessionStore.storeSession(recipientId, deviceId, sessionRecord);
-
-        return plaintext;
+        return decrypt(sessionState, ciphertext);
       } catch (InvalidMessageException e) {
         exceptions.add(e);
       }
 
       for (SessionState previousState : previousStates) {
         try {
-          byte[] plaintext = decrypt(previousState, ciphertext);
-          sessionStore.storeSession(recipientId, deviceId, sessionRecord);
-
-          return plaintext;
+          return decrypt(previousState, ciphertext);
         } catch (InvalidMessageException e) {
           exceptions.add(e);
         }
@@ -240,7 +242,6 @@ public class SessionCipher {
     sessionState.clearUnacknowledgedPreKeyMessage();
 
     return plaintext;
-
   }
 
   public int getRemoteRegistrationId() {

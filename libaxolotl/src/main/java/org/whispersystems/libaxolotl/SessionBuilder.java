@@ -88,35 +88,32 @@ public class SessionBuilder {
    * @throws org.whispersystems.libaxolotl.InvalidKeyException when the message is formatted incorrectly.
    * @throws org.whispersystems.libaxolotl.UntrustedIdentityException when the {@link IdentityKey} of the sender is untrusted.
    */
-  /*package*/ boolean process(PreKeyWhisperMessage message)
+  /*package*/ void process(SessionRecord sessionRecord, PreKeyWhisperMessage message)
       throws InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
     int         messageVersion   = message.getMessageVersion();
     IdentityKey theirIdentityKey = message.getIdentityKey();
 
-    boolean     createdSession;
-
     if (!identityKeyStore.isTrustedIdentity(recipientId, theirIdentityKey)) {
       throw new UntrustedIdentityException();
     }
 
-    if      (messageVersion == 2) createdSession = processV2(message);
-    else if (messageVersion == 3) createdSession = processV3(message);
-    else                          throw new AssertionError("Unknown version: " + messageVersion);
+    switch (messageVersion) {
+      case 2:  processV2(sessionRecord, message); break;
+      case 3:  processV3(sessionRecord, message); break;
+      default: throw new AssertionError("Unknown version: " + messageVersion);
+    }
 
     identityKeyStore.saveIdentity(recipientId, theirIdentityKey);
-
-    return createdSession;
   }
 
-  private boolean processV3(PreKeyWhisperMessage message)
+  private void processV3(SessionRecord sessionRecord, PreKeyWhisperMessage message)
       throws UntrustedIdentityException, InvalidKeyIdException, InvalidKeyException
   {
-    SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
 
     if (sessionRecord.hasSessionState(message.getMessageVersion(), message.getBaseKey().serialize())) {
       Log.w(TAG, "We've already setup a session for this V3 message, letting bundled message fall through...");
-      return false;
+      return;
     }
 
     boolean   simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
@@ -147,16 +144,12 @@ public class SessionBuilder {
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
-    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
-
     if (message.getPreKeyId() >= 0 && message.getPreKeyId() != Medium.MAX_VALUE) {
       preKeyStore.removePreKey(message.getPreKeyId());
     }
-
-    return true;
   }
 
-  private boolean processV2(PreKeyWhisperMessage message)
+  private void processV2(SessionRecord sessionRecord, PreKeyWhisperMessage message)
       throws UntrustedIdentityException, InvalidKeyIdException, InvalidKeyException
   {
 
@@ -164,10 +157,9 @@ public class SessionBuilder {
         sessionStore.containsSession(recipientId, deviceId))
     {
       Log.w(TAG, "We've already processed the prekey part of this V2 session, letting bundled message fall through...");
-      return false;
+      return;
     }
 
-    SessionRecord sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
     ECKeyPair     ourPreKey            = preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair();
     boolean       simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
 
@@ -193,10 +185,6 @@ public class SessionBuilder {
     if (message.getPreKeyId() != Medium.MAX_VALUE) {
       preKeyStore.removePreKey(message.getPreKeyId());
     }
-
-    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
-
-    return true;
   }
 
   /**
