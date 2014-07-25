@@ -1,8 +1,8 @@
-package org.whispersystems.textsecure.push;
+package org.whispersystems.textsecure.push.exceptions;
 
-import java.io.IOException;
+import org.whispersystems.textsecure.push.MismatchedDevices;
 
-public class MismatchedDevicesException extends IOException {
+public class MismatchedDevicesException extends NonSuccessfulResponseCodeException {
 
   private final MismatchedDevices mismatchedDevices;
 

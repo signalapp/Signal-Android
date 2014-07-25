@@ -43,12 +43,13 @@ public class MediaMmsMessageRecord extends MessageRecord {
 
   public MediaMmsMessageRecord(Context context, long id, Recipients recipients,
                                Recipient individualRecipient, int recipientDeviceId,
-                               long dateSent, long dateReceived, long threadId, Body body,
+                               long dateSent, long dateReceived, int deliveredCount,
+                               long threadId, Body body,
                                ListenableFutureTask<SlideDeck> slideDeck,
                                int partCount, long mailbox)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, mailbox);
+          dateSent, dateReceived, threadId, deliveredCount, DELIVERY_STATUS_NONE, mailbox);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;

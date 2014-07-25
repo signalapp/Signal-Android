@@ -28,6 +28,8 @@ import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.PduHeaders;
 
 import java.io.UnsupportedEncodingException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MmsAddressDatabase extends Database {
 
@@ -104,6 +106,25 @@ public class MmsAddressDatabase extends Database {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public List<String> getAddressesForId(long messageId) {
+    List<String>   results  = new LinkedList<String>();
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {messageId+""}, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    return results;
   }
 
   public void deleteAddressesForId(long messageId) {

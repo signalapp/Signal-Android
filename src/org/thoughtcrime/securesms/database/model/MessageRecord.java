@@ -48,17 +48,19 @@ public abstract class MessageRecord extends DisplayRecord {
   private final int       recipientDeviceId;
   private final long      id;
   private final int       deliveryStatus;
+  private final int       receiptCount;
 
   MessageRecord(Context context, long id, Body body, Recipients recipients,
                 Recipient individualRecipient, int recipientDeviceId,
-                long dateSent, long dateReceived,
-                long threadId, int deliveryStatus, long type)
+                long dateSent, long dateReceived, long threadId,
+                int deliveryStatus, int receiptCount, long type)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, type);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;
     this.deliveryStatus      = deliveryStatus;
+    this.receiptCount        = receiptCount;
   }
 
   public abstract boolean isMms();
@@ -110,7 +112,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isDelivered() {
-    return getDeliveryStatus() == DELIVERY_STATUS_RECEIVED;
+    return getDeliveryStatus() == DELIVERY_STATUS_RECEIVED || receiptCount > 0;
   }
 
   public boolean isPush() {

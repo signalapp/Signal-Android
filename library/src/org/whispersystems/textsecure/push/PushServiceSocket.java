@@ -24,6 +24,14 @@ import com.google.thoughtcrimegson.JsonParseException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.whispersystems.textsecure.push.exceptions.AuthorizationFailedException;
+import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
+import org.whispersystems.textsecure.push.exceptions.MismatchedDevicesException;
+import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.textsecure.push.exceptions.NotFoundException;
+import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
+import org.whispersystems.textsecure.push.exceptions.RateLimitException;
+import org.whispersystems.textsecure.push.exceptions.StaleDevicesException;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.BlacklistingTrustManager;
@@ -71,6 +79,7 @@ public class PushServiceSocket {
   private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
   private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
+  private static final String RECEIPT_PATH              = "/v1/receipt/%s/%d";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
   private static final boolean ENFORCE_SSL = true;
@@ -103,6 +112,16 @@ public class PushServiceSocket {
     AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, supportsSms, registrationId);
     makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode),
                 "PUT", new Gson().toJson(signalingKeyEntity));
+  }
+
+  public void sendReceipt(String destination, long messageId, String relay) throws IOException {
+    String path = String.format(RECEIPT_PATH, destination, messageId);
+
+    if (!Util.isEmpty(relay)) {
+      path += "?relay=" + relay;
+    }
+
+    makeRequest(path, "PUT", null);
   }
 
   public void registerGcmId(String gcmRegistrationId) throws IOException {
@@ -313,68 +332,77 @@ public class PushServiceSocket {
   }
 
   private String makeRequest(String urlFragment, String method, String body)
-      throws IOException
+      throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     HttpURLConnection connection = makeBaseRequest(urlFragment, method, body);
-    String            response   = Util.readFully(connection.getInputStream());
 
-    connection.disconnect();
+    try {
+      String response = Util.readFully(connection.getInputStream());
+      connection.disconnect();
 
-    return response;
+      return response;
+    } catch (IOException ioe) {
+      throw new PushNetworkException(ioe);
+    }
   }
 
   private HttpURLConnection makeBaseRequest(String urlFragment, String method, String body)
-      throws IOException
+      throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    HttpURLConnection connection = getConnection(urlFragment, method);
+    try {
+      HttpURLConnection connection = getConnection(urlFragment, method);
 
-    if (body != null) {
-      connection.setDoOutput(true);
+      if (body != null) {
+        connection.setDoOutput(true);
+      }
+
+      connection.connect();
+
+      if (body != null) {
+        Log.w("PushServiceSocket", method +  "  --  " + body);
+        OutputStream out = connection.getOutputStream();
+        out.write(body.getBytes());
+        out.close();
+      }
+
+      if (connection.getResponseCode() == 413) {
+        connection.disconnect();
+        throw new RateLimitException("Rate limit exceeded: " + connection.getResponseCode());
+      }
+
+      if (connection.getResponseCode() == 401 || connection.getResponseCode() == 403) {
+        connection.disconnect();
+        throw new AuthorizationFailedException("Authorization failed!");
+      }
+
+      if (connection.getResponseCode() == 404) {
+        connection.disconnect();
+        throw new NotFoundException("Not found");
+      }
+
+      if (connection.getResponseCode() == 409) {
+        String response = Util.readFully(connection.getErrorStream());
+        throw new MismatchedDevicesException(new Gson().fromJson(response, MismatchedDevices.class));
+      }
+
+      if (connection.getResponseCode() == 410) {
+        String response = Util.readFully(connection.getErrorStream());
+        throw new StaleDevicesException(new Gson().fromJson(response, StaleDevices.class));
+      }
+
+      if (connection.getResponseCode() == 417) {
+        throw new ExpectationFailedException();
+      }
+
+      if (connection.getResponseCode() != 200 && connection.getResponseCode() != 204) {
+        throw new NonSuccessfulResponseCodeException("Bad response: " + connection.getResponseCode() +
+                                                     " " + connection.getResponseMessage());
+      }
+
+      return connection;
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
     }
-
-    connection.connect();
-
-    if (body != null) {
-      Log.w("PushServiceSocket", method +  "  --  " + body);
-      OutputStream out = connection.getOutputStream();
-      out.write(body.getBytes());
-      out.close();
-    }
-
-    if (connection.getResponseCode() == 413) {
-      connection.disconnect();
-      throw new RateLimitException("Rate limit exceeded: " + connection.getResponseCode());
-    }
-
-    if (connection.getResponseCode() == 401 || connection.getResponseCode() == 403) {
-      connection.disconnect();
-      throw new AuthorizationFailedException("Authorization failed!");
-    }
-
-    if (connection.getResponseCode() == 404) {
-      connection.disconnect();
-      throw new NotFoundException("Not found");
-    }
-
-    if (connection.getResponseCode() == 409) {
-      String response = Util.readFully(connection.getErrorStream());
-      throw new MismatchedDevicesException(new Gson().fromJson(response, MismatchedDevices.class));
-    }
-
-    if (connection.getResponseCode() == 410) {
-      String response = Util.readFully(connection.getErrorStream());
-      throw new StaleDevicesException(new Gson().fromJson(response, StaleDevices.class));
-    }
-
-    if (connection.getResponseCode() == 417) {
-      throw new ExpectationFailedException();
-    }
-
-    if (connection.getResponseCode() != 200 && connection.getResponseCode() != 204) {
-      throw new IOException("Bad response: " + connection.getResponseCode() + " " + connection.getResponseMessage());
-    }
-
-    return connection;
   }
 
   private HttpURLConnection getConnection(String urlFragment, String method) throws IOException {

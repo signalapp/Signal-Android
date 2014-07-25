@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PreKeyUtil;
-import org.whispersystems.textsecure.push.ExpectationFailedException;
+import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.storage.PreKeyRecord;
 import org.whispersystems.textsecure.util.Util;
