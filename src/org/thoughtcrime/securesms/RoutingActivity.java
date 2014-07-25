@@ -9,8 +9,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.GcmRegistrationService;
-import org.thoughtcrime.securesms.service.PreKeyService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
@@ -122,8 +120,6 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     final ConversationParameters parameters = getConversationParameters();
     final Intent intent;
 
-    scheduleRefreshActions();
-
     if      (isShareAction())               intent = getShareIntent(parameters);
     else if (parameters.recipients != null) intent = getConversationIntent(parameters);
     else                                    intent = getConversationListIntent();
@@ -173,20 +169,20 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     return intent;
   }
 
-  private void scheduleRefreshActions() {
-    if (TextSecurePreferences.isPushRegistered(this) &&
-        TextSecurePreferences.getGcmRegistrationId(this) == null)
-    {
-      Intent intent = new Intent(this, GcmRegistrationService.class);
-      startService(intent);
-    }
-
-    if (TextSecurePreferences.isPushRegistered(this) &&
-        !TextSecurePreferences.isSignedPreKeyRegistered(this))
-    {
-      PreKeyService.initiateCreateSigned(this, masterSecret);
-    }
-  }
+//  private void scheduleRefreshActions() {
+//    if (TextSecurePreferences.isPushRegistered(this) &&
+//        TextSecurePreferences.getGcmRegistrationId(this) == null)
+//    {
+//      Intent intent = new Intent(this, GcmRegistrationService.class);
+//      startService(intent);
+//    }
+//
+//    if (TextSecurePreferences.isPushRegistered(this) &&
+//        !TextSecurePreferences.isSignedPreKeyRegistered(this))
+//    {
+//      PreKeyService.initiateCreateSigned(this, masterSecret);
+//    }
+//  }
 
   private int getApplicationState() {
     if (!MasterSecretUtil.isPassphraseInitialized(this))

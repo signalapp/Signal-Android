@@ -55,7 +55,9 @@ public class DatabaseFactory {
   private static final int INTRODUCED_PUSH_DATABASE_VERSION  = 10;
   private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
   private static final int INTRODUCED_PUSH_FIX_VERSION       = 12;
-  private static final int DATABASE_VERSION                  = 12;
+  private static final int INTRODUCED_DELIVERY_RECEIPTS      = 13;
+  private static final int DATABASE_VERSION                  = 13;
+
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -700,6 +702,13 @@ public class DatabaseFactory {
         db.execSQL("CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, body TEXT, timestamp INTEGER, device_id INTEGER DEFAULT 1);");
         db.execSQL("INSERT INTO push (_id, type, source, body, timestamp, device_id) SELECT _id, type, source, body, timestamp, device_id FROM push_backup;");
         db.execSQL("DROP TABLE push_backup;");
+      }
+
+      if (oldVersion < INTRODUCED_DELIVERY_RECEIPTS) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
+        db.execSQL("ALTER TABLE mms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
+        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS sms_date_sent_index ON sms (date_sent);");
+        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS mms_date_sent_index ON mms (date);");
       }
 
       db.setTransactionSuccessful();

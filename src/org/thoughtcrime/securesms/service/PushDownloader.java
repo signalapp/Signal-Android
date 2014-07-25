@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingPartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase;
@@ -16,7 +15,7 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.push.NotFoundException;
+import org.whispersystems.textsecure.push.exceptions.NotFoundException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.Base64;
 

@@ -25,6 +25,7 @@ public class SendReq extends MultimediaMessagePdu {
     private static final String TAG = "SendReq";
     private long databaseMessageId;
     private long messageBox;
+    private long timestamp;
 
     public SendReq() {
         super();
@@ -90,11 +91,12 @@ public class SendReq extends MultimediaMessagePdu {
         super(headers, body);
     }
 
-    public SendReq(PduHeaders headers, PduBody body, long messageId, long messageBox)
+    public SendReq(PduHeaders headers, PduBody body, long messageId, long messageBox, long timestamp)
     {
         super(headers, body);
         this.databaseMessageId    = messageId;
         this.messageBox           = messageBox;
+        this.timestamp            = timestamp;
   }
     
     public long getDatabaseMessageBox() {
@@ -103,6 +105,10 @@ public class SendReq extends MultimediaMessagePdu {
     
     public long getDatabaseMessageId() {
     	return databaseMessageId;
+    }
+
+    public long getSentTimestamp() {
+      return timestamp;
     }
 
     /**

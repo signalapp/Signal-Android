@@ -36,12 +36,17 @@ import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
+import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+
+import static org.thoughtcrime.securesms.util.Util.canonicalizeNumber;
 
 /**
  * Database for storage of SMS messages.
@@ -66,13 +71,15 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     THREAD_ID + " INTEGER, " + ADDRESS + " TEXT, " + ADDRESS_DEVICE_ID + " INTEGER DEFAULT 1, " + PERSON + " INTEGER, " +
     DATE_RECEIVED  + " INTEGER, " + DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
     STATUS + " INTEGER DEFAULT -1," + TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " +
-    SUBJECT + " TEXT, " + BODY + " TEXT, " + SERVICE_CENTER + " TEXT);";
+    RECEIPT_COUNT + " INTEGER DEFAULT 0," + SUBJECT + " TEXT, " + BODY + " TEXT, " +
+    SERVICE_CENTER + " TEXT);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS sms_read_index ON " + TABLE_NAME + " (" + READ + ");",
     "CREATE INDEX IF NOT EXISTS sms_read_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + THREAD_ID + ");",
-    "CREATE INDEX IF NOT EXISTS sms_type_index ON " + TABLE_NAME + " (" + TYPE + ");"
+    "CREATE INDEX IF NOT EXISTS sms_type_index ON " + TABLE_NAME + " (" + TYPE + ");",
+    "CREATE INDEX IF NOT EXISTS sms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ");"
   };
 
   private static final String[] MESSAGE_PROJECTION = new String[] {
@@ -80,7 +87,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
       DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
       PROTOCOL, READ, STATUS, TYPE,
-      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER
+      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, RECEIPT_COUNT
   };
 
   public SmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
@@ -238,6 +245,38 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
 
   public void markAsSentFailed(long id) {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENT_FAILED_TYPE);
+  }
+
+  public void incrementDeliveryReceiptCount(String address, long timestamp) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    Cursor         cursor   = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS},
+                              DATE_SENT + " = ?", new String[] {String.valueOf(timestamp)},
+                              null, null, null, null);
+
+      while (cursor.moveToNext()) {
+        try {
+          String theirAddress = canonicalizeNumber(context, address);
+          String ourAddress   = canonicalizeNumber(context, cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+
+          if (ourAddress.equals(theirAddress)) {
+            database.execSQL("UPDATE " + TABLE_NAME +
+                             " SET " + RECEIPT_COUNT + " = " + RECEIPT_COUNT + " + 1 WHERE " +
+                             ID + " = ?",
+                             new String[] {String.valueOf(cursor.getLong(cursor.getColumnIndexOrThrow(ID)))});
+
+            notifyConversationListeners(cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID)));
+          }
+        } catch (InvalidNumberException e) {
+          Log.w("SmsDatabase", e);
+        }
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
   }
 
   public void setMessagesRead(long threadId) {
@@ -539,13 +578,14 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       long dateSent           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_SENT));
       long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
       int status              = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
+      int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.RECEIPT_COUNT));
       Recipients recipients   = getRecipientsFor(address);
       DisplayRecord.Body body = getBody(cursor);
 
       return  new SmsMessageRecord(context, messageId, body, recipients,
                                    recipients.getPrimaryRecipient(),
                                    addressDeviceId,
-                                   dateSent, dateReceived, type,
+                                   dateSent, dateReceived, receiptCount, type,
                                    threadId, status);
     }
 
