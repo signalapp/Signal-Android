@@ -39,10 +39,10 @@ public class RootKey {
     return key;
   }
 
-  public Pair<RootKey, ChainKey> createChain(ECPublicKey theirEphemeral, ECKeyPair ourEphemeral)
+  public Pair<RootKey, ChainKey> createChain(ECPublicKey theirRatchetKey, ECKeyPair ourRatchetKey)
       throws InvalidKeyException
   {
-    byte[]             sharedSecret       = Curve.calculateAgreement(theirEphemeral, ourEphemeral.getPrivateKey());
+    byte[]             sharedSecret       = Curve.calculateAgreement(theirRatchetKey, ourRatchetKey.getPrivateKey());
     byte[]             derivedSecretBytes = kdf.deriveSecrets(sharedSecret, key, "WhisperRatchet".getBytes(), DerivedRootSecrets.SIZE);
     DerivedRootSecrets derivedSecrets     = new DerivedRootSecrets(derivedSecretBytes);
 

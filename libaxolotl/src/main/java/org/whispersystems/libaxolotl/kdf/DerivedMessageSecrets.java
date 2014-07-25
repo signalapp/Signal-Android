@@ -17,32 +17,24 @@
 
 package org.whispersystems.libaxolotl.kdf;
 
+import org.whispersystems.libaxolotl.util.ByteUtil;
+
 import javax.crypto.spec.SecretKeySpec;
 
 public class DerivedMessageSecrets {
 
-  public  static final int SIZE               = 64;
-  private static final int CIPHER_KEYS_OFFSET = 0;
-  private static final int MAC_KEYS_OFFSET    = 32;
+  public  static final int SIZE              = 64;
+  private static final int CIPHER_KEY_LENGTH = 32;
+  private static final int MAC_KEY_LENGTH    = 32;
 
   private final SecretKeySpec cipherKey;
   private final SecretKeySpec macKey;
 
   public DerivedMessageSecrets(byte[] okm) {
-    this.cipherKey = deriveCipherKey(okm);
-    this.macKey    = deriveMacKey(okm);
-  }
+    byte[][] keys = ByteUtil.split(okm, CIPHER_KEY_LENGTH, MAC_KEY_LENGTH);
 
-  private SecretKeySpec deriveCipherKey(byte[] okm) {
-    byte[] cipherKey = new byte[32];
-    System.arraycopy(okm, CIPHER_KEYS_OFFSET, cipherKey, 0, cipherKey.length);
-    return new SecretKeySpec(cipherKey, "AES");
-  }
-
-  private SecretKeySpec deriveMacKey(byte[] okm) {
-    byte[] macKey = new byte[32];
-    System.arraycopy(okm, MAC_KEYS_OFFSET, macKey, 0, macKey.length);
-    return new SecretKeySpec(macKey, "HmacSHA256");
+    this.cipherKey = new SecretKeySpec(keys[0], "AES");
+    this.macKey    = new SecretKeySpec(keys[1], "HmacSHA256");
   }
 
   public SecretKeySpec getCipherKey() {
