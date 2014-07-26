@@ -40,13 +40,13 @@
             android:layout_height="15dp"
             android:layout_marginTop="12dp"
             android:layout_alignRight="@id/contact_photo"
-            android:background="?conversation_item_received_triangle_background" />
+            android:background="?attr/conversation_item_received_generic_triangle_background" />
 
         <LinearLayout android:id="@+id/conversation_item_parent"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/triangle_tick"
-            android:background="?conversation_item_received_background"
+            android:background="?attr/conversation_item_received_generic_background"
             android:orientation="vertical">
 
             <TextView android:id="@+id/conversation_item_body"

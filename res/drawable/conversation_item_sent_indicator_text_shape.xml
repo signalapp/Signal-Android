@@ -10,7 +10,7 @@
 
     <item android:bottom="@dimen/conversation_item_drop_shadow_dist">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/conversation_item_received_background_light" />
+            <solid android:color="@color/conversation_item_received_generic_background_light" />
             <corners android:bottomLeftRadius="@dimen/conversation_item_corner_radius" android:bottomRightRadius="@dimen/conversation_item_corner_radius" />
         </shape>
     </item>

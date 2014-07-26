@@ -3,15 +3,15 @@
 
     <item>
         <shape  android:shape="rectangle">
-            <solid android:color="#09000000" />
+            <solid android:color="@color/conversation_item_received_shadow_light" />
             <corners android:radius="@dimen/conversation_item_corner_radius" />
         </shape>
     </item>
 
     <item android:bottom="@dimen/conversation_item_drop_shadow_dist">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/conversation_item_received_generic_background_dark" />
-            <corners android:bottomLeftRadius="@dimen/conversation_item_corner_radius" android:bottomRightRadius="@dimen/conversation_item_corner_radius" />
+            <solid android:color="@color/conversation_item_received_sms_background_light" />
+            <corners android:radius="@dimen/conversation_item_corner_radius" />
         </shape>
     </item>
 

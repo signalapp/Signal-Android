@@ -51,6 +51,7 @@ public class TextSecurePreferences {
   private static final String FALLBACK_SMS_ALLOWED_PREF        = "pref_allow_sms_traffic_out";
   private static final String FALLBACK_SMS_ASK_REQUIRED_PREF   = "pref_sms_fallback_ask";
   private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
+  public  static final String MSG_TYPE_INDICATOR_PREF          = "pref_recv_messages_type_indicator";
 
   private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
   private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
@@ -295,6 +296,10 @@ public class TextSecurePreferences {
 
   public static void setNotificationLedPatternCustom(Context context, String pattern) {
     setStringPreference(context, LED_BLINK_PREF_CUSTOM, pattern);
+  }
+
+  public static String getMessageTypeIndicator(Context context) {
+    return getStringPreference(context, MSG_TYPE_INDICATOR_PREF, "none");
   }
 
   public static boolean isThreadLengthTrimmingEnabled(Context context) {

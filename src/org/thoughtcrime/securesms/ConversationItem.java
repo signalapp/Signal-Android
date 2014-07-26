@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
@@ -67,12 +68,16 @@ public class ConversationItem extends LinearLayout {
 
   private final int    STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
                                                       R.attr.conversation_item_sent_push_triangle_background,
-                                                      R.attr.conversation_item_sent_background,
-                                                      R.attr.conversation_item_sent_triangle_background,
-                                                      R.attr.conversation_item_sent_pending_background,
-                                                      R.attr.conversation_item_sent_pending_triangle_background,
+                                                      R.attr.conversation_item_sent_sms_background,
+                                                      R.attr.conversation_item_sent_sms_triangle_background,
+                                                      R.attr.conversation_item_sent_sms_pending_background,
+                                                      R.attr.conversation_item_sent_sms_pending_triangle_background,
                                                       R.attr.conversation_item_sent_push_pending_background,
-                                                      R.attr.conversation_item_sent_push_pending_triangle_background};
+                                                      R.attr.conversation_item_sent_push_pending_triangle_background,
+                                                      R.attr.conversation_item_received_sms_background,
+                                                      R.attr.conversation_item_received_sms_triangle_background,
+                                                      R.attr.conversation_item_received_push_background,
+                                                      R.attr.conversation_item_received_push_triangle_background};
 
   private final static int SENT_PUSH = 0;
   private final static int SENT_PUSH_TRIANGLE = 1;
@@ -82,6 +87,10 @@ public class ConversationItem extends LinearLayout {
   private final static int SENT_SMS_PENDING_TRIANGLE = 5;
   private final static int SENT_PUSH_PENDING = 6;
   private final static int SENT_PUSH_PENDING_TRIANGLE = 7;
+  private final static int RECEIVED_SMS = 8;
+  private final static int RECEIVED_SMS_TRIANGLE = 9;
+  private final static int RECEIVED_PUSH = 10;
+  private final static int RECEIVED_PUSH_TRIANGLE = 11;
 
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
@@ -223,6 +232,29 @@ public class ConversationItem extends LinearLayout {
         }
         setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
         setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
+      } else if (TextSecurePreferences.getMessageTypeIndicator(context).equals("color")){
+        final int background;
+        final int triangleBackground;
+        final int[] textColorRefs;
+        final TypedArray textColors;
+
+        if (messageRecord.isPush()) {
+          background = RECEIVED_PUSH;
+          triangleBackground = RECEIVED_PUSH_TRIANGLE;
+        } else {
+          background = RECEIVED_SMS;
+          triangleBackground = RECEIVED_SMS_TRIANGLE;
+        }
+        setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
+        setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
+
+        // Change Text Color to Match
+        textColorRefs = new int[] {R.attr.conversation_received_text_primary_color_modified,
+                                   R.attr.conversation_received_text_secondary_color_modified};
+        textColors = context.obtainStyledAttributes(textColorRefs);
+
+        bodyText.setTextColor(textColors.getResourceId(0, -1));
+        bodyText.setTextColor(textColors.getResourceId(1, -1));
       }
     }
   }
@@ -271,11 +303,18 @@ public class ConversationItem extends LinearLayout {
       dateText.setText(" ··· ");
     } else {
       final long timestamp;
+      final String datestr;
+      final boolean showTextIndicator =
+        TextSecurePreferences.getMessageTypeIndicator(context).equals("label");
 
       if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
       else                        timestamp = messageRecord.getDateReceived();
 
-      dateText.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp));
+      datestr = DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp);
+
+      if (messageRecord.isOutgoing() || !showTextIndicator) dateText.setText(datestr);
+      else if (messageRecord.isPush()) dateText.setText(datestr + " (PUSH)");
+      else                             dateText.setText(datestr + " (SMS)");
     }
   }
 

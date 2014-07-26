@@ -9,7 +9,7 @@
             <shape
                 android:shape="rectangle" >
                 <solid
-                    android:color="@color/conversation_item_received_background_dark" />
+                    android:color="@color/conversation_item_received_generic_background_light" />
             </shape>
         </rotate>
     </item>

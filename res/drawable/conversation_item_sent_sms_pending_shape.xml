@@ -3,14 +3,14 @@
 
     <item>
         <shape  android:shape="rectangle">
-            <solid android:color="@color/conversation_item_received_shadow_light" />
+            <solid android:color="@color/conversation_item_sent_shadow_light" />
             <corners android:radius="@dimen/conversation_item_corner_radius" />
         </shape>
     </item>
 
     <item android:bottom="@dimen/conversation_item_drop_shadow_dist">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/conversation_item_received_background_light" />
+            <solid android:color="@color/conversation_item_sent_sms_pending_background_light" />
             <!--stroke android:width="0.5dp" android:color="#03000000" /-->
             <corners android:radius="@dimen/conversation_item_corner_radius" />
         </shape>

@@ -46,7 +46,7 @@
                       android:layout_width="wrap_content"
                       android:layout_height="match_parent"
                       android:layout_alignParentRight="true"
-                      android:background="?conversation_item_sent_background"
+                      android:background="?attr/conversation_item_sent_sms_background"
                       android:paddingRight="10dip"
                       android:paddingLeft="10dip"
                       android:layout_marginLeft="50dp"
@@ -169,7 +169,7 @@
         </LinearLayout>
 
         <View android:id="@+id/triangle_tick"
-            android:background="?conversation_item_sent_triangle_background"
+            android:background="?attr/conversation_item_sent_sms_triangle_background"
             android:layout_width="12dp"
             android:layout_height="15dp"
             android:layout_marginTop="12dp"
@@ -190,7 +190,7 @@
             android:layout_marginTop="-2dp"
             android:textSize="12sp"
             android:textColor="?conversation_sent_text_secondary_color"
-            android:background="?conversation_item_sent_indicator_text_background"
+            android:background="?attr/conversation_item_sent_indicator_text_background"
             android:visibility="gone" />
 
     </RelativeLayout>
