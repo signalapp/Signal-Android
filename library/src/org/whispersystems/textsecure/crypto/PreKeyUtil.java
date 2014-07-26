@@ -55,7 +55,7 @@ public class PreKeyUtil {
 
     for (int i=0;i<BATCH_SIZE;i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
-      ECKeyPair    keyPair  = Curve25519.generateKeyPair(true);
+      ECKeyPair    keyPair  = Curve25519.generateKeyPair();
       PreKeyRecord record   = new PreKeyRecord(preKeyId, keyPair);
 
       preKeyStore.storePreKey(preKeyId, record);
@@ -72,7 +72,7 @@ public class PreKeyUtil {
     try {
       SignedPreKeyStore  signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
       int                signedPreKeyId    = getNextSignedPreKeyId(context);
-      ECKeyPair          keyPair           = Curve25519.generateKeyPair(true);
+      ECKeyPair          keyPair           = Curve25519.generateKeyPair();
       byte[]             signature         = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());
       SignedPreKeyRecord record            = new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
 
@@ -97,7 +97,7 @@ public class PreKeyUtil {
       }
     }
 
-    ECKeyPair    keyPair = Curve25519.generateKeyPair(true);
+    ECKeyPair    keyPair = Curve25519.generateKeyPair();
     PreKeyRecord record  = new PreKeyRecord(Medium.MAX_VALUE, keyPair);
 
     preKeyStore.storePreKey(Medium.MAX_VALUE, record);

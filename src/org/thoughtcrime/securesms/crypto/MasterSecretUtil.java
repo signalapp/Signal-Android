@@ -156,7 +156,7 @@ public class MasterSecretUtil {
                                                                       MasterSecret masterSecret)
   {
     MasterCipher masterCipher = new MasterCipher(masterSecret);
-    ECKeyPair    keyPair      = Curve.generateKeyPair(true);
+    ECKeyPair    keyPair      = Curve.generateKeyPair();
 
     save(context, ASYMMETRIC_LOCAL_PUBLIC_DJB, keyPair.getPublicKey().serialize());
     save(context, ASYMMETRIC_LOCAL_PRIVATE_DJB, masterCipher.encryptKey(keyPair.getPrivateKey()));

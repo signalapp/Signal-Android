@@ -20,7 +20,7 @@ public class InMemoryIdentityKeyStore implements IdentityKeyStore {
 
   public InMemoryIdentityKeyStore() {
     try {
-      ECKeyPair identityKeyPairKeys = Curve.generateKeyPair(false);
+      ECKeyPair identityKeyPairKeys = Curve.generateKeyPair();
 
       this.identityKeyPair = new IdentityKeyPair(new IdentityKey(identityKeyPairKeys.getPublicKey()),
                                                  identityKeyPairKeys.getPrivateKey());

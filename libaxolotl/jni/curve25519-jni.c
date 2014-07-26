@@ -23,16 +23,11 @@
 #include "curve_sigs.h"
 
 JNIEXPORT jbyteArray JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_generatePrivateKey
-  (JNIEnv *env, jclass clazz, jbyteArray random, jboolean ephemeral)
+  (JNIEnv *env, jclass clazz, jbyteArray random)
 {
   uint8_t* privateKey = (uint8_t*)(*env)->GetByteArrayElements(env, random, 0);
 
   privateKey[0] &= 248;
-
-  if (ephemeral) {
-    privateKey[0] |= 1;
-  }
-
   privateKey[31] &= 127;
   privateKey[31] |= 64;
 

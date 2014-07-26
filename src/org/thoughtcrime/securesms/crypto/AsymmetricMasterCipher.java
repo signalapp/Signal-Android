@@ -86,7 +86,7 @@ public class AsymmetricMasterCipher {
   public String encryptBody(String body) {
     try {
       ECPublicKey  theirPublic        = asymmetricMasterSecret.getDjbPublicKey();
-      ECKeyPair    ourKeyPair         = Curve.generateKeyPair(true);
+      ECKeyPair    ourKeyPair         = Curve.generateKeyPair();
       byte[]       secret             = Curve.calculateAgreement(theirPublic, ourKeyPair.getPrivateKey());
       MasterCipher masterCipher       = getMasterCipherForSecret(secret);
       byte[]       encryptedBodyBytes = masterCipher.encryptBytes(body.getBytes());

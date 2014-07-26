@@ -261,7 +261,7 @@ public class SessionCipher {
         RootKey                 rootKey         = sessionState.getRootKey();
         ECKeyPair               ourEphemeral    = sessionState.getSenderRatchetKeyPair();
         Pair<RootKey, ChainKey> receiverChain   = rootKey.createChain(theirEphemeral, ourEphemeral);
-        ECKeyPair               ourNewEphemeral = Curve.generateKeyPair(true);
+        ECKeyPair               ourNewEphemeral = Curve.generateKeyPair();
         Pair<RootKey, ChainKey> senderChain     = receiverChain.first().createChain(theirEphemeral, ourNewEphemeral);
 
         sessionState.setRootKey(senderChain.first());

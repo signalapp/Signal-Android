@@ -37,13 +37,13 @@ public class Curve25519 {
 
   private static native byte[] calculateAgreement(byte[] ourPrivate, byte[] theirPublic);
   private static native byte[] generatePublicKey(byte[] privateKey);
-  private static native byte[] generatePrivateKey(byte[] random, boolean ephemeral);
+  private static native byte[] generatePrivateKey(byte[] random);
 
   private static native byte[]  calculateSignature(byte[] random, byte[] privateKey, byte[] message);
   private static native boolean verifySignature(byte[] publicKey, byte[] message, byte[] signature);
 
-  public static ECKeyPair generateKeyPair(boolean ephemeral) {
-    byte[] privateKey = generatePrivateKey(ephemeral);
+  public static ECKeyPair generateKeyPair() {
+    byte[] privateKey = generatePrivateKey();
     byte[] publicKey  = generatePublicKey(privateKey);
 
     return new ECKeyPair(new DjbECPublicKey(publicKey), new DjbECPrivateKey(privateKey));
@@ -77,11 +77,11 @@ public class Curve25519 {
     return new DjbECPublicKey(keyBytes);
   }
 
-  private static byte[] generatePrivateKey(boolean ephemeral) {
+  private static byte[] generatePrivateKey() {
     byte[] privateKey = new byte[32];
     random.nextBytes(privateKey);
 
-    return generatePrivateKey(privateKey, ephemeral);
+    return generatePrivateKey(privateKey);
   }
 
   private static byte[] getRandom(int size) {

@@ -88,7 +88,7 @@ public class IdentityKeyUtil {
   }
 
   public static void generateIdentityKeys(Context context, MasterSecret masterSecret) {
-    ECKeyPair    djbKeyPair     = Curve.generateKeyPair(false);
+    ECKeyPair    djbKeyPair     = Curve.generateKeyPair();
 
     MasterCipher masterCipher   = new MasterCipher(masterSecret);
     IdentityKey  djbIdentityKey = new IdentityKey(djbKeyPair.getPublicKey());
@@ -106,7 +106,7 @@ public class IdentityKeyUtil {
 
   public static void generateCurve25519IdentityKeys(Context context, MasterSecret masterSecret) {
     MasterCipher masterCipher    = new MasterCipher(masterSecret);
-    ECKeyPair    djbKeyPair      = Curve.generateKeyPair(false);
+    ECKeyPair    djbKeyPair      = Curve.generateKeyPair();
     IdentityKey  djbIdentityKey  = new IdentityKey(djbKeyPair.getPublicKey());
     byte[]       djbPrivateKey   = masterCipher.encryptKey(djbKeyPair.getPrivateKey());
 

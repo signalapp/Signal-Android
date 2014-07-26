@@ -72,7 +72,7 @@ public class RatchetingSession {
       sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
       sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
 
-      ECKeyPair             sendingRatchetKey = Curve.generateKeyPair(true);
+      ECKeyPair             sendingRatchetKey = Curve.generateKeyPair();
       ByteArrayOutputStream secrets           = new ByteArrayOutputStream();
 
       if (sessionVersion >= 3) {

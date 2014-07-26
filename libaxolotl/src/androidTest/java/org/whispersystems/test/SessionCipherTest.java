@@ -138,16 +138,16 @@ public class SessionCipherTest extends AndroidTestCase {
   private void initializeSessionsV2(SessionState aliceSessionState, SessionState bobSessionState)
       throws InvalidKeyException
   {
-    ECKeyPair       aliceIdentityKeyPair = Curve.generateKeyPair(false);
+    ECKeyPair       aliceIdentityKeyPair = Curve.generateKeyPair();
     IdentityKeyPair aliceIdentityKey     = new IdentityKeyPair(new IdentityKey(aliceIdentityKeyPair.getPublicKey()),
                                                                aliceIdentityKeyPair.getPrivateKey());
-    ECKeyPair       aliceBaseKey         = Curve.generateKeyPair(true);
-    ECKeyPair       aliceEphemeralKey    = Curve.generateKeyPair(true);
+    ECKeyPair       aliceBaseKey         = Curve.generateKeyPair();
+    ECKeyPair       aliceEphemeralKey    = Curve.generateKeyPair();
 
-    ECKeyPair       bobIdentityKeyPair   = Curve.generateKeyPair(false);
+    ECKeyPair       bobIdentityKeyPair   = Curve.generateKeyPair();
     IdentityKeyPair bobIdentityKey       = new IdentityKeyPair(new IdentityKey(bobIdentityKeyPair.getPublicKey()),
                                                                bobIdentityKeyPair.getPrivateKey());
-    ECKeyPair       bobBaseKey           = Curve.generateKeyPair(true);
+    ECKeyPair       bobBaseKey           = Curve.generateKeyPair();
     ECKeyPair       bobEphemeralKey      = bobBaseKey;
 
     AliceAxolotlParameters aliceParameters = AliceAxolotlParameters.newBuilder()
@@ -175,21 +175,21 @@ public class SessionCipherTest extends AndroidTestCase {
   private void initializeSessionsV3(SessionState aliceSessionState, SessionState bobSessionState)
       throws InvalidKeyException
   {
-    ECKeyPair       aliceIdentityKeyPair = Curve.generateKeyPair(false);
+    ECKeyPair       aliceIdentityKeyPair = Curve.generateKeyPair();
     IdentityKeyPair aliceIdentityKey     = new IdentityKeyPair(new IdentityKey(aliceIdentityKeyPair.getPublicKey()),
                                                                aliceIdentityKeyPair.getPrivateKey());
-    ECKeyPair       aliceBaseKey         = Curve.generateKeyPair(true);
-    ECKeyPair       aliceEphemeralKey    = Curve.generateKeyPair(true);
+    ECKeyPair       aliceBaseKey         = Curve.generateKeyPair();
+    ECKeyPair       aliceEphemeralKey    = Curve.generateKeyPair();
 
     ECKeyPair       alicePreKey          = aliceBaseKey;
 
-    ECKeyPair       bobIdentityKeyPair   = Curve.generateKeyPair(false);
+    ECKeyPair       bobIdentityKeyPair   = Curve.generateKeyPair();
     IdentityKeyPair bobIdentityKey       = new IdentityKeyPair(new IdentityKey(bobIdentityKeyPair.getPublicKey()),
                                                                bobIdentityKeyPair.getPrivateKey());
-    ECKeyPair       bobBaseKey           = Curve.generateKeyPair(true);
+    ECKeyPair       bobBaseKey           = Curve.generateKeyPair();
     ECKeyPair       bobEphemeralKey      = bobBaseKey;
 
-    ECKeyPair       bobPreKey            = Curve.generateKeyPair(true);
+    ECKeyPair       bobPreKey            = Curve.generateKeyPair();
 
     AliceAxolotlParameters aliceParameters = AliceAxolotlParameters.newBuilder()
         .setOurBaseKey(aliceBaseKey)

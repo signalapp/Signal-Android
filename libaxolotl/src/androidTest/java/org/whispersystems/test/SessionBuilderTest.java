@@ -52,7 +52,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore  bobIdentityKeyStore  = new InMemoryIdentityKeyStore();
 
-    ECKeyPair    bobPreKeyPair = Curve.generateKeyPair(true);
+    ECKeyPair    bobPreKeyPair = Curve.generateKeyPair();
     PreKeyBundle bobPreKey     = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
                                                   31337, bobPreKeyPair.getPublicKey(),
                                                   0, null, null,
@@ -97,7 +97,7 @@ public class SessionBuilderTest extends AndroidTestCase {
                                                BOB_RECIPIENT_ID, 1);
     aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
 
-    bobPreKeyPair = Curve.generateKeyPair(true);
+    bobPreKeyPair = Curve.generateKeyPair();
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(),
                                  1, 31338, bobPreKeyPair.getPublicKey(),
                                  0, null, null, bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
@@ -119,7 +119,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(new String(plaintext).equals(originalMessage));
 
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
-                                 31337, Curve.generateKeyPair(true).getPublicKey(),
+                                 31337, Curve.generateKeyPair().getPublicKey(),
                                  0, null, null,
                                  aliceIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
@@ -147,8 +147,8 @@ public class SessionBuilderTest extends AndroidTestCase {
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
 
-    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
-    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair();
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair();
     byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
                                                                   bobSignedPreKeyPair.getPublicKey().serialize());
 
@@ -200,8 +200,8 @@ public class SessionBuilderTest extends AndroidTestCase {
                                                BOB_RECIPIENT_ID, 1);
     aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
 
-    bobPreKeyPair            = Curve.generateKeyPair(true);
-    bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    bobPreKeyPair            = Curve.generateKeyPair();
+    bobSignedPreKeyPair      = Curve.generateKeyPair();
     bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(), bobSignedPreKeyPair.getPublicKey().serialize());
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(),
                                  1, 31338, bobPreKeyPair.getPublicKey(),
@@ -225,7 +225,7 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(new String(plaintext).equals(originalMessage));
 
     bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
-                                 31337, Curve.generateKeyPair(true).getPublicKey(),
+                                 31337, Curve.generateKeyPair().getPublicKey(),
                                  23, bobSignedPreKeyPair.getPublicKey(), bobSignedPreKeySignature,
                                  aliceIdentityKeyStore.getIdentityKeyPair().getPublicKey());
 
@@ -249,8 +249,8 @@ public class SessionBuilderTest extends AndroidTestCase {
 
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
 
-    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
-    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair();
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair();
     byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
                                                                   bobSignedPreKeyPair.getPublicKey().serialize());
 
@@ -297,8 +297,8 @@ public class SessionBuilderTest extends AndroidTestCase {
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
 
-    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
-    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair();
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair();
     byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
                                                                   bobSignedPreKeyPair.getPublicKey().serialize());
 
@@ -359,8 +359,8 @@ public class SessionBuilderTest extends AndroidTestCase {
     SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
     IdentityKeyStore bobIdentityKeyStore = new InMemoryIdentityKeyStore();
 
-    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair(true);
-    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair(true);
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair();
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair();
     byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
                                                                   bobSignedPreKeyPair.getPublicKey().serialize());
 

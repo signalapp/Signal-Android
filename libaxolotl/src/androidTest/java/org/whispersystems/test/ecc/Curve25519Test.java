@@ -70,8 +70,8 @@ public class Curve25519Test extends AndroidTestCase {
 
   public void testRandomAgreements() throws InvalidKeyException {
     for (int i=0;i<50;i++) {
-      ECKeyPair alice       = Curve.generateKeyPair(false);
-      ECKeyPair bob         = Curve.generateKeyPair(false);
+      ECKeyPair alice       = Curve.generateKeyPair();
+      ECKeyPair bob         = Curve.generateKeyPair();
 
       byte[]    sharedAlice = Curve.calculateAgreement(bob.getPublicKey(), alice.getPrivateKey());
       byte[]    sharedBob   = Curve.calculateAgreement(alice.getPublicKey(), bob.getPrivateKey());

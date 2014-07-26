@@ -29,7 +29,7 @@ public class KeyHelper {
    * @return the generated IdentityKeyPair.
    */
   public static IdentityKeyPair generateIdentityKeyPair() {
-    ECKeyPair   keyPair   = Curve.generateKeyPair(false);
+    ECKeyPair   keyPair   = Curve.generateKeyPair();
     IdentityKey publicKey = new IdentityKey(keyPair.getPublicKey());
     return new IdentityKeyPair(publicKey, keyPair.getPrivateKey());
   }
@@ -72,7 +72,7 @@ public class KeyHelper {
     List<PreKeyRecord> results = new LinkedList<>();
 
     for (int i=0;i<count;i++) {
-      results.add(new PreKeyRecord((start + i) % Medium.MAX_VALUE, Curve.generateKeyPair(true)));
+      results.add(new PreKeyRecord((start + i) % Medium.MAX_VALUE, Curve.generateKeyPair()));
     }
 
     return results;
@@ -85,7 +85,7 @@ public class KeyHelper {
    * @return the generated last resort PreKeyRecord.
    */
   public static PreKeyRecord generateLastResortPreKey() {
-    ECKeyPair keyPair = Curve.generateKeyPair(true);
+    ECKeyPair keyPair = Curve.generateKeyPair();
     return new PreKeyRecord(Medium.MAX_VALUE, keyPair);
   }
 
@@ -101,7 +101,7 @@ public class KeyHelper {
   public static SignedPreKeyRecord generateSignedPreKey(IdentityKeyPair identityKeyPair, int signedPreKeyId)
       throws InvalidKeyException
   {
-    ECKeyPair keyPair   = Curve.generateKeyPair(true);
+    ECKeyPair keyPair   = Curve.generateKeyPair();
     byte[]    signature = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());
 
     return new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);

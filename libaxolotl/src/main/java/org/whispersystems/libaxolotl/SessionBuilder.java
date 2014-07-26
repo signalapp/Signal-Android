@@ -217,7 +217,7 @@ public class SessionBuilder {
     }
 
     SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
-    ECKeyPair     ourBaseKey        = Curve.generateKeyPair(true);
+    ECKeyPair     ourBaseKey        = Curve.generateKeyPair();
     ECPublicKey   theirSignedPreKey = preKey.getSignedPreKey() != null ? preKey.getSignedPreKey() :
                                                                          preKey.getPreKey();
 
@@ -287,8 +287,8 @@ public class SessionBuilder {
 
     if (!sessionRecord.getSessionState().hasPendingKeyExchange()) {
       builder.setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
-             .setOurBaseKey(Curve.generateKeyPair(true))
-             .setOurRatchetKey(Curve.generateKeyPair(true));
+             .setOurBaseKey(Curve.generateKeyPair())
+             .setOurRatchetKey(Curve.generateKeyPair());
     } else {
       builder.setOurIdentityKey(sessionRecord.getSessionState().getPendingKeyExchangeIdentityKey())
              .setOurBaseKey(sessionRecord.getSessionState().getPendingKeyExchangeBaseKey())
@@ -372,8 +372,8 @@ public class SessionBuilder {
     try {
       int             sequence         = KeyHelper.getRandomSequence(65534) + 1;
       int             flags            = KeyExchangeMessage.INITIATE_FLAG;
-      ECKeyPair       baseKey          = Curve.generateKeyPair(true);
-      ECKeyPair       ratchetKey       = Curve.generateKeyPair(true);
+      ECKeyPair       baseKey          = Curve.generateKeyPair();
+      ECKeyPair       ratchetKey       = Curve.generateKeyPair();
       IdentityKeyPair identityKey      = identityKeyStore.getIdentityKeyPair();
       byte[]          baseKeySignature = Curve.calculateSignature(identityKey.getPrivateKey(), baseKey.getPublicKey().serialize());
       SessionRecord   sessionRecord    = sessionStore.loadSession(recipientId, deviceId);

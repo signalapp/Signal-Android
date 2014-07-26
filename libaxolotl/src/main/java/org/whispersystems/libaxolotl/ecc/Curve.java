@@ -22,8 +22,8 @@ public class Curve {
 
   public  static final int DJB_TYPE   = 0x05;
 
-  public static ECKeyPair generateKeyPair(boolean ephemeral) {
-    return Curve25519.generateKeyPair(ephemeral);
+  public static ECKeyPair generateKeyPair() {
+    return Curve25519.generateKeyPair();
   }
 
   public static ECPublicKey decodePoint(byte[] bytes, int offset)
