@@ -55,7 +55,7 @@ public class Curve25519 {
   }
 
   static byte[] calculateSignature(ECPrivateKey privateKey, byte[] message) {
-    byte[] random = getRandom(32);
+    byte[] random = getRandom(64);
     return calculateSignature(random, ((DjbECPrivateKey)privateKey).getPrivateKey(), message);
   }
 
