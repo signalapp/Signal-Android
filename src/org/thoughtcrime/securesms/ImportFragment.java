@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
+
+import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
@@ -28,9 +31,10 @@ import java.io.IOException;
 
 public class ImportFragment extends SherlockFragment {
 
-  private static final int SUCCESS    = 0;
-  private static final int NO_SD_CARD = 1;
-  private static final int ERROR_IO   = 2;
+  private static final int SUCCESS              = 0;
+  private static final int NO_SD_CARD           = 1;
+  private static final int ERROR_IO             = 2;
+  private static final int ERROR_BAD_PASSPHRASE = 3;
 
   private MasterSecret masterSecret;
   private ProgressDialog progressDialog;
@@ -220,10 +224,10 @@ public class ImportFragment extends SherlockFragment {
                          Toast.LENGTH_LONG).show();
           break;
         case SUCCESS:
-          DatabaseFactory.getInstance(context).reset(context);
-          Intent intent = new Intent(context, KeyCachingService.class);
-          intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
-          context.startService(intent);
+//          DatabaseFactory.getInstance(context).reset(context);
+//          Intent intent = new Intent(context, KeyCachingService.class);
+//          intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
+//          context.startService(intent);
 
           Toast.makeText(context,
                          context.getString(R.string.ImportFragment_restore_complete),
@@ -234,7 +238,7 @@ public class ImportFragment extends SherlockFragment {
     @Override
     protected Integer doInBackground(Void... params) {
       try {
-        EncryptedBackupExporter.importFromSd(getActivity());
+        EncryptedBackupExporter.importFromSd(getActivity(), masterSecret, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
         return SUCCESS;
       } catch (NoExternalStorageException e) {
         Log.w("ImportFragment", e);
@@ -242,8 +246,10 @@ public class ImportFragment extends SherlockFragment {
       } catch (IOException e) {
         Log.w("ImportFragment", e);
         return ERROR_IO;
+      } catch (InvalidPassphraseException e) {
+        Log.w("ImportFragment", e);
+        return ERROR_BAD_PASSPHRASE;
       }
     }
   }
-
 }

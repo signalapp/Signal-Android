@@ -3,41 +3,51 @@
 
 package org.thoughtcrime.securesms.backup;
 
-public final class EncryptedBackupHeaderProto {
-  private EncryptedBackupHeaderProto() {}
+public final class EncryptedBackupProtos {
+  private EncryptedBackupProtos() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
   public interface EncryptedBackupHeaderOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // required bytes encryptionSalt = 1;
+    // required bytes encryptedMasterSecret = 1;
     /**
-     * <code>required bytes encryptionSalt = 1;</code>
+     * <code>required bytes encryptedMasterSecret = 1;</code>
+     */
+    boolean hasEncryptedMasterSecret();
+    /**
+     * <code>required bytes encryptedMasterSecret = 1;</code>
+     */
+    com.google.protobuf.ByteString getEncryptedMasterSecret();
+
+    // required bytes encryptionSalt = 2;
+    /**
+     * <code>required bytes encryptionSalt = 2;</code>
      */
     boolean hasEncryptionSalt();
     /**
-     * <code>required bytes encryptionSalt = 1;</code>
+     * <code>required bytes encryptionSalt = 2;</code>
      */
     com.google.protobuf.ByteString getEncryptionSalt();
 
-    // required bytes macSalt = 2;
+    // required bytes macSalt = 3;
     /**
-     * <code>required bytes macSalt = 2;</code>
+     * <code>required bytes macSalt = 3;</code>
      */
     boolean hasMacSalt();
     /**
-     * <code>required bytes macSalt = 2;</code>
+     * <code>required bytes macSalt = 3;</code>
      */
     com.google.protobuf.ByteString getMacSalt();
 
-    // required uint32 kdfIterations = 3;
+    // required uint32 kdfIterations = 4;
     /**
-     * <code>required uint32 kdfIterations = 3;</code>
+     * <code>required uint32 kdfIterations = 4;</code>
      */
     boolean hasKdfIterations();
     /**
-     * <code>required uint32 kdfIterations = 3;</code>
+     * <code>required uint32 kdfIterations = 4;</code>
      */
     int getKdfIterations();
   }
@@ -94,16 +104,21 @@ public final class EncryptedBackupHeaderProto {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              encryptionSalt_ = input.readBytes();
+              encryptedMasterSecret_ = input.readBytes();
               break;
             }
             case 18: {
               bitField0_ |= 0x00000002;
+              encryptionSalt_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
               macSalt_ = input.readBytes();
               break;
             }
-            case 24: {
-              bitField0_ |= 0x00000004;
+            case 32: {
+              bitField0_ |= 0x00000008;
               kdfIterations_ = input.readUInt32();
               break;
             }
@@ -121,14 +136,14 @@ public final class EncryptedBackupHeaderProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.internal_static_textsecure_EncryptedBackupHeader_descriptor;
+      return org.thoughtcrime.securesms.backup.EncryptedBackupProtos.internal_static_textsecure_EncryptedBackupHeader_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.internal_static_textsecure_EncryptedBackupHeader_fieldAccessorTable
+      return org.thoughtcrime.securesms.backup.EncryptedBackupProtos.internal_static_textsecure_EncryptedBackupHeader_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader.class, org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader.Builder.class);
+              org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader.class, org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader.Builder.class);
     }
 
     public static com.google.protobuf.Parser<EncryptedBackupHeader> PARSER =
@@ -147,55 +162,72 @@ public final class EncryptedBackupHeaderProto {
     }
 
     private int bitField0_;
-    // required bytes encryptionSalt = 1;
-    public static final int ENCRYPTIONSALT_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString encryptionSalt_;
+    // required bytes encryptedMasterSecret = 1;
+    public static final int ENCRYPTEDMASTERSECRET_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString encryptedMasterSecret_;
     /**
-     * <code>required bytes encryptionSalt = 1;</code>
+     * <code>required bytes encryptedMasterSecret = 1;</code>
      */
-    public boolean hasEncryptionSalt() {
+    public boolean hasEncryptedMasterSecret() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required bytes encryptionSalt = 1;</code>
+     * <code>required bytes encryptedMasterSecret = 1;</code>
+     */
+    public com.google.protobuf.ByteString getEncryptedMasterSecret() {
+      return encryptedMasterSecret_;
+    }
+
+    // required bytes encryptionSalt = 2;
+    public static final int ENCRYPTIONSALT_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString encryptionSalt_;
+    /**
+     * <code>required bytes encryptionSalt = 2;</code>
+     */
+    public boolean hasEncryptionSalt() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required bytes encryptionSalt = 2;</code>
      */
     public com.google.protobuf.ByteString getEncryptionSalt() {
       return encryptionSalt_;
     }
 
-    // required bytes macSalt = 2;
-    public static final int MACSALT_FIELD_NUMBER = 2;
+    // required bytes macSalt = 3;
+    public static final int MACSALT_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString macSalt_;
     /**
-     * <code>required bytes macSalt = 2;</code>
+     * <code>required bytes macSalt = 3;</code>
      */
     public boolean hasMacSalt() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required bytes macSalt = 2;</code>
+     * <code>required bytes macSalt = 3;</code>
      */
     public com.google.protobuf.ByteString getMacSalt() {
       return macSalt_;
     }
 
-    // required uint32 kdfIterations = 3;
-    public static final int KDFITERATIONS_FIELD_NUMBER = 3;
+    // required uint32 kdfIterations = 4;
+    public static final int KDFITERATIONS_FIELD_NUMBER = 4;
     private int kdfIterations_;
     /**
-     * <code>required uint32 kdfIterations = 3;</code>
+     * <code>required uint32 kdfIterations = 4;</code>
      */
     public boolean hasKdfIterations() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required uint32 kdfIterations = 3;</code>
+     * <code>required uint32 kdfIterations = 4;</code>
      */
     public int getKdfIterations() {
       return kdfIterations_;
     }
 
     private void initFields() {
+      encryptedMasterSecret_ = com.google.protobuf.ByteString.EMPTY;
       encryptionSalt_ = com.google.protobuf.ByteString.EMPTY;
       macSalt_ = com.google.protobuf.ByteString.EMPTY;
       kdfIterations_ = 0;
@@ -205,6 +237,10 @@ public final class EncryptedBackupHeaderProto {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (!hasEncryptedMasterSecret()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasEncryptionSalt()) {
         memoizedIsInitialized = 0;
         return false;
@@ -225,13 +261,16 @@ public final class EncryptedBackupHeaderProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, encryptionSalt_);
+        output.writeBytes(1, encryptedMasterSecret_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, macSalt_);
+        output.writeBytes(2, encryptionSalt_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt32(3, kdfIterations_);
+        output.writeBytes(3, macSalt_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeUInt32(4, kdfIterations_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -244,15 +283,19 @@ public final class EncryptedBackupHeaderProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, encryptionSalt_);
+          .computeBytesSize(1, encryptedMasterSecret_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, macSalt_);
+          .computeBytesSize(2, encryptionSalt_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, kdfIterations_);
+          .computeBytesSize(3, macSalt_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, kdfIterations_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -266,53 +309,53 @@ public final class EncryptedBackupHeaderProto {
       return super.writeReplace();
     }
 
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseFrom(
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseFrom(
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseFrom(byte[] data)
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseFrom(
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseFrom(java.io.InputStream input)
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseFrom(
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseDelimitedFrom(java.io.InputStream input)
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseDelimitedFrom(
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseFrom(
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parseFrom(
+    public static org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -321,7 +364,7 @@ public final class EncryptedBackupHeaderProto {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader prototype) {
+    public static Builder newBuilder(org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -337,20 +380,20 @@ public final class EncryptedBackupHeaderProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeaderOrBuilder {
+       implements org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeaderOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.internal_static_textsecure_EncryptedBackupHeader_descriptor;
+        return org.thoughtcrime.securesms.backup.EncryptedBackupProtos.internal_static_textsecure_EncryptedBackupHeader_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.internal_static_textsecure_EncryptedBackupHeader_fieldAccessorTable
+        return org.thoughtcrime.securesms.backup.EncryptedBackupProtos.internal_static_textsecure_EncryptedBackupHeader_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader.class, org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader.Builder.class);
+                org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader.class, org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader.Builder.class);
       }
 
-      // Construct using org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader.newBuilder()
+      // Construct using org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -370,12 +413,14 @@ public final class EncryptedBackupHeaderProto {
 
       public Builder clear() {
         super.clear();
-        encryptionSalt_ = com.google.protobuf.ByteString.EMPTY;
+        encryptedMasterSecret_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000001);
-        macSalt_ = com.google.protobuf.ByteString.EMPTY;
+        encryptionSalt_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
-        kdfIterations_ = 0;
+        macSalt_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
+        kdfIterations_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -385,35 +430,39 @@ public final class EncryptedBackupHeaderProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.internal_static_textsecure_EncryptedBackupHeader_descriptor;
+        return org.thoughtcrime.securesms.backup.EncryptedBackupProtos.internal_static_textsecure_EncryptedBackupHeader_descriptor;
       }
 
-      public org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader getDefaultInstanceForType() {
-        return org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader.getDefaultInstance();
+      public org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader getDefaultInstanceForType() {
+        return org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader.getDefaultInstance();
       }
 
-      public org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader build() {
-        org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader result = buildPartial();
+      public org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader build() {
+        org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader buildPartial() {
-        org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader result = new org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader(this);
+      public org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader buildPartial() {
+        org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader result = new org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.encryptionSalt_ = encryptionSalt_;
+        result.encryptedMasterSecret_ = encryptedMasterSecret_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.macSalt_ = macSalt_;
+        result.encryptionSalt_ = encryptionSalt_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
+        }
+        result.macSalt_ = macSalt_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
         }
         result.kdfIterations_ = kdfIterations_;
         result.bitField0_ = to_bitField0_;
@@ -422,16 +471,19 @@ public final class EncryptedBackupHeaderProto {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader) {
-          return mergeFrom((org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader)other);
+        if (other instanceof org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader) {
+          return mergeFrom((org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader other) {
-        if (other == org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader other) {
+        if (other == org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader.getDefaultInstance()) return this;
+        if (other.hasEncryptedMasterSecret()) {
+          setEncryptedMasterSecret(other.getEncryptedMasterSecret());
+        }
         if (other.hasEncryptionSalt()) {
           setEncryptionSalt(other.getEncryptionSalt());
         }
@@ -446,6 +498,10 @@ public final class EncryptedBackupHeaderProto {
       }
 
       public final boolean isInitialized() {
+        if (!hasEncryptedMasterSecret()) {
+          
+          return false;
+        }
         if (!hasEncryptionSalt()) {
           
           return false;
@@ -465,11 +521,11 @@ public final class EncryptedBackupHeaderProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader parsedMessage = null;
+        org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.thoughtcrime.securesms.backup.EncryptedBackupHeaderProto.EncryptedBackupHeader) e.getUnfinishedMessage();
+          parsedMessage = (org.thoughtcrime.securesms.backup.EncryptedBackupProtos.EncryptedBackupHeader) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -480,106 +536,142 @@ public final class EncryptedBackupHeaderProto {
       }
       private int bitField0_;
 
-      // required bytes encryptionSalt = 1;
-      private com.google.protobuf.ByteString encryptionSalt_ = com.google.protobuf.ByteString.EMPTY;
+      // required bytes encryptedMasterSecret = 1;
+      private com.google.protobuf.ByteString encryptedMasterSecret_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes encryptionSalt = 1;</code>
+       * <code>required bytes encryptedMasterSecret = 1;</code>
        */
-      public boolean hasEncryptionSalt() {
+      public boolean hasEncryptedMasterSecret() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required bytes encryptionSalt = 1;</code>
+       * <code>required bytes encryptedMasterSecret = 1;</code>
+       */
+      public com.google.protobuf.ByteString getEncryptedMasterSecret() {
+        return encryptedMasterSecret_;
+      }
+      /**
+       * <code>required bytes encryptedMasterSecret = 1;</code>
+       */
+      public Builder setEncryptedMasterSecret(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        encryptedMasterSecret_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required bytes encryptedMasterSecret = 1;</code>
+       */
+      public Builder clearEncryptedMasterSecret() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        encryptedMasterSecret_ = getDefaultInstance().getEncryptedMasterSecret();
+        onChanged();
+        return this;
+      }
+
+      // required bytes encryptionSalt = 2;
+      private com.google.protobuf.ByteString encryptionSalt_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>required bytes encryptionSalt = 2;</code>
+       */
+      public boolean hasEncryptionSalt() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required bytes encryptionSalt = 2;</code>
        */
       public com.google.protobuf.ByteString getEncryptionSalt() {
         return encryptionSalt_;
       }
       /**
-       * <code>required bytes encryptionSalt = 1;</code>
+       * <code>required bytes encryptionSalt = 2;</code>
        */
       public Builder setEncryptionSalt(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000002;
         encryptionSalt_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required bytes encryptionSalt = 1;</code>
+       * <code>required bytes encryptionSalt = 2;</code>
        */
       public Builder clearEncryptionSalt() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         encryptionSalt_ = getDefaultInstance().getEncryptionSalt();
         onChanged();
         return this;
       }
 
-      // required bytes macSalt = 2;
+      // required bytes macSalt = 3;
       private com.google.protobuf.ByteString macSalt_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes macSalt = 2;</code>
+       * <code>required bytes macSalt = 3;</code>
        */
       public boolean hasMacSalt() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required bytes macSalt = 2;</code>
+       * <code>required bytes macSalt = 3;</code>
        */
       public com.google.protobuf.ByteString getMacSalt() {
         return macSalt_;
       }
       /**
-       * <code>required bytes macSalt = 2;</code>
+       * <code>required bytes macSalt = 3;</code>
        */
       public Builder setMacSalt(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         macSalt_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required bytes macSalt = 2;</code>
+       * <code>required bytes macSalt = 3;</code>
        */
       public Builder clearMacSalt() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         macSalt_ = getDefaultInstance().getMacSalt();
         onChanged();
         return this;
       }
 
-      // required uint32 kdfIterations = 3;
+      // required uint32 kdfIterations = 4;
       private int kdfIterations_ ;
       /**
-       * <code>required uint32 kdfIterations = 3;</code>
+       * <code>required uint32 kdfIterations = 4;</code>
        */
       public boolean hasKdfIterations() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required uint32 kdfIterations = 3;</code>
+       * <code>required uint32 kdfIterations = 4;</code>
        */
       public int getKdfIterations() {
         return kdfIterations_;
       }
       /**
-       * <code>required uint32 kdfIterations = 3;</code>
+       * <code>required uint32 kdfIterations = 4;</code>
        */
       public Builder setKdfIterations(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         kdfIterations_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required uint32 kdfIterations = 3;</code>
+       * <code>required uint32 kdfIterations = 4;</code>
        */
       public Builder clearKdfIterations() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         kdfIterations_ = 0;
         onChanged();
         return this;
@@ -611,10 +703,11 @@ public final class EncryptedBackupHeaderProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\033EncryptedBackupHeader.proto\022\ntextsecur" +
-      "e\"W\n\025EncryptedBackupHeader\022\026\n\016encryption" +
-      "Salt\030\001 \002(\014\022\017\n\007macSalt\030\002 \002(\014\022\025\n\rkdfIterat" +
-      "ions\030\003 \002(\rB?\n!org.thoughtcrime.securesms" +
-      ".backupB\032EncryptedBackupHeaderProto"
+      "e\"v\n\025EncryptedBackupHeader\022\035\n\025encryptedM" +
+      "asterSecret\030\001 \002(\014\022\026\n\016encryptionSalt\030\002 \002(" +
+      "\014\022\017\n\007macSalt\030\003 \002(\014\022\025\n\rkdfIterations\030\004 \002(" +
+      "\rB:\n!org.thoughtcrime.securesms.backupB\025" +
+      "EncryptedBackupProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -626,7 +719,7 @@ public final class EncryptedBackupHeaderProto {
           internal_static_textsecure_EncryptedBackupHeader_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_EncryptedBackupHeader_descriptor,
-              new java.lang.String[] { "EncryptionSalt", "MacSalt", "KdfIterations", });
+              new java.lang.String[] { "EncryptedMasterSecret", "EncryptionSalt", "MacSalt", "KdfIterations", });
           return null;
         }
       };

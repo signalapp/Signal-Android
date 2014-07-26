@@ -45,9 +45,13 @@ public class EncryptingPartOutputStream extends FileOutputStream {
   private Cipher cipher;
   private Mac mac;
   private boolean closed;
-	
+
   public EncryptingPartOutputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
-    super(file);
+    this(file, masterSecret, false);
+  }
+
+  public EncryptingPartOutputStream(File file, MasterSecret masterSecret, boolean append) throws FileNotFoundException {
+    super(file, append);
 
     try {
       mac    = initializeMac(masterSecret.getMacKey());
@@ -102,7 +106,7 @@ public class EncryptingPartOutputStream extends FileOutputStream {
       throw new AssertionError(e);
     }
   }
-	
+
   private Mac initializeMac(SecretKeySpec key) throws NoSuchAlgorithmException, InvalidKeyException {
     Mac hmac = Mac.getInstance("HmacSHA1");
     hmac.init(key);

@@ -3,9 +3,15 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.database.XmlBackup.Identity;
+import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.whispersystems.textsecure.util.Hex;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,9 +41,20 @@ public class PlaintextBackupExporter {
   public static void exportPlaintext(Context context, MasterSecret masterSecret, BufferedWriter outWriter)
       throws IOException
   {
+    exportPlaintext(context, masterSecret, outWriter, false);
+  }
+
+  public static void exportPlaintextWithIdentity(Context context, MasterSecret masterSecret, BufferedWriter outWriter)
+      throws IOException
+  {
+    exportPlaintext(context, masterSecret, outWriter, true);
+  }
+
+  private static void exportPlaintext(Context context, MasterSecret masterSecret, BufferedWriter outWriter, boolean withIdentity)
+      throws IOException
+  {
     int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
     XmlBackup.Writer writer = new XmlBackup.Writer(outWriter, count);
-
 
     SmsMessageRecord record;
     EncryptingSmsDatabase.Reader reader = null;
@@ -63,6 +80,8 @@ public class PlaintextBackupExporter {
       skip += ROW_LIMIT;
     } while (reader.getCount() > 0);
 
+    Identity identity = new Identity(IdentityKeyUtil.getIdentityKeyPair(context, masterSecret));
+    writer.writeItem(identity);
     writer.close();
   }
 }

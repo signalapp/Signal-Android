@@ -57,18 +57,31 @@ public class DecryptingPartInputStream extends FileInputStream {
   private long totalDataSize;
   private long totalRead;
   private byte[] overflowBuffer;
-	
+
   public DecryptingPartInputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
+    this(file, masterSecret, 0);
+  }
+
+  public DecryptingPartInputStream(File file, MasterSecret masterSecret, int offsetBytes) throws FileNotFoundException {
     super(file);
+
+    if (offsetBytes > 0) {
+      try {
+        skip(offsetBytes);
+      } catch (IOException ioe) {
+        Log.w("EncryptingPartInputStream", ioe);
+      }
+    }
+
     try {
       if (file.length() <= IV_LENGTH + MAC_LENGTH)
         throw new FileNotFoundException("Part shorter than crypto overhead!");
-			
+
       done          = false;
       mac           = initializeMac(masterSecret.getMacKey());
       cipher        = initializeCipher(masterSecret.getEncryptionKey());
       totalDataSize = file.length() - cipher.getBlockSize() - mac.getMacLength();
-      totalRead     = 0;
+      totalRead     = offsetBytes;
     } catch (InvalidKeyException ike) {
       Log.w("EncryptingPartInputStream", ike);
       throw new FileNotFoundException("Invalid key!");
@@ -110,7 +123,7 @@ public class DecryptingPartInputStream extends FileInputStream {
 
       if (!Arrays.equals(ourMac, theirMac))
         throw new IOException("MAC doesn't match! Potential tampering?");
-			
+
       done = true;
       return flourish;
     } catch (IllegalBlockSizeException e) {
