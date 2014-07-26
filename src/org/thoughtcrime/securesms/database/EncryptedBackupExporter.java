@@ -27,7 +27,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
@@ -35,7 +34,20 @@ public class EncryptedBackupExporter {
 
   public static void exportToSd(Context context, MasterSecret masterSecret) throws NoExternalStorageException, IOException {
     verifyExternalStorageForExport();
-    exportDirectory(context, masterSecret);
+    File exportDirectory = new File(getExportDirectoryPath());
+    File exportZipFile = new File(exportDirectory.getAbsolutePath() + File.separator + "TextSecureBackup.tsbk");
+    if (!exportZipFile.exists()) {
+      if (!exportZipFile.createNewFile()) throw new AssertionError("export file didn't exist but then couldn't create one...");
+    }
+    OutputStream   exportStream = EncryptedBackup.getOutputStream(context, exportZipFile, masterSecret);
+    BufferedWriter writer       = new BufferedWriter(new OutputStreamWriter(exportStream));
+
+    try {
+      PlaintextBackupExporter.exportPlaintext(context, masterSecret, writer);
+      writer.flush();
+    } finally {
+      writer.close();
+    }
   }
 
   public static void importFromSd(Context context, MasterSecret currentMasterSecret, String passphrase)
@@ -71,19 +83,5 @@ public class EncryptedBackupExporter {
   }
 
   private static void exportDirectory(Context context, MasterSecret masterSecret) throws IOException {
-    File exportDirectory = new File(getExportDirectoryPath());
-    File exportZipFile = new File(exportDirectory.getAbsolutePath() + File.separator + "TextSecureBackup.tsbk");
-    if (!exportZipFile.exists()) {
-      if (!exportZipFile.createNewFile()) throw new AssertionError("export file didn't exist but then couldn't create one...");
-    }
-    OutputStream   exportStream = EncryptedBackup.getOutputStream(context, exportZipFile, masterSecret);
-    BufferedWriter writer       = new BufferedWriter(new OutputStreamWriter(exportStream));
-
-    try {
-      PlaintextBackupExporter.exportPlaintext(context, masterSecret, writer);
-      writer.flush();
-    } finally {
-      writer.close();
-    }
   }
 }
