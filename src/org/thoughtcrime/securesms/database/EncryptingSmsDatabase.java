@@ -150,7 +150,9 @@ public class EncryptingSmsDatabase extends SmsDatabase {
       }
 
       try {
-        if (SmsDatabase.Types.isSymmetricEncryption(type)) {
+        if (ciphertext == null) {
+          return new DisplayRecord.Body("", true);
+        } else if (SmsDatabase.Types.isSymmetricEncryption(type)) {
           String plaintext = plaintextCache.get(ciphertext);
 
           if (plaintext != null)
