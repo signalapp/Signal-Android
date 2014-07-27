@@ -45,12 +45,12 @@ Setting up a development environment
 
 [Android Studio](https://developer.android.com/sdk/installing/studio.html) is the recommended development environment.
 
-1. Install Android Studio
+1. Install Android Studio.
 2. Make sure the "Android Support Repository" is installed in the Android Studio SDK.
 3. Make sure the latest "Android SDK build-tools" is installed in the Android Studio SDK.
 4. Create a new Android Studio project. from the Quickstart pannel (use File > Close Project to see it), choose "Checkout from Version Control" then "git".
-5. Paste the URL for the TextSecure project when prompted (https://github.com/WhisperSystems/TextSecure.git)
-6. Android studio should detect the presence of a project file and ask you wethere to open it. Click "yes".
+5. Paste the URL for the TextSecure project when prompted (https://github.com/WhisperSystems/TextSecure.git).
+6. Android studio should detect the presence of a project file and ask you whether to open it. Click "yes".
 7. Default config options should be good enough.
 8. Project initialisation and build should proceed.
 
