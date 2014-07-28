@@ -136,8 +136,11 @@ public class ConversationFragment extends SherlockListFragment
     MenuItem resend         = menu.findItem(R.id.menu_context_resend);
     MenuItem saveAttachment = menu.findItem(R.id.menu_context_save_attachment);
 
+    /*
     if (messageRecord.isFailed()) resend.setVisible(true);
     else                          resend.setVisible(false);
+    */
+    resend.setVisible(true);
 
     if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
       try {
