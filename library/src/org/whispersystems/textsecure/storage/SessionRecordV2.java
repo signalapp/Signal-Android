@@ -100,7 +100,7 @@ public class SessionRecordV2 extends Record {
     return results;
   }
 
-  public static void deleteAll(Context context, CanonicalRecipient recipient) {
+  public static void deleteAllForRecipient(Context context, CanonicalRecipient recipient) {
     List<Integer> devices = getSessionSubDevices(context, recipient);
 
     delete(context, SESSIONS_DIRECTORY_V2, getRecordName(recipient.getRecipientId(),
@@ -109,6 +109,10 @@ public class SessionRecordV2 extends Record {
     for (int device : devices) {
       delete(context, SESSIONS_DIRECTORY_V2, getRecordName(recipient.getRecipientId(), device));
     }
+  }
+
+  public static void deleteAll(Context context) {
+    deleteAll(context, SESSIONS_DIRECTORY_V2);
   }
 
   public static void delete(Context context, RecipientDevice recipientDevice) {

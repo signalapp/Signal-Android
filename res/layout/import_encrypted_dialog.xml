@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="10dp">
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="17sp"
+      android:text="@string/ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys"/>
+
+    <!--<View android:layout_width="match_parent"-->
+          <!--android:layout_height="1px"-->
+          <!--android:background="#33000000"-->
+          <!--android:layout_margin="15dp"/>-->
+
+    <EditText android:id="@+id/passphrase"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="backup passphrase, blank if none" />
+</LinearLayout>

@@ -52,6 +52,10 @@ public abstract class Record {
     getAddressFile(context, directory, address).delete();
   }
 
+  protected static void deleteAll(Context context, String directory) {
+    getParentDirectory(context, directory).delete();
+  }
+
   protected static  boolean hasRecord(Context context, String directory, String address) {
     return getAddressFile(context, directory, address).exists();
   }

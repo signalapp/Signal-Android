@@ -43,6 +43,10 @@ public class RemoteKeyRecord {
     Record.delete(context, Record.SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
   }
 
+  public static void deleteAll(Context context) {
+    Record.deleteAll(context, Record.SESSIONS_DIRECTORY);
+  }
+
   private static String getFileNameForRecipient(CanonicalRecipient recipient) {
     return recipient.getRecipientId() + "-remote";
   }

@@ -12,4 +12,8 @@ public class SessionRecordV1 {
   public static void delete(Context context, CanonicalRecipient recipient) {
     Record.delete(context, Record.SESSIONS_DIRECTORY, recipient.getRecipientId() + "");
   }
+
+  public static void deleteAll(Context context) {
+    Record.deleteAll(context, Record.SESSIONS_DIRECTORY);
+  }
 }

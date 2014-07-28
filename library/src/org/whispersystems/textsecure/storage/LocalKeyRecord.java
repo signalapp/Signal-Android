@@ -25,6 +25,8 @@ public class LocalKeyRecord {
     Record.delete(context, Record.SESSIONS_DIRECTORY, getFileNameForRecipient(recipient));
   }
 
+  public static void deleteAll(Context context) {}
+
   private static String getFileNameForRecipient(CanonicalRecipient recipient) {
     return recipient.getRecipientId() + "-local";
   }

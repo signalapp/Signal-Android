@@ -175,9 +175,8 @@
     <string name="ImportFragment_cancel">Cancel</string>
     <string name="ImportFragment_restore_encrypted_backup">Restore encrypted backup?</string>
     <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-        Restoring an encrypted backup will completely replace your existing keys, preferences, and
-        messages. You will lose any information that\'s in your current TextSecure install but not
-        in the backup.
+        Restoring an encrypted backup will <b>completely replace your existing keys, sessions, and
+        messages.</b> You will also need to re-register with the TextSecure service.
     </string>
     <string name="ImportFragment_restore">Restore</string>
     <string name="ImportFragment_import_plaintext_backup">Import plaintext backup?</string>
@@ -189,6 +188,7 @@
     <string name="ImportFragment_import_plaintext_backup_elipse">Import plaintext backup...</string>
     <string name="ImportFragment_no_plaintext_backup_found">No plaintext backup found!</string>
     <string name="ImportFragment_error_importing_backup">Error importing backup!</string>
+    <string name="ImportFragment_error_importing_backup_passphrase">Incorrect passphrase, couldn\'t import backup.</string>
     <string name="ImportFragment_import_complete">Import complete!</string>
     <string name="ImportFragment_restoring">Restoring</string>
     <string name="ImportFragment_restoring_encrypted_backup">Restoring encrypted backup...</string>
