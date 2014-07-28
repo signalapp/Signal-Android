@@ -701,8 +701,8 @@ public class DatabaseFactory {
       if (oldVersion < INTRODUCED_DELIVERY_RECEIPTS) {
         db.execSQL("ALTER TABLE sms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
         db.execSQL("ALTER TABLE mms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
-        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS sms_date_sent_index ON sms (date_sent);");
-        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS mms_date_sent_index ON mms (date);");
+        db.execSQL("CREATE INDEX IF NOT EXISTS sms_date_sent_index ON sms (date_sent);");
+        db.execSQL("CREATE INDEX IF NOT EXISTS mms_date_sent_index ON mms (date);");
       }
 
       db.setTransactionSuccessful();
