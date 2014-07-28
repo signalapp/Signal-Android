@@ -3,17 +3,18 @@
 #include "crypto_hash_sha512.h"
 #include "curve_sigs.h"
 
+#define MSG_LEN 200
+
 int main(int argc, char* argv[])
 {
   unsigned char privkey[32];
   unsigned char pubkey[32];
   unsigned char signature[64];
-  unsigned char msg[100];
-  unsigned long long msg_len = 100;
+  unsigned char msg[MSG_LEN];
   unsigned char random[64];
 
   /* Initialize pubkey, privkey, msg */
-  memset(msg, 0, 100);
+  memset(msg, 0, MSG_LEN);
   memset(privkey, 0, 32);
   memset(pubkey, 0, 32);
   privkey[0] &= 248;
@@ -55,16 +56,16 @@ int main(int argc, char* argv[])
   /* Signature test */
   curve25519_keygen(pubkey, privkey);
 
-  curve25519_sign(signature, privkey, msg, msg_len, random);
+  curve25519_sign(signature, privkey, msg, MSG_LEN, random);
 
-  if (curve25519_verify(signature, pubkey, msg, msg_len) == 0)
+  if (curve25519_verify(signature, pubkey, msg, MSG_LEN) == 0)
     printf("Signature good #1\n");
   else
     printf("Signature bad #1\n");
 
   signature[0] ^= 1;
 
-  if (curve25519_verify(signature, pubkey, msg, msg_len) == 0)
+  if (curve25519_verify(signature, pubkey, msg, MSG_LEN) == 0)
     printf("Signature bad #2\n");
   else
     printf("Signature good #2\n");
@@ -84,9 +85,9 @@ int main(int argc, char* argv[])
 
     curve25519_keygen(pubkey, privkey);
 
-    curve25519_sign(signature, privkey, msg, msg_len, random);
+    curve25519_sign(signature, privkey, msg, MSG_LEN, random);
 
-    if (curve25519_verify(signature, pubkey, msg, msg_len) != 0) {
+    if (curve25519_verify(signature, pubkey, msg, MSG_LEN) != 0) {
       printf("failure #1 %d\n", count);
       return -1;
     }
@@ -94,8 +95,8 @@ int main(int argc, char* argv[])
     if (b[63] & 1)
       signature[count % 64] ^= 1;
     else
-      msg[count % 100] ^= 1;
-    if (curve25519_verify(signature, pubkey, msg, msg_len) == 0) {
+      msg[count % MSG_LEN] ^= 1;
+    if (curve25519_verify(signature, pubkey, msg, MSG_LEN) == 0) {
       printf("failure #2 %d\n", count);
       return -1;
     }

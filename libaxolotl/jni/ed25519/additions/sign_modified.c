@@ -10,7 +10,7 @@
    instead of deriving both from a master key.
 */
 int crypto_sign_modified(
-  unsigned char *sm,unsigned long long *smlen,
+  unsigned char *sm,
   const unsigned char *m,unsigned long long mlen,
   const unsigned char *sk, const unsigned char* pk,
   const unsigned char* random
@@ -21,7 +21,6 @@ int crypto_sign_modified(
   ge_p3 R;
   int count=0;
 
-  *smlen = mlen + 64;
   memmove(sm + 64,m,mlen);
   memmove(sm + 32,sk,32); /* NEW: Use privkey directly for nonce derivation */
 
@@ -30,12 +29,11 @@ int crypto_sign_modified(
   for (count = 1; count < 32; count++)
     sm[count] = 0xFF;
 
-  crypto_hash_sha512(nonce,sm,mlen + 64);
-  memmove(sm + 32,pk,32);
+  /* NEW: add suffix of random data */
+  memmove(sm + mlen + 64, random, 64);
 
-  /* NEW: XOR random into nonce */
-  for (count=0; count < 64; count++)
-    nonce[count] ^= random[count];
+  crypto_hash_sha512(nonce,sm,mlen + 128);
+  memmove(sm + 32,pk,32);
 
   sc_reduce(nonce);
   ge_scalarmult_base(&R,nonce);

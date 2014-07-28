@@ -36,7 +36,7 @@ int curve25519_verify(const unsigned char* signature, /* 64 bytes */
    signature = (R || S)
  */
 int crypto_sign_modified(
-  unsigned char *sm,unsigned long long *smlen,
+  unsigned char *sm,
   const unsigned char *m,unsigned long long mlen,
   const unsigned char *sk, /* Curve/Ed25519 private key */
   const unsigned char *pk, /* Ed25519 public key */
