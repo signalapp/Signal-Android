@@ -31,9 +31,8 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.service.MmsDownloader;
-import org.whispersystems.textsecure.util.Conversions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.util.Conversions;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.DataInputStream;
@@ -81,8 +80,7 @@ public class MmsCommunication {
     }
   }
 
-  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn,
-                                                                      boolean proxyIfPossible)
+  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn)
       throws ApnUnavailableException
   {
     Cursor cursor = null;
@@ -95,46 +93,28 @@ public class MmsCommunication {
 
       do {
         String mmsc  = cursor.getString(cursor.getColumnIndexOrThrow("mmsc"));
-        String proxy = null;
-        String port  = null;
-
-        if (proxyIfPossible) {
-          proxy = cursor.getString(cursor.getColumnIndexOrThrow("mmsproxy"));
-          port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
-        }
+        String proxy = cursor.getString(cursor.getColumnIndexOrThrow("mmsproxy"));
+        String port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
 
         if (!Util.isEmpty(mmsc))
           return new MmsConnectionParameters(mmsc, proxy, port);
 
       } while (cursor.moveToNext());
 
-      return getLocalMmsConnectionParameters(context);
     } catch (SQLiteException sqe) {
       Log.w("MmsCommunication", sqe);
-      return getLocalMmsConnectionParameters(context);
     } catch (SecurityException se) {
       Log.i("MmsCommunication", "Couldn't write APN settings, expected. msg: " + se.getMessage());
-      return getLocalMmsConnectionParameters(context);
     } catch (IllegalArgumentException iae) {
       Log.w("MmsCommunication", iae);
-      return getLocalMmsConnectionParameters(context);
     } finally {
       if (cursor != null)
         cursor.close();
     }
+    return getLocalMmsConnectionParameters(context);
   }
 
-  protected static boolean checkRouteToHost(Context context, MmsConnectionParameters.Apn parameters,
-                                         String url, boolean usingMmsRadio)
-    throws IOException
-  {
-    if (parameters == null || !parameters.hasProxy())
-      return checkRouteToHost(context, Uri.parse(url).getHost(), usingMmsRadio);
-    else
-      return checkRouteToHost(context, parameters.getProxy(), usingMmsRadio);
-  }
-
-  private static boolean checkRouteToHost(Context context, String host, boolean usingMmsRadio)
+  protected static boolean checkRouteToHost(Context context, String host, boolean usingMmsRadio)
       throws IOException
   {
     InetAddress inetAddress = InetAddress.getByName(host);
@@ -160,14 +140,14 @@ public class MmsCommunication {
     return true;
   }
 
-  protected static AndroidHttpClient constructHttpClient(Context context, MmsConnectionParameters.Apn mmsConfig) {
+  protected static AndroidHttpClient constructHttpClient(Context context, String proxy, int port) {
     AndroidHttpClient client = AndroidHttpClient.newInstance("Android-Mms/2.0", context);
     HttpParams params        = client.getParams();
     HttpProtocolParams.setContentCharset(params, "UTF-8");
     HttpConnectionParams.setSoTimeout(params, 20 * 1000);
 
-    if (mmsConfig.hasProxy()) {
-      ConnRouteParams.setDefaultProxy(params, new HttpHost(mmsConfig.getProxy(), mmsConfig.getPort()));
+    if (proxy != null) {
+      ConnRouteParams.setDefaultProxy(params, new HttpHost(proxy, port));
     }
 
     return client;
