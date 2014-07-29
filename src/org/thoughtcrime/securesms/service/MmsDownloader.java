@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Pair;
@@ -69,7 +70,7 @@ public class MmsDownloader {
   }
 
   private void handleMmsPendingApnDownloads(MasterSecret masterSecret) {
-    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(context, null, false))
+    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(context, null))
       return;
 
     MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
@@ -99,6 +100,8 @@ public class MmsDownloader {
     MmsDatabase database        = DatabaseFactory.getMmsDatabase(context);
 
     database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
+
+    Log.w("MmsDownloader", "Downloading mms at "+ Uri.parse(contentLocation).getHost());
 
     try {
       if (isCdmaNetwork()) {
