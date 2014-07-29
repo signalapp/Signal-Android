@@ -48,6 +48,12 @@ android {
                 assets.srcDirs = ['assets']
                 jniLibs.srcDirs = ['libs']
             }
+            androidTest {
+                java.srcDirs = ['androidTest/java']
+                resources.srcDirs = ['androidTest/java']
+                aidl.srcDirs = ['androidTest/java']
+                renderscript.srcDirs = ['androidTest/java']
+            }
         }
     }
 }

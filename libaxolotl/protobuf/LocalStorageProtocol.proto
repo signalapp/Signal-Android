@@ -19,6 +19,7 @@ message SessionStructure {
             optional uint32 index     = 1;
             optional bytes  cipherKey = 2;
             optional bytes  macKey    = 3;
+            optional bytes  iv        = 4;
         }
 
         repeated MessageKey messageKeys = 4;

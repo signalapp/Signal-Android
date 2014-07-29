@@ -41,6 +41,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import static org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure;
@@ -298,6 +299,7 @@ public class SessionState {
       if (messageKey.getIndex() == counter) {
         result = new MessageKeys(new SecretKeySpec(messageKey.getCipherKey().toByteArray(), "AES"),
                                  new SecretKeySpec(messageKey.getMacKey().toByteArray(), "HmacSHA256"),
+                                 new IvParameterSpec(messageKey.getIv().toByteArray()),
                                  messageKey.getIndex());
 
         messageKeyIterator.remove();
@@ -323,6 +325,7 @@ public class SessionState {
                                                               .setCipherKey(ByteString.copyFrom(messageKeys.getCipherKey().getEncoded()))
                                                               .setMacKey(ByteString.copyFrom(messageKeys.getMacKey().getEncoded()))
                                                               .setIndex(messageKeys.getCounter())
+                                                              .setIv(ByteString.copyFrom(messageKeys.getIv().getIV()))
                                                               .build();
 
     Chain updatedChain = chain.toBuilder()

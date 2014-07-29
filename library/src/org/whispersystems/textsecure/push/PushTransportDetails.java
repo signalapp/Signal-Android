@@ -58,7 +58,10 @@ public class PushTransportDetails implements TransportDetails {
     if       (messageVersion < 2) throw new AssertionError("Unknown version: " + messageVersion);
     else if (messageVersion == 2) return messageBody;
 
-    byte[] paddedMessage = new byte[getPaddedMessageLength(messageBody.length)];
+    // NOTE: This is dumb.  We have our own padding scheme, but so does the cipher.
+    // The +1 -1 here is to make sure the Cipher has room to add one padding byte,
+    // otherwise it'll add a full 16 extra bytes.
+    byte[] paddedMessage = new byte[getPaddedMessageLength(messageBody.length + 1) - 1];
     System.arraycopy(messageBody, 0, paddedMessage, 0, messageBody.length);
     paddedMessage[messageBody.length] = (byte)0x80;
 

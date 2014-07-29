@@ -102,7 +102,7 @@ public class SessionCipher {
       int           previousCounter = sessionState.getPreviousCounter();
       int           sessionVersion  = sessionState.getSessionVersion();
 
-      byte[]            ciphertextBody    = getCiphertext(messageKeys, paddedMessage);
+      byte[]            ciphertextBody    = getCiphertext(sessionVersion, messageKeys, paddedMessage);
       CiphertextMessage ciphertextMessage = new WhisperMessage(sessionVersion, messageKeys.getMacKey(),
                                                                senderEphemeral, chainKey.getIndex(),
                                                                previousCounter, ciphertextBody,
@@ -226,18 +226,19 @@ public class SessionCipher {
                                                       sessionState.getSessionVersion()));
     }
 
+    int            messageVersion    = ciphertextMessage.getMessageVersion();
     ECPublicKey    theirEphemeral    = ciphertextMessage.getSenderRatchetKey();
     int            counter           = ciphertextMessage.getCounter();
     ChainKey       chainKey          = getOrCreateChainKey(sessionState, theirEphemeral);
     MessageKeys    messageKeys       = getOrCreateMessageKeys(sessionState, theirEphemeral,
                                                               chainKey, counter);
 
-    ciphertextMessage.verifyMac(ciphertextMessage.getMessageVersion(),
+    ciphertextMessage.verifyMac(messageVersion,
                                 sessionState.getRemoteIdentityKey(),
                                 sessionState.getLocalIdentityKey(),
                                 messageKeys.getMacKey());
 
-    byte[] plaintext = getPlaintext(messageKeys, ciphertextMessage.getBody());
+    byte[] plaintext = getPlaintext(messageVersion, messageKeys, ciphertextMessage.getBody());
 
     sessionState.clearUnacknowledgedPreKeyMessage();
 
@@ -304,11 +305,15 @@ public class SessionCipher {
     return chainKey.getMessageKeys();
   }
 
-  private byte[] getCiphertext(MessageKeys messageKeys, byte[] plaintext) {
+  private byte[] getCiphertext(int version, MessageKeys messageKeys, byte[] plaintext) {
     try {
-      Cipher cipher = getCipher(Cipher.ENCRYPT_MODE,
-                                messageKeys.getCipherKey(),
-                                messageKeys.getCounter());
+      Cipher cipher;
+
+      if (version >= 3) {
+        cipher = getCipher(Cipher.ENCRYPT_MODE, messageKeys.getCipherKey(), messageKeys.getIv());
+      } else {
+        cipher = getCipher(Cipher.ENCRYPT_MODE, messageKeys.getCipherKey(), messageKeys.getCounter());
+      }
 
       return cipher.doFinal(plaintext);
     } catch (IllegalBlockSizeException | BadPaddingException e) {
@@ -316,11 +321,16 @@ public class SessionCipher {
     }
   }
 
-  private byte[] getPlaintext(MessageKeys messageKeys, byte[] cipherText) {
+  private byte[] getPlaintext(int version, MessageKeys messageKeys, byte[] cipherText) {
     try {
-      Cipher cipher = getCipher(Cipher.DECRYPT_MODE,
-                                messageKeys.getCipherKey(),
-                                messageKeys.getCounter());
+      Cipher cipher;
+
+      if (version >= 3) {
+        cipher = getCipher(Cipher.DECRYPT_MODE, messageKeys.getCipherKey(), messageKeys.getIv());
+      } else {
+        cipher = getCipher(Cipher.DECRYPT_MODE, messageKeys.getCipherKey(), messageKeys.getCounter());
+      }
+
       return cipher.doFinal(cipherText);
     } catch (IllegalBlockSizeException | BadPaddingException e) {
       throw new AssertionError(e);
@@ -337,6 +347,18 @@ public class SessionCipher {
       IvParameterSpec iv = new IvParameterSpec(ivBytes);
       cipher.init(mode, key, iv);
 
+      return cipher;
+    } catch (NoSuchAlgorithmException | NoSuchPaddingException | java.security.InvalidKeyException |
+             InvalidAlgorithmParameterException e)
+    {
+      throw new AssertionError(e);
+    }
+  }
+
+  private Cipher getCipher(int mode, SecretKeySpec key, IvParameterSpec iv) {
+    try {
+      Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+      cipher.init(mode, key, iv);
       return cipher;
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | java.security.InvalidKeyException |
              InvalidAlgorithmParameterException e)

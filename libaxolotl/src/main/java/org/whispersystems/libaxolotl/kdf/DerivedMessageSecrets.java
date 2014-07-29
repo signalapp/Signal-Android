@@ -19,22 +19,32 @@ package org.whispersystems.libaxolotl.kdf;
 
 import org.whispersystems.libaxolotl.util.ByteUtil;
 
+import java.text.ParseException;
+
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class DerivedMessageSecrets {
 
-  public  static final int SIZE              = 64;
+  public  static final int SIZE              = 80;
   private static final int CIPHER_KEY_LENGTH = 32;
   private static final int MAC_KEY_LENGTH    = 32;
+  private static final int IV_LENGTH         = 16;
 
-  private final SecretKeySpec cipherKey;
-  private final SecretKeySpec macKey;
+  private final SecretKeySpec   cipherKey;
+  private final SecretKeySpec   macKey;
+  private final IvParameterSpec iv;
 
   public DerivedMessageSecrets(byte[] okm) {
-    byte[][] keys = ByteUtil.split(okm, CIPHER_KEY_LENGTH, MAC_KEY_LENGTH);
+    try {
+      byte[][] keys = ByteUtil.split(okm, CIPHER_KEY_LENGTH, MAC_KEY_LENGTH, IV_LENGTH);
 
-    this.cipherKey = new SecretKeySpec(keys[0], "AES");
-    this.macKey    = new SecretKeySpec(keys[1], "HmacSHA256");
+      this.cipherKey = new SecretKeySpec(keys[0], "AES");
+      this.macKey    = new SecretKeySpec(keys[1], "HmacSHA256");
+      this.iv        = new IvParameterSpec(keys[2]);
+    } catch (ParseException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public SecretKeySpec getCipherKey() {
@@ -43,5 +53,9 @@ public class DerivedMessageSecrets {
 
   public SecretKeySpec getMacKey() {
     return macKey;
+  }
+
+  public IvParameterSpec getIv() {
+    return iv;
   }
 }
