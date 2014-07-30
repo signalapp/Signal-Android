@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DisablePushMessagingAsyncTask;
+import org.thoughtcrime.securesms.util.DisablePushMessagingAsyncTask.PushDisabledCallback;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -303,7 +304,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            new DisablePushMessagingAsyncTask(ApplicationPreferencesActivity.this, preference).execute();
+            new DisablePushMessagingAsyncTask(ApplicationPreferencesActivity.this, new PushDisabledCallback() {
+              @Override
+              public void onComplete(int code) {
+                if (code == DisablePushMessagingAsyncTask.SUCCESS && preference != null) {
+                  ((CheckBoxPreference) preference).setChecked(false);
+                }
+              }
+            }).execute();
           }
         });
         builder.show();
@@ -326,6 +334,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       return true;
     }
   }
+
 
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
     @Override
@@ -381,6 +390,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
             MasterSecretUtil.changeMasterSecretPassphrase(ApplicationPreferencesActivity.this,
                                                           masterSecret,
                                                           MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+
 
             TextSecurePreferences.setPasswordDisabled(ApplicationPreferencesActivity.this, true);
             ((CheckBoxPreference)preference).setChecked(true);

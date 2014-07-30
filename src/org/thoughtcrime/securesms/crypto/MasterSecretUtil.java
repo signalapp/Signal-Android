@@ -103,10 +103,10 @@ public class MasterSecretUtil {
       throws InvalidPassphraseException
   {
     try {
-      byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret");
-      byte[] macSalt                      = retrieve(context, "mac_salt");
-      int    iterations                   = retrieve(context, "passphrase_iterations", 100);
-      byte[] encryptionSalt               = retrieve(context, "encryption_salt");
+      byte[] encryptedAndMacdMasterSecret = getEncryptedMasterSecret(context);
+      byte[] macSalt                      = getMacSalt(context);
+      int    iterations                   = getIterationCount(context);
+      byte[] encryptionSalt               = getEncryptionSalt(context);
 
       return getMasterSecret(context, passphrase, iterations, encryptedAndMacdMasterSecret, macSalt, encryptionSalt);
     } catch (IOException e) {

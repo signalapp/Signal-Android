@@ -50,6 +50,8 @@ public class XmlBackup {
     @XStreamAsAttribute  String subject;
     @XStreamAsAttribute  String body;
     @XStreamAsAttribute  int    status;
+    @XStreamAsAttribute  int    ts_secure;
+    @XStreamAsAttribute  int    ts_push;
     @XStreamAsAttribute  int    protocol       = 0;
     @XStreamAsAttribute  String toa            = "null";
     @XStreamAsAttribute  String sc_toa         = "null";
@@ -57,13 +59,15 @@ public class XmlBackup {
     @XStreamAsAttribute  int    read           = 1;
     @XStreamAsAttribute  int    locked         = 0;
 
-    public Sms(String address, long date, int type, String subject, String body, int status) {
-      this.address = address;
-      this.date = date;
-      this.type = type;
-      this.subject = subject;
-      this.body = body;
-      this.status = status;
+    public Sms(String address, long date, int type, String subject, String body, int status, boolean secure, boolean push) {
+      this.address   = address;
+      this.date      = date;
+      this.type      = type;
+      this.subject   = subject;
+      this.body      = body;
+      this.status    = status;
+      this.ts_secure = secure ? 1 : 0;
+      this.ts_push   = push ? 1 : 0;
     }
   }
 

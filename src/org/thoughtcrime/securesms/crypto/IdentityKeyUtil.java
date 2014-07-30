@@ -91,14 +91,13 @@ public class IdentityKeyUtil {
     setIdentityKeys(context, masterSecret, Curve.generateKeyPair(false));
   }
 
-  public static void setIdentityKeys(Context context, MasterSecret masterSecret, ECKeyPair keyPair) {
+  public static void setIdentityKeys(Context context, MasterSecret masterSecret, ECKeyPair djbKeyPair) {
     MasterCipher masterCipher   = new MasterCipher(masterSecret);
-    IdentityKey  djbIdentityKey = new IdentityKey(keyPair.getPublicKey());
-    byte[]       djbPrivateKey  = masterCipher.encryptKey(keyPair.getPrivateKey());
+    IdentityKey  djbIdentityKey = new IdentityKey(djbKeyPair.getPublicKey());
+    byte[]       djbPrivateKey  = masterCipher.encryptKey(djbKeyPair.getPrivateKey());
 
     save(context, IDENTITY_PUBLIC_KEY_DJB_PREF, Base64.encodeBytes(djbIdentityKey.serialize()));
     save(context, IDENTITY_PRIVATE_KEY_DJB_PREF, Base64.encodeBytes(djbPrivateKey));
-
   }
 
   public static boolean hasCurve25519IdentityKeys(Context context) {

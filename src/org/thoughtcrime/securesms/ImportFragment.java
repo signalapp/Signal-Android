@@ -135,8 +135,6 @@ public class ImportFragment extends SherlockFragment {
     });
     builder.setNegativeButton(getActivity().getString(R.string.ImportFragment_cancel), null);
     builder.show();
-    InputMethodManager input = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-    input.showSoftInput(passphrase, 0);
   }
 
   private void handleImportPlaintextBackup() {
@@ -251,7 +249,7 @@ public class ImportFragment extends SherlockFragment {
           break;
         case SUCCESS:
           if (TextSecurePreferences.isPushRegistered(context)) {
-            new DisablePushMessagingAsyncTask(getActivity(), null, new PushDisabledCallback() {
+            new DisablePushMessagingAsyncTask(getActivity(), new PushDisabledCallback() {
               @Override
               public void onComplete(int code) {
                 Intent intent = new Intent(getActivity(), RegistrationActivity.class);

@@ -68,7 +68,9 @@ public class PlaintextBackupExporter {
                                               MmsSmsColumns.Types.translateToSystemBaseType(record.getType()),
                                               null,
                                               record.getDisplayBody().toString(),
-                                              record.getDeliveryStatus());
+                                              record.getDeliveryStatus(),
+                                              record.isSecure(),
+                                              MmsSmsColumns.Types.isPushType(record.getType()));
         writer.writeItem(sms);
       }
 

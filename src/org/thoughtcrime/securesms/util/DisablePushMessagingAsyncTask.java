@@ -24,15 +24,13 @@ public class DisablePushMessagingAsyncTask extends AsyncTask<Void, Void, Integer
   private final Context              context;
   private final PushDisabledCallback callback;
   private       ProgressDialog       dialog;
-  private final Preference           preference;
 
-  public DisablePushMessagingAsyncTask(final Context context, final Preference preference) {
-    this(context, preference, null);
+  public DisablePushMessagingAsyncTask(final Context context) {
+    this(context, null);
   }
 
-  public DisablePushMessagingAsyncTask(final Context context, final Preference preference, final PushDisabledCallback callback) {
+  public DisablePushMessagingAsyncTask(final Context context, final PushDisabledCallback callback) {
     this.context    = context;
-    this.preference = preference;
     this.callback   = callback;
   }
 
@@ -60,7 +58,6 @@ public class DisablePushMessagingAsyncTask extends AsyncTask<Void, Void, Integer
                      Toast.LENGTH_LONG).show();
       break;
     case SUCCESS:
-      if (preference != null) ((CheckBoxPreference)preference).setChecked(false);
       TextSecurePreferences.setPushRegistered(context, false);
       break;
     }

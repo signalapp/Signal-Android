@@ -74,7 +74,7 @@ public class DecryptingPartInputStream extends FileInputStream {
     }
 
     try {
-      if (file.length() <= IV_LENGTH + MAC_LENGTH)
+      if (file.length() <= offsetBytes + IV_LENGTH + MAC_LENGTH)
         throw new FileNotFoundException("Part shorter than crypto overhead!");
 
       done          = false;
