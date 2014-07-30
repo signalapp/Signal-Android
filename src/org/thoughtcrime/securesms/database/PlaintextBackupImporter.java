@@ -7,8 +7,10 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.Xpp3DomDriver;
+import com.thoughtworks.xstream.io.xml.XppReader;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
@@ -58,30 +60,27 @@ public class PlaintextBackupImporter {
   public static void importPlaintext(Context context, MasterSecret masterSecret, InputStream input)
       throws IOException
   {
-    BufferedInputStream bufferedStream = new BufferedInputStream(input);
     Log.w("PlaintextBackupImporter", "importPlaintext()");
-    SmsDatabase    db          = DatabaseFactory.getSmsDatabase(context);
-    SQLiteDatabase transaction = db.beginTransaction();
+    SmsDatabase              db          = DatabaseFactory.getSmsDatabase(context);
+    SQLiteDatabase           transaction = db.beginTransaction();
+    Xpp3DomDriver            driver      = new Xpp3DomDriver(new NoNameCoder());
+    XStream                  xstream     = new XStream(driver);
+    HierarchicalStreamReader reader      = driver.createReader(new BufferedReader(new InputStreamReader(input)));
 
     try {
       ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
       MasterCipher masterCipher = new MasterCipher(masterSecret);
       Set<Long> modifiedThreads = new HashSet<Long>();
 
-      XStream xstream = new XStream(new Xpp3DomDriver(new NoNameCoder()));
       xstream.autodetectAnnotations(true);
-      xstream.alias("smses", XmlBackup.Smses.class);
       xstream.alias("sms", XmlBackup.Sms.class);
       xstream.alias("identity", XmlBackup.Identity.class);
-      Log.w("PlaintextBackupImporter", getPlaintextExportDirectoryPath());
-//      byte[] buf = new byte[512];
-//      int len = bufferedStream.read(buf);
-//      Log.w("Plaintext", Hex.dump(buf));
-//      Log.w("Plaintext", "first byte of stream: " + Integer.toHexString(input.read()));
-//      Log.w("Plaintext", "second byte of stream: " + Integer.toHexString(input.read()));
-      XmlBackup.Smses smses = (XmlBackup.Smses)xstream.fromXML(new BufferedReader(new InputStreamReader(input)));
-      for (XmlBackup.Smses.Child child : smses.smses) {
+
+      while (reader.hasMoreChildren()) {
+        reader.moveDown();
+        Object child = xstream.unmarshal(reader);
         if (child instanceof Sms) {
+          Log.w("Plaintext", "got an sms!");
           Sms sms = (Sms) child;
           try {
             Recipients recipients = RecipientFactory.getRecipientsFromString(context, sms.address, false);
@@ -112,16 +111,16 @@ public class PlaintextBackupImporter {
         } else if (child instanceof Identity) {
           try {
             Identity identity = (Identity) child;
-            Log.w("Plaintext", "public djb key received:");
-            Log.w("Plaintext", Hex.dump(identity.public_key));
+            Log.w("PlaintextBackupImporter", "identity key received: " + Hex.toStringCondensed(identity.public_key));
 
             IdentityKeyUtil.setIdentityKeys(context, masterSecret, identity.toKeyPair());
           } catch (InvalidKeyException ike) {
-            Log.w("Plaintext", "invalid identity key was in the import file");
+            Log.w("PlaintextBackupImporter", "invalid identity key was in the import file");
           }
         } else {
-          Log.w("Plaintext", "unknown tag included in backup...");
+          Log.w("PlaintextBackupImporter", "unknown tag included in backup...");
         }
+        reader.moveUp();
       }
 
       for (long threadId : modifiedThreads) {
@@ -130,6 +129,7 @@ public class PlaintextBackupImporter {
 
       Log.w("PlaintextBackupImporter", "Exited loop");
     } finally {
+      reader.close();
       db.endTransaction(transaction);
     }
   }

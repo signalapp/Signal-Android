@@ -32,10 +32,12 @@ import java.io.OutputStreamWriter;
 
 public class EncryptedBackupExporter {
 
+  private static File exportDirectory = new File(getExportDirectoryPath());
+  private static File exportZipFile   = new File(exportDirectory.getAbsolutePath() + File.separator + "TextSecureBackup.tsbk");
+
   public static void exportToSd(Context context, MasterSecret masterSecret) throws NoExternalStorageException, IOException {
     verifyExternalStorageForExport();
-    File exportDirectory = new File(getExportDirectoryPath());
-    File exportZipFile = new File(exportDirectory.getAbsolutePath() + File.separator + "TextSecureBackup.tsbk");
+
     if (!exportZipFile.exists()) {
       if (!exportZipFile.createNewFile()) throw new AssertionError("export file didn't exist but then couldn't create one...");
     }
@@ -43,7 +45,7 @@ public class EncryptedBackupExporter {
     BufferedWriter writer       = new BufferedWriter(new OutputStreamWriter(exportStream));
 
     try {
-      PlaintextBackupExporter.exportPlaintext(context, masterSecret, writer);
+      PlaintextBackupExporter.exportPlaintextWithIdentity(context, masterSecret, writer);
       writer.flush();
     } finally {
       writer.close();
@@ -80,8 +82,5 @@ public class EncryptedBackupExporter {
     if (!Environment.getExternalStorageDirectory().canRead() ||
         !(new File(getExportDirectoryPath()).exists()))
       throw new NoExternalStorageException();
-  }
-
-  private static void exportDirectory(Context context, MasterSecret masterSecret) throws IOException {
   }
 }

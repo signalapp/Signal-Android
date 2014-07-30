@@ -28,6 +28,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,8 +40,10 @@ public class XmlBackup {
     parser.setInput(new FileInputStream(path), null);
   }
 
+  public static class Child {}
+
   @XStreamAlias("sms")
-  public static class Sms extends Smses.Child {
+  public static class Sms extends Child {
     @XStreamAsAttribute  String address;
     @XStreamAsAttribute  long   date;
     @XStreamAsAttribute  int    type;
@@ -65,7 +68,7 @@ public class XmlBackup {
   }
 
   @XStreamAlias("identity")
-  public static class Identity extends Smses.Child {
+  public static class Identity extends Child {
     @XStreamAsAttribute  byte[] public_key;
     @XStreamAsAttribute  byte[] private_key;
 
@@ -80,43 +83,29 @@ public class XmlBackup {
     }
   }
 
-  @XStreamAlias("smses")
-  public static class Smses {
-    public static class Child {};
-    @XStreamImplicit     List<Child> smses;
-    @XStreamAsAttribute  int       count;
-
-    public Smses(int count) {
-      this.count = count;
-      this.smses = new LinkedList<Child>();
-    }
-
-    public void addChild(Child child) {
-      smses.add(child);
-    }
-  }
-
   public static class Writer {
 
-    private BufferedWriter writer;
-    private XStream        xstream;
-    private Smses          smses;
+    private BufferedWriter     writer;
+    private XStream            xstream;
 
     public Writer(BufferedWriter writer, int count) throws IOException {
       this.writer = writer;
 
       xstream = new XStream(new Xpp3DomDriver(new NoNameCoder()));
       xstream.autodetectAnnotations(true);
-      smses = new Smses(count);
+      writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+      writer.write(String.format("<smses count=\"%d\">\n", count));
     }
 
-    public void writeItem(Smses.Child child) throws IOException {
-      smses.addChild(child);
+    public void writeItem(Child child) throws IOException {
+      writer.write("  ");
+      xstream.toXML(child, writer);
+      writer.write("\n");
     }
 
     public void close() throws IOException {
-      writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-      xstream.toXML(smses, writer);
+      writer.write("</smses>");
+      writer.close();
     }
   }
 }

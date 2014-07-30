@@ -3,15 +3,10 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.XmlBackup.Identity;
-import org.whispersystems.textsecure.crypto.IdentityKey;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.whispersystems.textsecure.util.Hex;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -80,8 +75,10 @@ public class PlaintextBackupExporter {
       skip += ROW_LIMIT;
     } while (reader.getCount() > 0);
 
-    Identity identity = new Identity(IdentityKeyUtil.getIdentityKeyPair(context, masterSecret));
-    writer.writeItem(identity);
+    if (withIdentity) {
+      XmlBackup.Identity identity = new XmlBackup.Identity(IdentityKeyUtil.getIdentityKeyPair(context, masterSecret));
+      writer.writeItem(identity);
+    }
     writer.close();
   }
 }

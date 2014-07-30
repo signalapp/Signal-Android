@@ -260,10 +260,6 @@ public class ImportFragment extends SherlockFragment {
               }
             }).execute();
           }
-//          DatabaseFactory.getInstance(context).reset(context);
-//          Intent intent = new Intent(context, KeyCachingService.class);
-//          intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
-//          context.startService(intent);
 
           Toast.makeText(context,
                          context.getString(R.string.ImportFragment_restore_complete),
