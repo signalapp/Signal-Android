@@ -352,15 +352,12 @@ public class Emoji {
     private final        int    index;
     private final        int    page;
     private final        int    emojiSize;
-    private static final Paint  placeholderPaint;
     private static final Paint  paint;
     private              Bitmap bmp;
 
     static {
       paint = new Paint();
       paint.setFilterBitmap(true);
-      placeholderPaint = new Paint();
-      placeholderPaint.setColor(0x55000000);
     }
 
     public EmojiDrawable(DrawInfo info, int emojiSize) {
@@ -373,7 +370,6 @@ public class Emoji {
     public void draw(Canvas canvas) {
       if (bitmaps[page] == null) {
         Log.w("Emoji", "bitmap for this page was null");
-        canvas.drawRect(getBounds(), placeholderPaint);
         return;
       }
       if (bmp == null) {
