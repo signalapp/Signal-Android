@@ -14,6 +14,7 @@ import com.thoughtworks.xstream.io.xml.XppReader;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.XmlBackup.Identity;
 import org.thoughtcrime.securesms.database.XmlBackup.Sms;
 import org.whispersystems.textsecure.crypto.InvalidKeyException;
@@ -97,7 +98,7 @@ public class PlaintextBackupImporter {
             addLongToStatement(statement, 5, sms.protocol);
             addLongToStatement(statement, 6, sms.read);
             addLongToStatement(statement, 7, sms.status);
-            addTranslatedTypeToStatement(statement, 8, sms.type);
+            addTranslatedTypeToStatement(statement, 8, sms.type, sms.ts_secure > 0, sms.ts_push > 0);
             addNullToStatement(statement, 9);
             addStringToStatement(statement, 10, sms.subject);
             addEncryptedStingToStatement(masterCipher, statement, 11, sms.body);
@@ -142,8 +143,11 @@ public class PlaintextBackupImporter {
     }
   }
 
-  private static void addTranslatedTypeToStatement(SQLiteStatement statement, int index, int type) {
-    statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(type) | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+  private static void addTranslatedTypeToStatement(SQLiteStatement statement, int index, int type, boolean secure, boolean push) {
+    long flags = SmsDatabase.Types.translateFromSystemBaseType(type) | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT;
+    if (secure) flags |= Types.SECURE_MESSAGE_BIT;
+    if (push)   flags |= Types.PUSH_MESSAGE_BIT;
+    statement.bindLong(index, flags);
   }
 
   private static void addStringToStatement(SQLiteStatement statement, int index, String value) {
