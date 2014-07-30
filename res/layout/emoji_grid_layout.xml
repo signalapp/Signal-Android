@@ -9,7 +9,7 @@
               android:paddingRight="10dp"
               android:visibility="visible"
               android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:stretchMode="columnWidth"
               android:columnWidth="@dimen/emoji_drawer_size"
               android:horizontalSpacing="0dp"
