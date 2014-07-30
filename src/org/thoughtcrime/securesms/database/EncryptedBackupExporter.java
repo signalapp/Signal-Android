@@ -44,12 +44,7 @@ public class EncryptedBackupExporter {
     OutputStream   exportStream = EncryptedBackup.getOutputStream(context, exportZipFile, masterSecret);
     BufferedWriter writer       = new BufferedWriter(new OutputStreamWriter(exportStream));
 
-    try {
-      PlaintextBackupExporter.exportPlaintextWithIdentity(context, masterSecret, writer);
-      writer.flush();
-    } finally {
-      writer.close();
-    }
+    PlaintextBackupExporter.exportPlaintextWithIdentity(context, masterSecret, writer);
   }
 
   public static void importFromSd(Context context, MasterSecret currentMasterSecret, String passphrase)
@@ -59,6 +54,7 @@ public class EncryptedBackupExporter {
     File        exportDirectory = new File(getExportDirectoryPath());
     File        exportZipFile   = new File(exportDirectory.getAbsolutePath() + File.separator + "TextSecureBackup.tsbk");
     InputStream inputStream     = EncryptedBackup.getInputStream(context, exportZipFile, passphrase);
+
     PlaintextBackupImporter.importPlaintext(context, currentMasterSecret, inputStream);
   }
 

@@ -109,6 +109,7 @@ public class XmlBackup {
 
     public void close() throws IOException {
       writer.write("</smses>");
+      writer.flush();
       writer.close();
     }
   }
