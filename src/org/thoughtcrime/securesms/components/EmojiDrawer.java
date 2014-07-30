@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
+import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -37,6 +40,7 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
   private Emoji                emoji;
   private ViewPager            pager;
   private PagerSlidingTabStrip strip;
+  private ImageButton          backspace;
 
   @SuppressWarnings("unused")
   public EmojiDrawer(Context context) {
@@ -76,7 +80,10 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
   private void initializeResources() {
     this.pager     = (ViewPager                ) findViewById(R.id.emoji_pager);
     this.strip     = (PagerSlidingTabStrip     ) findViewById(R.id.tabs);
+    this.backspace = (ImageButton              ) findViewById(R.id.backspace);
     this.emoji     = Emoji.getInstance(getContext());
+
+    this.backspace.setOnClickListener(new BackspaceClickListener());
   }
 
   public void hide() {
@@ -147,6 +154,20 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
 
       editText.setSelection(end+chars.length);
     }
+  }
+
+  private class BackspaceClickListener implements OnClickListener {
+
+    private final KeyEvent deleteKeyEvent = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
+
+    @Override
+    public void onClick(View v) {
+      if (composeText.getText().length() > 0) {
+        composeText.dispatchKeyEvent(deleteKeyEvent);
+        v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+      }
+    }
+
   }
 
   private class EmojiGridAdapter extends BaseAdapter {

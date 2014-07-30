@@ -6,10 +6,25 @@
                                                                  android:layout_width="match_parent"
                                                                  android:layout_height="match_parent">
 
-    <com.astuetz.PagerSlidingTabStrip android:id="@+id/tabs"
-                                      android:background="#ff333333"
-                                      android:layout_width="match_parent"
-                                      android:layout_height="45dp" />
+    <LinearLayout android:background="#ff333333"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+        <com.astuetz.PagerSlidingTabStrip android:id="@+id/tabs"
+                                          android:layout_weight="1"
+                                          android:layout_width="0dp"
+                                          android:layout_height="45dp" />
+
+        <ImageButton android:id="@+id/backspace"
+                     android:src="@drawable/ic_emoji_backspace"
+                     android:background="@color/emoji_tab_underline"
+                     android:paddingLeft="@dimen/emoji_drawer_left_right_padding"
+                     android:paddingRight="@dimen/emoji_drawer_left_right_padding"
+                     android:layout_width="wrap_content"
+                     android:layout_height="match_parent" />
+
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager android:id="@+id/emoji_pager"
                                        android:visibility="visible"
