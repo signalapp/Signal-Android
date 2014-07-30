@@ -20,6 +20,11 @@ import android.util.SparseArray;
 import android.view.View;
 
 import com.google.thoughtcrimegson.Gson;
+import com.google.thoughtcrimegson.GsonBuilder;
+import com.google.thoughtcrimegson.JsonDeserializationContext;
+import com.google.thoughtcrimegson.JsonDeserializer;
+import com.google.thoughtcrimegson.JsonElement;
+import com.google.thoughtcrimegson.JsonParseException;
 import com.google.thoughtcrimegson.reflect.TypeToken;
 
 import org.thoughtcrime.securesms.R;
@@ -305,8 +310,16 @@ public class Emoji {
       String serialized = prefs.getString(EMOJI_LRU_PREFERENCE, "[]");
       Type type = new TypeToken<LinkedHashSet<String>>() {
       }.getType();
+      JsonDeserializer<String> backwardsDeserializer = new JsonDeserializer<String>() {
+        @Override
+        public String deserialize(JsonElement jsonElement, Type type,
+                                  JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+          return jsonElement.getAsString().replace(".png", "");
+        }
+      };
 
-      recentlyUsed = new Gson().fromJson(serialized, type);
+      recentlyUsed = new GsonBuilder().registerTypeAdapter(String.class, backwardsDeserializer)
+                                      .create().fromJson(serialized, type);
     }
 
     public static String[] getRecentlyUsed(Context context) {
