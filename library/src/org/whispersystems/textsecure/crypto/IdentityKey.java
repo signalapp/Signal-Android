@@ -45,7 +45,7 @@ public class IdentityKey implements Parcelable, SerializableKey {
       return new IdentityKey[size];
     }
   };
-
+	
   public  static final int NIST_SIZE = 1 + ECPublicKey.KEY_SIZE;
 
   private ECPublicKey publicKey;
