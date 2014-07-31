@@ -4,11 +4,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.12.+'
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.1.0'
         classpath files('libs/gradle-witness.jar')
     }
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'hugo'
 apply plugin: 'witness'
 
 repositories {

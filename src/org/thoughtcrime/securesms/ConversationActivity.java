@@ -114,6 +114,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import hugo.weaving.DebugLog;
 import ws.com.google.android.mms.MmsException;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -175,6 +176,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private DynamicTheme        dynamicTheme        = new DynamicTheme();
   private DynamicLanguage     dynamicLanguage     = new DynamicLanguage();
 
+  @DebugLog
   @Override
   protected void onCreate(Bundle state) {
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
@@ -195,6 +197,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     super.onStart();
   }
 
+  @DebugLog
   @Override
   protected void onResume() {
     super.onResume();
@@ -593,6 +596,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   ///// Initializers
 
+  @DebugLog
   private void initializeTitleBar() {
     String title    = null;
     String subtitle = null;
@@ -696,6 +700,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }.execute();
   }
 
+  @DebugLog
   private void initializeSecurity() {
     TypedArray drawables           = obtainStyledAttributes(SEND_ATTRIBUTES);
     Recipient  primaryRecipient    = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
@@ -753,6 +758,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
   }
 
+  @DebugLog
   private void initializeResources() {
     recipients          = RecipientFactory.getRecipientsForIds(this, getIntent().getStringExtra(RECIPIENTS_EXTRA), true);
     threadId            = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
@@ -1056,6 +1062,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     fragment.scrollToBottom();
   }
 
+  @DebugLog
   private void sendMessage(boolean forcePlaintext, boolean forceSms) {
     try {
       Recipients recipients = getRecipients();

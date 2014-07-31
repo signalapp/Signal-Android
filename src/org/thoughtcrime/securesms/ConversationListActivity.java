@@ -42,6 +42,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import hugo.weaving.DebugLog;
+
 public class ConversationListActivity extends PassphraseRequiredSherlockFragmentActivity
     implements ConversationListFragment.ConversationSelectedListener,
                ListView.OnItemClickListener
@@ -56,6 +58,7 @@ public class ConversationListActivity extends PassphraseRequiredSherlockFragment
   private ListView        drawerList;
   private ContentObserver observer;
 
+  @DebugLog
   @Override
   public void onCreate(Bundle icicle) {
     dynamicTheme.onCreate(this);

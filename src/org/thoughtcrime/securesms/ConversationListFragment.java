@@ -63,6 +63,8 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Set;
 
+import hugo.weaving.DebugLog;
+
 
 public class ConversationListFragment extends SherlockListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
@@ -74,6 +76,7 @@ public class ConversationListFragment extends SherlockListFragment
   private View reminderView;
   private String queryFilter = "";
 
+  @DebugLog
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
@@ -87,6 +90,7 @@ public class ConversationListFragment extends SherlockListFragment
     getListView().setAdapter(null);
   }
 
+  @DebugLog
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
@@ -217,6 +221,7 @@ public class ConversationListFragment extends SherlockListFragment
     }
   }
 
+  @DebugLog
   private void initializeListAdapter() {
     this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
     getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
