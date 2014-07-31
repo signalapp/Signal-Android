@@ -69,9 +69,9 @@ public class PlaintextBackupImporter {
     HierarchicalStreamReader reader      = driver.createReader(new BufferedReader(new InputStreamReader(input)));
 
     try {
-      ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
-      MasterCipher masterCipher = new MasterCipher(masterSecret);
-      Set<Long> modifiedThreads = new HashSet<Long>();
+      ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
+      MasterCipher   masterCipher    = new MasterCipher(masterSecret);
+      Set<Long>      modifiedThreads = new HashSet<Long>();
 
       xstream.autodetectAnnotations(true);
       xstream.alias("sms", XmlBackup.Sms.class);
@@ -84,9 +84,9 @@ public class PlaintextBackupImporter {
           Log.w("Plaintext", "got an sms!");
           Sms sms = (Sms) child;
           try {
-            Recipients recipients = RecipientFactory.getRecipientsFromString(context, sms.address, false);
-            long threadId = threads.getThreadIdFor(recipients);
-            SQLiteStatement statement = db.createInsertStatement(transaction);
+            Recipients      recipients = RecipientFactory.getRecipientsFromString(context, sms.address, false);
+            long            threadId   = threads.getThreadIdFor(recipients);
+            SQLiteStatement statement  = db.createInsertStatement(transaction);
 
             if (sms.address == null || sms.address.equals("null"))
               continue;

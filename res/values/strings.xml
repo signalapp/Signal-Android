@@ -175,7 +175,7 @@
     <string name="ImportFragment_cancel">Cancel</string>
     <string name="ImportFragment_restore_encrypted_backup">Restore encrypted backup?</string>
     <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-        Restoring an encrypted backup will <b>completely replace your existing keys, sessions and sessions.</b> You will need to re-register with the TextSecure service if you're currently registered.
+        Restoring an encrypted backup will <b>completely replace your existing keys, sessions and sessions.</b> You will need to re-register with the TextSecure service if you\'re currently registered.
     </string>
     <string name="ImportFragment_restore">Restore</string>
     <string name="ImportFragment_import_plaintext_backup">Import plaintext backup?</string>
