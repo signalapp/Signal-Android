@@ -55,6 +55,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import hugo.weaving.DebugLog;
+
 public class ConversationFragment extends SherlockListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
 {
@@ -67,11 +69,13 @@ public class ConversationFragment extends SherlockListFragment
   private long         threadId;
   private ActionMode   actionMode;
 
+  @DebugLog
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     return inflater.inflate(R.layout.conversation_fragment, container, false);
   }
 
+  @DebugLog
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
@@ -95,6 +99,7 @@ public class ConversationFragment extends SherlockListFragment
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }
 
+  @DebugLog
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
@@ -276,6 +281,7 @@ public class ConversationFragment extends SherlockListFragment
     builder.show();
   }
 
+  @DebugLog
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
     return new ConversationLoader(getActivity(), threadId);
