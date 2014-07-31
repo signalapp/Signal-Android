@@ -35,7 +35,6 @@ public class EncryptedBackup {
                                                         .setMacSalt(ByteString.copyFrom(MasterSecretUtil.getMacSalt(context)))
                                                         .build();
     Log.w(TAG, "writing header of size " + header.getSerializedSize());
-    Log.w(TAG, "iteration count was " + header.getKdfIterations());
     byte[] headerSize = ByteBuffer.allocate(4).putInt(header.getSerializedSize()).array();
 
     plaintextStream.write(headerSize);
@@ -61,7 +60,6 @@ public class EncryptedBackup {
     }
 
     EncryptedBackupHeader header = EncryptedBackupHeader.parseFrom(headerBytes);
-    Log.w(TAG, "got iteration count of " + header.getKdfIterations());
 
     MasterSecret backupSecret = MasterSecretUtil.getMasterSecret(context,
                                                                  passphrase,
