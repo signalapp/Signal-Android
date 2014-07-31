@@ -486,12 +486,18 @@ public class ConversationFragment extends SherlockListFragment
 
       MimeTypeMap       mimeTypeMap   = MimeTypeMap.getSingleton();
       String            extension     = mimeTypeMap.getExtensionFromMimeType(slide.getContentType());
-      SimpleDateFormat  dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+      SimpleDateFormat  dateFormatter = new SimpleDateFormat("yyyy-MM-dd-HHmmss");
+      String            base          = "textsecure-" + dateFormatter.format(timestamp);
 
       if (extension == null)
         extension = "attach";
 
-      return File.createTempFile("textsecure-" + dateFormatter.format(timestamp), "." + extension, outputDirectory);
+      int i = 0;
+      File file = new File(outputDirectory, base+"."+extension);
+      while (file.exists())
+        file = new File(outputDirectory, base+"-"+(++i)+"."+extension);
+
+      return file;
     }
   }
 }
