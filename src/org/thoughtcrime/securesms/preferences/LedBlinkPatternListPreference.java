@@ -107,8 +107,6 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
     initializeSeekBarValues();
     initializeDialog(view);
     dialogInProgress = true;
-
-    dialogInProgress = true;
   }
 
   @Override
