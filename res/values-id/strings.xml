@@ -127,9 +127,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Kata kunci lama salah!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Kata Kunci tidak cocok</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Anda harus menentukan kata sandi</string>
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Anda harus mengisi URL MMSC operator anda.</string>
@@ -494,5 +491,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Kunci</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Terverifikasi</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

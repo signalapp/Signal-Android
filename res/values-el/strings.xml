@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Οι συνθηματικές φράσεις δε ταιριάζουν!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Λανθασμένη παλιά συνθηματική φράση!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Οι συνθηματικές φράσεις δε ταιριάζουν</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Πρέπει να επιλέξετε έναν κωδικό</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Εισάγετε συνθηματική φράση</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο TextSecure</string>
@@ -650,5 +647,6 @@
   <string name="text_secure_normal__mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Επικυρωμένο</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

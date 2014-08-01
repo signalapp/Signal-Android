@@ -67,9 +67,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">စကားဝှက်အဟောင်းမမှန်ကန်</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">စကားဝှက်များ ကိုက်ညီမှုမရှိ</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">စကားဝှက်သတ်မှတ်ရန်လိုအပ်</string>
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">သင်၏　carrier အတွက်　MMSC URL　သတ်မှတ်သင့်</string>
@@ -286,5 +283,6 @@
   <string name="text_secure_normal__menu_settings">ဆက်တင်</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">စစ်ဆေးပြီး</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

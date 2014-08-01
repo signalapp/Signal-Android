@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">口令不符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">密码不匹配</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">您必须设定一个密码</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密钥</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 图标</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">全部标记为已读</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">已验证</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">使用默认的SMS应用程序？</string>
+  <string name="reminder_header_sms_default_text">TextSecure 目前不是您默认的短信应用。</string>
+  <string name="reminder_header_sms_import_title">导入系统短信？</string>
+  <string name="reminder_header_sms_import_text">TextSecure 可以将您手机中的短信息复制到加密的数据库中。</string>
   <!--EOF-->
 </resources>

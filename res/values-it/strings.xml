@@ -46,10 +46,13 @@
   <string name="ConversationItem_group_action_joined">%1$s è entrato nel gruppo.</string>
   <string name="ConversationItem_group_action_modify">%1$s ha aggiornato il gruppo.</string>
   <string name="ConversationItem_click_to_approve_sms">Tocca per ripiegare sugli SMS</string>
+  <string name="ConversationItem_click_to_approve_mms">Tocca per ripiegare sugli MMS</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tocca per un ripiego non sicuro</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Ripiegare sugli SMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Ripiegare su SMS non criptati?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perchè non è stato possibile stabilire una sessione sicura.\nInviare comunque?</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">Ripiegare sugli MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Ripiegare su SMS non cifrati?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Ripiegare su MMS non cifrati?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà cifrato perchè non è stato possibile stabilire una sessione sicura.\nInviare comunque?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniziare sessione sicura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniziare una sessione sicura con %s?</string>
@@ -136,19 +139,19 @@
   <string name="ImportFragment_this_will_import_messages_from_the_system">In questo modo verranno importati i messaggi dal database predefinito di sitema per gli SMS a TextSecure. Se sono già stati importati in precedenza, la nuova importazione comporterà la duplicazione dei messaggi.\n</string>
   <string name="ImportFragment_import">Importa</string>
   <string name="ImportFragment_cancel">Annulla</string>
-  <string name="ImportFragment_restore_encrypted_backup">Ripristinare backup criptato?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n        Il rispristino di un backup cifrato sostituirà completamente le chiavi esistenti, le preferenze e\n        i messaggi. Verranno perse tutte le informazioni presenti nell\'installazione attuale di TextSecure ma non\n        quelle nel backup.\n    </string>
+  <string name="ImportFragment_restore_encrypted_backup">Ripristinare una copia cifrata?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n        Il rispristino di una copia cifrata sostituirà completamente le chiavi esistenti, le preferenze e\n        i messaggi. Verranno perse tutte le informazioni presenti nell\'installazione attuale di TextSecure ma non\n        quelle nel backup.\n    </string>
   <string name="ImportFragment_restore">Ripristina</string>
-  <string name="ImportFragment_import_plaintext_backup">Importare un backup in chiaro?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Questo importerà\nmessaggi da un backup. Se hai già effetuato un backup, </string>
+  <string name="ImportFragment_import_plaintext_backup">Importare una copia in chiaro?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Questo importerà\nmessaggi da una copia. Se hai già importato questa copia,\nuna nuova importazione creerà dei messaggi duplicati.</string>
   <string name="ImportFragment_importing">Importazione</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importo il backup in chiaro...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">Nessun backup in chiaro trovato!</string>
-  <string name="ImportFragment_error_importing_backup">Errore durante l\'importazione del backup!</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importo la copia in chiaro...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Nessuna copia in chiaro trovato!</string>
+  <string name="ImportFragment_error_importing_backup">Errore durante l\'importazione della copia!</string>
   <string name="ImportFragment_import_complete">Importazione terminata!</string>
   <string name="ImportFragment_restoring">Ripristino</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Ripristino backup cifrato...</string>
-  <string name="ImportFragment_no_encrypted_backup_found">Nessun backup cifrato trovato!</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Ripristino copia cifrata...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Nessuna copia cifrata trovata!</string>
   <string name="ImportFragment_restore_complete">Ripristino completato!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nessuna chiave scansionata trovata!</string>
@@ -164,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Le password non corrispondono</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Devi creare un password</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserire la password</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
@@ -218,6 +218,7 @@
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Hai già richiesto una chiamata recentemente. Devi attendere 20 minuti per richiederne un\'altra.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Verifica del codice vocale...</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflitto di registrazione</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Questo numero risulta già registrato su un altro server TextSecure (CyanogenMod?). Devi deregistrarti da lì prima di poterti registrare qui.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrazione completata</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">La registrazione di TextSecure è stata competata con successo.</string>
@@ -333,6 +334,7 @@
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Nessuna chiamata recente.</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Invia messaggio TextSecure</string>
   <string name="conversation_activity__type_message_sms_secure">Manda SMS sicuro</string>
   <string name="conversation_activity__type_message_sms_insecure">Manda SMS non sicuro</string>
   <string name="conversation_activity__type_message_mms_secure">Manda MMS sicuro</string>
@@ -354,11 +356,12 @@
   <string name="conversation_item_received__downloading">Caricamento in corso</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">%s selezionato</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Se vuoi che i tuoi dati locali vengano criptati devi scegliere una password.</string>
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Se vuoi che i tuoi dati locali vengano cifrati devi scegliere una password.</string>
   <string name="create_passphrase_activity__passphrase">Password:</string>
   <string name="create_passphrase_activity__repeat">Ripeti:</string>
   <string name="create_passphrase_activity__continue">Continua</string>
@@ -387,16 +390,16 @@
   <string name="database_migration_activity__importing">COPIA</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aggiornando il database...</string>
-  <string name="export_fragment__export_encrypted_backup">Esporta backup criptato</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Esporta un backup\ncifrato sulla scheda SD</string>
-  <string name="export_fragment__export_plaintext_backup">Esportare backup in chiaro</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nEsporto un backup in chiaro compatibile con \"SMSBackup And Restore\" sulla SD card.</string>
+  <string name="export_fragment__export_encrypted_backup">Esporta copia cifrata</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Esporta una copia\ncifrata sulla scheda SD</string>
+  <string name="export_fragment__export_plaintext_backup">Esportare copia in chiaro</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nEsporto una copia in chiaro compatibile con \"SMSBackup And Restore\" sulla SD card.</string>
   <string name="import_fragment__import_system_sms_database">Importa gli SMS dal database criptato</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importa il database\ndall\'app SMS di default.</string>
-  <string name="import_fragment__import_encrypted_backup">Importa backup criptato</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nRipristina un backup cifrato di TextSecure precedentemente esportato.</string>
-  <string name="import_fragment__import_plaintext_backup">Importare backup in chiaro</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nImporto un backup in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
+  <string name="import_fragment__import_encrypted_backup">Importa copia cifrata</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nRipristina una copia cifrata di TextSecure precedentemente esportata.</string>
+  <string name="import_fragment__import_plaintext_backup">Importare copia in chiaro</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\nImporto una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <string name="local_identity__regenerate_key">Rigenera chiave</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Impostazioni manuali degli MMS sono necessarie per il tuo telefono.</string>
@@ -502,6 +505,7 @@
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Disabilita la crittografia  dei messaggi e delle chiavi sul telefono</string>
   <string name="preferences__screen_security">Sicurezza schermo</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completa lo scambio della chiave automaticamente per le nuove sessione con la stessa chiave di identità</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blocca il fotografare dello schermo nella lista recenti e all\'interno dell\'app</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Dimentica la password dalla cache dopo un intervallo di tempo</string>
   <string name="preferences__timeout_passphrase">Tempo per dimenticare la password</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Imposta timeout per la password</string>
@@ -589,6 +593,7 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Aggiorna la lista dei contatti</string>
   <!--conversation_button_context-->
+  <string name="conversation_button_context__send_textsecure_message">Invia messaggio TextSecure</string>
   <string name="conversation_button_context__send_secure_sms">Manda SMS sicuro</string>
   <string name="conversation_button_context__send_insecure_sms">Manda SMS non sicuro</string>
   <string name="conversation_button_context__send_secure_mms">Manda MMS sicuro</string>
@@ -642,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Segnala tutto come già letto</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificato</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Adotta come applicazione predefinita per SMS.</string>
+  <string name="reminder_header_sms_default_text">Attualmente TextSecure non è la tua applicazione predefinita per SMS.</string>
+  <string name="reminder_header_sms_import_title">Vuoi importare gli SMS precedenti?</string>
+  <string name="reminder_header_sms_import_text">TextSecure può copiare i messaggi SMS del tuo telefono nella sua banca dati cifrata.</string>
   <!--EOF-->
 </resources>

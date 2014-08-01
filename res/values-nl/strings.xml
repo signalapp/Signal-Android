@@ -6,16 +6,16 @@
   <string name="delete">Verwijder</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">U moet uw wachtwoord hebben ingevoerd voor het beheren van sleutels...</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">U moet uw wachtwoord hebben ingevoerd om sleutels te kunnen beheren...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">U heeft nog geen wachtwoord ingesteld!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">berichten per gesprek</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Weet je zeker dat je bij alle gesprekken alleen de laatste %s berichten behouden wilt?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Weet je zeker dat je alle gesprekken wil inkorten tot de laatste %s berichten?</string>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
   <string name="ApplicationPreferencesActivity_my">Mijn</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Opslagversleuteling uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nLet op, dit schakelt opslagversleuteling uit voor alle berichten en sleutels. Je versleutelde sessies zullen blijven werken, maar iedereen met fysieke toegang tot je apparaat zal ze kunnen benaderen.</string>
-  <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nLet op, dit schakelt opslagversleuteling uit voor alle berichten en sleutels. Je versleutelde sessies zullen blijven werken, maar iedereen met fysieke toegang tot je apparaat zal er toegang toe hebben.</string>
+  <string name="ApplicationPreferencesActivity_disable">Schakel uit</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afmelden...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Afmelden voor datagebaseerde communicatie.</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Push berichten uitzetten?</string>
@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Wachtwoorden komen niet overeen</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">U moet een wachtwoord specificeren</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icoon</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Markeer alles als gelezen</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Geverifieerd</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Als standaard SMS-app gebruiken?</string>
+  <string name="reminder_header_sms_default_text">Textsecure is momenteel niet uw standaard SMS-app.</string>
+  <string name="reminder_header_sms_import_title">SMS importeren uit systeem?</string>
+  <string name="reminder_header_sms_import_text">TextSecure kan uw SMS-berichten importeren in haar versleutelde database.</string>
   <!--EOF-->
 </resources>

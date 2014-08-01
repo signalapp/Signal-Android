@@ -134,9 +134,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Parolele nu sunt identice</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Trebuie specificată o parolă</string>
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Trebuie sa specifici un URL MMSC pentru operatorul tau.</string>
@@ -522,5 +519,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Blocare</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificat</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

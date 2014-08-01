@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Gesli se ne ujemata</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Določiti morate geslo</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Označi vsa kot prebrana</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Overjeno</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Uporabljam kot privzeto aplikacijo SMS?</string>
+  <string name="reminder_header_sms_default_text">TextSecure trenutno ni privzeta aplikacija SMS.</string>
+  <string name="reminder_header_sms_import_title">Uvozim iz sistemske zbirke sporočil SMS?</string>
+  <string name="reminder_header_sms_import_text">TextSecure lahko prekopira sporočila SMS z vašega telefona v svojo šifrirano zbirko.</string>
   <!--EOF-->
 </resources>

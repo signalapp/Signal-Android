@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Inkorrekt gammalt lösenord!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Lösenord matchar inte</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Du måste specificera ett lösenord</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ikon</string>
@@ -650,5 +647,6 @@
   <string name="text_secure_normal__mark_all_as_read">Markera alla lästa</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verifierad</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

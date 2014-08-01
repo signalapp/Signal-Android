@@ -98,9 +98,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">סיסמה ישנה לא נכונה.</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">הסיסמאות אינן תואמות</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">אתה חייב לציין סיסמה</string>
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">אתה חייב לציין כתובת MMSC עבור ספק השירות שלך.</string>
@@ -365,5 +362,6 @@
   <string name="text_secure_normal__menu_settings">הגדרות</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">מאומת</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

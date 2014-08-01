@@ -137,9 +137,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Heslá sa nezhodujú</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Musíte zadať heslo</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadaj heslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikonka</string>
@@ -551,5 +548,6 @@
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Overené</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

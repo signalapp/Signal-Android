@@ -104,9 +104,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ಹಳೆಯ ಗುಪ್ತಪದ ತಪ್ಪಾಗಿದೆ!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">ಗುಪ್ತಪದಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">ನೀವು ಒಂದು ಗುಪ್ತಪದವನ್ನು ಸೂಚಿಸಬೇಕು</string>
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">ನಿಮ್ಮ ವಾಹಕಕ್ಕೆ ಎಮ್.ಎಮ್.ಎಸ್.ಸಿ ಯು.ಆರ್.ಎಲ್ ಸೂಚಿಸಬೇಕು.</string>
@@ -441,5 +438,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">ಬೀಗ ಹಾಕಿ</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

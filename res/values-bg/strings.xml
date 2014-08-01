@@ -6,11 +6,11 @@
   <string name="delete">Изтрий</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Трябва да си въвел своята парола преди управлението на ключовете...</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Не си сложил парола все още!</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Трябва да си въвел своята парола преди да можеш да управленаш на ключове...</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не си сложил парола!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">съобщения на разговор</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Изтрий всички стари съобщения сега?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Сигурен ли си, че искаш скасиш всички дискусии до %s съобщения във всяка?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Сигурен ли си, че искаш скъсиш всички разговори до %s съобщения във всяка?</string>
   <string name="ApplicationPreferencesActivity_delete">Изтрий</string>
   <string name="ApplicationPreferencesActivity_my">Мой</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Изключи шифроването на паметта?</string>
@@ -33,14 +33,14 @@
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">Големина на съобщението: %d KB</string>
+  <string name="ConversationItem_message_size_d_kb">Размер на съобщението: %d KB</string>
   <string name="ConversationItem_expires_s">Изтича: %s</string>
   <string name="ConversationItem_error_sending_message">Грешка при изпращане на съобщението</string>
   <string name="ConversationItem_view_secure_media_question">Искаш ли да видиш подсигурения медиен файл?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Тази информация се съхранява в криптирана база данни. За съжаление, за да я видиш в момента се изисква данните да бъдат временно разшифровани и записани на диска. Сигурен ли сте, че искаш да направиш това?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">Постъпили и обменени ключове.</string>
+  <string name="ConversationItem_received_and_processed_key_exchange_message">Получена и обработена обмяна на ключове.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Грешка, загубил давност ключ е получен при обмяна на ключовете.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Съобщение за размяна на ключове се получи, натиснете, за да продължите.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Получи се съобщение за обмяна на ключове, натисни, за да продължиш.</string>
   <string name="ConversationItem_received_plaintext_message_click_to_terminate">Получи не шифровано SMS съобщение, когато си в сигурна сесия. Ако другата страна няма отворена шифрована сесия, твоите съобщения ще изглеждат като каша от символи. Натисни, за да прекратиш сигурната сесия.</string>
   <string name="ConversationItem_group_action_left">%1$s напусна групата.</string>
   <string name="ConversationItem_group_action_joined">%1$s се присъедини към групата.</string>
@@ -52,14 +52,14 @@
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Разреши преминавене към MMS-и?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Разреши преминавене към не шифровани SMS-и?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Разреши преминавене към не шифровани MMS-и?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>няма</b> да бъде зашифровано поради невъзможноста за установяване на сигурна сесия.\n\nИзпрати не сигурно съобщение?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>няма</b> да бъде зашифровано поради не възможността за установяване на сигурна сесия.\n\nИзпрати не сигурно съобщение?</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Започнете сигурна сесия?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Започнете сигурна сесия с %s?</string>
+  <string name="ConversationActivity_initiate_secure_session_question">Започни сигурна сесия?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">Започни сигурна сесия с %s?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Потвърждение за прекратяване на сигурна сесия</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Сигурен ли си, че искаш да прекратиш сигурната сесия?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Потвържедение за изтриване на дискусията</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Сигурен ли си, че искаш да изтриеш този разговор необратимо?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Потвърждение за изтриване на разговора</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Сигурен ли си, че искаш да изтриеш необратимо този разговор?</string>
   <string name="ConversationActivity_add_attachment">Прикачи файл</string>
   <string name="ConversationActivity_select_contact_info">Посочи информация за контакта</string>
   <string name="ConversationActivity_compose_message">Ново съобщение</string>
@@ -95,10 +95,10 @@
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Съобщение за обмяна на ключовете...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Изтрий дискусиите?</string>
+  <string name="ConversationListFragment_delete_threads_question">Изтрий разговорите?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Сигурен ли си, че искаш да изтриеш ВСИЧКИ избрани разговори?</string>
   <string name="ConversationListFragment_deleting">Изтриване</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Изтриване на избраните дискусии...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Изтриване на избраните разговори...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
   <!--ShareActivity-->
@@ -108,7 +108,7 @@
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Това⏎\nще изнесе вашите ключове, настройки и съобщения на  SD картата.⏎</string>
   <string name="ExportFragment_export">Изнасяне</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Разшифрован запис на SD карта?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, това ще\nзапише в разшифрован вид съдържанието на вашите TextSecure съобщения на SD карта. </string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Предупреждение, това ще\nзапише в разшифрован вид съдържанието на вашите TextSecure съобщения на SD карта. </string>
   <string name="ExportFragment_cancel">Отказ</string>
   <string name="ExportFragment_exporting">Изнасяне</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Изнасяне в разшифрован вид към SD карта...</string>
@@ -121,11 +121,11 @@
   <string name="GroupCreateActivity_actionbar_update_title">Промени група</string>
   <string name="GroupCreateActivity_group_name_hint">Име на групата</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Избра контакт, който не подържа TextSecure групи, групата ше бъде преобразувана в MMS група.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Избра контакт, който не поддържа TextSecure групи, групата ше бъде преобразувана в MMS група.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Не си регистриран да изпозлваш интернет връзката, така че TextSecure групите са изключени.</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">Настъпи неочаквана грешка, която доведе до неуспешно създаване на група.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Настъпи не очаквана грешка, която доведе до неуспешно създаване на група.</string>
   <string name="GroupCreateActivity_contacts_no_members">Трябва да добавиш поне един човек в групата си!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Един от членовете на групата има номер, който неможе да бъде разпознат правилно. Моля, оправи номера на контакта или го премахни.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Един от членовете на групата има номер, който не може да бъде разпознат правилно. Моля, оправи номера на контакта или го премахни.</string>
   <string name="GroupCreateActivity_file_io_exception">Грешка при създаването на временен файл за изображение.</string>
   <string name="GroupCreateActivity_avatar_content_description">Аватар за групата</string>
   <string name="GroupCreateActivity_menu_create_title">Създай група</string>
@@ -163,13 +163,10 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедийно съобщение</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получено е съобщение шифровано със стара версия на TextSecure, която вече не се подържа. Помоли изпращача да опресни своята версия на програмата и да изпрати съобщението повторно.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получено е съобщение шифровано със стара версия на TextSecure, която вече не се поддържа. Помоли изпращача да опресни своята версия на програмата и да изпрати съобщението повторно.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Грешна стара парола!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Паролите не съвпадат</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Трябва да посочиш парола</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведи паролата</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона на TextSecure</string>
@@ -180,7 +177,7 @@
   <string name="PromptMmsActivity_mms_settings_updated">MMS настройки променени</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Можеш да промениш тези стойности, по всяко време, от менюто с настройки на TextSecure.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different"> \nПодписът получен при обмяната на ключове е по-различен от този, който си получавал преди от същия\nконтакт. Това може да означава, че някой се опитва да прихване комуникацията ти, или \nче този контакт просто е преинсталирал TextSecure и сега има нов ключ за идентичност. </string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different"> \nПодписът получен при обмяната на ключове е по-различен от този, който си получавал преди от същия\nконтакт. Това може да означава, че някой се опитва да прихване комуникацията ти, или \nче този контакт просто е преинсталирал TextSecure и сега има нов ключ за самоличност. </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Може би е добре да се провери ⏎\nтози контакт. ⏎</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Подписът получен при обмяната на ключове е правилен, но си\nизключил опцията за\n\'автоматична обмяна на ключове\' .</string>
   <string name="ReceiveKeyActivity_processing">Обработване</string>
@@ -192,8 +189,8 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Трябва да въведеш своя\nтелефонен номер</string>
   <string name="RegistrationActivity_invalid_number">Невалиден номер</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Избраният номер\n(%s) е невалиден.</string>
-  <string name="RegistrationActivity_unsupported">Тази функция не се подържа</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">За съжаление,\nтова устройство не подържа съобщения през интернет. Устройства използващи Android по-ранна версия от 4.0 трябва да са регистрирани с Google. Устройства използващи Android 4.0 или по-нова версия не е нужно\nда са регистрирани с Google, но трябва да имат Play Store инсталиран.</string>
+  <string name="RegistrationActivity_unsupported">Тази функция не се поддържа</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">За съжаление,\nтова устройство не поддържа съобщения през интернет. Устройства използващи Android по-ранна версия от 4.0 трябва да са регистрирани с Google. Устройства използващи Android 4.0 или по-нова версия не е нужно\nда са регистрирани с Google, но трябва да имат Play Store инсталиран.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nСега ще потвърдим дали следният телефонен номер е свързан с това устройство:\n\n%s\n\n\nНомерът правилен ли е или би ли желал да го промениш преди да продължиш?</string>
   <string name="RegistrationActivity_continue">Продължи</string>
   <string name="RegistrationActivity_edit">Промени</string>
@@ -230,7 +227,7 @@
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Съобщението за обмяна на ключ\nе объркано!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nСъобщението за обмяна на ключа е с грешна версия на протокола.\n</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nПолучено е съобщение с непознат ключ за идентичност. Натисни, за да го обработиш и покажеш.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nПолучено е съобщение с не познат ключ за самоличност. Натисни, за да го обработиш и покажеш.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получена е променена, но непозната информация за самоличност. Натисни, за да я провериш.</string>
   <string name="SmsMessageRecord_secure_session_ended">Сигурната сесия приключи.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
@@ -238,32 +235,32 @@
   <string name="ThreadRecord_left_the_group">Напусна групата...</string>
   <string name="TheadRecord_secure_session_ended">Сигурната сесия приключи.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш личен ключ.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма личен ключ.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Получателят няма личен ключ.</string>
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма ключ за самоличност.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Получателят няма ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Сканирай ключа им за сравнение</string>
   <string name="VerifyIdentityActivity_get_my_key_scanned">Позволи да сканират ключа ми</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, сканираният ключ НЕ Е същият! Моля, провери текстовия отпечатък внимателно.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ Е Проверен!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Техният ключ е правилен. Необходимо е да се провери и твоя ключ от тях.</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Техният ключ е правилен. Необходимо е да се провери и твоят ключ от тях.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Проверен!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Нямаш ключ за идентифициране!</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Нямаш ключ за самоличност!</string>
   <!--VerifyKeysActivity-->
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Сканирай моя ключ</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">Сканирай техния ключ</string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ВНИМАНИЕ, сканираният ключ НЕ Е същият! Моля, проверете текстовия отпечатък внимателно.</string>
+  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ВНИМАНИЕ, сканираният ключ НЕ Е същият! Моля, провери текстовия отпечатък внимателно.</string>
   <string name="VerifyKeysActivity_not_verified_exclamation">НЕ потвърдено!</string>
   <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Техният ключ е правилен. Необходимо е да се провери и твоя ключ от тях.</string>
   <string name="VerifyKeysActivity_verified_exclamation">Проверен!</string>
   <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Нямаш идентифицикационен ключ!</string>
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност!</string>
   <string name="ViewIdentityActivity_scan_to_compare">Сканирай за сравнение</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">Позволи сканиране за сравнение</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ВНИМАНИЕ, сканираният ключ НЕ Е съвпада!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">Не потвърдено!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Сканираният ключ е същия!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Проверен!</string>
-  <string name="ViewIdentityActivity_identity_fingerprint">Ключ за идентичност</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">Ключ за самоличност</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">Моят ключ за самоличност</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
@@ -272,7 +269,7 @@
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Лошо шифровано съобщение...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Разшифроване, моля изчакайте...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Съобщението е шифровано за несъществуваща сесия...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Съобщението е шифровано за не съществуваща сесия...</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Свързване с MMS сървър...</string>
   <string name="MmsDatabase_downloading_mms">Изтегляне на MMS...</string>
@@ -282,7 +279,7 @@
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS-а се разшифрова, моля изчакайте...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Лошо шифровано MMS съобщение...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS съобщението е шифровано за несъществуваща сесия...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS съобщението е шифровано за не съществуваща сесия...</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">В момента не може да се изпрати вашият MMS</string>
   <!--ApplicationMigrationService-->
@@ -301,27 +298,27 @@
   <string name="MessageNotifier_message_delivery_failed">Изпращането на съобщението неуспешно.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Неуспешно изпращането на съобщението.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при изпращането на съобщението</string>
-  <string name="MessageNotifier_mark_all_as_read">Маркирай всички като прочетени</string>
-  <string name="MessageNotifier_mark_as_read">Маркирай като прочетено</string>
+  <string name="MessageNotifier_mark_all_as_read">Всички са прочетени</string>
+  <string name="MessageNotifier_mark_as_read">Прочетено</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Създване...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Създаване на ключ за\nидентичност...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Създаване на ключ за\nсамоличност...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Пресъздаден!</string>
-  <string name="ViewLocalIdentityActivity_reset_identity_key">Пресъздай ключа за идентичност?</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Пресъздай ключа за самоличност?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nВнимание! Ако пресъздадеш ключа си за самоличност, седгашният ти ключ ще бъде безвъзвратно изгубен,\nсегашните ти контакти ще получат предупреждение при започване на нова сигурна сесия с теб.\nСигурен ли си, че желаеш да продължиш?</string>
   <string name="ViewLocalIdentityActivity_cancel">Отказ</string>
   <string name="ViewLocalIdentityActivity_continue">Продължи</string>
   <!--SmsReceiver-->
   <string name="SmsReceiver_currently_unable_to_send_your_sms_message">В момента не може да се изпрати твоето SMS съобщение. Ще бъде изпратено след като услугата стане достъпна.</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">За съжаление, TextSecure все още не подържа Quick Response!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">За съжаление, TextSecure все още не поддържа Quick Response!</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Получи съобщение от някой, който ползва TextSecure шифровани разговори. Искаш ли да започнеш сигурна сесия?</string>
   <string name="auto_initiate_activity__initiate_exchange">Започни размяна</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ПАРОЛА: </string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ПАРОЛА: </string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРЕТЕ НОВАТА ПАРОЛА: </string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРИ НОВАТА ПАРОЛА: </string>
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма контакти.</string>
@@ -339,9 +336,9 @@
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Изпрати TextSecure съобщение</string>
   <string name="conversation_activity__type_message_sms_secure">Изпрати сигурен SMS</string>
-  <string name="conversation_activity__type_message_sms_insecure">Изпрати не сигурен SMS</string>
+  <string name="conversation_activity__type_message_sms_insecure">Изпрати несигурен SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Изпрати сигурен MMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Изпрати не сигурен MMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Изпрати несигурен MMS</string>
   <string name="conversation_activity__send">Изпрати</string>
   <string name="conversation_activity__remove">Премахни</string>
   <!--conversation_item-->
@@ -418,7 +415,7 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Завършен</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure може да използва интернет съобщения, за да увеличи сигурноста и за да избегне SMS такси, когато комуникира с други\nTextSecure потребители. За да включиш тази функция, моля потвърди държавния си код и телефонен номер.</string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure може да използва интернет съобщения, за да увеличи сигурността и за да избегне SMS такси, когато комуникира с други\nTextSecure потребители. За да включиш тази функция, моля потвърди държавния си код и телефонен номер.</string>
   <string name="registration_activity__your_country">ТВОЯТА ДЪРЖАВА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОДА НА ТВОЯТА ДЪРЖАВА И\nТЕЛЕФОНЕН НОМЕР</string>
   <string name="registration_activity__phone_number">ТЕЛЕФОНЕН НОМЕР</string>
@@ -476,8 +473,8 @@
   <string name="AndroidManifest__select_contacts">Избери контакти</string>
   <string name="AndroidManifest__select_contact">Избери контакти</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure е разпознат</string>
-  <string name="AndroidManifest__public_identity_key">Публичен ключ</string>
-  <string name="AndroidManifest__change_passphrase">Сменете паролата</string>
+  <string name="AndroidManifest__public_identity_key">Публичен ключ за самоличност</string>
+  <string name="AndroidManifest__change_passphrase">Смени паролата</string>
   <string name="AndroidManifest__verify_session">Провери сесията</string>
   <string name="AndroidManifest__verify_identity">Провери самоличността</string>
   <string name="AndroidManifest__manage_identity_keys">Управление на ключовете за самоличност</string>
@@ -485,7 +482,7 @@
   <string name="AndroidManifest__log_submit">Изпрати доклад</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / Изнасяне</string>
-  <string name="arrays__my_identity_key">Моят ключ за идентичност</string>
+  <string name="arrays__my_identity_key">Моят ключ за самоличност</string>
   <!--preferences.xml-->
   <string name="preferences__general">Общо</string>
   <string name="preferences__push_sms_category">Интернет съобщения и SMS</string>
@@ -507,30 +504,30 @@
   <string name="preferences__disable_passphrase">Изключи паролата</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Изключване на локално шифроване на съобщения и ключове</string>
   <string name="preferences__screen_security">Сигурност на екрана</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Автоматично извършване на обмянана ключове за нови сесии или за съществуващи сесии с един и същ ключ за идентичност</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Автоматично извършване на ключове обмяна за нови сесии или за съществуващи сесии с един и същ ключ за самоличност</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Забрани автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Изтрий паролата от паметта след известно време</string>
-  <string name="preferences__timeout_passphrase">Изискай паролата след</string>
+  <string name="preferences__timeout_passphrase">Изтичане на паролата</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Продължителност на помненето на паролата</string>
   <string name="preferences__pref_timeout_interval_title">Продължителност на помненето</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Продължителнос от време, преди да забравя паролата от памета</string>
   <string name="preferences__identity_key_settings">Ключове за самоличност</string>
-  <string name="preferences__view_my_identity_key">Покажи личния ми ключ</string>
+  <string name="preferences__view_my_identity_key">Покажи ключа ми за самоличност</string>
   <string name="preferences__manage_identity_keys">Управление на ключовете за самоличност</string>
   <string name="preferences__manage_configured_identity_keys">Управление на настроените ключове за самоличност</string>
   <string name="preferences__notifications">Известия</string>
   <string name="preferences__display_message_notifications_in_status_bar">Покажи известия за съобщения в лентата за известия</string>
   <string name="preferences__led_color">LED цвят</string>
-  <string name="preferences__pref_led_blink_title">Шанблон за LED мигане</string>
+  <string name="preferences__pref_led_blink_title">LED известяване</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Промени известяването с LED мигане</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">Включено за:</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Изключено за:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">Новия начин за LED известяване зададен!</string>
-  <string name="preferences__sound">Звук</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Новият начин за LED известяване зададен!</string>
+  <string name="preferences__sound">Мелодия</string>
   <string name="preferences__change_notification_sound">Промени звуков сигнал за известие</string>
-  <string name="preferences__inthread_notifications">Известия по време на дискусия</string>
+  <string name="preferences__inthread_notifications">Известия по време на разговор</string>
   <string name="preferences__play_inthread_notifications">Използвай звуков сигнал по време на активен разговор.</string>
-  <string name="preferences__vibrate">Вибрирай</string>
+  <string name="preferences__vibrate">Вибрация</string>
   <string name="preferences__also_vibrate_when_notified">Вибрирай при ново известие</string>
   <string name="preferences__minutes">минути</string>
   <string name="preferences__hours">часове</string>
@@ -543,7 +540,7 @@
   <string name="preferences__white">Бял</string>
   <string name="preferences__none">Няма</string>
   <string name="preferences__fast">Бързо</string>
-  <string name="preferences__normal">Нормалено</string>
+  <string name="preferences__normal">Нормално</string>
   <string name="preferences__slow">Бавно</string>
   <string name="preferences__custom">Ръчно</string>
   <string name="preferences__advanced">Допълнителни</string>
@@ -556,12 +553,12 @@
   <string name="preferences__mms_proxy_port_optional">MMS Прокси Порт (По избор)</string>
   <string name="preferences__sms_delivery_reports">SMS потвърждения за получаване</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Поискай потвърждение при получаване за всяко изпратено SMS съобщение</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Автоматично изтрий най-старите съобщения, когато дискусията превиши определена дължина</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Автоматично изтрий най-старите съобщения, когато разговорът превиши определена дължина</string>
   <string name="preferences__delete_old_messages">Изтрий старите съобщения</string>
   <string name="preferences__storage">Памет</string>
   <string name="preferences__conversation_length_limit">Граница за дължина на разговора</string>
-  <string name="preferences__trim_all_threads_now">Скъси всички дискусии сега</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Сканирай всички дискусии и приложи ограниченето за дължина</string>
+  <string name="preferences__trim_all_threads_now">Скъси всички разговори сега</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Сканирай всички разговори и приложи ограничението за дължина</string>
   <string name="preferences__light_theme">Светла тема</string>
   <string name="preferences__dark_theme">Тъмна тема</string>
   <string name="preferences__appearance">Външен вид</string>
@@ -571,7 +568,7 @@
   <string name="preferences__make_default_sms_app">Задай SMS програма по подразбиране</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Направи TextSecure SMS/MMS програма по подразбиране.</string>
   <string name="preferences__use_data_channel">Интернет съобщения</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nУвеличи сигурноста си и избегни SMS таксите като използваш интернет връзката си, за да с е свържеш с други TextSecure потребители\n</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nУвеличи сигурността си и избегни SMS таксите като използваш интернет връзката, за да се свържеш с други TextSecure потребители</string>
   <string name="preferences__allow_sms_fallback">Разреши изпращане на SMS до</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">В момента TextSecure e твоята SMS програма по подразбиране. Моля, задай друга SMS програма по подразбиране, за да промениш тази настройка.</string>
   <string name="preferences__refresh_push_directory">Опресни списъка с контакти за интернет съобщения...</string>
@@ -598,9 +595,9 @@
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">Изпрати TextSecure съобщение</string>
   <string name="conversation_button_context__send_secure_sms">Изпрати сигурен SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Изпрати не сигурен SMS</string>
+  <string name="conversation_button_context__send_insecure_sms">Изпрати несигурен SMS</string>
   <string name="conversation_button_context__send_secure_mms">Изпрати сигурен MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Изпрати не сигурен MMS</string>
+  <string name="conversation_button_context__send_insecure_mms">Изпрати несигурен MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Обаждане</string>
   <!--conversation_context-->
@@ -622,15 +619,15 @@
   <string name="conversation_list__drawer_close">Затвори менюто за навигация</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Сигурност</string>
-  <string name="conversation_secure_verified__menu_no_identity">Няма налична идентичност</string>
+  <string name="conversation_secure_verified__menu_no_identity">Няма налична самоличност</string>
   <string name="conversation_secure_verified__menu_verify_identity">Провери самоличността</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Прекрати сигурната сесия</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Прикачи файл</string>
   <string name="conversation__menu_update_group">Промени група</string>
   <string name="conversation__menu_leave_group">Напусни група</string>
-  <string name="conversation__menu_add_contact_info">Добави информация за контакта</string>
-  <string name="conversation__menu_delete_thread">Изтрий дискусията</string>
+  <string name="conversation__menu_add_contact_info">Добави визитка на контакт</string>
+  <string name="conversation__menu_delete_thread">Изтрий разговора</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Списък на получатели</string>
   <string name="conversation_group_options__delivery">Доставка</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Маркирай всички като прочетени</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Проверен</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Използвай като SMS програма по подразбиране?</string>
+  <string name="reminder_header_sms_default_text">TextSecure, в момента, не е твоята SMS програма по подразбиране.</string>
+  <string name="reminder_header_sms_import_title">Внеси вече съществуващите SMS?</string>
+  <string name="reminder_header_sms_import_text">TextSecure може да копира твоите SMS съобщения в шифрованата си база данни.</string>
   <!--EOF-->
 </resources>

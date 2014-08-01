@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frases-chave não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Frases-chave não coincidem</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Você deve especificar uma senha</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do TextSecure</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificadas</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Usar como app SMS padrão?</string>
+  <string name="reminder_header_sms_default_text">O TextSecure não é atualmente o seu app SMS padrão.</string>
+  <string name="reminder_header_sms_import_title">Importar mensagens SMS do sistema?</string>
+  <string name="reminder_header_sms_import_text">O TextSecure pode copiar as mensagens SMS do seu dispositivo para a base de dados criptografada do TextSecure.</string>
   <!--EOF-->
 </resources>

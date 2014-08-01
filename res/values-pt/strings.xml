@@ -46,9 +46,12 @@
   <string name="ConversationItem_group_action_joined">%1$s juntou-se ao grupo.</string>
   <string name="ConversationItem_group_action_modify">%1$s actualizou o grupo.</string>
   <string name="ConversationItem_click_to_approve_sms">Pressione para enviar via SMS</string>
+  <string name="ConversationItem_click_to_approve_mms">Pressione para enviar via MMS</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Pressione para enviar de modo inseguro</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Recorrer a SMS?</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">Recorrer a MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não cifrado?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Recorrer a MMS não cifrado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> vai ser cifrada porque não foi possível estabelecer uma sessão segura.\n\nEnviar mensagem de modo inseguro?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
@@ -164,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-chave não coincidem.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">As frases-chave não coincidem.</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Tem de especificar uma palavra-chave</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduza palavra-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon TextSecure</string>
@@ -356,6 +356,7 @@
   <string name="conversation_item_received__downloading">A transferir</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selecção em grupo</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">Seleccionado %s</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">A carregar lista de países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
@@ -646,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Definir como aplicação SMS por omissão?</string>
+  <string name="reminder_header_sms_default_text">TextSecure não é actualmente a sua aplicação SMS por omissão.</string>
+  <string name="reminder_header_sms_import_title">Importar as SMS do sistema?</string>
+  <string name="reminder_header_sms_import_text">TextSecure pode copiar as suas SMS para a base de dados TextSecure cifrada.</string>
   <!--EOF-->
 </resources>

@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salasanat eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salasana on väärin!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Salasanat eivät täsmää</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Teidän täytyy määrittää salasana</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salasana</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-kuvake</string>
@@ -650,5 +647,6 @@
   <string name="text_secure_normal__mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Varmennettu</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

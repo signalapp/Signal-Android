@@ -69,9 +69,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">གསང་ཚིག་རྙིང་པ་དེ་ནོར་འདུག </string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">གསང་ཚིག་དེ་ཆ་འགྲིག་མི་འདུག </string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">ཁྱེད་ཀྱིས་ངེས་པར་དུ་གསང་ཚིག་ཞིག་གཏན་འཁེལ་བྱོས། </string>
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">ཁྱེད་ཀྱི་སྐུད་མེད་འཕྲིན་ཐུང་སྐྱེལ་མཁན་དེའི་སླད་དུ་ཁྱེད་ཀྱིས་ངེས་པར་དུ MMSC URL ཞིག་དམིགས་འདོན་བྱེད་དགོས། </string>
@@ -293,5 +290,6 @@
   <string name="text_secure_normal__menu_settings">སྒྲིག་བཟོ།</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">ཁུངས་སྐྱེལ་བྱས་ཟིན།</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

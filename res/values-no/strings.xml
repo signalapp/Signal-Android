@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Passordene samsvarer ikke</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Du må oppgi et passord</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Tast inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Marker alle som lest</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekreftet</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Bruk som standard SMS applikasjon?</string>
+  <string name="reminder_header_sms_default_text">TextSecure er ikke konfigurert som standard SMS applikasjon.</string>
+  <string name="reminder_header_sms_import_title">Importer enhetens SMS database?</string>
+  <string name="reminder_header_sms_import_text">TextSecure kan kopiere telefonens SMS meldinger til sin egen krypterte database.</string>
   <!--EOF-->
 </resources>

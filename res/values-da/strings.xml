@@ -109,9 +109,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Fejl! Gammelt kodeord</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Adgangskoderne er ikke ens</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Du skal skrive et kodeord</string>
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du skal specificere en MMSC URL for din operatør.</string>
@@ -447,5 +444,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekræftet</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

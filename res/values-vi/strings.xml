@@ -46,25 +46,36 @@
   <string name="ConversationItem_group_action_joined">%1$s vừa vào trong nhóm.</string>
   <string name="ConversationItem_group_action_modify">%1$s mới cập nhật cho nhóm.</string>
   <string name="ConversationItem_click_to_approve_sms">Nhấn để trở lại SMS</string>
+  <string name="ConversationItem_click_to_approve_mms">Chạm để hủy bỏ MMS</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Nhấn để trở lại dạng không an toàn</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Trở lại SMS?</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">Hủy bỏ MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Hủy bỏ MMS chưa được mã hóa?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã hóa vì không thiết lập được phiên an toàn.\n\nGửi tin nhắn không mã hóa?</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">Khởi động tiến trình mã hóa?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Khởi tạo phiên trao đổi an toàn với %s?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Xác nhận kết thúc tiến trình mã hóa</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Bạn có chắc là muốn chấm dứt phiên trao đổi an toàn này?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Xóa tiến trình xác nhận</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Bạn có chắc là muốn xóa vĩnh viễn cuộc chuyện trò này?</string>
   <string name="ConversationActivity_add_attachment">Thêm tập tin đính kèm</string>
   <string name="ConversationActivity_select_contact_info">Chọn thông tin liên hệ</string>
+  <string name="ConversationActivity_compose_message">Soạn nội dung</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Xin lỗi, có lỗi thiết đặt tập tin đính kèm của bạn.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Xin lỗi</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Xin lỗi, clip âm thanh đã chọn vượt quá giới hạn về kích thước.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Nơi nhận không phải là SMS hay địa chỉ email có hiệu lực!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống không!</string>
+  <string name="ConversationActivity_group_conversation_recipients">Gom nhóm theo người chat</string>
+  <string name="ConversationActivity_group_conversation">Gom nhóm chat</string>
+  <string name="ConversationActivity_unnamed_group">Nhóm chưa đặt tên</string>
   <string name="ConversationActivity_d_recipients_in_group">%d thành viên</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 thành viên</string>
   <string name="ConversationActivity_saved_draft">Lưu bản nháp</string>
   <string name="ConversationActivity_invalid_recipient">Người nhận không đúng!</string>
+  <string name="ConversationActivity_calls_not_supported">Không hỗ trợ tính năng gọi điệ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Thiết bị này không hỗ trợ thao tác gọi.</string>
   <string name="ConversationActivity_leave_group">Rời nhóm?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
@@ -72,10 +83,14 @@
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Chuyển tải: %1$s\nGửi/Nhận: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Nơi gởi: %1$s\nChuyển tải: %2$s\nGửi: %3$s\nNhận: %4$s</string>
+  <string name="ConversationFragment_confirm_message_delete">Xác nhận xóa tin</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Bạn có chắc là muốn xóa vĩnh viễn tin nhắn này?</string>
+  <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Phương tiện dữ liệu này được lưu trong cơ sở dữ liệu có mã hóa. Phiên bản mà bạn lưu vào thẻ nhớ SD sẽ không còn được mã hóa. Bạn vẫn muốn tiếp tục?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Có lỗi khi lưu tập tin đính kèm vào thẻ nhớ SD!</string>
   <string name="ConversationFragment_success_exclamation">Thành công!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Không thể ghi dữ liệu vào thẻ nhớ</string>
+  <string name="ConversationFragment_saving_attachment">Đang lưu lại phần đính kèm</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Lưu tập tin đính kèm vào thẻ nhớ SD</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Thông tin trao đổi chìa khóa...</string>
@@ -89,8 +104,10 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">Xuất dữ liệu ra thẻ nhớ?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Thao tác này sẽ xuất các chìa khóa mã hóa, thiết đặt, và tin nhắn của bạn ra thẻ nhớ SD.</string>
   <string name="ExportFragment_export">Xuất</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Xuất dữ liệu dạng thuần văn bản ra thẻ nhớ?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ xuất nội dung văn bản thường (không mã hóa) của các tin nhắn TextSecure ra thẻ nhớ SD.</string>
   <string name="ExportFragment_cancel">Hủy bỏ</string>
   <string name="ExportFragment_exporting">Đang xuất</string>
@@ -100,23 +117,32 @@
   <string name="ExportFragment_success">Thành công!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Đang xuất ra các chìa khóa mã hóa, thiết đặt, và tin nhắn...</string>
   <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Cập nhật nhóm</string>
+  <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Bạn chọn một người liên hệ mà họ không hỗ trợ nhóm TextSecure, do đó nhóm này sẽ là MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Bạn không đăng ký dùng đường truyền internet, do đó nhóm TextSecure bị tắt.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Có lỗi bất ngờ xảy ra do đó không lập nhóm được.</string>
   <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không đọc được. Xin điều chỉnh hoặc xóa đi và thử lại.</string>
   <string name="GroupCreateActivity_file_io_exception">Có lỗi đọc/viết, không tạo ra được tập tin tạm.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string>
+  <string name="GroupCreateActivity_menu_create_title">Tạo nhóm</string>
   <string name="GroupCreateActivity_creating_group">Tạo %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm địa chỉ liên hệ bên ngoài TextSecure vào trong nhóm TextSecure hiện thời</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Nhập</string>
   <string name="ImportExportActivity_export">Xuất</string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Nhập dữ liệu từ SMS?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Thao tác này sẽ nhập các tin nhắn từ cơ sở dữ liệu SMS mặc định của hệ thống vào TextSecure. Nếu bạn đã từng làm việc này trước đó, nhập vào lần nữa sẽ dẫn đến việc có các tin nhắn trùng lập.</string>
   <string name="ImportFragment_import">Nhập</string>
   <string name="ImportFragment_cancel">Hủy bỏ</string>
+  <string name="ImportFragment_restore_encrypted_backup">Khôi phục phần sao lưu đã mã hóa?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nPhục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa khóa hiện thời, chọn lựa và tin nhắn. Bạn sẽ mất những thông tin nào có trong phiên bản TextSecure cài đặt hiện thời nhưng không có trong bản sao lưu.</string>
   <string name="ImportFragment_restore">Phục hồi</string>
+  <string name="ImportFragment_import_plaintext_backup">Xuất dữ liệu sao lưu dạng thuần văn bản?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Thao tác này sẽ nhập các tin nhắn từ bản sao lưu thường (không mã hóa). Nếu bạn đã nhập sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin nhắn trùng lập.</string>
   <string name="ImportFragment_importing">Đang nhập</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Nhập sao lưu thường-không mã hóa</string>
@@ -135,15 +161,20 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">Có lỗi kết nối vào nhà dịch vụ MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Có lỗi khi đọc thiết đặt MMS của dịch vụ di động...</string>
   <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Tin nhắn đa phương tiện</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã tiếp nhận một tin nhắn được mã hóa bởi một phiên bản cũ hơn và không còn được hỗ trợ. Xin hãy hỏi người gửi nâng cấp lên phiên bản mới và gửi lại tin nhắn.</string>
   <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Cụm từ mã hóa không khớp nhau!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Mật khẩu cũ không đúng!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Mật khẩu không trùng hợp</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Bạn phải điền vào mật khẩu</string>
   <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mã hóa</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng TextSecure</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Gửi phần cụm từ mã hóa</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mã hóa không hợp lệ!</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Bạn phải ấn định địa chỉ MMSC cho dịch vụ di động đang dùng.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">Đã cập nhật cài đặt của MMS</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Bạn có thể sửa đổi các trị số này trong menu thiết đặt của TextSecure bất cứ lúc nào.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Chữ ký của việc trao đổi chìa khóa này khác với lần trao đổi trước nhận được từ người liên lạc này. Điều này có nghĩa là có ai đó tìm cách chận bắt liên lạc thông tin của bạn, hoặc đơn thuần là người này cài đặt lại TextSecure và có chìa khóa nhận diện mới.</string>
@@ -153,6 +184,7 @@
   <string name="ReceiveKeyActivity_processing_key_exchange">Xử lý trao đổi chìa khóa...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Kết Nối Dùng TextSecure</string>
+  <string name="RegistrationActivity_select_your_country">Chọn lựa quốc gia</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết mã số quốc gia bạn</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Bạn phải cho biết số điện thoại của bạn</string>
   <string name="RegistrationActivity_invalid_number">Số không đúng</string>
@@ -394,6 +426,7 @@
   <string name="verify_keys_activity__they_read_this">Họ đọc cái này:</string>
   <string name="verify_keys_activity__you_read_this">Bạn đọc cái này:</string>
   <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__enter_passphrase">Điền vào cụm từ mã hóa</string>
   <string name="AndroidManifest__change_passphrase">Đổi mật khẩu</string>
   <string name="AndroidManifest__manage_identity_keys">Quản trị chìa khóa nhận diện</string>
   <!--arrays.xml-->
@@ -509,6 +542,7 @@
   <string name="conversation_secure_verified__menu_security">An Ninh</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Thêm tập tin đính kèm</string>
+  <string name="conversation__menu_update_group">Cập nhật nhóm</string>
   <string name="conversation__menu_add_contact_info">Thêm thông tin liên hệ</string>
   <string name="conversation__menu_delete_thread">Xóa luồng</string>
   <!--conversation_group_options-->
@@ -523,9 +557,11 @@
   <!--text_secure_locked-->
   <string name="text_secure_locked__menu_unlock">Mở khóa</string>
   <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_group">Tạo nhóm mới</string>
   <string name="text_secure_normal__menu_settings">Thiết Đặt</string>
   <string name="text_secure_normal__menu_clear_passphrase">Khóa</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Đã kiểm chứng</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

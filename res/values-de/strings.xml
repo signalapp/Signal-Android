@@ -19,7 +19,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Lösche Push-Account...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Account für Push-Nachrichten löschen</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Push-Nachrichten deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nDurch die Deaktivierung von Push-Nachrichten wird Ihre derzeit bestehende Registrierung beim TextSecure-Server aufgehoben.\nUm zukünftig wieder Push-Nachrichten nutzen zu können, müssen Sie Ihr Gerät erneut registrieren.\n\nPush-Nachrichten jetzt deaktivieren?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nDurch die Deaktivierung von Push-Nachrichten wird Ihre derzeit bestehende Registrierung beim TextSecure-Server aufgehoben.\nUm zukünftig wieder Push-Nachrichten nutzen zu können, werden Sie Ihr Gerät erneut registrieren müssen.\n</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden zum Server!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Sie sind nicht beim Push-Dienst registriert...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Aktualisiere Kontaktliste</string>
@@ -87,7 +87,7 @@
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sind Sie sicher, dass Sie diese Nachricht unwiderruflich löschen möchten?</string>
   <string name="ConversationFragment_save_to_sd_card">Auf SD-Karte speichern?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Diese Datei wurde in einer verschlüsselten Datenbank gespeichert. Die Version, die Sie auf der SD-Karte speichern, wird hingegen nicht mehr verschlüsselt sein. Möchten Sie trotzdem fortfahren?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs auf die SD-Karte!</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs auf der SD-Karte!</string>
   <string name="ConversationFragment_success_exclamation">Erfolgreich!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kein Schreibzugriff auf SD-Karte!</string>
   <string name="ConversationFragment_saving_attachment">Speichere Anhang</string>
@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Passwörter stimmen nicht überein</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Sie müssen ein Passwort angeben</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure Icon</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Überprüft!</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden?</string>
+  <string name="reminder_header_sms_default_text">TextSecure ist zur Zeit nicht als Standard-SMS-App eingerichtet.</string>
+  <string name="reminder_header_sms_import_title">SMS vom Handy importieren?</string>
+  <string name="reminder_header_sms_import_text">TextSecure kann SMS-Nachrichten vom Handy in seine verschlüsselte Datenbank importieren.</string>
   <!--EOF-->
 </resources>

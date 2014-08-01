@@ -116,9 +116,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Невірна стара фраза!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Фрази не співпадають</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Ви маєте вказати пароль</string>
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Ви повинні вказати адресу MMS-центру вашого оператора.</string>
@@ -462,5 +459,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Очистити фразу-ключ</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Підтверджено</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

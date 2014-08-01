@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Les phrases de passe ne correspondent pas</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Vous devez renseigner un mot de passe</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Entrez la phrase de passe</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icône TextSecure</string>
@@ -650,5 +647,6 @@
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme lu</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Vérifié</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

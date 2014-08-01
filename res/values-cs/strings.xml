@@ -18,7 +18,6 @@
   <!--NotificationMmsMessageRecord-->
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
-  <!--PassphraseCreateActivity-->
   <!--PassphrasePromptActivity-->
   <!--PromptMmsActivity-->
   <!--ReceiveKeyActivity-->
@@ -94,5 +93,6 @@
   <!--text_secure_locked-->
   <!--text_secure_normal-->
   <!--verify_keys-->
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

@@ -105,10 +105,8 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスワードが正しくありません。</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">パスワードが正しくありません。</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">パスワードを指定して下さい</string>
   <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">お使いの通信事業者のMMSセンター用URLを指定して下さい。</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">TextSecure設定メニューから、これらの値をいつでも変更できます。</string>
@@ -209,6 +207,7 @@
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">申し訳ありませんが、クイック返信はTextSecureではまだできません！</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">TextSecure暗号化セッションをサポートする人からメッセージが来ています。セキュア・セッションを開始しますか？</string>
+  <string name="auto_initiate_activity__initiate_exchange">交換開始</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
   <string name="change_passphrase_activity__new_passphrase">新規のパスワード：</string>
@@ -251,6 +250,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">この作業は時間がかかります。しばらくお待ち下さい。インポートが完了すると、通知されます。</string>
   <string name="database_migration_activity__importing">インポート中</string>
   <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化された\nバックアップ・ファイルをエクスポートします</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
   <string name="import_fragment__import_the_database_from_the_default_system">端末既定のメッセンジャー・アプリから\nデータベースをインポート</string>
@@ -285,6 +285,7 @@
   <string name="registration_progress_activity__registering_with_server">サーバーに登録中...</string>
   <string name="registration_progress_activity__generating_keys">鍵を作成中...</string>
   <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <string name="recipients_panel__add_member">参加者を追加する</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">信用した鍵のデータベースに認証キーは現在ありません。</string>
@@ -300,6 +301,8 @@
   <string name="verify_keys_activity__they_read_this">相手が読む：</string>
   <string name="verify_keys_activity__you_read_this">自分が読む：</string>
   <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">パスワードの作成</string>
+  <string name="AndroidManifest__enter_passphrase">パスワード入力</string>
   <string name="AndroidManifest__change_passphrase">パスワードの変更</string>
   <string name="AndroidManifest__manage_identity_keys">認証キーを管理</string>
   <!--arrays.xml-->
@@ -409,5 +412,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">ロック</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">確認済み</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

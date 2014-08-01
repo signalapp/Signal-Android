@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las frases contraseña no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Frase de contraseña anterior incorrecta!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Las frases de contraseña no coinciden</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Debes especificar una contraseña</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduzca frase contraseña</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de TextSecure</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificado</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">¿Usar como apllicación de SMS por defecto?</string>
+  <string name="reminder_header_sms_default_text">TextSecure actualmente no es su aplicación SMS por defecto.</string>
+  <string name="reminder_header_sms_import_title">¿Importar SMS del sistema?</string>
+  <string name="reminder_header_sms_import_text">TextSecure puede copiar los mensajes SMS de su teléfono en la base de datos cifrada.</string>
   <!--EOF-->
 </resources>

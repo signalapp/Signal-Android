@@ -84,7 +84,7 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nWysłano/Otrzymano: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Nadawca: %1$s\nTransport: %2$s\nWysłanych: %3$s\nOtrzymanych: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potwierdź usunięcie wiadomości</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Czy na pewno chcesz permanentnie skasować daną wiadomość?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Usunąć trwale wybraną wiadomość?</string>
   <string name="ConversationFragment_save_to_sd_card">Zapisać na kartę SD?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Te media zostały zapisane w zaszyfrowanej bazie danych. Wersja zapisana na karcie SD nie będzie szyfrowana. Czy chcesz kontynuować?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Wystąpił błąd podczas zapisywania załącznika na kartę SD!</string>
@@ -96,7 +96,7 @@
   <string name="ConversationListAdapter_key_exchange_message">Wiadomość wymiany kluczy...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Skasować wątki?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Czy na pewno chcesz usunąć wszystkie wybrane wątki konwersacji? </string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Usunąć trwale wybrane wątki? </string>
   <string name="ConversationListFragment_deleting">Usuwanie...</string>
   <string name="ConversationListFragment_deleting_selected_threads">Usuwanie zaznaczonych wątków..</string>
   <!--ConversationListItem-->
@@ -167,9 +167,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hasło niezgodne!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nieprawidłowe stare hasło!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Hasła nie zgadzają się</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Musisz podać hasło</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -267,7 +264,7 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">Mój odcisk klucza</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Rozpocząć pomimo istniejącego żądania?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Już wysłałeś żądanie o rozpoczęcie inicjacji do tego odbiorcy, czy na pewno chcesz wysłać jeszcze jedno żądanie? Spowoduje to utratę pierwszego żądania.</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Już wysłałeś żądanie o rozpoczęcie sesji do tego odbiorcy, czy na pewno chcesz wysłać jeszcze jedno żądanie? Spowoduje to utratę pierwszego żądania.</string>
   <string name="KeyExchangeInitiator_send">Wyślij</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Źle zaszyfrowana wiadomość...</string>
@@ -650,5 +647,10 @@
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Zweryfikowano</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Użyć jako domyślnej aplikacji SMS?</string>
+  <string name="reminder_header_sms_default_text">TextSecure nie jest obecnie Twoją domyślną aplikacją SMS.</string>
+  <string name="reminder_header_sms_import_title">Importować SMS?</string>
+  <string name="reminder_header_sms_import_text">TextSecure może skopiować Twoje wiadomości SMS do szyfrowanej bazy danych.</string>
   <!--EOF-->
 </resources>
