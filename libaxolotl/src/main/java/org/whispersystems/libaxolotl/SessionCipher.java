@@ -142,7 +142,7 @@ public class SessionCipher {
    */
   public byte[] decrypt(PreKeyWhisperMessage ciphertext)
       throws DuplicateMessageException, LegacyMessageException, InvalidMessageException,
-             InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException, NoSessionException
+             InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
     synchronized (SESSION_LOCK) {
       SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
