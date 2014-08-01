@@ -203,6 +203,7 @@
               android:clearTaskOnLaunch="true"
               android:finishOnTaskLaunch="true" />
 
+    <service android:enabled="true" android:name=".service.GcmRegistrationService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.SendReceiveService"/>
