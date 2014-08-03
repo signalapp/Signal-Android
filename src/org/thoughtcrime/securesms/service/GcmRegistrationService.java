@@ -52,7 +52,8 @@ public class GcmRegistrationService extends Service implements Runnable {
         int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 
         if (result != ConnectionResult.SUCCESS) {
-          Toast.makeText(this, "Unable to register with GCM!", Toast.LENGTH_LONG).show();
+          Log.w(TAG, "Unable to register with GCM! " + result);
+          return;
         }
 
         String            gcmId  = GoogleCloudMessaging.getInstance(this).register(REGISTRATION_ID);
