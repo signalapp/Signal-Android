@@ -18,7 +18,7 @@ public class InMemorySignedPreKeyStore implements SignedPreKeyStore {
   public SignedPreKeyRecord loadSignedPreKey(int signedPreKeyId) throws InvalidKeyIdException {
     try {
       if (!store.containsKey(signedPreKeyId)) {
-        throw new InvalidKeyIdException("No such signedprekeyrecord!");
+        throw new InvalidKeyIdException("No such signedprekeyrecord! " + signedPreKeyId);
       }
 
       return new SignedPreKeyRecord(store.get(signedPreKeyId));

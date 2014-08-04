@@ -63,6 +63,7 @@ public class SessionCipher {
 
   private final SessionStore   sessionStore;
   private final SessionBuilder sessionBuilder;
+  private final PreKeyStore    preKeyStore;
   private final long           recipientId;
   private final int            deviceId;
 
@@ -82,6 +83,7 @@ public class SessionCipher {
     this.sessionStore   = sessionStore;
     this.recipientId    = recipientId;
     this.deviceId       = deviceId;
+    this.preKeyStore    = preKeyStore;
     this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
                                              identityKeyStore, recipientId, deviceId);
   }
@@ -145,12 +147,16 @@ public class SessionCipher {
              InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
     synchronized (SESSION_LOCK) {
-      SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
-
-      sessionBuilder.process(sessionRecord, ciphertext);
-      byte[] plaintext = decrypt(sessionRecord, ciphertext.getWhisperMessage());
+      SessionRecord sessionRecord    = sessionStore.loadSession(recipientId, deviceId);
+      int           unsignedPreKeyId = sessionBuilder.process(sessionRecord, ciphertext);
+      byte[]        plaintext        = decrypt(sessionRecord, ciphertext.getWhisperMessage());
 
       sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+
+      if (unsignedPreKeyId >=0) {
+        preKeyStore.removePreKey(unsignedPreKeyId);
+      }
+
       return plaintext;
     }
   }
