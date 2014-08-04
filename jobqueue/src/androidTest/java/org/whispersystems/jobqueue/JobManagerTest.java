@@ -62,7 +62,7 @@ public class JobManagerTest extends AndroidTestCase {
   }
 
   public void testEncryptedJobExecuton() throws InterruptedException {
-    EncryptionKeys            keys        = new EncryptionKeys("foobar");
+    EncryptionKeys            keys        = new EncryptionKeys(new byte[30]);
     PersistentMockRequirement requirement = new PersistentMockRequirement();
     PersistentTestJob         testJob     = new PersistentTestJob(requirement, keys);
     JobManager                jobManager  = new JobManager(getContext(), "persistent-requirement-test4", null, new JavaJobSerializer(getContext()), 1);

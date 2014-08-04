@@ -2,13 +2,13 @@ package org.whispersystems.jobqueue;
 
 public class EncryptionKeys {
 
-  private transient final String keys;
+  private transient final byte[] encoded;
 
-  public EncryptionKeys(String keys) {
-    this.keys = keys;
+  public EncryptionKeys(byte[] encoded) {
+    this.encoded = encoded;
   }
 
-  public String getKeys() {
-    return keys;
+  public byte[] getEncoded() {
+    return encoded;
   }
 }
