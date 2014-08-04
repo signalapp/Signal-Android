@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.content.Context;
 import android.util.Log;
 
-import com.path.android.jobqueue.Params;
-
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
@@ -17,8 +18,12 @@ public class DeliveryReceiptJob extends ContextJob {
   private final long   timestamp;
   private final String relay;
 
-  public DeliveryReceiptJob(String destination, long timestamp, String relay) {
-    super(new Params(Priorities.HIGH).requireNetwork().persist());
+  public DeliveryReceiptJob(Context context, String destination, long timestamp, String relay) {
+    super(context, JobParameters.newBuilder()
+                                .withRequirement(new NetworkRequirement(context))
+                                .withPersistence()
+                                .withRetryCount(50)
+                                .create());
 
     this.destination = destination;
     this.timestamp   = timestamp;
@@ -36,21 +41,16 @@ public class DeliveryReceiptJob extends ContextJob {
   }
 
   @Override
-  protected void onCancel() {
+  public void onCanceled() {
     Log.w(TAG, "Failed to send receipt after retry exhausted!");
   }
 
   @Override
-  protected boolean shouldReRunOnThrowable(Throwable throwable) {
+  public boolean onShouldRetry(Throwable throwable) {
     Log.w(TAG, throwable);
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
-    if (throwable instanceof PushNetworkException) return true;
+    if (throwable instanceof PushNetworkException)               return true;
 
     return false;
-  }
-
-  @Override
-  protected int getRetryLimit() {
-    return 50;
   }
 }

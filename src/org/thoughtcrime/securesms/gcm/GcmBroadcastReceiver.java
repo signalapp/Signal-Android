@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.path.android.jobqueue.JobManager;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.DeliveryReceiptJob;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
@@ -68,8 +68,9 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
 
       if (!message.isReceipt()) {
         JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-        jobManager.addJob(new DeliveryReceiptJob(message.getSource(), message.getTimestampMillis(),
-                                                 message.getRelay()));
+        jobManager.add(new DeliveryReceiptJob(context, message.getSource(),
+                                              message.getTimestampMillis(),
+                                              message.getRelay()));
       }
     } catch (IOException e) {
       Log.w(TAG, e);

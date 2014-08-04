@@ -1,19 +1,19 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.path.android.jobqueue.Params;
 
 import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
 
 public class GcmRefreshJob extends ContextJob {
 
@@ -21,8 +21,8 @@ public class GcmRefreshJob extends ContextJob {
 
   public static final String REGISTRATION_ID = "312334754206";
 
-  public GcmRefreshJob() {
-    super(new Params(Priorities.NORMAL).requireNetwork());
+  public GcmRefreshJob(Context context) {
+    super(context, JobParameters.newBuilder().withRequirement(new NetworkRequirement(context)).create());
   }
 
   @Override
@@ -49,13 +49,14 @@ public class GcmRefreshJob extends ContextJob {
   }
 
   @Override
-  protected void onCancel() {
+  public void onCanceled() {
     Log.w(TAG, "GCM reregistration failed after retry attempt exhaustion!");
   }
 
   @Override
-  protected boolean shouldReRunOnThrowable(Throwable throwable) {
+  public boolean onShouldRetry(Throwable throwable) {
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
     return true;
   }
+
 }

@@ -416,63 +416,58 @@ public class PushServiceSocket {
   private HttpURLConnection makeBaseRequest(String urlFragment, String method, String body)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
+    HttpURLConnection connection = getConnection(urlFragment, method, body);
+    int               responseCode;
+    String            responseMessage;
+    String            response;
+
     try {
-      HttpURLConnection connection = getConnection(urlFragment, method);
+      responseCode    = connection.getResponseCode();
+      responseMessage = connection.getResponseMessage();
+    } catch (IOException ioe) {
+      throw new PushNetworkException(ioe);
+    }
 
-      if (body != null) {
-        connection.setDoOutput(true);
-      }
-
-      connection.connect();
-
-      if (body != null) {
-        Log.w("PushServiceSocket", method +  "  --  " + body);
-        OutputStream out = connection.getOutputStream();
-        out.write(body.getBytes());
-        out.close();
-      }
-
-      if (connection.getResponseCode() == 413) {
+    switch (responseCode) {
+      case 413:
         connection.disconnect();
-        throw new RateLimitException("Rate limit exceeded: " + connection.getResponseCode());
-      }
-
-      if (connection.getResponseCode() == 401 || connection.getResponseCode() == 403) {
+        throw new RateLimitException("Rate limit exceeded: " + responseCode);
+      case 401:
+      case 403:
         connection.disconnect();
         throw new AuthorizationFailedException("Authorization failed!");
-      }
-
-      if (connection.getResponseCode() == 404) {
+      case 404:
         connection.disconnect();
         throw new NotFoundException("Not found");
-      }
-
-      if (connection.getResponseCode() == 409) {
-        String response = Util.readFully(connection.getErrorStream());
+      case 409:
+        try {
+          response = Util.readFully(connection.getErrorStream());
+        } catch (IOException e) {
+          throw new PushNetworkException(e);
+        }
         throw new MismatchedDevicesException(new Gson().fromJson(response, MismatchedDevices.class));
-      }
-
-      if (connection.getResponseCode() == 410) {
-        String response = Util.readFully(connection.getErrorStream());
+      case 410:
+        try {
+          response = Util.readFully(connection.getErrorStream());
+        } catch (IOException e) {
+          throw new PushNetworkException(e);
+        }
         throw new StaleDevicesException(new Gson().fromJson(response, StaleDevices.class));
-      }
-
-      if (connection.getResponseCode() == 417) {
+      case 417:
         throw new ExpectationFailedException();
-      }
-
-      if (connection.getResponseCode() != 200 && connection.getResponseCode() != 204) {
-        throw new NonSuccessfulResponseCodeException("Bad response: " + connection.getResponseCode() +
-                                                     " " + connection.getResponseMessage());
-      }
-
-      return connection;
-    } catch (IOException e) {
-      throw new PushNetworkException(e);
     }
+
+    if (responseCode != 200 && responseCode != 204) {
+        throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " +
+                                                     responseMessage);
+    }
+
+    return connection;
   }
 
-  private HttpURLConnection getConnection(String urlFragment, String method) throws IOException {
+  private HttpURLConnection getConnection(String urlFragment, String method, String body)
+      throws PushNetworkException
+  {
     try {
       SSLContext context = SSLContext.getInstance("TLS");
       context.init(null, trustManagers, null);
@@ -481,11 +476,11 @@ public class PushServiceSocket {
       Log.w("PushServiceSocket", "Push service URL: " + serviceUrl);
       Log.w("PushServiceSocket", "Opening URL: " + url);
 
-      HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
       if (ENFORCE_SSL) {
-        ((HttpsURLConnection)connection).setSSLSocketFactory(context.getSocketFactory());
-        ((HttpsURLConnection)connection).setHostnameVerifier(new StrictHostnameVerifier());
+        ((HttpsURLConnection) connection).setSSLSocketFactory(context.getSocketFactory());
+        ((HttpsURLConnection) connection).setHostnameVerifier(new StrictHostnameVerifier());
       }
 
       connection.setRequestMethod(method);
@@ -495,12 +490,25 @@ public class PushServiceSocket {
         connection.setRequestProperty("Authorization", getAuthorizationHeader());
       }
 
+      if (body != null) {
+        connection.setDoOutput(true);
+      }
+
+      connection.connect();
+
+      if (body != null) {
+        Log.w("PushServiceSocket", method + "  --  " + body);
+        OutputStream out = connection.getOutputStream();
+        out.write(body.getBytes());
+        out.close();
+      }
+
       return connection;
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     } catch (KeyManagementException e) {
-      throw new AssertionError(e);
-    } catch (MalformedURLException e) {
       throw new AssertionError(e);
     }
   }

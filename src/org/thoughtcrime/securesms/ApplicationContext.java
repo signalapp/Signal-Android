@@ -19,14 +19,12 @@ package org.thoughtcrime.securesms;
 import android.app.Application;
 import android.content.Context;
 
-import com.path.android.jobqueue.JobManager;
-import com.path.android.jobqueue.config.Configuration;
-
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
-import org.thoughtcrime.securesms.jobs.ContextInjector;
+import org.thoughtcrime.securesms.jobs.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.JobLogger;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.jobqueue.JobManager;
+import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -60,20 +58,16 @@ public class ApplicationContext extends Application {
   }
 
   private void initializeJobManager() {
-    Configuration configuration = new Configuration.Builder(this)
-        .minConsumerCount(1)
-        .injector(new ContextInjector(this))
-        .customLogger(new JobLogger())
-        .build();
-
-    this.jobManager = new JobManager(this, configuration);
+    this.jobManager = new JobManager(this, "TextSecureJobs",
+                                     new NetworkRequirementProvider(this),
+                                     new EncryptingJobSerializer(this), 5);
   }
 
   private void initializeGcmCheck() {
     if (TextSecurePreferences.isPushRegistered(this) &&
         TextSecurePreferences.getGcmRegistrationId(this) == null)
     {
-      this.jobManager.addJob(new GcmRefreshJob());
+      this.jobManager.add(new GcmRefreshJob(this));
     }
   }
 
