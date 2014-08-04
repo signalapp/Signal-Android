@@ -27,6 +27,10 @@ public abstract class Job implements Serializable {
     return true;
   }
 
+  public String getGroupId() {
+    return parameters.getGroupId();
+  }
+
   public boolean isPersistent() {
     return parameters.isPersistent();
   }

@@ -13,14 +13,16 @@ public class JobParameters implements Serializable {
   private final List<Requirement> requirements;
   private final boolean           isPersistent;
   private final int               retryCount;
+  private final String            groupId;
 
   private JobParameters(List<Requirement> requirements,
-                       boolean isPersistent,
+                       boolean isPersistent, String groupId,
                        EncryptionKeys encryptionKeys,
                        int retryCount)
   {
     this.requirements   = requirements;
     this.isPersistent   = isPersistent;
+    this.groupId        = groupId;
     this.encryptionKeys = encryptionKeys;
     this.retryCount     = retryCount;
   }
@@ -49,11 +51,16 @@ public class JobParameters implements Serializable {
     return new Builder();
   }
 
+  public String getGroupId() {
+    return groupId;
+  }
+
   public static class Builder {
     private List<Requirement> requirements   = new LinkedList<>();
     private boolean           isPersistent   = false;
     private EncryptionKeys    encryptionKeys = null;
     private int               retryCount     = 100;
+    private String            groupId        = null;
 
     public Builder withRequirement(Requirement requirement) {
       this.requirements.add(requirement);
@@ -75,8 +82,13 @@ public class JobParameters implements Serializable {
       return this;
     }
 
+    public Builder withGroupId(String groupId) {
+      this.groupId = groupId;
+      return this;
+    }
+
     public JobParameters create() {
-      return new JobParameters(requirements, isPersistent, encryptionKeys, retryCount);
+      return new JobParameters(requirements, isPersistent, groupId, encryptionKeys, retryCount);
     }
   }
 }
