@@ -71,8 +71,10 @@ public class KeyHelper {
   public static List<PreKeyRecord> generatePreKeys(int start, int count) {
     List<PreKeyRecord> results = new LinkedList<>();
 
+    start--;
+
     for (int i=0;i<count;i++) {
-      results.add(new PreKeyRecord((start + i) % Medium.MAX_VALUE, Curve.generateKeyPair()));
+      results.add(new PreKeyRecord(((start + i) % (Medium.MAX_VALUE-1)) + 1, Curve.generateKeyPair()));
     }
 
     return results;
