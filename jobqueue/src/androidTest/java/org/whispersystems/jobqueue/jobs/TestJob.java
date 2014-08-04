@@ -13,12 +13,19 @@ public class TestJob extends Job {
   private boolean ran      = false;
   private boolean canceled = false;
 
+  private Runnable runnable;
+
   public TestJob() {
     this(JobParameters.newBuilder().create());
   }
 
   public TestJob(JobParameters parameters) {
     super(parameters);
+  }
+
+  public TestJob(JobParameters parameters, Runnable runnable) {
+    super(parameters);
+    this.runnable = runnable;
   }
 
   @Override
@@ -34,6 +41,9 @@ public class TestJob extends Job {
     synchronized (RAN_LOCK) {
       this.ran = true;
     }
+
+    if (runnable != null)
+      runnable.run();
   }
 
   @Override

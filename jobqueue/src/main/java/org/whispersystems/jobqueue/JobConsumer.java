@@ -25,6 +25,10 @@ public class JobConsumer extends Thread {
       if (job.isPersistent()) {
         persistentStorage.remove(job.getPersistentId());
       }
+
+      if (job.getGroupId() != null) {
+        jobQueue.setGroupIdAvailable(job.getGroupId());
+      }
     }
   }
 

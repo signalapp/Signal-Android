@@ -86,5 +86,45 @@ public class JobManagerTest extends AndroidTestCase {
     assertTrue(PersistentResult.getInstance().isRan());
   }
 
+  public void testGroupIdExecution() throws InterruptedException {
+    final Object lock = new Object();
+
+    Runnable waitRunnable = new Runnable() {
+      @Override
+      public void run() {
+        try {
+          synchronized (lock) {
+            lock.wait();
+          }
+        } catch (InterruptedException e) {
+          throw new AssertionError(e);
+        }
+      }
+    };
+
+    TestJob    testJobOne   = new TestJob(JobParameters.newBuilder().withGroupId("foo").create(), waitRunnable);
+    TestJob    testJobTwo   = new TestJob(JobParameters.newBuilder().withGroupId("foo").create());
+    TestJob    testJobThree = new TestJob(JobParameters.newBuilder().withGroupId("bar").create());
+    JobManager jobManager   = new JobManager(getContext(), "transient-test", null, null, 3);
+
+    jobManager.add(testJobOne);
+    jobManager.add(testJobTwo);
+    jobManager.add(testJobThree);
+
+    assertTrue(testJobOne.isAdded());
+    assertTrue(testJobTwo.isAdded());
+    assertTrue(testJobThree.isAdded());
+
+    assertTrue(testJobOne.isRan());
+    assertTrue(!testJobTwo.isRan());
+    assertTrue(testJobThree.isRan());
+
+    synchronized (lock) {
+      lock.notifyAll();
+    }
+
+    assertTrue(testJobTwo.isRan());
+  }
+
 
 }
