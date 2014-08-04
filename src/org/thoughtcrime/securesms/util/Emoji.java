@@ -332,11 +332,12 @@ public class Emoji {
         iterator.remove();
       }
 
+      final LinkedHashSet<String> latestRecentlyUsed = new LinkedHashSet<String>(recentlyUsed);
       new AsyncTask<Void, Void, Void>() {
 
         @Override
         protected Void doInBackground(Void... params) {
-          String serialized = new Gson().toJson(recentlyUsed);
+          String serialized = new Gson().toJson(latestRecentlyUsed);
           prefs.edit()
               .putString(EMOJI_LRU_PREFERENCE, serialized)
               .apply();
