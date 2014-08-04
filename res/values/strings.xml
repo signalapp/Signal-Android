@@ -861,6 +861,8 @@
     <string name="reminder_header_sms_default_text">TextSecure is not currently your default SMS app.</string>
     <string name="reminder_header_sms_import_title">Import system SMS?</string>
     <string name="reminder_header_sms_import_text">TextSecure can copy your phone\'s SMS messages into its encrypted database.</string>
+    <string name="reminder_header_push_title">Enable TextSecure messages?</string>
+    <string name="reminder_header_push_text">Instant delivery, stronger privacy, and no SMS fees.</string>
     <!-- EOF -->
 
 </resources>
