@@ -18,29 +18,49 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
 
+import org.thoughtcrime.securesms.backup.EncryptedBackup;
+import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
+import org.whispersystems.textsecure.crypto.MasterSecret;
+
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
 public class EncryptedBackupExporter {
 
-  public static void exportToSd(Context context) throws NoExternalStorageException, IOException {
+  private static File exportDirectory = new File(getExportDirectoryPath());
+  private static File exportZipFile   = new File(exportDirectory.getAbsolutePath() + File.separator + "TextSecureBackup.tsbk");
+
+  public static void exportToSd(Context context, MasterSecret masterSecret) throws NoExternalStorageException, IOException {
     verifyExternalStorageForExport();
-    exportDirectory(context, "");
+
+    if (!exportZipFile.exists()) {
+      if (!exportZipFile.createNewFile()) throw new AssertionError("export file didn't exist but then couldn't create one...");
+    }
+    OutputStream   exportStream = EncryptedBackup.getOutputStream(context, exportZipFile, masterSecret);
+    BufferedWriter writer       = new BufferedWriter(new OutputStreamWriter(exportStream));
+
+    PlaintextBackupExporter.exportPlaintextWithIdentity(context, masterSecret, writer);
   }
 
-  public static void importFromSd(Context context) throws NoExternalStorageException, IOException {
+  public static void importFromSd(Context context, MasterSecret currentMasterSecret, String passphrase)
+      throws NoExternalStorageException, IOException, InvalidPassphraseException
+  {
     verifyExternalStorageForImport();
-    importDirectory(context, "");
+    File        exportDirectory = new File(getExportDirectoryPath());
+    File        exportZipFile   = new File(exportDirectory.getAbsolutePath() + File.separator + "TextSecureBackup.tsbk");
+    InputStream inputStream     = EncryptedBackup.getInputStream(context, exportZipFile, passphrase);
+
+    PlaintextBackupImporter.importPlaintext(context, currentMasterSecret, inputStream);
   }
 
   private static String getExportDirectoryPath() {
-    File sdDirectory  = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecureExport";
+    File sdDirectory = Environment.getExternalStorageDirectory();
+    return sdDirectory.getAbsolutePath();
   }
 
   private static void verifyExternalStorageForExport() throws NoExternalStorageException {
@@ -48,7 +68,7 @@ public class EncryptedBackupExporter {
       throw new NoExternalStorageException();
 
     String exportDirectoryPath = getExportDirectoryPath();
-    File exportDirectory       = new File(exportDirectoryPath);
+    File exportDirectory = new File(exportDirectoryPath);
 
     if (!exportDirectory.exists())
       exportDirectory.mkdir();
@@ -57,65 +77,6 @@ public class EncryptedBackupExporter {
   private static void verifyExternalStorageForImport() throws NoExternalStorageException {
     if (!Environment.getExternalStorageDirectory().canRead() ||
         !(new File(getExportDirectoryPath()).exists()))
-        throw new NoExternalStorageException();
-  }
-
-  private static void migrateFile(File from, File to) {
-    try {
-      if (from.exists()) {
-        FileChannel source      = new FileInputStream(from).getChannel();
-        FileChannel destination = new FileOutputStream(to).getChannel();
-
-        destination.transferFrom(source, 0, source.size());
-        source.close();
-        destination.close();
-      }
-    } catch (IOException ioe) {
-      Log.w("EncryptedBackupExporter", ioe);
-    }
-  }
-
-  private static void exportDirectory(Context context, String directoryName) throws IOException {
-    File directory       = new File(context.getFilesDir().getParent() + File.separatorChar + directoryName);
-    File exportDirectory = new File(getExportDirectoryPath() + File.separatorChar + directoryName);
-
-    if (directory.exists()) {
-      exportDirectory.mkdirs();
-
-      File[] contents = directory.listFiles();
-
-      for (int i=0;i<contents.length;i++) {
-        File localFile = contents[i];
-
-        if (localFile.isFile()) {
-          File exportedFile = new File(exportDirectory.getAbsolutePath() + File.separator + localFile.getName());
-          migrateFile(localFile, exportedFile);
-        } else {
-          exportDirectory(context, directoryName + File.separator + localFile.getName());
-        }
-      }
-    } else {
-      Log.w("EncryptedBackupExporter", "Could not find directory: " + directory.getAbsolutePath());
-    }
-  }
-
-  private static void importDirectory(Context context, String directoryName) throws IOException {
-    File directory       = new File(getExportDirectoryPath() + File.separator + directoryName);
-    File importDirectory = new File(context.getFilesDir().getParent() + File.separator + directoryName);
-
-    if (directory.exists() && directory.isDirectory()) {
-      importDirectory.mkdirs();
-
-      File[] contents = directory.listFiles();
-
-      for (File exportedFile : contents) {
-        if (exportedFile.isFile()) {
-          File localFile = new File(importDirectory.getAbsolutePath() + File.separator + exportedFile.getName());
-          migrateFile(exportedFile, localFile);
-        } else if (exportedFile.isDirectory()) {
-          importDirectory(context, directoryName + File.separator + exportedFile.getName());
-        }
-      }
-    }
+      throw new NoExternalStorageException();
   }
 }

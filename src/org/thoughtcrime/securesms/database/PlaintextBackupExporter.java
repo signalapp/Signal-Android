@@ -4,10 +4,13 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.os.Environment;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class PlaintextBackupExporter {
@@ -16,7 +19,8 @@ public class PlaintextBackupExporter {
       throws NoExternalStorageException, IOException
   {
     verifyExternalStorageForPlaintextExport();
-    exportPlaintext(context, masterSecret);
+    BufferedWriter writer = new BufferedWriter(new FileWriter(getPlaintextExportDirectoryPath()));
+    exportPlaintext(context, masterSecret, writer);
   }
 
   private static void verifyExternalStorageForPlaintextExport() throws NoExternalStorageException {
@@ -29,12 +33,23 @@ public class PlaintextBackupExporter {
     return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
   }
 
-  private static void exportPlaintext(Context context, MasterSecret masterSecret)
+  public static void exportPlaintext(Context context, MasterSecret masterSecret, BufferedWriter outWriter)
+      throws IOException
+  {
+    exportPlaintext(context, masterSecret, outWriter, false);
+  }
+
+  public static void exportPlaintextWithIdentity(Context context, MasterSecret masterSecret, BufferedWriter outWriter)
+      throws IOException
+  {
+    exportPlaintext(context, masterSecret, outWriter, true);
+  }
+
+  private static void exportPlaintext(Context context, MasterSecret masterSecret, BufferedWriter outWriter, boolean withIdentity)
       throws IOException
   {
     int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath(), count);
-
+    XmlBackup.Writer writer = new XmlBackup.Writer(outWriter, count);
 
     SmsMessageRecord record;
     EncryptingSmsDatabase.Reader reader = null;
@@ -48,19 +63,24 @@ public class PlaintextBackupExporter {
       reader = DatabaseFactory.getEncryptingSmsDatabase(context).getMessages(masterSecret, skip, ROW_LIMIT);
 
       while ((record = reader.getNext()) != null) {
-        XmlBackup.XmlBackupItem item =
-            new XmlBackup.XmlBackupItem(0, record.getIndividualRecipient().getNumber(),
-                                        record.getDateReceived(),
-                                        MmsSmsColumns.Types.translateToSystemBaseType(record.getType()),
-                                        null, record.getDisplayBody().toString(), null,
-                                        1, record.getDeliveryStatus());
-
-        writer.writeItem(item);
+        XmlBackup.Sms sms = new XmlBackup.Sms(record.getIndividualRecipient().getNumber(),
+                                              record.getDateReceived(),
+                                              MmsSmsColumns.Types.translateToSystemBaseType(record.getType()),
+                                              null,
+                                              record.getDisplayBody().toString(),
+                                              record.getDeliveryStatus(),
+                                              record.isSecure(),
+                                              MmsSmsColumns.Types.isPushType(record.getType()));
+        writer.writeItem(sms);
       }
 
       skip += ROW_LIMIT;
     } while (reader.getCount() > 0);
 
+    if (withIdentity) {
+      XmlBackup.Identity identity = new XmlBackup.Identity(IdentityKeyUtil.getIdentityKeyPair(context, masterSecret));
+      writer.writeItem(identity);
+    }
     writer.close();
   }
 }

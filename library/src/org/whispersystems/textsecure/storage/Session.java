@@ -24,7 +24,15 @@ public class Session {
   public static void abortSessionFor(Context context, CanonicalRecipient recipient) {
     Log.w("Session", "Aborting session, deleting keys...");
     clearV1SessionFor(context, recipient);
-    SessionRecordV2.deleteAll(context, recipient);
+    SessionRecordV2.deleteAllForRecipient(context, recipient);
+  }
+
+  public static void clearAllSessions(Context context) {
+    LocalKeyRecord.deleteAll(context);
+    RemoteKeyRecord.deleteAll(context);
+    SessionRecordV1.deleteAll(context);
+    SessionRecordV2.deleteAll(context);
+    Record.deleteAll(context, Record.PREKEY_DIRECTORY);
   }
 
   public static boolean hasSession(Context context, MasterSecret masterSecret,

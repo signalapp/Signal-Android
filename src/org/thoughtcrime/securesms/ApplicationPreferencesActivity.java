@@ -18,15 +18,12 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -45,15 +42,15 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.components.OutgoingSmsPreference;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DisablePushMessagingAsyncTask;
+import org.thoughtcrime.securesms.util.DisablePushMessagingAsyncTask.PushDisabledCallback;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -61,10 +58,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.push.AuthorizationFailedException;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-
-import java.io.IOException;
 
 /**
  * The Activity for application preference display and management.
@@ -300,63 +293,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private class PushMessagingClickListener implements Preference.OnPreferenceChangeListener {
 
-    private static final int SUCCESS       = 0;
-    private static final int NETWORK_ERROR = 1;
-
-    private class DisablePushMessagesTask extends AsyncTask<Void, Void, Integer> {
-      private ProgressDialog dialog;
-      private final Preference preference;
-
-      public DisablePushMessagesTask(final Preference preference) {
-        this.preference = preference;
-      }
-
-      @Override
-      protected void onPreExecute() {
-        dialog = ProgressDialog.show(ApplicationPreferencesActivity.this,
-                                     getString(R.string.ApplicationPreferencesActivity_unregistering),
-                                     getString(R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication),
-                                     true, false);
-      }
-
-      @Override
-      protected void onPostExecute(Integer result) {
-        if (dialog != null)
-          dialog.dismiss();
-
-        switch (result) {
-          case NETWORK_ERROR:
-            Toast.makeText(ApplicationPreferencesActivity.this,
-                           getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
-                           Toast.LENGTH_LONG).show();
-            break;
-          case SUCCESS:
-            ((CheckBoxPreference)preference).setChecked(false);
-            TextSecurePreferences.setPushRegistered(ApplicationPreferencesActivity.this, false);
-            break;
-        }
-      }
-
-      @Override
-      protected Integer doInBackground(Void... params) {
-        try {
-          Context           context = ApplicationPreferencesActivity.this;
-          PushServiceSocket socket  = PushServiceSocketFactory.create(context);
-
-          socket.unregisterGcmId();
-          GoogleCloudMessaging.getInstance(context).unregister();
-
-          return SUCCESS;
-        } catch (AuthorizationFailedException afe) {
-          Log.w("ApplicationPreferencesActivity", afe);
-          return SUCCESS;
-        } catch (IOException ioe) {
-          Log.w("ApplicationPreferencesActivity", ioe);
-          return NETWORK_ERROR;
-        }
-      }
-    }
-
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
@@ -368,7 +304,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            new DisablePushMessagesTask(preference).execute();
+            new DisablePushMessagingAsyncTask(ApplicationPreferencesActivity.this, new PushDisabledCallback() {
+              @Override
+              public void onComplete(int code) {
+                if (code == DisablePushMessagingAsyncTask.SUCCESS && preference != null) {
+                  ((CheckBoxPreference) preference).setChecked(false);
+                }
+              }
+            }).execute();
           }
         });
         builder.show();

@@ -92,7 +92,7 @@ public class PushTransport extends BaseTransport {
       deliver(socket, recipient, threadId, plaintext);
 
       if (message.isEndSession()) {
-        SessionRecordV2.deleteAll(context, recipient);
+        SessionRecordV2.deleteAllForRecipient(context, recipient);
         KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, threadId);
       }
 
