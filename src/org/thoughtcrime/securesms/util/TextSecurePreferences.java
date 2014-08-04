@@ -312,7 +312,7 @@ public class TextSecurePreferences {
   }
 
   public static void setLastPushReminderTime(Context context, long time) {
-    setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, System.currentTimeMillis());
+    setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, time);
   }
 
   private static void setBooleanPreference(Context context, String key, boolean value) {
