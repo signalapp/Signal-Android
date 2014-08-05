@@ -5,7 +5,7 @@ TextSecure is a messaging app for easy private communicate with friends.
 TextSecure can use either data (WiFi/3G/4G) or SMS to communicate securely, and all TextSecure
 messages can also be encrypted locally on your device.
 
-Currently available on the Play store.
+TextSecure is currently available on the Play store.
 
 *[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms)*
 
