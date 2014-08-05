@@ -302,7 +302,11 @@ public class Emoji {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
       }
 
-      String serialized = prefs.getString(EMOJI_LRU_PREFERENCE, "[]");
+      String serialized = prefs.getString(EMOJI_LRU_PREFERENCE, null);
+      if (serialized == null) {
+        prefs.edit().remove("pref_popular_emoji").apply();
+        serialized = "[]";
+      }
       Type type = new TypeToken<LinkedHashSet<String>>() {
       }.getType();
       recentlyUsed = new Gson().fromJson(serialized, type);
