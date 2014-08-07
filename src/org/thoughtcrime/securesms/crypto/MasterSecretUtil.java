@@ -102,29 +102,11 @@ public class MasterSecretUtil {
       throws InvalidPassphraseException
   {
     try {
-      byte[] encryptedAndMacdMasterSecret = getEncryptedAndMacdMasterSecret(context);
-      byte[] macSalt                      = getMacSalt(context);
-      int    iterations                   = getIterationCount(context);
-      byte[] encryptionSalt               = getEncryptionSalt(context);
-
-      return getMasterSecret(context, passphrase, iterations, encryptedAndMacdMasterSecret, macSalt, encryptionSalt);
-    } catch (IOException e) {
-      Log.w("keyutil", e);
-      return null; //XXX
-    }
-  }
-
-  public static MasterSecret getMasterSecret(Context context,
-                                             String passphrase,
-                                             int iterations,
-                                             byte[] encryptedAndMacdMasterSecret,
-                                             byte[] macSalt,
-                                             byte[] encryptionSalt)
-      throws InvalidPassphraseException
-  {
-    try {
-     ;
+      byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret");
+      byte[] macSalt                      = retrieve(context, "mac_salt");
+      int    iterations                   = retrieve(context, "passphrase_iterations", 100);
       byte[] encryptedMasterSecret        = verifyMac(macSalt, iterations, encryptedAndMacdMasterSecret, passphrase);
+      byte[] encryptionSalt               = retrieve(context, "encryption_salt");
       byte[] combinedSecrets              = decryptWithPassphrase(encryptionSalt, iterations, encryptedMasterSecret, passphrase);
       byte[] encryptionSecret             = Util.split(combinedSecrets, 16, 20)[0];
       byte[] macSecret                    = Util.split(combinedSecrets, 16, 20)[1];
@@ -385,21 +367,5 @@ public class MasterSecretUtil {
     System.arraycopy(mac,  0, result, data.length, mac.length);
 
     return result;
-  }
-
-  public static byte[] getEncryptedAndMacdMasterSecret(Context context) throws IOException {
-    return retrieve(context, "master_secret");
-  }
-
-  public static int getIterationCount(Context context) throws IOException {
-    return retrieve(context, "passphrase_iterations", 100);
-  }
-
-  public static byte[] getEncryptionSalt(Context context) throws IOException {
-    return retrieve(context, "encryption_salt");
-  }
-
-  public static byte[] getMacSalt(Context context) throws IOException {
-    return retrieve(context, "mac_salt");
   }
 }

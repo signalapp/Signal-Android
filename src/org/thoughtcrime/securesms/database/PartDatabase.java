@@ -172,12 +172,12 @@ public class PartDatabase extends Database {
     return contentValues;
   }
 
-  protected FileInputStream getPartInputStream(File file, PduPart part) throws FileNotFoundException {
+  protected FileInputStream getPartInputStream(File file, PduPart part) throws IOException {
     Log.w("PartDatabase", "Reading non-encrypted part from: " + file.getAbsolutePath());
     return new FileInputStream(file);
   }
 
-  protected FileOutputStream getPartOutputStream(File file, PduPart part) throws FileNotFoundException {
+  protected FileOutputStream getPartOutputStream(File file, PduPart part) throws IOException {
     Log.w("PartDatabase", "Writing non-encrypted part to: " + file.getAbsolutePath());
     return new FileOutputStream(file);
   }
@@ -272,7 +272,7 @@ public class PartDatabase extends Database {
     return database.insert(TABLE_NAME, null, contentValues);
   }
 
-  public InputStream getPartStream(long partId) throws FileNotFoundException {
+  public InputStream getPartStream(long partId) throws IOException {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor cursor           = null;
 

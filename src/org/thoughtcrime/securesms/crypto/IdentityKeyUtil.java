@@ -88,10 +88,8 @@ public class IdentityKeyUtil {
   }
 
   public static void generateIdentityKeys(Context context, MasterSecret masterSecret) {
-    setIdentityKeys(context, masterSecret, Curve.generateKeyPair(false));
-  }
+    ECKeyPair    djbKeyPair     = Curve.generateKeyPair(false);
 
-  public static void setIdentityKeys(Context context, MasterSecret masterSecret, ECKeyPair djbKeyPair) {
     MasterCipher masterCipher   = new MasterCipher(masterSecret);
     IdentityKey  djbIdentityKey = new IdentityKey(djbKeyPair.getPublicKey());
     byte[]       djbPrivateKey  = masterCipher.encryptKey(djbKeyPair.getPrivateKey());

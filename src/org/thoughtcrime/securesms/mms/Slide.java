@@ -52,7 +52,7 @@ public abstract class Slide {
     this.masterSecret = masterSecret;
   }
 	
-  public InputStream getPartDataInputStream() throws FileNotFoundException {
+  public InputStream getPartDataInputStream() throws IOException {
     Uri partUri = part.getDataUri();
 		
     Log.w("Slide", "Loading Part URI: " + partUri);

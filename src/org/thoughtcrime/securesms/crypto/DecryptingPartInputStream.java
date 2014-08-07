@@ -58,19 +58,15 @@ public class DecryptingPartInputStream extends FileInputStream {
   private long totalRead;
   private byte[] overflowBuffer;
 
-  public DecryptingPartInputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
+  public DecryptingPartInputStream(File file, MasterSecret masterSecret) throws IOException {
     this(file, masterSecret, 0);
   }
 
-  public DecryptingPartInputStream(File file, MasterSecret masterSecret, int offsetBytes) throws FileNotFoundException {
+  public DecryptingPartInputStream(File file, MasterSecret masterSecret, int offsetBytes) throws IOException {
     super(file);
 
     if (offsetBytes > 0) {
-      try {
-        skip(offsetBytes);
-      } catch (IOException ioe) {
-        Log.w("EncryptingPartInputStream", ioe);
-      }
+      if (offsetBytes != skip(offsetBytes)) throw new IOException("Could not skip to specified offset in file.");
     }
 
     try {
@@ -96,12 +92,12 @@ public class DecryptingPartInputStream extends FileInputStream {
       throw new FileNotFoundException("IOException while reading IV!");
     }
   }
-	
+
   @Override
   public int read(byte[] buffer) throws IOException {
     return read(buffer, 0, buffer.length);
   }
-	
+
   @Override
   public int read(byte[] buffer, int offset, int length) throws IOException {
     if (totalRead != totalDataSize)
@@ -111,7 +107,7 @@ public class DecryptingPartInputStream extends FileInputStream {
     else 
       return -1;
   }
-	
+
   private int readFinal(byte[] buffer, int offset, int length) throws IOException {
     try {	
       int flourish = cipher.doFinal(buffer, offset);
