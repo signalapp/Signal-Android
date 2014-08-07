@@ -144,4 +144,15 @@
     <item>@drawable/import_export_dark</item>
     <item>@drawable/my_identity_dark</item>
   </string-array>
+
+  <string-array name="wear_quick_reply_choices">
+    <item>@string/quick_reply_choice_yes</item>
+    <item>@string/quick_reply_choice_no</item>
+    <item>@string/quick_reply_choice_ok</item>
+    <item>@string/quick_reply_choice_smile</item>
+    <item>@string/quick_reply_choice_lol</item>
+    <item>@string/quick_reply_choice_nice</item>
+    <item>@string/quick_reply_choice_cant_talk</item>
+  </string-array>
+
 </resources>

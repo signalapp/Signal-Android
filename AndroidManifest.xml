@@ -281,6 +281,14 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".notifications.QuickRespondReceiver"
+              android:enabled="true"
+              android:exported="true">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.notifications.QUICK_RESPOND"/>
+        </intent-filter>
+    </receiver>
+
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
