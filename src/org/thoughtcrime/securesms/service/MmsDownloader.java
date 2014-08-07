@@ -118,22 +118,22 @@ public class MmsDownloader {
       Log.w("MmsDownloader", "Changing radio to MMS mode..");
       radio.connect();
 
-      Log.w("MmsDownloader", "Downloading in MMS mode without proxy...");
+      Log.w("MmsDownloader", "Downloading in MMS mode with proxy...");
 
       try {
         retrieveAndStore(masterSecret, messageId, threadId, contentLocation,
-                         transactionId, true, false);
+                         transactionId, true, true);
         radio.disconnect();
         return;
       } catch (IOException e) {
         Log.w("MmsDownloader", e);
       }
 
-      Log.w("MmsDownloader", "Downloading in MMS mode with proxy...");
+      Log.w("MmsDownloader", "Downloading in MMS mode without proxy...");
 
       try {
         retrieveAndStore(masterSecret, messageId, threadId,
-                         contentLocation, transactionId, true, true);
+                         contentLocation, transactionId, true, false);
         radio.disconnect();
         return;
       } catch (IOException e) {
