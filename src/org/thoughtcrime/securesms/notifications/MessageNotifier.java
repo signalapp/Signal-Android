@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
+import android.support.v4.app.RemoteInput;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -39,17 +40,16 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
-import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 
 import java.io.IOException;
@@ -176,7 +176,50 @@ public class MessageNotifier {
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
-                        notificationState.getMarkAsReadIntent(context, masterSecret));
+          notificationState.getMarkAsReadIntent(context, masterSecret));
+
+//      //Android Wear specific part
+      NotificationCompat.WearableExtender extender = new NotificationCompat.WearableExtender();
+
+      RemoteInput remoteInput = new RemoteInput.Builder("quick_reply")
+          .setLabel(context.getString(R.string.MessageNotifier_reply))
+          .setChoices(context.getResources().getStringArray(R.array.wear_quick_reply_choices))
+          .build();
+
+      NotificationCompat.Action actionQuickReply = new NotificationCompat.Action.Builder(
+          R.drawable.ic_action_reply,
+          context.getString(R.string.MessageNotifier_reply),
+          notificationState.getQuickRespondIntent(context, masterSecret))
+          .addRemoteInput(remoteInput)
+          .build();
+
+      extender.addAction(actionQuickReply);
+
+      if (notifications.size() > 1) {
+
+        SpannableStringBuilder conversationHistoryBuilder = new SpannableStringBuilder();
+        for (NotificationItem notification : notifications) {
+          int oldLength = conversationHistoryBuilder.length();
+          String name = notification.getIndividualRecipient().getName();
+
+          conversationHistoryBuilder.append(name);
+          conversationHistoryBuilder.setSpan(new StyleSpan(android.graphics.Typeface.BOLD),
+              oldLength, oldLength + name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+          conversationHistoryBuilder.append("\n");
+          conversationHistoryBuilder.append(notification.getText());
+
+          conversationHistoryBuilder.append("\n\n");
+        }
+
+        conversationHistoryBuilder.delete(conversationHistoryBuilder.length() - 2,
+            conversationHistoryBuilder.length());
+
+        extender.addPage(new NotificationCompat.Builder(context)
+            .setStyle(new BigTextStyle().bigText(conversationHistoryBuilder))
+            .build());
+      }
+
+      builder.extend(extender);
     }
 
     SpannableStringBuilder content = new SpannableStringBuilder();
@@ -214,7 +257,7 @@ public class MessageNotifier {
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
                                          notifications.get(0).getIndividualRecipientName()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
-    
+
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
 

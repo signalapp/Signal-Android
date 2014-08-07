@@ -394,6 +394,7 @@
     <string name="MessageNotifier_error_delivering_message">Error delivering message.</string>
     <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
     <string name="MessageNotifier_mark_as_read">Mark as read</string>
+    <string name="MessageNotifier_reply">Reply</string>
 
     <!-- ViewLocalIdentityActivity -->
     <string name="ViewLocalIdentityActivity_regenerating">Regenerating...</string>
@@ -863,6 +864,16 @@
     <string name="reminder_header_sms_import_text">TextSecure can copy your phone\'s SMS messages into its encrypted database.</string>
     <string name="reminder_header_push_title">Enable TextSecure messages?</string>
     <string name="reminder_header_push_text">Instant delivery, stronger privacy, and no SMS fees.</string>
+
+    <!-- wear_quick_reply -->
+    <string name="quick_reply_choice_yes">Yes</string>
+    <string name="quick_reply_choice_no">No</string>
+    <string name="quick_reply_choice_ok">OK</string>
+    <string name="quick_reply_choice_smile">:-)</string>
+    <string name="quick_reply_choice_lol">lol</string>
+    <string name="quick_reply_choice_nice">Nice</string>
+    <string name="quick_reply_choice_cant_talk">Can\'t talk</string>
+
     <!-- EOF -->
 
 </resources>
