@@ -20,17 +20,15 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
-import org.apache.http.HttpHost;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ByteArrayEntity;
 import org.whispersystems.textsecure.util.Util;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -40,42 +38,53 @@ import ws.com.google.android.mms.pdu.SendConf;
 public class MmsSendHelper extends MmsCommunication {
   private final static String TAG = MmsSendHelper.class.getSimpleName();
 
-  private static byte[] makePost(Context context, String url, String proxy, int proxyPort, byte[] mms)
+  private static byte[] makePost(String url, String proxy, int proxyPort, byte[] mms)
       throws IOException
   {
-    AndroidHttpClient client = null;
+    if (mms == null) return null;
+
+    HttpURLConnection client = null;
 
     try {
-      Log.w(TAG, "Sending MMS1 of length: " + (mms != null ? mms.length : "null"));
-      client                 = constructHttpClient(context, proxy, proxyPort);
-      URI targetUrl          = new URI(url);
+      client = constructHttpClient(url, proxy, proxyPort);
+      client.setFixedLengthStreamingMode(mms.length);
+      client.setDoInput(true);
+      client.setDoOutput(true);
+      client.setRequestMethod("POST");
+      URI targetUrl = new URI(url);
 
       if (Util.isEmpty(targetUrl.getHost()))
         throw new IOException("Invalid target host: " + targetUrl.getHost() + " , " + targetUrl);
 
-      HttpHost target        = new HttpHost(targetUrl.getHost(), targetUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
-      HttpPost request       = new HttpPost(url);
-      ByteArrayEntity entity = new ByteArrayEntity(mms);
+      client.setRequestProperty("Content-Type", "application/vnd.wap.mms-message");
+      client.setRequestProperty("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+      client.setRequestProperty("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml");
 
-      entity.setContentType("application/vnd.wap.mms-message");
-
-      request.setEntity(entity);
-      request.setParams(client.getParams());
-      request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
-      request.addHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml");
-      HttpResponse response = client.execute(target, request);
-      StatusLine status     = response.getStatusLine();
-
-      if (status.getStatusCode() != 200)
-        throw new IOException("Non-successful HTTP response: " + status.getReasonPhrase());
-
-      return parseResponse(response.getEntity());
+      Log.w(TAG, "connecting to " + targetUrl);
+      client.connect();
+      Log.w(TAG, "writing mms payload, " + mms.length + " bytes");
+      OutputStream out = new BufferedOutputStream(client.getOutputStream());
+      out.write(mms);
+      out.flush();
+      out.close();
+      Log.w(TAG, "payload sent");
+      final InputStream is;
+      try {
+        is = client.getInputStream();
+      } catch (IOException ioe) {
+        Log.w(TAG, "failed with response code " + client.getResponseCode() + " / " + client.getResponseMessage());
+        throw ioe;
+      }
+      Log.w(TAG, "response code was " + client.getResponseCode() + "/" + client.getResponseMessage());
+      if (client.getResponseCode() != 200) {
+        throw new IOException("non-200 response");
+      }
+      return parseResponse(is);
     } catch (URISyntaxException use) {
       Log.w(TAG, use);
       throw new IOException("Couldn't parse URI.");
     } finally {
-      if (client != null)
-        client.close();
+      if (client != null) client.disconnect();
     }
   }
 
@@ -98,7 +107,7 @@ public class MmsSendHelper extends MmsCommunication {
                                   boolean usingMmsRadio, boolean useProxyIfAvailable)
     throws IOException
   {
-    Log.w(TAG, "Sending MMS of length: " + mms.length);
+    Log.w(TAG, "Sending MMS of length: " + mms.length + "." + (usingMmsRadio ? " using mms radio" : ""));
     try {
       MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn);
 
@@ -106,12 +115,12 @@ public class MmsSendHelper extends MmsCommunication {
         try {
           if (useProxyIfAvailable && param.hasProxy()) {
             if (checkRouteToHost(context, param.getProxy(), usingMmsRadio)) {
-              byte[] response = makePost(context, param.getMmsc(), param.getProxy(), param.getPort(), mms);
+              byte[] response = makePost(param.getMmsc(), param.getProxy(), param.getPort(), mms);
               if (response != null) return response;
             }
           } else {
             if (checkRouteToHost(context, Uri.parse(param.getMmsc()).getHost(), usingMmsRadio)) {
-              byte[] response = makePost(context, param.getMmsc(), null, -1, mms);
+              byte[] response = makePost(param.getMmsc(), null, -1, mms);
               if (response != null) return response;
             }
           }
