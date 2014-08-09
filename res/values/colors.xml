@@ -34,4 +34,7 @@
 
     <color name="emoji_tab_indicator">#66ffffff</color>
     <color name="emoji_tab_underline">#11ffffff</color>
+
+    <color name="widget_count">#c0ff0000</color>
+
 </resources>

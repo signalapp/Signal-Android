@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin" >
+
+    <RelativeLayout
+        android:id="@+id/widget30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:clickable="true"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageBottom"
+            android:src="@drawable/icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageTop"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignRight="@+id/imageBottom"
+            android:layout_alignBottom="@+id/imageBottom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/text"
+            android:layout_alignParentEnd="false"
+            android:focusable="false"
+            android:layout_alignBottom="@+id/imageTop"
+            android:layout_alignRight="@+id/imageTop"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignTop="@+id/imageTop"
+            android:layout_alignLeft="@+id/imageTop" />
+
+    </RelativeLayout>
+
+</FrameLayout>
