@@ -843,6 +843,7 @@
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_add_contact_info">Add contact info</string>
     <string name="conversation__menu_delete_thread">Delete thread</string>
+    <string name="conversation__menu_notification_settings">Notification settings</string>
 
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Recipients list</string>
@@ -867,6 +868,10 @@
 
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
+
+    <!-- Per-Recipient notification settings -->
+    <string name="notification_settings__not_temporarily_muted">Not temporarily muted</string>
+    <string name="notification_settings__muted_until">Muted until: </string>
 
     <!-- reminder_header -->
     <string name="reminder_header_sms_default_title">Use as default SMS app?</string>

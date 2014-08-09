@@ -56,8 +56,9 @@ public class DatabaseFactory {
   private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
   private static final int INTRODUCED_PUSH_FIX_VERSION       = 12;
   private static final int INTRODUCED_DELIVERY_RECEIPTS      = 13;
-  private static final int DATABASE_VERSION                  = 13;
-
+  private static final int INTRODUCED_NOTIFICATIONS          = 14;
+    
+  private static final int DATABASE_VERSION                  = 14;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -79,6 +80,7 @@ public class DatabaseFactory {
   private final DraftDatabase draftDatabase;
   private final PushDatabase pushDatabase;
   private final GroupDatabase groupDatabase;
+  private final RecipientNotificationsDatabase notificationsDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -148,20 +150,25 @@ public class DatabaseFactory {
     return getInstance(context).groupDatabase;
   }
 
+  public static RecipientNotificationsDatabase getNotificationDatabase(Context context) {
+    return getInstance(context).notificationsDatabase;
+  }
+
   private DatabaseFactory(Context context) {
-    this.databaseHelper   = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-    this.sms              = new SmsDatabase(context, databaseHelper);
-    this.encryptingSms    = new EncryptingSmsDatabase(context, databaseHelper);
-    this.mms              = new MmsDatabase(context, databaseHelper);
-    this.part             = new PartDatabase(context, databaseHelper);
-    this.thread           = new ThreadDatabase(context, databaseHelper);
-    this.address          = CanonicalAddressDatabase.getInstance(context);
-    this.mmsAddress       = new MmsAddressDatabase(context, databaseHelper);
-    this.mmsSmsDatabase   = new MmsSmsDatabase(context, databaseHelper);
-    this.identityDatabase = new IdentityDatabase(context, databaseHelper);
-    this.draftDatabase    = new DraftDatabase(context, databaseHelper);
-    this.pushDatabase     = new PushDatabase(context, databaseHelper);
-    this.groupDatabase    = new GroupDatabase(context, databaseHelper);
+    this.databaseHelper         = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    this.sms                    = new SmsDatabase(context, databaseHelper);
+    this.encryptingSms          = new EncryptingSmsDatabase(context, databaseHelper);
+    this.mms                    = new MmsDatabase(context, databaseHelper);
+    this.part                   = new PartDatabase(context, databaseHelper);
+    this.thread                 = new ThreadDatabase(context, databaseHelper);
+    this.address                = CanonicalAddressDatabase.getInstance(context);
+    this.mmsAddress             = new MmsAddressDatabase(context, databaseHelper);
+    this.mmsSmsDatabase         = new MmsSmsDatabase(context, databaseHelper);
+    this.identityDatabase       = new IdentityDatabase(context, databaseHelper);
+    this.draftDatabase          = new DraftDatabase(context, databaseHelper);
+    this.pushDatabase           = new PushDatabase(context, databaseHelper);
+    this.groupDatabase          = new GroupDatabase(context, databaseHelper);
+    this.notificationsDatabase  = new RecipientNotificationsDatabase(context, databaseHelper);
   }
 
   public void reset(Context context) {
@@ -179,6 +186,7 @@ public class DatabaseFactory {
     this.draftDatabase.reset(databaseHelper);
     this.pushDatabase.reset(databaseHelper);
     this.groupDatabase.reset(databaseHelper);
+    this.notificationsDatabase.reset(databaseHelper);
     old.close();
 
     this.address.reset(context);
@@ -488,6 +496,7 @@ public class DatabaseFactory {
       db.execSQL(DraftDatabase.CREATE_TABLE);
       db.execSQL(PushDatabase.CREATE_TABLE);
       db.execSQL(GroupDatabase.CREATE_TABLE);
+      db.execSQL(RecipientNotificationsDatabase.CREATE_TABLE);
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -496,6 +505,7 @@ public class DatabaseFactory {
       executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
       executeStatements(db, DraftDatabase.CREATE_INDEXS);
       executeStatements(db, GroupDatabase.CREATE_INDEXS);
+      executeStatements(db, RecipientNotificationsDatabase.CREATE_INDEXS);
     }
 
     @Override
@@ -709,6 +719,11 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE mms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
         db.execSQL("CREATE INDEX IF NOT EXISTS sms_date_sent_index ON sms (date_sent);");
         db.execSQL("CREATE INDEX IF NOT EXISTS mms_date_sent_index ON mms (date);");
+      }
+      
+      if (oldVersion < INTRODUCED_NOTIFICATIONS) {
+        db.execSQL(RecipientNotificationsDatabase.CREATE_TABLE);
+        executeStatements(db, RecipientNotificationsDatabase.CREATE_INDEXS);
       }
 
       db.setTransactionSuccessful();
