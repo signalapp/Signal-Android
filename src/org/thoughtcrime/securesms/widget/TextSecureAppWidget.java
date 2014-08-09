@@ -31,12 +31,22 @@ public class TextSecureAppWidget extends AppWidgetProvider {
     private static Handler sWorkerQueue;
     private static ConversationListObserver sDataObserver=null;
 
+    /**
+     * constructor creates the thread handling the observers
+     */
     public TextSecureAppWidget() {
         sWorkerThread = new HandlerThread("TextSecureAppWidget worker");
         sWorkerThread.start();
         sWorkerQueue = new Handler(sWorkerThread.getLooper());
     }
 
+    /**
+     * @see AppWidgetProvider#onUpdate
+     *
+     * @param context
+     * @param appWidgetManager
+     * @param appWidgetIds
+     */
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // Register for external updates to the data to trigger an update of the widget.  When using
