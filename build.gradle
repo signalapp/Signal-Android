@@ -25,7 +25,7 @@ dependencies {
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
     compile 'com.android.support:support-v4:19.1.0'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
-    compile 'com.google.android.gms:play-services:5.0.77'
+    compile 'com.google.android.gms:play-services:5.0.89'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
