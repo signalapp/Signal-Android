@@ -26,10 +26,11 @@ public class TextSecureAppWidget extends AppWidgetProvider {
 
     private static final String CONVERSATION_URI      = "content://textsecure/thread/";
     private static final String CONVERSATION_LIST_URI = "content://textsecure/conversation-list";
+    private static final String PUSH_INCOMING_URI     = "content://textsecure/incoming";
 
     private static HandlerThread sWorkerThread;
     private static Handler sWorkerQueue;
-    private static ConversationListObserver sDataObserver=null;
+    private static PushAndConversationListObserver sDataObserver=null;
 
     /**
      * constructor creating the thread handling the observers
@@ -57,8 +58,9 @@ public class TextSecureAppWidget extends AppWidgetProvider {
         if (sDataObserver == null) {
             final AppWidgetManager mgr = AppWidgetManager.getInstance(context);
             final ComponentName cn = new ComponentName(context, TextSecureAppWidget.class);
-            sDataObserver = new ConversationListObserver(context, mgr, cn, sWorkerQueue);
+            sDataObserver = new PushAndConversationListObserver(context, mgr, cn, sWorkerQueue);
             r.registerContentObserver(Uri.parse(CONVERSATION_LIST_URI), true, sDataObserver);
+            r.registerContentObserver(Uri.parse(PUSH_INCOMING_URI), true, sDataObserver);
         }
         // Get all ids
         ComponentName thisWidget = new ComponentName(context, TextSecureAppWidget.class);
@@ -88,13 +90,13 @@ public class TextSecureAppWidget extends AppWidgetProvider {
      * the conversation list observer. If this list changes (e.g. by a new address) a new set of
      * Conversation observers will be created
      */
-    class ConversationListObserver extends ContentObserver {
+    class PushAndConversationListObserver extends ContentObserver {
         private Context context;
         private AppWidgetManager mAppWidgetManager;
         private ComponentName mComponentName;
         private List<ConversationObserver> observerList;
 
-        ConversationListObserver(Context context, AppWidgetManager mgr, ComponentName cn, Handler h) {
+        PushAndConversationListObserver(Context context, AppWidgetManager mgr, ComponentName cn, Handler h) {
             super(h);
             this.context=context;
             mAppWidgetManager = mgr;

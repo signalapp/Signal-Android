@@ -32,9 +32,20 @@ public class UpdateWidgetService extends Service {
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this.getApplicationContext());
         int[] allWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
         // retrieve the cursor of unread emails, retrieve its count and release it
-        Cursor c = DatabaseFactory.getMmsSmsDatabase(getBaseContext()).getUnread();
-        int count = c.getCount();
-        c.close();
+        Cursor mmsCursor = null;
+        Cursor pushCursor = null;
+        int count = 0;
+        try {
+            mmsCursor = DatabaseFactory.getMmsSmsDatabase(this.getApplicationContext()).getUnread();
+            pushCursor = DatabaseFactory.getPushDatabase(this.getApplicationContext()).getPending();
+            if (mmsCursor != null)
+                count += mmsCursor.getCount();
+            if (pushCursor != null)
+                count += pushCursor.getCount();
+        } finally {
+            if (mmsCursor != null) mmsCursor.close();
+            if (pushCursor != null) pushCursor.close();
+        }
         // update all widgets
 		for (int widgetId : allWidgetIds) {
 			RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.app_widget);

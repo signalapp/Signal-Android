@@ -27,6 +27,7 @@ public abstract class Database {
 
   protected static final String ID_WHERE            = "_id = ?";
   private static final String CONVERSATION_URI      = "content://textsecure/thread/";
+  private static final String PUSH_INCOMING_URI     = "content://textsecure/incoming";
   private static final String CONVERSATION_LIST_URI = "content://textsecure/conversation-list";
 
   protected       SQLiteOpenHelper databaseHelper;
@@ -44,6 +45,10 @@ public abstract class Database {
 
   protected void notifyConversationListeners(long threadId) {
     context.getContentResolver().notifyChange(Uri.parse(CONVERSATION_URI + threadId), null);
+  }
+
+  protected void notifyIncomingListeners() {
+    context.getContentResolver().notifyChange(Uri.parse(PUSH_INCOMING_URI), null);
   }
 
   protected void notifyConversationListListeners() {

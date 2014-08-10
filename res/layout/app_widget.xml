@@ -65,5 +65,7 @@
         android:shadowColor="@color/widget_text_shadow"
         android:shadowDx="1"
         android:shadowDy="1"
-        android:shadowRadius="2"/>
+        android:shadowRadius="2"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" />
 </LinearLayout>
