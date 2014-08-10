@@ -3,14 +3,13 @@ package org.thoughtcrime.securesms.widget;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.IBinder;
 import android.widget.RemoteViews;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 
 public class UpdateWidgetService extends Service {
@@ -36,10 +35,11 @@ public class UpdateWidgetService extends Service {
 
             }
 			// Register an onClickListener
-            Intent clickIntent = new Intent(this.getApplicationContext(), ConversationListActivity.class);
+            Intent clickIntent = new Intent(this.getApplicationContext(), RoutingActivity.class);
+            clickIntent.setAction(Intent.ACTION_MAIN);
             PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, clickIntent, 0);
 
-			remoteViews.setOnClickPendingIntent(R.id.text, pendingIntent);
+            remoteViews.setOnClickPendingIntent(R.id.stack, pendingIntent);
 			appWidgetManager.updateAppWidget(widgetId, remoteViews);
 		}
 		stopSelf();

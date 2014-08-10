@@ -36,5 +36,8 @@
     <color name="emoji_tab_underline">#11ffffff</color>
 
     <color name="widget_count">#c0ff0000</color>
+    <color name="widget_font">#FBFBFB</color>
+    <color name="widget_text_shadow">#7F000000</color>
+
 
 </resources>

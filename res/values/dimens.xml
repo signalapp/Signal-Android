@@ -10,5 +10,6 @@
     <dimen name="conversation_item_drop_shadow_dist">2dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
     <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widget_text_size">12sp</dimen>
 
 </resources>

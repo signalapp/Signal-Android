@@ -1,24 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/widget_margin" >
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal|top"
+    android:padding="@dimen/widget_margin">
     <RelativeLayout
-        android:id="@+id/widget30"
+        android:id="@+id/stack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:clickable="true"
-        android:layout_gravity="center">
+        android:layout_gravity="center_horizontal|top">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageBottom"
-            android:src="@drawable/icon" />
+            android:src="@drawable/icon"
+            android:clickable="false"
+            android:contentDescription="@string/app_name" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -27,7 +27,9 @@
             android:layout_alignParentBottom="false"
             android:layout_alignParentRight="false"
             android:layout_alignRight="@+id/imageBottom"
-            android:layout_alignTop="@+id/imageBottom" />
+            android:layout_alignTop="@+id/imageBottom"
+            android:clickable="false"
+            android:contentDescription="@string/add_widget" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +47,8 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentTop="false"
             android:layout_alignTop="@+id/imageTop"
-            android:layout_alignLeft="@+id/imageTop" />
+            android:layout_alignLeft="@+id/imageTop"
+            android:clickable="false" />
 
     </RelativeLayout>
 
@@ -56,8 +59,11 @@
         android:text="@string/app_name"
         android:id="@+id/textView"
         android:textColor="@android:color/primary_text_dark_nodisable"
-        android:paddingTop="6dip"
-        android:textSize="12dip" />
+        android:textSize="@dimen/widget_text_size"
+        android:layout_marginTop="7dip"
+        android:singleLine="true"
+        android:shadowColor="@color/widget_text_shadow"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"/>
 </LinearLayout>
-
-</FrameLayout>
