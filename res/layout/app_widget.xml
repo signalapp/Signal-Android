@@ -29,7 +29,7 @@
             android:layout_alignRight="@+id/imageBottom"
             android:layout_alignTop="@+id/imageBottom"
             android:clickable="false"
-            android:contentDescription="@string/add_widget" />
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
         android:id="@+id/textView"
         android:textColor="@android:color/primary_text_dark_nodisable"
         android:textSize="@dimen/widget_text_size"
-        android:layout_marginTop="7dip"
+        android:layout_marginTop="6dip"
         android:singleLine="true"
         android:shadowColor="@color/widget_text_shadow"
         android:shadowDx="1"

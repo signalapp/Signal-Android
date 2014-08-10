@@ -32,7 +32,7 @@ public class TextSecureAppWidget extends AppWidgetProvider {
     private static ConversationListObserver sDataObserver=null;
 
     /**
-     * constructor creates the thread handling the observers
+     * constructor creating the thread handling the observers
      */
     public TextSecureAppWidget() {
         sWorkerThread = new HandlerThread("TextSecureAppWidget worker");
@@ -70,6 +70,11 @@ public class TextSecureAppWidget extends AppWidgetProvider {
         context.startService(intent);
     }
 
+    /**
+     * remove observers upon disabling the widget
+     *
+     * @param context
+     */
     @Override
     public void onDisabled(Context context) {
         sDataObserver.unregisterObserver();
@@ -79,6 +84,10 @@ public class TextSecureAppWidget extends AppWidgetProvider {
 
     }
 
+    /**
+     * the conversation list observer. If this list changes (e.g. by a new address) a new set of
+     * Conversation observers will be created
+     */
     class ConversationListObserver extends ContentObserver {
         private Context context;
         private AppWidgetManager mAppWidgetManager;
@@ -90,10 +99,19 @@ public class TextSecureAppWidget extends AppWidgetProvider {
             this.context=context;
             mAppWidgetManager = mgr;
             mComponentName = cn;
+            // initial observer registration
             observerList=new ArrayList<ConversationObserver>();
             registerObserver();
         }
 
+        /**
+         * function called if the list of conversation has changed. We need to register an observer
+         * for each conversation then
+         *
+         * @see ContentObserver#onChange(boolean)
+         *
+         * @param selfChange
+         */
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);  //NOTE: Have to call this. dwy.
@@ -109,6 +127,9 @@ public class TextSecureAppWidget extends AppWidgetProvider {
             }
         }
 
+        /**
+         * helper to create the conversation observers
+         */
         protected void registerObserver(){
             final ContentResolver r = context.getContentResolver();
             Cursor c = DatabaseFactory.getThreadDatabase(context).getConversationList();
@@ -124,6 +145,9 @@ public class TextSecureAppWidget extends AppWidgetProvider {
             c.close();
         }
 
+        /**
+         * unregister the conversation observers
+         */
         public void unregisterObserver(){
             final ContentResolver r = context.getContentResolver();
             for(ConversationObserver co:observerList){
@@ -133,6 +157,10 @@ public class TextSecureAppWidget extends AppWidgetProvider {
         }
     }
 
+    /**
+     * the conversation observer. If this changes (e.g. by a new message) the service will be
+     * notified to udate the widget
+     */
     class ConversationObserver extends ContentObserver {
         private Context context;
         private AppWidgetManager mAppWidgetManager;
@@ -143,9 +171,13 @@ public class TextSecureAppWidget extends AppWidgetProvider {
             this.context=context;
             mAppWidgetManager = mgr;
             mComponentName = cn;
-
         }
 
+        /**
+         * @see ContentObserver#onChange(boolean)
+         *
+         * @param selfChange
+         */
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);  //NOTE: Have to call this. dwy.
