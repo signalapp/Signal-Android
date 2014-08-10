@@ -46,4 +46,8 @@ public abstract class Reminder {
   public void setCancelListener(OnClickListener cancelListener) {
     this.cancelListener = cancelListener;
   }
+
+  public String getOKText() {
+    return null;
+  }
 }

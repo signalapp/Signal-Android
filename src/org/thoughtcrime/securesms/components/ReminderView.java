@@ -56,7 +56,12 @@ public class ReminderView extends LinearLayout {
     icon.setImageResource(reminder.getIconResId());
     title.setText(reminder.getTitleResId());
     text.setText(reminder.getTextResId());
+
     ok.setOnClickListener(reminder.getOkListener());
+    if (reminder.getOKText() != null) {
+      ok.setText(reminder.getOKText());
+    }
+
     cancel.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
