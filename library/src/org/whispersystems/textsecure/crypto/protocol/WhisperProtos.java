@@ -10,389 +10,95 @@ public final class WhisperProtos {
   }
   public interface WhisperMessageOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // optional bytes ephemeralKey = 1;
+    /**
+     * <code>optional bytes ephemeralKey = 1;</code>
+     */
     boolean hasEphemeralKey();
+    /**
+     * <code>optional bytes ephemeralKey = 1;</code>
+     */
     com.google.protobuf.ByteString getEphemeralKey();
-    
+
     // optional uint32 counter = 2;
+    /**
+     * <code>optional uint32 counter = 2;</code>
+     */
     boolean hasCounter();
+    /**
+     * <code>optional uint32 counter = 2;</code>
+     */
     int getCounter();
-    
+
     // optional uint32 previousCounter = 3;
+    /**
+     * <code>optional uint32 previousCounter = 3;</code>
+     */
     boolean hasPreviousCounter();
+    /**
+     * <code>optional uint32 previousCounter = 3;</code>
+     */
     int getPreviousCounter();
-    
+
     // optional bytes ciphertext = 4;
+    /**
+     * <code>optional bytes ciphertext = 4;</code>
+     */
     boolean hasCiphertext();
+    /**
+     * <code>optional bytes ciphertext = 4;</code>
+     */
     com.google.protobuf.ByteString getCiphertext();
   }
+  /**
+   * Protobuf type {@code textsecure.WhisperMessage}
+   */
   public static final class WhisperMessage extends
       com.google.protobuf.GeneratedMessage
       implements WhisperMessageOrBuilder {
     // Use WhisperMessage.newBuilder() to construct.
-    private WhisperMessage(Builder builder) {
+    private WhisperMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private WhisperMessage(boolean noInit) {}
-    
+    private WhisperMessage(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final WhisperMessage defaultInstance;
     public static WhisperMessage getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public WhisperMessage getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_descriptor;
-    }
-    
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_fieldAccessorTable;
-    }
-    
-    private int bitField0_;
-    // optional bytes ephemeralKey = 1;
-    public static final int EPHEMERALKEY_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString ephemeralKey_;
-    public boolean hasEphemeralKey() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public com.google.protobuf.ByteString getEphemeralKey() {
-      return ephemeralKey_;
-    }
-    
-    // optional uint32 counter = 2;
-    public static final int COUNTER_FIELD_NUMBER = 2;
-    private int counter_;
-    public boolean hasCounter() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public int getCounter() {
-      return counter_;
-    }
-    
-    // optional uint32 previousCounter = 3;
-    public static final int PREVIOUSCOUNTER_FIELD_NUMBER = 3;
-    private int previousCounter_;
-    public boolean hasPreviousCounter() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public int getPreviousCounter() {
-      return previousCounter_;
-    }
-    
-    // optional bytes ciphertext = 4;
-    public static final int CIPHERTEXT_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString ciphertext_;
-    public boolean hasCiphertext() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    public com.google.protobuf.ByteString getCiphertext() {
-      return ciphertext_;
-    }
-    
-    private void initFields() {
-      ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
-      counter_ = 0;
-      previousCounter_ = 0;
-      ciphertext_ = com.google.protobuf.ByteString.EMPTY;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
-      return true;
-    }
-    
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, ephemeralKey_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, counter_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt32(3, previousCounter_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, ciphertext_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-    
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, ephemeralKey_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, counter_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, previousCounter_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, ciphertext_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-    
-    private static final long serialVersionUID = 0L;
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
     }
-    
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
+    private WhisperMessage(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-    
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessageOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_fieldAccessorTable;
-      }
-      
-      // Construct using org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-      
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-      
-      public Builder clear() {
-        super.clear();
-        ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        counter_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        previousCounter_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        ciphertext_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-      
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-      
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.getDescriptor();
-      }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage getDefaultInstanceForType() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.getDefaultInstance();
-      }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage build() {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-      
-      private org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage buildPartial() {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage result = new org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.ephemeralKey_ = ephemeralKey_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.counter_ = counter_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.previousCounter_ = previousCounter_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.ciphertext_ = ciphertext_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-      
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage) {
-          return mergeFrom((org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-      
-      public Builder mergeFrom(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage other) {
-        if (other == org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.getDefaultInstance()) return this;
-        if (other.hasEphemeralKey()) {
-          setEphemeralKey(other.getEphemeralKey());
-        }
-        if (other.hasCounter()) {
-          setCounter(other.getCounter());
-        }
-        if (other.hasPreviousCounter()) {
-          setPreviousCounter(other.getPreviousCounter());
-        }
-        if (other.hasCiphertext()) {
-          setCiphertext(other.getCiphertext());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-      
-      public final boolean isInitialized() {
-        return true;
-      }
-      
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
           int tag = input.readTag();
           switch (tag) {
             case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
+              done = true;
+              break;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
+                done = true;
               }
               break;
             }
@@ -418,387 +124,266 @@ public final class WhisperProtos {
             }
           }
         }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
       }
-      
-      private int bitField0_;
-      
-      // optional bytes ephemeralKey = 1;
-      private com.google.protobuf.ByteString ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
-      public boolean hasEphemeralKey() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public com.google.protobuf.ByteString getEphemeralKey() {
-        return ephemeralKey_;
-      }
-      public Builder setEphemeralKey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        ephemeralKey_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearEphemeralKey() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        ephemeralKey_ = getDefaultInstance().getEphemeralKey();
-        onChanged();
-        return this;
-      }
-      
-      // optional uint32 counter = 2;
-      private int counter_ ;
-      public boolean hasCounter() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public int getCounter() {
-        return counter_;
-      }
-      public Builder setCounter(int value) {
-        bitField0_ |= 0x00000002;
-        counter_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearCounter() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        counter_ = 0;
-        onChanged();
-        return this;
-      }
-      
-      // optional uint32 previousCounter = 3;
-      private int previousCounter_ ;
-      public boolean hasPreviousCounter() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public int getPreviousCounter() {
-        return previousCounter_;
-      }
-      public Builder setPreviousCounter(int value) {
-        bitField0_ |= 0x00000004;
-        previousCounter_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearPreviousCounter() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        previousCounter_ = 0;
-        onChanged();
-        return this;
-      }
-      
-      // optional bytes ciphertext = 4;
-      private com.google.protobuf.ByteString ciphertext_ = com.google.protobuf.ByteString.EMPTY;
-      public boolean hasCiphertext() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      public com.google.protobuf.ByteString getCiphertext() {
-        return ciphertext_;
-      }
-      public Builder setCiphertext(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        ciphertext_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearCiphertext() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        ciphertext_ = getDefaultInstance().getCiphertext();
-        onChanged();
-        return this;
-      }
-      
-      // @@protoc_insertion_point(builder_scope:textsecure.WhisperMessage)
     }
-    
-    static {
-      defaultInstance = new WhisperMessage(true);
-      defaultInstance.initFields();
-    }
-    
-    // @@protoc_insertion_point(class_scope:textsecure.WhisperMessage)
-  }
-  
-  public interface PreKeyWhisperMessageOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional uint32 registrationId = 5;
-    boolean hasRegistrationId();
-    int getRegistrationId();
-    
-    // optional uint32 preKeyId = 1;
-    boolean hasPreKeyId();
-    int getPreKeyId();
-    
-    // optional bytes baseKey = 2;
-    boolean hasBaseKey();
-    com.google.protobuf.ByteString getBaseKey();
-    
-    // optional bytes identityKey = 3;
-    boolean hasIdentityKey();
-    com.google.protobuf.ByteString getIdentityKey();
-    
-    // optional bytes message = 4;
-    boolean hasMessage();
-    com.google.protobuf.ByteString getMessage();
-  }
-  public static final class PreKeyWhisperMessage extends
-      com.google.protobuf.GeneratedMessage
-      implements PreKeyWhisperMessageOrBuilder {
-    // Use PreKeyWhisperMessage.newBuilder() to construct.
-    private PreKeyWhisperMessage(Builder builder) {
-      super(builder);
-    }
-    private PreKeyWhisperMessage(boolean noInit) {}
-    
-    private static final PreKeyWhisperMessage defaultInstance;
-    public static PreKeyWhisperMessage getDefaultInstance() {
-      return defaultInstance;
-    }
-    
-    public PreKeyWhisperMessage getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_descriptor;
+      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_fieldAccessorTable;
+      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.class, org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<WhisperMessage> PARSER =
+        new com.google.protobuf.AbstractParser<WhisperMessage>() {
+      public WhisperMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new WhisperMessage(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<WhisperMessage> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
-    // optional uint32 registrationId = 5;
-    public static final int REGISTRATIONID_FIELD_NUMBER = 5;
-    private int registrationId_;
-    public boolean hasRegistrationId() {
+    // optional bytes ephemeralKey = 1;
+    public static final int EPHEMERALKEY_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString ephemeralKey_;
+    /**
+     * <code>optional bytes ephemeralKey = 1;</code>
+     */
+    public boolean hasEphemeralKey() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getRegistrationId() {
-      return registrationId_;
+    /**
+     * <code>optional bytes ephemeralKey = 1;</code>
+     */
+    public com.google.protobuf.ByteString getEphemeralKey() {
+      return ephemeralKey_;
     }
-    
-    // optional uint32 preKeyId = 1;
-    public static final int PREKEYID_FIELD_NUMBER = 1;
-    private int preKeyId_;
-    public boolean hasPreKeyId() {
+
+    // optional uint32 counter = 2;
+    public static final int COUNTER_FIELD_NUMBER = 2;
+    private int counter_;
+    /**
+     * <code>optional uint32 counter = 2;</code>
+     */
+    public boolean hasCounter() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getPreKeyId() {
-      return preKeyId_;
+    /**
+     * <code>optional uint32 counter = 2;</code>
+     */
+    public int getCounter() {
+      return counter_;
     }
-    
-    // optional bytes baseKey = 2;
-    public static final int BASEKEY_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString baseKey_;
-    public boolean hasBaseKey() {
+
+    // optional uint32 previousCounter = 3;
+    public static final int PREVIOUSCOUNTER_FIELD_NUMBER = 3;
+    private int previousCounter_;
+    /**
+     * <code>optional uint32 previousCounter = 3;</code>
+     */
+    public boolean hasPreviousCounter() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public com.google.protobuf.ByteString getBaseKey() {
-      return baseKey_;
+    /**
+     * <code>optional uint32 previousCounter = 3;</code>
+     */
+    public int getPreviousCounter() {
+      return previousCounter_;
     }
-    
-    // optional bytes identityKey = 3;
-    public static final int IDENTITYKEY_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString identityKey_;
-    public boolean hasIdentityKey() {
+
+    // optional bytes ciphertext = 4;
+    public static final int CIPHERTEXT_FIELD_NUMBER = 4;
+    private com.google.protobuf.ByteString ciphertext_;
+    /**
+     * <code>optional bytes ciphertext = 4;</code>
+     */
+    public boolean hasCiphertext() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    public com.google.protobuf.ByteString getIdentityKey() {
-      return identityKey_;
+    /**
+     * <code>optional bytes ciphertext = 4;</code>
+     */
+    public com.google.protobuf.ByteString getCiphertext() {
+      return ciphertext_;
     }
-    
-    // optional bytes message = 4;
-    public static final int MESSAGE_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString message_;
-    public boolean hasMessage() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    public com.google.protobuf.ByteString getMessage() {
-      return message_;
-    }
-    
+
     private void initFields() {
-      registrationId_ = 0;
-      preKeyId_ = 0;
-      baseKey_ = com.google.protobuf.ByteString.EMPTY;
-      identityKey_ = com.google.protobuf.ByteString.EMPTY;
-      message_ = com.google.protobuf.ByteString.EMPTY;
+      ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+      counter_ = 0;
+      previousCounter_ = 0;
+      ciphertext_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, ephemeralKey_);
+      }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(1, preKeyId_);
+        output.writeUInt32(2, counter_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(2, baseKey_);
+        output.writeUInt32(3, previousCounter_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(3, identityKey_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(4, message_);
-      }
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeUInt32(5, registrationId_);
+        output.writeBytes(4, ciphertext_);
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, ephemeralKey_);
+      }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, preKeyId_);
+          .computeUInt32Size(2, counter_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, baseKey_);
+          .computeUInt32Size(3, previousCounter_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, identityKey_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, message_);
-      }
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(5, registrationId_);
+          .computeBytesSize(4, ciphertext_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
-    
+
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
+
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(byte[] data)
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(java.io.InputStream input)
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseDelimitedFrom(java.io.InputStream input)
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseDelimitedFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage prototype) {
+    public static Builder newBuilder(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code textsecure.WhisperMessage}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessageOrBuilder {
+       implements org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_descriptor;
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_fieldAccessorTable;
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.class, org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.Builder.class);
       }
-      
-      // Construct using org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.newBuilder()
+
+      // Construct using org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -809,136 +394,374 @@ public final class WhisperProtos {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
-        registrationId_ = 0;
+        ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000001);
-        preKeyId_ = 0;
+        counter_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        baseKey_ = com.google.protobuf.ByteString.EMPTY;
+        previousCounter_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
-        identityKey_ = com.google.protobuf.ByteString.EMPTY;
+        ciphertext_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000008);
-        message_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.getDescriptor();
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_WhisperMessage_descriptor;
       }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage getDefaultInstanceForType() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.getDefaultInstance();
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage getDefaultInstanceForType() {
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.getDefaultInstance();
       }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage build() {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage result = buildPartial();
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage build() {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
-      
-      private org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage buildPartial() {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage result = new org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage(this);
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage buildPartial() {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage result = new org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.registrationId_ = registrationId_;
+        result.ephemeralKey_ = ephemeralKey_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.preKeyId_ = preKeyId_;
+        result.counter_ = counter_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.baseKey_ = baseKey_;
+        result.previousCounter_ = previousCounter_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.identityKey_ = identityKey_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.message_ = message_;
+        result.ciphertext_ = ciphertext_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage) {
-          return mergeFrom((org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage)other);
+        if (other instanceof org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage) {
+          return mergeFrom((org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-      
-      public Builder mergeFrom(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage other) {
-        if (other == org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.getDefaultInstance()) return this;
-        if (other.hasRegistrationId()) {
-          setRegistrationId(other.getRegistrationId());
+
+      public Builder mergeFrom(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage other) {
+        if (other == org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.getDefaultInstance()) return this;
+        if (other.hasEphemeralKey()) {
+          setEphemeralKey(other.getEphemeralKey());
         }
-        if (other.hasPreKeyId()) {
-          setPreKeyId(other.getPreKeyId());
+        if (other.hasCounter()) {
+          setCounter(other.getCounter());
         }
-        if (other.hasBaseKey()) {
-          setBaseKey(other.getBaseKey());
+        if (other.hasPreviousCounter()) {
+          setPreviousCounter(other.getPreviousCounter());
         }
-        if (other.hasIdentityKey()) {
-          setIdentityKey(other.getIdentityKey());
-        }
-        if (other.hasMessage()) {
-          setMessage(other.getMessage());
+        if (other.hasCiphertext()) {
+          setCiphertext(other.getCiphertext());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional bytes ephemeralKey = 1;
+      private com.google.protobuf.ByteString ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes ephemeralKey = 1;</code>
+       */
+      public boolean hasEphemeralKey() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional bytes ephemeralKey = 1;</code>
+       */
+      public com.google.protobuf.ByteString getEphemeralKey() {
+        return ephemeralKey_;
+      }
+      /**
+       * <code>optional bytes ephemeralKey = 1;</code>
+       */
+      public Builder setEphemeralKey(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        ephemeralKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes ephemeralKey = 1;</code>
+       */
+      public Builder clearEphemeralKey() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        ephemeralKey_ = getDefaultInstance().getEphemeralKey();
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 counter = 2;
+      private int counter_ ;
+      /**
+       * <code>optional uint32 counter = 2;</code>
+       */
+      public boolean hasCounter() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 counter = 2;</code>
+       */
+      public int getCounter() {
+        return counter_;
+      }
+      /**
+       * <code>optional uint32 counter = 2;</code>
+       */
+      public Builder setCounter(int value) {
+        bitField0_ |= 0x00000002;
+        counter_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 counter = 2;</code>
+       */
+      public Builder clearCounter() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        counter_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 previousCounter = 3;
+      private int previousCounter_ ;
+      /**
+       * <code>optional uint32 previousCounter = 3;</code>
+       */
+      public boolean hasPreviousCounter() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional uint32 previousCounter = 3;</code>
+       */
+      public int getPreviousCounter() {
+        return previousCounter_;
+      }
+      /**
+       * <code>optional uint32 previousCounter = 3;</code>
+       */
+      public Builder setPreviousCounter(int value) {
+        bitField0_ |= 0x00000004;
+        previousCounter_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 previousCounter = 3;</code>
+       */
+      public Builder clearPreviousCounter() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        previousCounter_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional bytes ciphertext = 4;
+      private com.google.protobuf.ByteString ciphertext_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes ciphertext = 4;</code>
+       */
+      public boolean hasCiphertext() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bytes ciphertext = 4;</code>
+       */
+      public com.google.protobuf.ByteString getCiphertext() {
+        return ciphertext_;
+      }
+      /**
+       * <code>optional bytes ciphertext = 4;</code>
+       */
+      public Builder setCiphertext(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        ciphertext_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes ciphertext = 4;</code>
+       */
+      public Builder clearCiphertext() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        ciphertext_ = getDefaultInstance().getCiphertext();
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:textsecure.WhisperMessage)
+    }
+
+    static {
+      defaultInstance = new WhisperMessage(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:textsecure.WhisperMessage)
+  }
+
+  public interface PreKeyWhisperMessageOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint32 registrationId = 5;
+    /**
+     * <code>optional uint32 registrationId = 5;</code>
+     */
+    boolean hasRegistrationId();
+    /**
+     * <code>optional uint32 registrationId = 5;</code>
+     */
+    int getRegistrationId();
+
+    // optional uint32 preKeyId = 1;
+    /**
+     * <code>optional uint32 preKeyId = 1;</code>
+     */
+    boolean hasPreKeyId();
+    /**
+     * <code>optional uint32 preKeyId = 1;</code>
+     */
+    int getPreKeyId();
+
+    // optional bytes baseKey = 2;
+    /**
+     * <code>optional bytes baseKey = 2;</code>
+     */
+    boolean hasBaseKey();
+    /**
+     * <code>optional bytes baseKey = 2;</code>
+     */
+    com.google.protobuf.ByteString getBaseKey();
+
+    // optional bytes identityKey = 3;
+    /**
+     * <code>optional bytes identityKey = 3;</code>
+     */
+    boolean hasIdentityKey();
+    /**
+     * <code>optional bytes identityKey = 3;</code>
+     */
+    com.google.protobuf.ByteString getIdentityKey();
+
+    // optional bytes message = 4;
+    /**
+     * <code>optional bytes message = 4;</code>
+     *
+     * <pre>
+     * WhisperMessage
+     * </pre>
+     */
+    boolean hasMessage();
+    /**
+     * <code>optional bytes message = 4;</code>
+     *
+     * <pre>
+     * WhisperMessage
+     * </pre>
+     */
+    com.google.protobuf.ByteString getMessage();
+  }
+  /**
+   * Protobuf type {@code textsecure.PreKeyWhisperMessage}
+   */
+  public static final class PreKeyWhisperMessage extends
+      com.google.protobuf.GeneratedMessage
+      implements PreKeyWhisperMessageOrBuilder {
+    // Use PreKeyWhisperMessage.newBuilder() to construct.
+    private PreKeyWhisperMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private PreKeyWhisperMessage(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final PreKeyWhisperMessage defaultInstance;
+    public static PreKeyWhisperMessage getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public PreKeyWhisperMessage getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PreKeyWhisperMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
           int tag = input.readTag();
           switch (tag) {
             case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
+              done = true;
+              break;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
+                done = true;
               }
               break;
             }
@@ -969,389 +792,298 @@ public final class WhisperProtos {
             }
           }
         }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
       }
-      
-      private int bitField0_;
-      
-      // optional uint32 registrationId = 5;
-      private int registrationId_ ;
-      public boolean hasRegistrationId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public int getRegistrationId() {
-        return registrationId_;
-      }
-      public Builder setRegistrationId(int value) {
-        bitField0_ |= 0x00000001;
-        registrationId_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearRegistrationId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        registrationId_ = 0;
-        onChanged();
-        return this;
-      }
-      
-      // optional uint32 preKeyId = 1;
-      private int preKeyId_ ;
-      public boolean hasPreKeyId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public int getPreKeyId() {
-        return preKeyId_;
-      }
-      public Builder setPreKeyId(int value) {
-        bitField0_ |= 0x00000002;
-        preKeyId_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearPreKeyId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        preKeyId_ = 0;
-        onChanged();
-        return this;
-      }
-      
-      // optional bytes baseKey = 2;
-      private com.google.protobuf.ByteString baseKey_ = com.google.protobuf.ByteString.EMPTY;
-      public boolean hasBaseKey() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public com.google.protobuf.ByteString getBaseKey() {
-        return baseKey_;
-      }
-      public Builder setBaseKey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        baseKey_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearBaseKey() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        baseKey_ = getDefaultInstance().getBaseKey();
-        onChanged();
-        return this;
-      }
-      
-      // optional bytes identityKey = 3;
-      private com.google.protobuf.ByteString identityKey_ = com.google.protobuf.ByteString.EMPTY;
-      public boolean hasIdentityKey() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      public com.google.protobuf.ByteString getIdentityKey() {
-        return identityKey_;
-      }
-      public Builder setIdentityKey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        identityKey_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearIdentityKey() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        identityKey_ = getDefaultInstance().getIdentityKey();
-        onChanged();
-        return this;
-      }
-      
-      // optional bytes message = 4;
-      private com.google.protobuf.ByteString message_ = com.google.protobuf.ByteString.EMPTY;
-      public boolean hasMessage() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      public com.google.protobuf.ByteString getMessage() {
-        return message_;
-      }
-      public Builder setMessage(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        message_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearMessage() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        message_ = getDefaultInstance().getMessage();
-        onChanged();
-        return this;
-      }
-      
-      // @@protoc_insertion_point(builder_scope:textsecure.PreKeyWhisperMessage)
     }
-    
-    static {
-      defaultInstance = new PreKeyWhisperMessage(true);
-      defaultInstance.initFields();
-    }
-    
-    // @@protoc_insertion_point(class_scope:textsecure.PreKeyWhisperMessage)
-  }
-  
-  public interface KeyExchangeMessageOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional uint32 id = 1;
-    boolean hasId();
-    int getId();
-    
-    // optional bytes baseKey = 2;
-    boolean hasBaseKey();
-    com.google.protobuf.ByteString getBaseKey();
-    
-    // optional bytes ephemeralKey = 3;
-    boolean hasEphemeralKey();
-    com.google.protobuf.ByteString getEphemeralKey();
-    
-    // optional bytes identityKey = 4;
-    boolean hasIdentityKey();
-    com.google.protobuf.ByteString getIdentityKey();
-  }
-  public static final class KeyExchangeMessage extends
-      com.google.protobuf.GeneratedMessage
-      implements KeyExchangeMessageOrBuilder {
-    // Use KeyExchangeMessage.newBuilder() to construct.
-    private KeyExchangeMessage(Builder builder) {
-      super(builder);
-    }
-    private KeyExchangeMessage(boolean noInit) {}
-    
-    private static final KeyExchangeMessage defaultInstance;
-    public static KeyExchangeMessage getDefaultInstance() {
-      return defaultInstance;
-    }
-    
-    public KeyExchangeMessage getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_descriptor;
+      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable;
+      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.class, org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<PreKeyWhisperMessage> PARSER =
+        new com.google.protobuf.AbstractParser<PreKeyWhisperMessage>() {
+      public PreKeyWhisperMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PreKeyWhisperMessage(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PreKeyWhisperMessage> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
-    // optional uint32 id = 1;
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
-    public boolean hasId() {
+    // optional uint32 registrationId = 5;
+    public static final int REGISTRATIONID_FIELD_NUMBER = 5;
+    private int registrationId_;
+    /**
+     * <code>optional uint32 registrationId = 5;</code>
+     */
+    public boolean hasRegistrationId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getId() {
-      return id_;
+    /**
+     * <code>optional uint32 registrationId = 5;</code>
+     */
+    public int getRegistrationId() {
+      return registrationId_;
     }
-    
+
+    // optional uint32 preKeyId = 1;
+    public static final int PREKEYID_FIELD_NUMBER = 1;
+    private int preKeyId_;
+    /**
+     * <code>optional uint32 preKeyId = 1;</code>
+     */
+    public boolean hasPreKeyId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 preKeyId = 1;</code>
+     */
+    public int getPreKeyId() {
+      return preKeyId_;
+    }
+
     // optional bytes baseKey = 2;
     public static final int BASEKEY_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString baseKey_;
+    /**
+     * <code>optional bytes baseKey = 2;</code>
+     */
     public boolean hasBaseKey() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
+    /**
+     * <code>optional bytes baseKey = 2;</code>
+     */
     public com.google.protobuf.ByteString getBaseKey() {
       return baseKey_;
     }
-    
-    // optional bytes ephemeralKey = 3;
-    public static final int EPHEMERALKEY_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString ephemeralKey_;
-    public boolean hasEphemeralKey() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public com.google.protobuf.ByteString getEphemeralKey() {
-      return ephemeralKey_;
-    }
-    
-    // optional bytes identityKey = 4;
-    public static final int IDENTITYKEY_FIELD_NUMBER = 4;
+
+    // optional bytes identityKey = 3;
+    public static final int IDENTITYKEY_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString identityKey_;
+    /**
+     * <code>optional bytes identityKey = 3;</code>
+     */
     public boolean hasIdentityKey() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
+    /**
+     * <code>optional bytes identityKey = 3;</code>
+     */
     public com.google.protobuf.ByteString getIdentityKey() {
       return identityKey_;
     }
-    
+
+    // optional bytes message = 4;
+    public static final int MESSAGE_FIELD_NUMBER = 4;
+    private com.google.protobuf.ByteString message_;
+    /**
+     * <code>optional bytes message = 4;</code>
+     *
+     * <pre>
+     * WhisperMessage
+     * </pre>
+     */
+    public boolean hasMessage() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional bytes message = 4;</code>
+     *
+     * <pre>
+     * WhisperMessage
+     * </pre>
+     */
+    public com.google.protobuf.ByteString getMessage() {
+      return message_;
+    }
+
     private void initFields() {
-      id_ = 0;
+      registrationId_ = 0;
+      preKeyId_ = 0;
       baseKey_ = com.google.protobuf.ByteString.EMPTY;
-      ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
       identityKey_ = com.google.protobuf.ByteString.EMPTY;
+      message_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeUInt32(1, id_);
-      }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, baseKey_);
+        output.writeUInt32(1, preKeyId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, ephemeralKey_);
+        output.writeBytes(2, baseKey_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, identityKey_);
+        output.writeBytes(3, identityKey_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(4, message_);
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(5, registrationId_);
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, id_);
-      }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, baseKey_);
+          .computeUInt32Size(1, preKeyId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, ephemeralKey_);
+          .computeBytesSize(2, baseKey_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, identityKey_);
+          .computeBytesSize(3, identityKey_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, message_);
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, registrationId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
-    
+
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(byte[] data)
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(java.io.InputStream input)
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseDelimitedFrom(java.io.InputStream input)
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseDelimitedFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
-    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage prototype) {
+    public static Builder newBuilder(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code textsecure.PreKeyWhisperMessage}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessageOrBuilder {
+       implements org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_descriptor;
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable;
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.class, org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.Builder.class);
       }
-      
-      // Construct using org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.newBuilder()
+
+      // Construct using org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1362,127 +1094,417 @@ public final class WhisperProtos {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
-        id_ = 0;
+        registrationId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        baseKey_ = com.google.protobuf.ByteString.EMPTY;
+        preKeyId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+        baseKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
         identityKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000008);
+        message_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.getDescriptor();
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_PreKeyWhisperMessage_descriptor;
       }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage getDefaultInstanceForType() {
-        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.getDefaultInstance();
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage getDefaultInstanceForType() {
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.getDefaultInstance();
       }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage build() {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage result = buildPartial();
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage build() {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
-      
-      private org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
-      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage buildPartial() {
-        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage result = new org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage(this);
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage buildPartial() {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage result = new org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.id_ = id_;
+        result.registrationId_ = registrationId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.baseKey_ = baseKey_;
+        result.preKeyId_ = preKeyId_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.ephemeralKey_ = ephemeralKey_;
+        result.baseKey_ = baseKey_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
         result.identityKey_ = identityKey_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.message_ = message_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage) {
-          return mergeFrom((org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage)other);
+        if (other instanceof org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage) {
+          return mergeFrom((org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-      
-      public Builder mergeFrom(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage other) {
-        if (other == org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          setId(other.getId());
+
+      public Builder mergeFrom(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage other) {
+        if (other == org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.getDefaultInstance()) return this;
+        if (other.hasRegistrationId()) {
+          setRegistrationId(other.getRegistrationId());
+        }
+        if (other.hasPreKeyId()) {
+          setPreKeyId(other.getPreKeyId());
         }
         if (other.hasBaseKey()) {
           setBaseKey(other.getBaseKey());
         }
-        if (other.hasEphemeralKey()) {
-          setEphemeralKey(other.getEphemeralKey());
-        }
         if (other.hasIdentityKey()) {
           setIdentityKey(other.getIdentityKey());
+        }
+        if (other.hasMessage()) {
+          setMessage(other.getMessage());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint32 registrationId = 5;
+      private int registrationId_ ;
+      /**
+       * <code>optional uint32 registrationId = 5;</code>
+       */
+      public boolean hasRegistrationId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 registrationId = 5;</code>
+       */
+      public int getRegistrationId() {
+        return registrationId_;
+      }
+      /**
+       * <code>optional uint32 registrationId = 5;</code>
+       */
+      public Builder setRegistrationId(int value) {
+        bitField0_ |= 0x00000001;
+        registrationId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 registrationId = 5;</code>
+       */
+      public Builder clearRegistrationId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        registrationId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 preKeyId = 1;
+      private int preKeyId_ ;
+      /**
+       * <code>optional uint32 preKeyId = 1;</code>
+       */
+      public boolean hasPreKeyId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 preKeyId = 1;</code>
+       */
+      public int getPreKeyId() {
+        return preKeyId_;
+      }
+      /**
+       * <code>optional uint32 preKeyId = 1;</code>
+       */
+      public Builder setPreKeyId(int value) {
+        bitField0_ |= 0x00000002;
+        preKeyId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 preKeyId = 1;</code>
+       */
+      public Builder clearPreKeyId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        preKeyId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional bytes baseKey = 2;
+      private com.google.protobuf.ByteString baseKey_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes baseKey = 2;</code>
+       */
+      public boolean hasBaseKey() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional bytes baseKey = 2;</code>
+       */
+      public com.google.protobuf.ByteString getBaseKey() {
+        return baseKey_;
+      }
+      /**
+       * <code>optional bytes baseKey = 2;</code>
+       */
+      public Builder setBaseKey(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        baseKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes baseKey = 2;</code>
+       */
+      public Builder clearBaseKey() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        baseKey_ = getDefaultInstance().getBaseKey();
+        onChanged();
+        return this;
+      }
+
+      // optional bytes identityKey = 3;
+      private com.google.protobuf.ByteString identityKey_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes identityKey = 3;</code>
+       */
+      public boolean hasIdentityKey() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bytes identityKey = 3;</code>
+       */
+      public com.google.protobuf.ByteString getIdentityKey() {
+        return identityKey_;
+      }
+      /**
+       * <code>optional bytes identityKey = 3;</code>
+       */
+      public Builder setIdentityKey(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        identityKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes identityKey = 3;</code>
+       */
+      public Builder clearIdentityKey() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        identityKey_ = getDefaultInstance().getIdentityKey();
+        onChanged();
+        return this;
+      }
+
+      // optional bytes message = 4;
+      private com.google.protobuf.ByteString message_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes message = 4;</code>
+       *
+       * <pre>
+       * WhisperMessage
+       * </pre>
+       */
+      public boolean hasMessage() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional bytes message = 4;</code>
+       *
+       * <pre>
+       * WhisperMessage
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getMessage() {
+        return message_;
+      }
+      /**
+       * <code>optional bytes message = 4;</code>
+       *
+       * <pre>
+       * WhisperMessage
+       * </pre>
+       */
+      public Builder setMessage(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes message = 4;</code>
+       *
+       * <pre>
+       * WhisperMessage
+       * </pre>
+       */
+      public Builder clearMessage() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:textsecure.PreKeyWhisperMessage)
+    }
+
+    static {
+      defaultInstance = new PreKeyWhisperMessage(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:textsecure.PreKeyWhisperMessage)
+  }
+
+  public interface KeyExchangeMessageOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint32 id = 1;
+    /**
+     * <code>optional uint32 id = 1;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>optional uint32 id = 1;</code>
+     */
+    int getId();
+
+    // optional bytes baseKey = 2;
+    /**
+     * <code>optional bytes baseKey = 2;</code>
+     */
+    boolean hasBaseKey();
+    /**
+     * <code>optional bytes baseKey = 2;</code>
+     */
+    com.google.protobuf.ByteString getBaseKey();
+
+    // optional bytes ephemeralKey = 3;
+    /**
+     * <code>optional bytes ephemeralKey = 3;</code>
+     */
+    boolean hasEphemeralKey();
+    /**
+     * <code>optional bytes ephemeralKey = 3;</code>
+     */
+    com.google.protobuf.ByteString getEphemeralKey();
+
+    // optional bytes identityKey = 4;
+    /**
+     * <code>optional bytes identityKey = 4;</code>
+     */
+    boolean hasIdentityKey();
+    /**
+     * <code>optional bytes identityKey = 4;</code>
+     */
+    com.google.protobuf.ByteString getIdentityKey();
+  }
+  /**
+   * Protobuf type {@code textsecure.KeyExchangeMessage}
+   */
+  public static final class KeyExchangeMessage extends
+      com.google.protobuf.GeneratedMessage
+      implements KeyExchangeMessageOrBuilder {
+    // Use KeyExchangeMessage.newBuilder() to construct.
+    private KeyExchangeMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private KeyExchangeMessage(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final KeyExchangeMessage defaultInstance;
+    public static KeyExchangeMessage getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public KeyExchangeMessage getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private KeyExchangeMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
           int tag = input.readTag();
           switch (tag) {
             case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
+              done = true;
+              break;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
+                done = true;
               }
               break;
             }
@@ -1508,39 +1530,436 @@ public final class WhisperProtos {
             }
           }
         }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
       }
-      
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.class, org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<KeyExchangeMessage> PARSER =
+        new com.google.protobuf.AbstractParser<KeyExchangeMessage>() {
+      public KeyExchangeMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new KeyExchangeMessage(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<KeyExchangeMessage> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional uint32 id = 1;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <code>optional uint32 id = 1;</code>
+     */
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
+    // optional bytes baseKey = 2;
+    public static final int BASEKEY_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString baseKey_;
+    /**
+     * <code>optional bytes baseKey = 2;</code>
+     */
+    public boolean hasBaseKey() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional bytes baseKey = 2;</code>
+     */
+    public com.google.protobuf.ByteString getBaseKey() {
+      return baseKey_;
+    }
+
+    // optional bytes ephemeralKey = 3;
+    public static final int EPHEMERALKEY_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString ephemeralKey_;
+    /**
+     * <code>optional bytes ephemeralKey = 3;</code>
+     */
+    public boolean hasEphemeralKey() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional bytes ephemeralKey = 3;</code>
+     */
+    public com.google.protobuf.ByteString getEphemeralKey() {
+      return ephemeralKey_;
+    }
+
+    // optional bytes identityKey = 4;
+    public static final int IDENTITYKEY_FIELD_NUMBER = 4;
+    private com.google.protobuf.ByteString identityKey_;
+    /**
+     * <code>optional bytes identityKey = 4;</code>
+     */
+    public boolean hasIdentityKey() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bytes identityKey = 4;</code>
+     */
+    public com.google.protobuf.ByteString getIdentityKey() {
+      return identityKey_;
+    }
+
+    private void initFields() {
+      id_ = 0;
+      baseKey_ = com.google.protobuf.ByteString.EMPTY;
+      ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+      identityKey_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, baseKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, ephemeralKey_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, identityKey_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, baseKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, ephemeralKey_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, identityKey_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code textsecure.KeyExchangeMessage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.class, org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.Builder.class);
+      }
+
+      // Construct using org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        baseKey_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        identityKey_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.internal_static_textsecure_KeyExchangeMessage_descriptor;
+      }
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage getDefaultInstanceForType() {
+        return org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.getDefaultInstance();
+      }
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage build() {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage buildPartial() {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage result = new org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.id_ = id_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.baseKey_ = baseKey_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.ephemeralKey_ = ephemeralKey_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.identityKey_ = identityKey_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage) {
+          return mergeFrom((org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage other) {
+        if (other == org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          setId(other.getId());
+        }
+        if (other.hasBaseKey()) {
+          setBaseKey(other.getBaseKey());
+        }
+        if (other.hasEphemeralKey()) {
+          setEphemeralKey(other.getEphemeralKey());
+        }
+        if (other.hasIdentityKey()) {
+          setIdentityKey(other.getIdentityKey());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
       private int bitField0_;
-      
+
       // optional uint32 id = 1;
       private int id_ ;
+      /**
+       * <code>optional uint32 id = 1;</code>
+       */
       public boolean hasId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
+      /**
+       * <code>optional uint32 id = 1;</code>
+       */
       public int getId() {
         return id_;
       }
+      /**
+       * <code>optional uint32 id = 1;</code>
+       */
       public Builder setId(int value) {
         bitField0_ |= 0x00000001;
         id_ = value;
         onChanged();
         return this;
       }
+      /**
+       * <code>optional uint32 id = 1;</code>
+       */
       public Builder clearId() {
         bitField0_ = (bitField0_ & ~0x00000001);
         id_ = 0;
         onChanged();
         return this;
       }
-      
+
       // optional bytes baseKey = 2;
       private com.google.protobuf.ByteString baseKey_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes baseKey = 2;</code>
+       */
       public boolean hasBaseKey() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
+      /**
+       * <code>optional bytes baseKey = 2;</code>
+       */
       public com.google.protobuf.ByteString getBaseKey() {
         return baseKey_;
       }
+      /**
+       * <code>optional bytes baseKey = 2;</code>
+       */
       public Builder setBaseKey(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
@@ -1550,21 +1969,33 @@ public final class WhisperProtos {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional bytes baseKey = 2;</code>
+       */
       public Builder clearBaseKey() {
         bitField0_ = (bitField0_ & ~0x00000002);
         baseKey_ = getDefaultInstance().getBaseKey();
         onChanged();
         return this;
       }
-      
+
       // optional bytes ephemeralKey = 3;
       private com.google.protobuf.ByteString ephemeralKey_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes ephemeralKey = 3;</code>
+       */
       public boolean hasEphemeralKey() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
+      /**
+       * <code>optional bytes ephemeralKey = 3;</code>
+       */
       public com.google.protobuf.ByteString getEphemeralKey() {
         return ephemeralKey_;
       }
+      /**
+       * <code>optional bytes ephemeralKey = 3;</code>
+       */
       public Builder setEphemeralKey(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
@@ -1574,21 +2005,33 @@ public final class WhisperProtos {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional bytes ephemeralKey = 3;</code>
+       */
       public Builder clearEphemeralKey() {
         bitField0_ = (bitField0_ & ~0x00000004);
         ephemeralKey_ = getDefaultInstance().getEphemeralKey();
         onChanged();
         return this;
       }
-      
+
       // optional bytes identityKey = 4;
       private com.google.protobuf.ByteString identityKey_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes identityKey = 4;</code>
+       */
       public boolean hasIdentityKey() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
+      /**
+       * <code>optional bytes identityKey = 4;</code>
+       */
       public com.google.protobuf.ByteString getIdentityKey() {
         return identityKey_;
       }
+      /**
+       * <code>optional bytes identityKey = 4;</code>
+       */
       public Builder setIdentityKey(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
@@ -1598,24 +2041,27 @@ public final class WhisperProtos {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional bytes identityKey = 4;</code>
+       */
       public Builder clearIdentityKey() {
         bitField0_ = (bitField0_ & ~0x00000008);
         identityKey_ = getDefaultInstance().getIdentityKey();
         onChanged();
         return this;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:textsecure.KeyExchangeMessage)
     }
-    
+
     static {
       defaultInstance = new KeyExchangeMessage(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:textsecure.KeyExchangeMessage)
   }
-  
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_textsecure_WhisperMessage_descriptor;
   private static
@@ -1631,7 +2077,7 @@ public final class WhisperProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable;
-  
+
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -1662,25 +2108,19 @@ public final class WhisperProtos {
           internal_static_textsecure_WhisperMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_WhisperMessage_descriptor,
-              new java.lang.String[] { "EphemeralKey", "Counter", "PreviousCounter", "Ciphertext", },
-              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.class,
-              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.WhisperMessage.Builder.class);
+              new java.lang.String[] { "EphemeralKey", "Counter", "PreviousCounter", "Ciphertext", });
           internal_static_textsecure_PreKeyWhisperMessage_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_textsecure_PreKeyWhisperMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PreKeyWhisperMessage_descriptor,
-              new java.lang.String[] { "RegistrationId", "PreKeyId", "BaseKey", "IdentityKey", "Message", },
-              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.class,
-              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.PreKeyWhisperMessage.Builder.class);
+              new java.lang.String[] { "RegistrationId", "PreKeyId", "BaseKey", "IdentityKey", "Message", });
           internal_static_textsecure_KeyExchangeMessage_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_textsecure_KeyExchangeMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_KeyExchangeMessage_descriptor,
-              new java.lang.String[] { "Id", "BaseKey", "EphemeralKey", "IdentityKey", },
-              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.class,
-              org.whispersystems.textsecure.crypto.protocol.WhisperProtos.KeyExchangeMessage.Builder.class);
+              new java.lang.String[] { "Id", "BaseKey", "EphemeralKey", "IdentityKey", });
           return null;
         }
       };
@@ -1689,6 +2129,6 @@ public final class WhisperProtos {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-  
+
   // @@protoc_insertion_point(outer_class_scope)
 }

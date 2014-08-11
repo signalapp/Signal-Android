@@ -35,9 +35,9 @@ import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.push.ExpectationFailedException;
+import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.RateLimitException;
+import org.whispersystems.textsecure.push.exceptions.RateLimitException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 

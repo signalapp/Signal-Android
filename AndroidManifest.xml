@@ -37,7 +37,7 @@
                 android:protectionLevel="signature" />
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
 
-    <application android:name="org.thoughtcrime.securesms.ApplicationListener"
+    <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
                  android:theme="@style/TextSecure.LightTheme">

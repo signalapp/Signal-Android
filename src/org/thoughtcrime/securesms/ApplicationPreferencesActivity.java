@@ -61,7 +61,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.push.AuthorizationFailedException;
+import org.whispersystems.textsecure.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 
 import java.io.IOException;

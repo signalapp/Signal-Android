@@ -43,11 +43,12 @@ public class SmsMessageRecord extends MessageRecord {
                           Recipient individualRecipient,
                           int recipientDeviceId,
                           long dateSent, long dateReceived,
+                          int receiptCount,
                           long type, long threadId,
                           int status)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, getGenericDeliveryStatus(status), type);
+          dateSent, dateReceived, threadId, receiptCount, getGenericDeliveryStatus(status), type);
   }
 
   public long getType() {

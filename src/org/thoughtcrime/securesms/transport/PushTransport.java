@@ -41,7 +41,7 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.push.MismatchedDevices;
-import org.whispersystems.textsecure.push.MismatchedDevicesException;
+import org.whispersystems.textsecure.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.push.OutgoingPushMessageList;
 import org.whispersystems.textsecure.push.PreKeyEntity;
@@ -52,7 +52,7 @@ import org.whispersystems.textsecure.push.PushBody;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.StaleDevices;
-import org.whispersystems.textsecure.push.StaleDevicesException;
+import org.whispersystems.textsecure.push.exceptions.StaleDevicesException;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
 import org.whispersystems.textsecure.storage.SessionRecordV2;
 import org.whispersystems.textsecure.util.Base64;
@@ -89,7 +89,7 @@ public class PushTransport extends BaseTransport {
       PushServiceSocket socket    = PushServiceSocketFactory.create(context);
       byte[]            plaintext = getPlaintextMessage(message);
 
-      deliver(socket, recipient, threadId, plaintext);
+      deliver(socket, recipient, message.getDateSent(), threadId, plaintext);
 
       if (message.isEndSession()) {
         SessionRecordV2.deleteAll(context, recipient);
@@ -125,7 +125,7 @@ public class PushTransport extends BaseTransport {
 
     for (Recipient recipient : recipients.getRecipientsList()) {
       try {
-        deliver(socket, recipient, threadId, plaintext);
+        deliver(socket, recipient, message.getSentTimestamp(), threadId, plaintext);
       } catch (UntrustedIdentityException e) {
         Log.w("PushTransport", e);
         untrustedIdentities.add(e);
@@ -140,13 +140,14 @@ public class PushTransport extends BaseTransport {
     }
   }
 
-  private void deliver(PushServiceSocket socket, Recipient recipient, long threadId, byte[] plaintext)
+  private void deliver(PushServiceSocket socket, Recipient recipient, long timestamp,
+                       long threadId, byte[] plaintext)
       throws IOException, InvalidNumberException, UntrustedIdentityException
   {
     for (int i=0;i<3;i++) {
       try {
-        OutgoingPushMessageList messages = getEncryptedMessages(socket, threadId,
-                                                                recipient, plaintext);
+        OutgoingPushMessageList messages = getEncryptedMessages(socket, threadId, recipient,
+                                                                timestamp, plaintext);
         socket.sendMessage(messages);
 
         return;
@@ -302,7 +303,8 @@ public class PushTransport extends BaseTransport {
   }
 
   private OutgoingPushMessageList getEncryptedMessages(PushServiceSocket socket, long threadId,
-                                                       Recipient recipient, byte[] plaintext)
+                                                       Recipient recipient, long timestamp,
+                                                       byte[] plaintext)
       throws IOException, InvalidNumberException, UntrustedIdentityException
   {
     String      e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
@@ -320,7 +322,7 @@ public class PushTransport extends BaseTransport {
       messages.add(new OutgoingPushMessage(device, body));
     }
 
-    return new OutgoingPushMessageList(e164number, masterDevice.getRelay(), messages);
+    return new OutgoingPushMessageList(e164number, timestamp, masterDevice.getRelay(), messages);
   }
 
   private PushBody getEncryptedMessage(PushServiceSocket socket, long threadId,

@@ -119,8 +119,6 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     final ConversationParameters parameters = getConversationParameters();
     final Intent intent;
 
-    scheduleRefreshActions();
-
     if (isShareAction()) {
       intent = getShareIntent(parameters);
     } else if (parameters.recipients != null) {
@@ -172,15 +170,6 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     intent.putExtra("master_secret", masterSecret);
 
     return intent;
-  }
-
-  private void scheduleRefreshActions() {
-    if (TextSecurePreferences.isPushRegistered(this) &&
-        TextSecurePreferences.getGcmRegistrationId(this) == null)
-    {
-      Intent intent = new Intent(this, GcmRegistrationService.class);
-      startService(intent);
-    }
   }
 
   private int getApplicationState() {
