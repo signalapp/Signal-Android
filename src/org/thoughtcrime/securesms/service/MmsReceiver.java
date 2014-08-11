@@ -58,7 +58,7 @@ public class MmsReceiver {
     PduParser parser = new PduParser(mmsData);
     GenericPdu pdu   = parser.parse();
 
-    if (pdu.getMessageType() == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
+    if (pdu != null && pdu.getMessageType() == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
       MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu);
 
