@@ -36,6 +36,7 @@ dependencies {
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
     androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
@@ -59,6 +60,7 @@ dependencyVerification {
             'com.madgag:sc-light-jdk15on:931f39d351429fb96c2f749e7ecb1a256a8ebbf5edca7995c9cc085b94d1841d',
             'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
             'org.whispersystems:gson:08f4f7498455d1539c9233e5aac18e9b1805815ef29221572996508eb512fe51',
+            'com.github.chrisbanes.photoview:library:8b5344e206f125e7ba9d684008f36c4992d03853c57e5814125f88496126e3cc'
     ]
 }
 

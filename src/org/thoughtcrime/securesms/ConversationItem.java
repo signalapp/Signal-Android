@@ -25,7 +25,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Contacts.Intents;
@@ -345,7 +344,7 @@ public class ConversationItem extends LinearLayout {
       mmsContainer.setVisibility(View.GONE);
     }
 
-    slideDeck = messageRecord.getSlideDeck();
+    slideDeck = messageRecord.getSlideDeckFuture();
     slideDeck.setListener(new FutureTaskListener<SlideDeck>() {
       @Override
       public void onSuccess(final SlideDeck result) {
@@ -457,18 +456,28 @@ public class ConversationItem extends LinearLayout {
     }
 
     public void onClick(View v) {
-      AlertDialog.Builder builder = new AlertDialog.Builder(context);
-      builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-      builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
-      builder.setCancelable(true);
-      builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
-      builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          fireIntent();
-        }
-      });
-      builder.setNegativeButton(R.string.no, null);
-      builder.show();
+      if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+        Intent intent = new Intent(context, MediaPreviewActivity.class);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.setDataAndType(slide.getUri(), slide.getContentType());
+        intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+        if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient());
+        intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
+        context.startActivity(intent);
+      } else {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
+        builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
+        builder.setCancelable(true);
+        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            fireIntent();
+          }
+        });
+        builder.setNegativeButton(R.string.no, null);
+        builder.show();
+      }
     }
   }
 
