@@ -80,7 +80,7 @@ public class ImageSlide extends Slide {
       thumbnailCache.put(part.getDataUri(), new SoftReference<Drawable>(thumbnail));
 
       return thumbnail;
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       Log.w("ImageSlide", e);
       return context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture);
     } catch (BitmapDecodingException e) {

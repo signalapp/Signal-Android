@@ -57,18 +57,27 @@ public class DecryptingPartInputStream extends FileInputStream {
   private long totalDataSize;
   private long totalRead;
   private byte[] overflowBuffer;
-	
-  public DecryptingPartInputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
+
+  public DecryptingPartInputStream(File file, MasterSecret masterSecret) throws IOException {
+    this(file, masterSecret, 0);
+  }
+
+  public DecryptingPartInputStream(File file, MasterSecret masterSecret, int offsetBytes) throws IOException {
     super(file);
+
+    if (offsetBytes > 0) {
+      if (offsetBytes != skip(offsetBytes)) throw new IOException("Could not skip to specified offset in file.");
+    }
+
     try {
-      if (file.length() <= IV_LENGTH + MAC_LENGTH)
+      if (file.length() <= offsetBytes + IV_LENGTH + MAC_LENGTH)
         throw new FileNotFoundException("Part shorter than crypto overhead!");
-			
+
       done          = false;
       mac           = initializeMac(masterSecret.getMacKey());
       cipher        = initializeCipher(masterSecret.getEncryptionKey());
       totalDataSize = file.length() - cipher.getBlockSize() - mac.getMacLength();
-      totalRead     = 0;
+      totalRead     = offsetBytes;
     } catch (InvalidKeyException ike) {
       Log.w("EncryptingPartInputStream", ike);
       throw new FileNotFoundException("Invalid key!");
@@ -83,12 +92,12 @@ public class DecryptingPartInputStream extends FileInputStream {
       throw new FileNotFoundException("IOException while reading IV!");
     }
   }
-	
+
   @Override
   public int read(byte[] buffer) throws IOException {
     return read(buffer, 0, buffer.length);
   }
-	
+
   @Override
   public int read(byte[] buffer, int offset, int length) throws IOException {
     if (totalRead != totalDataSize)
@@ -98,7 +107,7 @@ public class DecryptingPartInputStream extends FileInputStream {
     else 
       return -1;
   }
-	
+
   private int readFinal(byte[] buffer, int offset, int length) throws IOException {
     try {	
       int flourish = cipher.doFinal(buffer, offset);
@@ -110,7 +119,7 @@ public class DecryptingPartInputStream extends FileInputStream {
 
       if (!Arrays.equals(ourMac, theirMac))
         throw new IOException("MAC doesn't match! Potential tampering?");
-			
+
       done = true;
       return flourish;
     } catch (IllegalBlockSizeException e) {

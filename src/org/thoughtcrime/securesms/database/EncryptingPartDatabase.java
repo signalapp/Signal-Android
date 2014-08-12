@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class EncryptingPartDatabase extends PartDatabase {
 
@@ -41,7 +42,7 @@ public class EncryptingPartDatabase extends PartDatabase {
   }
 
   @Override
-  protected FileInputStream getPartInputStream(File path, PduPart part) throws FileNotFoundException {
+  protected FileInputStream getPartInputStream(File path, PduPart part) throws IOException {
     Log.w("EncryptingPartDatabase", "Getting part at: " + path.getAbsolutePath());
     if (!part.getEncrypted())
       return super.getPartInputStream(path, part);
@@ -50,7 +51,7 @@ public class EncryptingPartDatabase extends PartDatabase {
   }
 
   @Override
-  protected FileOutputStream getPartOutputStream(File path, PduPart part) throws FileNotFoundException {
+  protected FileOutputStream getPartOutputStream(File path, PduPart part) throws IOException {
     Log.w("EncryptingPartDatabase", "Writing part to: " + path.getAbsolutePath());
     part.setEncrypted(true);
     return new EncryptingPartOutputStream(path, masterSecret);
