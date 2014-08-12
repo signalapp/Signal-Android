@@ -205,52 +205,53 @@ public class SessionBuilder {
    *                                                                  trusted.
    */
   public void process(PreKeyBundle preKey) throws InvalidKeyException, UntrustedIdentityException {
+    synchronized (SessionCipher.SESSION_LOCK) {
+      if (!identityKeyStore.isTrustedIdentity(recipientId, preKey.getIdentityKey())) {
+        throw new UntrustedIdentityException();
+      }
 
-    if (!identityKeyStore.isTrustedIdentity(recipientId, preKey.getIdentityKey())) {
-      throw new UntrustedIdentityException();
+      if (preKey.getSignedPreKey() != null &&
+          !Curve.verifySignature(preKey.getIdentityKey().getPublicKey(),
+                                 preKey.getSignedPreKey().serialize(),
+                                 preKey.getSignedPreKeySignature()))
+      {
+        throw new InvalidKeyException("Invalid signature on device key!");
+      }
+
+      if (preKey.getSignedPreKey() == null && preKey.getPreKey() == null) {
+        throw new InvalidKeyException("Both signed and unsigned prekeys are absent!");
+      }
+
+      SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
+      ECKeyPair     ourBaseKey        = Curve.generateKeyPair();
+      ECPublicKey   theirSignedPreKey = preKey.getSignedPreKey() != null ? preKey.getSignedPreKey() :
+                                                                           preKey.getPreKey();
+
+      AliceAxolotlParameters.Builder parameters = AliceAxolotlParameters.newBuilder();
+
+      parameters.setOurBaseKey(ourBaseKey)
+                .setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+                .setTheirIdentityKey(preKey.getIdentityKey())
+                .setTheirSignedPreKey(theirSignedPreKey)
+                .setTheirRatchetKey(theirSignedPreKey)
+                .setTheirOneTimePreKey(preKey.getSignedPreKey() != null ?
+                                           Optional.fromNullable(preKey.getPreKey()) :
+                                           Optional.<ECPublicKey>absent());
+
+      if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
+      else                                                   sessionRecord.reset();
+
+      RatchetingSession.initializeSession(sessionRecord.getSessionState(),
+                                          preKey.getSignedPreKey() == null ? 2 : 3,
+                                          parameters.create());
+
+      sessionRecord.getSessionState().setUnacknowledgedPreKeyMessage(preKey.getPreKeyId(), preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
+      sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
+      sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
+
+      sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+      identityKeyStore.saveIdentity(recipientId, preKey.getIdentityKey());
     }
-
-    if (preKey.getSignedPreKey() != null &&
-        !Curve.verifySignature(preKey.getIdentityKey().getPublicKey(),
-                               preKey.getSignedPreKey().serialize(),
-                               preKey.getSignedPreKeySignature()))
-    {
-      throw new InvalidKeyException("Invalid signature on device key!");
-    }
-
-    if (preKey.getSignedPreKey() == null && preKey.getPreKey() == null) {
-      throw new InvalidKeyException("Both signed and unsigned prekeys are absent!");
-    }
-
-    SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
-    ECKeyPair     ourBaseKey        = Curve.generateKeyPair();
-    ECPublicKey   theirSignedPreKey = preKey.getSignedPreKey() != null ? preKey.getSignedPreKey() :
-                                                                         preKey.getPreKey();
-
-    AliceAxolotlParameters.Builder parameters = AliceAxolotlParameters.newBuilder();
-
-    parameters.setOurBaseKey(ourBaseKey)
-              .setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
-              .setTheirIdentityKey(preKey.getIdentityKey())
-              .setTheirSignedPreKey(theirSignedPreKey)
-              .setTheirRatchetKey(theirSignedPreKey)
-              .setTheirOneTimePreKey(preKey.getSignedPreKey() != null ?
-                                         Optional.fromNullable(preKey.getPreKey()) :
-                                         Optional.<ECPublicKey>absent());
-
-    if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
-    else                                                   sessionRecord.reset();
-
-    RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                        preKey.getSignedPreKey() == null ? 2 : 3,
-                                        parameters.create());
-
-    sessionRecord.getSessionState().setUnacknowledgedPreKeyMessage(preKey.getPreKeyId(), preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
-    sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
-    sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
-
-    sessionStore.storeSession(recipientId, deviceId, sessionRecord);
-    identityKeyStore.saveIdentity(recipientId, preKey.getIdentityKey());
   }
 
   /**
@@ -264,17 +265,18 @@ public class SessionBuilder {
   public KeyExchangeMessage process(KeyExchangeMessage message)
       throws InvalidKeyException, UntrustedIdentityException, StaleKeyExchangeException
   {
+    synchronized (SessionCipher.SESSION_LOCK) {
+      if (!identityKeyStore.isTrustedIdentity(recipientId, message.getIdentityKey())) {
+        throw new UntrustedIdentityException();
+      }
 
-    if (!identityKeyStore.isTrustedIdentity(recipientId, message.getIdentityKey())) {
-      throw new UntrustedIdentityException();
+      KeyExchangeMessage responseMessage = null;
+
+      if (message.isInitiate()) responseMessage = processInitiate(message);
+      else                      processResponse(message);
+
+      return responseMessage;
     }
-
-    KeyExchangeMessage responseMessage = null;
-
-    if (message.isInitiate()) responseMessage = processInitiate(message);
-    else                      processResponse(message);
-
-    return responseMessage;
   }
 
   private KeyExchangeMessage processInitiate(KeyExchangeMessage message) throws InvalidKeyException {
@@ -375,22 +377,24 @@ public class SessionBuilder {
    * @return the KeyExchangeMessage to deliver.
    */
   public KeyExchangeMessage process() {
-    try {
-      int             sequence         = KeyHelper.getRandomSequence(65534) + 1;
-      int             flags            = KeyExchangeMessage.INITIATE_FLAG;
-      ECKeyPair       baseKey          = Curve.generateKeyPair();
-      ECKeyPair       ratchetKey       = Curve.generateKeyPair();
-      IdentityKeyPair identityKey      = identityKeyStore.getIdentityKeyPair();
-      byte[]          baseKeySignature = Curve.calculateSignature(identityKey.getPrivateKey(), baseKey.getPublicKey().serialize());
-      SessionRecord   sessionRecord    = sessionStore.loadSession(recipientId, deviceId);
+    synchronized (SessionCipher.SESSION_LOCK) {
+      try {
+        int             sequence         = KeyHelper.getRandomSequence(65534) + 1;
+        int             flags            = KeyExchangeMessage.INITIATE_FLAG;
+        ECKeyPair       baseKey          = Curve.generateKeyPair();
+        ECKeyPair       ratchetKey       = Curve.generateKeyPair();
+        IdentityKeyPair identityKey      = identityKeyStore.getIdentityKeyPair();
+        byte[]          baseKeySignature = Curve.calculateSignature(identityKey.getPrivateKey(), baseKey.getPublicKey().serialize());
+        SessionRecord   sessionRecord    = sessionStore.loadSession(recipientId, deviceId);
 
-      sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ratchetKey, identityKey);
-      sessionStore.storeSession(recipientId, deviceId, sessionRecord);
+        sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ratchetKey, identityKey);
+        sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
-      return new KeyExchangeMessage(2, sequence, flags, baseKey.getPublicKey(), baseKeySignature,
-                                    ratchetKey.getPublicKey(), identityKey.getPublicKey());
-    } catch (InvalidKeyException e) {
-      throw new AssertionError(e);
+        return new KeyExchangeMessage(2, sequence, flags, baseKey.getPublicKey(), baseKeySignature,
+                                      ratchetKey.getPublicKey(), identityKey.getPublicKey());
+      } catch (InvalidKeyException e) {
+        throw new AssertionError(e);
+      }
     }
   }
 

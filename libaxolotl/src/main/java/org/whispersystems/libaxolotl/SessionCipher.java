@@ -59,7 +59,7 @@ import static org.whispersystems.libaxolotl.state.SessionState.UnacknowledgedPre
  */
 public class SessionCipher {
 
-  private static final Object SESSION_LOCK = new Object();
+  public static final Object SESSION_LOCK = new Object();
 
   private final SessionStore   sessionStore;
   private final SessionBuilder sessionBuilder;
