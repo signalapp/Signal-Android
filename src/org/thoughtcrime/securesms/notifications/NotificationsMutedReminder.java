@@ -25,8 +25,8 @@ public class NotificationsMutedReminder extends Reminder {
 
   @TargetApi(Build.VERSION_CODES.KITKAT)
   public NotificationsMutedReminder(final Context context, final Recipient recipient, final ReminderView reminderView) {
-    super(R.drawable.alert,
-            R.string.reminder_header_silenced_title,
+    super(R.drawable.ic_smiles_bell,
+            null,
             R.string.reminder_header_silenced_text);
 
     this.context = context;
@@ -48,5 +48,10 @@ public class NotificationsMutedReminder extends Reminder {
   @Override
   public String getOKText() {
     return this.context.getResources().getString(R.string.reminder_header_silenced_ok);
+  }
+
+  @Override
+  public Integer getCancelResId() {
+    return null;
   }
 }

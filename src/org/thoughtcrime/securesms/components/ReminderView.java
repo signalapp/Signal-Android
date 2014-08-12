@@ -53,9 +53,33 @@ public class ReminderView extends LinearLayout {
   }
 
   public void showReminder(final Reminder reminder) {
-    icon.setImageResource(reminder.getIconResId());
-    title.setText(reminder.getTitleResId());
-    text.setText(reminder.getTextResId());
+    if (reminder.getIconResId() != null) {
+      icon.setImageResource(reminder.getIconResId());
+      icon.setVisibility(View.VISIBLE);
+    } else {
+      icon.setVisibility(View.GONE);
+    }
+
+    if (reminder.getTitleResId() != null) {
+      title.setText(reminder.getTitleResId());
+      title.setVisibility(View.VISIBLE);
+    } else {
+      title.setVisibility(View.GONE);
+    }
+
+    if (reminder.getTextResId() != null) {
+      text.setText(reminder.getTextResId());
+      text.setVisibility(View.VISIBLE);
+    } else {
+      text.setVisibility(View.GONE);
+    }
+
+    if (reminder.getCancelResId() != null) {
+      cancel.setImageResource(reminder.getCancelResId());
+      cancel.setVisibility(View.VISIBLE);
+    } else {
+      cancel.setVisibility(View.GONE);
+    }
 
     ok.setOnClickListener(reminder.getOkListener());
     if (reminder.getOKText() != null) {
