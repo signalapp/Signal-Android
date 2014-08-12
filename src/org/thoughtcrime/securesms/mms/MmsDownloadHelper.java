@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
@@ -34,13 +35,13 @@ import ws.com.google.android.mms.pdu.RetrieveConf;
 
 public class MmsDownloadHelper extends MmsCommunication {
 
-  private static byte[] makeRequest(Context context, MmsConnectionParameters.Apn connectionParameters, String url)
+  private static byte[] makeRequest(Context context, String url, String proxy, int proxyPort)
       throws IOException
   {
     AndroidHttpClient client = null;
 
     try {
-      client            = constructHttpClient(context, connectionParameters);
+      client            = constructHttpClient(context, proxy, proxyPort);
       URI targetUrl     = new URI(url.trim());
       HttpHost target   = new HttpHost(targetUrl.getHost(), targetUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
       HttpGet request   = new HttpGet(url.trim());
@@ -64,9 +65,9 @@ public class MmsDownloadHelper extends MmsCommunication {
     }
   }
 
-  public static boolean isMmsConnectionParametersAvailable(Context context, String apn, boolean proxyIfPossible) {
+  public static boolean isMmsConnectionParametersAvailable(Context context, String apn) {
     try {
-      getMmsConnectionParameters(context, apn, proxyIfPossible);
+      getMmsConnectionParameters(context, apn);
       return true;
     } catch (ApnUnavailableException e) {
       return false;
@@ -77,12 +78,28 @@ public class MmsDownloadHelper extends MmsCommunication {
                                          boolean usingMmsRadio, boolean proxyIfPossible)
       throws IOException, ApnUnavailableException
   {
-    MmsConnectionParameters connectionParameters = getMmsConnectionParameters(context, apn, proxyIfPossible);
+    MmsConnectionParameters connectionParameters = getMmsConnectionParameters(context, apn);
     byte[] pdu = null;
 
     for (MmsConnectionParameters.Apn param : connectionParameters.get()) {
-      if (checkRouteToHost(context, param, param.getMmsc(), usingMmsRadio)) {
-        pdu = makeRequest(context, param, url);
+      String  proxy     = null;
+      int     proxyPort = 80;
+      boolean hasRoute;
+
+      if (proxyIfPossible && param.hasProxy()) {
+        proxy     = param.getProxy();
+        proxyPort = param.getPort();
+        hasRoute  = checkRouteToHost(context, proxy, usingMmsRadio);
+      } else {
+        hasRoute = checkRouteToHost(context, Uri.parse(param.getMmsc()).getHost(), usingMmsRadio);
+      }
+
+      if (hasRoute) {
+        try {
+          pdu = makeRequest(context, url, proxy, proxyPort);
+        } catch(IOException e) {
+          Log.w("MmsDownloadHelper", "Request failed: "+e.getMessage());
+        }
         if (pdu != null) break;
       }
     }

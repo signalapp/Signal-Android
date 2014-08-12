@@ -80,21 +80,21 @@ public class MmsTransport {
         }
       }
 
-      Log.w("MmsTransport", "Sending MMS with radio change...");
+      Log.w("MmsTransport", "Sending MMS with radio change and proxy...");
       radio.connect();
 
       try {
-        MmsSendResult result = sendMms(message, true, false);
+        MmsSendResult result = sendMms(message, true, true);
         radio.disconnect();
         return result;
       } catch (IOException e) {
         Log.w("MmsTransport", e);
       }
 
-      Log.w("MmsTransport", "Sending MMS with radio change and proxy...");
+      Log.w("MmsTransport", "Sending MMS with radio change and without proxy...");
 
       try {
-        MmsSendResult result = sendMms(message, true, true);
+        MmsSendResult result = sendMms(message, true, false);
         radio.disconnect();
         return result;
       } catch (IOException ioe) {

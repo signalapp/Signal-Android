@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Pair;
@@ -69,7 +70,7 @@ public class MmsDownloader {
   }
 
   private void handleMmsPendingApnDownloads(MasterSecret masterSecret) {
-    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(context, null, false))
+    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(context, null))
       return;
 
     MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
@@ -100,6 +101,8 @@ public class MmsDownloader {
 
     database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
 
+    Log.w("MmsDownloader", "Downloading mms at "+ Uri.parse(contentLocation).getHost());
+
     try {
       if (isCdmaNetwork()) {
         Log.w("MmsDownloader", "Connecting directly...");
@@ -115,22 +118,22 @@ public class MmsDownloader {
       Log.w("MmsDownloader", "Changing radio to MMS mode..");
       radio.connect();
 
-      Log.w("MmsDownloader", "Downloading in MMS mode without proxy...");
+      Log.w("MmsDownloader", "Downloading in MMS mode with proxy...");
 
       try {
         retrieveAndStore(masterSecret, messageId, threadId, contentLocation,
-                         transactionId, true, false);
+                         transactionId, true, true);
         radio.disconnect();
         return;
       } catch (IOException e) {
         Log.w("MmsDownloader", e);
       }
 
-      Log.w("MmsDownloader", "Downloading in MMS mode with proxy...");
+      Log.w("MmsDownloader", "Downloading in MMS mode without proxy...");
 
       try {
         retrieveAndStore(masterSecret, messageId, threadId,
-                         contentLocation, transactionId, true, true);
+                         contentLocation, transactionId, true, false);
         radio.disconnect();
         return;
       } catch (IOException e) {

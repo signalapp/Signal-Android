@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
@@ -39,21 +40,21 @@ import ws.com.google.android.mms.pdu.SendConf;
 public class MmsSendHelper extends MmsCommunication {
   private final static String TAG = MmsSendHelper.class.getSimpleName();
 
-  private static byte[] makePost(Context context, MmsConnectionParameters.Apn parameters, byte[] mms)
+  private static byte[] makePost(Context context, String url, String proxy, int proxyPort, byte[] mms)
       throws IOException
   {
     AndroidHttpClient client = null;
 
     try {
       Log.w(TAG, "Sending MMS1 of length: " + (mms != null ? mms.length : "null"));
-      client                 = constructHttpClient(context, parameters);
-      URI targetUrl          = new URI(parameters.getMmsc());
+      client                 = constructHttpClient(context, proxy, proxyPort);
+      URI targetUrl          = new URI(url);
 
       if (Util.isEmpty(targetUrl.getHost()))
         throw new IOException("Invalid target host: " + targetUrl.getHost() + " , " + targetUrl);
 
       HttpHost target        = new HttpHost(targetUrl.getHost(), targetUrl.getPort(), HttpHost.DEFAULT_SCHEME_NAME);
-      HttpPost request       = new HttpPost(parameters.getMmsc());
+      HttpPost request       = new HttpPost(url);
       ByteArrayEntity entity = new ByteArrayEntity(mms);
 
       entity.setContentType("application/vnd.wap.mms-message");
@@ -99,11 +100,27 @@ public class MmsSendHelper extends MmsCommunication {
   {
     Log.w(TAG, "Sending MMS of length: " + mms.length);
     try {
-      MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn, useProxyIfAvailable);
+      MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn);
       for (MmsConnectionParameters.Apn param : parameters.get()) {
-        if (checkRouteToHost(context, param, param.getMmsc(), usingMmsRadio)) {
-          byte[] response = makePost(context, param, mms);
-          if (response != null) return response;
+        String  proxy     = null;
+        int     proxyPort = 80;
+        boolean hasRoute;
+
+        if(useProxyIfAvailable && param.hasProxy()){
+          proxy     = param.getProxy();
+          proxyPort = param.getPort();
+          hasRoute  = checkRouteToHost(context, proxy, usingMmsRadio);
+        } else {
+          hasRoute = checkRouteToHost(context, Uri.parse(param.getMmsc()).getHost(), usingMmsRadio);
+        }
+
+        if (hasRoute) {
+          try {
+            byte[] response = makePost(context, param.getMmsc(), proxy, proxyPort, mms);
+            if (response != null) return response;
+          } catch(IOException e) {
+            Log.w("MmsSendHelper", "Request failed: "+e.getMessage());
+          }
         }
       }
       throw new IOException("Connection manager could not obtain route to host.");
@@ -123,7 +140,7 @@ public class MmsSendHelper extends MmsCommunication {
       }
       String apn = networkInfo.getExtraInfo();
 
-      MmsCommunication.getMmsConnectionParameters(context, apn, true);
+      MmsCommunication.getMmsConnectionParameters(context, apn);
       return true;
     } catch (ApnUnavailableException e) {
       Log.w("MmsSendHelper", e);
