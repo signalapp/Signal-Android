@@ -82,25 +82,20 @@ public class MmsDownloadHelper extends MmsCommunication {
     byte[] pdu = null;
 
     for (MmsConnectionParameters.Apn param : connectionParameters.get()) {
-      String  proxy     = null;
-      int     proxyPort = 80;
-      boolean hasRoute;
-
-      if (proxyIfPossible && param.hasProxy()) {
-        proxy     = param.getProxy();
-        proxyPort = param.getPort();
-        hasRoute  = checkRouteToHost(context, proxy, usingMmsRadio);
-      } else {
-        hasRoute = checkRouteToHost(context, Uri.parse(param.getMmsc()).getHost(), usingMmsRadio);
-      }
-
-      if (hasRoute) {
-        try {
-          pdu = makeRequest(context, url, proxy, proxyPort);
-        } catch(IOException e) {
-          Log.w("MmsDownloadHelper", "Request failed: "+e.getMessage());
+      try {
+        if (proxyIfPossible && param.hasProxy()) {
+          if (checkRouteToHost(context, param.getProxy(), usingMmsRadio)) {
+            pdu = makeRequest(context, url, param.getProxy(), param.getPort());
+          }
+        } else {
+          if (checkRouteToHost(context, Uri.parse(url).getHost(), usingMmsRadio)) {
+            pdu = makeRequest(context, url, null, -1);
+          }
         }
+
         if (pdu != null) break;
+      } catch (IOException ioe) {
+        Log.w("MmsDownloadHelper", ioe);
       }
     }
 

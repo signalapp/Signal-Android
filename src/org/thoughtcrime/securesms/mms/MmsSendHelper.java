@@ -101,28 +101,25 @@ public class MmsSendHelper extends MmsCommunication {
     Log.w(TAG, "Sending MMS of length: " + mms.length);
     try {
       MmsConnectionParameters parameters = getMmsConnectionParameters(context, apn);
+
       for (MmsConnectionParameters.Apn param : parameters.get()) {
-        String  proxy     = null;
-        int     proxyPort = 80;
-        boolean hasRoute;
-
-        if(useProxyIfAvailable && param.hasProxy()){
-          proxy     = param.getProxy();
-          proxyPort = param.getPort();
-          hasRoute  = checkRouteToHost(context, proxy, usingMmsRadio);
-        } else {
-          hasRoute = checkRouteToHost(context, Uri.parse(param.getMmsc()).getHost(), usingMmsRadio);
-        }
-
-        if (hasRoute) {
-          try {
-            byte[] response = makePost(context, param.getMmsc(), proxy, proxyPort, mms);
-            if (response != null) return response;
-          } catch(IOException e) {
-            Log.w("MmsSendHelper", "Request failed: "+e.getMessage());
+        try {
+          if (useProxyIfAvailable && param.hasProxy()) {
+            if (checkRouteToHost(context, param.getProxy(), usingMmsRadio)) {
+              byte[] response = makePost(context, param.getMmsc(), param.getProxy(), param.getPort(), mms);
+              if (response != null) return response;
+            }
+          } else {
+            if (checkRouteToHost(context, Uri.parse(param.getMmsc()).getHost(), usingMmsRadio)) {
+              byte[] response = makePost(context, param.getMmsc(), null, -1, mms);
+              if (response != null) return response;
+            }
           }
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
         }
       }
+
       throw new IOException("Connection manager could not obtain route to host.");
     } catch (ApnUnavailableException aue) {
       Log.w(TAG, aue);
