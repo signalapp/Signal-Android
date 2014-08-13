@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -96,13 +97,11 @@ public class DirectoryHelper {
         return true;
       }
 
-      final String number = recipients.getPrimaryRecipient().getNumber();
-
-      if (number == null) {
+      if (recipients.getPrimaryRecipient().getNumber() == null) {
         return false;
       }
 
-      final String e164number = Util.canonicalizeNumber(context, number);
+      String e164number = Util.canonicalizeNumber(context, recipients.getPrimaryRecipient());
 
       return Directory.getInstance(context).isActiveNumber(e164number);
     } catch (InvalidNumberException e) {

@@ -170,7 +170,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
 
   private static boolean isActiveInDirectory(Context context, Recipient recipient) {
     try {
-      if (!Directory.getInstance(context).isActiveNumber(Util.canonicalizeNumber(context, recipient.getNumber()))) {
+      if (!Directory.getInstance(context).isActiveNumber(Util.canonicalizeNumber(context, recipient))) {
         return false;
       }
     } catch (NotInDirectoryException e) {
@@ -491,7 +491,7 @@ public class GroupCreateActivity extends PassphraseRequiredSherlockFragmentActiv
     Set<String> results = new HashSet<String>();
 
     for (Recipient recipient : recipients) {
-      results.add(Util.canonicalizeNumber(this, recipient.getNumber()));
+      results.add(Util.canonicalizeNumber(this, recipient));
     }
 
     return results;

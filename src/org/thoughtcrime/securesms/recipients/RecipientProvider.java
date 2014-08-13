@@ -16,12 +16,14 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.util.Log;
@@ -53,6 +55,13 @@ public class RecipientProvider {
     PhoneLookup._ID,
     PhoneLookup.NUMBER
   };
+
+  private static final String[] CALLER_ID_PROJECTION_MODERN = new String[CALLER_ID_PROJECTION.length + 1];
+  static {
+    System.arraycopy(CALLER_ID_PROJECTION, 0, CALLER_ID_PROJECTION_MODERN, 0, CALLER_ID_PROJECTION.length);
+    CALLER_ID_PROJECTION_MODERN[CALLER_ID_PROJECTION.length] = PhoneLookup.NORMALIZED_NUMBER;
+  }
+
 
   public Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(recipientId);
@@ -136,16 +145,21 @@ public class RecipientProvider {
   }
 
   private RecipientDetails getRecipientDetails(Context context, String number) {
-    Uri uri       = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
-    Cursor cursor = context.getContentResolver().query(uri, CALLER_ID_PROJECTION,
-                                                       null, null, null);
+    Uri      uri        = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
+    String[] projection = Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN ? CALLER_ID_PROJECTION_MODERN
+                                                                                  : CALLER_ID_PROJECTION;
+    Cursor   cursor     = context.getContentResolver().query(uri, projection,
+                                                             null, null, null);
 
     try {
       if (cursor != null && cursor.moveToFirst()) {
-        Uri contactUri      = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
-        Bitmap contactPhoto = ContactPhotoFactory.getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
-                                                                                                cursor.getLong(2)+""));
-        return new RecipientDetails(cursor.getString(0), cursor.getString(3), contactUri, contactPhoto,
+        Uri contactUri         = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
+        Bitmap contactPhoto    = ContactPhotoFactory.getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
+                                                                                                   cursor.getLong(2)+""));
+        String canonicalNumber = Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN ? cursor.getString(4)
+                                                                                         : null;
+
+        return new RecipientDetails(cursor.getString(0), cursor.getString(3), canonicalNumber, contactUri, contactPhoto,
                                     BitmapUtil.getCircleCroppedBitmap(contactPhoto));
       }
     } finally {
@@ -168,7 +182,7 @@ public class RecipientProvider {
         if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
         else                     avatar = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
 
-        return new RecipientDetails(record.getTitle(), groupId, null, avatar, BitmapUtil.getCircleCroppedBitmap(avatar));
+        return new RecipientDetails(record.getTitle(), groupId, null, null, avatar, BitmapUtil.getCircleCroppedBitmap(avatar));
       }
 
       return null;
@@ -181,16 +195,18 @@ public class RecipientProvider {
   public static class RecipientDetails {
     public final String name;
     public final String number;
+    public final String canonicalNumber;
     public final Bitmap avatar;
     public final Bitmap croppedAvatar;
     public final Uri    contactUri;
 
-    public RecipientDetails(String name, String number, Uri contactUri, Bitmap avatar, Bitmap croppedAvatar) {
-      this.name          = name;
-      this.number        = number;
-      this.avatar        = avatar;
-      this.croppedAvatar = croppedAvatar;
-      this.contactUri    = contactUri;
+    public RecipientDetails(String name, String number, String canonicalNumber, Uri contactUri, Bitmap avatar, Bitmap croppedAvatar) {
+      this.name            = name;
+      this.number          = number;
+      this.canonicalNumber = canonicalNumber;
+      this.avatar          = avatar;
+      this.croppedAvatar   = croppedAvatar;
+      this.contactUri      = contactUri;
     }
   }
 
