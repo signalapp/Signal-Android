@@ -652,5 +652,7 @@
   <string name="reminder_header_sms_default_text">TextSecure ist zur Zeit nicht als Standard-SMS-App eingerichtet.</string>
   <string name="reminder_header_sms_import_title">SMS vom Handy importieren?</string>
   <string name="reminder_header_sms_import_text">TextSecure kann SMS-Nachrichten vom Handy in seine verschlüsselte Datenbank importieren.</string>
+  <string name="reminder_header_push_title">Push-Nachrichten aktivieren?</string>
+  <string name="reminder_header_push_text">Schnellere Zustellung, bessere Privatsphäre und keine SMS-Kosten.</string>
   <!--EOF-->
 </resources>

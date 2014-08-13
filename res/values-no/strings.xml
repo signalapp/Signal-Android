@@ -652,5 +652,7 @@
   <string name="reminder_header_sms_default_text">TextSecure er ikke konfigurert som standard SMS applikasjon.</string>
   <string name="reminder_header_sms_import_title">Importer enhetens SMS database?</string>
   <string name="reminder_header_sms_import_text">TextSecure kan kopiere telefonens SMS meldinger til sin egen krypterte database.</string>
+  <string name="reminder_header_push_title">Benytte TextSecure meldinger?</string>
+  <string name="reminder_header_push_text">Umiddelbar levering, sterkere personvern, ingen SMS kostnader.</string>
   <!--EOF-->
 </resources>

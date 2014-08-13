@@ -652,5 +652,7 @@
   <string name="reminder_header_sms_default_text">TextSecure 目前不是您默认的短信应用。</string>
   <string name="reminder_header_sms_import_title">导入系统短信？</string>
   <string name="reminder_header_sms_import_text">TextSecure 可以将您手机中的短信息复制到加密的数据库中。</string>
+  <string name="reminder_header_push_title">启用 TextSecure 信息？</string>
+  <string name="reminder_header_push_text">顷刻投递，私密存储，并且没有短信费用。</string>
   <!--EOF-->
 </resources>

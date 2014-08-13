@@ -652,5 +652,7 @@
   <string name="reminder_header_sms_default_text">Textsecure is momenteel niet uw standaard SMS-app.</string>
   <string name="reminder_header_sms_import_title">SMS importeren uit systeem?</string>
   <string name="reminder_header_sms_import_text">TextSecure kan uw SMS-berichten importeren in haar versleutelde database.</string>
+  <string name="reminder_header_push_title">Activeer TextSecure berichten</string>
+  <string name="reminder_header_push_text">Directe aflevering, Sterkere privacy, en geen SMS kosten.</string>
   <!--EOF-->
 </resources>

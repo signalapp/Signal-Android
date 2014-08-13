@@ -5,7 +5,7 @@
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
   <!--ApplicationPreferencesActivity-->
-  <string name="ApplicationPreferencesActivity_currently_s">Αυτήν τη στιγμή: %s</string>
+  <string name="ApplicationPreferencesActivity_currently_s">Αυτή τη στιγμή: %s</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Πρέπει να έχετε εισάγει τη συνθηματική φράση σας πριν διαχειριστείτε κλειδιά...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Δεν έχετε ορίσει συνθηματική φράση!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">μηνύματα ανά συζήτηση</string>
@@ -648,5 +648,11 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Επικυρωμένο</string>
   <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Να είμαστε η προεπιλεγμένη εφαρμογή για SMS;</string>
+  <string name="reminder_header_sms_default_text">Το TextSecure δεν είναι η προεπιλεγμένη εφαρμογή για SMS.</string>
+  <string name="reminder_header_sms_import_title">Να εισαγχθούν όλα τα προϋπάρχοντα SMS;</string>
+  <string name="reminder_header_sms_import_text">Το TextSecure μπορεί να αντιγράψει τα SMS του τηλεφώνου σας στην ασφαλή βάση δεδομένων του.</string>
+  <string name="reminder_header_push_title">Ενεργοποίηση μηνυμάτων TextSecure;</string>
+  <string name="reminder_header_push_text">Άμεση παράδοση, περισσότερο απόρρητα, και χωρίς χρεώσεις SMS.</string>
   <!--EOF-->
 </resources>

@@ -652,5 +652,7 @@
   <string name="reminder_header_sms_default_text">TextSecure, в момента, не е твоята SMS програма по подразбиране.</string>
   <string name="reminder_header_sms_import_title">Внеси вече съществуващите SMS?</string>
   <string name="reminder_header_sms_import_text">TextSecure може да копира твоите SMS съобщения в шифрованата си база данни.</string>
+  <string name="reminder_header_push_title">Разреши TextSecure съобщения?</string>
+  <string name="reminder_header_push_text">Мигновено доставяне, по-добра защита на личното пространство, и без SMS такси.</string>
   <!--EOF-->
 </resources>

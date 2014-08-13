@@ -163,7 +163,7 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Message multimédia</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Reçu un message qui es crypté par une vieux version de TextSecure, qui n\'est plus prise en charge. \nMerci de demander à l’envoyeur de mettre à jour TextSecure dans sa version la plus récente et d\'envoyer le message encore .</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Le message reçu a été chiffré via une ancienne version de TextSecure, qui n\'est plus prise en charge. \nMerci de demander à l’expéditeur de mettre à jour TextSecure dans sa version la plus récente et de renvoyer le message.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
@@ -648,5 +648,11 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Vérifié</string>
   <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Définir  TextSecure comme application SMS par défaut? </string>
+  <string name="reminder_header_sms_default_text">TextSecure n\'est pas définis comme application SMS par défaut.</string>
+  <string name="reminder_header_sms_import_title">Désirez-vous importer les SMS du système?</string>
+  <string name="reminder_header_sms_import_text">TextSecure peut copier vos SMS au sein de sa base de donnée chiffrée. </string>
+  <string name="reminder_header_push_title">Activer les messages TextSecure?</string>
+  <string name="reminder_header_push_text">Instantané, sans frais SMS et protège votre vie privé.</string>
   <!--EOF-->
 </resources>

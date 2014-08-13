@@ -6,8 +6,8 @@
   <string name="delete">Törlés</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Jelenleg: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">A kulcsok kezelése előtt meg kell adni a jelszavad...</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottad be a jelszavad!</string>
+  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">A kulcsok kezelése előtt meg kell adnod a jelszavadat...</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottad be a jelszavadat!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">üzenet beszélgetésenként</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Minden régi üzenet törlése?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Biztosan szeretnéd azonnal csonkolni az összes beszélgetésfolyamot a legutóbbi %s üzenetre?</string>
@@ -19,7 +19,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Regisztráció megszüntetése...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Az adat alapú kommunikáció regisztráció törlése.</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Letiltod az azonnali üzeneteket?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nEz letiltja az azonnali üzeneteket a regisztráció törlésével a kiszolgálón.\nA telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli használatához.\n </string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nEz letiltja az azonnali üzeneteket a regisztrációd törlésével a kiszolgálón.\nA telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli használatához.\n </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba a kiszolgálóhoz kapcsolódáskor!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Nem vagy regisztrálva az azonnali üzenetküldési szolgáltatásra...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Könyvtár frissítése</string>
@@ -64,8 +64,8 @@
   <string name="ConversationActivity_select_contact_info">Válassz névjegy adatot!</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos nem sikerült a melléklet csatolása.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sajnos a megadott videó meghaladja a maximális üzenetméret határt.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sajnos a megadott audio meghaladja a maximális üzenetméret határt.</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sajnos a megadott videó meghaladja a megengedett legnagyobb üzenet mérethatárát.</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sajnos a megadott hangállomány meghaladja a megengedett legnagyobb üzenet mérethatárát.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A fogadó címe nem érvényes SMS vagy email cím!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Az üzenet üres!</string>
   <string name="ConversationActivity_group_conversation_recipients">Csoportos beszélgetés fogadói</string>
@@ -652,5 +652,7 @@
   <string name="reminder_header_sms_default_text">A TextSecure jelenleg nem az alapértelmezett SMS alkalmzás.</string>
   <string name="reminder_header_sms_import_title">Rendszer SMS adatbázis importálása?</string>
   <string name="reminder_header_sms_import_text">A telefon SMS üzeneteit a TextSecure be tudja másolni a titkosított adatbázisába.</string>
+  <string name="reminder_header_push_title">Engedélyezed a TextSecure üzeneteket?</string>
+  <string name="reminder_header_push_text">Azonnali kézbesítés, jobb titoktartás és nincsenek SMS díjak.</string>
   <!--EOF-->
 </resources>

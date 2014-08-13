@@ -652,5 +652,7 @@
   <string name="reminder_header_sms_default_text">Attualmente TextSecure non è la tua applicazione predefinita per SMS.</string>
   <string name="reminder_header_sms_import_title">Vuoi importare gli SMS precedenti?</string>
   <string name="reminder_header_sms_import_text">TextSecure può copiare i messaggi SMS del tuo telefono nella sua banca dati cifrata.</string>
+  <string name="reminder_header_push_title">Attivare i messaggi di TextSecure?</string>
+  <string name="reminder_header_push_text">Consegna istantanea, migliore privacy, e nessun costo SMS.</string>
   <!--EOF-->
 </resources>
