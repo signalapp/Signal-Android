@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.util.Log;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 
 import ws.com.google.android.mms.pdu.PduParser;
@@ -42,23 +41,18 @@ public class MmsDownloadHelper extends MmsCommunication {
       client.setRequestMethod("GET");
       client.setRequestProperty("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
 
-      Log.w(TAG, "connecting to " + url);
+      Log.w(TAG, "Connecting to " + url);
       client.connect();
 
-      final InputStream is;
-      try {
-        is = client.getInputStream();
-      } catch (IOException ioe) {
-        Log.w(TAG, "failed with response code " + client.getResponseCode() + " / " + client.getResponseMessage());
-        throw ioe;
-      }
+      int responseCode = client.getResponseCode();
 
-      Log.w(TAG, "response code was " + client.getResponseCode() + "/" + client.getResponseMessage());
-      if (client.getResponseCode() != 200) {
+      Log.w(TAG, "Response code: " + responseCode + "/" + client.getResponseMessage());
+
+      if (responseCode != 200) {
         throw new IOException("non-200 response");
       }
 
-      return parseResponse(is);
+      return parseResponse(client.getInputStream());
     } finally {
       if (client != null) client.disconnect();
     }

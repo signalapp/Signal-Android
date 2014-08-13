@@ -89,9 +89,8 @@ public class MmsCommunication {
       cursor = DatabaseFactory.getMmsDatabase(context).getCarrierMmsInformation(apn);
 
       if (cursor == null || !cursor.moveToFirst()) {
-        MmsConnectionParameters parameters = getLocalMmsConnectionParameters(context);
-        Log.w(TAG, "Android didn't have a result, using MMSC parameters: " + parameters.get().get(0).getMmsc() + " // " + parameters.get().get(0).getProxy() + " // " + parameters.get().get(0).getPort());
-        return parameters;
+        Log.w(TAG, "Android didn't have a result, querying local parameters.");
+        return getLocalMmsConnectionParameters(context);
       }
 
       do {
@@ -100,15 +99,14 @@ public class MmsCommunication {
         String port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
 
         if (!Util.isEmpty(mmsc)) {
-          Log.w(TAG, "Using Android-provided MMSC parameters: " + mmsc + " // " + proxy + " // " + port);
+          Log.w(TAG, "Using Android-provided MMSC parameters.");
           return new MmsConnectionParameters(mmsc, proxy, port);
         }
 
       } while (cursor.moveToNext());
 
-      MmsConnectionParameters parameters = getLocalMmsConnectionParameters(context);
-      Log.w(TAG, "Android didn't have a result, using MMSC parameters: " + parameters.get().get(0).getMmsc() + " // " + parameters.get().get(0).getProxy() + " // " + parameters.get().get(0).getPort());
-      return parameters;
+      Log.w(TAG, "Android provided results were empty, querying local parameters.");
+      return getLocalMmsConnectionParameters(context);
     } catch (SQLiteException sqe) {
       Log.w(TAG, sqe);
     } catch (SecurityException se) {
@@ -150,10 +148,12 @@ public class MmsCommunication {
   }
 
   protected static byte[] parseResponse(InputStream is) throws IOException {
-    InputStream in = new BufferedInputStream(is);
+    InputStream           in   = new BufferedInputStream(is);
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     Util.copy(in, baos);
-    Log.w(TAG, "received full server response, " + baos.size() + " bytes");
+
+    Log.w(TAG, "Received full server response, " + baos.size() + " bytes");
+
     return baos.toByteArray();
   }
 
@@ -162,14 +162,16 @@ public class MmsCommunication {
   {
     HttpURLConnection urlConnection;
     URL url = new URL(urlString);
+
     if (proxy != null) {
-      Log.w(TAG, "constructing http client using a proxy");
+      Log.w(TAG, String.format("Constructing http client using a proxy: (%s:%d)", proxy, port));
       Proxy proxyRoute = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxy, port));
       urlConnection = (HttpURLConnection) url.openConnection(proxyRoute);
     } else {
-      Log.w(TAG, "constructing http client without proxy");
+      Log.w(TAG, "Constructing http client without proxy");
       urlConnection = (HttpURLConnection) url.openConnection();
     }
+
     urlConnection.setConnectTimeout(20*1000);
     urlConnection.setReadTimeout(20*1000);
     urlConnection.setUseCaches(false);

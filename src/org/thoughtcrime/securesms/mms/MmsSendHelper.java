@@ -51,38 +51,30 @@ public class MmsSendHelper extends MmsCommunication {
       client.setDoInput(true);
       client.setDoOutput(true);
       client.setRequestMethod("POST");
-      URI targetUrl = new URI(url);
-
-      if (Util.isEmpty(targetUrl.getHost()))
-        throw new IOException("Invalid target host: " + targetUrl.getHost() + " , " + targetUrl);
-
       client.setRequestProperty("Content-Type", "application/vnd.wap.mms-message");
       client.setRequestProperty("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
       client.setRequestProperty("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml");
 
-      Log.w(TAG, "connecting to " + targetUrl);
+      Log.w(TAG, "Connecting to " + url);
       client.connect();
-      Log.w(TAG, "writing mms payload, " + mms.length + " bytes");
-      OutputStream out = new BufferedOutputStream(client.getOutputStream());
+
+      Log.w(TAG, "Writing mms payload, " + mms.length + " bytes");
+      OutputStream out = client.getOutputStream();
       out.write(mms);
       out.flush();
       out.close();
-      Log.w(TAG, "payload sent");
-      final InputStream is;
-      try {
-        is = client.getInputStream();
-      } catch (IOException ioe) {
-        Log.w(TAG, "failed with response code " + client.getResponseCode() + " / " + client.getResponseMessage());
-        throw ioe;
-      }
-      Log.w(TAG, "response code was " + client.getResponseCode() + "/" + client.getResponseMessage());
-      if (client.getResponseCode() != 200) {
+
+      Log.w(TAG, "Payload sent");
+
+      int responseCode = client.getResponseCode();
+
+      Log.w(TAG, "Response code: " + responseCode + "/" + client.getResponseMessage());
+
+      if (responseCode != 200) {
         throw new IOException("non-200 response");
       }
-      return parseResponse(is);
-    } catch (URISyntaxException use) {
-      Log.w(TAG, use);
-      throw new IOException("Couldn't parse URI.");
+
+      return parseResponse(client.getInputStream());
     } finally {
       if (client != null) client.disconnect();
     }
