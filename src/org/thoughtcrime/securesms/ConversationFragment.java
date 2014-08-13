@@ -493,9 +493,10 @@ public class ConversationFragment extends SherlockListFragment
         extension = "attach";
 
       int i = 0;
-      File file = new File(outputDirectory, base+"."+extension);
-      while (file.exists())
-        file = new File(outputDirectory, base+"-"+(++i)+"."+extension);
+      File file = new File(outputDirectory, base + "." + extension);
+      while (file.exists()) {
+        file = new File(outputDirectory, base + "-" + (++i) + "." + extension);
+      }
 
       return file;
     }
