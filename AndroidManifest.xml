@@ -87,7 +87,7 @@
 
     <activity android:name=".PromptMmsActivity"
               android:label="Configure MMS Settings"
-              android:windowSoftInputMode="stateUnchanged"              
+              android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".MmsPreferencesActivity"
@@ -176,7 +176,7 @@
               android:label="@string/AndroidManifest__complete_key_exchange"
               android:theme="@style/TextSecure.Light.Dialog"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-    
+
     <activity android:name=".ApplicationPreferencesActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -298,6 +298,20 @@
             <action android:name="android.intent.action.BOOT_COMPLETED" />
         </intent-filter>
     </receiver>
+
+    <receiver android:name=".widget.TextSecureAppWidget"
+              android:icon="@drawable/icon"
+              android:label="@string/app_name">
+        <intent-filter>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.appwidget.provider"
+            android:resource="@xml/widget_info" />
+    </receiver>
+    <service android:name=".widget.UpdateWidgetService"
+             android:exported="false" />
 
        <uses-library android:name="android.test.runner" />
 </application>

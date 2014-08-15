@@ -1,0 +1,71 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal|top"
+    android:padding="@dimen/widget_margin">
+    <RelativeLayout
+        android:id="@+id/stack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:clickable="true"
+        android:layout_gravity="center_horizontal|top">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageBottom"
+            android:src="@drawable/icon"
+            android:clickable="false"
+            android:contentDescription="@string/app_name" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageTop"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignRight="@+id/imageBottom"
+            android:layout_alignTop="@+id/imageBottom"
+            android:clickable="false"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/text"
+            android:layout_alignParentEnd="false"
+            android:focusable="false"
+            android:layout_alignBottom="@+id/imageTop"
+            android:layout_alignRight="@+id/imageTop"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignTop="@+id/imageTop"
+            android:layout_alignLeft="@+id/imageTop"
+            android:clickable="false" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/app_name"
+        android:id="@+id/textView"
+        android:textColor="@android:color/primary_text_dark_nodisable"
+        android:textSize="@dimen/widget_text_size"
+        android:layout_marginTop="6dip"
+        android:singleLine="true"
+        android:shadowColor="@color/widget_text_shadow"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" />
+</LinearLayout>

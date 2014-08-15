@@ -36,8 +36,9 @@ public class PushDatabase extends Database {
     values.put(DEVICE_ID, message.getSourceDevice());
     values.put(BODY, Base64.encodeBytes(message.getBody()));
     values.put(TIMESTAMP, message.getTimestampMillis());
-
-    return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+    long id = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+    notifyIncomingListeners();
+    return id;
   }
 
   public Cursor getPending() {
@@ -46,6 +47,7 @@ public class PushDatabase extends Database {
 
   public void delete(long id) {
     databaseHelper.getWritableDatabase().delete(TABLE_NAME, ID_WHERE, new String[] {id+""});
+    notifyIncomingListeners();
   }
 
   public Reader readerFor(Cursor cursor) {
