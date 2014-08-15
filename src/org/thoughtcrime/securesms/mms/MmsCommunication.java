@@ -22,7 +22,9 @@ import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.database.ApnDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.util.Conversions;
 import org.whispersystems.textsecure.util.Util;
@@ -69,13 +71,19 @@ public class MmsCommunication {
     if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
       return getLocallyConfiguredMmsConnectionParameters(context);
     } else {
-      MmsConnectionParameters params = ApnDefaults.getMmsConnectionParameters(context);
+      try {
+        MmsConnectionParameters params = ApnDatabase.getInstance(context)
+                                                    .getMmsConnectionParameters(TelephonyUtil.getMccMnc(context),
+                                                                                TelephonyUtil.getApn(context));
 
-      if (params == null) {
-        throw new ApnUnavailableException("No parameters available from ApnDefaults.");
+        if (params == null) {
+          throw new ApnUnavailableException("No parameters available from ApnDefaults.");
+        }
+
+        return params;
+      } catch (IOException ioe) {
+        throw new ApnUnavailableException("ApnDatabase threw an IOException", ioe);
       }
-
-      return params;
     }
   }
 
@@ -180,7 +188,8 @@ public class MmsCommunication {
     return urlConnection;
   }
 
-  protected static class MmsConnectionParameters {
+  public static class MmsConnectionParameters {
+
     public class Apn {
       private final String mmsc;
       private final String proxy;
@@ -212,6 +221,14 @@ public class MmsCommunication {
           return 80;
 
         return Integer.parseInt(port);
+      }
+
+      @Override
+      public String toString() {
+        return MmsConnectionParameters.class.getSimpleName() +
+               "{ mmsc: \"" + mmsc + "\"" +
+               ", proxy: " + (proxy == null ? "none" : '"' + proxy + '"') +
+               ", port: " + (port == null ? "none" : port) + " }";
       }
     }
 
