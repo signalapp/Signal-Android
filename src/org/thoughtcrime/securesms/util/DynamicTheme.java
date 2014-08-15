@@ -32,13 +32,11 @@ public class DynamicTheme {
     String theme = TextSecurePreferences.getTheme(activity);
 
     if (theme.equals("light")) {
-      if (activity instanceof ConversationListActivity) return R.style.TextSecure_LightTheme_NavigationDrawer;
-      else if (activity instanceof ConversationActivity) return R.style.TextSecure_LightTheme_ConversationActivity;
-      else                                              return R.style.TextSecure_LightTheme;
+      if (activity instanceof ConversationActivity) return R.style.TextSecure_LightTheme_ConversationActivity;
+      else                                          return R.style.TextSecure_LightTheme;
     } else if (theme.equals("dark")) {
-      if (activity instanceof ConversationListActivity) return R.style.TextSecure_DarkTheme_NavigationDrawer;
-      else if (activity instanceof ConversationActivity) return R.style.TextSecure_DarkTheme_ConversationActivity;
-      else                                              return R.style.TextSecure_DarkTheme;
+      if (activity instanceof ConversationActivity) return R.style.TextSecure_DarkTheme_ConversationActivity;
+      else                                          return R.style.TextSecure_DarkTheme;
     }
 
     return R.style.TextSecure_LightTheme;

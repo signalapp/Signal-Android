@@ -16,18 +16,15 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +47,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
@@ -153,12 +149,6 @@ public class ConversationListFragment extends SherlockListFragment
   private void setQueryFilter(String query) {
     this.queryFilter = query;
     getLoaderManager().restartLoader(0, null, this);
-  }
-
-  public void resetQueryFilter() {
-    if (!TextUtils.isEmpty(this.queryFilter)) {
-      setQueryFilter("");
-    }
   }
 
   private void initializeSearch(SearchView searchView) {

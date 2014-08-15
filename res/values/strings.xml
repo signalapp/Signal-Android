@@ -668,7 +668,7 @@
     <string name="AndroidManifest__log_submit">Submit debug logs</string>
 
     <!-- arrays.xml -->
-    <string name="arrays__import_export">Import / Export</string>
+    <string name="arrays__import_export">Import / export</string>
     <string name="arrays__my_identity_key">My identity key</string>
 
     <!-- preferences.xml -->
