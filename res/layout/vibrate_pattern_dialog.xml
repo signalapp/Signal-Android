@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/CustomVibrateLinearLayout"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="5sp"
+    android:paddingRight="5sp">
+    <ScrollView
+        android:id="@+id/CustomVibrateScrollView"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:id="@+id/ScrollViewLinearLayout"
+            android:paddingLeft="5sp"
+            android:paddingRight="5sp"
+            android:paddingBottom="2sp"
+            android:paddingTop="2sp">
+            <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="left"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/VibratePatternLabel"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/preferences__pref_vibrate_custom_pattern_discription"
+                android:paddingTop="5sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="left"
+                android:layout_weight="1">
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextPattern"
+                    android:inputType="textNoSuggestions"
+                    android:digits="0123456789, "/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

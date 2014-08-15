@@ -110,7 +110,7 @@
     <item>white</item>
     <item>none</item>
   </string-array>
-  
+
   <string-array name="pref_led_blink_pattern_entries">
     <item>@string/preferences__fast</item>
     <item>@string/preferences__normal</item>
@@ -123,6 +123,26 @@
     <item>500,2000</item>
     <item>3000,3000</item>
     <item>custom</item>
+  </string-array>
+
+  <string-array name="pref_vibrate_entries">
+    <item>@string/preferences__default</item>
+    <item>@string/preferences__pref_vibrate_2x_Short</item>
+    <item>@string/preferences__pref_vibrate_2x_Long</item>
+    <item>@string/preferences__pref_vibrate_3x_Short</item>
+    <item>@string/preferences__pref_vibrate_3x_Long</item>
+    <item>@string/preferences__custom</item>
+    <item>@string/preferences__pref_disabled</item>
+  </string-array>
+
+  <string-array name="pref_vibrate_values" translatable="false">
+    <item>default</item>
+    <item>0,300,200,300</item>
+    <item>0,750,400,750</item>
+    <item>0,300,200,300,200,300</item>
+    <item>0,750,400,750,400,750</item>
+    <item>custom</item>
+    <item>disabled</item>
   </string-array>
 
   <string-array name="navigation_drawer_text">
