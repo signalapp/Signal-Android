@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/drawer_layout"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <fragment
             android:id="@+id/fragment_content"
             android:name="org.thoughtcrime.securesms.ConversationListFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
-    <ListView android:id="@+id/left_drawer"
-              android:layout_width="240dp"
-              android:layout_height="match_parent"
-              android:layout_gravity="start"
-              android:choiceMode="singleChoice"
-              android:dividerHeight="1dp"
-              android:background="?navigation_drawer_background"/>
 
     <!--<TextView android:id="@android:id/empty"-->
               <!--android:layout_width="fill_parent"-->
@@ -27,4 +19,4 @@
               <!--android:textColor="?conversation_text_secondary_color"-->
               <!--android:text="Empty message list" />-->
 
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>
