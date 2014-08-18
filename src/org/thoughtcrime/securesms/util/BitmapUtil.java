@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -15,6 +16,8 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import com.android.gallery3d.data.Exif;
 
 public class BitmapUtil {
   private static final String TAG = BitmapUtil.class.getSimpleName();
@@ -31,10 +34,12 @@ public class BitmapUtil {
     try {
       bitmap = createScaledBitmap(context.getContentResolver().openInputStream(uri),
                                   context.getContentResolver().openInputStream(uri),
+                                  context.getContentResolver().openInputStream(uri),
                                   maxWidth, maxHeight, false);
     } catch(OutOfMemoryError oome) {
       Log.w(TAG, "OutOfMemoryError when scaling precisely, doing rough scale to save memory instead");
       bitmap = createScaledBitmap(context.getContentResolver().openInputStream(uri),
+                                  context.getContentResolver().openInputStream(uri),
                                   context.getContentResolver().openInputStream(uri),
                                   maxWidth, maxHeight, true);
     }
@@ -79,6 +84,26 @@ public class BitmapUtil {
   {
     final BitmapFactory.Options options = getImageDimensions(measure);
     return createScaledBitmap(data, maxWidth, maxHeight, options, constrainedMemory);
+  }
+
+  public static Bitmap createScaledBitmap(InputStream measure, InputStream orient,InputStream data,
+                                          int maxWidth, int maxHeight, boolean constrainedMemory)
+      throws BitmapDecodingException
+  {
+    Bitmap bitmap         = createScaledBitmap(measure, data, maxWidth, maxHeight, constrainedMemory);
+    final int orientation = Exif.getOrientation(orient);
+
+    if (orientation != 0) {
+      return rotateBitmap(bitmap, orientation);
+    } else {
+      return bitmap;
+    }
+  }
+
+  public static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
+    Matrix matrix = new Matrix();
+    matrix.postRotate(angle);
+    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
   }
 
   private static Bitmap createScaledBitmap(InputStream data, int maxWidth, int maxHeight,
