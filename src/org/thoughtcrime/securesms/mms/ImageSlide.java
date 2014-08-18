@@ -60,8 +60,8 @@ public class ImageSlide extends Slide {
     super(context, masterSecret, part);
   }
 
-  public ImageSlide(Context context, Uri uri) throws IOException, BitmapDecodingException {
-    super(context, constructPartFromUri(context, uri));
+  public ImageSlide(Context context, MasterSecret masterSecret, Uri uri) throws IOException, BitmapDecodingException {
+    super(context, constructPartFromUri(context, masterSecret, uri));
   }
 
   @Override
@@ -77,11 +77,9 @@ public class ImageSlide extends Slide {
     }
 
     try {
-      InputStream measureStream = getPartDataInputStream();
-      InputStream dataStream    = getPartDataInputStream();
-
-      thumbnail = new BitmapDrawable(context.getResources(), BitmapUtil.createScaledBitmap(measureStream, dataStream, maxWidth, maxHeight));
-      thumbnailCache.put(part.getDataUri(), new SoftReference<Drawable>(thumbnail));
+      thumbnail = new BitmapDrawable(context.getResources(),
+                                     BitmapUtil.createScaledBitmap(context, masterSecret, getUri(), maxWidth, maxHeight));
+      thumbnailCache.put(part.getDataUri(), new SoftReference<>(thumbnail));
 
       return thumbnail;
     } catch (FileNotFoundException e) {
@@ -183,11 +181,11 @@ public class ImageSlide extends Slide {
     return SmilUtil.createMediaElement("img", document, new String(getPart().getName()));
   }
 
-  private static PduPart constructPartFromUri(Context context, Uri uri)
+  private static PduPart constructPartFromUri(Context context, MasterSecret masterSecret, Uri uri)
       throws IOException, BitmapDecodingException
   {
     PduPart part = new PduPart();
-    byte[] data  = BitmapUtil.createScaledBytes(context, uri, 1280, 1280, MAX_MESSAGE_SIZE);
+    byte[] data  = BitmapUtil.createScaledBytes(context, masterSecret, uri, 1280, 1280, MAX_MESSAGE_SIZE);
 
     part.setData(data);
     part.setDataUri(uri);

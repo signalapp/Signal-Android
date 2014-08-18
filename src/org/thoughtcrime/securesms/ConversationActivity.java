@@ -813,7 +813,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void addAttachmentImage(Uri imageUri) {
     try {
-      attachmentManager.setImage(imageUri);
+      attachmentManager.setImage(masterSecret, imageUri);
     } catch (IOException | BitmapDecodingException e) {
       Log.w(TAG, e);
       attachmentManager.clear();
