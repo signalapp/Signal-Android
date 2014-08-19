@@ -222,6 +222,7 @@ public class SessionBuilder {
         throw new InvalidKeyException("Both signed and unsigned prekeys are absent!");
       }
 
+      boolean       isExistingSession = sessionStore.containsSession(recipientId, deviceId);
       SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
       ECKeyPair     ourBaseKey        = Curve.generateKeyPair();
       ECPublicKey   theirSignedPreKey = preKey.getSignedPreKey() != null ? preKey.getSignedPreKey() :
@@ -238,8 +239,8 @@ public class SessionBuilder {
                                            Optional.fromNullable(preKey.getPreKey()) :
                                            Optional.<ECPublicKey>absent());
 
-      if (sessionRecord.getSessionState().getNeedsRefresh()) sessionRecord.archiveCurrentState();
-      else                                                   sessionRecord.reset();
+      if (isExistingSession) sessionRecord.archiveCurrentState();
+      else                   sessionRecord.reset();
 
       RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                           preKey.getSignedPreKey() == null ? 2 : 3,
