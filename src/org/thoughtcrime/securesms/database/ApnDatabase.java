@@ -37,6 +37,7 @@ import java.security.InvalidParameterException;
  */
 public class ApnDatabase {
   private static final String TAG = ApnDatabase.class.getSimpleName();
+
   private final SQLiteDatabase db;
 
   private static final String DATABASE_NAME = "apns.db";
@@ -77,6 +78,7 @@ public class ApnDatabase {
 
   private ApnDatabase(final Context context) throws IOException {
     File dbFile = context.getDatabasePath(DATABASE_NAME);
+
     if (!dbFile.getParentFile().exists() && !dbFile.getParentFile().mkdir()) {
       throw new IOException("couldn't make databases directory");
     }
@@ -84,41 +86,47 @@ public class ApnDatabase {
     Util.copy(context.getAssets().open(ASSET_PATH, AssetManager.ACCESS_STREAMING),
               new FileOutputStream(dbFile));
 
-    db = SQLiteDatabase.openDatabase(context.getDatabasePath(DATABASE_NAME).getPath(),
-                                     null, SQLiteDatabase.OPEN_READONLY);
+    this.db = SQLiteDatabase.openDatabase(context.getDatabasePath(DATABASE_NAME).getPath(),
+                                          null, SQLiteDatabase.OPEN_READONLY);
   }
 
-  public MmsCommunication.MmsConnectionParameters getMmsConnectionParameters(final String mccmnc, final String apn) {
+  public MmsCommunication.MmsConnectionParameters getMmsConnectionParameters(final String mccmnc,
+                                                                             final String apn)
+  {
 
     if (mccmnc == null) throw new InvalidParameterException("mccmnc must not be null");
 
     Cursor cursor = null;
 
-    if (apn != null) {
-      Log.w(TAG, "Querying table for MCC+MNC " + mccmnc + " and APN name " + apn);
-      cursor = db.query(TABLE_NAME, null,
-                        BASE_SELECTION + " AND " + APN_COLUMN + " = ?",
-                        new String[]{ mccmnc, apn },
-                        null, null, null);
-    }
+    try {
+      if (apn != null) {
+        Log.w(TAG, "Querying table for MCC+MNC " + mccmnc + " and APN name " + apn);
+        cursor = db.query(TABLE_NAME, null,
+                          BASE_SELECTION + " AND " + APN_COLUMN + " = ?",
+                          new String[] {mccmnc, apn},
+                          null, null, null);
+      }
 
-    if (cursor == null || !cursor.moveToFirst()) {
-      Log.w(TAG, "Querying table for MCC+MNC " + mccmnc + " without APN name");
-      cursor = db.query(TABLE_NAME, null,
-                        BASE_SELECTION,
-                        new String[]{ mccmnc },
-                        null, null, null);
-    }
+      if (cursor == null || !cursor.moveToFirst()) {
+        Log.w(TAG, "Querying table for MCC+MNC " + mccmnc + " without APN name");
+        cursor = db.query(TABLE_NAME, null,
+                          BASE_SELECTION,
+                          new String[] {mccmnc},
+                          null, null, null);
+      }
 
-    if (cursor != null && cursor.moveToFirst()) {
-      MmsConnectionParameters params = new MmsConnectionParameters(cursor.getString(cursor.getColumnIndexOrThrow(MMSC_COLUMN)),
-                                                                   cursor.getString(cursor.getColumnIndexOrThrow(MMS_PROXY_COLUMN)),
-                                                                   cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)));
-      Log.w(TAG, "returning preferred APN " + params.get().get(0));
-      return params;
-    }
+      if (cursor != null && cursor.moveToFirst()) {
+        MmsConnectionParameters params = new MmsConnectionParameters(cursor.getString(cursor.getColumnIndexOrThrow(MMSC_COLUMN)),
+                                                                     cursor.getString(cursor.getColumnIndexOrThrow(MMS_PROXY_COLUMN)),
+                                                                     cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)));
+        Log.w(TAG, "Returning preferred APN " + params.get().get(0));
+        return params;
+      }
 
-    Log.w(TAG, "No matching APNs found, returning null");
-    return null;
+      Log.w(TAG, "No matching APNs found, returning null");
+      return null;
+    } finally {
+      if (cursor != null) cursor.close();
+    }
   }
 }
