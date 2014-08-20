@@ -87,7 +87,8 @@ public class ApnDatabase {
               new FileOutputStream(dbFile));
 
     this.db = SQLiteDatabase.openDatabase(context.getDatabasePath(DATABASE_NAME).getPath(),
-                                          null, SQLiteDatabase.OPEN_READONLY);
+                                          null,
+                                          SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
   }
 
   public MmsCommunication.MmsConnectionParameters getMmsConnectionParameters(final String mccmnc,
