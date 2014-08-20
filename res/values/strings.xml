@@ -451,21 +451,25 @@
     <string name="conversation_activity__type_message_mms_insecure">Send insecure MMS</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
+    <string name="conversation_activity__window_description">Conversation with %1$s</string>
+    <string name="conversation_activity__compose_description">Message composition</string>
+    <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
 
     <!-- conversation_item -->
     <string name="conversation_item__mms_image_description">Media message</string>
     <string name="conversation_item__play_button_description">Play button</string>
-    <string name="conversation_item__secure_message_description">Secure message indicator</string>
+    <string name="conversation_item__secure_message_description">Secure message</string>
 
     <!-- conversation_item_sent -->
     <string name="conversation_item_sent__download">Download</string>
     <string name="conversation_item_sent__downloading">Downloading</string>
-    <string name="conversation_item_sent__send_failed_indicator_description">Send Failed Indicator</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Send Failed</string>
     <string name="conversation_item_sent__pending_approval_description">Pending Approval</string>
-    <string name="conversation_item_sent__delivered_description">Delivered Indicator</string>
+    <string name="conversation_item_sent__delivered_description">Delivered</string>
 
     <!-- conversation_item_received -->
     <string name="conversation_item_received__download">Download</string>
+    <string name="conversation_item_received__contact_photo_description">Contact photo</string>
     <string name="conversation_item_received__downloading">Downloading</string>
 
     <!-- conversation_fragment_cab -->

@@ -625,6 +625,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     }
 
     this.getSupportActionBar().setTitle(title);
+    getWindow().getDecorView().setContentDescription(getString(R.string.conversation_activity__window_description, title));
 
     if (subtitle != null && !Util.isEmpty(subtitle))
       this.getSupportActionBar().setSubtitle(PhoneNumberUtils.formatNumber(subtitle));
@@ -712,17 +713,17 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
     if (isPushDestination) {
       sendButton.setImageDrawable(drawables.getDrawable(0));
-      setComposeTextHint(getString(R.string.conversation_activity__type_message_push));
+      setComposeHint(getString(R.string.conversation_activity__type_message_push));
     } else if (isSecureDestination) {
       sendButton.setImageDrawable(drawables.getDrawable(1));
-      setComposeTextHint(attachmentManager.isAttachmentPresent() ?
-                             getString(R.string.conversation_activity__type_message_mms_secure) :
-                             getString(R.string.conversation_activity__type_message_sms_secure));
+      setComposeHint(attachmentManager.isAttachmentPresent() ?
+                     getString(R.string.conversation_activity__type_message_mms_secure) :
+                     getString(R.string.conversation_activity__type_message_sms_secure));
     } else {
       sendButton.setImageDrawable(drawables.getDrawable(2));
-      setComposeTextHint((attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient()) ?
-                             getString(R.string.conversation_activity__type_message_mms_insecure) :
-                             getString(R.string.conversation_activity__type_message_sms_insecure));
+      setComposeHint((attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient()) ?
+                     getString(R.string.conversation_activity__type_message_mms_insecure) :
+                     getString(R.string.conversation_activity__type_message_sms_insecure));
     }
 
     drawables.recycle();
@@ -1210,13 +1211,14 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     this.composeText.setText(text);
   }
 
-  private void setComposeTextHint(String hint){
+  private void setComposeHint(String hint){
     if (hint == null) {
       this.composeText.setHint(null);
     } else {
       SpannableString span = new SpannableString(hint);
       span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
       this.composeText.setHint(span);
+      this.sendButton.setContentDescription(hint);
     }
   }
 

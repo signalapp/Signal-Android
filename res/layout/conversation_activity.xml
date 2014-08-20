@@ -76,6 +76,7 @@
                         android:layout_height="fill_parent"
                         android:layout_gravity="center_vertical"
                         android:background="@drawable/touch_highlight_background"
+                        android:contentDescription="@string/conversation_activity__emoji_toggle_description"
                         android:padding="10dp"/>
 
                 <EditText
@@ -93,6 +94,7 @@
                         android:maxLength="1000"
                         android:maxLines="4"
                         android:nextFocusRight="@+id/send_button"
+                        android:contentDescription="@string/conversation_activity__compose_description"
                         android:textColor="?conversation_editor_text_color" />
 
                 <ImageButton
