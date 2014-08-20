@@ -108,6 +108,7 @@ public class ApnDatabase {
       }
 
       if (cursor == null || !cursor.moveToFirst()) {
+        if (cursor != null) cursor.close();
         Log.w(TAG, "Querying table for MCC+MNC " + mccmnc + " without APN name");
         cursor = db.query(TABLE_NAME, null,
                           BASE_SELECTION,
