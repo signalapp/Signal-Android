@@ -320,9 +320,7 @@
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Tải xuống</string>
   <string name="conversation_item_sent__downloading">Đang tải xuống</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Dấu Chỉ Gửi Thất Bại</string>
   <string name="conversation_item_sent__pending_approval_description">Chờ Chấp Thuận</string>
-  <string name="conversation_item_sent__delivered_description">Dấu Chỉ Phân Phối</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Tải xuống</string>
   <string name="conversation_item_received__downloading">Đang tải xuống</string>
@@ -430,7 +428,6 @@
   <string name="AndroidManifest__change_passphrase">Đổi mật khẩu</string>
   <string name="AndroidManifest__manage_identity_keys">Quản trị chìa khóa nhận diện</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Nhập / Xuất</string>
   <!--preferences.xml-->
   <string name="preferences__general">Tổng quát</string>
   <string name="preferences__push_sms_category">Đẩy và SMS</string>

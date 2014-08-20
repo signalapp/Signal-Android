@@ -341,18 +341,22 @@
   <string name="conversation_activity__type_message_mms_insecure">Verstuur onveilige MMS</string>
   <string name="conversation_activity__send">Verstuur</string>
   <string name="conversation_activity__remove">Verwijder</string>
+  <string name="conversation_activity__window_description">Gesprek met %1$s</string>
+  <string name="conversation_activity__compose_description">Bericht samenstelling</string>
+  <string name="conversation_activity__emoji_toggle_description">Wissel emoji toetsenbord</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mediabericht</string>
   <string name="conversation_item__play_button_description">Afspeelknop</string>
-  <string name="conversation_item__secure_message_description">Beveiligd bericht indicator</string>
+  <string name="conversation_item__secure_message_description">Beveiligd bericht</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Download</string>
   <string name="conversation_item_sent__downloading">Downloaden</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Verzenden Mislukt Indicator</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Verzenden is mislukt</string>
   <string name="conversation_item_sent__pending_approval_description">In afwachting van goedkeuring</string>
-  <string name="conversation_item_sent__delivered_description">Afgeleverd Indicator</string>
+  <string name="conversation_item_sent__delivered_description">Bezorgd </string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Download</string>
+  <string name="conversation_item_received__contact_photo_description">Contact Foto</string>
   <string name="conversation_item_received__downloading">Downloaden</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode"> Meerdere tegelijk selecteren</string>
@@ -481,7 +485,7 @@
   <string name="AndroidManifest__complete_key_exchange">Sleuteluitwisseling voltooien</string>
   <string name="AndroidManifest__log_submit">Debug logs indienen</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importeer / Exporteer</string>
+  <string name="arrays__import_export">Impoteer / exporteer </string>
   <string name="arrays__my_identity_key">Mijn identiteitssleutel</string>
   <!--preferences.xml-->
   <string name="preferences__general">Algemeen</string>

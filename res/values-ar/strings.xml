@@ -310,7 +310,6 @@
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
   <string name="AndroidManifest__manage_identity_keys">إدارة مفاتيح الهوية</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">استيراد/تصدير</string>
   <!--preferences.xml-->
   <string name="preferences__general">عام</string>
   <string name="preferences__pref_all_sms_title">إستخدم لإستقبال كل الرسائل النصية القصيرة</string>

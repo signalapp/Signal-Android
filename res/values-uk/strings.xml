@@ -350,7 +350,6 @@
   <string name="AndroidManifest__change_passphrase">Змінити фразу-ключ</string>
   <string name="AndroidManifest__manage_identity_keys">Керування ключами ідентифікації</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Імпортування / Експортування</string>
   <!--preferences.xml-->
   <string name="preferences__general">Загальні</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Використовувати TextSecure для перегляду та зберігання всіх вхідних текстових повідомлень</string>

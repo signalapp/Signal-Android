@@ -260,7 +260,6 @@
   <string name="AndroidManifest__change_passphrase">שנה סיסמה</string>
   <string name="AndroidManifest__manage_identity_keys">נהל מפתחות זהות</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">יבא / יצא</string>
   <!--preferences.xml-->
   <string name="preferences__general">כללי</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות הטקסט</string>

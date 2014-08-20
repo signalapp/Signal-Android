@@ -367,7 +367,6 @@
   <string name="AndroidManifest__change_passphrase">Ganti Kata Kunci</string>
   <string name="AndroidManifest__manage_identity_keys">Kelola Kunci Identitas</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Import / Export</string>
   <!--preferences.xml-->
   <string name="preferences__general">Umum</string>
   <string name="preferences__pref_all_sms_title">Terima semua SMS</string>

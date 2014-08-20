@@ -341,18 +341,22 @@
   <string name="conversation_activity__type_message_mms_insecure">Pošlji nezavarovan MMS</string>
   <string name="conversation_activity__send">Pošlji</string>
   <string name="conversation_activity__remove">Odstrani</string>
+  <string name="conversation_activity__window_description">Pogovor: %1$s</string>
+  <string name="conversation_activity__compose_description">Sestavljanje sporočila</string>
+  <string name="conversation_activity__emoji_toggle_description">Vklop tipkovnice emoji</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multiedijsko sporočilo</string>
   <string name="conversation_item__play_button_description">Gumb za predvajanje</string>
-  <string name="conversation_item__secure_message_description">Šifrirano sporočilo</string>
+  <string name="conversation_item__secure_message_description">Zavarovano sporočilo</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Prenos</string>
   <string name="conversation_item_sent__downloading">Prenašam</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Neuspelo pošiljanje</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Pošiljanje ni uspelo</string>
   <string name="conversation_item_sent__pending_approval_description">Potrdilo o oddaji</string>
-  <string name="conversation_item_sent__delivered_description">Dostavljeno sporočilo</string>
+  <string name="conversation_item_sent__delivered_description">Dostavljeno</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Prenos</string>
+  <string name="conversation_item_received__contact_photo_description">Fotografija stika</string>
   <string name="conversation_item_received__downloading">Prenašam</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Skupinski način izbire</string>

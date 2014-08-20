@@ -373,7 +373,6 @@
   <string name="AndroidManifest__change_passphrase">Canvia frase contrasenya</string>
   <string name="AndroidManifest__manage_identity_keys">Gestiona claus d\'identitat</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importa / Exporta</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges de text entrants</string>

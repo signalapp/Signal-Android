@@ -341,18 +341,22 @@
   <string name="conversation_activity__type_message_mms_insecure">Enviar MMS inseguro</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Remover</string>
+  <string name="conversation_activity__window_description">Conversa com %1$s</string>
+  <string name="conversation_activity__compose_description">Composição de mensagem</string>
+  <string name="conversation_activity__emoji_toggle_description">Alternar teclado emoji</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mensagem multimídia</string>
   <string name="conversation_item__play_button_description">Botão Tocar</string>
-  <string name="conversation_item__secure_message_description">Indicador de mensagem segura</string>
+  <string name="conversation_item__secure_message_description">Mensagem segura</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Transferir</string>
   <string name="conversation_item_sent__downloading">A transferir</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Indicador de falha de envio</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Envio falhou</string>
   <string name="conversation_item_sent__pending_approval_description">Aprovação pendente</string>
-  <string name="conversation_item_sent__delivered_description">Indicador de entrega</string>
+  <string name="conversation_item_sent__delivered_description">Entregue</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Transferir</string>
+  <string name="conversation_item_received__contact_photo_description">Foto do contato</string>
   <string name="conversation_item_received__downloading">A transferir</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de seleção em grupo</string>
@@ -481,7 +485,7 @@
   <string name="AndroidManifest__complete_key_exchange">Completar troca de chaves</string>
   <string name="AndroidManifest__log_submit">Enviar logs de depuração</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importar / Exportar</string>
+  <string name="arrays__import_export">Importar / exportar</string>
   <string name="arrays__my_identity_key">Minha chave de identidade</string>
   <!--preferences.xml-->
   <string name="preferences__general">Geral</string>
@@ -652,5 +656,7 @@
   <string name="reminder_header_sms_default_text">O TextSecure não é atualmente o seu app SMS padrão.</string>
   <string name="reminder_header_sms_import_title">Importar mensagens SMS do sistema?</string>
   <string name="reminder_header_sms_import_text">O TextSecure pode copiar as mensagens SMS do seu dispositivo para a base de dados criptografada do TextSecure.</string>
+  <string name="reminder_header_push_title">Habilitar mensagens TextSecure?</string>
+  <string name="reminder_header_push_text">Entrega imediata, maior privacidade e sem despesas de SMS.</string>
   <!--EOF-->
 </resources>

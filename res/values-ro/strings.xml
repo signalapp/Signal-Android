@@ -281,9 +281,7 @@
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Descarca</string>
   <string name="conversation_item_sent__downloading">Se descarca</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Indicator Transmisie Eşuată</string>
   <string name="conversation_item_sent__pending_approval_description">Aprobare În Curs</string>
-  <string name="conversation_item_sent__delivered_description">Indicator Transmis</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Descarca</string>
   <string name="conversation_item_received__downloading">Se descarca</string>
@@ -389,7 +387,6 @@
   <string name="AndroidManifest__change_passphrase">Schimbă parola</string>
   <string name="AndroidManifest__manage_identity_keys">Administrează cheile de identitate</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importă / Exportă</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
   <string name="preferences__push_sms_category">Push și SMS</string>

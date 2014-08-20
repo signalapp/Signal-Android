@@ -322,13 +322,10 @@
   <string name="conversation_activity__send">ಕಳುಹಿಸು</string>
   <string name="conversation_activity__remove">ತೆಗೆದುಹಾಕಿ</string>
   <!--conversation_item-->
-  <string name="conversation_item__secure_message_description">ಸುರಕ್ಷಿತ ಸಂದೇಶದ ಸೂಚಕ</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">ಡೌನ್ಲೋಡ್</string>
   <string name="conversation_item_sent__downloading">ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">ವಿಫಲವಾದ ಸೂಚಕವನ್ನು ಕಳುಹಿಸಿ</string>
   <string name="conversation_item_sent__pending_approval_description">ಅನುಮೋದನೆಗೆ ಬಾಕಿ ಉಳಿದಿದೆ</string>
-  <string name="conversation_item_sent__delivered_description">ವಿತರಣೆ ಸೂಚಕ</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">ಡೌನ್ಲೋಡ್</string>
   <string name="conversation_item_received__downloading">ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
@@ -447,7 +444,6 @@
   <string name="AndroidManifest__verify_identity">ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="AndroidManifest__manage_identity_keys">ಗುರುತಿನ ಕೀಲಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
   <!--preferences.xml-->
   <string name="preferences__general">ಸಾಮಾನ್ಯ</string>
   <string name="preferences__pref_all_sms_title">ಎಲ್ಲಾ ಎಸ್ ಎಂ ಎಸ್ ಪಡೆಯುವಿರಿ</string>

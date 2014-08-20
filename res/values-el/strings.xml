@@ -344,13 +344,10 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Μήνυμα πολυμέσων</string>
   <string name="conversation_item__play_button_description">Κουμπί αναπαραγωγής</string>
-  <string name="conversation_item__secure_message_description">Ένδειξη ασφαλούς μηνύματος</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Λήψη</string>
   <string name="conversation_item_sent__downloading">Γίνεται λήψη</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">\'Ενδειξη αποτυχίας αποστολής</string>
   <string name="conversation_item_sent__pending_approval_description">Eκκρεμής έγκριση</string>
-  <string name="conversation_item_sent__delivered_description">\'Ενδειξη παραλαβής</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Λήψη</string>
   <string name="conversation_item_received__downloading">Γίνεται λήψη</string>
@@ -481,7 +478,6 @@
   <string name="AndroidManifest__complete_key_exchange">Ολοκλήρωση Ανταλλαγής Κλειδιών</string>
   <string name="AndroidManifest__log_submit">Υποβολή διαγνωστικού αρχείου.</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Εισαγωγή / Εξαγωγή</string>
   <string name="arrays__my_identity_key">Το Κλειδί Ταυτότητάς Μου</string>
   <!--preferences.xml-->
   <string name="preferences__general">Γενικά</string>

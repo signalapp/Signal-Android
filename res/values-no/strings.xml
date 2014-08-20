@@ -341,18 +341,22 @@
   <string name="conversation_activity__type_message_mms_insecure">Send usikret MMS</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slett</string>
+  <string name="conversation_activity__window_description">Samtale med %1$s</string>
+  <string name="conversation_activity__compose_description">Meldingssammensetning</string>
+  <string name="conversation_activity__emoji_toggle_description">Emoji tastatur av/på</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimediamelding</string>
   <string name="conversation_item__play_button_description">Avspill knapp</string>
-  <string name="conversation_item__secure_message_description">Indikator for sikret melding</string>
+  <string name="conversation_item__secure_message_description">Sikret melding</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Last ned</string>
   <string name="conversation_item_sent__downloading">Laster ned</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Indikator for feilet melding</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Send mislyktes</string>
   <string name="conversation_item_sent__pending_approval_description">Avventer godkjenning</string>
-  <string name="conversation_item_sent__delivered_description">Indikator for levert melding</string>
+  <string name="conversation_item_sent__delivered_description">Levert</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Last ned</string>
+  <string name="conversation_item_received__contact_photo_description">Kontaktbilde</string>
   <string name="conversation_item_received__downloading">Laster ned</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch valg modus</string>
@@ -481,7 +485,7 @@
   <string name="AndroidManifest__complete_key_exchange">Fullfør nøkkelutveksling</string>
   <string name="AndroidManifest__log_submit">Send debug logger</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importer / eksporter</string>
+  <string name="arrays__import_export">Importere / eksportere</string>
   <string name="arrays__my_identity_key">Min ID-nøkkel</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>

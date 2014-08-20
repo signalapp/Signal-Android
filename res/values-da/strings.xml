@@ -334,7 +334,6 @@
   <string name="AndroidManifest__change_passphrase">Ændre kodeord</string>
   <string name="AndroidManifest__manage_identity_keys">Administrer ID-nøgler</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importer / eksporter</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>

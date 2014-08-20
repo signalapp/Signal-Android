@@ -344,13 +344,10 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Medya mesajı</string>
   <string name="conversation_item__play_button_description">Oynat butonu</string>
-  <string name="conversation_item__secure_message_description">Güvenli mesaj göstergesi</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">İndir</string>
   <string name="conversation_item_sent__downloading">İndiriliyor</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Başarısız Gönderi Göstergesi</string>
   <string name="conversation_item_sent__pending_approval_description">Bekleyen Onaylama</string>
-  <string name="conversation_item_sent__delivered_description">Ulaştırılma Göstergesi</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">İndir</string>
   <string name="conversation_item_received__downloading">İndiriliyor</string>
@@ -481,7 +478,6 @@
   <string name="AndroidManifest__complete_key_exchange">Anahtar değişimini tamamla</string>
   <string name="AndroidManifest__log_submit">Hata ayıklama kayıtlarını gönder</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">İçeri / Dışarı Aktar</string>
   <string name="arrays__my_identity_key">Kimlik anahtarım</string>
   <!--preferences.xml-->
   <string name="preferences__general">Genel</string>

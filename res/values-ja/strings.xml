@@ -17,7 +17,17 @@
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！\n通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">登録破棄中…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">データ通信を行うために登録を取消しています</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">プッシュメッセージを無効化しますか？</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nサーバーから登録を取消し、プッシュメッセージを無効化します。\n再びプッシュメッセージを使用するには、</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">あなたはプッシュサービスに登録していません。</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">ダイレクトリーを更新しています</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">プッシュダイレクトリーを更新中…</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">デフォルトSMSアップをタッチで変更</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS受信が無効です。</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">タッチでTextSecureをデフォルトのSMSアップにできます</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
@@ -31,27 +41,56 @@
   <string name="ConversationItem_received_and_processed_key_exchange_message">鍵交換のメッセージを受信、処理しました。</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">エラー、古い鍵交換のメッセージを受信してしまいました。</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">鍵交換のメッセージを受信しました。クリックして実行してください。</string>
+  <string name="ConversationItem_received_plaintext_message_click_to_terminate">セキュア・セッションが開いた状態で平文SMSを受信しました。開いてもセキュア・セッションが開いていなければ、あなたが送信するメッセージは読めません。クリックしてセキュア・セッションを終了します。</string>
+  <string name="ConversationItem_group_action_left">%1$sがグループを抜けました。</string>
+  <string name="ConversationItem_group_action_joined">%1$sがグループに参加しました。</string>
   <string name="ConversationItem_group_action_modify">%1$sがグループを更新しました。</string>
+  <string name="ConversationItem_click_to_approve_sms">タップすれば代替としてSMSを使います。</string>
+  <string name="ConversationItem_click_to_approve_mms">タップすれば代替としてMMSを使います。</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">タップすれば代替として不安全通信を使います。</string>
+  <string name="ConversationItem_click_to_approve_sms_dialog_title">代替としてSMSに切り替わりますか？</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">代替としてMMSに切り替わりますか？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">代替として暗号化されていないSMSに切り替わりますか？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">セキュア・セッションが構築できなかったため、このメッセージは暗号化<b>されません</b>。\n\n暗号化されていないメッセージを送信しますか?</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%sさんとセキュア・セッションを開始しますか？</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">セキュア・セッション終了の確認</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">このセキュア・セッションを本当に終了しますか？</string>
+  <string name="ConversationActivity_delete_thread_confirmation">スレッド削除確認</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">この会話を完全に削除してもよろしいですか？</string>
   <string name="ConversationActivity_add_attachment">添付</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
+  <string name="ConversationActivity_compose_message">メッセージ作成</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">添付中にエラーが発生しました。</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">選択された動画は容量を超えています。</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">選択された音声ファイルは容量を超えています。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">受信先のSMS又はEメールアドレスが有効ではありません。</string>
   <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です。</string>
+  <string name="ConversationActivity_group_conversation_recipients">グループチャットの宛先</string>
+  <string name="ConversationActivity_group_conversation">グループチャット</string>
+  <string name="ConversationActivity_unnamed_group">無名グループ</string>
   <string name="ConversationActivity_d_recipients_in_group">参加者%d人</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">参加者1人</string>
+  <string name="ConversationActivity_saved_draft">下書き</string>
   <string name="ConversationActivity_invalid_recipient">受信先が無効です。</string>
+  <string name="ConversationActivity_calls_not_supported">通話は対応されていません</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末は、ダイヤル機能に対応していないようです。</string>
+  <string name="ConversationActivity_leave_group">グループを抜けますか？</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを本当に抜けますか？</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">通信: %1$s\n送受信: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n通信: %2$s\n送信: %3$s\n受信: %4$s</string>
+  <string name="ConversationFragment_confirm_message_delete">メッセージ削除の確認</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">このメッセージを完全に削除してもよろしいですか？</string>
+  <string name="ConversationFragment_save_to_sd_card">SDカードに保存しますか？</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">このファイルは暗号化されたデータベースに保存されています。SDカードに保存される方のバージョンは暗号化されませんが、この作業を続けますか？</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">SDカードへの添付ファイル保存中にエラーが起きました。</string>
   <string name="ConversationFragment_success_exclamation">成功しました。</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">SDカードに書き込めませんでした。</string>
+  <string name="ConversationFragment_saving_attachment">添付ファイルを保存しています</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">SDカードに添付ファイルを保存中…</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">鍵交換のメッセージ…</string>
@@ -63,9 +102,12 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
   <!--ShareActivity-->
+  <string name="ShareActivity_share_with">共有</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">SDカードへエクスポート</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">これで、あなたの暗号化された鍵、設定、及びメッセージはSDカードへエクスポートされますが、よろしいですか？</string>
   <string name="ExportFragment_export">エクスポート</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">SDカードへエクスポートしますか？</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">警告：この作業によって、あなたのTextSecureメッセージは、暗号化されていない状態でSDカードへとエクスポートされます！</string>
   <string name="ExportFragment_cancel">中止</string>
   <string name="ExportFragment_exporting">エクスポート中…</string>
@@ -75,16 +117,32 @@
   <string name="ExportFragment_success">成功しました。</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">暗号化されたキー、設定及びメッセージをエクスポート中…</string>
   <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
+  <string name="GroupCreateActivity_actionbar_update_title">グループを更新する</string>
+  <string name="GroupCreateActivity_group_name_hint">グループ名</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">新規MMSグループ</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">TextSecureのグループに対応していない連絡先を選択しましたので、このグループはMMSで通信を行います。</string>
+  <string name="GroupCreateActivity_you_dont_support_push">あなたがデータチャンネルを使用する登録をしていないので、TextSecureグループは無効です。</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">予期せぬエラーが発生したため、グループ作成が失敗しました。</string>
+  <string name="GroupCreateActivity_contacts_no_members">最低一人でもグループに参加する必要があります！</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">グループ参加者一人の電話番号が解読できません。番号を訂正するか、その宛先をグループから削除してください。</string>
+  <string name="GroupCreateActivity_file_io_exception">ファイルI/Oエラーが発生したため、一時イメージファイルが作成できませんでした。</string>
+  <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
+  <string name="GroupCreateActivity_menu_create_title">グループ作成</string>
   <string name="GroupCreateActivity_creating_group">%1$sを作成中...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">既存のTextSecureグループに非TextSecure連絡先は追加できません。</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">インポート</string>
   <string name="ImportExportActivity_export">エクスポート</string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">システムのSMSデータベースをインポートしますか？</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">これで、携帯端末の既定SMSデータベースにあるメッセージがTextSecureにインポートされます。以前にこの作業を行ったことがあれば、メッセージが重複する場合があります。</string>
   <string name="ImportFragment_import">インポート</string>
   <string name="ImportFragment_cancel">中止</string>
+  <string name="ImportFragment_restore_encrypted_backup">暗号化されたバックアップを復元しますか？</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
   <string name="ImportFragment_restore">復元</string>
+  <string name="ImportFragment_import_plaintext_backup">平文のバックアップをインポートしますか？</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前に同じバックアップ・ファイルをインポートしたことがある場合、メッセージが重複することになります。</string>
   <string name="ImportFragment_importing">インポート中…</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">非暗号テキストのバックアップ・ファイルをインポート中…</string>
@@ -101,9 +159,13 @@
   <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">MMSをダウンロードするための接続ができません、後でもう一度試してください…</string>
   <string name="MmsDownloader_error_storing_mms">MMS保存中にエラーがありました。</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMSのプロバイダー接続中にエラーが発生しました…</string>
+  <string name="MmsDownloader_error_reading_mms_settings">無線プロバイダーのMMS設定が見つかりませんでした。</string>
   <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">マルチメディアーメッセージ</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">対応されていない古いバージョンのTextSecureから暗号化されたメッセージを受信しました。最新バージョンに更新して、再び送信するよう伝えてください</string>
   <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">合言葉が一致していません！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスワードが正しくありません。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
@@ -216,6 +278,7 @@
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">連絡先はありません。</string>
   <!--single_contact_selection_activity-->
+  <string name="SingleContactSelectionActivity_updating_directory">ダイレクトリーを更新しています</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">選択</string>
   <!--contact_selection_recent_activity-->
@@ -306,7 +369,6 @@
   <string name="AndroidManifest__change_passphrase">パスワードの変更</string>
   <string name="AndroidManifest__manage_identity_keys">認証キーを管理</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">インポート／エクスポート</string>
   <!--preferences.xml-->
   <string name="preferences__general">一般設定</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキストメッセージ）の表示、及び保存にTextSecureを使用します</string>
@@ -394,6 +456,7 @@
   <string name="conversation_secure_verified__menu_security">セキュリティ</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付</string>
+  <string name="conversation__menu_update_group">グループを更新する</string>
   <string name="conversation__menu_add_contact_info">連絡先情報を追加する</string>
   <string name="conversation__menu_delete_thread">スレッドを削除</string>
   <!--conversation_group_options-->
@@ -408,6 +471,7 @@
   <!--text_secure_locked-->
   <string name="text_secure_locked__menu_unlock">ロック解除</string>
   <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_group">新規グループ</string>
   <string name="text_secure_normal__menu_settings">設定</string>
   <string name="text_secure_normal__menu_clear_passphrase">ロック</string>
   <!--verify_keys-->

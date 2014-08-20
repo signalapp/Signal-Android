@@ -37,7 +37,7 @@
   <string name="ConversationItem_expires_s">Går ut: %s</string>
   <string name="ConversationItem_error_sending_message">Det gick inte att skicka meddelandet</string>
   <string name="ConversationItem_view_secure_media_question">Visa skyddad fil?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denna mediefil har lagrats krypterat. För att öppna den i en en extern visare måste den tillfälligt dekrypteras och skrivas till disk. Är du säker på att du vill göra detta?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denna fil har lagrats i en krypterad databas. För att öppna den med en extern visare behöver informationen tyvärr tillfälligt dekrypteras och skrivas till disken. Är du säker på att du vill göra detta?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Tog emot och bearbetade meddelande för nyckelutbyte.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Ett fel uppstod. Mottog ett gammalt meddelande för nyckelutbyte.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Tog emot meddelande för nyckelutbyte, tryck för att behandla.</string>
@@ -341,16 +341,15 @@
   <string name="conversation_activity__type_message_mms_insecure">Skicka okrypterat MMS</string>
   <string name="conversation_activity__send">Skicka</string>
   <string name="conversation_activity__remove">Ta bort</string>
+  <string name="conversation_activity__window_description">Meddelanden med %1$s</string>
+  <string name="conversation_activity__compose_description">Skapa meddelande</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mediameddelande</string>
   <string name="conversation_item__play_button_description">Playknapp</string>
-  <string name="conversation_item__secure_message_description">Säkert Meddelande-indikator</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Ladda ner</string>
   <string name="conversation_item_sent__downloading">Laddar ner</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Försändelse Misslyckades-indikator</string>
   <string name="conversation_item_sent__pending_approval_description">Avvaktar godkännande</string>
-  <string name="conversation_item_sent__delivered_description">Försändelse Lyckades-indikator</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Ladda ner</string>
   <string name="conversation_item_received__downloading">Laddar ner</string>
@@ -481,7 +480,6 @@
   <string name="AndroidManifest__complete_key_exchange">Slutför nyckelutbyte</string>
   <string name="AndroidManifest__log_submit">Skicka in loggarna</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importera / Exportera</string>
   <string name="arrays__my_identity_key">Min identitetsnyckel</string>
   <!--preferences.xml-->
   <string name="preferences__general">Allmänt</string>

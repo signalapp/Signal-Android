@@ -344,13 +344,10 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">MMS-сообщение</string>
   <string name="conversation_item__play_button_description">Воспроизведение</string>
-  <string name="conversation_item__secure_message_description">Индикатор защищённого сообщения</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Скачать</string>
   <string name="conversation_item_sent__downloading">Скачивание</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Индикатор ошибки при отправке</string>
   <string name="conversation_item_sent__pending_approval_description">Ожидается одобрение</string>
-  <string name="conversation_item_sent__delivered_description">Индикатор успешной доставки</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Скачать</string>
   <string name="conversation_item_received__downloading">Скачивание</string>
@@ -481,7 +478,6 @@
   <string name="AndroidManifest__complete_key_exchange">Завершить обмен ключами</string>
   <string name="AndroidManifest__log_submit">Отправить журнал отладки</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Импорт и экспорт</string>
   <string name="arrays__my_identity_key">Мой ключ</string>
   <!--preferences.xml-->
   <string name="preferences__general">Общие</string>

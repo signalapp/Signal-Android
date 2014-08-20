@@ -283,13 +283,10 @@
   <string name="conversation_activity__remove">Odstrániť</string>
   <!--conversation_item-->
   <string name="conversation_item__play_button_description">Prehrávacie tlačidlo</string>
-  <string name="conversation_item__secure_message_description">Bezpečný ukazovateľ správ</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Stiahnuť</string>
   <string name="conversation_item_sent__downloading">Sťahujem</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Ukazovateľ chybného poslania</string>
   <string name="conversation_item_sent__pending_approval_description">Čaká na schválenie</string>
-  <string name="conversation_item_sent__delivered_description">Ukazovateľ doručenia</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Stiahnuť</string>
   <string name="conversation_item_received__downloading">Sťahujem</string>
@@ -398,7 +395,6 @@
   <string name="AndroidManifest__complete_key_exchange">Dokončiť vzájomnú výmenu kľúčov</string>
   <string name="AndroidManifest__log_submit">Odošli ladiaci log</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Import / Export</string>
   <string name="arrays__my_identity_key">Môj kľúč totožnosti</string>
   <!--preferences.xml-->
   <string name="preferences__general">Všeobecné</string>

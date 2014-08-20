@@ -341,18 +341,22 @@
   <string name="conversation_activity__type_message_mms_insecure">Enviar MMS inseguro</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Eliminar</string>
+  <string name="conversation_activity__window_description">Conversación con %1$s</string>
+  <string name="conversation_activity__compose_description">Composición de mensaje</string>
+  <string name="conversation_activity__emoji_toggle_description">Cambiar a teclado emoji</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mensaje multimedia</string>
   <string name="conversation_item__play_button_description">Botón de reproducción</string>
-  <string name="conversation_item__secure_message_description">Indicador de mensaje seguro</string>
+  <string name="conversation_item__secure_message_description">Asegurar mensaje</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Descarga</string>
   <string name="conversation_item_sent__downloading">Descargando</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Indicador de envío fallido</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Fallo al enviar</string>
   <string name="conversation_item_sent__pending_approval_description">Pendiente de aprobación</string>
-  <string name="conversation_item_sent__delivered_description">Indicador de entregado</string>
+  <string name="conversation_item_sent__delivered_description">Entregado</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Descarga</string>
+  <string name="conversation_item_received__contact_photo_description">Foto de contacto</string>
   <string name="conversation_item_received__downloading">Descargando</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección por lotes</string>
@@ -481,7 +485,7 @@
   <string name="AndroidManifest__complete_key_exchange">Completar intercambio de claves</string>
   <string name="AndroidManifest__log_submit">Enviar registros (logs) de depuración</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importar / Exportar</string>
+  <string name="arrays__import_export">Importar / exportar</string>
   <string name="arrays__my_identity_key">Mi clave de identidad</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>

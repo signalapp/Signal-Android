@@ -344,13 +344,10 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Wiadomość multimedialna</string>
   <string name="conversation_item__play_button_description">Przycisk Play</string>
-  <string name="conversation_item__secure_message_description">Wskaźnik bezpiecznej wiadomości</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Pobierz</string>
   <string name="conversation_item_sent__downloading">Pobieranie</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Wskaźnik nieudanej próby wysyłania</string>
   <string name="conversation_item_sent__pending_approval_description">Oczekuję akceptacji</string>
-  <string name="conversation_item_sent__delivered_description">Wskaźnik dostarczenia</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Pobierz</string>
   <string name="conversation_item_received__downloading">Pobieranie</string>
@@ -481,7 +478,6 @@
   <string name="AndroidManifest__complete_key_exchange">Ukończ wymianę kluczy</string>
   <string name="AndroidManifest__log_submit">Wyślij logi debugowania</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Import / Eksport</string>
   <string name="arrays__my_identity_key">Mój klucz tożsamości</string>
   <!--preferences.xml-->
   <string name="preferences__general">Ogólne</string>

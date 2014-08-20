@@ -341,18 +341,22 @@
   <string name="conversation_activity__type_message_mms_insecure">发送不安全的彩信</string>
   <string name="conversation_activity__send">发送</string>
   <string name="conversation_activity__remove">删除</string>
+  <string name="conversation_activity__window_description">与 %1$s 的对话</string>
+  <string name="conversation_activity__compose_description">编写信息</string>
+  <string name="conversation_activity__emoji_toggle_description">切换表情键盘</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">媒体信息</string>
   <string name="conversation_item__play_button_description">播放按钮</string>
-  <string name="conversation_item__secure_message_description">安全信息指示器</string>
+  <string name="conversation_item__secure_message_description">安全信息</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">下载</string>
   <string name="conversation_item_sent__downloading">下载中</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">发送失败指示灯</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">发送失败</string>
   <string name="conversation_item_sent__pending_approval_description">等待批准</string>
-  <string name="conversation_item_sent__delivered_description">送达指示灯</string>
+  <string name="conversation_item_sent__delivered_description">已送达</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">下载</string>
+  <string name="conversation_item_received__contact_photo_description">联系人照片</string>
   <string name="conversation_item_received__downloading">下载中</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
