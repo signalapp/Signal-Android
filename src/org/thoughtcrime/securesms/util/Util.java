@@ -24,9 +24,11 @@ import android.os.Build;
 import android.provider.Telephony;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 
@@ -125,6 +127,12 @@ public class Util {
     } catch (InterruptedException ie) {
       throw new AssertionError(ie);
     }
+  }
+
+  public static String canonicalizeNumber(Context context, Recipient recipient) throws InvalidNumberException {
+    final String canonicalNumber = recipient.getCanonicalNumber();
+    return TextUtils.isEmpty(canonicalNumber) ? canonicalizeNumber(context, recipient.getNumber())
+                                              : canonicalNumber;
   }
 
   public static String canonicalizeNumber(Context context, String number)

@@ -52,6 +52,7 @@ public class Recipient implements Parcelable, CanonicalRecipient {
   private final long recipientId;
 
   private String number;
+  private String canonicalNumber;
   private String name;
 
   private Bitmap contactPhoto;
@@ -76,6 +77,7 @@ public class Recipient implements Parcelable, CanonicalRecipient {
           synchronized (Recipient.this) {
             Recipient.this.name                      = result.name;
             Recipient.this.number                    = result.number;
+            Recipient.this.canonicalNumber           = result.canonicalNumber;
             Recipient.this.contactUri                = result.contactUri;
             Recipient.this.contactPhoto              = result.avatar;
             Recipient.this.circleCroppedContactPhoto = result.croppedAvatar;
@@ -135,6 +137,10 @@ public class Recipient implements Parcelable, CanonicalRecipient {
 
   public String getNumber() {
     return number;
+  }
+
+  public String getCanonicalNumber() {
+    return canonicalNumber;
   }
 
   public int describeContents() {

@@ -246,7 +246,7 @@ public class ReceiveKeyActivity extends Activity {
               CiphertextMessage bundledMessage = keyExchangeMessageBundle.getWhisperMessage();
 
               if (getIntent().getBooleanExtra("is_push", false)) {
-                String source = Util.canonicalizeNumber(ReceiveKeyActivity.this, recipient.getNumber());
+                String source = Util.canonicalizeNumber(ReceiveKeyActivity.this, recipient);
                 IncomingPushMessage incoming = new IncomingPushMessage(Type.CIPHERTEXT_VALUE, source, recipientDeviceId, bundledMessage.serialize(), System.currentTimeMillis());
 
                 DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this)

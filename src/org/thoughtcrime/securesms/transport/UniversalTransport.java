@@ -78,7 +78,7 @@ public class UniversalTransport {
 
     try {
       Recipient recipient = message.getIndividualRecipient();
-      String    number    = Util.canonicalizeNumber(context, recipient.getNumber());
+      String    number    = Util.canonicalizeNumber(context, recipient);
 
       if (isPushTransport(number) && !message.isKeyExchange()) {
         boolean isSmsFallbackSupported = isSmsFallbackSupported(number);

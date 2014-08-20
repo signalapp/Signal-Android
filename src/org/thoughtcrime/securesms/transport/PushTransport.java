@@ -197,7 +197,7 @@ public class PushTransport extends BaseTransport {
       throws InvalidNumberException, IOException, UntrustedIdentityException
   {
     try {
-      String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
+      String e164number = Util.canonicalizeNumber(context, recipient);
       long   recipientId = recipient.getRecipientId();
 
       for (int extraDeviceId : mismatchedDevices.getExtraDevices()) {
@@ -226,7 +226,7 @@ public class PushTransport extends BaseTransport {
   {
     try {
       long   recipientId = recipient.getRecipientId();
-      String e164number  = Util.canonicalizeNumber(context, recipient.getNumber());
+      String e164number  = Util.canonicalizeNumber(context, recipient);
 
       for (int staleDeviceId : staleDevices.getStaleDevices()) {
         PushAddress address = PushAddress.create(context, recipientId, e164number, staleDeviceId);
@@ -305,7 +305,7 @@ public class PushTransport extends BaseTransport {
                                                        Recipient recipient, byte[] plaintext)
       throws IOException, InvalidNumberException, UntrustedIdentityException
   {
-    String      e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
+    String      e164number   = Util.canonicalizeNumber(context, recipient);
     long        recipientId  = recipient.getRecipientId();
     PushAddress masterDevice = PushAddress.create(context, recipientId, e164number, 1);
     PushBody    masterBody   = getEncryptedMessage(socket, threadId, masterDevice, plaintext);
