@@ -34,6 +34,7 @@
             android:layout_marginRight="10dp"
             android:layout_alignParentLeft="true"
             android:cropToPadding="true"
+            android:contentDescription="@string/conversation_item_received__contact_photo_description"
             android:scaleType="centerCrop" />
         <View android:id="@+id/triangle_tick"
             android:layout_width="12dp"
