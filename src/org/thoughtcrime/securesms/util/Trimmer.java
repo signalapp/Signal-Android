@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.R;
 
 public class Trimmer {
 
@@ -44,8 +45,8 @@ public class Trimmer {
       progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
       progressDialog.setCancelable(false);
       progressDialog.setIndeterminate(false);
-      progressDialog.setTitle("Deleting...");
-      progressDialog.setMessage("Deleting old messages...");
+      progressDialog.setTitle(context.getString(R.string.Trimmer__deleting_old_messages_title));
+      progressDialog.setMessage(context.getString(R.string.Trimmer__deleting_old_messages_message));
       progressDialog.setMax(100);
       progressDialog.show();
     }
@@ -68,7 +69,7 @@ public class Trimmer {
     protected void onPostExecute(Void result) {
       progressDialog.dismiss();
       Toast.makeText(context,
-                     "Old messages successfully deleted!",
+                     context.getString(R.string.Trimmer__old_messages_successfully_deleted_toast),
                      Toast.LENGTH_LONG).show();
     }
 
