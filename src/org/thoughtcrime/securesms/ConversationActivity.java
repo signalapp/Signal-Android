@@ -835,7 +835,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
 
   private void addAttachment(int type) {
     Log.w("ComposeMessageActivity", "Selected: " + type);
-    attachmentManager.clear();
+    attachmentManager.clear(); 
     switch (type) {
     case AttachmentTypeSelectorAdapter.ADD_IMAGE:
       AttachmentManager.selectImage(this, PICK_IMAGE); break;
