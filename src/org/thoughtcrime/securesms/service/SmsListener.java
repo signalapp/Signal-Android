@@ -126,7 +126,8 @@ public class SmsListener extends BroadcastReceiver {
     if (messageBody == null)
       return false;
 
-    if (messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
+    // be permissive and also match messages with ads from Twilio Trial and Nexmo Demo accounts
+    if (messageBody.matches(".*Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}.*") &&
         TextSecurePreferences.isVerifying(context))
     {
       return true;
@@ -137,7 +138,7 @@ public class SmsListener extends BroadcastReceiver {
 
   private String parseChallenge(Context context, Intent intent) {
     String messageBody    = getSmsMessageBodyFromIntent(intent);
-    String[] messageParts = messageBody.split(":");
+    String[] messageParts = messageBody.split(":|\\[");
     String[] codeParts    = messageParts[1].trim().split("-");
 
     return codeParts[0] + codeParts[1];
