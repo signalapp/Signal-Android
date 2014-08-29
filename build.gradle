@@ -19,6 +19,9 @@ repositories {
     maven {
         url "https://raw.github.com/whispersystems/maven/master/gson/releases/"
     }
+    maven {
+        url "https://raw.github.com/whispersystems/maven/master/smil/releases/"
+    }
 }
 
 dependencies {
@@ -27,6 +30,7 @@ dependencies {
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
     compile 'com.google.android.gms:play-services:5.0.89'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'org.w3c:smil:1.0.0'
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
 
@@ -40,6 +44,7 @@ dependencyVerification {
         'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
         'com.google.android.gms:play-services:38f326e525830f1d70f60f594ceafcbdf5b312287ddbecd338fd1ed7958a4b1e',
         'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
+        'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
         'com.google.protobuf:protobuf-java:ad9769a22989e688a46af4d3accc348cc501ced22118033230542bc916e33f0b',
         'com.madgag:sc-light-jdk15on:931f39d351429fb96c2f749e7ecb1a256a8ebbf5edca7995c9cc085b94d1841d',
         'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
