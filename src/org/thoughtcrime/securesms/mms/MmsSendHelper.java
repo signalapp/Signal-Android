@@ -66,7 +66,8 @@ public class MmsSendHelper extends MmsCommunication {
 
       Log.w(TAG, "Payload sent");
 
-      int responseCode = client.getResponseCode();
+      final InputStream is           = client.getInputStream();
+      final int         responseCode = client.getResponseCode();
 
       Log.w(TAG, "Response code: " + responseCode + "/" + client.getResponseMessage());
 
@@ -74,7 +75,7 @@ public class MmsSendHelper extends MmsCommunication {
         throw new IOException("non-200 response");
       }
 
-      return parseResponse(client.getInputStream());
+      return parseResponse(is);
     } finally {
       if (client != null) client.disconnect();
     }

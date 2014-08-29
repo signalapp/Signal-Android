@@ -180,6 +180,7 @@ public class MmsCommunication {
       urlConnection = (HttpURLConnection) url.openConnection();
     }
 
+    urlConnection.setInstanceFollowRedirects(true);
     urlConnection.setConnectTimeout(20*1000);
     urlConnection.setReadTimeout(20*1000);
     urlConnection.setUseCaches(false);
