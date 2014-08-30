@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:textsecure="http://schemas.android.com/apk/res-auto"
+    >
     <PreferenceCategory android:key="push_sms_category" android:title="@string/preferences__push_sms_category">
         <CheckBoxPreference android:defaultValue="false"
                             android:key="pref_toggle_push_messaging"
@@ -140,19 +143,14 @@
                            android:summary="@string/preferences__disable_local_encryption_of_messages_and_keys"
                            android:disableDependentsState="true"/>
 
-       <CheckBoxPreference android:defaultValue="false"
-                           android:key="pref_timeout_passphrase"
-                           android:title="@string/preferences__timeout_passphrase"
-                           android:summary="@string/preferences__forget_passphrase_from_memory_after_some_interval"
-                           android:dependency="pref_disable_passphrase"/>
-
        <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
                android:key="pref_timeout_interval"
-               android:defaultValue="300"
-               android:title="@string/preferences__pref_timeout_interval_title"
+               android:title="@string/preferences__timeout_passphrase"
                android:summary="@string/preferences__the_amount_of_time_to_wait_before_forgetting_passphrase"
-               android:dependency="pref_timeout_passphrase"
-               android:dialogTitle="@string/preferences__pref_timeout_interval_dialogtitle" />
+               textsecure:enable_toggle="true"
+               textsecure:enable_text="@string/preferences__pref_timeout_interval_enable"
+               textsecure:disable_text="@string/preferences__pref_timeout_interval_disable"
+           />
 
     </PreferenceCategory>
 
