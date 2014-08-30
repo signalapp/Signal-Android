@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -28,7 +29,10 @@ public class BitmapUtil {
   {
     InputStream measure = context.getContentResolver().openInputStream(uri);
     InputStream data    = context.getContentResolver().openInputStream(uri);
-    Bitmap bitmap       = createScaledBitmap(measure, data, maxWidth, maxHeight);
+    Bitmap scaledBitmap = createScaledBitmap(measure, data, maxWidth, maxHeight);
+    float rotateBy      = ImageUtil.getImageOrientation(context, uri);
+    Bitmap bitmap       = BitmapUtil.createRotatedBitmap(scaledBitmap, rotateBy);
+    scaledBitmap.recycle();
     int quality         = MAX_COMPRESSION_QUALITY;
     int attempts        = 0;
 
@@ -109,6 +113,12 @@ public class BitmapUtil {
     } else {
       return roughThumbnail;
     }
+  }
+
+  public static Bitmap createRotatedBitmap(Bitmap bitmap, float rotateBy) {
+    Matrix matrix = new Matrix();
+    matrix.postRotate(rotateBy);
+    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
   }
 
   private static BitmapFactory.Options getImageDimensions(InputStream inputStream) {

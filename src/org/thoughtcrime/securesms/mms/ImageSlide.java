@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
@@ -81,6 +82,47 @@ public class ImageSlide extends Slide {
       InputStream dataStream    = getPartDataInputStream();
 
       thumbnail = new BitmapDrawable(context.getResources(), BitmapUtil.createScaledBitmap(measureStream, dataStream, maxWidth, maxHeight));
+      thumbnailCache.put(part.getDataUri(), new SoftReference<Drawable>(thumbnail));
+
+      return thumbnail;
+    } catch (FileNotFoundException e) {
+      Log.w("ImageSlide", e);
+      return context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture);
+    } catch (BitmapDecodingException e) {
+      Log.w("ImageSlide", e);
+      return context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture);
+    }
+  }
+
+  public Drawable getThumbnail(int maxWidth, int maxHeight, float rotateBy) {
+    Drawable thumbnail = getCachedThumbnail();
+
+    if (thumbnail != null) {
+      return thumbnail;
+    }
+
+    if (part.isPendingPush()) {
+      return context.getResources().getDrawable(R.drawable.stat_sys_download);
+    }
+
+    try {
+      InputStream measureStream = getPartDataInputStream();
+      InputStream dataStream    = getPartDataInputStream();
+
+      Bitmap thumbnailBitmap;
+      if (rotateBy == 90 || rotateBy == 270) {
+        // switch maxWidth/maxHeight because of rotation
+        thumbnailBitmap = BitmapUtil.createScaledBitmap(measureStream, dataStream, maxHeight, maxWidth);
+      } else {
+        thumbnailBitmap = BitmapUtil.createScaledBitmap(measureStream, dataStream, maxWidth, maxHeight);
+      }
+      if (rotateBy != 0) {
+        Bitmap rotatedThumbnail = BitmapUtil.createRotatedBitmap(thumbnailBitmap, rotateBy);
+        thumbnailBitmap.recycle();
+        thumbnail = new BitmapDrawable(context.getResources(), rotatedThumbnail);
+      } else {
+        thumbnail = new BitmapDrawable(context.getResources(), thumbnailBitmap);
+      }
       thumbnailCache.put(part.getDataUri(), new SoftReference<Drawable>(thumbnail));
 
       return thumbnail;
