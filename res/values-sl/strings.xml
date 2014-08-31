@@ -14,12 +14,14 @@
   <string name="ApplicationPreferencesActivity_delete">Izbriši</string>
   <string name="ApplicationPreferencesActivity_my">Moj</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Onemogočim šifriranje pomnilnika?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nPozor, s tem boste onemogočili šifriranje sporočil in ključev v pomnilniku naprave. Vaše šifrirane komunikacije bodo še vedno varne, toda vsakdo s fizičnim dostopom do vaše naprave bo lahko dostopal do njih.</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+Pozor, s tem boste onemogočili šifriranje sporočil in ključev v pomnilniku naprave. Vaše šifrirane komunikacije bodo še vedno varne, toda vsakdo s fizičnim dostopom do vaše naprave bo lahko dostopal do njih.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
   <string name="ApplicationPreferencesActivity_unregistering">Odjava poteka...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Odjava komunikacije preko podatkovne povezave</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Izključim potisna sporočila?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">S tem boste izključili potisna sporočila in se odjavili s strežnika.\nZa ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo telefonsko številko.</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">S tem boste izključili potisna sporočila in se odjavili s strežnika.
+Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo telefonsko številko.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Niste prijavljeni v potisno storitev...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Posodabljanje seznama</string>
@@ -81,7 +83,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste prepričani, da res želite zapustiti to skupino?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti sporočila</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Način prenosa: %1$s\nPoslano/prejeto: %2$s</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Način prenosa: %1$s\nPoslano/Prejeto: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nNačin prenosa: %2$s\nPoslano: %3$s\nPrejeto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potrdite izbris sporočila</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste prepričani, da želite dokonćno izbrisati sporočilo?</string>
@@ -178,7 +180,8 @@
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Vnešeno lahko kadarkoli popravite v nastavitvah aplikacije TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis pri izmenjavi ključev se razlikuje od tistih pri predhodno izmenjanih ključih s to osebo. To lahko pomeni, da nekdo prestreza komunikacijo, ali pa, da je oseba ponovno namestila TextSecure in ima zdaj nov identifikacijski ključ.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Morda bi želeli\npreveriti ta stik.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Morda bi želeli
+preveriti ta stik.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Podpis pri tej izmenjavi je vreden zaupanja, vendar imate izklopljeno možnost \'Samodejno dokončaj izmenjavo ključev\'.</string>
   <string name="ReceiveKeyActivity_processing">Obdelujem</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Izmenjava ključev poteka...</string>
@@ -191,7 +194,9 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Številka, ki ste jo navedli (%s) je neveljavna.</string>
   <string name="RegistrationActivity_unsupported">Nepodprto</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Vaša naprava žal ne podpira podatkovnih sporočil. Naprave z Androidom različice starejše od 4.0 morajo imeti registriran Googlov račun. Naprave z Androidom različice 4.0 ali več ne potrebujejo računa Google, vendar morajo imeti nameščeno aplikacijo Play Store.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nPreverili bomo, če je spodnja številka povezana s to napravo:\n\n%s\n\n\nJe ta številka prava, ali jo želite pred nadaljevanjem postopka spremeniti?</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+Preverili bomo, če je spodnja številka povezana s to napravo:\n\n%s\n\n
+Je ta številka prava, ali jo želite pred nadaljevanjem postopka spremeniti?</string>
   <string name="RegistrationActivity_continue">Nadaljuj</string>
   <string name="RegistrationActivity_edit">Uredi</string>
   <!--RegistrationProblemsActivity-->
@@ -225,9 +230,12 @@
   <string name="RegistrationService_registration_error">Napaka pri registraciji</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pri registraciji TextSecure je prišlo do težav.</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Prejeto poškodovano\nsporočilo za izmenjavo ključev!</string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nPrejeto sporočilo za izmenjavo ključev za napačno različico protokola.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nPrejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo in prikaz.</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Prejeto poškodovano
+sporočilo za izmenjavo ključev!</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo in prikaz.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Prejet je bil nadgrajen identifikacijski ključ neznanega stika. Tapnite za potrditev istovetnosti.</string>
   <string name="SmsMessageRecord_secure_session_ended">Varna seja je zaključena.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
@@ -419,41 +427,62 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Dokončaj</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nZa večjo zasebnost in v izogib stroškom SMS sporočil lahko TextSecure pri komunikaciji z drugimi uporabniki aplikacije\nuporablja potisna sporočila. Za aktivacijo te funkcije preverite kodo vaše države in telefonsko številko.</string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+Za večjo zasebnost in v izogib stroškom SMS sporočil lahko TextSecure pri komunikaciji z drugimi uporabniki aplikacije
+uporablja potisna sporočila. Za aktivacijo te funkcije preverite kodo vaše države in telefonsko številko.</string>
   <string name="registration_activity__your_country">VAŠA DRŽAVA</string>
-  <string name="registration_activity__your_country_code_and_phone_number">KODA DRŽAVE IN VAŠA\nTELEFONSKA ŠTEVILKA</string>
+  <string name="registration_activity__your_country_code_and_phone_number">KODA DRŽAVE IN VAŠA
+TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__register">Registriraj</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Med registracijo bo nekaj podatkov o stikih začasno posredovano na strežnik.</string>
   <string name="registration_activity__skip">Preskoči</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Nekatere možni razlogi\nza težave:</string>
+  <string name="registration_problems__some_possible_problems_include">Nekatere možni razlogi
+za težave:</string>
   <string name="registration_problems__sms_interceptors">Prestrezniki SMS</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nNekatere zunanje aplikacije SMS, kot npr. Handcent ali GoSMS, ravnajo napačno in\nprestrezajo vsa dohodna sporočila SMS. Preverite, če ste nanje prejeli sporočilo SMS, ki se\nzačne z \'Your TextSecure verification code:\'. V tem primeru morate nastaviti takšno SMS\naplikacijo, da bo sporočila SMS spustila naprej.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Nekatere zunanje aplikacije SMS, kot npr. Handcent ali GoSMS, ravnajo napačno in
+prestrezajo vsa dohodna sporočila SMS. Preverite, če ste nanje prejeli sporočilo SMS, ki se
+začne z \'Your TextSecure verification code:\'. V tem primeru morate nastaviti takšno SMS
+aplikacijo, da bo sporočila SMS spustila naprej.</string>
   <string name="registration_problems__incorrect_number">Napačna številka.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nPreverite, če ste pravilno vnesli svojo telefonsko številko in če je koda vaše regije/države prava.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+Preverite, če ste pravilno vnesli svojo telefonsko številko in če je koda vaše regije/države prava.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure ne bo deloval s telefonskimi številkami Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+TextSecure ne bo deloval s telefonskimi številkami Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Glasovna verifikacija</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nZa preverbo vaše telefonske številke vas TextSecure lahko tudi pokliče. Kliknite \'Pokliči me\'\nin spodaj vnesite šetmestno kodo, ki jo boste zaslišali.</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+Za preverbo vaše telefonske številke vas TextSecure lahko tudi pokliče. Kliknite \'Pokliči me\'
+in spodaj vnesite šetmestno kodo, ki jo boste zaslišali.</string>
   <string name="registration_progress_activity__verify">Preveri</string>
   <string name="registration_progress_activity__call_me">Pokliči me</string>
   <string name="registration_progress_activity__edit_number">Uredi številko</string>
   <string name="registration_progress_activity__connectivity_error">Napaka v povezavi.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\nTextSecure se ni mogel povezati s potisno storitvijo.</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Nekateri možni razlogi\nza težave:</string>
-  <string name="registration_progress_activity__no_network_connectivity">Ni povezave\nz omrežjem.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+TextSecure se ni mogel povezati s potisno storitvijo.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Nekateri možni razlogi
+za težave:</string>
+  <string name="registration_progress_activity__no_network_connectivity">Ni povezave
+z omrežjem.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Za uporabo te storitve mora biti vaša naprava povezana z omrežjem. Preverite, če je naprava povezana v omrežje preko povezave 3G ali Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Omejujoč požarni zid.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">\nČe uporabljate povezavo Wifi, lahko dostop do strežnika TextSecure onemogoča\npožarni zid. Poskusite z drugim omrežjem Wifi ali z mobilnim omrežjem.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nTextSecure bo avtomatsko preveril vašo telefonsko številko s potrditvenim sporočilom SMS.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+Če uporabljate povezavo Wifi, lahko dostop do strežnika TextSecure onemogoča
+požarni zid. Poskusite z drugim omrežjem Wifi ali z mobilnim omrežjem.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+TextSecure bo avtomatsko preveril vašo telefonsko številko s potrditvenim sporočilom SMS.</string>
   <string name="registration_progress_activity__connecting">Povezujem...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Čakam na SMS\npotrditev...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Čakam na SMS
+potrditev...</string>
   <string name="registration_progress_activity__registering_with_server">Registracija s strežnikom...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">To utegne trajati trenutek ali dva. Ko bo registracija končana, boste obveščeni.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nČakanje aplikacije TextSecure na potrditveni SMS je bilo neuspešno.</string>
-  <string name="registration_progress_activity__sms_verification_failed">Potrditev SMS ni\nbila uspešna.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+Čakanje aplikacije TextSecure na potrditveni SMS je bilo neuspešno.</string>
+  <string name="registration_progress_activity__sms_verification_failed">Potrditev SMS ni
+bila uspešna.</string>
   <string name="registration_progress_activity__generating_keys">Ustvarjam ključe...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vnesite ime ali številko</small></string>
@@ -464,8 +493,8 @@
   <string name="verify_identity_activity__their_identity_they_read">Istovetnost stika (prebere on):</string>
   <string name="verify_identity_activity__your_identity_you_read">Vaša istovetnost (preberete vi):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Istovetnost stika:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Uvožen identifikacijski ključ:\\n</string>
+  <string name="verify_import_identity_activity__identity_name_n">Ime identitete:\\n</string>
+  <string name="verify_import_identity_activity__imported_identity_n">Uvožena identiteta:\\n</string>
   <string name="verify_import_identity_activity__verified">Preverjeno!</string>
   <string name="verify_import_identity_activity__compare">Primerjaj</string>
   <!--verify_keys_activity-->

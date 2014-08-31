@@ -14,12 +14,19 @@
   <string name="ApplicationPreferencesActivity_delete">Deletar</string>
   <string name="ApplicationPreferencesActivity_my">Minhas</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Desabilitar criptografia de armazenamento?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n        Atenção, isto irá desabilitar a criptografia de armazenamento para todas as mensagens e chaves. Suas sessões\n        criptografadas continuarão funcionando, mas qualquer um com acesso físico ao seu aparelho\n        conseguirá acessá-las.\n    </string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+        Atenção, isto irá desabilitar a criptografia de armazenamento para todas as mensagens e chaves. Suas sessões
+        criptografadas continuarão funcionando, mas qualquer um com acesso físico ao seu aparelho
+        conseguirá acessá-las.
+    </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrando...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Descadastrando-se da comunicação de dados</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Desabilitar mensagens push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\n        Isto irá desabilitar mensagens push, descadastrando-o do servidor.\n        Você precisará recadastrar seu número telefônico para usar mensagens push futuramente.\n    </string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+        Isto irá desabilitar mensagens push, descadastrando-o do servidor.
+        Você precisará recadastrar seu número telefônico para usar mensagens push futuramente.
+    </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Você não está cadastrado no serviço push...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Atualizando diretório</string>
@@ -37,7 +44,8 @@
   <string name="ConversationItem_expires_s">Expira: %s</string>
   <string name="ConversationItem_error_sending_message">Erro no envio da mensagem</string>
   <string name="ConversationItem_view_secure_media_question">Ver arquivo seguro?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este arquivo foi armazenado em uma base de dados criptografada. Infelizmente, para visualizá-lo em um programa externo é necessário que os dados sejam descriptografados temporariamente e escritos para o disco.\nTem certeza que deseja fazer isto?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este arquivo foi armazenado em uma base de dados criptografada. Infelizmente, para visualizá-lo em um programa externo é necessário que os dados sejam descriptografados temporariamente e escritos para o disco.
+Tem certeza que deseja fazer isto?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Mensagem de intercâmbio de chaves recebida e processada.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Erro, foi recebida uma mensagem de intercâmbio de chaves desactualizada.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Foi recebida uma mensagem de intercâmbio de chaves, clique para processá-la.</string>
@@ -105,17 +113,27 @@
   <string name="ShareActivity_share_with">Compartilhar com</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportar para cartão SD?</string>
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Isto\n        exportará suas chaves criptografadas, configurações e mensagens para o cartão SD.\n    </string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Isto
+        exportará suas chaves criptografadas, configurações e mensagens para o cartão SD.
+    </string>
   <string name="ExportFragment_export">Exportar</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportar texto claro para cartão SD?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atenção, isto exportará\n        os conteúdos de texto claro de suas mensagens TextSecure para o cartão SD.\n    </string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atenção, isto exportará
+        os conteúdos de texto claro de suas mensagens TextSecure para o cartão SD.
+    </string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportando</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando texto claro para cartão SD...\n    </string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Erro, não foi possível escrever\n        no cartão SD!\n    </string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Erro durante escrita no cartão SD.\n    </string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando texto claro para cartão SD...
+    </string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Erro, não foi possível escrever
+        no cartão SD!
+    </string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Erro durante escrita no cartão SD.
+    </string>
   <string name="ExportFragment_success">Sucesso!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportando chaves criptogradas,\n        configurações e mensagens...\n    </string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportando chaves criptogradas,
+        configurações e mensagens...
+    </string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Novo grupo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Atualizar grupo</string>
@@ -136,14 +154,24 @@
   <string name="ImportExportActivity_export">Exportar</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importar base de dados SMS do sistema?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Isto importará\n        mensagens da base de dados SMS padrão do sistema para o TextSecure. \n         Se isto já foi feito anteriormente, importar novamente resultará em mensagens duplicadas.\n    </string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Isto importará
+        mensagens da base de dados SMS padrão do sistema para o TextSecure. 
+         Se isto já foi feito anteriormente, importar novamente resultará em mensagens duplicadas.
+    </string>
   <string name="ImportFragment_import">Importar</string>
   <string name="ImportFragment_cancel">Cancelar</string>
   <string name="ImportFragment_restore_encrypted_backup">Restaurar backup criptografado?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n        Restorar um backup criptografado irá substituir completamente suas chaves existentes, preferências e\n        mensagens. Você perderá toda informação que estiver em sua instalação atual\n        mas não estiver no backup.\n    </string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+        Restorar um backup criptografado irá substituir completamente suas chaves existentes, preferências e
+        mensagens. Você perderá toda informação que estiver em sua instalação atual
+        mas não estiver no backup.
+    </string>
   <string name="ImportFragment_restore">Restaurar</string>
   <string name="ImportFragment_import_plaintext_backup">Importar backup de texto claro?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Isto irá importar\n        mensagens de um backup em texto claro. Se você já importou este backup anteriormente,\n        importá-lo novamente resultará em mensagens duplicadas.\n    </string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Isto irá importar
+        mensagens de um backup em texto claro. Se você já importou este backup anteriormente,
+        importá-lo novamente resultará em mensagens duplicadas.
+    </string>
   <string name="ImportFragment_importing">Importando</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importar backup de texto claro...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nenhum backup de texto claro encontrado!</string>
@@ -177,21 +205,43 @@
   <string name="PromptMmsActivity_mms_settings_updated">Configurações MMS atualizadas</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Você pode modificar estes valores a qualquer momento nas configurações do TextSecure.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A\n        assinatura nesta troca de chaves é diferente da que você recebeu anteriormente deste\n        contato. Isto pode significar que alguém está tentando interceptar sua comunicação, ou\n        que este contato reinstalou o TextSecure e agora tem uma nova chave de identidade.\n    </string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Talvez você queira verificar\n        este contato.\n    </string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">A\n        assinatura nesta troca de chaves é confiável, mas a opção \'completar troca de chaves automaticamente\'\n        está desabilitada.\n    </string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A
+        assinatura nesta troca de chaves é diferente da que você recebeu anteriormente deste
+        contato. Isto pode significar que alguém está tentando interceptar sua comunicação, ou
+        que este contato reinstalou o TextSecure e agora tem uma nova chave de identidade.
+    </string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Talvez você queira verificar
+        este contato.
+    </string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">A
+        assinatura nesta troca de chaves é confiável, mas a opção \'completar troca de chaves automaticamente\'
+        está desabilitada.
+    </string>
   <string name="ReceiveKeyActivity_processing">Processando</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Processando troca de chaves...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Conectar-se ao TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve especificar o\n        código do seu país\n    </string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Você deve especificar seu\n        número de telefone\n    </string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve especificar o
+        código do seu país
+    </string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Você deve especificar seu
+        número de telefone
+    </string>
   <string name="RegistrationActivity_invalid_number">Número inválido</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número que você\n        especificou (%s) é inválido.\n    </string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número que você
+        especificou (%s) é inválido.
+    </string>
   <string name="RegistrationActivity_unsupported">Não suportado</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Desculpe,\n        este dispositivo não é suportado para mensagens de dados. Dispositivos rodando versões de Android anteriores\n        à 4.0 devem ter uma Conta Google registrada. Dispositivos rodando Android 4.0 ou superior não\n        precisam de uma Conta Google, mas devem ter o aplicativo Play Store instalado.\n    </string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\n        Vamos agora verificar se o seguinte número está associado a este aparelho:\n\n%s\n\n\n        Este número está correto ou gostaria de editá-lo antes de continuar?\n    </string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Desculpe,
+        este dispositivo não é suportado para mensagens de dados. Dispositivos rodando versões de Android anteriores
+        à 4.0 devem ter uma Conta Google registrada. Dispositivos rodando Android 4.0 ou superior não
+        precisam de uma Conta Google, mas devem ter o aplicativo Play Store instalado.
+    </string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+        Vamos agora verificar que o seguinte número está associado a este dispositivo:\n\n%s\n\n
+        O número está correto, ou deseja editá-lo antes de continuar?
+    </string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_edit">Editar</string>
   <!--RegistrationProblemsActivity-->
@@ -225,9 +275,15 @@
   <string name="RegistrationService_registration_error">Erro de cadastro</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">O cadastro em TextSecure encontrou um problema.</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Recebida mensagem de troca\n        de chaves corrompida!\n    </string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\n        Mensagem de troca de chaves recebida para uma versão de protocolo inválida.\n    </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\n        Mensagem recebida com chave de identidade desconhecida. Clique para processar e exibir.\n    </string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Recebida mensagem de troca
+        de chaves corrompida!
+    </string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+        Mensagem de troca de chaves recebida para uma versão de protocolo inválida.
+    </string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+        Mensagem recebida com chave de identidade desconhecida. Clique para processar e exibir.
+    </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Foi recebida atualização mas com informação de identidade desconhecida. Clique para validar a identidade.</string>
   <string name="SmsMessageRecord_secure_session_ended">Sessão segura terminada.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
@@ -302,10 +358,16 @@
   <string name="MessageNotifier_mark_as_read">Marcar como lida</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Recriando...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Recriando chave\n        de identidade...\n    </string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Recriando chave
+        de identidade...
+    </string>
   <string name="ViewLocalIdentityActivity_regenerated">Recriada!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Redefinir chave de identidade?</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\n        Atenção! Ao recriar sua chave de identidade, sua atual chave de identidade será permanentemente perdida,\n        e seus contatos existentes receberão avisos quando estabelecerem novas sessões seguras com você.\n        Tem certeza que quer continuar?\n    </string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+        Atenção! Ao recriar sua chave de identidade, sua atual chave de identidade será permanentemente perdida,
+        e seus contatos existentes receberão avisos quando estabelecerem novas sessões seguras com você.
+        Tem certeza que quer continuar?
+    </string>
   <string name="ViewLocalIdentityActivity_cancel">Cancelar</string>
   <string name="ViewLocalIdentityActivity_continue">Continuar</string>
   <!--SmsReceiver-->
@@ -379,7 +441,7 @@
   <string name="log_submit_activity__log_fetch_failed">Não foi possível captar logs do seu dispositivo. É possível usar como alternativa o ADB para captar logs de debug.</string>
   <string name="log_submit_activity__log_submit_success_title">Sucesso!</string>
   <string name="log_submit_activity__log_got_it">Entendi</string>
-  <string name="log_submit_activity__your_pastebin_url">Favor copiar esta URL e adicioná-la à sua questão (manter pressionado para colocar na área de transferência):\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__your_pastebin_url">Favor copiar esta URL e adicioná-la ao seu problema (manter pressionado para colocar na área de transferência):\n\n<b>%1$s</b></string>
   <string name="log_submit_activity__copied_to_clipboard">Copiada para a área de transferência</string>
   <string name="log_submit_activity__loading_logcat">Carregando logcat...</string>
   <string name="log_submit_activity__thanks">Obrigado por sua ajuda!</string>
@@ -395,15 +457,23 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Atualizando base de dados...</string>
   <string name="export_fragment__export_encrypted_backup">Exportar backup criptografado?</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportar um backup\n        criptografado para o cartão SD.\n    </string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportar um backup
+        criptografado para o cartão SD.
+    </string>
   <string name="export_fragment__export_plaintext_backup">Exportar backup de texto claro</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n        Exportar um backup de texto claro compatível com \'SMSBackup And Restore\' para o cartão SD.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+        Exportar um backup de texto claro compatível com \'SMSBackup And Restore\' para o cartão SD.</string>
   <string name="import_fragment__import_system_sms_database">Importar base de dados SMS do sistema</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importar base de dados\n        do app de mensagens padrão do sistema.\n    </string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importar base de dados
+        do app de mensagens padrão do sistema.
+    </string>
   <string name="import_fragment__import_encrypted_backup">Importar backup criptografado</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n        Restaurar um backup TextSecure criptografado previamente exportado.\n    </string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+        Restaurar um backup TextSecure criptografado previamente exportado.
+    </string>
   <string name="import_fragment__import_plaintext_backup">Importar backup de texto claro</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\n        Importar um backup de texto claro. Compatível com \'SMSBackup And Restore.\'</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+        Importar um backup de texto claro. Compatível com \'SMSBackup And Restore.\'</string>
   <string name="local_identity__regenerate_key">Recriar chave</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">É necessária a configuração manual de MMS para seu aparelho.</string>
@@ -419,41 +489,77 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Concluído</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\n        O TextSecure pode usar mensagens instantâneas para aumentar a privacidade e evitar cobranças SMS ao comunicar-se\n        com outros usuários TextSecure. Para habilitar esta funcionalidade, favor verificar seu código de país e número telefônico.\n    </string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+        O TextSecure pode usar mensagens instantâneas para aumentar a privacidade e evitar cobranças SMS ao comunicar-se
+        com outros usuários TextSecure. Para habilitar esta funcionalidade, favor verificar seu código de país e número telefônico.
+    </string>
   <string name="registration_activity__your_country">SEU PAÍS</string>
-  <string name="registration_activity__your_country_code_and_phone_number">SEU CÓDIGO DE PAÍS E\n        NÚMERO TELEFÔNICO\n    </string>
+  <string name="registration_activity__your_country_code_and_phone_number">SEU CÓDIGO DE PAÍS E
+        NÚMERO TELEFÔNICO
+    </string>
   <string name="registration_activity__phone_number">NÚMERO TELEFÔNICO</string>
   <string name="registration_activity__register">Cadastrar</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registro irá transmitir algumas informações de contato com o servidor temporariamente.</string>
   <string name="registration_activity__skip">Pular</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Alguns problemas possíveis\n        incluem:\n    </string>
+  <string name="registration_problems__some_possible_problems_include">Alguns problemas possíveis
+        incluem:
+    </string>
   <string name="registration_problems__sms_interceptors">Interceptadores SMS.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\n        Alguns clientes externos de mensagem de texto, como Handcent ou GoSMS, comportam-se mal e\n        interceptam todas as mensagens SMS que chegam. Verifique se você recebeu uma mensagem de texto\n        que começa com \'Seu código de verificação TextSecure:\', neste caso será necessário configurar\n        seu app de mensagem de texto para ele deixar as mensagens de texto passarem.\n    </string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+        Alguns clientes externos de mensagem de texto, como Handcent ou GoSMS, comportam-se mal e
+        interceptam todas as mensagens SMS que chegam. Verifique se você recebeu uma mensagem de texto
+        que começa com \'Seu código de verificação TextSecure:\', neste caso será necessário configurar
+        seu app de mensagem de texto para ele deixar as mensagens de texto passarem.
+    </string>
   <string name="registration_problems__incorrect_number">Número incorreto.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nPor favor, verifique se colocou o número corretamente, e se está formatado corretamente\npara sua região.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+Por favor, verifique se colocou o número corretamente, e se está formatado corretamente
+para sua região.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\n        TextSecure não funcionará com números Google Voice.\n    </string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+        TextSecure não funcionará com números Google Voice.
+    </string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Verificação por voz</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\n        TextSecure também pode te ligar para verificar seu número. Clique em \'Me ligar\' e\n        insira abaixo o código de seis dígitos que você ouvir.\n    </string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+        TextSecure também pode te ligar para verificar seu número. Clique em \'Me ligar\' e
+        insira abaixo o código de seis dígitos que você ouvir.
+    </string>
   <string name="registration_progress_activity__verify">Verificar</string>
   <string name="registration_progress_activity__call_me">Me ligar</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>
   <string name="registration_progress_activity__connectivity_error">Erro de conectividade.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\n        TextSecure não conseguiu conectar-se ao serviço de entrega.\n    </string>
-  <string name="registration_progress_activity__some_possible_problems_include">Alguns problemas \npossíveis, incluem:\n    </string>
-  <string name="registration_progress_activity__no_network_connectivity">Sem conectividade\n na rede.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">O seu\n        dispositivo precisa de conectividade de rede para usar este recurso do TextSecure. Confira para ter certeza\n        de que está conectado ao 3G ou Wi-Fi.\n    </string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+        TextSecure não conseguiu conectar-se ao serviço de entrega.
+    </string>
+  <string name="registration_progress_activity__some_possible_problems_include">Alguns problemas 
+possíveis, incluem:
+    </string>
+  <string name="registration_progress_activity__no_network_connectivity">Sem conectividade
+ na rede.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">O seu
+        dispositivo precisa de conectividade de rede para usar este recurso do TextSecure. Confira para ter certeza
+        de que está conectado ao 3G ou Wi-Fi.
+    </string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall restritivo.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">\n        Se estiver conectado via Wi-Fi, é possível que exista um firewall bloqueando o acesso ao\n        servidor do TextSecure. Tente outra rede ou dados móveis.\n    </string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nTextSecure agora, irá, automaticamente, verificar seu número com uma mensagem sms de confirmação.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+        Se estiver conectado via Wi-Fi, é possível que exista um firewall bloqueando o acesso ao
+        servidor do TextSecure. Tente outra rede ou dados móveis.
+    </string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+TextSecure agora, irá, automaticamente, verificar seu número com uma mensagem sms de confirmação.</string>
   <string name="registration_progress_activity__connecting">Conectando...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Aguardando verificação\n        por SMS...\n    </string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Aguardando verificação
+        por SMS...
+    </string>
   <string name="registration_progress_activity__registering_with_server">Registrando no servidor...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Isto\npoderá levar um tempo. Por favor seja paciente, nós te notificaremos quando a verificação estiver completa.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nTextSecure expirou o tempo enquanto aguardava pela verificação da mensagem SMS.</string>
-  <string name="registration_progress_activity__sms_verification_failed">Verificação por SMS\nfalhou.</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Isto
+poderá levar um tempo. Por favor seja paciente, nós te notificaremos quando a verificação estiver completa.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+TextSecure expirou o tempo enquanto aguardava pela verificação da mensagem SMS.</string>
+  <string name="registration_progress_activity__sms_verification_failed">Verificação por SMS
+falhou.</string>
   <string name="registration_progress_activity__generating_keys">Gerando chaves...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Digite um nome ou um número</small></string>
@@ -464,8 +570,8 @@
   <string name="verify_identity_activity__their_identity_they_read">A identidade do destinatário (ele lê):</string>
   <string name="verify_identity_activity__your_identity_you_read">A sua identidade (você lê):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Nome de identidade:\n\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Identidade importada:\n\n</string>
+  <string name="verify_import_identity_activity__identity_name_n">Nome de identidade:\\n</string>
+  <string name="verify_import_identity_activity__imported_identity_n">Identidade importada:\\n</string>
   <string name="verify_import_identity_activity__verified">Verificada!</string>
   <string name="verify_import_identity_activity__compare">Comparar</string>
   <!--verify_keys_activity-->
@@ -572,7 +678,9 @@
   <string name="preferences__make_default_sms_app">Definir como app SMS padrão</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Tornar o TextSecure o aplicativo SMS/MMS padrão do sistema.</string>
   <string name="preferences__use_data_channel">Mensagens push</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\n        Aumente a privacidade e evite cobranças SMS usando o canal de dados para comunicação com outros usuários TextSecure\n    </string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+        Aumente a privacidade e evite cobranças SMS usando o canal de dados para comunicação com outros usuários TextSecure
+    </string>
   <string name="preferences__allow_sms_fallback">Permitir envio de SMS para</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">O TextSecure atualmente é o seu app padrão de SMS. Favor definir outro app padrão de SMS antes de mudar esta preferência.</string>
   <string name="preferences__refresh_push_directory">Atualizar diretório push</string>

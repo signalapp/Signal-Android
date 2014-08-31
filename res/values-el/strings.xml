@@ -14,12 +14,19 @@
   <string name="ApplicationPreferencesActivity_delete">Διαγραφή</string>
   <string name="ApplicationPreferencesActivity_my">Δικό Μου</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Απενεργοποίηση κρυπτογράφησης αποθήκευσης;</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n        Προσοχή, αυτό θα απενεργοποιήσει τη κρυπτογράφηση αποθήκευσης για όλα τα μηνύματα και τα κλειδιά σας.\n        Οι κρυπτογραφημένες συζητήσεις σας θα συνεχίσουν να λειτουργούν, αλλά όποιος έχει φυσική πρόσβαση στη συσκευή σας θα\n        μπορεί να τις διαβάσει.\n    </string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+        Προσοχή, αυτό θα απενεργοποιήσει τη κρυπτογράφηση αποθήκευσης για όλα τα μηνύματα και τα κλειδιά σας.
+        Οι κρυπτογραφημένες συζητήσεις σας θα συνεχίσουν να λειτουργούν, αλλά όποιος έχει φυσική πρόσβαση στη συσκευή σας θα
+        μπορεί να τις διαβάσει.
+    </string>
   <string name="ApplicationPreferencesActivity_disable">Απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_unregistering">Διαγραφή...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Μη εγγεγραμένος για μεταφορά δεδομένων</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Απενεργοποίηση μηνυμάτων push (μέσω Internet);</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nΑυτή η επιλογή θα απενεργοποιήσει τα μηνύματα push (μέσω Internet).\nΑν θελήσετε να χρησιμοποιήσετε μηνύματα push στο μέλλον, θα πρέπει να επανεγγραφείτε.\n </string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+Αυτή η επιλογή θα απενεργοποιήσει τα μηνύματα push (μέσω Internet).
+Αν θελήσετε να χρησιμοποιήσετε μηνύματα push στο μέλλον, θα πρέπει να επανεγγραφείτε.
+ </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Σφάλμα κατά τη σύνδεση με τον διακομιστή!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Δεν είστε εγγεγραμμένος για ειδοποιήσεις push...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Ενημέρωση καταλόγου</string>
@@ -52,7 +59,6 @@
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Χρήση MMS ως εναλλακτικού καναλιού?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Να γίνει αποστολή ΜΗ κρυπτογραφημενου μηνύματος?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Χρήση απροστάτευτου MMS ως εναλλακτικό κανάλι?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δεν</b> θα προστατευτεί επειδή δε μπορέσαμε να ξεκινήσουμε ασφαλή συζήτηση με τον παραλήπτη.\n\nΝα σταλεί το μήνυμα απροστάτευτο;</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Εκκίνηση ασφαλούς συνεδρίας;</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Έναρξη ασφαλούς συζήτησης με %s;</string>
@@ -81,8 +87,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είστε σίγουροι πως θέλετε να αποχωρήσετε απο την ομάδα;</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
-  <string name="ConversationFragment_transport_s_sent_received_s"> Μέσο μεταφοράς:  %1$s\nΑπεστάλησαν/Παραλήφθηκαν:%2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Αποστολέας: %1$s\nΜέσο μεταφοράς: %2$s\nΑπεστάλησαν: %3$s\nΠαραλήφθηκαν:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Επιβεβαίωση Διαγραφής Μηνύματος</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Είστε σίγουροι πως θέλετε να διαγράψετε αυτό το μήνυμα για πάντα;</string>
   <string name="ConversationFragment_save_to_sd_card">Να αποθηκευτεί στη κάρτα μνήμης;</string>
@@ -105,17 +109,28 @@
   <string name="ShareActivity_share_with">Διαμοιρασμός με</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Εξαγωγή Σε Κάρτα Μνήμης;</string>
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Αυτό\n        θα εξάγει τα κρυπτογραφημένα κλειδιά, τις ρυθμίσεις και τα μηνύματά σας στη κάρτα μνήμης.\n    </string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Αυτό
+        θα εξάγει τα κρυπτογραφημένα κλειδιά, τις ρυθμίσεις και τα μηνύματά σας στη κάρτα μνήμης.
+    </string>
   <string name="ExportFragment_export">Εξαγωγή</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Εξαγωγή αποκρυπτογραφημένου κειμένου στην κάρτα μνήμης;\n</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Προσοχή, αυτό θα\n        εξάγει τα αποκρυπτογραφημένα περιεχόμενα των μηνυμάτων σας στη κάρτα μνήμης.\n    </string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Εξαγωγή αποκρυπτογραφημένου κειμένου στην κάρτα μνήμης;
+</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Προσοχή, αυτό θα
+        εξάγει τα αποκρυπτογραφημένα περιεχόμενα των μηνυμάτων σας στη κάρτα μνήμης.
+    </string>
   <string name="ExportFragment_cancel">Ακύρωση</string>
   <string name="ExportFragment_exporting">Εξαγωγή</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Γίνεται εξαγωγή αποκρυπτογραφημένου κειμένου στην κάρτα μνήμης...\n</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Σφάλμα, δε μπορέσαμε να αποθηκεύσουμε\n        στην κάρτα μνήμης!\n    </string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Σφάλμα κατά την εγγραφή στην κάρτα μνήμης.\n</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Γίνεται εξαγωγή αποκρυπτογραφημένου κειμένου στην κάρτα μνήμης...
+</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Σφάλμα, δε μπορέσαμε να αποθηκεύσουμε
+        στην κάρτα μνήμης!
+    </string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Σφάλμα κατά την εγγραφή στην κάρτα μνήμης.
+</string>
   <string name="ExportFragment_success">Επιτυχία!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Γίνεται εξαγωγή κρυπτογραφημένων κλειδιών,\n        ρυθμίσεων και μηνυμάτων...\n    </string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Γίνεται εξαγωγή κρυπτογραφημένων κλειδιών,
+        ρυθμίσεων και μηνυμάτων...
+    </string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Νέα ομάδα</string>
   <string name="GroupCreateActivity_actionbar_update_title">Ενημέρωση ομάδας</string>
@@ -136,14 +151,24 @@
   <string name="ImportExportActivity_export">Εξαγωγή</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Να εισαγχθούν όλα τα προϋπάρχοντα SMS;</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Θα γίνει εισαγωγή όλων των\n        μηνυμάτων από το προκαθορισμένο αρχείο μηνυμάτων SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη εισάγει\n        το αρχείο μηνυμάτων της συσκευής σας, η επανα-εισαγωγή θα έχει ως αποτέλεσμα διπλά μηνύματα.\n    </string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Θα γίνει εισαγωγή όλων των
+        μηνυμάτων από το προκαθορισμένο αρχείο μηνυμάτων SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη εισάγει
+        το αρχείο μηνυμάτων της συσκευής σας, η επανα-εισαγωγή θα έχει ως αποτέλεσμα διπλά μηνύματα.
+    </string>
   <string name="ImportFragment_import">Εισαγωγή</string>
   <string name="ImportFragment_cancel">Ακύρωση</string>
   <string name="ImportFragment_restore_encrypted_backup">Επαναφορά Του Κρυπτογραφημένου Αντιγράφου Ασφαλείας;</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n        Η επαναφορά του κρυπτογραφημένου αντιγράφου ασφαλείας θα αντικαταστήσει πλήρως τα υπάρχοντα κλειδιά, τις ρυθμίσεις και τα\n        μηνύματά σας. Θα χάσετε όλα τα δεδομένα της υπάρχουσας εγκατάστασης του TextSecure, αλλά όχι\n        του αντίγραφου ασφαλείας.\n    </string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+        Η επαναφορά του κρυπτογραφημένου αντιγράφου ασφαλείας θα αντικαταστήσει πλήρως τα υπάρχοντα κλειδιά, τις ρυθμίσεις και τα
+        μηνύματά σας. Θα χάσετε όλα τα δεδομένα της υπάρχουσας εγκατάστασης του TextSecure, αλλά όχι
+        του αντίγραφου ασφαλείας.
+    </string>
   <string name="ImportFragment_restore">Επαναφορά</string>
   <string name="ImportFragment_import_plaintext_backup">Εισαγωγή Μη Κρυπτογραφημένου Αντιγράφου Ασφαλείας;</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Αυτό θα εισάγει\n        μηνύματα από ένα μη κρυπτογραφημένο αντίγραφο ασφαλείας. Αν έχετε ήδη πρωτύτερα εισάγει το αρχείο μηνυμάτων SMS του συστήματος,\n        η επανα-εισαγωγή θα έχει ως αποτέλεσμα διπλά μηνύματα.\n    </string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Αυτό θα εισάγει
+        μηνύματα από ένα μη κρυπτογραφημένο αντίγραφο ασφαλείας. Αν έχετε ήδη πρωτύτερα εισάγει το αρχείο μηνυμάτων SMS του συστήματος,
+        η επανα-εισαγωγή θα έχει ως αποτέλεσμα διπλά μηνύματα.
+    </string>
   <string name="ImportFragment_importing">Γίνεται εισαγωγή</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Δε βρέθηκε μη κρυπτογραφημένο αντίγραφο ασφαλείας!</string>
@@ -177,21 +202,36 @@
   <string name="PromptMmsActivity_mms_settings_updated">Ρυθμίσεις MMS Ενημερώθηκαν</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Μπορείτε να αλλάξετε αυτές τις ρυθμίσεις οποιαδήποτε στιγμή από το μενού ρυθμίσεων του TextSecure.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Το\n        αποτύπωμα αυτής της ανταλλαγής κλειδιών είναι διαφορετικό από αυτό που λάβαμε πρωτύτερα από αυτή την\n        επαφή. Αυτό σημαίνει είτε ότι κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, ή\n        ότι αυτή η επαφή απλά επανεγκτέστησε το TextSecure και τώρα έχει νέο κλειδί ταυτότητας.\n    </string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Προτείνεται να επιβεβαιώσετε\n        αυτήν την επαφή.\n    </string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Η\n        υπογραφή αυτής της ανταλλαγής κλειδιών είναι έμπιστη, αλλά η ρύθμιση «Να ολοκληρώνονται\n        οι ανταλλαγές κλειδιών» είναι απενεργοποιημένη.\n    </string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Το
+        αποτύπωμα αυτής της ανταλλαγής κλειδιών είναι διαφορετικό από αυτό που λάβαμε πρωτύτερα από αυτή την
+        επαφή. Αυτό σημαίνει είτε ότι κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, ή
+        ότι αυτή η επαφή απλά επανεγκτέστησε το TextSecure και τώρα έχει νέο κλειδί ταυτότητας.
+    </string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Προτείνεται να επιβεβαιώσετε
+        αυτήν την επαφή.
+    </string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Η
+        υπογραφή αυτής της ανταλλαγής κλειδιών είναι έμπιστη, αλλά η ρύθμιση «Να ολοκληρώνονται
+        οι ανταλλαγές κλειδιών» είναι απενεργοποιημένη.
+    </string>
   <string name="ReceiveKeyActivity_processing">Γίνεται επεξεργασία</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Επεξεργάζεται η ανταλλαγή κλειδιών...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Σύνδεση Με TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Επιλέξτε Χώρα</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να καθορίσετε\nτον κώδικα της χώρας σας\n</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Πρέπει να καθορίσετε\nτον αριθμό του κινητού σας\n</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να καθορίσετε
+τον κώδικα της χώρας σας
+</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Πρέπει να καθορίσετε
+τον αριθμό του κινητού σας
+</string>
   <string name="RegistrationActivity_invalid_number">Άκυρος αριθμός</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που καθορίσατε (%s)\nδεν είναι έγκυρος.\n</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που καθορίσατε (%s)
+δεν είναι έγκυρος.
+</string>
   <string name="RegistrationActivity_unsupported">Δεν υποστηρίζεται</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Συγγνώμη,\nαυτή η συσκευή δεν υποστηρίζεται για μηνύματα δεδομένων. Οι συσκευές που τρέχουν εκδόσεις Android παλαιότερες από 4.0 πρέπει να έχουν λογαριασμό Google. Συσκευές που τρέχουν Android 4.0 ή νεότερο δε χρειάζονται λογαριασμό Google, αλλά θα πρέπει να έχουν εγκατεστημένο το Play Store.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\n        Πρόκειται να επιβεβαιώσουμε πως ο παρακάτω αριθμός ανήκει σε αυτή τη συσκευή:\n\n%s\n\n\n        Είναι σωστός ο αριθμός, ή θέλετε να τον αλλάξετε πριν προχωρήσετε;\n    </string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Συγγνώμη,
+αυτή η συσκευή δεν υποστηρίζεται για μηνύματα δεδομένων. Οι συσκευές που τρέχουν εκδόσεις Android παλαιότερες από 4.0 πρέπει να έχουν λογαριασμό Google. Συσκευές που τρέχουν Android 4.0 ή νεότερο δε χρειάζονται λογαριασμό Google, αλλά θα πρέπει να έχουν εγκατεστημένο το Play Store.</string>
   <string name="RegistrationActivity_continue">Συνέχεια</string>
   <string name="RegistrationActivity_edit">Επεξεργασία</string>
   <!--RegistrationProblemsActivity-->
@@ -225,9 +265,15 @@
   <string name="RegistrationService_registration_error">Σφάλμα εγγραφής</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Η εγγραφή TextSecure παρουσίασε ένα πρόβλημα.</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Ελήφθη προβληματικό μήνυμα\n        ανταλλαγής κλειδιών!\n    </string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\n        Ελήφθη μήνυμα ανταλλαγής κλειδιών για άκυρη έκδοση του πρωτόκολου.\n    </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\n        Ελήφθη μήνυμα με άγνωστο κλειδί ταυτότητας. Κλικ για επεξεργασία και προβολή.\n    </string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Ελήφθη προβληματικό μήνυμα
+        ανταλλαγής κλειδιών!
+    </string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+        Ελήφθη μήνυμα ανταλλαγής κλειδιών για άκυρη έκδοση του πρωτόκολου.
+    </string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+        Ελήφθη μήνυμα με άγνωστο κλειδί ταυτότητας. Κλικ για επεξεργασία και προβολή.
+    </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Λήφθηκε ενημερωμένη αλλά αγνωστη πληρογφορία ταυτότητας. Πατήστε για επιβεβαωση ταυτότητας.</string>
   <string name="SmsMessageRecord_secure_session_ended">Η Ασφαλής συζήτηση τερματίστηκε.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα</string>
@@ -302,10 +348,16 @@
   <string name="MessageNotifier_mark_as_read">Επισήμανση ως αναγνωσμένο</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Γίνεται ανανέωση...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Γίνεται ανανέωση κλειδιού\n        ταυτότητας...\n    </string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Γίνεται ανανέωση κλειδιού
+        ταυτότητας...
+    </string>
   <string name="ViewLocalIdentityActivity_regenerated">Ανανεώθηκε!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Επαναφορά Κλειδιού Ταυτότητας;</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\n        Προσοχή! Με την ανανέωση του κλειδιού ταυτότητάς σας, το υπάρχον κλειδί σας θα αλλάξει,\n        και οι υπάρχουσες επαφές σας θα ειδοποιηθούν ότι το κλειδί σας έχει αλλάξει την επόμενη φορά που θα επικοινωνήσουν με σας.\n        Είστε σίγουροι πως θέλετε να συνεχίσετε;\n    </string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+        Προσοχή! Με την ανανέωση του κλειδιού ταυτότητάς σας, το υπάρχον κλειδί σας θα αλλάξει,
+        και οι υπάρχουσες επαφές σας θα ειδοποιηθούν ότι το κλειδί σας έχει αλλάξει την επόμενη φορά που θα επικοινωνήσουν με σας.
+        Είστε σίγουροι πως θέλετε να συνεχίσετε;
+    </string>
   <string name="ViewLocalIdentityActivity_cancel">Ακύρωση</string>
   <string name="ViewLocalIdentityActivity_continue">Συνέχεια</string>
   <!--SmsReceiver-->
@@ -372,7 +424,6 @@
   <string name="log_submit_activity__log_fetch_failed">Δεν μπορέσαμε να δημιουργήσουμε αρχείο συμβάντων για τη συσκευή σας. Μπορείτε να χρησιμοποιήσετε το ADB για να ανακτήσετε τα debug logs.</string>
   <string name="log_submit_activity__log_submit_success_title">Επιτυχία!</string>
   <string name="log_submit_activity__log_got_it">Λήφθηκε</string>
-  <string name="log_submit_activity__your_pastebin_url">Παρακαλώ αντιγράψτε αυτή την διεύθυνση και προσθέστε την στα θέματά σας (πάτημα διαρκείας για αντιγραφή):\n\n<b>%1$s</b></string>
   <string name="log_submit_activity__copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="log_submit_activity__loading_logcat">Φόρτωση logcat...</string>
   <string name="log_submit_activity__thanks">Ευχαριστούμε για τη βοήθειά σας!</string>
@@ -388,15 +439,23 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Ενημέρωση Βάσης Δεδομένων...</string>
   <string name="export_fragment__export_encrypted_backup">Εξαγωγή Κρυπτογραφημένου Αντιγράφου Ασφαλείας</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Κάνετε εξαγωγή κρυπτογραφημένου\n        αντιγράφου ασφαλείας στην κάρτα μνήμης.\n    </string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Κάνετε εξαγωγή κρυπτογραφημένου
+        αντιγράφου ασφαλείας στην κάρτα μνήμης.
+    </string>
   <string name="export_fragment__export_plaintext_backup">Εξαγωγή Μη Κρυπτογραφημένου Αντιγράφου Ασφαλείας</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n        Εξαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας συμβατό με την εφαρμογή «SMSBackup And Restore» στην κάρτα μνήμης.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+        Εξαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας συμβατό με την εφαρμογή «SMSBackup And Restore» στην κάρτα μνήμης.</string>
   <string name="import_fragment__import_system_sms_database">Εισαγωγή Της Βάσης Δεδομένων SMS Του Συστήματος</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Εισαγωγή της βάσης δεδομένων\n        της προκαθορισμένης εφαρμογής μηνυμάτων της συσκευής σας.\n    </string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Εισαγωγή της βάσης δεδομένων
+        της προκαθορισμένης εφαρμογής μηνυμάτων της συσκευής σας.
+    </string>
   <string name="import_fragment__import_encrypted_backup">Εισαγωγή Κρυπτογραφημένου Αντιγράφου Ασφαλείας</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n        Επαναφορά προηγούμενου αντιγράφου ασφαλείας του TextSecure.\n    </string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+        Επαναφορά προηγούμενου αντιγράφου ασφαλείας του TextSecure.
+    </string>
   <string name="import_fragment__import_plaintext_backup">Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\n        Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας. Συμβατό με την εφαρμογή «SMSBackup And Restore».</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+        Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας. Συμβατό με την εφαρμογή «SMSBackup And Restore».</string>
   <string name="local_identity__regenerate_key">Ανανέωση Κλειδιού</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Απαιτούνται προσαρμοσμένες ρυθμίσεις MMS για το κινητό σας.</string>
@@ -412,41 +471,69 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Ολοκληρώθηκε</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\n        Το TextSecure μπορεί να χρησιμοποιήσει τη σύνδεσή σας στο Διαδίκτυο για να αποφύγει χρεώσεις SMS όταν επικοινωνείτε με άλλους\n        χρήστες TextSecure. Για να χρησιμοποιήσετε αυτή τη λειτουργία παρακαλώ επιβεβαιώστε τον κωδικό χώρας και το νούμερό σας.\n    </string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+        Το TextSecure μπορεί να χρησιμοποιήσει τη σύνδεσή σας στο Διαδίκτυο για να αποφύγει χρεώσεις SMS όταν επικοινωνείτε με άλλους
+        χρήστες TextSecure. Για να χρησιμοποιήσετε αυτή τη λειτουργία παρακαλώ επιβεβαιώστε τον κωδικό χώρας και το νούμερό σας.
+    </string>
   <string name="registration_activity__your_country">Η ΧΩΡΑ ΣΑΣ</string>
-  <string name="registration_activity__your_country_code_and_phone_number">Ο ΚΩΔΙΚΟΣ ΧΩΡΑΣ ΣΑΣ\nΚΑΙ ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ ΤΗΛΕΦΩΝΟΥ</string>
+  <string name="registration_activity__your_country_code_and_phone_number">Ο ΚΩΔΙΚΟΣ ΧΩΡΑΣ ΣΑΣ
+ΚΑΙ ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ ΤΗΛΕΦΩΝΟΥ</string>
   <string name="registration_activity__phone_number">ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ</string>
   <string name="registration_activity__register">Εγγραφή</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Η εγγραφή θα μεταφέρει προσωρινά μερικά δεδομένα στον διακομιστή.</string>
   <string name="registration_activity__skip">Παράληψη</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Μερικά ενδεχόμενα προβλήματα\nσυμπεριλαμβάνουν:\n</string>
+  <string name="registration_problems__some_possible_problems_include">Μερικά ενδεχόμενα προβλήματα
+συμπεριλαμβάνουν:
+</string>
   <string name="registration_problems__sms_interceptors">Εφαρμογές που \"αρπάζουν\" όλα τα SMS</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nΚάποιες εφαρμογές (πχ Handcent ή GoSMS), δε συμπεριφέρονται σωστά και \"αρπάζουν\" \nόλα τα εισερχόμενα μηνύματα. Αν έχετε κάποιο μήνυμα που ξεκινάει με \"Your TextSecure verification code:\" σε μια από αυτές τις εφαρμογές θα πρέπει να τη ρυθμίσετε ώστε να μη διαχειρίζεται όλα τα μηνύματα κειμένου.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Κάποιες εφαρμογές (πχ Handcent ή GoSMS), δε συμπεριφέρονται σωστά και \"αρπάζουν\" 
+όλα τα εισερχόμενα μηνύματα. Αν έχετε κάποιο μήνυμα που ξεκινάει με \"Your TextSecure verification code:\" σε μια από αυτές τις εφαρμογές θα πρέπει να τη ρυθμίσετε ώστε να μη διαχειρίζεται όλα τα μηνύματα κειμένου.</string>
   <string name="registration_problems__incorrect_number">Λανθασμένος αριθμός.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nΠαρακαλώ σιγουρευτείτε ότι εισάγατε σωστά τον αριθμό σας και ότι αυτός ειναι διαμορφωμένος σωστά\nγια την περιοχή σας.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+Παρακαλώ σιγουρευτείτε ότι εισάγατε σωστά τον αριθμό σας και ότι αυτός ειναι διαμορφωμένος σωστά
+για την περιοχή σας.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nΤο TextSecure δεν λειτουργεί με αριθμούς Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+Το TextSecure δεν λειτουργεί με αριθμούς Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Επιβεβαίωση με φωνή</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nΗ επαλήθευση μπορεί να γίνει και τηλεφωνικά. Πατήστε \"Τηλεφωνησέ μου\" και εισάγετε παρακάτω τον εξαψήφιο κωδικό που θα σας δωθεί.</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+Η επαλήθευση μπορεί να γίνει και τηλεφωνικά. Πατήστε \"Τηλεφωνησέ μου\" και εισάγετε παρακάτω τον εξαψήφιο κωδικό που θα σας δωθεί.</string>
   <string name="registration_progress_activity__verify">Επιβεβαίωση</string>
   <string name="registration_progress_activity__call_me">Κάλεσέ με</string>
   <string name="registration_progress_activity__edit_number">Επεξεργασία αριθμού</string>
   <string name="registration_progress_activity__connectivity_error">Σφάλμα συνδεσιμότητας.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\nΤο TextSecure ήταν αδύνατο να συνδεθεί στην υπηρεσία push.</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Πιθανά\n        προβλήματα:\n    </string>
-  <string name="registration_progress_activity__no_network_connectivity">Δεν υπάρχει σύνδεση\n        στο Διαδίκτυο.\n    </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Η\nσυσκευή σας χρειάζεται σύνδεση στο δίκτυο για να χρησιμοποιήσετε αυτή τη λειτουργία. Σιγουρευτείτε ότι έχετε σύνδεση 3G ή Wifi.</string>
-  <string name="registration_progress_activity__restrictive_firewall">Περιοριστικό τοίχος προστασίας.\n</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">\nΑν είστε συνδεμένοι μέσω Wifi, μπορεί να υπάρχει firewall που εμποδίζει την πρόσβαση\nστο διακομιστή του TextSecure. Δοκιμάστε από άλλο δίκτυο ή από τη σύνδεση 3G.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nΤο TextSecure θα επαληθέυσει αυτόματα τον αριθμό σας μεσω μηνύματος SMS.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+Το TextSecure ήταν αδύνατο να συνδεθεί στην υπηρεσία push.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Πιθανά
+        προβλήματα:
+    </string>
+  <string name="registration_progress_activity__no_network_connectivity">Δεν υπάρχει σύνδεση
+        στο Διαδίκτυο.
+    </string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Η
+συσκευή σας χρειάζεται σύνδεση στο δίκτυο για να χρησιμοποιήσετε αυτή τη λειτουργία. Σιγουρευτείτε ότι έχετε σύνδεση 3G ή Wifi.</string>
+  <string name="registration_progress_activity__restrictive_firewall">Περιοριστικό τοίχος προστασίας.
+</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+Αν είστε συνδεμένοι μέσω Wifi, μπορεί να υπάρχει firewall που εμποδίζει την πρόσβαση
+στο διακομιστή του TextSecure. Δοκιμάστε από άλλο δίκτυο ή από τη σύνδεση 3G.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+Το TextSecure θα επαληθέυσει αυτόματα τον αριθμό σας μεσω μηνύματος SMS.</string>
   <string name="registration_progress_activity__connecting">Γίνεται σύνδεση...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Αναμονή για επιβεβαίωση\n        SMS...\n    </string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Αναμονή για επιβεβαίωση
+        SMS...
+    </string>
   <string name="registration_progress_activity__registering_with_server">Γίνεται εγγραφή με τον διακομιστή...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Αυτό\nμπορεί να διαρκέσει για λίγο. ΠΑρακαλώ κάντε υπομονή και θα σας ειδοποιήσουμε όταν ολοκληρωθεί η επαλήθευση.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nΤο TextSecure έληξε περιμένοντας την επαλήθευση μέσω μηνύματος SMS.</string>
-  <string name="registration_progress_activity__sms_verification_failed">Η επιβεβαίωση SMS\n        απέτυχε.\n    </string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Αυτό
+μπορεί να διαρκέσει για λίγο. ΠΑρακαλώ κάντε υπομονή και θα σας ειδοποιήσουμε όταν ολοκληρωθεί η επαλήθευση.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+Το TextSecure έληξε περιμένοντας την επαλήθευση μέσω μηνύματος SMS.</string>
+  <string name="registration_progress_activity__sms_verification_failed">Η επιβεβαίωση SMS
+        απέτυχε.
+    </string>
   <string name="registration_progress_activity__generating_keys">Δημιουργία κλειδιών σε εξέλιξη...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Εισάγεται όνομα ή αριθμό</string>
@@ -457,8 +544,6 @@
   <string name="verify_identity_activity__their_identity_they_read">Η ταυτότητά τους (αυτό διαβάζουν):</string>
   <string name="verify_identity_activity__your_identity_you_read">Η ταυτότητά σας (εσείς διαβάζετε):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Όνομα ταυτότητας:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Εισηγμένη ταυτότητα:\\n</string>
   <string name="verify_import_identity_activity__verified">Επιβεβαιώθηκε!</string>
   <string name="verify_import_identity_activity__compare">Σύγκριση</string>
   <!--verify_keys_activity-->
@@ -564,7 +649,8 @@
   <string name="preferences__make_default_sms_app">Ανάθεση ως προεπιλεγμένη εφαρμογή για SMS</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Το TextSecure να είναι η προεπιλεγμένη εφαρμογή για SMS/MMS.</string>
   <string name="preferences__use_data_channel">ΕΙδοποιήσεις Push</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nΑυξήστε την ανωνυμία και αποφύγετε το κόστος του SMS χρησιμοποιώντας το κανάλι δεδομένων για επικοινωνία με τους άλλους χρήστες του TextSecure.</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+Αυξήστε την ανωνυμία και αποφύγετε το κόστος του SMS χρησιμοποιώντας το κανάλι δεδομένων για επικοινωνία με τους άλλους χρήστες του TextSecure.</string>
   <string name="preferences__allow_sms_fallback">Να επιτραπέι στα εξερχόμενα μηνύματα να</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">Το TextSecure είναι η προεπιλεγμένη εφαρμογή για SMS. Παρακαλώ επιλέξτε μια άλλη προεπιλεγμένη εφαρμογή για SMS για να αλλάξετε αυτή την προτίμηση.</string>
   <string name="preferences__refresh_push_directory">Ενημέρωση καταλόγου push</string>

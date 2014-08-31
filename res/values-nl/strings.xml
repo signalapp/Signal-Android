@@ -14,12 +14,15 @@
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
   <string name="ApplicationPreferencesActivity_my">Mijn</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Opslagversleuteling uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nLet op, dit schakelt opslagversleuteling uit voor alle berichten en sleutels. Je versleutelde sessies zullen blijven werken, maar iedereen met fysieke toegang tot je apparaat zal er toegang toe hebben.</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+Let op, dit schakelt opslagversleuteling uit voor alle berichten en sleutels. Je versleutelde sessies zullen blijven werken, maar iedereen met fysieke toegang tot je apparaat zal er toegang toe hebben.</string>
   <string name="ApplicationPreferencesActivity_disable">Schakel uit</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afmelden...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Afmelden voor datagebaseerde communicatie.</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Push berichten uitzetten?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nDit zal push berichten uitzetten door uw registratie bij de server ongedaan te maken.\nU zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wilt gebruiken.</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+Dit zal push berichten uitzetten door uw registratie bij de server ongedaan te maken.
+U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">U bent niet geregistreerd bij de push service...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Contactpersonen updaten</string>
@@ -82,7 +85,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Zender: %1$s\nOverdracht: %2$s\nVerzonden: %3$s\nOntvangen: %4$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd%3$s\n/Ontvangen:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Berichtverwijdering bevestigen</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Weet u zeker dat u dit bericht permanent wilt verwijderen?</string>
   <string name="ConversationFragment_save_to_sd_card">Opslaan op SD-kaart?</string>
@@ -140,7 +143,8 @@
   <string name="ImportFragment_import">Importeer</string>
   <string name="ImportFragment_cancel">Annuleren</string>
   <string name="ImportFragment_restore_encrypted_backup">Versleutelde back-up herstellen?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nHerstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en berichten volledig vervangen. Je zult alle informatie verliezen die wel in je huidige TextSecure-installatie zit, maar niet de back-up.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en berichten volledig vervangen. Je zult alle informatie verliezen die wel in je huidige TextSecure-installatie zit, maar niet de back-up.</string>
   <string name="ImportFragment_restore">Herstellen</string>
   <string name="ImportFragment_import_plaintext_backup">Onversleutelde back-up importeren?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dit zal berichten importeren uit een platte tekstbackup. Als je deze backup eerder al eens hebt geimporteerd, zal het opnieuw importeren resulteren in dubbele berichten.</string>
@@ -185,13 +189,18 @@
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Verbind met TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">U moet uw\nlandcode opgeven</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">U moet uw\ntelefoonnummer opgeven</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">U moet uw
+landcode opgeven</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">U moet uw
+telefoonnummer opgeven</string>
   <string name="RegistrationActivity_invalid_number">Ongeldig nummer</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Het nummer dat u hebt\ningevoerd (%s) is ongeldig.</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Het nummer dat u hebt
+ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationActivity_unsupported">Niet ondersteund</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sorry, dit apparaat ondersteunt geen databerichten. Apparaten die een Androidversie ouder dan 4.0 draaien moeten aan een Google Account gekoppeld zijn. Apparaten die Android 4.0 of nieuwer draaien hoeven niet gekoppeld te zijn, maar moeten wel de Play Store app geïnstalleerd hebben.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nWe gaan nu controleren of het volgende nummer bij dit apparaat hoort:\n\n%s\n\nIs dit nummer correct, of wil u het aanpassen alvorens door te gaan?</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+We gaan nu controleren of het volgende nummer bij dit apparaat hoort:\n\n%s\n\n
+Is dit nummer correct, of wil u het aanpassen alvorens door te gaan?</string>
   <string name="RegistrationActivity_continue">Doorgaan</string>
   <string name="RegistrationActivity_edit">Bewerken</string>
   <!--RegistrationProblemsActivity-->
@@ -225,9 +234,12 @@
   <string name="RegistrationService_registration_error">Registratiefout</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Registratie bij TextSecure is mislukt.</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Misvormd sleuteluitwisselingsbericht\nontvangen!</string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nSleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nBericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en weer te geven.</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Misvormd sleuteluitwisselingsbericht
+ontvangen!</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en weer te geven.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bijgewerkte maar onbekende identiteitsgegevens ontvangen. Raak aan om identiteit te bevestigen.</string>
   <string name="SmsMessageRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliceer bericht.</string>
@@ -302,10 +314,14 @@
   <string name="MessageNotifier_mark_as_read">Markeer als gelezen</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Regenereren</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Identiteit regenereren\nSleutel...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Identiteit regenereren
+Sleutel...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Geregenereerd!</string>
   <string name="ViewLocalIdentityActivity_reset_identity_key">Identiteitssleutel opnieuw instellen?</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nPas op! Door uw identiteitssleutel opnieuw te genereren zal uw huidige identiteitssleutel definitief verloren gaan,\nen uw huidige contacten zullen waarschuwingen krijgen wanneer zij een nieuwe beveiligde sessie met u starten.\nWeet u zeker dat u door wilt gaan?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+Pas op! Door uw identiteitssleutel opnieuw te genereren zal uw huidige identiteitssleutel definitief verloren gaan,
+en uw huidige contacten zullen waarschuwingen krijgen wanneer zij een nieuwe beveiligde sessie met u starten.
+Weet u zeker dat u door wilt gaan?</string>
   <string name="ViewLocalIdentityActivity_cancel">Annuleren</string>
   <string name="ViewLocalIdentityActivity_continue">Doorgaan</string>
   <!--SmsReceiver-->
@@ -379,7 +395,9 @@
   <string name="log_submit_activity__log_fetch_failed">Kan geen logs van uw apparaat verzamelen. U kan nog steeds ADB gebruiken om debug logs te verzamelen.</string>
   <string name="log_submit_activity__log_submit_success_title">Succesvol!</string>
   <string name="log_submit_activity__log_got_it">Ontvangen</string>
-  <string name="log_submit_activity__your_pastebin_url">Kopieer deze link en voeg deze toe aan uw probleem (lang indrukken om te kopieren naar klembord)\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__your_pastebin_url">Kopieer deze link en voeg deze toe aan uw probleem (lang indrukken om te kopieren naar klembord)
+
+<b>%1$s</b></string>
   <string name="log_submit_activity__copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="log_submit_activity__loading_logcat">Logcat laden...</string>
   <string name="log_submit_activity__thanks">Bedankt voor uw hulp!</string>
@@ -397,13 +415,16 @@
   <string name="export_fragment__export_encrypted_backup">Versleutelde back-up exporteren</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Export een versleutelde back-up naar de SD-kaart.</string>
   <string name="export_fragment__export_plaintext_backup">Onversleutelde back-up exporteren</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nExporteer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\' naar de SD-kaart.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+Exporteer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\' naar de SD-kaart.</string>
   <string name="import_fragment__import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database uit de standaard berichtenapp van het systeem.</string>
   <string name="import_fragment__import_encrypted_backup">Versleutelde back-up importeren</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nHerstel een eerder geëxporteerde versleutelde back-up van TextSecure.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+Herstel een eerder geëxporteerde versleutelde back-up van TextSecure.</string>
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren...</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nImporteer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</string>
   <string name="local_identity__regenerate_key">Sleutel regenereren</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Voor uw telefoon zijn handmatige MMS-instellingen noodzakelijk.</string>
@@ -419,40 +440,54 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Voltooid</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure kan instant messages gebruiken om de privacy te verbeteren en om SMS-kosten te vermijden als u met andere TextSecure gebruikers communiceert. Als u deze functionaliteit wil inschakelen, verifiëer dan uw landcode en telefoonnummer.</string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+TextSecure kan instant messages gebruiken om de privacy te verbeteren en om SMS-kosten te vermijden als u met andere TextSecure gebruikers communiceert. Als u deze functionaliteit wil inschakelen, verifiëer dan uw landcode en telefoonnummer.</string>
   <string name="registration_activity__your_country">UW LAND</string>
-  <string name="registration_activity__your_country_code_and_phone_number">UW LANDCODE EN\nTELEFOONNUMMER</string>
+  <string name="registration_activity__your_country_code_and_phone_number">UW LANDCODE EN
+TELEFOONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
   <string name="registration_activity__register">Registreren</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registratie zal wat contactinformatie tijdelijk met de server delen.</string>
   <string name="registration_activity__skip">Overslaan</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Mogelijke problemen\nzijn:</string>
+  <string name="registration_problems__some_possible_problems_include">Mogelijke problemen
+zijn:</string>
   <string name="registration_problems__sms_interceptors">SMS onderscheppers</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nSommige third party SMS-clients, zoals Handcent of GoSMS, gedragen zich slecht en onderscheppen alle inkomende SMS-berichten. Controleer of u een SMS-bericht heeft ontvangen dat begint met \"Your TextSecure verification code:\", in welk geval u uw andere SMS-apps zal moeten configureren om SMS-berichten door te laten.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Sommige third party SMS-clients, zoals Handcent of GoSMS, gedragen zich slecht en onderscheppen alle inkomende SMS-berichten. Controleer of u een SMS-bericht heeft ontvangen dat begint met \"Your TextSecure verification code:\", in welk geval u uw andere SMS-apps zal moeten configureren om SMS-berichten door te laten.</string>
   <string name="registration_problems__incorrect_number">Incorrect nummer.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nControleer of u uw nummer correct heeft ingevuld, en of het de juiste opmaak heeft voor uw regio.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+Controleer of u uw nummer correct heeft ingevuld, en of het de juiste opmaak heeft voor uw regio.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure werkt niet met nummers van Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+TextSecure werkt niet met nummers van Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Spraakverificatie</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nTextSecure kan ook u bellen om uw nummer te verifiëren. Raak \'Call Me\' aan en voer hieronder de 6-cijferige code code in die wordt voorgelezen.</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+TextSecure kan ook u bellen om uw nummer te verifiëren. Raak \'Call Me\' aan en voer hieronder de 6-cijferige code code in die wordt voorgelezen.</string>
   <string name="registration_progress_activity__verify">Verifieer</string>
   <string name="registration_progress_activity__call_me">Bel me</string>
   <string name="registration_progress_activity__edit_number">Nummer bewerken</string>
   <string name="registration_progress_activity__connectivity_error">Verbindingsfout.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\nTextSecure kon geen verbinding maken met de push service.</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Mogelijke problemen\nzijn:</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+TextSecure kon geen verbinding maken met de push service.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Mogelijke problemen
+zijn:</string>
   <string name="registration_progress_activity__no_network_connectivity">Geen netwerkverbinding.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Je apparaat heeft een netwerkverbinding nodig voor deze TextSecure functie. Controleer of je verbonden bent met 3G of WiFi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Beperkende firewall.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">\nAls u bent verbonden via WiFi is het mogelijk dat een firewall de verbinding met\nde TextSecure-server blokkeert. Probeer een ander- of het mobiele netwerk.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nTextSecure zal uw nummer nu automatisch verifiëren door middel van een SMS-bericht.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+Als u bent verbonden via WiFi is het mogelijk dat een firewall de verbinding met
+de TextSecure-server blokkeert. Probeer een ander- of het mobiele netwerk.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+TextSecure zal uw nummer nu automatisch verifiëren door middel van een SMS-bericht.</string>
   <string name="registration_progress_activity__connecting">Verbinden...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Wachten op\nSMS-verificatie...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Wachten op
+SMS-verificatie...</string>
   <string name="registration_progress_activity__registering_with_server">Aanmelden op de server...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dit kan een moment duren. Een ogenblik geduld, we zullen u op de hoogte stellen wanneer de verificatie voltooid is.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nTextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-verificatie mislukt.</string>
   <string name="registration_progress_activity__generating_keys">Sleutels genereren...</string>
   <!--recipients_panel-->
