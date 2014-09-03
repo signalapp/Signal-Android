@@ -11,12 +11,12 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.util.Log;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 public class BitmapUtil {
+  private static final String TAG = BitmapUtil.class.getSimpleName();
 
   private static final int MAX_COMPRESSION_QUALITY  = 95;
   private static final int MIN_COMPRESSION_QUALITY  = 50;
@@ -26,9 +26,17 @@ public class BitmapUtil {
                                          int maxHeight, int maxSize)
       throws IOException, BitmapDecodingException
   {
-    InputStream measure = context.getContentResolver().openInputStream(uri);
-    InputStream data    = context.getContentResolver().openInputStream(uri);
-    Bitmap bitmap       = createScaledBitmap(measure, data, maxWidth, maxHeight);
+    Bitmap bitmap;
+    try {
+      bitmap = createScaledBitmap(context.getContentResolver().openInputStream(uri),
+                                  context.getContentResolver().openInputStream(uri),
+                                  maxWidth, maxHeight, false);
+    } catch(OutOfMemoryError oome) {
+      Log.w(TAG, "OutOfMemoryError when scaling precisely, doing rough scale to save memory instead");
+      bitmap = createScaledBitmap(context.getContentResolver().openInputStream(uri),
+                                  context.getContentResolver().openInputStream(uri),
+                                  maxWidth, maxHeight, true);
+    }
     int quality         = MAX_COMPRESSION_QUALITY;
     int attempts        = 0;
 
@@ -53,38 +61,55 @@ public class BitmapUtil {
     final BitmapFactory.Options options = getImageDimensions(measure);
     final int outWidth = (int)(options.outWidth * scale);
     final int outHeight = (int)(options.outHeight * scale);
-    Log.w("BitmapUtil", "creating scaled bitmap with scale " + scale + " => " + outWidth + "x" + outHeight);
-    return createScaledBitmap(data, outWidth, outHeight, options);
+    Log.w(TAG, "creating scaled bitmap with scale " + scale + " => " + outWidth + "x" + outHeight);
+    return createScaledBitmap(data, outWidth, outHeight, options, false);
   }
 
   public static Bitmap createScaledBitmap(InputStream measure, InputStream data,
-                                         int maxWidth, int maxHeight)
+                                          int maxWidth, int maxHeight)
+      throws BitmapDecodingException
+  {
+    return createScaledBitmap(measure, data, maxWidth, maxHeight, false);
+  }
+
+  public static Bitmap createScaledBitmap(InputStream measure, InputStream data,
+                                         int maxWidth, int maxHeight, boolean constrainedMemory)
       throws BitmapDecodingException
   {
     final BitmapFactory.Options options = getImageDimensions(measure);
-    return createScaledBitmap(data, maxWidth, maxHeight, options);
+    return createScaledBitmap(data, maxWidth, maxHeight, options, constrainedMemory);
   }
 
-  private static Bitmap createScaledBitmap(InputStream data,
-                                          int maxWidth, int maxHeight, BitmapFactory.Options options)
+  private static Bitmap createScaledBitmap(InputStream data, int maxWidth, int maxHeight,
+                                           BitmapFactory.Options options, boolean constrainedMemory)
       throws BitmapDecodingException
   {
     final int imageWidth  = options.outWidth;
     final int imageHeight = options.outHeight;
 
     int scaler = 1;
-
-    while ((imageWidth / scaler / 2 >= maxWidth) && (imageHeight / scaler / 2 >= maxHeight))
+    int scaleFactor = (constrainedMemory ? 1 : 2);
+    while ((imageWidth / scaler / scaleFactor >= maxWidth) && (imageHeight / scaler / scaleFactor >= maxHeight)) {
       scaler *= 2;
+    }
 
     options.inSampleSize       = scaler;
     options.inJustDecodeBounds = false;
 
-    Bitmap roughThumbnail  = BitmapFactory.decodeStream(new BufferedInputStream(data), null, options);
-    Log.w("BitmapUtil", "rough scale " + (imageWidth) + "x" + (imageHeight) +
-                        " => " + (options.outWidth) + "x" + (options.outHeight));
+    FlushedInputStream is = new FlushedInputStream(data);
+    Bitmap roughThumbnail = BitmapFactory.decodeStream(is, null, options);
+    try {
+      is.close();
+    } catch (IOException ioe) {
+      Log.w(TAG, "IOException thrown when closing an images InputStream", ioe);
+    }
+    Log.w(TAG, "rough scale " + (imageWidth) + "x" + (imageHeight) +
+               " => " + (options.outWidth) + "x" + (options.outHeight));
     if (roughThumbnail == null) {
       throw new BitmapDecodingException("Decoded stream was null.");
+    }
+    if (constrainedMemory) {
+      return roughThumbnail;
     }
 
     if (options.outWidth > maxWidth || options.outHeight > maxHeight) {
@@ -101,10 +126,14 @@ public class BitmapUtil {
         aspectWidth = (aspectHeight / options.outHeight) * options.outWidth;
       }
 
-      Log.w("BitmapUtil", "fine scale  " + options.outWidth + "x" + options.outHeight +
-                          " => " + aspectWidth + "x" + aspectHeight);
-      Bitmap scaledThumbnail = Bitmap.createScaledBitmap(roughThumbnail, (int)aspectWidth, (int)aspectHeight, true);
-      if (roughThumbnail != scaledThumbnail) roughThumbnail.recycle();
+      Log.w(TAG, "fine scale  " + options.outWidth + "x" + options.outHeight +
+                 " => " + aspectWidth + "x" + aspectHeight);
+      Bitmap scaledThumbnail = null;
+      try {
+        scaledThumbnail = Bitmap.createScaledBitmap(roughThumbnail, (int) aspectWidth, (int) aspectHeight, true);
+      } finally {
+        if (roughThumbnail != scaledThumbnail) roughThumbnail.recycle();
+      }
       return scaledThumbnail;
     } else {
       return roughThumbnail;
@@ -114,8 +143,13 @@ public class BitmapUtil {
   private static BitmapFactory.Options getImageDimensions(InputStream inputStream) {
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inJustDecodeBounds    = true;
-    BitmapFactory.decodeStream(inputStream, null, options);
-
+    FlushedInputStream fis        = new FlushedInputStream(inputStream);
+    BitmapFactory.decodeStream(fis, null, options);
+    try {
+      fis.close();
+    } catch (IOException ioe) {
+      Log.w(TAG, "failed to close the InputStream after reading image dimensions");
+    }
     return options;
   }
 
