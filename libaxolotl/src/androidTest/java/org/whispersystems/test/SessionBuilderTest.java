@@ -3,6 +3,7 @@ package org.whispersystems.test;
 import android.test.AndroidTestCase;
 
 import org.whispersystems.libaxolotl.DuplicateMessageException;
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
@@ -567,6 +568,60 @@ public class SessionBuilderTest extends AndroidTestCase {
     runInteraction(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore,
                    bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore);
   }
+
+  public void testOptionalOneTimePreKey() throws Exception {
+    SessionStore      aliceSessionStore      = new InMemorySessionStore();
+    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
+    PreKeyStore       alicePreKeyStore       = new InMemoryPreKeyStore();
+    IdentityKeyStore  aliceIdentityKeyStore  = new InMemoryIdentityKeyStore();
+    SessionBuilder    aliceSessionBuilder    = new SessionBuilder(aliceSessionStore, alicePreKeyStore,
+                                                                  aliceSignedPreKeyStore,
+                                                                  aliceIdentityKeyStore,
+                                                                  BOB_RECIPIENT_ID, 1);
+
+    SessionStore      bobSessionStore      = new InMemorySessionStore();
+    PreKeyStore       bobPreKeyStore       = new InMemoryPreKeyStore();
+    SignedPreKeyStore bobSignedPreKeyStore = new InMemorySignedPreKeyStore();
+    IdentityKeyStore  bobIdentityKeyStore  = new InMemoryIdentityKeyStore();
+
+    ECKeyPair bobPreKeyPair            = Curve.generateKeyPair();
+    ECKeyPair bobSignedPreKeyPair      = Curve.generateKeyPair();
+    byte[]    bobSignedPreKeySignature = Curve.calculateSignature(bobIdentityKeyStore.getIdentityKeyPair().getPrivateKey(),
+                                                                  bobSignedPreKeyPair.getPublicKey().serialize());
+
+    PreKeyBundle bobPreKey = new PreKeyBundle(bobIdentityKeyStore.getLocalRegistrationId(), 1,
+                                              0, null,
+                                              22, bobSignedPreKeyPair.getPublicKey(),
+                                              bobSignedPreKeySignature,
+                                              bobIdentityKeyStore.getIdentityKeyPair().getPublicKey());
+
+    aliceSessionBuilder.process(bobPreKey);
+
+    assertTrue(aliceSessionStore.containsSession(BOB_RECIPIENT_ID, 1));
+    assertTrue(!aliceSessionStore.loadSession(BOB_RECIPIENT_ID, 1).getSessionState().getNeedsRefresh());
+    assertTrue(aliceSessionStore.loadSession(BOB_RECIPIENT_ID, 1).getSessionState().getSessionVersion() == 3);
+
+    String            originalMessage    = "L'homme est condamné à être libre";
+    SessionCipher     aliceSessionCipher = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, BOB_RECIPIENT_ID, 1);
+    CiphertextMessage outgoingMessage    = aliceSessionCipher.encrypt(originalMessage.getBytes());
+
+    assertTrue(outgoingMessage.getType() == CiphertextMessage.PREKEY_TYPE);
+
+    PreKeyWhisperMessage incomingMessage = new PreKeyWhisperMessage(outgoingMessage.serialize());
+    assertTrue(!incomingMessage.getPreKeyId().isPresent());
+
+    bobPreKeyStore.storePreKey(31337, new PreKeyRecord(bobPreKey.getPreKeyId(), bobPreKeyPair));
+    bobSignedPreKeyStore.storeSignedPreKey(22, new SignedPreKeyRecord(22, System.currentTimeMillis(), bobSignedPreKeyPair, bobSignedPreKeySignature));
+
+    SessionCipher bobSessionCipher = new SessionCipher(bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore, ALICE_RECIPIENT_ID, 1);
+    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage);
+
+    assertTrue(bobSessionStore.containsSession(ALICE_RECIPIENT_ID, 1));
+    assertTrue(bobSessionStore.loadSession(ALICE_RECIPIENT_ID, 1).getSessionState().getSessionVersion() == 3);
+    assertTrue(bobSessionStore.loadSession(ALICE_RECIPIENT_ID, 1).getSessionState().getAliceBaseKey() != null);
+    assertTrue(originalMessage.equals(new String(plaintext)));
+  }
+
 
   private void runInteraction(SessionStore aliceSessionStore,
                               PreKeyStore alicePreKeyStore,

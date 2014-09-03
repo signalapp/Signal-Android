@@ -33,6 +33,7 @@ import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.util.ByteUtil;
 import org.whispersystems.libaxolotl.util.Pair;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
@@ -147,14 +148,14 @@ public class SessionCipher {
              InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
     synchronized (SESSION_LOCK) {
-      SessionRecord sessionRecord    = sessionStore.loadSession(recipientId, deviceId);
-      int           unsignedPreKeyId = sessionBuilder.process(sessionRecord, ciphertext);
-      byte[]        plaintext        = decrypt(sessionRecord, ciphertext.getWhisperMessage());
+      SessionRecord     sessionRecord    = sessionStore.loadSession(recipientId, deviceId);
+      Optional<Integer> unsignedPreKeyId = sessionBuilder.process(sessionRecord, ciphertext);
+      byte[]            plaintext        = decrypt(sessionRecord, ciphertext.getWhisperMessage());
 
       sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
-      if (unsignedPreKeyId >=0) {
-        preKeyStore.removePreKey(unsignedPreKeyId);
+      if (unsignedPreKeyId.isPresent()) {
+        preKeyStore.removePreKey(unsignedPreKeyId.get());
       }
 
       return plaintext;

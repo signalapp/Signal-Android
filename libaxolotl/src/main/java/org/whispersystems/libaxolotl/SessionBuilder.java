@@ -88,12 +88,13 @@ public class SessionBuilder {
    * @throws org.whispersystems.libaxolotl.InvalidKeyException when the message is formatted incorrectly.
    * @throws org.whispersystems.libaxolotl.UntrustedIdentityException when the {@link IdentityKey} of the sender is untrusted.
    */
-  /*package*/ int process(SessionRecord sessionRecord, PreKeyWhisperMessage message)
+  /*package*/ Optional<Integer> process(SessionRecord sessionRecord, PreKeyWhisperMessage message)
       throws InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
     int         messageVersion   = message.getMessageVersion();
     IdentityKey theirIdentityKey = message.getIdentityKey();
-    int         unsignedPreKeyId;
+
+    Optional<Integer> unsignedPreKeyId;
 
     if (!identityKeyStore.isTrustedIdentity(recipientId, theirIdentityKey)) {
       throw new UntrustedIdentityException();
@@ -109,13 +110,13 @@ public class SessionBuilder {
     return unsignedPreKeyId;
   }
 
-  private int processV3(SessionRecord sessionRecord, PreKeyWhisperMessage message)
+  private Optional<Integer> processV3(SessionRecord sessionRecord, PreKeyWhisperMessage message)
       throws UntrustedIdentityException, InvalidKeyIdException, InvalidKeyException
   {
 
     if (sessionRecord.hasSessionState(message.getMessageVersion(), message.getBaseKey().serialize())) {
       Log.w(TAG, "We've already setup a session for this V3 message, letting bundled message fall through...");
-      return -1;
+      return Optional.absent();
     }
 
     boolean   simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
@@ -129,8 +130,8 @@ public class SessionBuilder {
               .setOurSignedPreKey(ourSignedPreKey)
               .setOurRatchetKey(ourSignedPreKey);
 
-    if (message.getPreKeyId() >= 0) {
-      parameters.setOurOneTimePreKey(Optional.of(preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair()));
+    if (message.getPreKeyId().isPresent()) {
+      parameters.setOurOneTimePreKey(Optional.of(preKeyStore.loadPreKey(message.getPreKeyId().get()).getKeyPair()));
     } else {
       parameters.setOurOneTimePreKey(Optional.<ECKeyPair>absent());
     }
@@ -146,25 +147,28 @@ public class SessionBuilder {
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
-    if (message.getPreKeyId() >= 0 && message.getPreKeyId() != Medium.MAX_VALUE) {
+    if (message.getPreKeyId().isPresent() && message.getPreKeyId().get() != Medium.MAX_VALUE) {
       return message.getPreKeyId();
     } else {
-      return -1;
+      return Optional.absent();
     }
   }
 
-  private int processV2(SessionRecord sessionRecord, PreKeyWhisperMessage message)
+  private Optional<Integer> processV2(SessionRecord sessionRecord, PreKeyWhisperMessage message)
       throws UntrustedIdentityException, InvalidKeyIdException, InvalidKeyException
   {
+    if (!message.getPreKeyId().isPresent()) {
+      throw new InvalidKeyIdException("V2 message requires one time prekey id!");
+    }
 
-    if (!preKeyStore.containsPreKey(message.getPreKeyId()) &&
+    if (!preKeyStore.containsPreKey(message.getPreKeyId().get()) &&
         sessionStore.containsSession(recipientId, deviceId))
     {
       Log.w(TAG, "We've already processed the prekey part of this V2 session, letting bundled message fall through...");
-      return -1;
+      return Optional.absent();
     }
 
-    ECKeyPair     ourPreKey            = preKeyStore.loadPreKey(message.getPreKeyId()).getKeyPair();
+    ECKeyPair     ourPreKey            = preKeyStore.loadPreKey(message.getPreKeyId().get()).getKeyPair();
     boolean       simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
 
     BobAxolotlParameters.Builder parameters = BobAxolotlParameters.newBuilder();
@@ -186,10 +190,10 @@ public class SessionBuilder {
 
     if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
-    if (message.getPreKeyId() != Medium.MAX_VALUE) {
+    if (message.getPreKeyId().get() != Medium.MAX_VALUE) {
       return message.getPreKeyId();
     } else {
-      return -1;
+      return Optional.absent();
     }
   }
 
@@ -222,11 +226,14 @@ public class SessionBuilder {
         throw new InvalidKeyException("Both signed and unsigned prekeys are absent!");
       }
 
-      boolean       isExistingSession = sessionStore.containsSession(recipientId, deviceId);
-      SessionRecord sessionRecord     = sessionStore.loadSession(recipientId, deviceId);
-      ECKeyPair     ourBaseKey        = Curve.generateKeyPair();
-      ECPublicKey   theirSignedPreKey = preKey.getSignedPreKey() != null ? preKey.getSignedPreKey() :
-                                                                           preKey.getPreKey();
+      boolean               supportsV3           = preKey.getSignedPreKey() != null;
+      boolean               isExistingSession    = sessionStore.containsSession(recipientId, deviceId);
+      SessionRecord         sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
+      ECKeyPair             ourBaseKey           = Curve.generateKeyPair();
+      ECPublicKey           theirSignedPreKey    = supportsV3 ? preKey.getSignedPreKey() : preKey.getPreKey();
+      Optional<ECPublicKey> theirOneTimePreKey   = Optional.fromNullable(preKey.getPreKey());
+      Optional<Integer>     theirOneTimePreKeyId = theirOneTimePreKey.isPresent() ? Optional.of(preKey.getPreKeyId()) :
+                                                                                    Optional.<Integer>absent();
 
       AliceAxolotlParameters.Builder parameters = AliceAxolotlParameters.newBuilder();
 
@@ -235,18 +242,16 @@ public class SessionBuilder {
                 .setTheirIdentityKey(preKey.getIdentityKey())
                 .setTheirSignedPreKey(theirSignedPreKey)
                 .setTheirRatchetKey(theirSignedPreKey)
-                .setTheirOneTimePreKey(preKey.getSignedPreKey() != null ?
-                                           Optional.fromNullable(preKey.getPreKey()) :
-                                           Optional.<ECPublicKey>absent());
+                .setTheirOneTimePreKey(supportsV3 ? theirOneTimePreKey : Optional.<ECPublicKey>absent());
 
       if (isExistingSession) sessionRecord.archiveCurrentState();
       else                   sessionRecord.reset();
 
       RatchetingSession.initializeSession(sessionRecord.getSessionState(),
-                                          preKey.getSignedPreKey() == null ? 2 : 3,
+                                          supportsV3 ? 3 : 2,
                                           parameters.create());
 
-      sessionRecord.getSessionState().setUnacknowledgedPreKeyMessage(preKey.getPreKeyId(), preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
+      sessionRecord.getSessionState().setUnacknowledgedPreKeyMessage(theirOneTimePreKeyId, preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
       sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
       sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
 

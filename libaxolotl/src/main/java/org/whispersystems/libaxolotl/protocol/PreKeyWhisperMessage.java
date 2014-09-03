@@ -27,18 +27,19 @@ import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.util.ByteUtil;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 
 public class PreKeyWhisperMessage implements CiphertextMessage {
 
-  private final int            version;
-  private final int            registrationId;
-  private final int            preKeyId;
-  private final int            signedPreKeyId;
-  private final ECPublicKey    baseKey;
-  private final IdentityKey    identityKey;
-  private final WhisperMessage message;
-  private final byte[]         serialized;
+  private final int               version;
+  private final int               registrationId;
+  private final Optional<Integer> preKeyId;
+  private final int               signedPreKeyId;
+  private final ECPublicKey       baseKey;
+  private final IdentityKey       identityKey;
+  private final WhisperMessage    message;
+  private final byte[]            serialized;
 
   public PreKeyWhisperMessage(byte[] serialized)
       throws InvalidMessageException, InvalidVersionException
@@ -65,7 +66,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
 
       this.serialized     = serialized;
       this.registrationId = preKeyWhisperMessage.getRegistrationId();
-      this.preKeyId       = preKeyWhisperMessage.hasPreKeyId() ? preKeyWhisperMessage.getPreKeyId() : -1;
+      this.preKeyId       = preKeyWhisperMessage.hasPreKeyId() ? Optional.of(preKeyWhisperMessage.getPreKeyId()) : Optional.<Integer>absent();
       this.signedPreKeyId = preKeyWhisperMessage.hasSignedPreKeyId() ? preKeyWhisperMessage.getSignedPreKeyId() : -1;
       this.baseKey        = Curve.decodePoint(preKeyWhisperMessage.getBaseKey().toByteArray(), 0);
       this.identityKey    = new IdentityKey(Curve.decodePoint(preKeyWhisperMessage.getIdentityKey().toByteArray(), 0));
@@ -75,8 +76,9 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     }
   }
 
-  public PreKeyWhisperMessage(int messageVersion, int registrationId, int preKeyId, int signedPreKeyId,
-                              ECPublicKey baseKey, IdentityKey identityKey, WhisperMessage message)
+  public PreKeyWhisperMessage(int messageVersion, int registrationId, Optional<Integer> preKeyId,
+                              int signedPreKeyId, ECPublicKey baseKey, IdentityKey identityKey,
+                              WhisperMessage message)
   {
     this.version        = messageVersion;
     this.registrationId = registrationId;
@@ -86,15 +88,20 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     this.identityKey    = identityKey;
     this.message        = message;
 
+    WhisperProtos.PreKeyWhisperMessage.Builder builder =
+        WhisperProtos.PreKeyWhisperMessage.newBuilder()
+                                          .setSignedPreKeyId(signedPreKeyId)
+                                          .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
+                                          .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
+                                          .setMessage(ByteString.copyFrom(message.serialize()))
+                                          .setRegistrationId(registrationId);
+
+    if (preKeyId.isPresent()) {
+      builder.setPreKeyId(preKeyId.get());
+    }
+
     byte[] versionBytes = {ByteUtil.intsToByteHighAndLow(this.version, CURRENT_VERSION)};
-    byte[] messageBytes = WhisperProtos.PreKeyWhisperMessage.newBuilder()
-                                       .setPreKeyId(preKeyId)
-                                       .setSignedPreKeyId(signedPreKeyId)
-                                       .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
-                                       .setIdentityKey(ByteString.copyFrom(identityKey.serialize()))
-                                       .setMessage(ByteString.copyFrom(message.serialize()))
-                                       .setRegistrationId(registrationId)
-                                       .build().toByteArray();
+    byte[] messageBytes = builder.build().toByteArray();
 
     this.serialized = ByteUtil.combine(versionBytes, messageBytes);
   }
@@ -111,7 +118,7 @@ public class PreKeyWhisperMessage implements CiphertextMessage {
     return registrationId;
   }
 
-  public int getPreKeyId() {
+  public Optional<Integer> getPreKeyId() {
     return preKeyId;
   }
 

@@ -36,6 +36,7 @@ import org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.Chain;
 import org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.PendingKeyExchange;
 import org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure.PendingPreKey;
 import org.whispersystems.libaxolotl.util.Pair;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -415,15 +416,17 @@ public class SessionState {
     return sessionStructure.hasPendingKeyExchange();
   }
 
-  public void setUnacknowledgedPreKeyMessage(int preKeyId, int signedPreKeyId, ECPublicKey baseKey) {
-    PendingPreKey pending = PendingPreKey.newBuilder()
-                                         .setPreKeyId(preKeyId)
-                                         .setSignedPreKeyId(signedPreKeyId)
-                                         .setBaseKey(ByteString.copyFrom(baseKey.serialize()))
-                                         .build();
+  public void setUnacknowledgedPreKeyMessage(Optional<Integer> preKeyId, int signedPreKeyId, ECPublicKey baseKey) {
+    PendingPreKey.Builder pending = PendingPreKey.newBuilder()
+                                                 .setSignedPreKeyId(signedPreKeyId)
+                                                 .setBaseKey(ByteString.copyFrom(baseKey.serialize()));
+
+    if (preKeyId.isPresent()) {
+      pending.setPreKeyId(preKeyId.get());
+    }
 
     this.sessionStructure = this.sessionStructure.toBuilder()
-                                                 .setPendingPreKey(pending)
+                                                 .setPendingPreKey(pending.build())
                                                  .build();
   }
 
@@ -433,8 +436,16 @@ public class SessionState {
 
   public UnacknowledgedPreKeyMessageItems getUnacknowledgedPreKeyMessageItems() {
     try {
+      Optional<Integer> preKeyId;
+
+      if (sessionStructure.getPendingPreKey().hasPreKeyId()) {
+        preKeyId = Optional.of(sessionStructure.getPendingPreKey().getPreKeyId());
+      } else {
+        preKeyId = Optional.absent();
+      }
+
       return
-          new UnacknowledgedPreKeyMessageItems(sessionStructure.getPendingPreKey().getPreKeyId(),
+          new UnacknowledgedPreKeyMessageItems(preKeyId,
                                                sessionStructure.getPendingPreKey().getSignedPreKeyId(),
                                                Curve.decodePoint(sessionStructure.getPendingPreKey()
                                                                                  .getBaseKey()
@@ -475,18 +486,21 @@ public class SessionState {
   }
 
   public static class UnacknowledgedPreKeyMessageItems {
-    private final int         preKeyId;
-    private final int         signedPreKeyId;
-    private final ECPublicKey baseKey;
+    private final Optional<Integer> preKeyId;
+    private final int               signedPreKeyId;
+    private final ECPublicKey       baseKey;
 
-    public UnacknowledgedPreKeyMessageItems(int preKeyId, int signedPreKeyId, ECPublicKey baseKey) {
+    public UnacknowledgedPreKeyMessageItems(Optional<Integer> preKeyId,
+                                            int signedPreKeyId,
+                                            ECPublicKey baseKey)
+    {
       this.preKeyId       = preKeyId;
       this.signedPreKeyId = signedPreKeyId;
       this.baseKey        = baseKey;
     }
 
 
-    public int getPreKeyId() {
+    public Optional<Integer> getPreKeyId() {
       return preKeyId;
     }
 
