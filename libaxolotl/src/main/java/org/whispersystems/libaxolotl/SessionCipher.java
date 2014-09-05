@@ -328,7 +328,9 @@ public class SessionCipher {
     }
   }
 
-  private byte[] getPlaintext(int version, MessageKeys messageKeys, byte[] cipherText) {
+  private byte[] getPlaintext(int version, MessageKeys messageKeys, byte[] cipherText)
+      throws InvalidMessageException
+  {
     try {
       Cipher cipher;
 
@@ -340,7 +342,7 @@ public class SessionCipher {
 
       return cipher.doFinal(cipherText);
     } catch (IllegalBlockSizeException | BadPaddingException e) {
-      throw new AssertionError(e);
+      throw new InvalidMessageException(e);
     }
   }
 
